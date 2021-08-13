@@ -1,5 +1,7 @@
 
 
+
+
 # FDK Platform Front API Documentaion
 
 
@@ -300,37 +302,37 @@
 
 * ## [Catalog](#Catalog)
   * Methods
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
-    * [deleteSearchKeywords](#deletesearchkeywords)
-    * [getAllSearchKeyword](#getallsearchkeyword)
     * [createCustomKeyword](#createcustomkeyword)
+    * [getAllSearchKeyword](#getallsearchkeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [updateAutocompleteKeyword](#updateautocompletekeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createCustomAutocompleteRule](#createcustomautocompleterule)
-    * [getProductBundle](#getproductbundle)
+    * [getAutocompleteConfig](#getautocompleteconfig)
     * [createProductBundle](#createproductbundle)
+    * [getProductBundle](#getproductbundle)
     * [updateProductBundle](#updateproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
-    * [getSizeGuides](#getsizeguides)
     * [createSizeGuide](#createsizeguide)
+    * [getSizeGuides](#getsizeguides)
     * [updateSizeGuide](#updatesizeguide)
     * [getSizeGuide](#getsizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [getConfigurations](#getconfigurations)
     * [createConfigurationProductListing](#createconfigurationproductlisting)
-    * [getConfigurationByType](#getconfigurationbytype)
+    * [getConfigurations](#getconfigurations)
     * [createConfigurationByType](#createconfigurationbytype)
+    * [getConfigurationByType](#getconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [getAllCollections](#getallcollections)
     * [createCollection](#createcollection)
+    * [getAllCollections](#getallcollections)
     * [getCollectionDetail](#getcollectiondetail)
-    * [updateCollection](#updatecollection)
     * [deleteCollection](#deletecollection)
-    * [getCollectionItems](#getcollectionitems)
+    * [updateCollection](#updatecollection)
     * [addCollectionItems](#addcollectionitems)
+    * [getCollectionItems](#getcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -351,38 +353,38 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [listCategories](#listcategories)
     * [createCategories](#createcategories)
+    * [listCategories](#listcategories)
     * [updateCategory](#updatecategory)
     * [getCategoryData](#getcategorydata)
-    * [getProducts](#getproducts)
     * [createProduct](#createproduct)
+    * [getProducts](#getproducts)
+    * [deleteProduct](#deleteproduct)
     * [editProduct](#editproduct)
     * [getProduct](#getproduct)
-    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [updateProductAssetsInBulk](#updateproductassetsinbulk)
-    * [createProductsInBulk](#createproductsinbulk)
+    * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
     * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [createProductsInBulk](#createproductsinbulk)
     * [getCompanyTags](#getcompanytags)
-    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [createProductAssetsInBulk](#createproductassetsinbulk)
+    * [getProductAssetsInBulk](#getproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [getInventoryBySize](#getinventorybysize)
     * [addInventory](#addinventory)
+    * [getInventoryBySize](#getinventorybysize)
     * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
     * [deleteInventory](#deleteinventory)
-    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [createBulkInventoryJob](#createbulkinventoryjob)
-    * [createBulkInventory](#createbulkinventory)
+    * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
     * [deleteBulkInventoryJob](#deletebulkinventoryjob)
-    * [getInventoryExport](#getinventoryexport)
+    * [createBulkInventory](#createbulkinventory)
     * [createInventoryExportJob](#createinventoryexportjob)
+    * [getInventoryExport](#getinventoryexport)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [getAllHsnCodes](#getallhsncodes)
     * [createHsnCode](#createhsncode)
+    * [getAllHsnCodes](#getallhsncodes)
     * [updateHsnCode](#updatehsncode)
     * [getHsnCode](#gethsncode)
     * [bulkHsnCode](#bulkhsncode)
@@ -402,10 +404,10 @@
     * [getBrand](#getbrand)
     * [editBrand](#editbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
+    * [getLocations](#getlocations)
     * [getLocationDetail](#getlocationdetail)
     * [updateLocation](#updatelocation)
     * [createLocationBulk](#createlocationbulk)
@@ -611,6 +613,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -685,10 +698,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Without items
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Without items</i></summary>
+
 ```json
 {
   "value": {
@@ -790,8 +808,11 @@ Without items
   }
 }
 ```
+</details>
 
-With items
+<details>
+<summary><i>&nbsp; With items</i></summary>
+
 ```json
 {
   "value": {
@@ -1057,6 +1078,9 @@ With items
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -1107,10 +1131,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -1306,6 +1335,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -1375,10 +1407,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Without items
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Without items</i></summary>
+
 ```json
 {
   "value": {
@@ -1480,8 +1517,11 @@ Without items
   }
 }
 ```
+</details>
 
-With items
+<details>
+<summary><i>&nbsp; With items</i></summary>
+
 ```json
 {
   "value": {
@@ -1747,6 +1787,9 @@ With items
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -1798,10 +1841,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -1997,6 +2045,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2050,10 +2101,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -2249,6 +2305,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2303,10 +2362,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -2503,6 +2567,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2559,10 +2626,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -2759,6 +2831,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2812,10 +2887,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -2855,6 +2935,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2906,10 +2989,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3053,6 +3141,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3104,10 +3195,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3134,6 +3230,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3187,10 +3286,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3213,6 +3317,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3269,10 +3376,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3312,6 +3424,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3366,10 +3481,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3513,6 +3633,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3567,10 +3690,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3620,6 +3748,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3676,10 +3807,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3739,6 +3875,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3790,10 +3929,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -3932,6 +4076,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3985,10 +4132,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4048,6 +4200,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4099,10 +4254,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4110,6 +4270,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4164,10 +4327,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4175,6 +4343,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4226,10 +4397,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4237,6 +4413,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4291,10 +4470,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4302,6 +4486,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4355,10 +4542,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4366,6 +4558,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4420,10 +4615,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -4431,6 +4631,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4492,6 +4695,17 @@ ok
 [FeedbackAttributes](#FeedbackAttributes)
 
 ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -4590,6 +4804,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -4644,6 +4869,17 @@ ok
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -4692,6 +4928,17 @@ ok
 [Array<ActivityDump>](#Array<ActivityDump>)
 
 ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -4751,6 +4998,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -4805,6 +5063,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -4853,6 +5122,17 @@ Success
 [Template](#Template)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -4911,6 +5191,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -4961,6 +5252,17 @@ Success
 [UpdateResponse](#UpdateResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -5021,15 +5323,23 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
 Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-All pages
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; All pages</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AllAvailablePagesExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5086,15 +5396,23 @@ Success. Returns the page of the theme. Refer `AvailablePageSchema` for more det
 Success. Returns the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-page
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; page</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AvailablePageExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5151,15 +5469,23 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
 Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-All pages
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; All pages</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AllAvailablePagesExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5217,15 +5543,23 @@ Success. Returns an object of the page.  Refer `AvailablePageSchema` for more de
 Success. Returns an object of the page.  Refer `AvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-Home page
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Home page</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AvailablePageExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5285,15 +5619,23 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
 Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-page
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; page</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AvailablePageExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5351,15 +5693,23 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
 Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-page
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; page</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AvailablePageExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5417,15 +5767,23 @@ Success. Refer `ThemesListingResponseSchema` for more details.
 Success. Refer `ThemesListingResponseSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/ThemesListingResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5479,15 +5837,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5541,15 +5907,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5604,15 +5978,23 @@ Success. If the boolean value of `upgrade` returns **true**, the theme can be up
 Success. If the boolean value of `upgrade` returns **true**, the theme can be upgraded. Refer `UpgradableThemeSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UpgradableTheme"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5667,15 +6049,23 @@ Success. Upgrades the theme and shares the details of the new version in the res
 Success. Upgrades the theme and shares the details of the new version in the response. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5733,15 +6123,23 @@ Success. Refer `ThemesListingResponseSchema` for more details.
 Success. Refer `ThemesListingResponseSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/ThemesListingResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5795,15 +6193,23 @@ Theme
 Theme
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5855,15 +6261,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5915,15 +6329,23 @@ Success. Refer `FontsSchema` for more details.
 Success. Refer `FontsSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/FontsResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5978,15 +6400,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6043,15 +6473,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6106,15 +6544,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6169,15 +6615,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6232,15 +6686,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6295,15 +6757,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6358,15 +6828,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6421,15 +6899,23 @@ Success. Refer `ThemesSchema` for more details.
 Success. Refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6496,15 +6982,23 @@ Success. Refer `CustomerListResponseSchema` for more details.
 Success. Refer `CustomerListResponseSchema` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/CustomersListResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6561,6 +7055,60 @@ Success. Returns first name, last name, emails, phone number and gender of the u
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "users": [
+    {
+      "_id": "5e68af49cfa09bf7233022f1",
+      "gender": "male",
+      "active": true,
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "uid": "61",
+      "account_type": "user",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2020-03-11T09:28:41.982Z"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -6608,6 +7156,59 @@ User create
 [CreateUserResponseSchema](#CreateUserResponseSchema)
 
 User create
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user": {
+    "_id": "5e68af49cfa09bf7233022f1",
+    "gender": "male",
+    "active": true,
+    "emails": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "email": "akashmane@gofynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@fynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@uniket.store"
+      }
+    ],
+    "uid": "61",
+    "account_type": "user",
+    "first_name": "Akash",
+    "last_name": "Mane",
+    "phone_numbers": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "phone": "8652523958",
+        "country_code": 91
+      }
+    ],
+    "meta": {},
+    "created_at": "2020-03-11T09:28:41.982Z",
+    "updated_at": "2020-03-11T09:28:41.982Z"
+  }
+}
+```
+</details>
 
 
 
@@ -6666,6 +7267,59 @@ User update
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user": {
+    "_id": "5e68af49cfa09bf7233022f1",
+    "gender": "male",
+    "active": true,
+    "emails": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "email": "akashmane@gofynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@fynd.com"
+      },
+      {
+        "active": true,
+        "primary": false,
+        "verified": true,
+        "email": "akashmane@uniket.store"
+      }
+    ],
+    "uid": "61",
+    "account_type": "user",
+    "first_name": "Akash",
+    "last_name": "Mane",
+    "phone_numbers": [
+      {
+        "active": true,
+        "primary": true,
+        "verified": true,
+        "phone": "8652523958",
+        "country_code": 91
+      }
+    ],
+    "meta": {},
+    "created_at": "2020-03-11T09:28:41.982Z",
+    "updated_at": "2020-03-11T09:28:41.982Z"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -6713,6 +7367,25 @@ Create user session
 [CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
 
 Create user session
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "domain": "vinit.com",
+  "max_age": 4555555,
+  "secure": true,
+  "http_only": true,
+  "cookie": {
+    "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
+  }
+}
+```
+</details>
 
 
 
@@ -6766,6 +7439,82 @@ Success. Returns a JSON object containing the all the platform configurations. R
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "mobile_image": "",
+  "desktop_image": "",
+  "social": {
+    "facebook": true,
+    "google": true,
+    "account_kit": true
+  },
+  "flash_card": {
+    "text": "",
+    "text_color": "#FFFFFF",
+    "background_color": "#EF5350"
+  },
+  "register": true,
+  "forgot_password": true,
+  "login": {
+    "password": true,
+    "otp": true
+  },
+  "skip_captcha": false,
+  "display": "Fynd",
+  "subtext": "Login to Fynd",
+  "name": "Fynd",
+  "meta": {},
+  "required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "register_required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "skip_login": false,
+  "look_and_feel": {
+    "background_color": "#F5F5F5",
+    "card_position": "center"
+  },
+  "social_tokens": {
+    "google": {
+      "appId": "token_123"
+    },
+    "facebook": {
+      "appId": "token_123"
+    },
+    "account_kit": {
+      "appId": "token_123"
+    }
+  },
+  "_id": "5e04a5e5220bc15839ad9bc0",
+  "created_at": "2019-12-26T12:21:57.878Z",
+  "updated_at": "2020-08-13T14:31:09.878Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -6813,6 +7562,82 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 [PlatformSchema](#PlatformSchema)
 
 Success. Returns a JSON object with the updated platform configurations. Refer `PlatformSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "mobile_image": "",
+  "desktop_image": "",
+  "social": {
+    "facebook": true,
+    "google": true,
+    "account_kit": true
+  },
+  "flash_card": {
+    "text": "",
+    "text_color": "#FFFFFF",
+    "background_color": "#EF5350"
+  },
+  "register": true,
+  "forgot_password": true,
+  "login": {
+    "password": true,
+    "otp": true
+  },
+  "skip_captcha": false,
+  "display": "Fynd",
+  "subtext": "Login to Fynd",
+  "name": "Fynd",
+  "meta": {},
+  "required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "register_required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "skip_login": false,
+  "look_and_feel": {
+    "background_color": "#F5F5F5",
+    "card_position": "center"
+  },
+  "social_tokens": {
+    "google": {
+      "appId": "token_123"
+    },
+    "facebook": {
+      "appId": "token_123"
+    },
+    "account_kit": {
+      "appId": "token_123"
+    }
+  },
+  "_id": "5e04a5e5220bc15839ad9bc0",
+  "created_at": "2019-12-26T12:21:57.878Z",
+  "updated_at": "2020-08-13T14:31:09.878Z",
+  "__v": 0
+}
+```
+</details>
 
 
 
@@ -6876,15 +7701,23 @@ Success. Refer `GetAnnouncementListSchema` for more details.
 Success. Refer `GetAnnouncementListSchema` for more details.
 
 
-*Examples:*
 
 
-success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/GetAnnouncementList"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6938,15 +7771,23 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 Success. Refer `CreateAnnouncementSchema` for more details.
 
 
-*Examples:*
 
 
-success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/CreateAnnouncement"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7001,15 +7842,23 @@ Success. Refer `AdminAnnouncementSchema` for more details.
 Success. Refer `AdminAnnouncementSchema` for more details.
 
 
-*Examples:*
 
 
-success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Announcement"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7066,15 +7915,23 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 Success. Refer `CreateAnnouncementSchema` for more details.
 
 
-*Examples:*
 
 
-success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UpdateAnnouncement"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7131,15 +7988,23 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 Success. Refer `CreateAnnouncementSchema` for more details.
 
 
-*Examples:*
 
 
-success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PatchAnnouncement"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7194,15 +8059,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/DeleteAnnouncement"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7256,15 +8129,23 @@ Success. Refer `BlogSchema` for more details.
 Success. Refer `BlogSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7322,15 +8203,23 @@ Success. Refer `BlogGetResponse` for more details.
 Success. Refer `BlogGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7387,15 +8276,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7450,15 +8347,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7513,15 +8418,23 @@ Success. Returns a a JSON object with components. Refer `BlogSchema` for more de
 Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7571,6 +8484,30 @@ Success. Refer `GetFaqCategoriesSchema` for more details.
 [GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
 
 Success. Refer `GetFaqCategoriesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "categories": [
+    {
+      "index": 0,
+      "children": [
+        "6026426ae507768b168dee4b"
+      ],
+      "title": "Test",
+      "_id": "60263f80c83c1f89f2863a8a",
+      "slug": "test",
+      "application": "000000000000000000000001"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -7627,6 +8564,34 @@ Success. Refer `GetFaqCategoryBySlugSchema` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [
+      {
+        "_id": "6026426ae507768b168dee4b",
+        "question": "question 1",
+        "answer": "answer 1",
+        "slug": "question-1",
+        "application": "000000000000000000000001"
+      }
+    ],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "title": "Test",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7674,6 +8639,26 @@ Success.
 [CreateFaqCategorySchema](#CreateFaqCategorySchema)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "application": "000000000000000000000001",
+    "title": "Test"
+  }
+}
+```
+</details>
 
 
 
@@ -7732,6 +8717,26 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "title": "Test Updated",
+    "slug": "test",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7780,6 +8785,27 @@ Success.
 [FaqSchema](#FaqSchema)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "title": "Test",
+    "application": "000000000000000000000001",
+    "__v": 2
+  }
+}
+```
+</details>
 
 
 
@@ -7836,6 +8862,27 @@ Success. Refer `GetFaqSchema` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faqs": [
+    {
+      "_id": "60265b64e507768b168dee4d",
+      "question": "question 1",
+      "answer": "answer 1",
+      "slug": "question-1",
+      "application": "000000000000000000000001"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7886,6 +8933,25 @@ Success.
 [CreateFaqResponseSchema](#CreateFaqResponseSchema)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
 
 
 
@@ -7947,6 +9013,25 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1 updated",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -8002,6 +9087,25 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1 updated",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -8050,6 +9154,25 @@ Success. Refer `CreateFaqResponseSchema` for more details.
 [CreateFaqResponseSchema](#CreateFaqResponseSchema)
 
 Success. Refer `CreateFaqResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faq": {
+    "_id": "60265b64e507768b168dee4d",
+    "question": "question 1",
+    "answer": "answer 1",
+    "slug": "question-1",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
 
 
 
@@ -8107,15 +9230,23 @@ Success. Refer `LandingPageGetResponse` for more details.
 Success. Refer `LandingPageGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/LandingPageGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8169,15 +9300,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/LandingPageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8234,15 +9373,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/LandingPageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8297,10 +9444,15 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "value": {
@@ -8329,6 +9481,9 @@ default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8380,15 +9535,23 @@ Success. Refer `ApplicationLegal` for more details.
 Success. Refer `ApplicationLegal` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Legal"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8440,6 +9603,26 @@ Success. Refer `ApplicationLegal` for more details.
 [ApplicationLegal](#ApplicationLegal)
 
 Success. Refer `ApplicationLegal` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tnc": "This is terms and condition",
+  "policy": "This is policy",
+  "faq": [
+    {
+      "question": "This is question",
+      "answer": "This is answer"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -8500,15 +9683,23 @@ Success. Refer `NavigationGetResponse` for more details.
 Success. Refer `NavigationGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/NavigationGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8562,15 +9753,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/NavigationResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8622,15 +9821,23 @@ Success. Refer `DefaultNavigationResponse` for more details.
 Success. Refer `DefaultNavigationResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/DefaultNavigationResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8688,15 +9895,23 @@ Success. Refer `NavigationSchema` for more details.
 Success. Refer `NavigationSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/NavigationResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8753,15 +9968,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/NavigationResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8816,10 +10039,15 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "value": {
@@ -9005,6 +10233,9 @@ default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9056,15 +10287,23 @@ Success. Refer `PageMetaSchema` for more details.
 Success. Refer `PageMetaSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageMeta"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9116,10 +10355,15 @@ Success. Refer `PageSpec` for more details.
 Success. Refer `PageSpec` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "value": {
@@ -9151,6 +10395,9 @@ default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9204,15 +10451,23 @@ Success. Refer `PageSchema` for more details.
 Success. Refer `PageSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9270,15 +10525,23 @@ Success. Refer `PageGetResponse` for more details.
 Success. Refer `PageGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9332,15 +10595,23 @@ Success. Refer `PageSchema` for more details.
 Success. Refer `PageSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9397,15 +10668,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9462,15 +10741,23 @@ Success. Refer `PageSchema` for more details.
 Success. Refer `PageSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9525,15 +10812,23 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9588,15 +10883,23 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 Success. Returns a JSON object of components. Refer `PageSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9648,15 +10951,23 @@ Success. Refer `SeoComponent` for more details.
 Success. Refer `SeoComponent` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Seo"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9710,10 +11021,15 @@ Success. Refer `SeoSchema` for more details.
 Success. Refer `SeoSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "value": {
@@ -9742,6 +11058,9 @@ default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9802,15 +11121,23 @@ Success. Refer `SlideshowGetResponse` for more details.
 Success. Refer `SlideshowGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SlideshowGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9864,15 +11191,23 @@ Success. Refer `SlideshowSchema` for more details.
 Success. Refer `SlideshowSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SlideshowResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9930,15 +11265,23 @@ Success. Refer `SlideshowSchema` for more details.
 Success. Refer `SlideshowSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SlideshowResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9995,15 +11338,23 @@ Success. Refer `SlideshowSchema` for more details.
 Success. Refer `SlideshowSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SlideshowResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -10058,10 +11409,15 @@ Success.
 Success.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "value": {
@@ -10106,6 +11462,9 @@ default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -10157,15 +11516,23 @@ Success. Refer `Support` for more details.
 Success. Refer `Support` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Support"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -10219,15 +11586,23 @@ Success. Refer `Support` for more details.
 Success. Refer `Support` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Support"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -10283,6 +11658,39 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    },
+    {
+      "name": "Test 2",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44489",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10332,6 +11740,39 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    },
+    {
+      "name": "Test 2",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44489",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10377,6 +11818,39 @@ Success. Refer `TagsSchema` for more details.
 [TagsSchema](#TagsSchema)
 
 Success. Refer `TagsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    },
+    {
+      "name": "Test 2",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44489",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
 
 
 
@@ -10432,6 +11906,31 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10479,6 +11978,31 @@ Success.
 [TagsSchema](#TagsSchema)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "tags": [
+    {
+      "name": "Test",
+      "sub_type": "external",
+      "_id": "601f77e7aa61066feda44488",
+      "type": "js",
+      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
+      "position": "head"
+    }
+  ],
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
 
 
 
@@ -10537,6 +12061,31 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "602671b3c0bac99158b10874",
+  "application": "000000000000000000000001",
+  "tags": [
+    {
+      "_id": "601f77e7aa61066feda44488",
+      "name": "floating whatsapp",
+      "sub_type": "inline",
+      "type": "css",
+      "position": "head",
+      "content": ".float{\n\tposition:fixed;\n\twidth:60px;\n\theight:60px;\n\tbottom:40px;\n\tright:40px;\n\tbackground-color:#25d366;\n\tcolor:#FFF;\n\tborder-radius:50px;\n\ttext-align:center;\n  font-size:30px;\n\tbox-shadow: 2px 2px 3px #999;\n  z-index:100;\n}\n\n.my-float{\n\tmargin-top:16px;\n}"
+    }
+  ],
+  "__v": 1
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10591,6 +12140,19 @@ Success Response - Store Updated
 [Success](#Success)
 
 Success Response - Store Updated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -10654,6 +12216,266 @@ Success Response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_id": "60627a658e21bf0cd64d3e4e",
+      "notification_emails": [],
+      "name": "hello",
+      "is_active": true,
+      "code": "ehelool",
+      "address": {
+        "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "pincode": 401209,
+        "country": "India",
+        "country_code": "IN"
+      },
+      "additional_contacts": [
+        {
+          "number": "123456790",
+          "country_code": 91
+        }
+      ],
+      "timing": [
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "monday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "tuesday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "wednesday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "thursday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "friday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "saturday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "sunday"
+        }
+      ],
+      "created_by": {
+        "username": "Sixspeed",
+        "user_id": "0"
+      },
+      "modified_by": {
+        "username": "Sixspeed",
+        "user_id": "0"
+      },
+      "created_on": "2021-03-30T01:09:57.030Z",
+      "modified_on": "2021-03-30T01:09:57.030Z",
+      "app_id": "6006c3ae53b64fab55a4ef4b",
+      "__v": 0
+    },
+    {
+      "_id": "60349b30243b6d4e879f747c",
+      "notification_emails": [],
+      "name": "SP-109",
+      "is_active": true,
+      "code": "SP10",
+      "address": {
+        "address1": "MPS SCHOOL",
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "pincode": 302004,
+        "country": "India",
+        "country_code": "IN"
+      },
+      "additional_contacts": [
+        {
+          "number": "7208229698",
+          "country_code": 91
+        }
+      ],
+      "timing": [
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "monday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "tuesday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "wednesday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "thursday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "friday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "saturday"
+        },
+        {
+          "opening": {
+            "hour": "11",
+            "minute": "0"
+          },
+          "closing": {
+            "hour": "22",
+            "minute": "0"
+          },
+          "open": true,
+          "weekday": "sunday"
+        }
+      ],
+      "created_by": {
+        "username": "Sixspeed",
+        "user_id": "0"
+      },
+      "modified_by": {
+        "username": "Sixspeed",
+        "user_id": "0"
+      },
+      "created_on": "2021-02-23T06:05:36.687Z",
+      "modified_on": "2021-02-23T06:05:36.687Z",
+      "app_id": "6006c3ae53b64fab55a4ef4b",
+      "__v": 0
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 1,
+    "has_previous": true,
+    "has_next": false,
+    "item_total": 2
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10707,6 +12529,19 @@ Success Response - Store Updated
 [Success](#Success)
 
 Success Response - Store Updated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -10765,6 +12600,135 @@ Success Response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "address": {
+    "address1": "ASSAM 783384, INDIA",
+    "city": "Bongaigaon",
+    "state": "Assam",
+    "pincode": 783384,
+    "country": "India",
+    "country_code": "IN"
+  },
+  "notification_emails": [],
+  "_id": "60657afe2931af7aaee5fbf9",
+  "name": "2nd Store",
+  "is_active": true,
+  "code": "check",
+  "additional_contacts": [
+    {
+      "number": "8793638893",
+      "country_code": 91
+    }
+  ],
+  "timing": [
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "monday"
+    },
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "tuesday"
+    },
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "wednesday"
+    },
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "thursday"
+    },
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "friday"
+    },
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "saturday"
+    },
+    {
+      "opening": {
+        "hour": "11",
+        "minute": "0"
+      },
+      "closing": {
+        "hour": "22",
+        "minute": "0"
+      },
+      "open": true,
+      "weekday": "sunday"
+    }
+  ],
+  "created_by": {
+    "username": "Sixspeed",
+    "user_id": "0"
+  },
+  "modified_by": {
+    "username": "Sixspeed",
+    "user_id": "0"
+  },
+  "created_on": "2021-04-01T07:49:18.639Z",
+  "modified_on": "2021-04-01T07:49:18.639Z",
+  "app_id": "6006c3ae53b64fab55a4ef4b",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10814,6 +12778,19 @@ Success Response - Store Updated
 [Success](#Success)
 
 Success Response - Store Updated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -10869,6 +12846,24 @@ Success Response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "datetime_check": false,
+  "_id": "604f0445abed556c04ca83eb",
+  "header": "test",
+  "instruction_for_customer": "test",
+  "app_id": "6006c3ae53b64fab55a4ef4b",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10917,6 +12912,41 @@ Success Response
 [ShippingResponse](#ShippingResponse)
 
 Success Response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success",
+  "data": {
+    "assignment": {
+      "fulfillment_priority": {
+        "proirities": [],
+        "enabled": false
+      },
+      "default_sort_strategy": "optimal"
+    },
+    "_id": "6065aa862931aff76de5fbfa",
+    "app_id": "6006c3ae53b64fab55a4ef4b",
+    "created_by": {
+      "username": "Sixspeed",
+      "user_id": "0"
+    },
+    "modified_by": {
+      "username": "Sixspeed",
+      "user_id": "0"
+    },
+    "created_on": "2021-04-01T11:12:06.150Z",
+    "modified_on": "2021-04-01T11:34:47.323Z",
+    "__v": 0
+  }
+}
+```
+</details>
 
 
 
@@ -10975,6 +13005,22 @@ Success Response - Store Updated
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success",
+  "data": {
+    "id": "6065aa862931aff76de5fbfa"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11025,6 +13071,19 @@ Success Response - Store Updated
 [Success](#Success)
 
 Success Response - Store Updated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -11093,6 +13152,27 @@ Success Response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 2,
+    "has_previous": true,
+    "has_next": true,
+    "item_total": 15
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11144,6 +13224,54 @@ Success Response
 [StoreResponse](#StoreResponse)
 
 Success Response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success",
+  "data": {
+    "assignment": {
+      "strategy": {
+        "rules": [
+          {
+            "product_tags": [
+              "Digital Product"
+            ],
+            "_id": "6065b5c32931af5085e5fbfb",
+            "default": false,
+            "zone": "605f566497843adbf96544b7"
+          }
+        ]
+      },
+      "assignment_type": "advanced",
+      "default_zone": "605f566497843adbf96544b7"
+    },
+    "application_store_status": true,
+    "_id": "605c22429a24c1e198225026",
+    "uid": 11920,
+    "code": "ehelool",
+    "name": "hello",
+    "app_id": "6006c3ae53b64fab55a4ef4b",
+    "created_by": {
+      "username": "Sixspeed",
+      "user_id": "0"
+    },
+    "modified_by": {
+      "username": "Sixspeed",
+      "user_id": "0"
+    },
+    "created_on": "2021-03-25T05:40:18.064Z",
+    "modified_on": "2021-04-01T12:00:03.574Z",
+    "__v": 0
+  }
+}
+```
+</details>
 
 
 
@@ -11204,6 +13332,19 @@ Success Response - Store Updated
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11255,6 +13396,19 @@ Success Response - Store Updated
 [Success](#Success)
 
 Success Response - Store Updated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -11319,6 +13473,59 @@ Success Response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_id": "605f566497843adbf96544b7",
+      "zone_detail": {
+        "radius": {
+          "value": 3240
+        },
+        "pincode": {
+          "pincode_list": [],
+          "state": "",
+          "country": ""
+        },
+        "region": {
+          "state": [],
+          "country": ""
+        }
+      },
+      "name": "Test",
+      "zone_type": "radius",
+      "created_by": {
+        "username": "Sixspeed",
+        "user_id": "0"
+      },
+      "modified_by": {
+        "username": "Sixspeed",
+        "user_id": "0"
+      },
+      "created_on": "2021-03-27T15:59:32.063Z",
+      "modified_on": "2021-03-27T15:59:32.063Z",
+      "app_id": "6006c3ae53b64fab55a4ef4b",
+      "__v": 0
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 1,
+    "has_previous": true,
+    "has_next": false,
+    "item_total": 1
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11369,6 +13576,19 @@ Success Response - Zone Created
 [Success](#Success)
 
 Success Response - Zone Created
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -11427,6 +13647,47 @@ Success Response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "zone_detail": {
+    "radius": {
+      "value": 3240
+    },
+    "pincode": {
+      "pincode_list": [],
+      "state": "",
+      "country": ""
+    },
+    "region": {
+      "state": [],
+      "country": ""
+    }
+  },
+  "_id": "605f566497843adbf96544b7",
+  "name": "Test",
+  "zone_type": "radius",
+  "created_by": {
+    "username": "Sixspeed",
+    "user_id": "0"
+  },
+  "modified_by": {
+    "username": "Sixspeed",
+    "user_id": "0"
+  },
+  "created_on": "2021-03-27T15:59:32.063Z",
+  "modified_on": "2021-03-27T15:59:32.063Z",
+  "app_id": "6006c3ae53b64fab55a4ef4b",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11479,6 +13740,19 @@ Success Response - Zone Updated
 [Success](#Success)
 
 Success Response - Zone Updated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -11540,6 +13814,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -11588,6 +13873,17 @@ Success
 [EntitySubscription](#EntitySubscription)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -11644,6 +13940,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -11688,15 +13995,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Invoices"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -11748,15 +14063,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Invoice"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -11805,15 +14128,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SubscriptionCustomerRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -11864,15 +14195,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SubscriptionCustomerRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -11922,22 +14261,33 @@ Success
 Success
 
 
-*Examples:*
 
 
-Active subscription
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Active subscription</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SubscriptionActiveRes"
 }
 ```
+</details>
 
-Inactive subscription
+<details>
+<summary><i>&nbsp; Inactive subscription</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SubscriptionInavtiveRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -11986,15 +14336,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/CurrentLimitRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12045,15 +14403,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SubscriptionActivateRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12104,15 +14470,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/CancelSubscriptionRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12179,15 +14553,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Campaigns"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12241,15 +14623,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Campaign"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12304,15 +14694,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Campaign"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12369,15 +14767,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Campaign"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12432,15 +14838,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/GetStats"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12501,15 +14915,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Audiences"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12563,15 +14985,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Audience"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12625,15 +15055,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BigqueryHeadersRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12688,15 +15126,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Audience"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12753,15 +15199,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Audience"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12815,15 +15269,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/GetNRecordsCsvRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12884,15 +15346,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailProviders"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -12946,15 +15416,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailProvider"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13009,15 +15487,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailProvider"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13074,15 +15560,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailProvider"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13143,15 +15637,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailTemplates"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13205,15 +15707,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailTemplateRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13274,15 +15784,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SystemEmailTemplates"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13337,15 +15855,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailTemplate"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13402,15 +15928,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailTemplateRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13465,15 +15999,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EmailTemplateDeleteSuccessRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13534,15 +16076,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/EventSubscriptions"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13603,15 +16153,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Jobs"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13665,15 +16223,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/TriggerJobResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13734,15 +16300,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/JobLogs"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13806,15 +16380,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Logs"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13869,15 +16451,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SystemNotifications"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -13938,15 +16528,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsProviders"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14000,15 +16598,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsProvider"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14063,15 +16669,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsProvider"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14128,15 +16742,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsProvider"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14197,15 +16819,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsTemplates"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14259,15 +16889,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsTemplateRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14322,15 +16960,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsTemplate"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14387,15 +17033,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsTemplateRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14450,15 +17104,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SmsTemplateDeleteSuccessRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14519,15 +17181,23 @@ Success
 Success
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SystemSmsTemplates"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14587,6 +17257,134 @@ Refund Transfer Mode
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "created": true,
+  "app_id": "000000000000000000000004",
+  "excluded_fields": [
+    "config_type",
+    "aggregator"
+  ],
+  "display_fields": [
+    "logo",
+    "display"
+  ],
+  "aggregators": [
+    {
+      "key": "rrroooouuurrrrdddd",
+      "secret": "yyyyooo",
+      "is_active": false,
+      "config_type": "",
+      "merchant_key": "vvvvvvvvddd",
+      "aggregator": "juspay",
+      "display": {
+        "link": "",
+        "text": "Review in under process. Please  wait while process completed or contact us for any further query.",
+        "description": "Juspay is not a Payment Gateway (like Citrus, CCAvenue, PayU) but it works with any gateway or aggregator with zero interference in the Merchant-PG relations.",
+        "reviewed": false
+      },
+      "logo": "https://hdn-1.fynd.com/payment/juspay-pg-logo.jpg"
+    },
+    {
+      "key": "",
+      "pin": "",
+      "secret": "",
+      "user_id": "",
+      "is_active": false,
+      "config_type": "",
+      "merchant_id": "",
+      "aggregator": "mswipe",
+      "display": {
+        "link": "",
+        "text": "Submitted request to be reviewed before going live. Please contact us for any further query.",
+        "description": "Mswipe card swipe machines are safe and secure and accepts all debit & credit cards."
+      },
+      "logo": "https://hdn-1.fynd.com/payment/mswipe-pg-logo.png"
+    },
+    {
+      "key": "tttyyyyyy",
+      "secret": "rerrrrrrrr",
+      "is_active": false,
+      "config_type": "",
+      "merchant_salt": "qqqqq",
+      "aggregator": "payumoney",
+      "display": {
+        "link": "",
+        "text": "Review in under process. Please  wait while process completed or contact us for any further query.",
+        "description": "PayUmoney supports wide range of options for making online payments via wallets, UPI, cards, and netbanking.",
+        "reviewed": false
+      },
+      "logo": "https://hdn-1.fynd.com/payment/payu_logo_large.png"
+    },
+    {
+      "key": "test",
+      "secret": "test",
+      "is_active": true,
+      "config_type": "self",
+      "webhook_secret": "test",
+      "aggregator": "razorpay",
+      "display": {
+        "link": "",
+        "text": "Well done, You payment gateway successfully lived. Collect your payment at your end.",
+        "description": "Razorpay is a payments platform which accept online payments via Credit Card, Debit Card, Net banking, UPI, BharatQR and Wallets.",
+        "reviewed": true
+      },
+      "logo": "https://hdn-1.fynd.com/payment/razorpay-pg-logo.jpg"
+    },
+    {
+      "key": "",
+      "secret": "",
+      "is_active": false,
+      "config_type": "",
+      "aggregator": "rupifi",
+      "display": {
+        "link": "",
+        "text": "Submitted request to be reviewed before going live. Please contact us for any further query.",
+        "description": "Rupifi enables businesses to avail credits and allows a 'Buy now, Pay later' system for making transactions and purchases."
+      },
+      "logo": "https://hdn-1.fynd.com/payment/Rupifi.png"
+    },
+    {
+      "key": "12345",
+      "secret": "12345",
+      "is_active": false,
+      "config_type": "",
+      "aggregator": "simpl",
+      "display": {
+        "link": "",
+        "text": "Review in under process. Please  wait while process completed or contact us for any further query.",
+        "description": "Simpl is a Pay Later payment method.",
+        "reviewed": false
+      },
+      "logo": "https://hdn-1.fynd.com/payment/simpl-pg-logo.jpg"
+    },
+    {
+      "key": "",
+      "secret": "",
+      "is_active": false,
+      "product_id": "",
+      "config_type": "",
+      "webhook_secret": "",
+      "aggregator": "stripe",
+      "display": {
+        "link": "",
+        "text": "Submitted request to be reviewed before going live. Please contact us for any further query.",
+        "description": "Stripe is a payment processor that supports online payments, credit cards, recurring subscriptions and direct payouts to bank accounts."
+      },
+      "logo": "https://hdn-1.fynd.com/payment/Stripe.png"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -14638,6 +17436,22 @@ Save Config Secret For Brand Payment Gateway Success Response.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregators": [
+    "razorpay"
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -14685,6 +17499,22 @@ Save Config Secret For Brand Payment Gateway Success Response.
 [PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
 
 Save Config Secret For Brand Payment Gateway Success Response.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregators": [
+    "razorpay"
+  ]
+}
+```
+</details>
 
 
 
@@ -14744,6 +17574,1144 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "payment_options": {
+    "payment_option": [
+      {
+        "name": "CARD",
+        "display_priority": 2,
+        "payment_mode_id": 2,
+        "display_name": "Card",
+        "list": [],
+        "anonymous_enable": true,
+        "aggregator_name": "Razorpay",
+        "add_card_enabled": false,
+        "types": [],
+        "networks": [],
+        "banks": []
+      },
+      {
+        "name": "NB",
+        "display_priority": 3,
+        "payment_mode_id": 3,
+        "display_name": "Net Banking",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "ICICI Bank",
+            "code": "ICIC",
+            "bank_name": "ICICI Bank",
+            "bank_code": "ICIC",
+            "url": "https://hdn-1.fynd.com/payment/NB_ICICI.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_ICICI.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_ICICI.png"
+            },
+            "merchant_code": "NB_ICICI",
+            "display_priority": 1,
+            "display_name": "ICICI Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "HDFC Bank",
+            "code": "HDFC",
+            "bank_name": "HDFC Bank",
+            "bank_code": "HDFC",
+            "url": "https://hdn-1.fynd.com/payment/NB_HDFC.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_HDFC.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_HDFC.png"
+            },
+            "merchant_code": "NB_HDFC",
+            "display_priority": 2,
+            "display_name": "HDFC Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Axis Bank",
+            "code": "UTIB",
+            "bank_name": "Axis Bank",
+            "bank_code": "UTIB",
+            "url": "https://hdn-1.fynd.com/payment/NB_AXIS.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_AXIS.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_AXIS.png"
+            },
+            "merchant_code": "NB_AXIS",
+            "display_priority": 3,
+            "display_name": "Axis Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of India",
+            "code": "SBIN",
+            "bank_name": "State Bank of India",
+            "bank_code": "SBIN",
+            "url": "https://hdn-1.fynd.com/payment/NB_SBI.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_SBI.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_SBI.png"
+            },
+            "merchant_code": "NB_SBI",
+            "display_priority": 4,
+            "display_name": "State Bank of India"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Kotak Mahindra Bank",
+            "code": "KKBK",
+            "bank_name": "Kotak Mahindra Bank",
+            "bank_code": "KKBK",
+            "url": "https://hdn-1.fynd.com/payment/NB_KOTAK.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_KOTAK.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_KOTAK.png"
+            },
+            "merchant_code": "NB_KOTAK",
+            "display_priority": 5,
+            "display_name": "Kotak Mahindra Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Indusind Bank",
+            "code": "INDB",
+            "bank_name": "Indusind Bank",
+            "bank_code": "INDB",
+            "url": "https://hdn-1.fynd.com/payment/NB_INDUS.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_INDUS.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_INDUS.png"
+            },
+            "merchant_code": "INDB",
+            "display_priority": 6,
+            "display_name": "Indusind Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "City Union Bank",
+            "code": "CIUB",
+            "bank_name": "City Union Bank",
+            "bank_code": "CIUB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_CUB",
+            "display_priority": 9,
+            "display_name": "City Union Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Catholic Syrian Bank",
+            "code": "CSBK",
+            "bank_name": "Catholic Syrian Bank",
+            "bank_code": "CSBK",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "CSBK",
+            "display_priority": 11,
+            "display_name": "Catholic Syrian Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Hyderabad",
+            "code": "SBHY",
+            "bank_name": "State Bank of Hyderabad",
+            "bank_code": "SBHY",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBH",
+            "display_priority": 12,
+            "display_name": "State Bank of Hyderabad"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Allahabad Bank",
+            "code": "ALLA",
+            "bank_name": "Allahabad Bank",
+            "bank_code": "ALLA",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "ALLA",
+            "display_priority": 15,
+            "display_name": "Allahabad Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Syndicate Bank",
+            "code": "SYNB",
+            "bank_name": "Syndicate Bank",
+            "bank_code": "SYNB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "SYNB",
+            "display_priority": 17,
+            "display_name": "Syndicate Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Corporation Bank",
+            "code": "CORP",
+            "bank_name": "Corporation Bank",
+            "bank_code": "CORP",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_CORP",
+            "display_priority": 18,
+            "display_name": "Corporation Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Punjab National Bank - Corporate Banking",
+            "code": "PUNB_C",
+            "bank_name": "Punjab National Bank - Corporate Banking",
+            "bank_code": "PUNB_C",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "PUNB_C",
+            "display_priority": 19,
+            "display_name": "Punjab National Bank - Corporate Banking"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Canara Bank",
+            "code": "CNRB",
+            "bank_name": "Canara Bank",
+            "bank_code": "CNRB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_CANR",
+            "display_priority": 20,
+            "display_name": "Canara Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Saraswat Co-operative Bank",
+            "code": "SRCB",
+            "bank_name": "Saraswat Co-operative Bank",
+            "bank_code": "SRCB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "SRCB",
+            "display_priority": 21,
+            "display_name": "Saraswat Co-operative Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Deutsche Bank",
+            "code": "DEUT",
+            "bank_name": "Deutsche Bank",
+            "bank_code": "DEUT",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_DEUT",
+            "display_priority": 22,
+            "display_name": "Deutsche Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Dhanlaxmi Bank",
+            "code": "DLXB",
+            "bank_name": "Dhanlaxmi Bank",
+            "bank_code": "DLXB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "DLXB",
+            "display_priority": 24,
+            "display_name": "Dhanlaxmi Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Oriental Bank of Commerce",
+            "code": "ORBC",
+            "bank_name": "Oriental Bank of Commerce",
+            "bank_code": "ORBC",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "ORBC",
+            "display_priority": 25,
+            "display_name": "Oriental Bank of Commerce"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Punjab National Bank - Retail Banking",
+            "code": "PUNB_R",
+            "bank_name": "Punjab National Bank - Retail Banking",
+            "bank_code": "PUNB_R",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "PUNB_R",
+            "display_priority": 26,
+            "display_name": "Punjab National Bank - Retail Banking"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Bikaner and Jaipur",
+            "code": "SBBJ",
+            "bank_name": "State Bank of Bikaner and Jaipur",
+            "bank_code": "SBBJ",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBBJ",
+            "display_priority": 27,
+            "display_name": "State Bank of Bikaner and Jaipur"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Indian Overseas Bank",
+            "code": "IOBA",
+            "bank_name": "Indian Overseas Bank",
+            "bank_code": "IOBA",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_IOB",
+            "display_priority": 28,
+            "display_name": "Indian Overseas Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Travancore",
+            "code": "SBTR",
+            "bank_name": "State Bank of Travancore",
+            "bank_code": "SBTR",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBT",
+            "display_priority": 29,
+            "display_name": "State Bank of Travancore"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Airtel Payments Bank",
+            "code": "AIRP",
+            "bank_name": "Airtel Payments Bank",
+            "bank_code": "AIRP",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "AIRP",
+            "display_priority": 30,
+            "display_name": "Airtel Payments Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Development Bank of Singapore",
+            "code": "DBSS",
+            "bank_name": "Development Bank of Singapore",
+            "bank_code": "DBSS",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "DBSS",
+            "display_priority": 31,
+            "display_name": "Development Bank of Singapore"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Vijaya Bank",
+            "code": "VIJB",
+            "bank_name": "Vijaya Bank",
+            "bank_code": "VIJB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_VJYB",
+            "display_priority": 32,
+            "display_name": "Vijaya Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "NKGSB Co-operative Bank",
+            "code": "NKGS",
+            "bank_name": "NKGSB Co-operative Bank",
+            "bank_code": "NKGS",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NKGS",
+            "display_priority": 33,
+            "display_name": "NKGSB Co-operative Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "RBL Bank",
+            "code": "RATN",
+            "bank_name": "RBL Bank",
+            "bank_code": "RATN",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "RATN",
+            "display_priority": 35,
+            "display_name": "RBL Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Bank of Baroda - Retail Banking",
+            "code": "BARB_R",
+            "bank_name": "Bank of Baroda - Retail Banking",
+            "bank_code": "BARB_R",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "BARB_R",
+            "display_priority": 36,
+            "display_name": "Bank of Baroda - Retail Banking"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Karnataka Bank",
+            "code": "KARB",
+            "bank_name": "Karnataka Bank",
+            "bank_code": "KARB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_KARN",
+            "display_priority": 37,
+            "display_name": "Karnataka Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Tamilnadu State Apex Co-operative Bank",
+            "code": "TNSC",
+            "bank_name": "Tamilnadu State Apex Co-operative Bank",
+            "bank_code": "TNSC",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "TNSC",
+            "display_priority": 38,
+            "display_name": "Tamilnadu State Apex Co-operative Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Tamilnadu Mercantile Bank",
+            "code": "TMBL",
+            "bank_name": "Tamilnadu Mercantile Bank",
+            "bank_code": "TMBL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "TMBL",
+            "display_priority": 40,
+            "display_name": "Tamilnadu Mercantile Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Lakshmi Vilas Bank - Retail Banking",
+            "code": "LAVB_R",
+            "bank_name": "Lakshmi Vilas Bank - Retail Banking",
+            "bank_code": "LAVB_R",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "LAVB_R",
+            "display_priority": 42,
+            "display_name": "Lakshmi Vilas Bank - Retail Banking"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Dena Bank",
+            "code": "BKDN",
+            "bank_name": "Dena Bank",
+            "bank_code": "BKDN",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "BKDN",
+            "display_priority": 43,
+            "display_name": "Dena Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Federal Bank",
+            "code": "FDRL",
+            "bank_name": "Federal Bank",
+            "bank_code": "FDRL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_FED",
+            "display_priority": 44,
+            "display_name": "Federal Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Indian Bank",
+            "code": "IDIB",
+            "bank_name": "Indian Bank",
+            "bank_code": "IDIB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_INDB",
+            "display_priority": 45,
+            "display_name": "Indian Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "South Indian Bank",
+            "code": "SIBL",
+            "bank_name": "South Indian Bank",
+            "bank_code": "SIBL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SOIB",
+            "display_priority": 46,
+            "display_name": "South Indian Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "IDBI",
+            "code": "IBKL",
+            "bank_name": "IDBI",
+            "bank_code": "IBKL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "IBKL",
+            "display_priority": 49,
+            "display_name": "IDBI"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Karur Vysya Bank",
+            "code": "KVBL",
+            "bank_name": "Karur Vysya Bank",
+            "bank_code": "KVBL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_KVB",
+            "display_priority": 50,
+            "display_name": "Karur Vysya Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Punjab & Sind Bank",
+            "code": "PSIB",
+            "bank_name": "Punjab & Sind Bank",
+            "bank_code": "PSIB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "PSIB",
+            "display_priority": 52,
+            "display_name": "Punjab & Sind Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "UCO Bank",
+            "code": "UCBA",
+            "bank_name": "UCO Bank",
+            "bank_code": "UCBA",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "UCBA",
+            "display_priority": 53,
+            "display_name": "UCO Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Bank of Bahrein and Kuwait",
+            "code": "BBKM",
+            "bank_name": "Bank of Bahrein and Kuwait",
+            "bank_code": "BBKM",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "BBKM",
+            "display_priority": 54,
+            "display_name": "Bank of Bahrein and Kuwait"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Yes Bank",
+            "code": "YESB",
+            "bank_name": "Yes Bank",
+            "bank_code": "YESB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_YESB",
+            "display_priority": 55,
+            "display_name": "Yes Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Punjab & Maharashtra Co-operative Bank",
+            "code": "PMCB",
+            "bank_name": "Punjab & Maharashtra Co-operative Bank",
+            "bank_code": "PMCB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "PMCB",
+            "display_priority": 56,
+            "display_name": "Punjab & Maharashtra Co-operative Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Bank of India",
+            "code": "BKID",
+            "bank_name": "Bank of India",
+            "bank_code": "BKID",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_BOI",
+            "display_priority": 57,
+            "display_name": "Bank of India"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Bank of Maharashtra",
+            "code": "MAHB",
+            "bank_name": "Bank of Maharashtra",
+            "bank_code": "MAHB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_BOM",
+            "display_priority": 58,
+            "display_name": "Bank of Maharashtra"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "IDFC Bank",
+            "code": "IDFB",
+            "bank_name": "IDFC Bank",
+            "bank_code": "IDFB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "IDFB",
+            "display_priority": 59,
+            "display_name": "IDFC Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Janata Sahakari Bank (Pune)",
+            "code": "JSBP",
+            "bank_name": "Janata Sahakari Bank (Pune)",
+            "bank_code": "JSBP",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "JSBP",
+            "display_priority": 60,
+            "display_name": "Janata Sahakari Bank (Pune)"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Shamrao Vithal Co-operative Bank",
+            "code": "SVCB",
+            "bank_name": "Shamrao Vithal Co-operative Bank",
+            "bank_code": "SVCB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "SVCB",
+            "display_priority": 61,
+            "display_name": "Shamrao Vithal Co-operative Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Cosmos Co-operative Bank",
+            "code": "COSB",
+            "bank_name": "Cosmos Co-operative Bank",
+            "bank_code": "COSB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "COSB",
+            "display_priority": 62,
+            "display_name": "Cosmos Co-operative Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Mysore",
+            "code": "SBMY",
+            "bank_name": "State Bank of Mysore",
+            "bank_code": "SBMY",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBM",
+            "display_priority": 63,
+            "display_name": "State Bank of Mysore"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Andhra Bank",
+            "code": "ANDB",
+            "bank_name": "Andhra Bank",
+            "bank_code": "ANDB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "ANDB",
+            "display_priority": 65,
+            "display_name": "Andhra Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Jammu and Kashmir Bank",
+            "code": "JAKA",
+            "bank_name": "Jammu and Kashmir Bank",
+            "bank_code": "JAKA",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_JNK",
+            "display_priority": 66,
+            "display_name": "Jammu and Kashmir Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "United Bank of India",
+            "code": "UTBI",
+            "bank_name": "United Bank of India",
+            "bank_code": "UTBI",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "UTBI",
+            "display_priority": 67,
+            "display_name": "United Bank of India"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Lakshmi Vilas Bank - Corporate Banking",
+            "code": "LAVB_C",
+            "bank_name": "Lakshmi Vilas Bank - Corporate Banking",
+            "bank_code": "LAVB_C",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "LAVB_C",
+            "display_priority": 69,
+            "display_name": "Lakshmi Vilas Bank - Corporate Banking"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Patiala",
+            "code": "STBP",
+            "bank_name": "State Bank of Patiala",
+            "bank_code": "STBP",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBP",
+            "display_priority": 70,
+            "display_name": "State Bank of Patiala"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "DCB Bank",
+            "code": "DCBL",
+            "bank_name": "DCB Bank",
+            "bank_code": "DCBL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "DCBL",
+            "display_priority": 71,
+            "display_name": "DCB Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Union Bank of India",
+            "code": "UBIN",
+            "bank_name": "Union Bank of India",
+            "bank_code": "UBIN",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_UBI",
+            "display_priority": 73,
+            "display_name": "Union Bank of India"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Standard Chartered Bank",
+            "code": "SCBL",
+            "bank_name": "Standard Chartered Bank",
+            "bank_code": "SCBL",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "SCBL",
+            "display_priority": 74,
+            "display_name": "Standard Chartered Bank"
+          }
+        ]
+      },
+      {
+        "name": "WL",
+        "display_priority": 4,
+        "payment_mode_id": 4,
+        "display_name": "Wallet",
+        "list": [
+          {
+            "wallet_name": "Paytm",
+            "wallet_code": "paytm",
+            "name": "Paytm",
+            "display_name": "Paytm",
+            "code": "PAYTM",
+            "wallet_id": 4,
+            "merchant_code": "PAYTM",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/paytm_logo_small.png",
+              "large": "https://hdn-1.fynd.com/payment/paytm_logo_large.png"
+            },
+            "aggregator_name": "Juspay",
+            "display_priority": 1
+          },
+          {
+            "wallet_name": "Mobikwik",
+            "wallet_code": "mobikwik",
+            "name": "Mobikwik",
+            "display_name": "Mobikwik",
+            "code": "MOBIKWIK",
+            "wallet_id": 5,
+            "merchant_code": "MOBIKWIK",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/mobikwik_logo_small.png",
+              "large": "https://hdn-1.fynd.com/payment/mobikwik_logo_small.png"
+            },
+            "aggregator_name": "Juspay",
+            "display_priority": 3
+          },
+          {
+            "wallet_name": "Ola Money",
+            "wallet_code": "olamoney",
+            "name": "Ola Money",
+            "display_name": "Ola Money",
+            "code": "OLAMONEY",
+            "wallet_id": 6,
+            "merchant_code": "OLAMONEY",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/olamoney.png",
+              "large": "https://hdn-1.fynd.com/payment/olamoney.png"
+            },
+            "aggregator_name": "Razorpay",
+            "display_priority": 4
+          },
+          {
+            "wallet_name": "Amazon Pay",
+            "wallet_code": "amazonpay",
+            "name": "Amazon Pay",
+            "display_name": "Amazon Pay",
+            "code": "AMAZONPAY",
+            "wallet_id": 10,
+            "merchant_code": "AMAZONPAY",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/amazon-pay.png",
+              "large": "https://hdn-1.fynd.com/payment/amazon-pay.png"
+            },
+            "aggregator_name": "Razorpay",
+            "display_priority": 9
+          },
+          {
+            "wallet_name": "PayPal",
+            "wallet_code": "paypal",
+            "name": "PayPal",
+            "display_name": "PayPal",
+            "code": "PAYPAL",
+            "wallet_id": 11,
+            "merchant_code": "PAYPAL",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/paypal.jpg",
+              "large": "https://hdn-1.fynd.com/payment/paypal.jpg "
+            },
+            "aggregator_name": "Razorpay",
+            "display_priority": 10
+          }
+        ]
+      },
+      {
+        "name": "UPI",
+        "display_priority": 9,
+        "payment_mode_id": 7,
+        "display_name": "UPI",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "UPI",
+            "display_name": "BHIM UPI",
+            "code": "UPI",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/upi_150x100.png",
+              "small": "https://hdn-1.fynd.com/payment/upi_100x78.png"
+            },
+            "merchant_code": "UPI",
+            "timeout": 240,
+            "retry_count": 0,
+            "fynd_vpa": "shopsense.rzp@hdfcbank",
+            "intent_flow": true,
+            "intent_app_error_list": [
+              "com.csam.icici.bank.imobile",
+              "in.org.npci.upiapp",
+              "com.whatsapp"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EMI",
+        "display_priority": 18,
+        "payment_mode_id": 19,
+        "display_name": "Easy EMI",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "EMI",
+            "display_name": "Easy EMI",
+            "code": "EMI",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+              "small": "https://hdn-1.fynd.com/payment/Pos+Logo.png"
+            },
+            "merchant_code": "EMI"
+          }
+        ]
+      },
+      {
+        "name": "JUSPAYPG",
+        "display_priority": 18,
+        "payment_mode_id": 23,
+        "display_name": "Pay Using Juspay",
+        "list": [
+          {
+            "aggregator_name": "Juspay",
+            "name": "JUSPAYPG",
+            "display_name": "Pay Using Juspay",
+            "code": "JUSPAYPG",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/netbanking.png",
+              "small": "https://hdn-1.fynd.com/payment/netbanking.png"
+            },
+            "merchant_code": "JUSPAYPG"
+          }
+        ]
+      },
+      {
+        "name": "PG_PAYMENT",
+        "display_priority": 20,
+        "display_name": "Other payment gateway",
+        "list": [
+          {
+            "aggregator_name": "Stripe",
+            "name": "STRIPEPG",
+            "display_name": "Pay using Stripe",
+            "code": "STRIPEPG",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+              "small": "https://hdn-1.fynd.com/payment/Pos+Logo.png"
+            },
+            "merchant_code": "STRIPEPG"
+          },
+          {
+            "aggregator_name": "Ccavenue",
+            "name": "CCAVENUEPG",
+            "display_name": "Pay using Ccavenue",
+            "code": "CCAVENUEPG",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+              "small": "https://hdn-1.fynd.com/payment/Pos+Logo.png"
+            },
+            "merchant_code": "CCAVENUEPG"
+          },
+          {
+            "aggregator_name": "Payumoney",
+            "name": "PAYUMONEYPG",
+            "display_name": "Pay using Payumoney",
+            "code": "PAYUMONEYPG",
+            "logo_url": {
+              "large": "https://fynd-obscuro-media-new.s3.amazonaws.com/payment/payu_logo_large.png",
+              "small": "https://fynd-obscuro-media-new.s3.amazonaws.com/payment/payu_logo_small.png"
+            },
+            "merchant_code": "PAYUMONEYPG"
+          },
+          {
+            "aggregator_name": "Payubiz",
+            "name": "PAYUBIZPG",
+            "display_name": "Pay using Payubiz",
+            "code": "PAYUBIZPG",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/payu.png",
+              "small": "https://hdn-1.fynd.com/payment/payu.png"
+            },
+            "merchant_code": "PAYUBIZPG"
+          }
+        ]
+      },
+      {
+        "name": "PL",
+        "display_priority": 21,
+        "display_name": "Pay Later",
+        "list": [
+          {
+            "aggregator_name": "Simpl",
+            "name": "Simpl",
+            "display_name": "Simpl",
+            "code": "SIMPL",
+            "merchant_code": "SIMPL",
+            "logo": "https://hdn-1.fynd.com/payment/simpl_logo.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/simpl_logo.png",
+              "large": "https://hdn-1.fynd.com/payment/simpl_logo.png"
+            }
+          },
+          {
+            "aggregator_name": "Rupifi",
+            "name": "RUPIFIPG",
+            "display_name": "Pay using Rupifi",
+            "code": "RUPIFIPG",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Rupifi.png",
+              "small": "https://hdn-1.fynd.com/payment/Rupifi.png"
+            },
+            "merchant_code": "RUPIFIPG"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -14793,6 +18761,80 @@ payouts response object
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+[
+  {
+    "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
+    "more_attributes": {
+      "city": "",
+      "state": "",
+      "country": "",
+      "bank_name": "YES",
+      "ifsc_code": "IFSCYES101",
+      "account_no": "9876541234",
+      "branch_name": "Mumbai",
+      "account_type": "current",
+      "account_holder": "Vikas Kumar"
+    },
+    "transfer_type": "bank",
+    "is_default": true,
+    "is_active": true,
+    "customers": {
+      "id": 2,
+      "name": "reliance retail",
+      "mobile": "1234567890",
+      "email": "reliance@gmail.com",
+      "unique_external_id": "company:1"
+    },
+    "payouts_aggregators": [
+      {
+        "payout_details_id": 888,
+        "aggregator_id": 3,
+        "aggregator_fund_id": null
+      }
+    ]
+  },
+  {
+    "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
+    "more_attributes": {
+      "city": "",
+      "state": "",
+      "country": "",
+      "bank_name": "SBI",
+      "ifsc_code": "SBIN0011513",
+      "account_no": "9876543210",
+      "branch_name": "Mumbai",
+      "account_type": "saving",
+      "account_holder": "Vikas Kumar"
+    },
+    "transfer_type": "bank",
+    "is_default": false,
+    "is_active": true,
+    "customers": {
+      "id": 2,
+      "name": "reliance retail",
+      "mobile": "1234567890",
+      "email": "reliance@gmail.com",
+      "unique_external_id": "company:1"
+    },
+    "payouts_aggregators": [
+      {
+        "payout_details_id": 891,
+        "aggregator_id": 3,
+        "aggregator_fund_id": null
+      }
+    ]
+  }
+]
+```
+</details>
+
+
+
+
 
 
 
@@ -14837,6 +18879,45 @@ save payout response object
 [PayoutResponse](#PayoutResponse)
 
 save payout response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_active": true,
+  "bank_details": {
+    "account_type": "saving",
+    "account_holder": "Vikas Kumar",
+    "branch_name": "Mumbai",
+    "country": "",
+    "ifsc_code": "SBIN0011513",
+    "account_no": "9876543210",
+    "city": "",
+    "state": "",
+    "bank_name": "SBI"
+  },
+  "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
+  "users": {
+    "name": "reliance retail",
+    "unique_external_id": "company:1",
+    "mobile": "1234567890",
+    "email": "reliance@gmail.com"
+  },
+  "aggregator": "Razorpay",
+  "transfer_type": "bank",
+  "created": true,
+  "payouts": {
+    "aggregator_fund_id": null
+  },
+  "payment_status": "payout_initiated"
+}
+```
+</details>
 
 
 
@@ -14892,6 +18973,21 @@ save payout response object
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_default": true,
+  "is_active": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -14939,6 +19035,21 @@ save payout response object
 [UpdatePayoutResponse](#UpdatePayoutResponse)
 
 save payout response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_default": true,
+  "is_active": true
+}
+```
+</details>
 
 
 
@@ -14992,6 +19103,19 @@ delete payout response object
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15034,6 +19158,145 @@ List Subscription Payment Method Response
 [SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
 
 List Subscription Payment Method Response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 68,
+      "type": "card",
+      "pg_payment_method_id": "pm_1H8HyIJ1ZTFIN1aD5eDOL4nU",
+      "data": {
+        "brand": "visa",
+        "last4": "4242",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": null,
+          "address_postal_code_check": null
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2044,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 12,
+        "fingerprint": "0aror24meTf8iYfw",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": false
+    },
+    {
+      "id": 81,
+      "type": "card",
+      "pg_payment_method_id": "pm_1Hc7tMJ1ZTFIN1aDCvMIIBeT",
+      "data": {
+        "brand": "visa",
+        "last4": "4242",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": null,
+          "address_postal_code_check": null
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2020,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 11,
+        "fingerprint": "0aror24meTf8iYfw",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": true
+    },
+    {
+      "id": 93,
+      "type": "card",
+      "pg_payment_method_id": "pm_1HvddjJ1ZTFIN1aDgebQvuyi",
+      "data": {
+        "brand": "visa",
+        "last4": "4242",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": "pass",
+          "address_postal_code_check": "pass"
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2022,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 11,
+        "fingerprint": "0aror24meTf8iYfw",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": false
+    },
+    {
+      "id": 98,
+      "type": "card",
+      "pg_payment_method_id": "pm_1IJDF0J1ZTFIN1aDnJFi4i2v",
+      "data": {
+        "brand": "visa",
+        "last4": "1111",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": "pass",
+          "address_postal_code_check": "pass"
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2025,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 11,
+        "fingerprint": "ZtDTGycouUEup4Q4",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": false
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -15090,6 +19353,19 @@ Delete Subscription Payment Method Response.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15132,6 +19408,23 @@ List Subscription Config Response
 [SubscriptionConfigResponse](#SubscriptionConfigResponse)
 
 List Subscription Config Response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregator": "stripe",
+  "config": {
+    "public_key": "pk_test_lHBf12TZLa5"
+  }
+}
+```
+</details>
 
 
 
@@ -15180,6 +19473,26 @@ Save Subscription Setup Intent Response.
 [SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
 
 Save Subscription Setup Intent Response.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "test",
+    "object": "test",
+    "client_secret": "test",
+    "customer": "test",
+    "status": "requires_payment_method"
+  }
+}
+```
+</details>
 
 
 
@@ -15235,6 +19548,21 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Account successfully created",
+  "data": {}
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15280,6 +19608,37 @@ Bank details on correct Ifsc Code
 [IfscCodeResponse](#IfscCodeResponse)
 
 Bank details on correct Ifsc Code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "branch_name": "MANPUR",
+  "bank_name": "GAYA",
+  "BRANCH": "MANPUR",
+  "CENTRE": "GAYA",
+  "DISTRICT": "GAYA",
+  "STATE": "BIHAR",
+  "ADDRESS": "POBUNIYADGANJBIHAR",
+  "CONTACT": "00",
+  "MICR": "816002103",
+  "UPI": true,
+  "RTGS": true,
+  "CITY": "GAYA",
+  "NEFT": true,
+  "IMPS": true,
+  "SWIFT": "",
+  "BANK": "State Bank of India",
+  "BANKCODE": "SBIN",
+  "IFSC": "SBIN0005611",
+  "success": true
+}
+```
+</details>
 
 
 
@@ -15336,6 +19695,41 @@ List Order Beneficiary
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 3695,
+      "beneficiary_id": "4c86dd56e634a4c6a8fb51d195bc7b83",
+      "bank_name": "State Bank of India",
+      "branch_name": "BHOGAT",
+      "account_holder": "PRAKASH TEST",
+      "account_no": "3566342455454",
+      "ifsc_code": "SBIN0014982",
+      "mobile": "7819064010",
+      "email": "prakashtest@gmail.com",
+      "address": "49A, Dabhi seri, jodhpur, kalyanpur",
+      "comment": "COD Refund",
+      "is_active": null,
+      "created_on": "2021-01-22 11:31:02",
+      "modified_on": "2021-01-22 11:31:02",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "35663423659",
+      "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15384,6 +19778,42 @@ List User Beneficiary
 [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
 
 List User Beneficiary
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 221,
+      "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
+      "bank_name": "State Bank of India",
+      "branch_name": "State Bank of India",
+      "account_holder": "SHASHI TEST",
+      "account_no": "1234567891",
+      "ifsc_code": "SBIN0005611",
+      "mobile": "9112042174",
+      "email": "payment@gofynd.com",
+      "address": "204A",
+      "comment": "",
+      "is_active": null,
+      "created_on": "2020-06-29 12:38:39",
+      "modified_on": "2020-06-29 12:38:39",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "1234567891",
+      "delights_user_name": null
+    }
+  ],
+  "show_beneficiary_details": false
+}
+```
+</details>
 
 
 
@@ -15442,6 +19872,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -15487,6 +19928,17 @@ Success
 [GetActivityStatus](#GetActivityStatus)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -15539,6 +19991,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -15584,6 +20047,17 @@ Success
 [Object](#Object)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -15670,6 +20144,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -15752,6 +20237,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -15803,6 +20299,17 @@ Success
 [OrderDetails](#OrderDetails)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -15889,6 +20396,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -15937,6 +20455,17 @@ Success
 [PlatformShipmentTrack](#PlatformShipmentTrack)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -15993,6 +20522,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16038,6 +20578,17 @@ Success
 [FailedOrders](#FailedOrders)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -16090,6 +20641,17 @@ Success
 [UpdateOrderReprocessResponse](#UpdateOrderReprocessResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -16148,6 +20710,17 @@ Success. Check the example shown below or refer `ShipmentUpdateRequest` for more
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16196,6 +20769,17 @@ Success. Check the example shown below or refer `ShipmentReasonsResponse` for mo
 [ShipmentReasonsResponse](#ShipmentReasonsResponse)
 
 Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -16255,6 +20839,17 @@ Success. Check the example shown below or refer `ShipmentTrackResponse` for more
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16303,6 +20898,17 @@ Success. Check the example shown below or refer `GetShipmentAddressResponse` for
 [GetShipmentAddressResponse](#GetShipmentAddressResponse)
 
 Success. Check the example shown below or refer `GetShipmentAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -16361,6 +20967,17 @@ Success. Check the example shown below or refer `UpdateShipmentAddressResponse` 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16407,6 +21024,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16449,6 +21077,17 @@ Success
 [GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -16505,6 +21144,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16517,6 +21167,71 @@ Success
 
 
 ## Catalog
+
+
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.deleteSearchKeywords( {  companyId : value,
+ applicationId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Words Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 #### updateSearchKeywords
@@ -16561,6 +21276,17 @@ The Collection object. See example below or refer `GetSearchWordsDataSchema` for
 [GetSearchWordsData](#GetSearchWordsData)
 
 The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -16617,6 +21343,33 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ],
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "_custom_json": {}
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -16625,21 +21378,21 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 ---
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
+#### createCustomKeyword
+Add a Custom Search Keywords
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteSearchKeywords( {  companyId : value,
+const promise = catalog.createCustomKeyword( {  companyId : value,
  applicationId : value,
- id : value });
+ body : value });
 
 // Async/Await
-const data = await catalog.deleteSearchKeywords( {  companyId : value,
+const data = await catalog.createCustomKeyword( {  companyId : value,
  applicationId : value,
- id : value });
+ body : value });
 ```
 
 
@@ -16647,24 +21400,50 @@ const data = await catalog.deleteSearchKeywords( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
 *Returned Response:*
 
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
-[DeleteResponse](#DeleteResponse)
+[GetSearchWordsData](#GetSearchWordsData)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ],
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "_custom_json": {}
+}
+```
+</details>
 
 
 
@@ -16718,6 +21497,44 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "current": 1,
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_count": 1
+  },
+  "items": [
+    {
+      "uid": "602fa1e9a596ce349563f6b9",
+      "words": [
+        "sds"
+      ],
+      "app_id": "000000000000000000000001",
+      "is_active": true,
+      "result": {
+        "query": {
+          "department": [
+            "men"
+          ]
+        },
+        "sort_on": "popular"
+      },
+      "_custom_json": {}
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -16726,21 +21543,21 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 ---
 
 
-#### createCustomKeyword
-Add a Custom Search Keywords
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createCustomKeyword( {  companyId : value,
+const promise = catalog.deleteAutocompleteKeyword( {  companyId : value,
  applicationId : value,
- body : value });
+ id : value });
 
 // Async/Await
-const data = await catalog.createCustomKeyword( {  companyId : value,
+const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
  applicationId : value,
- body : value });
+ id : value });
 ```
 
 
@@ -16748,23 +21565,37 @@ const data = await catalog.createCustomKeyword( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 
 
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
 
 *Returned Response:*
 
 
 
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-[GetSearchWordsData](#GetSearchWordsData)
+[DeleteResponse](#DeleteResponse)
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Words Deleted"
+}
+```
+</details>
 
 
 
@@ -16823,6 +21654,17 @@ The Mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -16875,103 +21717,41 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteAutocompleteKeyword( {  companyId : value,
- applicationId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
- applicationId : value,
- id : value });
+```json
+{
+  "uid": "602fa1eaa596ce349563f6c6",
+  "app_id": "000000000000000000000001",
+  "words": [
+    "dasd"
+  ],
+  "is_active": true,
+  "results": [
+    {
+      "_custom_json": {},
+      "display": "Helllow",
+      "logo": {
+        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
+      },
+      "action": {
+        "type": "page",
+        "page": {
+          "query": {
+            "brand": [
+              "nike"
+            ]
+          },
+          "type": "products",
+          "url": "/products/?brand=nike"
+        }
+      }
+    }
+  ]
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Returned Response:*
-
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-
-
-
-
-
----
-
-
-#### getAutocompleteConfig
-List all Autocomplete Keyword Listing
-
-
-
-```javascript
-// Promise
-const promise = catalog.getAutocompleteConfig( {  companyId : value,
- applicationId : value });
-
-// Async/Await
-const data = await catalog.getAutocompleteConfig( {  companyId : value,
- applicationId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-
-
-
-Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
-
-*Returned Response:*
-
-
-
-
-List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
-
-
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
-List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+</details>
 
 
 
@@ -17027,6 +21807,208 @@ List of all the collections including the one you added. See example below or re
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAutocompleteConfig
+List all Autocomplete Keyword Listing
+
+
+
+```javascript
+// Promise
+const promise = catalog.getAutocompleteConfig( {  companyId : value,
+ applicationId : value });
+
+// Async/Await
+const data = await catalog.getAutocompleteConfig( {  companyId : value,
+ applicationId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
+
+Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+
+*Returned Response:*
+
+
+
+
+List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+List of custom autocomplete keywords. See example below or refer `GetAutocompleteWordsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "current": 1,
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_count": 1
+  },
+  "items": [
+    {
+      "uid": "602fa1eaa596ce349563f6c6",
+      "app_id": "000000000000000000000001",
+      "words": [
+        "dasd"
+      ],
+      "is_active": true,
+      "results": [
+        {
+          "_custom_json": {},
+          "display": "Helllow",
+          "logo": {
+            "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
+          },
+          "action": {
+            "type": "page",
+            "page": {
+              "query": {
+                "brand": [
+                  "nike"
+                ]
+              },
+              "type": "products",
+              "url": "/products/?brand=nike"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductBundle
+Create Product Bundle
+
+
+
+```javascript
+// Promise
+const promise = catalog.createProductBundle( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createProductBundle( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
+
+
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+
+*Returned Response:*
+
+
+
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "slug": "bag",
+  "logo": "http://g.com/poo.png/",
+  "name": "Bag",
+  "choice": "multi",
+  "products": [
+    {
+      "product_uid": 7500001,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "allow_remove": true
+    }
+  ],
+  "meta": {},
+  "same_store_assignment": true,
+  "is_active": true,
+  "page_visibility": [
+    "pdp"
+  ],
+  "created_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "company_id": 1,
+  "created_on": "2021-02-19 16:40:26.310007",
+  "modified_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "id": "602f9ca2a596ce312f5956f9"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -17076,50 +22058,159 @@ List of bundle configured for a company. See example below or refer `GetProductB
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### createProductBundle
-Create Product Bundle
-
-
-
-```javascript
-// Promise
-const promise = catalog.createProductBundle( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createProductBundle( {  companyId : value,
- body : value });
+```json
+{
+  "page": {
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "total_item_count": 4
+  },
+  "items": [
+    {
+      "slug": "bag",
+      "logo": "http://g.com/poo.png/",
+      "name": "Bag",
+      "choice": "multi",
+      "products": [
+        {
+          "product_uid": 7500001,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "allow_remove": true
+        }
+      ],
+      "meta": {},
+      "same_store_assignment": true,
+      "is_active": true,
+      "page_visibility": [
+        "pdp"
+      ],
+      "created_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "company_id": 1,
+      "created_on": "2021-02-19 16:40:26.310007",
+      "modified_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "modified_on": "2021-02-19 16:40:26.310027",
+      "id": "602f9ca2a596ce312f5956f9"
+    },
+    {
+      "choice": "multi",
+      "same_store_assignment": true,
+      "products": [
+        {
+          "auto_select": false,
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "max_quantity": 1,
+          "product_uid": 7500001,
+          "min_quantity": 1
+        }
+      ],
+      "is_active": true,
+      "slug": "bag",
+      "meta": {},
+      "logo": "http://g.com/poo.png/",
+      "page_visibility": [
+        "pdp"
+      ],
+      "name": "Bag",
+      "created_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "company_id": 1,
+      "created_on": "2021-02-19 16:21:35.091512",
+      "modified_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "modified_on": "2021-02-19 16:21:35.091540",
+      "id": "602f9837a596ce2edf9868e2"
+    },
+    {
+      "slug": "bag",
+      "is_active": true,
+      "same_store_assignment": true,
+      "meta": {},
+      "choice": "multi",
+      "logo": "http://g.com/poo.png/",
+      "page_visibility": [
+        "pdp"
+      ],
+      "name": "Bag",
+      "products": [
+        {
+          "auto_select": false,
+          "min_quantity": 1,
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "max_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "created_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "company_id": 1,
+      "created_on": "2021-02-19 16:20:24.605207",
+      "modified_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "modified_on": "2021-02-19 16:20:24.605230",
+      "id": "602f97f0a596ce2ead47cd0b"
+    },
+    {
+      "products": [
+        {
+          "auto_select": false,
+          "auto_add_to_cart": false,
+          "min_quantity": 1,
+          "allow_remove": true,
+          "max_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "name": "Bag",
+      "choice": "multi",
+      "slug": "bag",
+      "same_store_assignment": true,
+      "page_visibility": [
+        "pdp"
+      ],
+      "meta": {},
+      "created_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "company_id": 1,
+      "created_on": "2021-02-19 16:16:46.196449",
+      "modified_by": {
+        "username": "917827311650_22960",
+        "uid": "123"
+      },
+      "modified_on": "2021-02-19 16:16:46.196467",
+      "id": "602f9716a596ce2e415196df"
+    }
+  ]
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
-
-
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-
-*Returned Response:*
-
-
-
-
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
-
-
-[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
-
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+</details>
 
 
 
@@ -17175,6 +22266,50 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "slug": "bag",
+  "logo": "http://g.com/poo.png/",
+  "name": "Bag",
+  "choice": "multi",
+  "products": [
+    {
+      "product_uid": 7500001,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "allow_remove": true
+    }
+  ],
+  "meta": {},
+  "same_store_assignment": true,
+  "is_active": true,
+  "page_visibility": [
+    "pdp"
+  ],
+  "created_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "company_id": 1,
+  "created_on": "2021-02-19 16:40:26.310007",
+  "modified_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "id": "602f9ca2a596ce312f5956f9"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -17220,6 +22355,112 @@ The Collection object. See example below or refer `GetProductBundleResponse` for
 [GetProductBundleResponse](#GetProductBundleResponse)
 
 The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "slug": "bag",
+  "company_id": 1,
+  "logo": "http://g.com/poo.png/",
+  "name": "Bag",
+  "choice": "multi",
+  "products": [
+    {
+      "product_uid": 7500001,
+      "product_details": {
+        "country_of_origin": "India",
+        "slug": "slug-1",
+        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
+        "attributes": {
+          "brand_name": "brand 2"
+        },
+        "name": "Some Phone",
+        "images": [
+          "https://hdn-1.addsale.com/x0/media/pictures/tagged_items/original/random_code_4/FE6DUR_000000.png"
+        ],
+        "uid": 7500001
+      },
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "allow_remove": true
+    }
+  ],
+  "meta": {},
+  "same_store_assignment": true,
+  "page_visibility": [
+    "pdp"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createSizeGuide
+Create a size guide.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createSizeGuide( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createSizeGuide( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the size guide is to be created. |  
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+
+
+This API allows to create a size guide associated to a brand.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -17285,50 +22526,72 @@ Size guide object. See example below or refer `ListSizeGuide` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### createSizeGuide
-Create a size guide.
-
-
-
-```javascript
-// Promise
-const promise = catalog.createSizeGuide( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createSizeGuide( {  companyId : value,
- body : value });
+```json
+{
+  "items": [
+    {
+      "modified_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "active": true,
+      "id": "60364384f08385bee776f83d",
+      "title": "Demo SG",
+      "modified_on": "2021-02-24T17:46:04.146000Z",
+      "brand_id": 2,
+      "created_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "subtitle": "I am demo",
+      "company_id": 12,
+      "created_on": "2021-02-24T17:46:04.146000Z",
+      "guide": {
+        "meta": {
+          "values": [
+            {
+              "col_1": "10",
+              "col_2": "20"
+            },
+            {
+              "col_1": "12",
+              "col_2": "22"
+            },
+            {
+              "col_1": "14",
+              "col_2": "24"
+            }
+          ],
+          "unit": "cm",
+          "headers": {
+            "col_1": {
+              "value": "Head",
+              "convertable": false
+            },
+            "col_2": {
+              "value": "Shoulder",
+              "convertable": true
+            }
+          }
+        }
+      },
+      "tag": "demo",
+      "name": "Demo"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_count": 1
+  }
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the size guide is to be created. |  
-| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
-
-
-This API allows to create a size guide associated to a brand.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
+</details>
 
 
 
@@ -17384,6 +22647,19 @@ Returns a success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -17429,6 +22705,65 @@ Brand object. See example below or refer `SizeGuideResponseSchema` for details
 [SizeGuideResponse](#SizeGuideResponse)
 
 Brand object. See example below or refer `SizeGuideResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "brand_id": 1,
+  "created_on": "2021-02-24T17:46:04.146000Z",
+  "modified_on": "2021-02-25T15:19:30.822000Z",
+  "created_by": {
+    "username": "silverbolt",
+    "user_id": "-1"
+  },
+  "modified_by": {
+    "username": "917827311650_22960",
+    "user_id": "123"
+  },
+  "name": "edited size guide",
+  "company_id": 1,
+  "guide": {
+    "meta": {
+      "headers": {
+        "col_1": {
+          "value": "Head",
+          "convertable": false
+        },
+        "col_2": {
+          "value": "Shoulder",
+          "convertable": true
+        }
+      },
+      "values": [
+        {
+          "col_1": "10",
+          "col_2": "20"
+        },
+        {
+          "col_1": "12",
+          "col_2": "22"
+        },
+        {
+          "col_1": "14",
+          "col_2": "24"
+        }
+      ],
+      "unit": "cm"
+    }
+  },
+  "tag": "demo",
+  "title": "Demo SG",
+  "subtitle": "I am demo",
+  "id": "60364384f08385bee776f83d"
+}
+```
+</details>
 
 
 
@@ -17482,51 +22817,13 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
+```json
 
-
-
-
----
-
-
-#### getConfigurations
-Get configured details for catalog
-
-
-
-```javascript
-// Promise
-const promise = catalog.getConfigurations( {  companyId : value,
- applicationId : value });
-
-// Async/Await
-const data = await catalog.getConfigurations( {  companyId : value,
- applicationId : value });
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-
-
-
-configured details for catalog.
-
-*Returned Response:*
-
-
-
-
-Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
-
-
-[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
-
-Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
+</details>
 
 
 
@@ -17582,6 +22879,17 @@ success flag will tell whether the operation was successful.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -17590,21 +22898,19 @@ success flag will tell whether the operation was successful.
 ---
 
 
-#### getConfigurationByType
+#### getConfigurations
 Get configured details for catalog
 
 
 
 ```javascript
 // Promise
-const promise = catalog.getConfigurationByType( {  companyId : value,
- applicationId : value,
- type : value });
+const promise = catalog.getConfigurations( {  companyId : value,
+ applicationId : value });
 
 // Async/Await
-const data = await catalog.getConfigurationByType( {  companyId : value,
- applicationId : value,
- type : value });
+const data = await catalog.getConfigurations( {  companyId : value,
+ applicationId : value });
 ```
 
 
@@ -17612,8 +22918,7 @@ const data = await catalog.getConfigurationByType( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| type | string | yes | type can be brands, categories etc. |  
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
 
 
 
@@ -17624,12 +22929,335 @@ configured details for catalog.
 
 
 
-Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
 
 
-[GetAppCatalogEntityConfiguration](#GetAppCatalogEntityConfiguration)
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
 
-Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+Get application level configured catalog details. See example below or refer `GetAppCatalogConfigurationSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "app_id": "000000000000000000000001",
+    "listing": {
+      "filter": {
+        "attribute_config": [
+          {
+            "key": "gender",
+            "priority": 1,
+            "type": "multivalued",
+            "name": "Gender",
+            "value_config": {
+              "condition": "OR",
+              "sort": "count",
+              "value": "",
+              "bucket_points": [],
+              "map": {}
+            },
+            "is_active": true
+          },
+          {
+            "key": "min_price_effective",
+            "priority": 2,
+            "type": "range",
+            "name": "Price",
+            "value_config": {
+              "condition": "OR",
+              "sort": "count",
+              "value": "",
+              "bucket_points": [],
+              "map": {
+                "< 500": "Below Rs. 500",
+                ">= 6000": "Above Rs. 6000"
+              }
+            },
+            "is_active": true
+          },
+          {
+            "key": "departments",
+            "priority": 3,
+            "type": "multivalued",
+            "name": "Department",
+            "value_config": {
+              "condition": "OR",
+              "sort": "count",
+              "value": "metadata",
+              "bucket_points": [],
+              "map": {}
+            },
+            "is_active": true
+          },
+          {
+            "key": "brand_id",
+            "priority": 4,
+            "type": "multivalued",
+            "name": "Brand",
+            "value_config": {
+              "condition": "OR",
+              "sort": "ascending",
+              "value": "metadata",
+              "bucket_points": [],
+              "map": {
+                "5th Avenue": "A {{value}}"
+              }
+            },
+            "is_active": true
+          },
+          {
+            "key": "season",
+            "priority": 5,
+            "type": "multivalued",
+            "name": "Season",
+            "value_config": {
+              "condition": "OR",
+              "sort": "count",
+              "value": "",
+              "bucket_points": [],
+              "map": {
+                "": ""
+              }
+            },
+            "is_active": false
+          },
+          {
+            "key": "is_set",
+            "priority": 6,
+            "type": "multivalued",
+            "name": "Set",
+            "value_config": {
+              "condition": "OR",
+              "sort": "descending",
+              "value": "",
+              "bucket_points": [],
+              "map": {
+                "true": "Yes",
+                "false": "No"
+              }
+            },
+            "is_active": true
+          },
+          {
+            "key": "rating",
+            "priority": 7,
+            "type": "multivalued",
+            "name": "Rating",
+            "value_config": {
+              "condition": "OR",
+              "sort": "count",
+              "value": "",
+              "bucket_points": [],
+              "map": {
+                "": ""
+              }
+            },
+            "is_active": true
+          },
+          {
+            "key": "size_depth",
+            "priority": 8,
+            "type": "range",
+            "name": "Size Depth",
+            "value_config": {
+              "condition": "OR",
+              "sort": "count",
+              "value": "",
+              "bucket_points": [],
+              "map": {
+                "{} - {}": "{} - {}"
+              }
+            },
+            "is_active": true
+          }
+        ],
+        "allow_single": false
+      },
+      "sort": {
+        "default": "",
+        "config": [
+          {
+            "key": "price_dsc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
+            "priority": 1,
+            "name": "Price High to Low",
+            "is_active": false
+          },
+          {
+            "key": "rating_dsc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
+            "priority": 2,
+            "name": "Rating",
+            "is_active": true
+          },
+          {
+            "key": "depth_desc",
+            "priority": 3,
+            "name": "Size Depth (High to Low)",
+            "is_active": true
+          },
+          {
+            "key": "discount_dsc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
+            "priority": 4,
+            "name": "Discount High to Low",
+            "is_active": true
+          },
+          {
+            "key": "popular",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
+            "priority": 5,
+            "name": "Popularity",
+            "is_active": true
+          },
+          {
+            "key": "relevance",
+            "priority": 6,
+            "name": "Relevance",
+            "is_active": true
+          },
+          {
+            "key": "price_asc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20Low%20to%20High.png",
+            "priority": 7,
+            "name": "Price Low to High",
+            "is_active": true
+          }
+        ]
+      }
+    },
+    "product": {
+      "similar": {
+        "config": [
+          {
+            "key": "seller",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 1,
+            "title": "Seller",
+            "is_active": true,
+            "subtitle": ""
+          },
+          {
+            "key": "visual",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 2,
+            "title": "Visual",
+            "is_active": true,
+            "subtitle": ""
+          },
+          {
+            "key": "brand",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 3,
+            "title": "Brand",
+            "is_active": true,
+            "subtitle": ""
+          },
+          {
+            "key": "specs",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 4,
+            "title": "Specs",
+            "is_active": true,
+            "subtitle": ""
+          }
+        ]
+      },
+      "variant": {
+        "config": [
+          {
+            "key": "color",
+            "display_type": "image",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 1,
+            "name": "Additional Colors12",
+            "is_active": true
+          },
+          {
+            "key": "storage",
+            "display_type": "text",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 2,
+            "name": "Memory",
+            "is_active": true
+          },
+          {
+            "key": "visual",
+            "display_type": "image",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 3,
+            "name": "Additional Colors",
+            "is_active": true
+          },
+          {
+            "key": "ram_storage",
+            "display_type": "text",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 4,
+            "name": "Ram_Storage",
+            "is_active": true
+          },
+          {
+            "key": "shade",
+            "display_type": "color",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 5,
+            "name": "Additional Shades",
+            "is_active": true
+          },
+          {
+            "key": "water_resistant",
+            "display_type": "text",
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "priority": 6,
+            "name": "Water_Resistant",
+            "is_active": true
+          }
+        ]
+      }
+    },
+    "config_id": "000000000000000000000001",
+    "config_type": "app"
+  },
+  "is_default": false
+}
+```
+</details>
 
 
 
@@ -17688,6 +23316,80 @@ success flag will tell whether the operation was successful.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getConfigurationByType
+Get configured details for catalog
+
+
+
+```javascript
+// Promise
+const promise = catalog.getConfigurationByType( {  companyId : value,
+ applicationId : value,
+ type : value });
+
+// Async/Await
+const data = await catalog.getConfigurationByType( {  companyId : value,
+ applicationId : value,
+ type : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | string | yes | type can be brands, categories etc. |  
+
+
+
+configured details for catalog.
+
+*Returned Response:*
+
+
+
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+
+
+[GetAppCatalogEntityConfiguration](#GetAppCatalogEntityConfiguration)
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -17737,51 +23439,363 @@ The attached items of an collection. See example below or refer `GetCollectionQu
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### getAllCollections
-List all the collections
-
-
-
-```javascript
-// Promise
-const promise = catalog.getAllCollections( {  companyId : value,
- applicationId : value });
-
-// Async/Await
-const data = await catalog.getAllCollections( {  companyId : value,
- applicationId : value });
+```json
+{
+  "filters": [
+    {
+      "key": {
+        "display": "Department",
+        "name": "department",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png"
+      },
+      "values": [
+        {
+          "display": "Men's Fashion",
+          "count": 2113,
+          "is_selected": false,
+          "value": "men",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Men.png"
+          }
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Category",
+        "name": "category",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png"
+      },
+      "values": [
+        {
+          "display": "T-Shirts",
+          "count": 968,
+          "is_selected": false,
+          "value": "192",
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Size",
+        "name": "sizes",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.png"
+      },
+      "values": [
+        {
+          "display": "S",
+          "count": 1438,
+          "is_selected": false,
+          "value": "S"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Brand",
+        "name": "brand",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.png"
+      },
+      "values": [
+        {
+          "display": "Superdry",
+          "count": 4263,
+          "is_selected": false,
+          "value": "235",
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/1008_238113b8e11448f792e9bf860aac30f2.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Rating",
+        "name": "rating",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png"
+      },
+      "values": [
+        {
+          "count": 3,
+          "display": "5 ★",
+          "value": "[4 TO *}",
+          "is_selected": false
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Company",
+        "name": "company_id_list",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png"
+      },
+      "values": [
+        {
+          "display": "RELIANCE BRANDS LIMITED",
+          "count": 4262,
+          "is_selected": false,
+          "value": "46"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Store Ids",
+        "name": "store_id_list",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png"
+      },
+      "values": [
+        {
+          "display": "PHOENIX, ,PALLADIUM,  LOWER PAREL - 5410",
+          "count": 1385,
+          "is_selected": false,
+          "value": "2201"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Image",
+        "name": "image_nature",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.png"
+      },
+      "values": [
+        {
+          "display": "Good Quality",
+          "count": 3111,
+          "is_selected": false,
+          "value": "standard"
+        },
+        {
+          "display": "No Image",
+          "count": 1152,
+          "is_selected": false,
+          "value": "default"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Set",
+        "name": "is_set",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "No",
+          "count": 4263,
+          "is_selected": false,
+          "value": false
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Product Fit",
+        "name": "product_fit",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Regular",
+          "count": 14,
+          "is_selected": false,
+          "value": "Regular"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Primary Material",
+        "name": "primary_material",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Cotton",
+          "count": 1246,
+          "is_selected": false,
+          "value": "Cotton"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Gender",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Men",
+          "count": 2125,
+          "is_selected": false,
+          "value": "Men"
+        },
+        {
+          "display": "Women",
+          "count": 1492,
+          "is_selected": false,
+          "value": "Women"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Primary Colour",
+        "name": "primary_color",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Multi",
+          "count": 1403,
+          "is_selected": false,
+          "value": "Multi"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Size Depth",
+        "name": "size_depth",
+        "kind": "range",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "min": 0,
+          "max": 9,
+          "is_selected": false,
+          "selected_min": 0,
+          "selected_max": 9,
+          "query_format": "[{} TO {}]",
+          "display_format": "{} - {}",
+          "display": "0 - 9"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Price",
+        "name": "min_price_effective",
+        "kind": "range",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Min%20price%20effective.png"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "min": 398,
+          "max": 24999,
+          "is_selected": false,
+          "selected_min": 398.8,
+          "selected_max": 24998.77,
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "query_format": "[{},INR TO {},INR]"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Discount",
+        "name": "platform_discount",
+        "kind": "range",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Platform%20Discount.png"
+      },
+      "values": [
+        {
+          "count": 4263,
+          "min": 0,
+          "max": 50,
+          "is_selected": false,
+          "selected_min": 0,
+          "selected_max": 50,
+          "query_format": "[{} TO {}]",
+          "display_format": "{} - {}",
+          "display": "0 - 50"
+        }
+      ]
+    }
+  ],
+  "sort_on": [
+    {
+      "display": "Latest Products",
+      "name": "Latest Products",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Latest%20Products.png",
+      "value": "latest",
+      "is_selected": true
+    },
+    {
+      "display": "Popularity",
+      "name": "Popularity",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
+      "value": "popular",
+      "is_selected": false
+    },
+    {
+      "display": "Price Low to High",
+      "name": "Price Low to High",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
+      "value": "price_asc",
+      "is_selected": false
+    },
+    {
+      "display": "Price High to Low",
+      "name": "Price High to Low",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
+      "value": "price_dsc",
+      "is_selected": false
+    },
+    {
+      "display": "Discount Low to High",
+      "name": "Discount Low to High",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
+      "value": "discount_asc",
+      "is_selected": false
+    },
+    {
+      "display": "Discount High to Low",
+      "name": "Discount High to Low",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
+      "value": "discount_dsc",
+      "is_selected": false
+    },
+    {
+      "display": "Rating",
+      "name": "Rating",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
+      "value": "rating_dsc",
+      "is_selected": false
+    },
+    {
+      "display": "Size Depth (High to Low)",
+      "name": "Size Depth (High to Low)",
+      "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
+      "value": "depth_desc",
+      "is_selected": false
+    }
+  ]
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-
-
-
-A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-
-*Returned Response:*
-
-
-
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
-
-
-[GetCollectionListingResponse](#GetCollectionListingResponse)
-
-List of collections. See example below or refer `GetCollectionListingResponse` for details
+</details>
 
 
 
@@ -17837,6 +23851,392 @@ List of all the collections including the one you added. See example below or re
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "604f585a7051e30001173ac1",
+  "type": "query",
+  "query": {},
+  "name": "New",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    }
+  },
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "published": true,
+  "description": "",
+  "is_active": true,
+  "tags": [],
+  "slug": "new",
+  "action": {
+    "page": {
+      "type": "collection",
+      "query": {
+        "collection": [
+          "new"
+        ]
+      }
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "visible_facets_keys": [],
+  "meta": {},
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "sort_on": "depth_desc",
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "start": "2021-03-15T12:51:21.333000+00:00Z",
+    "next_schedule": [
+      {
+        "start": "2021-03-15T12:51:21.333000+00:00Z",
+        "end": null
+      }
+    ],
+    "end": null
+  },
+  "seo": {
+    "title": "Test",
+    "description": "Test description"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getAllCollections
+List all the collections
+
+
+
+```javascript
+// Promise
+const promise = catalog.getAllCollections( {  companyId : value,
+ applicationId : value });
+
+// Async/Await
+const data = await catalog.getAllCollections( {  companyId : value,
+ applicationId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+
+
+
+A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
+
+*Returned Response:*
+
+
+
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+[GetCollectionListingResponse](#GetCollectionListingResponse)
+
+List of collections. See example below or refer `GetCollectionListingResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "current": 1,
+    "size": 19,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 190
+  },
+  "items": [
+    {
+      "uid": "6040fed076d8a500011ef829",
+      "type": "query",
+      "query": {
+        "brand": [
+          "6",
+          "3",
+          "4",
+          "2"
+        ],
+        "min_price_effective": "[6319,INR TO 11805,INR]",
+        "platform_discount": "[15 TO 39]",
+        "sort_on": "price_asc"
+      },
+      "name": "test1",
+      "banners": {
+        "portrait": {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/portrait-banner/original/mP6OnINGR-1601466767814.jpeg"
+        },
+        "landscape": {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/landscape-banner/original/3jSEzw9CN-1601465376892.jpeg"
+        }
+      },
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/square-logo/original/y_-XUYXwx-1602326103322.jpeg"
+      },
+      "published": true,
+      "description": "this is description",
+      "is_active": true,
+      "tags": [],
+      "slug": "test1",
+      "action": {
+        "page": {
+          "type": "collection",
+          "query": {
+            "collection": [
+              "test1"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "visible_facets_keys": [],
+      "meta": {},
+      "badge": {
+        "text": "",
+        "color": "#ffffff"
+      },
+      "sort_on": "price_asc",
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "start": "2021-03-04T15:35:13.640000Z",
+        "next_schedule": [
+          {
+            "start": "2021-03-04T15:35:13.640000Z",
+            "end": null
+          }
+        ],
+        "end": null
+      }
+    },
+    {
+      "uid": "6040a9b250f97e0001886294",
+      "type": "items",
+      "query": {},
+      "name": "newapiplaform",
+      "banners": {
+        "portrait": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+        },
+        "landscape": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+        }
+      },
+      "logo": {
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+      },
+      "published": true,
+      "description": "sadasd",
+      "is_active": true,
+      "tags": [
+        "sdsadas",
+        "asd"
+      ],
+      "slug": "newapiplaform",
+      "action": {
+        "page": {
+          "type": "collection",
+          "query": {
+            "collection": [
+              "newapiplaform"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "visible_facets_keys": [],
+      "meta": {},
+      "badge": {
+        "text": "",
+        "color": "#aa2727"
+      },
+      "sort_on": "popular",
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "start": "2021-03-04T09:33:53.686000Z",
+        "next_schedule": [
+          {
+            "start": "2021-03-04T09:33:53.686000Z",
+            "end": null
+          }
+        ],
+        "end": null
+      }
+    },
+    {
+      "uid": "603f68fd953a69000145dc92",
+      "type": "query",
+      "query": {},
+      "name": "new",
+      "banners": {
+        "portrait": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+        },
+        "landscape": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+        }
+      },
+      "logo": {
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+      },
+      "published": true,
+      "description": "",
+      "is_active": true,
+      "tags": [],
+      "slug": "old",
+      "action": {
+        "page": {
+          "type": "collection",
+          "query": {
+            "collection": [
+              "old"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "visible_facets_keys": [],
+      "meta": {},
+      "badge": {
+        "color": "#ffffff",
+        "text": ""
+      },
+      "sort_on": "popular",
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "start": "2021-03-03T10:45:40.544000Z",
+        "next_schedule": [
+          {
+            "start": "2021-03-03T10:45:40.544000Z",
+            "end": null
+          }
+        ],
+        "end": null
+      }
+    }
+  ],
+  "filters": {
+    "tags": [
+      {
+        "name": "1+",
+        "is_selected": false,
+        "display": "1+"
+      },
+      {
+        "name": "aa",
+        "is_selected": false,
+        "display": "aa"
+      },
+      {
+        "name": "asd",
+        "is_selected": false,
+        "display": "asd"
+      },
+      {
+        "name": "dda",
+        "is_selected": false,
+        "display": "dda"
+      },
+      {
+        "name": "fahim",
+        "is_selected": false,
+        "display": "fahim"
+      },
+      {
+        "name": "gfg",
+        "is_selected": false,
+        "display": "gfg"
+      },
+      {
+        "name": "sakri",
+        "is_selected": false,
+        "display": "sakri"
+      },
+      {
+        "name": "sdsadas",
+        "is_selected": false,
+        "display": "sdsadas"
+      },
+      {
+        "name": "uuy",
+        "is_selected": false,
+        "display": "uuy"
+      }
+    ],
+    "type": [
+      {
+        "name": "items",
+        "is_selected": false,
+        "display": "items"
+      },
+      {
+        "name": "query",
+        "is_selected": false,
+        "display": "query"
+      }
+    ]
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -17885,6 +24285,143 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 [CollectionDetailResponse](#CollectionDetailResponse)
 
 The Collection object. See example below or refer `CollectionDetailResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "5ec5fc757cb1e4740a17da23",
+  "type": "query",
+  "query": {
+    "l3_categories": [
+      "12"
+    ],
+    "sort_on": "discount_asc"
+  },
+  "name": "new",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    }
+  },
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "published": true,
+  "description": "",
+  "is_active": true,
+  "tags": [],
+  "slug": "new",
+  "action": {
+    "page": {
+      "type": "collection",
+      "query": {
+        "collection": [
+          "new"
+        ]
+      }
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "visible_facets_keys": [],
+  "meta": {},
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "sort_on": "popular",
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "start": "2020-05-21T03:58:41.237000Z",
+    "next_schedule": [
+      {
+        "start": "2020-05-21T03:58:41.237000Z",
+        "end": null
+      }
+    ],
+    "end": null
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteCollection
+Delete a Collection
+
+
+
+```javascript
+// Promise
+const promise = catalog.deleteCollection( {  companyId : value,
+ applicationId : value,
+ id : value });
+
+// Async/Await
+const data = await catalog.deleteCollection( {  companyId : value,
+ applicationId : value,
+ id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier of a collection. |  
+
+
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Collection Deleted"
+}
+```
+</details>
 
 
 
@@ -17943,6 +24480,77 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "604f585a7051e30001173ac1",
+  "type": "query",
+  "query": {},
+  "name": "New",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    }
+  },
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "published": true,
+  "description": "",
+  "is_active": true,
+  "tags": [],
+  "slug": "new",
+  "action": {
+    "page": {
+      "type": "collection",
+      "query": {
+        "collection": [
+          "new"
+        ]
+      }
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "visible_facets_keys": [],
+  "meta": {},
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "sort_on": "depth_desc",
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "start": "2021-03-15T12:51:21.333000+00:00Z",
+    "next_schedule": [
+      {
+        "start": "2021-03-15T12:51:21.333000+00:00Z",
+        "end": null
+      }
+    ],
+    "end": null
+  },
+  "seo": {
+    "title": "Test",
+    "description": "Test description"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -17951,21 +24559,23 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 ---
 
 
-#### deleteCollection
-Delete a Collection
+#### addCollectionItems
+Add items to a collection
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteCollection( {  companyId : value,
+const promise = catalog.addCollectionItems( {  companyId : value,
  applicationId : value,
- id : value });
+ id : value,
+ body : value });
 
 // Async/Await
-const data = await catalog.deleteCollection( {  companyId : value,
+const data = await catalog.addCollectionItems( {  companyId : value,
  applicationId : value,
- id : value });
+ id : value,
+ body : value });
 ```
 
 
@@ -17975,22 +24585,35 @@ const data = await catalog.deleteCollection( {  companyId : value,
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
 | applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | string | yes | A `id` is a unique identifier of a collection. |  
+| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
 
 
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
 
 *Returned Response:*
 
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Status object. Tells whether the operation was successful.
 
 
-[DeleteResponse](#DeleteResponse)
+[UpdatedResponse](#UpdatedResponse)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Status object. Tells whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "items updated"
+}
+```
+</details>
 
 
 
@@ -18056,56 +24679,13 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
+```json
 
-
-
-
----
-
-
-#### addCollectionItems
-Add items to a collection
-
-
-
-```javascript
-// Promise
-const promise = catalog.addCollectionItems( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
-
-// Async/Await
-const data = await catalog.addCollectionItems( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier of a collection. |  
-| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
-
-
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-
-*Returned Response:*
-
-
-
-
-Status object. Tells whether the operation was successful.
-
-
-[UpdatedResponse](#UpdatedResponse)
-
-Status object. Tells whether the operation was successful.
+</details>
 
 
 
@@ -18162,6 +24742,23 @@ Response Data
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "item": {
+    "count": 637707,
+    "out_of_stock_count": 452806,
+    "sellable_count": 184901
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -18207,6 +24804,20 @@ Response Data
 [CrossSellingResponse](#CrossSellingResponse)
 
 Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "products": 18,
+  "articles": 18
+}
+```
+</details>
 
 
 
@@ -18262,6 +24873,17 @@ See example below or refer `UpdatedResponse` for details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18308,6 +24930,17 @@ See example below or refer `GetOptInPlatformSchema` for details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18350,6 +24983,17 @@ See example below or refer `OptinCompanyDetailSchema` for details
 [OptinCompanyDetail](#OptinCompanyDetail)
 
 See example below or refer `OptinCompanyDetailSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -18415,6 +25059,17 @@ See example below or refer `OptinCompanyBrandDetailsView` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18457,6 +25112,17 @@ See example below or refer `OptinCompanyMetrics` for details
 [OptinCompanyMetrics](#OptinCompanyMetrics)
 
 See example below or refer `OptinCompanyMetrics` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -18516,6 +25182,17 @@ See example below or refer `OptinStoreDetailsSchema` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18561,6 +25238,58 @@ Size guide object. See example below or refer `GenderDetailSchema` for details
 [GenderDetail](#GenderDetail)
 
 Size guide object. See example below or refer `GenderDetailSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "description": "Clothing department needs gener attribute",
+  "schema": {
+    "format": "",
+    "mandatory": false,
+    "multi": true,
+    "enum": [
+      "Men",
+      "Women",
+      "Boy",
+      "Girl",
+      "more",
+      "men"
+    ],
+    "type": "str"
+  },
+  "meta": {
+    "enriched": false,
+    "mandatory_details": {
+      "l3_keys": []
+    }
+  },
+  "slug": "gender",
+  "name": "Gender",
+  "enabled_for_end_consumer": true,
+  "details": {
+    "display_type": "text"
+  },
+  "is_nested": true,
+  "filters": {
+    "indexing": true,
+    "priority": 2
+  },
+  "departments": [
+    "men-s-fashion",
+    "kids",
+    "women-s-fashion",
+    "beauty-personal-care"
+  ],
+  "logo": "https://hdn-1.addsale.com/x0/products/pictures/attribute/logo/original/Rhv89tqRo-brand-website-logo.png",
+  "id": "5ed11eb0be8d5e00016f0335"
+}
+```
+</details>
 
 
 
@@ -18613,6 +25342,20 @@ List of all categories attached to departments specified. See example below or r
 [ProdcutTemplateCategoriesResponse](#ProdcutTemplateCategoriesResponse)
 
 List of all categories attached to departments specified. See example below or refer `ProdcutTemplateCategoriesResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {},
+  "items": []
+}
+```
+</details>
 
 
 
@@ -18678,6 +25421,335 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "current": 1,
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 12
+  },
+  "items": [
+    {
+      "uid": 5,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "created_on": "2020-07-01T05:33:39.325000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
+      "modified_by": {
+        "username": "917753852478_51632",
+        "user_id": "5677"
+      },
+      "modified_on": "2021-03-03T15:55:25.118000Z",
+      "name": "Sample Dept",
+      "platforms": {},
+      "priority_order": 111,
+      "slug": "sample-dept",
+      "synonyms": [
+        "test",
+        "sampe"
+      ],
+      "tags": [],
+      "id": "5efc2033623d390001782238"
+    },
+    {
+      "uid": 2,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "app@fynd.com",
+        "user_id": "0"
+      },
+      "created_on": "2020-05-19T06:53:37.629000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
+      "modified_by": {
+        "user_id": "10",
+        "username": "fahimsakri_gofynd_com_44938"
+      },
+      "modified_on": "2021-03-04T14:01:02.556000Z",
+      "name": "Men's Fashion",
+      "platforms": {
+        "fynd": true,
+        "fynd_store": true,
+        "marketplace": true,
+        "openapi": true,
+        "uniket_store": true,
+        "uniket_wholesale": true
+      },
+      "priority_order": 111,
+      "slug": "men-s-fashion",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ec3827156a7200001c9aeea"
+    },
+    {
+      "uid": 4,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "fahimsakri_gofynd_com_44938",
+        "user_id": "10"
+      },
+      "created_on": "2020-06-29T10:59:33.620000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:08:02.675000Z",
+      "name": "Groceries",
+      "platforms": {},
+      "priority_order": 10,
+      "slug": "groceries",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ef9c9959b04f00001e40dba"
+    },
+    {
+      "uid": 1,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "app@fynd.com",
+        "user_id": "0"
+      },
+      "created_on": "2020-05-18T16:14:41.689000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
+      "modified_by": {
+        "user_id": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-04T15:39:38.528000Z",
+      "name": "Electronics",
+      "platforms": {
+        "fynd": true,
+        "fynd_store": true,
+        "marketplace": true,
+        "openapi": true,
+        "uniket_store": true,
+        "uniket_wholesale": true
+      },
+      "priority_order": 100,
+      "slug": "electronics",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ec2b471661a4100019fca0d"
+    },
+    {
+      "uid": 3,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "created_on": "2020-05-27T12:04:19.111000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:07:46.060000Z",
+      "name": "Industrial Supplies",
+      "platforms": {},
+      "priority_order": 111,
+      "slug": "industrial-supplies",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ece5743cd1bae0001440427"
+    },
+    {
+      "uid": 6,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "abhinavsrivastava_gofynd_com_05674",
+        "user_id": "13"
+      },
+      "created_on": "2020-07-06T07:56:01.508000Z",
+      "is_active": false,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:08:12.576000Z",
+      "name": "Clothing",
+      "platforms": {},
+      "priority_order": 1,
+      "slug": "clothing",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f02d9116b0ae500018923dd"
+    },
+    {
+      "uid": 8,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:04:33.604000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "modified_on": "2020-08-05T09:44:01.234000Z",
+      "name": "Kids",
+      "platforms": {},
+      "priority_order": 3,
+      "slug": "kids",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a762131c66700018cdc47"
+    },
+    {
+      "uid": 9,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:44:46.632000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:07:35.231000Z",
+      "name": "Women's Fashion",
+      "platforms": {},
+      "priority_order": 2,
+      "slug": "women-s-fashion",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a7f8e31c66700018cdc49"
+    },
+    {
+      "uid": 10,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:45:12.075000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "modified_on": "2020-08-05T09:48:01.660000Z",
+      "name": "Beauty & Personal Care",
+      "platforms": {},
+      "priority_order": 4,
+      "slug": "beauty-personal-care",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a7fa831c66700018cdc4a"
+    },
+    {
+      "uid": 11,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:45:39.797000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T11:38:57.599000Z",
+      "name": "Home & Living",
+      "platforms": {},
+      "priority_order": 5,
+      "slug": "home-living",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a7fc331c66700018cdc4b"
+    },
+    {
+      "uid": 14,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:48:42.347000Z",
+      "is_active": false,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "modified_on": "2020-08-05T09:48:42.347000Z",
+      "name": "Baby Care & Kids Essentials",
+      "platforms": {},
+      "priority_order": 7,
+      "slug": "baby-care-kids-essentials",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a807a31c66700018cdc4e"
+    },
+    {
+      "_cls": "Department",
+      "created_on": "2021-01-13T10:12:33.002000Z",
+      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "created_by": {
+        "username": "919821012599_75351",
+        "user_id": "5721"
+      },
+      "modified_by": {
+        "username": "919821012599_75351",
+        "user_id": "5721"
+      },
+      "uid": 21,
+      "name": "Skin care products",
+      "slug": "skin-care-produts",
+      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
+      "tags": [],
+      "is_active": true,
+      "priority_order": 10235,
+      "platforms": {},
+      "synonyms": [
+        "skin",
+        "care"
+      ],
+      "_custom_json": {},
+      "id": "5ffec79192813f0001eb6560"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -18723,6 +25795,329 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 [DepartmentsResponse](#DepartmentsResponse)
 
 Departments Data. See example below or refer `DepartmentsResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {},
+  "items": [
+    {
+      "uid": 5,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "created_on": "2020-07-01T05:33:39.325000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
+      "modified_by": {
+        "username": "917753852478_51632",
+        "user_id": "5677"
+      },
+      "modified_on": "2021-03-03T15:55:25.118000Z",
+      "name": "Sample Dept",
+      "platforms": {},
+      "priority_order": 111,
+      "slug": "sample-dept",
+      "synonyms": [
+        "test",
+        "sampe"
+      ],
+      "tags": [],
+      "id": "5efc2033623d390001782238"
+    },
+    {
+      "uid": 2,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "app@fynd.com",
+        "user_id": "0"
+      },
+      "created_on": "2020-05-19T06:53:37.629000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
+      "modified_by": {
+        "user_id": "10",
+        "username": "fahimsakri_gofynd_com_44938"
+      },
+      "modified_on": "2021-03-04T14:01:02.556000Z",
+      "name": "Men's Fashion",
+      "platforms": {
+        "fynd": true,
+        "fynd_store": true,
+        "marketplace": true,
+        "openapi": true,
+        "uniket_store": true,
+        "uniket_wholesale": true
+      },
+      "priority_order": 111,
+      "slug": "men-s-fashion",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ec3827156a7200001c9aeea"
+    },
+    {
+      "uid": 4,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "fahimsakri_gofynd_com_44938",
+        "user_id": "10"
+      },
+      "created_on": "2020-06-29T10:59:33.620000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:08:02.675000Z",
+      "name": "Groceries",
+      "platforms": {},
+      "priority_order": 10,
+      "slug": "groceries",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ef9c9959b04f00001e40dba"
+    },
+    {
+      "uid": 1,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "app@fynd.com",
+        "user_id": "0"
+      },
+      "created_on": "2020-05-18T16:14:41.689000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
+      "modified_by": {
+        "user_id": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-04T15:39:38.528000Z",
+      "name": "Electronics",
+      "platforms": {
+        "fynd": true,
+        "fynd_store": true,
+        "marketplace": true,
+        "openapi": true,
+        "uniket_store": true,
+        "uniket_wholesale": true
+      },
+      "priority_order": 100,
+      "slug": "electronics",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ec2b471661a4100019fca0d"
+    },
+    {
+      "uid": 3,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "created_on": "2020-05-27T12:04:19.111000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:07:46.060000Z",
+      "name": "Industrial Supplies",
+      "platforms": {},
+      "priority_order": 111,
+      "slug": "industrial-supplies",
+      "synonyms": [],
+      "tags": [],
+      "id": "5ece5743cd1bae0001440427"
+    },
+    {
+      "uid": 6,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "abhinavsrivastava_gofynd_com_05674",
+        "user_id": "13"
+      },
+      "created_on": "2020-07-06T07:56:01.508000Z",
+      "is_active": false,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:08:12.576000Z",
+      "name": "Clothing",
+      "platforms": {},
+      "priority_order": 1,
+      "slug": "clothing",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f02d9116b0ae500018923dd"
+    },
+    {
+      "uid": 8,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:04:33.604000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "modified_on": "2020-08-05T09:44:01.234000Z",
+      "name": "Kids",
+      "platforms": {},
+      "priority_order": 3,
+      "slug": "kids",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a762131c66700018cdc47"
+    },
+    {
+      "uid": 9,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:44:46.632000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T18:07:35.231000Z",
+      "name": "Women's Fashion",
+      "platforms": {},
+      "priority_order": 2,
+      "slug": "women-s-fashion",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a7f8e31c66700018cdc49"
+    },
+    {
+      "uid": 10,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:45:12.075000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "modified_on": "2020-08-05T09:48:01.660000Z",
+      "name": "Beauty & Personal Care",
+      "platforms": {},
+      "priority_order": 4,
+      "slug": "beauty-personal-care",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a7fa831c66700018cdc4a"
+    },
+    {
+      "uid": 11,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:45:39.797000Z",
+      "is_active": true,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "918793638893_86554",
+        "user_id": "3"
+      },
+      "modified_on": "2020-08-06T11:38:57.599000Z",
+      "name": "Home & Living",
+      "platforms": {},
+      "priority_order": 5,
+      "slug": "home-living",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a7fc331c66700018cdc4b"
+    },
+    {
+      "uid": 14,
+      "_cls": "Department",
+      "_custom_json": {},
+      "created_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "created_on": "2020-08-05T09:48:42.347000Z",
+      "is_active": false,
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
+      "modified_by": {
+        "username": "asavarijadhav_gofynd_com_99880",
+        "user_id": "5634"
+      },
+      "modified_on": "2020-08-05T09:48:42.347000Z",
+      "name": "Baby Care & Kids Essentials",
+      "platforms": {},
+      "priority_order": 7,
+      "slug": "baby-care-kids-essentials",
+      "synonyms": [],
+      "tags": [],
+      "id": "5f2a807a31c66700018cdc4e"
+    },
+    {
+      "_cls": "Department",
+      "created_on": "2021-01-13T10:12:33.002000Z",
+      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "created_by": {
+        "username": "919821012599_75351",
+        "user_id": "5721"
+      },
+      "modified_by": {
+        "username": "919821012599_75351",
+        "user_id": "5721"
+      },
+      "uid": 21,
+      "name": "Skin care products",
+      "slug": "skin-care-produts",
+      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
+      "tags": [],
+      "is_active": true,
+      "priority_order": 10235,
+      "platforms": {},
+      "synonyms": [
+        "skin",
+        "care"
+      ],
+      "_custom_json": {},
+      "id": "5ffec79192813f0001eb6560"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -18776,6 +26171,1868 @@ List of product templates. See example below or refer `TemplatesResponse` for de
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "current": 1,
+    "size": 3,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 36
+  },
+  "items": [
+    {
+      "name": "Accessories",
+      "categories": [
+        "accessories-adornments",
+        "messenger-bags",
+        "wallets",
+        "satchels",
+        "backpacks",
+        "laptop-bags",
+        "briefcases",
+        "suitcases",
+        "duffles",
+        "analog-watches",
+        "chronograph-watches",
+        "digital-watches",
+        "aviators",
+        "wayfarers",
+        "round-sunglasses",
+        "cateye-sunglasses",
+        "rectangle-sunglasses",
+        "oversized-sunglasses",
+        "browline-sunglasses",
+        "square-sunglasses",
+        "sports-sunglasses",
+        "belts",
+        "ties",
+        "cufflinks",
+        "pocket-squares",
+        "tie-pins",
+        "brooches",
+        "baseball-caps",
+        "hats",
+        "shawls",
+        "mufflers",
+        "stoles",
+        "socks",
+        "dupattas",
+        "handbags",
+        "clutches",
+        "totes",
+        "sling-bags",
+        "hobos",
+        "scarves",
+        "stockings",
+        "hairbands",
+        "hair-clips",
+        "pouches",
+        "oval-sunglasses",
+        "gloves",
+        "frames",
+        "maang-tikka",
+        "bags",
+        "sunglasses",
+        "mittens",
+        "money-clips",
+        "card-cases",
+        "brushes",
+        "horns",
+        "spray",
+        "cleaner",
+        "cream",
+        "polishes",
+        "decoration-charms",
+        "care-kits",
+        "trees",
+        "shoe-bag",
+        "laces",
+        "insoles",
+        "handkerchief",
+        "toy-box",
+        "play-gym",
+        "camera-bag",
+        "fanny-pack",
+        "usb-cable",
+        "rca-cable",
+        "usb-c-to-multiport-adapter",
+        "batteries",
+        "power-banks",
+        "lightning-cable",
+        "tos-cable",
+        "aux-cable",
+        "hdmi-cable",
+        "charging-cable",
+        "mini-display-port-hdmi-cable",
+        "thunderbolt-cable",
+        "bluetooth-headphones",
+        "headphone",
+        "bluetooth-earphones",
+        "earphones",
+        "hard-disk-drive",
+        "photo-frame",
+        "notebook",
+        "pen",
+        "luggage-tag",
+        "stationery-combo",
+        "jewellery-case",
+        "folder",
+        "key-chain",
+        "suspender",
+        "cummerbund",
+        "cravet",
+        "toiletry-bag",
+        "cosmetic-bag",
+        "gift-bag",
+        "packaging-material",
+        "spectacle-case",
+        "cuff-bands",
+        "playing-cards",
+        "kalangi",
+        "kataar",
+        "safa",
+        "watch-case",
+        "paper-weight",
+        "caps",
+        "visor-caps",
+        "bucket-hats",
+        "beanie-caps",
+        "cowboy-hats",
+        "gatsby-caps",
+        "fedora-hats",
+        "rain-cover",
+        "round-glasses",
+        "rectangle-glasses",
+        "cateye-glasses",
+        "aviator-glasses",
+        "square-glasses",
+        "oval-glasses",
+        "almond-glasses",
+        "wayfarer-glasses",
+        "toric-contact-lenses",
+        "daily-disposable",
+        "monthly-reusable",
+        "multifocal-varifocal",
+        "solutions-accessories",
+        "coloured-lenses"
+      ],
+      "description": "This is the file validation template for the fashion department and accessories category.",
+      "departments": [
+        "electronics",
+        "men",
+        "women",
+        "kids",
+        "toys"
+      ],
+      "attributes": [
+        "gender",
+        "age-group",
+        "occasion",
+        "collection",
+        "season",
+        "color",
+        "material",
+        "product_type",
+        "pattern",
+        "closure_type",
+        "product_length",
+        "feature",
+        "care_instructions",
+        "package_contents",
+        "essential",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "slug": "accessories",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpgd54cb24d-dd2c-441c-bca0-8f65ea3b101c/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/hkE1dC_0DEFAULT-LOGO.jpgfb5b1b31-9449-43db-9049-435fec88ee77/hkE1dC_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f04a23544a2e5404274bc07"
+    },
+    {
+      "slug": "all-attributes-template",
+      "categories": [
+        "hd-television"
+      ],
+      "banner": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/tBqIbw_dj.jpg0b8e229f-45bd-4a96-97a5-3e5b193828d2/tBqIbw_dj.jpg",
+      "name": "All attributes Template",
+      "attributes": [
+        "test-attribute-3",
+        "test-attribute",
+        "test-attribute-1",
+        "test-attribute-4",
+        "gender",
+        "neck-type",
+        "qwertyu",
+        "testtt-attribute-5",
+        "storage_humidity",
+        "operating_humidity",
+        "certifications",
+        "aspect_ratio",
+        "storage_temperature",
+        "memory_details",
+        "cache_memory",
+        "operating_temperature",
+        "expansion_slots",
+        "included_software",
+        "web_camera",
+        "video_memory",
+        "optical_drive",
+        "hard_drive_speed",
+        "hard_drive_type",
+        "hard_drive",
+        "speaker_type",
+        "core_type",
+        "processor_core",
+        "processor_model_number",
+        "processor_speed",
+        "processor_brand",
+        "processor_sub_brand",
+        "battery_cell",
+        "laptop_type",
+        "graphics_card_model",
+        "accessories",
+        "services",
+        "promotion_freebie",
+        "action",
+        "home_delivery",
+        "colour_reproduction",
+        "brightness",
+        "data_transfer_on_cloud",
+        "card_reader",
+        "battery_filter",
+        "volumetric_weight_in_kg",
+        "price_filter",
+        "brands_filter",
+        "number_of_usb_ports_filter",
+        "number_of_hdmi_ports_filter",
+        "smart_tv_filter",
+        "resolution_filter",
+        "display_technology",
+        "panel_type",
+        "record_as_you_watch",
+        "schedule_recording",
+        "no_of_channels",
+        "additional_side_panel_ports",
+        "response_time",
+        "contrast_ratio",
+        "hdmi_arc",
+        "tv_operating_system",
+        "refresh_rate",
+        "connect_to_router_via",
+        "connect_to_home_theatre_via",
+        "no_of_hdmi_ports",
+        "no_of_usb_ports",
+        "standby_power_consumption",
+        "connect_to_set_top_box_via",
+        "stream_content_from_devices",
+        "surround_sound_technology",
+        "tv_speaker_type",
+        "graphics_card_sub_brand",
+        "hdr",
+        "power_supply",
+        "power_consumption",
+        "connect_to_dvd_players_via",
+        "graphics_card_brand",
+        "rated_speaker_output_power_rms",
+        "3d_technology",
+        "optimized_heat_dissipation",
+        "backlit_keyboard_support",
+        "ethernet_lan_support",
+        "hdmi_support",
+        "anti_glare_screen",
+        "phone_network_and_connectivity",
+        "storage_filter",
+        "ram_filter",
+        "pallet",
+        "waterproof",
+        "selfie_camera_filter",
+        "primary_camera_filter",
+        "screen_size_filter",
+        "battery_power_features",
+        "in_the_box_warranty",
+        "features",
+        "screen_display_camera",
+        "phone_battery_charge_time",
+        "network_inter_device_connectivity",
+        "phone_os",
+        "phone_build_convenience",
+        "phone_hardware_storage",
+        "testcomparsion",
+        "country_of_origin",
+        "manufacturer_packer_importer_address",
+        "manufacturer_packer_importer_name",
+        "warranty_type",
+        "dlna_compliant",
+        "user_guides_attachment",
+        "resq_support_guide_attachment",
+        "water_resistant",
+        "speaker_support",
+        "fm_radio",
+        "nfc_support",
+        "package_content",
+        "talk_time",
+        "standby_time",
+        "quick_charge",
+        "preloaded_apps",
+        "metal_frame",
+        "touch_screen",
+        "glass_type",
+        "meta_description",
+        "short_description",
+        "is_flammable",
+        "transfer_price_tp",
+        "screen_size",
+        "bluetooth",
+        "wi_fi",
+        "3g",
+        "internal_storage",
+        "in_the_box",
+        "memory_ram",
+        "4g",
+        "usb",
+        "otg_support",
+        "edge",
+        "nfc",
+        "microphone",
+        "dummy_int",
+        "product_details",
+        "subtitle",
+        "general_information",
+        "expandable",
+        "style_note",
+        "is_waterproof",
+        "brand_name",
+        "color",
+        "model",
+        "product_type",
+        "series",
+        "product_identifiers",
+        "style",
+        "sub_brand",
+        "socks_length",
+        "heel_height",
+        "occasion",
+        "storage",
+        "season",
+        "processor",
+        "collection",
+        "storage_type",
+        "topwear_length",
+        "bottomwear_length",
+        "denim_type",
+        "boot_length",
+        "dial_shape",
+        "thickness",
+        "lens_colour",
+        "sensors",
+        "dial_colour",
+        "material",
+        "usb_support",
+        "fingerprint_recognition",
+        "strap_type",
+        "operating_system",
+        "frame_style",
+        "brand_rating",
+        "operating_system_type",
+        "4g_bands",
+        "strap_colour",
+        "4g_support",
+        "2g_bands",
+        "frame_colour",
+        "video_formats",
+        "3g_bands",
+        "feature",
+        "3g_support",
+        "movement_type",
+        "bluetooth_version",
+        "pattern",
+        "wi_fi_support",
+        "bluetooth_support",
+        "inner_material",
+        "selfie_camera",
+        "closure_type",
+        "screen_resolution",
+        "product_fit",
+        "screen_size_diagonal",
+        "dimensions",
+        "display_type",
+        "plating",
+        "primary_camera",
+        "toe_type",
+        "dual_camera_rear",
+        "clasp_type",
+        "ram",
+        "padding",
+        "microphone_support",
+        "sim_type",
+        "capacity",
+        "arch_type",
+        "stone_type",
+        "warranty_description",
+        "additional_connectivity",
+        "compartments",
+        "audio_formats",
+        "sleeve_type",
+        "audio_jack",
+        "diameter",
+        "battery_capacity",
+        "sleeve_length",
+        "battery_operated",
+        "product_length",
+        "battery_run_time",
+        "neck_type",
+        "battery_type",
+        "collar_type",
+        "battery_voltage",
+        "cellular_technology",
+        "waist_rise",
+        "edge_support",
+        "coverage",
+        "expandable_memory",
+        "package_contents",
+        "gprs_support",
+        "care_instructions",
+        "hybrid_sim_slot",
+        "model_info",
+        "variant",
+        "warranty",
+        "complexion",
+        "skin_type",
+        "spf",
+        "speciality",
+        "finish",
+        "lasting_power",
+        "benefits",
+        "hair_type",
+        "fragrance_family",
+        "fragrance_type",
+        "product_format",
+        "active_ingredients",
+        "ingredients",
+        "how_to_use",
+        "shelf_life",
+        "safety_warning",
+        "testtt-attribute-6"
+      ],
+      "departments": [
+        "electronics"
+      ],
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/7V0z2B_dj.jpg21ac07ea-9f83-403e-ad37-69076c6c5c46/7V0z2B_dj.jpg",
+      "description": "Blah Blah",
+      "is_physical": true,
+      "id": "5ed5f84d2abe0f0001174d73"
+    },
+    {
+      "name": "Baby Care & Toys",
+      "categories": [
+        "kids-puzzles",
+        "kids-shirts"
+      ],
+      "description": "This is the file validation template for the Baby Care & Toys department.",
+      "departments": [
+        "baby-care-kids-essentials",
+        "toys",
+        "kids"
+      ],
+      "attributes": [
+        "gender",
+        "age-group",
+        "occasion",
+        "collection",
+        "season",
+        "color",
+        "material",
+        "product_type",
+        "no-of-pieces",
+        "battery_operated",
+        "is-portable",
+        "is_flammable",
+        "capacity",
+        "carrying-capacity",
+        "inner-dimension",
+        "seat-dimension",
+        "package_contents",
+        "additional-features",
+        "certification",
+        "essential",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "slug": "baby-care-toys",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/Ikt1sK_DEFAULT-BANNER_LANDSCAPE.jpg7f923d3d-abc9-4a2e-9a49-204a36e1073c/Ikt1sK_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/saEu9Z_0DEFAULT-LOGO.jpg4cd36f29-a15b-4ec1-ab33-1162ede2c61f/saEu9Z_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f04a24944a2e5404274bc09"
+    },
+    {
+      "name": "Bags",
+      "categories": [
+        "seal-bags",
+        "reusable-bag",
+        "poly-bag",
+        "shoe-bag",
+        "sling-bags",
+        "bags"
+      ],
+      "description": "This is the file validation template for the fashion department and bags category.",
+      "departments": [
+        "kids",
+        "women",
+        "men"
+      ],
+      "attributes": [
+        "gender",
+        "age-group",
+        "color",
+        "outer-material",
+        "inner_material",
+        "product_type",
+        "collection",
+        "occasion",
+        "season",
+        "pattern",
+        "closure_type",
+        "care_instructions",
+        "compartments",
+        "expandable",
+        "water-resistence",
+        "water-resistence-details",
+        "water-proof",
+        "water-proof-details",
+        "warranty_type",
+        "warranty_description",
+        "package_contents",
+        "essential",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "slug": "bags",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/ejcGMm_DEFAULT-BANNER_LANDSCAPE.jpg658c38fd-d6de-4fcf-9f0e-3a886b2e2225/ejcGMm_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/GIysAV_0DEFAULT-LOGO.jpgf1942433-2bcb-4939-9128-675f66cd6d70/GIysAV_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f04a24a44a2e5404274bc0b"
+    },
+    {
+      "modified_on": "2020-08-19T04:04:30.421000Z",
+      "logo": "https://hdn-1.addsale.com/x0/products/pictures/template/logo/original/fW2zqHspe-q1.png",
+      "created_on": "2020-08-19T04:04:30.421000Z",
+      "banner": "https://hdn-1.addsale.com/x0/products/pictures/template/banner/original/_YRvLuMDn-q1.jpeg",
+      "attributes": [
+        "base-material"
+      ],
+      "modified_by": {
+        "username": "fahimsakri_gofynd_com_44938",
+        "user_id": "10"
+      },
+      "departments": [
+        "men-s-fashion",
+        "kids",
+        "women-s-fashion",
+        "beauty-personal-care"
+      ],
+      "slug": "base-template",
+      "description": "ad",
+      "name": "Base Template",
+      "categories": [
+        "adcdas"
+      ],
+      "created_by": {
+        "username": "fahimsakri_gofynd_com_44938",
+        "user_id": "10"
+      },
+      "is_physical": true,
+      "id": "5f3ca4ce3f7e74000111925f"
+    },
+    {
+      "description": "This is the file validation template for the Beauty & Personal Care department. ",
+      "name": "Beauty & Personal Care",
+      "slug": "beauty-personal-care",
+      "departments": [
+        "beauty-personal-care"
+      ],
+      "attributes": [
+        "gender",
+        "age-group",
+        "occasion",
+        "collection",
+        "season",
+        "color",
+        "product_type",
+        "complexion",
+        "skin_type",
+        "spf",
+        "speciality",
+        "finish",
+        "lasting_power",
+        "coverage",
+        "hair_type",
+        "fragrance_family",
+        "fragrance_type",
+        "closure_type",
+        "capacity",
+        "product_format",
+        "active_ingredients",
+        "benefits",
+        "how-to-use",
+        "shelf_life",
+        "safety_warning",
+        "mask_type",
+        "material",
+        "adjustable",
+        "reusable",
+        "foldable",
+        "filtration",
+        "compatible_filter",
+        "package_contents",
+        "warranty_type",
+        "warranty_description",
+        "essential",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "categories": [
+        "foundation",
+        "concealer",
+        "mascara",
+        "kajal",
+        "eyeshadow",
+        "false-eyelashes",
+        "eyebrow-enhancer",
+        "eyeliner",
+        "personal-care-gift-sets",
+        "primer",
+        "compact",
+        "hair-removal-cream",
+        "lip-liner",
+        "nail-polish-remover",
+        "liquid-lipstick",
+        "lipstick",
+        "nail-polish",
+        "moisturizing-socks",
+        "hand-cream",
+        "sindoor",
+        "crayon-lipstick",
+        "eye-brushes",
+        "manicure-kits",
+        "lip-gloss",
+        "makeup-remover",
+        "nail-art-kit",
+        "foot-cream",
+        "bb-cream",
+        "brush-sets",
+        "pedicure-kits",
+        "face-brushes",
+        "highlighters",
+        "lip-balm",
+        "lip-brushes",
+        "sunscreen",
+        "trimmer",
+        "facial-kits",
+        "colour-contact-lens",
+        "body-wash",
+        "toners",
+        "cleanser",
+        "epilator",
+        "eye-gels",
+        "face-wash",
+        "eye-masks",
+        "eye-creams",
+        "facial-wipes",
+        "masks",
+        "perfume",
+        "moisturizer",
+        "serum",
+        "night-cream",
+        "shoe-deodorant",
+        "razor",
+        "soaps",
+        "body-scrubs",
+        "day-cream",
+        "deodorants",
+        "eye-roll-on",
+        "eye-serums",
+        "attar",
+        "bath-sets",
+        "bathing-accessories",
+        "scrubs",
+        "sets",
+        "underarm-roll-on",
+        "wax-strips",
+        "body-creams",
+        "body-lotions",
+        "talcum-powders",
+        "body-butters",
+        "body-mousse",
+        "hair-brushes",
+        "combs",
+        "hair-spa",
+        "hair-colour",
+        "hair-spa-kits",
+        "hair-cream",
+        "hair-extensions",
+        "anti-stretch-mark-cream",
+        "body-oils",
+        "body-souffles",
+        "conditioner",
+        "hair-accessories",
+        "hair-oil",
+        "hair-serum",
+        "hair-spray",
+        "shampoo",
+        "body-mists",
+        "body-sprays",
+        "liquid-soap",
+        "beard-oil",
+        "beard-colour",
+        "beard-wash",
+        "beard-balm",
+        "nail-cutter",
+        "home-fragrance",
+        "gift-set",
+        "hand-soap",
+        "hand-sanitizer",
+        "face-oil",
+        "body-massage-balm",
+        "face-gel",
+        "face-mist",
+        "bath-oil",
+        "insect-repellent",
+        "anti-ageing-cream",
+        "bath-salt",
+        "anti-acne-cream",
+        "face-massage-cream",
+        "whitening-cream",
+        "anti-wrinkle-cream",
+        "foot-spray",
+        "anti-blemish-cream",
+        "blush",
+        "makeup-fixer",
+        "makeup-kit",
+        "sponge",
+        "foot-scrub",
+        "eyeshadow-palette",
+        "cc-cream",
+        "eye-wipes",
+        "head-wrap",
+        "patches",
+        "nipple-butter",
+        "pillow-spray",
+        "pillow-roll-on",
+        "fragrance-plug",
+        "pain-relief-balm",
+        "headache-roll-on",
+        "mirror",
+        "toilet-seat-spray",
+        "intimate-wash",
+        "massager",
+        "makeup-accessories",
+        "pillow",
+        "nail-accessories",
+        "sanitary-napkins",
+        "protective-mask",
+        "kohl-kajal",
+        "natural-lipstick",
+        "pearl-lipstick",
+        "creme-lipstick",
+        "matte-lipstick",
+        "glossy-lipstick",
+        "compact-spray",
+        "compact-stick",
+        "compact-powder",
+        "highlighter-cake",
+        "blush-highlighter",
+        "kajal-stick",
+        "compact-cake",
+        "roll-on-kajal-pencil",
+        "liquid-compact",
+        "stick-highlighter",
+        "kajal-pencil",
+        "gel-kajal",
+        "liquid-glossy-lipstick",
+        "liquid-matte-lipstick",
+        "crayon-matte-lipstick",
+        "liquid-creme-lipstick",
+        "crayon-glossy-lipstick",
+        "natural-lip-gloss",
+        "liquid-natural-lipstick",
+        "crayon-creme-lipstick",
+        "pearl-lip-gloss",
+        "liquid-pearl-lipstick",
+        "crayon-natural-lipstick",
+        "liquid-highlighter",
+        "crayon-pearl-lipstick",
+        "glossy-lip-gloss",
+        "matte-lip-gloss",
+        "creme-lip-gloss",
+        "eye-concealer",
+        "object-disinfectant",
+        "face-disinfectant",
+        "vegetable-fruit-wash",
+        "infrared-thermometer",
+        "safety-goggle",
+        "personal-protective-equipment-kit",
+        "examination-gloves",
+        "face-shield"
+      ],
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/ZxNlYp_DEFAULT-BANNER_LANDSCAPE.jpg66a71bf3-c1a7-4aa0-98e6-f2a837caa59a/ZxNlYp_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/OInLCX_0DEFAULT-LOGO.jpg03aeaeb8-2d04-4694-b641-f60fbdea5c4d/OInLCX_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f05b34844a2e571575f3047"
+    },
+    {
+      "name": "Clothing",
+      "categories": [
+        "casual-shirts",
+        "formal-shirts",
+        "sweaters",
+        "sweatshirts",
+        "hoodies",
+        "cardigans",
+        "suits",
+        "front-open-jackets",
+        "blazers",
+        "waistcoats",
+        "jeans",
+        "chinos",
+        "cargos",
+        "corduroys",
+        "formal-trousers",
+        "3-4ths",
+        "trunks",
+        "boardshorts",
+        "rashguard",
+        "briefs",
+        "trackpants",
+        "tracksuits",
+        "joggers",
+        "t-shirts",
+        "shorts",
+        "gowns",
+        "blouson-top",
+        "tunics",
+        "corsets",
+        "kaftan-top",
+        "shift-dress",
+        "jumpsuits",
+        "jeggings",
+        "skirts",
+        "palazzos",
+        "culottes",
+        "leggings",
+        "shrugs",
+        "sports-bra",
+        "bikinis",
+        "swimsuit",
+        "sarong",
+        "kaftan",
+        "shapewear",
+        "camisole",
+        "activewear-tops",
+        "tights",
+        "yoga-pants",
+        "capris",
+        "harem",
+        "bomber-jackets",
+        "gilet",
+        "leather-jackets",
+        "polos",
+        "bodycon-dress",
+        "off-shoulder-dress",
+        "skater-dress",
+        "maxi-dress",
+        "sheath-dress",
+        "sweater-dress",
+        "tube-dress",
+        "slip-dress",
+        "asymmetric-dress",
+        "bodysuit",
+        "peplum-top",
+        "crop-top",
+        "tiered-dress",
+        "maxi-top",
+        "tank-top",
+        "tube-top",
+        "strappy-top",
+        "activewear-jackets",
+        "denim-jackets",
+        "windcheater",
+        "peplum-dress",
+        "off-shoulder-top",
+        "shirt-dress",
+        "kids-shirts",
+        "twin-sets",
+        "dungarees",
+        "trousers",
+        "western-jackets",
+        "frocks",
+        "dresses",
+        "tops",
+        "casual-pants",
+        "beachwear-bottoms",
+        "coat",
+        "fusion-set",
+        "indowestern-kurta",
+        "tapered-jeans",
+        "joggers-jeans",
+        "straight-chinos",
+        "tapered-chinos",
+        "double-breasted-suits",
+        "activewear-crop-tops",
+        "flat-front-formal-trousers",
+        "pleated-formal-trousers",
+        "straight-formal-trousers",
+        "straight-jeans",
+        "flared-jeans",
+        "tapered-formal-trousers",
+        "straight-skirt",
+        "flared-skirt",
+        "asymmetric-skirt",
+        "pleated-corduroys",
+        "tapered-corduroys",
+        "straight-corduroys",
+        "cropped-chinos",
+        "cropped-corduroys",
+        "bootcut-jeans",
+        "drop-crotch-jeans",
+        "cropped-jeans",
+        "bootcut-formal-trousers",
+        "cropped-formal-trousers",
+        "five-buttoned-suits",
+        "tuxedo-suits",
+        "one-buttoned-suits",
+        "two-buttoned-suits",
+        "four-buttoned-suits",
+        "three-buttoned-suits",
+        "pleated-chinos",
+        "pleated-jeans",
+        "beachwear-bikini-tops",
+        "pleated-skirt",
+        "flared-formal-trousers",
+        "activewear-tank-tops",
+        "beachwear-bikini-bottoms",
+        "pencil-skirt",
+        "activewear-blouse",
+        "casual-joggers"
+      ],
+      "description": "This is the file validation template for the fashion department and clothing category.",
+      "departments": [
+        "men",
+        "women",
+        "kids",
+        "clothing"
+      ],
+      "attributes": [
+        "gender",
+        "age-group",
+        "color",
+        "material",
+        "occasion",
+        "collection",
+        "season",
+        "product_fit",
+        "product_type",
+        "product_length",
+        "pattern",
+        "sleeve_type",
+        "sleeve_length",
+        "closure_type",
+        "neck_type",
+        "waist_rise",
+        "denim-fade",
+        "care_instructions",
+        "package_contents",
+        "number-of-pockets",
+        "model_info",
+        "essential",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "slug": "clothing",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/720R34_DEFAULT-BANNER_LANDSCAPE.jpga765babe-cfaa-4cc5-9da7-f4e1402fa97e/720R34_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/jKZEs7_0DEFAULT-LOGO.jpg78413c0a-11a8-43f8-88ad-1442e9fdb898/jKZEs7_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f04a25044a2e5404274bc0e"
+    },
+    {
+      "description": "asdd",
+      "attributes": [
+        "color",
+        "warranty_type",
+        "care_instructions"
+      ],
+      "modified_on": "2020-08-20T16:15:33.598000Z",
+      "modified_by": {
+        "username": "fahimsakri_gofynd_com_44938",
+        "user_id": "10"
+      },
+      "name": "FA-Template",
+      "categories": [
+        "vision-qa-f9447f89-d2da-41fc-ac33-b9f286308c14"
+      ],
+      "logo": "https://hdn-1.addsale.com/x0/products/pictures/template/logo/original/fW2zqHspe-q1.png",
+      "departments": [
+        "electronics"
+      ],
+      "banner": "https://hdn-1.addsale.com/x0/products/pictures/template/banner/original/L_u77Mz4T-FA-Template.png",
+      "slug": "fa-template",
+      "created_on": "2020-08-19T09:51:08.215000Z",
+      "created_by": {
+        "username": "fahimsakri_gofynd_com_44938",
+        "user_id": "10"
+      },
+      "is_physical": true,
+      "id": "5f3cf60c9788cc00018ab276"
+    },
+    {
+      "name": "Footwear",
+      "categories": [
+        "sneakers",
+        "running-shoes",
+        "hiking-shoes",
+        "football-shoes",
+        "indoor-sports-shoes",
+        "trainers",
+        "outdoor-sports-shoes",
+        "moccasins",
+        "loafers",
+        "boat-shoes",
+        "brogues",
+        "derby-shoes",
+        "oxfords",
+        "monk-strap-shoes",
+        "lace-ups",
+        "formal-slip-ons",
+        "boots",
+        "sandals",
+        "flip-flops",
+        "floaters",
+        "d-orsay",
+        "espadrilles",
+        "pointed-toe",
+        "flat-slip-ons",
+        "gladiators",
+        "flat-sandals",
+        "stilettos",
+        "wedges",
+        "block-heels",
+        "kitten-heels",
+        "louis-heels",
+        "cone-heels",
+        "heel-sandals",
+        "ballerinas",
+        "casual-slip-ons",
+        "casual-lace-ups",
+        "ethnic-sandals",
+        "clogs",
+        "slippers",
+        "school-shoes",
+        "high-heels",
+        "flats",
+        "mules",
+        "crocs",
+        "heels-pumps",
+        "mojaris",
+        "jutties",
+        "labour-shoes"
+      ],
+      "description": "This is the file validation template for the fashion department and footwear category.",
+      "departments": [
+        "men",
+        "women",
+        "kids"
+      ],
+      "attributes": [
+        "gender",
+        "age-group",
+        "color",
+        "outer-material",
+        "inner_material",
+        "sole-material",
+        "occasion",
+        "collection",
+        "season",
+        "product_type",
+        "pattern",
+        "closure_type",
+        "toe_type",
+        "arch_type",
+        "heel_height",
+        "heel-height-unit-of-measure",
+        "care_instructions",
+        "package_contents",
+        "water-resistence",
+        "water-resistence-details",
+        "water-proof",
+        "water-proof-details",
+        "warranty_type",
+        "warranty_description",
+        "essential",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "slug": "footwear",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/phMzNh_DEFAULT-BANNER_LANDSCAPE.jpgf06e7d2f-15a0-405a-b37b-1333c618abdb/phMzNh_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/PkIwbo_0DEFAULT-LOGO.jpgbb9acb1b-5e2c-44d4-918a-9429367ccb7d/PkIwbo_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f04a25344a2e5404274bc10"
+    },
+    {
+      "slug": "groceries",
+      "name": "Groceries",
+      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/EtkWQm_fruit___vegetable_logo.jpgc541c78c-dabc-4823-bb72-c4bd3e5db449/EtkWQm_fruit___vegetable_logo.jpg",
+      "departments": [
+        "groceries"
+      ],
+      "description": "Groceries",
+      "banner": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/BPjEl6_fruit___vegetable_logo.jpg577eb6bb-de4e-444c-a86a-bc23e0d97178/BPjEl6_fruit___vegetable_logo.jpg",
+      "attributes": [
+        "ingredient-type",
+        "manufacturer_packer_importer_address"
+      ],
+      "categories": [
+        "buns",
+        "non-veg-pickle",
+        "condensed-milk",
+        "shoe-shiners",
+        "bath-stool-tub-basin-sets",
+        "soda-cocktail-mix",
+        "tofu",
+        "buckets-mugs",
+        "fresh-mutton",
+        "games-calculators",
+        "kolam",
+        "namkeen-savoury-snacks",
+        "gift-bags",
+        "honey",
+        "cutlery-spoons-fork",
+        "pita",
+        "potato-onion-tomato",
+        "apples-pomegranate",
+        "dishwash-powder",
+        "country-eggs",
+        "fish-tuna",
+        "coconut-milk",
+        "sugarfree-sweeteners",
+        "cups-mugs-tumblers",
+        "turkey",
+        "breakfast-snack-mixes",
+        "diabetic-drinks",
+        "other-dal",
+        "herbs-seasoning",
+        "incense-sticks",
+        "scissor",
+        "slice-cakes",
+        "dips-dressings",
+        "files",
+        "lavash",
+        "flakes",
+        "tawa-sauce-pan",
+        "breads",
+        "jaggery",
+        "soya-chunks",
+        "exotic-vegetables",
+        "wine-rise-vinegar",
+        "recipe-packs",
+        "pen",
+        "cookware-sets",
+        "jam-conserve-marmalade",
+        "holi-pichkari",
+        "knives-peelers",
+        "chicken-sausages",
+        "poha",
+        "jowar-flour",
+        "cook-serve",
+        "unsweetened-cold-press",
+        "decorations",
+        "dust-cloth-wipes",
+        "jelly",
+        "gift-boxes",
+        "organic-cold-press-oil",
+        "glucose-powder-tablets",
+        "frozen-non-veg-snacks",
+        "leafy-vegetables",
+        "salted-biscuits",
+        "cooking-chocolates-cocoa",
+        "marinated-meat",
+        "berries",
+        "basmati-rice",
+        "ground-coffee",
+        "cut-vegetables",
+        "moong-dal",
+        "glue",
+        "fabric-pre-post-wash",
+        "canola-rapeseed-oil",
+        "water-fridge-bottle",
+        "frozen-fish-seafood",
+        "choppers-graters",
+        "soya",
+        "kiwi-melon-citrus-fruits",
+        "buttermilk",
+        "focaccia",
+        "healthy-baked-snacks",
+        "bowls",
+        "car-freshener",
+        "nachos",
+        "powdered-spices",
+        "rawa",
+        "pressure-cookers",
+        "chips",
+        "cream-rolls",
+        "tape",
+        "bajra",
+        "jowar",
+        "ice-cream",
+        "wicks",
+        "cooking-pastes",
+        "erasers-sharpeners",
+        "imported-fruits",
+        "notebooks",
+        "masoor-dal",
+        "canned-seafood",
+        "regular-white-vinegar",
+        "croissants-bread",
+        "pasta",
+        "root-vegetables",
+        "whole-spices",
+        "chana-dal",
+        "glassware",
+        "cucumber-gourds-capsicum",
+        "papads-ready-to-fry",
+        "lamp",
+        "hakka-noodles",
+        "balsamic-cider-vinegar",
+        "garbage-bags",
+        "pumpkin-drumstick",
+        "other-plastic-ware",
+        "frozen-indian-breads",
+        "glucose-milk-biscuits",
+        "non-alcoholic-drinks",
+        "paneer",
+        "toor-dal",
+        "fresh-salads-sprouts",
+        "fresh-chicken",
+        "wheat-flour",
+        "fruits-pulps",
+        "cheese-spread",
+        "camphor",
+        "cabbage-broccoli-cauliflower",
+        "sugar",
+        "candles",
+        "plates",
+        "mangoes",
+        "aerated-drinks",
+        "toffee-candy-lollypop",
+        "pizza-base",
+        "thai-asian-sauce",
+        "shoe-brushes",
+        "gas-stove",
+        "sports-energy-drinks",
+        "shrikhand",
+        "hangers-clips-ropes",
+        "croutons",
+        "floor-other-cleaners",
+        "toilet-cleaners",
+        "macaroni",
+        "folders",
+        "choco-nut-spread",
+        "salts",
+        "butter",
+        "pavs",
+        "hangers",
+        "khari",
+        "frozen-veg-snacks",
+        "tea-cakes",
+        "seasonal-fruits",
+        "olive",
+        "seasonal-accessories",
+        "cream",
+        "heat-eat-ready-meals",
+        "dishwash-liquid-paste",
+        "rubs",
+        "beans-pulses",
+        "seasonal-vegetables",
+        "besan",
+        "shoe-polish",
+        "packaged-water",
+        "kids-cereal",
+        "instant-coffee",
+        "powdered-milk",
+        "dishwash-bar",
+        "home-baking",
+        "laundry-storage-baskets",
+        "detergent-liquid",
+        "instant-noodles",
+        "canned-food",
+        "disposable-cups-plates",
+        "brinjals",
+        "imported-cleaners",
+        "tinned-packed-sweets",
+        "container-set",
+        "lamp-oil",
+        "mayonnaise",
+        "wall-hooks",
+        "spreads",
+        "juices",
+        "quinoa-grains",
+        "pooja-thali",
+        "milk",
+        "syrups-concentrates",
+        "cut-fruit-tender-coconut",
+        "kitchen-rolls",
+        "cold-drinks",
+        "vessels",
+        "premium-cookies",
+        "pooja-bells",
+        "other-pooja-needs",
+        "rise-flour",
+        "breadcrumbs",
+        "cup-cakes",
+        "berry",
+        "regional-rice",
+        "regional-grains",
+        "chilli-soya-sauce",
+        "gourmet-popcorn",
+        "beans-okra",
+        "wafers",
+        "sparkling-drinks",
+        "muffins",
+        "daliya",
+        "match-box",
+        "bagels-bread",
+        "rice-products",
+        "dry-fruits",
+        "dal-mix",
+        "flavoured-water",
+        "roasted-seeds-nuts",
+        "marshmallow",
+        "toilet-paper",
+        "wet-wipes",
+        "fruit-baskets",
+        "leaf-dust-tea",
+        "rakhi",
+        "insect-repellent",
+        "bajra-flour",
+        "ghee",
+        "lunch-boxes",
+        "cup-noodles",
+        "chocolates",
+        "candle-holder",
+        "frozen-mutton",
+        "marie-health-digestive",
+        "pencils",
+        "turkey-duck",
+        "vermicelli",
+        "exotic-flavoured-tea",
+        "powdered-mixes",
+        "urad-dal",
+        "toilet-other-brushes",
+        "jalapeno",
+        "maida",
+        "chutney",
+        "fresh-sweets",
+        "dessert-mixes",
+        "instant-pasta",
+        "kitchen-tools-other-accessories",
+        "mushrooms",
+        "chilli-lemon-garlic-ginger",
+        "gherkin",
+        "cooking-oil",
+        "curry-paste",
+        "tumblers",
+        "lamb",
+        "cheese",
+        "other-seafood",
+        "other-meat",
+        "frozen-chicken",
+        "banana-sapota-papaya",
+        "granola-cereal-bars",
+        "sabudana",
+        "cream-biscuits",
+        "bread-sticks",
+        "chia-seeds",
+        "utensil-scrub-pad-glove",
+        "soya-granules",
+        "soups",
+        "spring-water",
+        "rusks",
+        "olive-oil",
+        "organic-eggs",
+        "aluminium-foil-cling-wrap",
+        "colours-crayons",
+        "corn-snacks",
+        "pulses",
+        "protein-eggs",
+        "tomatoes-vegetables",
+        "cookies",
+        "still-drinks",
+        "mustard-cheese-sauce",
+        "regional-flour",
+        "detergent-powder",
+        "flavoured-other-oils",
+        "chikki-gajak",
+        "curd",
+        "strainers-ladle-spatula",
+        "holi-colours",
+        "trail-cocktail-mixes",
+        "baking-cake-decoration",
+        "biscuits",
+        "pencil-box",
+        "muesli",
+        "air-freshener",
+        "quinoa",
+        "metal-furniture-cleaners",
+        "green-tea",
+        "paper-napkin",
+        "flavoured-milk",
+        "mints-chewing-gum",
+        "lighters",
+        "lassi",
+        "edamame-beans",
+        "dry-fish",
+        "blended-masalas",
+        "tomato-ketchup",
+        "kadai-fry-pans",
+        "dustbins",
+        "syrups",
+        "wheat",
+        "kitchen-glass-drains",
+        "pork-ham",
+        "panini",
+        "flours-pre-mixes",
+        "cfl-led-bulbs",
+        "baguette-bread",
+        "brooms-dust-pans",
+        "prawns-shrimps",
+        "soap-cases-dispensers",
+        "oats-porridge",
+        "mops-wipers",
+        "exam-pads",
+        "tea-bags",
+        "pastries",
+        "mosquito-repellent",
+        "cut-peeled-veggies",
+        "pickle",
+        "brownies",
+        "margarine",
+        "soya-milk",
+        "fresh-fish",
+        "cloth-dryer-iron-table",
+        "gift-wrap",
+        "farm-eggs",
+        "detergent-bar",
+        "battery-electricals"
+      ],
+      "is_physical": true,
+      "id": "5efc43b13b4ca00001328666"
+    },
+    {
+      "description": "This is the file validation template for the Home & Living Department",
+      "name": "Home & Living",
+      "slug": "home-living",
+      "departments": [
+        "home-living"
+      ],
+      "categories": [
+        "slippers",
+        "chairs",
+        "table",
+        "beds",
+        "vases",
+        "bed-sheets",
+        "dining-table",
+        "blankets",
+        "bath-robe",
+        "bathing-accessories",
+        "napkins",
+        "hanger",
+        "lunch-box",
+        "photo-frame",
+        "toiletry-bag",
+        "pillow",
+        "cup-saucer",
+        "pet-collar-charm",
+        "alarm-clocks",
+        "dessert-plates",
+        "vintage-clocks",
+        "tissue-holder",
+        "flush-mount-lights",
+        "jewellery-box-stands",
+        "desk-accessories",
+        "serving-sets",
+        "cake-stands",
+        "bath-towel",
+        "cutlery",
+        "knives",
+        "knives-holder",
+        "pillow-covers",
+        "placemats",
+        "saucer",
+        "coasters",
+        "tea-sets",
+        "forks",
+        "shower-curtains",
+        "serving-bowls",
+        "soap-dispensers",
+        "spoons",
+        "bath-mats",
+        "table-runner",
+        "bed-covers",
+        "tea-coffee-accessories",
+        "coverlets",
+        "soap-dishes",
+        "duvet",
+        "bed-sheets-sets",
+        "duvet-cover",
+        "bolster-pillows",
+        "quilts-rajais",
+        "mattress",
+        "bed-linen-set",
+        "candles",
+        "clothes-storage",
+        "shoe-racks",
+        "cushion-fillers",
+        "scented-candles",
+        "art-pieces",
+        "key-holder",
+        "planters",
+        "showpieces",
+        "decals-stickers",
+        "mirrors",
+        "clocks",
+        "coffee-tables",
+        "dining-benches",
+        "ottoman",
+        "artificial-flowers",
+        "dining-chair",
+        "dining-table-set",
+        "drapery",
+        "console-table",
+        "baking-mould",
+        "cup",
+        "dohars",
+        "cushion-covers",
+        "fountains",
+        "comforters",
+        "mugs",
+        "flowerpot",
+        "cushions",
+        "decorative-objects",
+        "napkin-holder",
+        "trays",
+        "table-cloth",
+        "tea-cosy",
+        "shower-caps",
+        "shower-mats",
+        "bed-skirts",
+        "wardrobe-organisers",
+        "mattress-protectors",
+        "pillow-protectors",
+        "tea-light-candles",
+        "sculptures",
+        "faux-plants",
+        "vintage-finds",
+        "wall-art",
+        "dressing-tables",
+        "benches",
+        "sofas",
+        "storage-trunks",
+        "curtains",
+        "side-table",
+        "pillow-shams",
+        "wind-chimes",
+        "candle-holders",
+        "cheese-boards",
+        "serving-platters",
+        "pitchers",
+        "drinking-glasses",
+        "pet-collar",
+        "bathroom-faucets",
+        "lamp-bases",
+        "wreath",
+        "pendant-lamps",
+        "hearth-fireplace",
+        "sconces",
+        "succulents-plants",
+        "fireplace-screens",
+        "garlands",
+        "electric-fireplaces",
+        "storage-boxes",
+        "elecrtonics-tech-accessories",
+        "diffusers",
+        "potpourri",
+        "throws",
+        "ceiling-lights",
+        "pet-feeding-bowl",
+        "chandeliers",
+        "carpets",
+        "salad-plates",
+        "room-partitions",
+        "bar-accessories",
+        "decorative-lights",
+        "hand-towel",
+        "lamp-shades",
+        "face-towel",
+        "study-table-lamps",
+        "floor-runner",
+        "wall-lamps",
+        "frying-pan",
+        "door-mats",
+        "carafe",
+        "dinner-plates",
+        "snifter",
+        "dinner-set",
+        "peg-measure",
+        "platters",
+        "shot-bottles",
+        "bathroom-caddy",
+        "vinegar-dispenser",
+        "toilet-brush-holder",
+        "cutlery-holder",
+        "toothbrush-holder",
+        "kitchen-trolly",
+        "stemware",
+        "measuring-cup",
+        "baking-tray",
+        "strainer",
+        "stew-pan",
+        "whisk",
+        "cocktail-shaker",
+        "flask",
+        "food-container",
+        "string-lights",
+        "bottle-holder",
+        "poufs",
+        "chopping-board",
+        "fireplace-tools",
+        "dish-rack",
+        "log-racks-holders",
+        "ladle",
+        "aroma-oils",
+        "peeler",
+        "incense-sticks-holders",
+        "tongs",
+        "incense-sticks",
+        "kettle",
+        "kulladhs",
+        "table-linen-set",
+        "handbag-organiser",
+        "upholstery",
+        "laundry-bag",
+        "floor-lamps",
+        "magazine-organiser",
+        "lighting-accessories",
+        "makeup-organiser",
+        "table-lamps",
+        "shelf-liner",
+        "rugs-dhurries",
+        "shoes-organiser",
+        "sweater-bag",
+        "bowls",
+        "decanters",
+        "garbage-bag",
+        "beach-towel",
+        "bookcase",
+        "towel-set",
+        "pool-table",
+        "bath-rug",
+        "poker-table",
+        "shower-holder",
+        "table-tennis",
+        "towel-holder",
+        "bar-counter-stools",
+        "bath-mirror",
+        "bar-carts",
+        "towel-rod",
+        "bar-furniture",
+        "floor-mats",
+        "bedside-table",
+        "kadhai",
+        "foundations",
+        "sauce-pan",
+        "pillow-inserts",
+        "tawa",
+        "bathroom-vanities",
+        "cocktail-set",
+        "lounging-relaxing-furniture",
+        "canister",
+        "oil-dispenser",
+        "salt-pepper-shakers",
+        "spatula",
+        "casserole",
+        "handi",
+        "glasses",
+        "kitchen-linen-set",
+        "wardrobe-organiser",
+        "jewellery-organiser",
+        "separators",
+        "closet-storage",
+        "garbage-bag-holder",
+        "hooks",
+        "foosball-table",
+        "board-game",
+        "wall-shelves",
+        "media-furniture",
+        "file-cabinets",
+        "leather-furniture",
+        "buffets-sidebars",
+        "mattress-pads",
+        "wastebaskets",
+        "hampers-baskets",
+        "outdoor-dining-furniture",
+        "entry-furniture",
+        "water-jugs",
+        "table-covers",
+        "lanterns",
+        "desk-organiser",
+        "drawer-organiser",
+        "suit-organiser",
+        "swab-storage",
+        "tote-basket",
+        "hanger-holder",
+        "cabinet",
+        "hockey-table",
+        "shuffleboard",
+        "game-accessories",
+        "desk",
+        "office-chairs",
+        "dining-storage",
+        "kitchen-island",
+        "nightstands",
+        "duvet-inserts",
+        "mattress-toppers",
+        "medicine-cabinets",
+        "bathroom-hardware-accessories",
+        "salt-pepper-grinders",
+        "water-bottle"
+      ],
+      "attributes": [
+        "occasion",
+        "collection",
+        "color",
+        "material",
+        "product_type",
+        "bed_size",
+        "utility",
+        "quality",
+        "pattern",
+        "filling",
+        "shape",
+        "sheet-type",
+        "sheet_size",
+        "thread_count",
+        "product-dimensions",
+        "pocket_depth",
+        "group-id",
+        "variation-type",
+        "variation-based-on",
+        "capacity",
+        "dishwasher_safe",
+        "microwave_safe",
+        "oven_safe",
+        "additional-features",
+        "care_instructions",
+        "package_contents",
+        "sales_package",
+        "warranty_type",
+        "warranty_description",
+        "gst-inclusive",
+        "gst-if-exclusive",
+        "fragile",
+        "manufacturer-packer-importer-name",
+        "manufacturer-packer-importer-address"
+      ],
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/EHRCqs_DEFAULT-BANNER_LANDSCAPE.jpgc596e149-f6e1-4695-9446-9a8b88797d4c/EHRCqs_DEFAULT-BANNER_LANDSCAPE.jpg",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/UAiJlq_0DEFAULT-LOGO.jpg25c9816d-2376-4eaf-b4ab-accb37e9a564/UAiJlq_0DEFAULT-LOGO.jpg",
+      "is_physical": true,
+      "id": "5f05acfa44a2e55081728be2"
+    },
+    {
+      "categories": [
+        "3-ply-box",
+        "5-ply-box",
+        "7-ply-box",
+        "9-ply-box",
+        "bubble-roll",
+        "card-board-roll",
+        "courier-bag",
+        "courier-pouch",
+        "die-cut-box",
+        "double-side-tape",
+        "drawer-box",
+        "duct-tape",
+        "filament-tape",
+        "laminated-box",
+        "packaging-tape",
+        "poly-bag",
+        "printed-tape",
+        "reusable-bag",
+        "seal-bags",
+        "stretch-wrap",
+        "suit-box",
+        "zip-lock-bags",
+        "box"
+      ],
+      "name": "Industrial Supplies",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/9DpMn3_Beauty_&_Personal_Care_L.jpg80d89967-9c2c-498b-a79c-d176b3e71ea5/9DpMn3_Beauty_and_Personal_Care_L.jpg",
+      "slug": "industrial-supplies",
+      "attributes": [
+        "color",
+        "primary_color",
+        "style",
+        "features",
+        "safety_warning",
+        "is_flammable",
+        "water_resistant",
+        "product_details",
+        "package_contents",
+        "essential",
+        "pallet"
+      ],
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/I2NV2c_indi.jpg2eaf85b5-8076-4b0b-8f01-f119d6d8b559/I2NV2c_indi.jpg",
+      "departments": [
+        "industrial-supplies"
+      ],
+      "description": "Products used for business and industrial manufacturing process comes under this category. Example: Packaging Material",
+      "modified_by": {
+        "username": "meghagolecha_fynd_com_89167",
+        "user_id": "23244269"
+      },
+      "modified_on": "2020-08-20T19:12:26.040000Z",
+      "is_active": true,
+      "is_physical": true,
+      "id": "5f11eced5ca7f90001685a70"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -18821,6 +28078,17 @@ List of fields and validation values fro each. See example below or refer `Templ
 [TemplatesValidationResponse](#TemplatesValidationResponse)
 
 List of fields and validation values fro each. See example below or refer `TemplatesValidationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+null
+```
+</details>
 
 
 
@@ -18874,6 +28142,17 @@ CSV File of product template data. See example below or refer `TemplatesResponse
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18919,6 +28198,17 @@ CSV File of product template data.
 [string](#string)
 
 CSV File of product template data.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -18972,6 +28262,117 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "title": "InventoryValidationResponse",
+    "type": "object",
+    "properties": {
+      "item": {
+        "$ref": ""
+      },
+      "sizes": {
+        "title": "Sizes",
+        "type": "array",
+        "items": {
+          "$ref": ""
+        }
+      }
+    },
+    "required": [
+      "item",
+      "sizes"
+    ],
+    "definitions": {
+      "ItemQuery": {
+        "title": "ItemQuery",
+        "type": "object",
+        "properties": {
+          "uid": {
+            "title": "Uid",
+            "type": "integer"
+          },
+          "brand_uid": {
+            "title": "Brand Uid",
+            "type": "integer"
+          },
+          "item_code": {
+            "title": "Item Code",
+            "type": "integer"
+          }
+        }
+      },
+      "InventoryBaseSchema": {
+        "title": "InventoryBaseSchema",
+        "type": "object",
+        "properties": {
+          "price": {
+            "title": "Actual Price",
+            "exclusiveMinimum": 1,
+            "type": "number"
+          },
+          "price_effective": {
+            "title": "Selling Price",
+            "exclusiveMinimum": 1,
+            "type": "number"
+          },
+          "seller_identifier": {
+            "title": "Gtin Value",
+            "pattern": "^[A-Za-z0-9]*$",
+            "type": "string"
+          },
+          "quantity": {
+            "title": "Quantity",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "store_code": {
+            "title": "Store Code",
+            "type": "string",
+            "enum": [
+              "RUOSH43",
+              "S106",
+              "S108",
+              "TIO9",
+              "talha"
+            ]
+          },
+          "currency": {
+            "title": "Currency",
+            "enum": [
+              "INR",
+              "QAR"
+            ],
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          }
+        },
+        "required": [
+          "price",
+          "price_effective",
+          "seller_identifier",
+          "quantity",
+          "store_code",
+          "currency",
+          "size"
+        ]
+      }
+    }
+  },
+  "message": "Success"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -19014,6 +28415,27 @@ List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
 [HSNCodesResponse](#HSNCodesResponse)
 
 List of all HSN Codes. See example below or refer `HSNCodesResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "country_of_origin": [
+      "India"
+    ],
+    "hsn_code": [
+      "11111111"
+    ]
+  },
+  "message": "Success"
+}
+```
+</details>
 
 
 
@@ -19064,6 +28486,49 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {},
+  "items": [
+    {
+      "created_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646"
+      },
+      "data": {
+        "type": "csv",
+        "brand": [
+          "ruosh"
+        ],
+        "templates": [
+          "mobile-phones-and-tablet"
+        ]
+      },
+      "status": "success",
+      "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
+      "template_tags": {
+        "mobile-phones-and-tablet": {
+          "display": "Mobile Phones & Tablet",
+          "logo": "https://hdn-1.jiox0.de/jiox0/seller/pictures/logo/original/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpgcc2dff44-7fae-4002-9ebe-d2b59c8bee91/Oda39B_99946594-portable-devices-with-tablet-and-mobile-phone-vector-icon-for-apps-and-websites.jpg"
+        }
+      },
+      "trigger_on": "2020-12-23T07:23:35.302000Z",
+      "seller_id": 3,
+      "completed_on": "2020-12-23T07:23:41.031000Z",
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip",
+      "id": "5fe2f077516d980001880943"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -19109,6 +28574,91 @@ See example below or refer `ProductConfigurationDownloadsSchema` for details
 [ProductConfigurationDownloads](#ProductConfigurationDownloads)
 
 See example below or refer `ProductConfigurationDownloadsSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "display": "csv",
+      "value": "csv"
+    },
+    {
+      "display": "excel",
+      "value": "excel"
+    }
+  ],
+  "multivalue": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCategories
+Create product categories
+
+
+
+```javascript
+// Promise
+const promise = catalog.createCategories( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createCategories( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
+
+
+This API lets user create product categories
+
+*Returned Response:*
+
+
+
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+[CategoryCreateResponse](#CategoryCreateResponse)
+
+Category Meta. See example below or refer `CategoryCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success",
+  "uid": 0
+}
+```
+</details>
 
 
 
@@ -19174,50 +28724,411 @@ Category Meta. See example below or refer `CategoryResponse` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### createCategories
-Create product categories
-
-
-
-```javascript
-// Promise
-const promise = catalog.createCategories( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createCategories( {  companyId : value,
- body : value });
+```json
+{
+  "page": {
+    "current": 1,
+    "size": 58,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 574
+  },
+  "items": [
+    {
+      "name": "Air Conditioners",
+      "media": {
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png",
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/_7GDi3tyi-.png"
+      },
+      "marketplaces": {},
+      "tryouts": [],
+      "is_active": true,
+      "created_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646"
+      },
+      "uid": 22330,
+      "slug": "air-conditioners",
+      "priority": 1,
+      "synonyms": [],
+      "modified_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646"
+      },
+      "level": 3,
+      "hierarchy": [
+        {
+          "l1": 1,
+          "department": 1,
+          "l2": 22329
+        }
+      ],
+      "created_on": "2021-04-02T15:43:59.410000Z",
+      "departments": [
+        1
+      ],
+      "modified_on": "2021-04-02T15:43:59.410000Z",
+      "id": "60673bbf7896da00017885ad"
+    },
+    {
+      "name": "Home Appliances",
+      "media": {
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png",
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/_7GDi3tyi-.png"
+      },
+      "is_active": true,
+      "created_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646"
+      },
+      "uid": 22329,
+      "slug": "home-appliances",
+      "priority": 1,
+      "synonyms": [],
+      "modified_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646"
+      },
+      "level": 2,
+      "hierarchy": [],
+      "created_on": "2021-04-02T15:42:55.405000Z",
+      "departments": [
+        1
+      ],
+      "modified_on": "2021-04-02T15:42:55.405000Z",
+      "id": "60673b7f7896da00017885ac"
+    },
+    {
+      "created_by": {
+        "username": "919821012599_75351",
+        "user_id": "5721"
+      },
+      "slug": "dummy-category-level-2",
+      "level": 2,
+      "uid": 22323,
+      "is_active": true,
+      "media": {
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png",
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png"
+      },
+      "name": "Dummy category level 2 by fahim",
+      "modified_on": "2021-03-04T15:43:50.495000Z",
+      "modified_by": {
+        "username": "917753852478_51632",
+        "user_id": "5677"
+      },
+      "synonyms": [
+        "skin",
+        "care",
+        "asdasd"
+      ],
+      "created_on": "2021-01-14T05:28:02.148000Z",
+      "priority": 123456,
+      "hierarchy": [],
+      "departments": [
+        21
+      ],
+      "id": "5fffd662e64eb40001fc8a42"
+    },
+    {
+      "synonyms": [],
+      "marketplaces": {},
+      "created_on": "2021-02-25T00:00:47.589000Z",
+      "modified_by": {
+        "username": "917753852478_51632",
+        "user_id": "5677"
+      },
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png"
+      },
+      "modified_on": "2021-03-04T15:39:52.108000Z",
+      "hierarchy": [
+        {
+          "l2": 22323,
+          "l1": 22322,
+          "department": 21
+        }
+      ],
+      "name": "Dummy level 4",
+      "is_active": true,
+      "slug": "dummy-level-4",
+      "departments": [
+        21
+      ],
+      "level": 3,
+      "tryouts": [],
+      "uid": 22325,
+      "priority": 986532,
+      "created_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "id": "60369b57d23031d14be92c18"
+    },
+    {
+      "created_by": {
+        "username": "919821012599_75351",
+        "user_id": "5721"
+      },
+      "slug": "dummy-level-3",
+      "level": 3,
+      "uid": 22324,
+      "is_active": true,
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png"
+      },
+      "name": "Dummy level 3 by fahim",
+      "tryouts": [
+        "Lipstick",
+        "Eyeliner"
+      ],
+      "modified_on": "2021-03-04T15:39:46.246000Z",
+      "modified_by": {
+        "username": "917753852478_51632",
+        "user_id": "5677"
+      },
+      "synonyms": [],
+      "marketplaces": {},
+      "created_on": "2021-01-14T05:28:59.852000Z",
+      "priority": 986532,
+      "hierarchy": [
+        {
+          "l2": 22323,
+          "l1": 22322,
+          "department": 21
+        },
+        {
+          "l2": 3732,
+          "l1": 3672,
+          "department": 4
+        },
+        {
+          "l2": 730,
+          "l1": 595,
+          "department": 2
+        }
+      ],
+      "departments": [
+        2,
+        4,
+        21
+      ],
+      "id": "5fffd69be64eb40001fc8a65"
+    },
+    {
+      "uid": 3151,
+      "departments": [
+        4
+      ],
+      "is_active": true,
+      "level": 1,
+      "media": {
+        "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/YHIeoQ_fruit___vegetable_logo.jpg16aab608-a78a-458f-b60b-524525f27dec/YHIeoQ_fruit___vegetable_logo.jpg",
+        "portrait": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
+        "landscape": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg"
+      },
+      "name": "Gourmet & World Food",
+      "priority": 123,
+      "slug": "gourmet-world-food",
+      "synonyms": [
+        "gourmet & world food",
+        "food",
+        "gourmet"
+      ],
+      "created_on": "2016-04-09T06:44:35Z",
+      "hierarchy": [],
+      "modified_by": {
+        "username": "917753852478_51632",
+        "uid": "5677"
+      },
+      "modified_on": "2021-03-03T09:35:50.415000Z",
+      "id": "5fabab8ea18a1284b97ff6c4"
+    },
+    {
+      "modified_by": {
+        "username": "917753852478_51632",
+        "uid": "5677"
+      },
+      "marketplaces": {},
+      "hierarchy": [
+        {
+          "l1": 595,
+          "l2": 714,
+          "department": 2
+        },
+        {
+          "l1": 2,
+          "l2": 4,
+          "department": 1
+        }
+      ],
+      "created_on": "2021-03-03T06:30:08.342000Z",
+      "created_by": {
+        "username": "917753852478_51632",
+        "uid": "5677"
+      },
+      "level": 3,
+      "name": "Test Category kaf",
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png"
+      },
+      "tryouts": [
+        "Lipstick",
+        "Blush"
+      ],
+      "is_active": true,
+      "slug": "test-category-kaf",
+      "uid": 22328,
+      "synonyms": [
+        "test",
+        "category"
+      ],
+      "priority": 23,
+      "departments": [
+        1,
+        2
+      ],
+      "modified_on": "2021-03-03T08:34:47.999000Z",
+      "id": "603f2cf0aac0360001c00731"
+    },
+    {
+      "level": 3,
+      "departments": [
+        1
+      ],
+      "is_active": false,
+      "created_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "created_on": "2021-02-25T09:26:53.123000Z",
+      "tryouts": [],
+      "slug": "smart-cell",
+      "marketplaces": {},
+      "priority": 5,
+      "media": {
+        "portrait": "http://cdn4.gofynd.com/media/logo/department/original/13239_660c6f5b2b8d458789de4552d241ea1b.jpg",
+        "landscape": "https://hdn-1.fynd.com/media/banner/category/original/16128_380bed8bff064a0b981041df65e0d8b3.jpg",
+        "logo": "http://d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png"
+      },
+      "modified_on": "2021-02-25T09:26:53.123000Z",
+      "synonyms": [],
+      "uid": 22327,
+      "hierarchy": [
+        {
+          "l1": 2,
+          "l2": 3,
+          "department": 1
+        }
+      ],
+      "name": "Smart Cell",
+      "modified_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "id": "60372005d230311fe9e51f0b"
+    },
+    {
+      "is_active": true,
+      "hierarchy": [
+        {
+          "department": 21,
+          "l1": 22322,
+          "l2": 22323
+        }
+      ],
+      "slug": "dummy-level-98",
+      "priority": 986532,
+      "uid": 22326,
+      "departments": [
+        21
+      ],
+      "created_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "modified_on": "2021-02-25T00:09:35.026000Z",
+      "marketplaces": {},
+      "tryouts": [],
+      "synonyms": [],
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg"
+      },
+      "level": 3,
+      "name": "Dummy level 98",
+      "created_on": "2021-02-25T00:09:35.026000Z",
+      "modified_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "id": "60369d67d2303111b8924dcf"
+    },
+    {
+      "uid": 315,
+      "created_on": "2016-04-09T06:44:35Z",
+      "departments": [
+        2,
+        3
+      ],
+      "hierarchy": [
+        {
+          "l1": 65,
+          "l2": 66,
+          "department": 2
+        },
+        {
+          "l1": 442,
+          "l2": 26,
+          "department": 2
+        },
+        {
+          "l1": 442,
+          "l2": 26,
+          "department": 3
+        }
+      ],
+      "is_active": true,
+      "level": 3,
+      "marketplaces": {},
+      "media": {
+        "landscape": "https://hdn-1.fynd.com/media/banner/category/original/19961_f042f1f4a90f4e828b6d77d6dbea264d.jpg",
+        "logo": "https://hdn-1.fynd.com/media/logo/category/original/81ef023d375044e9b9daa66b81ec411f.jpg",
+        "portrait": "https://hdn-1.fynd.com/media/banner_portrait/category/original/19960_c679d51cb1bd4ca99f00f9050aa647a4.jpg"
+      },
+      "modified_by": {
+        "username": "917753852478_51632",
+        "user_id": "5677"
+      },
+      "modified_on": "2021-02-15T15:48:05.329000Z",
+      "name": "Sports Bra",
+      "priority": 281,
+      "slug": "sports-bra",
+      "synonyms": [
+        "Sports Bra",
+        "activewear bra",
+        "gym bra"
+      ],
+      "tryouts": [],
+      "id": "5fdba984642de8d93efb0d71"
+    }
+  ]
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
-
-
-This API lets user create product categories
-
-*Returned Response:*
-
-
-
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-[CategoryCreateResponse](#CategoryCreateResponse)
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
+</details>
 
 
 
@@ -19273,6 +29184,17 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -19318,6 +29240,116 @@ Get Data for one category. See example below or refer `CategoryResponse` for det
 [SingleCategoryResponse](#SingleCategoryResponse)
 
 Get Data for one category. See example below or refer `CategoryResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "name": "Air Conditioners",
+    "media": {
+      "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/_4p7Kz9Yp-banner.png",
+      "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/nsi0nJ6gX-landscape.png",
+      "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png"
+    },
+    "marketplaces": {},
+    "tryouts": [],
+    "is_active": true,
+    "created_by": {
+      "username": "917972410891_48194",
+      "user_id": "5646"
+    },
+    "uid": 22330,
+    "slug": "air-conditioners",
+    "priority": 1,
+    "synonyms": [],
+    "modified_by": {
+      "username": "nikhilmhatre_gofynd_com_97636",
+      "user_id": "16"
+    },
+    "level": 3,
+    "hierarchy": [
+      {
+        "l1": 1,
+        "department": 1,
+        "l2": 22329
+      }
+    ],
+    "created_on": "2021-04-02T15:43:59.410000Z",
+    "departments": [
+      1
+    ],
+    "modified_on": "2021-04-13T13:57:56.443000Z",
+    "id": "60673bbf7896da00017885ad"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProduct
+Create a product.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createProduct( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createProduct( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |  
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+
+
+This API allows to create product.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -19392,6 +29424,183 @@ Product Meta. See example below for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "TV Set",
+      "description": "Tv",
+      "country_of_origin": "India",
+      "currency": "INR",
+      "short_description": "",
+      "is_set": true,
+      "item_code": "TVSET111",
+      "brand_uid": 1,
+      "template_tag": "television",
+      "highlights": [
+        "42 Inch"
+      ],
+      "slug": "tv-set",
+      "_custom_json": {},
+      "l3_mapping": [
+        "electronics>qled_television"
+      ],
+      "image_nature": "standard",
+      "departments": [
+        1
+      ],
+      "created_on": 1599024995,
+      "created_by": {
+        "username": "919049753052_37528",
+        "user_id": "5"
+      },
+      "modified_on": 1627642010,
+      "modified_by": {
+        "username": "xxxxxxxxxx",
+        "user_id": "xxxxxxxxxxx"
+      },
+      "stage": "verified",
+      "uid": 7501547,
+      "verified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "verified_on": 1626965521,
+      "all_sizes": [
+        {
+          "item_code": "TVSET111",
+          "brand_uid": 1,
+          "seller_identifier": "HGS272727272",
+          "identifiers": [
+            {
+              "gtin_type": "ean",
+              "gtin_value": "HGS272727272",
+              "primary": true
+            }
+          ],
+          "company_id": 1,
+          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)",
+          "marked_price": 35000
+        }
+      ],
+      "category_slug": "qled-television",
+      "is_image_less_product": false,
+      "media": [
+        {
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
+          "type": "image"
+        }
+      ],
+      "variants": {},
+      "product_publish": {
+        "is_set": false,
+        "product_online_date": 1627642009
+      },
+      "is_dependent": false,
+      "is_physical": true,
+      "item_type": "set",
+      "category_uid": 1,
+      "custom_order": {
+        "manufacturing_time": 2,
+        "is_custom_order": true,
+        "manufacturing_time_unit": "days"
+      },
+      "moq": {
+        "minimum": 1,
+        "is_set": false
+      },
+      "multi_size": true,
+      "no_of_boxes": 1,
+      "product_group_tag": [],
+      "size_guide": "slim-fit-shirts-for-men",
+      "tags": [],
+      "teaser_tag": {},
+      "synonyms": [],
+      "hsn_code": "11111111",
+      "return_config": {
+        "unit": "days",
+        "returnable": false,
+        "time": 0
+      },
+      "all_company_ids": [
+        1
+      ],
+      "all_identifiers": [
+        "19WE100"
+      ],
+      "trader": {
+        "address": "sdfdsfsdf",
+        "name": "asdasd"
+      },
+      "trader_type": "Packer",
+      "verification_status": "pending",
+      "sizes": [
+        {
+          "size": "FGX33, GHX33 (66 PCS)",
+          "store_count": 1
+        },
+        {
+          "size": "XSE WE23X100 (100 PCS)",
+          "store_count": 2
+        },
+        {
+          "size": "XSEX100 (100 PCS)",
+          "store_count": 3
+        },
+        {
+          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)",
+          "store_count": 3
+        }
+      ],
+      "id": "5f4f2f6371a5970001f13655",
+      "brand": {
+        "name": "Apple",
+        "logo": {
+          "aspect_ratio": "1:1",
+          "aspect_ratio_f": 1,
+          "url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png",
+          "secure_url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png"
+        },
+        "uid": 13
+      },
+      "images": [
+        {
+          "aspect_ratio": "16:25",
+          "aspect_ratio_f": 0.64,
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
+          "secure_url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
+        }
+      ],
+      "price": {
+        "marked": {
+          "min": 35000,
+          "max": 35000
+        },
+        "effective": {
+          "min": 25000,
+          "max": 25000
+        }
+      }
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 1,
+    "item_total": 1,
+    "has_previous": false,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -19400,30 +29609,31 @@ Product Meta. See example below for details
 ---
 
 
-#### createProduct
-Create a product.
+#### deleteProduct
+Delete a product.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createProduct( {  companyId : value,
- body : value });
+const promise = catalog.deleteProduct( {  companyId : value,
+ itemId : value });
 
 // Async/Await
-const data = await catalog.createProduct( {  companyId : value,
- body : value });
+const data = await catalog.deleteProduct( {  companyId : value,
+ itemId : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company associated to product that is to be viewed. |  
-| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+| companyId | string | yes | Company Id of the company associated to product that is to be deleted. |   
+| itemId | number | yes | Id of the product to be updated. |  
 
 
-This API allows to create product.
+
+This API allows to delete product.
 
 *Returned Response:*
 
@@ -19436,6 +29646,19 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -19487,6 +29710,20 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
 
 
 
@@ -19549,51 +29786,134 @@ Product object. See example below or refer `product.utils.format_product_respons
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### deleteProduct
-Delete a product.
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteProduct( {  companyId : value,
- itemId : value });
-
-// Async/Await
-const data = await catalog.deleteProduct( {  companyId : value,
- itemId : value });
+```json
+{
+  "data": {
+    "template_tag": "industrial-supplies",
+    "brand_uid": 1486,
+    "currency": "INR",
+    "item_code": "TP_FS_01",
+    "slug": "printed-fyndstore-packaging-tape-4inch-x-6-meter-length-pack-of-2-49d7343fc677",
+    "name": "Printed Fyndstore Packaging Tape (4inch X 6 Meter length) - Pack of 2",
+    "hsn_code": "48190000",
+    "country_of_origin": "India",
+    "description": "FyndStore 4 inch Printed BOPP Tapes ",
+    "is_set": true,
+    "is_active": true,
+    "departments": [
+      11
+    ],
+    "uid": 1282497,
+    "category_slug": "printed-tape",
+    "company_id": 884,
+    "media": [
+      {
+        "url": "https://hdn-1.fynd.com/media/pictures/tagged_items/original/TPFS01/IMG20200624130956.jpg",
+        "type": "image"
+      }
+    ],
+    "variants": {},
+    "is_dependent": false,
+    "item_type": "set",
+    "multi_size": true,
+    "product_publish": {
+      "is_set": false,
+      "product_online_date": "2020-09-10T15:16:12.322000Z"
+    },
+    "id": "5f5a433c74f3f400017cdaa0",
+    "brand": {
+      "name": "RollUp",
+      "logo": {
+        "aspect_ratio": "1:1",
+        "aspect_ratio_f": 1,
+        "url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/mPBaWqGRnjR-RMOnlpdMPKm-yjn5mua63gfmzdpombb1.png",
+        "secure_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/mPBaWqGRnjR-RMOnlpdMPKm-yjn5mua63gfmzdpombb1.png"
+      },
+      "uid": 1486
+    },
+    "return_config": {
+      "returnable": true,
+      "time": 30,
+      "unit": "days"
+    },
+    "sizes": [
+      {
+        "item_dimensions_unit_of_measure": "cm",
+        "item_weight": 0.15,
+        "set": {
+          "quantity": 1,
+          "size_distribution": {
+            "sizes": [
+              {
+                "pieces": 1,
+                "size": "OS"
+              }
+            ]
+          }
+        },
+        "item_height": 10.16,
+        "item_width": 10.16,
+        "price_effective": 999,
+        "size": "OS",
+        "seller_identifier": "TP_FS_01",
+        "brand_uid": 1486,
+        "price": 1000,
+        "item_weight_unit_of_measure": "gram",
+        "currency": "INR",
+        "item_length": 10.16,
+        "item_code": "TP_FS_01",
+        "company_id": 884,
+        "is_set": true,
+        "track_inventory": true,
+        "identifiers": [
+          {
+            "gtin_value": "TP_FS_01",
+            "primary": true,
+            "gtin_type": "sku_code"
+          }
+        ],
+        "price_transfer": 0,
+        "id": "5f5a433c74f3f400017cdaa1",
+        "store_count": 1
+      }
+    ],
+    "attributes": {
+      "style": "TPFS01",
+      "color": "White",
+      "pallet": 1,
+      "l3_mapping": [
+        "industrial_supplies>printed_tape"
+      ],
+      "image_nature": "standard",
+      "created_on": "2020-09-10T15:16:12.322000Z",
+      "created_by": {
+        "username": "sumitdafda_gofynd_com_68387",
+        "user_id": "23108029",
+        "company_id": 884
+      },
+      "modified_on": "2020-09-24T04:51:00.229000Z",
+      "modified_by": {
+        "username": "sumitdafda_gofynd_com_68387",
+        "user_id": "23108029",
+        "company_id": 884
+      },
+      "stage": "verified",
+      "verified_by": {
+        "username": "sumitdafda_gofynd_com_68387",
+        "user_id": "23108029",
+        "company_id": 884
+      },
+      "verified_on": 1600923060,
+      "is_image_less_product": false,
+      "other_available_sizes": []
+    }
+  }
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id of the company associated to product that is to be deleted. |   
-| itemId | number | yes | Id of the product to be updated. |  
-
-
-
-This API allows to delete product.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
+</details>
 
 
 
@@ -19640,6 +29960,19 @@ Validate Meta. See example below for details
 [ValidateProduct](#ValidateProduct)
 
 Validate Meta. See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "valid": true
+}
+```
+</details>
 
 
 
@@ -19702,6 +30035,178 @@ Product object. See example below for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "name": "SQUADMTGIVESPACE",
+  "country_of_origin": "India",
+  "highlights": null,
+  "hsn_code": "61099090",
+  "item_code": "ACTESTCREATELISTING1",
+  "is_set": false,
+  "description": "",
+  "currency": "INR",
+  "slug": "play-clan-squadmtgivespace-857587-e928b0",
+  "template_tag": "topwear",
+  "is_active": false,
+  "departments": [
+    1
+  ],
+  "uid": 857587,
+  "all_sizes": [
+    "3XL"
+  ],
+  "category_slug": "t-shirts",
+  "company_id": 61,
+  "media": [],
+  "size_guide": "play-clan-men-casual-tees",
+  "is_dependent": false,
+  "item_type": "standard",
+  "multi_size": true,
+  "product_publish": {
+    "is_set": false,
+    "product_online_date": 1595478043
+  },
+  "id": "5f19101b99ee0500011dc896",
+  "brand": {
+    "name": "play clan",
+    "logo": {
+      "aspect_ratio": "1:1",
+      "aspect_ratio_f": 1,
+      "url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+      "secure_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg"
+    },
+    "uid": 85
+  },
+  "images": [],
+  "sizes": [
+    {
+      "price_transfer": 0,
+      "price_effective": 10000,
+      "price": 10000,
+      "currency": "INR",
+      "is_set": false,
+      "size": "3XL",
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "ACTESTCREATELISTING1_3XL",
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "attributes": {
+    "essential": "Yes",
+    "color": "Red",
+    "gender": [
+      "Men"
+    ],
+    "material": "cotton",
+    "pattern": "Printed",
+    "product_fit": "Regular",
+    "sleeve_length": "Short",
+    "neck_type": "Round Neck",
+    "primary_color": "Red",
+    "primary_material": "Others",
+    "l3_mapping": [
+      "men>casual_tees",
+      "women>casual_tees",
+      "girls>casual_tees",
+      "more>casual_tees"
+    ],
+    "image_nature": "standard",
+    "meta_nature": "standard",
+    "created_on": "2020-07-23T04:20:43.810000Z",
+    "created_by": {
+      "username": "silverbolt",
+      "user_id": "-1",
+      "company_id": 1181
+    },
+    "modified_on": "2020-07-23T04:20:44.185000Z",
+    "modified_by": {
+      "username": "silverbolt",
+      "user_id": "-1",
+      "company_id": 61
+    },
+    "stage": "verified",
+    "verified_by": {
+      "username": "Silverbolt",
+      "user_id": "0"
+    },
+    "verified_on": 1595478044,
+    "is_image_less_product": false
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.updateProductAssetsInBulk( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.updateProductAssetsInBulk( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -19754,6 +30259,65 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "stage": "completed",
+      "company_id": 61,
+      "is_active": true,
+      "cancelled_records": [],
+      "failed": 0,
+      "template_tag": "footwear",
+      "modified_on": "2021-03-12T08:11:08.646000Z",
+      "created_on": "2021-03-12T08:11:06.848000Z",
+      "failed_records": [],
+      "created_by": {
+        "username": "yadavanuja039_gmail_com_82948",
+        "user_id": "23218433",
+        "full_name": "Anuja Yadav"
+      },
+      "total": 1,
+      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
+      "succeed": 1,
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "cancelled": 0,
+      "template": {
+        "name": "Footwear",
+        "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
+        "slug": "footwear",
+        "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
+        "departments": [
+          "men",
+          "women",
+          "kids",
+          "fashion"
+        ],
+        "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes"
+      },
+      "id": "604b221a73bfa20001cb00e8"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 26,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 251
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -19762,30 +30326,31 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 ---
 
 
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
+#### deleteProductBulkJob
+Delete Bulk product job.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.updateProductAssetsInBulk( {  companyId : value,
- body : value });
+const promise = catalog.deleteProductBulkJob( {  companyId : value,
+ batchId : value });
 
 // Async/Await
-const data = await catalog.updateProductAssetsInBulk( {  companyId : value,
- body : value });
+const data = await catalog.deleteProductBulkJob( {  companyId : value,
+ batchId : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which assets to be uploaded. |  
-| body | [BulkJob](#BulkJob) | yes | Request body |
+| companyId | string | yes | Company Id of the company associated to size that is to be deleted. |   
+| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
 
 
-This API helps to create a bulk asset upload job.
+
+This API allows to delete bulk product job associated with company.
 
 *Returned Response:*
 
@@ -19798,6 +30363,19 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -19853,51 +30431,15 @@ Returns a success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### deleteProductBulkJob
-Delete Bulk product job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteProductBulkJob( {  companyId : value,
- batchId : value });
-
-// Async/Await
-const data = await catalog.deleteProductBulkJob( {  companyId : value,
- batchId : value });
+```json
+{
+  "success": true
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id of the company associated to size that is to be deleted. |   
-| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
-
-
-
-This API allows to delete bulk product job associated with company.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
+</details>
 
 
 
@@ -19944,6 +30486,85 @@ Tag List. See example below for details
 [ProductTagsViewResponse](#ProductTagsViewResponse)
 
 Tag List. See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": {
+    "tags": [
+      "demo",
+      "custom"
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createProductAssetsInBulk( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createProductAssetsInBulk( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
+| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -20000,50 +30621,49 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk( {  companyId : value,
- body : value });
+```json
+{
+  "items": [
+    {
+      "created_on": "2021-02-25T16:45:22.425000Z",
+      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/ZUSmmXHmZ-U8mTYx3KR-Nike-hoddie.zip",
+      "succeed": 1,
+      "cancelled_records": [],
+      "failed": 0,
+      "failed_records": [],
+      "stage": "completed",
+      "is_active": true,
+      "modified_by": {
+        "user_id": "23175373",
+        "username": "nikhilmhatre_gofynd_com_28085_23175373"
+      },
+      "modified_on": "2021-02-25T16:47:24.551000Z",
+      "retry": 1,
+      "total": 1,
+      "company_id": 61,
+      "created_by": {
+        "user_id": "23175373",
+        "username": "nikhilmhatre_gofynd_com_28085_23175373",
+        "full_name": "nikhil mhatre"
+      },
+      "cancelled": 0,
+      "tracking_url": "https://api.fynd.com/common/assets/v1/asset/status/extract-zips/3296",
+      "id": "6037d422aa879600015c6d1d"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 3,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 1
+  }
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which assets to be uploaded. |  
-| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
-
-
-This API helps to create a bulk asset upload job.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
+</details>
 
 
 
@@ -20096,6 +30716,86 @@ Returns a success response
 [ProductSizeDeleteResponse](#ProductSizeDeleteResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addInventory
+Add Inventory for particular size and store.
+
+
+
+```javascript
+// Promise
+const promise = catalog.addInventory( {  companyId : value,
+ itemId : value,
+ size : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.addInventory( {  companyId : value,
+ itemId : value,
+ size : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | number | yes | Item code of the product of which size is to be get. |   
+| size | string | yes | Size in which inventory is to be added. |  
+| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
+
+
+This API allows add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -20161,56 +30861,295 @@ returns a list of all inventory grouped by size and store
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### addInventory
-Add Inventory for particular size and store.
-
-
-
-```javascript
-// Promise
-const promise = catalog.addInventory( {  companyId : value,
- itemId : value,
- size : value,
- body : value });
-
-// Async/Await
-const data = await catalog.addInventory( {  companyId : value,
- itemId : value,
- size : value,
- body : value });
+```json
+{
+  "items": [
+    {
+      "store": {
+        "name": "yosss sdd dsdyo",
+        "store_code": "sanic6sdfsf7",
+        "uid": 59,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8231511,
+              19.4232024
+            ]
+          },
+          "address2": "",
+          "pincode": 401209,
+          "country": "INDIA",
+          "city": "MUMBAI",
+          "landmark": ""
+        },
+        "manager": {
+          "name": "abc",
+          "email": "a@b.com",
+          "mobile_no": {
+            "number": "2382634324",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "59_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-04-06T03:30:01.487000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 10,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 10,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "Saran Ledonne",
+        "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
+        "uid": 10,
+        "address": {
+          "state": "MAHA",
+          "address1": "NO",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              1,
+              1
+            ]
+          },
+          "address2": "",
+          "pincode": 400072,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "abc",
+          "email": "rehman@cashkart.com",
+          "mobile_no": {
+            "number": "9167943983",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "10_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-04-06T03:29:35.291000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 10,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 10,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "ABC-1-17",
+        "store_code": "ABC-1-17",
+        "uid": 11061,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "14/1, VINOBHA BHAVE NAGAR",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              1,
+              1
+            ]
+          },
+          "address2": "VINOBHA BHAVE NAGAR, KURLA WEST, KURLA, ",
+          "pincode": 400070,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "Fahim",
+          "email": "fahimsakri@gofynd.com",
+          "mobile_no": {
+            "number": "9594495254",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "11061_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-03-17T12:35:29.992000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 10000000,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 10000000,
+      "order_committed_quantity": 0,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "RRL01",
+        "store_code": "WH_8513",
+        "uid": 1,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ]
+          },
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "pincode": 400059,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "ASHISH CHANDORKAR",
+          "email": "ASHISHCHANDORKAR@FYND.COM",
+          "mobile_no": {
+            "number": "8369782851",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "1_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-03-31T19:00:10.943000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 39,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 18,
+      "order_committed_quantity": 7,
+      "not_available_quantity": 0,
+      "damaged_quantity": 0,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "RRL01",
+        "store_code": "WH_8513",
+        "uid": 1,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ]
+          },
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "pincode": 400059,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "ASHISH CHANDORKAR",
+          "email": "ASHISHCHANDORKAR@FYND.COM",
+          "mobile_no": {
+            "number": "8369782851",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "1_rtyuidsdfv",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2020-07-07T10:37:06.146000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 39,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 0,
+      "order_committed_quantity": 39,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 1,
+    "item_total": 5,
+    "has_previous": false,
+    "has_next": false
+  }
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
-| itemId | number | yes | Item code of the product of which size is to be get. |   
-| size | string | yes | Size in which inventory is to be added. |  
-| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
+</details>
 
 
 
@@ -20279,6 +31218,299 @@ returns a list of all inventory grouped by size and store
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "store": {
+        "name": "yosss sdd dsdyo",
+        "store_code": "sanic6sdfsf7",
+        "uid": 59,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8231511,
+              19.4232024
+            ]
+          },
+          "address2": "",
+          "pincode": 401209,
+          "country": "INDIA",
+          "city": "MUMBAI",
+          "landmark": ""
+        },
+        "manager": {
+          "name": "abc",
+          "email": "a@b.com",
+          "mobile_no": {
+            "number": "2382634324",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "59_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-04-06T03:30:01.487000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 10,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 10,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "Saran Ledonne",
+        "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
+        "uid": 10,
+        "address": {
+          "state": "MAHA",
+          "address1": "NO",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              1,
+              1
+            ]
+          },
+          "address2": "",
+          "pincode": 400072,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "abc",
+          "email": "rehman@cashkart.com",
+          "mobile_no": {
+            "number": "9167943983",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "10_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-04-06T03:29:35.291000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 10,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 10,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "ABC-1-17",
+        "store_code": "ABC-1-17",
+        "uid": 11061,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "14/1, VINOBHA BHAVE NAGAR",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              1,
+              1
+            ]
+          },
+          "address2": "VINOBHA BHAVE NAGAR, KURLA WEST, KURLA, ",
+          "pincode": 400070,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "Fahim",
+          "email": "fahimsakri@gofynd.com",
+          "mobile_no": {
+            "number": "9594495254",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "11061_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-03-17T12:35:29.992000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 10000000,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 10000000,
+      "order_committed_quantity": 0,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "RRL01",
+        "store_code": "WH_8513",
+        "uid": 1,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ]
+          },
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "pincode": 400059,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "ASHISH CHANDORKAR",
+          "email": "ASHISHCHANDORKAR@FYND.COM",
+          "mobile_no": {
+            "number": "8369782851",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "1_RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2021-03-31T19:00:10.943000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 39,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 18,
+      "order_committed_quantity": 7,
+      "not_available_quantity": 0,
+      "damaged_quantity": 0,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "store": {
+        "name": "RRL01",
+        "store_code": "WH_8513",
+        "uid": 1,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ]
+          },
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "pincode": 400059,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "manager": {
+          "name": "ASHISH CHANDORKAR",
+          "email": "ASHISHCHANDORKAR@FYND.COM",
+          "mobile_no": {
+            "number": "8369782851",
+            "country_code": 91
+          }
+        },
+        "integration_type": {
+          "order": "browntape",
+          "inventory": "browntape"
+        },
+        "_custom_json": {}
+      },
+      "uid": "1_rtyuidsdfv",
+      "size": "AAX1 (1 PCS)",
+      "inventory_updated_on": "2020-07-07T10:37:06.146000",
+      "seller_identifier": "RTYUIDSDFV",
+      "item_id": 7500651,
+      "quantity": 39,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "currency": "INR",
+      "sellable_quantity": 0,
+      "order_committed_quantity": 39,
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 1,
+    "item_total": 5,
+    "has_previous": false,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -20330,6 +31562,80 @@ Returns a success response
 [InventoryDelete](#InventoryDelete)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createBulkInventoryJob( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createBulkInventoryJob( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which Inventory to be uploaded. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
+
+
+This API helps to create a bulk Inventory upload job.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[CommonResponse](#CommonResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -20386,6 +31692,322 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "succeed": 1,
+      "stage": "completed",
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/50DbgKLND-NtnL_EAVb-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "created_on": "2021-03-11T10:54:44.998000Z",
+      "cancelled_records": [],
+      "created_by": {
+        "username": "nikhilmhatre_gofynd_com_97636",
+        "user_id": "16",
+        "full_name": "Nikhil Mhatre"
+      },
+      "modified_on": "2021-03-11T10:54:45.296000Z",
+      "cancelled": 0,
+      "failed": 0,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "company_id": 1,
+      "total": 1,
+      "is_active": true,
+      "failed_records": [],
+      "id": "6049f6f5723043000125a9ea"
+    },
+    {
+      "created_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "cancelled": 0,
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "created_on": "2021-03-04T09:46:51.714000Z",
+      "company_id": 1,
+      "failed": 0,
+      "failed_records": [],
+      "succeed": 1,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NtnL_EAVb-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "cancelled_records": [],
+      "total": 1,
+      "is_active": true,
+      "modified_on": "2021-03-04T09:46:55.349000Z",
+      "stage": "completed",
+      "id": "6040ac8b1803830001fcc1ed"
+    },
+    {
+      "company_id": 1,
+      "failed": 0,
+      "modified_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "cancelled": 0,
+      "is_active": true,
+      "cancelled_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/bmBZY9iAX-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "modified_on": "2021-03-04T09:22:32.222000Z",
+      "succeed": 0,
+      "failed_records": [],
+      "stage": "terminated",
+      "created_on": "2021-03-04T09:22:32.222000Z",
+      "total": 1,
+      "id": "6040a6d8104f110001a85061"
+    },
+    {
+      "company_id": 1,
+      "failed": 0,
+      "modified_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "cancelled": 0,
+      "is_active": true,
+      "cancelled_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/m73yWRT3v-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "modified_on": "2021-03-04T09:20:29.719000Z",
+      "succeed": 0,
+      "failed_records": [],
+      "stage": "terminated",
+      "created_on": "2021-03-04T09:20:29.719000Z",
+      "total": 1,
+      "id": "6040a65d104f110001a85060"
+    },
+    {
+      "created_on": "2021-03-04T08:50:49.367000Z",
+      "cancelled_records": [],
+      "failed_records": [],
+      "succeed": 0,
+      "cancelled": 0,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/W9lxe19Uu-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "total": 1,
+      "created_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "is_active": true,
+      "modified_by": {
+        "username": "silverbolt",
+        "user_id": "-1"
+      },
+      "company_id": 1,
+      "failed": 0,
+      "modified_on": "2021-03-04T08:50:49.367000Z",
+      "stage": "terminated",
+      "id": "60409f699b21e30001c1e6b5"
+    },
+    {
+      "total": 1,
+      "succeed": 1,
+      "created_on": "2021-02-10T10:57:57.236000Z",
+      "failed": 0,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "created_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646",
+        "full_name": "Sourabh Nilakhe"
+      },
+      "is_active": true,
+      "cancelled_records": [],
+      "failed_records": [],
+      "company_id": 1,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "modified_on": "2021-02-10T10:57:57.571000Z",
+      "stage": "completed",
+      "cancelled": 0,
+      "id": "6023bc35c85ca1000171e08a"
+    },
+    {
+      "total": 1,
+      "succeed": 1,
+      "created_on": "2021-02-10T10:57:22.535000Z",
+      "failed": 0,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "created_by": {
+        "username": "917972410891_48194",
+        "user_id": "5646",
+        "full_name": "Sourabh Nilakhe"
+      },
+      "is_active": true,
+      "cancelled_records": [],
+      "failed_records": [],
+      "company_id": 1,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/Oth_LaVyI-V8ZrKdnLt-product_inventory.csv",
+      "modified_on": "2021-02-10T10:57:23.311000Z",
+      "stage": "completed",
+      "cancelled": 0,
+      "id": "6023bc12c85ca1000171e089"
+    },
+    {
+      "created_by": {
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636",
+        "full_name": "Nikhil Mhatre"
+      },
+      "succeed": 1,
+      "failed": 0,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/V8ZrKdnLt-product_inventory.csv",
+      "company_id": 1,
+      "created_on": "2021-01-13T13:58:06.155000Z",
+      "stage": "completed",
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "is_active": true,
+      "total": 1,
+      "failed_records": [],
+      "modified_on": "2021-01-13T13:58:06.369000Z",
+      "cancelled_records": [],
+      "cancelled": 0,
+      "id": "5ffefc6ee2db8f000183fab8"
+    },
+    {
+      "succeed": 0,
+      "is_active": true,
+      "cancelled": 0,
+      "failed_records": [
+        {
+          "identifiers": "1.91887E+11",
+          "message": "Invalid identifier: 1.91887E+11. Product not found."
+        }
+      ],
+      "total": 1,
+      "stage": "failed",
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/t3T6X2Riy-product_inventory.csv",
+      "cancelled_records": [],
+      "created_by": {
+        "username": "nikhilmhatre_gofynd_com_97636",
+        "user_id": "16",
+        "full_name": "Nikhil Mhatre"
+      },
+      "created_on": "2021-01-13T13:57:38.598000Z",
+      "company_id": 1,
+      "failed": 1,
+      "modified_on": "2021-01-13T13:57:38.832000Z",
+      "id": "5ffefc5252f31100012ea981"
+    },
+    {
+      "total": 1,
+      "company_id": 1,
+      "created_by": {
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636",
+        "full_name": "Nikhil Mhatre"
+      },
+      "failed": 1,
+      "modified_on": "2021-01-13T13:57:13.847000Z",
+      "succeed": 0,
+      "stage": "failed",
+      "cancelled_records": [],
+      "failed_records": [
+        {
+          "identifiers": "1.91887E+11",
+          "message": "Invalid identifier: 1.91887E+11. Product not found."
+        }
+      ],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NSTuhgsgq-product_inventory.csv",
+      "is_active": true,
+      "created_on": "2021-01-13T13:57:13.639000Z",
+      "cancelled": 0,
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "id": "5ffefc39a0d1e20001ae118c"
+    },
+    {
+      "succeed": 1,
+      "failed": 0,
+      "failed_records": [],
+      "cancelled": 0,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/cwQV-Z6gT-product_inventory.xlsx",
+      "created_on": "2021-01-12T06:37:06.167000Z",
+      "is_active": true,
+      "cancelled_records": [],
+      "created_by": {
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636",
+        "full_name": "Nikhil Mhatre"
+      },
+      "company_id": 1,
+      "stage": "completed",
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "modified_on": "2021-01-12T06:37:06.307000Z",
+      "total": 1,
+      "id": "5ffd4392b4c34d000170697b"
+    },
+    {
+      "succeed": 1,
+      "failed": 0,
+      "failed_records": [],
+      "cancelled": 0,
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/gccehef2f-product_inventory.xlsx",
+      "created_on": "2021-01-12T06:36:24.292000Z",
+      "is_active": true,
+      "cancelled_records": [],
+      "created_by": {
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636",
+        "full_name": "Nikhil Mhatre"
+      },
+      "company_id": 1,
+      "stage": "completed",
+      "modified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "modified_on": "2021-01-12T06:36:24.535000Z",
+      "total": 1,
+      "id": "5ffd4368b4c34d0001706960"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 4,
+    "item_total": 39,
+    "has_previous": false,
+    "has_next": true
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -20394,30 +32016,31 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 ---
 
 
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
+#### deleteBulkInventoryJob
+Delete Bulk Inventory job.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventoryJob( {  companyId : value,
- body : value });
+const promise = catalog.deleteBulkInventoryJob( {  companyId : value,
+ batchId : value });
 
 // Async/Await
-const data = await catalog.createBulkInventoryJob( {  companyId : value,
- body : value });
+const data = await catalog.deleteBulkInventoryJob( {  companyId : value,
+ batchId : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which Inventory to be uploaded. |  
-| body | [BulkJob](#BulkJob) | yes | Request body |
+| companyId | string | yes | Company Id of the company of which bulk Inventory job is to be deleted. |   
+| batchId | string | yes | Batch Id of the bulk delete job. |  
 
 
-This API helps to create a bulk Inventory upload job.
+
+This API allows to delete bulk Inventory job associated with company.
 
 *Returned Response:*
 
@@ -20427,9 +32050,22 @@ This API helps to create a bulk Inventory upload job.
 Returns a success response
 
 
-[CommonResponse](#CommonResponse)
+[SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -20485,97 +32121,15 @@ Returns a success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### deleteBulkInventoryJob
-Delete Bulk Inventory job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteBulkInventoryJob( {  companyId : value,
- batchId : value });
-
-// Async/Await
-const data = await catalog.deleteBulkInventoryJob( {  companyId : value,
- batchId : value });
+```json
+{
+  "success": true
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id of the company of which bulk Inventory job is to be deleted. |   
-| batchId | string | yes | Batch Id of the bulk delete job. |  
-
-
-
-This API allows to delete bulk Inventory job associated with company.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-
-
-
-
-
----
-
-
-#### getInventoryExport
-Get Inventory export history.
-
-
-
-```javascript
-// Promise
-const promise = catalog.getInventoryExport( {  companyId : value });
-
-// Async/Await
-const data = await catalog.getInventoryExport( {  companyId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which assets to be uploaded. |  
-
-
-
-This API helps to get Inventory export history.
-
-*Returned Response:*
-
-
-
-
-Returns a list of inventory export jobs
-
-
-[InventoryExportJob](#InventoryExportJob)
-
-Returns a list of inventory export jobs
+</details>
 
 
 
@@ -20628,6 +32182,76 @@ Returns a success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryExport
+Get Inventory export history.
+
+
+
+```javascript
+// Promise
+const promise = catalog.getInventoryExport( {  companyId : value });
+
+// Async/Await
+const data = await catalog.getInventoryExport( {  companyId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
+
+
+
+This API helps to get Inventory export history.
+
+*Returned Response:*
+
+
+
+
+Returns a list of inventory export jobs
+
+
+[InventoryExportJob](#InventoryExportJob)
+
+Returns a list of inventory export jobs
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -20673,6 +32297,107 @@ returns filters configuration for inventory export
 [InventoryConfig](#InventoryConfig)
 
 returns filters configuration for inventory export
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+[
+  {
+    "display": "csv",
+    "value": "csv"
+  },
+  {
+    "display": "excel",
+    "value": "excel"
+  }
+]
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createHsnCode
+Create Hsn Code.
+
+
+
+```javascript
+// Promise
+const promise = catalog.createHsnCode( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await catalog.createHsnCode( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |  
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
+
+
+Create Hsn Code.
+
+*Returned Response:*
+
+
+
+
+See example below for details
+
+
+[HsnCode](#HsnCode)
+
+See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
+```
+</details>
 
 
 
@@ -20732,50 +32457,35 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### createHsnCode
-Create Hsn Code.
-
-
-
-```javascript
-// Promise
-const promise = catalog.createHsnCode( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createHsnCode( {  companyId : value,
- body : value });
+```json
+{
+  "items": [
+    {
+      "company_id": 1,
+      "hs2_code": "xx",
+      "hsn_code": "xxxxxxxx",
+      "tax1": 0,
+      "tax2": 0,
+      "threshold1": 999999,
+      "threshold2": 0,
+      "tax_on_esp": true,
+      "tax_on_mrp": false,
+      "id": "xxxxxxxxxxxx"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 2,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 20
+  }
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |  
-| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
-
-
-Create Hsn Code.
-
-*Returned Response:*
-
-
-
-
-See example below for details
-
-
-[HsnCode](#HsnCode)
-
-See example below for details
+</details>
 
 
 
@@ -20831,6 +32541,39 @@ See example below for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -20880,6 +32623,39 @@ See example below details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -20924,6 +32700,19 @@ See example below for details
 [BulkHsnResponse](#BulkHsnResponse)
 
 See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -20986,6 +32775,55 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": 1,
+      "name": "Barry, Jennings and Larson",
+      "slug": "Hess-Inc",
+      "action": {
+        "page": {
+          "type": "products",
+          "query": {
+            "brand": [
+              "Hess-Inc"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+      },
+      "banners": {
+        "portrait": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
+        }
+      },
+      "en_name": "Barry, Jennings and Larson"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21031,6 +32869,120 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 [DepartmentResponse](#DepartmentResponse)
 
 List of Departments. See example below or refer `DepartmentResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": 1,
+      "name": "Zachary Harris",
+      "slug": "Zachary-Harris",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 2,
+      "name": "Aaron Reilly",
+      "slug": "Aaron-Reilly",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 3,
+      "name": "Bobby Sandoval",
+      "slug": "Bobby-Sandoval",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 4,
+      "name": "Seth Hughes",
+      "slug": "Seth-Hughes",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 5,
+      "name": "Michelle Moore",
+      "slug": "Michelle-Moore",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 6,
+      "name": "Annette Baldwin",
+      "slug": "Annette-Baldwin",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 7,
+      "name": "Chris Mata",
+      "slug": "Chris-Mata",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 8,
+      "name": "Nicole Jacobs",
+      "slug": "Nicole-Jacobs",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 9,
+      "name": "Pamela Smith",
+      "slug": "Pamela-Smith",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 10,
+      "name": "Nicole Simon",
+      "slug": "Nicole-Simon",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -21083,6 +33035,105 @@ List of Categories. See example below or refer `CategoryListingResponse` for det
 [CategoryListingResponse](#CategoryListingResponse)
 
 List of Categories. See example below or refer `CategoryListingResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "departments": [
+    {
+      "slug": "Cody-Doyle",
+      "uid": 1
+    }
+  ],
+  "data": [
+    {
+      "department": "Cody-Doyle",
+      "items": [
+        {
+          "name": "Janet Parker",
+          "image": {
+            "aspect_ratio": "13:20",
+            "aspect_ratio_f": 0.65,
+            "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+          },
+          "uid": 1,
+          "slug": "Janet-Parker",
+          "_custom_json": {},
+          "action": {
+            "type": "category",
+            "url": "https://api.addsale.com/platform/content/v1/products/?l1_category=Janet-Parker&department=Jaime-Chambers",
+            "query": {
+              "l1_category": [
+                "Janet-Parker"
+              ],
+              "department": [
+                "Jaime-Chambers"
+              ]
+            }
+          },
+          "childs": [
+            {
+              "name": "Hannah Lawson",
+              "image": {
+                "aspect_ratio": "13:20",
+                "aspect_ratio_f": 0.65,
+                "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+              },
+              "uid": 2,
+              "slug": "Hannah-Lawson",
+              "_custom_json": {},
+              "action": {
+                "type": "category",
+                "url": "https://api.addsale.com/platform/content/v1/products/?l2_category=Hannah-Lawson&department=Jaime-Chambers",
+                "query": {
+                  "l2_category": [
+                    "Hannah-Lawson"
+                  ],
+                  "department": [
+                    "Jaime-Chambers"
+                  ]
+                }
+              },
+              "childs": [
+                {
+                  "name": "Logan Black",
+                  "image": {
+                    "aspect_ratio": "13:20",
+                    "aspect_ratio_f": 0.65,
+                    "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+                  },
+                  "uid": 3,
+                  "slug": "Logan-Black",
+                  "_custom_json": {},
+                  "action": {
+                    "type": "category",
+                    "url": "https://api.addsale.com/platform/content/v1/products/?category=Logan-Black&department=Jaime-Chambers",
+                    "query": {
+                      "category": [
+                        "Logan-Black"
+                      ],
+                      "department": [
+                        "Jaime-Chambers"
+                      ]
+                    }
+                  },
+                  "childs": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -21160,6 +33211,632 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "filters": [
+    {
+      "key": {
+        "display": "Department",
+        "name": "department",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.svg"
+      },
+      "values": [
+        {
+          "display": "Debra Villarreal",
+          "count": 15,
+          "is_selected": false,
+          "value": "Debra-Villarreal",
+          "logo": {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+          }
+        },
+        {
+          "display": "Tracey Miller",
+          "count": 15,
+          "is_selected": false,
+          "value": "Tracey-Miller",
+          "logo": {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+          }
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Category",
+        "name": "category",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.svg"
+      },
+      "values": [
+        {
+          "display": "Amy Kim DDS",
+          "count": 15,
+          "is_selected": false,
+          "value": "3",
+          "logo": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Gender",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Gender.svg"
+      },
+      "values": [
+        {
+          "display": "Men",
+          "count": 15,
+          "is_selected": false,
+          "value": "men"
+        },
+        {
+          "display": "Women",
+          "count": 15,
+          "is_selected": false,
+          "value": "women"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Size",
+        "name": "sizes",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.svg"
+      },
+      "values": [
+        {
+          "display": "13",
+          "count": 15,
+          "is_selected": false,
+          "value": "13"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Brand",
+        "name": "brand",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.svg"
+      },
+      "values": [
+        {
+          "display": "Barry, Jennings and Larson",
+          "count": 15,
+          "is_selected": false,
+          "value": "1",
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Rating",
+        "name": "rating",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.svg"
+      },
+      "values": [
+        {
+          "count": 15,
+          "display": "2 - 3",
+          "value": "[2 TO 3}",
+          "is_selected": false
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Image",
+        "name": "image_nature",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+      },
+      "values": [
+        {
+          "display": "GoodQuality",
+          "count": 15,
+          "is_selected": false,
+          "value": "standard"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Monica Hampton",
+        "name": "material",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Neoprene",
+          "count": 15,
+          "is_selected": false,
+          "value": "Neoprene"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "John Mendoza",
+        "name": "weight",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "100",
+          "count": 15,
+          "is_selected": false,
+          "value": "100"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Kimberly Mcdaniel",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "['Men', 'Women']",
+          "count": 15,
+          "is_selected": false,
+          "value": "['Men', 'Women']"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Kimberly Davidson",
+        "name": "color",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Grey",
+          "count": 15,
+          "is_selected": false,
+          "value": "808080"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Availability",
+        "name": "exclude_out_of_stock",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Exclude out of Stock",
+          "is_selected": false,
+          "value": true
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "benchmark collaborative paradigms",
+      "slug": "benchmark-collaborative-paradigms",
+      "uid": 1,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "benchmark-collaborative-paradigms"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_1",
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "architect granular e-business",
+      "slug": "architect-granular-e-business",
+      "uid": 10,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "architect-granular-e-business"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_2",
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "facilitate enterprise supply-chains",
+      "slug": "facilitate-enterprise-supply-chains",
+      "uid": 11,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "facilitate-enterprise-supply-chains"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_3",
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "optimize web-enabled e-tailers",
+      "slug": "optimize-web-enabled-e-tailers",
+      "uid": 12,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "optimize-web-enabled-e-tailers"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_4",
+      "rating": 2.7
+    }
+  ],
+  "sort_on": [
+    {
+      "display": "Latest Products.",
+      "name": "Latest Products.",
+      "logo": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/360x0/56_MKT02AI060CORAL/1_1567590349681.jpg",
+      "value": "latest",
+      "is_selected": true
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 2,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 15,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21208,6 +33885,134 @@ The Product object. See example below or refer `ProductDetail` for details.
 [ProductDetail](#ProductDetail)
 
 The Product object. See example below or refer `ProductDetail` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "type": "product",
+  "grouped_attributes": [
+    {
+      "title": "Alexander Sawyer",
+      "details": [
+        {
+          "key": "Kimberly Davidson",
+          "type": "text",
+          "value": "DarkGrey"
+        },
+        {
+          "key": "Kimberly Mcdaniel",
+          "type": "text",
+          "value": "Men,Women"
+        },
+        {
+          "key": "Monica Hampton",
+          "type": "text",
+          "value": "Neoprene"
+        },
+        {
+          "key": "John Mendoza",
+          "type": "text",
+          "value": "100 g"
+        }
+      ]
+    }
+  ],
+  "medias": [
+    {
+      "type": "image",
+      "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+    }
+  ],
+  "brand": {
+    "name": "Barry, Jennings and Larson",
+    "uid": 1,
+    "logo": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+    },
+    "action": {
+      "page": {
+        "type": "products",
+        "query": {
+          "brand": [
+            "Hess-Inc"
+          ]
+        }
+      },
+      "type": "page"
+    },
+    "_custom_json": {}
+  },
+  "uid": 1,
+  "slug": "benchmark-collaborative-paradigms",
+  "attributes": {
+    "color_hex": "808080",
+    "weight": 100,
+    "product_type": "LaptopBags",
+    "gender": [
+      "Men",
+      "Women"
+    ],
+    "material": "Neoprene",
+    "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+    "item_code": "LGLAPTOPSLEEVE5",
+    "occasion": "Casual",
+    "primary_color": "Grey",
+    "primary_material": "Others",
+    "variant": "LGLAPTOPSLEEVE5",
+    "color": "DarkGrey",
+    "product_details": "This is a Unisex Product.",
+    "primary_color_hex": "808080",
+    "brand": "Barry, Jennings and Larson"
+  },
+  "name": "benchmark collaborative paradigms",
+  "has_variant": true,
+  "categories": [
+    {
+      "id": 3,
+      "uid": 3,
+      "name": "Amy Kim DDS",
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+      },
+      "action": {
+        "page": {
+          "type": "category",
+          "query": {
+            "category": [
+              "Amy-Kim-DDS"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "_custom_json": {}
+    }
+  ],
+  "tryouts": [],
+  "rating": 2.7,
+  "rating_count": 2,
+  "image_nature": "standard",
+  "tags": [
+    "Digital"
+  ],
+  "teaser_tag": {},
+  "no_of_boxes": 1,
+  "product_online_date": "2021-02-03T07:22:29Z",
+  "custom_order": {},
+  "color": "808080",
+  "similars": [
+    "brand"
+  ]
+}
+```
+</details>
 
 
 
@@ -21276,6 +34081,183 @@ The Product object. See example below or refer `ApplicationProductListingRespons
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "TV Set",
+      "description": "Tv",
+      "country_of_origin": "India",
+      "currency": "INR",
+      "short_description": "",
+      "is_set": true,
+      "item_code": "TVSET111",
+      "brand_uid": 1,
+      "template_tag": "television",
+      "highlights": [
+        "42 Inch"
+      ],
+      "slug": "tv-set",
+      "_custom_json": {},
+      "l3_mapping": [
+        "electronics>qled_television"
+      ],
+      "image_nature": "standard",
+      "departments": [
+        1
+      ],
+      "created_on": 1599024995,
+      "created_by": {
+        "username": "919049753052_37528",
+        "user_id": "5"
+      },
+      "modified_on": 1627642010,
+      "modified_by": {
+        "username": "xxxxxxxxxx",
+        "user_id": "xxxxxxxxxxx"
+      },
+      "stage": "verified",
+      "uid": 7501547,
+      "verified_by": {
+        "username": "Silverbolt",
+        "user_id": "0"
+      },
+      "verified_on": 1626965521,
+      "all_sizes": [
+        {
+          "item_code": "TVSET111",
+          "brand_uid": 1,
+          "seller_identifier": "HGS272727272",
+          "identifiers": [
+            {
+              "gtin_type": "ean",
+              "gtin_value": "HGS272727272",
+              "primary": true
+            }
+          ],
+          "company_id": 1,
+          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)",
+          "marked_price": 35000
+        }
+      ],
+      "category_slug": "qled-television",
+      "is_image_less_product": false,
+      "media": [
+        {
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
+          "type": "image"
+        }
+      ],
+      "variants": {},
+      "product_publish": {
+        "is_set": false,
+        "product_online_date": 1627642009
+      },
+      "is_dependent": false,
+      "is_physical": true,
+      "item_type": "set",
+      "category_uid": 1,
+      "custom_order": {
+        "manufacturing_time": 2,
+        "is_custom_order": true,
+        "manufacturing_time_unit": "days"
+      },
+      "moq": {
+        "minimum": 1,
+        "is_set": false
+      },
+      "multi_size": true,
+      "no_of_boxes": 1,
+      "product_group_tag": [],
+      "size_guide": "slim-fit-shirts-for-men",
+      "tags": [],
+      "teaser_tag": {},
+      "synonyms": [],
+      "hsn_code": "11111111",
+      "return_config": {
+        "unit": "days",
+        "returnable": false,
+        "time": 0
+      },
+      "all_company_ids": [
+        1
+      ],
+      "all_identifiers": [
+        "19WE100"
+      ],
+      "trader": {
+        "address": "sdfdsfsdf",
+        "name": "asdasd"
+      },
+      "trader_type": "Packer",
+      "verification_status": "pending",
+      "sizes": [
+        {
+          "size": "FGX33, GHX33 (66 PCS)",
+          "store_count": 1
+        },
+        {
+          "size": "XSE WE23X100 (100 PCS)",
+          "store_count": 2
+        },
+        {
+          "size": "XSEX100 (100 PCS)",
+          "store_count": 3
+        },
+        {
+          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)",
+          "store_count": 3
+        }
+      ],
+      "id": "5f4f2f6371a5970001f13655",
+      "brand": {
+        "name": "Apple",
+        "logo": {
+          "aspect_ratio": "1:1",
+          "aspect_ratio_f": 1,
+          "url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png",
+          "secure_url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png"
+        },
+        "uid": 13
+      },
+      "images": [
+        {
+          "aspect_ratio": "16:25",
+          "aspect_ratio_f": 0.64,
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
+          "secure_url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
+        }
+      ],
+      "price": {
+        "marked": {
+          "min": 35000,
+          "max": 35000
+        },
+        "effective": {
+          "min": 25000,
+          "max": 25000
+        }
+      }
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 1,
+    "item_total": 1,
+    "has_previous": false,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21328,6 +34310,78 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "documents": [
+    {
+      "verified": true,
+      "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED",
+      "value": "AALCA0442L",
+      "type": "pan"
+    }
+  ],
+  "created_by": {
+    "user_id": "123",
+    "username": "917827311650_22960"
+  },
+  "business_info": "I sell",
+  "franchise_enabled": true,
+  "company_type": "mbo",
+  "warnings": {},
+  "business_details": {
+    "website": {
+      "url": "https://www.google.com"
+    }
+  },
+  "addresses": [
+    {
+      "country": "India",
+      "longitude": 72.8231511,
+      "state": "Maharashtra",
+      "address1": "A/204, Sai Vandan, Tulinj Road. Nallasopara East, ",
+      "country_code": "IN",
+      "latitude": 19.4232024,
+      "pincode": 401209,
+      "address_type": "office",
+      "city": "Mumbai"
+    },
+    {
+      "country": "India",
+      "longitude": 72.8231511,
+      "state": "Maharashtra",
+      "address1": "A/204, Sai Vandan, Tulinj Road. Nallasopara East, ",
+      "country_code": "IN",
+      "latitude": 19.4232024,
+      "pincode": 401209,
+      "address_type": "registered",
+      "city": "Mumbai"
+    }
+  ],
+  "modified_by": {
+    "user_id": "123",
+    "username": "917827311650_22960"
+  },
+  "notification_emails": [
+    "gaurangpatel@gofynd.com"
+  ],
+  "business_type": "huf",
+  "name": "Cache Company",
+  "stage": "verified",
+  "uid": 1,
+  "business_country_info": {
+    "country": "India",
+    "country_code": "IN"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21372,6 +34426,20 @@ Returns a success message
 [SuccessResponse](#SuccessResponse)
 
 Returns a success message
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
 
 
 
@@ -21422,6 +34490,40 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "stage": "complete",
+  "store": {
+    "verified": 1,
+    "pending": 1
+  },
+  "brand": {
+    "verified": 1,
+    "pending": 1
+  },
+  "product": {
+    "verified": 0,
+    "pending": 0
+  },
+  "company_documents": {
+    "verified": 1,
+    "pending": 0
+  },
+  "store_documents": {
+    "verified": 0,
+    "pending": 2
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21467,6 +34569,45 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 [GetBrandResponseSerializer](#GetBrandResponseSerializer)
 
 Brand object. See example below or refer `GetBrandResponseSerializer` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "stage": "verified",
+  "_custom_json": {},
+  "uid": 1,
+  "logo": "http://cdn4.gofynd.com/media/logo/brand/original/4597_40d1ce44d61940d4829a3c54951bd9ee.jpg",
+  "warnings": {},
+  "_locale_language": {},
+  "name": "edited brand",
+  "slug_key": "brand-2",
+  "banner": {
+    "portrait": "http://cdn4.gofynd.com/media/banner_portrait/brand/original/7021_16fc50205c40477daf419b64ec64c64c.jpg",
+    "landscape": "http://cdn4.gofynd.com/media/banner/brand/original/7020_f9e91f7d501c4f2985c09bd196ed304d.jpg"
+  },
+  "created_by": {
+    "username": "silverbolt",
+    "user_id": "0"
+  },
+  "modified_by": {
+    "username": "917827311650_22960",
+    "user_id": "123"
+  },
+  "verified_by": {
+    "username": "917827311650_22960",
+    "user_id": "123"
+  },
+  "synonyms": [
+    "xyz"
+  ]
+}
+```
+</details>
 
 
 
@@ -21522,6 +34663,20 @@ Returns a success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21566,6 +34721,81 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+
+
+```javascript
+// Promise
+const promise = companyprofile.createCompanyBrandMapping( {  companyId : value,
+ body : value });
+
+// Async/Await
+const data = await companyprofile.createCompanyBrandMapping( {  companyId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the brand is to be mapped. |  
+| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -21625,6 +34855,104 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "brand": {
+        "stage": "complete",
+        "uid": 2,
+        "banner": {
+          "portrait": "http://cdn4.gofynd.com/media/banner_portrait/brand/original/7021_16fc50205c40477daf419b64ec64c64c.jpg",
+          "landscape": "http://cdn4.gofynd.com/media/banner/brand/original/7020_f9e91f7d501c4f2985c09bd196ed304d.jpg"
+        },
+        "modified_by": {
+          "user_id": "123",
+          "username": "917827311650_22960"
+        },
+        "slug_key": "test-post",
+        "synonyms": [
+          "xyz"
+        ],
+        "created_on": "2021-02-25T15:21:57.666000+00:00",
+        "created_by": {
+          "user_id": "123",
+          "username": "917827311650_22960"
+        },
+        "modified_on": "2021-02-25T15:21:57.666000+00:00",
+        "name": "test_post",
+        "logo": "http://cdn4.gofynd.com/media/logo/brand/original/4597_40d1ce44d61940d4829a3c54951bd9ee.jpg"
+      },
+      "stage": "complete",
+      "uid": 2,
+      "modified_by": {
+        "user_id": "123",
+        "username": "917827311650_22960"
+      },
+      "company": {
+        "business_type": "huf",
+        "stage": "complete",
+        "uid": 1,
+        "addresses": [
+          {
+            "city": "Mumbai Suburban",
+            "latitude": 19.058461,
+            "longitude": 72.871395,
+            "address1": "Chunabhatti Phatak, Maharashtra Nagar, Maharashtra Nagar, ",
+            "country_code": "IN",
+            "state": "Maharashtra",
+            "country": "India",
+            "pincode": 400070,
+            "address_type": "office"
+          },
+          {
+            "city": "Mumbai Suburban",
+            "latitude": 19.058461,
+            "longitude": 72.871395,
+            "address1": "Chunabhatti Phatak, Maharashtra Nagar, Maharashtra Nagar, ",
+            "country_code": "IN",
+            "state": "Maharashtra",
+            "country": "India",
+            "pincode": 400070,
+            "address_type": "registered"
+          }
+        ],
+        "modified_by": {
+          "user_id": "-1",
+          "username": "silverbolt"
+        },
+        "company_type": "mbo",
+        "created_on": "2021-02-25T15:21:51.526000+00:00",
+        "created_by": {
+          "user_id": "123",
+          "username": "917827311650_22960"
+        },
+        "modified_on": "2021-02-25T17:44:55.722000+00:00",
+        "name": "Cache Company"
+      },
+      "created_by": {
+        "user_id": "123",
+        "username": "917827311650_22960"
+      }
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_count": 1
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21633,18 +34961,18 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping( {  companyId : value,
+const promise = companyprofile.createLocation( {  companyId : value,
  body : value });
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping( {  companyId : value,
+const data = await companyprofile.createLocation( {  companyId : value,
  body : value });
 ```
 
@@ -21652,11 +34980,11 @@ const data = await companyprofile.createCompanyBrandMapping( {  companyId : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the brand is to be mapped. |  
-| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+| companyId | string | yes | Id of the company inside which the location is to be created. |  
+| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Returned Response:*
 
@@ -21669,6 +34997,20 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
 
 
 
@@ -21734,50 +35076,196 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
 
-
-
-
-
----
-
-
-#### createLocation
-Create a location asscoiated to a company.
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.createLocation( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await companyprofile.createLocation( {  companyId : value,
- body : value });
+```json
+{
+  "items": [
+    {
+      "company": {
+        "business_type": "huf",
+        "stage": "complete",
+        "uid": 1,
+        "addresses": [
+          {
+            "city": "Mumbai Suburban",
+            "latitude": 19.058461,
+            "longitude": 72.871395,
+            "address1": "Chunabhatti Phatak, Maharashtra Nagar, Maharashtra Nagar, ",
+            "country_code": "IN",
+            "state": "Maharashtra",
+            "country": "India",
+            "pincode": 400070,
+            "address_type": "office"
+          },
+          {
+            "city": "Mumbai Suburban",
+            "latitude": 19.058461,
+            "longitude": 72.871395,
+            "address1": "Chunabhatti Phatak, Maharashtra Nagar, Maharashtra Nagar, ",
+            "country_code": "IN",
+            "state": "Maharashtra",
+            "country": "India",
+            "pincode": 400070,
+            "address_type": "registered"
+          }
+        ],
+        "modified_by": {
+          "user_id": "-1",
+          "username": "silverbolt"
+        },
+        "company_type": "mbo",
+        "created_on": "2021-02-25T15:21:51.526000+00:00",
+        "created_by": {
+          "user_id": "123",
+          "username": "917827311650_22960"
+        },
+        "modified_on": "2021-02-25T17:44:55.722000+00:00",
+        "name": "Cache Company"
+      },
+      "address": {
+        "city": "MUMBAI",
+        "latitude": 19.4232024,
+        "longitude": 72.8231511,
+        "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
+        "state": "MAHARASHTRA",
+        "country": "INDIA",
+        "pincode": 401209
+      },
+      "timing": [
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "monday"
+        },
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "tuesday"
+        },
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "wednesday"
+        },
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "thursday"
+        },
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "friday"
+        },
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "saturday"
+        },
+        {
+          "closing": {
+            "minute": 0,
+            "hour": 22
+          },
+          "opening": {
+            "minute": 0,
+            "hour": 11
+          },
+          "open": true,
+          "weekday": "sunday"
+        }
+      ],
+      "documents": [],
+      "display_name": "new store",
+      "manager": {
+        "name": "Yrf",
+        "mobile_no": {
+          "country_code": 91,
+          "number": "83456774567"
+        },
+        "email": "gbp@jkl.com"
+      },
+      "code": "code2",
+      "product_return_config": {
+        "on_same_store": true
+      },
+      "created_on": "2021-02-25T15:22:04.913000+00:00",
+      "created_by": {
+        "user_id": "123",
+        "username": "917827311650_22960"
+      },
+      "name": "location2",
+      "gst_credentials": {
+        "e_invoice": {
+          "enabled": false
+        }
+      },
+      "store_type": "high_street",
+      "contact_numbers": [
+        {
+          "country_code": 91,
+          "number": "7208229698"
+        }
+      ],
+      "stage": "complete",
+      "uid": 2,
+      "notification_emails": []
+    }
+  ],
+  "page": {
+    "current": 1,
+    "size": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_count": 1
+  }
+}
 ```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the location is to be created. |  
-| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
-
-
-This API allows to create a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
+</details>
 
 
 
@@ -21827,6 +35315,202 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 [GetLocationSerializer](#GetLocationSerializer)
 
 Brand object. See example below or refer `GetLocationSerializer` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "verified_on": "2021-02-25T15:22:07.140000+00:00",
+  "company": {
+    "business_type": "huf",
+    "stage": "complete",
+    "uid": 1,
+    "addresses": [
+      {
+        "city": "Mumbai Suburban",
+        "latitude": 19.058461,
+        "longitude": 72.871395,
+        "address1": "Chunabhatti Phatak, Maharashtra Nagar, Maharashtra Nagar, ",
+        "country_code": "IN",
+        "state": "Maharashtra",
+        "country": "India",
+        "pincode": 400070,
+        "address_type": "office"
+      },
+      {
+        "city": "Mumbai Suburban",
+        "latitude": 19.058461,
+        "longitude": 72.871395,
+        "address1": "Chunabhatti Phatak, Maharashtra Nagar, Maharashtra Nagar, ",
+        "country_code": "IN",
+        "state": "Maharashtra",
+        "country": "India",
+        "pincode": 400070,
+        "address_type": "registered"
+      }
+    ],
+    "modified_by": {
+      "user_id": "-1",
+      "username": "silverbolt"
+    },
+    "company_type": "mbo",
+    "created_by": {
+      "user_id": "123",
+      "username": "917827311650_22960"
+    },
+    "name": "Cache Company"
+  },
+  "address": {
+    "city": "MUMBAI",
+    "landmark": "",
+    "latitude": 19.4232024,
+    "longitude": 72.8231511,
+    "address2": "",
+    "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
+    "state": "MAHARASHTRA",
+    "country": "INDIA",
+    "pincode": 401209
+  },
+  "timing": [
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "monday"
+    },
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "tuesday"
+    },
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "wednesday"
+    },
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "thursday"
+    },
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "friday"
+    },
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "saturday"
+    },
+    {
+      "closing": {
+        "minute": 0,
+        "hour": 22
+      },
+      "opening": {
+        "minute": 0,
+        "hour": 11
+      },
+      "open": true,
+      "weekday": "sunday"
+    }
+  ],
+  "documents": [],
+  "warnings": {},
+  "display_name": "new store",
+  "manager": {
+    "name": "Yrf",
+    "mobile_no": {
+      "country_code": 91,
+      "number": "83456774567"
+    },
+    "email": "gbp@jkl.com"
+  },
+  "code": "store1",
+  "product_return_config": {
+    "on_same_store": true
+  },
+  "modified_by": {
+    "user_id": "-1",
+    "username": "silverbolt"
+  },
+  "created_by": {
+    "user_id": "123",
+    "username": "917827311650_22960"
+  },
+  "name": "edited_store",
+  "gst_credentials": {
+    "e_invoice": {
+      "enabled": false
+    }
+  },
+  "verified_by": {
+    "user_id": "-1",
+    "username": "silverbolt"
+  },
+  "store_type": "high_street",
+  "contact_numbers": [
+    {
+      "country_code": 91,
+      "number": "7208229698"
+    }
+  ],
+  "stage": "verified",
+  "uid": 1,
+  "integration_type": {
+    "inventory": "pulse",
+    "order": "pulse"
+  },
+  "notification_emails": []
+}
+```
+</details>
 
 
 
@@ -21882,6 +35566,20 @@ Returns a success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -21926,6 +35624,20 @@ Returns a success response
 [SuccessResponse](#SuccessResponse)
 
 Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "10 stores inserted",
+  "success": true
+}
+```
+</details>
 
 
 
@@ -22005,6 +35717,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -22070,6 +35793,17 @@ Success
 [CompleteResponse](#CompleteResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -22146,6 +35880,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -22218,6 +35963,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -22262,6 +36018,17 @@ Success
 [SignUrlResponse](#SignUrlResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -22313,6 +36080,44 @@ Success
 [BulkResponse](#BulkResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tracking_url": "https://xxx.xxx.xxx/2",
+  "task": {
+    "id": "2",
+    "name": "__default__",
+    "data": {
+      "urls": [
+        "https://xxx.xxx.xxx/files.csv"
+      ],
+      "destination": {
+        "namespace": "/domaine/path",
+        "rewrite": "{{namespace}}/bar/{{dest.path}}"
+      }
+    },
+    "opts": {
+      "attempts": 1,
+      "delay": 0,
+      "timestamp": 1613534206645
+    },
+    "progress": 0,
+    "delay": 0,
+    "timestamp": 1613534206645,
+    "attempts_made": 0,
+    "stacktrace": [],
+    "finished_on": 1613534206645,
+    "processed_on": 1613534206645
+  }
+}
+```
+</details>
 
 
 
@@ -22371,6 +36176,44 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tracking_url": "https://xxx.xxx.xxx/2",
+  "task": {
+    "id": "2",
+    "name": "__default__",
+    "data": {
+      "urls": [
+        "https://xxx.xxx.xxx/files.csv"
+      ],
+      "destination": {
+        "namespace": "/domaine/path",
+        "rewrite": "{{namespace}}/bar/{{dest.path}}"
+      }
+    },
+    "opts": {
+      "attempts": 1,
+      "delay": 0,
+      "timestamp": 1613534206645
+    },
+    "progress": 0,
+    "delay": 0,
+    "timestamp": 1613534206645,
+    "attempts_made": 0,
+    "stacktrace": [],
+    "finished_on": 1613534206645,
+    "processed_on": 1613534206645
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -22419,6 +36262,17 @@ Success
 [BrowseResponse](#BrowseResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -22478,6 +36332,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -22523,6 +36388,17 @@ Success
 [string](#string)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -22580,6 +36456,55 @@ Success
 [ShortLinkRes](#ShortLinkRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
 
 
 
@@ -22648,6 +36573,66 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "url": {
+        "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+        "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+        "hash": "3qKlnsq-x"
+      },
+      "redirects": {
+        "ios": {
+          "type": "web",
+          "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+        },
+        "android": {
+          "type": "web",
+          "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+        },
+        "web": {
+          "type": "web",
+          "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+        },
+        "force_web": false
+      },
+      "created_by": "team",
+      "personalized": false,
+      "app_redirect": false,
+      "fallback": "web",
+      "enable_tracking": false,
+      "active": true,
+      "count": 0,
+      "_id": "601a54054c0349592e76c8f3",
+      "title": "new ",
+      "meta": {
+        "type": "brand"
+      },
+      "expire_at": null,
+      "application": "5eda528b97457fe43a733ace",
+      "user_id": "5e4d01e2c39837ab66144f6d",
+      "created_at": "2021-02-03T07:43:01.342Z",
+      "updated_at": "2021-02-03T07:43:01.342Z"
+    }
+  ],
+  "page": {
+    "size": 10,
+    "type": "number",
+    "page": 1,
+    "item_total": 30,
+    "has_next": true
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -22696,6 +36681,55 @@ Success
 [ShortLinkRes](#ShortLinkRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
 
 
 
@@ -22750,6 +36784,55 @@ Success
 [ShortLinkRes](#ShortLinkRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
 
 
 
@@ -22812,6 +36895,17 @@ Successful operation
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -22860,6 +36954,17 @@ Job Config Updated Successfully
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -22904,6 +37009,17 @@ Job Config Created Successfully
 [ResponseEnvelopeString](#ResponseEnvelopeString)
 
 Job Config Created Successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -22963,6 +37079,17 @@ Successful operation
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -23005,6 +37132,17 @@ Successful operation
 [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
 
 Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -23054,6 +37192,17 @@ Successful operation
 [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
 
 Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -23113,6 +37262,17 @@ Successful operation
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -23164,6 +37324,17 @@ Successful operation
 [ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
 
 Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -23226,6 +37397,35 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "5ea9b318bc23a343ab6d442f",
+  "app_name": "TestUniket",
+  "landing_image": {
+    "aspect_ratio": "57/51",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
+  },
+  "splash_image": {
+    "aspect_ratio": "1/1",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
+  },
+  "application": "000000000000000000000004",
+  "platform_type": "android",
+  "created_at": "2020-04-29T17:02:16.976Z",
+  "modified_at": "2021-02-23T17:10:26.872Z",
+  "__v": 0,
+  "package_name": "com.fynd.store.x000000000000000000000004"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23276,6 +37476,35 @@ Success
 [MobileAppConfiguration](#MobileAppConfiguration)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "5ea9b318bc23a343ab6d442f",
+  "app_name": "TestUniket",
+  "landing_image": {
+    "aspect_ratio": "57/51",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
+  },
+  "splash_image": {
+    "aspect_ratio": "1/1",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
+  },
+  "application": "000000000000000000000004",
+  "platform_type": "android",
+  "created_at": "2020-04-29T17:02:16.976Z",
+  "modified_at": "2021-02-23T17:10:26.872Z",
+  "__v": 0,
+  "package_name": "com.fynd.store.x000000000000000000000004"
+}
+```
+</details>
 
 
 
@@ -23332,6 +37561,32 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "versions": [
+    {
+      "_id": "6035376ab937c5f7c5462888",
+      "application": "000000000000000000000004",
+      "platform_type": "android",
+      "build_status": "pending",
+      "version_name": "0.5.6",
+      "version_code": 1,
+      "created_at": "2021-02-23T17:12:10.977Z",
+      "modified_at": "2021-02-23T17:12:10.977Z",
+      "__v": 0
+    }
+  ],
+  "latest_available_version_name": "0.5.7"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23377,6 +37632,112 @@ Success
 [AppFeatureResponse](#AppFeatureResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "feature": {
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": null,
+        "query": null
+      },
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
+      },
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
+      },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
+        ],
+        "type": "explicit",
+        "default_currency": "INR"
+      },
+      "revenue_engine": {
+        "enabled": false
+      },
+      "feedback": {
+        "enabled": true
+      },
+      "compare_products": {
+        "enabled": true
+      },
+      "reward_points": {
+        "credit": {
+          "enabled": true
+        },
+        "debit": {
+          "enabled": true,
+          "auto_apply": false,
+          "strategy_channel": "REWARDS"
+        }
+      }
+    },
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000004",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "modified_at": "2021-02-02T11:04:14.289Z",
+    "__v": 1
+  }
+}
+```
+</details>
 
 
 
@@ -23432,6 +37793,100 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": null,
+      "query": null
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
+      ],
+      "type": "explicit",
+      "default_currency": "INR"
+    },
+    "revenue_engine": {
+      "enabled": false
+    },
+    "feedback": {
+      "enabled": true
+    },
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23477,6 +37932,60 @@ Success
 [ApplicationDetail](#ApplicationDetail)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "name": "Uniket B2B",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "mobile_logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "banner": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_default": true,
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "domains": [
+    {
+      "verified": true,
+      "is_primary": true,
+      "is_default": true,
+      "is_shortlink": false,
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "name": "uniket.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ],
+  "company_id": 1,
+  "_id": "000000000000000000000004"
+}
+```
+</details>
 
 
 
@@ -23532,6 +38041,58 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "name": "Uniket B2B",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "mobile_logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "banner": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_default": true,
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "domains": [
+    {
+      "verified": true,
+      "is_primary": true,
+      "is_default": true,
+      "is_shortlink": false,
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "name": "uniket.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23577,6 +38138,132 @@ Success
 [ApplicationInformation](#ApplicationInformation)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "value": {
+    "address": {
+      "loc": null,
+      "address_line": [
+        "Warehouse 5, Near Industrial Complex",
+        "2nd Lane, Andheri"
+      ],
+      "phone": [
+        {
+          "code": "+91",
+          "number": "9988776654"
+        }
+      ],
+      "city": "Mumbai , Maharashtra , India",
+      "country": "India",
+      "pincode": 400059
+    },
+    "support": {
+      "phone": [],
+      "email": [],
+      "timing": "9 AM to 9 PM"
+    },
+    "social_links": {
+      "facebook": {
+        "title": "Facebook",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
+        "link": ""
+      },
+      "instagram": {
+        "title": "Instagram",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
+        "link": ""
+      },
+      "twitter": {
+        "title": "Twitter",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
+        "link": ""
+      },
+      "pinterest": {
+        "title": "Pinterest",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
+        "link": ""
+      },
+      "google_plus": {
+        "title": "Google+",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
+        "link": ""
+      },
+      "youtube": {
+        "title": "Youtube",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
+        "link": ""
+      },
+      "linked_in": {
+        "title": "LinkedIn",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
+        "link": ""
+      },
+      "vimeo": {
+        "title": "Vimeo",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/Ttc80b3U78-vimeofooternho4br.svg",
+        "link": ""
+      },
+      "blog_link": {
+        "title": "Blog",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
+        "link": ""
+      }
+    },
+    "links": [
+      {
+        "title": "Shipping",
+        "link": "www.uniket.store/shipping-details"
+      },
+      {
+        "title": "Returns",
+        "link": "www.uniket.store/policy/return-policy"
+      },
+      {
+        "title": "Privacy",
+        "link": "www.uniket.store/policy/privacy-policy"
+      },
+      {
+        "title": "Terms",
+        "link": "www.uniket.store/policy/terms-conditions"
+      }
+    ],
+    "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
+    "_id": "5e6627bd0732616083e83750",
+    "business_highlights": [
+      {
+        "_id": "5fc901611dfba6c2e87d1ca9",
+        "title": "100% Genuine Products",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+        "sub_title": "Directly from brands"
+      },
+      {
+        "_id": "5fc901611dfba64ce57d1caa",
+        "title": "Credit Facility Available",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+        "sub_title": "Free 30 Days Credit"
+      },
+      {
+        "_id": "5fc901611dfba64b2e7d1cab",
+        "title": "Assured Returns",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+        "sub_title": "For all damaged/wrong items"
+      }
+    ],
+    "application": "000000000000000000000004",
+    "created_at": "2020-03-09T11:25:49.921Z",
+    "modified_at": "2020-12-03T15:16:49.087Z",
+    "__v": 99
+  }
+}
+```
+</details>
 
 
 
@@ -23632,6 +38319,125 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5e6627bd0732616083e83750",
+  "address": {
+    "address_line": [
+      "Warehouse 5, Near Industrial Complex",
+      "2nd Lane, Andheri"
+    ],
+    "phone": [
+      {
+        "code": "+91",
+        "number": "9988776654"
+      }
+    ],
+    "city": "Mumbai , Maharashtra , India",
+    "country": "India",
+    "pincode": 400059,
+    "loc": null
+  },
+  "social_links": {
+    "facebook": {
+      "title": "Facebook",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
+      "link": ""
+    },
+    "instagram": {
+      "title": "Instagram",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
+      "link": ""
+    },
+    "twitter": {
+      "title": "Twitter",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
+      "link": ""
+    },
+    "pinterest": {
+      "title": "Pinterest",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
+      "link": ""
+    },
+    "google_plus": {
+      "title": "Google+",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
+      "link": ""
+    },
+    "youtube": {
+      "title": "Youtube",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
+      "link": ""
+    },
+    "linked_in": {
+      "title": "LinkedIn",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
+      "link": ""
+    },
+    "blog_link": {
+      "title": "Blog",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
+      "link": ""
+    }
+  },
+  "links": [
+    {
+      "title": "Shipping",
+      "link": "www.uniket.store/shipping-details"
+    },
+    {
+      "title": "Returns",
+      "link": "www.uniket.store/policy/return-policy"
+    },
+    {
+      "title": "Privacy",
+      "link": "www.uniket.store/policy/privacy-policy"
+    },
+    {
+      "title": "Terms",
+      "link": "www.uniket.store/policy/terms-conditions"
+    }
+  ],
+  "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
+  "support": {
+    "timing": "9 AM to 9 PM",
+    "phone": [],
+    "email": []
+  },
+  "business_highlights": [
+    {
+      "_id": "60479413a32f774d754b00ef",
+      "title": "100% Genuine Products",
+      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+      "sub_title": "Directly from brands"
+    },
+    {
+      "_id": "60479413a32f7717df4b00f0",
+      "title": "Credit Facility Available",
+      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+      "sub_title": "Free 30 Days Credit"
+    },
+    {
+      "_id": "60479413a32f77e70b4b00f1",
+      "title": "Assured Returns",
+      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+      "sub_title": "For all damaged/wrong items"
+    }
+  ],
+  "application": "000000000000000000000004",
+  "created_at": "2020-03-09T11:25:49.921Z",
+  "modified_at": "2021-03-09T15:28:19.598Z",
+  "__v": 101
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23677,6 +38483,95 @@ Success
 [TokenResponse](#TokenResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "ios": {
+          "application_id": "test",
+          "api_key": "test"
+        },
+        "android": {
+          "application_id": "test",
+          "api_key": "test"
+        },
+        "project_id": "uniket-d8cdc",
+        "gcm_sender_id": "test",
+        "application_id": "test",
+        "api_key": "test"
+      },
+      "enabled": true
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": "test"
+      },
+      "enabled": true
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "test"
+      },
+      "enabled": true
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": "test"
+      },
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "123456",
+        "app_key": "123456789",
+        "web_token": ""
+      },
+      "enabled": false
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "test"
+      },
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "test"
+      }
+    },
+    "auth": {
+      "google": {
+        "appId": "test"
+      },
+      "facebook": {
+        "appId": "test"
+      },
+      "accountkit": {
+        "appId": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "test"
+      }
+    }
+  },
+  "_id": "5e66282a073261060ee83751",
+  "application": "000000000000000000000004",
+  "created_at": "2020-03-09T11:27:38.894Z",
+  "modified_at": "2020-12-24T05:39:17.054Z",
+  "__v": 0
+}
+```
+</details>
 
 
 
@@ -23728,6 +38623,95 @@ Success
 [TokenResponse](#TokenResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "ios": {
+          "application_id": "test",
+          "api_key": "test"
+        },
+        "android": {
+          "application_id": "test",
+          "api_key": "test"
+        },
+        "project_id": "uniket-d8cdc",
+        "gcm_sender_id": "test",
+        "application_id": "test",
+        "api_key": "test"
+      },
+      "enabled": true
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": "test"
+      },
+      "enabled": true
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "test"
+      },
+      "enabled": true
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": "1234567890"
+      },
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "123456",
+        "app_key": "123456789",
+        "web_token": ""
+      },
+      "enabled": false
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "test"
+      },
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "test"
+      }
+    },
+    "auth": {
+      "google": {
+        "appId": "test"
+      },
+      "facebook": {
+        "appId": "test"
+      },
+      "accountkit": {
+        "appId": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "test"
+      }
+    }
+  },
+  "_id": "5e66282a073261060ee83751",
+  "application": "000000000000000000000004",
+  "created_at": "2020-03-09T11:27:38.894Z",
+  "modified_at": "2020-12-24T05:39:17.054Z",
+  "__v": 0
+}
+```
+</details>
 
 
 
@@ -23787,6 +38771,42 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": 108,
+      "name": "Sample2 Company",
+      "company_type": "mbo"
+    },
+    {
+      "uid": 13,
+      "name": "Isabel Mazanec",
+      "company_type": "franchisee"
+    },
+    {
+      "uid": 7,
+      "name": "Zack Burgdorf",
+      "company_type": "distributor"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 200,
+    "current": 1,
+    "has_next": false,
+    "item_total": 3
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23842,6 +38862,55 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_id": "5ec2c0b168fc2800017112f5",
+      "uid": 1,
+      "name": "RRL01",
+      "display_name": "RRL01",
+      "store_type": "warehouse",
+      "store_code": "WH_8513",
+      "company_id": 1
+    },
+    {
+      "_id": "5ec3b09a68fc28000171137c",
+      "modified_on": "2020-06-30T10:02:41.208Z",
+      "uid": 10,
+      "name": "Saran Ledonne",
+      "display_name": "",
+      "store_type": "high_street",
+      "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
+      "company_id": 1
+    },
+    {
+      "_id": "5f099b2c931b1c0001e7ccb2",
+      "display_name": "cbs 2",
+      "store_code": "HS-c9bac",
+      "name": "cbs 2",
+      "company_id": 80,
+      "store_type": "high_street",
+      "uid": 11014
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 200,
+    "current": 1,
+    "has_next": true,
+    "item_total": 3
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23887,6 +38956,201 @@ Success
 [ApplicationInventory](#ApplicationInventory)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "inventory": {
+    "brand": {
+      "criteria": "all",
+      "brands": []
+    },
+    "store": {
+      "criteria": "filter",
+      "stores": [],
+      "rules": [
+        {
+          "companies": [
+            1,
+            3,
+            4
+          ],
+          "brands": []
+        }
+      ]
+    },
+    "category": {
+      "criteria": "all",
+      "categories": []
+    },
+    "price": {
+      "min": 1,
+      "max": 10000
+    },
+    "discount": {
+      "min": 0,
+      "max": 100
+    },
+    "out_of_stock": true,
+    "franchise_enabled": true,
+    "exclude_category": [],
+    "image": [
+      "standard",
+      "substandard",
+      "default"
+    ],
+    "company_store": []
+  },
+  "authentication": {
+    "required": true,
+    "provider": "fynd"
+  },
+  "article_assignment": {
+    "rules": {
+      "store_priority": {
+        "enabled": false,
+        "storetype_order": []
+      }
+    },
+    "post_order_reassignment": true
+  },
+  "reward_points": {
+    "credit": {
+      "enabled": true
+    },
+    "debit": {
+      "enabled": true,
+      "auto_apply": false,
+      "strategy_channel": "rewards"
+    }
+  },
+  "cart": {
+    "delivery_charges": {
+      "enabled": true,
+      "charges": [
+        {
+          "threshold": 1000,
+          "charges": 49
+        },
+        {
+          "threshold": 200000,
+          "charges": 79
+        }
+      ]
+    },
+    "enabled": true,
+    "max_cart_items": 0,
+    "min_cart_value": 120,
+    "bulk_coupons": true
+  },
+  "payment": {
+    "callback_url": {
+      "app": "",
+      "web": ""
+    },
+    "methods": {
+      "pl": {
+        "enabled": true
+      },
+      "card": {
+        "enabled": true
+      },
+      "nb": {
+        "enabled": true
+      },
+      "wl": {
+        "enabled": true
+      },
+      "ps": {
+        "enabled": true
+      },
+      "upi": {
+        "enabled": true
+      },
+      "qr": {
+        "enabled": true
+      },
+      "cod": {
+        "enabled": true
+      },
+      "pp": {
+        "enabled": true
+      },
+      "jp": {
+        "enabled": false
+      },
+      "pac": {
+        "enabled": false
+      },
+      "fc": {
+        "enabled": false
+      },
+      "jiopp": {
+        "enabled": false
+      },
+      "stripepg": {
+        "enabled": true
+      },
+      "juspaypg": {
+        "enabled": false
+      },
+      "payubizpg": {
+        "enabled": true
+      },
+      "payumoneypg": {
+        "enabled": true
+      },
+      "rupifipg": {
+        "enabled": false
+      },
+      "simpl": {
+        "enabled": true
+      }
+    },
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "",
+      "payment_identifier": ""
+    },
+    "mode_of_payment": "uniket_b2b",
+    "source": "uniket",
+    "enabled": true,
+    "cod_amount_limit": 100000,
+    "cod_charges": 1500
+  },
+  "order": {
+    "enabled": true,
+    "force_reassignment": false
+  },
+  "logistics": {
+    "logistics_by_seller": false,
+    "serviceability_check": true,
+    "same_day_delivery": true,
+    "dp_assignment": true
+  },
+  "business": "retail",
+  "comms_enabled": true,
+  "platforms": [
+    "uniket_wholesale"
+  ],
+  "_id": "5e04c76b8dd8c003577fdd0a",
+  "loyalty_points": {
+    "enabled": true,
+    "auto_apply": false
+  },
+  "app": "000000000000000000000004",
+  "created_at": "2019-12-26t14:44:59.835z",
+  "modified_at": "2021-03-09t15:40:29.208z",
+  "__v": 3,
+  "modified_by": "5e199eed98cfe16dc61385de"
+}
+```
+</details>
 
 
 
@@ -23942,6 +39206,201 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "inventory": {
+    "brand": {
+      "criteria": "all",
+      "brands": []
+    },
+    "store": {
+      "criteria": "filter",
+      "stores": [],
+      "rules": [
+        {
+          "companies": [
+            1,
+            3,
+            4
+          ],
+          "brands": []
+        }
+      ]
+    },
+    "category": {
+      "criteria": "all",
+      "categories": []
+    },
+    "price": {
+      "min": 1,
+      "max": 10000
+    },
+    "discount": {
+      "min": 0,
+      "max": 100
+    },
+    "out_of_stock": true,
+    "franchise_enabled": true,
+    "exclude_category": [],
+    "image": [
+      "standard",
+      "substandard",
+      "default"
+    ],
+    "company_store": []
+  },
+  "authentication": {
+    "required": true,
+    "provider": "fynd"
+  },
+  "article_assignment": {
+    "rules": {
+      "store_priority": {
+        "enabled": false,
+        "storetype_order": []
+      }
+    },
+    "post_order_reassignment": true
+  },
+  "reward_points": {
+    "credit": {
+      "enabled": true
+    },
+    "debit": {
+      "enabled": true,
+      "auto_apply": false,
+      "strategy_channel": "REWARDS"
+    }
+  },
+  "cart": {
+    "delivery_charges": {
+      "enabled": true,
+      "charges": [
+        {
+          "threshold": 1000,
+          "charges": 49
+        },
+        {
+          "threshold": 200000,
+          "charges": 79
+        }
+      ]
+    },
+    "enabled": true,
+    "max_cart_items": 0,
+    "min_cart_value": 120,
+    "bulk_coupons": true
+  },
+  "payment": {
+    "callback_url": {
+      "app": "",
+      "web": ""
+    },
+    "methods": {
+      "PL": {
+        "enabled": true
+      },
+      "CARD": {
+        "enabled": true
+      },
+      "NB": {
+        "enabled": true
+      },
+      "WL": {
+        "enabled": true
+      },
+      "PS": {
+        "enabled": true
+      },
+      "UPI": {
+        "enabled": true
+      },
+      "QR": {
+        "enabled": true
+      },
+      "COD": {
+        "enabled": true
+      },
+      "PP": {
+        "enabled": true
+      },
+      "JP": {
+        "enabled": false
+      },
+      "PAC": {
+        "enabled": false
+      },
+      "FC": {
+        "enabled": false
+      },
+      "JIOPP": {
+        "enabled": false
+      },
+      "STRIPEPG": {
+        "enabled": true
+      },
+      "JUSPAYPG": {
+        "enabled": false
+      },
+      "PAYUBIZPG": {
+        "enabled": true
+      },
+      "PAYUMONEYPG": {
+        "enabled": true
+      },
+      "RUPIFIPG": {
+        "enabled": false
+      },
+      "SIMPL": {
+        "enabled": true
+      }
+    },
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "",
+      "payment_identifier": ""
+    },
+    "mode_of_payment": "UNIKET_B2B",
+    "source": "UNIKET",
+    "enabled": true,
+    "cod_amount_limit": 100000,
+    "cod_charges": 1500
+  },
+  "order": {
+    "enabled": true,
+    "force_reassignment": false
+  },
+  "logistics": {
+    "logistics_by_seller": false,
+    "serviceability_check": true,
+    "same_day_delivery": true,
+    "dp_assignment": true
+  },
+  "business": "retail",
+  "comms_enabled": true,
+  "platforms": [
+    "uniket_wholesale"
+  ],
+  "_id": "5e04c76b8dd8c003577fdd0a",
+  "loyalty_points": {
+    "enabled": true,
+    "auto_apply": false
+  },
+  "app": "000000000000000000000004",
+  "created_at": "2019-12-26T14:44:59.835Z",
+  "modified_at": "2021-03-09T15:40:29.208Z",
+  "__v": 3,
+  "modified_by": "5e199eed98cfe16dc61385de"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -23989,6 +39448,201 @@ Success
 [ApplicationInventory](#ApplicationInventory)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "inventory": {
+    "brand": {
+      "criteria": "all",
+      "brands": []
+    },
+    "store": {
+      "criteria": "filter",
+      "stores": [],
+      "rules": [
+        {
+          "companies": [
+            1,
+            3,
+            4
+          ],
+          "brands": []
+        }
+      ]
+    },
+    "category": {
+      "criteria": "all",
+      "categories": []
+    },
+    "price": {
+      "min": 1,
+      "max": 10000
+    },
+    "discount": {
+      "min": 0,
+      "max": 100
+    },
+    "out_of_stock": true,
+    "franchise_enabled": true,
+    "exclude_category": [],
+    "image": [
+      "standard",
+      "substandard",
+      "default"
+    ],
+    "company_store": []
+  },
+  "authentication": {
+    "required": true,
+    "provider": "fynd"
+  },
+  "article_assignment": {
+    "rules": {
+      "store_priority": {
+        "enabled": false,
+        "storetype_order": []
+      }
+    },
+    "post_order_reassignment": true
+  },
+  "reward_points": {
+    "credit": {
+      "enabled": true
+    },
+    "debit": {
+      "enabled": true,
+      "auto_apply": false,
+      "strategy_channel": "REWARDS"
+    }
+  },
+  "cart": {
+    "delivery_charges": {
+      "enabled": true,
+      "charges": [
+        {
+          "threshold": 1000,
+          "charges": 49
+        },
+        {
+          "threshold": 200000,
+          "charges": 79
+        }
+      ]
+    },
+    "enabled": true,
+    "max_cart_items": 0,
+    "min_cart_value": 120,
+    "bulk_coupons": true
+  },
+  "payment": {
+    "callback_url": {
+      "app": "",
+      "web": ""
+    },
+    "methods": {
+      "PL": {
+        "enabled": true
+      },
+      "CARD": {
+        "enabled": true
+      },
+      "NB": {
+        "enabled": true
+      },
+      "WL": {
+        "enabled": true
+      },
+      "PS": {
+        "enabled": true
+      },
+      "UPI": {
+        "enabled": true
+      },
+      "QR": {
+        "enabled": true
+      },
+      "COD": {
+        "enabled": true
+      },
+      "PP": {
+        "enabled": true
+      },
+      "JP": {
+        "enabled": false
+      },
+      "PAC": {
+        "enabled": false
+      },
+      "FC": {
+        "enabled": false
+      },
+      "JIOPP": {
+        "enabled": false
+      },
+      "STRIPEPG": {
+        "enabled": true
+      },
+      "JUSPAYPG": {
+        "enabled": false
+      },
+      "PAYUBIZPG": {
+        "enabled": true
+      },
+      "PAYUMONEYPG": {
+        "enabled": true
+      },
+      "RUPIFIPG": {
+        "enabled": false
+      },
+      "SIMPL": {
+        "enabled": true
+      }
+    },
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "",
+      "payment_identifier": ""
+    },
+    "mode_of_payment": "UNIKET_B2B",
+    "source": "UNIKET",
+    "enabled": true,
+    "cod_amount_limit": 100000,
+    "cod_charges": 1500
+  },
+  "order": {
+    "enabled": true,
+    "force_reassignment": false
+  },
+  "logistics": {
+    "logistics_by_seller": false,
+    "serviceability_check": true,
+    "same_day_delivery": true,
+    "dp_assignment": true
+  },
+  "business": "retail",
+  "comms_enabled": true,
+  "platforms": [
+    "uniket_wholesale"
+  ],
+  "_id": "5e04c76b8dd8c003577fdd0a",
+  "loyalty_points": {
+    "enabled": true,
+    "auto_apply": false
+  },
+  "app": "000000000000000000000004",
+  "created_at": "2019-12-26T14:44:59.835Z",
+  "modified_at": "2021-03-09T15:40:29.208Z",
+  "__v": 3,
+  "modified_by": "5e199eed98cfe16dc61385de"
+}
+```
+</details>
 
 
 
@@ -24042,6 +39696,33 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5ec7a85965c3893857538d93",
+  "supported_currency": [
+    "5ec75d11f7bfb5a7d38f3524",
+    "5ec75d11f7bfb54d798f3516",
+    "5ec75d11f7bfb553b88f355f",
+    "5ec75d11f7bfb559d08f34d5",
+    "5ec75d11f7bfb5d1e98f34da"
+  ],
+  "application": "000000000000000000000004",
+  "default_currency": {
+    "ref": "5ec75d11f7bfb54d798f3516",
+    "code": "USD"
+  },
+  "created_at": "2020-05-22T10:24:25.984Z",
+  "modified_at": "2021-03-09T10:47:32.664Z"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24089,6 +39770,33 @@ Success
 [AppSupportedCurrency](#AppSupportedCurrency)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5ec7a85965c3893857538d93",
+  "supported_currency": [
+    "5ec75d11f7bfb5a7d38f3524",
+    "5ec75d11f7bfb54d798f3516",
+    "5ec75d11f7bfb553b88f355f",
+    "5ec75d11f7bfb559d08f34d5",
+    "5ec75d11f7bfb5d1e98f34da"
+  ],
+  "application": "000000000000000000000004",
+  "default_currency": {
+    "ref": "5ec75d11f7bfb54d798f3516",
+    "code": "USD"
+  },
+  "created_at": "2020-05-22T10:24:25.984Z",
+  "modified_at": "2021-03-09T10:47:32.664Z"
+}
+```
+</details>
 
 
 
@@ -24150,6 +39858,101 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_total": 583
+  },
+  "items": [
+    {
+      "address": {
+        "state": "MAHARASHTRA",
+        "address1": "SAGAR TECH PLAZA, SAKINAKA",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            1,
+            1
+          ]
+        },
+        "pincode": 400070,
+        "country": "INDIA",
+        "city": "MUMBAI"
+      },
+      "_id": "5f586563f509dd000145c02d",
+      "store_type": "high_street",
+      "uid": 11016,
+      "store_code": "HS-0c532",
+      "display_name": " Brand Company Store 11",
+      "name": " Brand Company Store 11",
+      "pincode": 400070,
+      "code": "HS-0c532"
+    },
+    {
+      "address": {
+        "state": "MAHARASHTRA",
+        "address1": "UNNAMED ROAD, VASAI EAST SALT PLANT",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            72.84293219999999,
+            19.3805675
+          ]
+        },
+        "address2": "VASAI EAST SALT PLANT, VASAI EAST, ",
+        "pincode": 401208,
+        "country": "INDIA",
+        "city": "VIRAR",
+        "landmark": ""
+      },
+      "_id": "5f585934f509dd000145c025",
+      "store_type": "high_street",
+      "uid": 11567,
+      "store_code": "123456",
+      "display_name": "2nd Store",
+      "name": "2nd Store",
+      "pincode": 401208,
+      "code": "123456"
+    },
+    {
+      "address": {
+        "state": "GUJARAT",
+        "address1": "32, AANAND SHOPPING CENTRE ",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            1,
+            1
+          ]
+        },
+        "pincode": 380001,
+        "country": "INDIA",
+        "city": "AHMEDABAD"
+      },
+      "_id": "5f587b5ef509dd000145c02f",
+      "store_type": "high_street",
+      "uid": 11568,
+      "store_code": "12345",
+      "display_name": "3rd ",
+      "name": "3rd ",
+      "pincode": 380001,
+      "code": "12345"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24197,6 +40000,28 @@ Success
 [DeploymentMeta](#DeploymentMeta)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "deployed_stores": [
+    1,
+    10
+  ],
+  "all_stores": false,
+  "enabled": true,
+  "type": "hard",
+  "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+  "app": "000000000000000000000004",
+  "__v": 6
+}
+```
+</details>
 
 
 
@@ -24250,6 +40075,44 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "domains": [
+    {
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "verified": true,
+      "name": "uniket.hostx0.de",
+      "is_primary": true,
+      "is_default": true,
+      "is_shortlink": false
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": false,
+      "_id": "6048497e87f5730423149190",
+      "name": "testdm.hostx0.de"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24297,6 +40160,26 @@ Success
 [Domain](#Domain)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "name": "testdm.hostx0.de",
+  "verified": true,
+  "txtRecords": [],
+  "message": "New domain added successfully",
+  "is_primary": false,
+  "is_default": false,
+  "is_shortlink": false,
+  "_id": "6048497e87f5730423149190"
+}
+```
+</details>
 
 
 
@@ -24353,6 +40236,19 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Domain removed successfully"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24400,6 +40296,44 @@ Success
 [DomainsResponse](#DomainsResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "domains": [
+    {
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "verified": true,
+      "name": "uniket.hostx0.de",
+      "is_primary": true,
+      "is_default": true,
+      "is_shortlink": false
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": false,
+      "_id": "6048497e87f5730423149190",
+      "name": "testdm.hostx0.de"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -24455,6 +40389,33 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "connected": true,
+  "status": [
+    {
+      "display": "Domain TXT record entry 5d65089e031f9029f8e8dc2f",
+      "status": true
+    },
+    {
+      "display": "Domain pointing to 18.217.232.69 A record",
+      "status": true
+    },
+    {
+      "display": "Domain pointing to 18.188.115.251 A record",
+      "status": true
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24499,6 +40460,17 @@ Success
 [CreateAppResponse](#CreateAppResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -24558,6 +40530,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -24603,6 +40586,17 @@ Success
 [Application](#Application)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -24653,6 +40647,30 @@ Currencies Success response
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_id": "5ec75d11f7bfb54d798f3516",
+      "is_active": true,
+      "name": "United States Dollar",
+      "code": "USD",
+      "created_at": "2020-05-22T05:03:13.354Z",
+      "modified_at": "2020-06-05T09:12:04.248Z",
+      "decimal_digits": 2,
+      "symbol": "$"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24699,10 +40717,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Suggestions for fynd domains
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Suggestions for fynd domains</i></summary>
+
 ```json
 {
   "value": {
@@ -24719,8 +40742,11 @@ Suggestions for fynd domains
   }
 }
 ```
+</details>
 
-Suggestions for custom domains
+<details>
+<summary><i>&nbsp; Suggestions for custom domains</i></summary>
+
 ```json
 {
   "value": {
@@ -24741,6 +40767,9 @@ Suggestions for custom domains
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -24794,6 +40823,104 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5ec376ce848a005189acb312",
+  "validators": {
+    "company": {
+      "browser_script": "",
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "ip_address",
+          "icode",
+          "gds_entity_id",
+          "auth_key"
+        ],
+        "properties": {
+          "gds_entity_id": {
+            "type": "string",
+            "title": "GDS Entity ID",
+            "minLength": 3,
+            "maxLength": 10,
+            "pattern": "^[a-zA-Z0-9]+$",
+            "description": "GDS Entity ID is a unique identifier provided by Ginesys to you."
+          },
+          "ip_address": {
+            "type": "string",
+            "title": "IP Address",
+            "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
+            "description": "Enter IP address provided by Ginesys for your POS server"
+          },
+          "auth_key": {
+            "title": "Auth Key",
+            "type": "string",
+            "maxLength": 500,
+            "description": "Provide authentication token provided by Ginesys to you."
+          },
+          "icode": {
+            "title": "ICODE",
+            "type": "string",
+            "enum": [
+              "ean",
+              "upc",
+              "alu",
+              "sku_code"
+            ],
+            "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
+          }
+        }
+      }
+    },
+    "store": {
+      "browser_script": "",
+      "json_schema": {
+        "type": "object",
+        "properties": {
+          "location_id": {
+            "type": "string",
+            "title": "Location ID",
+            "description": "Provide site code as per POS/SAP."
+          },
+          "ip_address": {
+            "type": "string",
+            "title": "IP Address",
+            "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
+            "description": "Enter IP address provided by Ginesys for your POS server"
+          }
+        }
+      }
+    }
+  },
+  "description": "Sap Integration west ELM brands",
+  "constants": {},
+  "name": "SAP RBL Integration",
+  "meta": [
+    {
+      "public": true,
+      "_id": "5ee3e246129be17ce0b59ef4",
+      "name": "price_level",
+      "value": "store"
+    }
+  ],
+  "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1589868232/addsale/platform/integrations/icon/z3kj9p8nidx4zzmdutdu.svg",
+  "owner": "5e60e43dcd08cf01069eb23e",
+  "created_at": "2020-05-19T06:03:58.757Z",
+  "modified_at": "2020-06-15T12:00:42.598Z",
+  "token": "qk60vXqk-",
+  "secret": "Gp0dYInpUV",
+  "__v": 13,
+  "description_html": ""
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24842,6 +40969,124 @@ Success
 [GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "validators": {
+        "company": {
+          "json_schema": [
+            {
+              "display": "Host",
+              "key": "host",
+              "type": "text",
+              "tooltip": "Enter host address"
+            }
+          ],
+          "browser_script": ""
+        },
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
+      },
+      "description": "awesome integration",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e56089f4265cf2846d1e58c",
+      "name": "x0-1",
+      "meta": [
+        {
+          "public": true,
+          "_id": "5e56089f4265cf81e1d1e58e",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:56:47.214Z",
+      "modified_at": "2021-03-02T12:29:03.554Z",
+      "token": "fKoHRW5H",
+      "secret": "d1E85CTmf",
+      "__v": 12
+    },
+    {
+      "validators": {
+        "company": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
+      },
+      "description": "jabardast",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e5608bf4265cf7198d1e58f",
+      "name": "x0-2",
+      "meta": [
+        {
+          "public": false,
+          "_id": "5e5608bf4265cf813fd1e590",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:57:19.875Z",
+      "modified_at": "2021-02-15T05:23:55.962Z",
+      "token": "3h3_mnzp",
+      "secret": "dgGHrIlFG",
+      "__v": 7
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 50,
+    "item_total": 24,
+    "has_next": false
+  }
+}
+```
+</details>
 
 
 
@@ -24904,6 +41149,124 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "validators": {
+        "company": {
+          "json_schema": [
+            {
+              "display": "Host",
+              "key": "host",
+              "type": "text",
+              "tooltip": "Enter host address"
+            }
+          ],
+          "browser_script": ""
+        },
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
+      },
+      "description": "awesome integration",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e56089f4265cf2846d1e58c",
+      "name": "x0-1",
+      "meta": [
+        {
+          "public": true,
+          "_id": "5e56089f4265cf81e1d1e58e",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:56:47.214Z",
+      "modified_at": "2021-03-02T12:29:03.554Z",
+      "token": "fKoHRW5H",
+      "secret": "d1E85CTmf",
+      "__v": 12
+    },
+    {
+      "validators": {
+        "company": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
+      },
+      "description": "jabardast",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e5608bf4265cf7198d1e58f",
+      "name": "x0-2",
+      "meta": [
+        {
+          "public": false,
+          "_id": "5e5608bf4265cf813fd1e590",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:57:19.875Z",
+      "modified_at": "2021-02-15T05:23:55.962Z",
+      "token": "3h3_mnzp",
+      "secret": "dgGHrIlFG",
+      "__v": 7
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 50,
+    "item_total": 24,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -24958,6 +41321,38 @@ Success
 [IntegrationConfigResponse](#IntegrationConfigResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "opted": false,
+      "permissions": [],
+      "last_patch": [],
+      "_id": "5ec377f2848a0073feacb31b",
+      "integration": "5ec376ce848a005189acb312",
+      "level": "store",
+      "uid": 1,
+      "meta": [],
+      "token": "1RuGX0Fyp",
+      "created_at": "2020-05-19T06:08:50.199Z",
+      "modified_at": "2020-08-17T07:54:01.809Z",
+      "__v": 14,
+      "data": {
+        "location_id": "09876",
+        "ip_address": "1.2.3.4"
+      }
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -25017,6 +41412,34 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25072,6 +41495,34 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25117,6 +41568,34 @@ Success
 [BrandsByCompanyResponse](#BrandsByCompanyResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "brands": [
+    {
+      "name": "5th Avenue",
+      "value": 476,
+      "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
+      "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
+      "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
+    },
+    {
+      "name": "Abhay",
+      "value": 47,
+      "brand_logo_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/resize-h:200,w:0/9fG6jZUJV-brand-Slamay.png",
+      "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/cpApcg_insta_01.jpg034422ca-b739-4a30-ba9c-87ca32e8c2ef/cpApcg_insta_01.jpg",
+      "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/mtaSMv_insta_01.jpga088b881-886d-4b5a-b82f-139bd2aa3f35/mtaSMv_insta_01.jpg"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -25175,6 +41654,39 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "company_name": "RELIANCE RETAIL LTD",
+      "company_id": 1
+    },
+    {
+      "company_name": "SARASUOLE PRIVATE LIMITED",
+      "company_id": 3
+    },
+    {
+      "company_name": "Lloyd Palek",
+      "company_id": 4
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 200,
+    "item_total": 171,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25225,6 +41737,78 @@ Success
 [StoreByBrandsResponse](#StoreByBrandsResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "store_name": "RRL01",
+      "store_id": 1,
+      "store_type": "warehouse",
+      "store_code": "WH_8513",
+      "store_address": {
+        "state": "MAHARASHTRA",
+        "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            72.8691788,
+            19.1174114
+          ]
+        },
+        "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+        "pincode": 400059,
+        "country": "INDIA",
+        "city": "MUMBAI"
+      },
+      "company": {
+        "uid": 1,
+        "name": "RELIANCE RETAIL LTD"
+      }
+    },
+    {
+      "store_name": "RUOSH WAREHOUSE",
+      "store_id": 2,
+      "store_type": "warehouse",
+      "store_code": "RUOSH43",
+      "store_address": {
+        "state": "MAHARASHTRA",
+        "address1": "RAUNAK CITY SECTOR 4 D10, SAPAD GAON",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            73.121952,
+            19.2645048
+          ]
+        },
+        "address2": "SAPAD GAON, KHADAKPADA, ",
+        "pincode": 421301,
+        "country": "INDIA",
+        "city": "THANE",
+        "landmark": "near taj"
+      },
+      "company": {
+        "uid": 3,
+        "name": "SARASUOLE PRIVATE LIMITED"
+      }
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 200,
+    "item_total": 762,
+    "has_next": true
+  }
+}
+```
+</details>
 
 
 
@@ -25281,6 +41865,60 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "intent 2",
+      "description": "",
+      "_id": "5f030880f019afd636889afc",
+      "domain": "intent.hostx0.de",
+      "company": {
+        "uid": 94,
+        "name": "DummyImran"
+      },
+      "opt_type": "store"
+    },
+    {
+      "name": "new application imran",
+      "description": "",
+      "_id": "5f03f5d17692029e2d1a50a5",
+      "domain": "imranstore.hostx0.de",
+      "company": {
+        "uid": 94,
+        "name": "DummyImran"
+      },
+      "opt_type": "store"
+    },
+    {
+      "name": "helo",
+      "description": "",
+      "_id": "5f03f63b769202170c1a50a9",
+      "domain": "helo.hostx0.de",
+      "company": {
+        "uid": 7,
+        "name": "Zack Burgdorf"
+      },
+      "opt_type": "store"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 10,
+    "item_total": 20,
+    "has_next": true
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25326,6 +41964,64 @@ Success
 [OptedApplicationResponse](#OptedApplicationResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "name": "intent 2",
+  "description": "",
+  "_id": "5f030880f019afd636889afc",
+  "domain": "intent.hostx0.de",
+  "company": {
+    "uid": 94,
+    "name": "DummyImran"
+  },
+  "opted_inventory": {
+    "opt_type": {
+      "key": "store",
+      "display": "Store"
+    },
+    "items": [
+      {
+        "name": "RRL01",
+        "id": 1,
+        "store_code": "WH_8513",
+        "_id": "5ec2c0b168fc2800017112f5",
+        "modified_on": "2020-09-09T04:25:55.843Z",
+        "uid": 1,
+        "address": {
+          "state": "MAHARASHTRA",
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "lat_long": {
+            "type": "Point",
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ]
+          },
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "pincode": 400059,
+          "country": "INDIA",
+          "city": "MUMBAI"
+        },
+        "display_name": "RRL01",
+        "store_type": "warehouse",
+        "company_id": 1
+      }
+    ]
+  },
+  "opt_out_inventory": {
+    "store": [],
+    "company": []
+  }
+}
+```
+</details>
 
 
 
@@ -25377,6 +42073,19 @@ Success
 [SuccessMessageResponse](#SuccessMessageResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Updated opt out data"
+}
+```
+</details>
 
 
 
@@ -25458,10 +42167,15 @@ Coupon List for sent page_size and page_no
 Coupon List for sent page_size and page_no
 
 
-*Examples:*
 
 
-Coupon list for sent filter and page size
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Coupon list for sent filter and page size</i></summary>
+
 ```json
 {
   "value": {
@@ -25511,6 +42225,9 @@ Coupon list for sent filter and page size
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -25566,6 +42283,20 @@ Coupon Created successfully
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Coupon Created"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25614,6 +42345,157 @@ Coupon object for sent `id`
 [CouponUpdate](#CouponUpdate)
 
 Coupon object for sent `id`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5e1d9bec6d6b7e000146c840",
+  "validation": {
+    "anonymous": true,
+    "app_id": [
+      "5cd3db5e9d692cfe5302a7ba"
+    ],
+    "user_registered_after": null
+  },
+  "rule": [
+    {
+      "key": 1,
+      "max": 1500,
+      "min": 3000,
+      "value": 50
+    }
+  ],
+  "display_meta": {
+    "title": "percent50 title",
+    "description": "percent50 description",
+    "auto": {
+      "title": "",
+      "subtitle": ""
+    },
+    "subtitle": "percent50 subtitle",
+    "remove": {
+      "title": "",
+      "subtitle": ""
+    },
+    "apply": {
+      "title": "percen50 mt",
+      "subtitle": "percen50 ms"
+    }
+  },
+  "date_meta": {
+    "modified_on": "2020-02-04T14:27:00.577000+00:00",
+    "created_on": "2020-01-14T10:46:04.474000+00:00"
+  },
+  "action": {
+    "action_date": null,
+    "txn_mode": "coupon"
+  },
+  "identifiers": {
+    "category_id": [
+      465,
+      192,
+      133,
+      134,
+      150,
+      151,
+      155,
+      193,
+      157,
+      191,
+      154,
+      152,
+      417,
+      168,
+      416,
+      167,
+      166,
+      162,
+      161,
+      163,
+      165,
+      160
+    ],
+    "user_id": [],
+    "store_id": [],
+    "company_id": []
+  },
+  "author": {
+    "modified_by": "23109086",
+    "created_by": "23206328"
+  },
+  "_schedule": {
+    "next_schedule": [
+      {
+        "start": "2020-01-14T10:45:03.600000+00:00",
+        "end": "2020-01-16T10:45:03+00:00"
+      }
+    ],
+    "duration": null,
+    "start": "2020-01-14T10:45:03.600000+00:00",
+    "end": "2020-01-16T10:45:03+00:00",
+    "cron": ""
+  },
+  "state": {
+    "is_public": true,
+    "is_display": true,
+    "is_archived": false
+  },
+  "ownership": {
+    "payable_category": "seller",
+    "payable_by": ""
+  },
+  "validity": {
+    "priority": 0
+  },
+  "code": "percent50",
+  "rule_definition": {
+    "calculate_on": "esp",
+    "value_type": "percentage",
+    "is_exact": false,
+    "type": "percentage",
+    "scope": [
+      "category_id"
+    ],
+    "auto_apply": false,
+    "applicable_on": "quantity",
+    "currency_code": "INR"
+  },
+  "restrictions": {
+    "price_range": {
+      "max": -1,
+      "min": -1
+    },
+    "uses": {
+      "remaining": {
+        "app": -1,
+        "user": -1,
+        "total": -1
+      },
+      "maximum": {
+        "app": -1,
+        "user": -1,
+        "total": -1
+      }
+    },
+    "post_order": {
+      "cancellation_allowed": true,
+      "return_allowed": true
+    },
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ]
+  },
+  "type_slug": "percentage_quantity_percentage"
+}
+```
+</details>
 
 
 
@@ -25672,6 +42554,20 @@ Coupon updated successfully
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Coupon Updated"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25724,10 +42620,15 @@ Coupon updated successfully
 Coupon updated successfully
 
 
-*Examples:*
 
 
-Archive or Unarchive coupon
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Archive or Unarchive coupon</i></summary>
+
 ```json
 {
   "value": {
@@ -25736,8 +42637,11 @@ Archive or Unarchive coupon
   }
 }
 ```
+</details>
 
-Coupon schedule updated successfully
+<details>
+<summary><i>&nbsp; Coupon schedule updated successfully</i></summary>
+
 ```json
 {
   "value": {
@@ -25746,6 +42650,9 @@ Coupon schedule updated successfully
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -25801,6 +42708,291 @@ Cart details with breakup
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "quantity": 1,
+      "message": "",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 803140,
+        "name": "Green Solid T-Shirt",
+        "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
+        "brand": {
+          "uid": 44,
+          "name": "celio"
+        },
+        "categories": [
+          {
+            "uid": 192,
+            "name": "T-Shirts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
+          "query": {
+            "product_slug": [
+              "celio-green-solid-t-shirt-803140-dd9e2c"
+            ]
+          }
+        }
+      },
+      "article": {
+        "type": "article",
+        "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
+        "size": "S",
+        "seller": {
+          "uid": 25,
+          "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
+        },
+        "store": {
+          "uid": 1486,
+          "name": "Forum Mall"
+        },
+        "quantity": 1,
+        "price": {
+          "base": {
+            "marked": 1299,
+            "effective": 649.5,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1299,
+            "effective": 649.5,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "key": "803140_S",
+      "discount": "50% OFF",
+      "price": {
+        "base": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 649.5,
+          "selling": 649.5,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 649.5,
+          "selling": 649.5,
+          "currency_code": "INR"
+        }
+      },
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "M",
+          "S"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true,
+        "available_sizes": [
+          {
+            "is_available": true,
+            "display": "L",
+            "value": "L"
+          },
+          {
+            "is_available": true,
+            "display": "XXL",
+            "value": "XXL"
+          },
+          {
+            "is_available": true,
+            "display": "XL",
+            "value": "XL"
+          },
+          {
+            "is_available": true,
+            "display": "M",
+            "value": "M"
+          },
+          {
+            "is_available": true,
+            "display": "S",
+            "value": "S"
+          },
+          {
+            "is_available": false,
+            "display": "30",
+            "value": "30"
+          }
+        ]
+      },
+      "bulk_offer": {}
+    },
+    {
+      "quantity": 1,
+      "message": "Out of stock. Please remove item",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 803140,
+        "name": "Green Solid T-Shirt",
+        "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
+        "brand": {
+          "uid": 44,
+          "name": "celio"
+        },
+        "categories": [
+          {
+            "uid": 192,
+            "name": "T-Shirts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
+          "query": {
+            "product_slug": [
+              "celio-green-solid-t-shirt-803140-dd9e2c"
+            ]
+          }
+        }
+      },
+      "article": {},
+      "key": "803140_S",
+      "discount": "",
+      "price": {
+        "base": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 1299,
+          "selling": 1299,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 1299,
+          "selling": 1299,
+          "currency_code": "INR"
+        }
+      },
+      "availability": {
+        "sizes": [
+          "L",
+          "XXL",
+          "XL",
+          "M",
+          "S"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": true,
+        "deliverable": false,
+        "is_valid": false,
+        "available_sizes": [
+          {
+            "is_available": true,
+            "display": "L",
+            "value": "L"
+          },
+          {
+            "is_available": true,
+            "display": "XXL",
+            "value": "XXL"
+          },
+          {
+            "is_available": true,
+            "display": "XL",
+            "value": "XL"
+          },
+          {
+            "is_available": true,
+            "display": "M",
+            "value": "M"
+          },
+          {
+            "is_available": true,
+            "display": "S",
+            "value": "S"
+          },
+          {
+            "is_available": false,
+            "display": "30",
+            "value": "30"
+          }
+        ]
+      },
+      "bulk_offer": {}
+    }
+  ],
+  "is_valid": false,
+  "breakup_values": {
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2598,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -649,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 1949,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 1949,
+        "currency_code": "INR"
+      }
+    ],
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -649.5,
+      "fynd_cash": 0,
+      "gst_charges": 170.11,
+      "mrp_total": 2598,
+      "subtotal": 1948.5,
+      "total": 1948.5,
+      "vog": 1778.39,
+      "you_saved": 0
+    }
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -25850,10 +43042,15 @@ Cart details with pincode validity information at item level
 Cart details with pincode validity information at item level
 
 
-*Examples:*
 
 
-Valid pincode
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Valid pincode</i></summary>
+
 ```json
 {
   "value": {
@@ -26121,8 +43318,11 @@ Valid pincode
   }
 }
 ```
+</details>
 
-Invalid pincode
+<details>
+<summary><i>&nbsp; Invalid pincode</i></summary>
+
 ```json
 {
   "value": {
@@ -26378,6 +43578,9 @@ Invalid pincode
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -26429,6 +43632,22 @@ Checkout cart and create Fynd order id
 [OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
 
 Checkout cart and create Fynd order id
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "order_id": "FY5E182A9D0A5E405446",
+  "message": "Order initiation completed",
+  "order_ref_id": null
+}
+```
+</details>
 
 
 
@@ -26494,6 +43713,17 @@ ok
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -26541,6 +43771,17 @@ ok
 [Giveaway](#Giveaway)
 
 ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -26593,6 +43834,17 @@ ok
 [Giveaway](#Giveaway)
 
 ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -26651,6 +43903,17 @@ ok
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -26696,6 +43959,17 @@ ok
 [Array<Offer>](#Array<Offer>)
 
 ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -26755,6 +44029,17 @@ ok
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -26805,6 +44090,17 @@ ok
 [Offer](#Offer)
 
 ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -26861,6 +44157,17 @@ ok
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -26911,6 +44218,17 @@ Success
 [AppUser](#AppUser)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -26977,6 +44295,17 @@ ok
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -27028,6 +44357,25 @@ Success
 [StatsGroups](#StatsGroups)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "groups": [
+    {
+      "key": "general",
+      "url": "/v1/group/general",
+      "title": "General"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -27084,6 +44432,28 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "title": "Catalogue & Inventory",
+  "components": [
+    {
+      "key": "catalogue-basic",
+      "title": "Catalogue Basic",
+      "type": "text-blocks",
+      "url": "/stats/component/catalogue-basic",
+      "filters": {}
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -27132,6 +44502,17 @@ Success
 [string](#string)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -27188,6 +44569,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -27236,6 +44628,64 @@ Success
 [StatsRes](#StatsRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "key": "article-distribution",
+  "title": "Inventory Distribution",
+  "type": "chart.pie",
+  "data": {
+    "raw": [
+      {
+        "name": "Fatimah Logero",
+        "available_articles": 8,
+        "total_articles": 9,
+        "available_sizes": 3,
+        "total_sizes": 3,
+        "article_freshness": 9,
+        "count": 0,
+        "percent": "NaN"
+      }
+    ],
+    "type": "pie",
+    "data": {
+      "datasets": [
+        {
+          "label": "# of products",
+          "backgroundColor": [
+            "#7986CB",
+            "#3F51B5"
+          ],
+          "data": [
+            8,
+            1
+          ],
+          "percent": [
+            "88.89",
+            "11.11"
+          ]
+        }
+      ],
+      "labels": [
+        "Available Articles",
+        "Articles Out Of Stock"
+      ]
+    },
+    "options": {
+      "responsive": true,
+      "display": false
+    },
+    "cache_hit": false
+  }
+}
+```
+</details>
 
 
 
@@ -27301,6 +44751,37 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": {
+    "properties_cart_id": 11517,
+    "context_traits_first_name": "Ahmed",
+    "context_traits_last_name": "Sakri",
+    "context_traits_phone_number": "8433859662",
+    "context_traits_email": "ahmedsakri@gofynd.com",
+    "context_app_application_id": "000000000000000000000001",
+    "properties_breakup_values_raw_total": 4020,
+    "received_at": {
+      "value": "2021-03-09T05:09:06.840Z"
+    }
+  },
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_total": 15
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -27352,6 +44833,17 @@ Success
 [string](#string)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -27408,6 +44900,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -27455,6 +44958,20 @@ Success
 [ExportJobRes](#ExportJobRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "queued",
+  "job_id": "6047c67060ad8241a948ee42"
+}
+```
+</details>
 
 
 
@@ -27507,6 +45024,21 @@ Success
 [ExportJobStatusRes](#ExportJobStatusRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "download_url": "https://marketplace-sync-logs-production.s3.ap-south-1.amazonaws.com/inv-log-37-flipkartAssured-Full_Inventory_Update.csv",
+  "status": "success",
+  "job_id": "6047c67060ad8241a948ee42"
+}
+```
+</details>
 
 
 
@@ -27568,6 +45100,35 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "start_time_iso": "2021-04-06T19:00:17.013Z",
+      "end_time_iso": "2021-04-06T19:00:17.015Z",
+      "event_type": "FULL_PRICE_UPDATE",
+      "trace_id": "marketplaces.aa18fa48-b3e8-4e1e-8396-69488e254ace",
+      "count": 17,
+      "status": "failed"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_total": 88
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -27621,6 +45182,41 @@ Success
 [SearchLogRes](#SearchLogRes)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_id": "606cafc19c2c466b24098437",
+      "status": "failed",
+      "event_type": "FULL_PRICE_UPDATE",
+      "marketplace_name": "myntra",
+      "event": "APPLICATION_FULL_INVENTORY",
+      "trace_id": "marketplaces.aa18fa48-b3e8-4e1e-8396-69488e254ace",
+      "company_id": 28,
+      "brand_id": 44,
+      "store_id": 57,
+      "item_id": 882857,
+      "article_id": "57_sku_102831159-TBUCKBEIGE_301066XL",
+      "seller_identifier": "SKU_102831159-TBUCKBEIGE_392826XL"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_total": 88
+  }
+}
+```
+</details>
 
 
 
@@ -27704,6 +45300,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -27748,6 +45355,17 @@ Success
 [DiscountJob](#DiscountJob)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -27797,6 +45415,17 @@ Success
 [DiscountJob](#DiscountJob)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -27852,6 +45481,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -27899,6 +45539,17 @@ Success
 [FileJobResponse](#FileJobResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -27954,6 +45605,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -27999,6 +45661,17 @@ Success
 [FileJobResponse](#FileJobResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -28052,6 +45725,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -28101,6 +45785,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -28146,6 +45841,17 @@ Success
 [CancelJobResponse](#CancelJobResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -28210,6 +45916,26 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "607406b8a472cd527303692f",
+  "attached_path": "test",
+  "proxy_url": "https://www.abc.com",
+  "company_id": "1",
+  "application_id": "000000000000000000000004",
+  "extension_id": "6073280be899ea5b1150fd9d",
+  "created_at": "2021-04-12T08:37:12.077Z",
+  "modified_at": "2021-04-12T08:37:12.077Z"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -28261,6 +45987,29 @@ Success
 [RemoveProxyResponse](#RemoveProxyResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Proxy URL deleted",
+  "data": {
+    "_id": "607406b8a472cd527303692f",
+    "attached_path": "test",
+    "proxy_url": "https://www.abc.com",
+    "company_id": "1",
+    "application_id": "000000000000000000000004",
+    "extension_id": "6073280be899ea5b1150fd9d",
+    "created_at": "2021-04-12T08:37:12.077Z",
+    "modified_at": "2021-04-12T08:37:12.077Z"
+  }
+}
+```
+</details>
 
 
 
@@ -28323,6 +46072,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -28371,6 +46131,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -28415,6 +46186,17 @@ Success
 [SubscriberConfig](#SubscriberConfig)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -28468,6 +46250,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -28514,6 +46307,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -28526,2246 +46330,6 @@ Success
 
 
 ### Schemas
-
-
- 
- 
- #### [Meta](#Meta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
-
----
-
-
- 
- 
- #### [Media](#Media)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | url | string |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingActionPage](#ProductListingActionPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | params | string |  no  |  |
- | type | string |  no  |  |
- | query | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingAction](#ProductListingAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | page | [ProductListingActionPage](#ProductListingActionPage) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductBrand](#ProductBrand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [Price](#Price)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_symbol | string |  no  |  |
- | currency_code | string |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | [Price](#Price) |  no  |  |
- | marked | [Price](#Price) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductDetailAttribute](#ProductDetailAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
- | key | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductDetail](#ProductDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | image_nature | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | uid | number |  no  |  |
- | rating | number |  no  |  |
- | item_type | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | name | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | type | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | color | string |  no  |  |
- | similars | [string] |  no  |  |
- | attributes | string |  no  |  |
- | highlights | [string] |  no  |  |
- | item_code | string |  no  |  |
- | product_online_date | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | short_description | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | description | string |  no  |  |
- | discount | string |  no  |  |
- | slug | string |  yes  |  |
- | rating_count | number |  no  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSizeStores](#ProductSizeStores)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
-
----
-
-
- 
- 
- #### [ColumnHeader](#ColumnHeader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | convertable | boolean |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [ColumnHeaders](#ColumnHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChartValues](#SizeChartValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_2 | string |  no  |  |
- | col_3 | string |  no  |  |
- | col_4 | string |  no  |  |
- | col_5 | string |  no  |  |
- | col_6 | string |  no  |  |
- | col_1 | string |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChart](#SizeChart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | title | string |  no  |  |
- | size_tip | string |  no  |  |
- | image | string |  no  |  |
- | description | string |  no  |  |
- | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
- | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSize](#ProductSize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_available | boolean |  no  |  |
- | display | string |  no  |  |
- | value | string |  no  |  |
- | quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSizes](#ProductSizes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
- | size_chart | [SizeChart](#SizeChart) |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | sellable | boolean |  no  |  |
- | discount | string |  no  |  |
- | sizes | [[ProductSize](#ProductSize)] |  no  |  |
-
----
-
-
- 
- 
- #### [Details](#Details)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
- | key | string |  no  |  |
-
----
-
-
- 
- 
- #### [MarketPlaceSttributes](#MarketPlaceSttributes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | details | [[Details](#Details)] |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSetDistributionSize](#ProductSetDistributionSize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pieces | number |  no  |  |
- | size | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSetDistribution](#ProductSetDistribution)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sizes | [[ProductSetDistributionSize](#ProductSetDistributionSize)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSet](#ProductSet)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | size_distribution | [ProductSetDistribution](#ProductSetDistribution) |  no  |  |
-
----
-
-
- 
- 
- #### [Seller](#Seller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReturnConfig](#ReturnConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | time | number |  no  |  |
- | returnable | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ProductStockPrice](#ProductStockPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | number |  no  |  |
- | currency | string |  no  |  |
- | marked | number |  no  |  |
-
----
-
-
- 
- 
- #### [Store](#Store)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [StrategyWiseListing](#StrategyWiseListing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | distance | number |  no  |  |
- | quantity | number |  no  |  |
- | tat | number |  no  |  |
- | pincode | number |  no  |  |
-
----
-
-
- 
- 
- #### [ArticleAssignment](#ArticleAssignment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | strategy | string |  no  |  |
- | level | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSizePriceResponse](#ProductSizePriceResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount | string |  no  |  |
- | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
- | article_id | string |  no  |  |
- | set | [ProductSet](#ProductSet) |  no  |  |
- | seller | [Seller](#Seller) |  no  |  |
- | special_badge | string |  no  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | seller_count | number |  no  |  |
- | item_type | string |  no  |  |
- | quantity | number |  no  |  |
- | store | [Store](#Store) |  no  |  |
- | price_per_piece | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
- | long_lat | [number] |  no  |  |
- | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
- | pincode | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSizeSellerFilter](#ProductSizeSellerFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSizeSellersResponse](#ProductSizeSellersResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
- | page | [Page](#Page) |  yes  |  |
- | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [AttributeDetail](#AttributeDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | display | string |  no  |  |
- | key | string |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
- #### [AttributeMetadata](#AttributeMetadata)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | details | [[AttributeDetail](#AttributeDetail)] |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductsComparisonResponse](#ProductsComparisonResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductCompareResponse](#ProductCompareResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
- | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductFrequentlyComparedSimilarResponse](#ProductFrequentlyComparedSimilarResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | similars | [ProductCompareResponse](#ProductCompareResponse) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSimilarItem](#ProductSimilarItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [SimilarProductByTypeResponse](#SimilarProductByTypeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | similars | [ProductSimilarItem](#ProductSimilarItem) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductVariantItemResponse](#ProductVariantItemResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_available | boolean |  no  |  |
- | uid | number |  no  |  |
- | color_name | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | value | string |  no  |  |
- | slug | string |  no  |  |
- | color | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductVariantResponse](#ProductVariantResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | header | string |  no  |  |
- | display_type | string |  no  |  |
- | key | string |  no  |  |
- | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductVariantsResponse](#ProductVariantsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | variants | [[ProductVariantResponse](#ProductVariantResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [CompanyDetail](#CompanyDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | id | number |  no  |  |
-
----
-
-
- 
- 
- #### [StoreDetail](#StoreDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | city | string |  no  |  |
- | code | string |  no  |  |
- | name | string |  no  |  |
- | id | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductStockStatusItem](#ProductStockStatusItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | string |  no  |  |
- | uid | string |  no  |  |
- | company | [CompanyDetail](#CompanyDetail) |  no  |  |
- | item_id | number |  no  |  |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | quantity | number |  no  |  |
- | store | [StoreDetail](#StoreDetail) |  no  |  |
- | seller | [Seller](#Seller) |  no  |  |
- | identifier | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductStockStatusResponse](#ProductStockStatusResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductStockPolling](#ProductStockPolling)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
- | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSortOn](#ProductSortOn)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_format | string |  no  |  |
- | selected_min | number |  no  |  |
- | selected_max | number |  no  |  |
- | count | number |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
- | query_format | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | currency_code | string |  no  |  |
- | display | string |  yes  |  |
- | value | string |  no  |  |
- | is_selected | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersKey](#ProductFiltersKey)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | kind | string |  no  |  |
- | display | string |  yes  |  |
- | name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductFilters](#ProductFilters)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductListingDetail](#ProductListingDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | image_nature | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | uid | number |  no  |  |
- | rating | number |  no  |  |
- | item_type | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | name | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | type | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | color | string |  no  |  |
- | similars | [string] |  no  |  |
- | attributes | string |  no  |  |
- | highlights | [string] |  no  |  |
- | item_code | string |  no  |  |
- | product_online_date | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | short_description | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | sellable | boolean |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | description | string |  no  |  |
- | discount | string |  no  |  |
- | slug | string |  yes  |  |
- | rating_count | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingResponse](#ProductListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
- | page | [Page](#Page) |  yes  |  |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
-
----
-
-
- 
- 
- #### [ImageUrls](#ImageUrls)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | portrait | [Media](#Media) |  no  |  |
- | landscape | [Media](#Media) |  no  |  |
-
----
-
-
- 
- 
- #### [BrandItem](#BrandItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | departments | [string] |  no  |  |
- | discount | string |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [BrandListingResponse](#BrandListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
- | items | [[BrandItem](#BrandItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [BrandDetailResponse](#BrandDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [DepartmentIdentifier](#DepartmentIdentifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | slug | string |  no  |  |
-
----
-
-
- 
- 
- #### [ThirdLevelChild](#ThirdLevelChild)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | name | string |  no  |  |
- | childs | [string] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | _custom_json | string |  no  |  |
-
----
-
-
- 
- 
- #### [SecondLevelChild](#SecondLevelChild)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | name | string |  no  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | _custom_json | string |  no  |  |
-
----
-
-
- 
- 
- #### [Child](#Child)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | name | string |  no  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | _custom_json | string |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryItems](#CategoryItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [DepartmentCategoryTree](#DepartmentCategoryTree)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | department | string |  no  |  |
- | items | [[CategoryItems](#CategoryItems)] |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryListingResponse](#CategoryListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
- | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryMetaResponse](#CategoryMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [HomeListingResponse](#HomeListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
- | message | string |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
-
----
-
-
- 
- 
- #### [Department](#Department)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
- | priority_order | number |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [DepartmentResponse](#DepartmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Department](#Department)] |  no  |  |
-
----
-
-
- 
- 
- #### [AutocompleteItem](#AutocompleteItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | type | string |  no  |  |
- | display | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
-
----
-
-
- 
- 
- #### [AutoCompleteResponse](#AutoCompleteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AutocompleteItem](#AutocompleteItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterTag](#CollectionListingFilterTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterType](#CollectionListingFilterType)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilter](#CollectionListingFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
- | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
-
----
-
-
- 
- 
- #### [GetCollectionDetailNest](#GetCollectionDetailNest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | badge | string |  no  |  |
- | is_active | boolean |  no  |  |
- | query | string |  no  |  |
- | meta | string |  no  |  |
- | uid | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | tag | [string] |  no  |  |
- | name | string |  no  |  |
- | cron | string |  no  |  |
- | type | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | _schedule | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | description | string |  no  |  |
- | app_id | string |  no  |  |
- | slug | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetCollectionListingResponse](#GetCollectionListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
- | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
- | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionDetailResponse](#CollectionDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _schedule | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | query | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | type | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | badge | string |  no  |  |
- | is_active | boolean |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | tag | [string] |  no  |  |
- | meta | string |  no  |  |
- | app_id | string |  no  |  |
- | slug | string |  no  |  |
- | cron | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetFollowListingResponse](#GetFollowListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  yes  |  |
-
----
-
-
- 
- 
- #### [FollowPostResponse](#FollowPostResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | id | string |  yes  |  |
-
----
-
-
- 
- 
- #### [FollowerCountResponse](#FollowerCountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
-
----
-
-
- 
- 
- #### [FollowIdsData](#FollowIdsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | collections | [number] |  no  |  |
- | brands | [number] |  no  |  |
- | products | [number] |  no  |  |
-
----
-
-
- 
- 
- #### [FollowIdsResponse](#FollowIdsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [FollowIdsData](#FollowIdsData) |  no  |  |
-
----
-
-
- 
- 
- #### [LatLong](#LatLong)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coordinates | [number] |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [Store1](#Store1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store_code | string |  no  |  |
- | uid | number |  no  |  |
- | state | string |  no  |  |
- | store_email | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
- | city | string |  no  |  |
- | name | string |  no  |  |
- | lat_long | [LatLong](#LatLong) |  no  |  |
- | address | string |  no  |  |
-
----
-
-
- 
- 
- #### [StoreListingResponse](#StoreListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
- | items | [[Store1](#Store1)] |  yes  |  |
-
----
-
-
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | display | string |  no  |  |
- | key | string |  no  |  |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | message | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subtotal | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | total | number |  no  |  |
- | gst_charges | number |  no  |  |
- | you_saved | number |  no  |  |
- | vog | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | discount | number |  no  |  |
- | cod_charge | number |  no  |  |
- | mrp_total | string |  no  |  |
- | delivery_charge | number |  no  |  |
- | coupon | number |  no  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | type | string |  no  |  |
- | message | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | code | string |  no  |  |
- | uid | string |  no  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | applicable | number |  no  |  |
- | total | number |  no  |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | symbol | string |  no  |  |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | add_on | number |  no  |  |
- | marked | number |  no  |  |
- | currency_code | string |  no  |  |
- | selling | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  | Product Category Id |
-
----
-
-
- 
- 
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | secure_url | string |  no  |  |
- | aspect_ratio | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartProduct](#CartProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | name | string |  no  |  |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marked | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
- | currency_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice) |  no  |  |
- | converted | [BasePrice](#BasePrice) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | extra_meta | string |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | size | string |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | quantity | number |  no  |  |
- | uid | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | deliverable | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | is_valid | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | other_store_quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [CartProductInfo](#CartProductInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | is_set | boolean |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | bulk_offer | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | key | string |  no  |  |
- | coupon_message | string |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | quantity | number |  no  |  |
- | discount | string |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [PromiseTimestamp](#PromiseTimestamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [PromiseFormatted](#PromiseFormatted)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | string |  no  |  |
- | min | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
- | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentSelectionLock](#PaymentSelectionLock)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_identifier | string |  no  |  |
- | default_options | string |  no  |  |
- | enabled | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CartDetailResponse](#CartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | coupon_text | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | comment | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | is_valid | boolean |  no  |  |
- | last_modified | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | id | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [AddProductCart](#AddProductCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_size | string |  no  |  |
- | extra_meta | string |  no  |  |
- | display | string |  no  |  |
- | article_id | string |  no  |  |
- | seller_id | number |  no  |  |
- | pos | boolean |  no  |  |
- | store_id | number |  no  |  |
- | article_assignment | string |  no  |  |
- | item_id | number |  no  |  |
- | quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [AddCartRequest](#AddCartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AddProductCart](#AddProductCart)] |  no  |  |
-
----
-
-
- 
- 
- #### [AddCartDetailResponse](#AddCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateProductCart](#UpdateProductCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_index | number |  no  |  |
- | item_size | string |  no  |  |
- | extra_meta | string |  no  |  |
- | article_id | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | item_id | number |  no  |  |
- | quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCartRequest](#UpdateCartRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
- | operation | string |  yes  |  |
-
----
-
-
- 
- 
- #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartItemCountResponse](#CartItemCountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_cart_items_count | number |  no  | Item count present in cart |
-
----
-
-
- 
- 
- #### [Coupon](#Coupon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_applicable | boolean |  no  |  |
- | sub_title | string |  no  |  |
- | max_discount_value | number |  no  |  |
- | title | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | coupon_code | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | coupon_value | number |  no  |  |
- | expires_on | string |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [PageCoupon](#PageCoupon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | total_item_count | number |  no  |  |
- | has_next | boolean |  no  |  |
- | current | number |  no  |  |
- | has_previous | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [GetCouponResponse](#GetCouponResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
- | page | [PageCoupon](#PageCoupon) |  no  |  |
-
----
-
-
- 
- 
- #### [ApplyCouponRequest](#ApplyCouponRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_code | string |  yes  | Coupon code to be applied |
-
----
-
-
- 
- 
- #### [OfferSeller](#OfferSeller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  | Seller id |
-
----
-
-
- 
- 
- #### [OfferPrice](#OfferPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bulk_effective | number |  no  | Discounted per unit price for current offer object |
- | marked | number |  no  | Original price of product |
- | currency_code | string |  no  | Currency code for all amounts |
- | currency_symbol | string |  no  | Currency symbol for currency |
- | effective | number |  no  | Current per unit price of product after existing deductions |
-
----
-
-
- 
- 
- #### [OfferItem](#OfferItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | margin | number |  no  | Percentage value of discount |
- | auto_applied | boolean |  no  |  |
- | type | string |  no  | Offer type |
- | total | number |  no  | Total price of offer quantity with discount |
- | price | [OfferPrice](#OfferPrice) |  no  |  |
- | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
- | quantity | number |  no  | Quantity on which offer is applicable |
-
----
-
-
- 
- 
- #### [BulkPriceOffer](#BulkPriceOffer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | seller | [OfferSeller](#OfferSeller) |  no  |  |
- | offers | [[OfferItem](#OfferItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [BulkPriceResponse](#BulkPriceResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[BulkPriceOffer](#BulkPriceOffer)] |  no  | Consist of offers from multiple seller |
-
----
-
-
- 
- 
- #### [RewardPointRequest](#RewardPointRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | points | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [GeoLocation](#GeoLocation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | longitude | number |  no  |  |
- | latitude | number |  no  |  |
-
----
-
-
- 
- 
- #### [Address](#Address)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  no  |  |
- | meta | string |  no  |  |
- | google_map_point | string |  no  |  |
- | email | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | country_code | string |  no  |  |
- | tags | [string] |  no  |  |
- | country | string |  no  |  |
- | area_code_slug | string |  no  |  |
- | city | string |  no  |  |
- | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
- | area_code | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | phone | string |  no  |  |
- | name | string |  no  |  |
- | user_id | string |  no  |  |
- | landmark | string |  no  |  |
- | area | string |  no  |  |
- | state | string |  no  |  |
- | id | string |  no  |  |
- | address_type | string |  no  |  |
- | address | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetAddressesResponse](#GetAddressesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [[Address](#Address)] |  no  |  |
-
----
-
-
- 
- 
- #### [SaveAddressResponse](#SaveAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_default_address | boolean |  no  |  |
- | id | string |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateAddressResponse](#UpdateAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_default_address | boolean |  no  |  |
- | is_updated | boolean |  no  |  |
- | id | string |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [DeleteAddressResponse](#DeleteAddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_deleted | boolean |  no  |  |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [SelectCartAddressRequest](#SelectCartAddressRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_id | string |  no  |  |
- | billing_address_id | string |  no  |  |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCartPaymentRequest](#UpdateCartPaymentRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_id | string |  no  |  |
- | payment_identifier | string |  no  |  |
- | id | string |  no  |  |
- | merchant_code | string |  no  |  |
- | payment_mode | string |  no  |  |
- | aggregator_name | string |  no  |  |
-
----
-
-
- 
- 
- #### [CouponValidity](#CouponValidity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | valid | boolean |  no  |  |
- | title | string |  no  |  |
- | display_message_en | string |  no  |  |
- | code | string |  no  |  |
- | discount | number |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentCouponValidate](#PaymentCouponValidate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
- | success | boolean |  yes  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentResponse](#ShipmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | box_type | string |  no  |  |
- | shipments | number |  no  |  |
- | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | shipment_type | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | dp_options | string |  no  |  |
- | order_type | string |  no  |  |
- | fulfillment_id | number |  no  |  |
- | dp_id | number |  no  |  |
- | fulfillment_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartShipmentsResponse](#CartShipmentsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_text | string |  no  |  |
- | error | boolean |  no  |  |
- | cart_id | number |  no  |  |
- | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | uid | string |  no  |  |
- | message | string |  no  |  |
- | comment | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
- | last_modified | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | id | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
-
----
-
-
- 
- 
- #### [StaffCheckout](#StaffCheckout)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | last_name | string |  yes  |  |
- | user | string |  yes  |  |
- | first_name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CartCheckoutDetailRequest](#CartCheckoutDetailRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_id | string |  no  |  |
- | aggregator | string |  no  |  |
- | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
- | extra_meta | string |  no  |  |
- | fyndstore_emp_id | string |  no  |  |
- | meta | string |  no  |  |
- | delivery_address | string |  no  |  |
- | payment_identifier | string |  no  |  |
- | payment_params | string |  no  |  |
- | billing_address_id | string |  no  |  |
- | merchant_code | string |  no  |  |
- | callback_url | string |  no  |  |
- | payment_auto_confirm | boolean |  no  |  |
- | payment_mode | string |  yes  |  |
- | billing_address | string |  no  |  |
- | ordering_store | number |  no  |  |
-
----
-
-
- 
- 
- #### [CheckCart](#CheckCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | delivery_charges | number |  no  |  |
- | coupon_text | string |  no  |  |
- | order_id | string |  no  |  |
- | cart_id | number |  no  |  |
- | delivery_charge_order_value | number |  no  |  |
- | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | success | boolean |  no  |  |
- | cod_charges | number |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | store_code | string |  no  |  |
- | store_emps | [string] |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | uid | string |  no  |  |
- | message | string |  no  |  |
- | cod_available | boolean |  no  |  |
- | cod_message | string |  no  |  |
- | comment | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | error_message | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | last_modified | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | id | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | user_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartCheckoutResponse](#CartCheckoutResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | order_id | string |  no  |  |
- | data | string |  no  |  |
- | cart | [CheckCart](#CheckCart) |  no  |  |
- | callback_url | string |  no  |  |
- | app_intercept_url | string |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartMetaRequest](#CartMetaRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | comment | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
-
----
-
-
- 
- 
- #### [CartMetaResponse](#CartMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartMetaMissingResponse](#CartMetaMissingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | errors | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [GetShareCartLinkRequest](#GetShareCartLinkRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
- | id | string |  no  | Cart uid for generating sharing |
- | uid | number |  yes  | Cart uid for generating sharing |
-
----
-
-
- 
- 
- #### [GetShareCartLinkResponse](#GetShareCartLinkResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | token | string |  no  | Short url unique id |
- | share_url | string |  no  | Short shareable final url |
-
----
-
-
- 
- 
- #### [SharedCartDetails](#SharedCartDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  | Meta data sent while generating share cart link |
- | token | string |  no  | Short link id |
- | source | string |  no  | Share link device and other source information |
- | user | string |  no  | User details of who generated share link |
- | created_on | string |  no  |  |
-
----
-
-
- 
- 
- #### [SharedCart](#SharedCart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | coupon_text | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | comment | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | is_valid | boolean |  no  |  |
- | last_modified | string |  no  |  |
- | uid | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | id | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | cart_id | number |  no  |  |
- | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [SharedCartResponse](#SharedCartResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart | [SharedCart](#SharedCart) |  no  |  |
- | error | string |  no  |  |
-
----
-
-
 
 
  
@@ -31409,6 +46973,631 @@ Success
  | _id | string |  yes  | Unique identifier for the ticket |
  | updated_at | string |  no  | Time when the ticket was last updated |
  | created_at | string |  no  | Time when the ticket was created |
+
+---
+
+
+
+
+ 
+ 
+ #### [Activity](#Activity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_state | string |  no  |  |
+ | document_id | string |  no  |  |
+ | previous_state | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ActivityDump](#ActivityDump)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity | [Activity](#Activity) |  no  |  |
+ | created_by | [CreatedBy](#CreatedBy) |  no  |  |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | id | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddMediaListRequest](#AddMediaListRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | media_list | [[AddMediaRequest](#AddMediaRequest)] |  no  |  |
+ | ref_id | string |  no  |  |
+ | ref_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddMediaRequest](#AddMediaRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cloud_id | string |  no  |  |
+ | cloud_name | string |  no  |  |
+ | cloud_provider | string |  no  |  |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | media_url | string |  no  |  |
+ | ref_id | string |  no  |  |
+ | ref_type | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | thumbnail_url | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApproveRequest](#ApproveRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | approve | boolean |  no  |  |
+ | entity_type | string |  no  |  |
+ | id | string |  yes  |  |
+ | reason | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Attribute](#Attribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | description | string |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeObject](#AttributeObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string |  yes  |  |
+ | slug | string |  no  |  |
+ | title | string |  no  |  |
+ | type | string |  yes  |  |
+ | value | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedBy](#CreatedBy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CursorGetResponse](#CursorGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DateMeta](#DateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeviceMeta](#DeviceMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_version | string |  no  |  |
+ | platform | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Entity](#Entity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRequest](#EntityRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedbackAttributes](#FeedbackAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Attribute](#Attribute)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedbackError](#FeedbackError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | request_id | string |  no  |  |
+ | stack_trace | string |  no  |  |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedbackState](#FeedbackState)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+ | media | string |  no  | image, video, any |
+ | qna | boolean |  no  |  |
+ | rating | boolean |  no  |  |
+ | review | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetResponse](#GetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetReviewResponse](#GetReviewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | facets | [[ReviewFacet](#ReviewFacet)] |  no  |  |
+ | items | [string] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sort | [[SortMethod](#SortMethod)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InsertResponse](#InsertResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MediaMeta](#MediaMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max_count | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MediaMetaRequest](#MediaMetaRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max_count | number |  yes  |  |
+ | size | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NumberGetResponse](#NumberGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageCursor](#PageCursor)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  yes  |  |
+ | type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PageNumber](#PageNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Rating](#Rating)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | [[Attribute](#Attribute)] |  no  |  |
+ | attributes_slugs | [string] |  no  |  |
+ | ui | [UI](#UI) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RatingRequest](#RatingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | [string] |  yes  |  |
+ | ui | [UI](#UI) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReportAbuseRequest](#ReportAbuseRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | entity_id | string |  yes  |  |
+ | entity_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Review](#Review)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | header | string |  no  |  |
+ | image_meta | [MediaMeta](#MediaMeta) |  no  |  |
+ | title | string |  no  |  |
+ | video_meta | [MediaMeta](#MediaMeta) |  no  |  |
+ | vote_allowed | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReviewFacet](#ReviewFacet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | name | string |  no  |  |
+ | selected | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | type | string |  no  | rating, attributerating |
+
+---
+
+
+ 
+ 
+ #### [ReviewRequest](#ReviewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  yes  |  |
+ | header | string |  yes  |  |
+ | image_meta | [MediaMetaRequest](#MediaMetaRequest) |  yes  |  |
+ | is_vote_allowed | boolean |  yes  |  |
+ | title | string |  yes  |  |
+ | video_meta | [MediaMetaRequest](#MediaMetaRequest) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SaveAttributeRequest](#SaveAttributeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string |  yes  |  |
+ | slug | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SortMethod](#SortMethod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | selected | boolean |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TagMeta](#TagMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | media | [[MediaMeta](#MediaMeta)] |  no  |  |
+ | name | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Template](#Template)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | entity | [Entity](#Entity) |  no  |  |
+ | id | string |  no  |  |
+ | name | string |  no  |  |
+ | rating | [Rating](#Rating) |  no  |  |
+ | review | [Review](#Review) |  no  |  |
+ | state | [FeedbackState](#FeedbackState) |  no  |  |
+ | tags | [[TagMeta](#TagMeta)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateGetResponse](#TemplateGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Template](#Template)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateRequest](#TemplateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  yes  |  |
+ | enable_media_type | string |  no  | image | video | any |
+ | enable_qna | boolean |  no  |  |
+ | enable_rating | boolean |  yes  |  |
+ | enable_review | boolean |  yes  |  |
+ | entity | [EntityRequest](#EntityRequest) |  yes  |  |
+ | rating | [RatingRequest](#RatingRequest) |  yes  |  |
+ | review | [ReviewRequest](#ReviewRequest) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateRequestList](#TemplateRequestList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template_list | [[TemplateRequest](#TemplateRequest)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UI](#UI)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feedback_question | [string] |  no  |  |
+ | icon | [UIIcon](#UIIcon) |  no  |  |
+ | text | [string] |  no  |  |
+ | type | string |  no  | star | images | gifs | smileys |
+
+---
+
+
+ 
+ 
+ #### [UIIcon](#UIIcon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | string |  no  |  |
+ | inactive | string |  no  |  |
+ | selected | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateAttributeRequest](#UpdateAttributeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string |  yes  |  |
+ | slug | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateResponse](#UpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateReviewRequest](#UpdateReviewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | application | string |  no  |  |
+ | approve | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+ | attributes_rating | [[AttributeObject](#AttributeObject)] |  no  |  |
+ | description | string |  no  |  |
+ | device_meta | [DeviceMeta](#DeviceMeta) |  no  |  |
+ | entity_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | media_resource | [[MediaMeta](#MediaMeta)] |  no  |  |
+ | rating | number |  no  |  |
+ | review_id | string |  no  |  |
+ | template_id | string |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateTemplateRequest](#UpdateTemplateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  yes  |  |
+ | enable_media_type | string |  no  | image | video | any |
+ | enable_qna | boolean |  no  |  |
+ | enable_rating | boolean |  yes  |  |
+ | enable_review | boolean |  yes  |  |
+ | entity | [EntityRequest](#EntityRequest) |  yes  |  |
+ | rating | [RatingRequest](#RatingRequest) |  yes  |  |
+ | review | [ReviewRequest](#ReviewRequest) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateTemplateStatusRequest](#UpdateTemplateStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | archive | boolean |  no  |  |
 
 ---
 
@@ -33302,18 +49491,6 @@ Success
 
  
  
- #### [DateMeta](#DateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
-
----
-
-
- 
- 
  #### [BlogRequest](#BlogRequest)
 
  | Properties | Type | Nullable | Description |
@@ -34290,90 +50467,2089 @@ Success
 
  
  
- #### [CommunicationConsentReq](#CommunicationConsentReq)
+ #### [ErrorResponseSchema](#ErrorResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | action | string |  no  |  |
- | channel | string |  no  |  |
+ | message | string |  no  | Reason for failure |
+ | code | number |  no  | error code |
 
 ---
 
 
  
  
- #### [CommunicationConsentRes](#CommunicationConsentRes)
+ #### [Success](#Success)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedModifiedByObject](#CreatedModifiedByObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | string |  no  |  |
  | user_id | string |  no  |  |
- | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
 
 ---
 
 
  
  
- #### [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail)
+ #### [PickupPointResponse](#PickupPointResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | display_name | string |  no  |  |
+ | items | [[ItemProperties](#ItemProperties)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
 
  
  
- #### [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms)
+ #### [PickupPointSchema](#PickupPointSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | display_name | string |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | name | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | code | string |  no  |  |
+ | address | [AddressObject](#AddressObject) |  no  |  |
+ | additional_contacts | [AdditionalContactsObject](#AdditionalContactsObject) |  no  |  |
+ | timing | [[AdditionalContactsObject](#AdditionalContactsObject)] |  no  |  |
+ | created_by | [CreatedModifiedByObject](#CreatedModifiedByObject) |  no  |  |
+ | modified_by | [TimingObject](#TimingObject) |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
 
  
  
- #### [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp)
+ #### [ItemProperties](#ItemProperties)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | string |  no  |  |
- | display_name | string |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | name | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | code | string |  no  |  |
+ | address | [AddressObject](#AddressObject) |  no  |  |
+ | additional_contacts | [AdditionalContactsObject](#AdditionalContactsObject) |  no  |  |
+ | timing | [[AdditionalContactsObject](#AdditionalContactsObject)] |  no  |  |
+ | created_by | [CreatedModifiedByObject](#CreatedModifiedByObject) |  no  |  |
+ | modified_by | [TimingObject](#TimingObject) |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddressObject](#AddressObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  no  |  |
+ | city | string |  no  |  |
+ | state | string |  no  |  |
+ | pincode | number |  no  |  |
+ | country | string |  no  |  |
  | country_code | string |  no  |  |
- | phone_number | string |  no  |  |
 
 ---
 
 
  
  
- #### [CommunicationConsentChannels](#CommunicationConsentChannels)
+ #### [AdditionalContactsObject](#AdditionalContactsObject)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [CommunicationConsentChannelsEmail](#CommunicationConsentChannelsEmail) |  no  |  |
- | sms | [CommunicationConsentChannelsSms](#CommunicationConsentChannelsSms) |  no  |  |
- | whatsapp | [CommunicationConsentChannelsWhatsapp](#CommunicationConsentChannelsWhatsapp) |  no  |  |
+ | number | number |  no  |  |
+ | country_code | number |  no  |  |
 
 ---
 
 
  
  
- #### [CommunicationConsent](#CommunicationConsent)
+ #### [TimingObject](#TimingObject)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | opening | [OpeningClosingObject](#OpeningClosingObject) |  no  |  |
+ | closing | [OpeningClosingObject](#OpeningClosingObject) |  no  |  |
+ | open | boolean |  no  |  |
+ | weekday | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OpeningClosingObject](#OpeningClosingObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | string |  no  |  |
+ | minute | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PickupResponse](#PickupResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[PickupResponseItems](#PickupResponseItems)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PickupConfiguration](#PickupConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | datetime_check | boolean |  no  |  |
+ | header | string |  no  |  |
+ | instruction_for_customer | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PickupResponseItems](#PickupResponseItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | datetime_check | boolean |  no  |  |
+ | header | string |  no  |  |
+ | instruction_for_customer | string |  no  |  |
  | app_id | string |  no  |  |
- | user_id | string |  no  |  |
- | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShippingSchema](#ShippingSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assignment | [AssignmentSchema](#AssignmentSchema) |  no  |  |
+ | _id | string |  no  |  |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShippingResponse](#ShippingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ShippingSchema](#ShippingSchema) |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AssignmentSchema](#AssignmentSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fulfillment_priority | [FulfillmentPriorityObject](#FulfillmentPriorityObject) |  no  |  |
+ | default_sort_strategy | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillmentPriorityObject](#FulfillmentPriorityObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priorities | string |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreSchema](#StoreSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assignment | [StoreAssignmentObject](#StoreAssignmentObject) |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreResponse](#StoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [StoreSchema](#StoreSchema) |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreAssignmentObject](#StoreAssignmentObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | strategy | [StrategyObject](#StrategyObject) |  no  |  |
+ | assignment_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StrategyObject](#StrategyObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rules | [[StrategyItems](#StrategyItems)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StrategyItems](#StrategyItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_tags | [string] |  no  |  |
+ | zone | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreListResponse](#StoreListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneSchema](#ZoneSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zone_detail | [ZoneDetailsObject](#ZoneDetailsObject) |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneListResponse](#ZoneListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ZoneSchema](#ZoneSchema)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RegionObject](#RegionObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | state | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeObject](#PincodeObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode_list | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RadiusObject](#RadiusObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDetailsObject](#ZoneDetailsObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | radius | [RadiusObject](#RadiusObject) |  no  |  |
+ | pincode | [PincodeObject](#PincodeObject) |  no  |  |
+ | region | [RegionObject](#RegionObject) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [UnauthenticatedUser](#UnauthenticatedUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [UnauthenticatedApplication](#UnauthenticatedApplication)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [BadRequest](#BadRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [ResourceNotFound](#ResourceNotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Resource not found with {id} |
+
+---
+
+
+ 
+ 
+ #### [InternalServerError](#InternalServerError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Internal server Server error |
+ | code | string |  no  | Error code |
+
+---
+
+
+ 
+ 
+ #### [PlanRecurring](#PlanRecurring)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | interval | string |  no  |  |
+ | interval_count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Plan](#Plan)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | recurring | [PlanRecurring](#PlanRecurring) |  no  |  |
+ | is_trial_plan | boolean |  no  |  |
+ | plan_group | string |  no  |  |
+ | tag_lines | [string] |  no  |  |
+ | currency | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_visible | boolean |  no  |  |
+ | trial_period | number |  no  |  |
+ | addons | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | type | string |  no  |  |
+ | country | string |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | amount | number |  no  |  |
+ | product_suite_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DetailedPlanComponents](#DetailedPlanComponents)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | description | string |  no  |  |
+ | group | string |  no  |  |
+ | icon | string |  no  |  |
+ | links | string |  no  |  |
+ | enabled | boolean |  no  |  |
+ | display_text | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DetailedPlan](#DetailedPlan)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | recurring | [PlanRecurring](#PlanRecurring) |  no  |  |
+ | is_trial_plan | boolean |  no  |  |
+ | plan_group | string |  no  |  |
+ | tag_lines | [string] |  no  |  |
+ | currency | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_visible | boolean |  no  |  |
+ | trial_period | number |  no  |  |
+ | addons | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | type | string |  no  |  |
+ | country | string |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | amount | number |  no  |  |
+ | product_suite_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | components | [[DetailedPlanComponents](#DetailedPlanComponents)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionTrialPeriod](#SubscriptionTrialPeriod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start_date | string |  no  |  |
+ | end_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityChargePrice](#EntityChargePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  yes  |  |
+ | currency_code | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityChargeRecurring](#EntityChargeRecurring)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | interval | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ChargeLineItem](#ChargeLineItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | term | string |  yes  |  |
+ | pricing_type | string |  yes  |  |
+ | price | [EntityChargePrice](#EntityChargePrice) |  yes  |  |
+ | recurring | [EntityChargeRecurring](#EntityChargeRecurring) |  no  |  |
+ | capped_amount | number |  no  |  |
+ | trial_days | number |  no  |  |
+ | is_test | boolean |  no  |  |
+ | metadata | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateSubscriptionCharge](#CreateSubscriptionCharge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | trial_days | number |  no  |  |
+ | line_items | [[ChargeLineItem](#ChargeLineItem)] |  yes  |  |
+ | is_test | boolean |  no  |  |
+ | return_url | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CurrentPeriod](#CurrentPeriod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start_date | string |  no  |  |
+ | end_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionCharge](#SubscriptionCharge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | term | string |  no  |  |
+ | pricing_type | string |  no  |  |
+ | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
+ | recurring | [EntityChargeRecurring](#EntityChargeRecurring) |  no  |  |
+ | capped_amount | number |  no  |  |
+ | activated_on | string |  no  |  |
+ | cancelled_on | string |  no  |  |
+ | billing_date | string |  no  |  |
+ | current_period | [CurrentPeriod](#CurrentPeriod) |  no  |  |
+ | status | string |  no  |  |
+ | is_test | boolean |  no  |  |
+ | metadata | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntitySubscription](#EntitySubscription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | status | string |  no  |  |
+ | company_id | number |  no  |  |
+ | activated_on | string |  no  |  |
+ | cancelled_on | string |  no  |  |
+ | trial_days | number |  no  |  |
+ | trial_period | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod) |  no  |  |
+ | metadata | string |  no  |  |
+ | line_items | [[SubscriptionCharge](#SubscriptionCharge)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateSubscriptionResponse](#CreateSubscriptionResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscription | [EntitySubscription](#EntitySubscription) |  no  |  |
+ | confirm_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsPeriod](#InvoiceDetailsPeriod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsClient](#InvoiceDetailsClient)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address_lines | [string] |  no  |  |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+ | phone | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | value | string |  no  |  |
+ | timestamp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cvc_check | string |  no  |  |
+ | address_line1_check | string |  no  |  |
+ | address_postal_code_check | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available | [string] |  no  |  |
+ | preferred | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | supported | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | string |  no  |  |
+ | last4 | string |  no  |  |
+ | checks | [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks) |  no  |  |
+ | wallet | string |  no  |  |
+ | country | string |  no  |  |
+ | funding | string |  no  |  |
+ | exp_year | number |  no  |  |
+ | networks | [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks) |  no  |  |
+ | exp_month | number |  no  |  |
+ | fingerprint | string |  no  |  |
+ | generated_from | string |  no  |  |
+ | three_d_secure_usage | [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsPaymentMethods](#InvoiceDetailsPaymentMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | type | string |  no  |  |
+ | pg_payment_method_id | string |  no  |  |
+ | data | [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData) |  no  |  |
+ | is_default | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoicePaymentMethod](#InvoicePaymentMethod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pg_payment_method_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetails](#InvoiceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | period | [InvoiceDetailsPeriod](#InvoiceDetailsPeriod) |  no  |  |
+ | client | [InvoiceDetailsClient](#InvoiceDetailsClient) |  no  |  |
+ | auto_advance | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | paid | boolean |  no  |  |
+ | attemp | number |  no  |  |
+ | _id | string |  no  |  |
+ | collection_method | string |  no  |  |
+ | subscriber_id | string |  no  |  |
+ | invoice_url | string |  no  |  |
+ | number | string |  no  |  |
+ | pg_data | string |  no  |  |
+ | receipt_number | string |  no  |  |
+ | statement_descriptor | string |  no  |  |
+ | current_status | string |  no  |  |
+ | status_trail | [[InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)] |  no  |  |
+ | subtotal | number |  no  |  |
+ | total | number |  no  |  |
+ | subscription | string |  no  |  |
+ | next_action_time | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | hash_identifier | string |  no  |  |
+ | payment_method | [InvoicePaymentMethod](#InvoicePaymentMethod) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceItemsPlanRecurring](#InvoiceItemsPlanRecurring)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | interval | string |  no  |  |
+ | interval_count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceItemsPlan](#InvoiceItemsPlan)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | recurring | [InvoiceItemsPlanRecurring](#InvoiceItemsPlanRecurring) |  no  |  |
+ | is_trial_plan | boolean |  no  |  |
+ | plan_group | string |  no  |  |
+ | tag_lines | [string] |  no  |  |
+ | currency | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_visible | boolean |  no  |  |
+ | trial_period | number |  no  |  |
+ | addons | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | type | string |  no  |  |
+ | country | string |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | amount | number |  no  |  |
+ | product_suite_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceItemsPeriod](#InvoiceItemsPeriod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceItems](#InvoiceItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | currency | string |  no  |  |
+ | plan | [InvoiceItemsPlan](#InvoiceItemsPlan) |  no  |  |
+ | name | string |  no  |  |
+ | quantity | number |  no  |  |
+ | description | string |  no  |  |
+ | period | [InvoiceItemsPeriod](#InvoiceItemsPeriod) |  no  |  |
+ | unit_amount | number |  no  |  |
+ | amount | number |  no  |  |
+ | type | string |  no  |  |
+ | invoice_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Invoice](#Invoice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice | [InvoiceDetails](#InvoiceDetails) |  no  |  |
+ | invoice_items | [[InvoiceItems](#InvoiceItems)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoicesDataClient](#InvoicesDataClient)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+ | phone | string |  no  |  |
+ | address_lines | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoicesDataPeriod](#InvoicesDataPeriod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoicesDataPaymentMethod](#InvoicesDataPaymentMethod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pg_payment_method_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoicesData](#InvoicesData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | client | [InvoicesDataClient](#InvoicesDataClient) |  no  |  |
+ | auto_advance | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | paid | boolean |  no  |  |
+ | attemp | number |  no  |  |
+ | collection_method | string |  no  |  |
+ | subscriber_id | string |  no  |  |
+ | invoice_url | string |  no  |  |
+ | number | string |  no  |  |
+ | pg_data | string |  no  |  |
+ | period | [InvoicesDataPeriod](#InvoicesDataPeriod) |  no  |  |
+ | receipt_number | string |  no  |  |
+ | statement_descriptor | string |  no  |  |
+ | current_status | string |  no  |  |
+ | status_trail | [[InvoiceDetailsStatusTrail](#InvoiceDetailsStatusTrail)] |  no  |  |
+ | subtotal | number |  no  |  |
+ | total | number |  no  |  |
+ | subscription | string |  no  |  |
+ | next_action_time | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | hash_identifier | string |  no  |  |
+ | payment_method | [InvoicesDataPaymentMethod](#InvoicesDataPaymentMethod) |  no  |  |
+ | invoice_items | [[InvoiceItems](#InvoiceItems)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Invoices](#Invoices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[InvoicesData](#InvoicesData)] |  no  |  |
+ | start | number |  no  |  |
+ | end | number |  no  |  |
+ | limit | number |  no  |  |
+ | page | number |  no  |  |
+ | total | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Phone](#Phone)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone_number | string |  no  |  |
+ | phone_country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionBillingAddress](#SubscriptionBillingAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | state | string |  no  |  |
+ | city | string |  no  |  |
+ | line1 | string |  no  |  |
+ | line2 | string |  no  |  |
+ | postal_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionCustomer](#SubscriptionCustomer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | [Phone](#Phone) |  no  |  |
+ | billing_address | [SubscriptionBillingAddress](#SubscriptionBillingAddress) |  no  |  |
+ | _id | string |  no  |  |
+ | unique_id | string |  no  |  |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionCustomerCreate](#SubscriptionCustomerCreate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | [Phone](#Phone) |  no  |  |
+ | billing_address | [SubscriptionBillingAddress](#SubscriptionBillingAddress) |  no  |  |
+ | unique_id | string |  no  |  |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionCurrentPeriod](#SubscriptionCurrentPeriod)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionPauseCollection](#SubscriptionPauseCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | behavior | string |  no  |  |
+ | resume_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionTrial](#SubscriptionTrial)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionInvoiceSettings](#SubscriptionInvoiceSettings)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | generation | boolean |  no  |  |
+ | charging | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Subscription](#Subscription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_period | [SubscriptionCurrentPeriod](#SubscriptionCurrentPeriod) |  no  |  |
+ | pause_collection | [SubscriptionPauseCollection](#SubscriptionPauseCollection) |  no  |  |
+ | trial | [SubscriptionTrial](#SubscriptionTrial) |  no  |  |
+ | invoice_settings | [SubscriptionInvoiceSettings](#SubscriptionInvoiceSettings) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | cancel_at_period_end | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | subscriber_id | string |  no  |  |
+ | plan_id | string |  no  |  |
+ | product_suite_id | string |  no  |  |
+ | plan_data | [Plan](#Plan) |  no  |  |
+ | current_status | string |  no  |  |
+ | collection_method | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | latest_invoice | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionStatus](#SubscriptionStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_enabled | boolean |  no  |  |
+ | subscription | [Subscription](#Subscription) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitApplication](#SubscriptionLimitApplication)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | hard_limit | number |  no  |  |
+ | soft_limit | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitMarketplace](#SubscriptionLimitMarketplace)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitOtherPlatform](#SubscriptionLimitOtherPlatform)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitTeam](#SubscriptionLimitTeam)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | limit | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitProducts](#SubscriptionLimitProducts)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk | boolean |  no  |  |
+ | limit | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitExtensions](#SubscriptionLimitExtensions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | limit | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimitIntegrations](#SubscriptionLimitIntegrations)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | limit | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionLimit](#SubscriptionLimit)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | [SubscriptionLimitApplication](#SubscriptionLimitApplication) |  no  |  |
+ | marketplace | [SubscriptionLimitMarketplace](#SubscriptionLimitMarketplace) |  no  |  |
+ | other_platform | [SubscriptionLimitOtherPlatform](#SubscriptionLimitOtherPlatform) |  no  |  |
+ | team | [SubscriptionLimitTeam](#SubscriptionLimitTeam) |  no  |  |
+ | products | [SubscriptionLimitProducts](#SubscriptionLimitProducts) |  no  |  |
+ | extensions | [SubscriptionLimitExtensions](#SubscriptionLimitExtensions) |  no  |  |
+ | integrations | [SubscriptionLimitIntegrations](#SubscriptionLimitIntegrations) |  no  |  |
+ | is_trial_plan | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionActivateReq](#SubscriptionActivateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_id | string |  no  |  |
+ | type | string |  no  |  |
+ | product_suite | string |  no  |  |
+ | plan_id | string |  no  |  |
+ | payment_method | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionActivateRes](#SubscriptionActivateRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | data | [Subscription](#Subscription) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CancelSubscriptionReq](#CancelSubscriptionReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_id | string |  no  |  |
+ | type | string |  no  |  |
+ | product_suite | string |  no  |  |
+ | subscription_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CancelSubscriptionRes](#CancelSubscriptionRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | data | [Subscription](#Subscription) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [StatsImported](#StatsImported)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StatsProcessedEmail](#StatsProcessedEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | number |  no  |  |
+ | failed | number |  no  |  |
+ | suppressed | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StatsProcessedSms](#StatsProcessedSms)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | number |  no  |  |
+ | failed | number |  no  |  |
+ | suppressed | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StatsProcessed](#StatsProcessed)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [StatsProcessedEmail](#StatsProcessedEmail) |  no  |  |
+ | sms | [StatsProcessedSms](#StatsProcessedSms) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Stats](#Stats)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | imported | any |  no  |  |
+ | processed | any |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetStats](#GetStats)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Stats](#Stats)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CampaignReq](#CampaignReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | headers | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | file_url | string |  no  |  |
+ | type | string |  no  |  |
+ | records_count | number |  no  |  |
+ | application | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RecipientHeaders](#RecipientHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CampaignEmailTemplate](#CampaignEmailTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CampignEmailProvider](#CampignEmailProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | from_name | string |  no  |  |
+ | from_email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CampaignEmail](#CampaignEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | [CampaignEmailTemplate](#CampaignEmailTemplate) |  no  |  |
+ | provider | [CampignEmailProvider](#CampignEmailProvider) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Campaign](#Campaign)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | recipient_headers | [RecipientHeaders](#RecipientHeaders) |  no  |  |
+ | email | [CampaignEmail](#CampaignEmail) |  no  |  |
+ | description | string |  no  |  |
+ | tags | [any] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | datasource | string |  no  |  |
+ | type | string |  no  |  |
+ | name | string |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | slug | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Campaigns](#Campaigns)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Campaign](#Campaign)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BigqueryHeadersReq](#BigqueryHeadersReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BigqueryHeadersRes](#BigqueryHeadersRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | headers | [[BigqueryHeadersResHeaders](#BigqueryHeadersResHeaders)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetNRecordsCsvReq](#GetNRecordsCsvReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | header | boolean |  no  |  |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetNRecordsCsvResItems](#GetNRecordsCsvResItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone_number | string |  no  |  |
+ | email | string |  no  |  |
+ | firstname | string |  no  |  |
+ | lastname | string |  no  |  |
+ | orderid | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetNRecordsCsvRes](#GetNRecordsCsvRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetNRecordsCsvResItems](#GetNRecordsCsvResItems)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AudienceReq](#AudienceReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | headers | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | file_url | string |  no  |  |
+ | type | string |  no  |  |
+ | records_count | number |  no  |  |
+ | application | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Audience](#Audience)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | headers | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | file_url | string |  no  |  |
+ | type | string |  no  |  |
+ | records_count | number |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | slug | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Audiences](#Audiences)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Audience](#Audience)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailProviderReqFrom](#EmailProviderReqFrom)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+ | is_default | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailProviderReq](#EmailProviderReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | api_key | string |  no  |  |
+ | type | string |  no  |  |
+ | provider | string |  no  |  |
+ | from | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailProvider](#EmailProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | provider | string |  no  |  |
+ | from | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | api_key | string |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | slug | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailProviders](#EmailProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EmailProvider](#EmailProvider)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplateDeleteSuccessRes](#EmailTemplateDeleteSuccessRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplateDeleteFailureRes](#EmailTemplateDeleteFailureRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplateKeys](#EmailTemplateKeys)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | to | string |  no  |  |
+ | cc | string |  no  |  |
+ | bcc | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplateHeaders](#EmailTemplateHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplateReq](#EmailTemplateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  |
+ | from | string |  no  |  |
+ | static_to | [string] |  no  |  |
+ | static_cc | [string] |  no  |  |
+ | static_bcc | [string] |  no  |  |
+ | reply_to | string |  no  |  |
+ | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  |
+ | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | html | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | text | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | attachments | [any] |  no  |  |
+ | priority | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateAndType](#TemplateAndType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template_type | string |  no  |  |
+ | template | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplateRes](#EmailTemplateRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_system | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | description | string |  no  |  |
+ | static_to | [string] |  no  |  |
+ | static_cc | [string] |  no  |  |
+ | static_bcc | [string] |  no  |  |
+ | tags | [any] |  no  |  |
+ | priority | string |  no  |  |
+ | published | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  |
+ | from | string |  no  |  |
+ | reply_to | string |  no  |  |
+ | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  |
+ | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | html | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | text | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | attachments | [any] |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | slug | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplate](#EmailTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_system | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | description | string |  no  |  |
+ | static_to | [any] |  no  |  |
+ | static_cc | [any] |  no  |  |
+ | static_bcc | [any] |  no  |  |
+ | tags | [any] |  no  |  |
+ | priority | string |  no  |  |
+ | published | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | from | string |  no  |  |
+ | from_name | string |  no  |  |
+ | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | html | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | text | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | headers | [any] |  no  |  |
+ | attachments | [any] |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemEmailTemplate](#SystemEmailTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_system | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | description | string |  no  |  |
+ | static_to | [any] |  no  |  |
+ | static_cc | [any] |  no  |  |
+ | static_bcc | [any] |  no  |  |
+ | tags | [any] |  no  |  |
+ | priority | string |  no  |  |
+ | published | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | from | string |  no  |  |
+ | from_name | string |  no  |  |
+ | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | html | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | text | [TemplateAndType](#TemplateAndType) |  no  |  |
+ | headers | [any] |  no  |  |
+ | attachments | [any] |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailTemplates](#EmailTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EmailTemplate](#EmailTemplate)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemEmailTemplates](#SystemEmailTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SystemEmailTemplate](#SystemEmailTemplate)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscribed | boolean |  no  |  |
+ | template | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscribed | boolean |  no  |  |
+ | template | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventSubscriptionTemplate](#EventSubscriptionTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sms | [EventSubscriptionTemplateSms](#EventSubscriptionTemplateSms) |  no  |  |
+ | email | [EventSubscriptionTemplateEmail](#EventSubscriptionTemplateEmail) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventSubscription](#EventSubscription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | [EventSubscriptionTemplate](#EventSubscriptionTemplate) |  no  |  |
+ | is_default | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | event | string |  no  |  |
+ | slug | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventSubscriptions](#EventSubscriptions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EventSubscription](#EventSubscription)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TriggerJobResponse](#TriggerJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TriggerJobRequest](#TriggerJobRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Job](#Job)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | completed | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | campaign | string |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Jobs](#Jobs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Job](#Job)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobLog](#JobLog)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | imported | any |  no  |  |
+ | processed | any |  no  |  |
+ | _id | string |  no  |  |
+ | job | string |  no  |  |
+ | campaign | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobLogs](#JobLogs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[JobLog](#JobLog)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogEmail](#LogEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogPushnotification](#LogPushnotification)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pushtokens | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogMeta](#LogMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | identifier | string |  no  |  |
+ | key | string |  no  |  |
+ | offset | string |  no  |  |
+ | partition | string |  no  |  |
+ | topic | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Log](#Log)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [LogEmail](#LogEmail) |  no  |  |
+ | pushnotification | [LogPushnotification](#LogPushnotification) |  no  |  |
+ | meta | [LogMeta](#LogMeta) |  no  |  |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | service | string |  no  |  |
+ | step | string |  no  |  |
+ | status | string |  no  |  |
+ | data | any |  no  |  |
+ | expire_at | string |  no  |  |
+ | created_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Logs](#Logs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Log](#Log)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -34388,7 +52564,6 @@ Success
  | bundle_identifier | string |  no  |  |
  | push_token | string |  no  |  |
  | unique_device_id | string |  no  |  |
- | type | string |  no  |  |
 
 ---
 
@@ -34414,166 +52589,54 @@ Success
 ---
 
 
-
-
  
  
- #### [QRCodeResp](#QRCodeResp)
+ #### [SmsProviderReq](#SmsProviderReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | svg | string |  no  |  |
-
----
-
-
- 
- 
- #### [RedirectDevice](#RedirectDevice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [WebRedirect](#WebRedirect)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | link | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [Redirects](#Redirects)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
- | android | [RedirectDevice](#RedirectDevice) |  no  |  |
- | web | [WebRedirect](#WebRedirect) |  no  |  |
- | force_web | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CampaignShortLink](#CampaignShortLink)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | medium | string |  no  |  |
-
----
-
-
- 
- 
- #### [Attribution](#Attribution)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | campaign_cookie_expiry | string |  no  |  |
-
----
-
-
- 
- 
- #### [SocialMediaTags](#SocialMediaTags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
+ | name | string |  no  |  |
  | description | string |  no  |  |
- | image | string |  no  |  |
+ | sender | string |  no  |  |
+ | username | string |  no  |  |
+ | authkey | string |  no  |  |
+ | type | string |  no  |  |
+ | provider | string |  no  |  |
 
 ---
 
 
  
  
- #### [ShortLinkReq](#ShortLinkReq)
+ #### [SmsProvider](#SmsProvider)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  | Give a name to the link. |
- | url | string |  yes  | The web address to shorten. |
- | hash | string |  no  |  |
- | active | boolean |  no  |  |
- | expire_at | string |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | personalized | boolean |  no  | To create personalized short links. |
- | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
- | redirects | [Redirects](#Redirects) |  no  |  |
- | attribution | [Attribution](#Attribution) |  no  |  |
- | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
- | count | number |  no  |  |
-
----
-
-
- 
- 
- #### [UrlInfo](#UrlInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | original | string |  no  |  |
- | short | string |  no  |  |
- | hash | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShortLinkRes](#ShortLinkRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | url | [UrlInfo](#UrlInfo) |  no  |  |
- | created_by | string |  no  |  |
- | app_redirect | boolean |  no  |  |
- | fallback | string |  no  |  |
- | active | boolean |  no  |  |
+ | rpt | number |  no  |  |
+ | type | string |  no  |  |
+ | provider | string |  no  |  |
  | _id | string |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | expire_at | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | sender | string |  no  |  |
+ | username | string |  no  |  |
+ | authkey | string |  no  |  |
  | application | string |  no  |  |
- | user_id | string |  no  |  |
  | created_at | string |  no  |  |
- | meta | string |  no  |  |
  | updated_at | string |  no  |  |
- | personalized | boolean |  no  | To create personalized short links |
- | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
- | redirects | [Redirects](#Redirects) |  no  |  |
- | attribution | [Attribution](#Attribution) |  no  |  |
- | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
- | count | number |  no  |  |
+ | slug | string |  no  |  |
+ | __v | number |  no  |  |
 
 ---
 
 
  
  
- #### [ShortLinkList](#ShortLinkList)
+ #### [SmsProviders](#SmsProviders)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  |
+ | items | [[SmsProvider](#SmsProvider)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
 ---
@@ -34581,11 +52644,6841 @@ Success
 
  
  
- #### [ErrorRes](#ErrorRes)
+ #### [SmsTemplateDeleteSuccessRes](#SmsTemplateDeleteSuccessRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsTemplateDeleteFailureRes](#SmsTemplateDeleteFailureRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsTemplateMessage](#SmsTemplateMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template_type | string |  no  |  |
+ | template | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsTemplateReq](#SmsTemplateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
+ | template_variables | any |  no  |  |
+ | attachments | [any] |  no  |  |
+ | priority | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsTemplateRes](#SmsTemplateRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_system | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | description | string |  no  |  |
+ | tags | [any] |  no  |  |
+ | priority | string |  no  |  |
+ | published | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
+ | template_variables | any |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | slug | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsTemplate](#SmsTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_system | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | description | string |  no  |  |
+ | priority | string |  no  |  |
+ | tags | [any] |  no  |  |
+ | published | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
+ | template_variables | any |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemSmsTemplate](#SystemSmsTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_system | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | description | string |  no  |  |
+ | tags | [any] |  no  |  |
+ | priority | string |  no  |  |
+ | published | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | message | [SmsTemplateMessage](#SmsTemplateMessage) |  no  |  |
+ | template_variables | any |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsTemplates](#SmsTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SmsTemplate](#SmsTemplate)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemSmsTemplates](#SystemSmsTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SystemSmsTemplate](#SystemSmsTemplate)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Notification](#Notification)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | body | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | icon | string |  no  |  |
+ | deeplink | string |  no  |  |
+ | click_action | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemNotificationUser](#SystemNotificationUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemNotificationSettings](#SystemNotificationSettings)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sound | boolean |  no  |  |
+ | priority | string |  no  |  |
+ | time_to_live | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemNotification](#SystemNotification)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | notification | [Notification](#Notification) |  no  |  |
+ | user | [SystemNotificationUser](#SystemNotificationUser) |  no  |  |
+ | settings | [SystemNotificationUser](#SystemNotificationUser) |  no  |  |
+ | _id | string |  no  |  |
+ | group | string |  no  |  |
+ | created_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemNotificationsPage](#SystemNotificationsPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | current | number |  no  |  |
+ | size | number |  no  |  |
+ | item_total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemNotifications](#SystemNotifications)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SystemNotification](#SystemNotification)] |  no  |  |
+ | last_read_anchor | number |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [PaymentGatewayConfigResponse](#PaymentGatewayConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
+ | display_fields | [string] |  yes  | List of all included  options with their Details. |
+ | created | boolean |  yes  | Response is created or not |
+ | aggregators | [string] |  no  | List of all speceific Payment options with their Details. |
+ | success | boolean |  yes  | Response is successful or not |
+ | app_id | string |  yes  | Application Id to which Payment config Mapped |
+
+---
+
+
+ 
+ 
+ #### [ErrorCodeDescription](#ErrorCodeDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  | Error descrption code. |
+ | description | string |  yes  | Error human understandable description. |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [PaymentGatewayConfig](#PaymentGatewayConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secret | string |  yes  | Secret Key of the payment aggregator |
+ | key | string |  yes  | Api key of the payment aggregator |
+ | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
+ | is_active | boolean |  no  | Enable/ Disable Flag |
+ | config_type | string |  yes  | Config Type of the aggregator |
+
+---
+
+
+ 
+ 
+ #### [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig) |  no  |  |
+ | is_active | boolean |  no  | Enable/ Disable Flag |
+ | app_id | string |  yes  | Application Id to which Payment config Mapped |
+
+---
+
+
+ 
+ 
+ #### [PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | [string] |  yes  | List of added payment gateway |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  | Error descrption code. |
+ | description | string |  yes  | Error human understandable description. |
+
+---
+
+
+ 
+ 
+ #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeLogo](#PaymentModeLogo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | small | string |  yes  | smalll |
+ | large | string |  yes  | large |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeList](#PaymentModeList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timeout | number |  no  | timeout |
+ | card_brand | string |  no  | card_brand |
+ | card_type | string |  no  | card_type |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+ | code | string |  no  | code |
+ | intent_flow | string |  no  | intent_flow |
+ | display_name | string |  no  | display name |
+ | card_id | string |  no  | card_id |
+ | exp_year | number |  no  | exp_year |
+ | card_issuer | string |  no  | card_issuer |
+ | display_priority | number |  no  | Dispaly Priority |
+ | retry_count | number |  no  | retry_count |
+ | nickname | string |  no  | nickname |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | merchant_code | string |  no  | merchant code |
+ | card_reference | string |  no  | card_reference |
+ | expired | boolean |  no  | expired |
+ | card_brand_image | string |  no  | card_brand_image |
+ | card_name | string |  no  | card_name |
+ | aggregator_name | string |  yes  | aggregator_name |
+ | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | card_number | string |  no  | card_number |
+ | fynd_vpa | string |  no  | fynd_vpa |
+ | exp_month | number |  no  | exp_month |
+ | name | string |  no  | name |
+ | card_isin | string |  no  | card_isin |
+ | card_token | string |  no  | card_token |
+
+---
+
+
+ 
+ 
+ #### [RootPaymentMode](#RootPaymentMode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | anonymous_enable | boolean |  no  | Annonymous card flag |
+ | display_name | string |  yes  | Payment mode display name |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+ | add_card_enabled | boolean |  no  | Annonymous card flag |
+ | display_priority | number |  yes  | Dispaly Priority |
+ | name | string |  yes  | Payment mode name |
+ | aggregator_name | string |  no  | Dispaly Priority |
+
+---
+
+
+ 
+ 
+ #### [PaymentOptions](#PaymentOptions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  | Payment options |
+
+---
+
+
+ 
+ 
+ #### [PaymentOptionsResponse](#PaymentOptionsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_options | [PaymentOptions](#PaymentOptions) |  yes  | Payment options |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [PayoutsResponse](#PayoutsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payouts_aggregators | [string] |  yes  | payout aggregator object |
+ | customers | string |  yes  | customers details object |
+ | transfer_type | string |  yes  | transafer type |
+ | is_default | boolean |  yes  | default or not  |
+ | unique_transfer_no | string |  yes  | display priority of the payment mode |
+ | more_attributes | string |  yes  | bank details object |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+
+---
+
+
+ 
+ 
+ #### [PayoutBankDetails](#PayoutBankDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | number |  no  |  |
+ | branch_name | string |  no  |  |
+ | bank_name | string |  no  |  |
+ | account_type | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | city | string |  no  |  |
+ | account_holder | string |  no  |  |
+ | state | string |  no  |  |
+ | account_no | string |  no  |  |
+ | country | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayoutRequest](#PayoutRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | users | string |  yes  | payout users object |
+ | aggregator | string |  yes  | Aggregator Name |
+ | unique_external_id | string |  yes  | Unique Id of Payout |
+ | transfer_type | string |  yes  | transafer type |
+ | is_active | boolean |  yes  | Enable/Disable Flag Payout |
+ | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
+
+---
+
+
+ 
+ 
+ #### [PayoutResponse](#PayoutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | users | string |  yes  | users details object |
+ | aggregator | string |  yes  | Aggregator Name |
+ | created | boolean |  yes  | created flag |
+ | payment_status | string |  yes  | status of payment |
+ | transfer_type | string |  yes  | transfer type |
+ | unique_transfer_no | string |  yes  | unique transfer no |
+ | success | boolean |  yes  | Response is successful or not |
+ | payouts | string |  yes  | payout  object |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | bank_details | string |  yes  | payout bank_details object |
+
+---
+
+
+ 
+ 
+ #### [UpdatePayoutResponse](#UpdatePayoutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  yes  | Enable/Disable Default Payout |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [UpdatePayoutRequest](#UpdatePayoutRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  yes  | Enable/Disable Default Payout |
+ | is_active | boolean |  yes  | Enable/Disable Flag Payout |
+ | unique_external_id | string |  yes  | Unique Id of Payout |
+
+---
+
+
+ 
+ 
+ #### [DeletePayoutResponse](#DeletePayoutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string] |  yes  | Subscription Payment Method Object |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  | Success or failure. |
+
+---
+
+
+ 
+ 
+ #### [SubscriptionConfigResponse](#SubscriptionConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | string |  yes  | Aggregator Config |
+ | aggregator | string |  yes  | Aggregator Name |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_external_id | string |  yes  | Unique id i.e company:id |
+
+---
+
+
+ 
+ 
+ #### [SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  yes  | Subscription Payment Method Object |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bank_name | string |  yes  | Bank Name of the Account |
+ | branch_name | string |  yes  | Branch Name of the Account |
+ | address | string |  no  | Address of the User |
+ | wallet | string |  no  |  |
+ | comment | string |  no  | Remarks added by The user |
+ | ifsc_code | string |  yes  | Ifsc Code of the Account |
+ | mobile | string |  yes  | Moblie Number of the User |
+ | vpa | string |  no  |  |
+ | account_holder | string |  yes  | Name of the Account Holder |
+ | email | string |  yes  | Email of the Account Holder |
+ | account_no | string |  yes  | Account NUmber of the Account Holder |
+
+---
+
+
+ 
+ 
+ #### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
+ | request_id | string |  no  |  |
+ | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
+ | order_id | string |  yes  | Merchant Order Id |
+ | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
+ | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RefundAccountResponse](#RefundAccountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Response message |
+ | data | string |  no  | Refund account data. |
+ | success | boolean |  yes  | Success or failure flag. |
+
+---
+
+
+ 
+ 
+ #### [NotFoundResourceError](#NotFoundResourceError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  | Bad Request Data |
+ | description | string |  yes  | Not Found |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [IfscCodeResponse](#IfscCodeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bank_name | string |  yes  | Bank Name Of Account |
+ | branch_name | string |  yes  | Branch Name Of Account |
+ | success | boolean |  no  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modified_on | string |  yes  | MOdification Date of Beneficiary |
+ | delights_user_name | string |  yes  | User Id Who filled the Beneficiary  |
+ | address | string |  yes  | Address of User |
+ | transfer_mode | string |  yes  | Transfer Mode Of Account |
+ | comment | boolean |  no  | Remarks |
+ | display_name | string |  yes  | Display Name Of Account |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
+ | title | string |  yes  | Title Of Account |
+ | id | number |  yes  |   |
+ | ifsc_code | string |  yes  | Ifsc Code Of Account |
+ | mobile | boolean |  no  | MObile no of User |
+ | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
+ | subtitle | string |  yes  | SHort Title Of Account |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | email | string |  yes  | EMail of User |
+ | bank_name | string |  yes  | Bank Name Of Account |
+ | branch_name | boolean |  no  | Branch Name Of Account |
+ | account_holder | string |  yes  | Account Holder Name |
+ | account_no | string |  yes  | Account Number |
+
+---
+
+
+ 
+ 
+ #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  yes  | All Beneficiaries Of An Order |
+ | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
+
+---
+
+
+
+
+ 
+ 
+ #### [GetActivityStatus](#GetActivityStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_history | [ActivityHistory](#ActivityHistory) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ActivityHistory](#ActivityHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | createdat | string |  no  |  |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | user | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FailedOrders](#FailedOrders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | orders | [FailOrder](#FailOrder) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FailOrder](#FailOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updated_at | string |  no  |  |
+ | _id | string |  no  |  |
+ | reason | string |  no  |  |
+ | marketplace_order | [MarketplaceOrder](#MarketplaceOrder) |  no  |  |
+ | marketplace_order_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | app_id | string |  no  |  |
+ | marketplace | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceOrder](#MarketplaceOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_status_url | string |  no  |  |
+ | admin_graphql_api_id | string |  no  |  |
+ | email | string |  no  |  |
+ | test | boolean |  no  |  |
+ | note | string |  no  |  |
+ | total_price | string |  no  |  |
+ | app_id | number |  no  |  |
+ | total_discounts_set | [TotalDiscountsSet](#TotalDiscountsSet) |  no  |  |
+ | total_price_set | [TotalPriceSet](#TotalPriceSet) |  no  |  |
+ | total_tax_set | [TotalTaxSet](#TotalTaxSet) |  no  |  |
+ | gateway | string |  no  |  |
+ | name | string |  no  |  |
+ | subtotal_price_set | [SubtotalPriceSet](#SubtotalPriceSet) |  no  |  |
+ | number | number |  no  |  |
+ | buyer_accepts_marketing | boolean |  no  |  |
+ | contact_email | string |  no  |  |
+ | token | string |  no  |  |
+ | source_name | string |  no  |  |
+ | payment_gateway_names | [any] |  no  |  |
+ | presentment_currency | string |  no  |  |
+ | subtotal_price | string |  no  |  |
+ | processed_at | string |  no  |  |
+ | order_number | number |  no  |  |
+ | total_tip_received | string |  no  |  |
+ | id | number |  no  |  |
+ | confirmed | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | total_line_items_price | string |  no  |  |
+ | line_items | [LineItems](#LineItems) |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | total_weight | number |  no  |  |
+ | billing_address | [BillingAddress](#BillingAddress) |  no  |  |
+ | total_shipping_price_set | [TotalShippingPriceSet](#TotalShippingPriceSet) |  no  |  |
+ | customer | [Customer](#Customer) |  no  |  |
+ | total_discounts | string |  no  |  |
+ | total_line_items_price_set | [TotalLineItemsPriceSet](#TotalLineItemsPriceSet) |  no  |  |
+ | tags | string |  no  |  |
+ | total_price_usd | string |  no  |  |
+ | user_id | number |  no  |  |
+ | total_tax | string |  no  |  |
+ | processing_method | string |  no  |  |
+ | shipping_address | [OrderShippingAddress](#OrderShippingAddress) |  no  |  |
+ | taxes_included | boolean |  no  |  |
+ | financial_status | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalDiscountsSet](#TotalDiscountsSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | presentment_money | [PresentmentMoney](#PresentmentMoney) |  no  |  |
+ | shop_money | [ShopMoney](#ShopMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PresentmentMoney](#PresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShopMoney](#ShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalPriceSet](#TotalPriceSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [TotalPriceSetShopMoney](#TotalPriceSetShopMoney) |  no  |  |
+ | presentment_money | [TotalPriceSetPresentmentMoney](#TotalPriceSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalPriceSetShopMoney](#TotalPriceSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalPriceSetPresentmentMoney](#TotalPriceSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalTaxSet](#TotalTaxSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [TotalTaxSetShopMoney](#TotalTaxSetShopMoney) |  no  |  |
+ | presentment_money | [TotalTaxSetPresentmentMoney](#TotalTaxSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalTaxSetShopMoney](#TotalTaxSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalTaxSetPresentmentMoney](#TotalTaxSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubtotalPriceSet](#SubtotalPriceSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [SubtotalPriceSetShopMoney](#SubtotalPriceSetShopMoney) |  no  |  |
+ | presentment_money | [SubtotalPriceSetPresentmentMoney](#SubtotalPriceSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubtotalPriceSetShopMoney](#SubtotalPriceSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubtotalPriceSetPresentmentMoney](#SubtotalPriceSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LineItems](#LineItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sku | string |  no  |  |
+ | fulfillable_quantity | number |  no  |  |
+ | grams | number |  no  |  |
+ | total_discount | string |  no  |  |
+ | article | [LineItemsArticle](#LineItemsArticle) |  no  |  |
+ | title | string |  no  |  |
+ | variant_inventory_management | string |  no  |  |
+ | id | number |  no  |  |
+ | variant_id | number |  no  |  |
+ | variant_title | string |  no  |  |
+ | product_exists | boolean |  no  |  |
+ | price | string |  no  |  |
+ | admin_graphql_api_id | string |  no  |  |
+ | quantity | number |  no  |  |
+ | vendor | string |  no  |  |
+ | fulfillment_service | string |  no  |  |
+ | taxable | boolean |  no  |  |
+ | name | string |  no  |  |
+ | product_id | number |  no  |  |
+ | price_set | [PriceSet](#PriceSet) |  no  |  |
+ | tax_lines | [TaxLines](#TaxLines) |  no  |  |
+ | requires_shipping | boolean |  no  |  |
+ | gift_card | boolean |  no  |  |
+ | total_discount_set | [TotalDiscountSet](#TotalDiscountSet) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LineItemsArticle](#LineItemsArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantities | [Quantities](#Quantities) |  no  |  |
+ | old_article_uid | string |  no  |  |
+ | total_quantity | number |  no  |  |
+ | manufacturer | [Manufacturer](#Manufacturer) |  no  |  |
+ | price | [ArticlePrice](#ArticlePrice) |  no  |  |
+ | track_inventory | boolean |  no  |  |
+ | company | [Company](#Company) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | date_meta | [FailOrderDateMeta](#FailOrderDateMeta) |  no  |  |
+ | fragile | boolean |  no  |  |
+ | marketplace_identifiers | [MarketplaceIdentifiers](#MarketplaceIdentifiers) |  no  |  |
+ | size | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | dimension | [Dimension](#Dimension) |  no  |  |
+ | weight | [Weight](#Weight) |  no  |  |
+ | store | [Store](#Store) |  no  |  |
+ | meta | [ArticleMeta](#ArticleMeta) |  no  |  |
+ | uid | string |  no  |  |
+ | brand | [ArticleBrand](#ArticleBrand) |  no  |  |
+ | item_id | number |  no  |  |
+ | fynd_article_code | string |  no  |  |
+ | _id | string |  no  |  |
+ | identifier | [LineItemsArticleIdentifier](#LineItemsArticleIdentifier) |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | fynd_item_code | string |  no  |  |
+ | country_of_origin | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Quantities](#Quantities)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | not_available | [NotAvailable](#NotAvailable) |  no  |  |
+ | sellable | [Sellable](#Sellable) |  no  |  |
+ | order_committed | [OrderCommitted](#OrderCommitted) |  no  |  |
+ | damaged | [Damaged](#Damaged) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NotAvailable](#NotAvailable)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | updated_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Sellable](#Sellable)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | updated_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderCommitted](#OrderCommitted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | updated_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Damaged](#Damaged)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updated_at | string |  no  |  |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Manufacturer](#Manufacturer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  no  |  |
+ | address | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePrice](#ArticlePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | number |  no  |  |
+ | currency | string |  no  |  |
+ | effective | number |  no  |  |
+ | transfer | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Company](#Company)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | company_type | string |  no  |  |
+ | business_type | string |  no  |  |
+ | company_name | string |  no  |  |
+ | created_on | string |  no  |  |
+ | pan_no | string |  no  |  |
+ | return_allowed | boolean |  no  |  |
+ | meta | string |  no  |  |
+ | exchange_allowed | boolean |  no  |  |
+ | agreement_start_date | string |  no  |  |
+ | exchange_within_days | number |  no  |  |
+ | payment_procesing_charge | number |  no  |  |
+ | fynd_a_fit_available | boolean |  no  |  |
+ | modified_on | string |  no  |  |
+ | return_within_days | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FailOrderDateMeta](#FailOrderDateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | added_on_store | string |  no  |  |
+ | inventory_updated_on | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceIdentifiers](#MarketplaceIdentifiers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tatacliq_luxury | [TatacliqLuxury](#TatacliqLuxury) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TatacliqLuxury](#TatacliqLuxury)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sku | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Dimension](#Dimension)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | height | number |  no  |  |
+ | width | number |  no  |  |
+ | unit | string |  no  |  |
+ | length | number |  no  |  |
+ | is_default | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Weight](#Weight)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  no  |  |
+ | unit | string |  no  |  |
+ | shipping | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Store](#Store)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleMeta](#ArticleMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | service | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleBrand](#ArticleBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LineItemsArticleIdentifier](#LineItemsArticleIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sku_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceSet](#PriceSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [PriceSetShopMoney](#PriceSetShopMoney) |  no  |  |
+ | presentment_money | [PriceSetPresentmentMoney](#PriceSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceSetShopMoney](#PriceSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceSetPresentmentMoney](#PriceSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaxLines](#TaxLines)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | price | string |  no  |  |
+ | rate | number |  no  |  |
+ | price_set | [TaxLinesPriceSet](#TaxLinesPriceSet) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaxLinesPriceSet](#TaxLinesPriceSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [TaxLinesPriceSetShopMoney](#TaxLinesPriceSetShopMoney) |  no  |  |
+ | presentment_money | [TaxLinesPriceSetPresentmentMoney](#TaxLinesPriceSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaxLinesPriceSetShopMoney](#TaxLinesPriceSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaxLinesPriceSetPresentmentMoney](#TaxLinesPriceSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | amount | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalDiscountSet](#TotalDiscountSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | presentment_money | [TotalDiscountSetPresentmentMoney](#TotalDiscountSetPresentmentMoney) |  no  |  |
+ | shop_money | [TotalDiscountSetShopMoney](#TotalDiscountSetShopMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalDiscountSetPresentmentMoney](#TotalDiscountSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalDiscountSetShopMoney](#TotalDiscountSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BillingAddress](#BillingAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  no  |  |
+ | city | string |  no  |  |
+ | zip | string |  no  |  |
+ | last_name | string |  no  |  |
+ | address2 | string |  no  |  |
+ | longitude | number |  no  |  |
+ | province_code | string |  no  |  |
+ | phone | string |  no  |  |
+ | company | string |  no  |  |
+ | latitude | number |  no  |  |
+ | name | string |  no  |  |
+ | country | string |  no  |  |
+ | country_code | string |  no  |  |
+ | first_name | string |  no  |  |
+ | province | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalShippingPriceSet](#TotalShippingPriceSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [TotalShippingPriceSetShopMoney](#TotalShippingPriceSetShopMoney) |  no  |  |
+ | presentment_money | [TotalShippingPriceSetPresentmentMoney](#TotalShippingPriceSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalShippingPriceSetShopMoney](#TotalShippingPriceSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalShippingPriceSetPresentmentMoney](#TotalShippingPriceSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Customer](#Customer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_at | string |  no  |  |
+ | id | number |  no  |  |
+ | last_name | string |  no  |  |
+ | state | string |  no  |  |
+ | last_order_id | number |  no  |  |
+ | note | string |  no  |  |
+ | verified_email | boolean |  no  |  |
+ | phone | string |  no  |  |
+ | accepts_marketing | boolean |  no  |  |
+ | first_name | string |  no  |  |
+ | tags | string |  no  |  |
+ | last_order_name | string |  no  |  |
+ | orders_count | number |  no  |  |
+ | total_spent | string |  no  |  |
+ | tax_exempt | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | accepts_marketing_updated_at | string |  no  |  |
+ | email | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | admin_graphql_api_id | string |  no  |  |
+ | default_address | [DefaultAddress](#DefaultAddress) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DefaultAddress](#DefaultAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | last_name | string |  no  |  |
+ | name | string |  no  |  |
+ | province_code | string |  no  |  |
+ | country_code | string |  no  |  |
+ | is_default | boolean |  no  |  |
+ | id | number |  no  |  |
+ | customer_id | number |  no  |  |
+ | first_name | string |  no  |  |
+ | address1 | string |  no  |  |
+ | phone | string |  no  |  |
+ | country_name | string |  no  |  |
+ | company | string |  no  |  |
+ | address2 | string |  no  |  |
+ | city | string |  no  |  |
+ | province | string |  no  |  |
+ | country | string |  no  |  |
+ | zip | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalLineItemsPriceSet](#TotalLineItemsPriceSet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shop_money | [TotalLineItemsPriceSetShopMoney](#TotalLineItemsPriceSetShopMoney) |  no  |  |
+ | presentment_money | [TotalLineItemsPriceSetPresentmentMoney](#TotalLineItemsPriceSetPresentmentMoney) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalLineItemsPriceSetShopMoney](#TotalLineItemsPriceSetShopMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TotalLineItemsPriceSetPresentmentMoney](#TotalLineItemsPriceSetPresentmentMoney)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderShippingAddress](#OrderShippingAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  no  |  |
+ | zip | string |  no  |  |
+ | address2 | string |  no  |  |
+ | country_code | string |  no  |  |
+ | country | string |  no  |  |
+ | last_name | string |  no  |  |
+ | latitude | number |  no  |  |
+ | province_code | string |  no  |  |
+ | first_name | string |  no  |  |
+ | phone | string |  no  |  |
+ | province | string |  no  |  |
+ | longitude | number |  no  |  |
+ | city | string |  no  |  |
+ | company | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderListing](#OrderListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[OrderItems](#OrderItems)] |  yes  |  |
+ | filters | [Filters](#Filters) |  yes  |  |
+ | next_order_status | string |  yes  |  |
+ | page | [PlatformOrderPage](#PlatformOrderPage) |  yes  |  |
+ | applied_filters | [AppliedFilters](#AppliedFilters) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderItems](#OrderItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [PlatformOrderUserInfo](#PlatformOrderUserInfo) |  no  |  |
+ | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
+ | channel | [Channel](#Channel) |  no  |  |
+ | id | string |  no  |  |
+ | application | [PlatformApplication](#PlatformApplication) |  no  |  |
+ | shipments | [PlatformShipment](#PlatformShipment) |  no  |  |
+ | created_at | string |  no  |  |
+ | total_shipments_in_order | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformOrderUserInfo](#PlatformOrderUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | email | string |  no  |  |
+ | last_name | string |  no  |  |
+ | is_anonymous_user | boolean |  no  |  |
+ | uid | number |  no  |  |
+ | avis_user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformDeliveryAddress](#PlatformDeliveryAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | area | string |  no  |  |
+ | state | string |  no  |  |
+ | country | string |  no  |  |
+ | version | string |  no  |  |
+ | address1 | string |  no  |  |
+ | latitude | number |  no  |  |
+ | updated_at | string |  no  |  |
+ | city | string |  no  |  |
+ | landmark | string |  no  |  |
+ | created_at | string |  no  |  |
+ | name | string |  no  |  |
+ | address | string |  no  |  |
+ | phone | string |  no  |  |
+ | longitude | number |  no  |  |
+ | address_type | string |  no  |  |
+ | email | string |  no  |  |
+ | pincode | string |  no  |  |
+ | address2 | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | address_category | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Channel](#Channel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformApplication](#PlatformApplication)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformShipment](#PlatformShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | [PlatformShipmentStatus](#PlatformShipmentStatus) |  no  |  |
+ | bags | [Bags](#Bags) |  no  |  |
+ | prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
+ | id | string |  no  |  |
+ | gst | [ShipmentGst](#ShipmentGst) |  no  |  |
+ | total_shipment_bags | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformShipmentStatus](#PlatformShipmentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | bag_list | [number] |  no  |  |
+ | created_at | string |  no  |  |
+ | status | string |  no  |  |
+ | name | string |  no  |  |
+ | progress | number |  no  |  |
+ | shipment_id | string |  no  |  |
+ | current_shipment_status | string |  no  |  |
+ | color_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Bags](#Bags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item | [BagItem](#BagItem) |  no  |  |
+ | id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagItem](#BagItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | size | string |  no  |  |
+ | slug_key | string |  no  |  |
+ | can_return | boolean |  no  |  |
+ | brand_id | number |  no  |  |
+ | l2_category | [string] |  no  |  |
+ | name | string |  no  |  |
+ | code | string |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | attributes | [BagItemAttributes](#BagItemAttributes) |  no  |  |
+ | l3_category_name | string |  no  |  |
+ | l3_category | number |  no  |  |
+ | l1_category | [string] |  no  |  |
+ | image | [string] |  no  |  |
+ | brand | string |  no  |  |
+ | last_updated_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagItemAttributes](#BagItemAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_code | string |  no  |  |
+ | brand_name | string |  no  |  |
+ | country_of_origin | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPrices](#ShipmentPrices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | refund_amount | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | transfer_price | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | added_to_fynd_cash | boolean |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | discount | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | fynd_credits | number |  no  |  |
+ | brand_calculated_amount | number |  no  |  |
+ | cashback | number |  no  |  |
+ | value_of_good | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Payments](#Payments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | logo | string |  no  |  |
+ | source | string |  no  |  |
+ | source_nickname | string |  no  |  |
+ | display_priority | number |  no  |  |
+ | id | number |  no  |  |
+ | mode | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Filters](#Filters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stage | [Stage](#Stage) |  no  |  |
+ | stages | [Stages](#Stages) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Stage](#Stage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | value | string |  no  |  |
+ | is_default | boolean |  no  |  |
+ | filters | [StagesFilters](#StagesFilters) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StagesFilters](#StagesFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | value | string |  no  |  |
+ | type | string |  no  |  |
+ | options | [Options](#Options) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Options](#Options)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformOrderPage](#PlatformOrderPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | next | string |  no  |  |
+ | previous | string |  no  |  |
+ | type | string |  no  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | total | number |  no  |  |
+ | item_total | [ItemTotal](#ItemTotal) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedFilters](#AppliedFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stage | string |  no  |  |
+ | stores | [string] |  no  |  |
+ | from_date | string |  no  |  |
+ | to_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDetails](#OrderDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[OrderPicklistListing](#OrderPicklistListing)] |  yes  |  |
+ | page | [PlatformOrderPage](#PlatformOrderPage) |  yes  |  |
+ | filters | [Filters](#Filters) |  yes  |  |
+ | next_order_status | string |  yes  |  |
+ | applied_filters | [AppliedFilters](#AppliedFilters) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDetailsItem](#OrderDetailsItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [PlatformOrderUserInfo](#PlatformOrderUserInfo) |  no  |  |
+ | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
+ | channel | [Channel](#Channel) |  no  |  |
+ | breakup_values | [PlatformBreakupValues](#PlatformBreakupValues) |  no  |  |
+ | id | string |  no  |  |
+ | application | [PlatformApplication](#PlatformApplication) |  no  |  |
+ | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails) |  no  |  |
+ | created_at | string |  no  |  |
+ | total_shipments_in_order | number |  no  |  |
+ | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformBreakupValues](#PlatformBreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignment](#ArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | strategy | string |  no  |  |
+ | level | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformShipmentDetails](#PlatformShipmentDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | [PlatformShipmentDetailsStatus](#PlatformShipmentDetailsStatus) |  no  |  |
+ | bags | [BagsDetails](#BagsDetails) |  no  |  |
+ | prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
+ | breakup_values | [ShipmentBreakupValues](#ShipmentBreakupValues) |  no  |  |
+ | id | string |  no  |  |
+ | dp_details | [DpDetails](#DpDetails) |  no  |  |
+ | invoice | [ShipmentInvoice](#ShipmentInvoice) |  no  |  |
+ | fulfilling_store | [PlatformFulfillingStore](#PlatformFulfillingStore) |  no  |  |
+ | payments | [Payments](#Payments) |  no  |  |
+ | gst | [ShipmentGst](#ShipmentGst) |  no  |  |
+ | company | [Company](#Company) |  no  |  |
+ | brand | [PlatformShipmentDetailsBrand](#PlatformShipmentDetailsBrand) |  no  |  |
+ | coupon | string |  no  |  |
+ | order_source | string |  no  |  |
+ | is_not_fynd_source | boolean |  no  |  |
+ | comment | string |  no  |  |
+ | promise | [Promise](#Promise) |  no  |  |
+ | tracking_details | [ShipmentTrackingDetails](#ShipmentTrackingDetails) |  no  |  |
+ | is_fynd_coupon | boolean |  no  |  |
+ | order_type | string |  no  |  |
+ | total_shipment_bags | number |  no  |  |
+ | pod | string |  no  |  |
+ | lock_status | boolean |  no  |  |
+ | ordering_channel | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformShipmentDetailsStatus](#PlatformShipmentDetailsStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | bag_list | [number] |  no  |  |
+ | created_at | string |  no  |  |
+ | status | string |  no  |  |
+ | name | string |  no  |  |
+ | progress | number |  no  |  |
+ | shipment_id | string |  no  |  |
+ | current_shipment_status | string |  no  |  |
+ | color_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsDetails](#BagsDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | financial_breakup | [[BagFinancialBreakup](#BagFinancialBreakup)] |  no  |  |
+ | status | [BagCurrStatus](#BagCurrStatus) |  no  |  |
+ | item | [BagItem](#BagItem) |  no  |  |
+ | article | [BagArticle](#BagArticle) |  no  |  |
+ | id | number |  no  |  |
+ | prices | [BagPrices](#BagPrices) |  no  |  |
+ | gst_details | [GstDetails](#GstDetails) |  no  |  |
+ | breakup_values | [BagBreakupValues](#BagBreakupValues) |  no  |  |
+ | update_time | number |  no  |  |
+ | current_status | [BagCurrentStatus](#BagCurrentStatus) |  no  |  |
+ | bag_status | [BagStatus](#BagStatus) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagFinancialBreakup](#BagFinancialBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value_of_good | number |  no  |  |
+ | hsn_code | string |  no  |  |
+ | price_effective | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | gst_fee | string |  no  |  |
+ | fynd_credits | number |  no  |  |
+ | refund_amount | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | transfer_price | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
+ | size | string |  no  |  |
+ | total_units | number |  no  |  |
+ | discount | number |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | cashback | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | gst_tag | string |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | identifiers | [Identifiers](#Identifiers) |  no  |  |
+ | item_name | string |  no  |  |
+ | added_to_fynd_cash | boolean |  no  |  |
+ | brand_calculated_amount | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifiers](#Identifiers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ean | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagCurrStatus](#BagCurrStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enable_tracking | boolean |  no  |  |
+ | is_customer_return_allowed | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_returnable | boolean |  no  |  |
+ | can_be_cancelled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagArticle](#BagArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifiers | [ArticleIdentifiers](#ArticleIdentifiers) |  no  |  |
+ | esp_modified | boolean |  no  |  |
+ | is_set | boolean |  no  |  |
+ | size | string |  no  |  |
+ | code | string |  no  |  |
+ | set | [Set](#Set) |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | return_config | [BagArticleReturnConfig](#BagArticleReturnConfig) |  no  |  |
+ | _id | string |  no  |  |
+ | uid | string |  no  |  |
+ | child_details | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleIdentifiers](#ArticleIdentifiers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ean | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Set](#Set)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | size_distribution | [SetSizeDistribution](#SetSizeDistribution) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SetSizeDistribution](#SetSizeDistribution)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [Sizes](#Sizes) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Sizes](#Sizes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | pieces | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagArticleReturnConfig](#BagArticleReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | time | number |  no  |  |
+ | unit | string |  no  |  |
+ | returnable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GstDetails](#GstDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_calculated_amount | number |  no  |  |
+ | gst_fee | string |  no  |  |
+ | gst_tag | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | value_of_good | number |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
+ | is_default_hsn_code | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagBreakupValues](#BagBreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagCurrentStatus](#BagCurrentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | updated_at | string |  no  |  |
+ | bag_state_mapper | [BagStateMapper](#BagStateMapper) |  no  |  |
+ | status | string |  no  |  |
+ | state_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagStateMapper](#BagStateMapper)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_state_name | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | name | string |  no  |  |
+ | app_display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagStatus](#BagStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+ | state_type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | bag_state_mapper | [BagStatusBagStateMapper](#BagStatusBagStateMapper) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagStatusBagStateMapper](#BagStatusBagStateMapper)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | name | string |  no  |  |
+ | app_display_name | string |  no  |  |
+ | app_state_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagPrices](#BagPrices)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cashback | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | fynd_credits | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | value_of_good | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | cod_charges | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | refund_amount | number |  no  |  |
+ | discount | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentBreakupValues](#ShipmentBreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpDetails](#DpDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gst_tag | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentInvoice](#ShipmentInvoice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_type | string |  no  |  |
+ | updated_date | string |  no  |  |
+ | invoice_url | string |  no  |  |
+ | label_url | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | amount_to_collect | number |  no  |  |
+ | rto_address | [RtoAddress](#RtoAddress) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RtoAddress](#RtoAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | id | number |  no  |  |
+ | phone | string |  no  |  |
+ | location_type | string |  no  |  |
+ | store_address_json | [StoreAddressJson](#StoreAddressJson) |  no  |  |
+ | code | string |  no  |  |
+ | address1 | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | string |  no  |  |
+ | company_id | number |  no  |  |
+ | contact_person | string |  no  |  |
+ | state | string |  no  |  |
+ | store_email | string |  no  |  |
+ | address2 | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreAddressJson](#StoreAddressJson)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | latitude | number |  no  |  |
+ | updated_at | string |  no  |  |
+ | area | string |  no  |  |
+ | state | string |  no  |  |
+ | address_type | string |  no  |  |
+ | city | string |  no  |  |
+ | pincode | string |  no  |  |
+ | address1 | string |  no  |  |
+ | address2 | string |  no  |  |
+ | longitude | number |  no  |  |
+ | email | string |  no  |  |
+ | phone | string |  no  |  |
+ | created_at | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | address_category | string |  no  |  |
+ | version | string |  no  |  |
+ | landmark | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformFulfillingStore](#PlatformFulfillingStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | packaging_material_count | number |  no  |  |
+ | location_type | string |  no  |  |
+ | code | string |  no  |  |
+ | city | string |  no  |  |
+ | meta | [FulfillingStoreMeta](#FulfillingStoreMeta) |  no  |  |
+ | name | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | address1 | string |  no  |  |
+ | store_email | string |  no  |  |
+ | is_archived | boolean |  no  |  |
+ | state | string |  no  |  |
+ | address2 | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | phone | string |  no  |  |
+ | is_enabled_for_recon | boolean |  no  |  |
+ | fulfillment_channel | string |  no  |  |
+ | created_at | string |  no  |  |
+ | id | number |  no  |  |
+ | pincode | string |  no  |  |
+ | brand_store_tags | [string] |  no  |  |
+ | company_id | number |  no  |  |
+ | store_address_json | [FulfillingStoreStoreAddressJson](#FulfillingStoreStoreAddressJson) |  no  |  |
+ | updated_at | string |  no  |  |
+ | login_username | string |  no  |  |
+ | country | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingStoreMeta](#FulfillingStoreMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | additional_contact_details | [AdditionalContactDetails](#AdditionalContactDetails) |  no  |  |
+ | documents | [Documents](#Documents) |  no  |  |
+ | gst_number | string |  no  |  |
+ | display_name | string |  no  |  |
+ | product_return_config | [ProductReturnConfig](#ProductReturnConfig) |  no  |  |
+ | allow_dp_assignment_from_fynd | boolean |  no  |  |
+ | stage | string |  no  |  |
+ | timing | [Timing](#Timing) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AdditionalContactDetails](#AdditionalContactDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Documents](#Documents)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gst | [Gst](#Gst) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Gst](#Gst)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | legal_name | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ | verified | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductReturnConfig](#ProductReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | on_same_store | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Timing](#Timing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | opening | [Opening](#Opening) |  no  |  |
+ | weekday | string |  no  |  |
+ | open | boolean |  no  |  |
+ | closing | [Closing](#Closing) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Opening](#Opening)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | minute | number |  no  |  |
+ | hour | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Closing](#Closing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | number |  no  |  |
+ | minute | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingStoreStoreAddressJson](#FulfillingStoreStoreAddressJson)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address2 | string |  no  |  |
+ | area | string |  no  |  |
+ | email | string |  no  |  |
+ | phone | string |  no  |  |
+ | state | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | string |  no  |  |
+ | version | string |  no  |  |
+ | created_at | string |  no  |  |
+ | address_type | string |  no  |  |
+ | city | string |  no  |  |
+ | address1 | string |  no  |  |
+ | landmark | string |  no  |  |
+ | latitude | number |  no  |  |
+ | longitude | number |  no  |  |
+ | updated_at | string |  no  |  |
+ | address_category | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentGst](#ShipmentGst)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_calculated_amount | number |  no  |  |
+ | value_of_good | number |  no  |  |
+ | gst_fee | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformShipmentDetailsBrand](#PlatformShipmentDetailsBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credit_note_allowed | boolean |  no  |  |
+ | brand_name | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | id | number |  no  |  |
+ | is_virtual_invoice | boolean |  no  |  |
+ | created_on | string |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Promise](#Promise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | [Timestamp](#Timestamp) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Timestamp](#Timestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | string |  no  |  |
+ | max | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackingDetails](#ShipmentTrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+ | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+ | is_current | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemsPayments](#ItemsPayments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_priority | number |  no  |  |
+ | id | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | logo | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | source_nickname | string |  no  |  |
+ | mode | string |  no  |  |
+ | source | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformOrderDetailsPage](#PlatformOrderDetailsPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | next | string |  no  |  |
+ | previous | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderLanesCount](#OrderLanesCount)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stages | [[StageItem](#StageItem)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StageItem](#StageItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | text | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateOrderReprocessResponse](#UpdateOrderReprocessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformOrderTrack](#PlatformOrderTrack)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | request_id | string |  yes  |  |
+ | message | string |  yes  |  |
+ | mobile | string |  yes  |  |
+ | country_code | string |  yes  |  |
+ | resend_timer | number |  yes  |  |
+ | resend_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderPicklistListing](#OrderPicklistListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [PlatformOrderUserInfo](#PlatformOrderUserInfo) |  no  |  |
+ | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
+ | channel | [Channel](#Channel) |  no  |  |
+ | breakup_values | [PlatformBreakupValues](#PlatformBreakupValues) |  no  |  |
+ | id | string |  no  |  |
+ | application | [PlatformApplication](#PlatformApplication) |  no  |  |
+ | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails) |  no  |  |
+ | created_at | string |  no  |  |
+ | total_shipments_in_order | number |  no  |  |
+ | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Stages](#Stages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | value | string |  no  |  |
+ | is_default | boolean |  no  |  |
+ | filters | [StagesFilters](#StagesFilters) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemTotal](#ItemTotal)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | new | number |  no  |  |
+ | processing | number |  no  |  |
+ | returns | number |  no  |  |
+ | all | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetPingResponse](#GetPingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ping | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetShipmentAddressResponse](#GetShipmentAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | data | [DataShipmentAddress](#DataShipmentAddress) |  yes  |  |
+ | success | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DataShipmentAddress](#DataShipmentAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | string |  no  |  |
+ | phone | string |  no  |  |
+ | area | string |  no  |  |
+ | address | string |  no  |  |
+ | landmark | string |  no  |  |
+ | state | string |  no  |  |
+ | address_type | string |  no  |  |
+ | address_category | string |  no  |  |
+ | email | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateShipmentAddressRequest](#UpdateShipmentAddressRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  yes  |  |
+ | address | string |  yes  |  |
+ | pincode | string |  yes  |  |
+ | state | string |  yes  |  |
+ | address_type | string |  yes  |  |
+ | country | string |  yes  |  |
+ | name | string |  yes  |  |
+ | phone | string |  yes  |  |
+ | area | string |  yes  |  |
+ | landmark | string |  yes  |  |
+ | city | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateShipmentAddressResponse](#UpdateShipmentAddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponse](#ShipmentTrackResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bag_list | [[ShipmentTrackResponseBagListItem](#ShipmentTrackResponseBagListItem)] |  yes  |  |
+ | message | string |  yes  |  |
+ | order_value | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItem](#ShipmentTrackResponseBagListItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enable_tracking | boolean |  no  |  |
+ | price | string |  no  |  |
+ | time_slot | string |  no  |  |
+ | product_name | string |  no  |  |
+ | can_return | boolean |  no  |  |
+ | order_date | string |  no  |  |
+ | is_try_at_home | boolean |  no  |  |
+ | breakup_values | [[ShipmentTrackResponseBagListItemBreakValues](#ShipmentTrackResponseBagListItemBreakValues)] |  no  |  |
+ | statuses | [[ShipmentTrackResponseBagListItemStatuses](#ShipmentTrackResponseBagListItemStatuses)] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | bag_id | string |  no  |  |
+ | order_id | string |  no  |  |
+ | size | string |  no  |  |
+ | payment_mode_source | string |  no  |  |
+ | dp_details | [ShipmentTrackResponseBagListItemDpDetails](#ShipmentTrackResponseBagListItemDpDetails) |  no  |  |
+ | product_id | number |  no  |  |
+ | product_image | [ShipmentTrackResponseBagListItemsProductImage](#ShipmentTrackResponseBagListItemsProductImage) |  no  |  |
+ | brand_name | string |  no  |  |
+ | price_marked | string |  no  |  |
+ | status | string |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | payment_mode | string |  no  |  |
+ | fynd_cash_msg | string |  no  |  |
+ | delivery_address | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItemBreakValues](#ShipmentTrackResponseBagListItemBreakValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItemStatuses](#ShipmentTrackResponseBagListItemStatuses)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | nps_rating | number |  no  |  |
+ | nps_string | string |  no  |  |
+ | progress_status | [[ShipmentTrackResponseBagListItemStatusesProgress](#ShipmentTrackResponseBagListItemStatusesProgress)] |  no  |  |
+ | flow_type | string |  no  |  |
+ | status_progress | number |  no  |  |
+ | is_nps_done | boolean |  no  |  |
+ | header_message | string |  no  |  |
+ | is_delayed | string |  no  |  |
+ | tracking_list | [[ShipmentTrackResponseBagListItemStatusesTrack](#ShipmentTrackResponseBagListItemStatusesTrack)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItemStatusesProgress](#ShipmentTrackResponseBagListItemStatusesProgress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | type | string |  no  |  |
+ | state | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItemStatusesTrack](#ShipmentTrackResponseBagListItemStatusesTrack)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+ | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+ | is_current | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItemDpDetails](#ShipmentTrackResponseBagListItemDpDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tracking_no | string |  no  |  |
+ | courier | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTrackResponseBagListItemsProductImage](#ShipmentTrackResponseBagListItemsProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateShipmentStatusResponse](#UpdateShipmentStatusResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | string |  yes  |  |
+ | error_shipments | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateShipmentStatusBody](#UpdateShipmentStatusBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | string |  yes  |  |
+ | force_transition | boolean |  yes  |  |
+ | task | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | message | string |  yes  |  |
+ | reasons | [[ShipmentResponseReasons](#ShipmentResponseReasons)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentResponseReasons](#ShipmentResponseReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | number |  no  |  |
+ | reason | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformShipmentTrack](#PlatformShipmentTrack)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | results | [Results](#Results) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Results](#Results)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | awb | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | last_location_recieved_at | string |  no  |  |
+ | reason | string |  no  |  |
+ | shipment_type | string |  no  |  |
+ | status | string |  no  |  |
+ | updated_time | string |  no  |  |
+ | account_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUpdateRequest](#ShipmentUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bags | [string] |  yes  |  |
+ | reason | string |  yes  |  |
+ | comments | string |  yes  |  |
+ | action | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUpdateResponse](#ShipmentUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateProcessShipmenstRequestBody](#UpdateProcessShipmenstRequestBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_ids | [string] |  yes  |  |
+ | expected_status | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateProcessShipmenstRequestResponse](#UpdateProcessShipmenstRequestResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetClickToCallResponse](#GetClickToCallResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApefaceApiError](#ApefaceApiError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [DeleteResponse](#DeleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SearchKeywordResult](#SearchKeywordResult)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | string |  yes  |  |
+ | sort_on | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateSearchKeyword](#CreateSearchKeyword)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | app_id | string |  no  |  |
+ | words | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetSearchWordsData](#GetSearchWordsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | app_id | string |  no  |  |
+ | words | [string] |  no  |  |
+ | result | string |  no  |  |
+ | uid | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [GetSearchWordsData](#GetSearchWordsData) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetSearchWordsResponse](#GetSearchWordsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetSearchWordsData](#GetSearchWordsData)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AutocompletePageAction](#AutocompletePageAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | string |  no  |  |
+ | url | string |  no  |  |
+ | query | string |  yes  |  |
+ | type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AutocompleteAction](#AutocompleteAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [AutocompletePageAction](#AutocompletePageAction) |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Media](#Media)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AutocompleteResult](#AutocompleteResult)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | action | [AutocompleteAction](#AutocompleteAction) |  no  |  |
+ | display | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateAutocompleteKeyword](#CreateAutocompleteKeyword)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | results | [[AutocompleteResult](#AutocompleteResult)] |  no  |  |
+ | app_id | string |  no  |  |
+ | words | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | results | [string] |  no  |  |
+ | app_id | string |  no  |  |
+ | words | [string] |  no  |  |
+ | uid | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | words | [string] |  no  |  |
+ | results | [string] |  no  |  |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBundleItem](#ProductBundleItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_remove | boolean |  no  |  |
+ | max_quantity | number |  yes  |  |
+ | product_uid | number |  yes  |  |
+ | auto_select | boolean |  no  |  |
+ | min_quantity | number |  yes  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBundleRequest](#ProductBundleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choice | string |  yes  |  |
+ | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+ | meta | string |  no  |  |
+ | slug | string |  yes  |  |
+ | created_on | string |  no  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
+ | modified_on | string |  no  |  |
+ | page_visibility | [string] |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | logo | string |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choice | string |  yes  |  |
+ | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+ | meta | string |  no  |  |
+ | slug | string |  yes  |  |
+ | created_on | string |  no  |  |
+ | id | string |  no  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
+ | modified_on | string |  no  |  |
+ | page_visibility | [string] |  no  |  |
+ | company_id | number |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | logo | string |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetProductBundleListingResponse](#GetProductBundleListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choice | string |  yes  |  |
+ | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+ | meta | string |  no  |  |
+ | slug | string |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
+ | modified_on | string |  no  |  |
+ | page_visibility | [string] |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Price](#Price)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min_effective | number |  no  |  |
+ | max_marked | number |  no  |  |
+ | min_marked | number |  no  |  |
+ | max_effective | number |  no  |  |
+ | currency | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LimitedProductData](#LimitedProductData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | short_description | string |  no  |  |
+ | identifier | string |  no  |  |
+ | sizes | [string] |  no  |  |
+ | item_code | string |  no  |  |
+ | price | string |  no  |  |
+ | country_of_origin | string |  no  |  |
+ | quantity | number |  no  |  |
+ | attributes | string |  no  |  |
+ | uid | number |  no  |  |
+ | images | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Size](#Size)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_available | boolean |  no  |  |
+ | quantity | number |  no  |  |
+ | display | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetProducts](#GetProducts)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_remove | boolean |  no  |  |
+ | max_quantity | number |  no  |  |
+ | product_uid | number |  no  |  |
+ | auto_select | boolean |  no  |  |
+ | min_quantity | number |  no  |  |
+ | price | [Price](#Price) |  no  |  |
+ | product_details | [LimitedProductData](#LimitedProductData) |  no  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+ | sizes | [[Size](#Size)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetProductBundleResponse](#GetProductBundleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choice | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | string |  no  |  |
+ | products | [[GetProducts](#GetProducts)] |  no  |  |
+ | company_id | number |  no  |  |
+ | page_visibility | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Meta](#Meta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | string |  no  |  |
+ | values | [string] |  no  |  |
+ | headers | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Guide](#Guide)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [Meta](#Meta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidateSizeGuide](#ValidateSizeGuide)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_id | number |  no  |  |
+ | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+ | created_on | string |  no  |  |
+ | title | string |  yes  |  |
+ | image | string |  no  |  |
+ | id | string |  no  |  |
+ | guide | [Guide](#Guide) |  no  |  |
+ | subtitle | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | tag | string |  no  |  |
+ | active | boolean |  no  |  |
+ | description | string |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuccessResponse](#SuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListSizeGuide](#ListSizeGuide)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeGuideResponse](#SizeGuideResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_id | number |  no  |  |
+ | name | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | title | string |  no  |  |
+ | id | string |  no  |  |
+ | guide | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | tag | string |  no  |  |
+ | active | boolean |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | compare | string |  no  |  |
+ | detail | string |  no  |  |
+ | variant | string |  no  |  |
+ | similar | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaDataListingSortResponse](#MetaDataListingSortResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[MetaDataListingSortMetaResponse](#MetaDataListingSortMetaResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaDataListingFilterMetaResponse](#MetaDataListingFilterMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | units | [string] |  no  |  |
+ | display | string |  no  |  |
+ | key | string |  no  |  |
+ | filter_types | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaDataListingFilterResponse](#MetaDataListingFilterResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[MetaDataListingFilterMetaResponse](#MetaDataListingFilterMetaResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaDataListingResponse](#MetaDataListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort | [MetaDataListingSortResponse](#MetaDataListingSortResponse) |  yes  |  |
+ | filter | [MetaDataListingFilterResponse](#MetaDataListingFilterResponse) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCatalogConfigurationMetaData](#GetCatalogConfigurationMetaData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
+ | listing | [MetaDataListingResponse](#MetaDataListingResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingSortConfig](#ConfigurationListingSortConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | priority | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | key | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingSort](#ConfigurationListingSort)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)] |  no  |  |
+ | default_key | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationBucketPoints](#ConfigurationBucketPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | number |  no  |  |
+ | end | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | condition | string |  no  |  |
+ | bucket_points | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)] |  no  |  |
+ | map | string |  no  |  |
+ | value | string |  no  |  |
+ | sort | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | priority | number |  yes  |  |
+ | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue) |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | type | string |  yes  |  |
+ | key | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilter](#ConfigurationListingFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute_config | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)] |  no  |  |
+ | allow_single | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListing](#ConfigurationListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  yes  |  |
+ | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSize](#ProductSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  yes  |  |
+ | max | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationProductVariantConfig](#ConfigurationProductVariantConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | [ProductSize](#ProductSize) |  yes  |  |
+ | name | string |  yes  |  |
+ | priority | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | display_type | string |  yes  |  |
+ | key | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationProductVariant](#ConfigurationProductVariant)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [[ConfigurationProductVariantConfig](#ConfigurationProductVariantConfig)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationProductConfig](#ConfigurationProductConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | [ProductSize](#ProductSize) |  no  |  |
+ | priority | number |  yes  |  |
+ | title | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | key | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationProductSimilar](#ConfigurationProductSimilar)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [[ConfigurationProductConfig](#ConfigurationProductConfig)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationProduct](#ConfigurationProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | variant | [ConfigurationProductVariant](#ConfigurationProductVariant) |  yes  |  |
+ | similar | [ConfigurationProductSimilar](#ConfigurationProductSimilar) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppConfiguration](#AppConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
+ | config_id | string |  no  |  |
+ | config_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppCatalogConfiguration](#AppCatalogConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | app_id | string |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
+ | config_id | string |  no  |  |
+ | config_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  no  |  |
+ | data | [AppCatalogConfiguration](#AppCatalogConfiguration) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort | string |  no  |  |
+ | filter | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityConfiguration](#EntityConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | app_id | string |  yes  |  |
+ | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing) |  no  |  |
+ | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
+ | config_id | string |  no  |  |
+ | config_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAppCatalogEntityConfiguration](#GetAppCatalogEntityConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  no  |  |
+ | data | [EntityConfiguration](#EntityConfiguration) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersValue](#ProductFiltersValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | selected_min | number |  no  |  |
+ | selected_max | number |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | max | number |  no  |  |
+ | count | number |  no  |  |
+ | display | string |  yes  |  |
+ | display_format | string |  no  |  |
+ | min | number |  no  |  |
+ | query_format | string |  no  |  |
+ | value | string |  yes  |  |
+ | currency_symbol | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersKey](#ProductFiltersKey)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | kind | string |  no  |  |
+ | name | string |  yes  |  |
+ | display | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFilters](#ProductFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionQueryOptionResponse](#GetCollectionQueryOptionResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBadge](#CollectionBadge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | color | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionImage](#CollectionImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  yes  |  |
+ | aspect_ratio | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | email | string |  no  |  |
+ | uid | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  no  |  |
+ | end | string |  no  |  |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SeoDetail](#SeoDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBanner](#CollectionBanner)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | [CollectionImage](#CollectionImage) |  yes  |  |
+ | portrait | [CollectionImage](#CollectionImage) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateCollection](#CreateCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [string] |  no  |  |
+ | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | type | string |  yes  |  |
+ | logo | [CollectionImage](#CollectionImage) |  yes  |  |
+ | created_by | [UserInfo](#UserInfo) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | name | string |  yes  |  |
+ | app_id | string |  yes  |  |
+ | _locale_language | string |  no  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | query | string |  no  |  |
+ | meta | string |  no  |  |
+ | sort_on | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | modified_by | [UserInfo](#UserInfo) |  no  |  |
+ | slug | string |  yes  |  |
+ | published | boolean |  no  |  |
+ | seo | [SeoDetail](#SeoDetail) |  no  |  |
+ | description | string |  no  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BannerImage](#BannerImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | aspect_ratio | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ImageUrls](#ImageUrls)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | [BannerImage](#BannerImage) |  no  |  |
+ | portrait | [BannerImage](#BannerImage) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionCreateResponse](#CollectionCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_sort | boolean |  no  |  |
+ | name | string |  no  |  |
+ | cron | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | badge | string |  no  |  |
+ | app_id | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | type | string |  no  |  |
+ | description | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | query | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [BannerImage](#BannerImage) |  no  |  |
+ | allow_facets | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Media1](#Media1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  yes  |  |
+ | meta | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingActionPage](#ProductListingActionPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingAction](#ProductListingAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [ProductListingActionPage](#ProductListingActionPage) |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionDetailNest](#GetCollectionDetailNest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | badge | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | type | string |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | name | string |  no  |  |
+ | app_id | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | _schedule | string |  no  |  |
+ | query | string |  no  |  |
+ | meta | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | cron | string |  no  |  |
+ | slug | string |  no  |  |
+ | description | string |  no  |  |
+ | uid | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterType](#CollectionListingFilterType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilter](#CollectionListingFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
+ | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionListingResponse](#GetCollectionListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionDetailResponse](#CollectionDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_sort | boolean |  no  |  |
+ | name | string |  no  |  |
+ | cron | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | badge | string |  no  |  |
+ | app_id | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | type | string |  no  |  |
+ | description | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | query | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
+ | allow_facets | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCollection](#UpdateCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [string] |  no  |  |
+ | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | logo | [CollectionImage](#CollectionImage) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | name | string |  no  |  |
+ | _locale_language | string |  no  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | query | string |  no  |  |
+ | meta | string |  no  |  |
+ | sort_on | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | modified_by | [UserInfo](#UserInfo) |  no  |  |
+ | slug | string |  no  |  |
+ | published | boolean |  no  |  |
+ | seo | [SeoDetail](#SeoDetail) |  no  |  |
+ | description | string |  no  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionItemRequest](#CollectionItemRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_size | number |  yes  |  |
+ | page_no | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdatedResponse](#UpdatedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBrand](#ProductBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Price1](#Price1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | [Price1](#Price1) |  no  |  |
+ | marked | [Price1](#Price1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailAttribute](#ProductDetailAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingDetail](#ProductListingDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | string |  no  |  |
+ | sellable | boolean |  no  |  |
+ | similars | [string] |  no  |  |
+ | type | string |  no  |  |
+ | color | string |  no  |  |
+ | discount | string |  no  |  |
+ | item_type | string |  no  |  |
+ | attributes | string |  no  |  |
+ | name | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | image_nature | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | promo_meta | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | medias | [[Media1](#Media1)] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | item_code | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | rating | number |  no  |  |
+ | slug | string |  yes  |  |
+ | short_description | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | description | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionItemsResponse](#GetCollectionItemsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogInsightBrand](#CatalogInsightBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | available_articles | number |  no  |  |
+ | available_sizes | number |  no  |  |
+ | article_freshness | number |  no  |  |
+ | total_sizes | number |  no  |  |
+ | total_articles | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogInsightItem](#CatalogInsightItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | out_of_stock_count | number |  no  |  |
+ | sellable_count | number |  no  |  |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CatalogInsightResponse](#CatalogInsightResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
+ | item | [CatalogInsightItem](#CatalogInsightItem) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CrossSellingData](#CrossSellingData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | number |  no  |  |
+ | products | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CrossSellingResponse](#CrossSellingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
+ | data | [CrossSellingData](#CrossSellingData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptInPostRequest](#OptInPostRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_ids | [number] |  no  |  |
+ | opt_level | string |  yes  |  |
+ | brand_ids | [number] |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyOptIn](#CompanyOptIn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | number |  yes  |  |
+ | modified_by | string |  no  |  |
+ | brand_ids | [number] |  yes  |  |
+ | modified_on | number |  yes  |  |
+ | company_id | number |  yes  |  |
+ | store_ids | [number] |  yes  |  |
+ | created_by | string |  no  |  |
+ | platform | string |  yes  |  |
+ | opt_level | string |  yes  |  |
+ | enabled | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetOptInPlatform](#GetOptInPlatform)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CompanyOptIn](#CompanyOptIn)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OptinCompanyDetail](#OptinCompanyDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | company_type | string |  no  |  |
+ | uid | number |  no  |  |
+ | business_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyBrandDetail](#CompanyBrandDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | brand_id | number |  no  |  |
+ | total_article | number |  no  |  |
+ | brand_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptinCompanyBrandDetailsView](#OptinCompanyBrandDetailsView)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CompanyBrandDetail](#CompanyBrandDetail)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptinCompanyMetrics](#OptinCompanyMetrics)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company | string |  no  |  |
+ | brand | number |  no  |  |
+ | store | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreDetail](#StoreDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timing | string |  no  |  |
+ | name | string |  no  |  |
+ | created_on | string |  no  |  |
+ | store_code | string |  no  |  |
+ | store_type | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | documents | [string] |  no  |  |
+ | additional_contacts | [string] |  no  |  |
+ | uid | number |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptinStoreDetails](#OptinStoreDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[StoreDetail](#StoreDetail)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterDetails](#AttributeMasterDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l3_keys | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterMeta](#AttributeMasterMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mandatory_details | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  yes  |  |
+ | enriched | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterFilter](#AttributeMasterFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | depends_on | [string] |  no  |  |
+ | priority | number |  no  |  |
+ | indexing | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeSchemaRange](#AttributeSchemaRange)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMaster](#AttributeMaster)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | multi | boolean |  no  |  |
+ | format | string |  no  |  |
+ | mandatory | boolean |  no  |  |
+ | type | string |  yes  |  |
+ | range | [AttributeSchemaRange](#AttributeSchemaRange) |  no  |  |
+ | allowed_values | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GenderDetail](#GenderDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
+ | meta | [AttributeMasterMeta](#AttributeMasterMeta) |  no  |  |
+ | slug | string |  no  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
+ | id | string |  no  |  |
+ | is_nested | boolean |  no  |  |
+ | enabled_for_end_consumer | boolean |  no  |  |
+ | departments | [string] |  no  |  |
+ | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
+ | description | string |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProdcutTemplateCategoriesResponse](#ProdcutTemplateCategoriesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PTErrorResponse](#PTErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | errors | string |  no  |  |
+ | status | number |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSerializer](#UserSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | contact | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetDepartment](#GetDepartment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | page_no | number |  no  |  |
+ | slug | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | search | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | synonyms | [string] |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | page_size | number |  no  |  |
+ | item_type | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | string |  no  |  |
+ | priority_order | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentsResponse](#DepartmentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetDepartment](#GetDepartment)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentErrorResponse](#DepartmentErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | errors | string |  no  |  |
+ | status | number |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductTemplate](#ProductTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | slug | string |  yes  |  |
+ | created_on | string |  no  |  |
+ | is_physical | boolean |  yes  |  |
+ | departments | [string] |  no  |  |
+ | modified_on | string |  no  |  |
+ | tag | string |  no  |  |
+ | is_archived | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | description | string |  no  |  |
+ | attributes | [string] |  no  |  |
+ | categories | [string] |  no  |  |
+ | logo | string |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplatesResponse](#TemplatesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [ProductTemplate](#ProductTemplate) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateDetails](#TemplateDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  yes  |  |
+ | id | string |  no  |  |
+ | is_physical | boolean |  yes  |  |
+ | departments | [string] |  no  |  |
+ | tag | string |  no  |  |
+ | is_archived | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | description | string |  no  |  |
+ | attributes | [string] |  no  |  |
+ | categories | [string] |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Properties](#Properties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | string |  no  |  |
+ | custom_order | string |  no  |  |
+ | media | string |  no  |  |
+ | variants | string |  no  |  |
+ | is_active | string |  no  |  |
+ | item_type | string |  no  |  |
+ | no_of_boxes | string |  no  |  |
+ | name | string |  no  |  |
+ | multi_size | string |  no  |  |
+ | highlights | string |  no  |  |
+ | country_of_origin | string |  no  |  |
+ | moq | string |  no  |  |
+ | brand_uid | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | item_code | string |  no  |  |
+ | trader | string |  no  |  |
+ | sizes | string |  no  |  |
+ | currency | string |  no  |  |
+ | is_dependent | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | slug | string |  no  |  |
+ | product_group_tag | string |  no  |  |
+ | size_guide | string |  no  |  |
+ | short_description | string |  no  |  |
+ | return_config | string |  no  |  |
+ | category_slug | string |  no  |  |
+ | command | string |  no  |  |
+ | product_publish | string |  no  |  |
+ | description | string |  no  |  |
+ | trader_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GlobalValidation](#GlobalValidation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | definitions | string |  no  |  |
+ | properties | [Properties](#Properties) |  no  |  |
+ | title | string |  no  |  |
+ | required | [string] |  no  |  |
+ | type | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplateValidationData](#TemplateValidationData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template_validation | string |  no  |  |
+ | global_validation | [GlobalValidation](#GlobalValidation) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TemplatesValidationResponse](#TemplatesValidationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template_details | [TemplateDetails](#TemplateDetails) |  no  |  |
+ | data | [TemplateValidationData](#TemplateValidationData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryValidationResponse](#InventoryValidationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HSNData](#HSNData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hsn_code | [string] |  no  |  |
+ | country_of_origin | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HSNCodesResponse](#HSNCodesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | data | [HSNData](#HSNData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDownloadItemsData](#ProductDownloadItemsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | templates | [string] |  no  |  |
+ | brand | [string] |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [VerifiedBy](#VerifiedBy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDownloadsItems](#ProductDownloadsItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ProductDownloadItemsData](#ProductDownloadItemsData) |  no  |  |
+ | template_tags | string |  no  |  |
+ | completed_on | string |  no  |  |
+ | id | string |  no  |  |
+ | trigger_on | string |  no  |  |
+ | status | string |  no  |  |
+ | seller_id | number |  no  |  |
+ | url | string |  no  |  |
+ | task_id | string |  no  |  |
+ | created_by | [VerifiedBy](#VerifiedBy) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDownloadsResponse](#ProductDownloadsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [ProductDownloadsItems](#ProductDownloadsItems) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductConfigurationDownloads](#ProductConfigurationDownloads)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | multivalue | boolean |  no  |  |
+ | data | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryMappingValues](#CategoryMappingValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | catalog_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryMapping](#CategoryMapping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | google | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+ | ajio | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+ | facebook | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Media2](#Media2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | string |  yes  |  |
+ | portrait | string |  yes  |  |
+ | logo | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Hierarchy](#Hierarchy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l1 | number |  yes  |  |
+ | l2 | number |  yes  |  |
+ | department | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryRequestBody](#CategoryRequestBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | priority | number |  no  |  |
+ | slug | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
+ | departments | [number] |  yes  |  |
+ | media | [Media2](#Media2) |  no  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
+ | level | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | synonyms | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryCreateResponse](#CategoryCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Category](#Category)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | priority | number |  no  |  |
+ | slug | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
+ | departments | [number] |  yes  |  |
+ | level | number |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
+ | media | [Media2](#Media2) |  no  |  |
+ | modified_on | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | _id | string |  no  |  |
+ | uid | number |  no  |  |
+ | synonyms | [string] |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryResponse](#CategoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Category](#Category)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryUpdateResponse](#CategoryUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SingleCategoryResponse](#SingleCategoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [Category](#Category) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomOrder](#CustomOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | manufacturing_time_unit | string |  no  |  |
+ | manufacturing_time | number |  no  |  |
+ | is_custom_order | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderQuantity](#OrderQuantity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_set | boolean |  no  |  |
+ | minimum | number |  no  |  |
+ | maximum | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TeaserTag](#TeaserTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tag | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Trader](#Trader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | address | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfig](#ReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean |  no  |  |
+ | time | number |  no  |  |
+ | unit | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublish](#ProductPublish)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | string |  no  |  |
+ | is_set | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductCreateUpdate](#ProductCreateUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [string] |  no  |  |
+ | custom_order | [CustomOrder](#CustomOrder) |  no  |  |
+ | company_id | number |  yes  |  |
+ | media | [[Media1](#Media1)] |  no  |  |
+ | variants | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | item_type | string |  yes  |  |
+ | no_of_boxes | number |  no  |  |
+ | _custom_json | string |  no  |  |
+ | name | string |  yes  |  |
+ | change_request_id | string |  no  |  |
+ | departments | [number] |  yes  |  |
+ | multi_size | boolean |  no  |  |
+ | highlights | [string] |  no  |  |
+ | country_of_origin | string |  yes  |  |
+ | moq | [OrderQuantity](#OrderQuantity) |  no  |  |
+ | brand_uid | number |  yes  |  |
+ | is_image_less_product | boolean |  no  |  |
+ | teaser_tag | [TeaserTag](#TeaserTag) |  no  |  |
+ | item_code | string |  yes  |  |
+ | trader | [Trader](#Trader) |  no  |  |
+ | requester | string |  no  |  |
+ | currency | string |  yes  |  |
+ | template_tag | string |  yes  |  |
+ | is_dependent | boolean |  no  |  |
+ | hsn_code | string |  yes  |  |
+ | slug | string |  yes  |  |
+ | product_group_tag | [string] |  no  |  |
+ | size_guide | string |  no  |  |
+ | short_description | string |  no  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | category_slug | string |  yes  |  |
+ | is_set | boolean |  no  |  |
+ | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
+ | description | string |  no  |  |
+ | trader_type | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Image](#Image)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+ | aspect_ratio_f | number |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Logo](#Logo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+ | aspect_ratio_f | number |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Logo](#Logo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublished](#ProductPublished)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | number |  no  |  |
+ | is_set | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Product](#Product)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category_uid | number |  no  |  |
+ | custom_order | string |  no  |  |
+ | media | [[Media1](#Media1)] |  no  |  |
+ | l3_mapping | [string] |  no  |  |
+ | variants | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | color | string |  no  |  |
+ | item_type | string |  no  |  |
+ | images | [[Image](#Image)] |  no  |  |
+ | _custom_json | string |  no  |  |
+ | name | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | departments | [number] |  no  |  |
+ | multi_size | boolean |  no  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | highlights | [string] |  no  |  |
+ | country_of_origin | string |  no  |  |
+ | moq | string |  no  |  |
+ | brand_uid | number |  no  |  |
+ | id | string |  no  |  |
+ | item_code | string |  no  |  |
+ | sizes | [string] |  no  |  |
+ | currency | string |  no  |  |
+ | template_tag | string |  no  |  |
+ | is_dependent | boolean |  no  |  |
+ | hsn_code | string |  no  |  |
+ | slug | string |  no  |  |
+ | size_guide | string |  no  |  |
+ | short_description | string |  no  |  |
+ | primary_color | string |  no  |  |
+ | is_physical | boolean |  no  |  |
+ | category_slug | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | product_publish | [ProductPublished](#ProductPublished) |  no  |  |
+ | all_sizes | [string] |  no  |  |
+ | description | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingResponse](#ProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Product](#Product)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidateProduct](#ValidateProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | valid | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo1](#UserInfo1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | email | string |  no  |  |
+ | uid | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkJob](#BulkJob)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cancelled_records | [string] |  no  |  |
+ | total | number |  yes  |  |
+ | created_on | string |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
+ | template_tag | string |  no  |  |
+ | stage | string |  no  |  |
+ | custom_template_tag | string |  no  |  |
+ | tracking_url | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  yes  |  |
+ | failed | number |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | succeed | number |  no  |  |
+ | file_path | string |  no  |  |
+ | cancelled | number |  no  |  |
+ | created_by | [UserInfo1](#UserInfo1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserDetail](#UserDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | full_name | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBulkRequest](#ProductBulkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cancelled_records | [string] |  no  |  |
+ | template_tag | string |  no  |  |
+ | created_on | string |  no  |  |
+ | total | number |  no  |  |
+ | modified_by | [UserDetail](#UserDetail) |  no  |  |
+ | stage | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | failed | number |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | succeed | number |  no  |  |
+ | template | [ProductTemplate](#ProductTemplate) |  no  |  |
+ | file_path | string |  no  |  |
+ | cancelled | number |  no  |  |
+ | created_by | [UserDetail](#UserDetail) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBulkRequestList](#ProductBulkRequestList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [ProductBulkRequest](#ProductBulkRequest) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkProductRequest](#BulkProductRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  yes  |  |
+ | template_tag | string |  yes  |  |
+ | batch_id | string |  yes  |  |
+ | data | [string] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NestedTags](#NestedTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductTagsViewResponse](#ProductTagsViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [NestedTags](#NestedTags) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBulkAssets](#ProductBulkAssets)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | user | string |  yes  |  |
+ | url | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserCommon](#UserCommon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Items](#Items)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | retry | number |  no  |  |
+ | cancelled_records | [string] |  no  |  |
+ | total | number |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserCommon](#UserCommon) |  no  |  |
+ | stage | string |  no  |  |
+ | id | string |  no  |  |
+ | tracking_url | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | failed | number |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | succeed | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | file_path | string |  no  |  |
+ | cancelled | number |  no  |  |
+ | created_by | [UserCommon](#UserCommon) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkAssetResponse](#BulkAssetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Items](#Items)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | company_id | number |  no  |  |
+ | item_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizeDeleteResponse](#ProductSizeDeleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | data | [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GTIN](#GTIN)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gtin_type | string |  yes  |  |
+ | primary | boolean |  no  |  |
+ | gtin_value | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SetSize](#SetSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  yes  |  |
+ | pieces | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeDistribution](#SizeDistribution)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [[SetSize](#SetSize)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InventorySet](#InventorySet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | size_distribution | [SizeDistribution](#SizeDistribution) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvSize](#InvSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  yes  |  |
+ | price_transfer | number |  no  |  |
+ | item_width | number |  no  |  |
+ | currency | string |  yes  |  |
+ | item_length | number |  no  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | identifiers | [[GTIN](#GTIN)] |  yes  |  |
+ | item_weight | number |  no  |  |
+ | store_code | string |  yes  |  |
+ | is_set | boolean |  no  |  |
+ | price | number |  yes  |  |
+ | price_effective | number |  yes  |  |
+ | item_height | number |  no  |  |
+ | quantity | number |  yes  |  |
+ | set | [InventorySet](#InventorySet) |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemQuery](#ItemQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_uid | number |  no  |  |
+ | uid | number |  no  |  |
+ | item_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryRequest](#InventoryRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  yes  |  |
+ | sizes | [[InvSize](#InvSize)] |  yes  |  |
+ | item | [ItemQuery](#ItemQuery) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryResponse](#InventoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price_transfer | number |  no  |  |
+ | seller_identifier | number |  no  |  |
+ | currency | string |  no  |  |
+ | size | string |  no  |  |
+ | identifiers | string |  no  |  |
+ | sellable_quantity | number |  no  |  |
+ | store | string |  no  |  |
+ | price | number |  no  |  |
+ | item_id | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | quantity | number |  no  |  |
+ | uid | string |  no  |  |
+ | inventory_updated_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryDeleteData](#InventoryDeleteData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | location_id | number |  no  |  |
+ | item_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryDelete](#InventoryDelete)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | data | [InventoryDeleteData](#InventoryDeleteData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonResponse](#CommonResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkInventoryGetItems](#BulkInventoryGetItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cancelled_records | [string] |  no  |  |
+ | total | number |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | stage | string |  no  |  |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | failed | number |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | succeed | number |  no  |  |
+ | file_path | string |  no  |  |
+ | cancelled | number |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkInventoryGet](#BulkInventoryGet)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BulkInventoryGetItems](#BulkInventoryGetItems)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Size1](#Size1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | price_transfer | number |  no  |  |
+ | item_width | number |  no  |  |
+ | currency | string |  yes  |  |
+ | item_length | number |  no  |  |
+ | seller_identifier | string |  yes  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | identifiers | [string] |  no  |  |
+ | item_weight | number |  no  |  |
+ | store_code | string |  yes  |  |
+ | is_set | boolean |  no  |  |
+ | price | number |  yes  |  |
+ | price_effective | number |  yes  |  |
+ | item_height | number |  no  |  |
+ | quantity | number |  yes  |  |
+ | set | [InventorySet](#InventorySet) |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryBulkRequest](#InventoryBulkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  yes  |  |
+ | user | string |  no  |  |
+ | sizes | [[Size1](#Size1)] |  yes  |  |
+ | batch_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryExportRequest](#InventoryExportRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [number] |  no  |  |
+ | type | string |  no  |  |
+ | store | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryExportJob](#InventoryExportJob)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | completed_on | string |  no  |  |
+ | trigger_on | string |  no  |  |
+ | status | string |  no  |  |
+ | request_params | string |  no  |  |
+ | seller_id | number |  yes  |  |
+ | url | string |  no  |  |
+ | task_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FilerList](#FilerList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryConfig](#InventoryConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | multivalues | boolean |  no  |  |
+ | data | [[FilerList](#FilerList)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnUpsert](#HsnUpsert)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hsn_code | string |  yes  |  |
+ | hs2_code | string |  yes  |  |
+ | company_id | number |  yes  |  |
+ | threshold1 | number |  yes  |  |
+ | tax2 | number |  no  |  |
+ | tax1 | number |  yes  |  |
+ | tax_on_mrp | boolean |  yes  |  |
+ | uid | number |  no  |  |
+ | tax_on_esp | boolean |  no  |  |
+ | threshold2 | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnCodesObject](#HsnCodesObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hs2_code | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | threshold1 | number |  no  |  |
+ | tax2 | number |  no  |  |
+ | tax1 | number |  no  |  |
+ | tax_on_mrp | boolean |  no  |  |
+ | tax_on_esp | boolean |  no  |  |
+ | threshold2 | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnCode](#HsnCode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [HsnCodesObject](#HsnCodesObject) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageResponse](#PageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | number |  no  |  |
+ | current | string |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnCodesListingResponse](#HsnCodesListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[HsnCodesObject](#HsnCodesObject)] |  no  |  |
+ | page | [PageResponse](#PageResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkHsnUpsert](#BulkHsnUpsert)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[HsnUpsert](#HsnUpsert)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkHsnResponse](#BulkHsnResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandItem](#BrandItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | departments | [string] |  no  |  |
+ | discount | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandListingResponse](#BrandListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BrandItem](#BrandItem)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Department](#Department)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | priority_order | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentResponse](#DepartmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Department](#Department)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ThirdLevelChild](#ThirdLevelChild)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [string] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SecondLevelChild](#SecondLevelChild)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Child](#Child)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryItems](#CategoryItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentCategoryTree](#DepartmentCategoryTree)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ | department | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentIdentifier](#DepartmentIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryListingResponse](#CategoryListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationProductListingResponse](#ApplicationProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetail](#ProductDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | type | string |  no  |  |
+ | color | string |  no  |  |
+ | item_type | string |  no  |  |
+ | attributes | string |  no  |  |
+ | name | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | image_nature | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | promo_meta | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | medias | [[Media1](#Media1)] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | item_code | string |  no  |  |
+ | rating | number |  no  |  |
+ | slug | string |  yes  |  |
+ | short_description | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | description | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [Website](#Website)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BusinessDetails](#BusinessDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | website | [Website](#Website) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SellerPhoneNumber](#SellerPhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number | string |  yes  |  |
+ | country_code | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ContactDetails](#ContactDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | emails | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Document](#Document)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified | boolean |  no  |  |
+ | type | string |  yes  |  |
+ | value | string |  yes  |  |
+ | url | string |  no  |  |
+ | legal_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BusinessCountryInfo](#BusinessCountryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer](#GetAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | number |  no  |  |
+ | city | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | address_type | string |  no  |  |
+ | address2 | string |  no  |  |
+ | landmark | string |  no  |  |
+ | country | string |  no  |  |
+ | state | string |  no  |  |
+ | latitude | number |  no  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | name | string |  no  |  |
+ | business_details | [BusinessDetails](#BusinessDetails) |  no  |  |
+ | created_on | string |  no  |  |
+ | mode | string |  no  |  |
+ | company_type | string |  yes  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | uid | number |  yes  |  |
+ | modified_on | string |  no  |  |
+ | business_type | string |  yes  |  |
+ | warnings | string |  no  |  |
+ | contact_details | [ContactDetails](#ContactDetails) |  no  |  |
+ | business_info | string |  no  |  |
+ | franchise_enabled | boolean |  no  |  |
+ | verified_on | string |  no  |  |
+ | documents | [[Document](#Document)] |  no  |  |
+ | business_country_info | [BusinessCountryInfo](#BusinessCountryInfo) |  no  |  |
+ | stage | string |  no  |  |
+ | verified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | number |  yes  |  |
+ | city | string |  yes  |  |
+ | pincode | number |  yes  |  |
+ | address1 | string |  yes  |  |
+ | address_type | string |  yes  |  |
+ | address2 | string |  no  |  |
+ | landmark | string |  no  |  |
+ | country | string |  yes  |  |
+ | state | string |  yes  |  |
+ | latitude | number |  yes  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCompany](#UpdateCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | documents | [[Document](#Document)] |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | warnings | string |  no  |  |
+ | reject_reason | string |  no  |  |
+ | contact_details | [ContactDetails](#ContactDetails) |  no  |  |
+ | company_type | string |  no  |  |
+ | business_info | string |  no  |  |
+ | business_details | [BusinessDetails](#BusinessDetails) |  no  |  |
+ | franchise_enabled | boolean |  no  |  |
+ | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)] |  no  |  |
+ | business_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DocumentsObj](#DocumentsObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pending | number |  no  |  |
+ | verified | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetricsSerializer](#MetricsSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | brand | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | stage | string |  no  |  |
+ | company_documents | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | uid | number |  no  |  |
+ | product | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | store_documents | [DocumentsObj](#DocumentsObj) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSerializer1](#UserSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | string |  no  |  |
+ | user_id | string |  no  |  |
+ | contact | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandBannerSerializer](#BrandBannerSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | string |  no  |  |
+ | portrait | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetBrandResponseSerializer](#GetBrandResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified_on | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | logo | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  yes  |  |
+ | warnings | string |  no  |  |
+ | stage | string |  no  |  |
+ | reject_reason | string |  no  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | slug_key | string |  no  |  |
+ | uid | number |  no  |  |
+ | _locale_language | string |  no  |  |
+ | synonyms | [string] |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | modified_on | string |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | string |  yes  |  |
+ | description | string |  no  |  |
+ | name | string |  yes  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
+ | uid | number |  no  |  |
+ | _locale_language | string |  no  |  |
+ | synonyms | [string] |  no  |  |
+ | brand_tier | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [number] |  yes  |  |
+ | uid | number |  no  |  |
+ | company | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCompanySerializer](#GetCompanySerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified_on | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | name | string |  no  |  |
+ | stage | string |  no  |  |
+ | reject_reason | string |  no  |  |
+ | company_type | string |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | uid | number |  no  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
+ | verified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | modified_on | string |  no  |  |
+ | business_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyBrandSerializer](#CompanyBrandSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified_on | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
+ | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer) |  no  |  |
+ | warnings | string |  no  |  |
+ | stage | string |  no  |  |
+ | reject_reason | string |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | uid | number |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | modified_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyBrandListSerializer](#CompanyBrandListSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CompanyBrandSerializer](#CompanyBrandSerializer)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | on_same_store | boolean |  no  |  |
+ | store_uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceCredSerializer](#InvoiceCredSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | e_invoice | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
+ | e_waybill | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer1](#GetAddressSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | number |  no  |  |
+ | city | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | address_type | string |  no  |  |
+ | address2 | string |  no  |  |
+ | landmark | string |  no  |  |
+ | country | string |  no  |  |
+ | state | string |  no  |  |
+ | latitude | number |  no  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationTimingSerializer](#LocationTimingSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | number |  no  |  |
+ | minute | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
+ | weekday | string |  yes  |  |
+ | open | boolean |  yes  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationManagerSerializer](#LocationManagerSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  yes  |  |
+ | name | string |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationSerializer](#LocationSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | documents | [[Document](#Document)] |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | company | number |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | name | string |  yes  |  |
+ | store_type | string |  no  |  |
+ | warnings | string |  no  |  |
+ | stage | string |  no  |  |
+ | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
+ | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
+ | uid | number |  no  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | address | [GetAddressSerializer1](#GetAddressSerializer1) |  yes  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
+ | display_name | string |  yes  |  |
+ | code | string |  yes  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationIntegrationType](#LocationIntegrationType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | inventory | string |  no  |  |
+ | order | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetLocationSerializer](#GetLocationSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | name | string |  yes  |  |
+ | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
+ | phone_number | string |  yes  |  |
+ | created_on | string |  no  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
+ | store_type | string |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | uid | number |  no  |  |
+ | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
+ | modified_on | string |  no  |  |
+ | code | string |  yes  |  |
+ | warnings | string |  no  |  |
+ | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
+ | _custom_json | string |  no  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
+ | verified_on | string |  no  |  |
+ | documents | [[Document](#Document)] |  no  |  |
+ | stage | string |  no  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  yes  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | display_name | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationListSerializer](#LocationListSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetLocationSerializer](#GetLocationSerializer)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkLocationSerializer](#BulkLocationSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[LocationSerializer](#LocationSerializer)] |  no  |  |
 
 ---
 
@@ -34842,134 +59735,1583 @@ Success
 
  
  
- #### [ApplicationAboutResponse](#ApplicationAboutResponse)
+ #### [RedirectDevice](#RedirectDevice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  |
- | company_info | [CompanyInfo](#CompanyInfo) |  no  |  |
- | owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
 
  
  
- #### [ApplicationInfo](#ApplicationInfo)
+ #### [WebRedirect](#WebRedirect)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Redirects](#Redirects)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | android | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | web | [WebRedirect](#WebRedirect) |  no  |  |
+ | force_web | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CampaignShortLink](#CampaignShortLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source | string |  no  |  |
+ | medium | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Attribution](#Attribution)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | campaign_cookie_expiry | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SocialMediaTags](#SocialMediaTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
  | description | string |  no  |  |
- | name | string |  no  |  |
- | meta | [ApplicationMeta](#ApplicationMeta) |  no  |  |
- | token | string |  no  |  |
- | secret | string |  no  |  |
+ | image | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShortLinkReq](#ShortLinkReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  yes  | Give a name to the link. |
+ | url | string |  yes  | The web address to shorten. |
+ | hash | string |  no  |  |
+ | active | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | personalized | boolean |  no  | To create personalized short links. |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | count | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UrlInfo](#UrlInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original | string |  no  |  |
+ | short | string |  no  |  |
+ | hash | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShortLinkRes](#ShortLinkRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | url | [UrlInfo](#UrlInfo) |  no  |  |
+ | created_by | string |  no  |  |
+ | app_redirect | boolean |  no  |  |
+ | fallback | string |  no  |  |
+ | active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | application | string |  no  |  |
+ | user_id | string |  no  |  |
  | created_at | string |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | is_active | boolean |  no  |  |
+ | meta | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | personalized | boolean |  no  | To create personalized short links |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | count | number |  no  |  |
 
 ---
 
 
  
  
- #### [CompanyInfo](#CompanyInfo)
+ #### [ShortLinkList](#ShortLinkList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | uid | number |  no  |  |
+ | items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorRes](#ErrorRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [DataTresholdDTO](#DataTresholdDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min_price | number |  no  |  |
+ | safe_stock | number |  no  |  |
+ | period_threshold | number |  no  |  |
+ | period_threshold_type | string |  no  |  |
+ | period_type_list | [[GenericDTO](#GenericDTO)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GenericDTO](#GenericDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobConfigDTO](#JobConfigDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | string |  yes  |  |
+ | integration_data | string |  no  |  |
+ | company_name | string |  no  |  |
+ | company_id | number |  yes  |  |
+ | task_details | [TaskDTO](#TaskDTO) |  no  |  |
+ | threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
+ | job_code | string |  no  |  |
+ | alias | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaskDTO](#TaskDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | number |  no  |  |
+ | group_list | [[GenericDTO](#GenericDTO)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeString](#ResponseEnvelopeString)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | string |  no  |  |
+ | payload | string |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AWSS3config](#AWSS3config)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bucket | string |  no  |  |
+ | region | string |  no  |  |
+ | dir | string |  no  |  |
+ | access_key | string |  no  |  |
+ | secret_key | string |  no  |  |
+ | local_file_path | string |  no  |  |
+ | archive_path | string |  no  |  |
+ | archive | boolean |  no  |  |
+ | delete | boolean |  no  |  |
+ | unzip | boolean |  no  |  |
+ | zip_format | string |  no  |  |
+ | file_regex | string |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveConfig](#ArchiveConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delete | boolean |  no  |  |
+ | archive | boolean |  no  |  |
+ | archive_dir | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Audit](#Audit)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  |  |
+ | modified_by | string |  no  |  |
  | created_on | string |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  |
- | notification_emails | [string] |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
 
  
  
- #### [OwnerInfo](#OwnerInfo)
+ #### [CatalogMasterConfig](#CatalogMasterConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source_slug | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyConfig](#CompanyConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | exclude_steps | [number] |  no  |  |
+ | hidden_closet_keys | [string] |  no  |  |
+ | open_tags | string |  no  |  |
+ | tax_identifiers | [string] |  no  |  |
+ | delete_quantity_threshold | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DBConfig](#DBConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | vendor | string |  no  |  |
+ | host | string |  no  |  |
+ | port | number |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+ | dbname | string |  no  |  |
+ | query | string |  no  |  |
+ | procedure | boolean |  no  |  |
+ | driver_class | string |  no  |  |
+ | jdbc_url | string |  no  |  |
+ | optional_properties | [String: string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DBConnectionProfile](#DBConnectionProfile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | inventory | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DBParamConfig](#DBParamConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DefaultHeadersDTO](#DefaultHeadersDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store | [PropBeanDTO](#PropBeanDTO) |  no  |  |
+ | intf_article_id | [PropBeanDTO](#PropBeanDTO) |  no  |  |
+ | price_effective | [PropBeanDTO](#PropBeanDTO) |  no  |  |
+ | quantity | [PropBeanDTO](#PropBeanDTO) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DocMappingConfig](#DocMappingConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | properties | string |  no  |  |
+ | junk_data_threshold_count | number |  no  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
+ | unwind_field | string |  no  |  |
+ | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailConfig](#EmailConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | recepient | string |  no  |  |
+ | host | string |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+ | unzip | boolean |  no  |  |
+ | read_from_content | boolean |  no  |  |
+ | filter_based_on_recepients | boolean |  no  |  |
+ | pcol | string |  no  |  |
+ | subject_line_regex | string |  no  |  |
+ | sender_address | string |  no  |  |
+ | local_dir | string |  no  |  |
+ | folder_name_hierarchies | [string] |  no  |  |
+ | attachment_regex | string |  no  |  |
+ | body_content_regex | string |  no  |  |
+ | password_protected | boolean |  no  |  |
+ | zip_format | string |  no  |  |
+ | attachment_mandate | boolean |  no  |  |
+ | filter_files_after_extraction | boolean |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+ | read_all_unread_mails | boolean |  no  |  |
+ | content_type | string |  no  |  |
+ | downloadable_link | boolean |  no  |  |
+ | properties | [String: string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FTPConfig](#FTPConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | host | string |  no  |  |
+ | port | number |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+ | unzip | boolean |  no  |  |
+ | retries | number |  no  |  |
+ | interval | number |  no  |  |
+ | local_dir | string |  no  |  |
+ | remote_dir | string |  no  |  |
+ | zip_file_regex | string |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+ | file_regex | string |  no  |  |
+ | zip_format | string |  no  |  |
+ | read_all_files | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FileConfig](#FileConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delimiter | string |  no  |  |
+ | charset | string |  no  |  |
+ | properties | string |  no  |  |
+ | file_has_header | boolean |  no  |  |
+ | header_index | number |  no  |  |
+ | header_array | [string] |  no  |  |
+ | data_start_index | number |  no  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
+ | junk_data_threshold_count | number |  no  |  |
+ | file_type | string |  no  |  |
+ | line_validity_check | boolean |  no  |  |
+ | sheet_names | [string] |  no  |  |
+ | read_all_sheets | boolean |  no  |  |
+ | quote_char | string |  no  |  |
+ | escape_char | string |  no  |  |
+ | default_headers | [DefaultHeadersDTO](#DefaultHeadersDTO) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | range | string |  no  |  |
+ | sheet_id | string |  no  |  |
+ | client_secret_location | string |  no  |  |
+ | cred_storage_directory | string |  no  |  |
+ | local_dir | string |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HttpConfig](#HttpConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hosturl | string |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+ | request_params | [String: string] |  no  |  |
+ | http_method | string |  no  |  |
+ | request_payload | string |  no  |  |
+ | local_path | string |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobConfig](#JobConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | number |  no  |  |
+ | job_code | string |  no  |  |
+ | task_type | string |  no  |  |
+ | sync_delay | number |  no  |  |
+ | cron_expression | string |  no  |  |
+ | store_filter | [StoreFilter](#StoreFilter) |  no  |  |
+ | process_config | [ProcessConfig](#ProcessConfig) |  no  |  |
+ | store_config | [[StoreConfig](#StoreConfig)] |  no  |  |
+ | properties | [String: string] |  no  |  |
+ | immediate_first_run | boolean |  no  |  |
+ | disable | boolean |  no  |  |
+ | dependent_job_codes | [string] |  no  |  |
+ | company_config | [[CompanyConfig](#CompanyConfig)] |  no  |  |
+ | company_ids | [number] |  no  |  |
+ | tax_identifiers | [string] |  no  |  |
+ | priority | string |  no  |  |
+ | period_threshold | number |  no  |  |
+ | period_threshold_type | string |  no  |  |
+ | db_connection_profile | [DBConnectionProfile](#DBConnectionProfile) |  no  |  |
+ | params | string |  no  |  |
+ | open_tags | string |  no  |  |
+ | delete_quantity_threshold | number |  no  |  |
+ | catalog_master_config | [CatalogMasterConfig](#CatalogMasterConfig) |  no  |  |
+ | aggregator_types | [string] |  no  |  |
+ | integration_type | string |  no  |  |
+ | min_price | number |  no  |  |
+ | audit | [Audit](#Audit) |  no  |  |
+ | version | number |  no  |  |
+ | alias | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobConfigRawDTO](#JobConfigRawDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | string |  yes  |  |
+ | company_name | string |  yes  |  |
+ | company_id | number |  yes  |  |
+ | data | [JobConfig](#JobConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JsonDocConfig](#JsonDocConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocalFileConfig](#LocalFileConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | retries | number |  no  |  |
+ | interval | number |  no  |  |
+ | local_dir | string |  no  |  |
+ | working_dir | string |  no  |  |
+ | unzip | boolean |  no  |  |
+ | zip_file_regex | string |  no  |  |
+ | file_regex | string |  no  |  |
+ | zip_format | string |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+ | read_all_files | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MongoDocConfig](#MongoDocConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | collection_name | string |  no  |  |
+ | find_query | string |  no  |  |
+ | projection_query | string |  no  |  |
+ | prop_bean_configs | [[PropBeanConfig](#PropBeanConfig)] |  no  |  |
+ | aggregate_pipeline | [string] |  no  |  |
+ | skip_save | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthConfig](#OAuthConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | limit | number |  no  |  |
+ | pages | number |  no  |  |
+ | interval | number |  no  |  |
+ | consumer_key | string |  no  |  |
+ | consumer_secret | string |  no  |  |
+ | token | string |  no  |  |
+ | token_secret | string |  no  |  |
+ | rest_url | string |  no  |  |
+ | rest_base_url | string |  no  |  |
+ | function_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProcessConfig](#ProcessConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | db_config | [DBConfig](#DBConfig) |  no  |  |
+ | db_param_config | [DBParamConfig](#DBParamConfig) |  no  |  |
+ | sftp_config | [SFTPConfig](#SFTPConfig) |  no  |  |
+ | aws_s3_config | [AWSS3config](#AWSS3config) |  no  |  |
+ | mongo_doc_config | [MongoDocConfig](#MongoDocConfig) |  no  |  |
+ | ftp_config | [FTPConfig](#FTPConfig) |  no  |  |
+ | email_config | [EmailConfig](#EmailConfig) |  no  |  |
+ | file_config | [FileConfig](#FileConfig) |  no  |  |
+ | json_doc_config | [JsonDocConfig](#JsonDocConfig) |  no  |  |
+ | doc_mapping_config | [DocMappingConfig](#DocMappingConfig) |  no  |  |
+ | task_step_config | [TaskStepConfig](#TaskStepConfig) |  no  |  |
+ | http_config | [HttpConfig](#HttpConfig) |  no  |  |
+ | local_file_config | [LocalFileConfig](#LocalFileConfig) |  no  |  |
+ | oauth_config | [OAuthConfig](#OAuthConfig) |  no  |  |
+ | google_spreadsheet_config | [GoogleSpreadSheetConfig](#GoogleSpreadSheetConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PropBeanConfig](#PropBeanConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | required | boolean |  no  |  |
+ | mapping | [String: [PropBeanConfig](#PropBeanConfig)] |  no  |  |
+ | optional | boolean |  no  |  |
+ | send | [Send](#Send) |  no  |  |
+ | validations | [string] |  no  |  |
+ | values | [string] |  no  |  |
+ | include | boolean |  no  |  |
+ | source_field | string |  no  |  |
+ | source_fields | [string] |  no  |  |
+ | destination_field | string |  no  |  |
+ | data_type | string |  no  |  |
+ | default_value | string |  no  |  |
+ | const_value | string |  no  |  |
+ | concat_str | string |  no  |  |
+ | function_name | string |  no  |  |
+ | transformer_name | string |  no  |  |
+ | all_param_function_name | string |  no  |  |
+ | sub_separator | string |  no  |  |
+ | index_field | string |  no  |  |
+ | ignore_if_not_exists | boolean |  no  |  |
+ | identifier_type | string |  no  |  |
+ | projection_query | string |  no  |  |
+ | enrich_from_master | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PropBeanDTO](#PropBeanDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | required | boolean |  no  |  |
+ | optional | boolean |  no  |  |
+ | include | boolean |  no  |  |
+ | source_field | string |  no  |  |
+ | source_fields | [string] |  no  |  |
+ | destination_field | string |  no  |  |
+ | data_type | string |  no  |  |
+ | default_value | string |  no  |  |
+ | const_value | string |  no  |  |
+ | concat_str | string |  no  |  |
+ | function_name | string |  no  |  |
+ | transformer_name | string |  no  |  |
+ | all_param_function_name | string |  no  |  |
+ | sub_separator | string |  no  |  |
+ | index_field | string |  no  |  |
+ | ignore_if_not_exists | boolean |  no  |  |
+ | identifier_type | string |  no  |  |
+ | projection_query | string |  no  |  |
+ | enrich_from_master | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListJobConfigRawDTO](#ResponseEnvelopeListJobConfigRawDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [[JobConfigRawDTO](#JobConfigRawDTO)] |  no  |  |
+ | payload | [[JobConfigRawDTO](#JobConfigRawDTO)] |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SFTPConfig](#SFTPConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | host | string |  no  |  |
+ | port | number |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+ | unzip | boolean |  no  |  |
+ | retries | number |  no  |  |
+ | interval | number |  no  |  |
+ | private_key_path | string |  no  |  |
+ | strict_host_key_checking | boolean |  no  |  |
+ | local_dir | string |  no  |  |
+ | remote_dir | string |  no  |  |
+ | password_protected | boolean |  no  |  |
+ | zip_file_regex | string |  no  |  |
+ | file_regex | string |  no  |  |
+ | zip_format | string |  no  |  |
+ | archive_config | [ArchiveConfig](#ArchiveConfig) |  no  |  |
+ | read_all_files | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Send](#Send)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | raw | boolean |  no  |  |
+ | processed | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreConfig](#StoreConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_code | string |  no  |  |
+ | storeid | string |  no  |  |
+ | store_alias | string |  no  |  |
+ | store_file_regex | string |  no  |  |
+ | store_file_name | string |  no  |  |
+ | process_config | [ProcessConfig](#ProcessConfig) |  no  |  |
+ | properties | [String: string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreFilter](#StoreFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | include_tags | [string] |  no  |  |
+ | exclude_tags | [string] |  no  |  |
+ | query | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaskConfig](#TaskConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | task_config_id | number |  no  |  |
+ | task_params | [[TaskParam](#TaskParam)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaskParam](#TaskParam)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaskStepConfig](#TaskStepConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | task_configs | [[TaskConfig](#TaskConfig)] |  no  |  |
+ | task_config_ids | [number] |  no  |  |
+ | task_config_group_ids | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
+ | payload | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeJobConfigDTO](#ResponseEnvelopeJobConfigDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [JobConfigDTO](#JobConfigDTO) |  no  |  |
+ | payload | [JobConfigDTO](#JobConfigDTO) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobHistoryDto](#JobHistoryDto)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_added_count | number |  no  |  |
+ | total_updated_count | number |  no  |  |
+ | total_suppressed_count | number |  no  |  |
+ | job_id | number |  no  |  |
+ | status | string |  no  |  |
+ | job_code | string |  no  |  |
+ | processed_on | string |  no  |  |
+ | filename | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobMetricsDto](#JobMetricsDto)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_code | string |  no  |  |
+ | is_run_more_than_usual | string |  no  |  |
+ | job_history | [[JobHistoryDto](#JobHistoryDto)] |  no  |  |
+ | total_success_count | number |  no  |  |
+ | total_failure_count | number |  no  |  |
+ | total_warning_count | number |  no  |  |
+ | total_suppressed_count | number |  no  |  |
+ | total_job_runs | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeJobMetricsDto](#ResponseEnvelopeJobMetricsDto)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [JobMetricsDto](#JobMetricsDto) |  no  |  |
+ | payload | [JobMetricsDto](#JobMetricsDto) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JobConfigListDTO](#JobConfigListDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | alias | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | created_by | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | created_on | string |  no  |  |
+ | active | boolean |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListJobConfigListDTO](#ResponseEnvelopeListJobConfigListDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [[JobConfigListDTO](#JobConfigListDTO)] |  no  |  |
+ | payload | [[JobConfigListDTO](#JobConfigListDTO)] |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [ApplicationInventory](#ApplicationInventory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | inventory | [AppInventoryConfig](#AppInventoryConfig) |  no  |  |
+ | authentication | [AuthenticationConfig](#AuthenticationConfig) |  no  |  |
+ | article_assignment | [ArticleAssignmentConfig](#ArticleAssignmentConfig) |  no  |  |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | cart | [AppCartConfig](#AppCartConfig) |  no  |  |
+ | payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  |
+ | order | [AppOrderConfig](#AppOrderConfig) |  no  |  |
+ | logistics | [AppLogisticsConfig](#AppLogisticsConfig) |  no  |  |
+ | business | string |  no  |  |
+ | comms_enabled | boolean |  no  |  |
+ | platforms | [string] |  no  |  |
+ | _id | string |  no  |  |
+ | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
+ | app | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | modified_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppInventoryConfig](#AppInventoryConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [InventoryBrand](#InventoryBrand) |  no  |  |
+ | store | [InventoryStore](#InventoryStore) |  no  |  |
+ | category | [InventoryCategory](#InventoryCategory) |  no  |  |
+ | price | [InventoryPrice](#InventoryPrice) |  no  |  |
+ | discount | [InventoryDiscount](#InventoryDiscount) |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | franchise_enabled | boolean |  no  |  |
+ | exclude_category | [any] |  no  |  |
+ | image | [string] |  no  |  |
+ | company_store | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryBrand](#InventoryBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | criteria | string |  no  |  |
+ | brands | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryStore](#InventoryStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | criteria | string |  no  |  |
+ | stores | [any] |  no  |  |
+ | rules | [AppStoreRules](#AppStoreRules) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppStoreRules](#AppStoreRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | companies | [number] |  no  |  |
+ | brands | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryCategory](#InventoryCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | criteria | string |  no  |  |
+ | categories | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryPrice](#InventoryPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryDiscount](#InventoryDiscount)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthenticationConfig](#AuthenticationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | required | boolean |  no  |  |
+ | provider | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignmentConfig](#ArticleAssignmentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rules | [ArticleAssignmentRules](#ArticleAssignmentRules) |  no  |  |
+ | post_order_reassignment | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignmentRules](#ArticleAssignmentRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_priority | [StorePriority](#StorePriority) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StorePriority](#StorePriority)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | storetype_order | [any] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppCartConfig](#AppCartConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delivery_charges | [DeliveryCharges](#DeliveryCharges) |  no  |  |
+ | enabled | boolean |  no  |  |
+ | max_cart_items | number |  no  |  |
+ | min_cart_value | number |  no  |  |
+ | bulk_coupons | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryCharges](#DeliveryCharges)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | charges | [Charges](#Charges) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Charges](#Charges)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | threshold | number |  no  |  |
+ | charges | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppPaymentConfig](#AppPaymentConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | callback_url | [CallbackUrl](#CallbackUrl) |  no  |  |
+ | methods | [Methods](#Methods) |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | mode_of_payment | string |  no  |  |
+ | source | string |  no  |  |
+ | enabled | boolean |  no  |  |
+ | cod_amount_limit | number |  no  |  |
+ | cod_charges | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CallbackUrl](#CallbackUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app | string |  no  |  |
+ | web | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Methods](#Methods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pl | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | card | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | nb | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | wl | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | ps | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | upi | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | qr | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | cod | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | pp | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | jp | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | pac | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | fc | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | jiopp | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | stripepg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | juspaypg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | payubizpg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | payumoneypg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | rupifipg | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+ | simpl | [PaymentModeConfig](#PaymentModeConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeConfig](#PaymentModeConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentSelectionLock](#PaymentSelectionLock)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | default_options | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppOrderConfig](#AppOrderConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | force_reassignment | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppLogisticsConfig](#AppLogisticsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logistics_by_seller | boolean |  no  |  |
+ | serviceability_check | boolean |  no  |  |
+ | same_day_delivery | boolean |  no  |  |
+ | dp_assignment | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPointsConfig](#LoyaltyPointsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | auto_apply | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppInventoryPartialUpdate](#AppInventoryPartialUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | cart | [AppCartConfig](#AppCartConfig) |  no  |  |
+ | payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  |
+ | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
+ | comms_enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandCompanyInfo](#BrandCompanyInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_name | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyByBrandsRequest](#CompanyByBrandsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | number |  yes  | Brand uids |
+ | search_text | string |  no  | Search company by name |
+
+---
+
+
+ 
+ 
+ #### [CompanyByBrandsResponse](#CompanyByBrandsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BrandCompanyInfo](#BrandCompanyInfo)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreByBrandsRequest](#StoreByBrandsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  | Current company id for current company stores only. Don't send in case of cross selling enabled |
+ | brands | number |  yes  | Brand uids |
+ | search_text | string |  no  | Search store by name or store code |
+
+---
+
+
+ 
+ 
+ #### [StoreByBrandsResponse](#StoreByBrandsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BrandStoreInfo](#BrandStoreInfo)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandStoreInfo](#BrandStoreInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_name | string |  no  |  |
+ | store_id | number |  no  |  |
+ | store_type | string |  no  |  |
+ | store_code | string |  no  |  |
+ | store_address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
+ | company | [OptedCompany](#OptedCompany) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyBrandInfo](#CompanyBrandInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | value | number |  no  |  |
+ | brand_logo_url | string |  no  |  |
+ | brand_banner_url | string |  no  |  |
+ | brand_banner_portrait_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BrandsByCompanyResponse](#BrandsByCompanyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [CompanyBrandInfo](#CompanyBrandInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateApplicationRequest](#CreateApplicationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app | [App](#App) |  no  |  |
+ | configuration | [AppInventory](#AppInventory) |  no  |  |
+ | domain | [AppDomain](#AppDomain) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateAppResponse](#CreateAppResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app | [Application](#Application) |  no  |  |
+ | configuration | [ApplicationInventory](#ApplicationInventory) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationsResponse](#ApplicationsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Application](#Application)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MobileAppConfiguration](#MobileAppConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | app_name | string |  no  |  |
+ | landing_image | [LandingImage](#LandingImage) |  no  |  |
+ | splash_image | [SplashImage](#SplashImage) |  no  |  |
+ | application | string |  no  |  |
+ | platform_type | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+ | package_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LandingImage](#LandingImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SplashImage](#SplashImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MobileAppConfigRequest](#MobileAppConfigRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_name | string |  no  |  |
+ | landing_image | [LandingImage](#LandingImage) |  no  |  |
+ | splash_image | [SplashImage](#SplashImage) |  no  |  |
+ | is_active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BuildVersionHistory](#BuildVersionHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | versions | [BuildVersion](#BuildVersion) |  no  |  |
+ | latest_available_version_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BuildVersion](#BuildVersion)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string |  no  |  |
- | emails | [[UserEmail](#UserEmail)] |  no  |  |
- | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | profile_pic | string |  no  |  |
+ | application | string |  no  |  |
+ | platform_type | string |  no  |  |
+ | build_status | string |  no  |  |
+ | version_name | string |  no  |  |
+ | version_code | number |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
 
 ---
 
 
  
  
- #### [AppVersionRequest](#AppVersionRequest)
+ #### [AppSupportedCurrency](#AppSupportedCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  |
- | device | [Device](#Device) |  yes  |  |
- | locale | string |  no  |  |
- | timezone | string |  no  |  |
+ | _id | string |  no  |  |
+ | supported_currency | [string] |  no  |  |
+ | application | string |  no  |  |
+ | default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
 
 ---
 
 
  
  
- #### [ApplicationVersionRequest](#ApplicationVersionRequest)
+ #### [DefaultCurrency](#DefaultCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | name | string |  yes  |  |
- | namespace | string |  no  |  |
- | token | string |  no  |  |
- | version | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Device](#Device)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | build | number |  no  |  |
- | model | string |  no  |  |
- | os | [OS](#OS) |  yes  |  |
-
----
-
-
- 
- 
- #### [OS](#OS)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | version | string |  no  |  |
-
----
-
-
- 
- 
- #### [SupportedLanguage](#SupportedLanguage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | ref | string |  no  |  |
  | code | string |  no  |  |
 
 ---
@@ -34977,83 +61319,665 @@ Success
 
  
  
- #### [LanguageResponse](#LanguageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
-
----
-
-
- 
- 
- #### [AppStaffResponse](#AppStaffResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | staff_users | [[AppStaff](#AppStaff)] |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateDialog](#UpdateDialog)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | interval | number |  no  |  |
-
----
-
-
- 
- 
- #### [OrderingStoreSelectRequest](#OrderingStoreSelectRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderingStoreSelect](#OrderingStoreSelect)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  yes  | store uid |
-
----
-
-
- 
- 
- #### [AppStaff](#AppStaff)
+ #### [CurrencyConfig](#CurrencyConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string |  no  |  |
- | order_incent | boolean |  no  |  |
- | stores | [number] |  no  |  |
- | application | string |  no  |  |
- | title | string |  no  |  |
- | user | string |  no  |  |
- | employee_code | string |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | profile_pic_url | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | code | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | decimal_digits | number |  no  |  |
+ | symbol | string |  no  |  |
 
 ---
 
 
  
  
- #### [AppTokenResponse](#AppTokenResponse)
+ #### [DomainAdd](#DomainAdd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  | Full domain name |
+
+---
+
+
+ 
+ 
+ #### [DomainAddRequest](#DomainAddRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | [DomainAdd](#DomainAdd) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DomainsResponse](#DomainsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domains | [[Domain](#Domain)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateDomain](#UpdateDomain)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateDomainTypeRequest](#UpdateDomainTypeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | [UpdateDomain](#UpdateDomain) |  no  |  |
+ | action | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DomainStatusRequest](#DomainStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain_url | string |  no  | Domain url |
+
+---
+
+
+ 
+ 
+ #### [DomainStatus](#DomainStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | status | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DomainStatusResponse](#DomainStatusResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | connected | boolean |  no  |  |
+ | status | [[DomainStatus](#DomainStatus)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DomainSuggestionsRequest](#DomainSuggestionsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain_url | string |  no  | Domain url |
+ | custom | boolean |  no  | Get suggestion for custom domains or fynd domains |
+
+---
+
+
+ 
+ 
+ #### [DomainSuggestion](#DomainSuggestion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | unsupported | boolean |  no  | Whether TLD domain is supported or not |
+ | is_available | boolean |  yes  |  |
+ | price | number |  no  | Price for purchasing a custom domain. Not present for fynd domain |
+ | currency | string |  no  | Custom domain price currency. Not present for fynd domain |
+
+---
+
+
+ 
+ 
+ #### [DomainSuggestionsResponse](#DomainSuggestionsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domains | [[DomainSuggestion](#DomainSuggestion)] |  no  | Domain url |
+
+---
+
+
+ 
+ 
+ #### [GetIntegrationsOptInsResponse](#GetIntegrationsOptInsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [IntegrationOptIn](#IntegrationOptIn) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [IntegrationOptIn](#IntegrationOptIn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | validators | [Validators](#Validators) |  no  |  |
+ | description | string |  no  |  |
+ | description_html | string |  no  |  |
+ | constants | string |  no  |  |
+ | companies | [string] |  no  |  |
+ | support | [string] |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | meta | [IntegrationMeta](#IntegrationMeta) |  no  |  |
+ | icon | string |  no  |  |
+ | owner | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | token | string |  no  |  |
+ | secret | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Validators](#Validators)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company | [CompanyValidator](#CompanyValidator) |  no  |  |
+ | store | [StoreValidator](#StoreValidator) |  no  |  |
+ | inventory | [InventoryValidator](#InventoryValidator) |  no  |  |
+ | order | [OrderValidator](#OrderValidator) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyValidator](#CompanyValidator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | json_schema | [JsonSchema](#JsonSchema) |  no  |  |
+ | browser_script | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [JsonSchema](#JsonSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | key | string |  no  |  |
+ | type | string |  no  |  |
+ | tooltip | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreValidator](#StoreValidator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryValidator](#InventoryValidator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderValidator](#OrderValidator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
+ | browser_script | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [IntegrationMeta](#IntegrationMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_public | boolean |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Integration](#Integration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | validators | [Validators](#Validators) |  no  |  |
+ | description | string |  no  |  |
+ | description_html | string |  no  |  |
+ | constants | string |  no  |  |
+ | companies | [string] |  no  |  |
+ | support | [string] |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | meta | [IntegrationMeta](#IntegrationMeta) |  no  |  |
+ | icon | string |  no  |  |
+ | owner | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | token | string |  no  |  |
+ | secret | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [IntegrationConfigResponse](#IntegrationConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [IntegrationLevel](#IntegrationLevel) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [IntegrationLevel](#IntegrationLevel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | last_patch | [string] |  no  |  |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | meta | [any] |  no  |  |
+ | token | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptedStoreIntegration](#OptedStoreIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | other_opted | boolean |  no  |  |
+ | other_integration | [IntegrationOptIn](#IntegrationOptIn) |  no  |  |
+ | other_entity | [OtherEntity](#OtherEntity) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OtherEntity](#OtherEntity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | last_patch | [LastPatch](#LastPatch) |  no  |  |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | data | [OtherEntityData](#OtherEntityData) |  no  |  |
+ | meta | [string] |  no  |  |
+ | token | string |  no  |  |
+ | created_at | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LastPatch](#LastPatch)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | op | string |  no  |  |
+ | path | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OtherEntityData](#OtherEntityData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_identifier | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [App](#App)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | string |  no  | Current company id |
+ | channel_type | string |  no  |  |
+ | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
+ | name | string |  no  | User friendly name for application |
+ | desc | string |  no  | Basic description of application |
+
+---
+
+
+ 
+ 
+ #### [AppInventory](#AppInventory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [InventoryBrandRule](#InventoryBrandRule) |  no  |  |
+ | store | [InventoryStoreRule](#InventoryStoreRule) |  no  |  |
+ | image | [string] |  no  |  |
+ | franchise_enabled | boolean |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | payment | [InventoryPaymentConfig](#InventoryPaymentConfig) |  no  |  |
+ | article_assignment | [InventoryArticleAssignment](#InventoryArticleAssignment) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppDomain](#AppDomain)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompaniesResponse](#CompaniesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [AppInventoryCompanies](#AppInventoryCompanies) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppInventoryCompanies](#AppInventoryCompanies)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | company_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoresResponse](#StoresResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [AppInventoryStores](#AppInventoryStores) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppInventoryStores](#AppInventoryStores)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | display_name | string |  no  |  |
+ | store_type | string |  no  |  |
+ | store_code | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FilterOrderingStoreRequest](#FilterOrderingStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | all_stores | boolean |  no  |  |
+ | deployed_stores | [number] |  no  |  |
+ | q | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeploymentMeta](#DeploymentMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deployed_stores | [number] |  no  |  |
+ | all_stores | boolean |  no  |  |
+ | enabled | boolean |  no  |  |
+ | type | string |  no  |  |
+ | _id | string |  no  |  |
+ | app | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStoreConfig](#OrderingStoreConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deployment_meta | [DeploymentMeta](#DeploymentMeta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OtherSellerCompany](#OtherSellerCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OtherSellerApplication](#OtherSellerApplication)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | _id | string |  no  |  |
+ | domain | string |  no  |  |
+ | company | [OtherSellerCompany](#OtherSellerCompany) |  no  |  |
+ | opt_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OtherSellerApplications](#OtherSellerApplications)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[OtherSellerApplication](#OtherSellerApplication)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptedApplicationResponse](#OptedApplicationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | _id | string |  no  |  |
+ | domain | string |  no  |  |
+ | company | [OptedCompany](#OptedCompany) |  no  |  |
+ | opted_inventory | [OptedInventory](#OptedInventory) |  no  |  |
+ | opt_out_inventory | [OptOutInventory](#OptOutInventory) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptedCompany](#OptedCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptedInventory](#OptedInventory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | opt_type | [OptType](#OptType) |  no  |  |
+ | items | any |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptType](#OptType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptedStore](#OptedStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | store_code | string |  no  |  |
+ | _id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | uid | number |  no  |  |
+ | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
+ | display_name | string |  no  |  |
+ | store_type | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OptOutInventory](#OptOutInventory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store | [number] |  yes  |  |
+ | company | [number] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TokenResponse](#TokenResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -35431,7 +62355,6 @@ Success
  | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
  | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
  | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
- | listing_page | [ListingPageFeature](#ListingPageFeature) |  no  |  |
  | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
  | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
  | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
@@ -35471,18 +62394,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  no  |  |
- | sort | string |  no  |  |
-
----
-
-
- 
- 
- #### [ListingPageFeature](#ListingPageFeature)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort_on | string |  no  |  |
 
 ---
 
@@ -36242,1159 +63153,803 @@ Success
 
  
  
- #### [AggregatorConfigDetail](#AggregatorConfigDetail)
+ #### [RuleDefinition](#RuleDefinition)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_key | string |  no  | Unique merchant key |
- | key | string |  yes  | Payment gateway api key |
- | config_type | string |  yes  | Fynd or self payment gateway |
- | secret | string |  yes  | Masked payment gateway api secret |
- | sdk | boolean |  no  | SDK |
- | api | string |  no  | Payment gateway api endpoint |
- | merchant_id | string |  no  | Unique merchant id |
- | user_id | string |  no  | Registered User id |
- | pin | string |  no  | Masked pin |
- | verify_api | string |  no  | Payment gateway verify payment api endpoint |
+ | is_exact | boolean |  no  |  |
+ | applicable_on | string |  yes  |  |
+ | currency_code | string |  no  |  |
+ | scope | [string] |  no  |  |
+ | value_type | string |  yes  |  |
+ | auto_apply | boolean |  no  |  |
+ | calculate_on | string |  yes  |  |
+ | type | string |  yes  |  |
 
 ---
 
 
  
  
- #### [AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
+ #### [PostOrder](#PostOrder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | env | string |  yes  | Environment i.e Live or Test |
- | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | success | boolean |  yes  |  |
- | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
+ #### [PriceRange](#PriceRange)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Error human understandable description. |
- | code | string |  yes  | Error descrption code. |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
 
 ---
 
 
  
  
- #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
+ #### [PaymentAllowValue](#PaymentAllowValue)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
- | success | boolean |  yes  | Response is successful or not |
+ | max | number |  no  |  |
 
 ---
 
 
  
  
- #### [AttachCardRequest](#AttachCardRequest)
+ #### [PaymentModes](#PaymentModes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name_on_card | string |  no  |  |
- | nickname | string |  no  |  |
- | refresh | boolean |  no  | Refresh cache flag. |
- | card_id | string |  yes  | Card token of payment gateway. |
+ | networks | [string] |  no  |  |
+ | codes | [string] |  no  |  |
+ | types | [string] |  no  |  |
+ | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
 
 ---
 
 
  
  
- #### [AttachCardsResponse](#AttachCardsResponse)
+ #### [PaymentCodes](#PaymentCodes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  | List of cards of customer. |
- | success | boolean |  yes  | Response is successful or not. |
- | message | string |  no  | Human readable message. |
+ | upi | [PaymentModes](#PaymentModes) |  no  |  |
+ | rupifipg | [PaymentModes](#PaymentModes) |  no  |  |
+ | wl | [PaymentModes](#PaymentModes) |  no  |  |
+ | simpl | [PaymentModes](#PaymentModes) |  no  |  |
+ | pl | [PaymentModes](#PaymentModes) |  no  |  |
+ | card | [PaymentModes](#PaymentModes) |  no  |  |
+ | ps | [PaymentModes](#PaymentModes) |  no  |  |
+ | nb | [PaymentModes](#PaymentModes) |  no  |  |
+ | stripepg | [PaymentModes](#PaymentModes) |  no  |  |
+ | qr | [PaymentModes](#PaymentModes) |  no  |  |
 
 ---
 
 
  
  
- #### [CardPaymentGateway](#CardPaymentGateway)
+ #### [BulkBundleRestriction](#BulkBundleRestriction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name. |
- | customer_id | string |  no  | Payment gateway customer id. |
- | api | string |  no  | Payment gateway CARD api endpoint |
+ | multi_store_allowed | boolean |  yes  |  |
 
 ---
 
 
  
  
- #### [ActiveCardPaymentGatewayResponse](#ActiveCardPaymentGatewayResponse)
+ #### [UsesRemaining](#UsesRemaining)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
- | success | boolean |  yes  | Response is successful or not. |
- | message | string |  yes  | Human readable message. |
+ | user | number |  no  |  |
+ | app | number |  no  |  |
+ | total | number |  no  |  |
 
 ---
 
 
  
  
- #### [Card](#Card)
+ #### [UsesRestriction](#UsesRestriction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  | aggregator_name |
- | card_brand | string |  no  | card_brand |
- | expired | boolean |  no  | expired |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_reference | string |  no  | card_reference |
- | card_number | string |  no  | card_number |
- | nickname | string |  no  | nickname |
- | card_name | string |  no  | card_name |
- | card_isin | string |  no  | card_isin |
- | card_type | string |  no  | card_type |
- | exp_month | number |  no  | exp_month |
- | card_id | string |  no  | card_id |
- | card_issuer | string |  no  | card_issuer |
- | exp_year | number |  no  | exp_year |
- | card_brand_image | string |  no  | card_brand_image |
- | card_token | string |  no  | card_token |
+ | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
 
 ---
 
 
  
  
- #### [ListCardsResponse](#ListCardsResponse)
+ #### [Restrictions](#Restrictions)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[Card](#Card)] |  no  | List of cards of customer. |
- | success | boolean |  yes  | Response is successful or not. |
- | message | string |  yes  | Human readable message. |
+ | ordering_stores | [number] |  no  |  |
+ | post_order | [PostOrder](#PostOrder) |  no  |  |
+ | coupon_allowed | boolean |  no  |  |
+ | price_range | [PriceRange](#PriceRange) |  no  |  |
+ | payments | [PaymentCodes](#PaymentCodes) |  no  |  |
+ | platforms | [string] |  no  |  |
+ | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
+ | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
 
 ---
 
 
  
  
- #### [DeletehCardRequest](#DeletehCardRequest)
+ #### [CouponSchedule](#CouponSchedule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_id | string |  yes  | Card token of payment gateway. |
+ | end | string |  no  |  |
+ | duration | number |  no  |  |
+ | cron | string |  no  |  |
+ | next_schedule | [string] |  no  |  |
+ | start | string |  no  |  |
 
 ---
 
 
  
  
- #### [DeleteCardsResponse](#DeleteCardsResponse)
+ #### [DisplayMetaDict](#DisplayMetaDict)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not. |
- | message | string |  no  | Human readable message. |
+ | subtitle | string |  no  |  |
+ | title | string |  no  |  |
 
 ---
 
 
  
  
- #### [ValidateCustomerRequest](#ValidateCustomerRequest)
+ #### [DisplayMeta](#DisplayMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_params | string |  yes  | Extra meta fields. |
- | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
- | payload | string |  yes  | Hashed payload string. |
- | phone_number | string |  yes  | User mobile number without country code. |
- | transaction_amount_in_paise | number |  yes  | Payable amount in paise |
+ | subtitle | string |  no  |  |
+ | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+ | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
 
 ---
 
 
  
  
- #### [ValidateCustomerResponse](#ValidateCustomerResponse)
+ #### [Ownership](#Ownership)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  | Payment gateway response data |
- | success | boolean |  yes  | Response is successful or not |
- | message | string |  yes  | Error or success message. |
+ | payable_by | string |  yes  |  |
+ | payable_category | string |  yes  |  |
 
 ---
 
 
  
  
- #### [ChargeCustomerRequest](#ChargeCustomerRequest)
+ #### [CouponAction](#CouponAction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  | Chargable amount of order. |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | order_id | string |  yes  | Unique order id. |
- | verified | boolean |  no  | Already Verified flag from payment gateway i.e Mswipe |
- | transaction_token | string |  no  | Transaction token of payment gateway. |
+ | txn_mode | string |  no  |  |
+ | action_date | string |  no  |  |
 
 ---
 
 
  
  
- #### [ChargeCustomerResponse](#ChargeCustomerResponse)
+ #### [Rule](#Rule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_address_id | string |  no  | Delivery adddress id of customer |
- | status | string |  yes  | Status of charged payment. |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
- | order_id | string |  yes  | Unique order id. |
- | cart_id | string |  no  | Cart id of customer |
- | success | boolean |  yes  | Response is successful or not. |
- | message | string |  yes  | Human readable message. |
-
----
-
-
- 
- 
- #### [PaymentInitializationRequest](#PaymentInitializationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | timeout | number |  yes  | Payment polling timeout if not recieved response |
- | polling_url | string |  yes  | Polling url to check payment status |
- | virtual_id | string |  no  | Bharat QR code virtual id |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | aggregator | string |  yes  | Payment gateway name |
- | aggregator_order_id | string |  yes  | Payment gateway order id |
- | method | string |  yes  | Payment method |
- | razorpay_payment_id | string |  yes  | Payment gateway payment id |
-
----
-
-
- 
- 
- #### [PaymentInitializationResponse](#PaymentInitializationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | order id |
- | currency | string |  no  | Currency code. |
- | polling_url | string |  yes  | Polling url. |
- | amount | number |  no  | Payable amount. |
- | timeout | number |  no  | timeout. |
- | bqr_image | string |  no  | Bharath qr image url. |
- | virtual_id | string |  no  | Payment virtual address. |
- | customer_id | string |  no  | Payment gateway customer id. |
- | status | string |  no  | Status of payment. |
- | aggregator | string |  yes  | Payment gateway name |
- | vpa | string |  no  | Customer vpa address |
- | aggregator_order_id | string |  no  | Payment order id |
- | method | string |  yes  | Payment method |
- | success | boolean |  yes  | Response is successful or not. |
- | razorpay_payment_id | string |  no  | Payment  id. |
-
----
-
-
- 
- 
- #### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | currency | string |  yes  | Currency code. |
- | contact | string |  yes  | Customer valid mobile number |
- | amount | number |  yes  | Payable amount. |
- | email | string |  yes  | Customer valid email |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | status | string |  yes  | Status of payment. |
- | aggregator | string |  yes  | Payment gateway name |
- | order_id | string |  yes  | Payment gateway order id |
- | vpa | string |  yes  | Customer vpa address |
- | method | string |  yes  | Payment method |
-
----
-
-
- 
- 
- #### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  | Payment gateway name |
- | status | string |  yes  | Payment status |
- | retry | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [AggregatorRoute](#AggregatorRoute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | string |  no  | Data |
- | api_link | string |  no  | api_link |
- | payment_flow | string |  no  | payment_flow |
-
----
-
-
- 
- 
- #### [PaymentFlow](#PaymentFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
- | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
- | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
- | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
- | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
- | simpl | [AggregatorRoute](#AggregatorRoute) |  no  | simpl |
- | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
- | msipe | [AggregatorRoute](#AggregatorRoute) |  no  | mswipe |
- | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | BQR_Razorpay |
- | fynd | [AggregatorRoute](#AggregatorRoute) |  no  | Fynd |
- | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
-
----
-
-
- 
- 
- #### [PaymentModeLogo](#PaymentModeLogo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  | large |
- | small | string |  yes  | smalll |
-
----
-
-
- 
- 
- #### [PaymentModeList](#PaymentModeList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | card_brand | string |  no  | card_brand |
- | card_name | string |  no  | card_name |
- | card_number | string |  no  | card_number |
- | display_name | string |  no  | display name |
- | aggregator_name | string |  yes  | aggregator_name |
- | timeout | number |  no  | timeout |
- | expired | boolean |  no  | expired |
- | name | string |  no  | name |
- | card_isin | string |  no  | card_isin |
- | card_type | string |  no  | card_type |
- | retry_count | number |  no  | retry_count |
- | exp_month | number |  no  | exp_month |
- | card_issuer | string |  no  | card_issuer |
- | intent_flow | string |  no  | intent_flow |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | card_token | string |  no  | card_token |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_reference | string |  no  | card_reference |
- | nickname | string |  no  | nickname |
- | display_priority | number |  no  | Dispaly Priority |
- | merchant_code | string |  no  | merchant code |
- | card_id | string |  no  | card_id |
- | card_brand_image | string |  no  | card_brand_image |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
- | exp_year | number |  no  | exp_year |
- | code | string |  no  | code |
- | fynd_vpa | string |  no  | fynd_vpa |
-
----
-
-
- 
- 
- #### [RootPaymentMode](#RootPaymentMode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  no  | Dispaly Priority |
- | name | string |  yes  | Payment mode name |
- | add_card_enabled | boolean |  no  | Annonymous card flag |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | display_priority | number |  yes  | Dispaly Priority |
- | anonymous_enable | boolean |  no  | Annonymous card flag |
- | display_name | string |  yes  | Payment mode display name |
-
----
-
-
- 
- 
- #### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  | payment_flows |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  | Payment options |
-
----
-
-
- 
- 
- #### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  | payment_options |
-
----
-
-
- 
- 
- #### [RupifiBannerData](#RupifiBannerData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string |  no  | Rupifi KYC status |
- | kyc_url | string |  no  | Rupifi KYC banner url. |
-
----
-
-
- 
- 
- #### [RupifiBannerResponse](#RupifiBannerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  yes  | Rupifi KYC banner details. |
- | success | boolean |  yes  | Successful or not. |
-
----
-
-
- 
- 
- #### [TransferItemsDetails](#TransferItemsDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  yes  |   |
- | name | string |  yes  |  Beneficiary Name |
- | logo_large | string |  yes  | Beneficiary large Logo |
- | display_name | boolean |  no  | Beneficiary Display Name |
- | logo_small | string |  yes  | Beneficiary small Logo |
-
----
-
-
- 
- 
- #### [TransferModeDetails](#TransferModeDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  yes  | Beneficiary Mode Name |
- | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  | Beneficiary Mode Items |
-
----
-
-
- 
- 
- #### [TransferModeResponse](#TransferModeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[TransferModeDetails](#TransferModeDetails)] |  yes  | Response Object |
-
----
-
-
- 
- 
- #### [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
- | enable | boolean |  yes  | True for enabling the Transfer Mode |
-
----
-
-
- 
- 
- #### [UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number |  yes  |   |
- | transfer_mode | string |  yes  | Transfer Mode Of Account |
- | address | string |  yes  | Address of User |
- | display_name | string |  yes  | Display Name Of Account |
- | comment | boolean |  no  | Remarks |
- | delights_user_name | string |  yes  | User Id Who filled the Beneficiary  |
- | branch_name | boolean |  no  | Branch Name Of Account |
- | created_on | string |  yes  | Creation Date of Beneficiary |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | subtitle | string |  yes  | SHort Title Of Account |
- | title | string |  yes  | Title Of Account |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | mobile | boolean |  no  | MObile no of User |
- | account_no | string |  yes  | Account Number |
- | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | account_holder | string |  yes  | Account Holder Name |
- | email | string |  yes  | EMail of User |
- | ifsc_code | string |  yes  | Ifsc Code Of Account |
- | bank_name | string |  yes  | Bank Name Of Account |
-
----
-
-
- 
- 
- #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  yes  | All Beneficiaries Of An Order |
- | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
-
----
-
-
- 
- 
- #### [NotFoundResourceError](#NotFoundResourceError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Not Found |
- | code | string |  yes  | Bad Request Data |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [IfscCodeResponse](#IfscCodeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | branch_name | string |  yes  | Branch Name Of Account |
- | bank_name | string |  yes  | Bank Name Of Account |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [ErrorCodeDescription](#ErrorCodeDescription)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Error human understandable description. |
- | code | string |  yes  | Error descrption code. |
- | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hash_key | string |  yes  | Hash key of the beneficiary Id |
- | otp | string |  yes  | Otp sent to the given Mobile No |
- | request_id | string |  yes  | Request Id sent in  |
-
----
-
-
- 
- 
- #### [AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hash_key | string |  yes  | Hash key of the beneficiary Id |
- | otp | string |  yes  | Otp sent to the given Mobile No |
- | request_id | string |  yes  | Request Id of the otp  |
-
----
-
-
- 
- 
- #### [WrongOtpError](#WrongOtpError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Wrong OTP Code |
- | success | string |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | branch_name | string |  yes  | Branch Name of the Account |
- | email | string |  yes  | Email of the Account Holder |
- | address | string |  no  | Address of the User |
- | account_no | string |  yes  | Account NUmber of the Account Holder |
- | mobile | string |  yes  | Moblie Number of the User |
- | wallet | string |  no  |  |
- | ifsc_code | string |  yes  | Ifsc Code of the Account |
- | bank_name | string |  yes  | Bank Name of the Account |
- | comment | string |  no  | Remarks added by The user |
- | vpa | string |  no  |  |
- | account_holder | string |  yes  | Name of the Account Holder |
-
----
-
-
- 
- 
- #### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
- | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
- | otp | string |  no  |  |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
- | order_id | string |  yes  | Merchant Order Id |
- | request_id | string |  no  |  |
- | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
-
----
-
-
- 
- 
- #### [RefundAccountResponse](#RefundAccountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | string |  no  | Refund account data. |
- | success | boolean |  yes  | Success or failure flag. |
- | message | string |  yes  | Response message |
-
----
-
-
- 
- 
- #### [WalletOtpRequest](#WalletOtpRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string |  yes  | Country Code of the Mobile Number |
- | mobile | string |  yes  | Wallet Moblie Number of the User |
-
----
-
-
- 
- 
- #### [WalletOtpResponse](#WalletOtpResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_verified_flag | string |  yes  | Boolean Flag whether OTP Validation is already done or not |
- | request_id | string |  yes  | request id  |
- | success | boolean |  no  | Response is successful or not |
-
----
-
-
- 
- 
- #### [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiary_id | string |  yes  | Beneficiary Hash Id of the beneficiary added |
- | order_id | string |  yes  | Merchant Order Id |
-
----
-
-
- 
- 
- #### [SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
- | is_beneficiary_set | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
-
----
-
-
-
-
- 
- 
- #### [OrderById](#OrderById)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order | [OrderSchema](#OrderSchema) |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderList](#OrderList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[OrderSchema](#OrderSchema)] |  yes  |  |
- | page | [OrderPage](#OrderPage) |  yes  |  |
- | filters | [OrderFilters](#OrderFilters) |  yes  |  |
-
----
-
-
- 
- 
- #### [OrderPage](#OrderPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | type | string |  no  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [OrderFilters](#OrderFilters)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | statuses | [[OrderStatuses](#OrderStatuses)] |  no  |  |
-
----
-
-
- 
- 
- #### [OrderStatuses](#OrderStatuses)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
+ | key | number |  no  |  |
+ | discount_qty | number |  no  |  |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
  | value | number |  no  |  |
- | is_selected | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentById](#ShipmentById)
+ #### [Validity](#Validity)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment | [Shipments](#Shipments) |  yes  |  |
+ | priority | number |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentReasons](#ShipmentReasons)
+ #### [CouponDateMeta](#CouponDateMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasons | [[Reasons](#Reasons)] |  yes  |  |
+ | modified_on | string |  no  |  |
+ | created_on | string |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody)
+ #### [State](#State)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatusesBody](#StatusesBody)] |  yes  |  |
- | force_transition | boolean |  yes  |  |
+ | is_archived | boolean |  no  |  |
+ | is_public | boolean |  no  |  |
+ | is_display | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [StatusesBody](#StatusesBody)
+ #### [CouponAuthor](#CouponAuthor)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | shipments | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | created_by | string |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusUpdate](#ShipmentStatusUpdate)
+ #### [Validation](#Validation)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | [string] |  yes  |  |
- | status | boolean |  yes  |  |
+ | user_registered_after | string |  no  |  |
+ | anonymous | boolean |  no  |  |
+ | app_id | [string] |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentTrack](#ShipmentTrack)
+ #### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | results | [[Track](#Track)] |  yes  |  |
+ | user_id | [string] |  no  |  |
+ | company_id | [number] |  no  |  |
+ | article_id | [string] |  no  |  |
+ | category_id | [number] |  no  |  |
+ | brand_id | [number] |  no  |  |
+ | item_id | [number] |  no  |  |
+ | store_id | [number] |  no  |  |
+ | collection_id | [string] |  no  |  |
 
 ---
 
 
  
  
- #### [OrderSchema](#OrderSchema)
+ #### [CouponAdd](#CouponAdd)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | order_created_time | string |  no  |  |
- | shipments | [[Shipments](#Shipments)] |  no  |  |
- | total_shipments_in_order | number |  no  |  |
- | user_info | [UserInfo](#UserInfo) |  no  |  |
- | bags_for_reorder | [[BagsForReorder](#BagsForReorder)] |  no  |  |
+ | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
+ | action | [CouponAction](#CouponAction) |  no  |  |
+ | type_slug | string |  yes  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ | code | string |  yes  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+ | tags | [string] |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
 
 ---
 
 
  
  
- #### [BagsForReorder](#BagsForReorder)
+ #### [CouponsResponse](#CouponsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_id | number |  no  |  |
- | item_size | string |  no  |  |
- | store_id | number |  no  |  |
- | seller_id | number |  no  |  |
+ | items | [CouponAdd](#CouponAdd) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuccessMessage](#SuccessMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OperationErrorResponse](#OperationErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponUpdate](#CouponUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
+ | action | [CouponAction](#CouponAction) |  no  |  |
+ | type_slug | string |  yes  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ | code | string |  yes  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+ | tags | [string] |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponPartialUpdate](#CouponPartialUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | archive | boolean |  no  | Send true to unpublish coupon |
+
+---
+
+
+ 
+ 
+ #### [CartItem](#CartItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | quantity | number |  no  |  |
- | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment) |  no  |  |
+ | product_id | string |  yes  |  |
+ | size | string |  yes  |  |
 
 ---
 
 
  
  
- #### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
+ #### [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
- | strategy | string |  no  |  |
+ | cart_items | [CartItem](#CartItem) |  no  |  |
 
 ---
 
 
  
  
- #### [PosOrderById](#PosOrderById)
+ #### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderSchema](#OrderSchema) |  yes  |  |
-
----
-
-
- 
- 
- #### [Bags](#Bags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item | [Item](#Item) |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
- | id | number |  no  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
-
----
-
-
- 
- 
- #### [Item](#Item)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | [ItemBrand](#ItemBrand) |  no  |  |
  | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_symbol | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | extra_meta | string |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | quantity | number |  no  |  |
+ | type | string |  no  |  |
+ | uid | string |  no  |  |
  | size | string |  no  |  |
- | slug_key | string |  no  |  |
- | image | [string] |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | deliverable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  | Product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_slug | [string] |  no  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
+ | url | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProduct](#CartProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  | Unique product url name generated via product name and other meta data |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+ | images | [[ProductImage](#ProductImage)] |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | marked | number |  no  |  |
+ | add_on | number |  no  |  |
+ | selling | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | effective | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductInfo](#CartProductInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | is_set | boolean |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | bulk_offer | string |  no  |  |
+ | product | [CartProduct](#CartProduct) |  no  |  |
+ | quantity | number |  no  |  |
+ | message | string |  no  |  |
+ | coupon_message | string |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | discount | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | applicable | number |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | total | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | is_applied | boolean |  no  |  |
  | code | string |  no  |  |
- | id | number |  no  |  |
-
----
-
-
- 
- 
- #### [Prices](#Prices)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount_paid_roundoff | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | cod_charges | number |  no  |  |
- | cashback | number |  no  |  |
- | added_to_fynd_cash | boolean |  no  |  |
- | price_marked | number |  no  |  |
- | transfer_price | number |  no  |  |
- | coupon_value | number |  no  |  |
- | price_effective | number |  no  |  |
- | refund_credit | number |  no  |  |
- | amount_paid | number |  no  |  |
- | refund_amount | number |  no  |  |
- | cashback_applied | number |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | value_of_good | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | discount | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | delivery_charge | number |  no  |  |
-
----
-
-
- 
- 
- #### [CurrentStatus](#CurrentStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | updated_at | string |  no  |  |
- | status | string |  no  |  |
- | name | string |  no  |  |
- | journey_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [FinancialBreakup](#FinancialBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_calculated_amount | number |  no  |  |
- | coupon_value | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
- | gst_fee | string |  no  |  |
- | refund_credit | number |  no  |  |
- | cashback | number |  no  |  |
- | refund_amount | number |  no  |  |
- | value_of_good | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | size | string |  no  |  |
- | total_units | number |  no  |  |
- | discount | number |  no  |  |
- | amount_paid | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | added_to_fynd_cash | boolean |  no  |  |
- | delivery_charge | number |  no  |  |
- | hsn_code | string |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | transfer_price | number |  no  |  |
- | identifiers | [Identifiers](#Identifiers) |  no  |  |
- | gst_tag | string |  no  |  |
- | price_marked | number |  no  |  |
- | price_effective | number |  no  |  |
- | cod_charges | number |  no  |  |
- | item_name | string |  no  |  |
- | cashback_applied | number |  no  |  |
- | gst_tax_percentage | number |  no  |  |
-
----
-
-
- 
- 
- #### [Identifiers](#Identifiers)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ean | string |  no  |  |
- | sku_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [ItemBrand](#ItemBrand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | logo | string |  no  |  |
-
----
-
-
- 
- 
- #### [BreakupValues](#BreakupValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
+ | message | string |  no  |  |
  | value | number |  no  |  |
- | name | string |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
 
  
  
- #### [DeliveryAddress](#DeliveryAddress)
+ #### [RawBreakup](#RawBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | string |  no  |  |
- | landmark | string |  no  |  |
- | contact_person | string |  no  |  |
- | phone | string |  no  |  |
- | state | string |  no  |  |
- | version | string |  no  |  |
- | address1 | string |  no  |  |
- | created_at | string |  no  |  |
- | address_type | string |  no  |  |
- | address_category | string |  no  |  |
- | area | string |  no  |  |
- | city | string |  no  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | email | string |  no  |  |
- | country | string |  no  |  |
- | address2 | string |  no  |  |
- | updated_at | string |  no  |  |
- | name | string |  no  |  |
+ | fynd_cash | number |  no  |  |
+ | vog | number |  no  |  |
+ | total | number |  no  |  |
+ | you_saved | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | mrp_total | string |  no  |  |
+ | discount | number |  no  |  |
+ | coupon | number |  no  |  |
+ | subtotal | number |  no  |  |
+ | cod_charge | number |  no  |  |
+ | convenience_fee | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | value | number |  no  |  |
+ | message | [string] |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OpenApiErrorResponse](#OpenApiErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+ | errors | string |  no  | Contains field name which has error as key and error message as value |
+
+---
+
+
+ 
+ 
+ #### [ShippingAddress](#ShippingAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | area_code_slug | string |  no  |  |
  | address | string |  no  |  |
-
----
-
-
- 
- 
- #### [FulfillingStore](#FulfillingStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | id | number |  no  |  |
+ | country_code | string |  no  |  |
+ | meta | string |  no  |  |
+ | email | string |  no  |  |
+ | city | string |  yes  |  |
+ | address_type | string |  no  |  |
+ | phone | number |  no  |  |
+ | pincode | number |  no  |  |
+ | area | string |  no  |  |
+ | landmark | string |  no  |  |
  | name | string |  no  |  |
- | company_id | number |  no  |  |
+ | area_code | string |  yes  |  |
+ | state | string |  yes  |  |
+ | country | string |  yes  |  |
 
 ---
 
 
  
  
- #### [Invoice](#Invoice)
+ #### [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | updated_date | string |  no  |  |
- | invoice_url | string |  no  |  |
- | label_url | string |  no  |  |
+ | cart_items | [CartItem](#CartItem) |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
 
 ---
 
 
  
  
- #### [Promise](#Promise)
+ #### [PromiseTimestamp](#PromiseTimestamp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [Timestamp](#Timestamp) |  no  |  |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
 
 ---
 
 
  
  
- #### [Timestamp](#Timestamp)
+ #### [PromiseFormatted](#PromiseFormatted)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -37406,224 +63961,255 @@ Success
 
  
  
- #### [Reasons](#Reasons)
+ #### [ShipmentPromise](#ShipmentPromise)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_text | string |  no  |  |
- | show_text_area | boolean |  no  |  |
- | feedback_type | string |  no  |  |
- | flow | string |  no  |  |
- | reason_id | number |  no  |  |
- | priority | number |  no  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+ | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatus](#ShipmentStatus)
+ #### [OpenApiCartServiceabilityResponse](#OpenApiCartServiceabilityResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | hex_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentUserInfo](#ShipmentUserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gender | string |  no  |  |
- | mobile | string |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
-
----
-
-
- 
- 
- #### [Shipments](#Shipments)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | track_url | string |  no  |  |
- | traking_no | string |  no  |  |
- | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
- | beneficiary_details | boolean |  no  |  |
- | can_return | boolean |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | need_help_url | string |  no  |  |
- | shipment_id | string |  no  |  |
- | total_bags | number |  no  |  |
- | delivery_address | [DeliveryAddress](#DeliveryAddress) |  no  |  |
- | invoice | [Invoice](#Invoice) |  no  |  |
- | comment | string |  no  |  |
- | order_type | string |  no  |  |
- | promise | [Promise](#Promise) |  no  |  |
- | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | bags | [[Bags](#Bags)] |  no  |  |
- | can_cancel | boolean |  no  |  |
- | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
- | shipment_created_at | string |  no  |  |
- | shipment_status | [ShipmentStatus](#ShipmentStatus) |  no  |  |
- | user_info | [ShipmentUserInfo](#ShipmentUserInfo) |  no  |  |
- | size_info | string |  no  |  |
- | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentTotalDetails](#ShipmentTotalDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total_price | number |  no  |  |
- | sizes | number |  no  |  |
- | pieces | number |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentPayment](#ShipmentPayment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | mode | string |  no  |  |
- | status | string |  no  |  |
-
----
-
-
- 
- 
- #### [Track](#Track)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | awb | string |  no  |  |
- | updated_at | string |  no  |  |
- | last_location_recieved_at | string |  no  |  |
- | reason | string |  no  |  |
- | shipment_type | string |  no  |  |
- | status | string |  no  |  |
- | updated_time | string |  no  |  |
- | account_name | string |  no  |  |
-
----
-
-
- 
- 
- #### [TrackingDetails](#TrackingDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_current | boolean |  no  |  |
- | status | string |  no  |  |
- | time | string |  no  |  |
- | is_passed | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [UserInfo](#UserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gender | string |  no  |  |
- | mobile | string |  no  |  |
- | name | string |  no  |  |
- | email | string |  no  |  |
-
----
-
-
- 
- 
- #### [ApefaceApiError](#ApefaceApiError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
  | message | string |  no  |  |
 
 ---
 
 
-
-
  
  
- #### [ActionPageParams](#ActionPageParams)
+ #### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | [string] |  no  |  |
+ | payment_id | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | order_id | string |  no  |  |
+ | current_status | string |  no  |  |
+ | payment_gateway | string |  no  |  |
 
 ---
 
 
  
  
- #### [CatalogueOrderRequest](#CatalogueOrderRequest)
+ #### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ | name | string |  no  | Payment mode name |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+ | amount | number |  yes  | Payment amount |
+ | mode | string |  yes  |  |
 
 ---
 
 
  
  
- #### [CatalogueOrderResponse](#CatalogueOrderResponse)
+ #### [OpenApiFiles](#OpenApiFiles)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ | key | string |  yes  |  |
+ | values | [string] |  yes  |  |
 
 ---
 
 
  
  
- #### [DiscountProperties](#DiscountProperties)
+ #### [CartItemMeta](#CartItemMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | absolute | number |  no  |  |
- | currency | string |  no  |  |
- | display_absolute | string |  no  |  |
- | display_percent | string |  no  |  |
- | percent | number |  no  |  |
+ | primary_item | boolean |  no  |  |
+ | group_id | string |  no  |  |
 
 ---
 
 
  
  
- #### [Error](#Error)
+ #### [OpenApiOrderItem](#OpenApiOrderItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | cod_charges | number |  yes  |  |
+ | coupon_effective_discount | number |  yes  |  |
+ | size | string |  yes  |  |
+ | price_effective | number |  yes  |  |
+ | loyalty_discount | number |  no  |  |
+ | amount_paid | number |  yes  |  |
+ | product_id | number |  yes  |  |
+ | employee_discount | number |  no  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | quantity | number |  no  |  |
+ | delivery_charges | number |  yes  |  |
+ | discount | number |  yes  |  |
+ | price_marked | number |  yes  |  |
+ | cashback_applied | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | loyalty_discount | number |  no  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | order_id | string |  no  |  |
+ | coupon_value | number |  yes  |  |
+ | coupon_code | string |  yes  |  |
+ | cod_charges | number |  yes  |  |
+ | employee_discount | string |  no  |  |
+ | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | payment_mode | string |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
+ | affiliate_order_id | string |  no  |  |
+ | delivery_charges | number |  yes  |  |
+ | coupon | string |  no  |  |
+ | cart_value | number |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | cashback_applied | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | order_ref_id | string |  no  | Order id sent in request |
+ | message | string |  no  |  |
+ | order_id | string |  yes  | Fynd order id |
+
+---
+
+
+
+
+ 
+ 
+ #### [AppUser](#AppUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | block_reason | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [E](#E)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
  | exception | string |  no  |  |
  | info | string |  no  |  |
  | message | string |  no  |  |
+ | request_id | string |  no  |  |
+ | stack_trace | string |  no  |  |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Giveaway](#Giveaway)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | audience | [RewardsAudience](#RewardsAudience) |  no  |  |
+ | banner_image | [Asset](#Asset) |  no  |  |
+ | created_at | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | rule | [RewardsRule](#RewardsRule) |  no  |  |
+ | title | string |  no  |  |
+ | updated_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GiveawayResponse](#GiveawayResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Giveaway](#Giveaway)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HistoryPretty](#HistoryPretty)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | claimed | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | points | number |  no  |  |
+ | remaining_points | number |  no  |  |
+ | text_1 | string |  no  |  |
+ | text_2 | string |  no  |  |
+ | text_3 | string |  no  |  |
+ | txn_name | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HistoryRes](#HistoryRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[HistoryPretty](#HistoryPretty)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | points | number |  no  |  |
 
 ---
 
@@ -37654,65 +64240,39 @@ Success
 
  
  
- #### [OrderDiscountRequest](#OrderDiscountRequest)
+ #### [Points](#Points)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | order_amount | number |  yes  |  |
+ | available | number |  no  |  |
 
 ---
 
 
  
  
- #### [OrderDiscountResponse](#OrderDiscountResponse)
+ #### [Referral](#Referral)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket) |  no  |  |
- | base_discount | [DiscountProperties](#DiscountProperties) |  no  |  |
- | discount | [DiscountProperties](#DiscountProperties) |  no  |  |
- | order_amount | number |  no  |  |
- | points | number |  no  |  |
+ | code | string |  no  |  |
 
 ---
 
 
  
  
- #### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | high | number |  no  |  |
- | low | number |  no  |  |
- | max | number |  no  |  |
- | value | number |  no  |  |
- | value_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [PointsHistory](#PointsHistory)
+ #### [RewardUser](#RewardUser)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | claimed | boolean |  no  |  |
+ | active | boolean |  no  |  |
  | created_at | string |  no  |  |
- | expires_on | string |  no  |  |
- | meta | string |  no  |  |
- | points | number |  no  |  |
- | remaining_points | number |  no  |  |
- | text_1 | string |  no  |  |
- | text_2 | string |  no  |  |
- | text_3 | string |  no  |  |
- | txn_name | string |  no  |  |
+ | referral | [Referral](#Referral) |  no  |  |
+ | uid | number |  no  |  |
  | updated_at | string |  no  |  |
+ | user_block_reason | string |  no  |  |
  | user_id | string |  no  |  |
 
 ---
@@ -37720,105 +64280,23 @@ Success
 
  
  
- #### [PointsHistoryResponse](#PointsHistoryResponse)
+ #### [RewardsAudience](#RewardsAudience)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [PointsResponse](#PointsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | points | number |  no  | Points is the total available |
-
----
-
-
- 
- 
- #### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | device_id | string |  yes  |  |
- | referral_code | string |  yes  |  |
-
----
-
-
- 
- 
- #### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | points | number |  no  |  |
- | redeemed | boolean |  no  |  |
- | referrer_id | string |  no  |  |
- | referrer_info | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReferralDetailsResponse](#ReferralDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | referral | [Offer](#Offer) |  no  |  |
- | referrer_info | string |  no  |  |
- | share | [ShareMessages](#ShareMessages) |  no  |  |
- | user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
-
----
-
-
- 
- 
- #### [ReferralDetailsUser](#ReferralDetailsUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | blocked | boolean |  no  |  |
- | points | number |  no  |  |
- | redeemed | boolean |  no  |  |
- | referral_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [RewardsArticle](#RewardsArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | header_user_id | string |  no  |  |
  | id | string |  no  |  |
- | points | number |  no  |  |
- | price | number |  no  |  |
 
 ---
 
 
  
  
- #### [Schedule](#Schedule)
+ #### [RewardsRule](#RewardsRule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
+ | amount | number |  no  |  |
 
 ---
 
@@ -37842,247 +64320,122 @@ Success
 ---
 
 
-
-
  
  
- #### [AbuseReport](#AbuseReport)
+ #### [UserRes](#UserRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | abused | boolean |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | description | string |  no  |  |
- | entity | [Entity](#Entity) |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | state | [FeedbackState](#FeedbackState) |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
+ | points | [Points](#Points) |  no  |  |
+ | user | [RewardUser](#RewardUser) |  no  |  |
 
 ---
 
 
+
+
  
  
- #### [Access](#Access)
+ #### [StatGroup](#StatGroup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | answer | boolean |  no  |  |
- | ask_question | boolean |  no  |  |
- | comment | boolean |  no  |  |
- | rnr | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [AddMediaListRequest](#AddMediaListRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | entity_id | string |  no  |  |
- | entity_type | string |  no  |  |
- | media_list | [[AddMediaRequest](#AddMediaRequest)] |  no  |  |
- | ref_id | string |  no  |  |
- | ref_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [AddMediaRequest](#AddMediaRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cloud_id | string |  no  |  |
- | cloud_name | string |  no  |  |
- | cloud_provider | string |  no  |  |
- | entity_id | string |  no  |  |
- | entity_type | string |  no  |  |
- | media_url | string |  no  |  |
- | ref_id | string |  no  |  |
- | ref_type | string |  no  |  |
- | tags | [string] |  no  |  |
- | thumbnail_url | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [ApplicationSchema](#ApplicationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [Attribute](#Attribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | description | string |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
-
----
-
-
- 
- 
- #### [AttributeObject](#AttributeObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | name | string |  yes  |  |
- | slug | string |  no  |  |
+ | key | string |  no  |  |
+ | url | string |  no  |  |
  | title | string |  no  |  |
- | type | string |  yes  |  |
- | value | number |  yes  |  |
 
 ---
 
 
  
  
- #### [AttributeResponse](#AttributeResponse)
+ #### [StatsGroups](#StatsGroups)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Attribute](#Attribute)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | groups | [[StatGroup](#StatGroup)] |  no  |  |
 
 ---
 
 
  
  
- #### [AutoDetectors](#AutoDetectors)
+ #### [StatsGroupComponent](#StatsGroupComponent)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text_detector | [[TextDetector](#TextDetector)] |  no  |  |
-
----
-
-
- 
- 
- #### [CheckEligibilityResponse](#CheckEligibilityResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | access | [Access](#Access) |  no  |  |
-
----
-
-
- 
- 
- #### [Cloud](#Cloud)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | provider | string |  no  |  |
-
----
-
-
- 
- 
- #### [Comment](#Comment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | comment | [string] |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | entity | [Entity](#Entity) |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | state | [FeedbackState](#FeedbackState) |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
- | vote_count | [VoteCount](#VoteCount) |  no  |  |
-
----
-
-
- 
- 
- #### [CommentGetResponse](#CommentGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Comment](#Comment)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [CommentRequest](#CommentRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | comment | [string] |  yes  |  |
- | entity_id | string |  yes  |  |
- | entity_type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateQNARequest](#CreateQNARequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | choices | [string] |  no  |  |
- | entity_id | string |  yes  |  |
- | entity_type | string |  yes  |  |
- | max_len | number |  no  |  |
- | sort_priority | number |  no  |  |
- | tags | [string] |  no  |  |
- | text | string |  yes  |  |
+ | key | string |  no  |  |
+ | url | string |  no  |  |
+ | title | string |  no  |  |
  | type | string |  no  |  |
+ | filters | string |  no  |  |
 
 ---
 
 
  
  
- #### [CreatedBy](#CreatedBy)
+ #### [StatsGroupComponents](#StatsGroupComponents)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
+ | title | string |  no  |  |
+ | components | [[StatsGroupComponent](#StatsGroupComponent)] |  no  |  |
 
 ---
 
 
  
  
- #### [CursorGetResponse](#CursorGetResponse)
+ #### [StatsRes](#StatsRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | key | string |  no  |  |
+ | title | string |  no  |  |
+ | type | string |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReceivedAt](#ReceivedAt)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AbandonCartsDetail](#AbandonCartsDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | properties_cart_id | string |  no  |  |
+ | context_traits_first_name | string |  no  |  |
+ | context_traits_last_name | string |  no  |  |
+ | context_traits_phone_number | string |  no  |  |
+ | context_traits_email | string |  no  |  |
+ | context_app_application_id | string |  no  |  |
+ | properties_breakup_values_raw_total | string |  no  |  |
+ | received_at | [ReceivedAt](#ReceivedAt) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AbandonCartsList](#AbandonCartsList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AbandonCartsDetail](#AbandonCartsDetail)] |  no  |  |
+ | cart_total | string |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
 ---
@@ -38090,461 +64443,375 @@ Success
 
  
  
- #### [CustomerReview](#CustomerReview)
+ #### [AbandonCartDetail](#AbandonCartDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auto_detectors | [AutoDetectors](#AutoDetectors) |  no  |  |
- | created_on | string |  no  |  |
- | device_meta | [DeviceMeta](#DeviceMeta) |  no  |  |
- | entity | [ProductEntity](#ProductEntity) |  no  |  |
- | id | string |  no  |  |
- | location_meta | [LocationMeta](#LocationMeta) |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | rating | [ReviewRating](#ReviewRating) |  no  |  |
- | review | [Review](#Review) |  no  |  |
- | slug | string |  no  |  |
- | state | [State](#State) |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
- | template | [Template](#Template) |  no  |  |
- | vote_count | [VoteCount](#VoteCount) |  no  |  |
+ | _id | string |  no  |  |
+ | user_id | string |  no  |  |
+ | cart_value | string |  no  |  |
+ | articles | [string] |  no  |  |
+ | breakup | string |  no  |  |
+ | address | string |  no  |  |
 
 ---
 
 
  
  
- #### [DeviceMeta](#DeviceMeta)
+ #### [ExportJobReq](#ExportJobReq)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_version | string |  no  |  |
- | platform | string |  no  |  |
+ | marketplace_name | string |  no  |  |
+ | start_time | string |  no  |  |
+ | end_time | string |  no  |  |
+ | event_type | string |  no  |  |
+ | trace_id | string |  no  |  |
 
 ---
 
 
  
  
- #### [Entity](#Entity)
+ #### [ExportJobRes](#ExportJobRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | type | string |  no  | entity type could be review/comment/ |
+ | status | string |  no  |  |
+ | job_id | string |  no  |  |
 
 ---
 
 
  
  
- #### [EntityMeta](#EntityMeta)
+ #### [ExportJobStatusRes](#ExportJobStatusRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | type | string |  no  | product, delivery,seller |
+ | status | string |  no  |  |
+ | job_id | string |  no  |  |
+ | download_url | string |  no  |  |
 
 ---
 
 
  
  
- #### [FeedbackError](#FeedbackError)
+ #### [GetLogsListReq](#GetLogsListReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marketplace_name | string |  no  |  |
+ | start_date | string |  no  |  |
+ | company_id | string |  no  |  |
+ | end_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MkpLogsResp](#MkpLogsResp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start_time_iso | string |  no  |  |
+ | end_time_iso | string |  no  |  |
+ | event_type | string |  no  |  |
+ | trace_id | string |  no  |  |
+ | count | string |  no  |  |
+ | status | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetLogsListRes](#GetLogsListRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[MkpLogsResp](#MkpLogsResp)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SearchLogReq](#SearchLogReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marketplace_name | string |  no  |  |
+ | start_date | string |  no  |  |
+ | company_id | string |  no  |  |
+ | end_date | string |  no  |  |
+ | identifier | string |  no  |  |
+ | identifier_value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogInfo](#LogInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | status | string |  no  |  |
+ | event_type | string |  no  |  |
+ | marketplace_name | string |  no  |  |
+ | event | string |  no  |  |
+ | trace_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | brand_id | number |  no  |  |
+ | store_code | string |  no  |  |
+ | store_id | number |  no  |  |
+ | item_id | number |  no  |  |
+ | article_id | string |  no  |  |
+ | seller_identifier | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SearchLogRes](#SearchLogRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[LogInfo](#LogInfo)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [ValidityObject](#ValidityObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | start | string |  yes  |  |
+ | end | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateDiscount](#CreateUpdateDiscount)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | company_id | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | app_ids | [string] |  yes  |  |
+ | job_type | string |  yes  |  |
+ | discount_type | string |  yes  |  |
+ | discount_level | string |  yes  |  |
+ | value | number |  no  |  |
+ | file_path | string |  no  |  |
+ | brand_ids | [number] |  no  |  |
+ | store_ids | [number] |  no  |  |
+ | validity | [ValidityObject](#ValidityObject) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountJob](#DiscountJob)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | name | string |  yes  |  |
+ | company_id | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | app_ids | [string] |  no  |  |
+ | job_type | string |  no  |  |
+ | discount_type | string |  no  |  |
+ | discount_level | string |  no  |  |
+ | value | number |  no  |  |
+ | file_path | string |  no  |  |
+ | brand_ids | [number] |  no  |  |
+ | store_ids | [number] |  no  |  |
+ | validity | [ValidityObject](#ValidityObject) |  yes  |  |
+ | created_on | string |  yes  |  |
+ | modified_on | string |  yes  |  |
+ | created_by | [UserDetails](#UserDetails) |  yes  |  |
+ | modified_by | [UserDetails](#UserDetails) |  yes  |  |
+ | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListOrCalender](#ListOrCalender)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DiscountJob](#DiscountJob)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FileJobResponse](#FileJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stage | string |  yes  |  |
+ | total | number |  yes  |  |
+ | failed | number |  yes  |  |
+ | company_id | number |  yes  |  |
+ | body | string |  no  |  |
+ | type | string |  yes  |  |
+ | file_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DownloadFileJob](#DownloadFileJob)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_ids | [number] |  no  |  |
+ | store_ids | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CancelJobResponse](#CancelJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserDetails](#UserDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | string |  yes  |  |
+ | user_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BadRequestObject](#BadRequestObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [AddProxyReq](#AddProxyReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attached_path | string |  no  | Proxy path slug |
+ | proxy_url | string |  no  | Proxied url |
+
+---
+
+
+ 
+ 
+ #### [AddProxyResponse](#AddProxyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | attached_path | string |  no  |  |
+ | proxy_url | string |  no  |  |
+ | company_id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | extension_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApiError](#ApiError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string |  no  |  |
- | exception | string |  no  |  |
- | info | string |  no  |  |
  | message | string |  no  |  |
  | meta | string |  no  |  |
- | request_id | string |  no  |  |
- | stack_trace | string |  no  |  |
- | status | number |  no  |  |
 
 ---
 
 
  
  
- #### [FeedbackMedia](#FeedbackMedia)
+ #### [RemoveProxyResponse](#RemoveProxyResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationSchema](#ApplicationSchema) |  no  |  |
- | cloud | [Cloud](#Cloud) |  no  |  |
- | created_by | [CreatedBy](#CreatedBy) |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
+ | message | string |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+
+
+ 
+ 
+ #### [EventConfig](#EventConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | event_name | string |  no  |  |
+ | event_type | string |  no  |  |
+ | version | string |  no  |  |
+ | display_name | string |  no  |  |
  | description | string |  no  |  |
- | entity | [Entity](#Entity) |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | reference | [Entity](#Entity) |  no  |  |
- | state | [MediaState](#MediaState) |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
- | type | string |  no  |  |
- | url | [Url](#Url) |  no  |  |
-
----
-
-
- 
- 
- #### [FeedbackState](#FeedbackState)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | archive | boolean |  no  |  |
- | media | string |  no  |  |
- | qna | boolean |  no  |  |
- | rating | boolean |  no  |  |
- | review | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [GeoLoc](#GeoLoc)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | latitude | string |  no  |  |
- | longitude | string |  no  |  |
-
----
-
-
- 
- 
- #### [InsertResponse](#InsertResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ids | string |  no  |  |
-
----
-
-
- 
- 
- #### [Location](#Location)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | flag_url | string |  no  |  |
- | geo_loc | [GeoLoc](#GeoLoc) |  no  |  |
- | name | string |  no  |  |
- | pincode | string |  no  |  |
-
----
-
-
- 
- 
- #### [LocationMeta](#LocationMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | demand | [Location](#Location) |  no  |  |
- | supply | [Location](#Location) |  no  |  |
-
----
-
-
- 
- 
- #### [MediaGetResponse](#MediaGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[FeedbackMedia](#FeedbackMedia)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [MediaMeta](#MediaMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cloud | [Cloud](#Cloud) |  no  |  |
- | comment | [string] |  no  |  |
- | description | string |  no  |  |
- | id | string |  no  |  |
- | type | string |  no  |  |
- | url | [Url](#Url) |  no  |  |
-
----
-
-
- 
- 
- #### [MediaState](#MediaState)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | approve | boolean |  no  |  |
- | archive | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [NumberGetResponse](#NumberGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
- | page | [PageNumber](#PageNumber) |  no  |  |
-
----
-
-
- 
- 
- #### [PageNumber](#PageNumber)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductEntity](#ProductEntity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  | For products, ID will be product ID, delivery, ID will be order id, seller ID will be company ID |
- | meta | [EntityMeta](#EntityMeta) |  no  |  |
- | type | string |  no  | product, delivery, seller, app, order |
-
----
-
-
- 
- 
- #### [QNA](#QNA)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | comments | [[Comment](#Comment)] |  no  |  |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | entity | [Entity](#Entity) |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | question | [Question](#Question) |  no  |  |
- | state | [QNAState](#QNAState) |  no  |  |
- | tag | [string] |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
-
----
-
-
- 
- 
- #### [QNAGetResponse](#QNAGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[QNA](#QNA)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [QNAState](#QNAState)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | approve | boolean |  no  |  |
- | modify | boolean |  no  |  |
- | priority | number |  no  |  |
- | reply | boolean |  no  |  |
- | vote | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Question](#Question)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | choices | [string] |  no  |  |
- | max_len | number |  no  |  |
- | text | string |  no  |  |
- | type | string |  no  | type could be single_choice/text/multi_choice |
-
----
-
-
- 
- 
- #### [Rating](#Rating)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | [[Attribute](#Attribute)] |  no  |  |
- | attributes_slugs | [string] |  no  |  |
- | ui | [UI](#UI) |  no  |  |
-
----
-
-
- 
- 
- #### [RatingGetResponse](#RatingGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Rating](#Rating)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [RatingMetric](#RatingMetric)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | avg | number |  no  |  |
- | count | number |  no  | Valuetype could be average, count |
- | name | string |  no  | Attribute name like Camera, Battery and rating name like a number 5,4,3 |
- | slug | string |  no  |  |
- | type | string |  no  | type could be attribute_rating and rating |
-
----
-
-
- 
- 
- #### [ReportAbuseGetResponse](#ReportAbuseGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AbuseReport](#AbuseReport)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [ReportAbuseRequest](#ReportAbuseRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | entity_id | string |  yes  |  |
- | entity_type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Review](#Review)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | answer_ids | [string] |  no  |  |
- | comments | [string] |  no  |  |
- | description | string |  no  |  |
- | media_meta | [[MediaMeta](#MediaMeta)] |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReviewFacet](#ReviewFacet)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | name | string |  no  |  |
- | selected | boolean |  no  |  |
- | slug | string |  no  |  |
- | type | string |  no  | rating, attribute rating |
-
----
-
-
- 
- 
- #### [ReviewGetResponse](#ReviewGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | facets | [[ReviewFacet](#ReviewFacet)] |  no  |  |
- | items | [[CustomerReview](#CustomerReview)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | sort | [[SortMethod](#SortMethod)] |  no  |  |
-
----
-
-
- 
- 
- #### [ReviewMediaMeta](#ReviewMediaMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max_count | number |  no  |  |
- | size | number |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReviewMetric](#ReviewMetric)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attribute_metric | [[RatingMetric](#RatingMetric)] |  no  |  |
  | created_on | string |  no  |  |
- | entity | [Entity](#Entity) |  no  | entity could be product, seller, delivery |
- | id | string |  no  |  |
- | modified_on | string |  no  |  |
- | rating_avg | number |  no  |  |
- | rating_count | number |  no  | total rating count |
- | rating_metric | [[RatingMetric](#RatingMetric)] |  no  |  |
- | review_count | number |  no  | total review count |
 
 ---
 
 
  
  
- #### [ReviewMetricGetResponse](#ReviewMetricGetResponse)
+ #### [EventConfigList](#EventConfigList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ReviewMetric](#ReviewMetric)] |  no  |  |
+ | items | [[EventConfig](#EventConfig)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
 ---
@@ -38552,93 +64819,11 @@ Success
 
  
  
- #### [ReviewRating](#ReviewRating)
+ #### [SubscriberConfigList](#SubscriberConfigList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | [[AttributeObject](#AttributeObject)] |  no  |  |
- | value | number |  no  |  |
-
----
-
-
- 
- 
- #### [SaveAttributeRequest](#SaveAttributeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | name | string |  yes  |  |
- | slug | string |  yes  |  |
-
----
-
-
- 
- 
- #### [SortMethod](#SortMethod)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | selected | boolean |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [State](#State)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | approve | boolean |  no  |  |
- | auto_decided | boolean |  no  |  |
- | status | number |  no  |  |
-
----
-
-
- 
- 
- #### [TagMeta](#TagMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | media | [[MediaMeta](#MediaMeta)] |  no  |  |
- | name | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [Template](#Template)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | entity | [Entity](#Entity) |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | rating | [Rating](#Rating) |  no  |  |
- | review | [TemplateReview](#TemplateReview) |  no  |  |
- | state | [FeedbackState](#FeedbackState) |  no  |  |
-
----
-
-
- 
- 
- #### [TemplateGetResponse](#TemplateGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Template](#Template)] |  no  |  |
+ | items | [[SubscriberResponse](#SubscriberResponse)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
 ---
@@ -38646,584 +64831,215 @@ Success
 
  
  
- #### [TemplateReview](#TemplateReview)
+ #### [EventProcessedStatus](#EventProcessedStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | header | string |  no  |  |
- | image_meta | [ReviewMediaMeta](#ReviewMediaMeta) |  no  |  |
- | title | string |  no  |  |
- | video_meta | [ReviewMediaMeta](#ReviewMediaMeta) |  no  |  |
- | vote_allowed | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [TextDetector](#TextDetector)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | confidence | number |  no  |  |
- | text | string |  no  |  |
- | text_class | string |  no  |  |
- | text_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [UI](#UI)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | feedback_question | [string] |  no  |  |
- | icon | [UIIcon](#UIIcon) |  no  |  |
- | text | [string] |  no  |  |
- | type | string |  no  | star | images | gifs | smileys |
-
----
-
-
- 
- 
- #### [UIIcon](#UIIcon)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | string |  no  |  |
- | inactive | string |  no  |  |
- | selected | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateAbuseStatusRequest](#UpdateAbuseStatusRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | abusive | boolean |  no  |  |
- | active | boolean |  no  |  |
- | approve | boolean |  no  |  |
- | description | string |  no  |  |
- | entity_id | string |  no  |  |
- | entity_type | string |  no  |  |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateAttributeRequest](#UpdateAttributeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | name | string |  yes  |  |
- | slug | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateCommentRequest](#UpdateCommentRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | approve | boolean |  no  |  |
- | comment | [string] |  yes  |  |
- | id | string |  yes  |  |
-
----
-
-
- 
- 
- #### [UpdateMediaListRequest](#UpdateMediaListRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | approve | boolean |  no  |  |
- | archive | boolean |  no  |  |
- | entity_type | string |  no  |  |
- | ids | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateQNARequest](#UpdateQNARequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | approve | boolean |  no  |  |
- | choices | [string] |  no  |  |
- | id | string |  no  |  |
- | tags | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateResponse](#UpdateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateReviewRequest](#UpdateReviewRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | application | string |  no  |  |
- | approve | boolean |  no  |  |
- | archive | boolean |  no  |  |
- | attributes_rating | [[AttributeObject](#AttributeObject)] |  no  |  |
- | description | string |  no  |  |
- | device_meta | [DeviceMeta](#DeviceMeta) |  no  |  |
- | entity_id | string |  no  |  |
- | entity_type | string |  no  |  |
- | media_resource | [[MediaMeta](#MediaMeta)] |  no  |  |
- | rating | number |  no  |  |
- | review_id | string |  no  |  |
- | template_id | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [UpdateVoteRequest](#UpdateVoteRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | active | boolean |  no  |  |
- | id | string |  no  |  |
- | ref_id | string |  no  |  |
- | ref_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [Url](#Url)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | main | string |  no  |  |
- | thumbnail | string |  no  |  |
-
----
-
-
- 
- 
- #### [Vote](#Vote)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  | upvote and downvote |
- | date_meta | [DateMeta](#DateMeta) |  no  |  |
- | entity | [Entity](#Entity) |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | reference | [Entity](#Entity) |  no  | review | comment |
- | state | [FeedbackState](#FeedbackState) |  no  |  |
- | tags | [[TagMeta](#TagMeta)] |  no  |  |
-
----
-
-
- 
- 
- #### [VoteCount](#VoteCount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | downvote | number |  no  |  |
- | upvote | number |  no  |  |
-
----
-
-
- 
- 
- #### [VoteRequest](#VoteRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | entity_id | string |  no  |  |
- | entity_type | string |  no  |  |
- | ref_id | string |  no  |  |
- | ref_type | string |  no  | review | comment |
-
----
-
-
- 
- 
- #### [VoteResponse](#VoteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Vote](#Vote)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
-
-
- 
- 
- #### [UpdateCartShipmentItem](#UpdateCartShipmentItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipment_type | string |  yes  | Shipment delivery type |
- | article_uid | string |  yes  | Article mongo id |
- | quantity | number |  no  | Quantity of product in shipment |
-
----
-
-
- 
- 
- #### [UpdateCartShipmentRequest](#UpdateCartShipmentRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)] |  yes  |  |
-
----
-
-
- 
- 
- #### [Files](#Files)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | values | [string] |  yes  |  |
-
----
-
-
- 
- 
- #### [CartPosCheckoutDetailRequest](#CartPosCheckoutDetailRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_mode | string |  yes  |  |
- | delivery_address | string |  no  |  |
- | ordering_store | number |  no  |  |
- | payment_identifier | string |  no  |  |
- | pick_at_store_uid | number |  no  |  |
- | billing_address | string |  no  |  |
- | payment_params | string |  no  |  |
- | billing_address_id | string |  no  |  |
- | address_id | string |  no  |  |
- | callback_url | string |  no  |  |
- | merchant_code | string |  no  |  |
- | order_type | string |  yes  |  |
- | meta | string |  no  |  |
- | files | [[Files](#Files)] |  no  | List of file url |
- | payment_auto_confirm | boolean |  no  |  |
- | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
- | extra_meta | string |  no  |  |
- | pos | boolean |  no  |  |
- | fyndstore_emp_id | string |  no  |  |
- | aggregator | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartDeliveryModesResponse](#CartDeliveryModesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available_modes | [string] |  no  | Available delivery modes |
- | pickup_stores | [number] |  no  | Store pick up available store uids |
-
----
-
-
- 
- 
- #### [PickupStoreDetail](#PickupStoreDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | area_code_slug | string |  no  |  |
- | area | string |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
- | pincode | number |  no  |  |
- | area_code | string |  no  |  |
- | address | string |  no  |  |
- | city | string |  no  |  |
- | address_type | string |  no  |  |
- | landmark | string |  no  |  |
- | state | string |  no  |  |
- | email | string |  no  |  |
- | phone | string |  no  |  |
- | country | string |  no  |  |
  | id | number |  no  |  |
- | store_code | string |  no  |  |
+ | subscriber_id | string |  no  |  |
+ | attempt | number |  no  |  |
+ | response_code | string |  no  |  |
+ | response_message | string |  no  |  |
+ | created_on | string |  no  |  |
+ | processed_on | string |  no  |  |
+ | status | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [StoreDetailsResponse](#StoreDetailsResponse)
+ #### [EventPayload](#EventPayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PickupStoreDetail](#PickupStoreDetail)] |  no  |  |
-
----
-
-
-
-
- 
- 
- #### [GetPincodeCityResponse](#GetPincodeCityResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | request_uuid | string |  yes  |  |
- | stormbreaker_uuid | string |  yes  |  |
- | success | boolean |  yes  |  |
- | data | [[LogisticPincodeData](#LogisticPincodeData)] |  yes  |  |
+ | id | number |  no  |  |
+ | event_trace_id | string |  no  |  |
+ | event_company_id | number |  no  |  |
+ | event_application_id | string |  no  |  |
+ | event_extension_id | string |  no  |  |
+ | event_name | string |  no  |  |
+ | status | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [LogisticPincodeData](#LogisticPincodeData)
+ #### [SubscriberConfig](#SubscriberConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [LogisticMeta](#LogisticMeta) |  no  |  |
- | parents | [[LogisticParents](#LogisticParents)] |  no  |  |
- | sub_type | string |  no  |  |
+ | id | number |  no  |  |
  | name | string |  no  |  |
- | error | [LogisticError](#LogisticError) |  no  |  |
- | uid | string |  no  |  |
- | display_name | string |  no  |  |
+ | webhook_url | string |  no  |  |
+ | company_id | number |  no  |  |
+ | application_id | string |  no  |  |
+ | extension_id | string |  no  |  |
+ | status | string |  no  |  |
+ | email_id | string |  no  |  |
+ | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
+ | event_id | [number] |  no  |  |
 
 ---
 
 
  
  
- #### [LogisticMeta](#LogisticMeta)
+ #### [SubscriberResponse](#SubscriberResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zone | string |  no  |  |
- | deliverables | [any] |  no  |  |
-
----
-
-
- 
- 
- #### [LogisticParents](#LogisticParents)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sub_type | string |  no  |  |
+ | id | number |  no  |  |
  | name | string |  no  |  |
- | display_name | string |  no  |  |
- | uid | string |  no  |  |
+ | webhook_url | string |  no  |  |
+ | company_id | number |  no  |  |
+ | application_id | string |  no  |  |
+ | extension_id | string |  no  |  |
+ | status | string |  no  |  |
+ | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
+ | created_on | string |  no  |  |
+ | updated_on | string |  no  |  |
+ | event_configs | [[EventConfig](#EventConfig)] |  no  |  |
 
 ---
 
 
  
  
- #### [LogisticError](#LogisticError)
+ #### [SubscriberEvent](#SubscriberEvent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | subscriber_id | number |  no  |  |
+ | event_id | number |  no  |  |
+ | created_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthMeta](#AuthMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | string |  no  |  |
- | value | string |  no  |  |
- | message | string |  no  |  |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
 
 ---
 
 
- 
- 
- #### [GetTatProductReqBody](#GetTatProductReqBody)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | location_details | [[LocationDetailsReq](#LocationDetailsReq)] |  yes  |  |
- | to_pincode | string |  yes  |  |
- | action | string |  no  |  |
-
----
 
 
- 
- 
- #### [LocationDetailsReq](#LocationDetailsReq)
+### Enums
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | from_pincode | string |  no  |  |
- | articles | [[TatReqProductArticles](#TatReqProductArticles)] |  no  |  |
- | fulfillment_id | number |  no  |  |
+
+
+
+
+
+
+ #### [PriorityEnum](#PriorityEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | low | low | This means ticket is low priority |
+ | medium | medium | This means ticket is medium priority |
+ | high | high | This means ticket is high priority |
 
 ---
 
 
- 
- 
- #### [TatReqProductArticles](#TatReqProductArticles)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [LogisticRequestCategory](#LogisticRequestCategory) |  no  |  |
+ #### [HistoryTypeEnum](#HistoryTypeEnum)
+ Type : string
 
----
-
-
- 
- 
- #### [LogisticRequestCategory](#LogisticRequestCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | level | string |  no  |  |
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | rating | rating | This means history event is a rating |
+ | log | log | This means history event is a changelog |
+ | comment | comment | This means history event is a comment |
 
 ---
 
 
- 
- 
- #### [GetTatProductResponse](#GetTatProductResponse)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | location_details | [[LocationDetails](#LocationDetails)] |  yes  |  |
- | request_uuid | string |  yes  |  |
- | error | string |  yes  |  |
- | to_city | string |  yes  |  |
- | source | string |  yes  |  |
- | to_pincode | string |  yes  |  |
- | action | string |  yes  |  |
- | stormbreaker_uuid | string |  yes  |  |
- | success | boolean |  yes  |  |
- | identifier | string |  yes  |  |
- | journey | string |  yes  |  |
+ #### [TicketAssetType](#TicketAssetType)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | image | image | Denotes asset is of image type |
+ | video | video | Denotes asset is of video type |
+ | file | file | Denotes asset is of file type |
+ | youtube | youtube | Denotes asset is an youtube link |
+ | product | product | Denotes asset is of product type |
+ | collection | collection | Denotes asset is of collection type |
+ | brand | brand | Denotes asset is of brand type |
+ | shipment | shipment | Denotes asset is of shipment type |
+ | order | order | Denotes asset is of order type |
 
 ---
 
 
- 
- 
- #### [LocationDetails](#LocationDetails)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | from_pincode | string |  no  |  |
- | articles | [[TatProductArticles](#TatProductArticles)] |  no  |  |
- | fulfillment_id | number |  no  |  |
+ #### [TicketSourceEnum](#TicketSourceEnum)
+ Type : string
 
----
-
-
- 
- 
- #### [TatProductArticles](#TatProductArticles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | category | [LogisticResponseCategory](#LogisticResponseCategory) |  no  |  |
- | promise | [LogisticPromise](#LogisticPromise) |  no  |  |
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | platformPanel | platform_panel | This means it is company level ticket |
+ | salesChannel | sales_channel | This means it is a application/sales channel level ticket |
 
 ---
 
 
- 
- 
- #### [LogisticResponseCategory](#LogisticResponseCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | level | string |  no  |  |
-
----
 
 
- 
- 
- #### [LogisticPromise](#LogisticPromise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | [LogisticTimestamp](#LogisticTimestamp) |  no  |  |
- | formatted | [Formatted](#Formatted) |  no  |  |
-
----
 
 
- 
- 
- #### [LogisticTimestamp](#LogisticTimestamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | number |  no  |  |
- | max | number |  no  |  |
-
----
 
 
- 
- 
- #### [Formatted](#Formatted)
 
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | string |  no  |  |
- | max | string |  no  |  |
 
----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

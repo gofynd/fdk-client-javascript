@@ -1,4 +1,7 @@
 
+
+
+
 # FDK Application Front API Documentaion
 
 
@@ -368,6 +371,134 @@ Success. Returns a Product object. Check the example shown below or refer `Produ
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "type": "product",
+  "grouped_attributes": [
+    {
+      "title": "Alexander Sawyer",
+      "details": [
+        {
+          "key": "Kimberly Davidson",
+          "type": "text",
+          "value": "DarkGrey"
+        },
+        {
+          "key": "Kimberly Mcdaniel",
+          "type": "text",
+          "value": "Men,Women"
+        },
+        {
+          "key": "Monica Hampton",
+          "type": "text",
+          "value": "Neoprene"
+        },
+        {
+          "key": "John Mendoza",
+          "type": "text",
+          "value": "100 g"
+        }
+      ]
+    }
+  ],
+  "medias": [
+    {
+      "type": "image",
+      "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+    }
+  ],
+  "brand": {
+    "name": "Barry, Jennings and Larson",
+    "uid": 1,
+    "logo": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+    },
+    "action": {
+      "page": {
+        "type": "products",
+        "query": {
+          "brand": [
+            "Hess-Inc"
+          ]
+        }
+      },
+      "type": "page"
+    },
+    "_custom_json": {}
+  },
+  "uid": 1,
+  "slug": "benchmark-collaborative-paradigms",
+  "attributes": {
+    "color_hex": "808080",
+    "weight": 100,
+    "product_type": "LaptopBags",
+    "gender": [
+      "Men",
+      "Women"
+    ],
+    "material": "Neoprene",
+    "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+    "item_code": "LGLAPTOPSLEEVE5",
+    "occasion": "Casual",
+    "primary_color": "Grey",
+    "primary_material": "Others",
+    "variant": "LGLAPTOPSLEEVE5",
+    "color": "DarkGrey",
+    "product_details": "This is a Unisex Product.",
+    "primary_color_hex": "808080",
+    "brand": "Barry, Jennings and Larson"
+  },
+  "name": "benchmark collaborative paradigms",
+  "has_variant": true,
+  "categories": [
+    {
+      "id": 3,
+      "uid": 3,
+      "name": "Amy Kim DDS",
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+      },
+      "action": {
+        "page": {
+          "type": "category",
+          "query": {
+            "category": [
+              "Amy-Kim-DDS"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "_custom_json": {}
+    }
+  ],
+  "tryouts": [],
+  "rating": 2.7,
+  "rating_count": 2,
+  "image_nature": "standard",
+  "tags": [
+    "Digital"
+  ],
+  "teaser_tag": {},
+  "no_of_boxes": 1,
+  "custom_order": {},
+  "color": "808080",
+  "similars": [
+    "brand"
+  ],
+  "_custom_json": {}
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -413,6 +544,49 @@ Success. Returns a ProductSize object. Check the example shown below or refer `P
 [ProductSizes](#ProductSizes)
 
 Success. Returns a ProductSize object. Check the example shown below or refer `ProductSizes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "sellable": true,
+  "sizes": [
+    {
+      "display": "13",
+      "value": "13",
+      "quantity": 10,
+      "is_available": true
+    }
+  ],
+  "discount": "",
+  "stores": {
+    "count": 1
+  },
+  "size_chart": {},
+  "price": {
+    "marked": {
+      "min": 66.5,
+      "max": 66.5,
+      "currency_code": "INR",
+      "currency_symbol": "₹"
+    },
+    "effective": {
+      "min": 66.5,
+      "max": 66.5,
+      "currency_code": "INR",
+      "currency_symbol": "₹"
+    }
+  },
+  "tags": [
+    "Digital"
+  ]
+}
+```
+</details>
 
 
 
@@ -468,6 +642,93 @@ Success. Returns a ProductSizePrice object. Check the example shown below or ref
 [ProductSizePriceResponse](#ProductSizePriceResponse)
 
 Success. Returns a ProductSizePrice object. Check the example shown below or refer `ProductSizePriceResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "price_per_piece": {
+    "effective": 66.5,
+    "marked": 66.5,
+    "currency_code": "INR",
+    "currency_symbol": "₹"
+  },
+  "price": {
+    "effective": 399,
+    "marked": 399,
+    "currency_code": "INR",
+    "currency_symbol": "₹"
+  },
+  "quantity": 5,
+  "pincode": 400603,
+  "article_id": "1",
+  "long_lat": [
+    72.9159784,
+    19.0990231
+  ],
+  "item_type": "set",
+  "discount": "",
+  "article_assignment": {
+    "level": "multi-companies",
+    "strategy": "optimal"
+  },
+  "seller": {
+    "uid": 1,
+    "name": "Natalie Norman"
+  },
+  "store": {
+    "uid": 1,
+    "name": "Wayne Lamb",
+    "count": 2
+  },
+  "strategy_wise_listing": [
+    {
+      "distance": 11,
+      "quantity": 5,
+      "tat": 2592000,
+      "pincode": 400603
+    },
+    {
+      "distance": 11,
+      "quantity": 5,
+      "tat": 2592000,
+      "pincode": 400603
+    }
+  ],
+  "set": {
+    "size_distribution": {
+      "sizes": [
+        {
+          "size": "5",
+          "pieces": 1
+        },
+        {
+          "size": "7",
+          "pieces": 1
+        },
+        {
+          "size": "8",
+          "pieces": 2
+        },
+        {
+          "size": "9",
+          "pieces": 1
+        },
+        {
+          "size": "10",
+          "pieces": 1
+        }
+      ]
+    },
+    "quantity": 6
+  }
+}
+```
+</details>
 
 
 
@@ -533,6 +794,108 @@ Success. Returns a ProductSizeSeller object. Check the example shown below or re
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "price_per_piece": {
+        "effective": 66.5,
+        "marked": 66.5,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "quantity": 5,
+      "pincode": 400603,
+      "article_id": "1",
+      "discount": "",
+      "article_assignment": {
+        "level": "single-company",
+        "strategy": "optimal"
+      },
+      "seller": {
+        "uid": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "uid": 1,
+        "name": "Wayne Lamb"
+      }
+    },
+    {
+      "price_per_piece": {
+        "effective": 66.5,
+        "marked": 66.5,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency_code": "INR",
+        "currency_symbol": "₹"
+      },
+      "quantity": 5,
+      "pincode": 400603,
+      "article_id": "2",
+      "discount": "",
+      "article_assignment": {
+        "level": "single-company",
+        "strategy": "optimal"
+      },
+      "seller": {
+        "uid": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "uid": 1,
+        "name": "Wayne Lamb"
+      }
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 2,
+    "type": "number"
+  },
+  "sort_on": [
+    {
+      "default": true,
+      "is_selected": true,
+      "name": "Best price & fast delivery",
+      "value": "optimal"
+    },
+    {
+      "default": false,
+      "is_selected": false,
+      "name": "Best Price",
+      "value": "low-price"
+    },
+    {
+      "default": false,
+      "is_selected": false,
+      "name": "Fastest Delivery",
+      "value": "fast-delivery"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -575,6 +938,249 @@ Success. Returns an array of objects containing the attributes for comparision. 
 [ProductsComparisonResponse](#ProductsComparisonResponse)
 
 Success. Returns an array of objects containing the attributes for comparision. Check the example shown below or refer `ProductsComparisonResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "attributes_metadata": [
+    {
+      "title": "Alexander Sawyer",
+      "details": [
+        {
+          "key": "color",
+          "display": "Kimberly Davidson",
+          "description": ""
+        },
+        {
+          "key": "gender",
+          "display": "Kimberly Mcdaniel",
+          "description": ""
+        },
+        {
+          "key": "material",
+          "display": "Monica Hampton",
+          "description": ""
+        },
+        {
+          "key": "weight",
+          "display": "John Mendoza",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "type": "product",
+      "name": "benchmark collaborative paradigms",
+      "item_type": "set",
+      "slug": "benchmark-collaborative-paradigms",
+      "id": 1,
+      "brand": {
+        "type": "brand",
+        "name": "Barry, Jennings and Larson",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "benchmark-collaborative-paradigms"
+          }
+        },
+        "type": "page"
+      },
+      "attributes": {
+        "color_hex": "808080",
+        "weight": 100,
+        "product_type": "LaptopBags",
+        "gender": [
+          "Men",
+          "Women"
+        ],
+        "material": "Neoprene",
+        "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+        "item_code": "LGLAPTOPSLEEVE5",
+        "occasion": "Casual",
+        "primary_color": "Grey",
+        "primary_material": "Others",
+        "variant": "LGLAPTOPSLEEVE5",
+        "color": "DarkGrey",
+        "product_details": "This is a Unisex Product.",
+        "primary_color_hex": "808080"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+        }
+      ],
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "rating": 2.7,
+      "rating_count": 2
+    },
+    {
+      "type": "product",
+      "name": "deploy viral systems",
+      "item_type": "set",
+      "slug": "deploy-viral-systems",
+      "id": 2,
+      "brand": {
+        "type": "brand",
+        "name": "Barry, Jennings and Larson",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "deploy-viral-systems"
+          }
+        },
+        "type": "page"
+      },
+      "attributes": {
+        "color_hex": "808080",
+        "weight": 100,
+        "product_type": "LaptopBags",
+        "gender": [
+          "Men",
+          "Women"
+        ],
+        "material": "Neoprene",
+        "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+        "item_code": "LGLAPTOPSLEEVE5",
+        "occasion": "Casual",
+        "primary_color": "Grey",
+        "primary_material": "Others",
+        "variant": "LGLAPTOPSLEEVE5",
+        "color": "DarkGrey",
+        "product_details": "This is a Unisex Product.",
+        "primary_color_hex": "808080"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+        }
+      ],
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "rating": 2.7,
+      "rating_count": 2
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -625,6 +1231,17 @@ Success. Returns an array of objects containing the attributes for comparision. 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -667,6 +1284,242 @@ Success. Returns an array of objects containing the attributes for comparision. 
 [ProductFrequentlyComparedSimilarResponse](#ProductFrequentlyComparedSimilarResponse)
 
 Success. Returns an array of objects containing the attributes for comparision. Check the example shown below or refer `ProductFrequentlyComparedSimilarResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "similars": {
+    "title": "Most Compared",
+    "subtitle": "We bet you would love these!",
+    "attributes_metadata": [
+      {
+        "title": "Alexander Sawyer",
+        "details": [
+          {
+            "key": "color",
+            "display": "Kimberly Davidson",
+            "description": ""
+          },
+          {
+            "key": "gender",
+            "display": "Kimberly Mcdaniel",
+            "description": ""
+          },
+          {
+            "key": "material",
+            "display": "Monica Hampton",
+            "description": ""
+          },
+          {
+            "key": "weight",
+            "display": "John Mendoza",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "items": [
+      {
+        "type": "product",
+        "name": "benchmark collaborative paradigms",
+        "item_type": "set",
+        "slug": "benchmark-collaborative-paradigms",
+        "id": 1,
+        "brand": {
+          "type": "brand",
+          "name": "Barry, Jennings and Larson",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "products",
+              "query": {
+                "brand": [
+                  "Hess-Inc"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        },
+        "action": {
+          "page": {
+            "type": "product",
+            "query": {
+              "slug": "benchmark-collaborative-paradigms"
+            }
+          },
+          "type": "page"
+        },
+        "attributes": {
+          "color_hex": "808080",
+          "weight": 100,
+          "product_type": "LaptopBags",
+          "gender": [
+            "Men",
+            "Women"
+          ],
+          "material": "Neoprene",
+          "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+          "item_code": "LGLAPTOPSLEEVE5",
+          "occasion": "Casual",
+          "primary_color": "Grey",
+          "primary_material": "Others",
+          "variant": "LGLAPTOPSLEEVE5",
+          "color": "DarkGrey",
+          "product_details": "This is a Unisex Product.",
+          "primary_color_hex": "808080"
+        },
+        "medias": [
+          {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+          }
+        ],
+        "categories": [
+          {
+            "id": 3,
+            "uid": 3,
+            "name": "Amy Kim DDS",
+            "logo": {
+              "type": "image",
+              "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+            },
+            "action": {
+              "page": {
+                "type": "category",
+                "query": {
+                  "category": [
+                    "Amy-Kim-DDS"
+                  ]
+                }
+              },
+              "type": "page"
+            },
+            "_custom_json": {}
+          }
+        ],
+        "discount": "14% OFF",
+        "price": {
+          "marked": {
+            "min": 1399,
+            "max": 1399,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          },
+          "effective": {
+            "min": 1199,
+            "max": 1399,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          }
+        },
+        "rating": 2.7,
+        "rating_count": 2
+      },
+      {
+        "type": "product",
+        "attributes": {
+          "primary_color_hex": "808080",
+          "weight": "100",
+          "gender": "women",
+          "material": "Neoprene",
+          "primary_color": "DarkGrey"
+        },
+        "categories": [
+          {
+            "id": 3,
+            "uid": 3,
+            "name": "Amy Kim DDS",
+            "logo": {
+              "type": "image",
+              "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+            },
+            "action": {
+              "page": {
+                "type": "category",
+                "query": {
+                  "category": [
+                    "Amy-Kim-DDS"
+                  ]
+                }
+              },
+              "type": "page"
+            },
+            "_custom_json": {}
+          }
+        ],
+        "sellable": true,
+        "name": "deploy viral systems",
+        "slug": "deploy-viral-systems",
+        "uid": 2,
+        "item_type": "set",
+        "brand": {
+          "type": "brand",
+          "name": "Hess Inc",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "products",
+              "query": {
+                "brand": [
+                  "Hess-Inc"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        },
+        "action": {
+          "page": {
+            "type": "product",
+            "query": {
+              "slug": "deploy-viral-systems"
+            }
+          },
+          "type": "page"
+        },
+        "medias": [
+          {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+          }
+        ],
+        "discount": "14% OFF",
+        "price": {
+          "marked": {
+            "min": 1399,
+            "max": 1499,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          },
+          "effective": {
+            "min": 1199,
+            "max": 1399,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          }
+        },
+        "is_tryout": false,
+        "rating": 2.7
+      }
+    ]
+  }
+}
+```
+</details>
 
 
 
@@ -720,6 +1573,131 @@ Success. Returns a group of similar products based on type. Check the example sh
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "similars": {
+    "title": "Brand",
+    "subtitle": "",
+    "type": "brand",
+    "items": [
+      {
+        "type": "product",
+        "attributes": {
+          "primary_color_hex": null,
+          "features": "<li>Dura-pump Technology</li> <li>i-Pure Technology</li> <li>Powerful Air Throw</li> <li>Cool Flow Dispenser</li> <li>Engg. Plastic: Blower</li> <li>Blower/Fan Diameter (mm): 180</li> <li>Ice Chamber</li> <li>Cool Flow Dispenser</li> <li>Cooling Media: Honeycomb</li> <li>Air Throw Distance (mt): 9/30</li>",
+          "model": "DiET 35T",
+          "air-cooler-type": "Portable",
+          "primary_color": ""
+        },
+        "categories": [
+          {
+            "id": 2717,
+            "uid": 2717,
+            "name": "Air Coolers",
+            "logo": {
+              "type": "image",
+              "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+            },
+            "action": {
+              "page": {
+                "type": "products",
+                "query": {
+                  "category": [
+                    "air-coolers"
+                  ]
+                }
+              },
+              "type": "page"
+            },
+            "_custom_json": {}
+          }
+        ],
+        "sellable": true,
+        "name": "Symphony Diet 35t Portable Air Cooler",
+        "slug": "symphony-diet-35t-portable-air-cooler",
+        "uid": 7502019,
+        "item_type": "standard",
+        "item_code": "491297014",
+        "brand": {
+          "type": "brand",
+          "name": "Symphony",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.jiox0.de/jiox0/brands/pictures/square-logo/original/69sKmY_CX-Logo.jpeg"
+          },
+          "action": {
+            "page": {
+              "type": "products",
+              "query": {
+                "brand": [
+                  "symphony"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        },
+        "action": {
+          "page": {
+            "type": "product",
+            "params": {
+              "slug": [
+                "symphony-diet-35t-portable-air-cooler"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "medias": [
+          {
+            "type": "image",
+            "url": "https://hdn-1.jiox0.de/jiox0/products/pictures/item/free/original/63/491297014/0/5aKOS19APd-symphony-diet-35t-air-coolers-491297014-i-1-1200wx1200h.jpeg"
+          },
+          {
+            "type": "image",
+            "url": "https://hdn-1.jiox0.de/jiox0/products/pictures/item/free/original/63/491297014/1/NY6IJ7xfug-symphony-diet-35t-air-coolers-491297014-i-2-1200wx1200h.jpeg"
+          }
+        ],
+        "discount": "",
+        "price": {
+          "marked": {
+            "min": 9299,
+            "max": 9299,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          },
+          "effective": {
+            "min": 9299,
+            "max": 9299,
+            "currency_code": "INR",
+            "currency_symbol": "₹"
+          }
+        },
+        "is_tryout": false,
+        "_custom_json": {},
+        "highlights": [
+          "Powerful Air Throw ",
+          "Large 35 Litre Tank Capacity ",
+          "Automatic Louvers ",
+          "Multi Directional Wheels ",
+          "High Efficiency Honey Comb Pad"
+        ],
+        "description": "Exclusively suited for your cozy bedroom, Symphony DiET 35T Portable Air Cooler, assures you your comfort while it makes summers fun. Powered by a 35 litre tank, a high efficiency honeycomb pad and ice chamber, it is indeed your coolest buddy in summers. Automatic louvers, multi-directional wheels and three speed remote controlled setting options make it an ideal buy.",
+        "country_of_origin": "India"
+      }
+    ]
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -762,6 +1740,51 @@ Success. Returns all variants of a product. Check the example shown below or ref
 [ProductVariantsResponse](#ProductVariantsResponse)
 
 Success. Returns all variants of a product. Check the example shown below or refer `ProductVariantsResponse` for more details. For `display_type:image`, `color` key will be present otherwise `value` key will be shown.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "variants": [
+    {
+      "header": "Addtn. Color",
+      "key": "color",
+      "display_type": "image",
+      "logo": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/360x0/56_MKT02AI060CORAL/1_1567590349681.jpg",
+      "items": [
+        {
+          "action": {
+            "page": {
+              "type": "product",
+              "query": {
+                "slug": "benchmark-collaborative-paradigms"
+              }
+            },
+            "type": "page"
+          },
+          "uid": 1,
+          "slug": "benchmark-collaborative-paradigms",
+          "medias": [
+            {
+              "type": "image",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+            }
+          ],
+          "name": "benchmark collaborative paradigms",
+          "is_available": true,
+          "color_name": "DarkGrey",
+          "color": "808080"
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -824,6 +1847,710 @@ Success. Returns the status of the product stock.Check the example shown below o
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": "1",
+      "item_id": 1,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "2",
+      "item_id": 1,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "3",
+      "item_id": 2,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "4",
+      "item_id": 2,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "5",
+      "item_id": 3,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "6",
+      "item_id": 3,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "7",
+      "item_id": 4,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "8",
+      "item_id": 4,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "9",
+      "item_id": 5,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "10",
+      "item_id": 5,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "11",
+      "item_id": 6,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "12",
+      "item_id": 6,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "13",
+      "item_id": 7,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "14",
+      "item_id": 7,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "15",
+      "item_id": 8,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "16",
+      "item_id": 8,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "17",
+      "item_id": 9,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "18",
+      "item_id": 9,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "19",
+      "item_id": 10,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "20",
+      "item_id": 10,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "21",
+      "item_id": 11,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "22",
+      "item_id": 11,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "23",
+      "item_id": 12,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "24",
+      "item_id": 12,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "25",
+      "item_id": 13,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "26",
+      "item_id": 13,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "27",
+      "item_id": 14,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "28",
+      "item_id": 14,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "29",
+      "item_id": 15,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    },
+    {
+      "uid": "30",
+      "item_id": 15,
+      "identifier": {
+        "sku_code": "P10101101154425S"
+      },
+      "price": {
+        "effective": 399,
+        "marked": 399,
+        "currency": "INR"
+      },
+      "size": "13",
+      "company": {
+        "id": 1,
+        "name": "Natalie Norman"
+      },
+      "store": {
+        "id": 1,
+        "name": "Wayne Lamb",
+        "code": "Wayne-Lamb"
+      },
+      "quantity": 5
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -872,6 +2599,17 @@ Success. Returns the status of the product stock.Check the example shown below o
 [ProductStockPolling](#ProductStockPolling)
 
 Success. Returns the status of the product stock.Check the example shown below or refer `ProductStockPolling` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -943,6 +2681,632 @@ Success. Returns a paginated list of products..Check the example shown below or 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "filters": [
+    {
+      "key": {
+        "display": "Department",
+        "name": "department",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.svg"
+      },
+      "values": [
+        {
+          "display": "Debra Villarreal",
+          "count": 15,
+          "is_selected": false,
+          "value": "Debra-Villarreal",
+          "logo": {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+          }
+        },
+        {
+          "display": "Tracey Miller",
+          "count": 15,
+          "is_selected": false,
+          "value": "Tracey-Miller",
+          "logo": {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+          }
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Category",
+        "name": "category",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.svg"
+      },
+      "values": [
+        {
+          "display": "Amy Kim DDS",
+          "count": 15,
+          "is_selected": false,
+          "value": "3",
+          "logo": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Gender",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Gender.svg"
+      },
+      "values": [
+        {
+          "display": "Men",
+          "count": 15,
+          "is_selected": false,
+          "value": "men"
+        },
+        {
+          "display": "Women",
+          "count": 15,
+          "is_selected": false,
+          "value": "women"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Size",
+        "name": "sizes",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.svg"
+      },
+      "values": [
+        {
+          "display": "13",
+          "count": 15,
+          "is_selected": false,
+          "value": "13"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Brand",
+        "name": "brand",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.svg"
+      },
+      "values": [
+        {
+          "display": "Barry, Jennings and Larson",
+          "count": 15,
+          "is_selected": false,
+          "value": "1",
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Rating",
+        "name": "rating",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.svg"
+      },
+      "values": [
+        {
+          "count": 15,
+          "display": "2 - 3",
+          "value": "[2 TO 3}",
+          "is_selected": false
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Image",
+        "name": "image_nature",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+      },
+      "values": [
+        {
+          "display": "GoodQuality",
+          "count": 15,
+          "is_selected": false,
+          "value": "standard"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Monica Hampton",
+        "name": "material",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Neoprene",
+          "count": 15,
+          "is_selected": false,
+          "value": "Neoprene"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "John Mendoza",
+        "name": "weight",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "100",
+          "count": 15,
+          "is_selected": false,
+          "value": "100"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Kimberly Mcdaniel",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "['Men', 'Women']",
+          "count": 15,
+          "is_selected": false,
+          "value": "['Men', 'Women']"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Kimberly Davidson",
+        "name": "color",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Grey",
+          "count": 15,
+          "is_selected": false,
+          "value": "808080"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Available",
+        "name": "is_available",
+        "kind": "singlevalued"
+      },
+      "values": [
+        {
+          "display": "Available",
+          "count": 3,
+          "is_selected": false,
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "benchmark collaborative paradigms",
+      "slug": "benchmark-collaborative-paradigms",
+      "uid": 1,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "benchmark-collaborative-paradigms"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_1",
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "architect granular e-business",
+      "slug": "architect-granular-e-business",
+      "uid": 10,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "architect-granular-e-business"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_2",
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "facilitate enterprise supply-chains",
+      "slug": "facilitate-enterprise-supply-chains",
+      "uid": 11,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "facilitate-enterprise-supply-chains"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_3",
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "optimize web-enabled e-tailers",
+      "slug": "optimize-web-enabled-e-tailers",
+      "uid": 12,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "optimize-web-enabled-e-tailers"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "item_code": "ITEM_CODE_4",
+      "rating": 2.7
+    }
+  ],
+  "sort_on": [
+    {
+      "display": "Latest Products.",
+      "name": "Latest Products.",
+      "logo": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/360x0/56_MKT02AI060CORAL/1_1567590349681.jpg",
+      "value": "latest",
+      "is_selected": true
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 2,
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 15,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -995,6 +3359,55 @@ Success. Returns a paginated list of brands. Check the example shown below or re
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": 1,
+      "name": "Barry, Jennings and Larson",
+      "slug": "Hess-Inc",
+      "action": {
+        "page": {
+          "type": "products",
+          "query": {
+            "brand": [
+              "Hess-Inc"
+            ]
+          }
+        },
+        "type": "page"
+      },
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+      },
+      "banners": {
+        "portrait": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
+        }
+      },
+      "en_name": "Barry, Jennings and Larson"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1037,6 +3450,34 @@ Success. Returns a metadata object. Check the example shown below or refer `Bran
 [BrandDetailResponse](#BrandDetailResponse)
 
 Success. Returns a metadata object. Check the example shown below or refer `BrandDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "logo": {
+    "type": "image",
+    "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+  },
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/banner/brand/original/12536_e1a5cdcefc7540e68cedd8c2b0673179.png"
+    }
+  },
+  "uid": 1,
+  "name": "Hess Inc"
+}
+```
+</details>
 
 
 
@@ -1087,6 +3528,105 @@ Success. Returns a list of categories. Check the example shown below or refer `C
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "departments": [
+    {
+      "slug": "Cody-Doyle",
+      "uid": 1
+    }
+  ],
+  "data": [
+    {
+      "department": "Cody-Doyle",
+      "items": [
+        {
+          "name": "Janet Parker",
+          "image": {
+            "aspect_ratio": "13:20",
+            "aspect_ratio_f": 0.65,
+            "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+          },
+          "uid": 1,
+          "slug": "Janet-Parker",
+          "_custom_json": {},
+          "action": {
+            "type": "category",
+            "url": "https://api.addsale.com/platform/content/v1/products/?l1_category=Janet-Parker&department=Jaime-Chambers",
+            "query": {
+              "l1_category": [
+                "Janet-Parker"
+              ],
+              "department": [
+                "Jaime-Chambers"
+              ]
+            }
+          },
+          "childs": [
+            {
+              "name": "Hannah Lawson",
+              "image": {
+                "aspect_ratio": "13:20",
+                "aspect_ratio_f": 0.65,
+                "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+              },
+              "uid": 2,
+              "slug": "Hannah-Lawson",
+              "_custom_json": {},
+              "action": {
+                "type": "category",
+                "url": "https://api.addsale.com/platform/content/v1/products/?l2_category=Hannah-Lawson&department=Jaime-Chambers",
+                "query": {
+                  "l2_category": [
+                    "Hannah-Lawson"
+                  ],
+                  "department": [
+                    "Jaime-Chambers"
+                  ]
+                }
+              },
+              "childs": [
+                {
+                  "name": "Logan Black",
+                  "image": {
+                    "aspect_ratio": "13:20",
+                    "aspect_ratio_f": 0.65,
+                    "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+                  },
+                  "uid": 3,
+                  "slug": "Logan-Black",
+                  "_custom_json": {},
+                  "action": {
+                    "type": "category",
+                    "url": "https://api.addsale.com/platform/content/v1/products/?category=Logan-Black&department=Jaime-Chambers",
+                    "query": {
+                      "category": [
+                        "Logan-Black"
+                      ],
+                      "department": [
+                        "Jaime-Chambers"
+                      ]
+                    }
+                  },
+                  "childs": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1129,6 +3669,35 @@ Success. Returns metadata of a category. Check the example shown below or refer 
 [CategoryMetaResponse](#CategoryMetaResponse)
 
 Success. Returns metadata of a category. Check the example shown below or refer `CategoryMetaResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "logo": {
+    "type": "image",
+    "url": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg"
+  },
+  "uid": 1,
+  "name": "Kyle Cabrera",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "http://cdn4.gofynd.com/media/banner_portrait/category/original/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg"
+    }
+  },
+  "_custom_json": {}
+}
+```
+</details>
 
 
 
@@ -1185,6 +3754,1156 @@ Success. Returns a paginated list of products. Check the example shown below or 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "whiteboard holistic functionalities",
+      "slug": "whiteboard-holistic-functionalities",
+      "uid": 7,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "whiteboard-holistic-functionalities"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "envisioneer user-centric technologies",
+      "slug": "envisioneer-user-centric-technologies",
+      "uid": 6,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "envisioneer-user-centric-technologies"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "deploy viral systems",
+      "slug": "deploy-viral-systems",
+      "uid": 2,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "deploy-viral-systems"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "syndicate compelling e-commerce",
+      "slug": "syndicate-compelling-e-commerce",
+      "uid": 8,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "syndicate-compelling-e-commerce"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "leverage granular e-commerce",
+      "slug": "leverage-granular-e-commerce",
+      "uid": 3,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "leverage-granular-e-commerce"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "deliver bleeding-edge systems",
+      "slug": "deliver-bleeding-edge-systems",
+      "uid": 13,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "deliver-bleeding-edge-systems"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "optimize web-enabled e-tailers",
+      "slug": "optimize-web-enabled-e-tailers",
+      "uid": 12,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "optimize-web-enabled-e-tailers"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "architect granular e-business",
+      "slug": "architect-granular-e-business",
+      "uid": 10,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "architect-granular-e-business"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "drive scalable applications",
+      "slug": "drive-scalable-applications",
+      "uid": 5,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "drive-scalable-applications"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "cultivate web-enabled e-tailers",
+      "slug": "cultivate-web-enabled-e-tailers",
+      "uid": 4,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "cultivate-web-enabled-e-tailers"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "facilitate enterprise supply-chains",
+      "slug": "facilitate-enterprise-supply-chains",
+      "uid": 11,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "facilitate-enterprise-supply-chains"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    },
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "benchmark collaborative paradigms",
+      "slug": "benchmark-collaborative-paradigms",
+      "uid": 1,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "benchmark-collaborative-paradigms"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    }
+  ],
+  "page": {
+    "next_id": "AoJftsmkNiEx",
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 15,
+    "type": "number"
+  },
+  "sort_on": "random_36547cfbb4c54a1a992c17aa5 asc"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1222,6 +4941,120 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 [DepartmentResponse](#DepartmentResponse)
 
 List of Departments. See example below or refer `DepartmentResponse` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "uid": 1,
+      "name": "Zachary Harris",
+      "slug": "Zachary-Harris",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 2,
+      "name": "Aaron Reilly",
+      "slug": "Aaron-Reilly",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 3,
+      "name": "Bobby Sandoval",
+      "slug": "Bobby-Sandoval",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 4,
+      "name": "Seth Hughes",
+      "slug": "Seth-Hughes",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 5,
+      "name": "Michelle Moore",
+      "slug": "Michelle-Moore",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 6,
+      "name": "Annette Baldwin",
+      "slug": "Annette-Baldwin",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 7,
+      "name": "Chris Mata",
+      "slug": "Chris-Mata",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 8,
+      "name": "Nicole Jacobs",
+      "slug": "Nicole-Jacobs",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 9,
+      "name": "Pamela Smith",
+      "slug": "Pamela-Smith",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    },
+    {
+      "uid": 10,
+      "name": "Nicole Simon",
+      "slug": "Nicole-Simon",
+      "priority_order": 7,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      }
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -1268,6 +5101,17 @@ Success. Returns a list autocomplete suggestions for the search query `q`. Check
 [AutoCompleteResponse](#AutoCompleteResponse)
 
 Success. Returns a list autocomplete suggestions for the search query `q`. Check the example shown below or refer `AutoCompleteResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -1320,6 +5164,140 @@ Success. Returns a list of collections. Check the example shown below or refer `
 [GetCollectionListingResponse](#GetCollectionListingResponse)
 
 Success. Returns a list of collections. Check the example shown below or refer `GetCollectionListingResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "type": "number",
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 2
+  },
+  "items": [
+    {
+      "uid": "601a4f39448327cfa83e7db2",
+      "type": "query",
+      "query": {
+        "category": [
+          "Anna-Navarro"
+        ]
+      },
+      "name": "collection with Anna-Navarro",
+      "banners": {
+        "portrait": {
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729908/production/applications/app_000000000000000000000001/media/collection/portrait/pewrpnjrhcrca1dmtvx5.png",
+          "aspect_ratio": "13:20"
+        },
+        "landscape": {
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729858/production/applications/app_000000000000000000000001/media/collection/landscape/tkclmj847hdvfbudeqbr.png",
+          "aspect_ratio": "27:20"
+        }
+      },
+      "logo": {
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729838/production/applications/app_000000000000000000000001/media/collection/logo/xierjsrcwhd2fphzyjod.png",
+        "aspect_ratio": "1:1"
+      },
+      "published": true,
+      "description": "Crimsoune Club | Upto 70% Off",
+      "is_active": true,
+      "tags": [
+        "men",
+        "women"
+      ],
+      "slug": "crimsoune-club-upto-70-off-754fa043",
+      "action": {
+        "type": "collection",
+        "url": "https://api.addsale.com/platform/content/v1/collections/crimsoune-club-upto-70-off-754fa043/items/"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "visible_facets_keys": [],
+      "meta": {},
+      "badge": {},
+      "sort_on": "popular",
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {}
+    },
+    {
+      "uid": "601a4f39448327cfa83e7db0",
+      "type": "items",
+      "query": {},
+      "name": "collection with items",
+      "banners": {
+        "portrait": {
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729908/production/applications/app_000000000000000000000001/media/collection/portrait/pewrpnjrhcrca1dmtvx5.png",
+          "aspect_ratio": "13:20"
+        },
+        "landscape": {
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729858/production/applications/app_000000000000000000000001/media/collection/landscape/tkclmj847hdvfbudeqbr.png",
+          "aspect_ratio": "27:20"
+        }
+      },
+      "logo": {
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729838/production/applications/app_000000000000000000000001/media/collection/logo/xierjsrcwhd2fphzyjod.png",
+        "aspect_ratio": "1:1"
+      },
+      "published": true,
+      "description": "Crimsoune Club | Upto 70% Off",
+      "is_active": true,
+      "tags": [
+        "men",
+        "women"
+      ],
+      "slug": "crimsoune-club-upto-70-off-754fa043",
+      "action": {
+        "type": "collection",
+        "url": "https://api.addsale.com/platform/content/v1/collections/crimsoune-club-upto-70-off-754fa043/items/"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "visible_facets_keys": [],
+      "meta": {},
+      "badge": {},
+      "sort_on": "popular",
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {}
+    }
+  ],
+  "filters": {
+    "tags": [
+      {
+        "name": "men",
+        "is_selected": false,
+        "display": "men"
+      },
+      {
+        "name": "women",
+        "is_selected": false,
+        "display": "women"
+      }
+    ],
+    "type": [
+      {
+        "name": "items",
+        "is_selected": false,
+        "display": "items"
+      },
+      {
+        "name": "query",
+        "is_selected": false,
+        "display": "query"
+      }
+    ]
+  }
+}
+```
+</details>
 
 
 
@@ -1385,6 +5363,346 @@ Success. Returns a list items in a given collection. Check the example shown bel
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "filters": [
+    {
+      "key": {
+        "display": "Department",
+        "name": "department",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.svg"
+      },
+      "values": [
+        {
+          "display": "Debra Villarreal",
+          "count": 1,
+          "is_selected": false,
+          "value": "Debra-Villarreal",
+          "logo": {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+          }
+        },
+        {
+          "display": "Tracey Miller",
+          "count": 1,
+          "is_selected": false,
+          "value": "Tracey-Miller",
+          "logo": {
+            "type": "image",
+            "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+          }
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Category",
+        "name": "category",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.svg"
+      },
+      "values": [
+        {
+          "display": "Amy Kim DDS",
+          "count": 1,
+          "is_selected": false,
+          "value": "3",
+          "logo": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Gender",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Gender.svg"
+      },
+      "values": [
+        {
+          "display": "Men",
+          "count": 1,
+          "is_selected": false,
+          "value": "men"
+        },
+        {
+          "display": "Women",
+          "count": 1,
+          "is_selected": false,
+          "value": "women"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Size",
+        "name": "sizes",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.svg"
+      },
+      "values": [
+        {
+          "display": "13",
+          "count": 1,
+          "is_selected": false,
+          "value": "13"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Brand",
+        "name": "brand",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.svg"
+      },
+      "values": [
+        {
+          "display": "Barry, Jennings and Larson",
+          "count": 1,
+          "is_selected": false,
+          "value": "1",
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Rating",
+        "name": "rating",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.svg"
+      },
+      "values": [
+        {
+          "count": 1,
+          "display": "2 - 3",
+          "value": "[2 TO 3}",
+          "is_selected": false
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Image",
+        "name": "image_nature",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+      },
+      "values": [
+        {
+          "display": "GoodQuality",
+          "count": 1,
+          "is_selected": false,
+          "value": "standard"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Monica Hampton",
+        "name": "material",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Neoprene",
+          "count": 1,
+          "is_selected": false,
+          "value": "Neoprene"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "John Mendoza",
+        "name": "weight",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "100",
+          "count": 1,
+          "is_selected": false,
+          "value": "100"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Kimberly Mcdaniel",
+        "name": "gender",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "['Men', 'Women']",
+          "count": 1,
+          "is_selected": false,
+          "value": "['Men', 'Women']"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Kimberly Davidson",
+        "name": "color",
+        "kind": "multivalued",
+        "logo": ""
+      },
+      "values": [
+        {
+          "display": "Grey",
+          "count": 1,
+          "is_selected": false,
+          "value": "808080"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Available",
+        "name": "is_available",
+        "kind": "singlevalued"
+      },
+      "values": [
+        {
+          "display": "Available",
+          "count": 3,
+          "is_selected": false,
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "type": "product",
+      "attributes": {
+        "primary_color_hex": "808080",
+        "weight": "100",
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey"
+      },
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Amy Kim DDS",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "sellable": true,
+      "name": "benchmark collaborative paradigms",
+      "slug": "benchmark-collaborative-paradigms",
+      "uid": 1,
+      "item_type": "set",
+      "brand": {
+        "type": "brand",
+        "name": "Hess Inc",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "benchmark-collaborative-paradigms"
+          }
+        },
+        "type": "page"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1499,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "is_tryout": false,
+      "promo_meta": {
+        "title": "",
+        "subtitle": ""
+      },
+      "rating": 2.7
+    }
+  ],
+  "sort_on": [
+    {
+      "display": "Latest Products.",
+      "name": "Latest Products.",
+      "logo": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/360x0/56_MKT02AI060CORAL/1_1567590349681.jpg",
+      "value": "latest",
+      "is_selected": false
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 1
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1427,6 +5745,64 @@ Success. Returns a Collection object. Check the example shown below or refer `Co
 [CollectionDetailResponse](#CollectionDetailResponse)
 
 Success. Returns a Collection object. Check the example shown below or refer `CollectionDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "601a4f39448327cfa83e7db0",
+  "type": "items",
+  "query": {},
+  "name": "collection with items",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729908/production/applications/app_000000000000000000000001/media/collection/portrait/pewrpnjrhcrca1dmtvx5.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729858/production/applications/app_000000000000000000000001/media/collection/landscape/tkclmj847hdvfbudeqbr.png"
+    }
+  },
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1571729838/production/applications/app_000000000000000000000001/media/collection/logo/xierjsrcwhd2fphzyjod.png"
+  },
+  "published": true,
+  "description": "Crimsoune Club | Upto 70% Off",
+  "is_active": true,
+  "tags": [
+    "men",
+    "women"
+  ],
+  "slug": "crimsoune-club-upto-70-off-754fa043",
+  "action": {
+    "page": {
+      "type": "collection",
+      "query": {
+        "collection": [
+          "crimsoune-club-upto-70-off-754fa043"
+        ]
+      }
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "visible_facets_keys": [],
+  "meta": {},
+  "badge": {},
+  "sort_on": "popular",
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {}
+}
+```
+</details>
 
 
 
@@ -1483,6 +5859,333 @@ Success. Returns a Followed resource object. Check the example shown below or re
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "type": "product",
+      "name": "revolutionize end-to-end technologies",
+      "item_type": "set",
+      "slug": "revolutionize-end-to-end-technologies",
+      "uid": 1,
+      "brand": {
+        "type": "brand",
+        "name": "Chen PLC",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Chen-PLC"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "sellable": false,
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "revolutionize-end-to-end-technologies"
+          }
+        },
+        "type": "page"
+      },
+      "attributes": {
+        "color_hex": "808080",
+        "weight": 100,
+        "product_type": "LaptopBags",
+        "gender": [
+          "Men",
+          "Women"
+        ],
+        "material": "Neoprene",
+        "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+        "item_code": "LGLAPTOPSLEEVE5",
+        "occasion": "Casual",
+        "primary_color": "Grey",
+        "primary_material": "Others",
+        "variant": "LGLAPTOPSLEEVE5",
+        "color": "DarkGrey",
+        "product_details": "This is a Unisex Product.",
+        "primary_color_hex": "808080"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+        }
+      ],
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Paul Palmer",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Paul-Palmer"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "rating": 2.7,
+      "rating_count": 2
+    },
+    {
+      "type": "product",
+      "name": "grow B2B experiences",
+      "item_type": "set",
+      "slug": "grow-B2B-experiences",
+      "uid": 15,
+      "brand": {
+        "type": "brand",
+        "name": "Chen PLC",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Chen-PLC"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "sellable": false,
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "grow-B2B-experiences"
+          }
+        },
+        "type": "page"
+      },
+      "attributes": {
+        "color_hex": "808080",
+        "weight": 100,
+        "product_type": "LaptopBags",
+        "gender": [
+          "Men",
+          "Women"
+        ],
+        "material": "Neoprene",
+        "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+        "item_code": "LGLAPTOPSLEEVE5",
+        "occasion": "Casual",
+        "primary_color": "Grey",
+        "primary_material": "Others",
+        "variant": "LGLAPTOPSLEEVE5",
+        "color": "DarkGrey",
+        "product_details": "This is a Unisex Product.",
+        "primary_color_hex": "808080"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+        }
+      ],
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Paul Palmer",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Paul-Palmer"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "rating": 2.7,
+      "rating_count": 2
+    },
+    {
+      "type": "product",
+      "name": "target robust systems",
+      "item_type": "set",
+      "slug": "target-robust-systems",
+      "uid": 14,
+      "brand": {
+        "type": "brand",
+        "name": "Chen PLC",
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "action": {
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": [
+                "Chen-PLC"
+              ]
+            }
+          },
+          "type": "page"
+        },
+        "_custom_json": {}
+      },
+      "sellable": false,
+      "action": {
+        "page": {
+          "type": "product",
+          "query": {
+            "slug": "target-robust-systems"
+          }
+        },
+        "type": "page"
+      },
+      "attributes": {
+        "color_hex": "808080",
+        "weight": 100,
+        "product_type": "LaptopBags",
+        "gender": [
+          "Men",
+          "Women"
+        ],
+        "material": "Neoprene",
+        "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+        "item_code": "LGLAPTOPSLEEVE5",
+        "occasion": "Casual",
+        "primary_color": "Grey",
+        "primary_material": "Others",
+        "variant": "LGLAPTOPSLEEVE5",
+        "color": "DarkGrey",
+        "product_details": "This is a Unisex Product.",
+        "primary_color_hex": "808080"
+      },
+      "medias": [
+        {
+          "type": "image",
+          "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
+        }
+      ],
+      "categories": [
+        {
+          "id": 3,
+          "uid": 3,
+          "name": "Paul Palmer",
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "action": {
+            "page": {
+              "type": "category",
+              "query": {
+                "category": [
+                  "Paul-Palmer"
+                ]
+              }
+            },
+            "type": "page"
+          },
+          "_custom_json": {}
+        }
+      ],
+      "discount": "14% OFF",
+      "price": {
+        "marked": {
+          "min": 1399,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        },
+        "effective": {
+          "min": 1199,
+          "max": 1399,
+          "currency_code": "INR",
+          "currency_symbol": "₹"
+        }
+      },
+      "rating": 2.7,
+      "rating_count": 2
+    }
+  ],
+  "page": {
+    "next_id": "6066fc7b3b17fd7038c46317",
+    "has_previous": false,
+    "has_next": true,
+    "item_total": 15,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1528,6 +6231,20 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 [FollowPostResponse](#FollowPostResponse)
 
 Success. Returns a response object. Check the example shown below or refer `FollowPostResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Products Removed From Wishlist",
+  "id": "1"
+}
+```
+</details>
 
 
 
@@ -1581,6 +6298,20 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Brands Added To Wishlist",
+  "id": "1"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1630,6 +6361,19 @@ Success. Returns the number of followers for a given collection type. Check the 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "count": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1672,6 +6416,41 @@ Success. Returns the IDs of all the Products, Brands and Collections which were 
 [FollowIdsResponse](#FollowIdsResponse)
 
 Success. Returns the IDs of all the Products, Brands and Collections which were followed. Check the example shown below or refer `FollowIdsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "products": [
+      1,
+      15,
+      14,
+      13,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2
+    ],
+    "brands": [
+      1
+    ],
+    "collections": []
+  }
+}
+```
+</details>
 
 
 
@@ -1740,6 +6519,46 @@ Success. Returns a list of selling locations. Check the example shown below or r
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "page": {
+    "type": "number",
+    "current": 1,
+    "total": 1,
+    "has_previous": false,
+    "has_next": false,
+    "item_total": 1
+  },
+  "data": [
+    {
+      "pincode": 400059,
+      "city": "MUMBAI",
+      "state": "MAHARASHTRA",
+      "country": "INDIA",
+      "address": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+      "store_email": "ASHISHCHANDORKAR@FYND.COM",
+      "lat_long": {
+        "type": "Point",
+        "coordinates": [
+          72.8691788,
+          19.1174114
+        ]
+      },
+      "name": "RRL01",
+      "store_code": "WH_8513",
+      "uid": 1
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -1797,6 +6616,183 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
+    }
+  ],
+  "cart_id": 54,
+  "uid": "54",
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "gstin": null,
+  "checkout_mode": "self",
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+}
+```
+</details>
 
 
 
@@ -1888,10 +6884,15 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
 Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
 
 
-*Examples:*
 
 
-Product has been added to your cart
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Product has been added to your cart</i></summary>
+
 ```json
 {
   "value": {
@@ -2341,8 +7342,11 @@ Product has been added to your cart
   }
 }
 ```
+</details>
 
-Sorry, item is out of stock
+<details>
+<summary><i>&nbsp; Sorry, item is out of stock</i></summary>
+
 ```json
 {
   "value": {
@@ -2519,6 +7523,9 @@ Sorry, item is out of stock
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2575,10 +7582,15 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
-*Examples:*
 
 
-Nothing updated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Nothing updated</i></summary>
+
 ```json
 {
   "value": {
@@ -2760,8 +7772,11 @@ Nothing updated
   }
 }
 ```
+</details>
 
-Item updated in the cart
+<details>
+<summary><i>&nbsp; Item updated in the cart</i></summary>
+
 ```json
 {
   "value": {
@@ -2935,6 +7950,9 @@ Item updated in the cart
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -2985,6 +8003,19 @@ Success. Returns the total count of items in a user's cart.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user_cart_items_count": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3027,6 +8058,53 @@ Success. Returns a coupon object which has a list of all the eligible coupons. R
 [GetCouponResponse](#GetCouponResponse)
 
 Success. Returns a coupon object which has a list of all the eligible coupons. Refer `GetCouponResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "available_coupon_list": [
+    {
+      "coupon_value": 500,
+      "minimum_cart_value": 0,
+      "coupon_code": "RAJA500",
+      "title": "RAJA500 | Fynd coupon",
+      "sub_title": "NA",
+      "message": "TEST500",
+      "max_discount_value": 500,
+      "uid": 17921,
+      "is_applicable": true,
+      "is_applied": false,
+      "expires_on": "28 Aug, 19"
+    },
+    {
+      "coupon_value": 2250,
+      "minimum_cart_value": 0,
+      "coupon_code": "PRISMC22250111",
+      "title": "celio 2 time coupn to kalim hsp",
+      "sub_title": "celio 2 time coupn to kalim hsp",
+      "message": "celio 2 time coupn to kalim hsp",
+      "max_discount_value": 2250,
+      "uid": 17743,
+      "is_applicable": true,
+      "is_applied": false,
+      "expires_on": "24 Jan, 20"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 0,
+    "has_previous": false,
+    "has_next": false,
+    "total_item_count": 0
+  }
+}
+```
+</details>
 
 
 
@@ -3088,6 +8166,553 @@ Success. Returns coupons applied to the cart along with item details and price b
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": -7240.2163,
+      "fynd_cash": 0,
+      "gst_charges": 2139.08,
+      "mrp_total": 26983,
+      "subtotal": 19742.7837,
+      "total": 17492.7837,
+      "vog": 15353.7,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 26983,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -7240,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 19743,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 17493,
+        "currency_code": "INR"
+      }
+    ]
+  },
+  "items": [
+    {
+      "availability": {
+        "sizes": [
+          "10"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 751083,
+        "name": "Carson 2",
+        "slug": "puma-carson-2-751083-6ad98d",
+        "brand": {
+          "uid": 9,
+          "name": "Puma"
+        },
+        "categories": [
+          {
+            "uid": 165,
+            "name": "Outdoor Sports Shoes"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
+          "query": {
+            "product_slug": [
+              "puma-carson-2-751083-6ad98d"
+            ]
+          }
+        }
+      },
+      "quantity": 4,
+      "discount": "41% OFF",
+      "price": {
+        "base": {
+          "add_on": 9596,
+          "marked": 15996,
+          "effective": 9596,
+          "selling": 9596,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 9596,
+          "marked": 15996,
+          "effective": 9596,
+          "selling": 9596,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "751083_10",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "612_9_SE61201_19100302_10",
+        "size": "10",
+        "seller": {
+          "uid": 612,
+          "name": "SSR ENTERPRISE"
+        },
+        "store": {
+          "uid": 4431,
+          "name": "Motilal Nagar 1, Goregaon"
+        },
+        "quantity": 4,
+        "price": {
+          "base": {
+            "marked": 3999,
+            "effective": 2399,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3999,
+            "effective": 2399,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "L",
+          "M",
+          "S",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 246228,
+        "name": "Blue Solid T-Shirt",
+        "slug": "superdry-blue-solid-t-shirt-2",
+        "brand": {
+          "uid": 235,
+          "name": "Superdry"
+        },
+        "categories": [
+          {
+            "uid": 192,
+            "name": "T-Shirts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
+          "query": {
+            "product_slug": [
+              "superdry-blue-solid-t-shirt-2"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "",
+      "price": {
+        "base": {
+          "add_on": 4490,
+          "marked": 4490,
+          "effective": 4490,
+          "selling": 4490,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 4490,
+          "marked": 4490,
+          "effective": 4490,
+          "selling": 4490,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "246228_S",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "46_235_TM62_M11029ONDSXNS_S",
+        "size": "S",
+        "seller": {
+          "uid": 46,
+          "name": "RELIANCE BRANDS LIMITED"
+        },
+        "store": {
+          "uid": 4550,
+          "name": "VR Mall"
+        },
+        "quantity": 1,
+        "price": {
+          "base": {
+            "marked": 4490,
+            "effective": 4490,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 4490,
+            "effective": 4490,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "XL",
+          "M",
+          "L",
+          "S"
+        ],
+        "other_store_quantity": 8,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 443175,
+        "name": "Light Blue Denim Jeggings",
+        "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
+        "brand": {
+          "uid": 207,
+          "name": "Go Colors"
+        },
+        "categories": [
+          {
+            "uid": 267,
+            "name": "Jeggings"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
+          "query": {
+            "product_slug": [
+              "go-colors-light-blue-denim-jeggings-443175-3c688c"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "",
+      "price": {
+        "base": {
+          "add_on": 1599,
+          "marked": 1599,
+          "effective": 1599,
+          "selling": 1599,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1599,
+          "marked": 1599,
+          "effective": 1599,
+          "selling": 1599,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "443175_S",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "162_207_1271_LJ03LBLUDN88_S",
+        "size": "S",
+        "seller": {
+          "uid": 162,
+          "name": "GO FASHION INDIA PRIVATE LIMITED"
+        },
+        "store": {
+          "uid": 5784,
+          "name": "Vega City mall"
+        },
+        "quantity": 3,
+        "price": {
+          "base": {
+            "marked": 1599,
+            "effective": 1599,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1599,
+            "effective": 1599,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "OS"
+        ],
+        "other_store_quantity": 12,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 842716,
+        "name": "Blue Backpack",
+        "slug": "istorm-blue-backpack-842716-951b5a",
+        "brand": {
+          "uid": 1177,
+          "name": "iStorm"
+        },
+        "categories": [
+          {
+            "uid": 198,
+            "name": "Backpacks"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1177_IS483/1_1551353288247.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1177_IS483/1_1551353288247.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/istorm-blue-backpack-842716-951b5a/",
+          "query": {
+            "product_slug": [
+              "istorm-blue-backpack-842716-951b5a"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "34% OFF",
+      "price": {
+        "base": {
+          "add_on": 998.7837,
+          "marked": 1499,
+          "effective": 998.7837,
+          "selling": 998.7837,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 998.7837,
+          "marked": 1499,
+          "effective": 998.7837,
+          "selling": 998.7837,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "842716_OS",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "638_1177_CRSL63802_IS483_OS",
+        "size": "OS",
+        "seller": {
+          "uid": 638,
+          "name": "COUNFREEDISE RETAIL SERVICES LTD"
+        },
+        "store": {
+          "uid": 4630,
+          "name": "Bhiwandi"
+        },
+        "quantity": 4,
+        "price": {
+          "base": {
+            "marked": 1499,
+            "effective": 998.7837,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1499,
+            "effective": 998.7837,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "OS"
+        ],
+        "other_store_quantity": 2,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 778937,
+        "name": "Colourful Carnival Bouncer",
+        "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
+        "brand": {
+          "uid": 963,
+          "name": "Fisher-Price"
+        },
+        "categories": [
+          {
+            "uid": 576,
+            "name": "Cradles"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
+          "query": {
+            "product_slug": [
+              "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "11% OFF",
+      "price": {
+        "base": {
+          "add_on": 3059,
+          "marked": 3399,
+          "effective": 3059,
+          "selling": 3059,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3059,
+          "marked": 3399,
+          "effective": 3059,
+          "selling": 3059,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "778937_OS",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "686_963_IC68601_PWUPC01977_OS",
+        "size": "OS",
+        "seller": {
+          "uid": 686,
+          "name": "INDUS CORPORATION"
+        },
+        "store": {
+          "uid": 5059,
+          "name": "Vidyaranyapura Main Road"
+        },
+        "quantity": 3,
+        "price": {
+          "base": {
+            "marked": 3399,
+            "effective": 3059,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3399,
+            "effective": 3059,
+            "currency_code": "INR"
+          }
+        }
+      }
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "cart_id": 7927,
+  "uid": "7927",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Wed, 04 Sep 2019 04:52:21 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3130,6 +8755,174 @@ Success. Returns coupons removed from the cart along with item details and price
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 342.75,
+      "mrp_total": 3199,
+      "subtotal": 3199,
+      "total": 3199,
+      "vog": 2856.25,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "prismc22250111",
+      "uid": 17743,
+      "value": 0,
+      "is_applied": false,
+      "message": "Coupon successfully removed"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 3199,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 3199,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 3199,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "bulk_offer": {},
+      "key": "857596_S",
+      "quantity": 1,
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "discount": "",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      }
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Thu, 22 Aug 2019 10:55:05 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
 
 
 
@@ -3187,10 +8980,15 @@ Success. Returns a data object containing the seller details and available offer
 Success. Returns a data object containing the seller details and available offers (if exists) on bulk products. Refer `BulkPriceResponse` for more details.
 
 
-*Examples:*
 
 
-Offers found
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Offers found</i></summary>
+
 ```json
 {
   "value": {
@@ -3247,8 +9045,11 @@ Offers found
   }
 }
 ```
+</details>
 
-Offers not found
+<details>
+<summary><i>&nbsp; Offers not found</i></summary>
+
 ```json
 {
   "value": {
@@ -3256,6 +9057,9 @@ Offers not found
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -3310,6 +9114,183 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
+    }
+  ],
+  "cart_id": 54,
+  "uid": "54",
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "gstin": null,
+  "checkout_mode": "self",
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+}
+```
+</details>
 
 
 
@@ -3372,6 +9353,47 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "address": [
+    {
+      "landmark": "",
+      "area_code": {
+        "slug": "pincode",
+        "id": 400093
+      },
+      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "state": "Maharashtra",
+      "meta": {},
+      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "country_code": "IND",
+      "phone": 9915347757,
+      "geo_location": {},
+      "country": "India",
+      "is_default_address": true,
+      "is_active": true,
+      "city": "Mumbai",
+      "pincode": 400093,
+      "checkout_mode": "self",
+      "address_type": "home",
+      "tags": [],
+      "area": "Sector 127",
+      "name": "abc",
+      "email": "ankur@gofynd1.com",
+      "address": "Megatron2",
+      "store_name": "store123"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3413,6 +9435,21 @@ Success. Returns the address ID, a flag whether the address is set as default, a
 [SaveAddressResponse](#SaveAddressResponse)
 
 Success. Returns the address ID, a flag whether the address is set as default, and a success message. Refer `SaveAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "mongo_object_id",
+  "is_default_address": true,
+  "success": true
+}
+```
+</details>
 
 
 
@@ -3478,6 +9515,44 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "landmark": "",
+  "area_code": {
+    "slug": "pincode",
+    "id": 400093
+  },
+  "state": "Maharashtra",
+  "meta": {},
+  "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+  "country_code": "IND",
+  "phone": 9915347757,
+  "geo_location": {},
+  "country": "India",
+  "is_default_address": true,
+  "is_active": true,
+  "city": "Mumbai",
+  "pincode": 400093,
+  "checkout_mode": "self",
+  "address_type": "home",
+  "uid": 1145,
+  "tags": [],
+  "area": "Sector 127",
+  "name": "abc",
+  "address_id": 1145,
+  "email": "ankur@gofynd1.com",
+  "address": "Megatron2",
+  "store_name": "store123"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3526,6 +9601,22 @@ Success. Returns the address ID and a message indicating a successful address up
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_updated": true,
+  "id": "<mongo_object_id>",
+  "is_default_address": true,
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3568,6 +9659,20 @@ Returns a Status object indicating the success or failure of address deletion.
 [DeleteAddressResponse](#DeleteAddressResponse)
 
 Returns a Status object indicating the success or failure of address deletion.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "<mongo_object_id>",
+  "is_deleted": true
+}
+```
+</details>
 
 
 
@@ -3626,6 +9731,272 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_valid": true,
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:12 GMT",
+  "restrict_checkout": false
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3670,6 +10041,284 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+  "user_type": "Store User",
+  "cod_charges": 0,
+  "order_id": null,
+  "cod_available": true,
+  "cod_message": "No additional COD charges applicable",
+  "delivery_charges": 0,
+  "delivery_charge_order_value": 0,
+  "store_code": "",
+  "store_emps": [],
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
 
 
 
@@ -3735,6 +10384,27 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "",
+  "coupon_validity": {
+    "valid": true,
+    "discount": 499.5,
+    "code": "testpayment",
+    "display_message_en": "",
+    "title": "Coupon value will change."
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -3788,10 +10458,15 @@ Success. Returns delivery promise along with shipment details and price breakup.
 Success. Returns delivery promise along with shipment details and price breakup. Refer `CartShipmentsResponse` for more details.
 
 
-*Examples:*
 
 
-Shipment Generated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Shipment Generated</i></summary>
+
 ```json
 {
   "value": {
@@ -4176,8 +10851,11 @@ Shipment Generated
   }
 }
 ```
+</details>
 
-Shipment Generation Failed
+<details>
+<summary><i>&nbsp; Shipment Generation Failed</i></summary>
+
 ```json
 {
   "value": {
@@ -4426,6 +11104,9 @@ Shipment Generation Failed
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4473,10 +11154,15 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema` for more details.
 
 
-*Examples:*
 
 
-Address id not found
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Address id not found</i></summary>
+
 ```json
 {
   "value": {
@@ -4485,8 +11171,11 @@ Address id not found
   }
 }
 ```
+</details>
 
-Missing address_id
+<details>
+<summary><i>&nbsp; Missing address_id</i></summary>
+
 ```json
 {
   "value": {
@@ -4496,8 +11185,11 @@ Missing address_id
   }
 }
 ```
+</details>
 
-Successful checkout cod payment
+<details>
+<summary><i>&nbsp; Successful checkout cod payment</i></summary>
+
 ```json
 {
   "value": {
@@ -4848,6 +11540,9 @@ Successful checkout cod payment
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -4900,6 +11595,19 @@ Returns a message indicating the success of cart meta updation as shown below.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "cart meta updated"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -4943,10 +11651,15 @@ Returns a URL to share and a token as shown below.
 Returns a URL to share and a token as shown below.
 
 
-*Examples:*
 
 
-Token Generated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Token Generated</i></summary>
+
 ```json
 {
   "value": {
@@ -4955,6 +11668,9 @@ Token Generated
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5001,6 +11717,293 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
 [SharedCartResponse](#SharedCartResponse)
 
 Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "cart": {
+    "shared_cart_details": {
+      "token": "BQ9jySQ9",
+      "user": {
+        "user_id": "23109086",
+        "is_anonymous": false
+      },
+      "meta": {
+        "selected_staff": "",
+        "ordering_store": null
+      },
+      "selected_staff": "",
+      "ordering_store": null,
+      "source": {},
+      "created_on": "2019-12-18T14:00:07.165000"
+    },
+    "items": [
+      {
+        "key": "791651_6",
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_6",
+          "size": "6",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 1,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 1,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 12,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          }
+        }
+      },
+      {
+        "key": "791651_7",
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_7",
+          "size": "7",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 2,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 2,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 7,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          }
+        }
+      }
+    ],
+    "cart_id": 13055,
+    "uid": "13055",
+    "breakup_values": {
+      "raw": {
+        "cod_charge": 0,
+        "convenience_fee": 0,
+        "coupon": 0,
+        "delivery_charge": 0,
+        "discount": 0,
+        "fynd_cash": 0,
+        "gst_charges": 958.73,
+        "mrp_total": 6285,
+        "subtotal": 6285,
+        "total": 6285,
+        "vog": 5326.27,
+        "you_saved": 0
+      },
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": null,
+        "value": 0,
+        "is_applied": false,
+        "message": "Sorry! Invalid coupon"
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "value": 6285,
+          "currency_code": "INR"
+        }
+      ]
+    },
+    "delivery_charge_info": "",
+    "coupon_text": "View all offers",
+    "gstin": null,
+    "comment": "",
+    "checkout_mode": "self",
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "COD",
+      "payment_identifier": null
+    },
+    "restrict_checkout": false,
+    "is_valid": true,
+    "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
+  },
+  "error": ""
+}
+```
+</details>
 
 
 
@@ -5052,10 +12055,15 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 Success. Returns a merged or replaced cart as per the valid token. Refer `SharedCartResponse` for more details.
 
 
-*Examples:*
 
 
-Cart Merged/Replaced
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Cart Merged/Replaced</i></summary>
+
 ```json
 {
   "value": {
@@ -5336,6 +12344,9 @@ Cart Merged/Replaced
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5395,6 +12406,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -5445,10 +12467,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -5645,6 +12672,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5695,10 +12725,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -5738,6 +12773,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -5785,10 +12823,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -5985,6 +13028,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6033,10 +13079,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -6086,6 +13137,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6136,10 +13190,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -6338,6 +13397,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6386,10 +13448,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -6397,6 +13464,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6445,10 +13515,15 @@ Success
 Success
 
 
-*Examples:*
 
 
-Default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
 ```json
 {
   "value": {
@@ -6456,6 +13531,9 @@ Default
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6510,15 +13588,23 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
 Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-All pages
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; All pages</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AllAvailablePagesExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6570,15 +13656,23 @@ Success. Returns an object of the pages.  Refer `AvailablePageSchema` for more d
 Success. Returns an object of the pages.  Refer `AvailablePageSchema` for more details.
 
 
-*Examples:*
 
 
-Home page
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Home page</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AvailablePageExample"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6622,15 +13716,23 @@ Success. Returns a JSON object of the theme. Check the example shown below or   
 Success. Returns a JSON object of the theme. Check the example shown below or    refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Applied Theme
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Applied Theme</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6679,15 +13781,23 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 Success. Returns a JSON object of the theme. Check the example shown below or refer `ThemesSchema` for more details.
 
 
-*Examples:*
 
 
-Preview Theme
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Preview Theme</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Themes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6744,15 +13854,23 @@ Success. Returns a JSON object with the user details. Check the example shown be
 Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6803,15 +13921,23 @@ Success. Returns a JSON object with the user details. Check the example shown be
 Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6862,15 +13988,23 @@ Success. Returns a JSON object with the user details. Check the example shown be
 Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6921,15 +14055,23 @@ Success. Returns a JSON object with the user details. Check the example shown be
 Success. Returns a JSON object with the user details. Check the example shown below or refer `AuthSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AuthSuccess"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -6980,15 +14122,23 @@ Success. Check the example shown below or refer `SendOtpResponse` for more detai
 Success. Check the example shown below or refer `SendOtpResponse` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SendOtpResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7036,15 +14186,23 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7097,6 +14255,19 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "sent"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7140,15 +14311,23 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7198,6 +14377,19 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "success"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7241,15 +14433,23 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7302,6 +14502,28 @@ Success. Check the example shown below or refer `RegisterFormSuccess` for more d
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "request_id": "ebc059191393681cdfb805b5424bddad",
+  "message": "OTP sent",
+  "mobile": "7400448798",
+  "country_code": "91",
+  "resend_timer": 30,
+  "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
+  "verify_mobile_otp": true,
+  "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
+  "userExists": false
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7343,6 +14565,19 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 [VerifyEmailSuccess](#VerifyEmailSuccess)
 
 Success. Check the example shown below or refer `VerifyEmailSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "verified"
+}
+```
+</details>
 
 
 
@@ -7392,6 +14627,19 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "verified"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7429,6 +14677,17 @@ Success. Returns a boolean value. Check the example shown below or refer `HasPas
 [HasPasswordSuccess](#HasPasswordSuccess)
 
 Success. Returns a boolean value. Check the example shown below or refer `HasPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -7478,6 +14737,19 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "success"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7515,6 +14787,17 @@ Success. Returns a success message as shown below. Refer `LogoutSuccess` for mor
 [LogoutSuccess](#LogoutSuccess)
 
 Success. Returns a success message as shown below. Refer `LogoutSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -7567,6 +14850,25 @@ Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more detai
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "request_id": "01503005aeab87cbed93d40f46cc2749",
+  "message": "OTP sent",
+  "mobile": "8652523958",
+  "country_code": "91",
+  "resend_timer": 30,
+  "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7613,15 +14915,23 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7674,6 +14984,19 @@ Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7720,15 +15043,23 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7772,15 +15103,23 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
 Success. Returns a JSON object with user details. Refer `UserObjectSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7822,6 +15161,22 @@ Success. Returns a JSON object containing an array of sessions. Refer `SessionLi
 [SessionListSuccess](#SessionListSuccess)
 
 Success. Returns a JSON object containing an array of sessions. Refer `SessionListSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "sessions": [
+    "session_1",
+    "session_2"
+  ]
+}
+```
+</details>
 
 
 
@@ -7872,6 +15227,82 @@ Success. Returns a JSON object containing the all the platform configurations. R
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "active": true,
+  "mobile_image": null,
+  "desktop_image": null,
+  "social": {
+    "facebook": true,
+    "google": true,
+    "account_kit": true
+  },
+  "flash_card": {
+    "text": "",
+    "text_color": "#FFFFFF",
+    "background_color": "#EF5350"
+  },
+  "register": true,
+  "forgot_password": true,
+  "login": {
+    "password": true,
+    "otp": true
+  },
+  "skip_captcha": false,
+  "display": "Fynd",
+  "subtext": "Login to Fynd",
+  "name": "Fynd",
+  "meta": {},
+  "required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "register_required_fields": {
+    "email": {
+      "is_required": false,
+      "level": "hard"
+    },
+    "mobile": {
+      "is_required": true,
+      "level": "hard"
+    }
+  },
+  "skip_login": false,
+  "look_and_feel": {
+    "background_color": "#F5F5F5",
+    "card_position": "center"
+  },
+  "social_tokens": {
+    "google": {
+      "appId": "token_123"
+    },
+    "facebook": {
+      "appId": "2033146826724884"
+    },
+    "account_kit": {
+      "appId": "548529975557631"
+    }
+  },
+  "_id": "5e04a5e5220bc15839ad9bc0",
+  "created_at": "2019-12-26T12:21:57.878Z",
+  "updated_at": "2020-08-13T14:31:09.878Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -7918,15 +15349,23 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -7977,15 +15416,23 @@ Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for mor
 Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8049,15 +15496,23 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8105,15 +15560,23 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8164,15 +15627,23 @@ Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` fo
 Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/VerifyMobileOTP"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8223,15 +15694,23 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
 Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/VerifyEmailOTP"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8292,15 +15771,23 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 Success. Returns a JSON object with user details. Refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8348,15 +15835,23 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 Success. Returns a JSON object with user details. Refer `LoginSuccess` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/UserExampleObject"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8409,6 +15904,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -8454,17 +15960,25 @@ Success. Returns a JSON object with the details of the announcement shown on an 
 Success. Returns a JSON object with the details of the announcement shown on an individual page. `$all` is a special slug to indicate that an announcement is being shown on all the pages. Check the example shown below or refer `AnnouncementsResponseSchema` for more details.
 
 
-*Examples:*
 
 
-Announcements enabled
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Announcements enabled</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AnnouncementEnabledExample"
 }
 ```
+</details>
 
-No Announcement enabled
+<details>
+<summary><i>&nbsp; No Announcement enabled</i></summary>
+
 ```json
 {
   "value": {
@@ -8474,6 +15988,9 @@ No Announcement enabled
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8525,15 +16042,23 @@ Success. Returns a JSON object with blog details. Check the example shown below 
 Success. Returns a JSON object with blog details. Check the example shown below or refer `BlogSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8585,15 +16110,23 @@ Success. Check the example shown below or refer `BlogGetResponse` for more detai
 Success. Check the example shown below or refer `BlogGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/BlogGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8637,15 +16170,23 @@ Success. Returns a JSON object with question and answers. Check the example show
 Success. Returns a JSON object with question and answers. Check the example shown below or refer `FaqResponseSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/AppFaqs"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8687,6 +16228,30 @@ Success. Returns a JSON object with categories of FAQ. Check the example shown b
 [GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
 
 Success. Returns a JSON object with categories of FAQ. Check the example shown below or refer `GetFaqCategoriesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "categories": [
+    {
+      "index": 0,
+      "children": [
+        "6026426ae507768b168dee4b"
+      ],
+      "title": "Test",
+      "_id": "60263f80c83c1f89f2863a8a",
+      "slug": "test",
+      "application": "000000000000000000000001"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -8737,6 +16302,23 @@ Success. Returns a question and answer by its slug. Check the example shown belo
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5eb2db750a8ebf497e315028",
+  "question": "how to refer my friend",
+  "answer": "1. Click on refer and earn image in fynd app\n2. Click on share the code\n3. Use any method for sharing\n4. Once the user activates the app with your code, both of you will get the refereal credits.",
+  "slug": "how to refer",
+  "application": "000000000000000000000001"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -8779,6 +16361,34 @@ Success. Returns a FAQ category with its slug. Check the example shown below or 
 [GetFaqCategoryBySlugSchema](#GetFaqCategoryBySlugSchema)
 
 Success. Returns a FAQ category with its slug. Check the example shown below or refer `GetFaqCategoryBySlugSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "category": {
+    "index": 0,
+    "children": [
+      {
+        "_id": "6026426ae507768b168dee4b",
+        "question": "question 1",
+        "answer": "answer 1",
+        "slug": "question-1",
+        "application": "000000000000000000000001"
+      }
+    ],
+    "_id": "60263f80c83c1f89f2863a8a",
+    "slug": "test",
+    "title": "Test",
+    "application": "000000000000000000000001"
+  }
+}
+```
+</details>
 
 
 
@@ -8829,6 +16439,27 @@ Success. Returns a categorized list of question and answers using its slug. Chec
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "faqs": [
+    {
+      "_id": "60265b64e507768b168dee4d",
+      "question": "question 1",
+      "answer": "answer 1",
+      "slug": "question-1",
+      "application": "000000000000000000000001"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -8868,15 +16499,23 @@ Success. Returns the landing page details. Check the example shown below or refe
 Success. Returns the landing page details. Check the example shown below or refer `LandingPageSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/LandingPageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8920,15 +16559,23 @@ Success. Returns the T&C, Shipping Policy, Privacy Policy and Return Policy. Che
 Success. Returns the T&C, Shipping Policy, Privacy Policy and Return Policy. Check the example shown below or refer `ApplicationLegal` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Legal"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -8980,15 +16627,23 @@ Success. Returns a JSON object with navigation details. Check the example shown 
 Success. Returns a JSON object with navigation details. Check the example shown below or refer `NavigationGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/NavigationGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9040,15 +16695,23 @@ Success. Returns a JSON object with page details. Check the example shown below 
 Success. Returns a JSON object with page details. Check the example shown below or refer `CustomPageSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9100,15 +16763,23 @@ Success. Returns a list of pages along with their details. Check the example sho
 Success. Returns a list of pages along with their details. Check the example shown below or refer `PageGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PageGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9152,15 +16823,23 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
 Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and sitemap. Check the example shown below or refer `SeoComponent` for more details.
 
 
-*Examples:*
 
 
-Success
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Seo"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9212,15 +16891,23 @@ Success. Check the example shown below or refer `SlideshowGetResponse` for more 
 Success. Check the example shown below or refer `SlideshowGetResponse` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SlideshowGetResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9269,15 +16956,23 @@ Success. Returns the details of how a slideshow is configured. Check the example
 Success. Returns the details of how a slideshow is configured. Check the example shown below or refer `SlideshowSchema` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/SlideshowResponse"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9321,15 +17016,23 @@ Success. Returns all support information including email and phone number. Check
 Success. Returns all support information including email and phone number. Check the example shown below or refer `Support` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/Support"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9371,6 +17074,33 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 [TagsSchema](#TagsSchema)
 
 Success. Returns a JSON object containing all the tags injected in the application. Check the example shown below or refer `TagsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application": "000000000000000000000001",
+  "_id": "5f7c37b2dd0144bb3a353c5f",
+  "tags": [
+    {
+      "name": "Tapfiliate JS",
+      "sub_type": "external",
+      "_id": "5f7c37b2dd0144f1f8353c60",
+      "type": "js",
+      "url": "https://script.tapfiliate.com/tapfiliate.js",
+      "position": "body-bottom",
+      "attributes": {
+        "async": true
+      }
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -9420,15 +17150,23 @@ Success. Returns all available communication opt-ins along with the consent deta
 Success. Returns all available communication opt-ins along with the consent details. Check the example shown below or refer `CommunicationConsent` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/CommunicationConsent"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9476,15 +17214,23 @@ Success. Updates the channels for which user has consented. Check the example sh
 Success. Updates the channels for which user has consented. Check the example shown below or refer `CommunicationConsentRes` for more details.
 
 
-*Examples:*
 
 
-default
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/CommunicationConsentRes"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9532,29 +17278,43 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
 Success. Check the example shown below or refer `PushtokenRes` for more details.
 
 
-*Examples:*
 
 
-create
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; create</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PushtokenResponseCreate"
 }
 ```
+</details>
 
-update
+<details>
+<summary><i>&nbsp; update</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PushtokenResponseUpdate"
 }
 ```
+</details>
 
-reset
+<details>
+<summary><i>&nbsp; reset</i></summary>
+
 ```json
 {
   "$ref": "#/components/examples/PushtokenResponseReset"
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -9606,6 +17366,20 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "link": "https://fynd.com",
+  "svg": "<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 29 29\\\" shape-rendering=\\\"crispEdges\\\"></svg>"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -9648,6 +17422,20 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 [QRCodeResp](#QRCodeResp)
 
 Success. Check the example shown below or refer `QRCodeResp` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "link": "https://fynd.com/products/shirt-small-blue",
+  "svg": "<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 29 29\\\" shape-rendering=\\\"crispEdges\\\"></svg>"
+}
+```
+</details>
 
 
 
@@ -9698,6 +17486,20 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "link": "https://fynd.com/collection/flat-50-off",
+  "svg": "<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 29 29\\\" shape-rendering=\\\"crispEdges\\\"></svg>"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -9744,6 +17546,20 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "link": "https://fynd.com",
+  "svg": "<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 29 29\\\" shape-rendering=\\\"crispEdges\\\"></svg>"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -9785,6 +17601,55 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 [ShortLinkRes](#ShortLinkRes)
 
 Success. Check the example shown below or refer `ShortLinkRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
 
 
 
@@ -9835,6 +17700,55 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -9877,6 +17791,55 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 [ShortLinkRes](#ShortLinkRes)
 
 Success. Check the example shown below or refer `ShortLinkRes` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "url": {
+    "original": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh",
+    "short": "https://0icof6vvsf.hostx0.de/l/3qKlnsq-x",
+    "hash": "3qKlnsq-x"
+  },
+  "redirects": {
+    "ios": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "android": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "web": {
+      "type": "web",
+      "link": "https://0icof6vvsf.hostx0.de/products/?brand=ruosh"
+    },
+    "force_web": false
+  },
+  "created_by": "team",
+  "personalized": false,
+  "app_redirect": false,
+  "fallback": "web",
+  "enable_tracking": false,
+  "active": true,
+  "count": 0,
+  "_id": "601a54054c0349592e76c8f3",
+  "title": "new ",
+  "meta": {
+    "type": "brand"
+  },
+  "expire_at": null,
+  "application": "5eda528b97457fe43a733ace",
+  "user_id": "5e4d01e2c39837ab66144f6d",
+  "created_at": "2021-02-03T07:43:01.342Z",
+  "updated_at": "2021-02-03T07:43:01.342Z"
+}
+```
+</details>
 
 
 
@@ -9953,6 +17916,17 @@ Success. Next, call the `completeUpload` API and pass the response payload of th
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -10019,6 +17993,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -10066,6 +18051,83 @@ Success. Check the example shown below or refer `Application` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "website": {
+    "enabled": true,
+    "basepath": "/"
+  },
+  "cors": {
+    "domains": []
+  },
+  "auth": {
+    "enabled": false
+  },
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "channel_type": "uniket",
+  "cache_ttl": -1,
+  "internal": false,
+  "is_active": true,
+  "_id": "000000000000000000000004",
+  "name": "Uniket B2B",
+  "owner": "5e71a60dc671daffd81992ea",
+  "company_id": 1,
+  "token": "iTNjY_yAI",
+  "redirections": [],
+  "meta": [],
+  "created_at": "2019-12-26T13:22:23.619Z",
+  "modified_at": "2020-12-02T05:49:41.610Z",
+  "__v": 29,
+  "banner": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "domains": [
+    {
+      "verified": true,
+      "is_primary": true,
+      "is_default": true,
+      "is_shortlink": true,
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "name": "uniket.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": false,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ],
+  "app_type": "live",
+  "mobile_logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_default": true,
+    "is_shortlink": true,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "id": "000000000000000000000004"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10103,6 +18165,119 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 [ApplicationAboutResponse](#ApplicationAboutResponse)
 
 Success. Check the example shown below or refer `ApplicationAboutResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application_info": {
+    "domains": [
+      {
+        "verified": true,
+        "name": "uniket-testing.addsale.link",
+        "custom": false,
+        "is_primary": true,
+        "is_default": true
+      }
+    ],
+    "website": {
+      "enabled": true,
+      "basepath": "/"
+    },
+    "cors": {
+      "domains": []
+    },
+    "description": "R-City Mall,Ghatkoper East,Mumbai",
+    "is_active": true,
+    "_id": "5cd3db5e9d692cfe5302a7ba",
+    "name": "Shivam Clothing Store",
+    "meta": [
+      {
+        "name": "tes",
+        "value": "test"
+      }
+    ],
+    "token": "xOfcP-aYE",
+    "secret": "",
+    "created_at": "2019-05-09T07:48:46.218Z",
+    "banner": {
+      "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
+    },
+    "logo": {
+      "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
+    },
+    "id": "5cd3db5e9d692cfe5302a7ba",
+    "company_info": {
+      "_id": "5da4274a723af4000188a66c",
+      "uid": 873,
+      "created_on": "2019-10-14T07:44:10.391Z",
+      "is_active": true,
+      "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
+      "addresses": [
+        {
+          "pincode": 110042,
+          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+          "city": "NEW DELHI",
+          "state": "DELHI",
+          "country": "INDIA",
+          "address_type": "registered"
+        },
+        {
+          "pincode": 110042,
+          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+          "city": "NEW DELHI",
+          "state": "DELHI",
+          "country": "INDIA",
+          "address_type": "office"
+        }
+      ],
+      "notification_emails": [
+        "ecom.sapperlifestyle@f2fretail.com"
+      ]
+    },
+    "owner_info": {
+      "_id": "5c77921fa1bf7d8695ed57fd",
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "jalakvora@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "jalakvora@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "jalakvora@uniket.store"
+        }
+      ],
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "country_code": 91,
+          "phone": "9408282323"
+        }
+      ],
+      "first_name": "Jalak",
+      "last_name": "Vora",
+      "profile_pic": ""
+    }
+  }
+}
+```
+</details>
 
 
 
@@ -10148,6 +18323,60 @@ Success. Check the example shown below or refer `ApplicationDetail` for more det
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "name": "Uniket B2B",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "mobile_logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "banner": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_default": true,
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "domains": [
+    {
+      "verified": true,
+      "is_primary": true,
+      "is_default": true,
+      "is_shortlink": false,
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "name": "uniket.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_default": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ],
+  "company_id": 1,
+  "_id": "000000000000000000000004"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10185,6 +18414,86 @@ Success. Check the example shown below or refer `AppTokenResponse` for more deta
 [AppTokenResponse](#AppTokenResponse)
 
 Success. Check the example shown below or refer `AppTokenResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "project_id": "",
+        "gcm_sender_id": "",
+        "application_id": "",
+        "api_key": ""
+      },
+      "enabled": false
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": ""
+      },
+      "enabled": false
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
+      },
+      "enabled": false
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": ""
+      },
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
+        "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
+      },
+      "enabled": true
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
+      },
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
+      }
+    },
+    "auth": {
+      "google": {
+        "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
+      },
+      "facebook": {
+        "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
+      },
+      "accountkit": {
+        "app_id": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
+      }
+    }
+  },
+  "_id": "5e285cb1df7e5b1421d5f840",
+  "application": "000000000000000000000004",
+  "created_at": "2020-01-22T14:31:13.192Z",
+  "modified_at": "2020-05-01T04:14:42.117Z",
+  "__v": 0
+}
+```
+</details>
 
 
 
@@ -10241,6 +18550,17 @@ Success. Check the example shown below or refer `OrderingStores` for more detail
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -10278,6 +18598,112 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
 [AppFeatureResponse](#AppFeatureResponse)
 
 Success. Check the example shown below or refer `AppFeatureResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "feature": {
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": null,
+        "query": null
+      },
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
+      },
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
+      },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
+        ],
+        "type": "explicit",
+        "default_currency": "INR"
+      },
+      "revenue_engine": {
+        "enabled": false
+      },
+      "feedback": {
+        "enabled": true
+      },
+      "compare_products": {
+        "enabled": true
+      },
+      "reward_points": {
+        "credit": {
+          "enabled": true
+        },
+        "debit": {
+          "enabled": true,
+          "auto_apply": false,
+          "strategy_channel": "REWARDS"
+        }
+      }
+    },
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000004",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "modified_at": "2021-02-02T11:04:14.289Z",
+    "__v": 1
+  }
+}
+```
+</details>
 
 
 
@@ -10323,6 +18749,132 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "value": {
+    "address": {
+      "loc": null,
+      "address_line": [
+        "Warehouse 5, Near Industrial Complex",
+        "2nd Lane, Andheri"
+      ],
+      "phone": [
+        {
+          "code": "+91",
+          "number": "9988776654"
+        }
+      ],
+      "city": "Mumbai , Maharashtra , India",
+      "country": "India",
+      "pincode": 400059
+    },
+    "support": {
+      "phone": [],
+      "email": [],
+      "timing": "9 AM to 9 PM"
+    },
+    "social_links": {
+      "facebook": {
+        "title": "Facebook",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
+        "link": ""
+      },
+      "instagram": {
+        "title": "Instagram",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
+        "link": ""
+      },
+      "twitter": {
+        "title": "Twitter",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
+        "link": ""
+      },
+      "pinterest": {
+        "title": "Pinterest",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
+        "link": ""
+      },
+      "google_plus": {
+        "title": "Google+",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
+        "link": ""
+      },
+      "youtube": {
+        "title": "Youtube",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
+        "link": ""
+      },
+      "linked_in": {
+        "title": "LinkedIn",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
+        "link": ""
+      },
+      "vimeo": {
+        "title": "Vimeo",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/Ttc80b3U78-vimeofooternho4br.svg",
+        "link": ""
+      },
+      "blog_link": {
+        "title": "Blog",
+        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
+        "link": ""
+      }
+    },
+    "links": [
+      {
+        "title": "Shipping",
+        "link": "www.uniket.store/shipping-details"
+      },
+      {
+        "title": "Returns",
+        "link": "www.uniket.store/policy/return-policy"
+      },
+      {
+        "title": "Privacy",
+        "link": "www.uniket.store/policy/privacy-policy"
+      },
+      {
+        "title": "Terms",
+        "link": "www.uniket.store/policy/terms-conditions"
+      }
+    ],
+    "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
+    "_id": "5e6627bd0732616083e83750",
+    "business_highlights": [
+      {
+        "_id": "5fc901611dfba6c2e87d1ca9",
+        "title": "100% Genuine Products",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+        "sub_title": "Directly from brands"
+      },
+      {
+        "_id": "5fc901611dfba64ce57d1caa",
+        "title": "Credit Facility Available",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+        "sub_title": "Free 30 Days Credit"
+      },
+      {
+        "_id": "5fc901611dfba64b2e7d1cab",
+        "title": "Assured Returns",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+        "sub_title": "For all damaged/wrong items"
+      }
+    ],
+    "application": "000000000000000000000004",
+    "created_at": "2020-03-09T11:25:49.921Z",
+    "modified_at": "2020-12-03T15:16:49.087Z",
+    "__v": 99
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10360,6 +18912,30 @@ Success. Check the example shown below or refer `CurrenciesResponse` for more de
 [CurrenciesResponse](#CurrenciesResponse)
 
 Success. Check the example shown below or refer `CurrenciesResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "_id": "5ec75d11f7bfb54d798f3516",
+      "is_active": true,
+      "name": "United States Dollar",
+      "code": "USD",
+      "created_at": "2020-05-22T05:03:13.354Z",
+      "modified_at": "2020-06-05T09:12:04.248Z",
+      "decimal_digits": 2,
+      "symbol": "$"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -10410,6 +18986,26 @@ Success. Check the example shown below or refer `Currency` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5ec75d11f7bfb501d88f3559",
+  "is_active": true,
+  "name": "Gold Ounce",
+  "code": "XAU",
+  "created_at": "2020-05-22T05:03:13.429Z",
+  "modified_at": "2020-06-05T09:12:04.248Z",
+  "decimal_digits": null,
+  "symbol": null
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10447,6 +19043,32 @@ Success. Check the example shown below or refer `LanguageResponse` for more deta
 [LanguageResponse](#LanguageResponse)
 
 Success. Check the example shown below or refer `LanguageResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "हिन्दी",
+      "code": "hi-IN"
+    },
+    {
+      "name": "English",
+      "code": "en-IN"
+    },
+    {
+      "name": "عربى",
+      "code": "ar-AE"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -10496,6 +19118,17 @@ Success
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -10533,6 +19166,17 @@ Success
 [SuccessMessageResponse](#SuccessMessageResponse)
 
 Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -10585,6 +19229,17 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 [AppStaffResponse](#AppStaffResponse)
 
 Success. Check the example shown below or refer `AppStaffResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -10644,6 +19299,53 @@ Success. Returns the keys of all payment gateways. Check the example shown below
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "simpl": {
+    "key": "bf9d0ff65ffe6e54223a871e733bbd1c",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "sdk": true
+  },
+  "juspay": {
+    "key": "XXXX-XXXX-XXXX-XXXX",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "merchant_key": "XXXX-XXXX-XXXX-XXXX",
+    "sdk": false,
+    "api": "https://api.juspay.in"
+  },
+  "mswipe": {
+    "key": "XXXX-XXXX-XXXX-XXXX",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "merchant_id": "XXXX-XXXX-XXXX-XXXX",
+    "user_id": "XXXX-XXXX-XXXX-XXXX",
+    "pin": "XXXX-XXXX-XXXX-XXXX",
+    "sdk": true,
+    "verify_api": "https://www.mswipetech.com/verificationapi/api/VerificationApi/MswipeCardSaleVerificationApi"
+  },
+  "razorpay": {
+    "key": "XXXX-XXXX-XXXX-XXXX",
+    "secret": "XXXX-XXXX-XXXX-XXXX",
+    "config_type": "fynd",
+    "webhook_secret": "XXXX-XXXX-XXXX-XXXX",
+    "sdk": true,
+    "api": "https://api.razorpay.com/v1/",
+    "vpa": "XXXX-XXXX-XXXX-XXXX"
+  },
+  "success": true,
+  "env": "live"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10685,6 +19387,46 @@ Success. Check the example shown below or refer `AttachCardsResponse` for more d
 [AttachCardsResponse](#AttachCardsResponse)
 
 Success. Check the example shown below or refer `AttachCardsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "",
+  "data": {
+    "id": "pm_1IGQlvHY5NCLOJpYNTBP6WpY",
+    "brand": "visa",
+    "checks": {
+      "address_line1_check": null,
+      "address_postal_code_check": null,
+      "cvc_check": "pass"
+    },
+    "country": "US",
+    "exp_month": 11,
+    "exp_year": 2025,
+    "fingerprint": "poKWfSweJ0I5CvEA",
+    "funding": "credit",
+    "generated_from": null,
+    "last4": "1111",
+    "networks": {
+      "available": [
+        "visa"
+      ],
+      "preferred": null
+    },
+    "three_d_secure_usage": {
+      "supported": true
+    },
+    "wallet": null
+  }
+}
+```
+</details>
 
 
 
@@ -10735,6 +19477,25 @@ Success. Returns an active payment gateway. Check the example shown below or ref
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "",
+  "cards": {
+    "aggregator": "Stripe",
+    "api": "https://www.example.com/cards/",
+    "customer_id": "lorem_12345"
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10777,6 +19538,40 @@ Success. Returns a list of cards saved by the user. Check the example shown belo
 [ListCardsResponse](#ListCardsResponse)
 
 Success. Returns a list of cards saved by the user. Check the example shown below or refer `ListCardsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Success",
+  "data": [
+    {
+      "aggregator_name": "Razorpay",
+      "card_id": "token_lorem_ipsum_001",
+      "card_token": "card_token_lorem_ipsum_001",
+      "card_reference": "ref_lorem_ipsum_001",
+      "card_number": "XXXX-XXXX-XXXX-1111",
+      "card_isin": "001",
+      "exp_year": 2025,
+      "exp_month": 5,
+      "card_type": "credit",
+      "card_issuer": "ICIC",
+      "card_brand": "VISA",
+      "nickname": "Visa",
+      "card_name": "Lorem Ipsum",
+      "expired": false,
+      "card_fingerprint": null,
+      "card_brand_image": "https://hdn-1.fynd.com/payment/visa.png"
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -10826,6 +19621,19 @@ Success. Returns a success message if card is deleted.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10867,6 +19675,29 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 [ValidateCustomerResponse](#ValidateCustomerResponse)
 
 Success. Check the example shown below or refer `ValidateCustomerResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "data fetched",
+  "data": {
+    "api_version": 2,
+    "data": {
+      "approved": true,
+      "button_text": "Buy Now, Pay Later",
+      "first_transaction": false
+    },
+    "aggregator": "Simpl"
+  }
+}
+```
+</details>
 
 
 
@@ -10916,6 +19747,25 @@ Success. Check the example shown below or refer `ChargeCustomerResponse` for mor
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment Successful",
+  "status": "complete",
+  "order_id": "FY000000001000000101",
+  "aggregator": "Simpl",
+  "cart_id": "0000000",
+  "delivery_address_id": "0000000"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -10961,6 +19811,29 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregator": "UPI_Razorpay",
+  "method": "upi",
+  "status": "success",
+  "merchant_order_id": "FY000120000101",
+  "aggregator_order_id": "lorem_GX8W00p2ipsum",
+  "polling_url": "https://api.fynd.com/service/application/payment/v0.1/payments/confirm/polling/?app_id=000000000000000000000001",
+  "timeout": 240,
+  "virtual_id": null,
+  "razorpay_payment_id": "pay_dummy_001",
+  "customer_id": "cust_dummy_001"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11002,6 +19875,21 @@ Success. Returns the status of payment. Check the example shown below or refer `
 [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
 
 Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "UPI_Razorpay",
+  "status": "success",
+  "retry": false
+}
+```
+</details>
 
 
 
@@ -11066,6 +19954,387 @@ Success. Returns all available options for payment. Check the example shown belo
 [PaymentModeRouteResponse](#PaymentModeRouteResponse)
 
 Success. Returns all available options for payment. Check the example shown below or refer `PaymentModeRouteResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "payment_options": {
+    "payment_option": [
+      {
+        "name": "CARD",
+        "display_priority": 2,
+        "payment_mode_id": 2,
+        "display_name": "Card",
+        "list": [],
+        "anonymous_enable": true,
+        "aggregator_name": "Razorpay",
+        "add_card_enabled": false
+      },
+      {
+        "name": "NB",
+        "display_priority": 3,
+        "payment_mode_id": 3,
+        "display_name": "Net Banking",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "ICICI Bank",
+            "code": "ICIC",
+            "bank_name": "ICICI Bank",
+            "bank_code": "ICIC",
+            "url": "https://hdn-1.fynd.com/payment/NB_ICICI.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_ICICI.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_ICICI.png"
+            },
+            "merchant_code": "NB_ICICI",
+            "display_priority": 1,
+            "display_name": "ICICI Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "HDFC Bank",
+            "code": "HDFC",
+            "bank_name": "HDFC Bank",
+            "bank_code": "HDFC",
+            "url": "https://hdn-1.fynd.com/payment/NB_HDFC.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_HDFC.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_HDFC.png"
+            },
+            "merchant_code": "NB_HDFC",
+            "display_priority": 2,
+            "display_name": "HDFC Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Axis Bank",
+            "code": "UTIB",
+            "bank_name": "Axis Bank",
+            "bank_code": "UTIB",
+            "url": "https://hdn-1.fynd.com/payment/NB_AXIS.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_AXIS.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_AXIS.png"
+            },
+            "merchant_code": "NB_AXIS",
+            "display_priority": 3,
+            "display_name": "Axis Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of India",
+            "code": "SBIN",
+            "bank_name": "State Bank of India",
+            "bank_code": "SBIN",
+            "url": "https://hdn-1.fynd.com/payment/NB_SBI.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_SBI.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_SBI.png"
+            },
+            "merchant_code": "NB_SBI",
+            "display_priority": 4,
+            "display_name": "State Bank of India"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Kotak Mahindra Bank",
+            "code": "KKBK",
+            "bank_name": "Kotak Mahindra Bank",
+            "bank_code": "KKBK",
+            "url": "https://hdn-1.fynd.com/payment/NB_KOTAK.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_KOTAK.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_KOTAK.png"
+            },
+            "merchant_code": "NB_KOTAK",
+            "display_priority": 5,
+            "display_name": "Kotak Mahindra Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Indusind Bank",
+            "code": "INDB",
+            "bank_name": "Indusind Bank",
+            "bank_code": "INDB",
+            "url": "https://hdn-1.fynd.com/payment/NB_INDUS.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_INDUS.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_INDUS.png"
+            },
+            "merchant_code": "INDB",
+            "display_priority": 6,
+            "display_name": "Indusind Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "City Union Bank",
+            "code": "CIUB",
+            "bank_name": "City Union Bank",
+            "bank_code": "CIUB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_CUB",
+            "display_priority": 9,
+            "display_name": "City Union Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Catholic Syrian Bank",
+            "code": "CSBK",
+            "bank_name": "Catholic Syrian Bank",
+            "bank_code": "CSBK",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "CSBK",
+            "display_priority": 11,
+            "display_name": "Catholic Syrian Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Hyderabad",
+            "code": "SBHY",
+            "bank_name": "State Bank of Hyderabad",
+            "bank_code": "SBHY",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBH",
+            "display_priority": 12,
+            "display_name": "State Bank of Hyderabad"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Allahabad Bank",
+            "code": "ALLA",
+            "bank_name": "Allahabad Bank",
+            "bank_code": "ALLA",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "ALLA",
+            "display_priority": 15,
+            "display_name": "Allahabad Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Syndicate Bank",
+            "code": "SYNB",
+            "bank_name": "Syndicate Bank",
+            "bank_code": "SYNB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "SYNB",
+            "display_priority": 17,
+            "display_name": "Syndicate Bank"
+          }
+        ]
+      },
+      {
+        "name": "WL",
+        "display_priority": 4,
+        "payment_mode_id": 4,
+        "display_name": "Wallet",
+        "list": [
+          {
+            "wallet_name": "Paytm",
+            "wallet_code": "paytm",
+            "name": "Paytm",
+            "display_name": "Paytm",
+            "code": "paytm",
+            "wallet_id": 4,
+            "merchant_code": "PAYTM",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/paytm_logo_small.png",
+              "large": "https://hdn-1.fynd.com/payment/paytm_logo_large.png"
+            },
+            "aggregator_name": "Juspay",
+            "display_priority": 1
+          },
+          {
+            "wallet_name": "Amazon Pay",
+            "wallet_code": "amazonpay",
+            "name": "Amazon Pay",
+            "display_name": "Amazon Pay",
+            "code": "amazonpay",
+            "wallet_id": 10,
+            "merchant_code": "AMAZONPAY",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/amazon-pay.png",
+              "large": "https://hdn-1.fynd.com/payment/amazon-pay.png"
+            },
+            "aggregator_name": "Razorpay",
+            "display_priority": 9
+          }
+        ]
+      },
+      {
+        "name": "UPI",
+        "display_priority": 9,
+        "payment_mode_id": 7,
+        "display_name": "UPI",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "UPI",
+            "display_name": "BHIM UPI",
+            "code": "UPI",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/upi_100x78.png",
+              "large": "https://hdn-1.fynd.com/payment/upi_150x100.png"
+            },
+            "merchant_code": "UPI",
+            "timeout": 310,
+            "retry_count": 0,
+            "fynd_vpa": "shopsense.rzp@hdfcbank",
+            "intent_flow": true,
+            "intent_app_error_list": [
+              "com.csam.icici.bank.imobile",
+              "in.org.npci.upiapp",
+              "com.whatsapp"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "JUSPAYPG",
+        "display_priority": 18,
+        "payment_mode_id": 24,
+        "display_name": "Pay Using Juspay",
+        "list": []
+      },
+      {
+        "name": "PL",
+        "display_priority": 21,
+        "display_name": "Pay Later",
+        "list": [
+          {
+            "aggregator_name": "Simpl",
+            "name": "Simpl",
+            "display_name": "Simpl",
+            "code": "simpl",
+            "merchant_code": "SIMPL",
+            "logo": "https://hdn-1.fynd.com/payment/simpl_logo.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/simpl_logo.png",
+              "large": "https://hdn-1.fynd.com/payment/simpl_logo.png"
+            }
+          }
+        ]
+      }
+    ],
+    "payment_flows": {
+      "simpl": {
+        "data": {
+          "gateway": {
+            "route": "simpl",
+            "entity": "sdk",
+            "is_customer_validation_required": true,
+            "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/?app_id=000000000000000000000001",
+            "sdk": {
+              "config": {
+                "redirect": false,
+                "callback_url": null,
+                "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+              },
+              "data": {
+                "user_phone": "9999632145",
+                "user_email": "app@fynd.com"
+              }
+            },
+            "return_url": null
+          }
+        },
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "mswipe": {
+        "data": {
+          "gateway": {
+            "sdk": {
+              "config": {
+                "redirect": false,
+                "action_url": "url",
+                "webhook_url": "url",
+                "timeout": 60
+              }
+            }
+          }
+        },
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "juspay": {
+        "data": {},
+        "api_link": "https://sandbox.juspay.in/txns",
+        "payment_flow": "api"
+      },
+      "razorpay": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "bqr_razorpay": {
+        "data": {},
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
+        "payment_flow": "api"
+      },
+      "fynd": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "jio": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "stripe": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "ccavenue": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "payumoney": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "rupifi": {
+        "data": {},
+        "api_link": "",
+        "return_url": "",
+        "payment_flow": "api",
+        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/"
+      }
+    }
+  }
+}
+```
+</details>
 
 
 
@@ -11137,6 +20406,172 @@ Success. Returns all available options for payment. Check the example shown belo
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "payment_options": {
+    "payment_option": [
+      {
+        "name": "CAS",
+        "display_priority": 21,
+        "payment_mode_id": 39,
+        "display_name": "Cash at Store",
+        "list": [
+          {
+            "aggregator_name": "Fynd",
+            "name": "CAS",
+            "display_name": "CASH",
+            "code": "CAS",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/cod.png",
+              "small": "https://hdn-1.fynd.com/payment/cod.png"
+            },
+            "merchant_code": "CAS"
+          }
+        ]
+      },
+      {
+        "name": "CSAS",
+        "display_priority": 21,
+        "payment_mode_id": 40,
+        "display_name": "Card Swiped at Store",
+        "list": [
+          {
+            "aggregator_name": "Fynd",
+            "name": "CSAS",
+            "display_name": "Card Swipe",
+            "code": "CSAS",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/cod.png",
+              "small": "https://hdn-1.fynd.com/payment/cod.png"
+            },
+            "merchant_code": "CSAS"
+          }
+        ]
+      },
+      {
+        "name": "UPI",
+        "display_priority": 9,
+        "payment_mode_id": 7,
+        "display_name": "UPI",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "UPI",
+            "display_name": "BHIM UPI",
+            "code": "UPI",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/upi_100x78.png",
+              "large": "https://hdn-1.fynd.com/payment/upi_150x100.png"
+            },
+            "merchant_code": "UPI",
+            "timeout": 240,
+            "retry_count": 0,
+            "fynd_vpa": "shopsense.rzp@hdfcbank",
+            "intent_flow": true,
+            "intent_app_error_list": [
+              "com.csam.icici.bank.imobile",
+              "in.org.npci.upiapp",
+              "com.whatsapp"
+            ]
+          }
+        ]
+      }
+    ],
+    "payment_flows": {
+      "simpl": {
+        "data": {
+          "gateway": {
+            "route": "simpl",
+            "entity": "sdk",
+            "is_customer_validation_required": true,
+            "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/?app_id=000000000000000000000001",
+            "sdk": {
+              "config": {
+                "redirect": false,
+                "callback_url": null,
+                "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+              },
+              "data": {
+                "user_phone": "9999632145",
+                "user_email": "app@fynd.com"
+              }
+            },
+            "return_url": null
+          }
+        },
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "juspay": {
+        "data": {},
+        "api_link": "https://sandbox.juspay.in/txns",
+        "payment_flow": "api"
+      },
+      "razorpay": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "upi_razorpay": {
+        "data": {},
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
+        "payment_flow": "api"
+      },
+      "bqr_razorpay": {
+        "data": {},
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
+        "payment_flow": "api"
+      },
+      "cashfree": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "fynd": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "jio": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "stripe": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "ccavenue": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "payumoney": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "rupifi": {
+        "data": {},
+        "api_link": "",
+        "return_url": "",
+        "payment_flow": "api",
+        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/"
+      }
+    }
+  }
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11174,6 +20609,23 @@ Success. Return CreditLine Offer detail. Check the example shown below or refer 
 [RupifiBannerResponse](#RupifiBannerResponse)
 
 Success. Return CreditLine Offer detail. Check the example shown below or refer `RupifiBannerResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "kyc_url": "http://rupifi.kyc1.com/",
+    "status": "APPROVED"
+  }
+}
+```
+</details>
 
 
 
@@ -11219,6 +20671,32 @@ Success. Shows the available refund mode to choose, e.g. Netbanking. Check the e
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "display_name": "BANK",
+      "items": [
+        {
+          "id": 6,
+          "name": "bank",
+          "display_name": "BANK",
+          "logo_small": "https://hdn-1.fynd.com/payment/netbanking.png",
+          "logo_large": "https://hdn-1.fynd.com/payment/netbanking.png"
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11260,6 +20738,19 @@ Success. Shows whether the refund mode was successfully enabled or disabled.
 [UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
 
 Success. Shows whether the refund mode was successfully enabled or disabled.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
 
 
 
@@ -11310,6 +20801,42 @@ Success. Returns the details of the beneficiary getting a refund. Check the exam
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 221,
+      "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
+      "bank_name": "State Bank of India",
+      "branch_name": "State Bank of India",
+      "account_holder": "SHASHI TEST",
+      "account_no": "1234567891",
+      "ifsc_code": "SBIN0005611",
+      "mobile": "9112042174",
+      "email": "payment@gofynd.com",
+      "address": "204A",
+      "comment": "",
+      "is_active": null,
+      "created_on": "2020-06-29 12:38:39",
+      "modified_on": "2020-06-29 12:38:39",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "1234567891",
+      "delights_user_name": null
+    }
+  ],
+  "show_beneficiary_details": false
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11352,6 +20879,37 @@ Success. Shows whether the IFSC code is valid, and returns the bank details. Che
 [IfscCodeResponse](#IfscCodeResponse)
 
 Success. Shows whether the IFSC code is valid, and returns the bank details. Check the example shown below or refer `IfscCodeResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "branch_name": "MANPUR",
+  "bank_name": "GAYA",
+  "BRANCH": "MANPUR",
+  "CENTRE": "GAYA",
+  "DISTRICT": "GAYA",
+  "STATE": "BIHAR",
+  "ADDRESS": "POBUNIYADGANJBIHAR",
+  "CONTACT": "00",
+  "MICR": "816002103",
+  "UPI": true,
+  "RTGS": true,
+  "CITY": "GAYA",
+  "NEFT": true,
+  "IMPS": true,
+  "SWIFT": "",
+  "BANK": "State Bank of India",
+  "BANKCODE": "SBIN",
+  "IFSC": "SBIN0005611",
+  "success": true
+}
+```
+</details>
 
 
 
@@ -11402,6 +20960,41 @@ Success. Returns the details of the beneficiary getting a refund. Check the exam
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 3695,
+      "beneficiary_id": "4c86dd56e634a4c6a8fb51d195bc7b83",
+      "bank_name": "State Bank of India",
+      "branch_name": "BHOGAT",
+      "account_holder": "PRAKASH TEST",
+      "account_no": "3566342455454",
+      "ifsc_code": "SBIN0014982",
+      "mobile": "7819064010",
+      "email": "prakashtest@gmail.com",
+      "address": "49A, Dabhi seri, jodhpur, kalyanpur",
+      "comment": "COD Refund",
+      "is_active": null,
+      "created_on": "2021-01-22 11:31:02",
+      "modified_on": "2021-01-22 11:31:02",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "35663423659",
+      "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11443,6 +21036,21 @@ Success. Check the example shown below or refer `AddBeneficiaryViaOtpVerificatio
 [AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
 
 Success. Check the example shown below or refer `AddBeneficiaryViaOtpVerificationRequest` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Account successfully created",
+  "data": {}
+}
+```
+</details>
 
 
 
@@ -11492,6 +21100,21 @@ Success. Shows whether the beneficiary details were saved to a returned/cancelle
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Account successfully created",
+  "data": {}
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11537,6 +21160,21 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_verified_flag": false,
+  "request_id": "c3ca6c13d490c885a125d106b45697b7"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -11578,6 +21216,20 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 [SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
 
 Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_beneficiary_set": true
+}
+```
+</details>
 
 
 
@@ -11646,6 +21298,17 @@ Success. Returns all the orders. Check the example shown below or refer `OrderLi
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -11688,6 +21351,17 @@ Success. Check the example shown below or refer `OrderById` for more details.
 [OrderById](#OrderById)
 
 Success. Check the example shown below or refer `OrderById` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -11738,6 +21412,17 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -11780,6 +21465,17 @@ Success. Check the example shown below or refer `ShipmentReasons` for more detai
 [ShipmentReasons](#ShipmentReasons)
 
 Success. Check the example shown below or refer `ShipmentReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -11832,6 +21528,17 @@ Success. Check the example shown below or refer `ShipmentStatusUpdateBody` for m
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -11878,6 +21585,17 @@ Success. Check the example shown below or refer `ShipmentTrack` for more details
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -11920,6 +21638,17 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
 [PosOrderById](#PosOrderById)
 
 Success. Check the example shown below or refer `PosOrderById` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -11975,6 +21704,17 @@ Success. Check example below or refer `CatalogueOrderRequest` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12017,6 +21757,17 @@ Success. Check example below or refer `Offer` for more details.
 [Offer](#Offer)
 
 Success. Check example below or refer `Offer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12066,6 +21817,17 @@ Success. Check example below or refer `OrderDiscountResponse` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12103,6 +21865,17 @@ Success. Check example below or refer `PointsResponse` for more details.
 [PointsResponse](#PointsResponse)
 
 Success. Check example below or refer `PointsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12156,6 +21929,17 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12193,6 +21977,17 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 [ReferralDetailsResponse](#ReferralDetailsResponse)
 
 Success. Check example below or refer `ReferralDetailsResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12238,6 +22033,17 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
 
 Success. Check example below or refer `RedeemReferralCodeResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12293,6 +22099,17 @@ Success. Returns an abuse ID.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12334,6 +22151,17 @@ Success.
 [UpdateResponse](#UpdateResponse)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12396,6 +22224,17 @@ Success. Check the example shown below or refer `ReportAbuseGetResponse` for mor
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12445,6 +22284,17 @@ Success. Check the example shown below or refer `AttributeResponse` for more det
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12486,6 +22336,17 @@ Success. Returns an attribute ID.
 [InsertResponse](#InsertResponse)
 
 Success. Returns an attribute ID.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12532,6 +22393,17 @@ Success. Check the example shown below or refer `Attribute` for more details.
 [Attribute](#Attribute)
 
 Success. Check the example shown below or refer `Attribute` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12584,6 +22456,17 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12629,6 +22512,17 @@ Success. Returns a comment ID.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12670,6 +22564,17 @@ Success.
 [UpdateResponse](#UpdateResponse)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12735,6 +22640,17 @@ Success. Check the example shown below or refer `CommentGetResponse` for more de
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12780,6 +22696,17 @@ Success. Returns a Product object. Check the example shown below or refer `Check
 [CheckEligibilityResponse](#CheckEligibilityResponse)
 
 Success. Returns a Product object. Check the example shown below or refer `CheckEligibilityResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12830,6 +22757,17 @@ Success.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12875,6 +22813,17 @@ Success. Returns media IDs.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -12916,6 +22865,17 @@ Success.
 [UpdateResponse](#UpdateResponse)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -12981,6 +22941,17 @@ Success. Check the example shown below or refer `MediaGetResponse` for more deta
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13039,6 +23010,17 @@ Success. Check the example shown below or refer `ReviewMetricGetResponse` for mo
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13084,6 +23066,17 @@ Success. Returns a review ID.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13125,6 +23118,17 @@ Success.
 [UpdateResponse](#UpdateResponse)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -13211,6 +23215,17 @@ Success. Check the example shown below or refer `ReviewGetResponse` for more det
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13263,6 +23278,17 @@ Success. Check the example shown below or refer `TemplateGetResponse` for more d
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13308,6 +23334,17 @@ Success. Returns a qna ID.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13349,6 +23386,17 @@ Success.
 [UpdateResponse](#UpdateResponse)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -13417,6 +23465,17 @@ Success. Check the example shown below or refer `QNAGetResponse` for more detail
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13472,6 +23531,17 @@ Success. Check the example shown below or refer `VoteResponse` for more details.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13517,6 +23587,17 @@ Success. Returns a vote ID.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -13558,6 +23639,17 @@ Success.
 [UpdateResponse](#UpdateResponse)
 
 Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
 
 
 
@@ -13619,6 +23711,183 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
+    }
+  ],
+  "cart_id": 54,
+  "uid": "54",
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "gstin": null,
+  "checkout_mode": "self",
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+}
+```
+</details>
 
 
 
@@ -13710,10 +23979,15 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
 Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
 
 
-*Examples:*
 
 
-Product has been added to your cart
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Product has been added to your cart</i></summary>
+
 ```json
 {
   "value": {
@@ -14163,8 +24437,11 @@ Product has been added to your cart
   }
 }
 ```
+</details>
 
-Sorry, item is out of stock
+<details>
+<summary><i>&nbsp; Sorry, item is out of stock</i></summary>
+
 ```json
 {
   "value": {
@@ -14341,6 +24618,9 @@ Sorry, item is out of stock
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14397,10 +24677,15 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
 
 
-*Examples:*
 
 
-Nothing updated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Nothing updated</i></summary>
+
 ```json
 {
   "value": {
@@ -14582,8 +24867,11 @@ Nothing updated
   }
 }
 ```
+</details>
 
-Item updated in the cart
+<details>
+<summary><i>&nbsp; Item updated in the cart</i></summary>
+
 ```json
 {
   "value": {
@@ -14757,6 +25045,9 @@ Item updated in the cart
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -14807,6 +25098,19 @@ Success. Returns the total count of items in a user's cart.
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "user_cart_items_count": 0
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -14849,6 +25153,53 @@ Success. Returns a coupon object which has a list of all the eligible coupons. R
 [GetCouponResponse](#GetCouponResponse)
 
 Success. Returns a coupon object which has a list of all the eligible coupons. Refer `GetCouponResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "available_coupon_list": [
+    {
+      "coupon_value": 500,
+      "minimum_cart_value": 0,
+      "coupon_code": "RAJA500",
+      "title": "RAJA500 | Fynd coupon",
+      "sub_title": "NA",
+      "message": "TEST500",
+      "max_discount_value": 500,
+      "uid": 17921,
+      "is_applicable": true,
+      "is_applied": false,
+      "expires_on": "28 Aug, 19"
+    },
+    {
+      "coupon_value": 2250,
+      "minimum_cart_value": 0,
+      "coupon_code": "PRISMC22250111",
+      "title": "celio 2 time coupn to kalim hsp",
+      "sub_title": "celio 2 time coupn to kalim hsp",
+      "message": "celio 2 time coupn to kalim hsp",
+      "max_discount_value": 2250,
+      "uid": 17743,
+      "is_applicable": true,
+      "is_applied": false,
+      "expires_on": "24 Jan, 20"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "total": 0,
+    "has_previous": false,
+    "has_next": false,
+    "total_item_count": 0
+  }
+}
+```
+</details>
 
 
 
@@ -14910,6 +25261,553 @@ Success. Returns coupons applied to the cart along with item details and price b
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": -7240.2163,
+      "fynd_cash": 0,
+      "gst_charges": 2139.08,
+      "mrp_total": 26983,
+      "subtotal": 19742.7837,
+      "total": 17492.7837,
+      "vog": 15353.7,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 26983,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -7240,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 19743,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 17493,
+        "currency_code": "INR"
+      }
+    ]
+  },
+  "items": [
+    {
+      "availability": {
+        "sizes": [
+          "10"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 751083,
+        "name": "Carson 2",
+        "slug": "puma-carson-2-751083-6ad98d",
+        "brand": {
+          "uid": 9,
+          "name": "Puma"
+        },
+        "categories": [
+          {
+            "uid": 165,
+            "name": "Outdoor Sports Shoes"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
+          "query": {
+            "product_slug": [
+              "puma-carson-2-751083-6ad98d"
+            ]
+          }
+        }
+      },
+      "quantity": 4,
+      "discount": "41% OFF",
+      "price": {
+        "base": {
+          "add_on": 9596,
+          "marked": 15996,
+          "effective": 9596,
+          "selling": 9596,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 9596,
+          "marked": 15996,
+          "effective": 9596,
+          "selling": 9596,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "751083_10",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "612_9_SE61201_19100302_10",
+        "size": "10",
+        "seller": {
+          "uid": 612,
+          "name": "SSR ENTERPRISE"
+        },
+        "store": {
+          "uid": 4431,
+          "name": "Motilal Nagar 1, Goregaon"
+        },
+        "quantity": 4,
+        "price": {
+          "base": {
+            "marked": 3999,
+            "effective": 2399,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3999,
+            "effective": 2399,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "L",
+          "M",
+          "S",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 246228,
+        "name": "Blue Solid T-Shirt",
+        "slug": "superdry-blue-solid-t-shirt-2",
+        "brand": {
+          "uid": 235,
+          "name": "Superdry"
+        },
+        "categories": [
+          {
+            "uid": 192,
+            "name": "T-Shirts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
+          "query": {
+            "product_slug": [
+              "superdry-blue-solid-t-shirt-2"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "",
+      "price": {
+        "base": {
+          "add_on": 4490,
+          "marked": 4490,
+          "effective": 4490,
+          "selling": 4490,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 4490,
+          "marked": 4490,
+          "effective": 4490,
+          "selling": 4490,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "246228_S",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "46_235_TM62_M11029ONDSXNS_S",
+        "size": "S",
+        "seller": {
+          "uid": 46,
+          "name": "RELIANCE BRANDS LIMITED"
+        },
+        "store": {
+          "uid": 4550,
+          "name": "VR Mall"
+        },
+        "quantity": 1,
+        "price": {
+          "base": {
+            "marked": 4490,
+            "effective": 4490,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 4490,
+            "effective": 4490,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "XL",
+          "M",
+          "L",
+          "S"
+        ],
+        "other_store_quantity": 8,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 443175,
+        "name": "Light Blue Denim Jeggings",
+        "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
+        "brand": {
+          "uid": 207,
+          "name": "Go Colors"
+        },
+        "categories": [
+          {
+            "uid": 267,
+            "name": "Jeggings"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
+          "query": {
+            "product_slug": [
+              "go-colors-light-blue-denim-jeggings-443175-3c688c"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "",
+      "price": {
+        "base": {
+          "add_on": 1599,
+          "marked": 1599,
+          "effective": 1599,
+          "selling": 1599,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1599,
+          "marked": 1599,
+          "effective": 1599,
+          "selling": 1599,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "443175_S",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "162_207_1271_LJ03LBLUDN88_S",
+        "size": "S",
+        "seller": {
+          "uid": 162,
+          "name": "GO FASHION INDIA PRIVATE LIMITED"
+        },
+        "store": {
+          "uid": 5784,
+          "name": "Vega City mall"
+        },
+        "quantity": 3,
+        "price": {
+          "base": {
+            "marked": 1599,
+            "effective": 1599,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1599,
+            "effective": 1599,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "OS"
+        ],
+        "other_store_quantity": 12,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 842716,
+        "name": "Blue Backpack",
+        "slug": "istorm-blue-backpack-842716-951b5a",
+        "brand": {
+          "uid": 1177,
+          "name": "iStorm"
+        },
+        "categories": [
+          {
+            "uid": 198,
+            "name": "Backpacks"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1177_IS483/1_1551353288247.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1177_IS483/1_1551353288247.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/istorm-blue-backpack-842716-951b5a/",
+          "query": {
+            "product_slug": [
+              "istorm-blue-backpack-842716-951b5a"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "34% OFF",
+      "price": {
+        "base": {
+          "add_on": 998.7837,
+          "marked": 1499,
+          "effective": 998.7837,
+          "selling": 998.7837,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 998.7837,
+          "marked": 1499,
+          "effective": 998.7837,
+          "selling": 998.7837,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "842716_OS",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "638_1177_CRSL63802_IS483_OS",
+        "size": "OS",
+        "seller": {
+          "uid": 638,
+          "name": "COUNFREEDISE RETAIL SERVICES LTD"
+        },
+        "store": {
+          "uid": 4630,
+          "name": "Bhiwandi"
+        },
+        "quantity": 4,
+        "price": {
+          "base": {
+            "marked": 1499,
+            "effective": 998.7837,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1499,
+            "effective": 998.7837,
+            "currency_code": "INR"
+          }
+        }
+      }
+    },
+    {
+      "availability": {
+        "sizes": [
+          "OS"
+        ],
+        "other_store_quantity": 2,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 778937,
+        "name": "Colourful Carnival Bouncer",
+        "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
+        "brand": {
+          "uid": 963,
+          "name": "Fisher-Price"
+        },
+        "categories": [
+          {
+            "uid": 576,
+            "name": "Cradles"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
+          "query": {
+            "product_slug": [
+              "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
+            ]
+          }
+        }
+      },
+      "quantity": 1,
+      "discount": "11% OFF",
+      "price": {
+        "base": {
+          "add_on": 3059,
+          "marked": 3399,
+          "effective": 3059,
+          "selling": 3059,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3059,
+          "marked": 3399,
+          "effective": 3059,
+          "selling": 3059,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "bulk_offer": {},
+      "key": "778937_OS",
+      "coupon_message": "",
+      "article": {
+        "type": "article",
+        "uid": "686_963_IC68601_PWUPC01977_OS",
+        "size": "OS",
+        "seller": {
+          "uid": 686,
+          "name": "INDUS CORPORATION"
+        },
+        "store": {
+          "uid": 5059,
+          "name": "Vidyaranyapura Main Road"
+        },
+        "quantity": 3,
+        "price": {
+          "base": {
+            "marked": 3399,
+            "effective": 3059,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3399,
+            "effective": 3059,
+            "currency_code": "INR"
+          }
+        }
+      }
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "cart_id": 7927,
+  "uid": "7927",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Wed, 04 Sep 2019 04:52:21 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -14952,6 +25850,174 @@ Success. Returns coupons removed from the cart along with item details and price
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns coupons removed from the cart along with item details and price breakup. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 342.75,
+      "mrp_total": 3199,
+      "subtotal": 3199,
+      "total": 3199,
+      "vog": 2856.25,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "prismc22250111",
+      "uid": 17743,
+      "value": 0,
+      "is_applied": false,
+      "message": "Coupon successfully removed"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 3199,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 3199,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 3199,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "bulk_offer": {},
+      "key": "857596_S",
+      "quantity": 1,
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "discount": "",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      }
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Thu, 22 Aug 2019 10:55:05 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
 
 
 
@@ -15009,10 +26075,15 @@ Success. Returns a data object containing the seller details and available offer
 Success. Returns a data object containing the seller details and available offers (if exists) on bulk products. Refer `BulkPriceResponse` for more details.
 
 
-*Examples:*
 
 
-Offers found
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Offers found</i></summary>
+
 ```json
 {
   "value": {
@@ -15069,8 +26140,11 @@ Offers found
   }
 }
 ```
+</details>
 
-Offers not found
+<details>
+<summary><i>&nbsp; Offers not found</i></summary>
+
 ```json
 {
   "value": {
@@ -15078,6 +26152,9 @@ Offers not found
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -15132,6 +26209,183 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
+    }
+  ],
+  "cart_id": 54,
+  "uid": "54",
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "gstin": null,
+  "checkout_mode": "self",
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+}
+```
+</details>
 
 
 
@@ -15194,6 +26448,47 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "address": [
+    {
+      "landmark": "",
+      "area_code": {
+        "slug": "pincode",
+        "id": 400093
+      },
+      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "state": "Maharashtra",
+      "meta": {},
+      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "country_code": "IND",
+      "phone": 9915347757,
+      "geo_location": {},
+      "country": "India",
+      "is_default_address": true,
+      "is_active": true,
+      "city": "Mumbai",
+      "pincode": 400093,
+      "checkout_mode": "self",
+      "address_type": "home",
+      "tags": [],
+      "area": "Sector 127",
+      "name": "abc",
+      "email": "ankur@gofynd1.com",
+      "address": "Megatron2",
+      "store_name": "store123"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15235,6 +26530,21 @@ Success. Returns the address ID, a flag whether the address is set as default, a
 [SaveAddressResponse](#SaveAddressResponse)
 
 Success. Returns the address ID, a flag whether the address is set as default, and a success message. Refer `SaveAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "mongo_object_id",
+  "is_default_address": true,
+  "success": true
+}
+```
+</details>
 
 
 
@@ -15300,6 +26610,44 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "landmark": "",
+  "area_code": {
+    "slug": "pincode",
+    "id": 400093
+  },
+  "state": "Maharashtra",
+  "meta": {},
+  "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+  "country_code": "IND",
+  "phone": 9915347757,
+  "geo_location": {},
+  "country": "India",
+  "is_default_address": true,
+  "is_active": true,
+  "city": "Mumbai",
+  "pincode": 400093,
+  "checkout_mode": "self",
+  "address_type": "home",
+  "uid": 1145,
+  "tags": [],
+  "area": "Sector 127",
+  "name": "abc",
+  "address_id": 1145,
+  "email": "ankur@gofynd1.com",
+  "address": "Megatron2",
+  "store_name": "store123"
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15348,6 +26696,22 @@ Success. Returns the address ID and a message indicating a successful address up
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_updated": true,
+  "id": "<mongo_object_id>",
+  "is_default_address": true,
+  "success": true
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15390,6 +26754,20 @@ Returns a Status object indicating the success or failure of address deletion.
 [DeleteAddressResponse](#DeleteAddressResponse)
 
 Returns a Status object indicating the success or failure of address deletion.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "id": "<mongo_object_id>",
+  "is_deleted": true
+}
+```
+</details>
 
 
 
@@ -15448,6 +26826,272 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_valid": true,
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:12 GMT",
+  "restrict_checkout": false
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -15492,6 +27136,284 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 [CartDetailResponse](#CartDetailResponse)
 
 Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "error_message": "Note: Your order delivery will be delayed by 7-10 Days",
+  "user_type": "Store User",
+  "cod_charges": 0,
+  "order_id": null,
+  "cod_available": true,
+  "cod_message": "No additional COD charges applicable",
+  "delivery_charges": 0,
+  "delivery_charge_order_value": 0,
+  "store_code": "",
+  "store_emps": [],
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": -2250,
+      "delivery_charge": 0,
+      "discount": 0,
+      "fynd_cash": 0,
+      "gst_charges": 315.86,
+      "mrp_total": 5198,
+      "subtotal": 5198,
+      "total": 2948,
+      "vog": 2632.15,
+      "you_saved": 0
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 5198,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Coupon",
+        "key": "coupon",
+        "value": -2250,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 2948,
+        "currency_code": "INR"
+      }
+    ],
+    "coupon": {
+      "type": "cash",
+      "code": "PRISMC22250111",
+      "uid": 17743,
+      "value": 2250,
+      "is_applied": true,
+      "message": "coupn applied"
+    },
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "items": [
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "M",
+          "S",
+          "L",
+          "XXL",
+          "XL"
+        ],
+        "other_store_quantity": 10,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 3199,
+          "marked": 3199,
+          "effective": 3199,
+          "selling": 3199,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_LETTER19APINK_S",
+        "size": "S",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 11,
+        "price": {
+          "base": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 3199,
+            "effective": 3199,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 857596,
+        "name": "Pink Solid Hoodie",
+        "slug": "883-police-pink-solid-hoodie-857596-111bdc",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 144,
+            "name": "Hoodies"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_LETTER19APINK/1_1553062658148.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-pink-solid-hoodie-857596-111bdc/",
+          "query": {
+            "product_slug": [
+              "883-police-pink-solid-hoodie-857596-111bdc"
+            ]
+          }
+        }
+      },
+      "key": "857596_S",
+      "discount": ""
+    },
+    {
+      "message": "",
+      "quantity": 1,
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "XXL"
+        ],
+        "other_store_quantity": 1,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "coupon_message": "PRISMC22250111 coupon applied",
+      "price": {
+        "base": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 1999,
+          "marked": 1999,
+          "effective": 1999,
+          "selling": 1999,
+          "currency_code": "INR"
+        }
+      },
+      "bulk_offer": {},
+      "article": {
+        "type": "article",
+        "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
+        "size": "L",
+        "seller": {
+          "uid": 381,
+          "name": "INTERSOURCE GARMENTS PVT LTD"
+        },
+        "store": {
+          "uid": 3009,
+          "name": "Kormangala"
+        },
+        "quantity": 2,
+        "price": {
+          "base": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1999,
+            "effective": 1999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "product": {
+        "type": "product",
+        "uid": 820312,
+        "name": "Navy Blue Melange Shorts",
+        "slug": "883-police-navy-blue-melange-shorts-820312-4943a8",
+        "brand": {
+          "uid": 610,
+          "name": "883 Police"
+        },
+        "categories": [
+          {
+            "uid": 193,
+            "name": "Shorts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/610_SPIRAL19ANAVY/1_1549105947281.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/883-police-navy-blue-melange-shorts-820312-4943a8/",
+          "query": {
+            "product_slug": [
+              "883-police-navy-blue-melange-shorts-820312-4943a8"
+            ]
+          }
+        }
+      },
+      "key": "820312_L",
+      "discount": ""
+    }
+  ],
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "cart_id": 7477,
+  "uid": "7477",
+  "gstin": null,
+  "checkout_mode": "self",
+  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
+  "restrict_checkout": false,
+  "is_valid": true
+}
+```
+</details>
 
 
 
@@ -15553,6 +27475,27 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 [PaymentCouponValidate](#PaymentCouponValidate)
 
 Success. Returns a success message and the coupon validity. Refer `PaymentCouponValidate` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "",
+  "coupon_validity": {
+    "valid": true,
+    "discount": 499.5,
+    "code": "testpayment",
+    "display_message_en": "",
+    "title": "Coupon value will change."
+  }
+}
+```
+</details>
 
 
 
@@ -15619,10 +27562,15 @@ Success. Returns delivery promise along with shipment details and price breakup.
 Success. Returns delivery promise along with shipment details and price breakup. Refer `CartShipmentsResponse` for more details.
 
 
-*Examples:*
 
 
-Shipment Generated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Shipment Generated</i></summary>
+
 ```json
 {
   "value": {
@@ -16007,8 +27955,11 @@ Shipment Generated
   }
 }
 ```
+</details>
 
-Shipment Generation Failed
+<details>
+<summary><i>&nbsp; Shipment Generation Failed</i></summary>
+
 ```json
 {
   "value": {
@@ -16257,6 +28208,9 @@ Shipment Generation Failed
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -16319,10 +28273,15 @@ Success. Returns delivery promise along with shipment details and price breakup.
 Success. Returns delivery promise along with shipment details and price breakup. Refer `CartShipmentsResponse` for more details.
 
 
-*Examples:*
 
 
-Shipment Generated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Shipment Generated</i></summary>
+
 ```json
 {
   "value": {
@@ -16708,8 +28667,11 @@ Shipment Generated
   }
 }
 ```
+</details>
 
-Shipment Generation Failed
+<details>
+<summary><i>&nbsp; Shipment Generation Failed</i></summary>
+
 ```json
 {
   "value": {
@@ -16958,6 +28920,9 @@ Shipment Generation Failed
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -17008,10 +28973,15 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for m
 Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for more details.
 
 
-*Examples:*
 
 
-Address id not found
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Address id not found</i></summary>
+
 ```json
 {
   "value": {
@@ -17020,8 +28990,11 @@ Address id not found
   }
 }
 ```
+</details>
 
-Missing address_id
+<details>
+<summary><i>&nbsp; Missing address_id</i></summary>
+
 ```json
 {
   "value": {
@@ -17031,8 +29004,11 @@ Missing address_id
   }
 }
 ```
+</details>
 
-Successful checkout cod payment
+<details>
+<summary><i>&nbsp; Successful checkout cod payment</i></summary>
+
 ```json
 {
   "value": {
@@ -17383,6 +29359,9 @@ Successful checkout cod payment
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -17431,6 +29410,19 @@ Returns a message indicating the success of cart meta updation as shown below.
 [CartMetaResponse](#CartMetaResponse)
 
 Returns a message indicating the success of cart meta updation as shown below.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "cart meta updated"
+}
+```
+</details>
 
 
 
@@ -17484,6 +29476,25 @@ Success. Returns the available delivery mode available for a given PIN Code, alo
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "available_modes": [
+    "HomeDelivery",
+    "PickAtStore"
+  ],
+  "pickup_stores": [
+    1
+  ]
+}
+```
+</details>
+
+
+
+
 
 
 
@@ -17526,6 +29537,41 @@ Success. Returns available store information with its address as shown below.
 [StoreDetailsResponse](#StoreDetailsResponse)
 
 Success. Returns available store information with its address as shown below.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "Tennille Urse",
+      "phone": "9819716565",
+      "email": "rehman@cashkart.com",
+      "address_type": "store",
+      "address": "NO",
+      "area": "",
+      "pincode": 400072,
+      "area_code": 400072,
+      "area_code_slug": "pincode",
+      "landmark": "",
+      "country": "INDIA",
+      "city": "MUMBAI",
+      "state": "MAHA",
+      "store_code": "6462b3cd-9d64-4da9-a764-b0e6a52cf5e8",
+      "uid": 20,
+      "geo_location": {
+        "longitude": 1,
+        "latitude": 1
+      }
+    }
+  ]
+}
+```
+</details>
 
 
 
@@ -17573,10 +29619,15 @@ Returns a URL to share and a token as shown below.
 Returns a URL to share and a token as shown below.
 
 
-*Examples:*
 
 
-Token Generated
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Token Generated</i></summary>
+
 ```json
 {
   "value": {
@@ -17585,6 +29636,9 @@ Token Generated
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -17631,6 +29685,293 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
 [SharedCartResponse](#SharedCartResponse)
 
 Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "cart": {
+    "shared_cart_details": {
+      "token": "BQ9jySQ9",
+      "user": {
+        "user_id": "23109086",
+        "is_anonymous": false
+      },
+      "meta": {
+        "selected_staff": "",
+        "ordering_store": null
+      },
+      "selected_staff": "",
+      "ordering_store": null,
+      "source": {},
+      "created_on": "2019-12-18T14:00:07.165000"
+    },
+    "items": [
+      {
+        "key": "791651_6",
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_6",
+          "size": "6",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 1,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 1,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 12,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 2095,
+            "marked": 2095,
+            "effective": 2095,
+            "selling": 2095,
+            "currency_code": "INR"
+          }
+        }
+      },
+      {
+        "key": "791651_7",
+        "discount": "",
+        "bulk_offer": {},
+        "coupon_message": "",
+        "article": {
+          "type": "article",
+          "uid": "304_1054_9036_R1005753_7",
+          "size": "7",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 5322,
+            "name": "Vaisali Nagar"
+          },
+          "quantity": 2,
+          "price": {
+            "base": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2095,
+              "effective": 2095,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 791651,
+          "name": "Black Running Shoes",
+          "slug": "furo-black-running-shoes-791651-f8bcc3",
+          "brand": {
+            "uid": 1054,
+            "name": "Furo"
+          },
+          "categories": [
+            {
+              "uid": 160,
+              "name": "Running Shoes"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/1054_R1005753/1_1546490507364.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/furo-black-running-shoes-791651-f8bcc3/",
+            "query": {
+              "product_slug": [
+                "furo-black-running-shoes-791651-f8bcc3"
+              ]
+            }
+          }
+        },
+        "message": "",
+        "quantity": 2,
+        "availability": {
+          "sizes": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "6"
+          ],
+          "other_store_quantity": 7,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true
+        },
+        "price": {
+          "base": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 4190,
+            "marked": 4190,
+            "effective": 4190,
+            "selling": 4190,
+            "currency_code": "INR"
+          }
+        }
+      }
+    ],
+    "cart_id": 13055,
+    "uid": "13055",
+    "breakup_values": {
+      "raw": {
+        "cod_charge": 0,
+        "convenience_fee": 0,
+        "coupon": 0,
+        "delivery_charge": 0,
+        "discount": 0,
+        "fynd_cash": 0,
+        "gst_charges": 958.73,
+        "mrp_total": 6285,
+        "subtotal": 6285,
+        "total": 6285,
+        "vog": 5326.27,
+        "you_saved": 0
+      },
+      "loyalty_points": {
+        "total": 0,
+        "applicable": 0,
+        "is_applied": false,
+        "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+      },
+      "coupon": {
+        "type": "cash",
+        "code": "",
+        "uid": null,
+        "value": 0,
+        "is_applied": false,
+        "message": "Sorry! Invalid coupon"
+      },
+      "display": [
+        {
+          "display": "MRP Total",
+          "key": "mrp_total",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Subtotal",
+          "key": "subtotal",
+          "value": 6285,
+          "currency_code": "INR"
+        },
+        {
+          "display": "Total",
+          "key": "total",
+          "value": 6285,
+          "currency_code": "INR"
+        }
+      ]
+    },
+    "delivery_charge_info": "",
+    "coupon_text": "View all offers",
+    "gstin": null,
+    "comment": "",
+    "checkout_mode": "self",
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "COD",
+      "payment_identifier": null
+    },
+    "restrict_checkout": false,
+    "is_valid": true,
+    "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
+  },
+  "error": ""
+}
+```
+</details>
 
 
 
@@ -17682,10 +30023,15 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 Success. Returns a merged or replaced cart as per the valid token. Refer `SharedCartResponse` for more details.
 
 
-*Examples:*
 
 
-Cart Merged/Replaced
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Cart Merged/Replaced</i></summary>
+
 ```json
 {
   "value": {
@@ -17966,6 +30312,9 @@ Cart Merged/Replaced
   }
 }
 ```
+</details>
+
+</details>
 
 
 
@@ -18021,6 +30370,17 @@ Success. Check the example shown below or refer `GetTatProductResponse` for more
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18067,6 +30427,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
 
 
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
 
 
 
@@ -18098,8 +30469,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
  | url | string |  no  |  |
+ | type | string |  no  |  |
  | meta | [Meta](#Meta) |  no  |  |
 
 ---
@@ -18111,9 +30482,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | query | string |  no  |  |
  | params | string |  no  |  |
  | type | string |  no  |  |
- | query | string |  no  |  |
 
 ---
 
@@ -18124,8 +30495,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
  | page | [ProductListingActionPage](#ProductListingActionPage) |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
@@ -18137,35 +30508,9 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [Price](#Price)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_symbol | string |  no  |  |
- | currency_code | string |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | [Price](#Price) |  no  |  |
- | marked | [Price](#Price) |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -18176,8 +30521,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
  | value | string |  no  |  |
+ | type | string |  no  |  |
  | key | string |  no  |  |
 
 ---
@@ -18197,36 +30542,62 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
+ #### [Price](#Price)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | [Price](#Price) |  no  |  |
+ | marked | [Price](#Price) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | image_nature | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | uid | number |  no  |  |
- | rating | number |  no  |  |
- | item_type | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | name | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | type | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | color | string |  no  |  |
- | similars | [string] |  no  |  |
- | attributes | string |  no  |  |
- | highlights | [string] |  no  |  |
- | item_code | string |  no  |  |
- | product_online_date | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | short_description | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | description | string |  no  |  |
- | discount | string |  no  |  |
  | slug | string |  yes  |  |
+ | image_nature | string |  no  |  |
+ | item_type | string |  no  |  |
+ | short_description | string |  no  |  |
+ | product_online_date | string |  no  |  |
+ | uid | number |  no  |  |
+ | similars | [string] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | item_code | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | discount | string |  no  |  |
+ | rating | number |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | description | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | color | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | highlights | [string] |  no  |  |
  | rating_count | number |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | attributes | string |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
@@ -18244,6 +30615,81 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
+ #### [ColumnHeader](#ColumnHeader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ | convertable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeaders](#ColumnHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChartValues](#SizeChartValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_4 | string |  no  |  |
+ | col_2 | string |  no  |  |
+ | col_6 | string |  no  |  |
+ | col_3 | string |  no  |  |
+ | col_1 | string |  no  |  |
+ | col_5 | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChart](#SizeChart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
+ | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
+ | description | string |  no  |  |
+ | title | string |  no  |  |
+ | image | string |  no  |  |
+ | size_tip | string |  no  |  |
+ | unit | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSize](#ProductSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | value | string |  no  |  |
+ | quantity | number |  no  |  |
+ | is_available | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductSizeStores](#ProductSizeStores)
 
  | Properties | Type | Nullable | Description |
@@ -18255,116 +30701,55 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [ColumnHeader](#ColumnHeader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | convertable | boolean |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [ColumnHeaders](#ColumnHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChartValues](#SizeChartValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_2 | string |  no  |  |
- | col_3 | string |  no  |  |
- | col_4 | string |  no  |  |
- | col_5 | string |  no  |  |
- | col_6 | string |  no  |  |
- | col_1 | string |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChart](#SizeChart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | title | string |  no  |  |
- | size_tip | string |  no  |  |
- | image | string |  no  |  |
- | description | string |  no  |  |
- | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
- | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductSize](#ProductSize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_available | boolean |  no  |  |
- | display | string |  no  |  |
- | value | string |  no  |  |
- | quantity | number |  no  |  |
-
----
-
-
- 
- 
  #### [ProductSizes](#ProductSizes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
- | size_chart | [SizeChart](#SizeChart) |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
  | sellable | boolean |  no  |  |
- | discount | string |  no  |  |
+ | size_chart | [SizeChart](#SizeChart) |  no  |  |
  | sizes | [[ProductSize](#ProductSize)] |  no  |  |
+ | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | discount | string |  no  |  |
 
 ---
 
 
  
  
- #### [Details](#Details)
+ #### [ProductStockPrice](#ProductStockPrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
- | key | string |  no  |  |
+ | currency | string |  no  |  |
+ | marked | number |  no  |  |
+ | effective | number |  no  |  |
 
 ---
 
 
  
  
- #### [MarketPlaceSttributes](#MarketPlaceSttributes)
+ #### [StrategyWiseListing](#StrategyWiseListing)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[Details](#Details)] |  no  |  |
- | title | string |  no  |  |
+ | tat | number |  no  |  |
+ | distance | number |  no  |  |
+ | quantity | number |  no  |  |
+ | pincode | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignment](#ArticleAssignment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | level | string |  no  |  |
+ | strategy | string |  no  |  |
 
 ---
 
@@ -18375,8 +30760,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pieces | number |  no  |  |
  | size | string |  no  |  |
+ | pieces | number |  no  |  |
 
 ---
 
@@ -18406,39 +30791,38 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [Seller](#Seller)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
  #### [ReturnConfig](#ReturnConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
  | time | number |  no  |  |
  | returnable | boolean |  no  |  |
+ | unit | string |  no  |  |
 
 ---
 
 
  
  
- #### [ProductStockPrice](#ProductStockPrice)
+ #### [Details](#Details)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | number |  no  |  |
- | currency | string |  no  |  |
- | marked | number |  no  |  |
+ | value | string |  no  |  |
+ | type | string |  no  |  |
+ | key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketPlaceSttributes](#MarketPlaceSttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[Details](#Details)] |  no  |  |
+ | title | string |  no  |  |
 
 ---
 
@@ -18449,35 +30833,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
  | count | number |  no  |  |
  | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Seller](#Seller)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [StrategyWiseListing](#StrategyWiseListing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | distance | number |  no  |  |
- | quantity | number |  no  |  |
- | tat | number |  no  |  |
- | pincode | number |  no  |  |
-
----
-
-
- 
- 
- #### [ArticleAssignment](#ArticleAssignment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | strategy | string |  no  |  |
- | level | string |  no  |  |
+ | count | number |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -18488,22 +30859,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount | string |  no  |  |
- | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
- | article_id | string |  no  |  |
- | set | [ProductSet](#ProductSet) |  no  |  |
- | seller | [Seller](#Seller) |  no  |  |
- | special_badge | string |  no  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | seller_count | number |  no  |  |
- | item_type | string |  no  |  |
- | quantity | number |  no  |  |
- | store | [Store](#Store) |  no  |  |
  | price_per_piece | [ProductStockPrice](#ProductStockPrice) |  no  |  |
  | strategy_wise_listing | [[StrategyWiseListing](#StrategyWiseListing)] |  no  |  |
- | long_lat | [number] |  no  |  |
  | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
+ | discount | string |  no  |  |
+ | set | [ProductSet](#ProductSet) |  no  |  |
+ | seller_count | number |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | item_type | string |  no  |  |
+ | long_lat | [number] |  no  |  |
+ | special_badge | string |  no  |  |
+ | marketplace_attributes | [[MarketPlaceSttributes](#MarketPlaceSttributes)] |  no  |  |
+ | store | [Store](#Store) |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
+ | article_id | string |  no  |  |
+ | quantity | number |  no  |  |
  | pincode | number |  no  |  |
 
 ---
@@ -18516,8 +30887,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  no  |  |
- | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -18528,9 +30899,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
  | items | [[ProductSizePriceResponse](#ProductSizePriceResponse)] |  no  |  |
+ | sort_on | [[ProductSizeSellerFilter](#ProductSizeSellerFilter)] |  no  |  |
 
 ---
 
@@ -18542,9 +30913,9 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | string |  no  |  |
+ | description | string |  no  |  |
  | display | string |  no  |  |
  | key | string |  no  |  |
- | description | string |  no  |  |
 
 ---
 
@@ -18567,8 +30938,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
  | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
 
 ---
 
@@ -18579,10 +30950,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
  | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
- | subtitle | string |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
  | title | string |  no  |  |
+ | subtitle | string |  no  |  |
 
 ---
 
@@ -18605,8 +30976,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ProductDetail](#ProductDetail)] |  no  |  |
- | subtitle | string |  no  |  |
  | title | string |  no  |  |
+ | subtitle | string |  no  |  |
 
 ---
 
@@ -18628,14 +30999,14 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_available | boolean |  no  |  |
- | uid | number |  no  |  |
- | color_name | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
  | value | string |  no  |  |
  | slug | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | color_name | string |  no  |  |
+ | uid | number |  no  |  |
+ | is_available | boolean |  no  |  |
  | color | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
 
 ---
@@ -18648,9 +31019,9 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | header | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
  | display_type | string |  no  |  |
  | key | string |  no  |  |
- | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
 
 ---
 
@@ -18684,8 +31055,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | city | string |  no  |  |
  | code | string |  no  |  |
+ | city | string |  no  |  |
  | name | string |  no  |  |
  | id | number |  no  |  |
 
@@ -18698,15 +31069,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | string |  no  |  |
- | uid | string |  no  |  |
- | company | [CompanyDetail](#CompanyDetail) |  no  |  |
  | item_id | number |  no  |  |
+ | size | string |  no  |  |
+ | identifier | string |  no  |  |
+ | uid | string |  no  |  |
  | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | quantity | number |  no  |  |
+ | company | [CompanyDetail](#CompanyDetail) |  no  |  |
  | store | [StoreDetail](#StoreDetail) |  no  |  |
  | seller | [Seller](#Seller) |  no  |  |
- | identifier | string |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -18728,8 +31099,45 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
  | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingDetail](#ProductListingDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sellable | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | image_nature | string |  no  |  |
+ | item_type | string |  no  |  |
+ | short_description | string |  no  |  |
+ | product_online_date | string |  no  |  |
+ | uid | number |  no  |  |
+ | similars | [string] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | item_code | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | discount | string |  no  |  |
+ | rating | number |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | description | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | color | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | highlights | [string] |  no  |  |
+ | rating_count | number |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | attributes | string |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
@@ -18741,8 +31149,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  no  |  |
- | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -18753,18 +31161,18 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_format | string |  no  |  |
- | selected_min | number |  no  |  |
  | selected_max | number |  no  |  |
- | count | number |  no  |  |
  | max | number |  no  |  |
  | min | number |  no  |  |
  | query_format | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | currency_code | string |  no  |  |
- | display | string |  yes  |  |
  | value | string |  no  |  |
+ | selected_min | number |  no  |  |
+ | currency_symbol | string |  no  |  |
  | is_selected | boolean |  yes  |  |
+ | display | string |  yes  |  |
+ | currency_code | string |  no  |  |
+ | count | number |  no  |  |
+ | display_format | string |  no  |  |
 
 ---
 
@@ -18776,9 +31184,9 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | string |  no  |  |
- | kind | string |  no  |  |
  | display | string |  yes  |  |
  | name | string |  yes  |  |
+ | kind | string |  no  |  |
 
 ---
 
@@ -18797,51 +31205,14 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [ProductListingDetail](#ProductListingDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | image_nature | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | uid | number |  no  |  |
- | rating | number |  no  |  |
- | item_type | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | name | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | type | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | color | string |  no  |  |
- | similars | [string] |  no  |  |
- | attributes | string |  no  |  |
- | highlights | [string] |  no  |  |
- | item_code | string |  no  |  |
- | product_online_date | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | short_description | string |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | sellable | boolean |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | description | string |  no  |  |
- | discount | string |  no  |  |
- | slug | string |  yes  |  |
- | rating_count | number |  no  |  |
-
----
-
-
- 
- 
  #### [ProductListingResponse](#ProductListingResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
 
 ---
 
@@ -18865,13 +31236,13 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
  | uid | number |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | name | string |  no  |  |
  | departments | [string] |  no  |  |
  | discount | string |  no  |  |
- | slug | string |  no  |  |
- | name | string |  no  |  |
 
 ---
 
@@ -18882,8 +31253,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
  | items | [[BrandItem](#BrandItem)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
 
 ---
 
@@ -18894,22 +31265,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [DepartmentIdentifier](#DepartmentIdentifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | uid | number |  no  |  |
- | slug | string |  no  |  |
 
 ---
 
@@ -18920,13 +31279,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
  | uid | number |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
  | childs | [string] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | _custom_json | string |  no  |  |
 
 ---
 
@@ -18937,13 +31296,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
  | uid | number |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
  | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | _custom_json | string |  no  |  |
 
 ---
 
@@ -18954,13 +31313,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | slug | string |  no  |  |
  | uid | number |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
  | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | _custom_json | string |  no  |  |
 
 ---
 
@@ -18971,12 +31330,12 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
 
 ---
 
@@ -18987,8 +31346,20 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | department | string |  no  |  |
  | items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ | department | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentIdentifier](#DepartmentIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -18999,8 +31370,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
  | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
 
 ---
 
@@ -19011,10 +31382,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | name | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -19025,9 +31396,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
  | message | string |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
 ---
 
@@ -19039,10 +31410,10 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | [Media](#Media) |  no  |  |
- | uid | number |  no  |  |
- | priority_order | number |  no  |  |
  | slug | string |  no  |  |
+ | uid | number |  no  |  |
  | name | string |  no  |  |
+ | priority_order | number |  no  |  |
 
 ---
 
@@ -19065,9 +31436,9 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | [Media](#Media) |  no  |  |
- | type | string |  no  |  |
- | display | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | display | string |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
@@ -19085,13 +31456,42 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
+ #### [GetCollectionDetailNest](#GetCollectionDetailNest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | meta | string |  no  |  |
+ | query | string |  no  |  |
+ | uid | string |  no  |  |
+ | app_id | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | tag | [string] |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | description | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | badge | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | _schedule | string |  no  |  |
+ | type | string |  no  |  |
+ | cron | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CollectionListingFilterTag](#CollectionListingFilterTag)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -19103,8 +31503,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
 
 ---
 
@@ -19123,42 +31523,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
- #### [GetCollectionDetailNest](#GetCollectionDetailNest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
- | badge | string |  no  |  |
- | is_active | boolean |  no  |  |
- | query | string |  no  |  |
- | meta | string |  no  |  |
- | uid | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | tag | [string] |  no  |  |
- | name | string |  no  |  |
- | cron | string |  no  |  |
- | type | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | _schedule | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | description | string |  no  |  |
- | app_id | string |  no  |  |
- | slug | string |  no  |  |
-
----
-
-
- 
- 
  #### [GetCollectionListingResponse](#GetCollectionListingResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
  | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
- | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
 
 ---
 
@@ -19169,22 +31540,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
- | query | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | type | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | badge | string |  no  |  |
- | is_active | boolean |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | tag | [string] |  no  |  |
- | meta | string |  no  |  |
- | app_id | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | description | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
  | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | badge | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | _schedule | string |  no  |  |
+ | app_id | string |  no  |  |
+ | query | string |  no  |  |
+ | meta | string |  no  |  |
+ | type | string |  no  |  |
  | cron | string |  no  |  |
 
 ---
@@ -19208,8 +31579,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
  | id | string |  yes  |  |
+ | message | string |  yes  |  |
 
 ---
 
@@ -19267,16 +31638,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_code | string |  no  |  |
- | uid | number |  no  |  |
  | state | string |  no  |  |
  | store_email | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
- | city | string |  no  |  |
- | name | string |  no  |  |
+ | uid | number |  no  |  |
  | lat_long | [LatLong](#LatLong) |  no  |  |
+ | name | string |  no  |  |
+ | store_code | string |  no  |  |
+ | country | string |  no  |  |
+ | city | string |  no  |  |
  | address | string |  no  |  |
+ | pincode | number |  no  |  |
 
 ---
 
@@ -19287,8 +31658,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  yes  |  |
  | items | [[Store1](#Store1)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
 
 ---
 
@@ -24984,7 +37355,6 @@ Success. Returns a JSON object containing the city name, state and country ident
  | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
  | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
  | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
- | listing_page | [ListingPageFeature](#ListingPageFeature) |  no  |  |
  | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
  | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
  | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
@@ -25024,18 +37394,6 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  no  |  |
- | sort | string |  no  |  |
-
----
-
-
- 
- 
- #### [ListingPageFeature](#ListingPageFeature)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort_on | string |  no  |  |
 
 ---
 
@@ -25799,16 +38157,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  | Registered User id |
  | merchant_key | string |  no  | Unique merchant key |
  | key | string |  yes  | Payment gateway api key |
+ | pin | string |  no  | Masked pin |
  | config_type | string |  yes  | Fynd or self payment gateway |
+ | merchant_id | string |  no  | Unique merchant id |
+ | api | string |  no  | Payment gateway api endpoint |
+ | verify_api | string |  no  | Payment gateway verify payment api endpoint |
  | secret | string |  yes  | Masked payment gateway api secret |
  | sdk | boolean |  no  | SDK |
- | api | string |  no  | Payment gateway api endpoint |
- | merchant_id | string |  no  | Unique merchant id |
- | user_id | string |  no  | Registered User id |
- | pin | string |  no  | Masked pin |
- | verify_api | string |  no  | Payment gateway verify payment api endpoint |
 
 ---
 
@@ -25819,16 +38177,16 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | success | boolean |  yes  |  |
  | env | string |  yes  | Environment i.e Live or Test |
  | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
- | success | boolean |  yes  |  |
- | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
 
 ---
 
@@ -25839,8 +38197,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Error human understandable description. |
  | code | string |  yes  | Error descrption code. |
+ | description | string |  yes  | Error human understandable description. |
 
 ---
 
@@ -25851,8 +38209,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
  | success | boolean |  yes  | Response is successful or not |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
 
 ---
 
@@ -25864,9 +38222,9 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name_on_card | string |  no  |  |
+ | card_id | string |  yes  | Card token of payment gateway. |
  | nickname | string |  no  |  |
  | refresh | boolean |  no  | Refresh cache flag. |
- | card_id | string |  yes  | Card token of payment gateway. |
 
 ---
 
@@ -25877,9 +38235,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  | List of cards of customer. |
  | success | boolean |  yes  | Response is successful or not. |
  | message | string |  no  | Human readable message. |
+ | data | string |  yes  | List of cards of customer. |
 
 ---
 
@@ -25890,9 +38248,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name. |
- | customer_id | string |  no  | Payment gateway customer id. |
  | api | string |  no  | Payment gateway CARD api endpoint |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | aggregator | string |  yes  | Payment gateway name. |
 
 ---
 
@@ -25903,9 +38261,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
  | success | boolean |  yes  | Response is successful or not. |
  | message | string |  yes  | Human readable message. |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
 
 ---
 
@@ -25916,22 +38274,22 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  | aggregator_name |
- | card_brand | string |  no  | card_brand |
- | expired | boolean |  no  | expired |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_reference | string |  no  | card_reference |
  | card_number | string |  no  | card_number |
- | nickname | string |  no  | nickname |
- | card_name | string |  no  | card_name |
- | card_isin | string |  no  | card_isin |
- | card_type | string |  no  | card_type |
- | exp_month | number |  no  | exp_month |
  | card_id | string |  no  | card_id |
+ | expired | boolean |  no  | expired |
+ | exp_month | number |  no  | exp_month |
+ | card_token | string |  no  | card_token |
  | card_issuer | string |  no  | card_issuer |
+ | card_brand | string |  no  | card_brand |
+ | card_name | string |  no  | card_name |
  | exp_year | number |  no  | exp_year |
  | card_brand_image | string |  no  | card_brand_image |
- | card_token | string |  no  | card_token |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | aggregator_name | string |  yes  | aggregator_name |
+ | card_type | string |  no  | card_type |
+ | card_isin | string |  no  | card_isin |
+ | nickname | string |  no  | nickname |
+ | card_reference | string |  no  | card_reference |
 
 ---
 
@@ -25942,9 +38300,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[Card](#Card)] |  no  | List of cards of customer. |
  | success | boolean |  yes  | Response is successful or not. |
  | message | string |  yes  | Human readable message. |
+ | data | [[Card](#Card)] |  no  | List of cards of customer. |
 
 ---
 
@@ -25978,10 +38336,10 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_params | string |  yes  | Extra meta fields. |
- | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
  | payload | string |  yes  | Hashed payload string. |
  | phone_number | string |  yes  | User mobile number without country code. |
+ | aggregator | string |  yes  | Payment gateway name in camel case i.e Simpl, Rupifi |
+ | merchant_params | string |  yes  | Extra meta fields. |
  | transaction_amount_in_paise | number |  yes  | Payable amount in paise |
 
 ---
@@ -25993,9 +38351,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  yes  | Payment gateway response data |
  | success | boolean |  yes  | Response is successful or not |
  | message | string |  yes  | Error or success message. |
+ | data | string |  yes  | Payment gateway response data |
 
 ---
 
@@ -26006,11 +38364,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | transaction_token | string |  no  | Transaction token of payment gateway. |
  | amount | number |  yes  | Chargable amount of order. |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
  | order_id | string |  yes  | Unique order id. |
  | verified | boolean |  no  | Already Verified flag from payment gateway i.e Mswipe |
- | transaction_token | string |  no  | Transaction token of payment gateway. |
+ | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
 
 ---
 
@@ -26021,13 +38379,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_address_id | string |  no  | Delivery adddress id of customer |
- | status | string |  yes  | Status of charged payment. |
- | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
  | order_id | string |  yes  | Unique order id. |
- | cart_id | string |  no  | Cart id of customer |
- | success | boolean |  yes  | Response is successful or not. |
  | message | string |  yes  | Human readable message. |
+ | status | string |  yes  | Status of charged payment. |
+ | success | boolean |  yes  | Response is successful or not. |
+ | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
+ | delivery_address_id | string |  no  | Delivery adddress id of customer |
+ | cart_id | string |  no  | Cart id of customer |
 
 ---
 
@@ -26038,15 +38396,15 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | timeout | number |  yes  | Payment polling timeout if not recieved response |
  | polling_url | string |  yes  | Polling url to check payment status |
- | virtual_id | string |  no  | Bharat QR code virtual id |
+ | razorpay_payment_id | string |  yes  | Payment gateway payment id |
+ | method | string |  yes  | Payment method |
+ | aggregator_order_id | string |  yes  | Payment gateway order id |
  | customer_id | string |  yes  | Payment gateway customer id. |
  | aggregator | string |  yes  | Payment gateway name |
- | aggregator_order_id | string |  yes  | Payment gateway order id |
- | method | string |  yes  | Payment method |
- | razorpay_payment_id | string |  yes  | Payment gateway payment id |
+ | virtual_id | string |  no  | Bharat QR code virtual id |
+ | timeout | number |  yes  | Payment polling timeout if not recieved response |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
 
 ---
 
@@ -26057,21 +38415,21 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | order id |
  | currency | string |  no  | Currency code. |
  | polling_url | string |  yes  | Polling url. |
+ | razorpay_payment_id | string |  no  | Payment  id. |
  | amount | number |  no  | Payable amount. |
- | timeout | number |  no  | timeout. |
- | bqr_image | string |  no  | Bharath qr image url. |
- | virtual_id | string |  no  | Payment virtual address. |
- | customer_id | string |  no  | Payment gateway customer id. |
- | status | string |  no  | Status of payment. |
- | aggregator | string |  yes  | Payment gateway name |
- | vpa | string |  no  | Customer vpa address |
  | aggregator_order_id | string |  no  | Payment order id |
  | method | string |  yes  | Payment method |
+ | vpa | string |  no  | Customer vpa address |
+ | status | string |  no  | Status of payment. |
  | success | boolean |  yes  | Response is successful or not. |
- | razorpay_payment_id | string |  no  | Payment  id. |
+ | customer_id | string |  no  | Payment gateway customer id. |
+ | aggregator | string |  yes  | Payment gateway name |
+ | virtual_id | string |  no  | Payment virtual address. |
+ | bqr_image | string |  no  | Bharath qr image url. |
+ | timeout | number |  no  | timeout. |
+ | merchant_order_id | string |  yes  | order id |
 
 ---
 
@@ -26082,17 +38440,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | currency | string |  yes  | Currency code. |
  | contact | string |  yes  | Customer valid mobile number |
+ | currency | string |  yes  | Currency code. |
  | amount | number |  yes  | Payable amount. |
+ | method | string |  yes  | Payment method |
+ | vpa | string |  yes  | Customer vpa address |
+ | order_id | string |  yes  | Payment gateway order id |
+ | status | string |  yes  | Status of payment. |
  | email | string |  yes  | Customer valid email |
  | customer_id | string |  yes  | Payment gateway customer id. |
- | status | string |  yes  | Status of payment. |
  | aggregator | string |  yes  | Payment gateway name |
- | order_id | string |  yes  | Payment gateway order id |
- | vpa | string |  yes  | Customer vpa address |
- | method | string |  yes  | Payment method |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
 
 ---
 
@@ -26104,42 +38462,8 @@ Success. Returns a JSON object containing the city name, state and country ident
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | aggregator_name | string |  yes  | Payment gateway name |
- | status | string |  yes  | Payment status |
  | retry | boolean |  yes  | Response is successful or not. |
-
----
-
-
- 
- 
- #### [AggregatorRoute](#AggregatorRoute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | string |  no  | Data |
- | api_link | string |  no  | api_link |
- | payment_flow | string |  no  | payment_flow |
-
----
-
-
- 
- 
- #### [PaymentFlow](#PaymentFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
- | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
- | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
- | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
- | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
- | simpl | [AggregatorRoute](#AggregatorRoute) |  no  | simpl |
- | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
- | msipe | [AggregatorRoute](#AggregatorRoute) |  no  | mswipe |
- | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | BQR_Razorpay |
- | fynd | [AggregatorRoute](#AggregatorRoute) |  no  | Fynd |
- | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
+ | status | string |  yes  | Payment status |
 
 ---
 
@@ -26150,8 +38474,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  | large |
  | small | string |  yes  | smalll |
+ | large | string |  yes  | large |
 
 ---
 
@@ -26162,33 +38486,33 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_brand | string |  no  | card_brand |
- | card_name | string |  no  | card_name |
- | card_number | string |  no  | card_number |
- | display_name | string |  no  | display name |
- | aggregator_name | string |  yes  | aggregator_name |
- | timeout | number |  no  | timeout |
- | expired | boolean |  no  | expired |
- | name | string |  no  | name |
- | card_isin | string |  no  | card_isin |
- | card_type | string |  no  | card_type |
- | retry_count | number |  no  | retry_count |
- | exp_month | number |  no  | exp_month |
- | card_issuer | string |  no  | card_issuer |
- | intent_flow | string |  no  | intent_flow |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | card_token | string |  no  | card_token |
- | card_fingerprint | string |  no  | card_fingerprint |
- | card_reference | string |  no  | card_reference |
- | nickname | string |  no  | nickname |
- | display_priority | number |  no  | Dispaly Priority |
- | merchant_code | string |  no  | merchant code |
  | card_id | string |  no  | card_id |
- | card_brand_image | string |  no  | card_brand_image |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | card_issuer | string |  no  | card_issuer |
+ | card_name | string |  no  | card_name |
  | exp_year | number |  no  | exp_year |
+ | card_brand | string |  no  | card_brand |
+ | card_reference | string |  no  | card_reference |
  | code | string |  no  | code |
+ | display_priority | number |  no  | Dispaly Priority |
+ | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | aggregator_name | string |  yes  | aggregator_name |
+ | card_type | string |  no  | card_type |
+ | timeout | number |  no  | timeout |
+ | retry_count | number |  no  | retry_count |
+ | merchant_code | string |  no  | merchant code |
+ | exp_month | number |  no  | exp_month |
+ | display_name | string |  no  | display name |
  | fynd_vpa | string |  no  | fynd_vpa |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | card_isin | string |  no  | card_isin |
+ | nickname | string |  no  | nickname |
+ | card_number | string |  no  | card_number |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+ | name | string |  no  | name |
+ | card_token | string |  no  | card_token |
+ | card_brand_image | string |  no  | card_brand_image |
+ | intent_flow | string |  no  | intent_flow |
+ | expired | boolean |  no  | expired |
 
 ---
 
@@ -26202,10 +38526,44 @@ Success. Returns a JSON object containing the city name, state and country ident
  | aggregator_name | string |  no  | Dispaly Priority |
  | name | string |  yes  | Payment mode name |
  | add_card_enabled | boolean |  no  | Annonymous card flag |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+ | display_name | string |  yes  | Payment mode display name |
  | display_priority | number |  yes  | Dispaly Priority |
  | anonymous_enable | boolean |  no  | Annonymous card flag |
- | display_name | string |  yes  | Payment mode display name |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+
+---
+
+
+ 
+ 
+ #### [AggregatorRoute](#AggregatorRoute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_flow | string |  no  | payment_flow |
+ | api_link | string |  no  | api_link |
+ | data | string |  no  | Data |
+
+---
+
+
+ 
+ 
+ #### [PaymentFlow](#PaymentFlow)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | UPI_Razorpay |
+ | simpl | [AggregatorRoute](#AggregatorRoute) |  no  | simpl |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  | Ccavenue |
+ | msipe | [AggregatorRoute](#AggregatorRoute) |  no  | mswipe |
+ | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | Razorpay |
+ | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  | Payubiz |
+ | stripe | [AggregatorRoute](#AggregatorRoute) |  no  | Stripe |
+ | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  | Rupifi |
+ | fynd | [AggregatorRoute](#AggregatorRoute) |  no  | Fynd |
+ | juspay | [AggregatorRoute](#AggregatorRoute) |  no  | Juspay |
+ | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  | BQR_Razorpay |
 
 ---
 
@@ -26216,8 +38574,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  | payment_flows |
  | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  | Payment options |
+ | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  | payment_flows |
 
 ---
 
@@ -26240,8 +38598,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  | Rupifi KYC status |
  | kyc_url | string |  no  | Rupifi KYC banner url. |
+ | status | string |  no  | Rupifi KYC status |
 
 ---
 
@@ -26252,8 +38610,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  yes  | Rupifi KYC banner details. |
  | success | boolean |  yes  | Successful or not. |
+ | data | [RupifiBannerData](#RupifiBannerData) |  yes  | Rupifi KYC banner details. |
 
 ---
 
@@ -26264,11 +38622,11 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  yes  |   |
- | name | string |  yes  |  Beneficiary Name |
  | logo_large | string |  yes  | Beneficiary large Logo |
+ | name | string |  yes  |  Beneficiary Name |
  | display_name | boolean |  no  | Beneficiary Display Name |
  | logo_small | string |  yes  | Beneficiary small Logo |
+ | id | string |  yes  |   |
 
 ---
 
@@ -26325,25 +38683,25 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | number |  yes  |   |
  | transfer_mode | string |  yes  | Transfer Mode Of Account |
- | address | string |  yes  | Address of User |
- | display_name | string |  yes  | Display Name Of Account |
- | comment | boolean |  no  | Remarks |
- | delights_user_name | string |  yes  | User Id Who filled the Beneficiary  |
- | branch_name | boolean |  no  | Branch Name Of Account |
- | created_on | string |  yes  | Creation Date of Beneficiary |
  | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | subtitle | string |  yes  | SHort Title Of Account |
- | title | string |  yes  | Title Of Account |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | mobile | boolean |  no  | MObile no of User |
- | account_no | string |  yes  | Account Number |
  | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | account_holder | string |  yes  | Account Holder Name |
+ | mobile | boolean |  no  | MObile no of User |
+ | delights_user_name | string |  yes  | User Id Who filled the Beneficiary  |
  | email | string |  yes  | EMail of User |
- | ifsc_code | string |  yes  | Ifsc Code Of Account |
+ | id | number |  yes  |   |
  | bank_name | string |  yes  | Bank Name Of Account |
+ | subtitle | string |  yes  | SHort Title Of Account |
+ | ifsc_code | string |  yes  | Ifsc Code Of Account |
+ | display_name | string |  yes  | Display Name Of Account |
+ | account_holder | string |  yes  | Account Holder Name |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | branch_name | boolean |  no  | Branch Name Of Account |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
+ | account_no | string |  yes  | Account Number |
+ | address | string |  yes  | Address of User |
+ | comment | boolean |  no  | Remarks |
+ | title | string |  yes  | Title Of Account |
 
 ---
 
@@ -26354,8 +38712,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  yes  | All Beneficiaries Of An Order |
  | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  yes  | All Beneficiaries Of An Order |
 
 ---
 
@@ -26366,9 +38724,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  | Response is successful or not |
  | description | string |  yes  | Not Found |
  | code | string |  yes  | Bad Request Data |
- | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -26379,9 +38737,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branch_name | string |  yes  | Branch Name Of Account |
- | bank_name | string |  yes  | Bank Name Of Account |
  | success | boolean |  no  | Response is successful or not |
+ | bank_name | string |  yes  | Bank Name Of Account |
+ | branch_name | string |  yes  | Branch Name Of Account |
 
 ---
 
@@ -26392,9 +38750,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  | Response is successful or not |
  | description | string |  yes  | Error human understandable description. |
  | code | string |  yes  | Error descrption code. |
- | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -26405,8 +38763,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hash_key | string |  yes  | Hash key of the beneficiary Id |
  | otp | string |  yes  | Otp sent to the given Mobile No |
+ | hash_key | string |  yes  | Hash key of the beneficiary Id |
  | request_id | string |  yes  | Request Id sent in  |
 
 ---
@@ -26418,8 +38776,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hash_key | string |  yes  | Hash key of the beneficiary Id |
  | otp | string |  yes  | Otp sent to the given Mobile No |
+ | hash_key | string |  yes  | Hash key of the beneficiary Id |
  | request_id | string |  yes  | Request Id of the otp  |
 
 ---
@@ -26431,8 +38789,8 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  yes  | Wrong OTP Code |
  | success | string |  yes  | Response is successful or not |
+ | description | string |  yes  | Wrong OTP Code |
 
 ---
 
@@ -26443,17 +38801,17 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branch_name | string |  yes  | Branch Name of the Account |
- | email | string |  yes  | Email of the Account Holder |
- | address | string |  no  | Address of the User |
  | account_no | string |  yes  | Account NUmber of the Account Holder |
- | mobile | string |  yes  | Moblie Number of the User |
- | wallet | string |  no  |  |
- | ifsc_code | string |  yes  | Ifsc Code of the Account |
- | bank_name | string |  yes  | Bank Name of the Account |
- | comment | string |  no  | Remarks added by The user |
+ | address | string |  no  | Address of the User |
  | vpa | string |  no  |  |
+ | bank_name | string |  yes  | Bank Name of the Account |
+ | mobile | string |  yes  | Moblie Number of the User |
  | account_holder | string |  yes  | Name of the Account Holder |
+ | wallet | string |  no  |  |
+ | email | string |  yes  | Email of the Account Holder |
+ | comment | string |  no  | Remarks added by The user |
+ | branch_name | string |  yes  | Branch Name of the Account |
+ | ifsc_code | string |  yes  | Ifsc Code of the Account |
 
 ---
 
@@ -26464,13 +38822,13 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
  | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
  | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
+ | order_id | string |  yes  | Merchant Order Id |
  | otp | string |  no  |  |
  | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
- | order_id | string |  yes  | Merchant Order Id |
  | request_id | string |  no  |  |
- | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
 
 ---
 
@@ -26481,9 +38839,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  | Refund account data. |
  | success | boolean |  yes  | Success or failure flag. |
  | message | string |  yes  | Response message |
+ | data | string |  no  | Refund account data. |
 
 ---
 
@@ -26506,9 +38864,9 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | Response is successful or not |
  | is_verified_flag | string |  yes  | Boolean Flag whether OTP Validation is already done or not |
  | request_id | string |  yes  | request id  |
- | success | boolean |  no  | Response is successful or not |
 
 ---
 
@@ -28777,6 +41135,105 @@ Success. Returns a JSON object containing the city name, state and country ident
  | max | string |  no  |  |
 
 ---
+
+
+
+
+
+### Enums
+
+
+
+
+
+
+
+
+
+
+
+ #### [PriorityEnum](#PriorityEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | low | low | This means ticket is low priority |
+ | medium | medium | This means ticket is medium priority |
+ | high | high | This means ticket is high priority |
+
+---
+
+
+
+ #### [HistoryTypeEnum](#HistoryTypeEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | rating | rating | This means history event is a rating |
+ | log | log | This means history event is a changelog |
+ | comment | comment | This means history event is a comment |
+
+---
+
+
+
+ #### [TicketAssetType](#TicketAssetType)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | image | image | Denotes asset is of image type |
+ | video | video | Denotes asset is of video type |
+ | file | file | Denotes asset is of file type |
+ | youtube | youtube | Denotes asset is an youtube link |
+ | product | product | Denotes asset is of product type |
+ | collection | collection | Denotes asset is of collection type |
+ | brand | brand | Denotes asset is of brand type |
+ | shipment | shipment | Denotes asset is of shipment type |
+ | order | order | Denotes asset is of order type |
+
+---
+
+
+
+ #### [TicketSourceEnum](#TicketSourceEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | platformPanel | platform_panel | This means it is company level ticket |
+ | salesChannel | sales_channel | This means it is a application/sales channel level ticket |
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
