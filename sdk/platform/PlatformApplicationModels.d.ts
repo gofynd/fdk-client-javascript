@@ -182,6 +182,7 @@ export class PaymentValidator {
     static addBeneficiaryDetails(): any;
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
+    static confirmPayment(): any;
 }
 export class OrderValidator {
     static trackShipmentPlatform(): any;

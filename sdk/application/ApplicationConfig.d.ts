@@ -9,5 +9,6 @@ declare class ApplicationConfig {
     applicationToken: any;
     opts: any;
     domain: any;
+    encodePath: any;
     validate(): void;
 }

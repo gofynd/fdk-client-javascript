@@ -68,6 +68,7 @@ function requestInterceptorFn() {
       path: pathname + search + queryParam,
       body: transformedData,
       headers: headersToSign,
+      encodePath: config.encodePath,
     };
     sign(signingOptions);
 
