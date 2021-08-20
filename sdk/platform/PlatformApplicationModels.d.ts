@@ -117,25 +117,6 @@ export class ContentValidator {
     static removeInjectableTag(): any;
     static editInjectableTag(): any;
 }
-export class AssignmentValidator {
-    static createPickupLocation(): any;
-    static getPickupLocation(): any;
-    static updatePickupLocation(): any;
-    static getPickupLocationById(): any;
-    static createPickupConfiguration(): any;
-    static getPickupConfiguration(): any;
-    static getAllocationConfiguration(): any;
-    static createAllocationConfiguration(): any;
-    static updateAllocationConfiguration(): any;
-    static getAllocationLocations(): any;
-    static getAllocationLocationById(): any;
-    static updateAllocationLocation(): any;
-    static createAllocationLocation(): any;
-    static getDestinationZones(): any;
-    static postDestinationZone(): any;
-    static getDestinationZoneById(): any;
-    static updateDestinationZone(): any;
-}
 export class CommunicationValidator {
     static getCampaigns(): any;
     static createCampaign(): any;
@@ -194,29 +175,29 @@ export class OrderValidator {
     static getShipmentTrackDetails(): any;
 }
 export class CatalogValidator {
+    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static createCustomKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;

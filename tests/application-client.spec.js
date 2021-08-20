@@ -112,11 +112,11 @@ describe("Catalog test cases", () => {
     expect(true).toBeTruthy();
   });
 
-  it("unfollowById testing", async () => {
+  it("followById testing", async () => {
     expect(true).toBeTruthy();
   });
 
-  it("followById testing", async () => {
+  it("unfollowById testing", async () => {
     expect(true).toBeTruthy();
   });
 
@@ -564,6 +564,10 @@ describe("Configuration test cases", () => {
     expect(true).toBeTruthy();
   });
 
+  it("getStoreDetailById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
   it("getFeatures testing", async () => {
     expect(true).toBeTruthy();
   });
@@ -577,6 +581,10 @@ describe("Configuration test cases", () => {
   });
 
   it("getCurrencyById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("getAppCurrencies testing", async () => {
     expect(true).toBeTruthy();
   });
 

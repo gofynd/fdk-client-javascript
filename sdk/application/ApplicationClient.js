@@ -1109,34 +1109,6 @@ class Catalog {
    *   products, brands, or collections.* @param {string} arg.collectionId -
    *   The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-      query,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.* @param {string} arg.collectionId -
-   *   The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1153,6 +1125,34 @@ class Catalog {
     return APIClient.execute(
       this._conf,
       "post",
+      `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.* @param {string} arg.collectionId -
+   *   The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
       `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
       query,
       undefined
@@ -4402,6 +4402,32 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} arg.storeId - Store uid
+   * @returns {Promise<OrderingStore>} - Success response
+   * @summary: Get ordering store details
+   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+   */
+  getStoreDetailById({ storeId } = {}) {
+    const { error } = ConfigurationValidator.getStoreDetailById().validate(
+      { storeId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/ordering-store/stores/${storeId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<AppFeatureResponse>} - Success response
    * @summary: Get features of application
    * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
@@ -4453,8 +4479,8 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<CurrenciesResponse>} - Success response
-   * @summary: Get currencies enabled in the application
-   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+   * @summary: Get all currencies list
+   * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
   getCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getCurrencies().validate(
@@ -4496,6 +4522,31 @@ class Configuration {
       this._conf,
       "get",
       `/service/application/configuration/v1.0/currency/${id}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<AppCurrencyResponse>} - Success response
+   * @summary: Get currencies enabled in the application
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+   */
+  getAppCurrencies({} = {}) {
+    const { error } = ConfigurationValidator.getAppCurrencies().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/currency`,
       query,
       undefined
     );
