@@ -564,6 +564,10 @@ describe("Configuration test cases", () => {
     expect(true).toBeTruthy();
   });
 
+  it("getStoreDetailById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
   it("getFeatures testing", async () => {
     expect(true).toBeTruthy();
   });
@@ -577,6 +581,10 @@ describe("Configuration test cases", () => {
   });
 
   it("getCurrencyById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("getAppCurrencies testing", async () => {
     expect(true).toBeTruthy();
   });
 
