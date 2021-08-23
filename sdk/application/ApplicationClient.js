@@ -2028,10 +2028,10 @@ class Common {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.locationType] - Provide location type to query on*
-   *   @param {string} [arg.id] - Field is optional when location_type is
-   *   country. If querying for state, provide id of country. If querying for
-   *   city, provide id of state.
+   * @param {string} [arg.locationType] - Provide location type to query on.
+   *   Possible values : country, state, city* @param {string} [arg.id] -
+   *   Field is optional when location_type is country. If querying for state,
+   *   provide id of country. If querying for city, provide id of state.
    * @returns {Promise<Locations>} - Success response
    * @summary: Get countries, states, cities
    * @description:
@@ -2365,22 +2365,20 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.platform] - ID of the application
    * @param {OAuthRequestSchema} arg.body
    * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Facebook
    * @description: Use this API to login or register using Facebook credentials.
    */
-  loginWithFacebook({ body, platform } = {}) {
+  loginWithFacebook({ body } = {}) {
     const { error } = UserValidator.loginWithFacebook().validate(
-      { body, platform },
+      { body },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
-    query["platform"] = platform;
 
     return APIClient.execute(
       this._conf,
@@ -2393,22 +2391,20 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.platform] - ID of the application
    * @param {OAuthRequestSchema} arg.body
    * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Google
    * @description: Use this API to login or register using Google Account credentials.
    */
-  loginWithGoogle({ body, platform } = {}) {
+  loginWithGoogle({ body } = {}) {
     const { error } = UserValidator.loginWithGoogle().validate(
-      { body, platform },
+      { body },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
-    query["platform"] = platform;
 
     return APIClient.execute(
       this._conf,
@@ -2421,22 +2417,20 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.platform] - ID of the application
    * @param {OAuthRequestSchema} arg.body
    * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Google on Android
    * @description: Use this API to login or register in Android app using Google Account credentials.
    */
-  loginWithGoogleAndroid({ body, platform } = {}) {
+  loginWithGoogleAndroid({ body } = {}) {
     const { error } = UserValidator.loginWithGoogleAndroid().validate(
-      { body, platform },
+      { body },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
-    query["platform"] = platform;
 
     return APIClient.execute(
       this._conf,
@@ -2449,22 +2443,20 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.platform] - ID of the application
    * @param {OAuthRequestSchema} arg.body
    * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Google on iOS
    * @description: Use this API to login or register in iOS app using Google Account credentials.
    */
-  loginWithGoogleIOS({ body, platform } = {}) {
+  loginWithGoogleIOS({ body } = {}) {
     const { error } = UserValidator.loginWithGoogleIOS().validate(
-      { body, platform },
+      { body },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query = {};
-    query["platform"] = platform;
 
     return APIClient.execute(
       this._conf,
@@ -3955,8 +3947,8 @@ class Share {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<QRCodeResp>} - Success response
-   * @summary: Create QR Code of an app
-   * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
+   * @summary: Create application QR Code
+   * @description: Create application QR Code
    */
   getApplicationQRCode({} = {}) {
     const { error } = ShareValidator.getApplicationQRCode().validate(
@@ -3979,11 +3971,10 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint.
+   * @param {string} arg.slug - The unique identifier of a product
    * @returns {Promise<QRCodeResp>} - Success response
-   * @summary: Create QR Code of a product
-   * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
+   * @summary: Create product QR Code
+   * @description: Create product QR Code
    */
   getProductQRCodeBySlug({ slug } = {}) {
     const { error } = ShareValidator.getProductQRCodeBySlug().validate(
@@ -4006,11 +3997,10 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a collection. You can get slug value from the endpoint.
+   * @param {string} arg.slug - The unique identifier of a collection
    * @returns {Promise<QRCodeResp>} - Success response
-   * @summary: Create QR Code of a collection
-   * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
+   * @summary: Create collection QR Code
+   * @description: Create collection QR Code
    */
   getCollectionQRCodeBySlug({ slug } = {}) {
     const { error } = ShareValidator.getCollectionQRCodeBySlug().validate(
@@ -4033,10 +4023,10 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.url - A link or a web address
+   * @param {string} arg.url - Url
    * @returns {Promise<QRCodeResp>} - Success response
-   * @summary: Create QR Code of a URL
-   * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
+   * @summary: Create url QR Code
+   * @description: Create url QR Code
    */
   getUrlQRCode({ url } = {}) {
     const { error } = ShareValidator.getUrlQRCode().validate(
@@ -4062,8 +4052,8 @@ class Share {
    * @param {Object} arg - Arg object.
    * @param {ShortLinkReq} arg.body
    * @returns {Promise<ShortLinkRes>} - Success response
-   * @summary: Create a short link
-   * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
+   * @summary: Create short link
+   * @description: Create short link
    */
   createShortLink({ body } = {}) {
     const { error } = ShareValidator.createShortLink().validate(
@@ -4086,11 +4076,10 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.hash - A string value used for converting long URL to
-   *   short URL and vice-versa.
+   * @param {string} arg.hash - Hash of short link
    * @returns {Promise<ShortLinkRes>} - Success response
    * @summary: Get short link by hash
-   * @description: Use this API to get a short link by using a hash value.
+   * @description: Get short link by hash
    */
   getShortLinkByHash({ hash } = {}) {
     const { error } = ShareValidator.getShortLinkByHash().validate(
@@ -4113,11 +4102,10 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.hash - A string value used for converting long URL to
-   *   short URL and vice-versa.
+   * @param {string} arg.hash - Hash of short link
    * @returns {Promise<ShortLinkRes>} - Success response
    * @summary: Get original link by hash
-   * @description: Use this API to retrieve the original link from a short-link by using a hash value.
+   * @description: Get original link by hash
    */
   getOriginalShortLinkByHash({ hash } = {}) {
     const { error } = ShareValidator.getOriginalShortLinkByHash().validate(
@@ -4402,6 +4390,32 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} arg.storeId - Store uid
+   * @returns {Promise<OrderingStore>} - Success response
+   * @summary: Get ordering store details
+   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+   */
+  getStoreDetailById({ storeId } = {}) {
+    const { error } = ConfigurationValidator.getStoreDetailById().validate(
+      { storeId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/ordering-store/stores/${storeId}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<AppFeatureResponse>} - Success response
    * @summary: Get features of application
    * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
@@ -4453,8 +4467,8 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<CurrenciesResponse>} - Success response
-   * @summary: Get currencies enabled in the application
-   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+   * @summary: Get all currencies list
+   * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
   getCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getCurrencies().validate(
@@ -4496,6 +4510,31 @@ class Configuration {
       this._conf,
       "get",
       `/service/application/configuration/v1.0/currency/${id}`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<AppCurrencyResponse>} - Success response
+   * @summary: Get currencies enabled in the application
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+   */
+  getAppCurrencies({} = {}) {
+    const { error } = ConfigurationValidator.getAppCurrencies().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/configuration/v1.0/currency`,
       query,
       undefined
     );
@@ -5196,6 +5235,32 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AddBeneficiaryDetailsOTPRequest} arg.body
+   * @returns {Promise<RefundAccountResponse>} - Success response
+   * @summary: Save bank details for cancelled/returned order
+   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+   */
+  addRefundBankAccountUsingOTP({ body } = {}) {
+    const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/payment/v1.0/refund/account/otp`,
+      query,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {WalletOtpRequest} arg.body
    * @returns {Promise<WalletOtpResponse>} - Success response
    * @summary: Send OTP on adding a wallet beneficiary
@@ -5456,6 +5521,94 @@ class Order {
       `/service/application/order/v1.0/orders/pos-order/${orderId}`,
       query,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+   *   shipment. An order may contain multiple items and may get divided into
+   *   one or more shipment, each having its own ID.
+   * @returns {Promise<CustomerDetailsByShipmentId>} - Success response
+   * @summary: Get Customer Details by Shipment Id
+   * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+   */
+  getCustomerDetailsByShipmentId({ orderId, shipmentId } = {}) {
+    const { error } = OrderValidator.getCustomerDetailsByShipmentId().validate(
+      { orderId, shipmentId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/order/v1.0/orders/${orderId}/shipments/${shipmentId}/customer-details`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+   *   shipment. An order may contain multiple items and may get divided into
+   *   one or more shipment, each having its own ID.
+   * @returns {Promise<sendOTPApplicationResponse>} - Success response
+   * @summary: Send and Resend Otp code to Order-Shipment customer
+   * @description: Use this API to send OTP to the customer of the mapped Shipment.
+   */
+  sendOtpToShipmentCustomer({ orderId, shipmentId } = {}) {
+    const { error } = OrderValidator.sendOtpToShipmentCustomer().validate(
+      { orderId, shipmentId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/order/v1.0/orders/${orderId}/shipments/${shipmentId}/otp/send/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+   *   shipment. An order may contain multiple items and may get divided into
+   *   one or more shipment, each having its own ID.
+   * @param {ReqBodyVerifyOTPShipment} arg.body
+   * @returns {Promise<ResponseVerifyOTPShipment>} - Success response
+   * @summary: Verify Otp code
+   * @description: Use this API to verify OTP and create a session token with custom payload.
+   */
+  verifyOtpShipmentCustomer({ orderId, shipmentId, body } = {}) {
+    const { error } = OrderValidator.verifyOtpShipmentCustomer().validate(
+      { orderId, shipmentId, body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/order/v1.0/orders/${orderId}/shipments/${shipmentId}/otp/verify`,
+      query,
+      body
     );
   }
 }

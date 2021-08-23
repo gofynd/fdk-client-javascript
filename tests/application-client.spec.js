@@ -564,6 +564,10 @@ describe("Configuration test cases", () => {
     expect(true).toBeTruthy();
   });
 
+  it("getStoreDetailById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
   it("getFeatures testing", async () => {
     expect(true).toBeTruthy();
   });
@@ -577,6 +581,10 @@ describe("Configuration test cases", () => {
   });
 
   it("getCurrencyById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("getAppCurrencies testing", async () => {
     expect(true).toBeTruthy();
   });
 
@@ -674,6 +682,10 @@ describe("Payment test cases", () => {
     expect(true).toBeTruthy();
   });
 
+  it("addRefundBankAccountUsingOTP testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
   it("verifyOtpAndAddBeneficiaryForWallet testing", async () => {
     expect(true).toBeTruthy();
   });
@@ -709,6 +721,18 @@ describe("Order test cases", () => {
   });
 
   it("getPosOrderById testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("getCustomerDetailsByShipmentId testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("sendOtpToShipmentCustomer testing", async () => {
+    expect(true).toBeTruthy();
+  });
+
+  it("verifyOtpShipmentCustomer testing", async () => {
     expect(true).toBeTruthy();
   });
 });
