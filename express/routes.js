@@ -67,10 +67,17 @@ function setupRoutes(ext) {
             let redirectUrl;
 
             session.state = uuidv4();
+
+            // pass application id if received
+            let authCallback = ext.getAuthCallback();
+            if(req.query.application_id) {
+                authCallback += "?application_id="+req.query.application_id;
+            }
+
             // start authorization flow
             redirectUrl = platformConfig.oauthClient.startAuthorization({
                 scope: session.scope,
-                redirectUri: ext.getAuthCallback(),
+                redirectUri: authCallback,
                 state: session.state,
                 access_mode: ext.access_mode
             });
