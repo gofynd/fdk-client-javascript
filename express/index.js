@@ -6,13 +6,16 @@ const { setupProxyRoutes } = require("./api_routes");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
+const webhooks = require('./webhook');
 
 
 function setupFdk(data) {
     extension.initialize(data);
     let router = setupRoutes(extension);
     let { apiRoutes, applicationProxyRoutes } = setupProxyRoutes();
-
+    if (data.webhook_map) {
+        webhooks.initialize(data.webhook_map, router).catch(err=>console.log(err));
+    }
 
     async function getPlatformClient(companyId) {
         let client = null;

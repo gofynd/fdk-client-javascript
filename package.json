@@ -13,7 +13,43 @@
     "ioredis": "^4.24.2",
     "jshint": "^2.12.0",
     "ngrok": "^3.4.0",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "axios-mock-adapter": "^1.18.1",
+    "jasmine": "^3.5.0",
+    "jasmine-console-reporter": "^3.1.0",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.2",
+    "supertest": "^4.0.2",
+    "winston": "^3.2.1",
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": false,
+    "collectCoverage": true,
+    "include": [
+      "**/*.js"
+    ],
+    "exclude": [
+      "spec/*",
+      "node_modules/*",
+      "tools/*",
+      "load-test/*",
+      "backup/*",
+      "migration/*",
+      "coverage/*",
+      "run_migration.js",
+      "build/*",
+      "dist/*",
+      "examples/*"
+    ],
+    "reporter": [
+      "html",
+      "json",
+      "json-summary",
+      "text-summary"
+    ],
+    "report-dir": "./coverage"
   },
   "peerDependencies": {
     "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git"
@@ -26,7 +62,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/nyc node spec.js"
   },
   "repository": {
     "type": "git",
