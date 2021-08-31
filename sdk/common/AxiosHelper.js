@@ -4,7 +4,6 @@ const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const { FDKServerResponseError } = require("./FDKError");
-const { version } = require("./../../../../../package.json");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
