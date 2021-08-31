@@ -5247,6 +5247,32 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AddBeneficiaryDetailsOTPRequest} arg.body
+   * @returns {Promise<RefundAccountResponse>} - Success response
+   * @summary: Save bank details for cancelled/returned order
+   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+   */
+  addRefundBankAccountUsingOTP({ body } = {}) {
+    const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/payment/v1.0/refund/account/otp`,
+      query,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {WalletOtpRequest} arg.body
    * @returns {Promise<WalletOtpResponse>} - Success response
    * @summary: Send OTP on adding a wallet beneficiary
@@ -5507,6 +5533,94 @@ class Order {
       `/service/application/order/v1.0/orders/pos-order/${orderId}`,
       query,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+   *   shipment. An order may contain multiple items and may get divided into
+   *   one or more shipment, each having its own ID.
+   * @returns {Promise<CustomerDetailsByShipmentId>} - Success response
+   * @summary: Get Customer Details by Shipment Id
+   * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+   */
+  getCustomerDetailsByShipmentId({ orderId, shipmentId } = {}) {
+    const { error } = OrderValidator.getCustomerDetailsByShipmentId().validate(
+      { orderId, shipmentId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      `/service/application/order/v1.0/orders/${orderId}/shipments/${shipmentId}/customer-details`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+   *   shipment. An order may contain multiple items and may get divided into
+   *   one or more shipment, each having its own ID.
+   * @returns {Promise<sendOTPApplicationResponse>} - Success response
+   * @summary: Send and Resend Otp code to Order-Shipment customer
+   * @description: Use this API to send OTP to the customer of the mapped Shipment.
+   */
+  sendOtpToShipmentCustomer({ orderId, shipmentId } = {}) {
+    const { error } = OrderValidator.sendOtpToShipmentCustomer().validate(
+      { orderId, shipmentId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/order/v1.0/orders/${orderId}/shipments/${shipmentId}/otp/send/`,
+      query,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+   *   shipment. An order may contain multiple items and may get divided into
+   *   one or more shipment, each having its own ID.
+   * @param {ReqBodyVerifyOTPShipment} arg.body
+   * @returns {Promise<ResponseVerifyOTPShipment>} - Success response
+   * @summary: Verify Otp code
+   * @description: Use this API to verify OTP and create a session token with custom payload.
+   */
+  verifyOtpShipmentCustomer({ orderId, shipmentId, body } = {}) {
+    const { error } = OrderValidator.verifyOtpShipmentCustomer().validate(
+      { orderId, shipmentId, body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      `/service/application/order/v1.0/orders/${orderId}/shipments/${shipmentId}/otp/verify`,
+      query,
+      body
     );
   }
 }

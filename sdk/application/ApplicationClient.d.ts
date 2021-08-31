@@ -2175,6 +2175,16 @@ declare class Payment {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AddBeneficiaryDetailsOTPRequest} arg.body
+     * @returns {Promise<RefundAccountResponse>} - Success response
+     * @summary: Save bank details for cancelled/returned order
+     * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
+     */
+    addRefundBankAccountUsingOTP({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {WalletOtpRequest} arg.body
      * @returns {Promise<WalletOtpResponse>} - Success response
      * @summary: Send OTP on adding a wallet beneficiary
@@ -2289,6 +2299,50 @@ declare class Order {
      */
     getPosOrderById({ orderId }?: {
         orderId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+     *   shipment. An order may contain multiple items and may get divided into
+     *   one or more shipment, each having its own ID.
+     * @returns {Promise<CustomerDetailsByShipmentId>} - Success response
+     * @summary: Get Customer Details by Shipment Id
+     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+     */
+    getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
+        orderId: string;
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+     *   shipment. An order may contain multiple items and may get divided into
+     *   one or more shipment, each having its own ID.
+     * @returns {Promise<sendOTPApplicationResponse>} - Success response
+     * @summary: Send and Resend Otp code to Order-Shipment customer
+     * @description: Use this API to send OTP to the customer of the mapped Shipment.
+     */
+    sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
+        orderId: string;
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.* @param {string} arg.shipmentId - ID of the
+     *   shipment. An order may contain multiple items and may get divided into
+     *   one or more shipment, each having its own ID.
+     * @param {ReqBodyVerifyOTPShipment} arg.body
+     * @returns {Promise<ResponseVerifyOTPShipment>} - Success response
+     * @summary: Verify Otp code
+     * @description: Use this API to verify OTP and create a session token with custom payload.
+     */
+    verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
+        orderId: string;
+        shipmentId: string;
+        body: any;
     }): Promise<any>;
 }
 declare class Rewards {
