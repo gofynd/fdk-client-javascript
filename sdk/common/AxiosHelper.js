@@ -4,6 +4,7 @@ const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const { FDKServerResponseError } = require("./FDKError");
+const { version } = require("./../../../../../package.json");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -74,6 +75,7 @@ function requestInterceptorFn() {
 
     config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
+    // config.headers["fp-sdk-version"] = version;
     return config;
   };
 }
