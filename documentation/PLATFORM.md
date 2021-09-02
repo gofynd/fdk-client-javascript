@@ -281,37 +281,37 @@
 
 * ## [Catalog](#Catalog)
   * Methods
-    * [deleteSearchKeywords](#deletesearchkeywords)
-    * [updateSearchKeywords](#updatesearchkeywords)
     * [getSearchKeywords](#getsearchkeywords)
-    * [createCustomKeyword](#createcustomkeyword)
+    * [updateSearchKeywords](#updatesearchkeywords)
+    * [deleteSearchKeywords](#deletesearchkeywords)
     * [getAllSearchKeyword](#getallsearchkeyword)
-    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
-    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [createCustomKeyword](#createcustomkeyword)
     * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
-    * [createCustomAutocompleteRule](#createcustomautocompleterule)
+    * [updateAutocompleteKeyword](#updateautocompletekeyword)
+    * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
     * [getAutocompleteConfig](#getautocompleteconfig)
-    * [createProductBundle](#createproductbundle)
+    * [createCustomAutocompleteRule](#createcustomautocompleterule)
     * [getProductBundle](#getproductbundle)
-    * [updateProductBundle](#updateproductbundle)
+    * [createProductBundle](#createproductbundle)
     * [getProductBundleDetail](#getproductbundledetail)
-    * [createSizeGuide](#createsizeguide)
+    * [updateProductBundle](#updateproductbundle)
     * [getSizeGuides](#getsizeguides)
-    * [updateSizeGuide](#updatesizeguide)
+    * [createSizeGuide](#createsizeguide)
     * [getSizeGuide](#getsizeguide)
+    * [updateSizeGuide](#updatesizeguide)
     * [getCatalogConfiguration](#getcatalogconfiguration)
-    * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurations](#getconfigurations)
-    * [createConfigurationByType](#createconfigurationbytype)
+    * [createConfigurationProductListing](#createconfigurationproductlisting)
     * [getConfigurationByType](#getconfigurationbytype)
+    * [createConfigurationByType](#createconfigurationbytype)
     * [getQueryFilters](#getqueryfilters)
-    * [createCollection](#createcollection)
     * [getAllCollections](#getallcollections)
+    * [createCollection](#createcollection)
     * [getCollectionDetail](#getcollectiondetail)
-    * [deleteCollection](#deletecollection)
     * [updateCollection](#updatecollection)
-    * [addCollectionItems](#addcollectionitems)
+    * [deleteCollection](#deletecollection)
     * [getCollectionItems](#getcollectionitems)
+    * [addCollectionItems](#addcollectionitems)
     * [getCatalogInsights](#getcataloginsights)
     * [getSellerInsights](#getsellerinsights)
     * [createMarketplaceOptin](#createmarketplaceoptin)
@@ -332,40 +332,40 @@
     * [listHSNCodes](#listhsncodes)
     * [listProductTemplateExportDetails](#listproducttemplateexportdetails)
     * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
-    * [createCategories](#createcategories)
     * [listCategories](#listcategories)
-    * [updateCategory](#updatecategory)
+    * [createCategories](#createcategories)
     * [getCategoryData](#getcategorydata)
-    * [createProduct](#createproduct)
+    * [updateCategory](#updatecategory)
     * [getProducts](#getproducts)
-    * [deleteProduct](#deleteproduct)
-    * [editProduct](#editproduct)
+    * [createProduct](#createproduct)
     * [getProduct](#getproduct)
+    * [editProduct](#editproduct)
+    * [deleteProduct](#deleteproduct)
     * [getProductValidation](#getproductvalidation)
     * [getProductSize](#getproductsize)
-    * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [getProductBulkUploadHistory](#getproductbulkuploadhistory)
-    * [deleteProductBulkJob](#deleteproductbulkjob)
+    * [updateProductAssetsInBulk](#updateproductassetsinbulk)
     * [createProductsInBulk](#createproductsinbulk)
+    * [deleteProductBulkJob](#deleteproductbulkjob)
     * [getCompanyTags](#getcompanytags)
-    * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [getProductAssetsInBulk](#getproductassetsinbulk)
+    * [createProductAssetsInBulk](#createproductassetsinbulk)
     * [deleteSize](#deletesize)
-    * [addInventory](#addinventory)
     * [getInventoryBySize](#getinventorybysize)
+    * [addInventory](#addinventory)
     * [getInventoryBySizeIdentifier](#getinventorybysizeidentifier)
     * [deleteInventory](#deleteinventory)
-    * [createBulkInventoryJob](#createbulkinventoryjob)
     * [getInventoryBulkUploadHistory](#getinventorybulkuploadhistory)
-    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
+    * [createBulkInventoryJob](#createbulkinventoryjob)
     * [createBulkInventory](#createbulkinventory)
-    * [createInventoryExportJob](#createinventoryexportjob)
+    * [deleteBulkInventoryJob](#deletebulkinventoryjob)
     * [getInventoryExport](#getinventoryexport)
+    * [createInventoryExportJob](#createinventoryexportjob)
     * [exportInventoryConfig](#exportinventoryconfig)
-    * [createHsnCode](#createhsncode)
     * [getAllHsnCodes](#getallhsncodes)
-    * [updateHsnCode](#updatehsncode)
+    * [createHsnCode](#createhsncode)
     * [getHsnCode](#gethsncode)
+    * [updateHsnCode](#updatehsncode)
     * [bulkHsnCode](#bulkhsncode)
     * [getApplicationBrands](#getapplicationbrands)
     * [getDepartments](#getdepartments)
@@ -377,18 +377,18 @@
 
 * ## [CompanyProfile](#CompanyProfile)
   * Methods
-    * [cbsOnboardGet](#cbsonboardget)
     * [updateCompany](#updatecompany)
+    * [cbsOnboardGet](#cbsonboardget)
     * [getCompanyMetrics](#getcompanymetrics)
-    * [getBrand](#getbrand)
     * [editBrand](#editbrand)
+    * [getBrand](#getbrand)
     * [createBrand](#createbrand)
-    * [getBrands](#getbrands)
     * [createCompanyBrandMapping](#createcompanybrandmapping)
-    * [getLocations](#getlocations)
+    * [getBrands](#getbrands)
     * [createLocation](#createlocation)
-    * [getLocationDetail](#getlocationdetail)
+    * [getLocations](#getlocations)
     * [updateLocation](#updatelocation)
+    * [getLocationDetail](#getlocationdetail)
     * [createLocationBulk](#createlocationbulk)
     
 
@@ -558,11 +558,11 @@ Get countries, states, cities
 
 ```javascript
 // Promise
-const promise = common.getLocations( {  locationType : value,
+const promise = common.getLocations({  locationType : value,
  id : value });
 
 // Async/Await
-const data = await common.getLocations( {  locationType : value,
+const data = await common.getLocations({  locationType : value,
  id : value });
 ```
 
@@ -624,8 +624,7 @@ Gets the list of company level tickets and/or ticket filters depending on query 
 
 ```javascript
 // Promise
-const promise = lead.getTickets( {  companyId : value,
- items : value,
+const promise = client.lead.getTickets({  items : value,
  filters : value,
  q : value,
  status : value,
@@ -635,8 +634,7 @@ const promise = lead.getTickets( {  companyId : value,
  pageSize : value });
 
 // Async/Await
-const data = await lead.getTickets( {  companyId : value,
- items : value,
+const data = await client.lead.getTickets({  items : value,
  filters : value,
  q : value,
  status : value,
@@ -655,7 +653,7 @@ const data = await lead.getTickets( {  companyId : value,
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
 | status | string | no | Filter tickets on status |    
-| priority | PriorityEnum | no | Filter tickets on priority |    
+| priority | any | no | Filter tickets on priority |    
 | category | string | no | Filter tickets on category |    
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
@@ -1079,12 +1077,10 @@ Creates a company level ticket
 
 ```javascript
 // Promise
-const promise = lead.createTicket( {  companyId : value,
- body : value });
+const promise = client.lead.createTicket({  body : value });
 
 // Async/Await
-const data = await lead.createTicket( {  companyId : value,
- body : value });
+const data = await client.lead.createTicket({  body : value });
 ```
 
 
@@ -1092,7 +1088,7 @@ const data = await lead.createTicket( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company ID for which the data will be returned |  
-| body | [AddTicketPayload](#AddTicketPayload) | no | Request body |
+| body | [AddTicketPayload](#AddTicketPayload) | yes | Request body |
 
 
 Creates a company level ticket
@@ -1336,9 +1332,7 @@ Gets the list of Application level Tickets and/or ticket filters depending on qu
 
 ```javascript
 // Promise
-const promise = lead.getTickets( {  companyId : value,
- applicationId : value,
- items : value,
+const promise = client.application("<APPLICATION_ID>").lead.getTickets({  items : value,
  filters : value,
  q : value,
  status : value,
@@ -1346,9 +1340,7 @@ const promise = lead.getTickets( {  companyId : value,
  category : value });
 
 // Async/Await
-const data = await lead.getTickets( {  companyId : value,
- applicationId : value,
- items : value,
+const data = await client.application("<APPLICATION_ID>").lead.getTickets({  items : value,
  filters : value,
  q : value,
  status : value,
@@ -1366,7 +1358,7 @@ const data = await lead.getTickets( {  companyId : value,
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
 | status | string | no | Filter tickets on status |    
-| priority | PriorityEnum | no | Filter tickets on priority |    
+| priority | any | no | Filter tickets on priority |    
 | category | string | no | Filter tickets on category |  
 
 
@@ -1788,12 +1780,10 @@ Retreives ticket details of a company level ticket with ticket ID
 
 ```javascript
 // Promise
-const promise = lead.getTicket( {  companyId : value,
- id : value });
+const promise = client.lead.getTicket({  id : value });
 
 // Async/Await
-const data = await lead.getTicket( {  companyId : value,
- id : value });
+const data = await client.lead.getTicket({  id : value });
 ```
 
 
@@ -2046,13 +2036,11 @@ Edits ticket details of a company level ticket
 
 ```javascript
 // Promise
-const promise = lead.editTicket( {  companyId : value,
- id : value,
+const promise = client.lead.editTicket({  id : value,
  body : value });
 
 // Async/Await
-const data = await lead.editTicket( {  companyId : value,
- id : value,
+const data = await client.lead.editTicket({  id : value,
  body : value });
 ```
 
@@ -2062,7 +2050,7 @@ const data = await lead.editTicket( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID of ticket to be edited |  
-| body | [EditTicketPayload](#EditTicketPayload) | no | Request body |
+| body | [EditTicketPayload](#EditTicketPayload) | yes | Request body |
 
 
 Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
@@ -2306,14 +2294,10 @@ Retreives ticket details of a application level ticket
 
 ```javascript
 // Promise
-const promise = lead.getTicket( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").lead.getTicket({  id : value });
 
 // Async/Await
-const data = await lead.getTicket( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").lead.getTicket({  id : value });
 ```
 
 
@@ -2568,15 +2552,11 @@ Edits ticket details of a application level ticket
 
 ```javascript
 // Promise
-const promise = lead.editTicket( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").lead.editTicket({  id : value,
  body : value });
 
 // Async/Await
-const data = await lead.editTicket( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").lead.editTicket({  id : value,
  body : value });
 ```
 
@@ -2587,7 +2567,7 @@ const data = await lead.editTicket( {  companyId : value,
 | companyId | string | yes | Company ID of the application |   
 | applicationId | string | yes | Application ID for ticket |   
 | id | string | yes | Ticket ID of ticket to be edited |  
-| body | [EditTicketPayload](#EditTicketPayload) | no | Request body |
+| body | [EditTicketPayload](#EditTicketPayload) | yes | Request body |
 
 
 Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
@@ -2832,13 +2812,11 @@ Create history for specific company level ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistory( {  companyId : value,
- id : value,
+const promise = client.lead.createHistory({  id : value,
  body : value });
 
 // Async/Await
-const data = await lead.createHistory( {  companyId : value,
- id : value,
+const data = await client.lead.createHistory({  id : value,
  body : value });
 ```
 
@@ -2848,7 +2826,7 @@ const data = await lead.createHistory( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID for which history is created |  
-| body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
+| body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
 
 Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
@@ -2936,12 +2914,10 @@ Gets history list for specific company level ticket
 
 ```javascript
 // Promise
-const promise = lead.getTicketHistory( {  companyId : value,
- id : value });
+const promise = client.lead.getTicketHistory({  id : value });
 
 // Async/Await
-const data = await lead.getTicketHistory( {  companyId : value,
- id : value });
+const data = await client.lead.getTicketHistory({  id : value });
 ```
 
 
@@ -3142,12 +3118,10 @@ Gets a list of feedback submitted against that ticket
 
 ```javascript
 // Promise
-const promise = lead.getFeedbacks( {  companyId : value,
- id : value });
+const promise = client.lead.getFeedbacks({  id : value });
 
 // Async/Await
-const data = await lead.getFeedbacks( {  companyId : value,
- id : value });
+const data = await client.lead.getFeedbacks({  id : value });
 ```
 
 
@@ -3231,13 +3205,11 @@ Submit a response for feeback form against that ticket
 
 ```javascript
 // Promise
-const promise = lead.submitFeedback( {  companyId : value,
- id : value,
+const promise = client.lead.submitFeedback({  id : value,
  body : value });
 
 // Async/Await
-const data = await lead.submitFeedback( {  companyId : value,
- id : value,
+const data = await client.lead.submitFeedback({  id : value,
  body : value });
 ```
 
@@ -3247,7 +3219,7 @@ const data = await lead.submitFeedback( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID for which feedback is to be submitted |  
-| body | [TicketFeedbackPayload](#TicketFeedbackPayload) | no | Request body |
+| body | [TicketFeedbackPayload](#TicketFeedbackPayload) | yes | Request body |
 
 
 Submit a response for feeback form against that ticket
@@ -3318,15 +3290,11 @@ Create history for specific application level ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistory( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").lead.createHistory({  id : value,
  body : value });
 
 // Async/Await
-const data = await lead.createHistory( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").lead.createHistory({  id : value,
  body : value });
 ```
 
@@ -3337,7 +3305,7 @@ const data = await lead.createHistory( {  companyId : value,
 | companyId | string | yes | Company ID of the application |   
 | applicationId | string | yes | Application ID for ticket |   
 | id | string | yes | Ticket ID for which history is created |  
-| body | [TicketHistoryPayload](#TicketHistoryPayload) | no | Request body |
+| body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
 
 Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
@@ -3425,14 +3393,10 @@ Gets history list for specific application level ticket
 
 ```javascript
 // Promise
-const promise = lead.getTicketHistory( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").lead.getTicketHistory({  id : value });
 
 // Async/Await
-const data = await lead.getTicketHistory( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").lead.getTicketHistory({  id : value });
 ```
 
 
@@ -3634,14 +3598,10 @@ Get specific custom form using it's slug
 
 ```javascript
 // Promise
-const promise = lead.getCustomForm( {  companyId : value,
- applicationId : value,
- slug : value });
+const promise = client.application("<APPLICATION_ID>").lead.getCustomForm({  slug : value });
 
 // Async/Await
-const data = await lead.getCustomForm( {  companyId : value,
- applicationId : value,
- slug : value });
+const data = await client.application("<APPLICATION_ID>").lead.getCustomForm({  slug : value });
 ```
 
 
@@ -3749,15 +3709,11 @@ Edit the given custom form
 
 ```javascript
 // Promise
-const promise = lead.editCustomForm( {  companyId : value,
- applicationId : value,
- slug : value,
+const promise = client.application("<APPLICATION_ID>").lead.editCustomForm({  slug : value,
  body : value });
 
 // Async/Await
-const data = await lead.editCustomForm( {  companyId : value,
- applicationId : value,
- slug : value,
+const data = await client.application("<APPLICATION_ID>").lead.editCustomForm({  slug : value,
  body : value });
 ```
 
@@ -3768,7 +3724,7 @@ const data = await lead.editCustomForm( {  companyId : value,
 | companyId | string | yes | Company ID of the application |   
 | applicationId | string | yes | Application ID for the form |   
 | slug | string | yes | Slug of form whose response is getting submitted |  
-| body | [EditCustomFormPayload](#EditCustomFormPayload) | no | Request body |
+| body | [EditCustomFormPayload](#EditCustomFormPayload) | yes | Request body |
 
 
 Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
@@ -3876,12 +3832,10 @@ Get list of custom form
 
 ```javascript
 // Promise
-const promise = lead.getCustomForms( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").lead.getCustomForms();
 
 // Async/Await
-const data = await lead.getCustomForms( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").lead.getCustomForms();
 ```
 
 
@@ -4077,14 +4031,10 @@ Creates a new custom form
 
 ```javascript
 // Promise
-const promise = lead.createCustomForm( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").lead.createCustomForm({  body : value });
 
 // Async/Await
-const data = await lead.createCustomForm( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").lead.createCustomForm({  body : value });
 ```
 
 
@@ -4093,7 +4043,7 @@ const data = await lead.createCustomForm( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company ID of the application |   
 | applicationId | string | yes | Application ID for the form |  
-| body | [CreateCustomFormPayload](#CreateCustomFormPayload) | no | Request body |
+| body | [CreateCustomFormPayload](#CreateCustomFormPayload) | yes | Request body |
 
 
 Creates a new custom form for given application
@@ -4201,12 +4151,10 @@ Get Token to join a specific Video Room using it's unqiue name
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom( {  companyId : value,
- uniqueName : value });
+const promise = client.lead.getTokenForVideoRoom({  uniqueName : value });
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom( {  companyId : value,
- uniqueName : value });
+const data = await client.lead.getTokenForVideoRoom({  uniqueName : value });
 ```
 
 
@@ -4271,14 +4219,10 @@ Get Token to join a specific Video Room using it's unqiue name
 
 ```javascript
 // Promise
-const promise = lead.getTokenForVideoRoom( {  companyId : value,
- applicationId : value,
- uniqueName : value });
+const promise = client.application("<APPLICATION_ID>").lead.getTokenForVideoRoom({  uniqueName : value });
 
 // Async/Await
-const data = await lead.getTokenForVideoRoom( {  companyId : value,
- applicationId : value,
- uniqueName : value });
+const data = await client.application("<APPLICATION_ID>").lead.getTokenForVideoRoom({  uniqueName : value });
 ```
 
 
@@ -4344,12 +4288,10 @@ Get participants of a specific Video Room using it's unique name
 
 ```javascript
 // Promise
-const promise = lead.getVideoParticipants( {  companyId : value,
- uniqueName : value });
+const promise = client.lead.getVideoParticipants({  uniqueName : value });
 
 // Async/Await
-const data = await lead.getVideoParticipants( {  companyId : value,
- uniqueName : value });
+const data = await client.lead.getVideoParticipants({  uniqueName : value });
 ```
 
 
@@ -4414,14 +4356,10 @@ Get participants of a specific Video Room using it's unique name
 
 ```javascript
 // Promise
-const promise = lead.getVideoParticipants( {  companyId : value,
- applicationId : value,
- uniqueName : value });
+const promise = client.application("<APPLICATION_ID>").lead.getVideoParticipants({  uniqueName : value });
 
 // Async/Await
-const data = await lead.getVideoParticipants( {  companyId : value,
- applicationId : value,
- uniqueName : value });
+const data = await client.application("<APPLICATION_ID>").lead.getVideoParticipants({  uniqueName : value });
 ```
 
 
@@ -4487,14 +4425,10 @@ Open a video room.
 
 ```javascript
 // Promise
-const promise = lead.openVideoRoom( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").lead.openVideoRoom({  body : value });
 
 // Async/Await
-const data = await lead.openVideoRoom( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").lead.openVideoRoom({  body : value });
 ```
 
 
@@ -4503,7 +4437,7 @@ const data = await lead.openVideoRoom( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company ID of the application |   
 | applicationId | string | yes | Application ID for video room |  
-| body | [CreateVideoRoomPayload](#CreateVideoRoomPayload) | no | Request body |
+| body | [CreateVideoRoomPayload](#CreateVideoRoomPayload) | yes | Request body |
 
 
 Open a video room.
@@ -4559,14 +4493,10 @@ Close the video room and force all participants to leave.
 
 ```javascript
 // Promise
-const promise = lead.closeVideoRoom( {  companyId : value,
- applicationId : value,
- uniqueName : value });
+const promise = client.application("<APPLICATION_ID>").lead.closeVideoRoom({  uniqueName : value });
 
 // Async/Await
-const data = await lead.closeVideoRoom( {  companyId : value,
- applicationId : value,
- uniqueName : value });
+const data = await client.application("<APPLICATION_ID>").lead.closeVideoRoom({  uniqueName : value });
 ```
 
 
@@ -4638,15 +4568,11 @@ Get list of attribute data
 
 ```javascript
 // Promise
-const promise = feedback.getAttributes( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").feedback.getAttributes({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await feedback.getAttributes( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").feedback.getAttributes({  pageNo : value,
  pageSize : value });
 ```
 
@@ -4704,9 +4630,7 @@ Get list of customer reviews [admin]
 
 ```javascript
 // Promise
-const promise = feedback.getCustomerReviews( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").feedback.getCustomerReviews({  id : value,
  entityId : value,
  entityType : value,
  userId : value,
@@ -4723,9 +4647,7 @@ const promise = feedback.getCustomerReviews( {  companyId : value,
  pageSize : value });
 
 // Async/Await
-const data = await feedback.getCustomerReviews( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").feedback.getCustomerReviews({  id : value,
  entityId : value,
  entityType : value,
  userId : value,
@@ -4809,15 +4731,11 @@ update approve details
 
 ```javascript
 // Promise
-const promise = feedback.updateApprove( {  companyId : value,
- applicationId : value,
- reviewId : value,
+const promise = client.application("<APPLICATION_ID>").feedback.updateApprove({  reviewId : value,
  body : value });
 
 // Async/Await
-const data = await feedback.updateApprove( {  companyId : value,
- applicationId : value,
- reviewId : value,
+const data = await client.application("<APPLICATION_ID>").feedback.updateApprove({  reviewId : value,
  body : value });
 ```
 
@@ -4874,14 +4792,10 @@ get history details
 
 ```javascript
 // Promise
-const promise = feedback.getHistory( {  companyId : value,
- applicationId : value,
- reviewId : value });
+const promise = client.application("<APPLICATION_ID>").feedback.getHistory({  reviewId : value });
 
 // Async/Await
-const data = await feedback.getHistory( {  companyId : value,
- applicationId : value,
- reviewId : value });
+const data = await client.application("<APPLICATION_ID>").feedback.getHistory({  reviewId : value });
 ```
 
 
@@ -4937,15 +4851,11 @@ Get list of templates
 
 ```javascript
 // Promise
-const promise = feedback.getApplicationTemplates( {  companyId : value,
- applicationId : value,
- pageId : value,
+const promise = client.application("<APPLICATION_ID>").feedback.getApplicationTemplates({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await feedback.getApplicationTemplates( {  companyId : value,
- applicationId : value,
- pageId : value,
+const data = await client.application("<APPLICATION_ID>").feedback.getApplicationTemplates({  pageId : value,
  pageSize : value });
 ```
 
@@ -5003,14 +4913,10 @@ Create a new template
 
 ```javascript
 // Promise
-const promise = feedback.createTemplate( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").feedback.createTemplate({  body : value });
 
 // Async/Await
-const data = await feedback.createTemplate( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").feedback.createTemplate({  body : value });
 ```
 
 
@@ -5068,14 +4974,10 @@ Get a template by ID
 
 ```javascript
 // Promise
-const promise = feedback.getTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").feedback.getTemplateById({  id : value });
 
 // Async/Await
-const data = await feedback.getTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").feedback.getTemplateById({  id : value });
 ```
 
 
@@ -5131,15 +5033,11 @@ Update a template's status
 
 ```javascript
 // Promise
-const promise = feedback.updateTemplate( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").feedback.updateTemplate({  id : value,
  body : value });
 
 // Async/Await
-const data = await feedback.updateTemplate( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").feedback.updateTemplate({  id : value,
  body : value });
 ```
 
@@ -5196,15 +5094,11 @@ Update a template's status
 
 ```javascript
 // Promise
-const promise = feedback.updateTemplateStatus( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").feedback.updateTemplateStatus({  id : value,
  body : value });
 
 // Async/Await
-const data = await feedback.updateTemplateStatus( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").feedback.updateTemplateStatus({  id : value,
  body : value });
 ```
 
@@ -5267,14 +5161,10 @@ Get all pages of a theme
 
 ```javascript
 // Promise
-const promise = theme.getAllPages( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.getAllPages({  themeId : value });
 
 // Async/Await
-const data = await theme.getAllPages( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.getAllPages({  themeId : value });
 ```
 
 
@@ -5338,15 +5228,11 @@ Create a page
 
 ```javascript
 // Promise
-const promise = theme.createPage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const promise = client.application("<APPLICATION_ID>").theme.createPage({  themeId : value,
  body : value });
 
 // Async/Await
-const data = await theme.createPage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const data = await client.application("<APPLICATION_ID>").theme.createPage({  themeId : value,
  body : value });
 ```
 
@@ -5357,7 +5243,7 @@ const data = await theme.createPage( {  companyId : value,
 | companyId | string | yes | Company ID |   
 | applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme |  
-| body | [AvailablePageSchema](#AvailablePageSchema) | no | Request body |
+| body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
 
 
 Use this API to create a page for a theme by its ID.
@@ -5411,15 +5297,11 @@ Update multiple pages of a theme
 
 ```javascript
 // Promise
-const promise = theme.updateMultiplePages( {  companyId : value,
- applicationId : value,
- themeId : value,
+const promise = client.application("<APPLICATION_ID>").theme.updateMultiplePages({  themeId : value,
  body : value });
 
 // Async/Await
-const data = await theme.updateMultiplePages( {  companyId : value,
- applicationId : value,
- themeId : value,
+const data = await client.application("<APPLICATION_ID>").theme.updateMultiplePages({  themeId : value,
  body : value });
 ```
 
@@ -5430,7 +5312,7 @@ const data = await theme.updateMultiplePages( {  companyId : value,
 | companyId | string | yes | Company ID |   
 | applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme to be retrieved |  
-| body | [AllAvailablePageSchema](#AllAvailablePageSchema) | no | Request body |
+| body | [AllAvailablePageSchema](#AllAvailablePageSchema) | yes | Request body |
 
 
 Use this API to update multiple pages of a theme by its ID.
@@ -5484,15 +5366,11 @@ Get page of a theme
 
 ```javascript
 // Promise
-const promise = theme.getPage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const promise = client.application("<APPLICATION_ID>").theme.getPage({  themeId : value,
  pageValue : value });
 
 // Async/Await
-const data = await theme.getPage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const data = await client.application("<APPLICATION_ID>").theme.getPage({  themeId : value,
  pageValue : value });
 ```
 
@@ -5558,16 +5436,12 @@ Updates a page
 
 ```javascript
 // Promise
-const promise = theme.updatePage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const promise = client.application("<APPLICATION_ID>").theme.updatePage({  themeId : value,
  pageValue : value,
  body : value });
 
 // Async/Await
-const data = await theme.updatePage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const data = await client.application("<APPLICATION_ID>").theme.updatePage({  themeId : value,
  pageValue : value,
  body : value });
 ```
@@ -5580,7 +5454,7 @@ const data = await theme.updatePage( {  companyId : value,
 | applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme |   
 | pageValue | string | yes | Value of the page to be updated |  
-| body | [AvailablePageSchema](#AvailablePageSchema) | no | Request body |
+| body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
 
 
 Use this API to update a page for a theme by its ID.
@@ -5634,15 +5508,11 @@ Deletes a page
 
 ```javascript
 // Promise
-const promise = theme.deletePage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const promise = client.application("<APPLICATION_ID>").theme.deletePage({  themeId : value,
  pageValue : value });
 
 // Async/Await
-const data = await theme.deletePage( {  companyId : value,
- applicationId : value,
- themeId : value,
+const data = await client.application("<APPLICATION_ID>").theme.deletePage({  themeId : value,
  pageValue : value });
 ```
 
@@ -5708,15 +5578,11 @@ Get a list of themes from the theme library
 
 ```javascript
 // Promise
-const promise = theme.getThemeLibrary( {  companyId : value,
- applicationId : value,
- pageSize : value,
+const promise = client.application("<APPLICATION_ID>").theme.getThemeLibrary({  pageSize : value,
  pageNo : value });
 
 // Async/Await
-const data = await theme.getThemeLibrary( {  companyId : value,
- applicationId : value,
- pageSize : value,
+const data = await client.application("<APPLICATION_ID>").theme.getThemeLibrary({  pageSize : value,
  pageNo : value });
 ```
 
@@ -5782,14 +5648,10 @@ Add a theme to the theme library
 
 ```javascript
 // Promise
-const promise = theme.addToThemeLibrary( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").theme.addToThemeLibrary({  body : value });
 
 // Async/Await
-const data = await theme.addToThemeLibrary( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").theme.addToThemeLibrary({  body : value });
 ```
 
 
@@ -5798,7 +5660,7 @@ const data = await theme.addToThemeLibrary( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | [AddThemeRequestSchema](#AddThemeRequestSchema) | no | Request body |
+| body | [AddThemeRequestSchema](#AddThemeRequestSchema) | yes | Request body |
 
 
 Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
@@ -5852,14 +5714,10 @@ Apply a theme
 
 ```javascript
 // Promise
-const promise = theme.applyTheme( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").theme.applyTheme({  body : value });
 
 // Async/Await
-const data = await theme.applyTheme( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").theme.applyTheme({  body : value });
 ```
 
 
@@ -5868,7 +5726,7 @@ const data = await theme.applyTheme( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | [AddThemeRequestSchema](#AddThemeRequestSchema) | no | Request body |
+| body | [AddThemeRequestSchema](#AddThemeRequestSchema) | yes | Request body |
 
 
 Use this API to apply a theme to the website.
@@ -5922,14 +5780,10 @@ Checks if theme is upgradable
 
 ```javascript
 // Promise
-const promise = theme.isUpgradable( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.isUpgradable({  themeId : value });
 
 // Async/Await
-const data = await theme.isUpgradable( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.isUpgradable({  themeId : value });
 ```
 
 
@@ -5993,14 +5847,10 @@ Upgrade a theme
 
 ```javascript
 // Promise
-const promise = theme.upgradeTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.upgradeTheme({  themeId : value });
 
 // Async/Await
-const data = await theme.upgradeTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.upgradeTheme({  themeId : value });
 ```
 
 
@@ -6064,15 +5914,11 @@ Get all public themes
 
 ```javascript
 // Promise
-const promise = theme.getPublicThemes( {  companyId : value,
- applicationId : value,
- pageSize : value,
+const promise = client.application("<APPLICATION_ID>").theme.getPublicThemes({  pageSize : value,
  pageNo : value });
 
 // Async/Await
-const data = await theme.getPublicThemes( {  companyId : value,
- applicationId : value,
- pageSize : value,
+const data = await client.application("<APPLICATION_ID>").theme.getPublicThemes({  pageSize : value,
  pageNo : value });
 ```
 
@@ -6138,14 +5984,10 @@ Create a new theme
 
 ```javascript
 // Promise
-const promise = theme.createTheme( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").theme.createTheme({  body : value });
 
 // Async/Await
-const data = await theme.createTheme( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").theme.createTheme({  body : value });
 ```
 
 
@@ -6154,7 +5996,7 @@ const data = await theme.createTheme( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | [ThemesSchema](#ThemesSchema) | no | Request body |
+| body | [ThemesSchema](#ThemesSchema) | yes | Request body |
 
 
 Themes improve the look and appearance of a website. Use this API to create a theme.
@@ -6208,12 +6050,10 @@ Get the applied theme
 
 ```javascript
 // Promise
-const promise = theme.getAppliedTheme( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").theme.getAppliedTheme();
 
 // Async/Await
-const data = await theme.getAppliedTheme( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").theme.getAppliedTheme();
 ```
 
 
@@ -6276,12 +6116,10 @@ Get all the supported fonts in a theme
 
 ```javascript
 // Promise
-const promise = theme.getFonts( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").theme.getFonts();
 
 // Async/Await
-const data = await theme.getFonts( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").theme.getFonts();
 ```
 
 
@@ -6344,14 +6182,10 @@ Gets theme by id
 
 ```javascript
 // Promise
-const promise = theme.getThemeById( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.getThemeById({  themeId : value });
 
 // Async/Await
-const data = await theme.getThemeById( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.getThemeById({  themeId : value });
 ```
 
 
@@ -6415,15 +6249,11 @@ Update a theme
 
 ```javascript
 // Promise
-const promise = theme.updateTheme( {  companyId : value,
- applicationId : value,
- themeId : value,
+const promise = client.application("<APPLICATION_ID>").theme.updateTheme({  themeId : value,
  body : value });
 
 // Async/Await
-const data = await theme.updateTheme( {  companyId : value,
- applicationId : value,
- themeId : value,
+const data = await client.application("<APPLICATION_ID>").theme.updateTheme({  themeId : value,
  body : value });
 ```
 
@@ -6434,7 +6264,7 @@ const data = await theme.updateTheme( {  companyId : value,
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
-| body | [ThemesSchema](#ThemesSchema) | no | Request body |
+| body | [ThemesSchema](#ThemesSchema) | yes | Request body |
 
 
 Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
@@ -6488,14 +6318,10 @@ Delete a theme
 
 ```javascript
 // Promise
-const promise = theme.deleteTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.deleteTheme({  themeId : value });
 
 // Async/Await
-const data = await theme.deleteTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.deleteTheme({  themeId : value });
 ```
 
 
@@ -6559,14 +6385,10 @@ Get a theme preview
 
 ```javascript
 // Promise
-const promise = theme.getThemeForPreview( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.getThemeForPreview({  themeId : value });
 
 // Async/Await
-const data = await theme.getThemeForPreview( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.getThemeForPreview({  themeId : value });
 ```
 
 
@@ -6630,14 +6452,10 @@ Publish a theme
 
 ```javascript
 // Promise
-const promise = theme.publishTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.publishTheme({  themeId : value });
 
 // Async/Await
-const data = await theme.publishTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.publishTheme({  themeId : value });
 ```
 
 
@@ -6701,14 +6519,10 @@ Unpublish a theme
 
 ```javascript
 // Promise
-const promise = theme.unpublishTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.unpublishTheme({  themeId : value });
 
 // Async/Await
-const data = await theme.unpublishTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.unpublishTheme({  themeId : value });
 ```
 
 
@@ -6772,14 +6586,10 @@ Archive a theme
 
 ```javascript
 // Promise
-const promise = theme.archiveTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.archiveTheme({  themeId : value });
 
 // Async/Await
-const data = await theme.archiveTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.archiveTheme({  themeId : value });
 ```
 
 
@@ -6843,14 +6653,10 @@ Unarchive a theme
 
 ```javascript
 // Promise
-const promise = theme.unarchiveTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const promise = client.application("<APPLICATION_ID>").theme.unarchiveTheme({  themeId : value });
 
 // Async/Await
-const data = await theme.unarchiveTheme( {  companyId : value,
- applicationId : value,
- themeId : value });
+const data = await client.application("<APPLICATION_ID>").theme.unarchiveTheme({  themeId : value });
 ```
 
 
@@ -6920,16 +6726,12 @@ Get a list of customers
 
 ```javascript
 // Promise
-const promise = user.getCustomers( {  companyId : value,
- applicationId : value,
- q : value,
+const promise = client.application("<APPLICATION_ID>").user.getCustomers({  q : value,
  pageSize : value,
  pageNo : value });
 
 // Async/Await
-const data = await user.getCustomers( {  companyId : value,
- applicationId : value,
- q : value,
+const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q : value,
  pageSize : value,
  pageNo : value });
 ```
@@ -6997,14 +6799,10 @@ Search an existing user.
 
 ```javascript
 // Promise
-const promise = user.searchUsers( {  companyId : value,
- applicationId : value,
- q : value });
+const promise = client.application("<APPLICATION_ID>").user.searchUsers({  q : value });
 
 // Async/Await
-const data = await user.searchUsers( {  companyId : value,
- applicationId : value,
- q : value });
+const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q : value });
 ```
 
 
@@ -7103,14 +6901,10 @@ Create user
 
 ```javascript
 // Promise
-const promise = user.createUser( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").user.createUser({  body : value });
 
 // Async/Await
-const data = await user.createUser( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").user.createUser({  body : value });
 ```
 
 
@@ -7207,15 +7001,11 @@ Update user
 
 ```javascript
 // Promise
-const promise = user.updateUser( {  companyId : value,
- applicationId : value,
- userId : value,
+const promise = client.application("<APPLICATION_ID>").user.updateUser({  userId : value,
  body : value });
 
 // Async/Await
-const data = await user.updateUser( {  companyId : value,
- applicationId : value,
- userId : value,
+const data = await client.application("<APPLICATION_ID>").user.updateUser({  userId : value,
  body : value });
 ```
 
@@ -7314,14 +7104,10 @@ Create user session
 
 ```javascript
 // Promise
-const promise = user.createUserSession( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").user.createUserSession({  body : value });
 
 // Async/Await
-const data = await user.createUserSession( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").user.createUserSession({  body : value });
 ```
 
 
@@ -7384,12 +7170,10 @@ Get platform configurations
 
 ```javascript
 // Promise
-const promise = user.getPlatformConfig( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").user.getPlatformConfig();
 
 // Async/Await
-const data = await user.getPlatformConfig( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").user.getPlatformConfig();
 ```
 
 
@@ -7509,14 +7293,10 @@ Update platform configurations
 
 ```javascript
 // Promise
-const promise = user.updatePlatformConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
 
 // Async/Await
-const data = await user.updatePlatformConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").user.updatePlatformConfig({  body : value });
 ```
 
 
@@ -7642,15 +7422,11 @@ Get a list of announcements
 
 ```javascript
 // Promise
-const promise = content.getAnnouncementsList( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").content.getAnnouncementsList({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getAnnouncementsList( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").content.getAnnouncementsList({  pageNo : value,
  pageSize : value });
 ```
 
@@ -7716,14 +7492,10 @@ Create an announcement
 
 ```javascript
 // Promise
-const promise = content.createAnnouncement( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createAnnouncement({  body : value });
 
 // Async/Await
-const data = await content.createAnnouncement( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createAnnouncement({  body : value });
 ```
 
 
@@ -7786,14 +7558,10 @@ Get announcement by ID
 
 ```javascript
 // Promise
-const promise = content.getAnnouncementById( {  companyId : value,
- applicationId : value,
- announcementId : value });
+const promise = client.application("<APPLICATION_ID>").content.getAnnouncementById({  announcementId : value });
 
 // Async/Await
-const data = await content.getAnnouncementById( {  companyId : value,
- applicationId : value,
- announcementId : value });
+const data = await client.application("<APPLICATION_ID>").content.getAnnouncementById({  announcementId : value });
 ```
 
 
@@ -7857,15 +7625,11 @@ Update an announcement
 
 ```javascript
 // Promise
-const promise = content.updateAnnouncement( {  companyId : value,
- applicationId : value,
- announcementId : value,
+const promise = client.application("<APPLICATION_ID>").content.updateAnnouncement({  announcementId : value,
  body : value });
 
 // Async/Await
-const data = await content.updateAnnouncement( {  companyId : value,
- applicationId : value,
- announcementId : value,
+const data = await client.application("<APPLICATION_ID>").content.updateAnnouncement({  announcementId : value,
  body : value });
 ```
 
@@ -7930,15 +7694,11 @@ Update the schedule and the publish status of an announcement
 
 ```javascript
 // Promise
-const promise = content.updateAnnouncementSchedule( {  companyId : value,
- applicationId : value,
- announcementId : value,
+const promise = client.application("<APPLICATION_ID>").content.updateAnnouncementSchedule({  announcementId : value,
  body : value });
 
 // Async/Await
-const data = await content.updateAnnouncementSchedule( {  companyId : value,
- applicationId : value,
- announcementId : value,
+const data = await client.application("<APPLICATION_ID>").content.updateAnnouncementSchedule({  announcementId : value,
  body : value });
 ```
 
@@ -8003,14 +7763,10 @@ Delete announcement by id
 
 ```javascript
 // Promise
-const promise = content.deleteAnnouncement( {  companyId : value,
- applicationId : value,
- announcementId : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteAnnouncement({  announcementId : value });
 
 // Async/Await
-const data = await content.deleteAnnouncement( {  companyId : value,
- applicationId : value,
- announcementId : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteAnnouncement({  announcementId : value });
 ```
 
 
@@ -8074,14 +7830,10 @@ Create a blog
 
 ```javascript
 // Promise
-const promise = content.createBlog( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createBlog({  body : value });
 
 // Async/Await
-const data = await content.createBlog( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createBlog({  body : value });
 ```
 
 
@@ -8144,15 +7896,11 @@ Get blogs
 
 ```javascript
 // Promise
-const promise = content.getBlogs( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").content.getBlogs({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getBlogs( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").content.getBlogs({  pageNo : value,
  pageSize : value });
 ```
 
@@ -8218,15 +7966,11 @@ Update a blog
 
 ```javascript
 // Promise
-const promise = content.updateBlog( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").content.updateBlog({  id : value,
  body : value });
 
 // Async/Await
-const data = await content.updateBlog( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").content.updateBlog({  id : value,
  body : value });
 ```
 
@@ -8291,14 +8035,10 @@ Delete blogs
 
 ```javascript
 // Promise
-const promise = content.deleteBlog( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteBlog({  id : value });
 
 // Async/Await
-const data = await content.deleteBlog( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteBlog({  id : value });
 ```
 
 
@@ -8362,14 +8102,10 @@ Get components of a blog
 
 ```javascript
 // Promise
-const promise = content.getComponentById( {  companyId : value,
- applicationId : value,
- slug : value });
+const promise = client.application("<APPLICATION_ID>").content.getComponentById({  slug : value });
 
 // Async/Await
-const data = await content.getComponentById( {  companyId : value,
- applicationId : value,
- slug : value });
+const data = await client.application("<APPLICATION_ID>").content.getComponentById({  slug : value });
 ```
 
 
@@ -8433,12 +8169,10 @@ Get a list of FAQ categories
 
 ```javascript
 // Promise
-const promise = content.getFaqCategories( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getFaqCategories();
 
 // Async/Await
-const data = await content.getFaqCategories( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getFaqCategories();
 ```
 
 
@@ -8506,14 +8240,10 @@ Get an FAQ category by slug or id
 
 ```javascript
 // Promise
-const promise = content.getFaqCategoryBySlugOrId( {  companyId : value,
- applicationId : value,
- idOrSlug : value });
+const promise = client.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId({  idOrSlug : value });
 
 // Async/Await
-const data = await content.getFaqCategoryBySlugOrId( {  companyId : value,
- applicationId : value,
- idOrSlug : value });
+const data = await client.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId({  idOrSlug : value });
 ```
 
 
@@ -8586,14 +8316,10 @@ Create an FAQ category
 
 ```javascript
 // Promise
-const promise = content.createFaqCategory( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createFaqCategory({  body : value });
 
 // Async/Await
-const data = await content.createFaqCategory( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createFaqCategory({  body : value });
 ```
 
 
@@ -8602,7 +8328,7 @@ const data = await content.createFaqCategory( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | string | yes | Numeric ID allotted to an application created within a business account. |  
-| body | [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema) | no | Request body |
+| body | [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema) | yes | Request body |
 
 
 FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
@@ -8657,15 +8383,11 @@ Update an FAQ category
 
 ```javascript
 // Promise
-const promise = content.updateFaqCategory( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").content.updateFaqCategory({  id : value,
  body : value });
 
 // Async/Await
-const data = await content.updateFaqCategory( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").content.updateFaqCategory({  id : value,
  body : value });
 ```
 
@@ -8676,7 +8398,7 @@ const data = await content.updateFaqCategory( {  companyId : value,
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
 | id | string | yes | ID allotted to an FAQ category. |  
-| body | [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema) | no | Request body |
+| body | [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema) | yes | Request body |
 
 
 Use this API to edit an existing FAQ category.
@@ -8731,14 +8453,10 @@ Delete an FAQ category
 
 ```javascript
 // Promise
-const promise = content.deleteFaqCategory( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteFaqCategory({  id : value });
 
 // Async/Await
-const data = await content.deleteFaqCategory( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteFaqCategory({  id : value });
 ```
 
 
@@ -8804,14 +8522,10 @@ Get question and answers within an FAQ category
 
 ```javascript
 // Promise
-const promise = content.getFaqsByCategoryIdOrSlug( {  companyId : value,
- applicationId : value,
- idOrSlug : value });
+const promise = client.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug({  idOrSlug : value });
 
 // Async/Await
-const data = await content.getFaqsByCategoryIdOrSlug( {  companyId : value,
- applicationId : value,
- idOrSlug : value });
+const data = await client.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug({  idOrSlug : value });
 ```
 
 
@@ -8877,15 +8591,11 @@ Create an FAQ
 
 ```javascript
 // Promise
-const promise = content.addFaq( {  companyId : value,
- applicationId : value,
- categoryId : value,
+const promise = client.application("<APPLICATION_ID>").content.addFaq({  categoryId : value,
  body : value });
 
 // Async/Await
-const data = await content.addFaq( {  companyId : value,
- applicationId : value,
- categoryId : value,
+const data = await client.application("<APPLICATION_ID>").content.addFaq({  categoryId : value,
  body : value });
 ```
 
@@ -8896,7 +8606,7 @@ const data = await content.addFaq( {  companyId : value,
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform |   
 | applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
 | categoryId | string | yes | ID allotted to an FAQ category. |  
-| body | [CreateFaqSchema](#CreateFaqSchema) | no | Request body |
+| body | [CreateFaqSchema](#CreateFaqSchema) | yes | Request body |
 
 
 FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
@@ -8950,16 +8660,12 @@ Update an FAQ
 
 ```javascript
 // Promise
-const promise = content.updateFaq( {  companyId : value,
- applicationId : value,
- categoryId : value,
+const promise = client.application("<APPLICATION_ID>").content.updateFaq({  categoryId : value,
  faqId : value,
  body : value });
 
 // Async/Await
-const data = await content.updateFaq( {  companyId : value,
- applicationId : value,
- categoryId : value,
+const data = await client.application("<APPLICATION_ID>").content.updateFaq({  categoryId : value,
  faqId : value,
  body : value });
 ```
@@ -8972,7 +8678,7 @@ const data = await content.updateFaq( {  companyId : value,
 | applicationId | string | yes | Numeric ID allotted to an application created within a business account. |   
 | categoryId | string | yes | ID allotted to an FAQ category. |   
 | faqId | string | yes | ID allotted to an FAQ. |  
-| body | [CreateFaqSchema](#CreateFaqSchema) | no | Request body |
+| body | [CreateFaqSchema](#CreateFaqSchema) | yes | Request body |
 
 
 Use this API to edit an existing FAQ.
@@ -9026,15 +8732,11 @@ Delete an FAQ
 
 ```javascript
 // Promise
-const promise = content.deleteFaq( {  companyId : value,
- applicationId : value,
- categoryId : value,
+const promise = client.application("<APPLICATION_ID>").content.deleteFaq({  categoryId : value,
  faqId : value });
 
 // Async/Await
-const data = await content.deleteFaq( {  companyId : value,
- applicationId : value,
- categoryId : value,
+const data = await client.application("<APPLICATION_ID>").content.deleteFaq({  categoryId : value,
  faqId : value });
 ```
 
@@ -9100,14 +8802,10 @@ Get an FAQ
 
 ```javascript
 // Promise
-const promise = content.getFaqByIdOrSlug( {  companyId : value,
- applicationId : value,
- idOrSlug : value });
+const promise = client.application("<APPLICATION_ID>").content.getFaqByIdOrSlug({  idOrSlug : value });
 
 // Async/Await
-const data = await content.getFaqByIdOrSlug( {  companyId : value,
- applicationId : value,
- idOrSlug : value });
+const data = await client.application("<APPLICATION_ID>").content.getFaqByIdOrSlug({  idOrSlug : value });
 ```
 
 
@@ -9171,15 +8869,11 @@ Get landing pages
 
 ```javascript
 // Promise
-const promise = content.getLandingPages( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").content.getLandingPages({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getLandingPages( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").content.getLandingPages({  pageNo : value,
  pageSize : value });
 ```
 
@@ -9245,14 +8939,10 @@ Create a landing page
 
 ```javascript
 // Promise
-const promise = content.createLandingPage( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createLandingPage({  body : value });
 
 // Async/Await
-const data = await content.createLandingPage( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createLandingPage({  body : value });
 ```
 
 
@@ -9315,15 +9005,11 @@ Update a landing page
 
 ```javascript
 // Promise
-const promise = content.updateLandingPage( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").content.updateLandingPage({  id : value,
  body : value });
 
 // Async/Await
-const data = await content.updateLandingPage( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").content.updateLandingPage({  id : value,
  body : value });
 ```
 
@@ -9388,14 +9074,10 @@ Delete a landing page
 
 ```javascript
 // Promise
-const promise = content.deleteLandingPage( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteLandingPage({  id : value });
 
 // Async/Await
-const data = await content.deleteLandingPage( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteLandingPage({  id : value });
 ```
 
 
@@ -9482,12 +9164,10 @@ Get legal information
 
 ```javascript
 // Promise
-const promise = content.getLegalInformation( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getLegalInformation();
 
 // Async/Await
-const data = await content.getLegalInformation( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getLegalInformation();
 ```
 
 
@@ -9550,14 +9230,10 @@ Save legal information
 
 ```javascript
 // Promise
-const promise = content.updateLegalInformation( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.updateLegalInformation({  body : value });
 
 // Async/Await
-const data = await content.updateLegalInformation( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.updateLegalInformation({  body : value });
 ```
 
 
@@ -9621,16 +9297,12 @@ Get navigations
 
 ```javascript
 // Promise
-const promise = content.getNavigations( {  companyId : value,
- applicationId : value,
- devicePlatform : value,
+const promise = client.application("<APPLICATION_ID>").content.getNavigations({  devicePlatform : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getNavigations( {  companyId : value,
- applicationId : value,
- devicePlatform : value,
+const data = await client.application("<APPLICATION_ID>").content.getNavigations({  devicePlatform : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -9698,14 +9370,10 @@ Create a navigation
 
 ```javascript
 // Promise
-const promise = content.createNavigation( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createNavigation({  body : value });
 
 // Async/Await
-const data = await content.createNavigation( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createNavigation({  body : value });
 ```
 
 
@@ -9768,12 +9436,10 @@ Get default navigations
 
 ```javascript
 // Promise
-const promise = content.getDefaultNavigations( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getDefaultNavigations();
 
 // Async/Await
-const data = await content.getDefaultNavigations( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getDefaultNavigations();
 ```
 
 
@@ -9836,15 +9502,11 @@ Get a navigation by slug
 
 ```javascript
 // Promise
-const promise = content.getNavigationBySlug( {  companyId : value,
- applicationId : value,
- slug : value,
+const promise = client.application("<APPLICATION_ID>").content.getNavigationBySlug({  slug : value,
  devicePlatform : value });
 
 // Async/Await
-const data = await content.getNavigationBySlug( {  companyId : value,
- applicationId : value,
- slug : value,
+const data = await client.application("<APPLICATION_ID>").content.getNavigationBySlug({  slug : value,
  devicePlatform : value });
 ```
 
@@ -9910,15 +9572,11 @@ Update a navigation
 
 ```javascript
 // Promise
-const promise = content.updateNavigation( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").content.updateNavigation({  id : value,
  body : value });
 
 // Async/Await
-const data = await content.updateNavigation( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").content.updateNavigation({  id : value,
  body : value });
 ```
 
@@ -9983,14 +9641,10 @@ Delete a navigation
 
 ```javascript
 // Promise
-const promise = content.deleteNavigation( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteNavigation({  id : value });
 
 // Async/Await
-const data = await content.deleteNavigation( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteNavigation({  id : value });
 ```
 
 
@@ -10234,12 +9888,10 @@ Get page meta
 
 ```javascript
 // Promise
-const promise = content.getPageMeta( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getPageMeta();
 
 // Async/Await
-const data = await content.getPageMeta( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getPageMeta();
 ```
 
 
@@ -10302,12 +9954,10 @@ Get page spec
 
 ```javascript
 // Promise
-const promise = content.getPageSpec( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getPageSpec();
 
 // Async/Await
-const data = await content.getPageSpec( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getPageSpec();
 ```
 
 
@@ -10396,14 +10046,10 @@ Create a page
 
 ```javascript
 // Promise
-const promise = content.createPage( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createPage({  body : value });
 
 // Async/Await
-const data = await content.createPage( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createPage({  body : value });
 ```
 
 
@@ -10466,15 +10112,11 @@ Get a list of pages
 
 ```javascript
 // Promise
-const promise = content.getPages( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getPages( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
  pageSize : value });
 ```
 
@@ -10540,14 +10182,10 @@ Create a page preview
 
 ```javascript
 // Promise
-const promise = content.createPagePreview( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
 
 // Async/Await
-const data = await content.createPagePreview( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
 ```
 
 
@@ -10610,15 +10248,11 @@ Change the publish status of a page
 
 ```javascript
 // Promise
-const promise = content.updatePagePreview( {  companyId : value,
- applicationId : value,
- slug : value,
+const promise = client.application("<APPLICATION_ID>").content.updatePagePreview({  slug : value,
  body : value });
 
 // Async/Await
-const data = await content.updatePagePreview( {  companyId : value,
- applicationId : value,
- slug : value,
+const data = await client.application("<APPLICATION_ID>").content.updatePagePreview({  slug : value,
  body : value });
 ```
 
@@ -10683,15 +10317,11 @@ Update a page
 
 ```javascript
 // Promise
-const promise = content.updatePage( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").content.updatePage({  id : value,
  body : value });
 
 // Async/Await
-const data = await content.updatePage( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").content.updatePage({  id : value,
  body : value });
 ```
 
@@ -10756,14 +10386,10 @@ Delete a page
 
 ```javascript
 // Promise
-const promise = content.deletePage( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").content.deletePage({  id : value });
 
 // Async/Await
-const data = await content.deletePage( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").content.deletePage({  id : value });
 ```
 
 
@@ -10827,14 +10453,10 @@ Get pages by component Id
 
 ```javascript
 // Promise
-const promise = content.getPageBySlug( {  companyId : value,
- applicationId : value,
- slug : value });
+const promise = client.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
 
 // Async/Await
-const data = await content.getPageBySlug( {  companyId : value,
- applicationId : value,
- slug : value });
+const data = await client.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
 ```
 
 
@@ -10898,12 +10520,10 @@ Get SEO configuration of an application
 
 ```javascript
 // Promise
-const promise = content.getSEOConfiguration( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getSEOConfiguration();
 
 // Async/Await
-const data = await content.getSEOConfiguration( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getSEOConfiguration();
 ```
 
 
@@ -10966,14 +10586,10 @@ Update SEO of application
 
 ```javascript
 // Promise
-const promise = content.updateSEOConfiguration( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.updateSEOConfiguration({  body : value });
 
 // Async/Await
-const data = await content.updateSEOConfiguration( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.updateSEOConfiguration({  body : value });
 ```
 
 
@@ -11059,16 +10675,12 @@ Get slideshows
 
 ```javascript
 // Promise
-const promise = content.getSlideshows( {  companyId : value,
- applicationId : value,
- devicePlatform : value,
+const promise = client.application("<APPLICATION_ID>").content.getSlideshows({  devicePlatform : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await content.getSlideshows( {  companyId : value,
- applicationId : value,
- devicePlatform : value,
+const data = await client.application("<APPLICATION_ID>").content.getSlideshows({  devicePlatform : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -11136,14 +10748,10 @@ Create a slideshow
 
 ```javascript
 // Promise
-const promise = content.createSlideshow( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.createSlideshow({  body : value });
 
 // Async/Await
-const data = await content.createSlideshow( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.createSlideshow({  body : value });
 ```
 
 
@@ -11206,15 +10814,11 @@ Get slideshow by slug
 
 ```javascript
 // Promise
-const promise = content.getSlideshowBySlug( {  companyId : value,
- applicationId : value,
- slug : value,
+const promise = client.application("<APPLICATION_ID>").content.getSlideshowBySlug({  slug : value,
  devicePlatform : value });
 
 // Async/Await
-const data = await content.getSlideshowBySlug( {  companyId : value,
- applicationId : value,
- slug : value,
+const data = await client.application("<APPLICATION_ID>").content.getSlideshowBySlug({  slug : value,
  devicePlatform : value });
 ```
 
@@ -11280,15 +10884,11 @@ Update a slideshow
 
 ```javascript
 // Promise
-const promise = content.updateSlideshow( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").content.updateSlideshow({  id : value,
  body : value });
 
 // Async/Await
-const data = await content.updateSlideshow( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").content.updateSlideshow({  id : value,
  body : value });
 ```
 
@@ -11353,14 +10953,10 @@ Delete a slideshow
 
 ```javascript
 // Promise
-const promise = content.deleteSlideshow( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteSlideshow({  id : value });
 
 // Async/Await
-const data = await content.deleteSlideshow( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteSlideshow({  id : value });
 ```
 
 
@@ -11463,12 +11059,10 @@ Get support information
 
 ```javascript
 // Promise
-const promise = content.getSupportInformation( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getSupportInformation();
 
 // Async/Await
-const data = await content.getSupportInformation( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getSupportInformation();
 ```
 
 
@@ -11531,14 +11125,10 @@ Update the support data of an application
 
 ```javascript
 // Promise
-const promise = content.updateSupportInformation( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.updateSupportInformation({  body : value });
 
 // Async/Await
-const data = await content.updateSupportInformation( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.updateSupportInformation({  body : value });
 ```
 
 
@@ -11601,14 +11191,10 @@ Update a tag
 
 ```javascript
 // Promise
-const promise = content.updateInjectableTag( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.updateInjectableTag({  body : value });
 
 // Async/Await
-const data = await content.updateInjectableTag( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.updateInjectableTag({  body : value });
 ```
 
 
@@ -11617,7 +11203,7 @@ const data = await content.updateInjectableTag( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | no | Request body |
+| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
 
 
 Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
@@ -11685,12 +11271,10 @@ Delete tags in application
 
 ```javascript
 // Promise
-const promise = content.deleteAllInjectableTags( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.deleteAllInjectableTags();
 
 // Async/Await
-const data = await content.deleteAllInjectableTags( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.deleteAllInjectableTags();
 ```
 
 
@@ -11767,12 +11351,10 @@ Get all the tags in an application
 
 ```javascript
 // Promise
-const promise = content.getInjectableTags( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").content.getInjectableTags();
 
 // Async/Await
-const data = await content.getInjectableTags( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").content.getInjectableTags();
 ```
 
 
@@ -11849,14 +11431,10 @@ Add a tag
 
 ```javascript
 // Promise
-const promise = content.addInjectableTag( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.addInjectableTag({  body : value });
 
 // Async/Await
-const data = await content.addInjectableTag( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.addInjectableTag({  body : value });
 ```
 
 
@@ -11865,7 +11443,7 @@ const data = await content.addInjectableTag( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | no | Request body |
+| body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
 
 
 CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
@@ -11925,14 +11503,10 @@ Remove a tag
 
 ```javascript
 // Promise
-const promise = content.removeInjectableTag( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").content.removeInjectableTag({  body : value });
 
 // Async/Await
-const data = await content.removeInjectableTag( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").content.removeInjectableTag({  body : value });
 ```
 
 
@@ -11941,7 +11515,7 @@ const data = await content.removeInjectableTag( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
-| body | [RemoveHandpickedSchema](#RemoveHandpickedSchema) | no | Request body |
+| body | [RemoveHandpickedSchema](#RemoveHandpickedSchema) | yes | Request body |
 
 
 Use this API to delete an existing tag.
@@ -11989,15 +11563,11 @@ Edit a tag by id
 
 ```javascript
 // Promise
-const promise = content.editInjectableTag( {  companyId : value,
- applicationId : value,
- tagId : value,
+const promise = client.application("<APPLICATION_ID>").content.editInjectableTag({  tagId : value,
  body : value });
 
 // Async/Await
-const data = await content.editInjectableTag( {  companyId : value,
- applicationId : value,
- tagId : value,
+const data = await client.application("<APPLICATION_ID>").content.editInjectableTag({  tagId : value,
  body : value });
 ```
 
@@ -12008,7 +11578,7 @@ const data = await content.editInjectableTag( {  companyId : value,
 | companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
 | applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | tagId | string | yes | ID allotted to the tag. |  
-| body | [UpdateHandpickedSchema](#UpdateHandpickedSchema) | no | Request body |
+| body | [UpdateHandpickedSchema](#UpdateHandpickedSchema) | yes | Request body |
 
 
 Use this API to edit the details of an existing tag by its ID.
@@ -12074,13 +11644,11 @@ Create subscription charge
 
 ```javascript
 // Promise
-const promise = billing.createSubscriptionCharge( {  companyId : value,
- extensionId : value,
+const promise = client.billing.createSubscriptionCharge({  extensionId : value,
  body : value });
 
 // Async/Await
-const data = await billing.createSubscriptionCharge( {  companyId : value,
- extensionId : value,
+const data = await client.billing.createSubscriptionCharge({  extensionId : value,
  body : value });
 ```
 
@@ -12090,7 +11658,7 @@ const data = await billing.createSubscriptionCharge( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | string | yes | Extension _id |  
-| body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | no | Request body |
+| body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | yes | Request body |
 
 
 Register subscription charge for a seller of your extension.
@@ -12136,13 +11704,11 @@ Get subscription charge details
 
 ```javascript
 // Promise
-const promise = billing.getSubscriptionCharge( {  companyId : value,
- extensionId : value,
+const promise = client.billing.getSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 
 // Async/Await
-const data = await billing.getSubscriptionCharge( {  companyId : value,
- extensionId : value,
+const data = await client.billing.getSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 ```
 
@@ -12199,13 +11765,11 @@ Cancel subscription charge
 
 ```javascript
 // Promise
-const promise = billing.cancelSubscriptionCharge( {  companyId : value,
- extensionId : value,
+const promise = client.billing.cancelSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 
 // Async/Await
-const data = await billing.cancelSubscriptionCharge( {  companyId : value,
- extensionId : value,
+const data = await client.billing.cancelSubscriptionCharge({  extensionId : value,
  subscriptionId : value });
 ```
 
@@ -12262,10 +11826,10 @@ Get invoices
 
 ```javascript
 // Promise
-const promise = billing.getInvoices( {  companyId : value });
+const promise = client.billing.getInvoices();
 
 // Async/Await
-const data = await billing.getInvoices( {  companyId : value });
+const data = await client.billing.getInvoices();
 ```
 
 
@@ -12327,12 +11891,10 @@ Get invoice by id
 
 ```javascript
 // Promise
-const promise = billing.getInvoiceById( {  companyId : value,
- invoiceId : value });
+const promise = client.billing.getInvoiceById({  invoiceId : value });
 
 // Async/Await
-const data = await billing.getInvoiceById( {  companyId : value,
- invoiceId : value });
+const data = await client.billing.getInvoiceById({  invoiceId : value });
 ```
 
 
@@ -12395,10 +11957,10 @@ Get subscription customer detail
 
 ```javascript
 // Promise
-const promise = billing.getCustomerDetail( {  companyId : value });
+const promise = client.billing.getCustomerDetail();
 
 // Async/Await
-const data = await billing.getCustomerDetail( {  companyId : value });
+const data = await client.billing.getCustomerDetail();
 ```
 
 
@@ -12460,12 +12022,10 @@ Upsert subscription customer detail
 
 ```javascript
 // Promise
-const promise = billing.upsertCustomerDetail( {  companyId : value,
- body : value });
+const promise = client.billing.upsertCustomerDetail({  body : value });
 
 // Async/Await
-const data = await billing.upsertCustomerDetail( {  companyId : value,
- body : value });
+const data = await client.billing.upsertCustomerDetail({  body : value });
 ```
 
 
@@ -12527,10 +12087,10 @@ Get current subscription detail
 
 ```javascript
 // Promise
-const promise = billing.getSubscription( {  companyId : value });
+const promise = client.billing.getSubscription();
 
 // Async/Await
-const data = await billing.getSubscription( {  companyId : value });
+const data = await client.billing.getSubscription();
 ```
 
 
@@ -12603,10 +12163,10 @@ Get subscription subscription limits
 
 ```javascript
 // Promise
-const promise = billing.getFeatureLimitConfig( {  companyId : value });
+const promise = client.billing.getFeatureLimitConfig();
 
 // Async/Await
-const data = await billing.getFeatureLimitConfig( {  companyId : value });
+const data = await client.billing.getFeatureLimitConfig();
 ```
 
 
@@ -12668,12 +12228,10 @@ Activate subscription
 
 ```javascript
 // Promise
-const promise = billing.activateSubscriptionPlan( {  companyId : value,
- body : value });
+const promise = client.billing.activateSubscriptionPlan({  body : value });
 
 // Async/Await
-const data = await billing.activateSubscriptionPlan( {  companyId : value,
- body : value });
+const data = await client.billing.activateSubscriptionPlan({  body : value });
 ```
 
 
@@ -12735,12 +12293,10 @@ Cancel subscription
 
 ```javascript
 // Promise
-const promise = billing.cancelSubscriptionPlan( {  companyId : value,
- body : value });
+const promise = client.billing.cancelSubscriptionPlan({  body : value });
 
 // Async/Await
-const data = await billing.cancelSubscriptionPlan( {  companyId : value,
- body : value });
+const data = await client.billing.cancelSubscriptionPlan({  body : value });
 ```
 
 
@@ -12808,16 +12364,12 @@ Get campaigns
 
 ```javascript
 // Promise
-const promise = communication.getCampaigns( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getCampaigns( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -12885,14 +12437,10 @@ Create campaign
 
 ```javascript
 // Promise
-const promise = communication.createCampaign( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
 
 // Async/Await
-const data = await communication.createCampaign( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createCampaign({  body : value });
 ```
 
 
@@ -12955,14 +12503,10 @@ Get campaign by id
 
 ```javascript
 // Promise
-const promise = communication.getCampaignById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
 
 // Async/Await
-const data = await communication.getCampaignById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getCampaignById({  id : value });
 ```
 
 
@@ -13026,15 +12570,11 @@ Update campaign by id
 
 ```javascript
 // Promise
-const promise = communication.updateCampaignById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
  body : value });
 
 // Async/Await
-const data = await communication.updateCampaignById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateCampaignById({  id : value,
  body : value });
 ```
 
@@ -13099,14 +12639,10 @@ Get stats of campaign by id
 
 ```javascript
 // Promise
-const promise = communication.getStatsOfCampaignById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
 
 // Async/Await
-const data = await communication.getStatsOfCampaignById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById({  id : value });
 ```
 
 
@@ -13170,16 +12706,12 @@ Get audiences
 
 ```javascript
 // Promise
-const promise = communication.getAudiences( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getAudiences( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -13247,14 +12779,10 @@ Create audience
 
 ```javascript
 // Promise
-const promise = communication.createAudience( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createAudience({  body : value });
 
 // Async/Await
-const data = await communication.createAudience( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createAudience({  body : value });
 ```
 
 
@@ -13317,14 +12845,10 @@ Get bigquery headers
 
 ```javascript
 // Promise
-const promise = communication.getBigqueryHeaders( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
 
 // Async/Await
-const data = await communication.getBigqueryHeaders( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.getBigqueryHeaders({  body : value });
 ```
 
 
@@ -13387,14 +12911,10 @@ Get audience by id
 
 ```javascript
 // Promise
-const promise = communication.getAudienceById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
 
 // Async/Await
-const data = await communication.getAudienceById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getAudienceById({  id : value });
 ```
 
 
@@ -13458,15 +12978,11 @@ Update audience by id
 
 ```javascript
 // Promise
-const promise = communication.updateAudienceById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
  body : value });
 
 // Async/Await
-const data = await communication.updateAudienceById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateAudienceById({  id : value,
  body : value });
 ```
 
@@ -13531,14 +13047,10 @@ Get n sample records from csv
 
 ```javascript
 // Promise
-const promise = communication.getNSampleRecordsFromCsv( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
 
 // Async/Await
-const data = await communication.getNSampleRecordsFromCsv( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv({  body : value });
 ```
 
 
@@ -13601,16 +13113,12 @@ Get email providers
 
 ```javascript
 // Promise
-const promise = communication.getEmailProviders( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getEmailProviders( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -13678,14 +13186,10 @@ Create email provider
 
 ```javascript
 // Promise
-const promise = communication.createEmailProvider( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
 
 // Async/Await
-const data = await communication.createEmailProvider( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createEmailProvider({  body : value });
 ```
 
 
@@ -13748,14 +13252,10 @@ Get email provider by id
 
 ```javascript
 // Promise
-const promise = communication.getEmailProviderById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
 
 // Async/Await
-const data = await communication.getEmailProviderById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getEmailProviderById({  id : value });
 ```
 
 
@@ -13819,15 +13319,11 @@ Update email provider by id
 
 ```javascript
 // Promise
-const promise = communication.updateEmailProviderById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
  body : value });
 
 // Async/Await
-const data = await communication.updateEmailProviderById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateEmailProviderById({  id : value,
  body : value });
 ```
 
@@ -13892,16 +13388,12 @@ Get email templates
 
 ```javascript
 // Promise
-const promise = communication.getEmailTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getEmailTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -13969,14 +13461,10 @@ Create email template
 
 ```javascript
 // Promise
-const promise = communication.createEmailTemplate( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
 
 // Async/Await
-const data = await communication.createEmailTemplate( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createEmailTemplate({  body : value });
 ```
 
 
@@ -14039,16 +13527,12 @@ Get system email templates
 
 ```javascript
 // Promise
-const promise = communication.getSystemEmailTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getSystemEmailTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -14116,14 +13600,10 @@ Get email template by id
 
 ```javascript
 // Promise
-const promise = communication.getEmailTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
 
 // Async/Await
-const data = await communication.getEmailTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getEmailTemplateById({  id : value });
 ```
 
 
@@ -14187,15 +13667,11 @@ Update email template by id
 
 ```javascript
 // Promise
-const promise = communication.updateEmailTemplateById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
  body : value });
 
 // Async/Await
-const data = await communication.updateEmailTemplateById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateEmailTemplateById({  id : value,
  body : value });
 ```
 
@@ -14260,14 +13736,10 @@ Delete email template by id
 
 ```javascript
 // Promise
-const promise = communication.deleteEmailTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
 
 // Async/Await
-const data = await communication.deleteEmailTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById({  id : value });
 ```
 
 
@@ -14331,16 +13803,12 @@ Get event subscriptions
 
 ```javascript
 // Promise
-const promise = communication.getEventSubscriptions( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
  populate : value });
 
 // Async/Await
-const data = await communication.getEventSubscriptions( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getEventSubscriptions({  pageNo : value,
  pageSize : value,
  populate : value });
 ```
@@ -14408,16 +13876,12 @@ Get jobs
 
 ```javascript
 // Promise
-const promise = communication.getJobs( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getJobs( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -14485,14 +13949,10 @@ Trigger campaign job
 
 ```javascript
 // Promise
-const promise = communication.triggerCampaignJob( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
 
 // Async/Await
-const data = await communication.triggerCampaignJob( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.triggerCampaignJob({  body : value });
 ```
 
 
@@ -14555,16 +14015,12 @@ Get job logs
 
 ```javascript
 // Promise
-const promise = communication.getJobLogs( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getJobLogs( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -14632,17 +14088,13 @@ Get communication logs
 
 ```javascript
 // Promise
-const promise = communication.getCommunicationLogs( {  companyId : value,
- applicationId : value,
- pageId : value,
+const promise = client.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
  pageSize : value,
  sort : value,
  query : value });
 
 // Async/Await
-const data = await communication.getCommunicationLogs( {  companyId : value,
- applicationId : value,
- pageId : value,
+const data = await client.application("<APPLICATION_ID>").communication.getCommunicationLogs({  pageId : value,
  pageSize : value,
  sort : value,
  query : value });
@@ -14712,13 +14164,11 @@ Get system notifications
 
 ```javascript
 // Promise
-const promise = communication.getSystemNotifications( {  companyId : value,
- pageNo : value,
+const promise = client.communication.getSystemNotifications({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await communication.getSystemNotifications( {  companyId : value,
- pageNo : value,
+const data = await client.communication.getSystemNotifications({  pageNo : value,
  pageSize : value });
 ```
 
@@ -14783,16 +14233,12 @@ Get sms providers
 
 ```javascript
 // Promise
-const promise = communication.getSmsProviders( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getSmsProviders( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSmsProviders({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -14860,14 +14306,10 @@ Create sms provider
 
 ```javascript
 // Promise
-const promise = communication.createSmsProvider( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
 
 // Async/Await
-const data = await communication.createSmsProvider( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createSmsProvider({  body : value });
 ```
 
 
@@ -14930,14 +14372,10 @@ Get sms provider by id
 
 ```javascript
 // Promise
-const promise = communication.getSmsProviderById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
 
 // Async/Await
-const data = await communication.getSmsProviderById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getSmsProviderById({  id : value });
 ```
 
 
@@ -15001,15 +14439,11 @@ Update sms provider by id
 
 ```javascript
 // Promise
-const promise = communication.updateSmsProviderById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
  body : value });
 
 // Async/Await
-const data = await communication.updateSmsProviderById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateSmsProviderById({  id : value,
  body : value });
 ```
 
@@ -15074,16 +14508,12 @@ Get sms templates
 
 ```javascript
 // Promise
-const promise = communication.getSmsTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getSmsTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -15151,14 +14581,10 @@ Create sms template
 
 ```javascript
 // Promise
-const promise = communication.createSmsTemplate( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
 
 // Async/Await
-const data = await communication.createSmsTemplate( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").communication.createSmsTemplate({  body : value });
 ```
 
 
@@ -15221,14 +14647,10 @@ Get sms template by id
 
 ```javascript
 // Promise
-const promise = communication.getSmsTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
 
 // Async/Await
-const data = await communication.getSmsTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.getSmsTemplateById({  id : value });
 ```
 
 
@@ -15292,15 +14714,11 @@ Update sms template by id
 
 ```javascript
 // Promise
-const promise = communication.updateSmsTemplateById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
  body : value });
 
 // Async/Await
-const data = await communication.updateSmsTemplateById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").communication.updateSmsTemplateById({  id : value,
  body : value });
 ```
 
@@ -15365,14 +14783,10 @@ Delete sms template by id
 
 ```javascript
 // Promise
-const promise = communication.deleteSmsTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
 
 // Async/Await
-const data = await communication.deleteSmsTemplateById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById({  id : value });
 ```
 
 
@@ -15436,16 +14850,12 @@ Get system sms templates
 
 ```javascript
 // Promise
-const promise = communication.getSystemSystemTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await communication.getSystemSystemTemplates( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates({  pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -15519,12 +14929,10 @@ Get All Brand Payment Gateway Config Secret
 
 ```javascript
 // Promise
-const promise = payment.getBrandPaymentGatewayConfig( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
 
 // Async/Await
-const data = await payment.getBrandPaymentGatewayConfig( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
 ```
 
 
@@ -15696,14 +15104,10 @@ Save Config Secret For Brand Payment Gateway
 
 ```javascript
 // Promise
-const promise = payment.saveBrandPaymentGatewayConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
 
 // Async/Await
-const data = await payment.saveBrandPaymentGatewayConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
 ```
 
 
@@ -15712,7 +15116,7 @@ const data = await payment.saveBrandPaymentGatewayConfig( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |   
 | applicationId | string | yes | Application id |  
-| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | no | Request body |
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
 
 
 Save Config Secret For Brand Payment Gateway
@@ -15763,14 +15167,10 @@ Save Config Secret For Brand Payment Gateway
 
 ```javascript
 // Promise
-const promise = payment.updateBrandPaymentGatewayConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
 
 // Async/Await
-const data = await payment.updateBrandPaymentGatewayConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
 ```
 
 
@@ -15779,7 +15179,7 @@ const data = await payment.updateBrandPaymentGatewayConfig( {  companyId : value
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |   
 | applicationId | string | yes | Application id |  
-| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | no | Request body |
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
 
 
 Save Config Secret For Brand Payment Gateway
@@ -15830,15 +15230,11 @@ Get All Valid Payment Options
 
 ```javascript
 // Promise
-const promise = payment.getPaymentModeRoutes( {  companyId : value,
- applicationId : value,
- refresh : value,
+const promise = client.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
  requestType : value });
 
 // Async/Await
-const data = await payment.getPaymentModeRoutes( {  companyId : value,
- applicationId : value,
- refresh : value,
+const data = await client.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
  requestType : value });
 ```
 
@@ -17023,12 +16419,10 @@ Get All Payouts
 
 ```javascript
 // Promise
-const promise = payment.getAllPayouts( {  companyId : value,
- uniqueExternalId : value });
+const promise = client.payment.getAllPayouts({  uniqueExternalId : value });
 
 // Async/Await
-const data = await payment.getAllPayouts( {  companyId : value,
- uniqueExternalId : value });
+const data = await client.payment.getAllPayouts({  uniqueExternalId : value });
 ```
 
 
@@ -17146,12 +16540,10 @@ Save Payout
 
 ```javascript
 // Promise
-const promise = payment.savePayout( {  companyId : value,
- body : value });
+const promise = client.payment.savePayout({  body : value });
 
 // Async/Await
-const data = await payment.savePayout( {  companyId : value,
- body : value });
+const data = await client.payment.savePayout({  body : value });
 ```
 
 
@@ -17159,7 +16551,7 @@ const data = await payment.savePayout( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |  
-| body | [PayoutRequest](#PayoutRequest) | no | Request body |
+| body | [PayoutRequest](#PayoutRequest) | yes | Request body |
 
 
 Save Payout
@@ -17233,13 +16625,11 @@ Update Payout
 
 ```javascript
 // Promise
-const promise = payment.updatePayout( {  companyId : value,
- uniqueTransferNo : value,
+const promise = client.payment.updatePayout({  uniqueTransferNo : value,
  body : value });
 
 // Async/Await
-const data = await payment.updatePayout( {  companyId : value,
- uniqueTransferNo : value,
+const data = await client.payment.updatePayout({  uniqueTransferNo : value,
  body : value });
 ```
 
@@ -17249,7 +16639,7 @@ const data = await payment.updatePayout( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |   
 | uniqueTransferNo | string | yes | Unique transfer id |  
-| body | [PayoutRequest](#PayoutRequest) | no | Request body |
+| body | [PayoutRequest](#PayoutRequest) | yes | Request body |
 
 
 Update Payout
@@ -17299,13 +16689,11 @@ Partial Update Payout
 
 ```javascript
 // Promise
-const promise = payment.activateAndDectivatePayout( {  companyId : value,
- uniqueTransferNo : value,
+const promise = client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
  body : value });
 
 // Async/Await
-const data = await payment.activateAndDectivatePayout( {  companyId : value,
- uniqueTransferNo : value,
+const data = await client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
  body : value });
 ```
 
@@ -17315,7 +16703,7 @@ const data = await payment.activateAndDectivatePayout( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |   
 | uniqueTransferNo | string | yes | Unique transfer id |  
-| body | [UpdatePayoutRequest](#UpdatePayoutRequest) | no | Request body |
+| body | [UpdatePayoutRequest](#UpdatePayoutRequest) | yes | Request body |
 
 
 Partial Update Payout
@@ -17365,12 +16753,10 @@ Delete Payout
 
 ```javascript
 // Promise
-const promise = payment.deletePayout( {  companyId : value,
- uniqueTransferNo : value });
+const promise = client.payment.deletePayout({  uniqueTransferNo : value });
 
 // Async/Await
-const data = await payment.deletePayout( {  companyId : value,
- uniqueTransferNo : value });
+const data = await client.payment.deletePayout({  uniqueTransferNo : value });
 ```
 
 
@@ -17427,10 +16813,10 @@ List Subscription Payment Method
 
 ```javascript
 // Promise
-const promise = payment.getSubscriptionPaymentMethod( {  companyId : value });
+const promise = client.payment.getSubscriptionPaymentMethod();
 
 // Async/Await
-const data = await payment.getSubscriptionPaymentMethod( {  companyId : value });
+const data = await client.payment.getSubscriptionPaymentMethod();
 ```
 
 
@@ -17612,13 +16998,11 @@ Delete Subscription Payment Method
 
 ```javascript
 // Promise
-const promise = payment.deleteSubscriptionPaymentMethod( {  companyId : value,
- uniqueExternalId : value,
+const promise = client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
  paymentMethodId : value });
 
 // Async/Await
-const data = await payment.deleteSubscriptionPaymentMethod( {  companyId : value,
- uniqueExternalId : value,
+const data = await client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
  paymentMethodId : value });
 ```
 
@@ -17677,10 +17061,10 @@ List Subscription Config
 
 ```javascript
 // Promise
-const promise = payment.getSubscriptionConfig( {  companyId : value });
+const promise = client.payment.getSubscriptionConfig();
 
 // Async/Await
-const data = await payment.getSubscriptionConfig( {  companyId : value });
+const data = await client.payment.getSubscriptionConfig();
 ```
 
 
@@ -17740,12 +17124,10 @@ Save Subscription Setup Intent
 
 ```javascript
 // Promise
-const promise = payment.saveSubscriptionSetupIntent( {  companyId : value,
- body : value });
+const promise = client.payment.saveSubscriptionSetupIntent({  body : value });
 
 // Async/Await
-const data = await payment.saveSubscriptionSetupIntent( {  companyId : value,
- body : value });
+const data = await client.payment.saveSubscriptionSetupIntent({  body : value });
 ```
 
 
@@ -17753,7 +17135,7 @@ const data = await payment.saveSubscriptionSetupIntent( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |  
-| body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | no | Request body |
+| body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | yes | Request body |
 
 
 Uses this api to Save Subscription Setup Intent
@@ -17808,14 +17190,10 @@ Save bank details for cancelled/returned order
 
 ```javascript
 // Promise
-const promise = payment.addBeneficiaryDetails( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").payment.addBeneficiaryDetails({  body : value });
 
 // Async/Await
-const data = await payment.addBeneficiaryDetails( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").payment.addBeneficiaryDetails({  body : value });
 ```
 
 
@@ -17824,7 +17202,7 @@ const data = await payment.addBeneficiaryDetails( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |   
 | applicationId | string | yes | Application id |  
-| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | no | Request body |
+| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | yes | Request body |
 
 
 Use this API to save bank details for returned/cancelled order to refund amount in his account.
@@ -17874,12 +17252,10 @@ Ifsc Code Verification
 
 ```javascript
 // Promise
-const promise = payment.verifyIfscCode( {  companyId : value,
- ifscCode : value });
+const promise = client.payment.verifyIfscCode({  ifscCode : value });
 
 // Async/Await
-const data = await payment.verifyIfscCode( {  companyId : value,
- ifscCode : value });
+const data = await client.payment.verifyIfscCode({  ifscCode : value });
 ```
 
 
@@ -17954,14 +17330,10 @@ List Order Beneficiary
 
 ```javascript
 // Promise
-const promise = payment.getUserOrderBeneficiaries( {  orderId : value,
- companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
 
 // Async/Await
-const data = await payment.getUserOrderBeneficiaries( {  orderId : value,
- companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
 ```
 
 
@@ -18041,14 +17413,10 @@ List User Beneficiary
 
 ```javascript
 // Promise
-const promise = payment.getUserBeneficiaries( {  orderId : value,
- companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
 
 // Async/Await
-const data = await payment.getUserBeneficiaries( {  orderId : value,
- companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
 ```
 
 
@@ -18129,14 +17497,10 @@ Confirm payment after successful payment from payment gateway
 
 ```javascript
 // Promise
-const promise = payment.confirmPayment( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
 
 // Async/Await
-const data = await payment.confirmPayment( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
 ```
 
 
@@ -18145,7 +17509,7 @@ const data = await payment.confirmPayment( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id |   
 | applicationId | string | yes | Application id |  
-| body | [PaymentConfirmationRequest](#PaymentConfirmationRequest) | no | Request body |
+| body | [PaymentConfirmationRequest](#PaymentConfirmationRequest) | yes | Request body |
 
 
 Use this API to confirm payment after payment gateway accepted payment.
@@ -18201,12 +17565,10 @@ Update status of Shipment
 
 ```javascript
 // Promise
-const promise = order.shipmentStatusUpdate( {  companyId : value,
- body : value });
+const promise = client.order.shipmentStatusUpdate({  body : value });
 
 // Async/Await
-const data = await order.shipmentStatusUpdate( {  companyId : value,
- body : value });
+const data = await client.order.shipmentStatusUpdate({  body : value });
 ```
 
 
@@ -18260,12 +17622,10 @@ Get Activity Status
 
 ```javascript
 // Promise
-const promise = order.activityStatus( {  companyId : value,
- bagId : value });
+const promise = client.order.activityStatus({  bagId : value });
 
 // Async/Await
-const data = await order.activityStatus( {  companyId : value,
- bagId : value });
+const data = await client.order.activityStatus({  bagId : value });
 ```
 
 
@@ -18320,12 +17680,10 @@ Update Store Process-Shipment
 
 ```javascript
 // Promise
-const promise = order.storeProcessShipmentUpdate( {  companyId : value,
- body : value });
+const promise = client.order.storeProcessShipmentUpdate({  body : value });
 
 // Async/Await
-const data = await order.storeProcessShipmentUpdate( {  companyId : value,
- body : value });
+const data = await client.order.storeProcessShipmentUpdate({  body : value });
 ```
 
 
@@ -18379,12 +17737,10 @@ Check Refund is available or not
 
 ```javascript
 // Promise
-const promise = order.checkRefund( {  companyId : value,
- shipmentId : value });
+const promise = client.order.checkRefund({  shipmentId : value });
 
 // Async/Await
-const data = await order.checkRefund( {  companyId : value,
- shipmentId : value });
+const data = await client.order.checkRefund({  shipmentId : value });
 ```
 
 
@@ -18439,8 +17795,7 @@ Get Orders for company based on Company Id
 
 ```javascript
 // Promise
-const promise = order.getOrdersByCompanyId( {  companyId : value,
- pageNo : value,
+const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
@@ -18454,8 +17809,7 @@ const promise = order.getOrdersByCompanyId( {  companyId : value,
  filterType : value });
 
 // Async/Await
-const data = await order.getOrdersByCompanyId( {  companyId : value,
- pageNo : value,
+const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
@@ -18532,8 +17886,7 @@ Get Order Lanes Count for company based on Company Id
 
 ```javascript
 // Promise
-const promise = order.getOrderLanesCountByCompanyId( {  companyId : value,
- pageNo : value,
+const promise = client.order.getOrderLanesCountByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
@@ -18547,8 +17900,7 @@ const promise = order.getOrderLanesCountByCompanyId( {  companyId : value,
  filterType : value });
 
 // Async/Await
-const data = await order.getOrderLanesCountByCompanyId( {  companyId : value,
- pageNo : value,
+const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
@@ -18625,14 +17977,12 @@ Get Order Details for company based on Company Id and Order Id
 
 ```javascript
 // Promise
-const promise = order.getOrderDetails( {  companyId : value,
- orderId : value,
+const promise = client.order.getOrderDetails({  orderId : value,
  next : value,
  previous : value });
 
 // Async/Await
-const data = await order.getOrderDetails( {  companyId : value,
- orderId : value,
+const data = await client.order.getOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```
@@ -18691,8 +18041,7 @@ Get Orders for company based on Company Id
 
 ```javascript
 // Promise
-const promise = order.getPicklistOrdersByCompanyId( {  companyId : value,
- pageNo : value,
+const promise = client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
@@ -18706,8 +18055,7 @@ const promise = order.getPicklistOrdersByCompanyId( {  companyId : value,
  filterType : value });
 
 // Async/Await
-const data = await order.getPicklistOrdersByCompanyId( {  companyId : value,
- pageNo : value,
+const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
@@ -18784,14 +18132,10 @@ Track Shipment by shipment id, for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.trackShipmentPlatform( {  companyId : value,
- applicationId : value,
- shipmentId : value });
+const promise = client.application("<APPLICATION_ID>").order.trackShipmentPlatform({  shipmentId : value });
 
 // Async/Await
-const data = await order.trackShipmentPlatform( {  companyId : value,
- applicationId : value,
- shipmentId : value });
+const data = await client.application("<APPLICATION_ID>").order.trackShipmentPlatform({  shipmentId : value });
 ```
 
 
@@ -18847,14 +18191,10 @@ Track Order by order id, for application based on application Id
 
 ```javascript
 // Promise
-const promise = order.trackOrder( {  companyId : value,
- applicationId : value,
- orderId : value });
+const promise = client.application("<APPLICATION_ID>").order.trackOrder({  orderId : value });
 
 // Async/Await
-const data = await order.trackOrder( {  companyId : value,
- applicationId : value,
- orderId : value });
+const data = await client.application("<APPLICATION_ID>").order.trackOrder({  orderId : value });
 ```
 
 
@@ -18910,12 +18250,10 @@ Get all failed orders application wise
 
 ```javascript
 // Promise
-const promise = order.failedOrders( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").order.failedOrders();
 
 // Async/Await
-const data = await order.failedOrders( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").order.failedOrders();
 ```
 
 
@@ -18970,14 +18308,10 @@ Reprocess order by order id
 
 ```javascript
 // Promise
-const promise = order.reprocessOrder( {  companyId : value,
- applicationId : value,
- orderId : value });
+const promise = client.application("<APPLICATION_ID>").order.reprocessOrder({  orderId : value });
 
 // Async/Await
-const data = await order.reprocessOrder( {  companyId : value,
- applicationId : value,
- orderId : value });
+const data = await client.application("<APPLICATION_ID>").order.reprocessOrder({  orderId : value });
 ```
 
 
@@ -19033,15 +18367,11 @@ Use this API to update the shipment using its shipment ID.
 
 ```javascript
 // Promise
-const promise = order.updateShipment( {  companyId : value,
- applicationId : value,
- shipmentId : value,
+const promise = client.application("<APPLICATION_ID>").order.updateShipment({  shipmentId : value,
  body : value });
 
 // Async/Await
-const data = await order.updateShipment( {  companyId : value,
- applicationId : value,
- shipmentId : value,
+const data = await client.application("<APPLICATION_ID>").order.updateShipment({  shipmentId : value,
  body : value });
 ```
 
@@ -19098,14 +18428,10 @@ Use this API to retrieve the issues that led to the cancellation of bags within 
 
 ```javascript
 // Promise
-const promise = order.getPlatformShipmentReasons( {  companyId : value,
- applicationId : value,
- action : value });
+const promise = client.application("<APPLICATION_ID>").order.getPlatformShipmentReasons({  action : value });
 
 // Async/Await
-const data = await order.getPlatformShipmentReasons( {  companyId : value,
- applicationId : value,
- action : value });
+const data = await client.application("<APPLICATION_ID>").order.getPlatformShipmentReasons({  action : value });
 ```
 
 
@@ -19161,15 +18487,11 @@ Use this API to track a shipment using its shipment ID.
 
 ```javascript
 // Promise
-const promise = order.getShipmentTrackDetails( {  companyId : value,
- applicationId : value,
- orderId : value,
+const promise = client.application("<APPLICATION_ID>").order.getShipmentTrackDetails({  orderId : value,
  shipmentId : value });
 
 // Async/Await
-const data = await order.getShipmentTrackDetails( {  companyId : value,
- applicationId : value,
- orderId : value,
+const data = await client.application("<APPLICATION_ID>").order.getShipmentTrackDetails({  orderId : value,
  shipmentId : value });
 ```
 
@@ -19227,13 +18549,11 @@ Use this API to get address of a shipment using its shipment ID and Address Cate
 
 ```javascript
 // Promise
-const promise = order.getShipmentAddress( {  companyId : value,
- shipmentId : value,
+const promise = client.order.getShipmentAddress({  shipmentId : value,
  addressCategory : value });
 
 // Async/Await
-const data = await order.getShipmentAddress( {  companyId : value,
- shipmentId : value,
+const data = await client.order.getShipmentAddress({  shipmentId : value,
  addressCategory : value });
 ```
 
@@ -19290,14 +18610,12 @@ Use this API to update address of a shipment using its shipment ID and Address C
 
 ```javascript
 // Promise
-const promise = order.updateShipmentAddress( {  companyId : value,
- shipmentId : value,
+const promise = client.order.updateShipmentAddress({  shipmentId : value,
  addressCategory : value,
  body : value });
 
 // Async/Await
-const data = await order.updateShipmentAddress( {  companyId : value,
- shipmentId : value,
+const data = await client.order.updateShipmentAddress({  shipmentId : value,
  addressCategory : value,
  body : value });
 ```
@@ -19355,10 +18673,10 @@ Get Ping
 
 ```javascript
 // Promise
-const promise = order.getPing( {  companyId : value });
+const promise = client.order.getPing();
 
 // Async/Await
-const data = await order.getPing( {  companyId : value });
+const data = await client.order.getPing();
 ```
 
 
@@ -19412,10 +18730,10 @@ Get Voice Callback
 
 ```javascript
 // Promise
-const promise = order.voiceCallback( {  companyId : value });
+const promise = client.order.voiceCallback();
 
 // Async/Await
-const data = await order.voiceCallback( {  companyId : value });
+const data = await client.order.voiceCallback();
 ```
 
 
@@ -19469,13 +18787,11 @@ Get Voice Click to Call
 
 ```javascript
 // Promise
-const promise = order.voiceClickToCall( {  companyId : value,
- caller : value,
+const promise = client.order.voiceClickToCall({  caller : value,
  receiver : value });
 
 // Async/Await
-const data = await order.voiceClickToCall( {  companyId : value,
- caller : value,
+const data = await client.order.voiceClickToCall({  caller : value,
  receiver : value });
 ```
 
@@ -19531,136 +18847,6 @@ Success
 ## Catalog
 
 
-#### deleteSearchKeywords
-Delete a Search Keywords
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteSearchKeywords( {  companyId : value,
- applicationId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.deleteSearchKeywords( {  companyId : value,
- applicationId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-
-
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-
-*Returned Response:*
-
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Words Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateSearchKeywords
-Update Search Keyword
-
-
-
-```javascript
-// Promise
-const promise = catalog.updateSearchKeywords( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
-
-// Async/Await
-const data = await catalog.updateSearchKeywords( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
-
-
-Update Search Keyword by its id. On successful request, returns the updated collection
-
-*Returned Response:*
-
-
-
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-[GetSearchWordsData](#GetSearchWordsData)
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSearchKeywords
 Get a Search Keywords Details
 
@@ -19668,14 +18854,10 @@ Get a Search Keywords Details
 
 ```javascript
 // Promise
-const promise = catalog.getSearchKeywords( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
 
 // Async/Await
-const data = await catalog.getSearchKeywords( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getSearchKeywords({  id : value });
 ```
 
 
@@ -19740,20 +18922,18 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 ---
 
 
-#### createCustomKeyword
-Add a Custom Search Keywords
+#### updateSearchKeywords
+Update Search Keyword
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createCustomKeyword( {  companyId : value,
- applicationId : value,
+const promise = client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createCustomKeyword( {  companyId : value,
- applicationId : value,
+const data = await client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
  body : value });
 ```
 
@@ -19762,23 +18942,83 @@ const data = await catalog.createCustomKeyword( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 | body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
-Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
+Update Search Keyword by its id. On successful request, returns the updated collection
 
 *Returned Response:*
 
 
 
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
 
 
 [GetSearchWordsData](#GetSearchWordsData)
 
-Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSearchKeywords
+Delete a Search Keywords
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.deleteSearchKeywords({  id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -19788,21 +19028,7 @@ Get keyword object with id that is added. See example below or refer `GetSearchW
 
 ```json
 {
-  "uid": "602fa1e9a596ce349563f6b9",
-  "words": [
-    "sds"
-  ],
-  "app_id": "000000000000000000000001",
-  "is_active": true,
-  "result": {
-    "query": {
-      "department": [
-        "men"
-      ]
-    },
-    "sort_on": "popular"
-  },
-  "_custom_json": {}
+  "message": "Words Deleted"
 }
 ```
 </details>
@@ -19825,12 +19051,10 @@ List all Search Custom Keyword Listing
 
 ```javascript
 // Promise
-const promise = catalog.getAllSearchKeyword( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
 
 // Async/Await
-const data = await catalog.getAllSearchKeyword( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getAllSearchKeyword();
 ```
 
 
@@ -19905,21 +19129,17 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 ---
 
 
-#### deleteAutocompleteKeyword
-Delete a Autocomplete Keywords
+#### createCustomKeyword
+Add a Custom Search Keywords
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteAutocompleteKeyword( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
 
 // Async/Await
-const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").catalog.createCustomKeyword({  body : value });
 ```
 
 
@@ -19927,24 +19147,23 @@ const data = await catalog.deleteAutocompleteKeyword( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
 
 
-
-Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
 
 *Returned Response:*
 
 
 
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
-[DeleteResponse](#DeleteResponse)
+[GetSearchWordsData](#GetSearchWordsData)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Get keyword object with id that is added. See example below or refer `GetSearchWordsDataSchema` for details
 
 
 
@@ -19954,73 +19173,22 @@ Status object. Tells whether the operation was successful. See example below or 
 
 ```json
 {
-  "message": "Words Deleted"
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ],
+  "app_id": "000000000000000000000001",
+  "is_active": true,
+  "result": {
+    "query": {
+      "department": [
+        "men"
+      ]
+    },
+    "sort_on": "popular"
+  },
+  "_custom_json": {}
 }
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
-
-
-
-```javascript
-// Promise
-const promise = catalog.updateAutocompleteKeyword( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
-
-// Async/Await
-const data = await catalog.updateAutocompleteKeyword( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
-
-
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-
-*Returned Response:*
-
-
-
-
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
-
-
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
 ```
 </details>
 
@@ -20042,14 +19210,10 @@ Get a Autocomplete Keywords Details
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteKeywordDetail( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
 
 // Async/Await
-const data = await catalog.getAutocompleteKeywordDetail( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getAutocompleteKeywordDetail({  id : value });
 ```
 
 
@@ -20126,20 +19290,18 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 ---
 
 
-#### createCustomAutocompleteRule
-Add a Custom Autocomplete Keywords
+#### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createCustomAutocompleteRule( {  companyId : value,
- applicationId : value,
+const promise = client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createCustomAutocompleteRule( {  companyId : value,
- applicationId : value,
+const data = await client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
  body : value });
 ```
 
@@ -20148,23 +19310,24 @@ const data = await catalog.createCustomAutocompleteRule( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
 | body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
 
 
-Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
 
 *Returned Response:*
 
 
 
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
-[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
 
-List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
 
 
 
@@ -20188,6 +19351,67 @@ List of all the collections including the one you added. See example below or re
 ---
 
 
+#### deleteAutocompleteKeyword
+Delete a Autocomplete Keywords
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.deleteAutocompleteKeyword({  id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+
+
+
+Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+[DeleteResponse](#DeleteResponse)
+
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Words Deleted"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getAutocompleteConfig
 List all Autocomplete Keyword Listing
 
@@ -20195,12 +19419,10 @@ List all Autocomplete Keyword Listing
 
 ```javascript
 // Promise
-const promise = catalog.getAutocompleteConfig( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
 
 // Async/Await
-const data = await catalog.getAutocompleteConfig( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getAutocompleteConfig();
 ```
 
 
@@ -20287,42 +19509,41 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
 ---
 
 
-#### createProductBundle
-Create Product Bundle
+#### createCustomAutocompleteRule
+Add a Custom Autocomplete Keywords
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createProductBundle( {  companyId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
 
 // Async/Await
-const data = await catalog.createProductBundle( {  companyId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").catalog.createCustomAutocompleteRule({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
 
 
-Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
 
 *Returned Response:*
 
 
 
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
-[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
+[CreateAutocompleteWordsResponse](#CreateAutocompleteWordsResponse)
 
-Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
+List of all the collections including the one you added. See example below or refer `CreateAutocompleteWordsResponseSchema` for details
 
 
 
@@ -20331,40 +19552,7 @@ Get bundle with id that is added. See example below or refer `GetProductBundleCr
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "slug": "bag",
-  "logo": "http://g.com/poo.png/",
-  "name": "Bag",
-  "choice": "multi",
-  "products": [
-    {
-      "product_uid": 7500001,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "allow_remove": true
-    }
-  ],
-  "meta": {},
-  "same_store_assignment": true,
-  "is_active": true,
-  "page_visibility": [
-    "pdp"
-  ],
-  "created_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "company_id": 1,
-  "created_on": "2021-02-19 16:40:26.310007",
-  "modified_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "modified_on": "2021-02-19 16:40:26.310027",
-  "id": "602f9ca2a596ce312f5956f9"
-}
+
 ```
 </details>
 
@@ -20386,12 +19574,10 @@ List all Product Bundles
 
 ```javascript
 // Promise
-const promise = catalog.getProductBundle( {  companyId : value,
- q : value });
+const promise = client.catalog.getProductBundle({  q : value });
 
 // Async/Await
-const data = await catalog.getProductBundle( {  companyId : value,
- q : value });
+const data = await client.catalog.getProductBundle({  q : value });
 ```
 
 
@@ -20585,45 +19771,40 @@ List of bundle configured for a company. See example below or refer `GetProductB
 ---
 
 
-#### updateProductBundle
-Update a Product Bundle
+#### createProductBundle
+Create Product Bundle
 
 
 
 ```javascript
 // Promise
-const promise = catalog.updateProductBundle( {  companyId : value,
- id : value,
- body : value });
+const promise = client.catalog.createProductBundle({  body : value });
 
 // Async/Await
-const data = await catalog.updateProductBundle( {  companyId : value,
- id : value,
- body : value });
+const data = await client.catalog.createProductBundle({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [ProductBundleUpdateRequest](#ProductBundleUpdateRequest) | yes | Request body |
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [ProductBundleRequest](#ProductBundleRequest) | yes | Request body |
 
 
-Update a Product Bundle by its id. On successful request, returns the updated product bundle
+Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
 
 *Returned Response:*
 
 
 
 
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
 [GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
 
-The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
+Get bundle with id that is added. See example below or refer `GetProductBundleCreateResponse` for details
 
 
 
@@ -20687,12 +19868,10 @@ Get a particular Product Bundle details
 
 ```javascript
 // Promise
-const promise = catalog.getProductBundleDetail( {  companyId : value,
- id : value });
+const promise = client.catalog.getProductBundleDetail({  id : value });
 
 // Async/Await
-const data = await catalog.getProductBundleDetail( {  companyId : value,
- id : value });
+const data = await client.catalog.getProductBundleDetail({  id : value });
 ```
 
 
@@ -20774,18 +19953,18 @@ The Collection object. See example below or refer `GetProductBundleResponse` for
 ---
 
 
-#### createSizeGuide
-Create a size guide.
+#### updateProductBundle
+Update a Product Bundle
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createSizeGuide( {  companyId : value,
+const promise = client.catalog.updateProductBundle({  id : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createSizeGuide( {  companyId : value,
+const data = await client.catalog.updateProductBundle({  id : value,
  body : value });
 ```
 
@@ -20793,23 +19972,24 @@ const data = await catalog.createSizeGuide( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the size guide is to be created. |  
-| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [ProductBundleUpdateRequest](#ProductBundleUpdateRequest) | yes | Request body |
 
 
-This API allows to create a size guide associated to a brand.
+Update a Product Bundle by its id. On successful request, returns the updated product bundle
 
 *Returned Response:*
 
 
 
 
-Returns a success response
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
-[SuccessResponse](#SuccessResponse)
+[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)
 
-Returns a success response
+The Collection object. See example below or refer `GetProductBundleCreateResponse` for details.
 
 
 
@@ -20819,7 +19999,38 @@ Returns a success response
 
 ```json
 {
-  "success": true
+  "slug": "bag",
+  "logo": "http://g.com/poo.png/",
+  "name": "Bag",
+  "choice": "multi",
+  "products": [
+    {
+      "product_uid": 7500001,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "allow_remove": true
+    }
+  ],
+  "meta": {},
+  "same_store_assignment": true,
+  "is_active": true,
+  "page_visibility": [
+    "pdp"
+  ],
+  "created_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "company_id": 1,
+  "created_on": "2021-02-19 16:40:26.310007",
+  "modified_by": {
+    "username": "917827311650_22960",
+    "uid": "123"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "id": "602f9ca2a596ce312f5956f9"
 }
 ```
 </details>
@@ -20842,16 +20053,14 @@ Get list of size guides
 
 ```javascript
 // Promise
-const promise = catalog.getSizeGuides( {  companyId : value,
- active : value,
+const promise = client.catalog.getSizeGuides({  active : value,
  q : value,
  tag : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getSizeGuides( {  companyId : value,
- active : value,
+const data = await client.catalog.getSizeGuides({  active : value,
  q : value,
  tag : value,
  pageNo : value,
@@ -20966,33 +20175,28 @@ Size guide object. See example below or refer `ListSizeGuide` for details
 ---
 
 
-#### updateSizeGuide
-Edit a size guide.
+#### createSizeGuide
+Create a size guide.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.updateSizeGuide( {  companyId : value,
- id : value,
- body : value });
+const promise = client.catalog.createSizeGuide({  body : value });
 
 // Async/Await
-const data = await catalog.updateSizeGuide( {  companyId : value,
- id : value,
- body : value });
+const data = await client.catalog.createSizeGuide({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company. |   
-| id | string | yes | Mongo id of the size guide to be edited |  
+| companyId | string | yes | Id of the company inside which the size guide is to be created. |  
 | body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
 
 
-This API allows to edit a size guide.
+This API allows to create a size guide associated to a brand.
 
 *Returned Response:*
 
@@ -21037,12 +20241,10 @@ Get a single size guide.
 
 ```javascript
 // Promise
-const promise = catalog.getSizeGuide( {  companyId : value,
- id : value });
+const promise = client.catalog.getSizeGuide({  id : value });
 
 // Async/Await
-const data = await catalog.getSizeGuide( {  companyId : value,
- id : value });
+const data = await client.catalog.getSizeGuide({  id : value });
 ```
 
 
@@ -21138,6 +20340,68 @@ Brand object. See example below or refer `SizeGuideResponseSchema` for details
 ---
 
 
+#### updateSizeGuide
+Edit a size guide.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.updateSizeGuide({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.catalog.updateSizeGuide({  id : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company. |   
+| id | string | yes | Mongo id of the size guide to be edited |  
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+
+
+This API allows to edit a size guide.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCatalogConfiguration
 Get configuration meta  details for catalog for admin panel
 
@@ -21145,12 +20409,10 @@ Get configuration meta  details for catalog for admin panel
 
 ```javascript
 // Promise
-const promise = catalog.getCatalogConfiguration( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getCatalogConfiguration();
 
 // Async/Await
-const data = await catalog.getCatalogConfiguration( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getCatalogConfiguration();
 ```
 
 
@@ -21198,68 +20460,6 @@ configuration details for catalog. See example below or refer `GetCatalogConfigu
 ---
 
 
-#### createConfigurationProductListing
-Add configuration for products & listings
-
-
-
-```javascript
-// Promise
-const promise = catalog.createConfigurationProductListing( {  companyId : value,
- applicationId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createConfigurationProductListing( {  companyId : value,
- applicationId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
-
-
-Add configuration for products & listing.
-
-*Returned Response:*
-
-
-
-
-success flag will tell whether the operation was successful.
-
-
-[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
-
-success flag will tell whether the operation was successful.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getConfigurations
 Get configured details for catalog
 
@@ -21267,12 +20467,10 @@ Get configured details for catalog
 
 ```javascript
 // Promise
-const promise = catalog.getConfigurations( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getConfigurations();
 
 // Async/Await
-const data = await catalog.getConfigurations( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getConfigurations();
 ```
 
 
@@ -21632,6 +20830,123 @@ Get application level configured catalog details. See example below or refer `Ge
 ---
 
 
+#### createConfigurationProductListing
+Add configuration for products & listings
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.createConfigurationProductListing({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [AppConfiguration](#AppConfiguration) | yes | Request body |
+
+
+Add configuration for products & listing.
+
+*Returned Response:*
+
+
+
+
+success flag will tell whether the operation was successful.
+
+
+[GetAppCatalogConfiguration](#GetAppCatalogConfiguration)
+
+success flag will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getConfigurationByType
+Get configured details for catalog
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.getConfigurationByType({  type : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.getConfigurationByType({  type : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| type | string | yes | type can be brands, categories etc. |  
+
+
+
+configured details for catalog.
+
+*Returned Response:*
+
+
+
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+
+
+[GetAppCatalogEntityConfiguration](#GetAppCatalogEntityConfiguration)
+
+Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### createConfigurationByType
 Add configuration for categories and brands
 
@@ -21639,15 +20954,11 @@ Add configuration for categories and brands
 
 ```javascript
 // Promise
-const promise = catalog.createConfigurationByType( {  companyId : value,
- applicationId : value,
- type : value,
+const promise = client.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createConfigurationByType( {  companyId : value,
- applicationId : value,
- type : value,
+const data = await client.application("<APPLICATION_ID>").catalog.createConfigurationByType({  type : value,
  body : value });
 ```
 
@@ -21697,69 +21008,6 @@ success flag will tell whether the operation was successful.
 ---
 
 
-#### getConfigurationByType
-Get configured details for catalog
-
-
-
-```javascript
-// Promise
-const promise = catalog.getConfigurationByType( {  companyId : value,
- applicationId : value,
- type : value });
-
-// Async/Await
-const data = await catalog.getConfigurationByType( {  companyId : value,
- applicationId : value,
- type : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| type | string | yes | type can be brands, categories etc. |  
-
-
-
-configured details for catalog.
-
-*Returned Response:*
-
-
-
-
-Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
-
-
-[GetAppCatalogEntityConfiguration](#GetAppCatalogEntityConfiguration)
-
-Get application level configured catalog details. See example below or refer `GetAppCatalogEntityConfigurationSchema` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getQueryFilters
 Get query filters to configure a collection
 
@@ -21767,12 +21015,10 @@ Get query filters to configure a collection
 
 ```javascript
 // Promise
-const promise = catalog.getQueryFilters( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getQueryFilters();
 
 // Async/Await
-const data = await catalog.getQueryFilters( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getQueryFilters();
 ```
 
 
@@ -22170,128 +21416,6 @@ The attached items of an collection. See example below or refer `GetCollectionQu
 ---
 
 
-#### createCollection
-Add a Collection
-
-
-
-```javascript
-// Promise
-const promise = catalog.createCollection( {  companyId : value,
- applicationId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createCollection( {  companyId : value,
- applicationId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
-| body | [CreateCollection](#CreateCollection) | yes | Request body |
-
-
-Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-
-*Returned Response:*
-
-
-
-
-List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
-
-
-[CollectionCreateResponse](#CollectionCreateResponse)
-
-List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": "604f585a7051e30001173ac1",
-  "type": "query",
-  "query": {},
-  "name": "New",
-  "banners": {
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    },
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    }
-  },
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "published": true,
-  "description": "",
-  "is_active": true,
-  "tags": [],
-  "slug": "new",
-  "action": {
-    "page": {
-      "type": "collection",
-      "query": {
-        "collection": [
-          "new"
-        ]
-      }
-    },
-    "type": "page"
-  },
-  "allow_facets": true,
-  "allow_sort": true,
-  "visible_facets_keys": [],
-  "meta": {},
-  "badge": {
-    "color": "#ffffff",
-    "text": ""
-  },
-  "sort_on": "depth_desc",
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "start": "2021-03-15T12:51:21.333000+00:00Z",
-    "next_schedule": [
-      {
-        "start": "2021-03-15T12:51:21.333000+00:00Z",
-        "end": null
-      }
-    ],
-    "end": null
-  },
-  "seo": {
-    "title": "Test",
-    "description": "Test description"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getAllCollections
 List all the collections
 
@@ -22299,12 +21423,10 @@ List all the collections
 
 ```javascript
 // Promise
-const promise = catalog.getAllCollections( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getAllCollections();
 
 // Async/Await
-const data = await catalog.getAllCollections( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getAllCollections();
 ```
 
 
@@ -22607,6 +21729,124 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 ---
 
 
+#### createCollection
+Add a Collection
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.createCollection({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |  
+| body | [CreateCollection](#CreateCollection) | yes | Request body |
+
+
+Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+
+*Returned Response:*
+
+
+
+
+List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
+
+
+[CollectionCreateResponse](#CollectionCreateResponse)
+
+List of all the collections including the one you added. See example below or refer `CollectionCreateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": "604f585a7051e30001173ac1",
+  "type": "query",
+  "query": {},
+  "name": "New",
+  "banners": {
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    },
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    }
+  },
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "published": true,
+  "description": "",
+  "is_active": true,
+  "tags": [],
+  "slug": "new",
+  "action": {
+    "page": {
+      "type": "collection",
+      "query": {
+        "collection": [
+          "new"
+        ]
+      }
+    },
+    "type": "page"
+  },
+  "allow_facets": true,
+  "allow_sort": true,
+  "visible_facets_keys": [],
+  "meta": {},
+  "badge": {
+    "color": "#ffffff",
+    "text": ""
+  },
+  "sort_on": "depth_desc",
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "start": "2021-03-15T12:51:21.333000+00:00Z",
+    "next_schedule": [
+      {
+        "start": "2021-03-15T12:51:21.333000+00:00Z",
+        "end": null
+      }
+    ],
+    "end": null
+  },
+  "seo": {
+    "title": "Test",
+    "description": "Test description"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCollectionDetail
 Get a particular collection
 
@@ -22614,14 +21854,10 @@ Get a particular collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionDetail( {  companyId : value,
- applicationId : value,
- slug : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
 
 // Async/Await
-const data = await catalog.getCollectionDetail( {  companyId : value,
- applicationId : value,
- slug : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getCollectionDetail({  slug : value });
 ```
 
 
@@ -22731,71 +21967,6 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 ---
 
 
-#### deleteCollection
-Delete a Collection
-
-
-
-```javascript
-// Promise
-const promise = catalog.deleteCollection( {  companyId : value,
- applicationId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.deleteCollection( {  companyId : value,
- applicationId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
-| id | string | yes | A `id` is a unique identifier of a collection. |  
-
-
-
-Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-
-*Returned Response:*
-
-
-
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-[DeleteResponse](#DeleteResponse)
-
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Collection Deleted"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateCollection
 Update a collection
 
@@ -22803,15 +21974,11 @@ Update a collection
 
 ```javascript
 // Promise
-const promise = catalog.updateCollection( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
  body : value });
 
 // Async/Await
-const data = await catalog.updateCollection( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").catalog.updateCollection({  id : value,
  body : value });
 ```
 
@@ -22921,23 +22088,17 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 ---
 
 
-#### addCollectionItems
-Add items to a collection
+#### deleteCollection
+Delete a Collection
 
 
 
 ```javascript
 // Promise
-const promise = catalog.addCollectionItems( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
 
 // Async/Await
-const data = await catalog.addCollectionItems( {  companyId : value,
- applicationId : value,
- id : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").catalog.deleteCollection({  id : value });
 ```
 
 
@@ -22947,22 +22108,22 @@ const data = await catalog.addCollectionItems( {  companyId : value,
 | companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
 | applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
 | id | string | yes | A `id` is a unique identifier of a collection. |  
-| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
 
 
-Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
 
 *Returned Response:*
 
 
 
 
-Status object. Tells whether the operation was successful.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
-[UpdatedResponse](#UpdatedResponse)
+[DeleteResponse](#DeleteResponse)
 
-Status object. Tells whether the operation was successful.
+Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
 
 
 
@@ -22972,7 +22133,7 @@ Status object. Tells whether the operation was successful.
 
 ```json
 {
-  "message": "items updated"
+  "message": "Collection Deleted"
 }
 ```
 </details>
@@ -22995,17 +22156,13 @@ Get the items for a collection
 
 ```javascript
 // Promise
-const promise = catalog.getCollectionItems( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
  sortOn : value,
  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getCollectionItems( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").catalog.getCollectionItems({  id : value,
  sortOn : value,
  pageId : value,
  pageSize : value });
@@ -23060,6 +22217,69 @@ The attached items of an collection. See example below or refer `GetCollectionIt
 ---
 
 
+#### addCollectionItems
+Add items to a collection
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.addCollectionItems({  id : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| applicationId | string | yes | A `application_id` is a unique identifier for a particular sale channel. |   
+| id | string | yes | A `id` is a unique identifier of a collection. |  
+| body | [CollectionItemRequest](#CollectionItemRequest) | yes | Request body |
+
+
+Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+
+*Returned Response:*
+
+
+
+
+Status object. Tells whether the operation was successful.
+
+
+[UpdatedResponse](#UpdatedResponse)
+
+Status object. Tells whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "items updated"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCatalogInsights
 Analytics data of catalog and inventory.
 
@@ -23067,14 +22287,10 @@ Analytics data of catalog and inventory.
 
 ```javascript
 // Promise
-const promise = catalog.getCatalogInsights( {  companyId : value,
- applicationId : value,
- brand : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
 
 // Async/Await
-const data = await catalog.getCatalogInsights( {  companyId : value,
- applicationId : value,
- brand : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getCatalogInsights({  brand : value });
 ```
 
 
@@ -23136,12 +22352,10 @@ Analytics data of catalog and inventory that are being cross-selled.
 
 ```javascript
 // Promise
-const promise = catalog.getSellerInsights( {  companyId : value,
- sellerAppId : value });
+const promise = client.catalog.getSellerInsights({  sellerAppId : value });
 
 // Async/Await
-const data = await catalog.getSellerInsights( {  companyId : value,
- sellerAppId : value });
+const data = await client.catalog.getSellerInsights({  sellerAppId : value });
 ```
 
 
@@ -23199,13 +22413,11 @@ Create/Update opt-in infomation.
 
 ```javascript
 // Promise
-const promise = catalog.createMarketplaceOptin( {  companyId : value,
- marketplace : value,
+const promise = client.catalog.createMarketplaceOptin({  marketplace : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createMarketplaceOptin( {  companyId : value,
- marketplace : value,
+const data = await client.catalog.createMarketplaceOptin({  marketplace : value,
  body : value });
 ```
 
@@ -23261,10 +22473,10 @@ Get opt-in infomation.
 
 ```javascript
 // Promise
-const promise = catalog.getMarketplaceOptinDetail( {  companyId : value });
+const promise = client.catalog.getMarketplaceOptinDetail();
 
 // Async/Await
-const data = await catalog.getMarketplaceOptinDetail( {  companyId : value });
+const data = await client.catalog.getMarketplaceOptinDetail();
 ```
 
 
@@ -23318,10 +22530,10 @@ Get the Company details.
 
 ```javascript
 // Promise
-const promise = catalog.getCompanyDetail( {  companyId : value });
+const promise = client.catalog.getCompanyDetail();
 
 // Async/Await
-const data = await catalog.getCompanyDetail( {  companyId : value });
+const data = await client.catalog.getCompanyDetail();
 ```
 
 
@@ -23375,16 +22587,14 @@ Get the Company Brand details of Optin.
 
 ```javascript
 // Promise
-const promise = catalog.getCompanyBrandDetail( {  companyId : value,
- isActive : value,
+const promise = client.catalog.getCompanyBrandDetail({  isActive : value,
  q : value,
  pageNo : value,
  pageSize : value,
  marketplace : value });
 
 // Async/Await
-const data = await catalog.getCompanyBrandDetail( {  companyId : value,
- isActive : value,
+const data = await client.catalog.getCompanyBrandDetail({  isActive : value,
  q : value,
  pageNo : value,
  pageSize : value,
@@ -23447,10 +22657,10 @@ Get the Company metrics
 
 ```javascript
 // Promise
-const promise = catalog.getCompanyMetrics( {  companyId : value });
+const promise = client.catalog.getCompanyMetrics();
 
 // Async/Await
-const data = await catalog.getCompanyMetrics( {  companyId : value });
+const data = await client.catalog.getCompanyMetrics();
 ```
 
 
@@ -23504,14 +22714,12 @@ Get the Store details.
 
 ```javascript
 // Promise
-const promise = catalog.getStoreDetail( {  companyId : value,
- q : value,
+const promise = client.catalog.getStoreDetail({  q : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getStoreDetail( {  companyId : value,
- q : value,
+const data = await client.catalog.getStoreDetail({  q : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -23570,12 +22778,10 @@ Get gender attribute details
 
 ```javascript
 // Promise
-const promise = catalog.getGenderAttribute( {  companyId : value,
- attributeSlug : value });
+const promise = client.catalog.getGenderAttribute({  attributeSlug : value });
 
 // Async/Await
-const data = await catalog.getGenderAttribute( {  companyId : value,
- attributeSlug : value });
+const data = await client.catalog.getGenderAttribute({  attributeSlug : value });
 ```
 
 
@@ -23671,13 +22877,11 @@ List Department specifiec product categories
 
 ```javascript
 // Promise
-const promise = catalog.listProductTemplateCategories( {  companyId : value,
- departments : value,
+const promise = client.catalog.listProductTemplateCategories({  departments : value,
  itemType : value });
 
 // Async/Await
-const data = await catalog.listProductTemplateCategories( {  companyId : value,
- departments : value,
+const data = await client.catalog.listProductTemplateCategories({  departments : value,
  itemType : value });
 ```
 
@@ -23737,16 +22941,14 @@ List all Departments
 
 ```javascript
 // Promise
-const promise = catalog.listDepartmentsData( {  companyId : value,
- pageNo : value,
+const promise = client.catalog.listDepartmentsData({  pageNo : value,
  pageSize : value,
  name : value,
  search : value,
  isActive : value });
 
 // Async/Await
-const data = await catalog.listDepartmentsData( {  companyId : value,
- pageNo : value,
+const data = await client.catalog.listDepartmentsData({  pageNo : value,
  pageSize : value,
  name : value,
  search : value,
@@ -24127,12 +23329,10 @@ Get specific departments details by passing in unique id of the department
 
 ```javascript
 // Promise
-const promise = catalog.getDepartmentData( {  companyId : value,
- uid : value });
+const promise = client.catalog.getDepartmentData({  uid : value });
 
 // Async/Await
-const data = await catalog.getDepartmentData( {  companyId : value,
- uid : value });
+const data = await client.catalog.getDepartmentData({  uid : value });
 ```
 
 
@@ -24499,12 +23699,10 @@ List all Templates
 
 ```javascript
 // Promise
-const promise = catalog.listProductTemplate( {  companyId : value,
- departments : value });
+const promise = client.catalog.listProductTemplate({  departments : value });
 
 // Async/Await
-const data = await catalog.listProductTemplate( {  companyId : value,
- departments : value });
+const data = await client.catalog.listProductTemplate({  departments : value });
 ```
 
 
@@ -26410,12 +25608,10 @@ Validate Product Template Schema
 
 ```javascript
 // Promise
-const promise = catalog.validateProductTemplate( {  companyId : value,
- slug : value });
+const promise = client.catalog.validateProductTemplate({  slug : value });
 
 // Async/Await
-const data = await catalog.validateProductTemplate( {  companyId : value,
- slug : value });
+const data = await client.catalog.validateProductTemplate({  slug : value });
 ```
 
 
@@ -26470,12 +25666,10 @@ Download Product Template View
 
 ```javascript
 // Promise
-const promise = catalog.downloadProductTemplateViews( {  companyId : value,
- slug : value });
+const promise = client.catalog.downloadProductTemplateViews({  slug : value });
 
 // Async/Await
-const data = await catalog.downloadProductTemplateViews( {  companyId : value,
- slug : value });
+const data = await client.catalog.downloadProductTemplateViews({  slug : value });
 ```
 
 
@@ -26530,12 +25724,10 @@ Download Product Template View
 
 ```javascript
 // Promise
-const promise = catalog.downloadProductTemplateView( {  companyId : value,
- itemType : value });
+const promise = client.catalog.downloadProductTemplateView({  itemType : value });
 
 // Async/Await
-const data = await catalog.downloadProductTemplateView( {  companyId : value,
- itemType : value });
+const data = await client.catalog.downloadProductTemplateView({  itemType : value });
 ```
 
 
@@ -26590,12 +25782,10 @@ Validate Product Template Schema
 
 ```javascript
 // Promise
-const promise = catalog.validateProductTemplateSchema( {  companyId : value,
- itemType : value });
+const promise = client.catalog.validateProductTemplateSchema({  itemType : value });
 
 // Async/Await
-const data = await catalog.validateProductTemplateSchema( {  companyId : value,
- itemType : value });
+const data = await client.catalog.validateProductTemplateSchema({  itemType : value });
 ```
 
 
@@ -26750,10 +25940,10 @@ List HSN Codes
 
 ```javascript
 // Promise
-const promise = catalog.listHSNCodes( {  companyId : value });
+const promise = client.catalog.listHSNCodes();
 
 // Async/Await
-const data = await catalog.listHSNCodes( {  companyId : value });
+const data = await client.catalog.listHSNCodes();
 ```
 
 
@@ -26817,10 +26007,10 @@ Allows you to list all product templates export list details
 
 ```javascript
 // Promise
-const promise = catalog.listProductTemplateExportDetails( {  companyId : value });
+const promise = client.catalog.listProductTemplateExportDetails();
 
 // Async/Await
-const data = await catalog.listProductTemplateExportDetails( {  companyId : value });
+const data = await client.catalog.listProductTemplateExportDetails();
 ```
 
 
@@ -26906,12 +26096,10 @@ Allows you to list all values for Templates, Brands or Type
 
 ```javascript
 // Promise
-const promise = catalog.listTemplateBrandTypeValues( {  companyId : value,
- filter : value });
+const promise = client.catalog.listTemplateBrandTypeValues({  filter : value });
 
 // Async/Await
-const data = await catalog.listTemplateBrandTypeValues( {  companyId : value,
- filter : value });
+const data = await client.catalog.listTemplateBrandTypeValues({  filter : value });
 ```
 
 
@@ -26971,68 +26159,6 @@ See example below or refer `ProductConfigurationDownloadsSchema` for details
 ---
 
 
-#### createCategories
-Create product categories
-
-
-
-```javascript
-// Promise
-const promise = catalog.createCategories( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createCategories( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
-
-
-This API lets user create product categories
-
-*Returned Response:*
-
-
-
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-[CategoryCreateResponse](#CategoryCreateResponse)
-
-Category Meta. See example below or refer `CategoryCreateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Success",
-  "uid": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### listCategories
 Get product categories list
 
@@ -27040,16 +26166,14 @@ Get product categories list
 
 ```javascript
 // Promise
-const promise = catalog.listCategories( {  companyId : value,
- level : value,
+const promise = client.catalog.listCategories({  level : value,
  departments : value,
  q : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.listCategories( {  companyId : value,
- level : value,
+const data = await client.catalog.listCategories({  level : value,
  departments : value,
  q : value,
  pageNo : value,
@@ -27503,45 +26627,40 @@ Category Meta. See example below or refer `CategoryResponse` for details
 ---
 
 
-#### updateCategory
-Update product categories
+#### createCategories
+Create product categories
 
 
 
 ```javascript
 // Promise
-const promise = catalog.updateCategory( {  companyId : value,
- uid : value,
- body : value });
+const promise = client.catalog.createCategories({  body : value });
 
 // Async/Await
-const data = await catalog.updateCategory( {  companyId : value,
- uid : value,
- body : value });
+const data = await client.catalog.createCategories({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
-| uid | string | yes | Category unique id |  
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
 | body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
-Update a product category using this apu
+This API lets user create product categories
 
 *Returned Response:*
 
 
 
 
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
+Category Meta. See example below or refer `CategoryCreateResponse` for details
 
 
-[CategoryUpdateResponse](#CategoryUpdateResponse)
+[CategoryCreateResponse](#CategoryCreateResponse)
 
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
+Category Meta. See example below or refer `CategoryCreateResponse` for details
 
 
 
@@ -27550,7 +26669,10 @@ Category Meta. See example below or refer `CategoryUpdateResponse` for details
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "message": "Success",
+  "uid": 0
+}
 ```
 </details>
 
@@ -27572,12 +26694,10 @@ Get product category by uid
 
 ```javascript
 // Promise
-const promise = catalog.getCategoryData( {  companyId : value,
- uid : value });
+const promise = client.catalog.getCategoryData({  uid : value });
 
 // Async/Await
-const data = await catalog.getCategoryData( {  companyId : value,
- uid : value });
+const data = await client.catalog.getCategoryData({  uid : value });
 ```
 
 
@@ -27663,18 +26783,18 @@ Get Data for one category. See example below or refer `CategoryResponse` for det
 ---
 
 
-#### createProduct
-Create a product.
+#### updateCategory
+Update product categories
 
 
 
 ```javascript
 // Promise
-const promise = catalog.createProduct( {  companyId : value,
+const promise = client.catalog.updateCategory({  uid : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createProduct( {  companyId : value,
+const data = await client.catalog.updateCategory({  uid : value,
  body : value });
 ```
 
@@ -27682,23 +26802,24 @@ const data = await catalog.createProduct( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company associated to product that is to be viewed. |  
-| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |   
+| uid | string | yes | Category unique id |  
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
 
 
-This API allows to create product.
+Update a product category using this apu
 
 *Returned Response:*
 
 
 
 
-Returns a success response
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
-[SuccessResponse](#SuccessResponse)
+[CategoryUpdateResponse](#CategoryUpdateResponse)
 
-Returns a success response
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
 
 
 
@@ -27707,9 +26828,7 @@ Returns a success response
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "success": true
-}
+
 ```
 </details>
 
@@ -27731,8 +26850,7 @@ Get product list
 
 ```javascript
 // Promise
-const promise = catalog.getProducts( {  companyId : value,
- brandIds : value,
+const promise = client.catalog.getProducts({  brandIds : value,
  categoryIds : value,
  itemIds : value,
  departmentIds : value,
@@ -27742,8 +26860,7 @@ const promise = catalog.getProducts( {  companyId : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getProducts( {  companyId : value,
- brandIds : value,
+const data = await client.catalog.getProducts({  brandIds : value,
  categoryIds : value,
  itemIds : value,
  departmentIds : value,
@@ -27971,95 +27088,28 @@ Product Meta. See example below for details
 ---
 
 
-#### deleteProduct
-Delete a product.
+#### createProduct
+Create a product.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteProduct( {  companyId : value,
- itemId : value });
+const promise = client.catalog.createProduct({  body : value });
 
 // Async/Await
-const data = await catalog.deleteProduct( {  companyId : value,
- itemId : value });
+const data = await client.catalog.createProduct({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id of the company associated to product that is to be deleted. |   
-| itemId | number | yes | Id of the product to be updated. |  
-
-
-
-This API allows to delete product.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### editProduct
-Edit a product.
-
-
-
-```javascript
-// Promise
-const promise = catalog.editProduct( {  companyId : value,
- itemId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.editProduct( {  companyId : value,
- itemId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
-| itemId | number | yes | Id of the product to be updated. |  
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |  
 | body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
 
 
-This API allows to edit product.
+This API allows to create product.
 
 *Returned Response:*
 
@@ -28081,7 +27131,6 @@ Returns a success response
 
 ```json
 {
-  "uid": 1,
   "success": true
 }
 ```
@@ -28105,15 +27154,13 @@ Get a single product.
 
 ```javascript
 // Promise
-const promise = catalog.getProduct( {  companyId : value,
- itemId : value,
+const promise = client.catalog.getProduct({  itemId : value,
  itemCode : value,
  brandUid : value,
  uid : value });
 
 // Async/Await
-const data = await catalog.getProduct( {  companyId : value,
- itemId : value,
+const data = await client.catalog.getProduct({  itemId : value,
  itemCode : value,
  brandUid : value,
  uid : value });
@@ -28288,6 +27335,129 @@ Product object. See example below or refer `product.utils.format_product_respons
 ---
 
 
+#### editProduct
+Edit a product.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.editProduct({  itemId : value,
+ body : value });
+
+// Async/Await
+const data = await client.catalog.editProduct({  itemId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | number | yes | Id of the product to be updated. |  
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+
+
+This API allows to edit product.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteProduct
+Delete a product.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.deleteProduct({  itemId : value });
+
+// Async/Await
+const data = await client.catalog.deleteProduct({  itemId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company associated to product that is to be deleted. |   
+| itemId | number | yes | Id of the product to be updated. |  
+
+
+
+This API allows to delete product.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getProductValidation
 Validate product/size data
 
@@ -28295,10 +27465,10 @@ Validate product/size data
 
 ```javascript
 // Promise
-const promise = catalog.getProductValidation( {  companyId : value });
+const promise = client.catalog.getProductValidation();
 
 // Async/Await
-const data = await catalog.getProductValidation( {  companyId : value });
+const data = await client.catalog.getProductValidation();
 ```
 
 
@@ -28354,15 +27524,13 @@ Get a single product size.
 
 ```javascript
 // Promise
-const promise = catalog.getProductSize( {  companyId : value,
- itemId : value,
+const promise = client.catalog.getProductSize({  itemId : value,
  itemCode : value,
  brandUid : value,
  uid : value });
 
 // Async/Await
-const data = await catalog.getProductSize( {  companyId : value,
- itemId : value,
+const data = await client.catalog.getProductSize({  itemId : value,
  itemCode : value,
  brandUid : value,
  uid : value });
@@ -28516,67 +27684,6 @@ Product object. See example below for details
 ---
 
 
-#### updateProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.updateProductAssetsInBulk( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.updateProductAssetsInBulk( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which assets to be uploaded. |  
-| body | [BulkJob](#BulkJob) | yes | Request body |
-
-
-This API helps to create a bulk asset upload job.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProductBulkUploadHistory
 Get a list of all bulk product upload jobs.
 
@@ -28584,13 +27691,11 @@ Get a list of all bulk product upload jobs.
 
 ```javascript
 // Promise
-const promise = catalog.getProductBulkUploadHistory( {  companyId : value,
- pageNo : value,
+const promise = client.catalog.getProductBulkUploadHistory({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getProductBulkUploadHistory( {  companyId : value,
- pageNo : value,
+const data = await client.catalog.getProductBulkUploadHistory({  pageNo : value,
  pageSize : value });
 ```
 
@@ -28688,31 +27793,28 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 ---
 
 
-#### deleteProductBulkJob
-Delete Bulk product job.
+#### updateProductAssetsInBulk
+Create a Bulk asset upload Job.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteProductBulkJob( {  companyId : value,
- batchId : value });
+const promise = client.catalog.updateProductAssetsInBulk({  body : value });
 
 // Async/Await
-const data = await catalog.deleteProductBulkJob( {  companyId : value,
- batchId : value });
+const data = await client.catalog.updateProductAssetsInBulk({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id of the company associated to size that is to be deleted. |   
-| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
 
 
-
-This API allows to delete bulk product job associated with company.
+This API helps to create a bulk asset upload job.
 
 *Returned Response:*
 
@@ -28757,13 +27859,11 @@ Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.createProductsInBulk( {  companyId : value,
- batchId : value,
+const promise = client.catalog.createProductsInBulk({  batchId : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createProductsInBulk( {  companyId : value,
- batchId : value,
+const data = await client.catalog.createProductsInBulk({  batchId : value,
  body : value });
 ```
 
@@ -28814,6 +27914,66 @@ Returns a success response
 ---
 
 
+#### deleteProductBulkJob
+Delete Bulk product job.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.deleteProductBulkJob({  batchId : value });
+
+// Async/Await
+const data = await client.catalog.deleteProductBulkJob({  batchId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company associated to size that is to be deleted. |   
+| batchId | number | yes | Batch Id of the bulk product job to be deleted. |  
+
+
+
+This API allows to delete bulk product job associated with company.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getCompanyTags
 Get a list of all tags associated with company.
 
@@ -28821,10 +27981,10 @@ Get a list of all tags associated with company.
 
 ```javascript
 // Promise
-const promise = catalog.getCompanyTags( {  companyId : value });
+const promise = client.catalog.getCompanyTags();
 
 // Async/Await
-const data = await catalog.getCompanyTags( {  companyId : value });
+const data = await client.catalog.getCompanyTags();
 ```
 
 
@@ -28878,67 +28038,6 @@ Tag List. See example below for details
 ---
 
 
-#### createProductAssetsInBulk
-Create a Bulk asset upload Job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.createProductAssetsInBulk( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createProductAssetsInBulk( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which assets to be uploaded. |  
-| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
-
-
-This API helps to create a bulk asset upload job.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getProductAssetsInBulk
 Get a list of all bulk asset jobs.
 
@@ -28946,13 +28045,11 @@ Get a list of all bulk asset jobs.
 
 ```javascript
 // Promise
-const promise = catalog.getProductAssetsInBulk( {  companyId : value,
- pageNo : value,
+const promise = client.catalog.getProductAssetsInBulk({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getProductAssetsInBulk( {  companyId : value,
- pageNo : value,
+const data = await client.catalog.getProductAssetsInBulk({  pageNo : value,
  pageSize : value });
 ```
 
@@ -29038,6 +28135,65 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 ---
 
 
+#### createProductAssetsInBulk
+Create a Bulk asset upload Job.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.createProductAssetsInBulk({  body : value });
+
+// Async/Await
+const data = await client.catalog.createProductAssetsInBulk({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
+| body | [ProductBulkAssets](#ProductBulkAssets) | yes | Request body |
+
+
+This API helps to create a bulk asset upload job.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### deleteSize
 Delete a Size associated with product.
 
@@ -29045,13 +28201,11 @@ Delete a Size associated with product.
 
 ```javascript
 // Promise
-const promise = catalog.deleteSize( {  companyId : value,
- itemId : value,
+const promise = client.catalog.deleteSize({  itemId : value,
  size : value });
 
 // Async/Await
-const data = await catalog.deleteSize( {  companyId : value,
- itemId : value,
+const data = await client.catalog.deleteSize({  itemId : value,
  size : value });
 ```
 
@@ -29103,73 +28257,6 @@ Returns a success response
 ---
 
 
-#### addInventory
-Add Inventory for particular size and store.
-
-
-
-```javascript
-// Promise
-const promise = catalog.addInventory( {  companyId : value,
- itemId : value,
- size : value,
- body : value });
-
-// Async/Await
-const data = await catalog.addInventory( {  companyId : value,
- itemId : value,
- size : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
-| itemId | number | yes | Item code of the product of which size is to be get. |   
-| size | string | yes | Size in which inventory is to be added. |  
-| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
-
-
-This API allows add Inventory for particular size and store.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getInventoryBySize
 Get Inventory for company
 
@@ -29177,16 +28264,14 @@ Get Inventory for company
 
 ```javascript
 // Promise
-const promise = catalog.getInventoryBySize( {  companyId : value,
- itemId : value,
+const promise = client.catalog.getInventoryBySize({  itemId : value,
  size : value,
  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await catalog.getInventoryBySize( {  companyId : value,
- itemId : value,
+const data = await client.catalog.getInventoryBySize({  itemId : value,
  size : value,
  pageNo : value,
  pageSize : value,
@@ -29524,6 +28609,71 @@ returns a list of all inventory grouped by size and store
 ---
 
 
+#### addInventory
+Add Inventory for particular size and store.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.addInventory({  itemId : value,
+ size : value,
+ body : value });
+
+// Async/Await
+const data = await client.catalog.addInventory({  itemId : value,
+ size : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to product that is to be viewed. |   
+| itemId | number | yes | Item code of the product of which size is to be get. |   
+| size | string | yes | Size in which inventory is to be added. |  
+| body | [InventoryRequest](#InventoryRequest) | yes | Request body |
+
+
+This API allows add Inventory for particular size and store.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getInventoryBySizeIdentifier
 Get Inventory for company
 
@@ -29531,8 +28681,7 @@ Get Inventory for company
 
 ```javascript
 // Promise
-const promise = catalog.getInventoryBySizeIdentifier( {  companyId : value,
- itemId : value,
+const promise = client.catalog.getInventoryBySizeIdentifier({  itemId : value,
  sizeIdentifier : value,
  pageNo : value,
  pageSize : value,
@@ -29540,8 +28689,7 @@ const promise = catalog.getInventoryBySizeIdentifier( {  companyId : value,
  locationIds : value });
 
 // Async/Await
-const data = await catalog.getInventoryBySizeIdentifier( {  companyId : value,
- itemId : value,
+const data = await client.catalog.getInventoryBySizeIdentifier({  itemId : value,
  sizeIdentifier : value,
  pageNo : value,
  pageSize : value,
@@ -29888,14 +29036,12 @@ Delete a Inventory.
 
 ```javascript
 // Promise
-const promise = catalog.deleteInventory( {  companyId : value,
- size : value,
+const promise = client.catalog.deleteInventory({  size : value,
  itemId : value,
  locationId : value });
 
 // Async/Await
-const data = await catalog.deleteInventory( {  companyId : value,
- size : value,
+const data = await client.catalog.deleteInventory({  size : value,
  itemId : value,
  locationId : value });
 ```
@@ -29949,67 +29095,6 @@ Returns a success response
 ---
 
 
-#### createBulkInventoryJob
-Create a Bulk Inventory upload Job.
-
-
-
-```javascript
-// Promise
-const promise = catalog.createBulkInventoryJob( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createBulkInventoryJob( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which Inventory to be uploaded. |  
-| body | [BulkJob](#BulkJob) | yes | Request body |
-
-
-This API helps to create a bulk Inventory upload job.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[CommonResponse](#CommonResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getInventoryBulkUploadHistory
 Get a list of all bulk Inventory upload jobs.
 
@@ -30017,13 +29102,11 @@ Get a list of all bulk Inventory upload jobs.
 
 ```javascript
 // Promise
-const promise = catalog.getInventoryBulkUploadHistory( {  companyId : value,
- pageNo : value,
+const promise = client.catalog.getInventoryBulkUploadHistory({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getInventoryBulkUploadHistory( {  companyId : value,
- pageNo : value,
+const data = await client.catalog.getInventoryBulkUploadHistory({  pageNo : value,
  pageSize : value });
 ```
 
@@ -30378,31 +29461,28 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 ---
 
 
-#### deleteBulkInventoryJob
-Delete Bulk Inventory job.
+#### createBulkInventoryJob
+Create a Bulk Inventory upload Job.
 
 
 
 ```javascript
 // Promise
-const promise = catalog.deleteBulkInventoryJob( {  companyId : value,
- batchId : value });
+const promise = client.catalog.createBulkInventoryJob({  body : value });
 
 // Async/Await
-const data = await catalog.deleteBulkInventoryJob( {  companyId : value,
- batchId : value });
+const data = await client.catalog.createBulkInventoryJob({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id of the company of which bulk Inventory job is to be deleted. |   
-| batchId | string | yes | Batch Id of the bulk delete job. |  
+| companyId | number | yes | Company Id in which Inventory to be uploaded. |  
+| body | [BulkJob](#BulkJob) | yes | Request body |
 
 
-
-This API allows to delete bulk Inventory job associated with company.
+This API helps to create a bulk Inventory upload job.
 
 *Returned Response:*
 
@@ -30412,7 +29492,7 @@ This API allows to delete bulk Inventory job associated with company.
 Returns a success response
 
 
-[SuccessResponse](#SuccessResponse)
+[CommonResponse](#CommonResponse)
 
 Returns a success response
 
@@ -30447,13 +29527,11 @@ Create products in bulk associated with given batch Id.
 
 ```javascript
 // Promise
-const promise = catalog.createBulkInventory( {  companyId : value,
- batchId : value,
+const promise = client.catalog.createBulkInventory({  batchId : value,
  body : value });
 
 // Async/Await
-const data = await catalog.createBulkInventory( {  companyId : value,
- batchId : value,
+const data = await client.catalog.createBulkInventory({  batchId : value,
  body : value });
 ```
 
@@ -30504,6 +29582,123 @@ Returns a success response
 ---
 
 
+#### deleteBulkInventoryJob
+Delete Bulk Inventory job.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.deleteBulkInventoryJob({  batchId : value });
+
+// Async/Await
+const data = await client.catalog.deleteBulkInventoryJob({  batchId : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id of the company of which bulk Inventory job is to be deleted. |   
+| batchId | string | yes | Batch Id of the bulk delete job. |  
+
+
+
+This API allows to delete bulk Inventory job associated with company.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getInventoryExport
+Get Inventory export history.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.getInventoryExport();
+
+// Async/Await
+const data = await client.catalog.getInventoryExport();
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | number | yes | Company Id in which assets to be uploaded. |  
+
+
+
+This API helps to get Inventory export history.
+
+*Returned Response:*
+
+
+
+
+Returns a list of inventory export jobs
+
+
+[InventoryExportJob](#InventoryExportJob)
+
+Returns a list of inventory export jobs
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### createInventoryExportJob
 Create a Inventory export Job.
 
@@ -30511,12 +29706,10 @@ Create a Inventory export Job.
 
 ```javascript
 // Promise
-const promise = catalog.createInventoryExportJob( {  companyId : value,
- body : value });
+const promise = client.catalog.createInventoryExportJob({  body : value });
 
 // Async/Await
-const data = await catalog.createInventoryExportJob( {  companyId : value,
- body : value });
+const data = await client.catalog.createInventoryExportJob({  body : value });
 ```
 
 
@@ -30565,63 +29758,6 @@ Returns a success response
 ---
 
 
-#### getInventoryExport
-Get Inventory export history.
-
-
-
-```javascript
-// Promise
-const promise = catalog.getInventoryExport( {  companyId : value });
-
-// Async/Await
-const data = await catalog.getInventoryExport( {  companyId : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id in which assets to be uploaded. |  
-
-
-
-This API helps to get Inventory export history.
-
-*Returned Response:*
-
-
-
-
-Returns a list of inventory export jobs
-
-
-[InventoryExportJob](#InventoryExportJob)
-
-Returns a list of inventory export jobs
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### exportInventoryConfig
 Get List of different filters for inventory export
 
@@ -30629,12 +29765,10 @@ Get List of different filters for inventory export
 
 ```javascript
 // Promise
-const promise = catalog.exportInventoryConfig( {  companyId : value,
- filterType : value });
+const promise = client.catalog.exportInventoryConfig({  filterType : value });
 
 // Async/Await
-const data = await catalog.exportInventoryConfig( {  companyId : value,
- filterType : value });
+const data = await client.catalog.exportInventoryConfig({  filterType : value });
 ```
 
 
@@ -30691,87 +29825,6 @@ returns filters configuration for inventory export
 ---
 
 
-#### createHsnCode
-Create Hsn Code.
-
-
-
-```javascript
-// Promise
-const promise = catalog.createHsnCode( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await catalog.createHsnCode( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |  
-| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
-
-
-Create Hsn Code.
-
-*Returned Response:*
-
-
-
-
-See example below for details
-
-
-[HsnCode](#HsnCode)
-
-See example below for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "company_id": 1,
-    "hs2_code": "xx",
-    "modified_by": {
-      "username": "narutouzumaki",
-      "user_id": "0"
-    },
-    "id": "xxxxxxxxxxxx",
-    "tax_on": "esp",
-    "slabs": [
-      {
-        "tax": 0,
-        "threshold": 999999
-      },
-      {
-        "tax": 0,
-        "threshold": 0
-      }
-    ],
-    "hsn_code": "xxxxxxxx"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getAllHsnCodes
 Hsn Code List.
 
@@ -30779,14 +29832,12 @@ Hsn Code List.
 
 ```javascript
 // Promise
-const promise = catalog.getAllHsnCodes( {  companyId : value,
- pageNo : value,
+const promise = client.catalog.getAllHsnCodes({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await catalog.getAllHsnCodes( {  companyId : value,
- pageNo : value,
+const data = await client.catalog.getAllHsnCodes({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -30860,6 +29911,165 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 ---
 
 
+#### createHsnCode
+Create Hsn Code.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.createHsnCode({  body : value });
+
+// Async/Await
+const data = await client.catalog.createHsnCode({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |  
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
+
+
+Create Hsn Code.
+
+*Returned Response:*
+
+
+
+
+See example below for details
+
+
+[HsnCode](#HsnCode)
+
+See example below for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getHsnCode
+Fetch Hsn Code.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.getHsnCode({  id : value });
+
+// Async/Await
+const data = await client.catalog.getHsnCode({  id : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | company id |   
+| id | string | yes | Unique id |  
+
+
+
+Fetch Hsn Code.
+
+*Returned Response:*
+
+
+
+
+See example below details
+
+
+[HsnCode](#HsnCode)
+
+See example below details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "company_id": 1,
+    "hs2_code": "xx",
+    "modified_by": {
+      "username": "narutouzumaki",
+      "user_id": "0"
+    },
+    "id": "xxxxxxxxxxxx",
+    "tax_on": "esp",
+    "slabs": [
+      {
+        "tax": 0,
+        "threshold": 999999
+      },
+      {
+        "tax": 0,
+        "threshold": 0
+      }
+    ],
+    "hsn_code": "xxxxxxxx"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updateHsnCode
 Update Hsn Code.
 
@@ -30867,13 +30077,11 @@ Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.updateHsnCode( {  companyId : value,
- id : value,
+const promise = client.catalog.updateHsnCode({  id : value,
  body : value });
 
 // Async/Await
-const data = await catalog.updateHsnCode( {  companyId : value,
- id : value,
+const data = await client.catalog.updateHsnCode({  id : value,
  body : value });
 ```
 
@@ -30944,88 +30152,6 @@ See example below for details
 ---
 
 
-#### getHsnCode
-Fetch Hsn Code.
-
-
-
-```javascript
-// Promise
-const promise = catalog.getHsnCode( {  companyId : value,
- id : value });
-
-// Async/Await
-const data = await catalog.getHsnCode( {  companyId : value,
- id : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| id | string | yes | Unique id |  
-
-
-
-Fetch Hsn Code.
-
-*Returned Response:*
-
-
-
-
-See example below details
-
-
-[HsnCode](#HsnCode)
-
-See example below details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "company_id": 1,
-    "hs2_code": "xx",
-    "modified_by": {
-      "username": "narutouzumaki",
-      "user_id": "0"
-    },
-    "id": "xxxxxxxxxxxx",
-    "tax_on": "esp",
-    "slabs": [
-      {
-        "tax": 0,
-        "threshold": 999999
-      },
-      {
-        "tax": 0,
-        "threshold": 0
-      }
-    ],
-    "hsn_code": "xxxxxxxx"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### bulkHsnCode
 Bulk Create or Update Hsn Code.
 
@@ -31033,12 +30159,10 @@ Bulk Create or Update Hsn Code.
 
 ```javascript
 // Promise
-const promise = catalog.bulkHsnCode( {  companyId : value,
- body : value });
+const promise = client.catalog.bulkHsnCode({  body : value });
 
 // Async/Await
-const data = await catalog.bulkHsnCode( {  companyId : value,
- body : value });
+const data = await client.catalog.bulkHsnCode({  body : value });
 ```
 
 
@@ -31094,16 +30218,12 @@ List all the brands
 
 ```javascript
 // Promise
-const promise = catalog.getApplicationBrands( {  companyId : value,
- applicationId : value,
- department : value,
+const promise = client.application("<APPLICATION_ID>").catalog.getApplicationBrands({  department : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await catalog.getApplicationBrands( {  companyId : value,
- applicationId : value,
- department : value,
+const data = await client.application("<APPLICATION_ID>").catalog.getApplicationBrands({  department : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -31201,12 +30321,10 @@ List all the departments
 
 ```javascript
 // Promise
-const promise = catalog.getDepartments( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getDepartments();
 
 // Async/Await
-const data = await catalog.getDepartments( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getDepartments();
 ```
 
 
@@ -31364,14 +30482,10 @@ List all the categories
 
 ```javascript
 // Promise
-const promise = catalog.getCategories( {  companyId : value,
- applicationId : value,
- department : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
 
 // Async/Await
-const data = await catalog.getCategories( {  companyId : value,
- applicationId : value,
- department : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getCategories({  department : value });
 ```
 
 
@@ -31515,9 +30629,7 @@ List the products
 
 ```javascript
 // Promise
-const promise = catalog.getAppicationProducts( {  companyId : value,
- applicationId : value,
- q : value,
+const promise = client.application("<APPLICATION_ID>").catalog.getAppicationProducts({  q : value,
  f : value,
  filters : value,
  sortOn : value,
@@ -31527,9 +30639,7 @@ const promise = catalog.getAppicationProducts( {  companyId : value,
  pageType : value });
 
 // Async/Await
-const data = await catalog.getAppicationProducts( {  companyId : value,
- applicationId : value,
- q : value,
+const data = await client.application("<APPLICATION_ID>").catalog.getAppicationProducts({  q : value,
  f : value,
  filters : value,
  sortOn : value,
@@ -32214,14 +31324,10 @@ Get a product
 
 ```javascript
 // Promise
-const promise = catalog.getProductDetailBySlug( {  companyId : value,
- applicationId : value,
- slug : value });
+const promise = client.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
 
 // Async/Await
-const data = await catalog.getProductDetailBySlug( {  companyId : value,
- applicationId : value,
- slug : value });
+const data = await client.application("<APPLICATION_ID>").catalog.getProductDetailBySlug({  slug : value });
 ```
 
 
@@ -32394,9 +31500,7 @@ Get applicationwise products
 
 ```javascript
 // Promise
-const promise = catalog.getAppProducts( {  companyId : value,
- applicationId : value,
- brandIds : value,
+const promise = client.application("<APPLICATION_ID>").catalog.getAppProducts({  brandIds : value,
  categoryIds : value,
  departmentIds : value,
  pageNo : value,
@@ -32404,9 +31508,7 @@ const promise = catalog.getAppProducts( {  companyId : value,
  q : value });
 
 // Async/Await
-const data = await catalog.getAppProducts( {  companyId : value,
- applicationId : value,
- brandIds : value,
+const data = await client.application("<APPLICATION_ID>").catalog.getAppProducts({  brandIds : value,
  categoryIds : value,
  departmentIds : value,
  pageNo : value,
@@ -32637,6 +31739,66 @@ The Product object. See example below or refer `ApplicationProductListingRespons
 ## CompanyProfile
 
 
+#### updateCompany
+Edit company profile
+
+
+
+```javascript
+// Promise
+const promise = client.companyprofile.updateCompany({  body : value });
+
+// Async/Await
+const data = await client.companyprofile.updateCompany({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
+| body | [UpdateCompany](#UpdateCompany) | yes | Request body |
+
+
+This API allows to edit the company profile of the seller account.
+
+*Returned Response:*
+
+
+
+
+Returns a success message
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success message
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### cbsOnboardGet
 Get company profile
 
@@ -32644,10 +31806,10 @@ Get company profile
 
 ```javascript
 // Promise
-const promise = companyprofile.cbsOnboardGet( {  companyId : value });
+const promise = client.companyprofile.cbsOnboardGet();
 
 // Async/Await
-const data = await companyprofile.cbsOnboardGet( {  companyId : value });
+const data = await client.companyprofile.cbsOnboardGet();
 ```
 
 
@@ -32755,68 +31917,6 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
 ---
 
 
-#### updateCompany
-Edit company profile
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.updateCompany( {  companyId : value,
- body : value });
-
-// Async/Await
-const data = await companyprofile.updateCompany( {  companyId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | A `company_id` is a unique identifier for a particular seller account. |  
-| body | [UpdateCompany](#UpdateCompany) | yes | Request body |
-
-
-This API allows to edit the company profile of the seller account.
-
-*Returned Response:*
-
-
-
-
-Returns a success message
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success message
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getCompanyMetrics
 Get company metrics
 
@@ -32824,10 +31924,10 @@ Get company metrics
 
 ```javascript
 // Promise
-const promise = companyprofile.getCompanyMetrics( {  companyId : value });
+const promise = client.companyprofile.getCompanyMetrics();
 
 // Async/Await
-const data = await companyprofile.getCompanyMetrics( {  companyId : value });
+const data = await client.companyprofile.getCompanyMetrics();
 ```
 
 
@@ -32897,6 +31997,69 @@ Metrics response object. See example below or refer `MetricsSerializer` for deta
 ---
 
 
+#### editBrand
+Edit a brand.
+
+
+
+```javascript
+// Promise
+const promise = client.companyprofile.editBrand({  brandId : value,
+ body : value });
+
+// Async/Await
+const data = await client.companyprofile.editBrand({  brandId : value,
+ body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company associated to brand that is to be viewed. |   
+| brandId | string | yes | Id of the brand to be viewed. |  
+| body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
+
+
+This API allows to edit meta of a brand.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1,
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getBrand
 Get a single brand.
 
@@ -32904,12 +32067,10 @@ Get a single brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.getBrand( {  companyId : value,
- brandId : value });
+const promise = client.companyprofile.getBrand({  brandId : value });
 
 // Async/Await
-const data = await companyprofile.getBrand( {  companyId : value,
- brandId : value });
+const data = await client.companyprofile.getBrand({  brandId : value });
 ```
 
 
@@ -32985,71 +32146,6 @@ Brand object. See example below or refer `GetBrandResponseSerializer` for detail
 ---
 
 
-#### editBrand
-Edit a brand.
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.editBrand( {  companyId : value,
- brandId : value,
- body : value });
-
-// Async/Await
-const data = await companyprofile.editBrand( {  companyId : value,
- brandId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company associated to brand that is to be viewed. |   
-| brandId | string | yes | Id of the brand to be viewed. |  
-| body | [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer) | yes | Request body |
-
-
-This API allows to edit meta of a brand.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### createBrand
 Create a Brand.
 
@@ -33057,12 +32153,10 @@ Create a Brand.
 
 ```javascript
 // Promise
-const promise = companyprofile.createBrand( {  companyId : value,
- body : value });
+const promise = client.companyprofile.createBrand({  body : value });
 
 // Async/Await
-const data = await companyprofile.createBrand( {  companyId : value,
- body : value });
+const data = await client.companyprofile.createBrand({  body : value });
 ```
 
 
@@ -33112,6 +32206,65 @@ Returns a success response
 ---
 
 
+#### createCompanyBrandMapping
+Create a company brand mapping.
+
+
+
+```javascript
+// Promise
+const promise = client.companyprofile.createCompanyBrandMapping({  body : value });
+
+// Async/Await
+const data = await client.companyprofile.createCompanyBrandMapping({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Id of the company inside which the brand is to be mapped. |  
+| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+
+
+This API allows to create a company brand mapping, for a already existing brand in the system.
+
+*Returned Response:*
+
+
+
+
+Returns a success response
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getBrands
 Get brands associated to a company
 
@@ -33119,14 +32272,12 @@ Get brands associated to a company
 
 ```javascript
 // Promise
-const promise = companyprofile.getBrands( {  companyId : value,
- pageNo : value,
+const promise = client.companyprofile.getBrands({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await companyprofile.getBrands( {  companyId : value,
- pageNo : value,
+const data = await client.companyprofile.getBrands({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -33265,30 +32416,28 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
 ---
 
 
-#### createCompanyBrandMapping
-Create a company brand mapping.
+#### createLocation
+Create a location asscoiated to a company.
 
 
 
 ```javascript
 // Promise
-const promise = companyprofile.createCompanyBrandMapping( {  companyId : value,
- body : value });
+const promise = client.companyprofile.createLocation({  body : value });
 
 // Async/Await
-const data = await companyprofile.createCompanyBrandMapping( {  companyId : value,
- body : value });
+const data = await client.companyprofile.createLocation({  body : value });
 ```
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the brand is to be mapped. |  
-| body | [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer) | yes | Request body |
+| companyId | string | yes | Id of the company inside which the location is to be created. |  
+| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
 
 
-This API allows to create a company brand mapping, for a already existing brand in the system.
+This API allows to create a location associated to a company.
 
 *Returned Response:*
 
@@ -33310,6 +32459,7 @@ Returns a success response
 
 ```json
 {
+  "uid": 1,
   "success": true
 }
 ```
@@ -33333,16 +32483,14 @@ Get list of locations
 
 ```javascript
 // Promise
-const promise = companyprofile.getLocations( {  companyId : value,
- storeType : value,
+const promise = client.companyprofile.getLocations({  storeType : value,
  q : value,
  stage : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await companyprofile.getLocations( {  companyId : value,
- storeType : value,
+const data = await client.companyprofile.getLocations({  storeType : value,
  q : value,
  stage : value,
  pageNo : value,
@@ -33581,18 +32729,18 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 ---
 
 
-#### createLocation
-Create a location asscoiated to a company.
+#### updateLocation
+Edit a location asscoiated to a company.
 
 
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocation( {  companyId : value,
+const promise = client.companyprofile.updateLocation({  locationId : value,
  body : value });
 
 // Async/Await
-const data = await companyprofile.createLocation( {  companyId : value,
+const data = await client.companyprofile.updateLocation({  locationId : value,
  body : value });
 ```
 
@@ -33600,11 +32748,12 @@ const data = await companyprofile.createLocation( {  companyId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the location is to be created. |  
+| companyId | string | yes | Id of the company inside which the location is to be created. |   
+| locationId | string | yes | Id of the location which you want to edit. |  
 | body | [LocationSerializer](#LocationSerializer) | yes | Request body |
 
 
-This API allows to create a location associated to a company.
+This API allows to edit a location associated to a company.
 
 *Returned Response:*
 
@@ -33650,12 +32799,10 @@ Get details of a specific location.
 
 ```javascript
 // Promise
-const promise = companyprofile.getLocationDetail( {  companyId : value,
- locationId : value });
+const promise = client.companyprofile.getLocationDetail({  locationId : value });
 
 // Async/Await
-const data = await companyprofile.getLocationDetail( {  companyId : value,
- locationId : value });
+const data = await client.companyprofile.getLocationDetail({  locationId : value });
 ```
 
 
@@ -33888,71 +33035,6 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 ---
 
 
-#### updateLocation
-Edit a location asscoiated to a company.
-
-
-
-```javascript
-// Promise
-const promise = companyprofile.updateLocation( {  companyId : value,
- locationId : value,
- body : value });
-
-// Async/Await
-const data = await companyprofile.updateLocation( {  companyId : value,
- locationId : value,
- body : value });
-```
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Id of the company inside which the location is to be created. |   
-| locationId | string | yes | Id of the location which you want to edit. |  
-| body | [LocationSerializer](#LocationSerializer) | yes | Request body |
-
-
-This API allows to edit a location associated to a company.
-
-*Returned Response:*
-
-
-
-
-Returns a success response
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1,
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### createLocationBulk
 Create a location asscoiated to a company in bulk.
 
@@ -33960,12 +33042,10 @@ Create a location asscoiated to a company in bulk.
 
 ```javascript
 // Promise
-const promise = companyprofile.createLocationBulk( {  companyId : value,
- body : value });
+const promise = client.companyprofile.createLocationBulk({  body : value });
 
 // Async/Await
-const data = await companyprofile.createLocationBulk( {  companyId : value,
- body : value });
+const data = await client.companyprofile.createLocationBulk({  body : value });
 ```
 
 
@@ -34028,13 +33108,11 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = filestorage.startUpload( {  namespace : value,
- companyId : value,
+const promise = client.filestorage.startUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await filestorage.startUpload( {  namespace : value,
- companyId : value,
+const data = await client.filestorage.startUpload({  namespace : value,
  body : value });
 ```
 
@@ -34044,7 +33122,7 @@ const data = await filestorage.startUpload( {  namespace : value,
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | bucket name |   
 | companyId | number | yes | company_id |  
-| body | [StartRequest](#StartRequest) | no | Request body |
+| body | [StartRequest](#StartRequest) | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -34108,13 +33186,11 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = filestorage.completeUpload( {  namespace : value,
- companyId : value,
+const promise = client.filestorage.completeUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await filestorage.completeUpload( {  namespace : value,
- companyId : value,
+const data = await client.filestorage.completeUpload({  namespace : value,
  body : value });
 ```
 
@@ -34124,7 +33200,7 @@ const data = await filestorage.completeUpload( {  namespace : value,
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | bucket name |   
 | companyId | number | yes | company_id |  
-| body | [StartResponse](#StartResponse) | no | Request body |
+| body | [StartResponse](#StartResponse) | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -34188,15 +33264,11 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = filestorage.appStartUpload( {  namespace : value,
- companyId : value,
- applicationId : value,
+const promise = client.application("<APPLICATION_ID>").filestorage.appStartUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await filestorage.appStartUpload( {  namespace : value,
- companyId : value,
- applicationId : value,
+const data = await client.application("<APPLICATION_ID>").filestorage.appStartUpload({  namespace : value,
  body : value });
 ```
 
@@ -34207,7 +33279,7 @@ const data = await filestorage.appStartUpload( {  namespace : value,
 | namespace | string | yes | bucket name |   
 | companyId | number | yes | company_id |   
 | applicationId | string | yes | application id |  
-| body | [StartRequest](#StartRequest) | no | Request body |
+| body | [StartRequest](#StartRequest) | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -34271,15 +33343,11 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = filestorage.appCompleteUpload( {  namespace : value,
- companyId : value,
- applicationId : value,
+const promise = client.application("<APPLICATION_ID>").filestorage.appCompleteUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await filestorage.appCompleteUpload( {  namespace : value,
- companyId : value,
- applicationId : value,
+const data = await client.application("<APPLICATION_ID>").filestorage.appCompleteUpload({  namespace : value,
  body : value });
 ```
 
@@ -34290,7 +33358,7 @@ const data = await filestorage.appCompleteUpload( {  namespace : value,
 | namespace | string | yes | bucket name |   
 | companyId | number | yes | company_id |   
 | applicationId | string | yes | application id |  
-| body | [StartResponse](#StartResponse) | no | Request body |
+| body | [StartResponse](#StartResponse) | yes | Request body |
 
 
 Uploads an arbitrarily sized buffer or blob.
@@ -34354,12 +33422,10 @@ Explain here
 
 ```javascript
 // Promise
-const promise = filestorage.getSignUrls( {  companyId : value,
- body : value });
+const promise = client.filestorage.getSignUrls({  body : value });
 
 // Async/Await
-const data = await filestorage.getSignUrls( {  companyId : value,
- body : value });
+const data = await client.filestorage.getSignUrls({  body : value });
 ```
 
 
@@ -34367,7 +33433,7 @@ const data = await filestorage.getSignUrls( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | company_id |  
-| body | [SignUrlRequest](#SignUrlRequest) | no | Request body |
+| body | [SignUrlRequest](#SignUrlRequest) | yes | Request body |
 
 
 Describe here
@@ -34413,13 +33479,11 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = filestorage.copyFiles( {  companyId : value,
- body : value,
+const promise = client.filestorage.copyFiles({  body : value,
  sync : value });
 
 // Async/Await
-const data = await filestorage.copyFiles( {  companyId : value,
- body : value,
+const data = await client.filestorage.copyFiles({  body : value,
  sync : value });
 ```
 
@@ -34429,7 +33493,7 @@ const data = await filestorage.copyFiles( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | sync | boolean | no | sync |   
 | companyId | number | yes | company_id |  
-| body | [BulkRequest](#BulkRequest) | no | Request body |
+| body | [BulkRequest](#BulkRequest) | yes | Request body |
 
 
 Copy Files
@@ -34502,15 +33566,11 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = filestorage.appCopyFiles( {  companyId : value,
- applicationId : value,
- body : value,
+const promise = client.application("<APPLICATION_ID>").filestorage.appCopyFiles({  body : value,
  sync : value });
 
 // Async/Await
-const data = await filestorage.appCopyFiles( {  companyId : value,
- applicationId : value,
- body : value,
+const data = await client.application("<APPLICATION_ID>").filestorage.appCopyFiles({  body : value,
  sync : value });
 ```
 
@@ -34521,7 +33581,7 @@ const data = await filestorage.appCopyFiles( {  companyId : value,
 | sync | boolean | no | sync |   
 | companyId | number | yes | company_id |   
 | applicationId | number | yes | application_id |  
-| body | [BulkRequest](#BulkRequest) | no | Request body |
+| body | [BulkRequest](#BulkRequest) | yes | Request body |
 
 
 Copy Files
@@ -34594,13 +33654,11 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = filestorage.browse( {  namespace : value,
- companyId : value,
+const promise = client.filestorage.browse({  namespace : value,
  pageNo : value });
 
 // Async/Await
-const data = await filestorage.browse( {  namespace : value,
- companyId : value,
+const data = await client.filestorage.browse({  namespace : value,
  pageNo : value });
 ```
 
@@ -34657,15 +33715,11 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = filestorage.browse( {  namespace : value,
- companyId : value,
- applicationId : value,
+const promise = client.application("<APPLICATION_ID>").filestorage.browse({  namespace : value,
  pageNo : value });
 
 // Async/Await
-const data = await filestorage.browse( {  namespace : value,
- companyId : value,
- applicationId : value,
+const data = await client.application("<APPLICATION_ID>").filestorage.browse({  namespace : value,
  pageNo : value });
 ```
 
@@ -34723,12 +33777,10 @@ Proxy
 
 ```javascript
 // Promise
-const promise = filestorage.proxy( {  companyId : value,
- url : value });
+const promise = client.filestorage.proxy({  url : value });
 
 // Async/Await
-const data = await filestorage.proxy( {  companyId : value,
- url : value });
+const data = await client.filestorage.proxy({  url : value });
 ```
 
 
@@ -34789,14 +33841,10 @@ Create short link
 
 ```javascript
 // Promise
-const promise = share.createShortLink( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").share.createShortLink({  body : value });
 
 // Async/Await
-const data = await share.createShortLink( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").share.createShortLink({  body : value });
 ```
 
 
@@ -34805,7 +33853,7 @@ const data = await share.createShortLink( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company Id |   
 | applicationId | string | yes | Application Id |  
-| body | [ShortLinkReq](#ShortLinkReq) | no | Request body |
+| body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
 Create short link
@@ -34889,18 +33937,14 @@ Get short links
 
 ```javascript
 // Promise
-const promise = share.getShortLinks( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").share.getShortLinks({  pageNo : value,
  pageSize : value,
  createdBy : value,
  active : value,
  q : value });
 
 // Async/Await
-const data = await share.getShortLinks( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").share.getShortLinks({  pageNo : value,
  pageSize : value,
  createdBy : value,
  active : value,
@@ -35013,14 +34057,10 @@ Get short link by hash
 
 ```javascript
 // Promise
-const promise = share.getShortLinkByHash( {  companyId : value,
- applicationId : value,
- hash : value });
+const promise = client.application("<APPLICATION_ID>").share.getShortLinkByHash({  hash : value });
 
 // Async/Await
-const data = await share.getShortLinkByHash( {  companyId : value,
- applicationId : value,
- hash : value });
+const data = await client.application("<APPLICATION_ID>").share.getShortLinkByHash({  hash : value });
 ```
 
 
@@ -35114,15 +34154,11 @@ Update short link by id
 
 ```javascript
 // Promise
-const promise = share.updateShortLinkById( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").share.updateShortLinkById({  id : value,
  body : value });
 
 // Async/Await
-const data = await share.updateShortLinkById( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").share.updateShortLinkById({  id : value,
  body : value });
 ```
 
@@ -35133,7 +34169,7 @@ const data = await share.updateShortLinkById( {  companyId : value,
 | companyId | string | yes | Company Id |   
 | applicationId | string | yes | Application Id |   
 | id | string | yes | Short link document identifier |  
-| body | [ShortLinkReq](#ShortLinkReq) | no | Request body |
+| body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
 Update short link by id
@@ -35223,13 +34259,11 @@ Get Job Configs For A Company
 
 ```javascript
 // Promise
-const promise = inventory.getJobsByCompany( {  companyId : value,
- pageNo : value,
+const promise = client.inventory.getJobsByCompany({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobsByCompany( {  companyId : value,
- pageNo : value,
+const data = await client.inventory.getJobsByCompany({  pageNo : value,
  pageSize : value });
 ```
 
@@ -35286,12 +34320,10 @@ Updates An Existing Job Config
 
 ```javascript
 // Promise
-const promise = inventory.updateJob( {  companyId : value,
- body : value });
+const promise = client.inventory.updateJob({  body : value });
 
 // Async/Await
-const data = await inventory.updateJob( {  companyId : value,
- body : value });
+const data = await client.inventory.updateJob({  body : value });
 ```
 
 
@@ -35345,12 +34377,10 @@ Creates A New Job Config
 
 ```javascript
 // Promise
-const promise = inventory.createJob( {  companyId : value,
- body : value });
+const promise = client.inventory.createJob({  body : value });
 
 // Async/Await
-const data = await inventory.createJob( {  companyId : value,
- body : value });
+const data = await client.inventory.createJob({  body : value });
 ```
 
 
@@ -35404,14 +34434,12 @@ Get Job Configs By Company And Integration
 
 ```javascript
 // Promise
-const promise = inventory.getJobByCompanyAndIntegration( {  companyId : value,
- integrationId : value,
+const promise = client.inventory.getJobByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobByCompanyAndIntegration( {  companyId : value,
- integrationId : value,
+const data = await client.inventory.getJobByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -35470,10 +34498,10 @@ Get Job Configs Defaults
 
 ```javascript
 // Promise
-const promise = inventory.getJobConfigDefaults( {  companyId : value });
+const promise = client.inventory.getJobConfigDefaults();
 
 // Async/Await
-const data = await inventory.getJobConfigDefaults( {  companyId : value });
+const data = await client.inventory.getJobConfigDefaults();
 ```
 
 
@@ -35527,12 +34555,10 @@ Get Job Config By Code
 
 ```javascript
 // Promise
-const promise = inventory.getJobByCode( {  companyId : value,
- code : value });
+const promise = client.inventory.getJobByCode({  code : value });
 
 // Async/Await
-const data = await inventory.getJobByCode( {  companyId : value,
- code : value });
+const data = await client.inventory.getJobByCode({  code : value });
 ```
 
 
@@ -35587,14 +34613,12 @@ Get Job Metrics
 
 ```javascript
 // Promise
-const promise = inventory.getJobCodeMetrics( {  companyId : value,
- code : value,
+const promise = client.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobCodeMetrics( {  companyId : value,
- code : value,
+const data = await client.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -35653,14 +34677,12 @@ Get Job Codes By Company And Integration
 
 ```javascript
 // Promise
-const promise = inventory.getJobCodesByCompanyAndIntegration( {  companyId : value,
- integrationId : value,
+const promise = client.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await inventory.getJobCodesByCompanyAndIntegration( {  companyId : value,
- integrationId : value,
+const data = await client.inventory.getJobCodesByCompanyAndIntegration({  integrationId : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -35725,14 +34747,10 @@ Get latest build config
 
 ```javascript
 // Promise
-const promise = configuration.getBuildConfig( {  companyId : value,
- applicationId : value,
- platformType : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
 
 // Async/Await
-const data = await configuration.getBuildConfig( {  companyId : value,
- applicationId : value,
- platformType : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getBuildConfig({  platformType : value });
 ```
 
 
@@ -35806,15 +34824,11 @@ Update build config for next build
 
 ```javascript
 // Promise
-const promise = configuration.updateBuildConfig( {  companyId : value,
- applicationId : value,
- platformType : value,
+const promise = client.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
  body : value });
 
 // Async/Await
-const data = await configuration.updateBuildConfig( {  companyId : value,
- applicationId : value,
- platformType : value,
+const data = await client.application("<APPLICATION_ID>").configuration.updateBuildConfig({  platformType : value,
  body : value });
 ```
 
@@ -35825,7 +34839,7 @@ const data = await configuration.updateBuildConfig( {  companyId : value,
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |   
 | platformType | string | yes | Current platform name |  
-| body | [MobileAppConfigRequest](#MobileAppConfigRequest) | no | Request body |
+| body | [MobileAppConfigRequest](#MobileAppConfigRequest) | yes | Request body |
 
 
 Update build config for next build
@@ -35889,14 +34903,10 @@ Get previous build versions
 
 ```javascript
 // Promise
-const promise = configuration.getPreviousVersions( {  companyId : value,
- applicationId : value,
- platformType : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
 
 // Async/Await
-const data = await configuration.getPreviousVersions( {  companyId : value,
- applicationId : value,
- platformType : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getPreviousVersions({  platformType : value });
 ```
 
 
@@ -35967,12 +34977,10 @@ Get features of application
 
 ```javascript
 // Promise
-const promise = configuration.getAppFeatures( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getAppFeatures();
 
 // Async/Await
-const data = await configuration.getAppFeatures( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getAppFeatures();
 ```
 
 
@@ -36123,14 +35131,10 @@ Update features of application
 
 ```javascript
 // Promise
-const promise = configuration.updateAppFeatures( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
 
 // Async/Await
-const data = await configuration.updateAppFeatures( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateAppFeatures({  body : value });
 ```
 
 
@@ -36269,12 +35273,10 @@ Get basic application details
 
 ```javascript
 // Promise
-const promise = configuration.getAppBasicDetails( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getAppBasicDetails();
 
 // Async/Await
-const data = await configuration.getAppBasicDetails( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getAppBasicDetails();
 ```
 
 
@@ -36325,7 +35327,6 @@ Success
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_default": true,
     "is_shortlink": false,
     "_id": "5eb1177748312a3bd55d0f1e",
     "name": "uniket.hostx0.de"
@@ -36334,7 +35335,6 @@ Success
     {
       "verified": true,
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
@@ -36342,7 +35342,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -36372,14 +35371,10 @@ Add or update application's basic details
 
 ```javascript
 // Promise
-const promise = configuration.updateAppBasicDetails( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
 
 // Async/Await
-const data = await configuration.updateAppBasicDetails( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateAppBasicDetails({  body : value });
 ```
 
 
@@ -36430,7 +35425,6 @@ Success
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_default": true,
     "is_shortlink": false,
     "_id": "5eb1177748312a3bd55d0f1e",
     "name": "uniket.hostx0.de"
@@ -36439,7 +35433,6 @@ Success
     {
       "verified": true,
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
@@ -36447,7 +35440,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -36475,12 +35467,10 @@ Get application information
 
 ```javascript
 // Promise
-const promise = configuration.getAppContactInfo( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getAppContactInfo();
 
 // Async/Await
-const data = await configuration.getAppContactInfo( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getAppContactInfo();
 ```
 
 
@@ -36650,14 +35640,10 @@ Get application information
 
 ```javascript
 // Promise
-const promise = configuration.updateAppContactInfo( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
 
 // Async/Await
-const data = await configuration.updateAppContactInfo( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateAppContactInfo({  body : value });
 ```
 
 
@@ -36820,12 +35806,10 @@ Get social tokens
 
 ```javascript
 // Promise
-const promise = configuration.getAppApiTokens( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getAppApiTokens();
 
 // Async/Await
-const data = await configuration.getAppApiTokens( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getAppApiTokens();
 ```
 
 
@@ -36958,14 +35942,10 @@ Add social tokens
 
 ```javascript
 // Promise
-const promise = configuration.updateAppApiTokens( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
 
 // Async/Await
-const data = await configuration.updateAppApiTokens( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateAppApiTokens({  body : value });
 ```
 
 
@@ -36974,7 +35954,7 @@ const data = await configuration.updateAppApiTokens( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [TokenResponse](#TokenResponse) | no | Request body |
+| body | [TokenResponse](#TokenResponse) | yes | Request body |
 
 
 Add social tokens.
@@ -37098,15 +36078,11 @@ Application inventory enabled companies
 
 ```javascript
 // Promise
-const promise = configuration.getAppCompanies( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").configuration.getAppCompanies({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getAppCompanies( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").configuration.getAppCompanies({  pageNo : value,
  pageSize : value });
 ```
 
@@ -37189,15 +36165,11 @@ Application inventory enabled stores
 
 ```javascript
 // Promise
-const promise = configuration.getAppStores( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").configuration.getAppStores({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getAppStores( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").configuration.getAppStores({  pageNo : value,
  pageSize : value });
 ```
 
@@ -37293,12 +36265,10 @@ Get application configuration
 
 ```javascript
 // Promise
-const promise = configuration.getInventoryConfig( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getInventoryConfig();
 
 // Async/Await
-const data = await configuration.getInventoryConfig( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getInventoryConfig();
 ```
 
 
@@ -37537,14 +36507,10 @@ Update application configuration
 
 ```javascript
 // Promise
-const promise = configuration.updateInventoryConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateInventoryConfig({  body : value });
 
 // Async/Await
-const data = await configuration.updateInventoryConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateInventoryConfig({  body : value });
 ```
 
 
@@ -37553,7 +36519,7 @@ const data = await configuration.updateInventoryConfig( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [ApplicationInventory](#ApplicationInventory) | no | Request body |
+| body | [ApplicationInventory](#ApplicationInventory) | yes | Request body |
 
 
 Update application configuration for various features and data
@@ -37783,14 +36749,10 @@ Partially update application configuration
 
 ```javascript
 // Promise
-const promise = configuration.partiallyUpdateInventoryConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig({  body : value });
 
 // Async/Await
-const data = await configuration.partiallyUpdateInventoryConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig({  body : value });
 ```
 
 
@@ -37799,7 +36761,7 @@ const data = await configuration.partiallyUpdateInventoryConfig( {  companyId : 
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [AppInventoryPartialUpdate](#AppInventoryPartialUpdate) | no | Request body |
+| body | [AppInventoryPartialUpdate](#AppInventoryPartialUpdate) | yes | Request body |
 
 
 Partially update application configuration for various features and data
@@ -38029,12 +36991,10 @@ Get application enabled currency list
 
 ```javascript
 // Promise
-const promise = configuration.getAppCurrencyConfig( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
 
 // Async/Await
-const data = await configuration.getAppCurrencyConfig( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig();
 ```
 
 
@@ -38105,14 +37065,10 @@ Add initial application supported currency
 
 ```javascript
 // Promise
-const promise = configuration.updateAppCurrencyConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
 
 // Async/Await
-const data = await configuration.updateAppCurrencyConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig({  body : value });
 ```
 
 
@@ -38121,7 +37077,7 @@ const data = await configuration.updateAppCurrencyConfig( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [AppSupportedCurrency](#AppSupportedCurrency) | no | Request body |
+| body | [AppSupportedCurrency](#AppSupportedCurrency) | yes | Request body |
 
 
 Add initial application supported currency for various features and data. Default INR will be enabled.
@@ -38183,16 +37139,12 @@ Get ordering store by filter
 
 ```javascript
 // Promise
-const promise = configuration.getOrderingStoresByFilter( {  companyId : value,
- applicationId : value,
- body : value,
+const promise = client.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getOrderingStoresByFilter( {  companyId : value,
- applicationId : value,
- body : value,
+const data = await client.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter({  body : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -38205,7 +37157,7 @@ const data = await configuration.getOrderingStoresByFilter( {  companyId : value
 | applicationId | string | yes | Current application id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
-| body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | no | Request body |
+| body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | yes | Request body |
 
 
 Get ordering store by filter
@@ -38335,14 +37287,10 @@ Add/Update ordering store config
 
 ```javascript
 // Promise
-const promise = configuration.updateOrderingStoreConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
 
 // Async/Await
-const data = await configuration.updateOrderingStoreConfig( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig({  body : value });
 ```
 
 
@@ -38351,7 +37299,7 @@ const data = await configuration.updateOrderingStoreConfig( {  companyId : value
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [OrderingStoreConfig](#OrderingStoreConfig) | no | Request body |
+| body | [OrderingStoreConfig](#OrderingStoreConfig) | yes | Request body |
 
 
 Add/Update ordering store config.
@@ -38408,12 +37356,10 @@ Get attached domain list
 
 ```javascript
 // Promise
-const promise = configuration.getDomains( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getDomains();
 
 // Async/Await
-const data = await configuration.getDomains( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getDomains();
 ```
 
 
@@ -38453,13 +37399,11 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false
     },
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -38467,7 +37411,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
       "name": "testdm.hostx0.de"
@@ -38495,14 +37438,10 @@ Add new domain to application
 
 ```javascript
 // Promise
-const promise = configuration.addDomain( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
 
 // Async/Await
-const data = await configuration.addDomain( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.addDomain({  body : value });
 ```
 
 
@@ -38511,7 +37450,7 @@ const data = await configuration.addDomain( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [DomainAddRequest](#DomainAddRequest) | no | Request body |
+| body | [DomainAddRequest](#DomainAddRequest) | yes | Request body |
 
 
 Add new domain to application.
@@ -38541,7 +37480,6 @@ Success
   "txtRecords": [],
   "message": "New domain added successfully",
   "is_primary": false,
-  "is_default": false,
   "is_shortlink": false,
   "_id": "6048497e87f5730423149190"
 }
@@ -38566,14 +37504,10 @@ Remove attached domain
 
 ```javascript
 // Promise
-const promise = configuration.removeDomainById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
 
 // Async/Await
-const data = await configuration.removeDomainById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").configuration.removeDomainById({  id : value });
 ```
 
 
@@ -38631,14 +37565,10 @@ Change domain type
 
 ```javascript
 // Promise
-const promise = configuration.changeDomainType( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
 
 // Async/Await
-const data = await configuration.changeDomainType( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.changeDomainType({  body : value });
 ```
 
 
@@ -38647,7 +37577,7 @@ const data = await configuration.changeDomainType( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | no | Request body |
+| body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | yes | Request body |
 
 
 Change a domain to Primary or Shortlink domain
@@ -38678,13 +37608,11 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_default": true,
       "is_shortlink": false
     },
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
       "name": "jd.hostx0.de"
@@ -38692,7 +37620,6 @@ Success
     {
       "verified": true,
       "is_primary": false,
-      "is_default": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
       "name": "testdm.hostx0.de"
@@ -38720,14 +37647,10 @@ Get domain connected status.
 
 ```javascript
 // Promise
-const promise = configuration.getDomainStatus( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
 
 // Async/Await
-const data = await configuration.getDomainStatus( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getDomainStatus({  body : value });
 ```
 
 
@@ -38736,7 +37659,7 @@ const data = await configuration.getDomainStatus( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |  
-| body | [DomainStatusRequest](#DomainStatusRequest) | no | Request body |
+| body | [DomainStatusRequest](#DomainStatusRequest) | yes | Request body |
 
 
 Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
@@ -38798,12 +37721,10 @@ Create application
 
 ```javascript
 // Promise
-const promise = configuration.createApplication( {  companyId : value,
- body : value });
+const promise = client.configuration.createApplication({  body : value });
 
 // Async/Await
-const data = await configuration.createApplication( {  companyId : value,
- body : value });
+const data = await client.configuration.createApplication({  body : value });
 ```
 
 
@@ -38811,7 +37732,7 @@ const data = await configuration.createApplication( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |  
-| body | [CreateApplicationRequest](#CreateApplicationRequest) | no | Request body |
+| body | [CreateApplicationRequest](#CreateApplicationRequest) | yes | Request body |
 
 
 Create new application
@@ -38857,14 +37778,12 @@ Get list of application under company
 
 ```javascript
 // Promise
-const promise = configuration.getApplications( {  companyId : value,
- pageNo : value,
+const promise = client.configuration.getApplications({  pageNo : value,
  pageSize : value,
  q : value });
 
 // Async/Await
-const data = await configuration.getApplications( {  companyId : value,
- pageNo : value,
+const data = await client.configuration.getApplications({  pageNo : value,
  pageSize : value,
  q : value });
 ```
@@ -38923,12 +37842,10 @@ Get application data from id
 
 ```javascript
 // Promise
-const promise = configuration.getApplicationById( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").configuration.getApplicationById();
 
 // Async/Await
-const data = await configuration.getApplicationById( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").configuration.getApplicationById();
 ```
 
 
@@ -38983,10 +37900,10 @@ Get all currencies
 
 ```javascript
 // Promise
-const promise = configuration.getCurrencies( {  companyId : value });
+const promise = client.configuration.getCurrencies();
 
 // Async/Await
-const data = await configuration.getCurrencies( {  companyId : value });
+const data = await client.configuration.getCurrencies();
 ```
 
 
@@ -39053,12 +37970,10 @@ Check domain availibility before linking to application
 
 ```javascript
 // Promise
-const promise = configuration.getDomainAvailibility( {  companyId : value,
- body : value });
+const promise = client.configuration.getDomainAvailibility({  body : value });
 
 // Async/Await
-const data = await configuration.getDomainAvailibility( {  companyId : value,
- body : value });
+const data = await client.configuration.getDomainAvailibility({  body : value });
 ```
 
 
@@ -39066,7 +37981,7 @@ const data = await configuration.getDomainAvailibility( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |  
-| body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | no | Request body |
+| body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | yes | Request body |
 
 
 Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
@@ -39156,12 +38071,10 @@ Get integration data
 
 ```javascript
 // Promise
-const promise = configuration.getIntegrationById( {  companyId : value,
- id : value });
+const promise = client.configuration.getIntegrationById({  id : value });
 
 // Async/Await
-const data = await configuration.getIntegrationById( {  companyId : value,
- id : value });
+const data = await client.configuration.getIntegrationById({  id : value });
 ```
 
 
@@ -39303,13 +38216,11 @@ Get all available integration opt-ins
 
 ```javascript
 // Promise
-const promise = configuration.getAvailableOptIns( {  companyId : value,
- pageNo : value,
+const promise = client.configuration.getAvailableOptIns({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getAvailableOptIns( {  companyId : value,
- pageNo : value,
+const data = await client.configuration.getAvailableOptIns({  pageNo : value,
  pageSize : value });
 ```
 
@@ -39473,15 +38384,13 @@ Get company/store level integration opt-ins
 
 ```javascript
 // Promise
-const promise = configuration.getSelectedOptIns( {  companyId : value,
- level : value,
+const promise = client.configuration.getSelectedOptIns({  level : value,
  uid : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getSelectedOptIns( {  companyId : value,
- level : value,
+const data = await client.configuration.getSelectedOptIns({  level : value,
  uid : value,
  pageNo : value,
  pageSize : value });
@@ -39649,15 +38558,13 @@ Get integration level config
 
 ```javascript
 // Promise
-const promise = configuration.getIntegrationLevelConfig( {  companyId : value,
- id : value,
+const promise = client.configuration.getIntegrationLevelConfig({  id : value,
  level : value,
  opted : value,
  checkPermission : value });
 
 // Async/Await
-const data = await configuration.getIntegrationLevelConfig( {  companyId : value,
- id : value,
+const data = await client.configuration.getIntegrationLevelConfig({  id : value,
  level : value,
  opted : value,
  checkPermission : value });
@@ -39739,14 +38646,12 @@ Get level data for integration
 
 ```javascript
 // Promise
-const promise = configuration.getIntegrationByLevelId( {  companyId : value,
- id : value,
+const promise = client.configuration.getIntegrationByLevelId({  id : value,
  level : value,
  uid : value });
 
 // Async/Await
-const data = await configuration.getIntegrationByLevelId( {  companyId : value,
- id : value,
+const data = await client.configuration.getIntegrationByLevelId({  id : value,
  level : value,
  uid : value });
 ```
@@ -39822,14 +38727,12 @@ Check store has active integration
 
 ```javascript
 // Promise
-const promise = configuration.getLevelActiveIntegrations( {  companyId : value,
- id : value,
+const promise = client.configuration.getLevelActiveIntegrations({  id : value,
  level : value,
  uid : value });
 
 // Async/Await
-const data = await configuration.getLevelActiveIntegrations( {  companyId : value,
- id : value,
+const data = await client.configuration.getLevelActiveIntegrations({  id : value,
  level : value,
  uid : value });
 ```
@@ -39905,12 +38808,10 @@ Get brands by company
 
 ```javascript
 // Promise
-const promise = configuration.getBrandsByCompany( {  companyId : value,
- q : value });
+const promise = client.configuration.getBrandsByCompany({  q : value });
 
 // Async/Await
-const data = await configuration.getBrandsByCompany( {  companyId : value,
- q : value });
+const data = await client.configuration.getBrandsByCompany({  q : value });
 ```
 
 
@@ -39982,14 +38883,12 @@ Get company by brand uids
 
 ```javascript
 // Promise
-const promise = configuration.getCompanyByBrands( {  companyId : value,
- body : value,
+const promise = client.configuration.getCompanyByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getCompanyByBrands( {  companyId : value,
- body : value,
+const data = await client.configuration.getCompanyByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -40001,7 +38900,7 @@ const data = await configuration.getCompanyByBrands( {  companyId : value,
 | companyId | string | yes | Current company id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
-| body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | no | Request body |
+| body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | yes | Request body |
 
 
 Get company by brand uids
@@ -40069,14 +38968,12 @@ Get stores by brand uids
 
 ```javascript
 // Promise
-const promise = configuration.getStoreByBrands( {  companyId : value,
- body : value,
+const promise = client.configuration.getStoreByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getStoreByBrands( {  companyId : value,
- body : value,
+const data = await client.configuration.getStoreByBrands({  body : value,
  pageNo : value,
  pageSize : value });
 ```
@@ -40088,7 +38985,7 @@ const data = await configuration.getStoreByBrands( {  companyId : value,
 | companyId | string | yes | Current company id |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
-| body | [StoreByBrandsRequest](#StoreByBrandsRequest) | no | Request body |
+| body | [StoreByBrandsRequest](#StoreByBrandsRequest) | yes | Request body |
 
 
 Get stores by brand uids
@@ -40195,13 +39092,11 @@ Get other seller applications
 
 ```javascript
 // Promise
-const promise = configuration.getOtherSellerApplications( {  companyId : value,
- pageNo : value,
+const promise = client.configuration.getOtherSellerApplications({  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await configuration.getOtherSellerApplications( {  companyId : value,
- pageNo : value,
+const data = await client.configuration.getOtherSellerApplications({  pageNo : value,
  pageSize : value });
 ```
 
@@ -40301,12 +39196,10 @@ Get other seller applications
 
 ```javascript
 // Promise
-const promise = configuration.getOtherSellerApplicationById( {  companyId : value,
- id : value });
+const promise = client.configuration.getOtherSellerApplicationById({  id : value });
 
 // Async/Await
-const data = await configuration.getOtherSellerApplicationById( {  companyId : value,
- id : value });
+const data = await client.configuration.getOtherSellerApplicationById({  id : value });
 ```
 
 
@@ -40408,13 +39301,11 @@ Opt out company or store from other seller application
 
 ```javascript
 // Promise
-const promise = configuration.optOutFromApplication( {  companyId : value,
- id : value,
+const promise = client.configuration.optOutFromApplication({  id : value,
  body : value });
 
 // Async/Await
-const data = await configuration.optOutFromApplication( {  companyId : value,
- id : value,
+const data = await client.configuration.optOutFromApplication({  id : value,
  body : value });
 ```
 
@@ -40424,7 +39315,7 @@ const data = await configuration.optOutFromApplication( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | id | string | yes | Application Id |  
-| body | [OptOutInventory](#OptOutInventory) | no | Request body |
+| body | [OptOutInventory](#OptOutInventory) | yes | Request body |
 
 
 Opt out company or store from other seller application
@@ -40478,9 +39369,7 @@ Get with single coupon details or coupon list
 
 ```javascript
 // Promise
-const promise = cart.getCoupons( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const promise = client.application("<APPLICATION_ID>").cart.getCoupons({  pageNo : value,
  pageSize : value,
  isArchived : value,
  title : value,
@@ -40490,9 +39379,7 @@ const promise = cart.getCoupons( {  companyId : value,
  code : value });
 
 // Async/Await
-const data = await cart.getCoupons( {  companyId : value,
- applicationId : value,
- pageNo : value,
+const data = await client.application("<APPLICATION_ID>").cart.getCoupons({  pageNo : value,
  pageSize : value,
  isArchived : value,
  title : value,
@@ -40614,14 +39501,10 @@ Create new coupon
 
 ```javascript
 // Promise
-const promise = cart.createCoupon( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").cart.createCoupon({  body : value });
 
 // Async/Await
-const data = await cart.createCoupon( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").cart.createCoupon({  body : value });
 ```
 
 
@@ -40630,7 +39513,7 @@ const data = await cart.createCoupon( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current Application _id |  
-| body | [CouponAdd](#CouponAdd) | no | Request body |
+| body | [CouponAdd](#CouponAdd) | yes | Request body |
 
 
 Create new coupon
@@ -40679,14 +39562,10 @@ Get with single coupon details or coupon list
 
 ```javascript
 // Promise
-const promise = cart.getCouponById( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").cart.getCouponById({  id : value });
 
 // Async/Await
-const data = await cart.getCouponById( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").cart.getCouponById({  id : value });
 ```
 
 
@@ -40882,15 +39761,11 @@ Update existing coupon configuration
 
 ```javascript
 // Promise
-const promise = cart.updateCoupon( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").cart.updateCoupon({  id : value,
  body : value });
 
 // Async/Await
-const data = await cart.updateCoupon( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").cart.updateCoupon({  id : value,
  body : value });
 ```
 
@@ -40901,7 +39776,7 @@ const data = await cart.updateCoupon( {  companyId : value,
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current Application _id |   
 | id | string | yes |  |  
-| body | [CouponUpdate](#CouponUpdate) | no | Request body |
+| body | [CouponUpdate](#CouponUpdate) | yes | Request body |
 
 
 Update coupon with id sent in `id`
@@ -40950,15 +39825,11 @@ Update coupon archive state and schedule
 
 ```javascript
 // Promise
-const promise = cart.updateCouponPartially( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").cart.updateCouponPartially({  id : value,
  body : value });
 
 // Async/Await
-const data = await cart.updateCouponPartially( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").cart.updateCouponPartially({  id : value,
  body : value });
 ```
 
@@ -40969,7 +39840,7 @@ const data = await cart.updateCouponPartially( {  companyId : value,
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current Application _id |   
 | id | string | yes |  |  
-| body | [CouponPartialUpdate](#CouponPartialUpdate) | no | Request body |
+| body | [CouponPartialUpdate](#CouponPartialUpdate) | yes | Request body |
 
 
 Update archive/unarchive and change schedule for coupon
@@ -41039,14 +39910,10 @@ Fetch Cart Details
 
 ```javascript
 // Promise
-const promise = cart.fetchAndvalidateCartItems( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems({  body : value });
 
 // Async/Await
-const data = await cart.fetchAndvalidateCartItems( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems({  body : value });
 ```
 
 
@@ -41055,7 +39922,7 @@ const data = await cart.fetchAndvalidateCartItems( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current Application _id |  
-| body | [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest) | no | Request body |
+| body | [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest) | yes | Request body |
 
 
 Get all the details of cart for a list of provided `cart_items`
@@ -41375,14 +40242,10 @@ Check Pincode Serviceability
 
 ```javascript
 // Promise
-const promise = cart.checkCartServiceability( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").cart.checkCartServiceability({  body : value });
 
 // Async/Await
-const data = await cart.checkCartServiceability( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").cart.checkCartServiceability({  body : value });
 ```
 
 
@@ -41391,7 +40254,7 @@ const data = await cart.checkCartServiceability( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current Application _id |  
-| body | [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest) | no | Request body |
+| body | [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest) | yes | Request body |
 
 
 Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
@@ -41967,14 +40830,10 @@ Create Fynd order with cart details
 
 ```javascript
 // Promise
-const promise = cart.checkoutCart( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").cart.checkoutCart({  body : value });
 
 // Async/Await
-const data = await cart.checkoutCart( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").cart.checkoutCart({  body : value });
 ```
 
 
@@ -41983,7 +40842,7 @@ const data = await cart.checkoutCart( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current Application _id |  
-| body | [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq) | no | Request body |
+| body | [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq) | yes | Request body |
 
 
 Generate Fynd order for cart details send with provided `cart_items`
@@ -42040,15 +40899,11 @@ List of giveaways of the current application.
 
 ```javascript
 // Promise
-const promise = rewards.getGiveaways( {  companyId : value,
- applicationId : value,
- pageId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getGiveaways({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getGiveaways( {  companyId : value,
- applicationId : value,
- pageId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getGiveaways({  pageId : value,
  pageSize : value });
 ```
 
@@ -42106,14 +40961,10 @@ Adds a new giveaway.
 
 ```javascript
 // Promise
-const promise = rewards.createGiveaway( {  companyId : value,
- applicationId : value,
- body : value });
+const promise = client.application("<APPLICATION_ID>").rewards.createGiveaway({  body : value });
 
 // Async/Await
-const data = await rewards.createGiveaway( {  companyId : value,
- applicationId : value,
- body : value });
+const data = await client.application("<APPLICATION_ID>").rewards.createGiveaway({  body : value });
 ```
 
 
@@ -42168,14 +41019,10 @@ Get giveaway by ID.
 
 ```javascript
 // Promise
-const promise = rewards.getGiveawayByID( {  companyId : value,
- applicationId : value,
- id : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getGiveawayByID({  id : value });
 
 // Async/Await
-const data = await rewards.getGiveawayByID( {  companyId : value,
- applicationId : value,
- id : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayByID({  id : value });
 ```
 
 
@@ -42231,15 +41078,11 @@ Updates the giveaway by it's ID.
 
 ```javascript
 // Promise
-const promise = rewards.updateGiveaway( {  companyId : value,
- applicationId : value,
- id : value,
+const promise = client.application("<APPLICATION_ID>").rewards.updateGiveaway({  id : value,
  body : value });
 
 // Async/Await
-const data = await rewards.updateGiveaway( {  companyId : value,
- applicationId : value,
- id : value,
+const data = await client.application("<APPLICATION_ID>").rewards.updateGiveaway({  id : value,
  body : value });
 ```
 
@@ -42296,12 +41139,10 @@ List of offer of the current application.
 
 ```javascript
 // Promise
-const promise = rewards.getOffers( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getOffers();
 
 // Async/Await
-const data = await rewards.getOffers( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getOffers();
 ```
 
 
@@ -42356,15 +41197,11 @@ Get offer by name.
 
 ```javascript
 // Promise
-const promise = rewards.getOfferByName( {  companyId : value,
- applicationId : value,
- cookie : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getOfferByName({  cookie : value,
  name : value });
 
 // Async/Await
-const data = await rewards.getOfferByName( {  companyId : value,
- applicationId : value,
- cookie : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName({  cookie : value,
  name : value });
 ```
 
@@ -42422,15 +41259,11 @@ Updates the offer by name.
 
 ```javascript
 // Promise
-const promise = rewards.updateOfferByName( {  companyId : value,
- applicationId : value,
- name : value,
+const promise = client.application("<APPLICATION_ID>").rewards.updateOfferByName({  name : value,
  body : value });
 
 // Async/Await
-const data = await rewards.updateOfferByName( {  companyId : value,
- applicationId : value,
- name : value,
+const data = await client.application("<APPLICATION_ID>").rewards.updateOfferByName({  name : value,
  body : value });
 ```
 
@@ -42487,14 +41320,10 @@ User's reward details.
 
 ```javascript
 // Promise
-const promise = rewards.getUserAvailablePoints( {  companyId : value,
- applicationId : value,
- userId : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getUserAvailablePoints({  userId : value });
 
 // Async/Await
-const data = await rewards.getUserAvailablePoints( {  companyId : value,
- applicationId : value,
- userId : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getUserAvailablePoints({  userId : value });
 ```
 
 
@@ -42550,15 +41379,11 @@ Update User status
 
 ```javascript
 // Promise
-const promise = rewards.updateUserStatus( {  companyId : value,
- applicationId : value,
- userId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.updateUserStatus({  userId : value,
  body : value });
 
 // Async/Await
-const data = await rewards.updateUserStatus( {  companyId : value,
- applicationId : value,
- userId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.updateUserStatus({  userId : value,
  body : value });
 ```
 
@@ -42615,17 +41440,13 @@ Get list of points transactions.
 
 ```javascript
 // Promise
-const promise = rewards.getUserPointsHistory( {  companyId : value,
- applicationId : value,
- userId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageLimit : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getUserPointsHistory( {  companyId : value,
- applicationId : value,
- userId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageLimit : value,
  pageSize : value });
@@ -42694,12 +41515,10 @@ Get statistics groups
 
 ```javascript
 // Promise
-const promise = analytics.getStatiscticsGroups( {  companyId : value,
- applicationId : value });
+const promise = client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
 
 // Async/Await
-const data = await analytics.getStatiscticsGroups( {  companyId : value,
- applicationId : value });
+const data = await client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups();
 ```
 
 
@@ -42762,14 +41581,10 @@ Get statistics group components
 
 ```javascript
 // Promise
-const promise = analytics.getStatiscticsGroupComponents( {  companyId : value,
- applicationId : value,
- groupName : value });
+const promise = client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
 
 // Async/Await
-const data = await analytics.getStatiscticsGroupComponents( {  companyId : value,
- applicationId : value,
- groupName : value });
+const data = await client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents({  groupName : value });
 ```
 
 
@@ -42836,14 +41651,10 @@ Get component statistics csv
 
 ```javascript
 // Promise
-const promise = analytics.getComponentStatsCSV( {  companyId : value,
- applicationId : value,
- componentName : value });
+const promise = client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
 
 // Async/Await
-const data = await analytics.getComponentStatsCSV( {  companyId : value,
- applicationId : value,
- componentName : value });
+const data = await client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV({  componentName : value });
 ```
 
 
@@ -42899,14 +41710,10 @@ Get component statistics pdf
 
 ```javascript
 // Promise
-const promise = analytics.getComponentStatsPDF( {  companyId : value,
- applicationId : value,
- componentName : value });
+const promise = client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
 
 // Async/Await
-const data = await analytics.getComponentStatsPDF( {  companyId : value,
- applicationId : value,
- componentName : value });
+const data = await client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF({  componentName : value });
 ```
 
 
@@ -42962,14 +41769,10 @@ Get component statistics
 
 ```javascript
 // Promise
-const promise = analytics.getComponentStats( {  companyId : value,
- applicationId : value,
- componentName : value });
+const promise = client.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
 
 // Async/Await
-const data = await analytics.getComponentStats( {  companyId : value,
- applicationId : value,
- componentName : value });
+const data = await client.application("<APPLICATION_ID>").analytics.getComponentStats({  componentName : value });
 ```
 
 
@@ -43072,17 +41875,13 @@ Get abandon carts list
 
 ```javascript
 // Promise
-const promise = analytics.getAbandonCartList( {  companyId : value,
- applicationId : value,
- fromDate : value,
+const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
  toDate : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await analytics.getAbandonCartList( {  companyId : value,
- applicationId : value,
- fromDate : value,
+const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartList({  fromDate : value,
  toDate : value,
  pageNo : value,
  pageSize : value });
@@ -43164,15 +41963,11 @@ Get abandon carts csv
 
 ```javascript
 // Promise
-const promise = analytics.getAbandonCartsCSV( {  companyId : value,
- applicationId : value,
- fromDate : value,
+const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
  toDate : value });
 
 // Async/Await
-const data = await analytics.getAbandonCartsCSV( {  companyId : value,
- applicationId : value,
- fromDate : value,
+const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV({  fromDate : value,
  toDate : value });
 ```
 
@@ -43230,14 +42025,10 @@ Get abandon carts details
 
 ```javascript
 // Promise
-const promise = analytics.getAbandonCartDetail( {  companyId : value,
- applicationId : value,
- cartId : value });
+const promise = client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
 
 // Async/Await
-const data = await analytics.getAbandonCartDetail( {  companyId : value,
- applicationId : value,
- cartId : value });
+const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail({  cartId : value });
 ```
 
 
@@ -43293,13 +42084,11 @@ Create data export job in required format
 
 ```javascript
 // Promise
-const promise = analytics.createExportJob( {  companyId : value,
- exportType : value,
+const promise = client.analytics.createExportJob({  exportType : value,
  body : value });
 
 // Async/Await
-const data = await analytics.createExportJob( {  companyId : value,
- exportType : value,
+const data = await client.analytics.createExportJob({  exportType : value,
  body : value });
 ```
 
@@ -43309,7 +42098,7 @@ const data = await analytics.createExportJob( {  companyId : value,
 | --------- | -----  | -------- | ----------- | 
 | companyId | string | yes | Company Id |   
 | exportType | string | yes | Export type / format |  
-| body | [ExportJobReq](#ExportJobReq) | no | Request body |
+| body | [ExportJobReq](#ExportJobReq) | yes | Request body |
 
 
 Create data export job in required format
@@ -43358,13 +42147,11 @@ Get data export job status
 
 ```javascript
 // Promise
-const promise = analytics.getExportJobStatus( {  companyId : value,
- exportType : value,
+const promise = client.analytics.getExportJobStatus({  exportType : value,
  jobId : value });
 
 // Async/Await
-const data = await analytics.getExportJobStatus( {  companyId : value,
- exportType : value,
+const data = await client.analytics.getExportJobStatus({  exportType : value,
  jobId : value });
 ```
 
@@ -43425,15 +42212,13 @@ Get logs list
 
 ```javascript
 // Promise
-const promise = analytics.getLogsList( {  companyId : value,
- logType : value,
+const promise = client.analytics.getLogsList({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await analytics.getLogsList( {  companyId : value,
- logType : value,
+const data = await client.analytics.getLogsList({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
@@ -43447,7 +42232,7 @@ const data = await analytics.getLogsList( {  companyId : value,
 | logType | string | yes | Log type |    
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |  
-| body | [GetLogsListReq](#GetLogsListReq) | no | Request body |
+| body | [GetLogsListReq](#GetLogsListReq) | yes | Request body |
 
 
 Get logs list
@@ -43511,15 +42296,13 @@ Search logs
 
 ```javascript
 // Promise
-const promise = analytics.searchLogs( {  companyId : value,
- logType : value,
+const promise = client.analytics.searchLogs({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await analytics.searchLogs( {  companyId : value,
- logType : value,
+const data = await client.analytics.searchLogs({  logType : value,
  body : value,
  pageNo : value,
  pageSize : value });
@@ -43533,7 +42316,7 @@ const data = await analytics.searchLogs( {  companyId : value,
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |   
 | logType | string | yes | Log type |  
-| body | [SearchLogReq](#SearchLogReq) | no | Request body |
+| body | [SearchLogReq](#SearchLogReq) | yes | Request body |
 
 
 Search logs
@@ -43609,8 +42392,7 @@ Fetch discount list.
 
 ```javascript
 // Promise
-const promise = discount.getDiscounts( {  companyId : value,
- view : value,
+const promise = client.discount.getDiscounts({  view : value,
  q : value,
  pageNo : value,
  pageSize : value,
@@ -43621,8 +42403,7 @@ const promise = discount.getDiscounts( {  companyId : value,
  appIds : value });
 
 // Async/Await
-const data = await discount.getDiscounts( {  companyId : value,
- view : value,
+const data = await client.discount.getDiscounts({  view : value,
  q : value,
  pageNo : value,
  pageSize : value,
@@ -43693,12 +42474,10 @@ Create Discount.
 
 ```javascript
 // Promise
-const promise = discount.createDiscount( {  companyId : value,
- body : value });
+const promise = client.discount.createDiscount({  body : value });
 
 // Async/Await
-const data = await discount.createDiscount( {  companyId : value,
- body : value });
+const data = await client.discount.createDiscount({  body : value });
 ```
 
 
@@ -43752,12 +42531,10 @@ Fetch discount.
 
 ```javascript
 // Promise
-const promise = discount.getDiscount( {  companyId : value,
- id : value });
+const promise = client.discount.getDiscount({  id : value });
 
 // Async/Await
-const data = await discount.getDiscount( {  companyId : value,
- id : value });
+const data = await client.discount.getDiscount({  id : value });
 ```
 
 
@@ -43812,13 +42589,11 @@ Create Discount.
 
 ```javascript
 // Promise
-const promise = discount.updateDiscount( {  companyId : value,
- id : value,
+const promise = client.discount.updateDiscount({  id : value,
  body : value });
 
 // Async/Await
-const data = await discount.updateDiscount( {  companyId : value,
- id : value,
+const data = await client.discount.updateDiscount({  id : value,
  body : value });
 ```
 
@@ -43874,13 +42649,11 @@ Validate File.
 
 ```javascript
 // Promise
-const promise = discount.validateDiscountFile( {  companyId : value,
- body : value,
+const promise = client.discount.validateDiscountFile({  body : value,
  discount : value });
 
 // Async/Await
-const data = await discount.validateDiscountFile( {  companyId : value,
- body : value,
+const data = await client.discount.validateDiscountFile({  body : value,
  discount : value });
 ```
 
@@ -43936,13 +42709,11 @@ Validate File.
 
 ```javascript
 // Promise
-const promise = discount.downloadDiscountFile( {  companyId : value,
- type : value,
+const promise = client.discount.downloadDiscountFile({  type : value,
  body : value });
 
 // Async/Await
-const data = await discount.downloadDiscountFile( {  companyId : value,
- type : value,
+const data = await client.discount.downloadDiscountFile({  type : value,
  body : value });
 ```
 
@@ -43998,12 +42769,10 @@ Validate File Job.
 
 ```javascript
 // Promise
-const promise = discount.getValidationJob( {  companyId : value,
- id : value });
+const promise = client.discount.getValidationJob({  id : value });
 
 // Async/Await
-const data = await discount.getValidationJob( {  companyId : value,
- id : value });
+const data = await client.discount.getValidationJob({  id : value });
 ```
 
 
@@ -44058,12 +42827,10 @@ Cancel Validation Job.
 
 ```javascript
 // Promise
-const promise = discount.cancelValidationJob( {  companyId : value,
- id : value });
+const promise = client.discount.cancelValidationJob({  id : value });
 
 // Async/Await
-const data = await discount.cancelValidationJob( {  companyId : value,
- id : value });
+const data = await client.discount.cancelValidationJob({  id : value });
 ```
 
 
@@ -44118,12 +42885,10 @@ Download File Job.
 
 ```javascript
 // Promise
-const promise = discount.getDownloadJob( {  companyId : value,
- id : value });
+const promise = client.discount.getDownloadJob({  id : value });
 
 // Async/Await
-const data = await discount.getDownloadJob( {  companyId : value,
- id : value });
+const data = await client.discount.getDownloadJob({  id : value });
 ```
 
 
@@ -44178,12 +42943,10 @@ Cancel Download Job.
 
 ```javascript
 // Promise
-const promise = discount.cancelDownloadJob( {  companyId : value,
- id : value });
+const promise = client.discount.cancelDownloadJob({  id : value });
 
 // Async/Await
-const data = await discount.cancelDownloadJob( {  companyId : value,
- id : value });
+const data = await client.discount.cancelDownloadJob({  id : value });
 ```
 
 
@@ -44244,15 +43007,11 @@ Add proxy path for external url
 
 ```javascript
 // Promise
-const promise = partner.addProxyPath( {  companyId : value,
- applicationId : value,
- extensionId : value,
+const promise = client.application("<APPLICATION_ID>").partner.addProxyPath({  extensionId : value,
  body : value });
 
 // Async/Await
-const data = await partner.addProxyPath( {  companyId : value,
- applicationId : value,
- extensionId : value,
+const data = await client.application("<APPLICATION_ID>").partner.addProxyPath({  extensionId : value,
  body : value });
 ```
 
@@ -44263,7 +43022,7 @@ const data = await partner.addProxyPath( {  companyId : value,
 | companyId | string | yes | Current company id |   
 | applicationId | string | yes | Current application id |   
 | extensionId | string | yes | Extension id |  
-| body | [AddProxyReq](#AddProxyReq) | no | Request body |
+| body | [AddProxyReq](#AddProxyReq) | yes | Request body |
 
 
 Add proxy path for external url
@@ -44318,15 +43077,11 @@ Remove proxy path for external url
 
 ```javascript
 // Promise
-const promise = partner.removeProxyPath( {  companyId : value,
- applicationId : value,
- extensionId : value,
+const promise = client.application("<APPLICATION_ID>").partner.removeProxyPath({  extensionId : value,
  attachedPath : value });
 
 // Async/Await
-const data = await partner.removeProxyPath( {  companyId : value,
- applicationId : value,
- extensionId : value,
+const data = await client.application("<APPLICATION_ID>").partner.removeProxyPath({  extensionId : value,
  attachedPath : value });
 ```
 
@@ -44402,14 +43157,14 @@ Get Subscribers By Company ID
 
 ```javascript
 // Promise
-const promise = webhook.getSubscribersByCompany( {  companyId : value,
- pageNo : value,
- pageSize : value });
+const promise = client.webhook.getSubscribersByCompany({  pageNo : value,
+ pageSize : value,
+ extensionId : value });
 
 // Async/Await
-const data = await webhook.getSubscribersByCompany( {  companyId : value,
- pageNo : value,
- pageSize : value });
+const data = await client.webhook.getSubscribersByCompany({  pageNo : value,
+ pageSize : value,
+ extensionId : value });
 ```
 
 
@@ -44418,7 +43173,8 @@ const data = await webhook.getSubscribersByCompany( {  companyId : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |   
-| companyId | number | yes | Company ID of the application |  
+| companyId | number | yes | Company ID of the application |    
+| extensionId | string | no | Extension ID |  
 
 
 
@@ -44465,12 +43221,10 @@ Register Subscriber
 
 ```javascript
 // Promise
-const promise = webhook.registerSubscriberToEvent( {  companyId : value,
- body : value });
+const promise = client.webhook.registerSubscriberToEvent({  body : value });
 
 // Async/Await
-const data = await webhook.registerSubscriberToEvent( {  companyId : value,
- body : value });
+const data = await client.webhook.registerSubscriberToEvent({  body : value });
 ```
 
 
@@ -44478,7 +43232,7 @@ const data = await webhook.registerSubscriberToEvent( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company Id of the application |  
-| body | [SubscriberConfig](#SubscriberConfig) | no | Request body |
+| body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
 
 
 Register Subscriber
@@ -44524,12 +43278,10 @@ Update Subscriber
 
 ```javascript
 // Promise
-const promise = webhook.updateSubscriberConfig( {  companyId : value,
- body : value });
+const promise = client.webhook.updateSubscriberConfig({  body : value });
 
 // Async/Await
-const data = await webhook.updateSubscriberConfig( {  companyId : value,
- body : value });
+const data = await client.webhook.updateSubscriberConfig({  body : value });
 ```
 
 
@@ -44537,7 +43289,7 @@ const data = await webhook.updateSubscriberConfig( {  companyId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | companyId | number | yes | Company ID of the application |  
-| body | [SubscriberConfig](#SubscriberConfig) | no | Request body |
+| body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
 
 
 Update Subscriber
@@ -44583,12 +43335,10 @@ Get Subscriber By Subscriber ID
 
 ```javascript
 // Promise
-const promise = webhook.getSubscriberById( {  companyId : value,
- subscriberId : value });
+const promise = client.webhook.getSubscriberById({  subscriberId : value });
 
 // Async/Await
-const data = await webhook.getSubscriberById( {  companyId : value,
- subscriberId : value });
+const data = await client.webhook.getSubscriberById({  subscriberId : value });
 ```
 
 
@@ -44643,10 +43393,10 @@ Get All Webhook Events
 
 ```javascript
 // Promise
-const promise = webhook.fetchAllEventConfigurations( {  companyId : value });
+const promise = client.webhook.fetchAllEventConfigurations();
 
 // Async/Await
-const data = await webhook.fetchAllEventConfigurations( {  companyId : value });
+const data = await client.webhook.fetchAllEventConfigurations();
 ```
 
 
@@ -44825,7 +43575,7 @@ Success
  | inputs | [string] |  yes  | List of all the form components |
  | description | string |  no  | Description of the form |
  | header_image | string |  no  | Header image that is to be shown for the form |
- | priority | any |  yes  | Describes the priority of the tickets created by the form |
+ | priority | [PriorityEnum](#PriorityEnum) |  yes  | Describes the priority of the tickets created by the form |
  | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
  | success_message | string |  no  | Success message that will be shown on submission |
  | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Describes how polling will be done for the tickets createds |
@@ -44842,7 +43592,7 @@ Success
  | title | string |  yes  | Title for the form |
  | inputs | [string] |  yes  | List of all the form components |
  | description | string |  no  | Description of the form |
- | priority | any |  yes  | Describes the priority of the tickets created by the form |
+ | priority | [PriorityEnum](#PriorityEnum) |  yes  | Describes the priority of the tickets created by the form |
  | header_image | string |  no  | Header image that is to be shown for the form |
  | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
  | login_required | boolean |  no  | Denotes if login is required to make a form response submission |
@@ -44863,7 +43613,7 @@ Success
  | sub_category | string |  no  | Sub-category assigned to the ticket |
  | source | string |  no  | Denotes if the ticket was created at company or application level |
  | status | string |  no  | Denotes in what state is the ticket |
- | priority | any |  no  | Denotes the priority of ticket |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  | Denotes the priority of ticket |
  | assigned_to | [AgentChangePayload](#AgentChangePayload) |  no  | Details of support staff to whom ticket is assigned |
  | tags | [string] |  no  | Tags relevant to ticket |
 
@@ -44948,7 +43698,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  yes  | Details of history event |
- | type | any |  yes  | Type of history event |
+ | type | [HistoryTypeEnum](#HistoryTypeEnum) |  yes  | Type of history event |
 
 ---
 
@@ -45121,7 +43871,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | created_by | string |  no  | Creator of the ticket |
  | status | string |  no  | Status of the ticket |
- | priority | any |  no  | Priority of the ticket |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  | Priority of the ticket |
  | category | string |  yes  | Category of the ticket |
  | content | [TicketContent](#TicketContent) |  yes  | Content for the ticket |
 
@@ -45329,7 +44079,7 @@ Success
  | ticket_id | string |  yes  | Readable ticket number |
  | category | [TicketCategory](#TicketCategory) |  yes  | Category assigned to the ticket |
  | sub_category | [TicketSubCategory](#TicketSubCategory) |  no  | Sub-category assigned to the ticket |
- | source | any |  yes  | Denotes if the ticket was created at company or application level |
+ | source | [TicketSourceEnum](#TicketSourceEnum) |  yes  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  yes  | Denotes in what state is the ticket |
  | priority | [Priority](#Priority) |  yes  | Denotes the priority of ticket |
  | created_by | string |  no  | User details of ticket creator |
@@ -53788,67 +52538,15 @@ Success
 
  
  
- #### [DeleteResponse](#DeleteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  |  |
- | message | string |  no  |  |
- | status | number |  no  |  |
- | code | string |  no  |  |
-
----
-
-
- 
- 
- #### [SearchKeywordResult](#SearchKeywordResult)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | string |  yes  |  |
- | sort_on | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateSearchKeyword](#CreateSearchKeyword)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | result | [SearchKeywordResult](#SearchKeywordResult) |  yes  |  |
- | is_active | boolean |  no  |  |
- | app_id | string |  no  |  |
- | _custom_json | string |  no  |  |
- | words | [string] |  no  |  |
-
----
-
-
- 
- 
  #### [GetSearchWordsData](#GetSearchWordsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | result | string |  no  |  |
  | app_id | string |  no  |  |
+ | uid | string |  no  |  |
  | _custom_json | string |  no  |  |
  | words | [string] |  no  |  |
- | uid | string |  no  |  |
 
 ---
 
@@ -53867,6 +52565,58 @@ Success
 
  
  
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | status | number |  no  |  |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SearchKeywordResult](#SearchKeywordResult)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort_on | string |  yes  |  |
+ | query | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateSearchKeyword](#CreateSearchKeyword)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | words | [string] |  no  |  |
+ | result | [SearchKeywordResult](#SearchKeywordResult) |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | app_id | string |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteResponse](#DeleteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [GetSearchWordsResponse](#GetSearchWordsResponse)
 
  | Properties | Type | Nullable | Description |
@@ -53879,12 +52629,39 @@ Success
 
  
  
+ #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | uid | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | results | [string] |  no  |  |
+ | words | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Media](#Media)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
  | type | string |  no  |  |
+ | url | string |  no  |  |
 
 ---
 
@@ -53895,10 +52672,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  yes  |  |
+ | type | string |  yes  |  |
  | url | string |  no  |  |
  | params | string |  no  |  |
- | type | string |  yes  |  |
+ | query | string |  yes  |  |
 
 ---
 
@@ -53921,9 +52698,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | display | string |  no  |  |
+ | _custom_json | string |  no  |  |
  | action | [AutocompleteAction](#AutocompleteAction) |  no  |  |
 
 ---
@@ -53935,38 +52712,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | words | [string] |  no  |  |
  | is_active | boolean |  no  |  |
+ | app_id | string |  no  |  |
  | results | [[AutocompleteResult](#AutocompleteResult)] |  no  |  |
- | app_id | string |  no  |  |
  | _custom_json | string |  no  |  |
- | words | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | results | [string] |  no  |  |
- | app_id | string |  no  |  |
- | _custom_json | string |  no  |  |
- | words | [string] |  no  |  |
- | uid | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -53977,10 +52727,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | _custom_json | string |  no  |  |
  | words | [string] |  no  |  |
  | results | [string] |  no  |  |
+ | _custom_json | string |  no  |  |
+ | app_id | string |  no  |  |
 
 ---
 
@@ -53991,35 +52741,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | allow_remove | boolean |  no  |  |
  | min_quantity | number |  yes  |  |
  | auto_add_to_cart | boolean |  no  |  |
- | allow_remove | boolean |  no  |  |
  | max_quantity | number |  yes  |  |
  | auto_select | boolean |  no  |  |
  | product_uid | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductBundleRequest](#ProductBundleRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | choice | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | created_on | string |  no  |  |
- | slug | string |  yes  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
- | meta | string |  no  |  |
- | logo | string |  no  |  |
- | modified_by | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | modified_on | string |  no  |  |
- | same_store_assignment | boolean |  no  |  |
- | name | string |  yes  |  |
 
 ---
 
@@ -54030,21 +52757,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | choice | string |  yes  |  |
- | company_id | number |  no  |  |
  | page_visibility | [string] |  no  |  |
- | created_on | string |  no  |  |
- | slug | string |  yes  |  |
+ | created_by | string |  no  |  |
  | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
- | meta | string |  no  |  |
- | logo | string |  no  |  |
- | modified_by | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | modified_on | string |  no  |  |
+ | choice | string |  yes  |  |
+ | created_on | string |  no  |  |
  | same_store_assignment | boolean |  no  |  |
+ | logo | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | slug | string |  yes  |  |
  | id | string |  no  |  |
+ | meta | string |  no  |  |
+ | modified_on | string |  no  |  |
  | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+ | company_id | number |  no  |  |
 
 ---
 
@@ -54063,43 +52790,23 @@ Success
 
  
  
- #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
+ #### [ProductBundleRequest](#ProductBundleRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | string |  yes  |  |
  | page_visibility | [string] |  no  |  |
- | slug | string |  yes  |  |
+ | created_by | string |  no  |  |
  | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
- | meta | string |  no  |  |
- | logo | string |  no  |  |
- | modified_by | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | modified_on | string |  no  |  |
+ | choice | string |  yes  |  |
+ | created_on | string |  no  |  |
  | same_store_assignment | boolean |  no  |  |
+ | logo | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | slug | string |  yes  |  |
+ | meta | string |  no  |  |
+ | modified_on | string |  no  |  |
  | name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [LimitedProductData](#LimitedProductData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | short_description | string |  no  |  |
- | name | string |  no  |  |
- | images | [string] |  no  |  |
- | attributes | string |  no  |  |
- | item_code | string |  no  |  |
- | country_of_origin | string |  no  |  |
- | quantity | number |  no  |  |
- | sizes | [string] |  no  |  |
- | slug | string |  no  |  |
- | uid | number |  no  |  |
- | identifier | string |  no  |  |
- | price | string |  no  |  |
+ | modified_by | string |  no  |  |
 
 ---
 
@@ -54110,10 +52817,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_available | boolean |  no  |  |
- | display | string |  no  |  |
  | quantity | number |  no  |  |
  | value | string |  no  |  |
+ | is_available | boolean |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -54124,11 +52831,33 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min_effective | number |  no  |  |
  | min_marked | number |  no  |  |
+ | min_effective | number |  no  |  |
  | max_marked | number |  no  |  |
- | currency | string |  no  |  |
  | max_effective | number |  no  |  |
+ | currency | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LimitedProductData](#LimitedProductData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_of_origin | string |  no  |  |
+ | identifier | string |  no  |  |
+ | sizes | [string] |  no  |  |
+ | attributes | string |  no  |  |
+ | item_code | string |  no  |  |
+ | price | string |  no  |  |
+ | short_description | string |  no  |  |
+ | slug | string |  no  |  |
+ | quantity | number |  no  |  |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | images | [string] |  no  |  |
 
 ---
 
@@ -54139,15 +52868,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min_quantity | number |  no  |  |
- | auto_add_to_cart | boolean |  no  |  |
  | allow_remove | boolean |  no  |  |
- | max_quantity | number |  no  |  |
- | product_details | [LimitedProductData](#LimitedProductData) |  no  |  |
+ | min_quantity | number |  no  |  |
  | sizes | [[Size](#Size)] |  no  |  |
+ | price | [Price](#Price) |  no  |  |
+ | product_details | [LimitedProductData](#LimitedProductData) |  no  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+ | max_quantity | number |  no  |  |
  | auto_select | boolean |  no  |  |
  | product_uid | number |  no  |  |
- | price | [Price](#Price) |  no  |  |
 
 ---
 
@@ -54158,16 +52887,49 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | choice | string |  no  |  |
- | company_id | number |  no  |  |
  | page_visibility | [string] |  no  |  |
- | slug | string |  no  |  |
+ | name | string |  no  |  |
  | products | [[GetProducts](#GetProducts)] |  no  |  |
- | meta | string |  no  |  |
+ | choice | string |  no  |  |
+ | same_store_assignment | boolean |  no  |  |
  | logo | string |  no  |  |
  | is_active | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | meta | string |  no  |  |
+ | company_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_visibility | [string] |  no  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
+ | choice | string |  yes  |  |
  | same_store_assignment | boolean |  no  |  |
- | name | string |  no  |  |
+ | logo | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | slug | string |  yes  |  |
+ | meta | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListSizeGuide](#ListSizeGuide)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ | page | string |  no  |  |
 
 ---
 
@@ -54178,9 +52940,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | headers | string |  no  |  |
  | values | [string] |  no  |  |
  | unit | string |  no  |  |
- | headers | string |  no  |  |
 
 ---
 
@@ -54202,21 +52964,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | created_by | string |  no  |  |
- | tag | string |  no  |  |
- | company_id | number |  no  |  |
- | created_on | string |  no  |  |
  | guide | [Guide](#Guide) |  no  |  |
- | active | boolean |  no  |  |
- | modified_on | string |  no  |  |
- | image | string |  no  |  |
- | id | string |  no  |  |
- | modified_by | string |  no  |  |
- | title | string |  yes  |  |
- | subtitle | string |  no  |  |
- | name | string |  yes  |  |
  | brand_id | number |  no  |  |
+ | created_by | string |  no  |  |
+ | title | string |  yes  |  |
+ | created_on | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | image | string |  no  |  |
+ | tag | string |  no  |  |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | name | string |  yes  |  |
+ | modified_by | string |  no  |  |
+ | active | boolean |  no  |  |
+ | description | string |  no  |  |
+ | company_id | number |  no  |  |
 
 ---
 
@@ -54235,35 +52997,37 @@ Success
 
  
  
- #### [ListSizeGuide](#ListSizeGuide)
+ #### [SizeGuideResponse](#SizeGuideResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
- | page | string |  no  |  |
+ | guide | string |  no  |  |
+ | created_by | string |  no  |  |
+ | name | string |  no  |  |
+ | active | boolean |  no  |  |
+ | created_on | string |  no  |  |
+ | title | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | tag | string |  no  |  |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | brand_id | number |  no  |  |
+ | company_id | number |  no  |  |
 
 ---
 
 
  
  
- #### [SizeGuideResponse](#SizeGuideResponse)
+ #### [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | tag | string |  no  |  |
- | company_id | number |  no  |  |
- | created_on | string |  no  |  |
- | guide | string |  no  |  |
- | active | boolean |  no  |  |
- | modified_on | string |  no  |  |
- | id | string |  no  |  |
- | modified_by | string |  no  |  |
- | title | string |  no  |  |
- | subtitle | string |  no  |  |
- | name | string |  no  |  |
- | brand_id | number |  no  |  |
+ | compare | string |  no  |  |
+ | variant | string |  no  |  |
+ | detail | string |  no  |  |
+ | similar | string |  no  |  |
 
 ---
 
@@ -54274,10 +53038,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filter_types | [string] |  no  |  |
  | display | string |  no  |  |
- | key | string |  no  |  |
  | units | [string] |  no  |  |
+ | key | string |  no  |  |
+ | filter_types | [string] |  no  |  |
 
 ---
 
@@ -54330,26 +53094,12 @@ Success
 
  
  
- #### [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | variant | string |  no  |  |
- | detail | string |  no  |  |
- | compare | string |  no  |  |
- | similar | string |  no  |  |
-
----
-
-
- 
- 
  #### [GetCatalogConfigurationMetaData](#GetCatalogConfigurationMetaData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | listing | [MetaDataListingResponse](#MetaDataListingResponse) |  no  |  |
  | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
+ | listing | [MetaDataListingResponse](#MetaDataListingResponse) |  no  |  |
 
 ---
 
@@ -54372,13 +53122,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
  | logo | string |  no  |  |
- | is_active | boolean |  yes  |  |
  | size | [ProductSize](#ProductSize) |  yes  |  |
  | display_type | string |  yes  |  |
- | priority | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | key | string |  yes  |  |
  | name | string |  yes  |  |
+ | priority | number |  yes  |  |
 
 ---
 
@@ -54400,13 +53150,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | logo | string |  no  |  |
- | is_active | boolean |  yes  |  |
- | size | [ProductSize](#ProductSize) |  no  |  |
- | priority | number |  yes  |  |
  | title | string |  no  |  |
+ | logo | string |  no  |  |
  | subtitle | string |  no  |  |
+ | size | [ProductSize](#ProductSize) |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | key | string |  yes  |  |
+ | priority | number |  yes  |  |
 
 ---
 
@@ -54452,11 +53202,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | map | string |  no  |  |
  | condition | string |  no  |  |
  | bucket_points | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)] |  no  |  |
- | sort | string |  no  |  |
+ | map | string |  no  |  |
  | value | string |  no  |  |
+ | sort | string |  no  |  |
 
 ---
 
@@ -54467,13 +53217,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue) |  no  |  |
- | type | string |  yes  |  |
- | key | string |  yes  |  |
  | logo | string |  no  |  |
+ | type | string |  yes  |  |
+ | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue) |  no  |  |
  | is_active | boolean |  yes  |  |
- | priority | number |  yes  |  |
+ | key | string |  yes  |  |
  | name | string |  no  |  |
+ | priority | number |  yes  |  |
 
 ---
 
@@ -54496,11 +53246,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
  | logo | string |  no  |  |
  | is_active | boolean |  yes  |  |
- | priority | number |  yes  |  |
+ | key | string |  yes  |  |
  | name | string |  no  |  |
+ | priority | number |  yes  |  |
 
 ---
 
@@ -54511,8 +53261,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_key | string |  yes  |  |
  | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)] |  no  |  |
+ | default_key | string |  yes  |  |
 
 ---
 
@@ -54531,31 +53281,16 @@ Success
 
  
  
- #### [AppConfiguration](#AppConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
- | config_id | string |  no  |  |
- | config_type | string |  yes  |  |
- | app_id | string |  yes  |  |
- | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
-
----
-
-
- 
- 
  #### [AppCatalogConfiguration](#AppCatalogConfiguration)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
  | config_id | string |  no  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
  | config_type | string |  yes  |  |
  | id | string |  no  |  |
  | app_id | string |  yes  |  |
- | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
 
 ---
 
@@ -54568,6 +53303,21 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | is_default | boolean |  no  |  |
  | data | [AppCatalogConfiguration](#AppCatalogConfiguration) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppConfiguration](#AppConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config_id | string |  no  |  |
+ | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
+ | config_type | string |  yes  |  |
+ | app_id | string |  yes  |  |
 
 ---
 
@@ -54590,12 +53340,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
  | config_id | string |  no  |  |
+ | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
+ | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing) |  no  |  |
  | config_type | string |  yes  |  |
  | id | string |  no  |  |
  | app_id | string |  yes  |  |
- | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing) |  no  |  |
 
 ---
 
@@ -54614,35 +53364,22 @@ Success
 
  
  
- #### [ProductSortOn](#ProductSortOn)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
  #### [ProductFiltersValue](#ProductFiltersValue)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | query_format | string |  no  |  |
- | selected_max | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | display | string |  yes  |  |
- | display_format | string |  no  |  |
- | max | number |  no  |  |
- | is_selected | boolean |  yes  |  |
- | count | number |  no  |  |
- | min | number |  no  |  |
- | selected_min | number |  no  |  |
  | value | string |  yes  |  |
+ | selected_min | number |  no  |  |
+ | min | number |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | max | number |  no  |  |
+ | display | string |  yes  |  |
+ | selected_max | number |  no  |  |
+ | query_format | string |  no  |  |
+ | display_format | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | count | number |  no  |  |
+ | currency_code | string |  no  |  |
 
 ---
 
@@ -54653,10 +53390,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
  | logo | string |  no  |  |
  | display | string |  yes  |  |
  | kind | string |  no  |  |
- | name | string |  yes  |  |
 
 ---
 
@@ -54675,121 +53412,38 @@ Success
 
  
  
+ #### [ProductSortOn](#ProductSortOn)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [GetCollectionQueryOptionResponse](#GetCollectionQueryOptionResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
  | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
 
 ---
 
 
  
  
- #### [CollectionBadge](#CollectionBadge)
+ #### [Media1](#Media1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | string |  no  |  |
- | color | string |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionImage](#CollectionImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
  | url | string |  yes  |  |
- | aspect_ratio | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CollectionBanner](#CollectionBanner)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landscape | [CollectionImage](#CollectionImage) |  yes  |  |
- | portrait | [CollectionImage](#CollectionImage) |  yes  |  |
-
----
-
-
- 
- 
- #### [SeoDetail](#SeoDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [UserInfo](#UserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | string |  no  |  |
- | email | string |  no  |  |
- | username | string |  no  |  |
- | user_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [Schedule](#Schedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
- | duration | number |  no  |  |
-
----
-
-
- 
- 
- #### [CreateCollection](#CreateCollection)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _locale_language | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
- | published | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  yes  |  |
- | seo | [SeoDetail](#SeoDetail) |  no  |  |
- | modified_by | [UserInfo](#UserInfo) |  no  |  |
- | app_id | string |  yes  |  |
- | sort_on | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | query | string |  no  |  |
- | created_by | [UserInfo](#UserInfo) |  no  |  |
- | description | string |  no  |  |
- | logo | [CollectionImage](#CollectionImage) |  yes  |  |
  | meta | string |  no  |  |
- | name | string |  yes  |  |
- | type | string |  yes  |  |
- | slug | string |  yes  |  |
- | _schedule | [Schedule](#Schedule) |  no  |  |
- | tags | [string] |  no  |  |
 
 ---
 
@@ -54812,48 +53466,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [BannerImage](#BannerImage) |  no  |  |
  | portrait | [BannerImage](#BannerImage) |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionCreateResponse](#CollectionCreateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | query | string |  no  |  |
- | tag | [string] |  no  |  |
- | type | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | badge | string |  no  |  |
- | slug | string |  no  |  |
- | _schedule | string |  no  |  |
- | logo | [BannerImage](#BannerImage) |  no  |  |
- | meta | string |  no  |  |
- | is_active | boolean |  no  |  |
- | app_id | string |  no  |  |
- | cron | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [Media1](#Media1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  |  |
- | url | string |  yes  |  |
- | type | string |  no  |  |
+ | landscape | [BannerImage](#BannerImage) |  no  |  |
 
 ---
 
@@ -54864,8 +53478,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | query | string |  no  |  |
  | type | string |  no  |  |
+ | query | string |  no  |  |
 
 ---
 
@@ -54888,38 +53502,25 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_sort | boolean |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | badge | string |  no  |  |
- | is_active | boolean |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | app_id | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | description | string |  no  |  |
  | query | string |  no  |  |
- | tag | [string] |  no  |  |
  | logo | [Media1](#Media1) |  no  |  |
- | meta | string |  no  |  |
- | uid | string |  no  |  |
+ | app_id | string |  no  |  |
  | name | string |  no  |  |
- | type | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | slug | string |  no  |  |
- | _schedule | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | cron | string |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterTag](#CollectionListingFilterTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
- | display | string |  no  |  |
- | name | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | meta | string |  no  |  |
+ | description | string |  no  |  |
+ | type | string |  no  |  |
+ | badge | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | uid | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
 
 ---
 
@@ -54930,9 +53531,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
  | is_selected | boolean |  no  |  |
  | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -54943,8 +53557,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
  | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
 
 ---
 
@@ -54964,27 +53578,163 @@ Success
 
  
  
+ #### [CollectionImage](#CollectionImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  yes  |  |
+ | aspect_ratio | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | email | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBanner](#CollectionBanner)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | [CollectionImage](#CollectionImage) |  yes  |  |
+ | landscape | [CollectionImage](#CollectionImage) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Schedule](#Schedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | cron | string |  no  |  |
+ | start | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionBadge](#CollectionBadge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | color | string |  no  |  |
+ | text | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SeoDetail](#SeoDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateCollection](#CreateCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | string |  no  |  |
+ | logo | [CollectionImage](#CollectionImage) |  yes  |  |
+ | published | boolean |  no  |  |
+ | app_id | string |  yes  |  |
+ | name | string |  yes  |  |
+ | created_by | [UserInfo](#UserInfo) |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  yes  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | meta | string |  no  |  |
+ | modified_by | [UserInfo](#UserInfo) |  no  |  |
+ | description | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | type | string |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | _locale_language | string |  no  |  |
+ | sort_on | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionCreateResponse](#CollectionCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | query | string |  no  |  |
+ | badge | string |  no  |  |
+ | logo | [BannerImage](#BannerImage) |  no  |  |
+ | type | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | cron | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | meta | string |  no  |  |
+ | app_id | string |  no  |  |
+ | name | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | description | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CollectionDetailResponse](#CollectionDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | query | string |  no  |  |
- | tag | [string] |  no  |  |
- | type | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | badge | string |  no  |  |
- | slug | string |  no  |  |
  | _schedule | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | query | string |  no  |  |
+ | badge | string |  no  |  |
  | logo | [Media1](#Media1) |  no  |  |
- | meta | string |  no  |  |
+ | type | string |  no  |  |
  | is_active | boolean |  no  |  |
- | app_id | string |  no  |  |
+ | slug | string |  no  |  |
  | cron | string |  no  |  |
- | allow_facets | boolean |  no  |  |
+ | tag | [string] |  no  |  |
+ | meta | string |  no  |  |
+ | app_id | string |  no  |  |
  | name | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | description | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
 
 ---
 
@@ -54995,26 +53745,141 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _locale_language | string |  no  |  |
- | allow_sort | boolean |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | published | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
- | seo | [SeoDetail](#SeoDetail) |  no  |  |
- | modified_by | [UserInfo](#UserInfo) |  no  |  |
- | sort_on | string |  no  |  |
- | _custom_json | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | description | string |  no  |  |
  | query | string |  no  |  |
  | logo | [CollectionImage](#CollectionImage) |  no  |  |
- | meta | string |  no  |  |
+ | published | boolean |  no  |  |
  | name | string |  no  |  |
- | slug | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
  | _schedule | [Schedule](#Schedule) |  no  |  |
+ | meta | string |  no  |  |
+ | modified_by | [UserInfo](#UserInfo) |  no  |  |
+ | description | string |  no  |  |
  | tags | [string] |  no  |  |
+ | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | seo | [SeoDetail](#SeoDetail) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | _locale_language | string |  no  |  |
+ | sort_on | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailAttribute](#ProductDetailAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ | key | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
+ | title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Price1](#Price1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | [Price1](#Price1) |  no  |  |
+ | effective | [Price1](#Price1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBrand](#ProductBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
+ | uid | number |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingDetail](#ProductListingDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | highlights | [string] |  no  |  |
+ | attributes | string |  no  |  |
+ | item_code | string |  no  |  |
+ | name | string |  no  |  |
+ | product_online_date | string |  no  |  |
+ | sellable | boolean |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | rating | number |  no  |  |
+ | description | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | type | string |  no  |  |
+ | short_description | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | discount | string |  no  |  |
+ | color | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | image_nature | string |  no  |  |
+ | slug | string |  yes  |  |
+ | item_type | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | uid | number |  no  |  |
+ | medias | [[Media1](#Media1)] |  no  |  |
+ | promo_meta | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCollectionItemsResponse](#GetCollectionItemsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
 ---
 
@@ -55044,115 +53909,13 @@ Success
 
  
  
- #### [ProductBrand](#ProductBrand)
+ #### [CatalogInsightItem](#CatalogInsightItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | logo | [Media1](#Media1) |  no  |  |
- | name | string |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductDetailAttribute](#ProductDetailAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | key | string |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
-
----
-
-
- 
- 
- #### [Price1](#Price1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | min | number |  no  |  |
- | currency_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marked | [Price1](#Price1) |  no  |  |
- | effective | [Price1](#Price1) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingDetail](#ProductListingDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | short_description | string |  no  |  |
- | attributes | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | color | string |  no  |  |
- | promo_meta | string |  no  |  |
- | discount | string |  no  |  |
- | product_online_date | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | highlights | [string] |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | teaser_tag | string |  no  |  |
- | description | string |  no  |  |
- | similars | [string] |  no  |  |
- | item_code | string |  no  |  |
- | medias | [[Media1](#Media1)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | image_nature | string |  no  |  |
- | uid | number |  no  |  |
- | rating_count | number |  no  |  |
- | name | string |  no  |  |
- | sellable | boolean |  no  |  |
- | type | string |  no  |  |
- | item_type | string |  no  |  |
- | slug | string |  yes  |  |
- | rating | number |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
-
----
-
-
- 
- 
- #### [GetCollectionItemsResponse](#GetCollectionItemsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | sellable_count | number |  no  |  |
+ | count | number |  no  |  |
+ | out_of_stock_count | number |  no  |  |
 
 ---
 
@@ -55163,25 +53926,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | available_sizes | number |  no  |  |
- | article_freshness | number |  no  |  |
- | available_articles | number |  no  |  |
- | total_sizes | number |  no  |  |
  | total_articles | number |  no  |  |
+ | available_sizes | number |  no  |  |
+ | total_sizes | number |  no  |  |
+ | article_freshness | number |  no  |  |
  | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [CatalogInsightItem](#CatalogInsightItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | out_of_stock_count | number |  no  |  |
- | sellable_count | number |  no  |  |
- | count | number |  no  |  |
+ | available_articles | number |  no  |  |
 
 ---
 
@@ -55192,8 +53942,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
  | item | [CatalogInsightItem](#CatalogInsightItem) |  no  |  |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
 
 ---
 
@@ -55229,9 +53979,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | store_ids | [number] |  no  |  |
+ | enabled | boolean |  no  |  |
  | brand_ids | [number] |  no  |  |
  | opt_level | string |  yes  |  |
- | enabled | boolean |  no  |  |
 
 ---
 
@@ -55243,15 +53993,15 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | created_by | string |  no  |  |
- | opt_level | string |  yes  |  |
- | platform | string |  yes  |  |
- | enabled | boolean |  yes  |  |
- | company_id | number |  yes  |  |
- | brand_ids | [number] |  yes  |  |
  | created_on | number |  yes  |  |
- | modified_on | number |  yes  |  |
  | modified_by | string |  no  |  |
+ | platform | string |  yes  |  |
+ | brand_ids | [number] |  yes  |  |
+ | enabled | boolean |  yes  |  |
+ | opt_level | string |  yes  |  |
  | store_ids | [number] |  yes  |  |
+ | company_id | number |  yes  |  |
+ | modified_on | number |  yes  |  |
 
 ---
 
@@ -55274,9 +54024,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | business_type | string |  no  |  |
  | name | string |  no  |  |
+ | business_type | string |  no  |  |
+ | uid | number |  no  |  |
  | company_type | string |  no  |  |
 
 ---
@@ -55290,8 +54040,8 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | company_id | number |  no  |  |
  | total_article | number |  no  |  |
- | brand_name | string |  no  |  |
  | brand_id | number |  no  |  |
+ | brand_name | string |  no  |  |
 
 ---
 
@@ -55314,8 +54064,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store | number |  no  |  |
  | brand | number |  no  |  |
+ | store | number |  no  |  |
  | company | string |  no  |  |
 
 ---
@@ -55327,17 +54077,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_type | string |  no  |  |
- | documents | [string] |  no  |  |
- | display_name | string |  no  |  |
  | store_code | string |  no  |  |
- | company_id | number |  no  |  |
+ | documents | [string] |  no  |  |
  | created_on | string |  no  |  |
- | modified_on | string |  no  |  |
  | additional_contacts | [string] |  no  |  |
+ | store_type | string |  no  |  |
  | uid | number |  no  |  |
  | timing | string |  no  |  |
+ | display_name | string |  no  |  |
  | name | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
 
 ---
 
@@ -55350,6 +54100,34 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[StoreDetail](#StoreDetail)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeSchemaRange](#AttributeSchemaRange)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMaster](#AttributeMaster)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | range | [AttributeSchemaRange](#AttributeSchemaRange) |  no  |  |
+ | type | string |  yes  |  |
+ | allowed_values | [string] |  no  |  |
+ | multi | boolean |  no  |  |
+ | mandatory | boolean |  no  |  |
+ | format | string |  no  |  |
 
 ---
 
@@ -55403,50 +54181,22 @@ Success
 
  
  
- #### [AttributeSchemaRange](#AttributeSchemaRange)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [AttributeMaster](#AttributeMaster)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | mandatory | boolean |  no  |  |
- | allowed_values | [string] |  no  |  |
- | format | string |  no  |  |
- | multi | boolean |  no  |  |
- | range | [AttributeSchemaRange](#AttributeSchemaRange) |  no  |  |
-
----
-
-
- 
- 
  #### [GenderDetail](#GenderDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
- | departments | [string] |  no  |  |
- | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
- | slug | string |  no  |  |
+ | is_nested | boolean |  no  |  |
  | enabled_for_end_consumer | boolean |  no  |  |
- | meta | [AttributeMasterMeta](#AttributeMasterMeta) |  no  |  |
  | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
  | logo | string |  no  |  |
+ | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
+ | slug | string |  no  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
+ | departments | [string] |  no  |  |
+ | meta | [AttributeMasterMeta](#AttributeMasterMeta) |  no  |  |
  | id | string |  no  |  |
- | is_nested | boolean |  no  |  |
  | name | string |  no  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -55469,11 +54219,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | code | string |  no  |  |
- | meta | string |  no  |  |
  | status | number |  no  |  |
  | errors | string |  no  |  |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | code | string |  no  |  |
 
 ---
 
@@ -55484,9 +54234,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
  | contact | string |  no  |  |
  | user_id | string |  no  |  |
+ | username | string |  no  |  |
 
 ---
 
@@ -55497,21 +54247,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
- | page_size | number |  no  |  |
  | priority_order | number |  no  |  |
- | item_type | string |  no  |  |
- | page_no | number |  no  |  |
- | search | string |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
  | created_on | string |  no  |  |
- | slug | string |  no  |  |
- | modified_on | string |  no  |  |
- | logo | string |  no  |  |
  | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | logo | string |  no  |  |
+ | page_no | number |  no  |  |
  | is_active | boolean |  no  |  |
- | uid | number |  no  |  |
  | synonyms | [string] |  no  |  |
+ | slug | string |  no  |  |
+ | item_type | string |  no  |  |
+ | uid | number |  no  |  |
  | name | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | page_size | number |  no  |  |
+ | search | string |  no  |  |
 
 ---
 
@@ -55534,11 +54284,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | code | string |  no  |  |
- | meta | string |  no  |  |
  | status | number |  no  |  |
  | errors | string |  no  |  |
+ | message | string |  no  |  |
+ | meta | string |  no  |  |
+ | code | string |  no  |  |
 
 ---
 
@@ -55549,21 +54299,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
  | created_by | string |  no  |  |
- | is_physical | boolean |  yes  |  |
- | tag | string |  no  |  |
- | categories | [string] |  no  |  |
- | attributes | [string] |  no  |  |
- | is_archived | boolean |  no  |  |
- | departments | [string] |  no  |  |
  | created_on | string |  no  |  |
- | slug | string |  yes  |  |
- | modified_on | string |  no  |  |
+ | attributes | [string] |  no  |  |
  | logo | string |  no  |  |
- | modified_by | string |  no  |  |
+ | categories | [string] |  no  |  |
  | is_active | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | tag | string |  no  |  |
+ | departments | [string] |  no  |  |
+ | is_archived | boolean |  no  |  |
  | name | string |  no  |  |
+ | is_physical | boolean |  yes  |  |
+ | modified_by | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -55586,18 +54336,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | is_physical | boolean |  yes  |  |
- | tag | string |  no  |  |
- | categories | [string] |  no  |  |
  | attributes | [string] |  no  |  |
- | is_archived | boolean |  no  |  |
- | departments | [string] |  no  |  |
- | slug | string |  yes  |  |
  | logo | string |  no  |  |
- | id | string |  no  |  |
+ | categories | [string] |  no  |  |
  | is_active | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | tag | string |  no  |  |
+ | departments | [string] |  no  |  |
+ | is_archived | boolean |  no  |  |
  | name | string |  no  |  |
+ | id | string |  no  |  |
+ | is_physical | boolean |  yes  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -55608,36 +54358,36 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | short_description | string |  no  |  |
  | country_of_origin | string |  no  |  |
- | category_slug | string |  no  |  |
- | no_of_boxes | string |  no  |  |
- | is_active | string |  no  |  |
- | custom_order | string |  no  |  |
- | media | string |  no  |  |
- | command | string |  no  |  |
- | moq | string |  no  |  |
  | highlights | string |  no  |  |
- | product_group_tag | string |  no  |  |
- | sizes | string |  no  |  |
- | teaser_tag | string |  no  |  |
  | multi_size | string |  no  |  |
- | description | string |  no  |  |
- | is_dependent | string |  no  |  |
- | item_code | string |  no  |  |
+ | custom_order | string |  no  |  |
  | size_guide | string |  no  |  |
- | currency | string |  no  |  |
+ | item_code | string |  no  |  |
+ | trader | string |  no  |  |
  | product_publish | string |  no  |  |
  | name | string |  no  |  |
- | trader_type | string |  no  |  |
- | return_config | string |  no  |  |
- | brand_uid | string |  no  |  |
- | item_type | string |  no  |  |
- | slug | string |  no  |  |
- | trader | string |  no  |  |
+ | media | string |  no  |  |
  | hsn_code | string |  no  |  |
  | variants | string |  no  |  |
+ | product_group_tag | string |  no  |  |
+ | moq | string |  no  |  |
+ | currency | string |  no  |  |
+ | description | string |  no  |  |
  | tags | string |  no  |  |
+ | sizes | string |  no  |  |
+ | no_of_boxes | string |  no  |  |
+ | short_description | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | category_slug | string |  no  |  |
+ | trader_type | string |  no  |  |
+ | is_active | string |  no  |  |
+ | slug | string |  no  |  |
+ | command | string |  no  |  |
+ | item_type | string |  no  |  |
+ | brand_uid | string |  no  |  |
+ | is_dependent | string |  no  |  |
+ | return_config | string |  no  |  |
 
 ---
 
@@ -55648,12 +54398,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
+ | properties | [Properties](#Properties) |  no  |  |
+ | required | [string] |  no  |  |
+ | title | string |  no  |  |
  | type | string |  no  |  |
  | definitions | string |  no  |  |
- | required | [string] |  no  |  |
- | properties | [Properties](#Properties) |  no  |  |
- | title | string |  no  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -55664,8 +54414,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | template_validation | string |  no  |  |
  | global_validation | [GlobalValidation](#GlobalValidation) |  no  |  |
+ | template_validation | string |  no  |  |
 
 ---
 
@@ -55720,25 +54470,25 @@ Success
 
  
  
- #### [VerifiedBy](#VerifiedBy)
+ #### [ProductDownloadItemsData](#ProductDownloadItemsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
- | user_id | string |  no  |  |
+ | templates | [string] |  no  |  |
+ | type | string |  no  |  |
+ | brand | [string] |  no  |  |
 
 ---
 
 
  
  
- #### [ProductDownloadItemsData](#ProductDownloadItemsData)
+ #### [VerifiedBy](#VerifiedBy)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | templates | [string] |  no  |  |
- | brand | [string] |  no  |  |
- | type | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
 
 ---
 
@@ -55749,16 +54499,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | [VerifiedBy](#VerifiedBy) |  no  |  |
- | url | string |  no  |  |
+ | status | string |  no  |  |
  | seller_id | number |  no  |  |
  | template_tags | string |  no  |  |
- | id | string |  no  |  |
- | status | string |  no  |  |
- | trigger_on | string |  no  |  |
- | completed_on | string |  no  |  |
- | data | [ProductDownloadItemsData](#ProductDownloadItemsData) |  no  |  |
  | task_id | string |  no  |  |
+ | trigger_on | string |  no  |  |
+ | data | [ProductDownloadItemsData](#ProductDownloadItemsData) |  no  |  |
+ | id | string |  no  |  |
+ | created_by | [VerifiedBy](#VerifiedBy) |  no  |  |
+ | completed_on | string |  no  |  |
+ | url | string |  no  |  |
 
 ---
 
@@ -55769,8 +54519,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductDownloadsItems](#ProductDownloadsItems) |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [ProductDownloadsItems](#ProductDownloadsItems) |  no  |  |
 
 ---
 
@@ -55781,21 +54531,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [string] |  no  |  |
  | multivalue | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Hierarchy](#Hierarchy)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | l2 | number |  yes  |  |
- | l1 | number |  yes  |  |
- | department | number |  yes  |  |
+ | data | [string] |  no  |  |
 
 ---
 
@@ -55806,8 +54543,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | catalog_id | number |  no  |  |
  | name | string |  yes  |  |
+ | catalog_id | number |  no  |  |
 
 ---
 
@@ -55818,9 +54555,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | facebook | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
- | google | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
  | ajio | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+ | google | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+ | facebook | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Hierarchy](#Hierarchy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | l1 | number |  yes  |  |
+ | department | number |  yes  |  |
+ | l2 | number |  yes  |  |
 
 ---
 
@@ -55832,41 +54582,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | logo | string |  yes  |  |
- | landscape | string |  yes  |  |
  | portrait | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryRequestBody](#CategoryRequestBody)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
- | priority | number |  no  |  |
- | departments | [number] |  yes  |  |
- | level | number |  yes  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
- | slug | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | is_active | boolean |  yes  |  |
- | synonyms | [string] |  no  |  |
- | media | [Media2](#Media2) |  no  |  |
- | name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryCreateResponse](#CategoryCreateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | message | string |  no  |  |
+ | landscape | string |  yes  |  |
 
 ---
 
@@ -55878,22 +54595,22 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | created_by | string |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
- | priority | number |  no  |  |
- | departments | [number] |  yes  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
  | created_on | string |  no  |  |
  | level | number |  yes  |  |
- | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
- | slug | string |  no  |  |
- | modified_on | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | is_active | boolean |  yes  |  |
  | modified_by | string |  no  |  |
- | uid | number |  no  |  |
  | synonyms | [string] |  no  |  |
- | media | [Media2](#Media2) |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ | departments | [number] |  yes  |  |
+ | tryouts | [string] |  no  |  |
  | name | string |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
+ | priority | number |  no  |  |
+ | modified_on | string |  no  |  |
  | _id | string |  no  |  |
+ | media | [Media2](#Media2) |  no  |  |
 
 ---
 
@@ -55912,11 +54629,32 @@ Success
 
  
  
- #### [CategoryUpdateResponse](#CategoryUpdateResponse)
+ #### [CategoryRequestBody](#CategoryRequestBody)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
+ | level | number |  yes  |  |
+ | synonyms | [string] |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | slug | string |  no  |  |
+ | departments | [number] |  yes  |  |
+ | tryouts | [string] |  no  |  |
+ | name | string |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
+ | priority | number |  no  |  |
+ | media | [Media2](#Media2) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryCreateResponse](#CategoryCreateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
  | message | string |  no  |  |
 
 ---
@@ -55935,12 +54673,136 @@ Success
 
  
  
+ #### [CategoryUpdateResponse](#CategoryUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublished](#ProductPublished)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | number |  no  |  |
+ | is_set | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Image](#Image)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+ | url | string |  no  |  |
+ | aspect_ratio_f | number |  no  |  |
+ | aspect_ratio | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Logo](#Logo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+ | url | string |  no  |  |
+ | aspect_ratio_f | number |  no  |  |
+ | aspect_ratio | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | logo | [Logo](#Logo) |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Product](#Product)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_of_origin | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | multi_size | boolean |  no  |  |
+ | custom_order | string |  no  |  |
+ | size_guide | string |  no  |  |
+ | item_code | string |  no  |  |
+ | template_tag | string |  no  |  |
+ | name | string |  no  |  |
+ | product_publish | [ProductPublished](#ProductPublished) |  no  |  |
+ | images | [[Image](#Image)] |  no  |  |
+ | media | [[Media1](#Media1)] |  no  |  |
+ | hsn_code | string |  no  |  |
+ | variants | string |  no  |  |
+ | moq | string |  no  |  |
+ | departments | [number] |  no  |  |
+ | currency | string |  no  |  |
+ | is_physical | boolean |  no  |  |
+ | primary_color | string |  no  |  |
+ | description | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | l3_mapping | [string] |  no  |  |
+ | sizes | [string] |  no  |  |
+ | short_description | string |  no  |  |
+ | category_uid | number |  no  |  |
+ | id | string |  no  |  |
+ | color | string |  no  |  |
+ | category_slug | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  no  |  |
+ | brand_uid | number |  no  |  |
+ | item_type | string |  no  |  |
+ | uid | number |  no  |  |
+ | is_dependent | boolean |  no  |  |
+ | _custom_json | string |  no  |  |
+ | all_sizes | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingResponse](#ProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Product](#Product)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CustomOrder](#CustomOrder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturing_time_unit | string |  no  |  |
  | is_custom_order | boolean |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
  | manufacturing_time | number |  no  |  |
 
 ---
@@ -55948,25 +54810,12 @@ Success
 
  
  
- #### [OrderQuantity](#OrderQuantity)
+ #### [Trader](#Trader)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minimum | number |  no  |  |
- | is_set | boolean |  no  |  |
- | maximum | number |  no  |  |
-
----
-
-
- 
- 
- #### [TeaserTag](#TeaserTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | tag | string |  no  |  |
+ | name | string |  yes  |  |
+ | address | string |  yes  |  |
 
 ---
 
@@ -55989,21 +54838,34 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | time | number |  no  |  |
  | returnable | boolean |  no  |  |
+ | time | number |  no  |  |
+ | unit | string |  no  |  |
 
 ---
 
 
  
  
- #### [Trader](#Trader)
+ #### [OrderQuantity](#OrderQuantity)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  yes  |  |
- | name | string |  yes  |  |
+ | maximum | number |  no  |  |
+ | minimum | number |  no  |  |
+ | is_set | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TeaserTag](#TeaserTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | tag | string |  no  |  |
 
 ---
 
@@ -56014,155 +54876,43 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | short_description | string |  no  |  |
- | is_image_less_product | boolean |  no  |  |
- | company_id | number |  yes  |  |
  | country_of_origin | string |  yes  |  |
- | change_request_id | string |  no  |  |
- | template_tag | string |  yes  |  |
- | category_slug | string |  yes  |  |
- | no_of_boxes | number |  no  |  |
- | is_active | boolean |  no  |  |
- | custom_order | [CustomOrder](#CustomOrder) |  no  |  |
- | media | [[Media1](#Media1)] |  no  |  |
- | is_set | boolean |  no  |  |
- | moq | [OrderQuantity](#OrderQuantity) |  no  |  |
  | highlights | [string] |  no  |  |
- | product_group_tag | [string] |  no  |  |
- | departments | [number] |  yes  |  |
- | teaser_tag | [TeaserTag](#TeaserTag) |  no  |  |
  | multi_size | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | requester | string |  no  |  |
- | description | string |  no  |  |
- | is_dependent | boolean |  no  |  |
- | item_code | string |  yes  |  |
+ | custom_order | [CustomOrder](#CustomOrder) |  no  |  |
  | size_guide | string |  no  |  |
- | currency | string |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
- | uid | number |  no  |  |
- | name | string |  yes  |  |
- | brand_uid | number |  yes  |  |
- | trader_type | string |  no  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
- | item_type | string |  yes  |  |
- | slug | string |  yes  |  |
+ | item_code | string |  yes  |  |
+ | requester | string |  no  |  |
  | trader | [Trader](#Trader) |  no  |  |
+ | is_image_less_product | boolean |  no  |  |
+ | name | string |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | media | [[Media1](#Media1)] |  no  |  |
  | hsn_code | string |  yes  |  |
  | variants | string |  no  |  |
- | tags | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [Image](#Image)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | secure_url | string |  no  |  |
- | aspect_ratio_f | number |  no  |  |
- | aspect_ratio | string |  no  |  |
-
----
-
-
- 
- 
- #### [Logo](#Logo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | secure_url | string |  no  |  |
- | aspect_ratio_f | number |  no  |  |
- | aspect_ratio | string |  no  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | logo | [Logo](#Logo) |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPublished](#ProductPublished)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_online_date | number |  no  |  |
- | is_set | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Product](#Product)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | short_description | string |  no  |  |
- | images | [[Image](#Image)] |  no  |  |
- | country_of_origin | string |  no  |  |
- | color | string |  no  |  |
- | primary_color | string |  no  |  |
- | template_tag | string |  no  |  |
- | category_slug | string |  no  |  |
- | is_active | boolean |  no  |  |
- | custom_order | string |  no  |  |
- | media | [[Media1](#Media1)] |  no  |  |
- | is_set | boolean |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | moq | string |  no  |  |
- | highlights | [string] |  no  |  |
- | all_sizes | [string] |  no  |  |
- | departments | [number] |  no  |  |
- | sizes | [string] |  no  |  |
- | id | string |  no  |  |
- | multi_size | boolean |  no  |  |
- | l3_mapping | [string] |  no  |  |
- | _custom_json | string |  no  |  |
+ | product_group_tag | [string] |  no  |  |
+ | moq | [OrderQuantity](#OrderQuantity) |  no  |  |
+ | departments | [number] |  yes  |  |
+ | currency | string |  yes  |  |
  | description | string |  no  |  |
- | is_physical | boolean |  no  |  |
- | category_uid | number |  no  |  |
- | is_dependent | boolean |  no  |  |
- | item_code | string |  no  |  |
- | size_guide | string |  no  |  |
- | currency | string |  no  |  |
- | product_publish | [ProductPublished](#ProductPublished) |  no  |  |
- | image_nature | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | tags | [string] |  no  |  |
+ | no_of_boxes | number |  no  |  |
+ | short_description | string |  no  |  |
+ | teaser_tag | [TeaserTag](#TeaserTag) |  no  |  |
+ | company_id | number |  yes  |  |
+ | category_slug | string |  yes  |  |
+ | trader_type | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | brand_uid | number |  yes  |  |
+ | item_type | string |  yes  |  |
  | uid | number |  no  |  |
- | name | string |  no  |  |
- | brand_uid | number |  no  |  |
- | item_type | string |  no  |  |
- | slug | string |  no  |  |
- | hsn_code | string |  no  |  |
- | variants | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductListingResponse](#ProductListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Product](#Product)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | change_request_id | string |  no  |  |
+ | is_dependent | boolean |  no  |  |
+ | _custom_json | string |  no  |  |
+ | template_tag | string |  yes  |  |
 
 ---
 
@@ -56180,54 +54930,13 @@ Success
 
  
  
- #### [UserInfo1](#UserInfo1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | string |  no  |  |
- | email | string |  no  |  |
- | username | string |  no  |  |
- | user_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [BulkJob](#BulkJob)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | [UserInfo1](#UserInfo1) |  no  |  |
- | stage | string |  no  |  |
- | failed_records | [string] |  no  |  |
- | failed | number |  no  |  |
- | company_id | number |  yes  |  |
- | created_on | string |  yes  |  |
- | template_tag | string |  no  |  |
- | modified_on | string |  no  |  |
- | custom_template_tag | string |  no  |  |
- | cancelled | number |  no  |  |
- | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
- | is_active | boolean |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | succeed | number |  no  |  |
- | file_path | string |  no  |  |
- | total | number |  yes  |  |
- | tracking_url | string |  no  |  |
-
----
-
-
- 
- 
  #### [UserDetail](#UserDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
- | full_name | string |  no  |  |
  | user_id | string |  no  |  |
+ | full_name | string |  no  |  |
+ | username | string |  no  |  |
 
 ---
 
@@ -56238,22 +54947,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | [UserDetail](#UserDetail) |  no  |  |
- | stage | string |  no  |  |
- | failed_records | [string] |  no  |  |
- | failed | number |  no  |  |
- | company_id | number |  no  |  |
  | template | [ProductTemplate](#ProductTemplate) |  no  |  |
+ | created_by | [UserDetail](#UserDetail) |  no  |  |
+ | total | number |  no  |  |
  | created_on | string |  no  |  |
+ | failed | number |  no  |  |
+ | stage | string |  no  |  |
+ | modified_by | [UserDetail](#UserDetail) |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | file_path | string |  no  |  |
+ | succeed | number |  no  |  |
+ | company_id | number |  no  |  |
+ | cancelled_records | [string] |  no  |  |
  | template_tag | string |  no  |  |
  | modified_on | string |  no  |  |
  | cancelled | number |  no  |  |
- | modified_by | [UserDetail](#UserDetail) |  no  |  |
- | is_active | boolean |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | succeed | number |  no  |  |
- | file_path | string |  no  |  |
- | total | number |  no  |  |
 
 ---
 
@@ -56272,14 +54981,55 @@ Success
 
  
  
+ #### [UserInfo1](#UserInfo1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | email | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkJob](#BulkJob)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | custom_template_tag | string |  no  |  |
+ | total | number |  yes  |  |
+ | created_on | string |  yes  |  |
+ | failed | number |  no  |  |
+ | stage | string |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | file_path | string |  no  |  |
+ | tracking_url | string |  no  |  |
+ | succeed | number |  no  |  |
+ | modified_on | string |  no  |  |
+ | created_by | [UserInfo1](#UserInfo1) |  no  |  |
+ | cancelled_records | [string] |  no  |  |
+ | template_tag | string |  no  |  |
+ | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
+ | cancelled | number |  no  |  |
+ | company_id | number |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [BulkProductRequest](#BulkProductRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | company_id | number |  yes  |  |
- | data | [string] |  yes  |  |
- | batch_id | string |  yes  |  |
  | template_tag | string |  yes  |  |
+ | batch_id | string |  yes  |  |
+ | data | [string] |  yes  |  |
 
 ---
 
@@ -56308,26 +55058,13 @@ Success
 
  
  
- #### [ProductBulkAssets](#ProductBulkAssets)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | url | string |  yes  |  |
- | user | string |  yes  |  |
-
----
-
-
- 
- 
  #### [UserCommon](#UserCommon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
  | company_id | number |  no  |  |
  | user_id | string |  no  |  |
+ | username | string |  no  |  |
 
 ---
 
@@ -56338,23 +55075,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | [UserCommon](#UserCommon) |  no  |  |
+ | total | number |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserCommon](#UserCommon) |  no  |  |
+ | failed | number |  no  |  |
  | stage | string |  no  |  |
  | failed_records | [string] |  no  |  |
- | failed | number |  no  |  |
- | company_id | number |  no  |  |
- | created_on | string |  no  |  |
- | total | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | file_path | string |  no  |  |
+ | retry | number |  no  |  |
+ | id | string |  no  |  |
+ | succeed | number |  no  |  |
+ | created_by | [UserCommon](#UserCommon) |  no  |  |
+ | cancelled_records | [string] |  no  |  |
+ | tracking_url | string |  no  |  |
  | modified_on | string |  no  |  |
  | cancelled | number |  no  |  |
- | retry | number |  no  |  |
- | modified_by | [UserCommon](#UserCommon) |  no  |  |
- | is_active | boolean |  no  |  |
- | cancelled_records | [string] |  no  |  |
- | id | string |  no  |  |
- | file_path | string |  no  |  |
- | succeed | number |  no  |  |
- | tracking_url | string |  no  |  |
+ | company_id | number |  no  |  |
 
 ---
 
@@ -56373,13 +55110,26 @@ Success
 
  
  
+ #### [ProductBulkAssets](#ProductBulkAssets)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | user | string |  yes  |  |
+ | url | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
  | size | string |  no  |  |
  | item_id | number |  no  |  |
- | company_id | number |  no  |  |
 
 ---
 
@@ -56398,26 +55148,36 @@ Success
 
  
  
- #### [ItemQuery](#ItemQuery)
+ #### [InventoryResponse](#InventoryResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | item_code | string |  no  |  |
- | brand_uid | number |  no  |  |
+ | price | number |  no  |  |
+ | size | string |  no  |  |
+ | price_transfer | number |  no  |  |
+ | identifiers | string |  no  |  |
+ | quantity | number |  no  |  |
+ | uid | string |  no  |  |
+ | price_effective | number |  no  |  |
+ | inventory_updated_on | string |  no  |  |
+ | currency | string |  no  |  |
+ | store | string |  no  |  |
+ | item_id | number |  no  |  |
+ | seller_identifier | number |  no  |  |
+ | sellable_quantity | number |  no  |  |
 
 ---
 
 
  
  
- #### [GTIN](#GTIN)
+ #### [ItemQuery](#ItemQuery)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gtin_type | string |  yes  |  |
- | primary | boolean |  no  |  |
- | gtin_value | string |  yes  |  |
+ | item_code | string |  no  |  |
+ | uid | number |  no  |  |
+ | brand_uid | number |  no  |  |
 
 ---
 
@@ -56451,8 +55211,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size_distribution | [SizeDistribution](#SizeDistribution) |  yes  |  |
  | quantity | number |  no  |  |
+ | size_distribution | [SizeDistribution](#SizeDistribution) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GTIN](#GTIN)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gtin_value | string |  yes  |  |
+ | gtin_type | string |  yes  |  |
+ | primary | boolean |  no  |  |
 
 ---
 
@@ -56463,22 +55236,22 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_height | number |  no  |  |
- | item_weight_unit_of_measure | string |  no  |  |
  | store_code | string |  yes  |  |
- | quantity | number |  yes  |  |
- | item_weight | number |  no  |  |
- | identifiers | [[GTIN](#GTIN)] |  yes  |  |
- | item_length | number |  no  |  |
- | currency | string |  yes  |  |
- | price_effective | number |  yes  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | price | number |  yes  |  |
- | price_transfer | number |  no  |  |
- | size | string |  yes  |  |
- | is_set | boolean |  no  |  |
  | set | [InventorySet](#InventorySet) |  no  |  |
  | item_width | number |  no  |  |
+ | price | number |  yes  |  |
+ | size | string |  yes  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | price_transfer | number |  no  |  |
+ | item_weight | number |  no  |  |
+ | identifiers | [[GTIN](#GTIN)] |  yes  |  |
+ | quantity | number |  yes  |  |
+ | item_length | number |  no  |  |
+ | price_effective | number |  yes  |  |
+ | currency | string |  yes  |  |
+ | item_height | number |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
+ | is_set | boolean |  no  |  |
 
 ---
 
@@ -56498,36 +55271,13 @@ Success
 
  
  
- #### [InventoryResponse](#InventoryResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | string |  no  |  |
- | quantity | number |  no  |  |
- | seller_identifier | number |  no  |  |
- | identifiers | string |  no  |  |
- | currency | string |  no  |  |
- | item_id | number |  no  |  |
- | price_effective | number |  no  |  |
- | sellable_quantity | number |  no  |  |
- | price_transfer | number |  no  |  |
- | uid | string |  no  |  |
- | size | string |  no  |  |
- | inventory_updated_on | string |  no  |  |
- | price | number |  no  |  |
-
----
-
-
- 
- 
  #### [InventoryDeleteData](#InventoryDeleteData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | location_id | number |  no  |  |
  | size | string |  no  |  |
  | item_id | number |  no  |  |
+ | location_id | number |  no  |  |
 
 ---
 
@@ -56546,36 +55296,25 @@ Success
 
  
  
- #### [CommonResponse](#CommonResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | string |  no  |  |
-
----
-
-
- 
- 
  #### [BulkInventoryGetItems](#BulkInventoryGetItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | created_by | string |  no  |  |
+ | total | number |  no  |  |
+ | created_on | string |  no  |  |
+ | failed | number |  no  |  |
  | stage | string |  no  |  |
  | failed_records | [string] |  no  |  |
- | failed | number |  no  |  |
- | company_id | number |  no  |  |
- | created_on | string |  no  |  |
- | total | number |  no  |  |
- | modified_on | string |  no  |  |
- | cancelled | number |  no  |  |
- | id | string |  no  |  |
- | modified_by | string |  no  |  |
  | is_active | boolean |  no  |  |
- | cancelled_records | [string] |  no  |  |
  | file_path | string |  no  |  |
+ | id | string |  no  |  |
  | succeed | number |  no  |  |
+ | modified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | cancelled_records | [string] |  no  |  |
+ | modified_by | string |  no  |  |
+ | cancelled | number |  no  |  |
 
 ---
 
@@ -56594,27 +55333,38 @@ Success
 
  
  
+ #### [CommonResponse](#CommonResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Size1](#Size1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_height | number |  no  |  |
- | item_weight_unit_of_measure | string |  no  |  |
  | store_code | string |  yes  |  |
- | quantity | number |  yes  |  |
- | seller_identifier | string |  yes  |  |
- | item_weight | number |  no  |  |
- | identifiers | [string] |  no  |  |
- | item_length | number |  no  |  |
- | currency | string |  yes  |  |
- | price_effective | number |  yes  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | price | number |  yes  |  |
- | price_transfer | number |  no  |  |
- | size | string |  no  |  |
- | is_set | boolean |  no  |  |
  | set | [InventorySet](#InventorySet) |  no  |  |
  | item_width | number |  no  |  |
+ | price | number |  yes  |  |
+ | size | string |  no  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | price_transfer | number |  no  |  |
+ | item_weight | number |  no  |  |
+ | identifiers | [string] |  no  |  |
+ | quantity | number |  yes  |  |
+ | item_length | number |  no  |  |
+ | price_effective | number |  yes  |  |
+ | currency | string |  yes  |  |
+ | seller_identifier | string |  yes  |  |
+ | item_height | number |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
+ | is_set | boolean |  no  |  |
 
 ---
 
@@ -56626,22 +55376,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | company_id | number |  yes  |  |
- | batch_id | string |  yes  |  |
  | user | string |  no  |  |
+ | batch_id | string |  yes  |  |
  | sizes | [[Size1](#Size1)] |  yes  |  |
-
----
-
-
- 
- 
- #### [InventoryExportRequest](#InventoryExportRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | [number] |  no  |  |
- | brand | [number] |  no  |  |
- | type | string |  no  |  |
 
 ---
 
@@ -56652,13 +55389,26 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | seller_id | number |  yes  |  |
  | status | string |  no  |  |
- | trigger_on | string |  no  |  |
+ | seller_id | number |  yes  |  |
  | request_params | string |  no  |  |
- | completed_on | string |  no  |  |
  | task_id | string |  yes  |  |
+ | trigger_on | string |  no  |  |
+ | completed_on | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventoryExportRequest](#InventoryExportRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | store | [number] |  no  |  |
+ | brand | [number] |  no  |  |
 
 ---
 
@@ -56669,8 +55419,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
  | value | string |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -56689,52 +55439,21 @@ Success
 
  
  
- #### [HsnUpsert](#HsnUpsert)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tax2 | number |  no  |  |
- | tax_on_mrp | boolean |  yes  |  |
- | company_id | number |  yes  |  |
- | threshold2 | number |  no  |  |
- | threshold1 | number |  yes  |  |
- | hs2_code | string |  yes  |  |
- | uid | number |  no  |  |
- | hsn_code | string |  yes  |  |
- | tax_on_esp | boolean |  no  |  |
- | tax1 | number |  yes  |  |
-
----
-
-
- 
- 
  #### [HsnCodesObject](#HsnCodesObject)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tax2 | number |  no  |  |
- | tax_on_mrp | boolean |  no  |  |
- | company_id | number |  no  |  |
- | threshold2 | number |  no  |  |
- | threshold1 | number |  no  |  |
- | modified_on | string |  no  |  |
- | hs2_code | string |  no  |  |
- | id | string |  no  |  |
  | hsn_code | string |  no  |  |
- | tax_on_esp | boolean |  no  |  |
+ | tax2 | number |  no  |  |
+ | threshold2 | number |  no  |  |
  | tax1 | number |  no  |  |
-
----
-
-
- 
- 
- #### [HsnCode](#HsnCode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [HsnCodesObject](#HsnCodesObject) |  no  |  |
+ | tax_on_mrp | boolean |  no  |  |
+ | tax_on_esp | boolean |  no  |  |
+ | id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | threshold1 | number |  no  |  |
+ | hs2_code | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -56745,10 +55464,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | string |  no  |  |
- | item_total | number |  no  |  |
- | has_next | boolean |  no  |  |
  | size | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | current | string |  no  |  |
  | has_previous | boolean |  no  |  |
 
 ---
@@ -56762,6 +55481,37 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[HsnCodesObject](#HsnCodesObject)] |  no  |  |
  | page | [PageResponse](#PageResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnUpsert](#HsnUpsert)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hsn_code | string |  yes  |  |
+ | tax2 | number |  no  |  |
+ | threshold2 | number |  no  |  |
+ | tax1 | number |  yes  |  |
+ | tax_on_mrp | boolean |  yes  |  |
+ | tax_on_esp | boolean |  no  |  |
+ | uid | number |  no  |  |
+ | company_id | number |  yes  |  |
+ | threshold1 | number |  yes  |  |
+ | hs2_code | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnCode](#HsnCode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [HsnCodesObject](#HsnCodesObject) |  no  |  |
 
 ---
 
@@ -56794,14 +55544,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | departments | [string] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | slug | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
- | discount | string |  no  |  |
+ | slug | string |  no  |  |
  | uid | number |  no  |  |
+ | discount | string |  no  |  |
+ | departments | [string] |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -56825,8 +55575,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | priority_order | number |  no  |  |
- | slug | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
+ | slug | string |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
 
@@ -56862,13 +55612,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [string] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | childs | [string] |  no  |  |
  | slug | string |  no  |  |
  | uid | number |  no  |  |
  | _custom_json | string |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -56879,13 +55629,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
  | slug | string |  no  |  |
  | uid | number |  no  |  |
  | _custom_json | string |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -56896,13 +55646,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
  | slug | string |  no  |  |
  | uid | number |  no  |  |
  | _custom_json | string |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -56913,12 +55663,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
  | slug | string |  no  |  |
  | uid | number |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -56953,10 +55703,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
- | page | [Page](#Page) |  yes  |  |
  | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
 ---
 
@@ -56967,29 +55717,29 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | short_description | string |  no  |  |
- | attributes | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | color | string |  no  |  |
- | promo_meta | string |  no  |  |
- | product_online_date | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
  | highlights | [string] |  no  |  |
+ | attributes | string |  no  |  |
+ | item_code | string |  no  |  |
+ | name | string |  no  |  |
+ | product_online_date | string |  no  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | teaser_tag | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | rating | number |  no  |  |
  | description | string |  no  |  |
  | similars | [string] |  no  |  |
- | item_code | string |  no  |  |
- | medias | [[Media1](#Media1)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | image_nature | string |  no  |  |
- | uid | number |  no  |  |
- | rating_count | number |  no  |  |
- | name | string |  no  |  |
  | type | string |  no  |  |
- | item_type | string |  no  |  |
+ | short_description | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | color | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | image_nature | string |  no  |  |
  | slug | string |  yes  |  |
- | rating | number |  no  |  |
+ | item_type | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | uid | number |  no  |  |
+ | medias | [[Media1](#Media1)] |  no  |  |
+ | promo_meta | string |  no  |  |
+ | tryouts | [string] |  no  |  |
 
 ---
 
@@ -56998,12 +55748,36 @@ Success
 
  
  
- #### [BusinessCountryInfo](#BusinessCountryInfo)
+ #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | latitude | number |  yes  |  |
+ | city | string |  yes  |  |
+ | state | string |  yes  |  |
+ | country | string |  yes  |  |
  | country_code | string |  no  |  |
- | country | string |  no  |  |
+ | pincode | number |  yes  |  |
+ | address1 | string |  yes  |  |
+ | address_type | string |  yes  |  |
+ | address2 | string |  no  |  |
+ | longitude | number |  yes  |  |
+ | landmark | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Document](#Document)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | verified | boolean |  no  |  |
+ | url | string |  no  |  |
+ | legal_name | string |  no  |  |
+ | type | string |  yes  |  |
+ | value | string |  yes  |  |
 
 ---
 
@@ -57032,48 +55806,12 @@ Success
 
  
  
- #### [GetAddressSerializer](#GetAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | landmark | string |  no  |  |
- | country | string |  no  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | state | string |  no  |  |
- | address_type | string |  no  |  |
- | address1 | string |  no  |  |
- | city | string |  no  |  |
- | pincode | number |  no  |  |
- | address2 | string |  no  |  |
-
----
-
-
- 
- 
- #### [Document](#Document)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | legal_name | string |  no  |  |
- | url | string |  no  |  |
- | verified | boolean |  no  |  |
- | value | string |  yes  |  |
- | type | string |  yes  |  |
-
----
-
-
- 
- 
  #### [SellerPhoneNumber](#SellerPhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | string |  yes  |  |
  | country_code | number |  yes  |  |
+ | number | string |  yes  |  |
 
 ---
 
@@ -57084,60 +55822,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
  | emails | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
- | business_info | string |  no  |  |
- | name | string |  no  |  |
- | verified_by | [UserSerializer](#UserSerializer) |  no  |  |
- | business_country_info | [BusinessCountryInfo](#BusinessCountryInfo) |  no  |  |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
- | uid | number |  yes  |  |
- | warnings | string |  no  |  |
- | verified_on | string |  no  |  |
- | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
- | business_details | [BusinessDetails](#BusinessDetails) |  no  |  |
- | mode | string |  no  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
- | business_type | string |  yes  |  |
- | documents | [[Document](#Document)] |  no  |  |
- | contact_details | [ContactDetails](#ContactDetails) |  no  |  |
- | franchise_enabled | boolean |  no  |  |
- | company_type | string |  yes  |  |
- | notification_emails | [string] |  no  |  |
- | stage | string |  no  |  |
-
----
-
-
- 
- 
- #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | landmark | string |  no  |  |
- | country | string |  yes  |  |
- | latitude | number |  yes  |  |
- | longitude | number |  yes  |  |
- | state | string |  yes  |  |
- | address_type | string |  yes  |  |
- | address1 | string |  yes  |  |
- | city | string |  yes  |  |
- | pincode | number |  yes  |  |
- | address2 | string |  no  |  |
+ | phone | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
 
 ---
 
@@ -57148,18 +55834,82 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | business_info | string |  no  |  |
- | business_type | string |  no  |  |
- | contact_details | [ContactDetails](#ContactDetails) |  no  |  |
- | documents | [[Document](#Document)] |  no  |  |
- | name | string |  no  |  |
- | franchise_enabled | boolean |  no  |  |
- | company_type | string |  no  |  |
- | notification_emails | [string] |  no  |  |
- | business_details | [BusinessDetails](#BusinessDetails) |  no  |  |
- | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)] |  no  |  |
  | warnings | string |  no  |  |
+ | addresses | [[CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)] |  no  |  |
+ | documents | [[Document](#Document)] |  no  |  |
+ | franchise_enabled | boolean |  no  |  |
+ | business_details | [BusinessDetails](#BusinessDetails) |  no  |  |
+ | contact_details | [ContactDetails](#ContactDetails) |  no  |  |
+ | company_type | string |  no  |  |
+ | name | string |  no  |  |
+ | business_info | string |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | business_type | string |  no  |  |
  | reject_reason | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BusinessCountryInfo](#BusinessCountryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | country_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer](#GetAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | number |  no  |  |
+ | city | string |  no  |  |
+ | state | string |  no  |  |
+ | country | string |  no  |  |
+ | country_code | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | address_type | string |  no  |  |
+ | address2 | string |  no  |  |
+ | longitude | number |  no  |  |
+ | landmark | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCompanyProfileSerializerResponse](#GetCompanyProfileSerializerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | warnings | string |  no  |  |
+ | verified_on | string |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | contact_details | [ContactDetails](#ContactDetails) |  no  |  |
+ | stage | string |  no  |  |
+ | business_country_info | [BusinessCountryInfo](#BusinessCountryInfo) |  no  |  |
+ | documents | [[Document](#Document)] |  no  |  |
+ | mode | string |  no  |  |
+ | business_details | [BusinessDetails](#BusinessDetails) |  no  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
+ | name | string |  no  |  |
+ | business_info | string |  no  |  |
+ | business_type | string |  yes  |  |
+ | uid | number |  yes  |  |
+ | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | verified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | company_type | string |  yes  |  |
+ | modified_on | string |  no  |  |
+ | franchise_enabled | boolean |  no  |  |
+ | created_on | string |  no  |  |
 
 ---
 
@@ -57170,8 +55920,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pending | number |  no  |  |
  | verified | number |  no  |  |
+ | pending | number |  no  |  |
 
 ---
 
@@ -57182,13 +55932,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stage | string |  no  |  |
- | product | [DocumentsObj](#DocumentsObj) |  no  |  |
- | brand | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | store_documents | [DocumentsObj](#DocumentsObj) |  no  |  |
  | company_documents | [DocumentsObj](#DocumentsObj) |  no  |  |
  | uid | number |  no  |  |
  | store | [DocumentsObj](#DocumentsObj) |  no  |  |
- | store_documents | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | product | [DocumentsObj](#DocumentsObj) |  no  |  |
+ | stage | string |  no  |  |
+ | brand | [DocumentsObj](#DocumentsObj) |  no  |  |
 
 ---
 
@@ -57199,8 +55949,28 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | string |  no  |  |
  | portrait | string |  no  |  |
+ | landscape | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | synonyms | [string] |  no  |  |
+ | logo | string |  yes  |  |
+ | uid | number |  no  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
+ | company_id | number |  no  |  |
+ | brand_tier | string |  no  |  |
+ | description | string |  no  |  |
+ | _locale_language | string |  no  |  |
+ | name | string |  yes  |  |
+ | _custom_json | string |  no  |  |
 
 ---
 
@@ -57211,8 +55981,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string |  no  |  |
  | user_id | string |  no  |  |
+ | contact | string |  no  |  |
  | username | string |  no  |  |
 
 ---
@@ -57224,23 +55994,23 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
- | stage | string |  no  |  |
- | name | string |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | uid | number |  no  |  |
- | _locale_language | string |  no  |  |
- | _custom_json | string |  no  |  |
- | logo | string |  no  |  |
- | description | string |  no  |  |
- | synonyms | [string] |  no  |  |
- | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | warnings | string |  no  |  |
- | verified_on | string |  no  |  |
- | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
  | slug_key | string |  no  |  |
+ | synonyms | [string] |  no  |  |
+ | warnings | string |  no  |  |
+ | logo | string |  no  |  |
+ | uid | number |  no  |  |
+ | verified_on | string |  no  |  |
+ | stage | string |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
+ | description | string |  no  |  |
+ | _locale_language | string |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | name | string |  yes  |  |
+ | modified_on | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | created_on | string |  no  |  |
  | reject_reason | string |  no  |  |
 
 ---
@@ -57248,20 +56018,13 @@ Success
 
  
  
- #### [CreateUpdateBrandRequestSerializer](#CreateUpdateBrandRequestSerializer)
+ #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banner | [BrandBannerSerializer](#BrandBannerSerializer) |  no  |  |
- | name | string |  yes  |  |
- | brand_tier | string |  no  |  |
- | _locale_language | string |  no  |  |
- | company_id | number |  no  |  |
- | _custom_json | string |  no  |  |
- | logo | string |  yes  |  |
- | description | string |  no  |  |
+ | company | number |  yes  |  |
  | uid | number |  no  |  |
- | synonyms | [string] |  no  |  |
+ | brands | [number] |  yes  |  |
 
 ---
 
@@ -57272,18 +56035,18 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
- | business_type | string |  no  |  |
- | stage | string |  no  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
- | name | string |  no  |  |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
  | uid | number |  no  |  |
- | company_type | string |  no  |  |
- | verified_by | [UserSerializer](#UserSerializer) |  no  |  |
  | verified_on | string |  no  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
+ | stage | string |  no  |  |
  | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | verified_by | [UserSerializer](#UserSerializer) |  no  |  |
+ | name | string |  no  |  |
+ | company_type | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | business_type | string |  no  |  |
+ | created_on | string |  no  |  |
  | reject_reason | string |  no  |  |
 
 ---
@@ -57295,17 +56058,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | warnings | string |  no  |  |
+ | uid | number |  no  |  |
+ | verified_on | string |  no  |  |
+ | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer) |  no  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
+ | stage | string |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
  | modified_on | string |  no  |  |
  | created_on | string |  no  |  |
- | stage | string |  no  |  |
- | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | uid | number |  no  |  |
- | brand | [GetBrandResponseSerializer](#GetBrandResponseSerializer) |  no  |  |
- | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | warnings | string |  no  |  |
- | verified_on | string |  no  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
- | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
  | reject_reason | string |  no  |  |
 
 ---
@@ -57317,21 +56080,132 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [[CompanyBrandSerializer](#CompanyBrandSerializer)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
 
  
  
- #### [CompanyBrandPostRequestSerializer](#CompanyBrandPostRequestSerializer)
+ #### [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [number] |  yes  |  |
- | company | number |  yes  |  |
+ | on_same_store | boolean |  no  |  |
+ | store_uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationTimingSerializer](#LocationTimingSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | number |  no  |  |
+ | minute | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | weekday | string |  yes  |  |
+ | open | boolean |  yes  |  |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceCredSerializer](#InvoiceCredSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | string |  no  |  |
+ | password | string |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | e_invoice | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
+ | e_waybill | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer1](#GetAddressSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | latitude | number |  no  |  |
+ | city | string |  no  |  |
+ | state | string |  no  |  |
+ | country | string |  no  |  |
+ | country_code | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | address_type | string |  no  |  |
+ | address2 | string |  no  |  |
+ | longitude | number |  no  |  |
+ | landmark | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationManagerSerializer](#LocationManagerSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  yes  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationSerializer](#LocationSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | code | string |  yes  |  |
+ | warnings | string |  no  |  |
  | uid | number |  no  |  |
+ | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
+ | company | number |  yes  |  |
+ | stage | string |  no  |  |
+ | documents | [[Document](#Document)] |  no  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
+ | store_type | string |  no  |  |
+ | name | string |  yes  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
+ | address | [GetAddressSerializer1](#GetAddressSerializer1) |  yes  |  |
+ | notification_emails | [string] |  no  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
 
 ---
 
@@ -57350,111 +56224,35 @@ Success
 
  
  
- #### [LocationManagerSerializer](#LocationManagerSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  yes  |  |
- | email | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [InvoiceCredSerializer](#InvoiceCredSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | password | string |  no  |  |
- | enabled | boolean |  no  |  |
- | username | string |  no  |  |
-
----
-
-
- 
- 
- #### [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | e_waybill | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
- | e_invoice | [InvoiceCredSerializer](#InvoiceCredSerializer) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store_uid | number |  no  |  |
- | on_same_store | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [LocationTimingSerializer](#LocationTimingSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minute | number |  no  |  |
- | hour | number |  no  |  |
-
----
-
-
- 
- 
- #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | open | boolean |  yes  |  |
- | closing | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
- | opening | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
- | weekday | string |  yes  |  |
-
----
-
-
- 
- 
  #### [GetLocationSerializer](#GetLocationSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
- | name | string |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  yes  |  |
- | display_name | string |  yes  |  |
- | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
- | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | uid | number |  no  |  |
  | warnings | string |  no  |  |
  | verified_on | string |  no  |  |
- | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | code | string |  yes  |  |
- | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
- | _custom_json | string |  no  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
- | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
- | store_type | string |  no  |  |
- | documents | [[Document](#Document)] |  no  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
  | phone_number | string |  yes  |  |
  | notification_emails | [string] |  no  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
  | stage | string |  no  |  |
+ | documents | [[Document](#Document)] |  no  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
+ | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
+ | name | string |  yes  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | display_name | string |  yes  |  |
+ | code | string |  yes  |  |
+ | uid | number |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | store_type | string |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | modified_on | string |  no  |  |
+ | created_on | string |  no  |  |
 
 ---
 
@@ -57465,56 +56263,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [[GetLocationSerializer](#GetLocationSerializer)] |  no  |  |
-
----
-
-
- 
- 
- #### [GetAddressSerializer1](#GetAddressSerializer1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | landmark | string |  no  |  |
- | country | string |  no  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | state | string |  no  |  |
- | address_type | string |  no  |  |
- | address1 | string |  no  |  |
- | city | string |  no  |  |
- | pincode | number |  no  |  |
- | address2 | string |  no  |  |
-
----
-
-
- 
- 
- #### [LocationSerializer](#LocationSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
- | documents | [[Document](#Document)] |  no  |  |
- | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
- | name | string |  yes  |  |
- | code | string |  yes  |  |
- | address | [GetAddressSerializer1](#GetAddressSerializer1) |  yes  |  |
- | store_type | string |  no  |  |
- | _custom_json | string |  no  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
- | notification_emails | [string] |  no  |  |
- | uid | number |  no  |  |
- | warnings | string |  no  |  |
- | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
- | company | number |  yes  |  |
- | stage | string |  no  |  |
- | display_name | string |  yes  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -60589,7 +59339,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | verified | boolean |  no  |  |
  | is_primary | boolean |  no  |  |
- | is_default | boolean |  no  |  |
  | is_shortlink | boolean |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
