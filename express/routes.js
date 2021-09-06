@@ -7,11 +7,11 @@ const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code"
 const { SESSION_COOKIE_NAME } = require('./constants');
 const { sessionMiddleware } = require('./middleware/session_middleware');
 const FdkRoutes = express.Router();
-const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
-const sha256 = require('crypto-js/sha256');
+const webhookSetup = require('./webhook');
+const { query } = require('../spec/utils/logger');
 
 
-function setupRoutes(ext) {
+function setupRoutes(ext, data) {
 
     let storage = ext.storage;
     let callbacks = ext.callbacks;
@@ -129,6 +129,10 @@ function setupRoutes(ext) {
             res.header['x-company-id'] = req.fdkSession.company_id;
 
             req.extension = ext;
+            if(req.query.install_event) {
+                const client = await ext.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
+                await webhookSetup.syncEvents(data.webhook_map, data, client);
+            }
             let redirectUrl = await ext.callbacks.auth(req);
             res.redirect(redirectUrl);
         } catch (error) {
