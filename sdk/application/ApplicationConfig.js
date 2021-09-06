@@ -9,8 +9,6 @@ class ApplicationConfig {
     this.applicationToken = _conf.applicationToken || "";
     this.opts = _opts || {};
     this.domain = _conf.domain || "https://api.fyndx0.de";
-    this.encodePath =
-      typeof _conf.encodePath === "undefined" ? true : _conf.encodePath;
     this.validate();
   }
 
