@@ -175,29 +175,29 @@ export class OrderValidator {
     static getShipmentTrackDetails(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
+    static updateSearchKeywords(): any;
     static getAllSearchKeyword(): any;
-    static updateAutocompleteKeyword(): any;
+    static createCustomKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
+    static updateAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static addCollectionItems(): any;
+    static updateCollection(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
