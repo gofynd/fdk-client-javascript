@@ -12,5 +12,10 @@ declare class OAuthClient {
     retryOAuthToken(expires_in: any): void;
     startAuthorization(options: any): string;
     verifyCallback(query: any): Promise<void>;
-    renewAccessToken(): Promise<void>;
+    renewAccessToken(): Promise<any>;
+    getAccesstoken({ grant_type, refresh_token, code }: {
+        grant_type: any;
+        refresh_token: any;
+        code: any;
+    }): Promise<any>;
 }

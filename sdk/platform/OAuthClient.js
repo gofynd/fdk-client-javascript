@@ -70,25 +70,10 @@ class OAuthClient {
     }
 
     try {
-      let reqData = {
+      let res = await getAccesstoken({
         grant_type: "authorization_code",
         code: query.code,
-      };
-      const token = Buffer.from(
-        `${this.config.apiKey}:${this.config.apiSecret}`,
-        "utf8"
-      ).toString("base64");
-      let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
-      const rawRequest = {
-        method: "post",
-        url: url,
-        data: querystring.stringify(reqData),
-        headers: {
-          Authorization: `Basic ${token}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      };
-      let res = await fdkAxios.request(rawRequest);
+      });
       this.setToken(res);
     } catch (error) {
       if (error.isAxiosError) {
@@ -97,34 +82,48 @@ class OAuthClient {
       throw error;
     }
   }
+
   async renewAccessToken() {
     try {
-      let data = querystring.stringify({
+      let res = await getAccesstoken({
         grant_type: "refresh_token",
         refresh_token: this.refreshToken,
       });
-      const token = Buffer.from(
-        `${this.config.apiKey}:${this.config.apiSecret}`,
-        "utf8"
-      ).toString("base64");
-      let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
-      const rawRequest = {
-        method: "post",
-        url: url,
-        data: data,
-        headers: {
-          Authorization: `Basic ${token}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      };
-      let res = await fdkAxios.request(rawRequest);
       this.setToken(res);
+      return res;
     } catch (error) {
       if (error.isAxiosError) {
         throw new FDKTokenIssueError(error.message);
       }
       throw error;
     }
+  }
+
+  async getAccesstoken({ grant_type, refresh_token, code }) {
+    let reqData = {
+      grant_type: grant_type,
+    };
+    if (grant_type === "refresh_token") {
+      reqData = { ...reqData, refresh_token };
+    } else if (grant_type === "authorization_code") {
+      reqData = { ...reqData, code };
+    }
+
+    const token = Buffer.from(
+      `${this.config.apiKey}:${this.config.apiSecret}`,
+      "utf8"
+    ).toString("base64");
+    let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/token`;
+    const rawRequest = {
+      method: "post",
+      url: url,
+      data: querystring.stringify(reqData),
+      headers: {
+        Authorization: `Basic ${token}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+    return fdkAxios.request(rawRequest);
   }
 }
 
