@@ -7,25 +7,30 @@ const { SESSION_COOKIE_NAME } = require("../../express/constants");
 const { syncEvents } = require("../../express/webhook");
 
 describe("Webhook Integrations", () => {
-    let webhookMap = null;
+    let webhookConfig = null;
     let cookie = "";
     beforeEach(async () => {
-        webhookMap = {
-            'extension/install': {
-                handler: function () { }
-            },
-            'extension/uninstall': {
-                handler: function () { }
-            },
-            'coupon/create': {
-                handler: function () { throw Error('test error') }
+        webhookConfig = {
+            api_path: '/v1/webhooks',
+            notification_email: 'test@abc.com',
+            event_map: {
+                'extension/install': {
+                    handler: function () { }
+                },
+                'extension/uninstall': {
+                    handler: function () { }
+                },
+                'coupon/create': {
+                    handler: function () { throw Error('test error') }
+                }
             }
         }
         this.fdk_instance = await fdkHelper({
             access_mode: "offline",
-            webhook_map: webhookMap
+            webhook_config: webhookConfig
         });
         request.app.restApp.use(this.fdk_instance.fdkHandler);
+        request.app.restApp.post('/v1/webhooks', this.fdk_instance.webhookHandler.webhookHandlerView)
         
         let response = await request
             .get('/fp/install?company_id=1&install_event=true')
@@ -44,7 +49,7 @@ describe("Webhook Integrations", () => {
 
     it("Register webhooks", async () => {
         const res = await request
-            .post(`/fp/webhook`)
+            .post(`/v1/webhooks`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
             .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "extension", "type": "install"} });
         expect(res.status).toBe(200);
@@ -53,7 +58,7 @@ describe("Webhook Integrations", () => {
 
     it("Invalid webhook path", async () => {
         const res = await request
-            .post(`/fp/webhook`)
+            .post(`/v1/webhooks`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
             .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "coupon", "type": "update"} });
         expect(res.status).toBe(404);
@@ -61,7 +66,7 @@ describe("Webhook Integrations", () => {
 
     it("Failed webhook handler execution", async () => {
         const res = await request
-            .post(`/fp/webhook`)
+            .post(`/v1/webhooks`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
             .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "coupon", "type": "create"} });
         expect(res.status).toBe(500);
@@ -70,15 +75,19 @@ describe("Webhook Integrations", () => {
 
     it("Sync webhooks: Add new", async () => {
         const newMap = {
-            'coupon/create': {
-                handler: function () { }
+            api_path: '/v1/webhooks',
+            notification_email: 'test@abc.com',
+            event_map: {
+                'coupon/create': {
+                    handler: function () { }
+                }
             }
         }
-        const handlerFn = spyOn(newMap['coupon/create'], 'handler');
+        const handlerFn = spyOn(newMap.event_map['coupon/create'], 'handler');
         const platformClient = await this.fdk_instance.getPlatformClient('1');
-        await syncEvents(newMap, this.fdk_instance.extension, platformClient);
+        await this.fdk_instance.webhookHandler.syncEvents(platformClient, newMap);
         const res = await request
-            .post(`/fp/webhook`)
+            .post(`/v1/webhooks`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
             .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "coupon", "type": "create"} });
         expect(res.status).toBe(200);

@@ -27,6 +27,6 @@ mock.onPost(token_url).reply(200, {
 });
 
 mock.onGet(webhook_events_url).reply(200, webhook_event_configs);
-mock.onGet(webhook_extension_subscriber_url).reply(200, webhook_subscriber);
+mock.onGet(webhook_extension_subscriber_url).reply(200, {items: [webhook_subscriber]});
 mock.onPost(webhook_subscriber_url).reply(200, webhook_subscriber);
 mock.onPut(webhook_subscriber_url).reply(200, webhook_subscriber);
