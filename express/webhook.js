@@ -15,7 +15,7 @@ async function webhookHandler(req, res, next) {
     try {
         const { body } = req;
         const eventName = `${body.event.name}/${body.event.type}`;
-        const extHandler = WEBHOOK_HANDLERS[eventName].handler;
+        const extHandler = (WEBHOOK_HANDLERS[eventName] || {}).handler;
         if (typeof extHandler === 'function') {
             await extHandler(eventName, req.body.company_id, req.body.payload);
             status = 200;
@@ -42,9 +42,8 @@ async function syncEvents(webhookMap, config, platformClient) {
     let eventsMap = null;
     promises.push(platformClient.webhook.fetchAllEventConfigurations());
     // TODO: uncomment this after method sdk is generated
-    // promises.push(platformClient.webhook.getSubscriberByExtensionId({ extension_id: config.api_key }));
+    promises.push(platformClient.webhook.getSubscribersByExtensionId({ extensionId: config.api_key }));
 
-    promises.push(platformClient.webhook.getSubscriberById({ subscriberId: 1 }));
     [eventsMap, subscriberConfig] = await Promise.all(promises);
 
     eventsMap = getEventIdMap(eventsMap.event_configs);
@@ -53,25 +52,28 @@ async function syncEvents(webhookMap, config, platformClient) {
         subscriberConfig = {
             "name": config.api_key,
             "webhook_url": `${config.base_url}/fp/webhook`,
-            "company_id": platformClient.config.company_id,
-            "extension_id": config.api_key,
+            "association": {
+                "company_id": platformClient.config.company_id,
+                "extension_id": config.api_key
+            },
             "status": "active",
             "auth_meta": {
                 "type": "hmac256",
                 "secret": config.api_secret
             },
-            "event_configs": []
+            "event_id": []
         }
         registerListener = true;
     }
     else {
-        const {name, webhook_url, company_id, extension_id, status, auth_meta, event_configs} = subscriberConfig
-        subscriberConfig = {name, webhook_url, company_id, extension_id, status, auth_meta, event_configs};
+        const {name, webhook_url, association, status, auth_meta} = subscriberConfig
+        subscriberConfig = {name, webhook_url, association, status, auth_meta};
+        subscriberConfig.event_id = [];
     }
     for (let [eventName, handlerData] of Object.entries(WEBHOOK_HANDLERS)) {
-        subscriberConfig.event_configs.push(eventsMap[eventName]);
+        subscriberConfig.event_id.push(eventsMap[eventName]);
     }
-    subscriberConfig = omit(subscriberConfig, ['created_on', 'modified_by'])
+
     if (registerListener) {
         await platformClient.webhook.registerSubscriberToEvent({body: subscriberConfig});
     }

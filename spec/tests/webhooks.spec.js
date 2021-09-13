@@ -11,16 +11,13 @@ describe("Webhook Integrations", () => {
     let cookie = "";
     beforeEach(async () => {
         webhookMap = {
-            'event-1': {
-                path: '/test-wbhk-1',
+            'extension/install': {
                 handler: function () { }
             },
-            'event-2': {
-                path: '/test-wbhk-2',
+            'extension/uninstall': {
                 handler: function () { }
             },
-            'fail-event': {
-                path: '/test-wbhk-fail',
+            'coupon/create': {
                 handler: function () { throw Error('test error') }
             }
         }
@@ -47,44 +44,43 @@ describe("Webhook Integrations", () => {
 
     it("Register webhooks", async () => {
         const res = await request
-            .post(`/fp/webhook/test-wbhk-1`)
+            .post(`/fp/webhook`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
-            .send({ "company_id": 1, "payload": { "test": true } });
+            .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "extension", "type": "install"} });
         expect(res.status).toBe(200);
         expect(res.body.success).toBeTrue();
     });
 
     it("Invalid webhook path", async () => {
         const res = await request
-            .post(`/fp/webhook/test`)
+            .post(`/fp/webhook`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
-            .send({ "company_id": 1, "payload": { "test": true } });
+            .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "coupon", "type": "update"} });
         expect(res.status).toBe(404);
     });
 
     it("Failed webhook handler execution", async () => {
         const res = await request
-            .post(`/fp/webhook/test-wbhk-fail`)
+            .post(`/fp/webhook`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
-            .send({ "company_id": 1, "payload": { "test": true } });
+            .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "coupon", "type": "create"} });
         expect(res.status).toBe(500);
         expect(res.body.success).toBeFalse();
     });
 
     it("Sync webhooks: Add new", async () => {
         const newMap = {
-            'event-400': {
-                path: '/test-wbhk-400',
+            'coupon/create': {
                 handler: function () { }
             }
         }
-        const handlerFn = spyOn(newMap['event-400'], 'handler');
-        const platformClient =await this.fdk_instance.getPlatformClient('1');
+        const handlerFn = spyOn(newMap['coupon/create'], 'handler');
+        const platformClient = await this.fdk_instance.getPlatformClient('1');
         await syncEvents(newMap, this.fdk_instance.extension, platformClient);
         const res = await request
-            .post(`/fp/webhook/test-wbhk-400`)
+            .post(`/fp/webhook`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
-            .send({ "company_id": 1, "payload": { "test": true } });
+            .send({ "company_id": 1, "payload": { "test": true }, "event": {"name": "coupon", "type": "create"} });
         expect(res.status).toBe(200);
         expect(handlerFn).toHaveBeenCalled();
     });
