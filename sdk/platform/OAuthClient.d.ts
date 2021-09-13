@@ -13,7 +13,7 @@ declare class OAuthClient {
     startAuthorization(options: any): string;
     verifyCallback(query: any): Promise<void>;
     renewAccessToken(): Promise<any>;
-    getAccesstoken({ grant_type, refresh_token, code }: {
+    getAccesstokenObj({ grant_type, refresh_token, code }: {
         grant_type: any;
         refresh_token: any;
         code: any;

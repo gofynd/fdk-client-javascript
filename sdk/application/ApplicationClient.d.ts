@@ -625,6 +625,64 @@ declare class Catalog {
         latitude?: number;
         longitude?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+     * @param {string} [arg.q] - Search a store by its name or store_code.
+     * @param {string} [arg.city] - Search stores by the city in which they are situated.
+     * @param {number} [arg.range] - Use this to retrieve stores within a
+     *   particular range in meters, e.g. 10000, to indicate a 10km range
+     * @param {number} [arg.latitude] - Latitude of the location from where one
+     *   wants to retreive the nearest stores, e.g. 72.8691788
+     * @param {number} [arg.longitude] - Longitude of the location from where
+     *   one wants to retreive the nearest stores, e.g. 19.1174114
+     * @returns {Promise<ApplicationStoreListing>} - Success response
+     * @summary: Get store meta information.
+     * @description: Use this API to get a list of stores in a specific application.
+     */
+    getInStockLocations({ pageNo, pageSize, q, city, range, latitude, longitude, }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        city?: string;
+        range?: number;
+        latitude?: number;
+        longitude?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
+     * @param {string} [arg.q] - Search a store by its name or store_code.
+     * @param {string} [arg.city] - Search stores by the city in which they are situated.
+     * @param {number} [arg.range] - Use this to retrieve stores within a
+     *   particular range in meters, e.g. 10000, to indicate a 10km range
+     * @param {number} [arg.latitude] - Latitude of the location from where one
+     *   wants to retreive the nearest stores, e.g. 72.8691788
+     * @param {number} [arg.longitude] - Longitude of the location from where
+     *   one wants to retreive the nearest stores, e.g. 19.1174114
+     * @summary: Get store meta information.
+     * @description: Use this API to get a list of stores in a specific application.
+     */
+    getInStockLocationsPaginator({ pageSize, q, city, range, latitude, longitude, }?: {
+        pageSize?: number;
+        q?: string;
+        city?: string;
+        range?: number;
+        latitude?: number;
+        longitude?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.locationId - Unique Location ID.
+     * @returns {Promise<StoreDetails>} - Success response
+     * @summary: Get store meta information.
+     * @description: Use this API to get meta details for a store.
+     */
+    getLocationDetailsById({ locationId }?: {
+        locationId: number;
+    }): Promise<any>;
 }
 declare class Cart {
     constructor(_conf: any);

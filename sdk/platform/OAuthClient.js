@@ -70,7 +70,7 @@ class OAuthClient {
     }
 
     try {
-      let res = await getAccesstoken({
+      let res = await this.getAccesstokenObj({
         grant_type: "authorization_code",
         code: query.code,
       });
@@ -85,7 +85,7 @@ class OAuthClient {
 
   async renewAccessToken() {
     try {
-      let res = await getAccesstoken({
+      let res = await this.getAccesstokenObj({
         grant_type: "refresh_token",
         refresh_token: this.refreshToken,
       });
@@ -99,7 +99,7 @@ class OAuthClient {
     }
   }
 
-  async getAccesstoken({ grant_type, refresh_token, code }) {
+  async getAccesstokenObj({ grant_type, refresh_token, code }) {
     let reqData = {
       grant_type: grant_type,
     };
