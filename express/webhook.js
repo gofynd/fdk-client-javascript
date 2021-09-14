@@ -49,8 +49,7 @@ class WebhookHandler {
                 "name": this._fdkConfig.api_key,
                 "webhook_url": `${this._fdkConfig.base_url}${this._config.api_path}`,
                 "association": {
-                    "company_id": platformClient.config.company_id,
-                    "extension_id": this._fdkConfig.api_key
+                    "company_id": platformClient.config.companyId
                 },
                 "status": "active",
                 "auth_meta": {
