@@ -62,8 +62,8 @@ class WebhookHandler {
             registerListener = true;
         }
         else {
-            const { name, webhook_url, association, status, auth_meta } = subscriberConfig
-            subscriberConfig = { name, webhook_url, association, status, auth_meta };
+            const { id, name, webhook_url, association, status, auth_meta } = subscriberConfig
+            subscriberConfig = { id, name, webhook_url, association, status, auth_meta };
             subscriberConfig.event_id = [];
         }
         for (let eventName of Object.keys(this._handlerMap)) {
