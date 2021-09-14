@@ -17,7 +17,7 @@ class WebhookHandler {
     }
 
     isInitialized() {
-        return !this._handlerMap;
+        return !!this._handlerMap;
     }
 
     getEventIdMap(events) {
