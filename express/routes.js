@@ -9,7 +9,7 @@ const { sessionMiddleware } = require('./middleware/session_middleware');
 const FdkRoutes = express.Router();
 
 
-function setupRoutes(ext, webhookHandler) {
+function setupRoutes(ext) {
 
     let storage = ext.storage;
     let callbacks = ext.callbacks;
@@ -127,9 +127,9 @@ function setupRoutes(ext, webhookHandler) {
             res.header['x-company-id'] = req.fdkSession.company_id;
 
             req.extension = ext;
-            if(req.query.install_event && webhookHandler.isInitialized()) {
+            if(ext.webhookHandler.isInitialized()) {
                 const client = await ext.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
-                await webhookHandler.syncEvents(client);
+                await ext.webhookHandler.syncEvents(client);
             }
             let redirectUrl = await ext.callbacks.auth(req);
             res.redirect(redirectUrl);

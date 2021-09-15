@@ -11,7 +11,6 @@ function sessionMiddleware(strict) {
             req.fdkSession = await SessionStorage.getSession(sessionId);
     
             if(strict && !req.fdkSession) {
-                console.log('came here');
                 return res.status(401).json({ "message": "unauthorized" });
             }
             next();
