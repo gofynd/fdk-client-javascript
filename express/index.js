@@ -39,7 +39,7 @@ function setupFdk(data) {
         fdkHandler: router,
         extension: extension,
         apiRoutes: apiRoutes,
-        webhookHandler: extension.webhookHandler,
+        webhookRegistery: extension.webhookRegistery,
         applicationProxyRoutes: applicationProxyRoutes,
         getPlatformClient: getPlatformClient,
         getApplicationClient: getApplicationClient

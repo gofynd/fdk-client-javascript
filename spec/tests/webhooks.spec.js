@@ -37,7 +37,7 @@ describe("Webhook Integrations", () => {
         request.app.restApp.post('/v1/webhooks', async (req, res, next)=>{
             let status = 404;
             try {
-                await this.fdk_instance.webhookHandler.processWebhook(req);
+                await this.fdk_instance.webhookRegistery.processWebhook(req);
                 status = 200;
             }
             catch(err) {
@@ -107,7 +107,7 @@ describe("Webhook Integrations", () => {
         }
         const handlerFn = spyOn(newMap.event_map['coupon/create'], 'handler');
         const platformClient = await this.fdk_instance.getPlatformClient('1');
-        await this.fdk_instance.webhookHandler.syncEvents(platformClient, newMap);
+        await this.fdk_instance.webhookRegistery.syncEvents(platformClient, newMap);
         const res = await request
             .post(`/v1/webhooks`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)

@@ -41,7 +41,7 @@ class FdkWebhookRegistrationError extends Error {
     }
 }
 
-class FdkWebhookHandleFailure extends Error {
+class FdkWebhookProcessError extends Error {
     constructor(message) {
         super(message);
     }
@@ -62,6 +62,6 @@ module.exports = {
     FdkInvalidHMacError,
     FdkInvalidWebhookConfig,
     FdkWebhookRegistrationError,
-    FdkWebhookHandleFailure,
+    FdkWebhookProcessError,
     FdkWebhookHandlerNotFound
 };

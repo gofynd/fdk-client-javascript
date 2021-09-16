@@ -2,9 +2,9 @@
 
 const hmacSHA256 = require("crypto-js/hmac-sha256");
 const { TEST_WEBHOOK_EVENT_NAME } = require("./constants");
-const { FdkWebhookHandleFailure, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
+const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 
-class WebhookHandler {
+class WebhookRegistery {
     constructor() {
         this._handlerMap = null;
         this._config = null;
@@ -12,7 +12,7 @@ class WebhookHandler {
     }
 
     initialize(config, fdkConfig) {
-        const emailRegex = new RegExp('^\S+@\S+\.\S+$', 'gi');
+        const emailRegex = new RegExp(/^\S+@\S+\.\S+$/, 'gi');
         if(!config.notification_email || !emailRegex.test(config.notification_email) ) {
             throw new FdkInvalidWebhookConfig(`Invalid or missing "notification_email"`);
         }
@@ -129,12 +129,12 @@ class WebhookHandler {
             }
         }
         catch (err) {
-            throw new FdkWebhookHandleFailure(err.message);
+            throw new FdkWebhookProcessError(err.message);
         }
     }
 
 }
 
 module.exports = {
-    WebhookHandler
+    WebhookRegistery
 }

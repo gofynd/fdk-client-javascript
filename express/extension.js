@@ -3,7 +3,7 @@ const validator = require('validator');
 const {FdkInvalidExtensionJson} = require("./error_code");
 const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
-const { WebhookHandler } = require('./webhook');
+const { WebhookRegistery } = require('./webhook');
 
 class Extension {
     constructor() {
@@ -14,7 +14,7 @@ class Extension {
         this.callbacks = null;
         this.access_mode = null;
         this.cluster = "https://api.fynd.com";
-        this.webhookHandler = null;
+        this.webhookRegistery = null;
     }
 
     initialize(data) {
@@ -50,10 +50,10 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
-        this.webhookHandler = new WebhookHandler();
+        this.webhookRegistery = new WebhookRegistery();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
-            this.webhookHandler.initialize(data.webhook_config, data);
+            this.webhookRegistery.initialize(data.webhook_config, data);
         }
     }
 
