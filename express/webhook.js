@@ -120,7 +120,7 @@ class WebhookHandler {
             const eventName = `${body.event.name}/${body.event.type}`;
             const extHandler = (this._handlerMap[eventName] || {}).handler;
             if (typeof extHandler === 'function') {
-                await extHandler(eventName, req.body.company_id, req.body.payload);
+                await extHandler(eventName, req.body.payload, req.body.company_id, req.body.application_id);
             }
             else {
                 if(body.event.name !== TEST_WEBHOOK_EVENT_NAME) {
