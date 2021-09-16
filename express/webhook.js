@@ -58,7 +58,7 @@ class WebhookHandler {
                 },
                 "status": "active",
                 "auth_meta": {
-                    "type": "hmac256",
+                    "type": "hmac",
                     "secret": this._fdkConfig.api_secret
                 },
                 "event_id": [],
