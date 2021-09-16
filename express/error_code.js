@@ -29,6 +29,12 @@ class FdkInvalidHMacError extends Error {
     }
 }
 
+class FdkInvalidWebhookConfig extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
 class FdkWebhookRegistrationError extends Error {
     constructor(message) {
         super(message);
@@ -54,6 +60,7 @@ module.exports = {
     FdkSessionNotFoundError,
     FdkInvalidOAuthError,
     FdkInvalidHMacError,
+    FdkInvalidWebhookConfig,
     FdkWebhookRegistrationError,
     FdkWebhookHandleFailure,
     FdkWebhookHandlerNotFound

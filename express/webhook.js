@@ -2,7 +2,7 @@
 
 const hmacSHA256 = require("crypto-js/hmac-sha256");
 const { TEST_WEBHOOK_EVENT_NAME } = require("./constants");
-const { FdkWebhookHandleFailure, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError } = require("./error_code");
+const { FdkWebhookHandleFailure, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 
 class WebhookHandler {
     constructor() {
@@ -12,6 +12,16 @@ class WebhookHandler {
     }
 
     initialize(config, fdkConfig) {
+        const emailRegex = new RegExp('^\S+@\S+\.\S+$', 'gi');
+        if(!config.notification_email || !emailRegex.test(config.notification_email) ) {
+            throw new FdkInvalidWebhookConfig(`Invalid or missing "notification_email"`);
+        }
+        if(!config.api_path || config.api_path[0] !== '/') {
+            throw new FdkInvalidWebhookConfig(`Invalid or missing "api_path"`);
+        }
+        if(!config.event_map || !Object.keys(config.event_map).length) {
+            throw new FdkInvalidWebhookConfig(`Invalid or missing "event_map"`);
+        }
         this._handlerMap = {};
         this._config = config;
         this._fdkConfig = fdkConfig;
@@ -114,7 +124,7 @@ class WebhookHandler {
             }
             else {
                 if(body.event.name !== TEST_WEBHOOK_EVENT_NAME) {
-                    throw new FdkWebhookHandlerNotFound(`Webhook handler not assigned ${eventName}`);
+                    throw new FdkWebhookHandlerNotFound(`Webhook handler not assigned: ${eventName}`);
                 }
             }
         }
