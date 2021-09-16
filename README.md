@@ -69,7 +69,7 @@ app.use(fdkClient.apiRoutes);
 
 Background tasks running under some consumer or webhook or under any queue can get platform client via method `getPlatformClient`. It will return instance of `PlatformClient` as well. 
 
-> Here FdkClient access_mode should be **offline**. Cause such client can only access PlatformClient in background task.  
+> Here FdkClient `access_mode` should be **offline**. Cause such client can only access PlatformClient in background task.  
 
 ```javascript
 function backgroundHandler(companyId) {
@@ -83,4 +83,60 @@ function backgroundHandler(companyId) {
     res.status(404).json({ success: false });
   }
 }
+```
+
+#### How to register for webhook events?
+
+Webhook events can be helpful to handle tasks when certan events occur on platform. You can subscribe to such events by passing `webhook_config` in setupFdk function.
+
+> Setting `saleschannel_events_sync` as "manual" means, you will have to manually enable saleschannel level event for individual saleschannel. Default value here is "automatic" and event will be subscribed for all sales channels.  
+ 
+```javascript
+
+let fdkClient = setupFdk({
+  api_key: "<API_KEY>",
+  api_secret: "<API_SECRET>",
+  base_url: baseUrl,
+  scopes: ["company/products"],
+  callbacks: extensionHandler,
+  storage: new RedisStorage(redis),
+  access_mode: "offline",
+  cluster: "https://api.fyndx0.de",
+  webhook_config: {
+    api_path: "/api/v1/webhooks", // required
+    notification_email: "test@abc.com", // required
+    saleschannel_events_sync: 'manual', //optional
+    event_map: { // required
+      'extension/install': {
+        handler: handleExtInstall
+      },
+      'extension/uninstall': {
+        handler: handleExtUninstall
+      },
+      'coupon/create': {
+        handler: handleCouponCreate
+      }
+    }
+  }
+});
+
+```
+
+There should be view on given api path to receive webhook call. It should be `POST` api path. Api view should call `processWebhook` method of `webhookRegistery` object available under `fdkClient` here.
+
+> Here `processWebhook` will do payload validation with signature and calls individual handlers for event passed with webhook config. 
+
+```javascript
+
+app.post('/api/v1/webhooks', async (req, res, next) {
+  try {
+    await fdkClient.webhookRegistery.processWebhook(req);
+    return res.status(200).json({"success": true});
+  }
+  catch(err) {
+    logger.error(err);
+    return res.status(500).json({"success": false});
+  }
+});
+
 ```
