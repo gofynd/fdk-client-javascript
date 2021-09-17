@@ -4,7 +4,7 @@ const hmacSHA256 = require("crypto-js/hmac-sha256");
 const { TEST_WEBHOOK_EVENT_NAME } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 
-class WebhookRegistery {
+class WebhookRegistry {
     constructor() {
         this._handlerMap = null;
         this._config = null;
@@ -174,5 +174,5 @@ class WebhookRegistery {
 }
 
 module.exports = {
-    WebhookRegistery
+    WebhookRegistry
 }

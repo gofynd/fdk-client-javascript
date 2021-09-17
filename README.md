@@ -122,7 +122,7 @@ let fdkClient = setupFdk({
 
 ```
 
-There should be view on given api path to receive webhook call. It should be `POST` api path. Api view should call `processWebhook` method of `webhookRegistery` object available under `fdkClient` here.
+There should be view on given api path to receive webhook call. It should be `POST` api path. Api view should call `processWebhook` method of `webhookRegistry` object available under `fdkClient` here.
 
 > Here `processWebhook` will do payload validation with signature and calls individual handlers for event passed with webhook config. 
 
@@ -130,7 +130,7 @@ There should be view on given api path to receive webhook call. It should be `PO
 
 app.post('/api/v1/webhooks', async (req, res, next) {
   try {
-    await fdkClient.webhookRegistery.processWebhook(req);
+    await fdkClient.webhookRegistry.processWebhook(req);
     return res.status(200).json({"success": true});
   }
   catch(err) {
