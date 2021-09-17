@@ -23,10 +23,45 @@ class FdkInvalidOAuthError extends Error {
     }
 }
 
+class FdkInvalidHMacError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
+class FdkInvalidWebhookConfig extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
+class FdkWebhookRegistrationError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
+class FdkWebhookProcessError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
+class FdkWebhookHandlerNotFound extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+
 
 module.exports = {
     FdkInvalidExtensionJson,
     FdkClusterMetaMissingEror,
     FdkSessionNotFoundError,
-    FdkInvalidOAuthError
+    FdkInvalidOAuthError,
+    FdkInvalidHMacError,
+    FdkInvalidWebhookConfig,
+    FdkWebhookRegistrationError,
+    FdkWebhookProcessError,
+    FdkWebhookHandlerNotFound
 };
