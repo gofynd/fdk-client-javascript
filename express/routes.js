@@ -127,9 +127,9 @@ function setupRoutes(ext) {
             res.header['x-company-id'] = req.fdkSession.company_id;
 
             req.extension = ext;
-            if(ext.webhookHandler.isInitialized()) {
+            if(ext.webhookRegistry.isInitialized()) {
                 const client = await ext.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
-                await ext.webhookHandler.syncEvents(client);
+                await ext.webhookRegistry.syncEvents(client);
             }
             let redirectUrl = await ext.callbacks.auth(req);
             res.redirect(redirectUrl);

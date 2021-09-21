@@ -50,12 +50,14 @@ describe("Webhook Integrations", () => {
         let response = await request
             .get('/fp/install?company_id=1&install_event=true')
             .send();
+        expect(response.status).toBe(302);
         cookie = response.headers['set-cookie'][0].split(",")[0].split("=")[1];
         const queryParams = response.headers['location'].split('?')[1];
         response = await request
             .get(`/fp/auth?company_id=1&install_event=true&${queryParams}`)
             .set('cookie', `${SESSION_COOKIE_NAME}_1=${cookie}`)
             .send();
+        expect(response.status).toBe(302);
     });
 
     afterEach(async () => {
