@@ -36,6 +36,7 @@ const getParamsFromItem = (params) => {
 const generateUrlWithParams = (item = {}, params) => {
   if (!item || !item.link) return "";
   if (!params) return `/${trimChar(item.link.split(":")[0])}`;
+  const joinedParamsObj = {};
   for (let key in params) {
     if (Array.isArray(params[key])) {
       let joinedParams = "";
@@ -45,7 +46,7 @@ const generateUrlWithParams = (item = {}, params) => {
             ? params[key][index]
             : params[key][index] + SLUG_DELIMETER;
       }
-      params[key] = joinedParams;
+      joinedParamsObj[key] = joinedParams;
     }
   }
   item.link = trimChar(item.link);
@@ -55,7 +56,7 @@ const generateUrlWithParams = (item = {}, params) => {
   for (let linkSubString of linkArr) {
     if (linkSubString.startsWith(":")) {
       linkSubString = linkSubString.slice(1);
-      url += `${params[linkSubString]}`;
+      url += `${joinedParamsObj[linkSubString]}`;
     } else url += `${linkSubString}`;
     url += "/";
   }
