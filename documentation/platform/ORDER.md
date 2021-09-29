@@ -10,6 +10,7 @@ Handles Platform websites OMS
 * [activityStatus](#activitystatus)
 * [storeProcessShipmentUpdate](#storeprocessshipmentupdate)
 * [checkRefund](#checkrefund)
+* [ShipmentBagsCanBreak](#shipmentbagscanbreak)
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
@@ -250,6 +251,60 @@ Success
 ---
 
 
+### ShipmentBagsCanBreak
+Decides if Shipment bags can break
+
+
+
+```javascript
+// Promise
+const promise = client.order.ShipmentBagsCanBreak({  body : value });
+
+// Async/Await
+const data = await client.order.ShipmentBagsCanBreak({  body : value });
+```
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| companyId | string | yes | Company Id |  
+| body | [CanBreakRequestBody](#CanBreakRequestBody) | yes | Request body |
+
+
+Decides if Shipment bags can break
+
+*Returned Response:*
+
+
+
+
+[CanBreakResponse](#CanBreakResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getOrdersByCompanyId
 Get Orders for company based on Company Id
 
@@ -267,6 +322,7 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
+ dp : value,
  shortenUrls : value,
  filterType : value });
 
@@ -281,6 +337,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
+ dp : value,
  shortenUrls : value,
  filterType : value });
 ```
@@ -300,6 +357,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
+| dp | string | no | Delivery Partners |    
 | shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
@@ -1285,6 +1343,29 @@ Success
 
  
  
+ #### [CanBreakRequestBody](#CanBreakRequestBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_ids | [string] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CanBreakResponse](#CanBreakResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | boolean |  yes  |  |
+ | valid_actions | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [FailedOrders](#FailedOrders)
 
  | Properties | Type | Nullable | Description |
@@ -1938,11 +2019,11 @@ Success
  | zip | string |  no  |  |
  | last_name | string |  no  |  |
  | address2 | string |  no  |  |
+ | latitude | number |  no  |  |
  | longitude | number |  no  |  |
  | province_code | string |  no  |  |
  | phone | string |  no  |  |
  | company | string |  no  |  |
- | latitude | number |  no  |  |
  | name | string |  no  |  |
  | country | string |  no  |  |
  | country_code | string |  no  |  |
@@ -2094,11 +2175,11 @@ Success
  | country_code | string |  no  |  |
  | country | string |  no  |  |
  | last_name | string |  no  |  |
- | latitude | number |  no  |  |
  | province_code | string |  no  |  |
  | first_name | string |  no  |  |
  | phone | string |  no  |  |
  | province | string |  no  |  |
+ | latitude | number |  no  |  |
  | longitude | number |  no  |  |
  | city | string |  no  |  |
  | company | string |  no  |  |
@@ -2169,7 +2250,6 @@ Success
  | country | string |  no  |  |
  | version | string |  no  |  |
  | address1 | string |  no  |  |
- | latitude | number |  no  |  |
  | updated_at | string |  no  |  |
  | city | string |  no  |  |
  | landmark | string |  no  |  |
@@ -2177,6 +2257,7 @@ Success
  | name | string |  no  |  |
  | address | string |  no  |  |
  | phone | string |  no  |  |
+ | latitude | number |  no  |  |
  | longitude | number |  no  |  |
  | address_type | string |  no  |  |
  | email | string |  no  |  |
@@ -2424,6 +2505,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | stage | string |  no  |  |
  | stores | [string] |  no  |  |
+ | dp | [number] |  no  |  |
  | from_date | string |  no  |  |
  | to_date | string |  no  |  |
 
@@ -2522,6 +2604,10 @@ Success
  | pod | string |  no  |  |
  | lock_status | boolean |  no  |  |
  | ordering_channel | string |  no  |  |
+ | credit_note_id | string |  no  |  |
+ | auto_trigger_dp_assignment | boolean |  no  |  |
+ | packaging_type | string |  no  |  |
+ | dates | [ShipmentDates](#ShipmentDates) |  no  |  |
 
 ---
 
@@ -2894,7 +2980,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | country | string |  no  |  |
- | latitude | number |  no  |  |
  | updated_at | string |  no  |  |
  | area | string |  no  |  |
  | state | string |  no  |  |
@@ -2903,6 +2988,7 @@ Success
  | pincode | string |  no  |  |
  | address1 | string |  no  |  |
  | address2 | string |  no  |  |
+ | latitude | number |  no  |  |
  | longitude | number |  no  |  |
  | email | string |  no  |  |
  | phone | string |  no  |  |
@@ -3175,6 +3261,17 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | next | string |  no  |  |
  | previous | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentDates](#ShipmentDates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | due_date | string |  no  |  |
 
 ---
 
