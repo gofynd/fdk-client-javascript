@@ -96,7 +96,10 @@ class WebhookRegistry {
                 await platformClient.webhook.registerSubscriberToEvent({ body: subscriberConfig });
             }
             else {
-                const eventDiff = existingEvents.filter(eventId => !subscriberConfig.event_id.includes(eventId))
+                const eventDiff = [
+                    ...subscriberConfig.event_id.filter(eventId => !existingEvents.includes(eventId)),
+                    ...existingEvents.filter(eventId => !subscriberConfig.event_id.includes(eventId))
+                ]
                 if (eventDiff.length) {
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
                 }
