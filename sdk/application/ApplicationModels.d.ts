@@ -270,15 +270,15 @@ export class LogisticValidator {
     static getPincodeCity(): any;
 }
 export class Validator {
-    static Meta(): any;
-    static Media(): any;
-    static ProductListingActionPage(): any;
-    static ProductListingAction(): any;
-    static ProductBrand(): any;
     static ProductDetailAttribute(): any;
     static ProductDetailGroupedAttribute(): any;
+    static ProductListingActionPage(): any;
+    static ProductListingAction(): any;
     static Price(): any;
     static ProductListingPrice(): any;
+    static Meta(): any;
+    static Media(): any;
+    static ProductBrand(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
     static ProductSize(): any;
@@ -290,15 +290,15 @@ export class Validator {
     static ProductSizes(): any;
     static Details(): any;
     static MarketPlaceSttributes(): any;
-    static Seller(): any;
+    static ArticleAssignment(): any;
     static ProductStockPrice(): any;
+    static Seller(): any;
+    static Store(): any;
     static ProductSetDistributionSize(): any;
     static ProductSetDistribution(): any;
     static ProductSet(): any;
-    static StrategyWiseListing(): any;
-    static Store(): any;
-    static ArticleAssignment(): any;
     static ReturnConfig(): any;
+    static StrategyWiseListing(): any;
     static ProductSizePriceResponse(): any;
     static ProductSizeSellerFilter(): any;
     static ProductSizeSellersResponse(): any;
@@ -317,8 +317,8 @@ export class Validator {
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
-    static ProductSortOn(): any;
     static ProductListingDetail(): any;
+    static ProductSortOn(): any;
     static ProductFiltersKey(): any;
     static ProductFiltersValue(): any;
     static ProductFilters(): any;
@@ -327,12 +327,12 @@ export class Validator {
     static BrandItem(): any;
     static BrandListingResponse(): any;
     static BrandDetailResponse(): any;
-    static DepartmentIdentifier(): any;
     static ThirdLevelChild(): any;
     static SecondLevelChild(): any;
     static Child(): any;
     static CategoryItems(): any;
     static DepartmentCategoryTree(): any;
+    static DepartmentIdentifier(): any;
     static CategoryListingResponse(): any;
     static CategoryMetaResponse(): any;
     static HomeListingResponse(): any;
@@ -341,8 +341,8 @@ export class Validator {
     static AutocompleteItem(): any;
     static AutoCompleteResponse(): any;
     static GetCollectionDetailNest(): any;
-    static CollectionListingFilterType(): any;
     static CollectionListingFilterTag(): any;
+    static CollectionListingFilterType(): any;
     static CollectionListingFilter(): any;
     static GetCollectionListingResponse(): any;
     static CollectionDetailResponse(): any;
@@ -354,11 +354,11 @@ export class Validator {
     static LatLong(): any;
     static Store1(): any;
     static StoreListingResponse(): any;
+    static CompanyStore(): any;
     static StoreDepartments(): any;
     static SellerPhoneNumber(): any;
-    static CompanyStore(): any;
-    static StoreManagerSerializer(): any;
     static StoreAddressSerializer(): any;
+    static StoreManagerSerializer(): any;
     static AppStore(): any;
     static ApplicationStoreListing(): any;
     static Time(): any;
