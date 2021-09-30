@@ -110,14 +110,14 @@ class WebhookRegistry {
         }
     }
 
-    async enableSalesChannelWebhook(platformClient, application_id) {
+    async enableSalesChannelWebhook(platformClient, applicationId) {
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
             const arrApplicationId = subscriberConfig.association.application_id || [];
-            const rmIndex = arrApplicationId.indexOf(application_id);
+            const rmIndex = arrApplicationId.indexOf(applicationId);
             if (rmIndex === -1) {
-                arrApplicationId.push(application_id);
+                arrApplicationId.push(applicationId);
                 subscriberConfig.association.application_id = arrApplicationId;
                 await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
             }
@@ -127,13 +127,13 @@ class WebhookRegistry {
         }
     }
 
-    async disableSalesChannelWebhook(platformClient, application_id) {
+    async disableSalesChannelWebhook(platformClient, applicationId) {
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
             const arrApplicationId = subscriberConfig.association.application_id;
             if (arrApplicationId && arrApplicationId.length) {
-                const rmIndex = arrApplicationId.indexOf(application_id);
+                const rmIndex = arrApplicationId.indexOf(applicationId);
                 if (rmIndex > -1) {
                     arrApplicationId.splice(rmIndex, 1);
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
