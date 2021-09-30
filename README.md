@@ -88,8 +88,6 @@ function backgroundHandler(companyId) {
 #### How to register for webhook events?
 
 Webhook events can be helpful to handle tasks when certan events occur on platform. You can subscribe to such events by passing `webhook_config` in setupFdk function.
-
-> Setting `saleschannel_events_sync` as "manual" means, you will have to manually enable saleschannel level event for individual saleschannel. Default value here is "automatic" and event will be subscribed for all sales channels.  
  
 ```javascript
 
@@ -140,3 +138,6 @@ app.post('/api/v1/webhooks', async (req, res, next) {
 });
 
 ```
+
+> Setting `saleschannel_events_sync` as "manual" means, you will have to manually enable saleschannel level event for individual saleschannel. Default value here is "automatic" and event will be subscribed for all sales channels. For enabling events manually use function `enableSalesChannelWebhook`. To disable receiving events for a saleschannel use function `disableSalesChannelWebhook`. 
+
