@@ -38,10 +38,10 @@ const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- |  
 | q | string | no | The search query. Mobile number or email ID of a customer. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
@@ -104,10 +104,10 @@ const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q 
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- |  
 | q | string | no | The search query. Mobile number or email ID of a customer. |  
 
 
@@ -203,10 +203,10 @@ const data = await client.application("<APPLICATION_ID>").user.createUser({  bod
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |  
+| --------- | -----  | -------- | ----------- |
 | body | [CreateUserRequestSchema](#CreateUserRequestSchema) | yes | Request body |
 
 
@@ -302,10 +302,10 @@ const data = await client.application("<APPLICATION_ID>").user.updateUser({  use
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | userId | string | yes | User ID |  
 | body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
 
@@ -400,10 +400,10 @@ const data = await client.application("<APPLICATION_ID>").user.createUserSession
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |  
+| --------- | -----  | -------- | ----------- |
 | body | [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema) | yes | Request body |
 
 
@@ -463,10 +463,6 @@ const data = await client.application("<APPLICATION_ID>").user.getPlatformConfig
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -583,10 +579,10 @@ const data = await client.application("<APPLICATION_ID>").user.updatePlatformCon
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- |
 | body | [PlatformSchema](#PlatformSchema) | yes | Request body |
 
 

@@ -50,10 +50,10 @@ const data = await client.application("<APPLICATION_ID>").theme.getAllPages({  t
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme to be retrieved |  
 
 
@@ -116,10 +116,10 @@ const data = await client.application("<APPLICATION_ID>").theme.createPage({  th
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme |  
 | body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
 
@@ -182,10 +182,10 @@ const data = await client.application("<APPLICATION_ID>").theme.updateMultiplePa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme to be retrieved |  
 | body | [AllAvailablePageSchema](#AllAvailablePageSchema) | yes | Request body |
 
@@ -248,10 +248,10 @@ const data = await client.application("<APPLICATION_ID>").theme.getPage({  theme
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme to be retrieved |   
 | pageValue | string | yes | Value of the page to be retrieved |  
 
@@ -317,10 +317,10 @@ const data = await client.application("<APPLICATION_ID>").theme.updatePage({  th
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme |   
 | pageValue | string | yes | Value of the page to be updated |  
 | body | [AvailablePageSchema](#AvailablePageSchema) | yes | Request body |
@@ -384,10 +384,10 @@ const data = await client.application("<APPLICATION_ID>").theme.deletePage({  th
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID |   
-| applicationId | string | yes | Application ID |   
 | themeId | string | yes | ID of the theme |   
 | pageValue | string | yes | Value of the page to be updated |  
 
@@ -451,10 +451,10 @@ const data = await client.application("<APPLICATION_ID>").theme.getThemeLibrary(
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- |  
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10.  |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |  
 
@@ -516,10 +516,10 @@ const data = await client.application("<APPLICATION_ID>").theme.addToThemeLibrar
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- |
 | body | [AddThemeRequestSchema](#AddThemeRequestSchema) | yes | Request body |
 
 
@@ -579,10 +579,10 @@ const data = await client.application("<APPLICATION_ID>").theme.applyTheme({  bo
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- |
 | body | [AddThemeRequestSchema](#AddThemeRequestSchema) | yes | Request body |
 
 
@@ -642,10 +642,10 @@ const data = await client.application("<APPLICATION_ID>").theme.isUpgradable({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | Theme ID |  
 
 
@@ -706,10 +706,10 @@ const data = await client.application("<APPLICATION_ID>").theme.upgradeTheme({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -772,10 +772,10 @@ const data = await client.application("<APPLICATION_ID>").theme.getPublicThemes(
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |    
+| --------- | -----  | -------- | ----------- |  
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10.  |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -837,10 +837,10 @@ const data = await client.application("<APPLICATION_ID>").theme.createTheme({  b
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
+| --------- | -----  | -------- | ----------- |
 | body | [ThemesSchema](#ThemesSchema) | yes | Request body |
 
 
@@ -900,10 +900,6 @@ const data = await client.application("<APPLICATION_ID>").theme.getAppliedTheme(
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -963,10 +959,6 @@ const data = await client.application("<APPLICATION_ID>").theme.getFonts();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |  
 
 
 
@@ -1026,10 +1018,10 @@ const data = await client.application("<APPLICATION_ID>").theme.getThemeById({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -1092,10 +1084,10 @@ const data = await client.application("<APPLICATION_ID>").theme.updateTheme({  t
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 | body | [ThemesSchema](#ThemesSchema) | yes | Request body |
 
@@ -1156,10 +1148,10 @@ const data = await client.application("<APPLICATION_ID>").theme.deleteTheme({  t
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -1220,10 +1212,10 @@ const data = await client.application("<APPLICATION_ID>").theme.getThemeForPrevi
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -1284,10 +1276,10 @@ const data = await client.application("<APPLICATION_ID>").theme.publishTheme({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -1348,10 +1340,10 @@ const data = await client.application("<APPLICATION_ID>").theme.unpublishTheme({
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -1412,10 +1404,10 @@ const data = await client.application("<APPLICATION_ID>").theme.archiveTheme({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 
@@ -1476,10 +1468,10 @@ const data = await client.application("<APPLICATION_ID>").theme.unarchiveTheme({
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Numeric ID allotted to a business account on Fynd Platform. |   
-| applicationId | string | yes | Alphanumeric ID allotted to an application created within a business account. |   
 | themeId | string | yes | ID allotted to the theme. |  
 
 

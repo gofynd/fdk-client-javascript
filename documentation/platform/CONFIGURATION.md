@@ -69,10 +69,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.getBuild
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |   
 | platformType | string | yes | Current platform name |  
 
 
@@ -145,10 +145,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateBu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |   
 | platformType | string | yes | Current platform name |  
 | body | [MobileAppConfigRequest](#MobileAppConfigRequest) | yes | Request body |
 
@@ -219,10 +219,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.getPrevi
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |   
 | platformType | string | yes | Current platform name |  
 
 
@@ -290,10 +290,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppFe
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -441,10 +437,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateAp
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
 
 
@@ -580,10 +576,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppBa
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -675,10 +667,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateAp
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [ApplicationDetail](#ApplicationDetail) | yes | Request body |
 
 
@@ -768,10 +760,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppCo
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -938,10 +926,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateAp
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [ApplicationInformation](#ApplicationInformation) | yes | Request body |
 
 
@@ -1101,10 +1089,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppAp
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -1234,10 +1218,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateAp
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [TokenResponse](#TokenResponse) | yes | Request body |
 
 
@@ -1369,10 +1353,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppCo
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -1453,10 +1437,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppSt
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -1548,10 +1532,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getInven
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -1787,10 +1767,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateIn
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [ApplicationInventory](#ApplicationInventory) | yes | Request body |
 
 
@@ -2026,10 +2006,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.partiall
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [AppInventoryPartialUpdate](#AppInventoryPartialUpdate) | yes | Request body |
 
 
@@ -2265,10 +2245,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppCu
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -2336,10 +2312,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateAp
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [AppSupportedCurrency](#AppSupportedCurrency) | yes | Request body |
 
 
@@ -2411,10 +2387,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.getOrder
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 | body | [FilterOrderingStoreRequest](#FilterOrderingStoreRequest) | yes | Request body |
@@ -2552,10 +2528,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.updateOr
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [OrderingStoreConfig](#OrderingStoreConfig) | yes | Request body |
 
 
@@ -2618,10 +2594,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getDomai
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -2697,10 +2669,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.addDomai
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [DomainAddRequest](#DomainAddRequest) | yes | Request body |
 
 
@@ -2760,10 +2732,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.removeDo
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |   
 | id | string | yes | Domain _id |  
 
 
@@ -2818,10 +2790,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.changeDo
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [UpdateDomainTypeRequest](#UpdateDomainTypeRequest) | yes | Request body |
 
 
@@ -2897,10 +2869,10 @@ const data = await client.application("<APPLICATION_ID>").configuration.getDomai
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [DomainStatusRequest](#DomainStatusRequest) | yes | Request body |
 
 
@@ -2968,9 +2940,10 @@ const data = await client.configuration.createApplication({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |  
+| --------- | -----  | -------- | ----------- |
 | body | [CreateApplicationRequest](#CreateApplicationRequest) | yes | Request body |
 
 
@@ -3026,9 +2999,10 @@ const data = await client.configuration.getApplications({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | q | string | no | Url encoded object used as mongodb query |  
@@ -3083,10 +3057,6 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppli
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |  
 
 
 
@@ -3138,9 +3108,6 @@ const data = await client.configuration.getCurrencies();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |  
 
 
 
@@ -3205,9 +3172,10 @@ const data = await client.configuration.getDomainAvailibility({  body : value })
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |  
+| --------- | -----  | -------- | ----------- |
 | body | [DomainSuggestionsRequest](#DomainSuggestionsRequest) | yes | Request body |
 
 
@@ -3303,9 +3271,10 @@ const data = await client.configuration.getIntegrationById({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | id | number | yes | Integration id |  
 
 
@@ -3447,9 +3416,10 @@ const data = await client.configuration.getAvailableOptIns({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -3616,9 +3586,10 @@ const data = await client.configuration.getSelectedOptIns({  level : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | level | string | yes | Integration level |   
 | uid | number | yes | Integration level uid |    
 | pageNo | number | no | Current page no |    
@@ -3787,9 +3758,10 @@ const data = await client.configuration.getIntegrationLevelConfig({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | id | string | yes | Integration id |   
 | level | string | yes | Integration level |    
 | opted | boolean | no | Filter on opted stores |    
@@ -3870,9 +3842,10 @@ const data = await client.configuration.getIntegrationByLevelId({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | id | string | yes | Integration id |   
 | level | string | yes | Integration level |   
 | uid | number | yes | Integration level uid |  
@@ -3948,9 +3921,10 @@ const data = await client.configuration.getLevelActiveIntegrations({  id : value
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | id | string | yes | Integration id |   
 | level | string | yes | Integration level |   
 | uid | number | yes | Integration level uid |  
@@ -4022,9 +3996,10 @@ const data = await client.configuration.getBrandsByCompany({  q : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |    
+| --------- | -----  | -------- | ----------- |  
 | q | string | no | Search text for brand name |  
 
 
@@ -4098,9 +4073,10 @@ const data = await client.configuration.getCompanyByBrands({  body : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 | body | [CompanyByBrandsRequest](#CompanyByBrandsRequest) | yes | Request body |
@@ -4180,9 +4156,10 @@ const data = await client.configuration.getStoreByBrands({  body : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 | body | [StoreByBrandsRequest](#StoreByBrandsRequest) | yes | Request body |
@@ -4299,9 +4276,10 @@ const data = await client.configuration.getOtherSellerApplications({  pageNo : v
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
@@ -4398,9 +4376,10 @@ const data = await client.configuration.getOtherSellerApplicationById({  id : va
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | id | string | yes | Application Id |  
 
 
@@ -4502,9 +4481,10 @@ const data = await client.configuration.optOutFromApplication({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
 | id | string | yes | Application Id |  
 | body | [OptOutInventory](#OptOutInventory) | yes | Request body |
 

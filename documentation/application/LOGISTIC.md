@@ -29,6 +29,8 @@ const data = await logistic.getTatProduct({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [GetTatProductReqBody](#GetTatProductReqBody) | yes | Request body |
@@ -79,6 +81,8 @@ const promise = logistic.getPincodeCity({  pincode : value });
 // Async/Await
 const data = await logistic.getPincodeCity({  pincode : value });
 ```
+
+
 
 
 

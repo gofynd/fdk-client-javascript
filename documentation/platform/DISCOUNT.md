@@ -53,9 +53,10 @@ const data = await client.discount.getDiscounts({  view : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |    
+| --------- | -----  | -------- | ----------- |  
 | view | string | no | listing or calender.  Default is listing. |    
 | q | string | no | The search query. This can be a partial or complete name of a discount. |    
 | pageNo | number | no | page number. Default is 1. |    
@@ -116,9 +117,10 @@ const data = await client.discount.createDiscount({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |  
+| --------- | -----  | -------- | ----------- |
 | body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
 
 
@@ -170,9 +172,10 @@ const data = await client.discount.getDiscount({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | id | string | yes | unique id. |  
 
 
@@ -227,9 +230,10 @@ const data = await client.discount.updateDiscount({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | id | string | yes | id |  
 | body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
 
@@ -284,9 +288,10 @@ const data = await client.discount.validateDiscountFile({  body : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |    
+| --------- | -----  | -------- | ----------- |  
 | discount | string | no | discount |  
 | body | [DiscountJob](#DiscountJob) | yes | Request body |
 
@@ -341,9 +346,10 @@ const data = await client.discount.downloadDiscountFile({  type : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | type | string | yes | type |  
 | body | [DownloadFileJob](#DownloadFileJob) | yes | Request body |
 
@@ -396,9 +402,10 @@ const data = await client.discount.getValidationJob({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | id | string | yes | id |  
 
 
@@ -451,9 +458,10 @@ const data = await client.discount.cancelValidationJob({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | id | string | yes | id |  
 
 
@@ -506,9 +514,10 @@ const data = await client.discount.getDownloadJob({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | id | string | yes | id |  
 
 
@@ -561,9 +570,10 @@ const data = await client.discount.cancelDownloadJob({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | id | string | yes | id |  
 
 

@@ -40,9 +40,10 @@ const data = await client.billing.createSubscriptionCharge({  extensionId : valu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | string | yes | Extension _id |  
 | body | [CreateSubscriptionCharge](#CreateSubscriptionCharge) | yes | Request body |
 
@@ -97,9 +98,10 @@ const data = await client.billing.getSubscriptionCharge({  extensionId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | string | yes | Extension _id |   
 | subscriptionId | string | yes | Subscription charge _id |  
 
@@ -155,9 +157,10 @@ const data = await client.billing.cancelSubscriptionCharge({  extensionId : valu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
 | extensionId | string | yes | Extension _id |   
 | subscriptionId | string | yes | Subscription charge _id |  
 
@@ -211,9 +214,6 @@ const data = await client.billing.getInvoices();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -273,9 +273,10 @@ const data = await client.billing.getInvoiceById({  invoiceId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |   
 | invoiceId | string | yes | Invoice id |  
 
 
@@ -336,9 +337,6 @@ const data = await client.billing.getCustomerDetail();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -398,9 +396,10 @@ const data = await client.billing.upsertCustomerDetail({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- |
 | body | [SubscriptionCustomerCreate](#SubscriptionCustomerCreate) | yes | Request body |
 
 
@@ -460,9 +459,6 @@ const data = await client.billing.getSubscription();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -533,9 +529,6 @@ const data = await client.billing.getFeatureLimitConfig();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
 
 
 
@@ -595,9 +588,10 @@ const data = await client.billing.activateSubscriptionPlan({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- |
 | body | [SubscriptionActivateReq](#SubscriptionActivateReq) | yes | Request body |
 
 
@@ -657,9 +651,10 @@ const data = await client.billing.cancelSubscriptionPlan({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Customer unique id. In case of company it will be company id. |  
+| --------- | -----  | -------- | ----------- |
 | body | [CancelSubscriptionReq](#CancelSubscriptionReq) | yes | Request body |
 
 

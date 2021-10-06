@@ -34,6 +34,8 @@ const data = await rewards.getPointsOnProduct({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [CatalogueOrderRequest](#CatalogueOrderRequest) | yes | Request body |
@@ -84,6 +86,8 @@ const promise = rewards.getOfferByName({  name : value });
 // Async/Await
 const data = await rewards.getOfferByName({  name : value });
 ```
+
+
 
 
 
@@ -141,6 +145,8 @@ const data = await rewards.getOrderDiscount({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [OrderDiscountRequest](#OrderDiscountRequest) | yes | Request body |
@@ -195,6 +201,8 @@ const data = await rewards.getUserPoints();
 
 
 
+
+
 Use this API to retrieve total available points of a user for current application
 
 *Returned Response:*
@@ -242,6 +250,8 @@ const promise = rewards.getUserPointsHistory({  pageId : value,
 const data = await rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -301,6 +311,8 @@ const data = await rewards.getUserReferralDetails();
 
 
 
+
+
 Use this API to retrieve the referral details a user has configured in the application.
 
 *Returned Response:*
@@ -346,6 +358,8 @@ const promise = rewards.redeemReferralCode({  body : value });
 // Async/Await
 const data = await rewards.redeemReferralCode({  body : value });
 ```
+
+
 
 
 

@@ -30,6 +30,8 @@ const data = await common.getLocations({  locationType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | locationType | string | no | Provide location type to query on. Possible values : country, state, city |    

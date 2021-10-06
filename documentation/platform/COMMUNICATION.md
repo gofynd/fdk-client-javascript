@@ -68,10 +68,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getCampa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -134,10 +134,10 @@ const data = await client.application("<APPLICATION_ID>").communication.createCa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [CampaignReq](#CampaignReq) | yes | Request body |
 
 
@@ -197,10 +197,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getCampa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Campaign id |  
 
 
@@ -263,10 +263,10 @@ const data = await client.application("<APPLICATION_ID>").communication.updateCa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Campaign id |  
 | body | [CampaignReq](#CampaignReq) | yes | Request body |
 
@@ -327,10 +327,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getStats
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Campaign id |  
 
 
@@ -395,10 +395,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getAudie
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -461,10 +461,10 @@ const data = await client.application("<APPLICATION_ID>").communication.createAu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [AudienceReq](#AudienceReq) | yes | Request body |
 
 
@@ -524,10 +524,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getBigqu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [BigqueryHeadersReq](#BigqueryHeadersReq) | yes | Request body |
 
 
@@ -587,10 +587,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getAudie
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Audience id |  
 
 
@@ -653,10 +653,10 @@ const data = await client.application("<APPLICATION_ID>").communication.updateAu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Audience id |  
 | body | [AudienceReq](#AudienceReq) | yes | Request body |
 
@@ -717,10 +717,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getNSamp
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [GetNRecordsCsvReq](#GetNRecordsCsvReq) | yes | Request body |
 
 
@@ -784,10 +784,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getEmail
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -850,10 +850,10 @@ const data = await client.application("<APPLICATION_ID>").communication.createEm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
 
 
@@ -913,10 +913,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getEmail
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Email provider id |  
 
 
@@ -979,10 +979,10 @@ const data = await client.application("<APPLICATION_ID>").communication.updateEm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Email provider id |  
 | body | [EmailProviderReq](#EmailProviderReq) | yes | Request body |
 
@@ -1047,10 +1047,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getEmail
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -1113,10 +1113,10 @@ const data = await client.application("<APPLICATION_ID>").communication.createEm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
 
 
@@ -1180,10 +1180,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getSyste
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -1246,10 +1246,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getEmail
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Email template id |  
 
 
@@ -1312,10 +1312,10 @@ const data = await client.application("<APPLICATION_ID>").communication.updateEm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Email template id |  
 | body | [EmailTemplateReq](#EmailTemplateReq) | yes | Request body |
 
@@ -1376,10 +1376,10 @@ const data = await client.application("<APPLICATION_ID>").communication.deleteEm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Email template id |  
 
 
@@ -1444,10 +1444,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getEvent
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | populate | string | no | populate fields |  
@@ -1514,10 +1514,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getJobs(
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -1580,10 +1580,10 @@ const data = await client.application("<APPLICATION_ID>").communication.triggerC
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [TriggerJobRequest](#TriggerJobRequest) | yes | Request body |
 
 
@@ -1647,10 +1647,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getJobLo
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -1719,10 +1719,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getCommu
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageId | string | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on _id |    
@@ -1788,9 +1788,10 @@ const data = await client.communication.getSystemNotifications({  pageNo : value
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |  
 
@@ -1856,10 +1857,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getSmsPr
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -1922,10 +1923,10 @@ const data = await client.application("<APPLICATION_ID>").communication.createSm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
 
 
@@ -1985,10 +1986,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getSmsPr
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Sms provider id |  
 
 
@@ -2051,10 +2052,10 @@ const data = await client.application("<APPLICATION_ID>").communication.updateSm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Sms provider id |  
 | body | [SmsProviderReq](#SmsProviderReq) | yes | Request body |
 
@@ -2119,10 +2120,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getSmsTe
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -2185,10 +2186,10 @@ const data = await client.application("<APPLICATION_ID>").communication.createSm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
 
 
@@ -2248,10 +2249,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getSmsTe
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Sms template id |  
 
 
@@ -2314,10 +2315,10 @@ const data = await client.application("<APPLICATION_ID>").communication.updateSm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Sms template id |  
 | body | [SmsTemplateReq](#SmsTemplateReq) | yes | Request body |
 
@@ -2378,10 +2379,10 @@ const data = await client.application("<APPLICATION_ID>").communication.deleteSm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |   
 | id | string | yes | Sms template id |  
 
 
@@ -2446,10 +2447,10 @@ const data = await client.application("<APPLICATION_ID>").communication.getSyste
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company id |   
-| applicationId | string | yes | Application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  

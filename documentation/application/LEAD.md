@@ -34,6 +34,8 @@ const data = await lead.getTicket({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | ID of ticket to be retrieved |  
@@ -289,6 +291,8 @@ const data = await lead.createHistory({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Ticket ID for which history is created |  
@@ -382,6 +386,8 @@ const promise = lead.createTicket({  body : value });
 // Async/Await
 const data = await lead.createTicket({  body : value });
 ```
+
+
 
 
 
@@ -637,6 +643,8 @@ const data = await lead.getCustomForm({  slug : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | Slug of form whose response is getting submitted |  
@@ -742,6 +750,8 @@ const promise = lead.submitCustomForm({  slug : value,
 const data = await lead.submitCustomForm({  slug : value,
  body : value });
 ```
+
+
 
 
 
@@ -1000,6 +1010,8 @@ const data = await lead.getParticipantsInsideVideoRoom({  uniqueName : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | uniqueName | string | yes | Unique name of Video Room |  
@@ -1061,6 +1073,8 @@ const promise = lead.getTokenForVideoRoom({  uniqueName : value });
 // Async/Await
 const data = await lead.getTokenForVideoRoom({  uniqueName : value });
 ```
+
+
 
 
 

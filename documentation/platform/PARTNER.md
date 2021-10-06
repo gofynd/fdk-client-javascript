@@ -31,10 +31,10 @@ const data = await client.application("<APPLICATION_ID>").partner.addProxyPath({
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |   
 | extensionId | string | yes | Extension id |  
 | body | [AddProxyReq](#AddProxyReq) | yes | Request body |
 
@@ -98,10 +98,10 @@ const data = await client.application("<APPLICATION_ID>").partner.removeProxyPat
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current application id |   
 | extensionId | string | yes | Extension id |   
 | attachedPath | string | yes | Attachaed path slug |  
 

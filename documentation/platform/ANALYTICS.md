@@ -39,10 +39,6 @@ const data = await client.application("<APPLICATION_ID>").analytics.getStatiscti
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |  
 
 
 
@@ -102,10 +98,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getStatiscti
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | groupName | string | yes | Group name |  
 
 
@@ -169,10 +165,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getComponent
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | componentName | string | yes | Component name |  
 
 
@@ -225,10 +221,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getComponent
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | componentName | string | yes | Component name |  
 
 
@@ -281,10 +277,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getComponent
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | componentName | string | yes | Component name |  
 
 
@@ -390,10 +386,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | fromDate | string | yes | From date |   
 | toDate | string | yes | To date |    
 | pageNo | number | no | Current page number |    
@@ -471,10 +467,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | fromDate | string | yes | From date |   
 | toDate | string | yes | To date |  
 
@@ -528,10 +524,10 @@ const data = await client.application("<APPLICATION_ID>").analytics.getAbandonCa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | cartId | string | yes | Cart Id |  
 
 
@@ -586,9 +582,10 @@ const data = await client.analytics.createExportJob({  exportType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | exportType | string | yes | Export type / format |  
 | body | [ExportJobReq](#ExportJobReq) | yes | Request body |
 
@@ -646,9 +643,10 @@ const data = await client.analytics.getExportJobStatus({  exportType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | exportType | string | yes | Export type / format |   
 | jobId | string | yes | Export job id |  
 
@@ -712,9 +710,10 @@ const data = await client.analytics.getLogsList({  logType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | logType | string | yes | Log type |    
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |  
@@ -793,9 +792,10 @@ const data = await client.analytics.searchLogs({  logType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |   
 | logType | string | yes | Log type |  

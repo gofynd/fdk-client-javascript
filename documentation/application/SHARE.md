@@ -35,6 +35,8 @@ const data = await share.getApplicationQRCode();
 
 
 
+
+
 Use this API to create a QR code of an app for sharing it with users who want to use the app.
 
 *Returned Response:*
@@ -83,6 +85,8 @@ const promise = share.getProductQRCodeBySlug({  slug : value });
 // Async/Await
 const data = await share.getProductQRCodeBySlug({  slug : value });
 ```
+
+
 
 
 
@@ -143,6 +147,8 @@ const data = await share.getCollectionQRCodeBySlug({  slug : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. |  
@@ -200,6 +206,8 @@ const data = await share.getUrlQRCode({  url : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | url | string | yes | A link or a web address |  
@@ -254,6 +262,8 @@ const promise = share.createShortLink({  body : value });
 // Async/Await
 const data = await share.createShortLink({  body : value });
 ```
+
+
 
 
 
@@ -348,6 +358,8 @@ const data = await share.getShortLinkByHash({  hash : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | hash | string | yes | A string value used for converting long URL to short URL and vice-versa. |  
@@ -437,6 +449,8 @@ const promise = share.getOriginalShortLinkByHash({  hash : value });
 // Async/Await
 const data = await share.getOriginalShortLinkByHash({  hash : value });
 ```
+
+
 
 
 

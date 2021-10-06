@@ -45,10 +45,6 @@ const data = await client.application("<APPLICATION_ID>").payment.getBrandPaymen
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
 
 
 
@@ -217,10 +213,10 @@ const data = await client.application("<APPLICATION_ID>").payment.saveBrandPayme
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
 
 
@@ -277,10 +273,10 @@ const data = await client.application("<APPLICATION_ID>").payment.updateBrandPay
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
 
 
@@ -339,10 +335,10 @@ const data = await client.application("<APPLICATION_ID>").payment.getPaymentMode
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |   
 | refresh | boolean | yes |  |   
 | requestType | string | yes |  |  
 
@@ -1523,9 +1519,10 @@ const data = await client.payment.getAllPayouts({  uniqueExternalId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | uniqueExternalId | string | no | Fetch payouts using unique external id |  
 
 
@@ -1641,9 +1638,10 @@ const data = await client.payment.savePayout({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |  
+| --------- | -----  | -------- | ----------- |
 | body | [PayoutRequest](#PayoutRequest) | yes | Request body |
 
 
@@ -1725,9 +1723,10 @@ const data = await client.payment.updatePayout({  uniqueTransferNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
 | uniqueTransferNo | string | yes | Unique transfer id |  
 | body | [PayoutRequest](#PayoutRequest) | yes | Request body |
 
@@ -1786,9 +1785,10 @@ const data = await client.payment.activateAndDectivatePayout({  uniqueTransferNo
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
 | uniqueTransferNo | string | yes | Unique transfer id |  
 | body | [UpdatePayoutRequest](#UpdatePayoutRequest) | yes | Request body |
 
@@ -1845,9 +1845,10 @@ const data = await client.payment.deletePayout({  uniqueTransferNo : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
 | uniqueTransferNo | string | yes | Unique transfer id |  
 
 
@@ -1902,9 +1903,6 @@ const data = await client.payment.getSubscriptionPaymentMethod();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |  
 
 
 
@@ -2086,9 +2084,10 @@ const data = await client.payment.deleteSubscriptionPaymentMethod({  uniqueExter
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
 | uniqueExternalId | string | yes |  |   
 | paymentMethodId | string | yes |  |  
 
@@ -2144,9 +2143,6 @@ const data = await client.payment.getSubscriptionConfig();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |  
 
 
 
@@ -2204,9 +2200,10 @@ const data = await client.payment.saveSubscriptionSetupIntent({  body : value })
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |  
+| --------- | -----  | -------- | ----------- |
 | body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | yes | Request body |
 
 
@@ -2267,10 +2264,10 @@ const data = await client.application("<APPLICATION_ID>").payment.addBeneficiary
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | yes | Request body |
 
 
@@ -2326,9 +2323,10 @@ const data = await client.payment.verifyIfscCode({  ifscCode : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | ifscCode | string | no |  |  
 
 
@@ -2401,11 +2399,11 @@ const data = await client.application("<APPLICATION_ID>").payment.getUserOrderBe
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |   
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
+| orderId | string | yes |  |  
 
 
 
@@ -2481,11 +2479,11 @@ const data = await client.application("<APPLICATION_ID>").payment.getUserBenefic
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |   
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
+| orderId | string | yes |  |  
 
 
 
@@ -2562,10 +2560,10 @@ const data = await client.application("<APPLICATION_ID>").payment.confirmPayment
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id |   
-| applicationId | string | yes | Application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [PaymentConfirmationRequest](#PaymentConfirmationRequest) | yes | Request body |
 
 

@@ -46,6 +46,8 @@ const data = await content.getAnnouncements();
 
 
 
+
+
 Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
 
 *Returned Response:*
@@ -118,6 +120,8 @@ const data = await content.getBlog({  slug : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a blog. You can get slug value from the endpoint /service/application/content/v1.0/blogs/. |    
@@ -180,6 +184,8 @@ const promise = content.getBlogs({  pageNo : value,
 const data = await content.getBlogs({  pageNo : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -247,6 +253,8 @@ const data = await content.getFaqs();
 
 
 
+
+
 Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
 
 *Returned Response:*
@@ -300,6 +308,8 @@ const promise = content.getFaqCategories();
 // Async/Await
 const data = await content.getFaqCategories();
 ```
+
+
 
 
 
@@ -365,6 +375,8 @@ const data = await content.getFaqBySlug({  slug : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of an FAQ. You can get slug value from the endpoint /service/application/content/v1.0/faq. |  
@@ -422,6 +434,8 @@ const promise = content.getFaqCategoryBySlug({  slug : value });
 // Async/Await
 const data = await content.getFaqCategoryBySlug({  slug : value });
 ```
+
+
 
 
 
@@ -496,6 +510,8 @@ const data = await content.getFaqsByCategorySlug({  slug : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of an FAQ category. You can get slug value from the endpoint /service/application/content/v1.0/faq/categories. |  
@@ -561,6 +577,8 @@ const data = await content.getLandingPage();
 
 
 
+
+
 Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
 
 *Returned Response:*
@@ -614,6 +632,8 @@ const promise = content.getLegalInformation();
 // Async/Await
 const data = await content.getLegalInformation();
 ```
+
+
 
 
 
@@ -673,6 +693,8 @@ const promise = content.getNavigations({  pageNo : value,
 const data = await content.getNavigations({  pageNo : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -741,6 +763,8 @@ const data = await content.getPage({  slug : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value from the endpoint /service/application/content/v1.0/pages/. |    
@@ -803,6 +827,8 @@ const promise = content.getPages({  pageNo : value,
 const data = await content.getPages({  pageNo : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -870,6 +896,8 @@ const data = await content.getSEOConfiguration();
 
 
 
+
+
 Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
 
 *Returned Response:*
@@ -925,6 +953,8 @@ const promise = content.getSlideshows({  pageNo : value,
 const data = await content.getSlideshows({  pageNo : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -991,6 +1021,8 @@ const data = await content.getSlideshow({  slug : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a slideshow. You can get slug value from the endpoint /service/application/content/v1.0/slideshow/. |  
@@ -1054,6 +1086,8 @@ const data = await content.getSupportInformation();
 
 
 
+
+
 Use this API to get contact details for customer support including emails and phone numbers.
 
 *Returned Response:*
@@ -1107,6 +1141,8 @@ const promise = content.getTags();
 // Async/Await
 const data = await content.getTags();
 ```
+
+
 
 
 

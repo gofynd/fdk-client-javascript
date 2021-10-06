@@ -38,10 +38,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.getAttributes
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | pagination page no |    
 | pageSize | number | no | pagination page size |  
 
@@ -123,10 +123,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.getCustomerRe
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |    
+| --------- | -----  | -------- | ----------- |  
 | id | string | no | review id |    
 | entityId | string | no | entity id |    
 | entityType | string | no | entity type |    
@@ -195,10 +195,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.updateApprove
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | reviewId | string | yes | review id |  
 | body | [ApproveRequest](#ApproveRequest) | yes | Request body |
 
@@ -251,10 +251,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.getHistory({ 
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | reviewId | string | yes | review id |  
 
 
@@ -309,10 +309,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.getApplicatio
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageId | string | no | pagination page id |    
 | pageSize | number | no | pagination page size |  
 
@@ -366,10 +366,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.createTemplat
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [TemplateRequestList](#TemplateRequestList) | yes | Request body |
 
 
@@ -424,10 +424,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.getTemplateBy
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | id | string | yes | template id |  
 
 
@@ -482,10 +482,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.updateTemplat
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | id | string | yes | template id |  
 | body | [UpdateTemplateRequest](#UpdateTemplateRequest) | yes | Request body |
 
@@ -540,10 +540,10 @@ const data = await client.application("<APPLICATION_ID>").feedback.updateTemplat
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | id | string | yes | template id |  
 | body | [UpdateTemplateStatusRequest](#UpdateTemplateStatusRequest) | yes | Request body |
 

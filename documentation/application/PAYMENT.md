@@ -51,6 +51,8 @@ const data = await payment.getAggregatorsConfig({  xApiToken : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | xApiToken | string | no | Used for basic authentication. |    
@@ -142,6 +144,8 @@ const data = await payment.attachCardToCustomer({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [AttachCardRequest](#AttachCardRequest) | yes | Request body |
@@ -224,6 +228,8 @@ const data = await payment.getActiveCardAggregator({  refresh : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | refresh | boolean | no |  |  
@@ -283,6 +289,8 @@ const promise = payment.getActiveUserCards({  forceRefresh : value });
 // Async/Await
 const data = await payment.getActiveUserCards({  forceRefresh : value });
 ```
+
+
 
 
 
@@ -363,6 +371,8 @@ const data = await payment.deleteUserCard({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [DeletehCardRequest](#DeletehCardRequest) | yes | Request body |
@@ -415,6 +425,8 @@ const promise = payment.verifyCustomerForPayment({  body : value });
 // Async/Await
 const data = await payment.verifyCustomerForPayment({  body : value });
 ```
+
+
 
 
 
@@ -483,6 +495,8 @@ const data = await payment.verifyAndChargePayment({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [ChargeCustomerRequest](#ChargeCustomerRequest) | yes | Request body |
@@ -541,6 +555,8 @@ const promise = payment.initialisePayment({  body : value });
 // Async/Await
 const data = await payment.initialisePayment({  body : value });
 ```
+
+
 
 
 
@@ -606,6 +622,8 @@ const promise = payment.checkAndUpdatePaymentStatus({  body : value });
 // Async/Await
 const data = await payment.checkAndUpdatePaymentStatus({  body : value });
 ```
+
+
 
 
 
@@ -675,6 +693,8 @@ const data = await payment.getPaymentModeRoutes({  amount : value,
  cardReference : value,
  userDetails : value });
 ```
+
+
 
 
 
@@ -1122,6 +1142,8 @@ const data = await payment.getPosPaymentModeRoutes({  amount : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | amount | number | yes | Payable amount. |   
@@ -1339,6 +1361,8 @@ const data = await payment.getRupifiBannerDetails();
 
 
 
+
+
 Get CreditLine Offer if user is tentatively approved by rupifi
 
 *Returned Response:*
@@ -1390,6 +1414,8 @@ const promise = payment.getActiveRefundTransferModes();
 // Async/Await
 const data = await payment.getActiveRefundTransferModes();
 ```
+
+
 
 
 
@@ -1457,6 +1483,8 @@ const data = await payment.enableOrDisableRefundTransferMode({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest) | yes | Request body |
@@ -1509,6 +1537,8 @@ const promise = payment.getUserBeneficiariesDetail({  orderId : value });
 // Async/Await
 const data = await payment.getUserBeneficiariesDetail({  orderId : value });
 ```
+
+
 
 
 
@@ -1591,6 +1621,8 @@ const data = await payment.verifyIfscCode({  ifscCode : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | ifscCode | string | no | A 11-digit alphanumeric code that uniquely identifies a bank branch. |  
@@ -1662,6 +1694,8 @@ const promise = payment.getOrderBeneficiariesDetail({  orderId : value });
 // Async/Await
 const data = await payment.getOrderBeneficiariesDetail({  orderId : value });
 ```
+
+
 
 
 
@@ -1743,6 +1777,8 @@ const data = await payment.verifyOtpAndAddBeneficiaryForBank({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest) | yes | Request body |
@@ -1797,6 +1833,8 @@ const promise = payment.addBeneficiaryDetails({  body : value });
 // Async/Await
 const data = await payment.addBeneficiaryDetails({  body : value });
 ```
+
+
 
 
 
@@ -1857,6 +1895,8 @@ const data = await payment.addRefundBankAccountUsingOTP({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
@@ -1914,6 +1954,8 @@ const data = await payment.verifyOtpAndAddBeneficiaryForWallet({  body : value }
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [WalletOtpRequest](#WalletOtpRequest) | yes | Request body |
@@ -1968,6 +2010,8 @@ const promise = payment.updateDefaultBeneficiary({  body : value });
 // Async/Await
 const data = await payment.updateDefaultBeneficiary({  body : value });
 ```
+
+
 
 
 

@@ -48,9 +48,10 @@ const data = await client.order.shipmentStatusUpdate({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |  
+| --------- | -----  | -------- | ----------- |
 | body | [UpdateShipmentStatusBody](#UpdateShipmentStatusBody) | yes | Request body |
 
 
@@ -102,9 +103,10 @@ const data = await client.order.activityStatus({  bagId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | bagId | string | yes | Bag Id |  
 
 
@@ -157,9 +159,10 @@ const data = await client.order.storeProcessShipmentUpdate({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |  
+| --------- | -----  | -------- | ----------- |
 | body | [UpdateProcessShipmenstRequestBody](#UpdateProcessShipmenstRequestBody) | yes | Request body |
 
 
@@ -211,9 +214,10 @@ const data = await client.order.checkRefund({  shipmentId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | shipmentId | string | yes | Shipment Id |  
 
 
@@ -266,9 +270,10 @@ const data = await client.order.ShipmentBagsCanBreak({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |  
+| --------- | -----  | -------- | ----------- |
 | body | [CanBreakRequestBody](#CanBreakRequestBody) | yes | Request body |
 
 
@@ -344,9 +349,10 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | string | no | Current page number |    
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
@@ -433,9 +439,10 @@ const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | string | no | Current page number |    
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
@@ -503,9 +510,10 @@ const data = await client.order.getOrderDetails({  orderId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | orderId | string | no | Order Id |    
 | next | string | no | Next |    
 | previous | string | no | Previous |  
@@ -582,9 +590,10 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | string | no | Current page number |    
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
@@ -648,10 +657,10 @@ const data = await client.application("<APPLICATION_ID>").order.trackShipmentPla
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | shipmentId | string | yes | Shipment Id |  
 
 
@@ -704,10 +713,10 @@ const data = await client.application("<APPLICATION_ID>").order.trackOrder({  or
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | orderId | string | yes | Order Id |  
 
 
@@ -760,10 +769,6 @@ const data = await client.application("<APPLICATION_ID>").order.failedOrders();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |  
 
 
 
@@ -815,10 +820,10 @@ const data = await client.application("<APPLICATION_ID>").order.reprocessOrder({
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | orderId | string | yes | Order Id |  
 
 
@@ -873,10 +878,10 @@ const data = await client.application("<APPLICATION_ID>").order.updateShipment({
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 | body | [ShipmentUpdateRequest](#ShipmentUpdateRequest) | yes | Request body |
 
@@ -929,10 +934,10 @@ const data = await client.application("<APPLICATION_ID>").order.getPlatformShipm
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | action | string | yes | Action |  
 
 
@@ -987,10 +992,10 @@ const data = await client.application("<APPLICATION_ID>").order.getShipmentTrack
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | orderId | string | yes | ID of the order. |   
 | shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
 
@@ -1046,9 +1051,10 @@ const data = await client.order.getShipmentAddress({  shipmentId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
 | addressCategory | string | yes | Category of the address it falls into(billing or delivery). |  
 
@@ -1106,9 +1112,10 @@ const data = await client.order.updateShipmentAddress({  shipmentId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
 | addressCategory | string | yes | Category of the address it falls into(billing or delivery). |  
 | body | [UpdateShipmentAddressRequest](#UpdateShipmentAddressRequest) | yes | Request body |
@@ -1162,9 +1169,6 @@ const data = await client.order.getPing();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |  
 
 
 
@@ -1216,9 +1220,6 @@ const data = await client.order.voiceCallback();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |  
 
 
 
@@ -1272,9 +1273,10 @@ const data = await client.order.voiceClickToCall({  caller : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
 | caller | string | yes | Caller contact number |   
 | receiver | string | yes | Receiver contact number |  
 

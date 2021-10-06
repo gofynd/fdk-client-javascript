@@ -57,6 +57,8 @@ const data = await cart.getCart({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
@@ -280,6 +282,8 @@ const data = await cart.getCartLastModified({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |  
@@ -316,6 +320,8 @@ const data = await cart.addItems({  body : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -1013,6 +1019,8 @@ const data = await cart.updateCart({  body : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
@@ -1431,6 +1439,8 @@ const data = await cart.getItemCount({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no | The unique identifier of the cart. |  
@@ -1484,6 +1494,8 @@ const promise = cart.getCoupons({  id : value });
 // Async/Await
 const data = await cart.getCoupons({  id : value });
 ```
+
+
 
 
 
@@ -1582,6 +1594,8 @@ const data = await cart.applyCoupon({  body : value,
  p : value,
  id : value });
 ```
+
+
 
 
 
@@ -2178,6 +2192,8 @@ const data = await cart.removeCoupon({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no | The unique identifier of the cart |  
@@ -2395,6 +2411,8 @@ const data = await cart.getBulkDiscountOffers({  itemId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | itemId | number | no | The Item ID of the product |    
@@ -2526,6 +2544,8 @@ const data = await cart.applyRewardPoints({  body : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -2759,6 +2779,8 @@ const data = await cart.getAddresses({  cartId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | cartId | string | no |  |    
@@ -2847,6 +2869,8 @@ const data = await cart.addAddress({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [Address](#Address) | yes | Request body |
@@ -2911,6 +2935,8 @@ const data = await cart.getAddressById({  id : value,
  tags : value,
  isDefault : value });
 ```
+
+
 
 
 
@@ -3002,6 +3028,8 @@ const data = await cart.updateAddress({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | ID allotted to the selected address |  
@@ -3058,6 +3086,8 @@ const promise = cart.removeAddress({  id : value });
 // Async/Await
 const data = await cart.removeAddress({  id : value });
 ```
+
+
 
 
 
@@ -3121,6 +3151,8 @@ const data = await cart.selectAddress({  body : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -3434,6 +3466,8 @@ const promise = cart.selectPaymentMode({  body : value,
 const data = await cart.selectPaymentMode({  body : value,
  id : value });
 ```
+
+
 
 
 
@@ -3768,6 +3802,8 @@ const data = await cart.validateCouponForPayment({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
@@ -3840,6 +3876,8 @@ const data = await cart.getShipments({  p : value,
  addressId : value,
  areaCode : value });
 ```
+
+
 
 
 
@@ -4540,6 +4578,8 @@ const data = await cart.checkoutCart({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [CartCheckoutDetailRequest](#CartCheckoutDetailRequest) | yes | Request body |
@@ -4975,6 +5015,8 @@ const data = await cart.updateCartMeta({  body : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no | The unique identifier of the cart |  
@@ -5028,6 +5070,8 @@ const promise = cart.getCartShareLink({  body : value });
 // Async/Await
 const data = await cart.getCartShareLink({  body : value });
 ```
+
+
 
 
 
@@ -5092,6 +5136,8 @@ const promise = cart.getCartSharedItems({  token : value });
 // Async/Await
 const data = await cart.getCartSharedItems({  token : value });
 ```
+
+
 
 
 
@@ -5424,6 +5470,8 @@ const promise = cart.updateCartWithSharedItems({  token : value,
 const data = await cart.updateCartWithSharedItems({  token : value,
  action : value });
 ```
+
+
 
 
 

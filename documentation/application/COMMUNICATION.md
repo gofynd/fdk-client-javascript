@@ -31,6 +31,8 @@ const data = await communication.getCommunicationConsent();
 
 
 
+
+
 Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
 
 *Returned Response:*
@@ -84,6 +86,8 @@ const promise = communication.upsertCommunicationConsent({  body : value });
 // Async/Await
 const data = await communication.upsertCommunicationConsent({  body : value });
 ```
+
+
 
 
 
@@ -145,6 +149,8 @@ const promise = communication.upsertAppPushtoken({  body : value });
 // Async/Await
 const data = await communication.upsertAppPushtoken({  body : value });
 ```
+
+
 
 
 

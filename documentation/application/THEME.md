@@ -31,6 +31,8 @@ const data = await theme.getAllPages({  themeId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | themeId | string | yes | ID of the theme to be retrieved |  
@@ -92,6 +94,8 @@ const promise = theme.getPage({  themeId : value,
 const data = await theme.getPage({  themeId : value,
  pageValue : value });
 ```
+
+
 
 
 
@@ -159,6 +163,8 @@ const data = await theme.getAppliedTheme();
 
 
 
+
+
 An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
 
 *Returned Response:*
@@ -212,6 +218,8 @@ const promise = theme.getThemeForPreview({  themeId : value });
 // Async/Await
 const data = await theme.getThemeForPreview({  themeId : value });
 ```
+
+
 
 
 
