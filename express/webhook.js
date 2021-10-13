@@ -66,8 +66,9 @@ class WebhookRegistry {
                 "name": this._fdkConfig.api_key,
                 "webhook_url": `${this._fdkConfig.base_url}${this._config.api_path}`,
                 "association": {
-                    "company_id": platformClient.config.companyId
-                    // TODO: Add allowing all apps field and check `saleschannel_events_sync` field
+                    "company_id": platformClient.config.companyId,
+                    "application_id": [],
+                    "criteria": this._config.saleschannel_events_sync? "SPECIFIC-EVENTS": "ALL"
                 },
                 "status": "active",
                 "auth_meta": {
