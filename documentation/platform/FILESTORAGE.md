@@ -29,20 +29,21 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = client.filestorage.startUpload({  namespace : value,
+const promise = client.fileStorage.startUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.filestorage.startUpload({  namespace : value,
+const data = await client.fileStorage.startUpload({  namespace : value,
  body : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |   
-| companyId | number | yes | company_id |  
+| namespace | string | yes | bucket name |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
@@ -104,20 +105,21 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = client.filestorage.completeUpload({  namespace : value,
+const promise = client.fileStorage.completeUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.filestorage.completeUpload({  namespace : value,
+const data = await client.fileStorage.completeUpload({  namespace : value,
  body : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |   
-| companyId | number | yes | company_id |  
+| namespace | string | yes | bucket name |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -179,21 +181,21 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").filestorage.appStartUpload({  namespace : value,
+const promise = client.application("<APPLICATION_ID>").fileStorage.appStartUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").filestorage.appStartUpload({  namespace : value,
+const data = await client.application("<APPLICATION_ID>").fileStorage.appStartUpload({  namespace : value,
  body : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |   
-| companyId | number | yes | company_id |   
-| applicationId | string | yes | application id |  
+| namespace | string | yes | bucket name |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
@@ -255,21 +257,21 @@ This will complete the upload process. After successfully uploading file, you ca
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").filestorage.appCompleteUpload({  namespace : value,
+const promise = client.application("<APPLICATION_ID>").fileStorage.appCompleteUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").filestorage.appCompleteUpload({  namespace : value,
+const data = await client.application("<APPLICATION_ID>").fileStorage.appCompleteUpload({  namespace : value,
  body : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |   
-| companyId | number | yes | company_id |   
-| applicationId | string | yes | application id |  
+| namespace | string | yes | bucket name |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -331,17 +333,18 @@ Explain here
 
 ```javascript
 // Promise
-const promise = client.filestorage.getSignUrls({  body : value });
+const promise = client.fileStorage.getSignUrls({  body : value });
 
 // Async/Await
-const data = await client.filestorage.getSignUrls({  body : value });
+const data = await client.fileStorage.getSignUrls({  body : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |  
+| --------- | -----  | -------- | ----------- |
 | body | [SignUrlRequest](#SignUrlRequest) | yes | Request body |
 
 
@@ -385,20 +388,21 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = client.filestorage.copyFiles({  body : value,
+const promise = client.fileStorage.copyFiles({  body : value,
  sync : value });
 
 // Async/Await
-const data = await client.filestorage.copyFiles({  body : value,
+const data = await client.fileStorage.copyFiles({  body : value,
  sync : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| sync | boolean | no | sync |   
-| companyId | number | yes | company_id |  
+| sync | boolean | no | sync |  
 | body | [BulkRequest](#BulkRequest) | yes | Request body |
 
 
@@ -469,21 +473,21 @@ Copy Files
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").filestorage.appCopyFiles({  body : value,
+const promise = client.application("<APPLICATION_ID>").fileStorage.appCopyFiles({  body : value,
  sync : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").filestorage.appCopyFiles({  body : value,
+const data = await client.application("<APPLICATION_ID>").fileStorage.appCopyFiles({  body : value,
  sync : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| sync | boolean | no | sync |   
-| companyId | number | yes | company_id |   
-| applicationId | number | yes | application_id |  
+| sync | boolean | no | sync |  
 | body | [BulkRequest](#BulkRequest) | yes | Request body |
 
 
@@ -554,20 +558,21 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = client.filestorage.browse({  namespace : value,
+const promise = client.fileStorage.browse({  namespace : value,
  pageNo : value });
 
 // Async/Await
-const data = await client.filestorage.browse({  namespace : value,
+const data = await client.fileStorage.browse({  namespace : value,
  pageNo : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |   
-| companyId | number | yes | company_id |    
+| namespace | string | yes | bucket name |    
 | pageNo | number | no | page no |  
 
 
@@ -612,21 +617,21 @@ Browse Files
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").filestorage.browse({  namespace : value,
+const promise = client.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
  pageNo : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").filestorage.browse({  namespace : value,
+const data = await client.application("<APPLICATION_ID>").fileStorage.browse({  namespace : value,
  pageNo : value });
 ```
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |   
-| companyId | number | yes | company_id |   
-| applicationId | number | yes | application_id |    
+| namespace | string | yes | bucket name |    
 | pageNo | number | no | page no |  
 
 
@@ -671,17 +676,18 @@ Proxy
 
 ```javascript
 // Promise
-const promise = client.filestorage.proxy({  url : value });
+const promise = client.fileStorage.proxy({  url : value });
 
 // Async/Await
-const data = await client.filestorage.proxy({  url : value });
+const data = await client.fileStorage.proxy({  url : value });
 ```
+
+
 
 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | company_id |   
 | url | string | yes | url |  
 
 

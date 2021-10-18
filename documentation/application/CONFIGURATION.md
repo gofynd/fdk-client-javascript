@@ -43,6 +43,8 @@ const data = await configuration.getApplication();
 
 
 
+
+
 Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
 
 *Returned Response:*
@@ -151,6 +153,8 @@ const promise = configuration.getOwnerInfo();
 // Async/Await
 const data = await configuration.getOwnerInfo();
 ```
+
+
 
 
 
@@ -305,6 +309,8 @@ const data = await configuration.getBasicDetails();
 
 
 
+
+
 Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
 
 *Returned Response:*
@@ -390,6 +396,8 @@ const promise = configuration.getIntegrationTokens();
 // Async/Await
 const data = await configuration.getIntegrationTokens();
 ```
+
+
 
 
 
@@ -515,6 +523,8 @@ const data = await configuration.getOrderingStores({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
@@ -568,6 +578,8 @@ const promise = configuration.getStoreDetailById({  storeId : value });
 // Async/Await
 const data = await configuration.getStoreDetailById({  storeId : value });
 ```
+
+
 
 
 
@@ -630,6 +642,8 @@ const promise = configuration.getFeatures();
 // Async/Await
 const data = await configuration.getFeatures();
 ```
+
+
 
 
 
@@ -775,6 +789,8 @@ const promise = configuration.getContactInfo();
 // Async/Await
 const data = await configuration.getContactInfo();
 ```
+
+
 
 
 
@@ -943,6 +959,8 @@ const data = await configuration.getCurrencies();
 
 
 
+
+
 Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
 
 *Returned Response:*
@@ -1001,6 +1019,8 @@ const promise = configuration.getCurrencyById({  id : value });
 // Async/Await
 const data = await configuration.getCurrencyById({  id : value });
 ```
+
+
 
 
 
@@ -1064,6 +1084,8 @@ const promise = configuration.getAppCurrencies();
 // Async/Await
 const data = await configuration.getAppCurrencies();
 ```
+
+
 
 
 
@@ -1135,6 +1157,8 @@ const data = await configuration.getLanguages();
 
 
 
+
+
 Use this API to get a list of languages supported in the application.
 
 *Returned Response:*
@@ -1198,6 +1222,8 @@ const data = await configuration.getOrderingStoreCookie({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [OrderingStoreSelectRequest](#OrderingStoreSelectRequest) | yes | Request body |
@@ -1252,6 +1278,8 @@ const data = await configuration.removeOrderingStoreCookie();
 
 
 
+
+
 Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
 
 *Returned Response:*
@@ -1301,6 +1329,8 @@ const data = await configuration.getAppStaffs({  orderIncent : value,
  orderingStore : value,
  user : value });
 ```
+
+
 
 
 

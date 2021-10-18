@@ -53,6 +53,8 @@ const data = await feedback.createAbuseReport({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [ReportAbuseRequest](#ReportAbuseRequest) | yes | Request body |
@@ -103,6 +105,8 @@ const promise = feedback.updateAbuseReport({  body : value });
 // Async/Await
 const data = await feedback.updateAbuseReport({  body : value });
 ```
+
+
 
 
 
@@ -167,6 +171,8 @@ const data = await feedback.getAbuseReports({  entityId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | entityId | string | yes | ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID). |   
@@ -227,6 +233,8 @@ const data = await feedback.getAttributes({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |    
@@ -282,6 +290,8 @@ const data = await feedback.createAttribute({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [SaveAttributeRequest](#SaveAttributeRequest) | yes | Request body |
@@ -332,6 +342,8 @@ const promise = feedback.getAttribute({  slug : value });
 // Async/Await
 const data = await feedback.getAttribute({  slug : value });
 ```
+
+
 
 
 
@@ -391,6 +403,8 @@ const data = await feedback.updateAttribute({  slug : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'. |  
@@ -445,6 +459,8 @@ const data = await feedback.createComment({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [CommentRequest](#CommentRequest) | yes | Request body |
@@ -495,6 +511,8 @@ const promise = feedback.updateComment({  body : value });
 // Async/Await
 const data = await feedback.updateComment({  body : value });
 ```
+
+
 
 
 
@@ -561,6 +579,8 @@ const data = await feedback.getComments({  entityType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | entityType | string | yes | Type of entity, e.g. question, review or comment. |    
@@ -622,6 +642,8 @@ const data = await feedback.checkEligibility({  entityType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | entityType | string | yes | Type of entity, e.g. question, rate, review, answer, or comment. |   
@@ -674,6 +696,8 @@ const promise = feedback.deleteMedia({  ids : value });
 // Async/Await
 const data = await feedback.deleteMedia({  ids : value });
 ```
+
+
 
 
 
@@ -731,6 +755,8 @@ const data = await feedback.createMedia({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [AddMediaListRequest](#AddMediaListRequest) | yes | Request body |
@@ -781,6 +807,8 @@ const promise = feedback.updateMedia({  body : value });
 // Async/Await
 const data = await feedback.updateMedia({  body : value });
 ```
+
+
 
 
 
@@ -844,6 +872,8 @@ const data = await feedback.getMedias({  entityType : value,
  pageId : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -914,6 +944,8 @@ const data = await feedback.getReviewSummaries({  entityType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | entityType | string | yes | Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template. |   
@@ -972,6 +1004,8 @@ const data = await feedback.createReview({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [UpdateReviewRequest](#UpdateReviewRequest) | yes | Request body |
@@ -1022,6 +1056,8 @@ const promise = feedback.updateReview({  body : value });
 // Async/Await
 const data = await feedback.updateReview({  body : value });
 ```
+
+
 
 
 
@@ -1102,6 +1138,8 @@ const data = await feedback.getReviews({  entityType : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | entityType | string | yes | Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template. |   
@@ -1172,6 +1210,8 @@ const data = await feedback.getTemplates({  templateId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | templateId | string | no | ID of the feedback template. |    
@@ -1228,6 +1268,8 @@ const data = await feedback.createQuestion({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [CreateQNARequest](#CreateQNARequest) | yes | Request body |
@@ -1278,6 +1320,8 @@ const promise = feedback.updateQuestion({  body : value });
 // Async/Await
 const data = await feedback.updateQuestion({  body : value });
 ```
+
+
 
 
 
@@ -1343,6 +1387,8 @@ const data = await feedback.getQuestionAndAnswers({  entityType : value,
  pageId : value,
  pageSize : value });
 ```
+
+
 
 
 
@@ -1412,6 +1458,8 @@ const data = await feedback.getVotes({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no | vote ID |    
@@ -1469,6 +1517,8 @@ const data = await feedback.createVote({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
 | body | [VoteRequest](#VoteRequest) | yes | Request body |
@@ -1519,6 +1569,8 @@ const promise = feedback.updateVote({  body : value });
 // Async/Await
 const data = await feedback.updateVote({  body : value });
 ```
+
+
 
 
 

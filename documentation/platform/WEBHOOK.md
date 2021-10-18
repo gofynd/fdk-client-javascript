@@ -37,11 +37,12 @@ const data = await client.webhook.getSubscribersByCompany({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |   
-| companyId | number | yes | Company ID of the application |    
+| pageSize | number | no | Page Size |    
 | extensionId | string | no | Extension ID |  
 
 
@@ -94,9 +95,10 @@ const data = await client.webhook.registerSubscriberToEvent({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company Id of the application |  
+| --------- | -----  | -------- | ----------- |
 | body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
 
 
@@ -148,9 +150,10 @@ const data = await client.webhook.updateSubscriberConfig({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company ID of the application |  
+| --------- | -----  | -------- | ----------- |
 | body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
 
 
@@ -206,11 +209,12 @@ const data = await client.webhook.getSubscribersByExtensionId({  extensionId : v
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |   
-| companyId | number | yes | Company ID of the application |   
 | extensionId | string | yes | Extension ID |  
 
 
@@ -263,9 +267,10 @@ const data = await client.webhook.getSubscriberById({  subscriberId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company ID of the application |   
 | subscriberId | number | yes | Subscriber ID |  
 
 
@@ -318,9 +323,6 @@ const data = await client.webhook.fetchAllEventConfigurations();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | number | yes | Company ID of the application |  
 
 
 
@@ -526,6 +528,7 @@ Success
  | company_id | number |  no  |  |
  | application_id | [string] |  no  |  |
  | extension_id | string |  no  |  |
+ | criteria | string |  no  |  |
 
 ---
 

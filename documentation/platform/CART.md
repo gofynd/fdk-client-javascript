@@ -49,10 +49,10 @@ const data = await client.application("<APPLICATION_ID>").cart.getCoupons({  pag
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isArchived | boolean | no |  |    
@@ -164,10 +164,10 @@ const data = await client.application("<APPLICATION_ID>").cart.createCoupon({  b
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |  
+| --------- | -----  | -------- | ----------- |
 | body | [CouponAdd](#CouponAdd) | yes | Request body |
 
 
@@ -222,10 +222,10 @@ const data = await client.application("<APPLICATION_ID>").cart.getCouponById({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |   
 | id | string | yes |  |  
 
 
@@ -420,10 +420,10 @@ const data = await client.application("<APPLICATION_ID>").cart.updateCoupon({  i
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |   
 | id | string | yes |  |  
 | body | [CouponUpdate](#CouponUpdate) | yes | Request body |
 
@@ -481,10 +481,10 @@ const data = await client.application("<APPLICATION_ID>").cart.updateCouponParti
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |   
 | id | string | yes |  |  
 | body | [CouponPartialUpdate](#CouponPartialUpdate) | yes | Request body |
 
@@ -561,10 +561,10 @@ const data = await client.application("<APPLICATION_ID>").cart.fetchAndvalidateC
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |  
+| --------- | -----  | -------- | ----------- |
 | body | [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest) | yes | Request body |
 
 
@@ -890,10 +890,10 @@ const data = await client.application("<APPLICATION_ID>").cart.checkCartServicea
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |  
+| --------- | -----  | -------- | ----------- |
 | body | [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest) | yes | Request body |
 
 
@@ -1475,10 +1475,10 @@ const data = await client.application("<APPLICATION_ID>").cart.checkoutCart({  b
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Current company id |   
-| applicationId | string | yes | Current Application _id |  
+| --------- | -----  | -------- | ----------- |
 | body | [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq) | yes | Request body |
 
 

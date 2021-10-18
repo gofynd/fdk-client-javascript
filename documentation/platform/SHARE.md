@@ -31,10 +31,10 @@ const data = await client.application("<APPLICATION_ID>").share.createShortLink(
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |  
+| --------- | -----  | -------- | ----------- |
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
@@ -132,10 +132,10 @@ const data = await client.application("<APPLICATION_ID>").share.getShortLinks({ 
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |    
+| --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page number |    
 | pageSize | number | no | Current page size |    
 | createdBy | string | no | Short link creator |    
@@ -241,10 +241,10 @@ const data = await client.application("<APPLICATION_ID>").share.getShortLinkByHa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | hash | string | yes | Hash of short url |  
 
 
@@ -337,10 +337,10 @@ const data = await client.application("<APPLICATION_ID>").share.updateShortLinkB
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id |   
-| applicationId | string | yes | Application Id |   
 | id | string | yes | Short link document identifier |  
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 

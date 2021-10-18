@@ -132,7 +132,7 @@ const NAVIGATORS = {
   },
   external: {
     name: "External Link",
-    link: "/external/",
+    link: "/external/:url",
     query: [
       {
         key: "url",
@@ -252,7 +252,7 @@ const NAVIGATORS = {
   },
   "shared-cart": {
     name: "Shared Cart",
-    link: "/shared-cart/",
+    link: "/shared-cart/:token",
     params: [
       {
         key: "token",
@@ -266,7 +266,7 @@ const NAVIGATORS = {
   },
   "track-order": {
     name: "Track Order",
-    link: "/order-tracking/",
+    link: "/order-tracking/:orderId",
     params: [
       {
         key: "orderId",

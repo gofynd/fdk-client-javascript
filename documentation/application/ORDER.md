@@ -45,6 +45,8 @@ const data = await order.getOrders({  pageNo : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
@@ -103,6 +105,8 @@ const data = await order.getOrderById({  orderId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | orderId | string | yes | A unique number used for identifying and tracking your orders. |  
@@ -157,6 +161,8 @@ const data = await order.getShipmentById({  shipmentId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
@@ -208,6 +214,8 @@ const promise = order.getShipmentReasons({  shipmentId : value });
 // Async/Await
 const data = await order.getShipmentReasons({  shipmentId : value });
 ```
+
+
 
 
 
@@ -267,6 +275,8 @@ const data = await order.updateShipmentStatus({  shipmentId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
@@ -318,6 +328,8 @@ const promise = order.trackShipment({  shipmentId : value });
 // Async/Await
 const data = await order.trackShipment({  shipmentId : value });
 ```
+
+
 
 
 
@@ -375,6 +387,8 @@ const data = await order.getPosOrderById({  orderId : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | orderId | string | yes | A unique number used for identifying and tracking your orders. |  
@@ -428,6 +442,8 @@ const promise = order.getCustomerDetailsByShipmentId({  orderId : value,
 const data = await order.getCustomerDetailsByShipmentId({  orderId : value,
  shipmentId : value });
 ```
+
+
 
 
 
@@ -488,6 +504,8 @@ const data = await order.sendOtpToShipmentCustomer({  orderId : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | orderId | string | yes | A unique number used for identifying and tracking your orders. |   
@@ -544,6 +562,8 @@ const data = await order.verifyOtpShipmentCustomer({  orderId : value,
  shipmentId : value,
  body : value });
 ```
+
+
 
 
 

@@ -64,9 +64,10 @@ const data = await client.lead.getTickets({  items : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for which the data will be returned |    
+| --------- | -----  | -------- | ----------- |  
 | items | boolean | no | Decides that the reponse will contain the list of tickets |    
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
@@ -500,9 +501,10 @@ const data = await client.lead.createTicket({  body : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for which the data will be returned |  
+| --------- | -----  | -------- | ----------- |
 | body | [AddTicketPayload](#AddTicketPayload) | yes | Request body |
 
 
@@ -762,10 +764,10 @@ const data = await client.application("<APPLICATION_ID>").lead.getTickets({  ite
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for which the data will be returned |    
+| --------- | -----  | -------- | ----------- |  
 | items | boolean | no | Decides that the reponse will contain the list of tickets |    
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
@@ -1197,9 +1199,10 @@ const data = await client.lead.getTicket({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for which the data will be returned |   
 | id | string | yes | Tiket ID of the ticket to be fetched |  
 
 
@@ -1452,9 +1455,10 @@ const data = await client.lead.editTicket({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID of ticket to be edited |  
 | body | [EditTicketPayload](#EditTicketPayload) | yes | Request body |
 
@@ -1705,10 +1709,10 @@ const data = await client.application("<APPLICATION_ID>").lead.getTicket({  id :
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for which the data will be returned |   
 | id | string | yes | Tiket ID of the ticket to be fetched |  
 
 
@@ -1962,10 +1966,10 @@ const data = await client.application("<APPLICATION_ID>").lead.editTicket({  id 
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for ticket |   
 | id | string | yes | Ticket ID of ticket to be edited |  
 | body | [EditTicketPayload](#EditTicketPayload) | yes | Request body |
 
@@ -2219,9 +2223,10 @@ const data = await client.lead.createHistory({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID for which history is created |  
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
@@ -2316,9 +2321,10 @@ const data = await client.lead.getTicketHistory({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID for which history is to be fetched |  
 
 
@@ -2517,9 +2523,10 @@ const data = await client.lead.getFeedbacks({  id : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID for which feedbacks are to be fetched |  
 
 
@@ -2603,9 +2610,10 @@ const data = await client.lead.submitFeedback({  id : value,
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID for ticket |   
 | id | string | yes | Ticket ID for which feedback is to be submitted |  
 | body | [TicketFeedbackPayload](#TicketFeedbackPayload) | yes | Request body |
 
@@ -2685,10 +2693,10 @@ const data = await client.application("<APPLICATION_ID>").lead.createHistory({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for ticket |   
 | id | string | yes | Ticket ID for which history is created |  
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
@@ -2783,10 +2791,10 @@ const data = await client.application("<APPLICATION_ID>").lead.getTicketHistory(
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of application |   
-| applicationId | string | yes | Application ID for ticket |   
 | id | string | yes | Ticket ID for which history is to be fetched |  
 
 
@@ -2985,10 +2993,10 @@ const data = await client.application("<APPLICATION_ID>").lead.getCustomForm({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for the form |   
 | slug | string | yes | Slug of form whose response is getting submitted |  
 
 
@@ -3095,10 +3103,10 @@ const data = await client.application("<APPLICATION_ID>").lead.editCustomForm({ 
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for the form |   
 | slug | string | yes | Slug of form whose response is getting submitted |  
 | body | [EditCustomFormPayload](#EditCustomFormPayload) | yes | Request body |
 
@@ -3213,10 +3221,6 @@ const data = await client.application("<APPLICATION_ID>").lead.getCustomForms();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for the form |  
 
 
 
@@ -3409,10 +3413,10 @@ const data = await client.application("<APPLICATION_ID>").lead.createCustomForm(
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for the form |  
+| --------- | -----  | -------- | ----------- |
 | body | [CreateCustomFormPayload](#CreateCustomFormPayload) | yes | Request body |
 
 
@@ -3526,9 +3530,10 @@ const data = await client.lead.getTokenForVideoRoom({  uniqueName : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id for video room |   
 | uniqueName | string | yes | Unique name of video room |  
 
 
@@ -3591,10 +3596,10 @@ const data = await client.application("<APPLICATION_ID>").lead.getTokenForVideoR
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for video room |   
 | uniqueName | string | yes | Unique name of video room |  
 
 
@@ -3657,9 +3662,10 @@ const data = await client.lead.getVideoParticipants({  uniqueName : value });
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company Id for video room |   
 | uniqueName | string | yes | Unique name of Video Room |  
 
 
@@ -3722,10 +3728,10 @@ const data = await client.application("<APPLICATION_ID>").lead.getVideoParticipa
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for video room |   
 | uniqueName | string | yes | Unique name of Video Room |  
 
 
@@ -3788,10 +3794,10 @@ const data = await client.application("<APPLICATION_ID>").lead.openVideoRoom({  
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for video room |  
+| --------- | -----  | -------- | ----------- |
 | body | [CreateVideoRoomPayload](#CreateVideoRoomPayload) | yes | Request body |
 
 
@@ -3853,10 +3859,10 @@ const data = await client.application("<APPLICATION_ID>").lead.closeVideoRoom({ 
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | Company ID of the application |   
-| applicationId | string | yes | Application ID for video room |   
 | uniqueName | string | yes | Unique name of Video Room |  
 
 

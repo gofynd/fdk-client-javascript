@@ -46,17 +46,19 @@ Fetch all items added to the cart
 
 ```javascript
 // Promise
-const promise = poscart.getCart({  id : value,
+const promise = posCart.getCart({  id : value,
  i : value,
  b : value,
  assignCardId : value });
 
 // Async/Await
-const data = await poscart.getCart({  id : value,
+const data = await posCart.getCart({  id : value,
  i : value,
  b : value,
  assignCardId : value });
 ```
+
+
 
 
 
@@ -275,11 +277,13 @@ Fetch last-modified timestamp
 
 ```javascript
 // Promise
-const promise = poscart.getCartLastModified({  id : value });
+const promise = posCart.getCartLastModified({  id : value });
 
 // Async/Await
-const data = await poscart.getCartLastModified({  id : value });
+const data = await posCart.getCartLastModified({  id : value });
 ```
+
+
 
 
 
@@ -310,15 +314,17 @@ Add items to cart
 
 ```javascript
 // Promise
-const promise = poscart.addItems({  body : value,
+const promise = posCart.addItems({  body : value,
  i : value,
  b : value });
 
 // Async/Await
-const data = await poscart.addItems({  body : value,
+const data = await posCart.addItems({  body : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -1002,17 +1008,19 @@ Update items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.updateCart({  body : value,
+const promise = posCart.updateCart({  body : value,
  id : value,
  i : value,
  b : value });
 
 // Async/Await
-const data = await poscart.updateCart({  body : value,
+const data = await posCart.updateCart({  body : value,
  id : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -1426,11 +1434,13 @@ Count items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.getItemCount({  id : value });
+const promise = posCart.getItemCount({  id : value });
 
 // Async/Await
-const data = await poscart.getItemCount({  id : value });
+const data = await posCart.getItemCount({  id : value });
 ```
+
+
 
 
 
@@ -1482,11 +1492,13 @@ Fetch Coupon
 
 ```javascript
 // Promise
-const promise = poscart.getCoupons({  id : value });
+const promise = posCart.getCoupons({  id : value });
 
 // Async/Await
-const data = await poscart.getCoupons({  id : value });
+const data = await posCart.getCoupons({  id : value });
 ```
+
+
 
 
 
@@ -1572,19 +1584,21 @@ Apply Coupon
 
 ```javascript
 // Promise
-const promise = poscart.applyCoupon({  body : value,
+const promise = posCart.applyCoupon({  body : value,
  i : value,
  b : value,
  p : value,
  id : value });
 
 // Async/Await
-const data = await poscart.applyCoupon({  body : value,
+const data = await posCart.applyCoupon({  body : value,
  i : value,
  b : value,
  p : value,
  id : value });
 ```
+
+
 
 
 
@@ -2173,11 +2187,13 @@ Remove Coupon Applied
 
 ```javascript
 // Promise
-const promise = poscart.removeCoupon({  id : value });
+const promise = posCart.removeCoupon({  id : value });
 
 // Async/Await
-const data = await poscart.removeCoupon({  id : value });
+const data = await posCart.removeCoupon({  id : value });
 ```
+
+
 
 
 
@@ -2384,17 +2400,19 @@ Get discount offers based on quantity
 
 ```javascript
 // Promise
-const promise = poscart.getBulkDiscountOffers({  itemId : value,
+const promise = posCart.getBulkDiscountOffers({  itemId : value,
  articleId : value,
  uid : value,
  slug : value });
 
 // Async/Await
-const data = await poscart.getBulkDiscountOffers({  itemId : value,
+const data = await posCart.getBulkDiscountOffers({  itemId : value,
  articleId : value,
  uid : value,
  slug : value });
 ```
+
+
 
 
 
@@ -2518,17 +2536,19 @@ Apply reward points at cart
 
 ```javascript
 // Promise
-const promise = poscart.applyRewardPoints({  body : value,
+const promise = posCart.applyRewardPoints({  body : value,
  id : value,
  i : value,
  b : value });
 
 // Async/Await
-const data = await poscart.applyRewardPoints({  body : value,
+const data = await posCart.applyRewardPoints({  body : value,
  id : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -2746,19 +2766,21 @@ Fetch address
 
 ```javascript
 // Promise
-const promise = poscart.getAddresses({  cartId : value,
+const promise = posCart.getAddresses({  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
  isDefault : value });
 
 // Async/Await
-const data = await poscart.getAddresses({  cartId : value,
+const data = await posCart.getAddresses({  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
  isDefault : value });
 ```
+
+
 
 
 
@@ -2842,11 +2864,13 @@ Add address to an account
 
 ```javascript
 // Promise
-const promise = poscart.addAddress({  body : value });
+const promise = posCart.addAddress({  body : value });
 
 // Async/Await
-const data = await poscart.addAddress({  body : value });
+const data = await posCart.addAddress({  body : value });
 ```
+
+
 
 
 
@@ -2899,7 +2923,7 @@ Fetch a single address by its ID
 
 ```javascript
 // Promise
-const promise = poscart.getAddressById({  id : value,
+const promise = posCart.getAddressById({  id : value,
  cartId : value,
  mobileNo : value,
  checkoutMode : value,
@@ -2907,13 +2931,15 @@ const promise = poscart.getAddressById({  id : value,
  isDefault : value });
 
 // Async/Await
-const data = await poscart.getAddressById({  id : value,
+const data = await posCart.getAddressById({  id : value,
  cartId : value,
  mobileNo : value,
  checkoutMode : value,
  tags : value,
  isDefault : value });
 ```
+
+
 
 
 
@@ -2995,13 +3021,15 @@ Update address added to an account
 
 ```javascript
 // Promise
-const promise = poscart.updateAddress({  id : value,
+const promise = posCart.updateAddress({  id : value,
  body : value });
 
 // Async/Await
-const data = await poscart.updateAddress({  id : value,
+const data = await posCart.updateAddress({  id : value,
  body : value });
 ```
+
+
 
 
 
@@ -3056,11 +3084,13 @@ Remove address associated with an account
 
 ```javascript
 // Promise
-const promise = poscart.removeAddress({  id : value });
+const promise = posCart.removeAddress({  id : value });
 
 // Async/Await
-const data = await poscart.removeAddress({  id : value });
+const data = await posCart.removeAddress({  id : value });
 ```
+
+
 
 
 
@@ -3113,17 +3143,19 @@ Select an address from available addresses
 
 ```javascript
 // Promise
-const promise = poscart.selectAddress({  body : value,
+const promise = posCart.selectAddress({  body : value,
  cartId : value,
  i : value,
  b : value });
 
 // Async/Await
-const data = await poscart.selectAddress({  body : value,
+const data = await posCart.selectAddress({  body : value,
  cartId : value,
  i : value,
  b : value });
 ```
+
+
 
 
 
@@ -3430,13 +3462,15 @@ Update cart payment
 
 ```javascript
 // Promise
-const promise = poscart.selectPaymentMode({  body : value,
+const promise = posCart.selectPaymentMode({  body : value,
  id : value });
 
 // Async/Await
-const data = await poscart.selectPaymentMode({  body : value,
+const data = await posCart.selectPaymentMode({  body : value,
  id : value });
 ```
+
+
 
 
 
@@ -3753,7 +3787,7 @@ Verify the coupon eligibility against the payment mode
 
 ```javascript
 // Promise
-const promise = poscart.validateCouponForPayment({  id : value,
+const promise = posCart.validateCouponForPayment({  id : value,
  addressId : value,
  paymentMode : value,
  paymentIdentifier : value,
@@ -3761,13 +3795,15 @@ const promise = poscart.validateCouponForPayment({  id : value,
  merchantCode : value });
 
 // Async/Await
-const data = await poscart.validateCouponForPayment({  id : value,
+const data = await posCart.validateCouponForPayment({  id : value,
  addressId : value,
  paymentMode : value,
  paymentIdentifier : value,
  aggregatorName : value,
  merchantCode : value });
 ```
+
+
 
 
 
@@ -3832,7 +3868,7 @@ Get delivery date and options before checkout
 
 ```javascript
 // Promise
-const promise = poscart.getShipments({  pickAtStoreUid : value,
+const promise = posCart.getShipments({  pickAtStoreUid : value,
  orderingStoreId : value,
  p : value,
  id : value,
@@ -3841,7 +3877,7 @@ const promise = poscart.getShipments({  pickAtStoreUid : value,
  orderType : value });
 
 // Async/Await
-const data = await poscart.getShipments({  pickAtStoreUid : value,
+const data = await posCart.getShipments({  pickAtStoreUid : value,
  orderingStoreId : value,
  p : value,
  id : value,
@@ -3849,6 +3885,8 @@ const data = await poscart.getShipments({  pickAtStoreUid : value,
  areaCode : value,
  orderType : value });
 ```
+
+
 
 
 
@@ -4544,7 +4582,7 @@ Update shipment delivery type and quantity before checkout
 
 ```javascript
 // Promise
-const promise = poscart.updateShipments({  body : value,
+const promise = posCart.updateShipments({  body : value,
  i : value,
  p : value,
  id : value,
@@ -4552,13 +4590,15 @@ const promise = poscart.updateShipments({  body : value,
  orderType : value });
 
 // Async/Await
-const data = await poscart.updateShipments({  body : value,
+const data = await posCart.updateShipments({  body : value,
  i : value,
  p : value,
  id : value,
  addressId : value,
  orderType : value });
 ```
+
+
 
 
 
@@ -5253,13 +5293,15 @@ Checkout all items in the cart
 
 ```javascript
 // Promise
-const promise = poscart.checkoutCart({  body : value,
+const promise = posCart.checkoutCart({  body : value,
  id : value });
 
 // Async/Await
-const data = await poscart.checkoutCart({  body : value,
+const data = await posCart.checkoutCart({  body : value,
  id : value });
 ```
+
+
 
 
 
@@ -5689,13 +5731,15 @@ Update the cart meta
 
 ```javascript
 // Promise
-const promise = poscart.updateCartMeta({  body : value,
+const promise = posCart.updateCartMeta({  body : value,
  id : value });
 
 // Async/Await
-const data = await poscart.updateCartMeta({  body : value,
+const data = await posCart.updateCartMeta({  body : value,
  id : value });
 ```
+
+
 
 
 
@@ -5747,13 +5791,15 @@ Get available delivery modes for cart
 
 ```javascript
 // Promise
-const promise = poscart.getAvailableDeliveryModes({  areaCode : value,
+const promise = posCart.getAvailableDeliveryModes({  areaCode : value,
  id : value });
 
 // Async/Await
-const data = await poscart.getAvailableDeliveryModes({  areaCode : value,
+const data = await posCart.getAvailableDeliveryModes({  areaCode : value,
  id : value });
 ```
+
+
 
 
 
@@ -5812,11 +5858,13 @@ Get list of stores for give uids
 
 ```javascript
 // Promise
-const promise = poscart.getStoreAddressByUid({  storeUid : value });
+const promise = posCart.getStoreAddressByUid({  storeUid : value });
 
 // Async/Await
-const data = await poscart.getStoreAddressByUid({  storeUid : value });
+const data = await posCart.getStoreAddressByUid({  storeUid : value });
 ```
+
+
 
 
 
@@ -5890,11 +5938,13 @@ Generate token for sharing the cart
 
 ```javascript
 // Promise
-const promise = poscart.getCartShareLink({  body : value });
+const promise = posCart.getCartShareLink({  body : value });
 
 // Async/Await
-const data = await poscart.getCartShareLink({  body : value });
+const data = await posCart.getCartShareLink({  body : value });
 ```
+
+
 
 
 
@@ -5954,11 +6004,13 @@ Get details of a shared cart
 
 ```javascript
 // Promise
-const promise = poscart.getCartSharedItems({  token : value });
+const promise = posCart.getCartSharedItems({  token : value });
 
 // Async/Await
-const data = await poscart.getCartSharedItems({  token : value });
+const data = await posCart.getCartSharedItems({  token : value });
 ```
+
+
 
 
 
@@ -6284,13 +6336,15 @@ Merge or replace existing cart
 
 ```javascript
 // Promise
-const promise = poscart.updateCartWithSharedItems({  token : value,
+const promise = posCart.updateCartWithSharedItems({  token : value,
  action : value });
 
 // Async/Await
-const data = await poscart.updateCartWithSharedItems({  token : value,
+const data = await posCart.updateCartWithSharedItems({  token : value,
  action : value });
 ```
+
+
 
 
 

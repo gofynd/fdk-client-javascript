@@ -1,4 +1,4 @@
-const SLUG_DELIMETER = "--";
+const SLUG_DELIMETER = ":::";
 const transformRequestOptions = (params) => {
   let options = "";
 

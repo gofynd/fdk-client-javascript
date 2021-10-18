@@ -21,13 +21,15 @@ Initiates an upload and returns a storage link that is valid for 30 minutes. You
 
 ```javascript
 // Promise
-const promise = filestorage.startUpload({  namespace : value,
+const promise = fileStorage.startUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await filestorage.startUpload({  namespace : value,
+const data = await fileStorage.startUpload({  namespace : value,
  body : value });
 ```
+
+
 
 
 
@@ -95,13 +97,15 @@ Completes the upload process. After successfully uploading a file, call this API
 
 ```javascript
 // Promise
-const promise = filestorage.completeUpload({  namespace : value,
+const promise = fileStorage.completeUpload({  namespace : value,
  body : value });
 
 // Async/Await
-const data = await filestorage.completeUpload({  namespace : value,
+const data = await fileStorage.completeUpload({  namespace : value,
  body : value });
 ```
+
+
 
 
 

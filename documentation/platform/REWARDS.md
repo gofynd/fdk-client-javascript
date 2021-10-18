@@ -39,10 +39,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getGiveaways({
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |    
+| --------- | -----  | -------- | ----------- |  
 | pageId | string | no | pagination page id |    
 | pageSize | number | no | pagination page size |  
 
@@ -96,10 +96,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.createGiveaway
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |  
+| --------- | -----  | -------- | ----------- |
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
 
@@ -151,10 +151,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayByI
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | id | string | yes | Giveaway ID |  
 
 
@@ -209,10 +209,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.updateGiveaway
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | id | string | yes | Giveaway ID |  
 | body | [Giveaway](#Giveaway) | yes | Request body |
 
@@ -265,10 +265,6 @@ const data = await client.application("<APPLICATION_ID>").rewards.getOffers();
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |  
 
 
 
@@ -322,10 +318,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |   
 | name | string | yes | Offer name |  
 
@@ -381,10 +377,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.updateOfferByN
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | name | string | yes | Offer name |  
 | body | [Offer](#Offer) | yes | Request body |
 
@@ -437,10 +433,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getUserAvailab
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | userId | string | yes | user id |  
 
 
@@ -495,10 +491,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.updateUserStat
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | userId | string | yes | user id |  
 | body | [AppUser](#AppUser) | yes | Request body |
 
@@ -557,10 +553,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsH
 
 
 
+
+
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| companyId | string | yes | company id |   
-| applicationId | string | yes | application id |   
 | userId | string | yes | user id |    
 | pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
 | pageLimit | number | no | PageLimit is the number of requested items in response. |    
