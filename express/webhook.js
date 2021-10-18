@@ -41,6 +41,10 @@ class WebhookRegistry {
         }, {});
     }
 
+    _getAssociationCriteria() {
+        return this._config.saleschannel_events_sync === 'manual'? "SPECIFIC-EVENTS": "ALL";
+    }
+
     async syncEvents(platformClient, config = null) {
 
         if (config) {
@@ -68,7 +72,7 @@ class WebhookRegistry {
                 "association": {
                     "company_id": platformClient.config.companyId,
                     "application_id": [],
-                    "criteria": this._config.saleschannel_events_sync === 'manual'? "SPECIFIC-EVENTS": "ALL"
+                    "criteria": this._getAssociationCriteria()
                 },
                 "status": "active",
                 "auth_meta": {
@@ -101,7 +105,8 @@ class WebhookRegistry {
                     ...subscriberConfig.event_id.filter(eventId => !existingEvents.includes(eventId)),
                     ...existingEvents.filter(eventId => !subscriberConfig.event_id.includes(eventId))
                 ]
-                if (eventDiff.length) {
+                const existingCriteria = this._getAssociationCriteria();
+                if (eventDiff.length || existingCriteria !== subscriberConfig.association.criteria) {
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
                 }
             }
