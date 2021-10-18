@@ -68,7 +68,7 @@ class WebhookRegistry {
                 "association": {
                     "company_id": platformClient.config.companyId,
                     "application_id": [],
-                    "criteria": this._config.saleschannel_events_sync? "SPECIFIC-EVENTS": "ALL"
+                    "criteria": this._config.saleschannel_events_sync === 'manual'? "SPECIFIC-EVENTS": "ALL"
                 },
                 "status": "active",
                 "auth_meta": {
@@ -112,6 +112,9 @@ class WebhookRegistry {
     }
 
     async enableSalesChannelWebhook(platformClient, applicationId) {
+        if(this._config.saleschannel_events_sync !== 'manual') {
+            throw new FdkWebhookRegistrationError('`saleschannel_events_sync` is not set to `manual` in webhook config');
+        }
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
@@ -129,6 +132,9 @@ class WebhookRegistry {
     }
 
     async disableSalesChannelWebhook(platformClient, applicationId) {
+        if(this._config.saleschannel_events_sync !== 'manual') {
+            throw new FdkWebhookRegistrationError('`saleschannel_events_sync` is not set to `manual` in webhook config');
+        }
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
@@ -157,11 +163,11 @@ class WebhookRegistry {
 
     async processWebhook(req) {
         try {
+            const { body } = req;
             if (body.event.name === TEST_WEBHOOK_EVENT_NAME) {
                 return;
             }
             this.verifySignature(req);
-            const { body } = req;
             const eventName = `${body.event.name}/${body.event.type}`;
             const extHandler = (this._handlerMap[eventName] || {}).handler;
             if (typeof extHandler === 'function') {
