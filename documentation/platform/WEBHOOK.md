@@ -528,6 +528,7 @@ Success
  | company_id | number |  no  |  |
  | application_id | [string] |  no  |  |
  | extension_id | string |  no  |  |
+ | criteria | string |  no  |  |
 
 ---
 
