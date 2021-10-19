@@ -101,6 +101,8 @@ export class ContentValidator {
     static updatePage(): any;
     static deletePage(): any;
     static getPageBySlug(): any;
+    static updatePathRedirectionRules(): any;
+    static getPathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -175,29 +177,29 @@ export class OrderValidator {
     static getShipmentTrackDetails(): any;
 }
 export class CatalogValidator {
-    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static createCustomKeyword(): any;
+    static deleteSearchKeywords(): any;
     static getAllSearchKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
+    static createCustomKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
-    static createCustomAutocompleteRule(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
+    static deleteCollection(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
@@ -205,6 +207,7 @@ export class CatalogValidator {
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getOptimalLocations(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;

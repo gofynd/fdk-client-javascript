@@ -36,12 +36,13 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
+    headers["x-fp-sdk-version"] = "0.1.8";
+    let querySearchObj = querystring.parse(search);
+    querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
-    if (params && Object.keys(params).length) {
-      if (search && search.trim() !== "") {
-        queryParam = `&${querystring.stringify(params)}`;
-      } else {
-        queryParam = `?${querystring.stringify(params)}`;
+    if (querySearchObj && Object.keys(querySearchObj).length) {
+      if (querystring.stringify(querySearchObj).trim() !== "") {
+        queryParam = `?${querystring.stringify(querySearchObj)}`;
       }
     }
     let transformedData;
@@ -68,12 +69,12 @@ function requestInterceptorFn() {
       path: pathname + search + queryParam,
       body: transformedData,
       headers: headersToSign,
-      encodePath: config.encodePath,
     };
     sign(signingOptions);
 
     config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
+    // config.headers["fp-sdk-version"] = version;
     return config;
   };
 }

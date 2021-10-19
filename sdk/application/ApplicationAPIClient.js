@@ -16,7 +16,6 @@ class APIClient {
 
     const rawRequest = {
       baseURL: conf.domain,
-      encodePath: conf.encodePath,
       method: method,
       url: url,
       params: query,
