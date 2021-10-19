@@ -1,7 +1,7 @@
 'use strict';
 
 const hmacSHA256 = require("crypto-js/hmac-sha256");
-const { TEST_WEBHOOK_EVENT_NAME } = require("./constants");
+const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 
 class WebhookRegistry {
@@ -41,8 +41,32 @@ class WebhookRegistry {
         }, {});
     }
 
-    _getAssociationCriteria() {
-        return this._config.saleschannel_events_sync === 'manual'? "SPECIFIC-EVENTS": "ALL";
+    get _associationCriteria() {
+        return this._config.saleschannel_events_sync === 'manual'? ASSOCIATION_CRITERIA.SPECIFIC: ASSOCIATION_CRITERIA.ALL;
+    }
+
+    get _webhookUrl() {
+        return `${this._fdkConfig.base_url}${this._config.api_path}`;
+    }
+
+    _isConfigUpdated(subscriberConfig) {
+        if(this._associationCriteria !== subscriberConfig.association.criteria) {
+            if(this._associationCriteria === ASSOCIATION_CRITERIA.ALL) {
+                subscriberConfig.association.application_id = [];
+            }
+            subscriberConfig.association.criteria = this._associationCriteria;
+            return true;
+        }
+
+        if(this._config.notification_email !== subscriberConfig.email_id) {
+            subscriberConfig.email_id = this._config.notification_email; 
+            return true;
+        }
+
+        if(this._webhookUrl !== subscriberConfig.webhook_url) {
+            subscriberConfig.webhook_url = this._webhookUrl;
+            return true;
+        }
     }
 
     async syncEvents(platformClient, config = null) {
@@ -62,17 +86,18 @@ class WebhookRegistry {
 
         eventsMap = this._getEventIdMap(eventsMap.event_configs);
         let registerNew = false;
+        let configUpdated = false;
         let existingEvents = [];
         subscriberConfig = subscriberConfig.items[0];
 
         if (!subscriberConfig) {
             subscriberConfig = {
                 "name": this._fdkConfig.api_key,
-                "webhook_url": `${this._fdkConfig.base_url}${this._config.api_path}`,
+                "webhook_url": this._webhookUrl,
                 "association": {
                     "company_id": platformClient.config.companyId,
                     "application_id": [],
-                    "criteria": this._getAssociationCriteria()
+                    "criteria": this._associationCriteria
                 },
                 "status": "active",
                 "auth_meta": {
@@ -85,10 +110,13 @@ class WebhookRegistry {
             registerNew = true;
         }
         else {
-            const { id, name, webhook_url, association, status, auth_meta, event_configs } = subscriberConfig
-            subscriberConfig = { id, name, webhook_url, association, status, auth_meta };
+            const { id, name, webhook_url, association, status, auth_meta, event_configs, email_id } = subscriberConfig
+            subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
             subscriberConfig.event_id = [];
             existingEvents = event_configs.map(event => event.id);
+            if(this._isConfigUpdated(subscriberConfig)) {
+                configUpdated = true;
+            }
         }
         for (let eventName of Object.keys(this._handlerMap)) {
             if (eventsMap[eventName]) {
@@ -105,8 +133,8 @@ class WebhookRegistry {
                     ...subscriberConfig.event_id.filter(eventId => !existingEvents.includes(eventId)),
                     ...existingEvents.filter(eventId => !subscriberConfig.event_id.includes(eventId))
                 ]
-                const existingCriteria = this._getAssociationCriteria();
-                if (eventDiff.length || existingCriteria !== subscriberConfig.association.criteria) {
+                
+                if (eventDiff.length || configUpdated) {
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
                 }
             }
