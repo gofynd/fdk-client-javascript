@@ -9145,6 +9145,11 @@ class PlatformClient {
  */
 
 /**
+ * @typedef UpdateIntegrationLevelRequest
+ * @property {IntegrationLevel[]} [items]
+ */
+
+/**
  * @typedef OptedStoreIntegration
  * @property {boolean} [other_opted]
  * @property {IntegrationOptIn} [other_integration]
@@ -16100,7 +16105,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Integration id
    * @param {string} arg.level - Integration level
-   * @param {IntegrationLevel} arg.body
+   * @param {UpdateIntegrationLevelRequest} arg.body
    * @summary: Update a store level opt-in for integration
    * @description: Update a store level opt-in for integration
    */

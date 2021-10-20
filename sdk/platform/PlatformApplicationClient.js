@@ -9143,6 +9143,11 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef UpdateIntegrationLevelRequest
+ * @property {IntegrationLevel[]} [items]
+ */
+
+/**
  * @typedef OptedStoreIntegration
  * @property {boolean} [other_opted]
  * @property {IntegrationOptIn} [other_integration]

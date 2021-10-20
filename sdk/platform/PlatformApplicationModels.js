@@ -14332,6 +14332,12 @@ class Validator {
     });
   }
 
+  static UpdateIntegrationLevelRequest() {
+    return Joi.object({
+      items: Joi.array().items(this.IntegrationLevel()),
+    });
+  }
+
   static OptedStoreIntegration() {
     return Joi.object({
       other_opted: Joi.boolean(),

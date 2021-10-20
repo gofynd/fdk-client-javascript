@@ -4089,7 +4089,7 @@ const data = await client.configuration.updateLevelIntegration({  id : value,
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Integration id |   
 | level | string | yes | Integration level |  
-| body | [IntegrationLevel](#IntegrationLevel) | yes | Request body |
+| body | [UpdateIntegrationLevelRequest](#UpdateIntegrationLevelRequest) | yes | Request body |
 
 
 Update a store level opt-in for integration
@@ -5620,6 +5620,17 @@ Success
  | updated_at | string |  no  |  |
  | __v | number |  no  |  |
  | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateIntegrationLevelRequest](#UpdateIntegrationLevelRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[IntegrationLevel](#IntegrationLevel)] |  no  |  |
 
 ---
 
