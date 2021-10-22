@@ -5494,7 +5494,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | json_schema | [JsonSchema](#JsonSchema) |  no  |  |
+ | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
  | browser_script | string |  no  |  |
 
 ---
