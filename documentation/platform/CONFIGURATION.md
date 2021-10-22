@@ -5578,7 +5578,7 @@ Success
  | support | [string] |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
- | meta | [IntegrationMeta](#IntegrationMeta) |  no  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
  | icon | string |  no  |  |
  | owner | string |  no  |  |
  | created_at | string |  no  |  |
@@ -5614,7 +5614,7 @@ Success
  | integration | string |  no  |  |
  | level | string |  no  |  |
  | uid | number |  no  |  |
- | meta | [any] |  no  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
  | token | string |  no  |  |
  | created_at | string |  no  |  |
  | updated_at | string |  no  |  |

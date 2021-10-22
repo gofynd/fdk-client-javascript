@@ -14282,7 +14282,7 @@ class Validator {
 
       name: Joi.string().allow(""),
 
-      meta: this.IntegrationMeta(),
+      meta: Joi.array().items(this.IntegrationMeta()),
 
       icon: Joi.string().allow(""),
 
@@ -14322,7 +14322,7 @@ class Validator {
 
       uid: Joi.number(),
 
-      meta: Joi.array().items(Joi.any()),
+      meta: Joi.array().items(this.IntegrationMeta()),
 
       token: Joi.string().allow(""),
 

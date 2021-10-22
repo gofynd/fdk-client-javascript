@@ -8080,7 +8080,7 @@ declare namespace PlatformApplicationClient {
  * @property {string[]} [support]
  * @property {string} [_id]
  * @property {string} [name]
- * @property {IntegrationMeta} [meta]
+ * @property {IntegrationMeta[]} [meta]
  * @property {string} [icon]
  * @property {string} [owner]
  * @property {string} [created_at]
@@ -8102,7 +8102,7 @@ declare namespace PlatformApplicationClient {
  * @property {string} [integration]
  * @property {string} [level]
  * @property {number} [uid]
- * @property {Object[]} [meta]
+ * @property {IntegrationMeta[]} [meta]
  * @property {string} [token]
  * @property {string} [created_at]
  * @property {string} [updated_at]
@@ -20086,7 +20086,7 @@ type Integration = {
     support?: string[];
     _id?: string;
     name?: string;
-    meta?: IntegrationMeta;
+    meta?: IntegrationMeta[];
     icon?: string;
     owner?: string;
     created_at?: string;
@@ -20106,7 +20106,7 @@ type IntegrationLevel = {
     integration?: string;
     level?: string;
     uid?: number;
-    meta?: any[];
+    meta?: IntegrationMeta[];
     token?: string;
     created_at?: string;
     updated_at?: string;
