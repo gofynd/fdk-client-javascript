@@ -18,20 +18,43 @@ app.use(bodyParser.json({
 }));    
 
 let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
-let baseUrl = data.toString() || "http://localhost:7070";
+let baseUrl = data.toString() || "http://localhost:5070";
 console.log(baseUrl);
+
+function handleExtInstall(payload, companyId) {
+    console.log(`Event received for ${companyId}`);
+    console.log(payload);
+}
+
+function handleCouponEdit(payload, companyId, applicationId) {
+    console.log(`Event received for ${companyId} and ${applicationId}`);
+    console.log(payload);
+}
 
 const redis = new Redis();
 
 let fdkExtension = setupFdk({
-    api_key: "60b85632a11966719e7d9aed",
-    api_secret: "aE7lauU_LxM1tJD",
+    api_key: "6113bded193f51772ed6f29d",
+    api_secret: "P3mR.4UpD3SFjat",
     base_url: baseUrl,
     scopes: ["company/product"],
     callbacks: extensionHandler,
     storage: new RedisStorage(redis),
     access_mode: "offline",
-    cluster: "https://api.fyndx0.de" // this is optional by default it points to prod.
+    cluster: "https://api.fyndx0.de", // this is optional by default it points to prod.
+    webhook_config: {
+        api_path: "/webhook",
+        notification_email: "test2@abc.com", // required
+        subscribed_saleschannel: 'specific', //optional
+        event_map: { // required
+            'extension/install': {
+              handler: handleExtInstall
+            },
+            'coupon/update': {
+              handler: handleCouponEdit
+            }
+          }
+    }
 });
 
 app.use(fdkExtension.fdkHandler);
@@ -65,16 +88,33 @@ fdkExtension.applicationProxyRoutes.get("/1234", async (req, res, next) => {
 
 // sample webhook endpoint
 const webhookRouter = express.Router({  mergeParams: true });
-webhookRouter.get("/webhook", async (req, res, next) => {
+webhookRouter.post("/webhook", async (req, res, next) => {
     try {
-            // fetch company id from query params
-        let companyId = req.query.companyId;
-        let cluster = "https://api.fyndx0.de"; // either take it from some  env variables like "https://api.fyndx0.de"
-        let  client = await fdkExtension.getPlatformClient(companyId);
+        await fdkExtension.webhookRegistry.processWebhook(req);
         res.json({"success": true});
     } catch (err) {
         console.error(err);
         res.status(404).json({"success": false});
+    }
+});
+
+fdkExtension.apiRoutes.post("/webhook/application/:application_id/subscribe", async (req, res, next) => {
+    try {
+        await fdkExtension.webhookRegistry.enableSalesChannelWebhook(req.platformClient, req.params.application_id);
+        res.json({"success": true});
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({"success": false});
+    }
+});
+
+fdkExtension.apiRoutes.post("/webhook/application/:application_id/unsubscribe", async (req, res, next) => {
+    try {
+        await fdkExtension.webhookRegistry.disableSalesChannelWebhook(req.platformClient, req.params.application_id);
+        res.json({"success": true});
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({"success": false});
     }
 });
 
