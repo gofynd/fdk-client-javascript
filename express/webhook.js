@@ -22,6 +22,7 @@ class WebhookRegistry {
         if (!config.event_map || !Object.keys(config.event_map).length) {
             throw new FdkInvalidWebhookConfig(`Invalid or missing "event_map"`);
         }
+        config.subscribe_on_install = config.subscribe_on_install === undefined? true: config.subscribe_on_install;
         this._handlerMap = {};
         this._config = config;
         this._fdkConfig = fdkConfig;
@@ -31,7 +32,7 @@ class WebhookRegistry {
     }
 
     isInitialized() {
-        return !!this._handlerMap;
+        return !!this._handlerMap && this._config.subscribe_on_install;
     }
 
     _getEventIdMap(events) {
@@ -42,7 +43,7 @@ class WebhookRegistry {
     }
 
     get _associationCriteria() {
-        return this._config.saleschannel_events_sync === 'manual'? ASSOCIATION_CRITERIA.SPECIFIC: ASSOCIATION_CRITERIA.ALL;
+        return this._config.subscribed_saleschannel === 'specific'? ASSOCIATION_CRITERIA.SPECIFIC: ASSOCIATION_CRITERIA.ALL;
     }
 
     get _webhookUrl() {
@@ -50,23 +51,25 @@ class WebhookRegistry {
     }
 
     _isConfigUpdated(subscriberConfig) {
+        let updated = false;
         if(this._associationCriteria !== subscriberConfig.association.criteria) {
             if(this._associationCriteria === ASSOCIATION_CRITERIA.ALL) {
                 subscriberConfig.association.application_id = [];
             }
             subscriberConfig.association.criteria = this._associationCriteria;
-            return true;
+            updated = true;
         }
 
         if(this._config.notification_email !== subscriberConfig.email_id) {
             subscriberConfig.email_id = this._config.notification_email; 
-            return true;
+            updated = true;
         }
 
         if(this._webhookUrl !== subscriberConfig.webhook_url) {
             subscriberConfig.webhook_url = this._webhookUrl;
-            return true;
+            updated = true;
         }
+        return updated;
     }
 
     async syncEvents(platformClient, config = null) {
@@ -145,12 +148,15 @@ class WebhookRegistry {
     }
 
     async enableSalesChannelWebhook(platformClient, applicationId) {
-        if(this._config.saleschannel_events_sync !== 'manual') {
-            throw new FdkWebhookRegistrationError('`saleschannel_events_sync` is not set to `manual` in webhook config');
+        if(this._config.subscribed_saleschannel !== 'specific') {
+            throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
+            const { id, name, webhook_url, association, status, auth_meta, email_id, event_configs } = subscriberConfig;
+            subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
+            subscriberConfig.event_id = event_configs.map(event => event.id);
             const arrApplicationId = subscriberConfig.association.application_id || [];
             const rmIndex = arrApplicationId.indexOf(applicationId);
             if (rmIndex === -1) {
@@ -165,12 +171,15 @@ class WebhookRegistry {
     }
 
     async disableSalesChannelWebhook(platformClient, applicationId) {
-        if(this._config.saleschannel_events_sync !== 'manual') {
-            throw new FdkWebhookRegistrationError('`saleschannel_events_sync` is not set to `manual` in webhook config');
+        if(this._config.subscribed_saleschannel !== 'specific') {
+            throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
+            const { id, name, webhook_url, association, status, auth_meta, email_id, event_id } = subscriberConfig;
+            subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
+            subscriberConfig.event_id = event_configs.map(event => event.id);
             const arrApplicationId = subscriberConfig.association.application_id;
             if (arrApplicationId && arrApplicationId.length) {
                 const rmIndex = arrApplicationId.indexOf(applicationId);
@@ -204,7 +213,7 @@ class WebhookRegistry {
             const eventName = `${body.event.name}/${body.event.type}`;
             const extHandler = (this._handlerMap[eventName] || {}).handler;
             if (typeof extHandler === 'function') {
-                await extHandler(eventName, req.body.payload, req.body.company_id, req.body.application_id);
+                await extHandler(eventName, req.body, req.body.company_id, req.body.application_id);
             }
             else {
                 throw new FdkWebhookHandlerNotFound(`Webhook handler not assigned: ${eventName}`);

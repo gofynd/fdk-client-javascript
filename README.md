@@ -103,7 +103,8 @@ let fdkClient = setupFdk({
   webhook_config: {
     api_path: "/api/v1/webhooks", // required
     notification_email: "test@abc.com", // required
-    saleschannel_events_sync: 'manual', //optional
+    subscribe_on_install: false, //optional. Default true
+    subscribed_saleschannel 'specific', //optional. Default all
     event_map: { // required
       'extension/install': {
         handler: handleExtInstall
@@ -119,6 +120,7 @@ let fdkClient = setupFdk({
 });
 
 ```
+> By default all webhook events all subscribed for all companies whenever they are installed. To disable this behavior set `subscribe_on_install` to `false`. If `subscribe_on_install` is set to false, you need to manually enable webhook event subscription by calling `syncEvents` method of `webhookRegistry`
 
 There should be view on given api path to receive webhook call. It should be `POST` api path. Api view should call `processWebhook` method of `webhookRegistry` object available under `fdkClient` here.
 
@@ -139,5 +141,5 @@ app.post('/api/v1/webhooks', async (req, res, next) {
 
 ```
 
-> Setting `saleschannel_events_sync` as "manual" means, you will have to manually enable saleschannel level event for individual saleschannel. Default value here is "automatic" and event will be subscribed for all sales channels. For enabling events manually use function `enableSalesChannelWebhook`. To disable receiving events for a saleschannel use function `disableSalesChannelWebhook`. 
+> Setting `subscribed_saleschannel` as "specific" means, you will have to manually subscribe saleschannel level event for individual saleschannel. Default value here is "all" and event will be subscribed for all sales channels. For enabling events manually use function `enableSalesChannelWebhook`. To disable receiving events for a saleschannel use function `disableSalesChannelWebhook`. 
 
