@@ -16,6 +16,12 @@
             "skipFiles": [
                 "<node_internals>/**"
             ]
+        },
+        {
+            "name": "Current File",
+            "request": "launch",
+            "type": "node",
+            "args": ["${file}"]
         }
 
     ]

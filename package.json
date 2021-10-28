@@ -21,7 +21,7 @@
     "sinon": "^9.0.2",
     "supertest": "^4.0.2",
     "winston": "^3.2.1",
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#~0.1.4"
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#0.1.8"
   },
   "nyc": {
     "all": true,
@@ -52,11 +52,11 @@
     "report-dir": "./coverage"
   },
   "peerDependencies": {
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#>=0.1.5"
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#>=0.1.8"
   },
   "name": "fdk-extension-javascript",
   "description": "FDK Extension Helper Library",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "main": "index.js",
   "directories": {
     "example": "examples"
