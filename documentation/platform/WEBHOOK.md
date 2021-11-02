@@ -484,6 +484,7 @@ Success
  | name | string |  no  |  |
  | webhook_url | string |  no  |  |
  | association | [Association](#Association) |  no  |  |
+ | email_id | string |  no  |  |
  | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
  | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
  | created_on | string |  no  |  |

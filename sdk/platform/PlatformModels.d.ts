@@ -91,8 +91,8 @@ export class CatalogValidator {
     static updateCategory(): any;
     static getProducts(): any;
     static createProduct(): any;
-    static deleteProduct(): any;
     static getProduct(): any;
+    static deleteProduct(): any;
     static editProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
@@ -120,6 +120,7 @@ export class CatalogValidator {
     static getHsnCode(): any;
     static updateHsnCode(): any;
     static bulkHsnCode(): any;
+    static getOptimalLocations(): any;
 }
 export class CompanyProfileValidator {
     static cbsOnboardGet(): any;
@@ -128,10 +129,10 @@ export class CompanyProfileValidator {
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
+    static createLocation(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
