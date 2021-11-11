@@ -51,6 +51,7 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
+        logger.debug(`Extension initialized`);
         this.webhookRegistry = new WebhookRegistry();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
@@ -91,6 +92,7 @@ class Extension {
             if(ac_nr_expired) {
                 logger.debug(`Renewing access token for company ${companyId}`);
                 await platformConfig.oauthClient.renewAccessToken();
+                logger.debug(`Access token renewed for company ${companyId}`);
             }
         }
         return new PlatformClient(platformConfig);

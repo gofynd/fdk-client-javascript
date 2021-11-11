@@ -58,21 +58,21 @@ class WebhookRegistry {
             if (this._associationCriteria === ASSOCIATION_CRITERIA.ALL) {
                 subscriberConfig.association.application_id = [];
             }
+            logger.debug(`Webhook association criteria updated from ${subscriberConfig.association.criteria} to ${this._associationCriteria}`);
             subscriberConfig.association.criteria = this._associationCriteria;
             updated = true;
-            logger.debug(`Webhook association criteria updated from ${subscriberConfig.association.criteria} to ${this._associationCriteria}`);
         }
 
         if (this._config.notification_email !== subscriberConfig.email_id) {
+            logger.debug(`Webhook notification email updated from ${subscriberConfig.email_id} to ${this._config.notification_email}`);
             subscriberConfig.email_id = this._config.notification_email;
             updated = true;
-            logger.debug(`Webhook notification email updated from ${subscriberConfig.email_id} to ${this._config.notification_email}`);
         }
 
         if (this._webhookUrl !== subscriberConfig.webhook_url) {
+            logger.debug(`Webhook url updated from ${subscriberConfig.webhook_url} to ${this._webhookUrl}`);
             subscriberConfig.webhook_url = this._webhookUrl;
             updated = true;
-            logger.debug(`Webhook url updated from ${subscriberConfig.webhook_url} to ${this._webhookUrl}`);
         }
         return updated;
     }
@@ -136,7 +136,7 @@ class WebhookRegistry {
         try {
             if (registerNew) {
                 await platformClient.webhook.registerSubscriberToEvent({ body: subscriberConfig });
-                if(this._fdkConfig.verbos) {
+                if(this._fdkConfig.debug) {
                     const event_map = Object.keys(eventsMap).reduce((map, eventName)=>{
                         map[eventsMap[eventName]] = eventName;
                         return map;
@@ -153,7 +153,7 @@ class WebhookRegistry {
 
                 if (eventDiff.length || configUpdated) {
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
-                    if(this._fdkConfig.verbos) {
+                    if(this._fdkConfig.debug) {
                         const event_map = Object.keys(eventsMap).reduce((map, eventName)=>{
                             map[eventsMap[eventName]] = eventName;
                             return map;

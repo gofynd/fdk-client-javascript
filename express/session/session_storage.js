@@ -1,6 +1,7 @@
 'use strict';
 const Session = require("./session");
 const { extension } = require("./../extension");
+const logger = require("../logger");
 
 class SessionStorage {
     constructor() {
@@ -21,6 +22,9 @@ class SessionStorage {
         if(session) {
             session = JSON.parse(session);
             session = Session.cloneSession(sessionId, session, false);
+        }
+        else {
+            logger.debug(`Session data not found for session id ${sessionId}`);
         }
         return session;
     }

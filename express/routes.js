@@ -6,6 +6,7 @@ const SessionStorage = require("./session/session_storage");
 const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code");
 const { SESSION_COOKIE_NAME } = require('./constants');
 const { sessionMiddleware } = require('./middleware/session_middleware');
+const logger = require('./logger');
 const FdkRoutes = express.Router();
 
 
@@ -80,6 +81,7 @@ function setupRoutes(ext) {
                 access_mode: ext.access_mode
             });
             await SessionStorage.saveSession(session);
+            logger.debug(`Redirecting after install callback to url: ${redirectUrl}`);
             res.redirect(redirectUrl);
         } catch (error) {
             next(error);
@@ -132,6 +134,7 @@ function setupRoutes(ext) {
                 await ext.webhookRegistry.syncEvents(client);
             }
             let redirectUrl = await ext.callbacks.auth(req);
+            logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`);
             res.redirect(redirectUrl);
         } catch (error) {
             next(error);
