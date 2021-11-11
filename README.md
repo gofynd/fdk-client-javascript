@@ -116,7 +116,8 @@ let fdkClient = setupFdk({
         handler: handleCouponCreate
       }
     }
-  }
+  },
+  debug: true // optional. Enables debug logs if `true`. Default `false`
 });
 
 ```
