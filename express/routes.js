@@ -36,7 +36,7 @@ function setupRoutes(ext) {
                 }
             }
 
-            let sessionExpires = new Date(Date.now() + (1000 * 3600 * 24 * 7));
+            let sessionExpires = new Date(Date.now() + 900000); // 15 min
 
             if(session.isNew) {
                 session.company_id = companyId;
