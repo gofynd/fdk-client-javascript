@@ -200,7 +200,7 @@ class WebhookRegistry {
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
-            const { id, name, webhook_url, association, status, auth_meta, email_id, event_id } = subscriberConfig;
+            const { id, name, webhook_url, association, status, auth_meta, email_id, event_configs } = subscriberConfig;
             subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
             subscriberConfig.event_id = event_configs.map(event => event.id);
             const arrApplicationId = subscriberConfig.association.application_id;
