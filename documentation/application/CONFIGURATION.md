@@ -2805,5 +2805,17 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 ---
 
 
+ 
+ 
+ #### [OrderingStoresResponse](#OrderingStoresResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[OrderingStore](#OrderingStore)] |  no  |  |
+
+---
+
+
 
 

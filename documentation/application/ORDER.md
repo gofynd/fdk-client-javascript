@@ -1135,7 +1135,7 @@ Success, the code is valid and returns a session token
  | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
  | beneficiary_details | boolean |  no  |  |
  | can_return | boolean |  no  |  |
- | can_break | boolean |  no  |  |
+ | can_break | string |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
  | need_help_url | string |  no  |  |
  | shipment_id | string |  no  |  |

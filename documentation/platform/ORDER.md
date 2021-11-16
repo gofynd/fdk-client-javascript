@@ -2597,7 +2597,7 @@ Success
  | coupon | string |  no  |  |
  | order_source | string |  no  |  |
  | is_not_fynd_source | boolean |  no  |  |
- | can_break | boolean |  no  |  |
+ | can_break | string |  no  |  |
  | comment | string |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
  | tracking_details | [ShipmentTrackingDetails](#ShipmentTrackingDetails) |  no  |  |

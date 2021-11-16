@@ -176,13 +176,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static getSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
     static getCatalogConfiguration(): any;
@@ -194,8 +194,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
@@ -237,8 +237,10 @@ export class ConfigurationValidator {
     static partiallyUpdateInventoryConfig(): any;
     static getAppCurrencyConfig(): any;
     static updateAppCurrencyConfig(): any;
+    static getAppSupportedCurrency(): any;
     static getOrderingStoresByFilter(): any;
     static updateOrderingStoreConfig(): any;
+    static getStaffOrderingStores(): any;
     static getDomains(): any;
     static addDomain(): any;
     static removeDomainById(): any;

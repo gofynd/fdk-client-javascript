@@ -24,8 +24,10 @@ Application configuration apis
 * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
 * [getAppCurrencyConfig](#getappcurrencyconfig)
 * [updateAppCurrencyConfig](#updateappcurrencyconfig)
+* [getAppSupportedCurrency](#getappsupportedcurrency)
 * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
 * [updateOrderingStoreConfig](#updateorderingstoreconfig)
+* [getStaffOrderingStores](#getstafforderingstores)
 * [getDomains](#getdomains)
 * [addDomain](#adddomain)
 * [removeDomainById](#removedomainbyid)
@@ -40,7 +42,9 @@ Application configuration apis
 * [getAvailableOptIns](#getavailableoptins)
 * [getSelectedOptIns](#getselectedoptins)
 * [getIntegrationLevelConfig](#getintegrationlevelconfig)
+* [updateLevelIntegration](#updatelevelintegration)
 * [getIntegrationByLevelId](#getintegrationbylevelid)
+* [updateLevelUidIntegration](#updateleveluidintegration)
 * [getLevelActiveIntegrations](#getlevelactiveintegrations)
 * [getBrandsByCompany](#getbrandsbycompany)
 * [getCompanyByBrands](#getcompanybybrands)
@@ -2368,6 +2372,75 @@ Success
 ---
 
 
+### getAppSupportedCurrency
+Get currencies enabled in the application
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency();
+```
+
+
+
+
+
+
+Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[AppCurrencyResponse](#AppCurrencyResponse)
+
+Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application": "000000000000000000000001",
+  "default_currency": {
+    "ref": "5ecf6122d953d4242c044907",
+    "code": "INR"
+  },
+  "supported_currency": [
+    {
+      "_id": "5ecf6122d953d4242c044907",
+      "is_active": true,
+      "name": "Indian Rupee",
+      "code": "INR",
+      "decimal_digits": 2,
+      "symbol": "₹",
+      "created_at": "2020-05-28T06:58:42.532Z",
+      "modified_at": "2021-04-05T16:44:14.358Z"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getOrderingStoresByFilter
 Get ordering store by filter
 
@@ -2565,6 +2638,68 @@ Success
   "app": "000000000000000000000004",
   "__v": 6
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStaffOrderingStores
+Get deployment stores
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").configuration.getStaffOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| q | string | no | Store code or name of the ordering store. |  
+
+
+
+Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStoresResponse](#OrderingStoresResponse)
+
+Success. Check the example shown below or refer `OrderingStoresResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -3823,6 +3958,84 @@ Success
 ---
 
 
+### updateLevelIntegration
+Update a store level opt-in for integration
+
+
+
+```javascript
+// Promise
+const promise = client.configuration.updateLevelIntegration({  id : value,
+ level : value,
+ body : value });
+
+// Async/Await
+const data = await client.configuration.updateLevelIntegration({  id : value,
+ level : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Integration id |   
+| level | string | yes | Integration level |  
+| body | [UpdateIntegrationLevelRequest](#UpdateIntegrationLevelRequest) | yes | Request body |
+
+
+Update a store level opt-in for integration
+
+*Returned Response:*
+
+
+
+
+[IntegrationLevel](#IntegrationLevel)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getIntegrationByLevelId
 Get level data for integration
 
@@ -3853,6 +4066,87 @@ const data = await client.configuration.getIntegrationByLevelId({  id : value,
 
 
 Get level data for integration
+
+*Returned Response:*
+
+
+
+
+[IntegrationLevel](#IntegrationLevel)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateLevelUidIntegration
+Update a store level opt-in for integration
+
+
+
+```javascript
+// Promise
+const promise = client.configuration.updateLevelUidIntegration({  id : value,
+ level : value,
+ uid : value,
+ body : value });
+
+// Async/Await
+const data = await client.configuration.updateLevelUidIntegration({  id : value,
+ level : value,
+ uid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Integration id |   
+| level | string | yes | Integration level |   
+| uid | number | yes | Integration level uid |  
+| body | [IntegrationLevel](#IntegrationLevel) | yes | Request body |
+
+
+Update a store level opt-in for integration
 
 *Returned Response:*
 
@@ -5281,7 +5575,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [IntegrationOptIn](#IntegrationOptIn) |  no  |  |
+ | items | [[IntegrationOptIn](#IntegrationOptIn)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
 ---
@@ -5301,7 +5595,7 @@ Success
  | support | [string] |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
- | meta | [IntegrationMeta](#IntegrationMeta) |  no  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
  | icon | string |  no  |  |
  | owner | string |  no  |  |
  | created_at | string |  no  |  |
@@ -5333,7 +5627,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | json_schema | [JsonSchema](#JsonSchema) |  no  |  |
+ | json_schema | [[JsonSchema](#JsonSchema)] |  no  |  |
  | browser_script | string |  no  |  |
 
 ---
@@ -5417,7 +5711,7 @@ Success
  | support | [string] |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
- | meta | [IntegrationMeta](#IntegrationMeta) |  no  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
  | icon | string |  no  |  |
  | owner | string |  no  |  |
  | created_at | string |  no  |  |
@@ -5435,7 +5729,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [IntegrationLevel](#IntegrationLevel) |  no  |  |
+ | items | [[IntegrationLevel](#IntegrationLevel)] |  no  |  |
 
 ---
 
@@ -5448,17 +5742,28 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | opted | boolean |  no  |  |
  | permissions | [string] |  no  |  |
- | last_patch | [string] |  no  |  |
+ | last_patch | [[LastPatch](#LastPatch)] |  no  |  |
  | _id | string |  no  |  |
  | integration | string |  no  |  |
  | level | string |  no  |  |
  | uid | number |  no  |  |
- | meta | [any] |  no  |  |
+ | meta | [[IntegrationMeta](#IntegrationMeta)] |  no  |  |
  | token | string |  no  |  |
  | created_at | string |  no  |  |
  | updated_at | string |  no  |  |
  | __v | number |  no  |  |
  | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateIntegrationLevelRequest](#UpdateIntegrationLevelRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[IntegrationLevel](#IntegrationLevel)] |  no  |  |
 
 ---
 
@@ -5484,7 +5789,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | opted | boolean |  no  |  |
  | permissions | [string] |  no  |  |
- | last_patch | [LastPatch](#LastPatch) |  no  |  |
+ | last_patch | [[LastPatch](#LastPatch)] |  no  |  |
  | _id | string |  no  |  |
  | integration | string |  no  |  |
  | level | string |  no  |  |
@@ -6986,6 +7291,18 @@ Success
  | _id | string |  no  |  |
  | app | string |  no  |  |
  | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderingStoresResponse](#OrderingStoresResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[OrderingStore](#OrderingStore)] |  no  |  |
 
 ---
 
