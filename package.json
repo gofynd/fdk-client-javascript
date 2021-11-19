@@ -3,30 +3,66 @@
     "url-join": "^4.0.1",
     "uuid": "^8.3.2",
     "validator": "^13.5.2",
-    "axios": "^0.21.1"
+    "axios": "^0.21.1",
+    "crypto-js": "^4.0.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
-    "crypto-js": "^4.0.0",
     "express": "^4.17.1",
     "ioredis": "^4.24.2",
     "jshint": "^2.12.0",
     "ngrok": "^3.4.0",
-    "querystring": "^0.2.1"
+    "querystring": "^0.2.1",
+    "axios-mock-adapter": "^1.18.1",
+    "jasmine": "^3.5.0",
+    "jasmine-console-reporter": "^3.1.0",
+    "nyc": "^15.0.1",
+    "sinon": "^9.0.2",
+    "supertest": "^4.0.2",
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#0.1.8"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": false,
+    "collectCoverage": true,
+    "include": [
+      "**/*.js"
+    ],
+    "exclude": [
+      "spec/*",
+      "node_modules/*",
+      "tools/*",
+      "load-test/*",
+      "backup/*",
+      "migration/*",
+      "coverage/*",
+      "run_migration.js",
+      "build/*",
+      "dist/*",
+      "examples/*"
+    ],
+    "reporter": [
+      "html",
+      "json",
+      "json-summary",
+      "text-summary"
+    ],
+    "report-dir": "./coverage"
   },
   "peerDependencies": {
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git"
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#>=0.1.8"
   },
   "name": "fdk-extension-javascript",
   "description": "FDK Extension Helper Library",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "main": "index.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/nyc node spec.js"
   },
   "repository": {
     "type": "git",
