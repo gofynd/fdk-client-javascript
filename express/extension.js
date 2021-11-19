@@ -4,6 +4,7 @@ const {FdkInvalidExtensionJson} = require("./error_code");
 const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
+const logger = require('./logger');
 
 class Extension {
     constructor() {
@@ -50,6 +51,7 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
+        logger.debug(`Extension initialized`);
         this.webhookRegistry = new WebhookRegistry();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
@@ -88,7 +90,9 @@ class Extension {
         if(session.access_token_validity) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime())/ 1000) <= 120;
             if(ac_nr_expired) {
+                logger.debug(`Renewing access token for company ${companyId}`);
                 await platformConfig.oauthClient.renewAccessToken();
+                logger.debug(`Access token renewed for company ${companyId}`);
             }
         }
         return new PlatformClient(platformConfig);

@@ -6,8 +6,12 @@ const { setupProxyRoutes } = require("./api_routes");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
+const logger = require('./logger');
 
 function setupFdk(data) {
+    if(data.debug) {
+        logger.transports[0].level = 'debug';
+    }
     extension.initialize(data);
     let router = setupRoutes(extension);
     let { apiRoutes, applicationProxyRoutes } = setupProxyRoutes();

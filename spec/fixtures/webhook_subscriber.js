@@ -1,7 +1,7 @@
 module.exports = {
     "id": 16,
     "name": "Test 2",
-    "webhook_url": "https://webhook.site/d6b2113e-694f-418b-9162-474e622a7b6d",
+    "webhook_url": "http://localdev.fyndx0.de/v1/webhooks",
     "association": {
         "company_id": 1,
         "criteria": "ALL"
