@@ -144,3 +144,10 @@ app.post('/api/v1/webhooks', async (req, res, next) {
 
 > Setting `subscribed_saleschannel` as "specific" means, you will have to manually subscribe saleschannel level event for individual saleschannel. Default value here is "all" and event will be subscribed for all sales channels. For enabling events manually use function `enableSalesChannelWebhook`. To disable receiving events for a saleschannel use function `disableSalesChannelWebhook`. 
 
+
+##### How webhook registery subscribes to webhooks on Fynd Platform?
+After webhook config is passed to setupFdk whenever extension is launched to any of companies where extension is installed or to be installed, webhook config data is used to create webhook subscriber on Fynd Platform for that company. 
+
+> Any update to webhook config will not automatically update subscriber data on Fynd Platform for a company until extension is opened atleast once after the update. 
+
+Other way to update webhook config manually for a company is to call `syncEvents` function of webhookRegistery.   
