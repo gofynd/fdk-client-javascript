@@ -9,7 +9,9 @@
 * [getJobsByCompany](#getjobsbycompany)
 * [updateJob](#updatejob)
 * [createJob](#createjob)
+* [getJobSteps](#getjobsteps)
 * [getJobByCompanyAndIntegration](#getjobbycompanyandintegration)
+* [disable](#disable)
 * [getJobConfigDefaults](#getjobconfigdefaults)
 * [getJobByCode](#getjobbycode)
 * [getJobCodeMetrics](#getjobcodemetrics)
@@ -189,6 +191,62 @@ Job Config Created Successfully
 ---
 
 
+### getJobSteps
+Get Job Code Steps
+
+
+
+```javascript
+// Promise
+const promise = client.inventory.getJobSteps({  jobId : value });
+
+// Async/Await
+const data = await client.inventory.getJobSteps({  jobId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| jobId | number | yes | Job Id |  
+
+
+
+REST Endpoint that returns Inventory Job Steps
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getJobByCompanyAndIntegration
 Get Job Configs By Company And Integration
 
@@ -226,6 +284,62 @@ REST Endpoint that returns all job configs by company And integration
 
 
 [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### disable
+Disable Job Config
+
+
+
+```javascript
+// Promise
+const promise = client.inventory.disable({  integrationId : value });
+
+// Async/Await
+const data = await client.inventory.disable({  integrationId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| integrationId | string | yes | IntegrationId |  
+
+
+
+REST Endpoint that disables Inventory Job Config
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeString](#ResponseEnvelopeString)
 
 Successful operation
 
@@ -367,12 +481,16 @@ Get Job Metrics
 // Promise
 const promise = client.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ status : value,
+ date : value });
 
 // Async/Await
 const data = await client.inventory.getJobCodeMetrics({  code : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ status : value,
+ date : value });
 ```
 
 
@@ -383,7 +501,9 @@ const data = await client.inventory.getJobCodeMetrics({  code : value,
 | --------- | -----  | -------- | ----------- | 
 | code | string | yes | Code |    
 | pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |  
+| pageSize | number | no | Page Size |    
+| status | string | no | Status |    
+| date | string | no | From Date |  
 
 
 
@@ -1183,6 +1303,45 @@ Successful operation
 
  
  
+ #### [JobStepsDTO](#JobStepsDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | step_name | string |  no  |  |
+ | type | string |  no  |  |
+ | step_execution_time | number |  no  |  |
+ | start_count | number |  no  |  |
+ | end_count | number |  no  |  |
+ | deleted_count | number |  no  |  |
+ | processed_start_time | string |  no  |  |
+ | processed_at | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListJobStepsDTO](#ResponseEnvelopeListJobStepsDTO)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [[JobStepsDTO](#JobStepsDTO)] |  no  |  |
+ | payload | [[JobStepsDTO](#JobStepsDTO)] |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ResponseEnvelopeListJobConfigDTO](#ResponseEnvelopeListJobConfigDTO)
 
  | Properties | Type | Nullable | Description |
@@ -1232,11 +1391,14 @@ Successful operation
  | total_added_count | number |  no  |  |
  | total_updated_count | number |  no  |  |
  | total_suppressed_count | number |  no  |  |
+ | total_initial_count | number |  no  |  |
  | job_id | number |  no  |  |
  | status | string |  no  |  |
  | job_code | string |  no  |  |
  | processed_on | string |  no  |  |
  | filename | [string] |  no  |  |
+ | error_type | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
