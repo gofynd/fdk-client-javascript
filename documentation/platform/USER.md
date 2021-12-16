@@ -1003,6 +1003,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | verify_email_otp | boolean |  no  |  |
  | verify_mobile_otp | boolean |  no  |  |
  | email | string |  no  |  |
+ | request_id | string |  no  |  |
 
 ---
 

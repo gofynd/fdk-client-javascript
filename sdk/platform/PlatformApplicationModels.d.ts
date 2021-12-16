@@ -94,13 +94,11 @@ export class ContentValidator {
     static deleteNavigation(): any;
     static getPageMeta(): any;
     static getPageSpec(): any;
-    static createPage(): any;
-    static getPages(): any;
     static createPagePreview(): any;
     static updatePagePreview(): any;
-    static updatePage(): any;
     static deletePage(): any;
-    static getPageBySlug(): any;
+    static updatePathRedirectionRules(): any;
+    static getPathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -116,6 +114,10 @@ export class ContentValidator {
     static addInjectableTag(): any;
     static removeInjectableTag(): any;
     static editInjectableTag(): any;
+    static createPage(): any;
+    static getPages(): any;
+    static updatePage(): any;
+    static getPageBySlug(): any;
 }
 export class CommunicationValidator {
     static getCampaigns(): any;
@@ -175,13 +177,13 @@ export class OrderValidator {
     static getShipmentTrackDetails(): any;
 }
 export class CatalogValidator {
-    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
@@ -194,8 +196,8 @@ export class CatalogValidator {
     static createCollection(): any;
     static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static addCollectionItems(): any;
     static getCollectionItems(): any;
     static getCatalogInsights(): any;

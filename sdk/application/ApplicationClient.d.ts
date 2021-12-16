@@ -533,10 +533,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -546,10 +546,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -1675,42 +1675,6 @@ declare class Content {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a page. You can get slug value from the endpoint
-     *   /service/application/content/v1.0/pages/.
-     * @param {string} [arg.rootId] - ID given to the HTML element
-     * @returns {Promise<PageSchema>} - Success response
-     * @summary: Get a page
-     * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
-     */
-    getPage({ slug, rootId }?: {
-        slug: string;
-        rootId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<PageGetResponse>} - Success response
-     * @summary: Get all pages
-     * @description: Use this API to get a list of pages.
-     */
-    getPages({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get all pages
-     * @description: Use this API to get a list of pages.
-     */
-    getPagesPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @returns {Promise<SeoComponent>} - Success response
      * @summary: Get the SEO of an application
      * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
@@ -1764,6 +1728,42 @@ declare class Content {
      * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
      */
     getTags({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a page. You can get slug value from the endpoint
+     *   /service/application/content/v2.0/pages/.
+     * @param {string} [arg.rootId] - ID given to the HTML element
+     * @returns {Promise<PageSchema>} - Success response
+     * @summary: Get a page
+     * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+     */
+    getPage({ slug, rootId }?: {
+        slug: string;
+        rootId?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Promise<PageGetResponse>} - Success response
+     * @summary: Get all pages
+     * @description: Use this API to get a list of pages.
+     */
+    getPages({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get all pages
+     * @description: Use this API to get a list of pages.
+     */
+    getPagesPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
 }
 declare class Communication {
     constructor(_conf: any);

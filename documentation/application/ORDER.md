@@ -1040,6 +1040,7 @@ Success, the code is valid and returns a session token
  | id | number |  no  |  |
  | name | string |  no  |  |
  | company_id | number |  no  |  |
+ | company_name | string |  no  |  |
 
 ---
 

@@ -1903,18 +1903,6 @@ Success. Refer `ThemesSchema` for more details.
 
  
  
- #### [Seo](#Seo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
  #### [Sections](#Sections)
 
  | Properties | Type | Nullable | Description |
