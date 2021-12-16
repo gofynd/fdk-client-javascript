@@ -2505,6 +2505,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verify_email_otp | boolean |  no  |  |
  | verify_mobile_otp | boolean |  no  |  |
  | email | string |  no  |  |
+ | request_id | string |  no  |  |
 
 ---
 

@@ -656,18 +656,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  
  
- #### [Seo](#Seo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
  #### [Sections](#Sections)
 
  | Properties | Type | Nullable | Description |

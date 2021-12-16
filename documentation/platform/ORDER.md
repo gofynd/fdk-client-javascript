@@ -321,6 +321,8 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
+ isPrioritySort : value,
+ lockStatus : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -336,6 +338,8 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
+ isPrioritySort : value,
+ lockStatus : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -357,6 +361,8 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
 | toDate | string | no | To Date |    
+| isPrioritySort | boolean | no | Sorting Order |    
+| lockStatus | boolean | no | Hide Lock Status |    
 | q | string | no | Keyword for Search |    
 | stage | string | no | Specefic Order Stage |    
 | salesChannels | string | no | Selected Sales Channel |    
@@ -2305,6 +2311,10 @@ Success
  | prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
  | id | string |  no  |  |
  | gst | [ShipmentGst](#ShipmentGst) |  no  |  |
+ | priority | number |  no  |  |
+ | priority_text | string |  no  |  |
+ | lock_status | boolean |  no  |  |
+ | ordering_channel | string |  no  |  |
  | total_shipment_bags | number |  no  |  |
 
 ---
@@ -2606,6 +2616,8 @@ Success
  | total_shipment_bags | number |  no  |  |
  | pod | string |  no  |  |
  | lock_status | boolean |  no  |  |
+ | priority | number |  no  |  |
+ | priority_text | string |  no  |  |
  | ordering_channel | string |  no  |  |
  | credit_note_id | string |  no  |  |
  | auto_trigger_dp_assignment | boolean |  no  |  |
