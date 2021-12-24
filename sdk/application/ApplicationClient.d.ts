@@ -735,7 +735,7 @@ declare class Cart {
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
-     * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+     * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
     updateCart({ body, id, i, b }?: {
         id?: string;
@@ -879,7 +879,7 @@ declare class Cart {
      * @param {Address} arg.body
      * @returns {Promise<UpdateAddressResponse>} - Success response
      * @summary: Update address added to an account
-     * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      */
     updateAddress({ id, body }?: {
         id: string;
@@ -903,7 +903,7 @@ declare class Cart {
      * @param {SelectCartAddressRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Select an address from available addresses
-     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
      */
     selectAddress({ body, cartId, i, b }?: {
         cartId?: string;
@@ -1205,6 +1205,18 @@ declare class User {
      * @description: Use this API to login or register in iOS app using Google Account credentials.
      */
     loginWithGoogleIOS({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
+     * @param {OAuthRequestAppleSchema} arg.body
+     * @returns {Promise<AuthSuccess>} - Success response
+     * @summary: Login or Register using Apple on iOS
+     * @description: Use this API to login or register in iOS app using Apple Account credentials.
+     */
+    loginWithAppleIOS({ body, platform }?: {
         platform?: string;
         body: any;
     }): Promise<any>;
@@ -1663,42 +1675,6 @@ declare class Content {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a page. You can get slug value from the endpoint
-     *   /service/application/content/v1.0/pages/.
-     * @param {string} [arg.rootId] - ID given to the HTML element
-     * @returns {Promise<PageSchema>} - Success response
-     * @summary: Get a page
-     * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
-     */
-    getPage({ slug, rootId }?: {
-        slug: string;
-        rootId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<PageGetResponse>} - Success response
-     * @summary: Get all pages
-     * @description: Use this API to get a list of pages.
-     */
-    getPages({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get all pages
-     * @description: Use this API to get a list of pages.
-     */
-    getPagesPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @returns {Promise<SeoComponent>} - Success response
      * @summary: Get the SEO of an application
      * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
@@ -1752,6 +1728,42 @@ declare class Content {
      * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
      */
     getTags({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a page. You can get slug value from the endpoint
+     *   /service/application/content/v2.0/pages/.
+     * @param {string} [arg.rootId] - ID given to the HTML element
+     * @returns {Promise<PageSchema>} - Success response
+     * @summary: Get a page
+     * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+     */
+    getPage({ slug, rootId }?: {
+        slug: string;
+        rootId?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Promise<PageGetResponse>} - Success response
+     * @summary: Get all pages
+     * @description: Use this API to get a list of pages.
+     */
+    getPages({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get all pages
+     * @description: Use this API to get a list of pages.
+     */
+    getPagesPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
 }
 declare class Communication {
     constructor(_conf: any);
@@ -1790,36 +1802,38 @@ declare class Share {
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create application QR Code
-     * @description: Create application QR Code
+     * @summary: Create QR Code of an app
+     * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
      */
     getApplicationQRCode({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - The unique identifier of a product
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint.
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create product QR Code
-     * @description: Create product QR Code
+     * @summary: Create QR Code of a product
+     * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
      */
     getProductQRCodeBySlug({ slug }?: {
         slug: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - The unique identifier of a collection
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a collection. You can get slug value from the endpoint.
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create collection QR Code
-     * @description: Create collection QR Code
+     * @summary: Create QR Code of a collection
+     * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
      */
     getCollectionQRCodeBySlug({ slug }?: {
         slug: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.url - Url
+     * @param {string} arg.url - A link or a web address
      * @returns {Promise<QRCodeResp>} - Success response
-     * @summary: Create url QR Code
-     * @description: Create url QR Code
+     * @summary: Create QR Code of a URL
+     * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
      */
     getUrlQRCode({ url }?: {
         url: string;
@@ -1828,28 +1842,30 @@ declare class Share {
      * @param {Object} arg - Arg object.
      * @param {ShortLinkReq} arg.body
      * @returns {Promise<ShortLinkRes>} - Success response
-     * @summary: Create short link
-     * @description: Create short link
+     * @summary: Create a short link
+     * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
      */
     createShortLink({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.hash - Hash of short link
+     * @param {string} arg.hash - A string value used for converting long URL to
+     *   short URL and vice-versa.
      * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get short link by hash
-     * @description: Get short link by hash
+     * @description: Use this API to get a short link by using a hash value.
      */
     getShortLinkByHash({ hash }?: {
         hash: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.hash - Hash of short link
+     * @param {string} arg.hash - A string value used for converting long URL to
+     *   short URL and vice-versa.
      * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get original link by hash
-     * @description: Get original link by hash
+     * @description: Use this API to retrieve the original link from a short-link by using a hash value.
      */
     getOriginalShortLinkByHash({ hash }?: {
         hash: string;
@@ -1914,6 +1930,18 @@ declare class FileStorage {
      */
     completeUpload({ namespace, body }?: {
         namespace: string;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.companyId - Company_id
+     * @param {SignUrlRequest} arg.body
+     * @returns {Promise<SignUrlResponse>} - Success response
+     * @summary: Explain here
+     * @description: Describe here
+     */
+    signUrls({ companyId, body }?: {
+        companyId: number;
         body: any;
     }): Promise<any>;
     upload({ data, file_name, content_type, namespace, size, tags, }?: {
@@ -3131,7 +3159,7 @@ declare class PosCart {
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
-     * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/{slug}/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/{identifier}​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+     * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
     updateCart({ body, id, i, b }?: {
         id?: string;
@@ -3275,7 +3303,7 @@ declare class PosCart {
      * @param {Address} arg.body
      * @returns {Promise<UpdateAddressResponse>} - Success response
      * @summary: Update address added to an account
-     * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+     * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
      */
     updateAddress({ id, body }?: {
         id: string;
@@ -3299,7 +3327,7 @@ declare class PosCart {
      * @param {SelectCartAddressRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Select an address from available addresses
-     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul>
+     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
      */
     selectAddress({ body, cartId, i, b }?: {
         cartId?: string;

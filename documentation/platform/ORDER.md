@@ -14,6 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getOrderDetails](#getorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -24,6 +25,7 @@ Handles Platform websites OMS
 * [getShipmentTrackDetails](#getshipmenttrackdetails)
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
+* [getOrdersByApplicationId](#getordersbyapplicationid)
 * [getPing](#getping)
 * [voiceCallback](#voicecallback)
 * [voiceClickToCall](#voiceclicktocall)
@@ -321,11 +323,14 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
+ isPrioritySort : value,
+ lockStatus : value,
  q : value,
  stage : value,
  salesChannels : value,
  orderId : value,
  stores : value,
+ deploymentStores : value,
  status : value,
  dp : value,
  shortenUrls : value,
@@ -336,11 +341,14 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
+ isPrioritySort : value,
+ lockStatus : value,
  q : value,
  stage : value,
  salesChannels : value,
  orderId : value,
  stores : value,
+ deploymentStores : value,
  status : value,
  dp : value,
  shortenUrls : value,
@@ -357,11 +365,14 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | pageSize | string | no | Page limit |    
 | fromDate | string | no | From Date |    
 | toDate | string | no | To Date |    
+| isPrioritySort | boolean | no | Sorting Order |    
+| lockStatus | boolean | no | Hide Lock Status |    
 | q | string | no | Keyword for Search |    
 | stage | string | no | Specefic Order Stage |    
 | salesChannels | string | no | Selected Sales Channel |    
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
+| deploymentStores | string | no | Selected Deployment Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
 | shortenUrls | boolean | no | Shorten URL option |    
@@ -504,6 +515,68 @@ const promise = client.order.getOrderDetails({  orderId : value,
 
 // Async/Await
 const data = await client.order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderId | string | no | Order Id |    
+| next | string | no | Next |    
+| previous | string | no | Previous |  
+
+
+
+Get Orders
+
+*Returned Response:*
+
+
+
+
+[OrderDetails](#OrderDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```
@@ -1131,6 +1204,98 @@ Update Shipment Address
 [UpdateShipmentAddressResponse](#UpdateShipmentAddressResponse)
 
 Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrdersByApplicationId
+Get Orders for company based on Company Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicationId({  pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ dp : value,
+ shortenUrls : value,
+ filterType : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").order.getOrdersByApplicationId({  pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ dp : value,
+ shortenUrls : value,
+ filterType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | string | no | Current page number |    
+| pageSize | string | no | Page limit |    
+| fromDate | string | no | From Date |    
+| toDate | string | no | To Date |    
+| q | string | no | Keyword for Search |    
+| stage | string | no | Specefic Order Stage |    
+| salesChannels | string | no | Selected Sales Channel |    
+| orderId | string | no | Order Id |    
+| stores | string | no | Selected Stores |    
+| status | string | no | Status of order |    
+| dp | string | no | Delivery Partners |    
+| shortenUrls | boolean | no | Shorten URL option |    
+| filterType | string | no | Filters |  
+
+
+
+Get Orders at Application Level
+
+*Returned Response:*
+
+
+
+
+[OrderListing](#OrderListing)
+
+Success
 
 
 
@@ -2305,7 +2470,10 @@ Success
  | prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
  | id | string |  no  |  |
  | gst | [ShipmentGst](#ShipmentGst) |  no  |  |
- | breakup_values | [ShipmentBreakupValues](#ShipmentBreakupValues) |  no  |  |
+ | priority | number |  no  |  |
+ | priority_text | string |  no  |  |
+ | lock_status | boolean |  no  |  |
+ | ordering_channel | string |  no  |  |
  | total_shipment_bags | number |  no  |  |
 
 ---
@@ -2413,19 +2581,6 @@ Success
 
  
  
- #### [ShipmentBreakupValues](#ShipmentBreakupValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | value | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
  #### [Payments](#Payments)
 
  | Properties | Type | Nullable | Description |
@@ -2521,6 +2676,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | stage | string |  no  |  |
  | stores | [string] |  no  |  |
+ | deployment_stores | [string] |  no  |  |
  | dp | [number] |  no  |  |
  | from_date | string |  no  |  |
  | to_date | string |  no  |  |
@@ -2611,7 +2767,7 @@ Success
  | coupon | string |  no  |  |
  | order_source | string |  no  |  |
  | is_not_fynd_source | boolean |  no  |  |
- | can_break | boolean |  no  |  |
+ | can_break | string |  no  |  |
  | comment | string |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
  | tracking_details | [ShipmentTrackingDetails](#ShipmentTrackingDetails) |  no  |  |
@@ -2620,6 +2776,8 @@ Success
  | total_shipment_bags | number |  no  |  |
  | pod | string |  no  |  |
  | lock_status | boolean |  no  |  |
+ | priority | number |  no  |  |
+ | priority_text | string |  no  |  |
  | ordering_channel | string |  no  |  |
  | credit_note_id | string |  no  |  |
  | auto_trigger_dp_assignment | boolean |  no  |  |
@@ -2920,6 +3078,19 @@ Success
  | price_effective | number |  no  |  |
  | refund_amount | number |  no  |  |
  | discount | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentBreakupValues](#ShipmentBreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
 
 ---
 

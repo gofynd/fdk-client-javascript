@@ -108,7 +108,7 @@ const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |  
+| q | Object | no | The search query. Mobile number or email ID of a customer. |  
 
 
 
@@ -932,6 +932,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_identifier | string |  no  |  |
+ | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth) |  no  |  |
+ | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [UserObjectSchema](#UserObjectSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1326,6 +1339,30 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identity_token | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | last_name | string |  no  |  |
+ | full_name | string |  no  |  |
+ | first_name | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [AuthSuccessUser](#AuthSuccessUser)
 
  | Properties | Type | Nullable | Description |
@@ -1495,6 +1532,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | account_kit | boolean |  no  |  |
  | facebook | boolean |  no  |  |
  | google | boolean |  no  |  |
+ | apple | boolean |  no  |  |
 
 ---
 

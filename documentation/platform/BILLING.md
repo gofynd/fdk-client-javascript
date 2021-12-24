@@ -882,7 +882,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  |  |
+ | amount | number |  yes  | Amount for price. Minimum value 1 |
  | currency_code | string |  yes  |  |
 
 ---

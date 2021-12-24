@@ -8,6 +8,7 @@
 File Storage
 * [startUpload](#startupload)
 * [completeUpload](#completeupload)
+* [signUrls](#signurls)
 
 
 
@@ -141,6 +142,61 @@ This operation will return the URL of the uploaded file.
 
 
 [CompleteResponse](#CompleteResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### signUrls
+Explain here
+
+
+
+```javascript
+// Promise
+const promise = client.fileStorage.signUrls({  body : value });
+
+// Async/Await
+const data = await client.fileStorage.signUrls({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SignUrlRequest](#SignUrlRequest) | yes | Request body |
+
+
+Describe here
+
+*Returned Response:*
+
+
+
+
+[SignUrlResponse](#SignUrlResponse)
 
 Success
 

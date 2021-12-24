@@ -94,13 +94,9 @@ export class ContentValidator {
     static deleteNavigation(): any;
     static getPageMeta(): any;
     static getPageSpec(): any;
-    static createPage(): any;
-    static getPages(): any;
     static createPagePreview(): any;
     static updatePagePreview(): any;
-    static updatePage(): any;
     static deletePage(): any;
-    static getPageBySlug(): any;
     static updatePathRedirectionRules(): any;
     static getPathRedirectionRules(): any;
     static getSEOConfiguration(): any;
@@ -118,6 +114,10 @@ export class ContentValidator {
     static addInjectableTag(): any;
     static removeInjectableTag(): any;
     static editInjectableTag(): any;
+    static createPage(): any;
+    static getPages(): any;
+    static updatePage(): any;
+    static getPageBySlug(): any;
 }
 export class CommunicationValidator {
     static getCampaigns(): any;
@@ -168,6 +168,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
+    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -175,32 +176,34 @@ export class OrderValidator {
     static updateShipment(): any;
     static getPlatformShipmentReasons(): any;
     static getShipmentTrackDetails(): any;
+    static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
+    static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
+    static getAutocompleteConfig(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static getCollectionItems(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
+    static getDiscontedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
     static getCategories(): any;
@@ -281,6 +284,10 @@ export class AnalyticsValidator {
     static getAbandonCartList(): any;
     static getAbandonCartsCSV(): any;
     static getAbandonCartDetail(): any;
+}
+export class DiscountValidator {
+    static fetchDiscountJobs(): any;
+    static getDiscountDetails(): any;
 }
 export class PartnerValidator {
     static addProxyPath(): any;

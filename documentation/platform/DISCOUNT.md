@@ -10,6 +10,8 @@ Discount
 * [createDiscount](#creatediscount)
 * [getDiscount](#getdiscount)
 * [updateDiscount](#updatediscount)
+* [fetchDiscountJobs](#fetchdiscountjobs)
+* [getDiscountDetails](#getdiscountdetails)
 * [validateDiscountFile](#validatediscountfile)
 * [downloadDiscountFile](#downloaddiscountfile)
 * [getValidationJob](#getvalidationjob)
@@ -246,6 +248,112 @@ Create Discount.
 
 
 [DiscountJob](#DiscountJob)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchDiscountJobs
+Fetch Discount Jobs.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").discount.fetchDiscountJobs();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").discount.fetchDiscountJobs();
+```
+
+
+
+
+
+
+Fetch Discount Jobs.
+
+*Returned Response:*
+
+
+
+
+[ListOrCalender](#ListOrCalender)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDiscountDetails
+Get Discounts.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").discount.getDiscountDetails({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").discount.getDiscountDetails({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InternalDiscountQuery](#InternalDiscountQuery) | yes | Request body |
+
+
+Get Discounts.
+
+*Returned Response:*
+
+
+
+
+[DiscountList](#DiscountList)
 
 Success
 
@@ -636,6 +744,7 @@ Success
  | company_id | number |  yes  |  |
  | is_active | boolean |  yes  |  |
  | app_ids | [string] |  yes  |  |
+ | extension_ids | [string] |  yes  |  |
  | job_type | string |  yes  |  |
  | discount_type | string |  yes  |  |
  | discount_level | string |  yes  |  |
@@ -683,6 +792,67 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[DiscountJob](#DiscountJob)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InternalDiscountQuery](#InternalDiscountQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_ids | [string] |  yes  |  |
+ | item_ids | [number] |  no  |  |
+ | seller_identifiers | [string] |  no  |  |
+ | brand_ids | [number] |  no  |  |
+ | store_ids | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountValueObject](#DiscountValueObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min_items | number |  yes  |  |
+ | value | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountDetail](#DiscountDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | job_id | string |  yes  |  |
+ | company_id | number |  yes  |  |
+ | app_ids | [string] |  no  |  |
+ | discount_type | string |  no  |  |
+ | discount | [[DiscountValueObject](#DiscountValueObject)] |  no  |  |
+ | brand_ids | [number] |  no  |  |
+ | store_ids | [number] |  no  |  |
+ | item_id | number |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | modified_on | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountList](#DiscountList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DiscountDetail](#DiscountDetail)] |  yes  |  |
  | page | [Page](#Page) |  yes  |  |
 
 ---
