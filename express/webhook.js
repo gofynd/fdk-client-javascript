@@ -183,6 +183,9 @@ class WebhookRegistry {
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
+            if (!subscriberConfig) {
+                throw new FdkWebhookRegistrationError(`Subscriber config not found`);
+            }
             const { id, name, webhook_url, association, status, auth_meta, email_id, event_configs } = subscriberConfig;
             subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
             subscriberConfig.event_id = event_configs.map(event => event.id);
@@ -207,6 +210,9 @@ class WebhookRegistry {
         try {
             let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
             subscriberConfig = subscriberConfig.items[0];
+            if (!subscriberConfig) {
+                throw new FdkWebhookRegistrationError(`Subscriber config not found`);
+            }
             const { id, name, webhook_url, association, status, auth_meta, email_id, event_configs } = subscriberConfig;
             subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
             subscriberConfig.event_id = event_configs.map(event => event.id);
