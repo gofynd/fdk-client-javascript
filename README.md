@@ -113,6 +113,7 @@ let fdkClient = setupFdk({
         handler: handleExtUninstall
       },
       'coupon/create': {
+        event_category: "application", // optional. Required if handling event name is for company and sales channel. Refer examples/test.js
         handler: handleCouponCreate
       }
     }
