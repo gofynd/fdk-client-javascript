@@ -84,7 +84,7 @@ class WebhookRegistry {
         return updated;
     }
 
-    async syncEvents(platformClient, config = null) {
+    async syncEvents(platformClient, config = null, enableWebhooks) {
         logger.debug('Sync events started');
         if (config) {
             this.initialize(config, this._fdkConfig);
@@ -123,6 +123,9 @@ class WebhookRegistry {
                 "email_id": this._config.notification_email
             }
             registerNew = true;
+            if (enableWebhooks !== undefined) {
+                subscriberConfig.status = enableWebhooks? 'active': 'inactive';
+            }
         }
         else {
             logger.debug(`Webhook config on platform side for company id ${platformClient.config.companyId}: ${JSON.stringify(subscriberConfig)}`)
@@ -130,6 +133,10 @@ class WebhookRegistry {
             subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
             subscriberConfig.event_id = [];
             existingEvents = event_configs.map(event => event.id);
+            if (enableWebhooks !== undefined) {
+                subscriberConfig.status = enableWebhooks? 'active': 'inactive';
+                configUpdated = true;
+            }
             if (this._isConfigUpdated(subscriberConfig)) {
                 configUpdated = true;
             }

@@ -131,7 +131,7 @@ function setupRoutes(ext) {
             req.extension = ext;
             if(ext.webhookRegistry.isInitialized()) {
                 const client = await ext.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
-                await ext.webhookRegistry.syncEvents(client);
+                await ext.webhookRegistry.syncEvents(client, null, true);
             }
             let redirectUrl = await ext.callbacks.auth(req);
             logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`);
@@ -154,6 +154,10 @@ function setupRoutes(ext) {
                 req.platformClient = client;
             }
             req.extension = ext;
+            if(ext.webhookRegistry.isInitialized()) {
+                // mark webhook subscriber inactive if uninstalled
+                await ext.webhookRegistry.syncEvents(platformClient, null, false);
+            }
             await ext.callbacks.uninstall(req);
             res.json({success: true});
         } catch (error) {
