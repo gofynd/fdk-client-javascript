@@ -28,7 +28,11 @@ class WebhookRegistry {
         this._config = config;
         this._fdkConfig = fdkConfig;
         for (let [eventName, handlerData] of Object.entries(this._config.event_map)) {
-            this._handlerMap[eventName] = handlerData;
+            let categoryEventName = eventName;
+            if(handlerData.category) {
+                categoryEventName = `${handlerData.category}/${eventName}`;
+            }
+            this._handlerMap[categoryEventName] = handlerData;
         }
         logger.debug('Webhook registry initialized');
     }
@@ -40,6 +44,9 @@ class WebhookRegistry {
     _getEventIdMap(events) {
         return events.reduce((map, event) => {
             map[`${event.event_name}/${event.event_type}`] = event.id;
+            if (event.event_category) {
+                map[`${event.event_category}/${event.event_name}/${event.event_type}`] = event.id;
+            }
             return map;
         }, {});
     }
@@ -235,13 +242,17 @@ class WebhookRegistry {
             }
             this.verifySignature(req);
             const eventName = `${body.event.name}/${body.event.type}`;
-            const extHandler = (this._handlerMap[eventName] || {}).handler;
+            let categoryEventName = eventName;
+            if(body.event.category) {
+                categoryEventName = `${body.event.category}/${eventName}`
+            }
+            const extHandler = (this._handlerMap[categoryEventName] || this._handlerMap[eventName] || {}).handler;
             if (typeof extHandler === 'function') {
                 logger.debug(`Webhook event received for company: ${req.body.company_id}, application: ${req.body.application_id || ''}, event name: ${eventName}`);
                 await extHandler(eventName, req.body, req.body.company_id, req.body.application_id);
             }
             else {
-                throw new FdkWebhookHandlerNotFound(`Webhook handler not assigned: ${eventName}`);
+                throw new FdkWebhookHandlerNotFound(`Webhook handler not assigned: ${categoryEventName}`);
             }
         }
         catch (err) {
