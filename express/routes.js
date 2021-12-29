@@ -154,10 +154,6 @@ function setupRoutes(ext) {
                 req.platformClient = client;
             }
             req.extension = ext;
-            if(ext.webhookRegistry.isInitialized()) {
-                // mark webhook subscriber inactive if uninstalled
-                await ext.webhookRegistry.syncEvents(platformClient, null, false);
-            }
             await ext.callbacks.uninstall(req);
             res.json({success: true});
         } catch (error) {
