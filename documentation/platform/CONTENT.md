@@ -17,6 +17,11 @@ Content System
 * [updateBlog](#updateblog)
 * [deleteBlog](#deleteblog)
 * [getComponentById](#getcomponentbyid)
+* [addDataLoader](#adddataloader)
+* [getDataLoaders](#getdataloaders)
+* [deleteDataLoader](#deletedataloader)
+* [editDataLoader](#editdataloader)
+* [selectDataLoader](#selectdataloader)
 * [getFaqCategories](#getfaqcategories)
 * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
 * [createFaqCategory](#createfaqcategory)
@@ -772,6 +777,345 @@ Success. Returns a a JSON object with components. Refer `BlogSchema` for more de
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### addDataLoader
+Adds a data loader
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.addDataLoader({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.addDataLoader({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DataLoaderSchema](#DataLoaderSchema) | yes | Request body |
+
+
+Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDataLoaders
+Get all the data loaders in an application
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.getDataLoaders();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.getDataLoaders();
+```
+
+
+
+
+
+
+Use this to get all data loaders of an application
+
+*Returned Response:*
+
+
+
+
+[Array<DataLoaderResponseSchema>](#Array<DataLoaderResponseSchema>)
+
+Success. Refer `DataLoaderResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+[
+  {
+    "name": "Algolia",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc4523a7ffc7504f4de4a5",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "www.dddd.ddd",
+    "__source": {
+      "type": "extension",
+      "id": "000000000000000000000003"
+    },
+    "application": "100000000000000000000001",
+    "__v": 0
+  },
+  {
+    "name": "Algolia v3",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc452da7ffc7504f4de4a7",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "www.dddd.ddd",
+    "__source": {
+      "type": "extension",
+      "id": "000000000000000000000003"
+    },
+    "application": "100000000000000000000001",
+    "__v": 0
+  }
+]
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteDataLoader
+Delete data loader in application
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.deleteDataLoader({  dataLoaderId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.deleteDataLoader({  dataLoaderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dataLoaderId | string | yes | ID allotted to the data loader. |  
+
+
+
+Use this API to delete data loader.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editDataLoader
+Edit a data loader by id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.editDataLoader({  dataLoaderId : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.editDataLoader({  dataLoaderId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dataLoaderId | string | yes | ID allotted to the data loader. |  
+| body | [DataLoaderSchema](#DataLoaderSchema) | yes | Request body |
+
+
+Use this API to edit the details of an existing data loader by its ID.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### selectDataLoader
+Select a data loader by id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.selectDataLoader({  dataLoaderId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.selectDataLoader({  dataLoaderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| dataLoaderId | string | yes | ID allotted to the data loader. |  
+
+
+
+Use this API to select a data loader to be used in applications.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "601f77e7aa61066feda44487",
+  "name": "Search API from Algolia",
+  "service": "catalog",
+  "operation_id": "fetchSuggestions",
+  "type": "url",
+  "application": "000000000000000000000001",
+  "__v": 0
+}
+```
 </details>
 
 
@@ -4584,6 +4928,25 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 
  
  
+ #### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | service | string |  no  |  |
+ | operation_id | string |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | content | string |  no  |  |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Navigation](#Navigation)
 
  | Properties | Type | Nullable | Description |
@@ -4815,6 +5178,35 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tags | [[CreateTagSchema](#CreateTagSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderSchema](#DataLoaderSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | service | string |  no  |  |
+ | operation_id | string |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | content | string |  no  |  |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderSourceSchema](#DataLoaderSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 

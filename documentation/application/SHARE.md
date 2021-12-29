@@ -20,7 +20,7 @@ Short link and QR Code
 
 
 ### getApplicationQRCode
-Create QR Code of an app
+Create application QR Code
 
 
 
@@ -37,7 +37,7 @@ const data = await share.getApplicationQRCode();
 
 
 
-Use this API to create a QR code of an app for sharing it with users who want to use the app.
+Create application QR Code
 
 *Returned Response:*
 
@@ -46,7 +46,7 @@ Use this API to create a QR code of an app for sharing it with users who want to
 
 [QRCodeResp](#QRCodeResp)
 
-Success. Check the example shown below or refer `QRCodeResp` for more details.
+Success
 
 
 
@@ -74,7 +74,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### getProductQRCodeBySlug
-Create QR Code of a product
+Create product QR Code
 
 
 
@@ -92,11 +92,11 @@ const data = await share.getProductQRCodeBySlug({  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint. |  
+| slug | string | yes | The unique identifier of a product |  
 
 
 
-Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
+Create product QR Code
 
 *Returned Response:*
 
@@ -105,7 +105,7 @@ Use this API to create a QR code of a product for sharing it with users who want
 
 [QRCodeResp](#QRCodeResp)
 
-Success. Check the example shown below or refer `QRCodeResp` for more details.
+Success
 
 
 
@@ -133,7 +133,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### getCollectionQRCodeBySlug
-Create QR Code of a collection
+Create collection QR Code
 
 
 
@@ -151,11 +151,11 @@ const data = await share.getCollectionQRCodeBySlug({  slug : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint. |  
+| slug | string | yes | The unique identifier of a collection |  
 
 
 
-Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
+Create collection QR Code
 
 *Returned Response:*
 
@@ -164,7 +164,7 @@ Use this API to create a QR code of a collection of products for sharing it with
 
 [QRCodeResp](#QRCodeResp)
 
-Success. Check the example shown below or refer `QRCodeResp` for more details.
+Success
 
 
 
@@ -192,7 +192,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### getUrlQRCode
-Create QR Code of a URL
+Create url QR Code
 
 
 
@@ -210,11 +210,11 @@ const data = await share.getUrlQRCode({  url : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| url | string | yes | A link or a web address |  
+| url | string | yes | Url |  
 
 
 
-Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
+Create url QR Code
 
 *Returned Response:*
 
@@ -223,7 +223,7 @@ Use this API to create a QR code of a URL for sharing it with users who want to 
 
 [QRCodeResp](#QRCodeResp)
 
-Success. Check the example shown below or refer `QRCodeResp` for more details.
+Success
 
 
 
@@ -251,7 +251,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ### createShortLink
-Create a short link
+Create short link
 
 
 
@@ -272,7 +272,7 @@ const data = await share.createShortLink({  body : value });
 | body | [ShortLinkReq](#ShortLinkReq) | yes | Request body |
 
 
-Use this API to create a short link that is easy to write/share/read as compared to long URLs.
+Create short link
 
 *Returned Response:*
 
@@ -281,7 +281,7 @@ Use this API to create a short link that is easy to write/share/read as compared
 
 [ShortLinkRes](#ShortLinkRes)
 
-Success. Check the example shown below or refer `ShortLinkRes` for more details.
+Success
 
 
 
@@ -362,11 +362,11 @@ const data = await share.getShortLinkByHash({  hash : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| hash | string | yes | A string value used for converting long URL to short URL and vice-versa. |  
+| hash | string | yes | Hash of short link |  
 
 
 
-Use this API to get a short link by using a hash value.
+Get short link by hash
 
 *Returned Response:*
 
@@ -375,7 +375,7 @@ Use this API to get a short link by using a hash value.
 
 [ShortLinkRes](#ShortLinkRes)
 
-Success. Check the example shown below or refer `ShortLinkRes` for more details.
+Success
 
 
 
@@ -456,11 +456,11 @@ const data = await share.getOriginalShortLinkByHash({  hash : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| hash | string | yes | A string value used for converting long URL to short URL and vice-versa. |  
+| hash | string | yes | Hash of short link |  
 
 
 
-Use this API to retrieve the original link from a short-link by using a hash value.
+Get original link by hash
 
 *Returned Response:*
 
@@ -469,7 +469,7 @@ Use this API to retrieve the original link from a short-link by using a hash val
 
 [ShortLinkRes](#ShortLinkRes)
 
-Success. Check the example shown below or refer `ShortLinkRes` for more details.
+Success
 
 
 
@@ -626,13 +626,13 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  | Give a name to the link. |
- | url | string |  yes  | The web address to shorten. |
+ | title | string |  yes  |  |
+ | url | string |  yes  |  |
  | hash | string |  no  |  |
  | active | boolean |  no  |  |
  | expire_at | string |  no  |  |
  | enable_tracking | boolean |  no  |  |
- | personalized | boolean |  no  | To create personalized short links. |
+ | personalized | boolean |  no  | To create personalized short links |
  | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
  | redirects | [Redirects](#Redirects) |  no  |  |
  | attribution | [Attribution](#Attribution) |  no  |  |
@@ -673,7 +673,6 @@ Success. Check the example shown below or refer `ShortLinkRes` for more details.
  | application | string |  no  |  |
  | user_id | string |  no  |  |
  | created_at | string |  no  |  |
- | meta | string |  no  |  |
  | updated_at | string |  no  |  |
  | personalized | boolean |  no  | To create personalized short links |
  | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |

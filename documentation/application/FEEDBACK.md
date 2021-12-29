@@ -691,19 +691,14 @@ Delete Media
 
 ```javascript
 // Promise
-const promise = feedback.deleteMedia({  ids : value });
+const promise = feedback.deleteMedia();
 
 // Async/Await
-const data = await feedback.deleteMedia({  ids : value });
+const data = await feedback.deleteMedia();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ids | Array<string> | yes | List of media ID |  
 
 
 

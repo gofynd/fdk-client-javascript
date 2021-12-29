@@ -9,6 +9,7 @@ Content System
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
+* [getDataLoaders](#getdataloaders)
 * [getFaqs](#getfaqs)
 * [getFaqCategories](#getfaqcategories)
 * [getFaqBySlug](#getfaqbyslug)
@@ -224,6 +225,76 @@ Success. Check the example shown below or refer `BlogGetResponse` for more detai
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDataLoaders
+Get the data loaders associated with an application
+
+
+
+```javascript
+// Promise
+const promise = content.getDataLoaders();
+
+// Async/Await
+const data = await content.getDataLoaders();
+```
+
+
+
+
+
+
+Use this API to get all selected data loaders of the application in the form of tags.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderSchema](#DataLoaderSchema)
+
+Success. Returns a JSON object containing all the data loaders injected in the application. Check the example shown below or refer `DataLoaderSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+[
+  {
+    "name": "Algolia",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc4523a7ffc7504f4de4a5",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "www.dddd.ddd"
+  },
+  {
+    "name": "Algolia v3",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc452da7ffc7504f4de4a7",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "www.dddd.ddd"
+  }
+]
+```
 </details>
 
 
@@ -1579,6 +1650,25 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
+ #### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | service | string |  no  |  |
+ | operation_id | string |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | content | string |  no  |  |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Navigation](#Navigation)
 
  | Properties | Type | Nullable | Description |
@@ -1810,6 +1900,35 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tags | [[CreateTagSchema](#CreateTagSchema)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderSchema](#DataLoaderSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | service | string |  no  |  |
+ | operation_id | string |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | content | string |  no  |  |
+ | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderSourceSchema](#DataLoaderSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
