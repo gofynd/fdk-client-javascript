@@ -1827,7 +1827,7 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [APIError](#APIError)
+ #### [ContentAPIError](#ContentAPIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -2530,6 +2530,19 @@ Success. Returns a list of pages along with their details. Check the example sho
  | position | string |  no  |  |
  | attributes | string |  no  |  |
  | content | string |  no  |  |
+ | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TagSourceSchema](#TagSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
