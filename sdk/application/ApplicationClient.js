@@ -1404,41 +1404,6 @@ class Catalog {
     
     /**
     *
-    * @summary: Follow an entity (product/brand/collection)
-    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.
-    * @param {string} arg.collectionId - The ID of the collection type.
-    
-    
-    * @return {Promise<FollowPostResponse>} - success response
-    **/
-        followById({
-            collectionType,
-            collectionId
-            
-        } = {}) {
-            const { error } = CatalogValidator.followById().validate({ collectionType,
-            collectionId
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            const query = {};
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "post",
-                    `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
-                    query,
-                     undefined ,
-            );
-        }
-        
-    
-    /**
-    *
     * @summary: Unfollow an entity (product/brand/collection)
     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
     * @param {Object} arg - arg object.
@@ -1465,6 +1430,41 @@ class Catalog {
             return APIClient.execute(
                     this._conf,
                     "delete",
+                    `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
+                    query,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Follow an entity (product/brand/collection)
+    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.
+    * @param {string} arg.collectionId - The ID of the collection type.
+    
+    
+    * @return {Promise<FollowPostResponse>} - success response
+    **/
+        followById({
+            collectionType,
+            collectionId
+            
+        } = {}) {
+            const { error } = CatalogValidator.followById().validate({ collectionType,
+            collectionId
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
                     `/service/application/catalog/v1.0/follow/${collectionType}/${collectionId}/`,
                     query,
                      undefined ,
@@ -1836,6 +1836,169 @@ class Catalog {
                      undefined ,
             );
         }
+        
+    
+    /**
+    *
+    * @summary: Get the price of a product size at a PIN Code
+    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
+    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
+    * @param {number} [arg.storeId] - The ID of the store that is selling the product, e.g. 1,2,3.
+    * @param {string} [arg.pincode] - The PIN Code of the area near which the selling locations should be searched, e.g. 400059.
+    
+    
+    * @return {Promise<ProductSizePriceResponseV2>} - success response
+    **/
+        getProductPriceBySlugV2({
+            slug,
+            size,
+            storeId,
+            pincode
+            
+        } = {}) {
+            const { error } = CatalogValidator.getProductPriceBySlugV2().validate({ slug,
+            size,
+            storeId,
+            pincode
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query = {};
+            query['store_id'] = storeId;
+            query['pincode'] = pincode;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    `/service/application/catalog/v2.0/products/${slug}/sizes/${size}/price/`,
+                    query,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get the sellers of a product size at a PIN Code
+    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
+    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
+    * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059
+    * @param {string} [arg.strategy] - Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal.
+    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<ProductSizeSellersResponseV2>} - success response
+    **/
+        getProductSellersBySlugV2({
+            slug,
+            size,
+            pincode,
+            strategy,
+            pageNo,
+            pageSize
+            
+        } = {}) {
+            const { error } = CatalogValidator.getProductSellersBySlugV2().validate({ slug,
+            size,
+            pincode,
+            strategy,
+            pageNo,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query = {};
+            query['pincode'] = pincode;
+            query['strategy'] = strategy;
+            query['page_no'] = pageNo;
+            query['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    `/service/application/catalog/v2.0/products/${slug}/sizes/${size}/sellers/`,
+                    query,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get the sellers of a product size at a PIN Code
+    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
+    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
+    * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059
+    * @param {string} [arg.strategy] - Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getProductSellersBySlugV2Paginator( { slug, size, pincode, strategy, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getProductSellersBySlugV2({
+                        slug:slug ,
+                        size:size ,
+                        pincode:pincode ,
+                        strategy:strategy ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
         
     
 }
