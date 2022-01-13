@@ -240,7 +240,239 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/Invoices"
+  "value": {
+    "data": [
+      {
+        "_id": "5f7acb709e76da30e3b92cdb",
+        "client": {
+          "name": "RELIANCE RETAIL LTD",
+          "email": "ZAK@GMAIL.COM",
+          "phone": "91 1234567890",
+          "address_lines": [
+            "TV TOWER, Foot Over Bridge Khar",
+            null,
+            "Mumbai, 400079, Maharashtra, India"
+          ]
+        },
+        "auto_advance": true,
+        "currency": "INR",
+        "paid": true,
+        "attemp": 3,
+        "collection_method": "charge_automatically",
+        "subscriber_id": "5ee773e1351e5e84289ed9cf",
+        "invoice_url": "",
+        "number": "FP-1-72020-736",
+        "pg_data": {},
+        "period": {
+          "start": "2020-08-17T13:45:36.722Z",
+          "end": "2020-09-17T13:45:36.722Z"
+        },
+        "receipt_number": "5fd9b08464dc6ac048a08988",
+        "statement_descriptor": "RELIANCE RETAIL LTD",
+        "current_status": "paid",
+        "status_trail": [
+          {
+            "_id": "5f7ad29bd562744eab216379",
+            "value": "draft",
+            "timestamp": "2020-10-05T08:00:27.753Z"
+          },
+          {
+            "_id": "5fcf40ce1613c029aff417dd",
+            "value": "open",
+            "timestamp": "2020-12-08T09:01:02.038Z"
+          },
+          {
+            "_id": "5fd9b08664dc6a1ad0a08989",
+            "value": "paid",
+            "timestamp": "2020-12-16T07:00:22.973Z"
+          }
+        ],
+        "subtotal": 15720.08,
+        "total": 15720.08,
+        "subscription": "5f3a8a00668947663b7fbd38",
+        "next_action_time": "2020-10-05T09:00:27.754Z",
+        "created_at": "2020-10-05T07:29:52.876Z",
+        "modified_at": "2020-12-16T07:00:22.980Z",
+        "hash_identifier": "575999aca03e36f0fa54db5235bc7f25",
+        "payment_method": {
+          "pg_payment_method_id": null
+        },
+        "invoice_items": [
+          {
+            "_id": "5f7acb709e76da48b1b92cdd",
+            "currency": "INR",
+            "plan": {
+              "recurring": {
+                "interval": "month",
+                "interval_count": 1
+              },
+              "is_trial_plan": false,
+              "plan_group": "default",
+              "tag_lines": [],
+              "currency": "INR",
+              "is_active": true,
+              "is_visible": true,
+              "trial_period": 0,
+              "addons": [],
+              "tags": [],
+              "type": "public",
+              "country": "IN",
+              "_id": "5f3a8786c90d780037723a14",
+              "name": "Professional",
+              "description": "Professional",
+              "amount": 1499,
+              "product_suite_id": "5f3a8786c90d7800377239f3",
+              "created_at": "2020-08-17T13:35:02.802Z",
+              "modified_at": "2020-08-17T13:35:02.802Z"
+            },
+            "name": "Professional",
+            "quantity": 1,
+            "description": "Professional",
+            "period": {
+              "start": "2020-08-17T13:45:36.722Z",
+              "end": "2020-10-05T07:29:52.868Z"
+            },
+            "unit_amount": 2356.77,
+            "amount": 2356.77,
+            "type": "subscription",
+            "invoice_id": "5f7acb709e76da30e3b92cdb",
+            "created_at": "2020-10-05T07:29:52.886Z",
+            "modified_at": "2020-10-05T07:29:52.886Z"
+          },
+          {
+            "_id": "5f7acf199aa6830c4fe5e984",
+            "currency": "INR",
+            "plan": {
+              "recurring": {
+                "interval": "month",
+                "interval_count": 1
+              },
+              "is_trial_plan": false,
+              "plan_group": "default",
+              "tag_lines": [],
+              "currency": "INR",
+              "is_active": true,
+              "is_visible": true,
+              "trial_period": 0,
+              "addons": [],
+              "tags": [
+                "popular"
+              ],
+              "type": "public",
+              "country": "IN",
+              "_id": "5f3a8786c90d780037723a13",
+              "name": "Premium",
+              "description": "Premium",
+              "amount": 2499,
+              "product_suite_id": "5f3a8786c90d7800377239f3",
+              "created_at": "2020-08-17T13:35:02.547Z",
+              "modified_at": "2020-08-17T13:35:02.547Z"
+            },
+            "name": "Premium",
+            "quantity": 1,
+            "description": "Premium",
+            "period": {
+              "start": "2020-08-17T13:45:36.722Z",
+              "end": "2020-10-05T07:45:29.755Z"
+            },
+            "unit_amount": 3929.87,
+            "amount": 3929.87,
+            "type": "subscription",
+            "invoice_id": "5f7acb709e76da30e3b92cdb",
+            "created_at": "2020-10-05T07:45:29.765Z",
+            "modified_at": "2020-10-05T07:45:29.765Z"
+          },
+          {
+            "_id": "5f7acf7da10a707fc502dcd4",
+            "currency": "INR",
+            "plan": {
+              "recurring": {
+                "interval": "month",
+                "interval_count": 1
+              },
+              "is_trial_plan": false,
+              "plan_group": "default",
+              "tag_lines": [],
+              "currency": "INR",
+              "is_active": true,
+              "is_visible": true,
+              "trial_period": 0,
+              "addons": [],
+              "tags": [],
+              "type": "public",
+              "country": "IN",
+              "_id": "5f3a8786c90d780037723a16",
+              "name": "Ultra Premium",
+              "description": "Ultra Premium",
+              "amount": 2999,
+              "product_suite_id": "5f3a8786c90d7800377239f3",
+              "created_at": "2020-08-17T13:35:02.802Z",
+              "modified_at": "2020-08-17T13:35:02.802Z"
+            },
+            "name": "Ultra Premium",
+            "quantity": 1,
+            "description": "Ultra Premium",
+            "period": {
+              "start": "2020-08-17T13:45:36.722Z",
+              "end": "2020-10-05T07:47:09.532Z"
+            },
+            "unit_amount": 4716.27,
+            "amount": 4716.27,
+            "type": "subscription",
+            "invoice_id": "5f7acb709e76da30e3b92cdb",
+            "created_at": "2020-10-05T07:47:09.541Z",
+            "modified_at": "2020-10-05T07:47:09.541Z"
+          },
+          {
+            "_id": "5f7ad29bd56274f23321637a",
+            "currency": "INR",
+            "plan": {
+              "recurring": {
+                "interval": "month",
+                "interval_count": 1
+              },
+              "is_trial_plan": false,
+              "plan_group": "default",
+              "tag_lines": [],
+              "currency": "INR",
+              "is_active": true,
+              "is_visible": true,
+              "trial_period": 0,
+              "addons": [],
+              "tags": [],
+              "type": "public",
+              "country": "IN",
+              "_id": "5f3a8786c90d780037723a16",
+              "name": "Ultra Premium",
+              "description": "Ultra Premium",
+              "amount": 2999,
+              "product_suite_id": "5f3a8786c90d7800377239f3",
+              "created_at": "2020-08-17T13:35:02.802Z",
+              "modified_at": "2020-08-17T13:35:02.802Z"
+            },
+            "name": "Ultra Premium",
+            "quantity": 1,
+            "description": "Ultra Premium",
+            "period": {
+              "start": "2020-08-17T13:45:36.722Z",
+              "end": "2020-10-05T08:00:27.753Z"
+            },
+            "unit_amount": 4717.17,
+            "amount": 4717.17,
+            "type": "subscription",
+            "invoice_id": "5f7acb709e76da30e3b92cdb",
+            "created_at": "2020-10-05T08:00:27.768Z",
+            "modified_at": "2020-10-05T08:00:27.768Z"
+          }
+        ]
+      }
+    ],
+    "start": 0,
+    "end": 10,
+    "limit": 10,
+    "page": 1,
+    "total": 1
+  }
 }
 ```
 </details>
@@ -304,7 +536,232 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/Invoice"
+  "value": {
+    "invoice": {
+      "period": {
+        "start": "2020-08-17T13:45:36.722Z",
+        "end": "2020-09-17T13:45:36.722Z"
+      },
+      "client": {
+        "address_lines": [
+          "TV TOWER, Foot Over Bridge Khar",
+          null,
+          "Mumbai, 400079, Maharashtra, India"
+        ],
+        "name": "RELIANCE RETAIL LTD",
+        "email": "ZAK@GMAIL.COM",
+        "phone": "91 1234567890"
+      },
+      "auto_advance": true,
+      "currency": "INR",
+      "paid": true,
+      "attemp": 3,
+      "_id": "5f7acb709e76da30e3b92cdb",
+      "collection_method": "charge_automatically",
+      "subscriber_id": "5ee773e1351e5e84289ed9cf",
+      "invoice_url": "",
+      "number": "FP-1-72020-736",
+      "pg_data": {},
+      "receipt_number": "5fd9b08464dc6ac048a08988",
+      "statement_descriptor": "RELIANCE RETAIL LTD",
+      "current_status": "paid",
+      "status_trail": [
+        {
+          "_id": "5f7ad29bd562744eab216379",
+          "value": "draft",
+          "timestamp": "2020-10-05T08:00:27.753Z"
+        },
+        {
+          "_id": "5fcf40ce1613c029aff417dd",
+          "value": "open",
+          "timestamp": "2020-12-08T09:01:02.038Z"
+        },
+        {
+          "_id": "5fd9b08664dc6a1ad0a08989",
+          "value": "paid",
+          "timestamp": "2020-12-16T07:00:22.973Z"
+        }
+      ],
+      "subtotal": 15720.08,
+      "total": 15720.08,
+      "subscription": "5f3a8a00668947663b7fbd38",
+      "next_action_time": "2020-10-05T09:00:27.754Z",
+      "created_at": "2020-10-05T07:29:52.876Z",
+      "modified_at": "2020-12-16T07:00:22.980Z",
+      "hash_identifier": "575999aca03e36f0fa54db5235bc7f25",
+      "payment_method": {
+        "pg_payment_method_id": null
+      }
+    },
+    "invoice_items": [
+      {
+        "_id": "5f7acb709e76da48b1b92cdd",
+        "currency": "INR",
+        "plan": {
+          "recurring": {
+            "interval": "month",
+            "interval_count": 1
+          },
+          "is_trial_plan": false,
+          "plan_group": "default",
+          "tag_lines": [],
+          "currency": "INR",
+          "is_active": true,
+          "is_visible": true,
+          "trial_period": 0,
+          "addons": [],
+          "tags": [],
+          "type": "public",
+          "country": "IN",
+          "_id": "5f3a8786c90d780037723a14",
+          "name": "Professional",
+          "description": "Professional",
+          "amount": 1499,
+          "product_suite_id": "5f3a8786c90d7800377239f3",
+          "created_at": "2020-08-17T13:35:02.802Z",
+          "modified_at": "2020-08-17T13:35:02.802Z"
+        },
+        "name": "Professional",
+        "quantity": 1,
+        "description": "Professional",
+        "period": {
+          "start": "2020-08-17T13:45:36.722Z",
+          "end": "2020-10-05T07:29:52.868Z"
+        },
+        "unit_amount": 2356.77,
+        "amount": 2356.77,
+        "type": "subscription",
+        "invoice_id": "5f7acb709e76da30e3b92cdb",
+        "created_at": "2020-10-05T07:29:52.886Z",
+        "modified_at": "2020-10-05T07:29:52.886Z"
+      },
+      {
+        "_id": "5f7acf199aa6830c4fe5e984",
+        "currency": "INR",
+        "plan": {
+          "recurring": {
+            "interval": "month",
+            "interval_count": 1
+          },
+          "is_trial_plan": false,
+          "plan_group": "default",
+          "tag_lines": [],
+          "currency": "INR",
+          "is_active": true,
+          "is_visible": true,
+          "trial_period": 0,
+          "addons": [],
+          "tags": [
+            "popular"
+          ],
+          "type": "public",
+          "country": "IN",
+          "_id": "5f3a8786c90d780037723a13",
+          "name": "Premium",
+          "description": "Premium",
+          "amount": 2499,
+          "product_suite_id": "5f3a8786c90d7800377239f3",
+          "created_at": "2020-08-17T13:35:02.547Z",
+          "modified_at": "2020-08-17T13:35:02.547Z"
+        },
+        "name": "Premium",
+        "quantity": 1,
+        "description": "Premium",
+        "period": {
+          "start": "2020-08-17T13:45:36.722Z",
+          "end": "2020-10-05T07:45:29.755Z"
+        },
+        "unit_amount": 3929.87,
+        "amount": 3929.87,
+        "type": "subscription",
+        "invoice_id": "5f7acb709e76da30e3b92cdb",
+        "created_at": "2020-10-05T07:45:29.765Z",
+        "modified_at": "2020-10-05T07:45:29.765Z"
+      },
+      {
+        "_id": "5f7acf7da10a707fc502dcd4",
+        "currency": "INR",
+        "plan": {
+          "recurring": {
+            "interval": "month",
+            "interval_count": 1
+          },
+          "is_trial_plan": false,
+          "plan_group": "default",
+          "tag_lines": [],
+          "currency": "INR",
+          "is_active": true,
+          "is_visible": true,
+          "trial_period": 0,
+          "addons": [],
+          "tags": [],
+          "type": "public",
+          "country": "IN",
+          "_id": "5f3a8786c90d780037723a16",
+          "name": "Ultra Premium",
+          "description": "Ultra Premium",
+          "amount": 2999,
+          "product_suite_id": "5f3a8786c90d7800377239f3",
+          "created_at": "2020-08-17T13:35:02.802Z",
+          "modified_at": "2020-08-17T13:35:02.802Z"
+        },
+        "name": "Ultra Premium",
+        "quantity": 1,
+        "description": "Ultra Premium",
+        "period": {
+          "start": "2020-08-17T13:45:36.722Z",
+          "end": "2020-10-05T07:47:09.532Z"
+        },
+        "unit_amount": 4716.27,
+        "amount": 4716.27,
+        "type": "subscription",
+        "invoice_id": "5f7acb709e76da30e3b92cdb",
+        "created_at": "2020-10-05T07:47:09.541Z",
+        "modified_at": "2020-10-05T07:47:09.541Z"
+      },
+      {
+        "_id": "5f7ad29bd56274f23321637a",
+        "currency": "INR",
+        "plan": {
+          "recurring": {
+            "interval": "month",
+            "interval_count": 1
+          },
+          "is_trial_plan": false,
+          "plan_group": "default",
+          "tag_lines": [],
+          "currency": "INR",
+          "is_active": true,
+          "is_visible": true,
+          "trial_period": 0,
+          "addons": [],
+          "tags": [],
+          "type": "public",
+          "country": "IN",
+          "_id": "5f3a8786c90d780037723a16",
+          "name": "Ultra Premium",
+          "description": "Ultra Premium",
+          "amount": 2999,
+          "product_suite_id": "5f3a8786c90d7800377239f3",
+          "created_at": "2020-08-17T13:35:02.802Z",
+          "modified_at": "2020-08-17T13:35:02.802Z"
+        },
+        "name": "Ultra Premium",
+        "quantity": 1,
+        "description": "Ultra Premium",
+        "period": {
+          "start": "2020-08-17T13:45:36.722Z",
+          "end": "2020-10-05T08:00:27.753Z"
+        },
+        "unit_amount": 4717.17,
+        "amount": 4717.17,
+        "type": "subscription",
+        "invoice_id": "5f7acb709e76da30e3b92cdb",
+        "created_at": "2020-10-05T08:00:27.768Z",
+        "modified_at": "2020-10-05T08:00:27.768Z"
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -363,7 +820,31 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/SubscriptionCustomerRes"
+  "value": {
+    "phone": {
+      "phone_number": "1234567890",
+      "phone_country_code": "91"
+    },
+    "billing_address": {
+      "country": "India",
+      "state": "Maharastra",
+      "city": "Mumbai",
+      "line1": "test1",
+      "line2": "test2",
+      "postal_code": "400059"
+    },
+    "_id": "5ee773e1351e5e84289ed9cf",
+    "unique_id": "1",
+    "type": "company",
+    "name": "test retail",
+    "email": "test@gmail.com",
+    "created_at": "2020-06-15T13:13:05.267Z",
+    "modified_at": "2021-02-04T00:58:45.356Z",
+    "data": {
+      "pg_user_exists": true,
+      "id": 2
+    }
+  }
 }
 ```
 </details>
@@ -426,7 +907,31 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/SubscriptionCustomerRes"
+  "value": {
+    "phone": {
+      "phone_number": "1234567890",
+      "phone_country_code": "91"
+    },
+    "billing_address": {
+      "country": "India",
+      "state": "Maharastra",
+      "city": "Mumbai",
+      "line1": "test1",
+      "line2": "test2",
+      "postal_code": "400059"
+    },
+    "_id": "5ee773e1351e5e84289ed9cf",
+    "unique_id": "1",
+    "type": "company",
+    "name": "test retail",
+    "email": "test@gmail.com",
+    "created_at": "2020-06-15T13:13:05.267Z",
+    "modified_at": "2021-02-04T00:58:45.356Z",
+    "data": {
+      "pg_user_exists": true,
+      "id": 2
+    }
+  }
 }
 ```
 </details>
@@ -486,7 +991,56 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/SubscriptionActiveRes"
+  "value": {
+    "is_enabled": true,
+    "subscription": {
+      "current_period": {
+        "start": "2020-12-17T13:45:36.722Z",
+        "end": "2021-01-17T13:45:36.722Z"
+      },
+      "pause_collection": {},
+      "trial": {},
+      "invoice_settings": {
+        "generation": true,
+        "charging": true
+      },
+      "is_active": true,
+      "cancel_at_period_end": false,
+      "_id": "5f3a8a00668947663b7fbd38",
+      "subscriber_id": "5ee773e1351e5e84289ed9cf",
+      "plan_id": "5f3a8786c90d780037723a12",
+      "product_suite_id": "5f3a8786c90d7800377239f3",
+      "plan_data": {
+        "recurring": {
+          "interval": "month",
+          "interval_count": 1
+        },
+        "is_trial_plan": false,
+        "plan_group": "default",
+        "tag_lines": [],
+        "currency": "INR",
+        "is_active": true,
+        "is_visible": true,
+        "trial_period": 0,
+        "addons": [],
+        "tags": [],
+        "type": "public",
+        "country": "IN",
+        "_id": "5f3a8786c90d780037723a12",
+        "name": "Standard",
+        "description": "Standard",
+        "amount": 999,
+        "product_suite_id": "5f3a8786c90d7800377239f3",
+        "created_at": "2020-08-17T13:35:02.547Z",
+        "modified_at": "2020-08-17T13:35:02.547Z"
+      },
+      "current_status": "active",
+      "collection_method": "charge_automatically",
+      "created_at": "2020-08-17T13:45:36.731Z",
+      "modified_at": "2020-12-17T11:01:15.960Z",
+      "latest_invoice": "5fdb3a7bfc849c2153b944d5"
+    }
+  }
 }
 ```
 </details>
@@ -496,7 +1050,10 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/SubscriptionInavtiveRes"
+  "value": {
+    "is_enabled": true,
+    "message": "Subscription not enabled"
+  }
 }
 ```
 </details>
@@ -555,7 +1112,35 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/CurrentLimitRes"
+  "value": {
+    "application": {
+      "enabled": true,
+      "hard_limit": 25,
+      "soft_limit": 25
+    },
+    "marketplace": {
+      "enabled": true
+    },
+    "other_platform": {
+      "enabled": true
+    },
+    "team": {
+      "limit": -1
+    },
+    "products": {
+      "bulk": true,
+      "limit": -1
+    },
+    "extensions": {
+      "enabled": true,
+      "limit": -1
+    },
+    "integrations": {
+      "enabled": true,
+      "limit": -1
+    },
+    "is_trial_plan": false
+  }
 }
 ```
 </details>
@@ -618,7 +1203,55 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/SubscriptionActivateRes"
+  "value": {
+    "success": true,
+    "data": {
+      "pause_collection": {},
+      "trial": {},
+      "invoice_settings": {
+        "generation": true,
+        "charging": true
+      },
+      "is_active": true,
+      "cancel_at_period_end": false,
+      "_id": "601b8e4a32d3e837ec662f5c",
+      "subscriber_id": "5ef5f810961ddf004c1457ac",
+      "plan_id": "5f3a8786c90d780037723a12",
+      "product_suite_id": "5f3a8786c90d7800377239f3",
+      "plan_data": {
+        "recurring": {
+          "interval": "month",
+          "interval_count": 1
+        },
+        "is_trial_plan": false,
+        "plan_group": "default",
+        "tag_lines": [],
+        "currency": "INR",
+        "is_active": true,
+        "is_visible": true,
+        "trial_period": 0,
+        "addons": [],
+        "tags": [],
+        "type": "public",
+        "country": "IN",
+        "_id": "5f3a8786c90d780037723a12",
+        "name": "Standard",
+        "description": "Standard",
+        "amount": 999,
+        "product_suite_id": "5f3a8786c90d7800377239f3",
+        "created_at": "2020-08-17T13:35:02.547Z",
+        "modified_at": "2020-08-17T13:35:02.547Z"
+      },
+      "current_period": {
+        "start": "2021-02-04T06:03:54.567Z",
+        "end": "2021-03-04T06:03:54.567Z"
+      },
+      "current_status": "active",
+      "collection_method": "charge_automatically",
+      "created_at": "2021-02-04T06:03:54.580Z",
+      "modified_at": "2021-02-04T06:03:54.580Z"
+    }
+  }
 }
 ```
 </details>
@@ -681,7 +1314,57 @@ Success
 
 ```json
 {
-  "$ref": "#/components/examples/CancelSubscriptionRes"
+  "value": {
+    "success": true,
+    "data": {
+      "current_period": {
+        "start": "2021-02-04T06:03:54.567Z",
+        "end": "2021-03-04T06:03:54.567Z"
+      },
+      "pause_collection": {},
+      "trial": {},
+      "invoice_settings": {
+        "generation": true,
+        "charging": true
+      },
+      "is_active": false,
+      "cancel_at_period_end": false,
+      "_id": "601b8e4a32d3e837ec662f5c",
+      "subscriber_id": "5ef5f810961ddf004c1457ac",
+      "plan_id": "5f3a8786c90d780037723a12",
+      "product_suite_id": "5f3a8786c90d7800377239f3",
+      "plan_data": {
+        "recurring": {
+          "interval": "month",
+          "interval_count": 1
+        },
+        "is_trial_plan": false,
+        "plan_group": "default",
+        "tag_lines": [],
+        "currency": "INR",
+        "is_active": true,
+        "is_visible": true,
+        "trial_period": 0,
+        "addons": [],
+        "tags": [],
+        "type": "public",
+        "country": "IN",
+        "_id": "5f3a8786c90d780037723a12",
+        "name": "Standard",
+        "description": "Standard",
+        "amount": 999,
+        "product_suite_id": "5f3a8786c90d7800377239f3",
+        "created_at": "2020-08-17T13:35:02.547Z",
+        "modified_at": "2020-08-17T13:35:02.547Z"
+      },
+      "current_status": "canceled",
+      "collection_method": "charge_automatically",
+      "created_at": "2021-02-04T06:03:54.580Z",
+      "modified_at": "2021-02-04T08:52:25.806Z",
+      "cancel_at": "2021-02-04T08:52:25.802Z",
+      "canceled_at": "2021-02-04T08:52:25.802Z"
+    }
+  }
 }
 ```
 </details>
