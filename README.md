@@ -106,11 +106,11 @@ let fdkClient = setupFdk({
     subscribe_on_install: false, //optional. Default true
     subscribed_saleschannel 'specific', //optional. Default all
     event_map: { // required
-      'extension/install': {
-        handler: handleExtInstall
+      'brand/create': {
+        handler: handleBrandCreate
       },
-      'extension/uninstall': {
-        handler: handleExtUninstall
+      'location/update': {
+        handler: handleLocationUpdate
       },
       'coupon/create': {
         event_category: "application", // optional. Required if handling event name is for company and sales channel. Refer examples/test.js
