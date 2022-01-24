@@ -2717,6 +2717,7 @@ Success
  | created_at | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
  | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
+ | payment_methods | string |  no  |  |
 
 ---
 
@@ -2758,6 +2759,7 @@ Success
  | breakup_values | [ShipmentBreakupValues](#ShipmentBreakupValues) |  no  |  |
  | id | string |  no  |  |
  | dp_details | [DpDetails](#DpDetails) |  no  |  |
+ | payment_methods | string |  no  |  |
  | invoice | [ShipmentInvoice](#ShipmentInvoice) |  no  |  |
  | fulfilling_store | [PlatformFulfillingStore](#PlatformFulfillingStore) |  no  |  |
  | payments | [Payments](#Payments) |  no  |  |
@@ -2823,6 +2825,9 @@ Success
  | update_time | number |  no  |  |
  | current_status | [BagCurrentStatus](#BagCurrentStatus) |  no  |  |
  | bag_status | [BagStatus](#BagStatus) |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | can_return | boolean |  no  |  |
+ | payment_methods | string |  no  |  |
 
 ---
 
@@ -3521,6 +3526,7 @@ Success
  | created_at | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
  | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
+ | payment_methods | string |  no  |  |
 
 ---
 

@@ -333,7 +333,7 @@ Get All Webhook Events
 
 
 
-[EventConfigList](#EventConfigList)
+[EventConfigResponse](#EventConfigResponse)
 
 Success
 
@@ -388,6 +388,17 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[EventConfig](#EventConfig)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventConfigResponse](#EventConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | event_configs | [[EventConfig](#EventConfig)] |  no  |  |
 
 ---
 
@@ -549,6 +560,7 @@ Success
  | ---- | ----- | ----------- |
  | active | active | Status is active |
  | inactive | inactive | Status is inactive |
+ | blocked | blocked | Subscriber is blocked by system due to multiple failed delivery attempts. |
 
 ---
 
