@@ -51,8 +51,11 @@ class WebhookRegistry {
         }, {});
     }
 
-    get _associationCriteria() {
-        return this._config.subscribed_saleschannel === 'specific' ? ASSOCIATION_CRITERIA.SPECIFIC : ASSOCIATION_CRITERIA.ALL;
+    _associationCriteria(applicationIdList) {
+        if (this._config.subscribed_saleschannel === 'specific') {        
+            return applicationIdList.length? ASSOCIATION_CRITERIA.SPECIFIC: ASSOCIATION_CRITERIA.EMPTY; 
+        }
+        return ASSOCIATION_CRITERIA.ALL;
     }
 
     get _webhookUrl() {
@@ -61,12 +64,13 @@ class WebhookRegistry {
 
     _isConfigUpdated(subscriberConfig) {
         let updated = false;
-        if (this._associationCriteria !== subscriberConfig.association.criteria) {
-            if (this._associationCriteria === ASSOCIATION_CRITERIA.ALL) {
+        const configCriteria = this._associationCriteria(subscriberConfig.association.application_id);
+        if (configCriteria !== subscriberConfig.association.criteria) {
+            if (configCriteria === ASSOCIATION_CRITERIA.ALL) {
                 subscriberConfig.association.application_id = [];
             }
-            logger.debug(`Webhook association criteria updated from ${subscriberConfig.association.criteria} to ${this._associationCriteria}`);
-            subscriberConfig.association.criteria = this._associationCriteria;
+            logger.debug(`Webhook association criteria updated from ${subscriberConfig.association.criteria} to ${configCriteria}`);
+            subscriberConfig.association.criteria = configCriteria;
             updated = true;
         }
 
@@ -112,7 +116,7 @@ class WebhookRegistry {
                 "association": {
                     "company_id": platformClient.config.companyId,
                     "application_id": [],
-                    "criteria": this._associationCriteria
+                    "criteria": this._associationCriteria([])
                 },
                 "status": "active",
                 "auth_meta": {
@@ -201,6 +205,7 @@ class WebhookRegistry {
             if (rmIndex === -1) {
                 arrApplicationId.push(applicationId);
                 subscriberConfig.association.application_id = arrApplicationId;
+                subscriberConfig.association.criteria = this._associationCriteria(subscriberConfig.association.application_id);
                 await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
                 logger.debug(`Webhook enabled for saleschannel: ${applicationId}`);
             }
@@ -228,6 +233,7 @@ class WebhookRegistry {
                 const rmIndex = arrApplicationId.indexOf(applicationId);
                 if (rmIndex > -1) {
                     arrApplicationId.splice(rmIndex, 1);
+                    subscriberConfig.association.criteria = this._associationCriteria(subscriberConfig.association.application_id);
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
                     logger.debug(`Webhook disabled for saleschannel: ${applicationId}`);
                 }
