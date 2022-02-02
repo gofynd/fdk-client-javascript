@@ -1840,6 +1840,43 @@ class Catalog {
     
     /**
     *
+    * @summary: Get product bundles
+    * @description: Use this API to retrieve products bundles to the one specified by its slug.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
+    * @param {string} [arg.id] - Product uid
+    
+    
+    * @return {Promise<ProductBundle>} - success response
+    **/
+        getProductBundlesBySlug({
+            slug,
+            id
+            
+        } = {}) {
+            const { error } = CatalogValidator.getProductBundlesBySlug().validate({ slug,
+            id
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query = {};
+            query['slug'] = slug;
+            query['id'] = id;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    `/service/application/catalog/v1.0/product-grouping/`,
+                    query,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Get the price of a product size at a PIN Code
     * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
     * @param {Object} arg - arg object.
