@@ -37,6 +37,11 @@ function handleSalesChannelProductEvent(payload, companyId, applicationId) {
     console.log(payload);
 }
 
+function handleLocationEvent(payload, companyId) {
+    console.log(`Event received for ${companyId} and event_category ${payload.event.category}`);
+    console.log(payload);
+}
+
 
 const redis = new Redis();
 
@@ -56,6 +61,9 @@ let fdkExtension = setupFdk({
         event_map: { // required
             'application/coupon/update': {
                 handler: handleCouponEdit
+            },
+            'location/update': {
+                handler: handleLocationEvent
             },
             'product/create': {
                 handler: handleProductEvent
