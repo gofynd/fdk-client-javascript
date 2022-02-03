@@ -18,7 +18,7 @@ describe("Webhook Integrations", () => {
             api_path: '/v1/webhooks',
             notification_email: 'test@abc.com',
             event_map: {
-                'product/create': {
+                'company/product/create': {
                     handler: function () { }
                 },
                 'application/coupon/create': {

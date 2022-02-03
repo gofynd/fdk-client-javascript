@@ -1,28 +1,6 @@
 module.exports = {
     "event_configs": [
         {
-            "id": 18,
-            "event_name": "extension",
-            "event_type": "install",
-            "event_category": "company",
-            "version": "1.0",
-            "display_name": "extension-install",
-            "description": "This event gets triggered when extension is install",
-            "created_on": "2021-07-02T11:37:42.365Z",
-            "updated_on": "2021-07-02T11:37:42.365Z"
-        },
-        {
-            "id": 27,
-            "event_name": "extension",
-            "event_type": "uninstall",
-            "event_category": "company",
-            "version": "1.0",
-            "display_name": "extension-uninstall",
-            "description": "This event gets triggered when extension is un-installed",
-            "created_on": "2021-08-30T16:39:11.018Z",
-            "updated_on": "2021-08-30T16:39:11.018Z"
-        },
-        {
             "id": 5,
             "event_name": "coupon",
             "event_type": "create",

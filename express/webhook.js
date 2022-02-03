@@ -39,11 +39,7 @@ class WebhookRegistry {
 
     _getEventIdMap(events) {
         return events.reduce((event_map, event) => {
-            if (event.event_category && event.event_category === "application") {
-                event_map[`${event.event_category}/${event.event_name}/${event.event_type}`] = event.id;
-            } else {
-                event_map[`${event.event_name}/${event.event_type}`] = event.id;
-            }
+            event_map[`${event.event_category}/${event.event_name}/${event.event_type}`] = event.id;
             return event_map;
         }, {});
     }

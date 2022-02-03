@@ -62,10 +62,10 @@ let fdkExtension = setupFdk({
             'application/coupon/update': {
                 handler: handleCouponEdit
             },
-            'location/update': {
+            'company/location/update': {
                 handler: handleLocationEvent
             },
-            'product/create': {
+            'company/product/create': {
                 handler: handleProductEvent
             },
             'application/product/create': {
