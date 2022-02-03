@@ -28,11 +28,7 @@ class WebhookRegistry {
         this._config = config;
         this._fdkConfig = fdkConfig;
         for (let [eventName, handlerData] of Object.entries(this._config.event_map)) {
-            let categoryEventName = eventName;
-            if(handlerData.category) {
-                categoryEventName = `${handlerData.category}/${eventName}`;
-            }
-            this._handlerMap[categoryEventName] = handlerData;
+            this._handlerMap[eventName] = handlerData;
         }
         logger.debug('Webhook registry initialized');
     }
@@ -42,12 +38,13 @@ class WebhookRegistry {
     }
 
     _getEventIdMap(events) {
-        return events.reduce((map, event) => {
-            map[`${event.event_name}/${event.event_type}`] = event.id;
-            if (event.event_category) {
-                map[`${event.event_category}/${event.event_name}/${event.event_type}`] = event.id;
+        return events.reduce((event_map, event) => {
+            if (event.event_category && event.event_category === "application") {
+                event_map[`${event.event_category}/${event.event_name}/${event.event_type}`] = event.id;
+            } else {
+                event_map[`${event.event_name}/${event.event_type}`] = event.id;
             }
-            return map;
+            return event_map;
         }, {});
     }
 
