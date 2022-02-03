@@ -21,10 +21,6 @@ let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
 let baseUrl = data.toString() || "http://localhost:5070";
 console.log(baseUrl);
 
-function handleExtInstall(payload, companyId) {
-    console.log(`Event received for ${companyId}`);
-    console.log(payload);
-}
 
 function handleCouponEdit(payload, companyId, applicationId) {
     console.log(`Event received for ${companyId} and ${applicationId}`);
@@ -58,18 +54,14 @@ let fdkExtension = setupFdk({
         notification_email: "test2@abc.com", // required
         subscribed_saleschannel: 'specific', //optional
         event_map: { // required
-            'extension/install': {
-                handler: handleExtInstall
-            },
-            'coupon/update': {
+            'application/coupon/update': {
                 handler: handleCouponEdit
             },
             'product/create': {
-                handler: handleCouponEdit
+                handler: handleProductEvent
             },
-            'product/create': {
-                event_category: 'application', // optional unless multiple event with same name are present at company and saleschannel
-                handler: handleCouponEdit
+            'application/product/create': {
+                handler: handleSalesChannelProductEvent
             }
         }
     }
