@@ -99,3 +99,59 @@ import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 - [Platform Front](documentation/platform/README.md)
 
 ### Logging
+
+#### Why Logger support is added ?
+
+Logger support is added to help developers to debug any piece of code.
+fdk-client-javascript support 5 different levels of logging.
+
+```
+Ordered as mentioned.
+
+1. TRACE
+2. DEBUG
+3. INFO
+4. WARN
+5. ERROR
+```
+
+#### Why log level is required ?
+
+A log level is an input to the logger. By providing a log level the user will be able to retrieve all logs of that level and below.
+
+```
+Example:
+
+For log level set to 'TRACE'.
+
+log.trace('This is a TRACE level log.')
+
+i.e This log level will include logs of 'TRACE' level and all levels below it. i.e 'DEBUG', 'INFO', 'WARN' & 'ERROR'.
+
+For log level set to 'INFO'
+
+log.info('This is a INFO level log.')
+
+i.e This log level will include logs of 'INFO' level and all levels below it. i.e 'WARN' & 'ERROR'
+
+```
+
+To enable logging in fdk-client-javascript, below are the config changes that is to be added.
+The configuration accepts `logLevel` as a parameter and internally sets the logging level which is provided in this.
+
+```javascript
+const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
+
+let platformConfig = new PlatformConfig({
+  companyId: "COMPANY_ID",
+  apiKey: "API_KEY", 
+  apiSecret: "API_SECRET", 
+  domain: "DOMAIN",
+  logLevel: 'ERROR' // Sets logging level to 'ERROR'
+});
+```
+
+The above example is for `PlatformConfig`. Same goes for `ApplicationConfig` too.
+
+Reference:
+- [Logger](https://github.com/pimterry/loglevel)
