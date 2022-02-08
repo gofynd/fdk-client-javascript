@@ -97,3 +97,5 @@ import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 
 - [Application Front](documentation/application/README.md)
 - [Platform Front](documentation/platform/README.md)
+
+### Logging
