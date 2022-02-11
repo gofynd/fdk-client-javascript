@@ -107,12 +107,15 @@ let fdkClient = setupFdk({
     subscribed_saleschannel: 'specific', //optional. Default all
     event_map: { // required
       'brand/create': {
+        version: '1',
         handler: handleBrandCreate
       },
       'location/update': {
+        version: '1',
         handler: handleLocationUpdate
       },
       'application/coupon/create': {
+        version: '1',
         handler: handleCouponCreate
       }
     }

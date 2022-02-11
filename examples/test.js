@@ -60,15 +60,19 @@ let fdkExtension = setupFdk({
         subscribed_saleschannel: 'specific', //optional
         event_map: { // required
             'application/coupon/update': {
+                version: '1',
                 handler: handleCouponEdit
             },
             'company/location/update': {
+                version: '1',
                 handler: handleLocationEvent
             },
             'company/product/create': {
+                version: '1',
                 handler: handleProductEvent
             },
             'application/product/create': {
+                version: '1',
                 handler: handleSalesChannelProductEvent
             }
         }

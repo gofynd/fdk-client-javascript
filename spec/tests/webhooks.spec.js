@@ -19,9 +19,11 @@ describe("Webhook Integrations", () => {
             notification_email: 'test@abc.com',
             event_map: {
                 'company/product/create': {
+                    version: '1',
                     handler: function () { }
                 },
                 'application/coupon/create': {
+                    version: '1',
                     handler: function () { throw Error('test error') }
                 }
             }
@@ -100,6 +102,7 @@ describe("Webhook Integrations", () => {
             notification_email: 'test@abc.com',
             event_map: {
                 'application/coupon/create': {
+                    version: '1',
                     handler: function () { }
                 }
             }
