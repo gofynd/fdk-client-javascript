@@ -28,11 +28,7 @@ class WebhookRegistry {
         this._config = config;
         this._fdkConfig = fdkConfig;
         for (let [eventName, handlerData] of Object.entries(this._config.event_map)) {
-            let categoryEventName = eventName;
-            if(handlerData.category) {
-                categoryEventName = `${handlerData.category}/${eventName}`;
-            }
-            this._handlerMap[categoryEventName] = handlerData;
+            this._handlerMap[eventName] = handlerData;
         }
         logger.debug('Webhook registry initialized');
     }
@@ -42,12 +38,9 @@ class WebhookRegistry {
     }
 
     _getEventIdMap(events) {
-        return events.reduce((map, event) => {
-            map[`${event.event_name}/${event.event_type}`] = event.id;
-            if (event.event_category) {
-                map[`${event.event_category}/${event.event_name}/${event.event_type}`] = event.id;
-            }
-            return map;
+        return events.reduce((event_map, event) => {
+            event_map[`${event.event_category}/${event.event_name}/${event.event_type}/${event.version}`] = event.id;
+            return event_map;
         }, {});
     }
 
@@ -98,7 +91,7 @@ class WebhookRegistry {
         let eventsMap = null;
         const promises = [];
 
-        promises.push(platformClient.webhook.fetchAllEventConfigurations());
+        promises.push(platformClient.webhook.fetchAllEventConfigurations()); // TODO:  replace with validate API
         promises.push(platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key }));
 
         [eventsMap, subscriberConfig] = await Promise.all(promises);
@@ -146,8 +139,10 @@ class WebhookRegistry {
             }
         }
         for (let eventName of Object.keys(this._handlerMap)) {
-            if (eventsMap[eventName]) {
-                subscriberConfig.event_id.push(eventsMap[eventName]);
+            eventName = `${eventName}/${this._handlerMap[eventName].version}`
+            let event_id = eventsMap[eventName]
+            if (event_id) {
+                subscriberConfig.event_id.push(event_id);
             }
         }
 
@@ -265,7 +260,10 @@ class WebhookRegistry {
             if(body.event.category) {
                 categoryEventName = `${body.event.category}/${eventName}`
             }
-            const extHandler = (this._handlerMap[categoryEventName] || this._handlerMap[eventName] || {}).handler;
+
+            const eventHandlerMap = (this._handlerMap[categoryEventName] || this._handlerMap[eventName] || {});
+            const extHandler = eventHandlerMap.handler;
+
             if (typeof extHandler === 'function') {
                 logger.debug(`Webhook event received for company: ${req.body.company_id}, application: ${req.body.application_id || ''}, event name: ${eventName}`);
                 await extHandler(eventName, req.body, req.body.company_id, req.body.application_id);
