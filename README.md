@@ -104,15 +104,18 @@ let fdkClient = setupFdk({
     api_path: "/api/v1/webhooks", // required
     notification_email: "test@abc.com", // required
     subscribe_on_install: false, //optional. Default true
-    subscribed_saleschannel 'specific', //optional. Default all
+    subscribed_saleschannel: 'specific', //optional. Default all
     event_map: { // required
-      'extension/install': {
-        handler: handleExtInstall
+      'brand/create': {
+        version: '1',
+        handler: handleBrandCreate
       },
-      'extension/uninstall': {
-        handler: handleExtUninstall
+      'location/update': {
+        version: '1',
+        handler: handleLocationUpdate
       },
-      'coupon/create': {
+      'application/coupon/create': {
+        version: '1',
         handler: handleCouponCreate
       }
     }
@@ -129,7 +132,7 @@ There should be view on given api path to receive webhook call. It should be `PO
 
 ```javascript
 
-app.post('/api/v1/webhooks', async (req, res, next) {
+app.post('/api/v1/webhooks', async (req, res, next) => {
   try {
     await fdkClient.webhookRegistry.processWebhook(req);
     return res.status(200).json({"success": true});
