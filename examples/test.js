@@ -22,22 +22,22 @@ let baseUrl = data.toString() || "http://localhost:5070";
 console.log(baseUrl);
 
 
-function handleCouponEdit(payload, companyId, applicationId) {
+function handleCouponEdit(eventName, payload, companyId, applicationId) {
     console.log(`Event received for ${companyId} and ${applicationId}`);
     console.log(payload);
 }
 
-function handleProductEvent(payload, companyId) {
+function handleProductEvent(eventName, payload, companyId) {
     console.log(`Event received for ${companyId}`);
     console.log(payload);
 }
 
-function handleSalesChannelProductEvent(payload, companyId, applicationId) {
+function handleSalesChannelProductEvent(eventName, payload, companyId, applicationId) {
     console.log(`Event received for ${companyId} and ${applicationId} and event_category ${payload.event.category}`);
     console.log(payload);
 }
 
-function handleLocationEvent(payload, companyId) {
+function handleLocationEvent(eventName, payload, companyId) {
     console.log(`Event received for ${companyId} and event_category ${payload.event.category}`);
     console.log(payload);
 }
