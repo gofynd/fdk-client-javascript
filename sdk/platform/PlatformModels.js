@@ -7877,17 +7877,17 @@ class Validator{
             return Joi.object({
                 
                     
-                    success: Joi.boolean().required(),
-                    
                     app_id: Joi.string().allow('').required(),
                     
+                    success: Joi.boolean().required(),
+                    
                     excluded_fields: Joi.array().items(Joi.string().allow('')).required(),
+                    
+                    display_fields: Joi.array().items(Joi.string().allow('')).required(),
                     
                     aggregators: Joi.array().items(Joi.any()),
                     
                     created: Joi.boolean().required(),
-                    
-                    display_fields: Joi.array().items(Joi.string().allow('')).required(),
                     
                  
             })
@@ -7898,11 +7898,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    code: Joi.string().allow('').required(),
+                    success: Joi.boolean().required(),
                     
                     description: Joi.string().allow('').required(),
                     
-                    success: Joi.boolean().required(),
+                    code: Joi.string().allow('').required(),
                     
                  
             })
@@ -7913,15 +7913,15 @@ class Validator{
             return Joi.object({
                 
                     
+                    key: Joi.string().allow('').required(),
+                    
+                    secret: Joi.string().allow('').required(),
+                    
                     is_active: Joi.boolean().allow(null),
                     
                     config_type: Joi.string().allow('').required(),
                     
                     merchant_salt: Joi.string().allow('').required(),
-                    
-                    secret: Joi.string().allow('').required(),
-                    
-                    key: Joi.string().allow('').required(),
                     
                  
             })
@@ -7932,11 +7932,11 @@ class Validator{
             return Joi.object({
                 
                     
+                    aggregator_name: this.PaymentGatewayConfig(),
+                    
                     app_id: Joi.string().allow('').required(),
                     
                     is_active: Joi.boolean().allow(null),
-                    
-                    aggregator_name: this.PaymentGatewayConfig(),
                     
                  
             })
@@ -7947,9 +7947,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    aggregator: Joi.array().items(Joi.string().allow('')).required(),
-                    
                     success: Joi.boolean().required(),
+                    
+                    aggregator: Joi.array().items(Joi.string().allow('')).required(),
                     
                  
             })
@@ -7999,61 +7999,61 @@ class Validator{
             return Joi.object({
                 
                     
-                    expired: Joi.boolean().allow(null),
+                    card_token: Joi.string().allow('').allow(null),
+                    
+                    code: Joi.string().allow('').allow(null),
                     
                     card_brand_image: Joi.string().allow('').allow(null),
                     
+                    card_number: Joi.string().allow('').allow(null),
+                    
                     display_name: Joi.string().allow('').allow(null),
-                    
-                    card_name: Joi.string().allow('').allow(null),
-                    
-                    display_priority: Joi.number().allow(null),
-                    
-                    nickname: Joi.string().allow('').allow(null),
-                    
-                    card_fingerprint: Joi.string().allow('').allow(null),
                     
                     name: Joi.string().allow('').allow(null),
                     
-                    logo_url: this.PaymentModeLogo(),
+                    card_brand: Joi.string().allow('').allow(null),
                     
-                    intent_app: Joi.array().items(Joi.any()),
-                    
-                    card_type: Joi.string().allow('').allow(null),
-                    
-                    card_number: Joi.string().allow('').allow(null),
-                    
-                    merchant_code: Joi.string().allow('').allow(null),
-                    
-                    card_token: Joi.string().allow('').allow(null),
-                    
-                    aggregator_name: Joi.string().allow('').required(),
-                    
-                    intent_flow: Joi.boolean().allow(null),
+                    card_reference: Joi.string().allow('').allow(null),
                     
                     card_id: Joi.string().allow('').allow(null),
                     
-                    card_issuer: Joi.string().allow('').allow(null),
+                    card_fingerprint: Joi.string().allow('').allow(null),
+                    
+                    card_isin: Joi.string().allow('').allow(null),
                     
                     retry_count: Joi.number().allow(null),
                     
                     intent_app_error_list: Joi.array().items(Joi.string().allow('')),
                     
-                    card_isin: Joi.string().allow('').allow(null),
+                    display_priority: Joi.number().allow(null),
                     
-                    exp_year: Joi.number().allow(null),
+                    logo_url: this.PaymentModeLogo(),
                     
-                    code: Joi.string().allow('').allow(null),
+                    card_type: Joi.string().allow('').allow(null),
                     
                     timeout: Joi.number().allow(null),
                     
-                    card_brand: Joi.string().allow('').allow(null),
+                    nickname: Joi.string().allow('').allow(null),
+                    
+                    intent_app: Joi.array().items(Joi.any()),
+                    
+                    card_issuer: Joi.string().allow('').allow(null),
                     
                     fynd_vpa: Joi.string().allow('').allow(null),
                     
-                    card_reference: Joi.string().allow('').allow(null),
+                    card_name: Joi.string().allow('').allow(null),
+                    
+                    exp_year: Joi.number().allow(null),
+                    
+                    expired: Joi.boolean().allow(null),
+                    
+                    intent_flow: Joi.boolean().allow(null),
                     
                     exp_month: Joi.number().allow(null),
+                    
+                    aggregator_name: Joi.string().allow('').required(),
+                    
+                    merchant_code: Joi.string().allow('').allow(null),
                     
                  
             })
@@ -8064,19 +8064,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    display_name: Joi.string().allow('').required(),
-                    
-                    aggregator_name: Joi.string().allow('').allow(null),
+                    add_card_enabled: Joi.boolean().allow(null),
                     
                     list: Joi.array().items(this.PaymentModeList()),
                     
-                    anonymous_enable: Joi.boolean().allow(null),
+                    aggregator_name: Joi.string().allow('').allow(null),
+                    
+                    name: Joi.string().allow('').required(),
                     
                     display_priority: Joi.number().required(),
                     
-                    add_card_enabled: Joi.boolean().allow(null),
+                    anonymous_enable: Joi.boolean().allow(null),
                     
-                    name: Joi.string().allow('').required(),
+                    display_name: Joi.string().allow('').required(),
                     
                  
             })
@@ -8098,9 +8098,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    payment_options: this.PaymentOptions().required(),
-                    
                     success: Joi.boolean().required(),
+                    
+                    payment_options: this.PaymentOptions().required(),
                     
                  
             })
@@ -8111,19 +8111,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    transfer_type: Joi.string().allow('').required(),
-                    
-                    is_active: Joi.boolean().required(),
-                    
                     is_default: Joi.boolean().required(),
                     
                     more_attributes: Joi.any().required(),
                     
+                    customers: Joi.any().required(),
+                    
                     payouts_aggregators: Joi.array().items(Joi.any()).required(),
+                    
+                    is_active: Joi.boolean().required(),
                     
                     unique_transfer_no: Joi.any().required(),
                     
-                    customers: Joi.any().required(),
+                    transfer_type: Joi.string().allow('').required(),
                     
                  
             })
@@ -8136,23 +8136,23 @@ class Validator{
                     
                     account_no: Joi.string().allow(''),
                     
-                    account_holder: Joi.string().allow(''),
-                    
-                    city: Joi.string().allow(''),
-                    
-                    pincode: Joi.number(),
+                    bank_name: Joi.string().allow(''),
                     
                     ifsc_code: Joi.string().allow('').required(),
                     
-                    branch_name: Joi.string().allow(''),
+                    country: Joi.string().allow(''),
+                    
+                    pincode: Joi.number(),
+                    
+                    city: Joi.string().allow(''),
                     
                     state: Joi.string().allow(''),
                     
                     account_type: Joi.string().allow('').required(),
                     
-                    bank_name: Joi.string().allow(''),
+                    account_holder: Joi.string().allow(''),
                     
-                    country: Joi.string().allow(''),
+                    branch_name: Joi.string().allow(''),
                     
                  
             })
@@ -8163,9 +8163,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    transfer_type: Joi.string().allow('').required(),
-                    
                     users: Joi.any().required(),
+                    
+                    unique_external_id: Joi.string().allow('').required(),
                     
                     is_active: Joi.boolean().required(),
                     
@@ -8173,7 +8173,7 @@ class Validator{
                     
                     aggregator: Joi.string().allow('').required(),
                     
-                    unique_external_id: Joi.string().allow('').required(),
+                    transfer_type: Joi.string().allow('').required(),
                     
                  
             })
@@ -8184,25 +8184,25 @@ class Validator{
             return Joi.object({
                 
                     
-                    users: Joi.any().required(),
-                    
-                    transfer_type: Joi.string().allow('').required(),
-                    
-                    is_active: Joi.boolean().required(),
+                    payment_status: Joi.string().allow('').required(),
                     
                     success: Joi.boolean().required(),
                     
-                    bank_details: Joi.any().required(),
-                    
-                    created: Joi.boolean().required(),
-                    
                     payouts: Joi.any().required(),
                     
-                    unique_transfer_no: Joi.string().allow('').required(),
+                    users: Joi.any().required(),
+                    
+                    bank_details: Joi.any().required(),
+                    
+                    is_active: Joi.boolean().required(),
                     
                     aggregator: Joi.string().allow('').required(),
                     
-                    payment_status: Joi.string().allow('').required(),
+                    unique_transfer_no: Joi.string().allow('').required(),
+                    
+                    created: Joi.boolean().required(),
+                    
+                    transfer_type: Joi.string().allow('').required(),
                     
                  
             })
@@ -8215,9 +8215,9 @@ class Validator{
                     
                     is_default: Joi.boolean().required(),
                     
-                    is_active: Joi.boolean().required(),
-                    
                     success: Joi.boolean().required(),
+                    
+                    is_active: Joi.boolean().required(),
                     
                  
             })
@@ -8228,11 +8228,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    is_active: Joi.boolean().required(),
-                    
                     is_default: Joi.boolean().required(),
                     
                     unique_external_id: Joi.string().allow('').required(),
+                    
+                    is_active: Joi.boolean().required(),
                     
                  
             })
@@ -8254,9 +8254,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    data: Joi.array().items(Joi.any()).required(),
-                    
                     success: Joi.boolean().required(),
+                    
+                    data: Joi.array().items(Joi.any()).required(),
                     
                  
             })
@@ -8278,11 +8278,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    aggregator: Joi.string().allow('').required(),
+                    success: Joi.boolean().required(),
                     
                     config: Joi.any().required(),
                     
-                    success: Joi.boolean().required(),
+                    aggregator: Joi.string().allow('').required(),
                     
                  
             })
@@ -8304,9 +8304,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    data: Joi.any().required(),
-                    
                     success: Joi.boolean().required(),
+                    
+                    data: Joi.any().required(),
                     
                  
             })
@@ -8317,27 +8317,27 @@ class Validator{
             return Joi.object({
                 
                     
-                    comment: Joi.string().allow(''),
-                    
                     account_no: Joi.string().allow('').required(),
                     
-                    account_holder: Joi.string().allow('').required(),
+                    bank_name: Joi.string().allow('').required(),
+                    
+                    ifsc_code: Joi.string().allow('').required(),
                     
                     mobile: Joi.string().allow('').required(),
                     
                     vpa: Joi.string().allow('').allow(null),
                     
-                    ifsc_code: Joi.string().allow('').required(),
-                    
-                    branch_name: Joi.string().allow('').required(),
-                    
-                    address: Joi.string().allow(''),
-                    
                     email: Joi.string().allow('').required(),
+                    
+                    account_holder: Joi.string().allow('').required(),
                     
                     wallet: Joi.string().allow('').allow(null),
                     
-                    bank_name: Joi.string().allow('').required(),
+                    address: Joi.string().allow(''),
+                    
+                    branch_name: Joi.string().allow('').required(),
+                    
+                    comment: Joi.string().allow(''),
                     
                  
             })
@@ -8348,17 +8348,17 @@ class Validator{
             return Joi.object({
                 
                     
-                    shipment_id: Joi.string().allow('').required(),
-                    
                     otp: Joi.string().allow(''),
-                    
-                    request_id: Joi.string().allow(''),
-                    
-                    details: this.BeneficiaryModeDetails().required(),
                     
                     transfer_mode: Joi.string().allow('').required(),
                     
+                    details: this.BeneficiaryModeDetails().required(),
+                    
                     order_id: Joi.string().allow('').required(),
+                    
+                    shipment_id: Joi.string().allow('').required(),
+                    
+                    request_id: Joi.string().allow(''),
                     
                     delights: Joi.boolean().required(),
                     
@@ -8371,13 +8371,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    data: Joi.any(),
-                    
                     message: Joi.string().allow('').required(),
                     
-                    is_verified_flag: Joi.boolean(),
-                    
                     success: Joi.boolean().required(),
+                    
+                    data: Joi.any(),
+                    
+                    is_verified_flag: Joi.boolean(),
                     
                  
             })
@@ -8388,11 +8388,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    code: Joi.string().allow('').required(),
+                    success: Joi.boolean().required(),
                     
                     description: Joi.string().allow('').required(),
                     
-                    success: Joi.boolean().required(),
+                    code: Joi.string().allow('').required(),
                     
                  
             })
@@ -8403,11 +8403,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    branch_name: Joi.string().allow('').required(),
-                    
                     success: Joi.boolean(),
                     
                     bank_name: Joi.string().allow('').required(),
+                    
+                    branch_name: Joi.string().allow('').required(),
                     
                  
             })
@@ -8418,43 +8418,43 @@ class Validator{
             return Joi.object({
                 
                     
-                    display_name: Joi.string().allow('').required(),
-                    
-                    account_no: Joi.string().allow('').required(),
-                    
-                    is_active: Joi.boolean().required(),
-                    
-                    delights_user_name: Joi.string().allow('').allow(null),
-                    
-                    email: Joi.string().allow('').required(),
-                    
-                    beneficiary_id: Joi.string().allow('').required(),
-                    
-                    account_holder: Joi.string().allow('').required(),
-                    
-                    ifsc_code: Joi.string().allow('').required(),
-                    
-                    address: Joi.string().allow('').required(),
-                    
                     title: Joi.string().allow('').required(),
-                    
-                    comment: Joi.boolean(),
-                    
-                    mobile: Joi.boolean(),
-                    
-                    transfer_mode: Joi.string().allow('').required(),
-                    
-                    created_on: Joi.string().allow('').required(),
                     
                     id: Joi.number().required(),
                     
-                    modified_on: Joi.string().allow('').required(),
+                    delights_user_name: Joi.string().allow('').allow(null),
                     
-                    branch_name: Joi.boolean(),
+                    display_name: Joi.string().allow('').required(),
+                    
+                    transfer_mode: Joi.string().allow('').required(),
                     
                     subtitle: Joi.string().allow('').required(),
                     
+                    account_no: Joi.string().allow('').required(),
+                    
+                    ifsc_code: Joi.string().allow('').required(),
+                    
+                    email: Joi.string().allow('').required(),
+                    
+                    is_active: Joi.boolean().required(),
+                    
+                    address: Joi.string().allow('').required(),
+                    
+                    branch_name: Joi.boolean(),
+                    
+                    comment: Joi.boolean(),
+                    
                     bank_name: Joi.string().allow('').required(),
+                    
+                    beneficiary_id: Joi.string().allow('').required(),
+                    
+                    modified_on: Joi.string().allow('').required(),
+                    
+                    account_holder: Joi.string().allow('').required(),
+                    
+                    created_on: Joi.string().allow('').required(),
+                    
+                    mobile: Joi.boolean(),
                     
                  
             })
@@ -8465,9 +8465,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    show_beneficiary_details: Joi.boolean(),
-                    
                     beneficiaries: Joi.array().items(this.OrderBeneficiaryDetails()),
+                    
+                    show_beneficiary_details: Joi.boolean(),
                     
                  
             })
@@ -8478,13 +8478,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    mode: Joi.string().allow('').required(),
-                    
-                    name: Joi.string().allow(''),
-                    
                     meta: Joi.any(),
                     
                     amount: Joi.number().required(),
+                    
+                    mode: Joi.string().allow('').required(),
+                    
+                    name: Joi.string().allow(''),
                     
                  
             })
@@ -8508,11 +8508,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    order_id: Joi.string().allow('').required(),
-                    
                     message: Joi.string().allow('').required(),
                     
                     success: Joi.boolean().required(),
+                    
+                    order_id: Joi.string().allow('').required(),
                     
                  
             })
@@ -11702,48 +11702,20 @@ class Validator{
     
 
     
-        static DeleteResponse(){
-
-            return Joi.object({
-                
-                    
-                    message: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static ErrorResponse(){
-
-            return Joi.object({
-                
-                    
-                    message: Joi.string().allow(''),
-                    
-                    status: Joi.number(),
-                    
-                    meta: Joi.any(),
-                    
-                    code: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
         static GetSearchWordsData(){
 
             return Joi.object({
                 
                     
-                    uid: Joi.string().allow(''),
-                    
                     result: Joi.any(),
-                    
-                    words: Joi.array().items(Joi.string().allow('')),
                     
                     app_id: Joi.string().allow(''),
                     
                     _custom_json: Joi.any(),
+                    
+                    uid: Joi.string().allow(''),
+                    
+                    words: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -11754,9 +11726,37 @@ class Validator{
             return Joi.object({
                 
                     
+                    items: this.GetSearchWordsData(),
+                    
                     page: this.Page(),
                     
-                    items: this.GetSearchWordsData(),
+                 
+            })
+        }
+    
+        static ErrorResponse(){
+
+            return Joi.object({
+                
+                    
+                    code: Joi.string().allow(''),
+                    
+                    status: Joi.number(),
+                    
+                    message: Joi.string().allow(''),
+                    
+                    meta: Joi.any(),
+                    
+                 
+            })
+        }
+    
+        static DeleteResponse(){
+
+            return Joi.object({
+                
+                    
+                    message: Joi.string().allow(''),
                     
                  
             })
@@ -11782,13 +11782,13 @@ class Validator{
                     
                     result: this.SearchKeywordResult().required(),
                     
-                    is_active: Joi.boolean(),
-                    
-                    words: Joi.array().items(Joi.string().allow('')),
-                    
                     app_id: Joi.string().allow(''),
                     
+                    is_active: Joi.boolean(),
+                    
                     _custom_json: Joi.any(),
+                    
+                    words: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -11799,9 +11799,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.GetSearchWordsData()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -11812,15 +11812,15 @@ class Validator{
             return Joi.object({
                 
                     
-                    uid: Joi.string().allow(''),
-                    
-                    words: Joi.array().items(Joi.string().allow('')),
+                    app_id: Joi.string().allow(''),
                     
                     results: Joi.array().items(Joi.any()),
                     
-                    app_id: Joi.string().allow(''),
-                    
                     _custom_json: Joi.any(),
+                    
+                    uid: Joi.string().allow(''),
+                    
+                    words: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -11831,9 +11831,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.GetAutocompleteWordsData()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -11857,13 +11857,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    params: Joi.any(),
-                    
                     type: Joi.string().allow(''),
                     
-                    url: Joi.string().allow(''),
-                    
                     query: Joi.any(),
+                    
+                    params: Joi.any(),
+                    
+                    url: Joi.string().allow(''),
                     
                  
             })
@@ -11874,9 +11874,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.AutocompletePageAction(),
-                    
                     type: Joi.string().allow(''),
+                    
+                    page: this.AutocompletePageAction(),
                     
                  
             })
@@ -11887,13 +11887,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    display: Joi.string().allow(''),
+                    _custom_json: Joi.any(),
                     
                     logo: this.Media(),
                     
-                    _custom_json: Joi.any(),
-                    
                     action: this.AutocompleteAction(),
+                    
+                    display: Joi.string().allow(''),
                     
                  
             })
@@ -11904,15 +11904,15 @@ class Validator{
             return Joi.object({
                 
                     
-                    is_active: Joi.boolean(),
+                    app_id: Joi.string().allow(''),
                     
-                    words: Joi.array().items(Joi.string().allow('')),
+                    is_active: Joi.boolean(),
                     
                     results: Joi.array().items(this.AutocompleteResult()),
                     
-                    app_id: Joi.string().allow(''),
-                    
                     _custom_json: Joi.any(),
+                    
+                    words: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -11940,17 +11940,17 @@ class Validator{
             return Joi.object({
                 
                     
-                    auto_select: Joi.boolean(),
-                    
-                    auto_add_to_cart: Joi.boolean(),
-                    
                     min_quantity: Joi.number().required(),
-                    
-                    max_quantity: Joi.number().required(),
                     
                     product_uid: Joi.number().required(),
                     
                     allow_remove: Joi.boolean(),
+                    
+                    auto_add_to_cart: Joi.boolean(),
+                    
+                    max_quantity: Joi.number().required(),
+                    
+                    auto_select: Joi.boolean(),
                     
                  
             })
@@ -11961,35 +11961,35 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
-                    
-                    slug: Joi.string().allow('').required(),
-                    
-                    products: Joi.array().items(this.ProductBundleItem()).required(),
-                    
-                    same_store_assignment: Joi.boolean(),
-                    
-                    modified_by: Joi.any(),
-                    
-                    id: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow('').allow(null),
-                    
-                    is_active: Joi.boolean().required(),
-                    
                     company_id: Joi.number(),
                     
                     created_by: Joi.any(),
                     
-                    meta: Joi.any(),
+                    same_store_assignment: Joi.boolean(),
+                    
+                    is_active: Joi.boolean().required(),
+                    
+                    modified_by: Joi.any(),
                     
                     page_visibility: Joi.array().items(Joi.string().allow('')),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    id: Joi.string().allow(''),
+                    
+                    slug: Joi.string().allow('').required(),
+                    
+                    logo: Joi.string().allow('').allow(null),
+                    
+                    name: Joi.string().allow('').required(),
                     
                     choice: Joi.string().allow('').required(),
                     
                     modified_on: Joi.string().allow(''),
+                    
+                    products: Joi.array().items(this.ProductBundleItem()).required(),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -12000,9 +12000,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.GetProductBundleCreateResponse()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -12013,50 +12013,31 @@ class Validator{
             return Joi.object({
                 
                     
+                    created_by: Joi.any(),
+                    
+                    same_store_assignment: Joi.boolean(),
+                    
+                    is_active: Joi.boolean().required(),
+                    
+                    modified_by: Joi.any(),
+                    
+                    page_visibility: Joi.array().items(Joi.string().allow('')),
+                    
                     created_on: Joi.string().allow(''),
                     
                     slug: Joi.string().allow('').required(),
                     
-                    products: Joi.array().items(this.ProductBundleItem()).required(),
-                    
-                    same_store_assignment: Joi.boolean(),
-                    
-                    modified_by: Joi.any(),
-                    
-                    name: Joi.string().allow('').required(),
-                    
                     logo: Joi.string().allow('').allow(null),
                     
-                    is_active: Joi.boolean().required(),
-                    
-                    created_by: Joi.any(),
-                    
-                    meta: Joi.any(),
-                    
-                    page_visibility: Joi.array().items(Joi.string().allow('')),
+                    name: Joi.string().allow('').required(),
                     
                     choice: Joi.string().allow('').required(),
                     
                     modified_on: Joi.string().allow(''),
                     
-                 
-            })
-        }
-    
-        static Price(){
-
-            return Joi.object({
-                
+                    products: Joi.array().items(this.ProductBundleItem()).required(),
                     
-                    min_marked: Joi.number(),
-                    
-                    max_effective: Joi.number(),
-                    
-                    currency: Joi.string().allow(''),
-                    
-                    min_effective: Joi.number(),
-                    
-                    max_marked: Joi.number(),
+                    meta: Joi.any(),
                     
                  
             })
@@ -12067,13 +12048,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    display: Joi.string().allow(''),
-                    
-                    is_available: Joi.boolean(),
-                    
                     quantity: Joi.number(),
                     
                     value: Joi.string().allow(''),
+                    
+                    is_available: Joi.boolean(),
+                    
+                    display: Joi.string().allow(''),
                     
                  
             })
@@ -12084,29 +12065,48 @@ class Validator{
             return Joi.object({
                 
                     
+                    identifier: Joi.any(),
+                    
+                    sizes: Joi.array().items(Joi.string().allow('')),
+                    
+                    images: Joi.array().items(Joi.string().allow('')),
+                    
+                    quantity: Joi.number(),
+                    
+                    short_description: Joi.string().allow(''),
+                    
+                    country_of_origin: Joi.string().allow(''),
+                    
                     slug: Joi.string().allow(''),
+                    
+                    price: Joi.any(),
+                    
+                    name: Joi.string().allow(''),
                     
                     attributes: Joi.any(),
                     
                     uid: Joi.number(),
                     
-                    name: Joi.string().allow(''),
-                    
-                    quantity: Joi.number(),
-                    
-                    price: Joi.any(),
-                    
-                    sizes: Joi.array().items(Joi.string().allow('')),
-                    
-                    short_description: Joi.string().allow(''),
-                    
                     item_code: Joi.string().allow(''),
                     
-                    country_of_origin: Joi.string().allow(''),
+                 
+            })
+        }
+    
+        static Price(){
+
+            return Joi.object({
+                
                     
-                    identifier: Joi.any(),
+                    currency: Joi.string().allow(''),
                     
-                    images: Joi.array().items(Joi.string().allow('')),
+                    max_marked: Joi.number(),
+                    
+                    min_marked: Joi.number(),
+                    
+                    min_effective: Joi.number(),
+                    
+                    max_effective: Joi.number(),
                     
                  
             })
@@ -12117,23 +12117,23 @@ class Validator{
             return Joi.object({
                 
                     
-                    auto_select: Joi.boolean(),
-                    
-                    auto_add_to_cart: Joi.boolean(),
-                    
-                    price: this.Price(),
-                    
                     min_quantity: Joi.number(),
-                    
-                    max_quantity: Joi.number(),
-                    
-                    product_uid: Joi.number(),
-                    
-                    allow_remove: Joi.boolean(),
                     
                     sizes: Joi.array().items(this.Size()),
                     
+                    product_uid: Joi.number(),
+                    
                     product_details: this.LimitedProductData(),
+                    
+                    price: this.Price(),
+                    
+                    allow_remove: Joi.boolean(),
+                    
+                    auto_add_to_cart: Joi.boolean(),
+                    
+                    max_quantity: Joi.number(),
+                    
+                    auto_select: Joi.boolean(),
                     
                  
             })
@@ -12144,25 +12144,25 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
-                    
-                    products: Joi.array().items(this.GetProducts()),
+                    company_id: Joi.number(),
                     
                     same_store_assignment: Joi.boolean(),
                     
-                    name: Joi.string().allow(''),
-                    
-                    company_id: Joi.number(),
-                    
-                    logo: Joi.string().allow(''),
-                    
                     is_active: Joi.boolean(),
-                    
-                    meta: Joi.any(),
                     
                     page_visibility: Joi.array().items(Joi.string().allow('')),
                     
+                    slug: Joi.string().allow(''),
+                    
+                    logo: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
                     choice: Joi.string().allow(''),
+                    
+                    products: Joi.array().items(this.GetProducts()),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -12173,27 +12173,27 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow('').required(),
-                    
-                    products: Joi.array().items(this.ProductBundleItem()).required(),
-                    
                     same_store_assignment: Joi.boolean(),
-                    
-                    modified_by: Joi.any(),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow('').allow(null),
                     
                     is_active: Joi.boolean().required(),
                     
-                    meta: Joi.any(),
+                    modified_by: Joi.any(),
                     
                     page_visibility: Joi.array().items(Joi.string().allow('')),
+                    
+                    slug: Joi.string().allow('').required(),
+                    
+                    logo: Joi.string().allow('').allow(null),
+                    
+                    name: Joi.string().allow('').required(),
                     
                     choice: Joi.string().allow('').required(),
                     
                     modified_on: Joi.string().allow(''),
+                    
+                    products: Joi.array().items(this.ProductBundleItem()).required(),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -12204,9 +12204,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: Joi.any(),
-                    
                     items: Joi.array().items(Joi.any()),
+                    
+                    page: Joi.any(),
                     
                  
             })
@@ -12217,11 +12217,11 @@ class Validator{
             return Joi.object({
                 
                     
+                    unit: Joi.string().allow(''),
+                    
                     values: Joi.array().items(Joi.any()),
                     
                     headers: Joi.any(),
-                    
-                    unit: Joi.string().allow(''),
                     
                  
             })
@@ -12243,35 +12243,35 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
+                    company_id: Joi.number(),
                     
-                    subtitle: Joi.string().allow(''),
+                    title: Joi.string().allow('').required(),
                     
-                    brand_id: Joi.number(),
+                    created_by: Joi.any(),
+                    
+                    guide: this.Guide(),
                     
                     modified_by: Joi.any(),
                     
-                    active: Joi.boolean(),
+                    image: Joi.string().allow(''),
                     
-                    name: Joi.string().allow('').required(),
-                    
-                    company_id: Joi.number(),
-                    
-                    tag: Joi.string().allow(''),
+                    created_on: Joi.string().allow(''),
                     
                     id: Joi.string().allow(''),
                     
                     description: Joi.string().allow(''),
                     
-                    image: Joi.string().allow(''),
+                    brand_id: Joi.number(),
                     
-                    guide: this.Guide(),
+                    name: Joi.string().allow('').required(),
                     
-                    created_by: Joi.any(),
+                    subtitle: Joi.string().allow(''),
+                    
+                    tag: Joi.string().allow(''),
+                    
+                    active: Joi.boolean(),
                     
                     modified_on: Joi.string().allow(''),
-                    
-                    title: Joi.string().allow('').required(),
                     
                  
             })
@@ -12282,9 +12282,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    uid: Joi.number(),
-                    
                     success: Joi.boolean(),
+                    
+                    uid: Joi.number(),
                     
                  
             })
@@ -12295,31 +12295,59 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
-                    
-                    brand_id: Joi.number(),
-                    
-                    subtitle: Joi.string().allow(''),
-                    
-                    modified_by: Joi.any(),
-                    
-                    active: Joi.boolean(),
-                    
-                    name: Joi.string().allow(''),
-                    
                     company_id: Joi.number(),
                     
-                    tag: Joi.string().allow(''),
-                    
-                    id: Joi.string().allow(''),
-                    
-                    guide: Joi.any(),
+                    title: Joi.string().allow(''),
                     
                     created_by: Joi.any(),
                     
+                    guide: Joi.any(),
+                    
+                    modified_by: Joi.any(),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    id: Joi.string().allow(''),
+                    
+                    brand_id: Joi.number(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    active: Joi.boolean(),
+                    
+                    tag: Joi.string().allow(''),
+                    
+                    subtitle: Joi.string().allow(''),
+                    
                     modified_on: Joi.string().allow(''),
                     
-                    title: Joi.string().allow(''),
+                 
+            })
+        }
+    
+        static MetaDataListingFilterMetaResponse(){
+
+            return Joi.object({
+                
+                    
+                    units: Joi.array().items(Joi.any()),
+                    
+                    key: Joi.string().allow(''),
+                    
+                    filter_types: Joi.array().items(Joi.string().allow('')),
+                    
+                    display: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static MetaDataListingFilterResponse(){
+
+            return Joi.object({
+                
+                    
+                    data: Joi.array().items(this.MetaDataListingFilterMetaResponse()),
                     
                  
             })
@@ -12349,42 +12377,14 @@ class Validator{
             })
         }
     
-        static MetaDataListingFilterMetaResponse(){
-
-            return Joi.object({
-                
-                    
-                    filter_types: Joi.array().items(Joi.string().allow('')),
-                    
-                    key: Joi.string().allow(''),
-                    
-                    units: Joi.array().items(Joi.any()),
-                    
-                    display: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static MetaDataListingFilterResponse(){
-
-            return Joi.object({
-                
-                    
-                    data: Joi.array().items(this.MetaDataListingFilterMetaResponse()),
-                    
-                 
-            })
-        }
-    
         static MetaDataListingResponse(){
 
             return Joi.object({
                 
                     
-                    sort: this.MetaDataListingSortResponse().required(),
-                    
                     filter: this.MetaDataListingFilterResponse().required(),
+                    
+                    sort: this.MetaDataListingSortResponse().required(),
                     
                  
             })
@@ -12397,11 +12397,11 @@ class Validator{
                     
                     detail: Joi.any(),
                     
-                    compare: Joi.any(),
-                    
                     variant: Joi.any(),
                     
                     similar: Joi.any(),
+                    
+                    compare: Joi.any(),
                     
                  
             })
@@ -12438,19 +12438,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    display_type: Joi.string().allow('').required(),
-                    
-                    key: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow(''),
+                    priority: Joi.number().required(),
                     
                     is_active: Joi.boolean().required(),
                     
+                    size: this.ProductSize().required(),
+                    
+                    display_type: Joi.string().allow('').required(),
+                    
+                    logo: Joi.string().allow(''),
+                    
                     name: Joi.string().allow('').required(),
                     
-                    priority: Joi.number().required(),
-                    
-                    size: this.ProductSize().required(),
+                    key: Joi.string().allow('').required(),
                     
                  
             })
@@ -12472,19 +12472,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    subtitle: Joi.string().allow(''),
-                    
-                    key: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow(''),
-                    
-                    is_active: Joi.boolean().required(),
+                    title: Joi.string().allow(''),
                     
                     priority: Joi.number().required(),
                     
+                    is_active: Joi.boolean().required(),
+                    
                     size: this.ProductSize(),
                     
-                    title: Joi.string().allow(''),
+                    logo: Joi.string().allow(''),
+                    
+                    subtitle: Joi.string().allow(''),
+                    
+                    key: Joi.string().allow('').required(),
                     
                  
             })
@@ -12514,38 +12514,6 @@ class Validator{
             })
         }
     
-        static ConfigurationListingSortConfig(){
-
-            return Joi.object({
-                
-                    
-                    key: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow(''),
-                    
-                    is_active: Joi.boolean().required(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    priority: Joi.number().required(),
-                    
-                 
-            })
-        }
-    
-        static ConfigurationListingSort(){
-
-            return Joi.object({
-                
-                    
-                    default_key: Joi.string().allow('').required(),
-                    
-                    config: Joi.array().items(this.ConfigurationListingSortConfig()),
-                    
-                 
-            })
-        }
-    
         static ConfigurationBucketPoints(){
 
             return Joi.object({
@@ -12564,15 +12532,15 @@ class Validator{
             return Joi.object({
                 
                     
-                    value: Joi.string().allow(''),
-                    
                     map: Joi.any(),
                     
-                    bucket_points: Joi.array().items(this.ConfigurationBucketPoints()),
+                    value: Joi.string().allow(''),
+                    
+                    sort: Joi.string().allow(''),
                     
                     condition: Joi.string().allow(''),
                     
-                    sort: Joi.string().allow(''),
+                    bucket_points: Joi.array().items(this.ConfigurationBucketPoints()),
                     
                  
             })
@@ -12583,19 +12551,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    key: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow(''),
+                    priority: Joi.number().required(),
                     
                     is_active: Joi.boolean().required(),
                     
+                    type: Joi.string().allow('').required(),
+                    
+                    logo: Joi.string().allow(''),
+                    
                     name: Joi.string().allow(''),
                     
-                    priority: Joi.number().required(),
+                    key: Joi.string().allow('').required(),
                     
                     value_config: this.ConfigurationListingFilterValue(),
-                    
-                    type: Joi.string().allow('').required(),
                     
                  
             })
@@ -12606,9 +12574,41 @@ class Validator{
             return Joi.object({
                 
                     
+                    attribute_config: Joi.array().items(this.ConfigurationListingFilterConfig()),
+                    
                     allow_single: Joi.boolean().required(),
                     
-                    attribute_config: Joi.array().items(this.ConfigurationListingFilterConfig()),
+                 
+            })
+        }
+    
+        static ConfigurationListingSortConfig(){
+
+            return Joi.object({
+                
+                    
+                    priority: Joi.number().required(),
+                    
+                    is_active: Joi.boolean().required(),
+                    
+                    logo: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    key: Joi.string().allow('').required(),
+                    
+                 
+            })
+        }
+    
+        static ConfigurationListingSort(){
+
+            return Joi.object({
+                
+                    
+                    config: Joi.array().items(this.ConfigurationListingSortConfig()),
+                    
+                    default_key: Joi.string().allow('').required(),
                     
                  
             })
@@ -12619,9 +12619,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    sort: this.ConfigurationListingSort().required(),
-                    
                     filter: this.ConfigurationListingFilter().required(),
+                    
+                    sort: this.ConfigurationListingSort().required(),
                     
                  
             })
@@ -12632,17 +12632,17 @@ class Validator{
             return Joi.object({
                 
                     
+                    app_id: Joi.string().allow('').required(),
+                    
                     product: this.ConfigurationProduct(),
                     
                     id: Joi.string().allow(''),
                     
                     listing: this.ConfigurationListing(),
                     
-                    config_type: Joi.string().allow('').required(),
-                    
-                    app_id: Joi.string().allow('').required(),
-                    
                     config_id: Joi.string().allow(''),
+                    
+                    config_type: Joi.string().allow('').required(),
                     
                  
             })
@@ -12653,9 +12653,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    is_default: Joi.boolean(),
-                    
                     data: this.AppCatalogConfiguration(),
+                    
+                    is_default: Joi.boolean(),
                     
                  
             })
@@ -12666,15 +12666,15 @@ class Validator{
             return Joi.object({
                 
                     
+                    app_id: Joi.string().allow('').required(),
+                    
                     product: this.ConfigurationProduct(),
                     
                     listing: this.ConfigurationListing(),
                     
-                    config_type: Joi.string().allow('').required(),
-                    
-                    app_id: Joi.string().allow('').required(),
-                    
                     config_id: Joi.string().allow(''),
+                    
+                    config_type: Joi.string().allow('').required(),
                     
                  
             })
@@ -12685,9 +12685,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    sort: Joi.any(),
-                    
                     filter: Joi.any(),
+                    
+                    sort: Joi.any(),
                     
                  
             })
@@ -12698,17 +12698,17 @@ class Validator{
             return Joi.object({
                 
                     
+                    app_id: Joi.string().allow('').required(),
+                    
                     product: this.GetCatalogConfigurationDetailsProduct(),
                     
                     id: Joi.string().allow(''),
                     
                     listing: this.GetCatalogConfigurationDetailsSchemaListing(),
                     
-                    config_type: Joi.string().allow('').required(),
-                    
-                    app_id: Joi.string().allow('').required(),
-                    
                     config_id: Joi.string().allow(''),
+                    
+                    config_type: Joi.string().allow('').required(),
                     
                  
             })
@@ -12719,72 +12719,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    is_default: Joi.boolean(),
-                    
                     data: this.EntityConfiguration(),
                     
-                 
-            })
-        }
-    
-        static ProductFiltersValue(){
-
-            return Joi.object({
-                
-                    
-                    currency_symbol: Joi.string().allow(''),
-                    
-                    value: Joi.string().allow('').required(),
-                    
-                    display: Joi.string().allow('').required(),
-                    
-                    max: Joi.number(),
-                    
-                    display_format: Joi.string().allow(''),
-                    
-                    is_selected: Joi.boolean().required(),
-                    
-                    count: Joi.number(),
-                    
-                    selected_max: Joi.number(),
-                    
-                    selected_min: Joi.number(),
-                    
-                    min: Joi.number(),
-                    
-                    currency_code: Joi.string().allow(''),
-                    
-                    query_format: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static ProductFiltersKey(){
-
-            return Joi.object({
-                
-                    
-                    display: Joi.string().allow('').required(),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    logo: Joi.string().allow(''),
-                    
-                    kind: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static ProductFilters(){
-
-            return Joi.object({
-                
-                    
-                    values: Joi.array().items(this.ProductFiltersValue()).required(),
-                    
-                    key: this.ProductFiltersKey().required(),
+                    is_default: Joi.boolean(),
                     
                  
             })
@@ -12795,11 +12732,74 @@ class Validator{
             return Joi.object({
                 
                     
-                    name: Joi.string().allow(''),
-                    
                     is_selected: Joi.boolean(),
                     
+                    name: Joi.string().allow(''),
+                    
                     value: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static ProductFiltersKey(){
+
+            return Joi.object({
+                
+                    
+                    kind: Joi.string().allow(''),
+                    
+                    logo: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    display: Joi.string().allow('').required(),
+                    
+                 
+            })
+        }
+    
+        static ProductFiltersValue(){
+
+            return Joi.object({
+                
+                    
+                    is_selected: Joi.boolean().required(),
+                    
+                    selected_min: Joi.number(),
+                    
+                    query_format: Joi.string().allow(''),
+                    
+                    value: Joi.string().allow('').required(),
+                    
+                    max: Joi.number(),
+                    
+                    display: Joi.string().allow('').required(),
+                    
+                    currency_symbol: Joi.string().allow(''),
+                    
+                    selected_max: Joi.number(),
+                    
+                    currency_code: Joi.string().allow(''),
+                    
+                    display_format: Joi.string().allow(''),
+                    
+                    min: Joi.number(),
+                    
+                    count: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static ProductFilters(){
+
+            return Joi.object({
+                
+                    
+                    key: this.ProductFiltersKey().required(),
+                    
+                    values: Joi.array().items(this.ProductFiltersValue()).required(),
                     
                  
             })
@@ -12810,52 +12810,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    filters: Joi.array().items(this.ProductFilters()),
-                    
                     sort_on: Joi.array().items(this.ProductSortOn()),
                     
-                 
-            })
-        }
-    
-        static CollectionListingFilterTag(){
-
-            return Joi.object({
-                
-                    
-                    display: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    is_selected: Joi.boolean(),
-                    
-                 
-            })
-        }
-    
-        static CollectionListingFilterType(){
-
-            return Joi.object({
-                
-                    
-                    display: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    is_selected: Joi.boolean(),
-                    
-                 
-            })
-        }
-    
-        static CollectionListingFilter(){
-
-            return Joi.object({
-                
-                    
-                    tags: Joi.array().items(this.CollectionListingFilterTag()),
-                    
-                    type: Joi.array().items(this.CollectionListingFilterType()),
+                    filters: Joi.array().items(this.ProductFilters()),
                     
                  
             })
@@ -12866,9 +12823,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    meta: Joi.any(),
-                    
                     type: Joi.string().allow(''),
+                    
+                    meta: Joi.any(),
                     
                     url: Joi.string().allow('').required(),
                     
@@ -12881,9 +12838,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    url: Joi.string().allow(''),
-                    
                     aspect_ratio: Joi.string().allow(''),
+                    
+                    url: Joi.string().allow(''),
                     
                  
             })
@@ -12894,9 +12851,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    portrait: this.BannerImage(),
-                    
                     landscape: this.BannerImage(),
+                    
+                    portrait: this.BannerImage(),
                     
                  
             })
@@ -12907,43 +12864,86 @@ class Validator{
             return Joi.object({
                 
                     
-                    badge: Joi.any(),
-                    
-                    uid: Joi.string().allow(''),
-                    
-                    is_active: Joi.boolean(),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    allow_facets: Joi.boolean(),
-                    
-                    logo: this.Media1(),
-                    
-                    _schedule: Joi.any(),
-                    
                     type: Joi.string().allow(''),
-                    
-                    banners: this.ImageUrls(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    cron: Joi.any(),
-                    
-                    tag: Joi.array().items(Joi.string().allow('')),
-                    
-                    app_id: Joi.string().allow(''),
-                    
-                    query: Joi.any(),
-                    
-                    slug: Joi.string().allow(''),
                     
                     allow_sort: Joi.boolean(),
                     
+                    _schedule: Joi.any(),
+                    
+                    query: Joi.any(),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    logo: this.Media1(),
+                    
+                    tag: Joi.array().items(Joi.string().allow('')),
+                    
+                    banners: this.ImageUrls(),
+                    
+                    badge: Joi.any(),
+                    
                     action: this.Action(),
+                    
+                    cron: Joi.any(),
+                    
+                    slug: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.string().allow(''),
                     
                     meta: Joi.any(),
                     
+                    app_id: Joi.string().allow(''),
+                    
                     visible_facets_keys: Joi.array().items(Joi.string().allow('')),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    allow_facets: Joi.boolean(),
+                    
+                 
+            })
+        }
+    
+        static CollectionListingFilterType(){
+
+            return Joi.object({
+                
+                    
+                    is_selected: Joi.boolean(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    display: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static CollectionListingFilterTag(){
+
+            return Joi.object({
+                
+                    
+                    is_selected: Joi.boolean(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    display: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static CollectionListingFilter(){
+
+            return Joi.object({
+                
+                    
+                    type: Joi.array().items(this.CollectionListingFilterType()),
+                    
+                    tags: Joi.array().items(this.CollectionListingFilterTag()),
                     
                  
             })
@@ -12954,11 +12954,84 @@ class Validator{
             return Joi.object({
                 
                     
-                    filters: this.CollectionListingFilter(),
+                    items: Joi.array().items(this.GetCollectionDetailNest()),
                     
                     page: this.Page(),
                     
-                    items: Joi.array().items(this.GetCollectionDetailNest()),
+                    filters: this.CollectionListingFilter(),
+                    
+                 
+            })
+        }
+    
+        static SeoDetail(){
+
+            return Joi.object({
+                
+                    
+                    description: Joi.string().allow(''),
+                    
+                    title: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static Schedule(){
+
+            return Joi.object({
+                
+                    
+                    cron: Joi.string().allow('').allow(null),
+                    
+                    duration: Joi.number().allow(null),
+                    
+                    end: Joi.string().allow('').allow(null),
+                    
+                    start: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static UserInfo(){
+
+            return Joi.object({
+                
+                    
+                    email: Joi.string().allow(''),
+                    
+                    username: Joi.string().allow(''),
+                    
+                    user_id: Joi.string().allow(''),
+                    
+                    uid: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static CollectionImage(){
+
+            return Joi.object({
+                
+                    
+                    aspect_ratio: Joi.string().allow('').required(),
+                    
+                    url: Joi.string().allow('').required(),
+                    
+                 
+            })
+        }
+    
+        static CollectionBanner(){
+
+            return Joi.object({
+                
+                    
+                    landscape: this.CollectionImage().required(),
+                    
+                    portrait: this.CollectionImage().required(),
                     
                  
             })
@@ -12977,131 +13050,58 @@ class Validator{
             })
         }
     
-        static UserInfo(){
-
-            return Joi.object({
-                
-                    
-                    uid: Joi.string().allow(''),
-                    
-                    email: Joi.string().allow(''),
-                    
-                    username: Joi.string().allow(''),
-                    
-                    user_id: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static CollectionImage(){
-
-            return Joi.object({
-                
-                    
-                    url: Joi.string().allow('').required(),
-                    
-                    aspect_ratio: Joi.string().allow('').required(),
-                    
-                 
-            })
-        }
-    
-        static Schedule(){
-
-            return Joi.object({
-                
-                    
-                    end: Joi.string().allow('').allow(null),
-                    
-                    start: Joi.string().allow(''),
-                    
-                    cron: Joi.string().allow('').allow(null),
-                    
-                    duration: Joi.number().allow(null),
-                    
-                 
-            })
-        }
-    
-        static CollectionBanner(){
-
-            return Joi.object({
-                
-                    
-                    portrait: this.CollectionImage().required(),
-                    
-                    landscape: this.CollectionImage().required(),
-                    
-                 
-            })
-        }
-    
-        static SeoDetail(){
-
-            return Joi.object({
-                
-                    
-                    title: Joi.string().allow(''),
-                    
-                    description: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
         static CreateCollection(){
 
             return Joi.object({
                 
                     
-                    badge: this.CollectionBadge(),
-                    
-                    is_active: Joi.boolean(),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    created_by: this.UserInfo(),
+                    seo: this.SeoDetail(),
                     
                     published: Joi.boolean(),
                     
-                    allow_facets: Joi.boolean(),
-                    
-                    logo: this.CollectionImage().required(),
-                    
-                    _schedule: this.Schedule(),
+                    type: Joi.string().allow('').required(),
                     
                     is_visible: Joi.boolean(),
                     
-                    type: Joi.string().allow('').required(),
+                    allow_sort: Joi.boolean(),
                     
-                    banners: this.CollectionBanner().required(),
-                    
-                    tags: Joi.array().items(Joi.string().allow('')),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    seo: this.SeoDetail(),
-                    
-                    app_id: Joi.string().allow('').required(),
-                    
-                    sort_on: Joi.string().allow(''),
+                    _schedule: this.Schedule(),
                     
                     query: Joi.any(),
                     
+                    created_by: this.UserInfo(),
+                    
+                    sort_on: Joi.string().allow(''),
+                    
+                    tags: Joi.array().items(Joi.string().allow('')),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    _custom_json: Joi.any(),
+                    
+                    logo: this.CollectionImage().required(),
+                    
+                    banners: this.CollectionBanner().required(),
+                    
+                    badge: this.CollectionBadge(),
+                    
                     slug: Joi.string().allow('').required(),
                     
-                    allow_sort: Joi.boolean(),
-                    
-                    modified_by: this.UserInfo(),
+                    name: Joi.string().allow('').required(),
                     
                     meta: Joi.any(),
                     
-                    _locale_language: Joi.any(),
+                    app_id: Joi.string().allow('').required(),
                     
                     visible_facets_keys: Joi.array().items(Joi.string().allow('')),
+                    
+                    modified_by: this.UserInfo(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    allow_facets: Joi.boolean(),
+                    
+                    _locale_language: Joi.any(),
                     
                  
             })
@@ -13112,39 +13112,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
-                    
-                    allow_facets: Joi.boolean(),
+                    app_id: Joi.string().allow(''),
                     
                     visible_facets_keys: Joi.array().items(Joi.string().allow('')),
                     
-                    allow_sort: Joi.boolean(),
-                    
-                    badge: Joi.any(),
-                    
-                    logo: this.BannerImage(),
-                    
                     is_active: Joi.boolean(),
                     
-                    cron: Joi.any(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    tag: Joi.array().items(Joi.string().allow('')),
+                    allow_facets: Joi.boolean(),
                     
                     description: Joi.string().allow(''),
                     
-                    _schedule: Joi.any(),
+                    cron: Joi.any(),
+                    
+                    logo: this.BannerImage(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    slug: Joi.string().allow(''),
+                    
+                    tag: Joi.array().items(Joi.string().allow('')),
                     
                     type: Joi.string().allow(''),
                     
-                    meta: Joi.any(),
+                    allow_sort: Joi.boolean(),
                     
                     banners: this.ImageUrls(),
                     
-                    app_id: Joi.string().allow(''),
+                    _schedule: Joi.any(),
                     
                     query: Joi.any(),
+                    
+                    badge: Joi.any(),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -13155,39 +13155,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
-                    
-                    allow_facets: Joi.boolean(),
+                    app_id: Joi.string().allow(''),
                     
                     visible_facets_keys: Joi.array().items(Joi.string().allow('')),
                     
-                    allow_sort: Joi.boolean(),
-                    
-                    badge: Joi.any(),
-                    
-                    logo: this.Media1(),
-                    
                     is_active: Joi.boolean(),
                     
-                    cron: Joi.any(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    tag: Joi.array().items(Joi.string().allow('')),
+                    allow_facets: Joi.boolean(),
                     
                     description: Joi.string().allow(''),
                     
-                    _schedule: Joi.any(),
+                    cron: Joi.any(),
+                    
+                    logo: this.Media1(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    slug: Joi.string().allow(''),
+                    
+                    tag: Joi.array().items(Joi.string().allow('')),
                     
                     type: Joi.string().allow(''),
                     
-                    meta: Joi.any(),
+                    allow_sort: Joi.boolean(),
                     
                     banners: this.ImageUrls(),
                     
-                    app_id: Joi.string().allow(''),
+                    _schedule: Joi.any(),
                     
                     query: Joi.any(),
+                    
+                    badge: Joi.any(),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -13198,47 +13198,47 @@ class Validator{
             return Joi.object({
                 
                     
-                    badge: this.CollectionBadge(),
-                    
-                    is_active: Joi.boolean(),
-                    
-                    description: Joi.string().allow(''),
+                    seo: this.SeoDetail(),
                     
                     published: Joi.boolean(),
                     
-                    allow_facets: Joi.boolean(),
-                    
-                    logo: this.CollectionImage(),
+                    is_visible: Joi.boolean(),
                     
                     _schedule: this.Schedule(),
                     
-                    is_visible: Joi.boolean(),
-                    
-                    banners: this.CollectionBanner(),
-                    
-                    tags: Joi.array().items(Joi.string().allow('')),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    seo: this.SeoDetail(),
-                    
-                    sort_on: Joi.string().allow(''),
+                    allow_sort: Joi.boolean(),
                     
                     query: Joi.any(),
                     
+                    sort_on: Joi.string().allow(''),
+                    
+                    tags: Joi.array().items(Joi.string().allow('')),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    _custom_json: Joi.any(),
+                    
+                    logo: this.CollectionImage(),
+                    
+                    banners: this.CollectionBanner(),
+                    
+                    badge: this.CollectionBadge(),
+                    
                     slug: Joi.string().allow(''),
                     
-                    allow_sort: Joi.boolean(),
-                    
-                    modified_by: this.UserInfo(),
+                    name: Joi.string().allow(''),
                     
                     meta: Joi.any(),
                     
-                    _locale_language: Joi.any(),
-                    
                     visible_facets_keys: Joi.array().items(Joi.string().allow('')),
+                    
+                    modified_by: this.UserInfo(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    allow_facets: Joi.boolean(),
+                    
+                    _locale_language: Joi.any(),
                     
                  
             })
@@ -13249,43 +13249,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    uid: Joi.number(),
+                    logo: this.Media1(),
                     
                     name: Joi.string().allow(''),
                     
-                    logo: this.Media1(),
-                    
                     action: this.Action(),
                     
-                 
-            })
-        }
-    
-        static Price1(){
-
-            return Joi.object({
-                
-                    
-                    min: Joi.number(),
-                    
-                    max: Joi.number(),
-                    
-                    currency_symbol: Joi.string().allow(''),
-                    
-                    currency_code: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static ProductListingPrice(){
-
-            return Joi.object({
-                
-                    
-                    marked: this.Price1(),
-                    
-                    effective: this.Price1(),
+                    uid: Joi.number(),
                     
                  
             })
@@ -13296,9 +13266,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    key: Joi.string().allow(''),
-                    
                     type: Joi.string().allow(''),
+                    
+                    key: Joi.string().allow(''),
                     
                     value: Joi.string().allow(''),
                     
@@ -13311,9 +13281,39 @@ class Validator{
             return Joi.object({
                 
                     
+                    title: Joi.string().allow(''),
+                    
                     details: Joi.array().items(this.ProductDetailAttribute()),
                     
-                    title: Joi.string().allow(''),
+                 
+            })
+        }
+    
+        static Price1(){
+
+            return Joi.object({
+                
+                    
+                    currency_symbol: Joi.string().allow(''),
+                    
+                    min: Joi.number(),
+                    
+                    currency_code: Joi.string().allow(''),
+                    
+                    max: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static ProductListingPrice(){
+
+            return Joi.object({
+                
+                    
+                    effective: this.Price1(),
+                    
+                    marked: this.Price1(),
                     
                  
             })
@@ -13324,57 +13324,57 @@ class Validator{
             return Joi.object({
                 
                     
-                    attributes: Joi.any(),
-                    
                     rating_count: Joi.number(),
-                    
-                    discount: Joi.string().allow(''),
-                    
-                    uid: Joi.number(),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    tryouts: Joi.array().items(Joi.string().allow('')),
                     
                     brand: this.ProductBrand(),
                     
-                    image_nature: Joi.string().allow(''),
+                    tryouts: Joi.array().items(Joi.string().allow('')),
                     
-                    price: this.ProductListingPrice(),
+                    discount: Joi.string().allow(''),
                     
-                    highlights: Joi.array().items(Joi.string().allow('')),
-                    
-                    rating: Joi.number(),
+                    teaser_tag: Joi.any(),
                     
                     type: Joi.string().allow(''),
                     
-                    item_code: Joi.string().allow(''),
-                    
                     promo_meta: Joi.any(),
                     
-                    name: Joi.string().allow(''),
-                    
-                    sellable: Joi.boolean(),
-                    
-                    product_online_date: Joi.string().allow(''),
-                    
-                    medias: Joi.array().items(this.Media1()),
-                    
-                    similars: Joi.array().items(Joi.string().allow('')),
-                    
-                    short_description: Joi.string().allow(''),
-                    
-                    slug: Joi.string().allow('').required(),
-                    
-                    has_variant: Joi.boolean(),
-                    
-                    grouped_attributes: Joi.array().items(this.ProductDetailGroupedAttribute()),
+                    highlights: Joi.array().items(Joi.string().allow('')),
                     
                     color: Joi.string().allow(''),
                     
+                    sellable: Joi.boolean(),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    image_nature: Joi.string().allow(''),
+                    
+                    medias: Joi.array().items(this.Media1()),
+                    
+                    has_variant: Joi.boolean(),
+                    
+                    attributes: Joi.any(),
+                    
+                    similars: Joi.array().items(Joi.string().allow('')),
+                    
                     item_type: Joi.string().allow(''),
                     
-                    teaser_tag: Joi.any(),
+                    grouped_attributes: Joi.array().items(this.ProductDetailGroupedAttribute()),
+                    
+                    slug: Joi.string().allow('').required(),
+                    
+                    product_online_date: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                    item_code: Joi.string().allow(''),
+                    
+                    short_description: Joi.string().allow(''),
+                    
+                    price: this.ProductListingPrice(),
+                    
+                    rating: Joi.number(),
                     
                  
             })
@@ -13385,13 +13385,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    filters: Joi.array().items(this.ProductFilters()),
+                    items: Joi.array().items(this.ProductListingDetail()),
                     
                     page: this.Page(),
                     
                     sort_on: Joi.array().items(this.ProductSortOn()),
                     
-                    items: Joi.array().items(this.ProductListingDetail()),
+                    filters: Joi.array().items(this.ProductFilters()),
                     
                  
             })
@@ -13421,21 +13421,6 @@ class Validator{
             })
         }
     
-        static CatalogInsightItem(){
-
-            return Joi.object({
-                
-                    
-                    count: Joi.number(),
-                    
-                    sellable_count: Joi.number(),
-                    
-                    out_of_stock_count: Joi.number(),
-                    
-                 
-            })
-        }
-    
         static CatalogInsightBrand(){
 
             return Joi.object({
@@ -13443,15 +13428,30 @@ class Validator{
                     
                     article_freshness: Joi.number(),
                     
+                    total_sizes: Joi.number(),
+                    
+                    available_sizes: Joi.number(),
+                    
                     available_articles: Joi.number(),
                     
                     name: Joi.string().allow(''),
                     
-                    total_sizes: Joi.number(),
-                    
                     total_articles: Joi.number(),
                     
-                    available_sizes: Joi.number(),
+                 
+            })
+        }
+    
+        static CatalogInsightItem(){
+
+            return Joi.object({
+                
+                    
+                    count: Joi.number(),
+                    
+                    out_of_stock_count: Joi.number(),
+                    
+                    sellable_count: Joi.number(),
                     
                  
             })
@@ -13462,9 +13462,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    item: this.CatalogInsightItem(),
-                    
                     brand_distribution: this.CatalogInsightBrand(),
+                    
+                    item: this.CatalogInsightItem(),
                     
                  
             })
@@ -13503,11 +13503,11 @@ class Validator{
                     
                     enabled: Joi.boolean(),
                     
-                    opt_level: Joi.string().allow('').required(),
+                    brand_ids: Joi.array().items(Joi.number()),
                     
                     store_ids: Joi.array().items(Joi.number()),
                     
-                    brand_ids: Joi.array().items(Joi.number()),
+                    opt_level: Joi.string().allow('').required(),
                     
                  
             })
@@ -13518,25 +13518,25 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.number().required(),
-                    
-                    modified_on: Joi.number().required(),
-                    
-                    modified_by: Joi.any(),
-                    
                     company_id: Joi.number().required(),
-                    
-                    opt_level: Joi.string().allow('').required(),
-                    
-                    brand_ids: Joi.array().items(Joi.number()).required(),
-                    
-                    platform: Joi.string().allow('').required(),
                     
                     created_by: Joi.any(),
                     
+                    modified_by: Joi.any(),
+                    
+                    platform: Joi.string().allow('').required(),
+                    
+                    created_on: Joi.number().required(),
+                    
                     enabled: Joi.boolean().required(),
                     
+                    brand_ids: Joi.array().items(Joi.number()).required(),
+                    
                     store_ids: Joi.array().items(Joi.number()).required(),
+                    
+                    modified_on: Joi.number().required(),
+                    
+                    opt_level: Joi.string().allow('').required(),
                     
                  
             })
@@ -13547,9 +13547,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page().required(),
-                    
                     items: Joi.array().items(this.CompanyOptIn()).required(),
+                    
+                    page: this.Page().required(),
                     
                  
             })
@@ -13560,13 +13560,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    business_type: Joi.string().allow(''),
-                    
-                    uid: Joi.number(),
+                    company_type: Joi.string().allow(''),
                     
                     name: Joi.string().allow(''),
                     
-                    company_type: Joi.string().allow(''),
+                    business_type: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
                     
                  
             })
@@ -13579,9 +13579,9 @@ class Validator{
                     
                     company_id: Joi.number(),
                     
-                    brand_id: Joi.number(),
-                    
                     total_article: Joi.number(),
+                    
+                    brand_id: Joi.number(),
                     
                     brand_name: Joi.string().allow(''),
                     
@@ -13594,9 +13594,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.CompanyBrandDetail()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -13607,11 +13607,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    company: Joi.string().allow(''),
-                    
                     store: Joi.number(),
                     
                     brand: Joi.number(),
+                    
+                    company: Joi.string().allow(''),
                     
                  
             })
@@ -13622,25 +13622,25 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
+                    company_id: Joi.number(),
                     
                     documents: Joi.array().items(Joi.any()),
                     
-                    timing: Joi.any(),
-                    
-                    uid: Joi.number(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    company_id: Joi.number(),
+                    created_on: Joi.string().allow(''),
                     
                     store_code: Joi.string().allow(''),
                     
-                    additional_contacts: Joi.array().items(Joi.any()),
-                    
                     store_type: Joi.string().allow(''),
                     
+                    additional_contacts: Joi.array().items(Joi.any()),
+                    
+                    timing: Joi.any(),
+                    
                     display_name: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
                     
                     modified_on: Joi.string().allow(''),
                     
@@ -13653,9 +13653,24 @@ class Validator{
             return Joi.object({
                 
                     
+                    items: Joi.array().items(this.StoreDetail()),
+                    
                     page: this.Page(),
                     
-                    items: Joi.array().items(this.StoreDetail()),
+                 
+            })
+        }
+    
+        static AttributeMasterFilter(){
+
+            return Joi.object({
+                
+                    
+                    indexing: Joi.boolean().required(),
+                    
+                    priority: Joi.number(),
+                    
+                    depends_on: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -13692,15 +13707,15 @@ class Validator{
                     
                     mandatory: Joi.boolean(),
                     
-                    multi: Joi.boolean(),
-                    
-                    allowed_values: Joi.array().items(Joi.string().allow('')),
+                    format: Joi.string().allow(''),
                     
                     type: Joi.string().allow('').required(),
                     
                     range: this.AttributeSchemaRange(),
                     
-                    format: Joi.string().allow(''),
+                    multi: Joi.boolean(),
+                    
+                    allowed_values: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -13722,24 +13737,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    enriched: Joi.boolean(),
-                    
                     mandatory_details: this.AttributeMasterMandatoryDetails().required(),
                     
-                 
-            })
-        }
-    
-        static AttributeMasterFilter(){
-
-            return Joi.object({
-                
-                    
-                    depends_on: Joi.array().items(Joi.string().allow('')),
-                    
-                    priority: Joi.number(),
-                    
-                    indexing: Joi.boolean().required(),
+                    enriched: Joi.boolean(),
                     
                  
             })
@@ -13750,29 +13750,29 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
-                    
                     enabled_for_end_consumer: Joi.boolean(),
-                    
-                    is_nested: Joi.boolean(),
                     
                     id: Joi.string().allow(''),
                     
-                    name: Joi.string().allow(''),
+                    description: Joi.string().allow(''),
                     
-                    details: this.AttributeMasterDetails(),
+                    slug: Joi.string().allow(''),
                     
                     logo: Joi.string().allow(''),
                     
-                    description: Joi.string().allow(''),
+                    name: Joi.string().allow(''),
+                    
+                    is_nested: Joi.boolean(),
+                    
+                    filters: this.AttributeMasterFilter(),
+                    
+                    details: this.AttributeMasterDetails(),
                     
                     departments: Joi.array().items(Joi.string().allow('')),
                     
                     schema: this.AttributeMaster(),
                     
                     meta: this.AttributeMasterMeta(),
-                    
-                    filters: this.AttributeMasterFilter(),
                     
                  
             })
@@ -13783,9 +13783,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(Joi.any()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -13796,15 +13796,15 @@ class Validator{
             return Joi.object({
                 
                     
+                    errors: Joi.any(),
+                    
+                    status: Joi.number(),
+                    
                     message: Joi.string().allow(''),
                     
                     code: Joi.string().allow(''),
                     
-                    errors: Joi.any(),
-                    
                     meta: Joi.any(),
-                    
-                    status: Joi.number(),
                     
                  
             })
@@ -13815,11 +13815,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    user_id: Joi.string().allow(''),
+                    username: Joi.string().allow(''),
                     
                     contact: Joi.string().allow(''),
                     
-                    username: Joi.string().allow(''),
+                    user_id: Joi.string().allow(''),
                     
                  
             })
@@ -13830,35 +13830,35 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
-                    
-                    slug: Joi.string().allow(''),
-                    
-                    page_size: Joi.number(),
-                    
-                    synonyms: Joi.array().items(Joi.string().allow('')),
-                    
-                    modified_by: this.UserSerializer(),
-                    
-                    uid: Joi.number(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    is_active: Joi.boolean(),
-                    
-                    logo: Joi.string().allow(''),
-                    
                     created_by: this.UserSerializer(),
                     
-                    item_type: Joi.string().allow(''),
+                    page_no: Joi.number(),
                     
                     search: Joi.string().allow(''),
                     
-                    modified_on: Joi.string().allow(''),
+                    is_active: Joi.boolean(),
+                    
+                    modified_by: this.UserSerializer(),
                     
                     priority_order: Joi.number(),
                     
-                    page_no: Joi.number(),
+                    page_size: Joi.number(),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    item_type: Joi.string().allow(''),
+                    
+                    synonyms: Joi.array().items(Joi.string().allow('')),
+                    
+                    slug: Joi.string().allow(''),
+                    
+                    logo: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                    modified_on: Joi.string().allow(''),
                     
                  
             })
@@ -13869,9 +13869,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.GetDepartment()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -13882,15 +13882,15 @@ class Validator{
             return Joi.object({
                 
                     
+                    errors: Joi.any(),
+                    
+                    status: Joi.number(),
+                    
                     message: Joi.string().allow(''),
                     
                     code: Joi.string().allow(''),
                     
-                    errors: Joi.any(),
-                    
                     meta: Joi.any(),
-                    
-                    status: Joi.number(),
                     
                  
             })
@@ -13901,35 +13901,35 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
-                    
-                    slug: Joi.string().allow('').required(),
-                    
-                    is_archived: Joi.boolean(),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    is_physical: Joi.boolean().required(),
-                    
-                    attributes: Joi.array().items(Joi.string().allow('')),
-                    
-                    modified_by: Joi.any(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    is_active: Joi.boolean(),
-                    
-                    tag: Joi.string().allow(''),
-                    
-                    logo: Joi.string().allow(''),
+                    created_by: Joi.any(),
                     
                     is_expirable: Joi.boolean().required(),
                     
-                    description: Joi.string().allow(''),
+                    is_active: Joi.boolean(),
+                    
+                    modified_by: Joi.any(),
+                    
+                    is_archived: Joi.boolean(),
+                    
+                    created_on: Joi.string().allow(''),
                     
                     categories: Joi.array().items(Joi.string().allow('')),
                     
-                    created_by: Joi.any(),
+                    slug: Joi.string().allow('').required(),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    logo: Joi.string().allow(''),
+                    
+                    tag: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    attributes: Joi.array().items(Joi.string().allow('')),
+                    
+                    is_physical: Joi.boolean().required(),
+                    
+                    modified_on: Joi.string().allow(''),
                     
                     departments: Joi.array().items(Joi.string().allow('')),
                     
@@ -13942,9 +13942,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: this.ProductTemplate(),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -13955,29 +13955,29 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow('').required(),
-                    
-                    is_archived: Joi.boolean(),
-                    
-                    is_physical: Joi.boolean().required(),
-                    
-                    attributes: Joi.array().items(Joi.string().allow('')),
-                    
-                    id: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow(''),
+                    is_expirable: Joi.boolean().required(),
                     
                     is_active: Joi.boolean(),
                     
-                    tag: Joi.string().allow(''),
+                    is_archived: Joi.boolean(),
                     
-                    logo: Joi.string().allow(''),
+                    categories: Joi.array().items(Joi.string().allow('')),
                     
-                    is_expirable: Joi.boolean().required(),
+                    id: Joi.string().allow(''),
+                    
+                    slug: Joi.string().allow('').required(),
                     
                     description: Joi.string().allow(''),
                     
-                    categories: Joi.array().items(Joi.string().allow('')),
+                    logo: Joi.string().allow(''),
+                    
+                    tag: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    attributes: Joi.array().items(Joi.string().allow('')),
+                    
+                    is_physical: Joi.boolean().required(),
                     
                     departments: Joi.array().items(Joi.string().allow('')),
                     
@@ -13990,65 +13990,65 @@ class Validator{
             return Joi.object({
                 
                     
-                    no_of_boxes: Joi.any(),
+                    variants: Joi.any(),
                     
-                    media: Joi.any(),
+                    command: Joi.any(),
+                    
+                    teaser_tag: Joi.any(),
                     
                     custom_order: Joi.any(),
                     
-                    is_dependent: Joi.any(),
+                    brand_uid: Joi.any(),
+                    
+                    media: Joi.any(),
                     
                     category_slug: Joi.any(),
                     
-                    is_active: Joi.any(),
+                    highlights: Joi.any(),
                     
-                    brand_uid: Joi.any(),
+                    multi_size: Joi.any(),
+                    
+                    tags: Joi.any(),
                     
                     product_publish: Joi.any(),
                     
                     description: Joi.any(),
                     
-                    variants: Joi.any(),
-                    
-                    multi_size: Joi.any(),
-                    
-                    sizes: Joi.any(),
-                    
-                    product_group_tag: Joi.any(),
-                    
-                    highlights: Joi.any(),
-                    
-                    trader: Joi.any(),
-                    
-                    item_code: Joi.any(),
+                    size_guide: Joi.any(),
                     
                     trader_type: Joi.any(),
                     
-                    hsn_code: Joi.any(),
-                    
-                    tags: Joi.any(),
-                    
-                    moq: Joi.any(),
-                    
-                    name: Joi.any(),
-                    
-                    size_guide: Joi.any(),
-                    
-                    short_description: Joi.any(),
-                    
-                    country_of_origin: Joi.any(),
-                    
-                    slug: Joi.any(),
-                    
-                    command: Joi.any(),
+                    no_of_boxes: Joi.any(),
                     
                     currency: Joi.any(),
                     
-                    return_config: Joi.any(),
+                    country_of_origin: Joi.any(),
                     
                     item_type: Joi.any(),
                     
-                    teaser_tag: Joi.any(),
+                    product_group_tag: Joi.any(),
+                    
+                    slug: Joi.any(),
+                    
+                    name: Joi.any(),
+                    
+                    trader: Joi.any(),
+                    
+                    is_dependent: Joi.any(),
+                    
+                    item_code: Joi.any(),
+                    
+                    sizes: Joi.any(),
+                    
+                    moq: Joi.any(),
+                    
+                    is_active: Joi.any(),
+                    
+                    short_description: Joi.any(),
+                    
+                    hsn_code: Joi.any(),
+                    
+                    return_config: Joi.any(),
                     
                  
             })
@@ -14059,17 +14059,17 @@ class Validator{
             return Joi.object({
                 
                     
-                    properties: this.Properties(),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    definitions: Joi.any(),
-                    
-                    type: Joi.string().allow(''),
-                    
                     title: Joi.string().allow(''),
                     
                     required: Joi.array().items(Joi.string().allow('')),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    type: Joi.string().allow(''),
+                    
+                    properties: this.Properties(),
+                    
+                    definitions: Joi.any(),
                     
                  
             })
@@ -14106,9 +14106,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    message: Joi.string().allow(''),
-                    
                     data: Joi.any(),
+                    
+                    message: Joi.string().allow(''),
                     
                  
             })
@@ -14132,9 +14132,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    message: Joi.string().allow(''),
-                    
                     data: this.HSNData(),
+                    
+                    message: Joi.string().allow(''),
                     
                  
             })
@@ -14145,9 +14145,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    user_id: Joi.string().allow(''),
-                    
                     username: Joi.string().allow(''),
+                    
+                    user_id: Joi.string().allow(''),
                     
                  
             })
@@ -14158,9 +14158,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    type: Joi.string().allow(''),
-                    
                     templates: Joi.array().items(Joi.string().allow('')),
+                    
+                    type: Joi.string().allow(''),
                     
                     brand: Joi.array().items(Joi.string().allow('')),
                     
@@ -14173,25 +14173,25 @@ class Validator{
             return Joi.object({
                 
                     
-                    template_tags: Joi.any(),
+                    created_by: this.VerifiedBy(),
                     
-                    task_id: Joi.string().allow(''),
+                    status: Joi.string().allow(''),
+                    
+                    url: Joi.string().allow(''),
+                    
+                    trigger_on: Joi.string().allow(''),
                     
                     seller_id: Joi.number(),
                     
                     completed_on: Joi.string().allow(''),
                     
-                    url: Joi.string().allow(''),
-                    
                     id: Joi.string().allow(''),
                     
-                    trigger_on: Joi.string().allow(''),
+                    template_tags: Joi.any(),
                     
-                    created_by: this.VerifiedBy(),
+                    task_id: Joi.string().allow(''),
                     
                     data: this.ProductDownloadItemsData(),
-                    
-                    status: Joi.string().allow(''),
                     
                  
             })
@@ -14202,9 +14202,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: this.ProductDownloadsItems(),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -14215,24 +14215,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    data: Joi.array().items(Joi.any()),
-                    
                     multivalue: Joi.boolean(),
                     
-                 
-            })
-        }
-    
-        static Hierarchy(){
-
-            return Joi.object({
-                
-                    
-                    l1: Joi.number().required(),
-                    
-                    department: Joi.number().required(),
-                    
-                    l2: Joi.number().required(),
+                    data: Joi.array().items(Joi.any()),
                     
                  
             })
@@ -14243,11 +14228,11 @@ class Validator{
             return Joi.object({
                 
                     
+                    landscape: Joi.string().allow('').required(),
+                    
                     logo: Joi.string().allow('').required(),
                     
                     portrait: Joi.string().allow('').required(),
-                    
-                    landscape: Joi.string().allow('').required(),
                     
                  
             })
@@ -14258,9 +14243,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    name: Joi.string().allow('').required(),
-                    
                     catalog_id: Joi.number(),
+                    
+                    name: Joi.string().allow('').required(),
                     
                  
             })
@@ -14271,11 +14256,26 @@ class Validator{
             return Joi.object({
                 
                     
-                    ajio: this.CategoryMappingValues(),
+                    google: this.CategoryMappingValues(),
                     
                     facebook: this.CategoryMappingValues(),
                     
-                    google: this.CategoryMappingValues(),
+                    ajio: this.CategoryMappingValues(),
+                    
+                 
+            })
+        }
+    
+        static Hierarchy(){
+
+            return Joi.object({
+                
+                    
+                    department: Joi.number().required(),
+                    
+                    l2: Joi.number().required(),
+                    
+                    l1: Joi.number().required(),
                     
                  
             })
@@ -14286,39 +14286,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
-                    
-                    slug: Joi.string().allow(''),
-                    
-                    hierarchy: Joi.array().items(this.Hierarchy()),
-                    
-                    synonyms: Joi.array().items(Joi.string().allow('')),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
                     media: this.Media2(),
                     
-                    modified_by: Joi.any(),
+                    _id: Joi.string().allow(''),
                     
-                    uid: Joi.number(),
+                    created_by: Joi.any(),
                     
-                    name: Joi.string().allow('').required(),
+                    tryouts: Joi.array().items(Joi.string().allow('')),
                     
                     priority: Joi.number(),
                     
                     is_active: Joi.boolean().required(),
                     
-                    level: Joi.number().required(),
+                    modified_by: Joi.any(),
+                    
+                    created_on: Joi.string().allow(''),
                     
                     marketplaces: this.CategoryMapping(),
                     
-                    created_by: Joi.any(),
+                    slug: Joi.string().allow(''),
                     
-                    _id: Joi.string().allow(''),
+                    synonyms: Joi.array().items(Joi.string().allow('')),
                     
-                    tryouts: Joi.array().items(Joi.string().allow('')),
+                    name: Joi.string().allow('').required(),
+                    
+                    level: Joi.number().required(),
+                    
+                    uid: Joi.number(),
+                    
+                    modified_on: Joi.string().allow(''),
                     
                     departments: Joi.array().items(Joi.number()).required(),
+                    
+                    hierarchy: Joi.array().items(this.Hierarchy()),
                     
                  
             })
@@ -14329,9 +14329,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.Category()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -14342,27 +14342,27 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
-                    
-                    hierarchy: Joi.array().items(this.Hierarchy()),
-                    
-                    synonyms: Joi.array().items(Joi.string().allow('')),
-                    
                     media: this.Media2(),
-                    
-                    priority: Joi.number(),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    is_active: Joi.boolean().required(),
-                    
-                    level: Joi.number().required(),
-                    
-                    marketplaces: this.CategoryMapping(),
                     
                     tryouts: Joi.array().items(Joi.string().allow('')),
                     
+                    priority: Joi.number(),
+                    
+                    is_active: Joi.boolean().required(),
+                    
+                    marketplaces: this.CategoryMapping(),
+                    
+                    slug: Joi.string().allow(''),
+                    
+                    synonyms: Joi.array().items(Joi.string().allow('')),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    level: Joi.number().required(),
+                    
                     departments: Joi.array().items(Joi.number()).required(),
+                    
+                    hierarchy: Joi.array().items(this.Hierarchy()),
                     
                  
             })
@@ -14397,9 +14397,58 @@ class Validator{
             return Joi.object({
                 
                     
+                    success: Joi.boolean(),
+                    
                     message: Joi.string().allow(''),
                     
-                    success: Joi.boolean(),
+                 
+            })
+        }
+    
+        static Logo(){
+
+            return Joi.object({
+                
+                    
+                    secure_url: Joi.string().allow(''),
+                    
+                    aspect_ratio_f: Joi.number(),
+                    
+                    aspect_ratio: Joi.string().allow(''),
+                    
+                    url: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static Brand(){
+
+            return Joi.object({
+                
+                    
+                    logo: this.Logo(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static Image(){
+
+            return Joi.object({
+                
+                    
+                    url: Joi.string().allow(''),
+                    
+                    aspect_ratio_f: Joi.number(),
+                    
+                    aspect_ratio: Joi.string().allow(''),
+                    
+                    secure_url: Joi.string().allow(''),
                     
                  
             })
@@ -14418,133 +14467,84 @@ class Validator{
             })
         }
     
-        static Logo(){
-
-            return Joi.object({
-                
-                    
-                    aspect_ratio_f: Joi.number(),
-                    
-                    secure_url: Joi.string().allow(''),
-                    
-                    url: Joi.string().allow(''),
-                    
-                    aspect_ratio: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static Brand(){
-
-            return Joi.object({
-                
-                    
-                    uid: Joi.number(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    logo: this.Logo(),
-                    
-                 
-            })
-        }
-    
-        static Image(){
-
-            return Joi.object({
-                
-                    
-                    aspect_ratio_f: Joi.number(),
-                    
-                    secure_url: Joi.string().allow(''),
-                    
-                    url: Joi.string().allow(''),
-                    
-                    aspect_ratio: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
         static Product(){
 
             return Joi.object({
                 
                     
-                    category_slug: Joi.string().allow(''),
+                    brand: this.Brand(),
                     
-                    media: Joi.array().items(this.Media1()),
+                    primary_color: Joi.string().allow(''),
                     
-                    uid: Joi.number(),
-                    
-                    is_dependent: Joi.boolean(),
+                    variants: Joi.any(),
                     
                     custom_order: Joi.any(),
                     
                     brand_uid: Joi.number(),
                     
-                    is_active: Joi.boolean(),
+                    is_set: Joi.boolean(),
+                    
+                    all_sizes: Joi.array().items(Joi.any()),
+                    
+                    media: Joi.array().items(this.Media1()),
+                    
+                    category_slug: Joi.string().allow(''),
+                    
+                    highlights: Joi.array().items(Joi.string().allow('')),
+                    
+                    images: Joi.array().items(this.Image()),
+                    
+                    color: Joi.string().allow(''),
+                    
+                    multi_size: Joi.boolean(),
                     
                     product_publish: this.ProductPublished(),
                     
                     description: Joi.string().allow(''),
                     
-                    variants: Joi.any(),
-                    
-                    departments: Joi.array().items(Joi.number()),
-                    
-                    multi_size: Joi.boolean(),
-                    
-                    sizes: Joi.array().items(Joi.any()),
-                    
-                    brand: this.Brand(),
+                    _custom_json: Joi.any(),
                     
                     image_nature: Joi.string().allow(''),
                     
-                    primary_color: Joi.string().allow(''),
-                    
-                    highlights: Joi.array().items(Joi.string().allow('')),
-                    
-                    is_set: Joi.boolean(),
-                    
-                    item_code: Joi.string().allow(''),
-                    
-                    hsn_code: Joi.string().allow(''),
+                    size_guide: Joi.string().allow(''),
                     
                     category_uid: Joi.number(),
                     
-                    moq: Joi.any(),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    id: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    l3_mapping: Joi.array().items(Joi.string().allow('')),
-                    
-                    size_guide: Joi.string().allow(''),
-                    
-                    short_description: Joi.string().allow(''),
+                    currency: Joi.string().allow(''),
                     
                     country_of_origin: Joi.string().allow(''),
                     
-                    all_sizes: Joi.array().items(Joi.any()),
-                    
-                    template_tag: Joi.string().allow(''),
+                    item_type: Joi.string().allow(''),
                     
                     slug: Joi.string().allow(''),
                     
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                    template_tag: Joi.string().allow(''),
+                    
+                    is_dependent: Joi.boolean(),
+                    
+                    departments: Joi.array().items(Joi.number()),
+                    
+                    item_code: Joi.string().allow(''),
+                    
+                    sizes: Joi.array().items(Joi.any()),
+                    
+                    l3_mapping: Joi.array().items(Joi.string().allow('')),
+                    
+                    moq: Joi.any(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    short_description: Joi.string().allow(''),
+                    
+                    id: Joi.string().allow(''),
+                    
+                    hsn_code: Joi.string().allow(''),
+                    
                     is_physical: Joi.boolean(),
-                    
-                    currency: Joi.string().allow(''),
-                    
-                    color: Joi.string().allow(''),
-                    
-                    item_type: Joi.string().allow(''),
-                    
-                    images: Joi.array().items(this.Image()),
                     
                  
             })
@@ -14555,9 +14555,22 @@ class Validator{
             return Joi.object({
                 
                     
+                    items: Joi.array().items(this.Product()),
+                    
                     page: this.Page(),
                     
-                    items: Joi.array().items(this.Product()),
+                 
+            })
+        }
+    
+        static TeaserTag(){
+
+            return Joi.object({
+                
+                    
+                    tag: Joi.string().allow('').allow(null),
+                    
+                    url: Joi.string().allow('').allow(null),
                     
                  
             })
@@ -14568,11 +14581,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    is_custom_order: Joi.boolean(),
-                    
                     manufacturing_time: Joi.number(),
                     
                     manufacturing_time_unit: Joi.string().allow(''),
+                    
+                    is_custom_order: Joi.boolean(),
                     
                  
             })
@@ -14609,9 +14622,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    is_set: Joi.boolean(),
-                    
                     maximum: Joi.number(),
+                    
+                    is_set: Joi.boolean(),
                     
                     minimum: Joi.number(),
                     
@@ -14624,24 +14637,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    time: Joi.number().required(),
-                    
                     unit: Joi.string().allow('').required(),
                     
+                    time: Joi.number().required(),
+                    
                     returnable: Joi.boolean().required(),
-                    
-                 
-            })
-        }
-    
-        static TeaserTag(){
-
-            return Joi.object({
-                
-                    
-                    tag: Joi.string().allow('').allow(null),
-                    
-                    url: Joi.string().allow('').allow(null),
                     
                  
             })
@@ -14652,83 +14652,83 @@ class Validator{
             return Joi.object({
                 
                     
-                    no_of_boxes: Joi.number(),
+                    company_id: Joi.number().required(),
                     
-                    category_slug: Joi.string().allow('').required(),
+                    variants: Joi.any(),
                     
-                    media: Joi.array().items(this.Media1()),
-                    
-                    uid: Joi.number().allow(null),
-                    
-                    is_dependent: Joi.boolean(),
+                    teaser_tag: this.TeaserTag(),
                     
                     custom_order: this.CustomOrder(),
                     
+                    change_request_id: Joi.string().allow('').allow(null),
+                    
                     brand_uid: Joi.number().required(),
                     
-                    is_active: Joi.boolean(),
+                    requester: Joi.string().allow(''),
+                    
+                    is_set: Joi.boolean(),
+                    
+                    is_image_less_product: Joi.boolean(),
+                    
+                    media: Joi.array().items(this.Media1()),
+                    
+                    category_slug: Joi.string().allow('').required(),
+                    
+                    bulk_job_id: Joi.string().allow(''),
+                    
+                    highlights: Joi.array().items(Joi.string().allow('').allow(null)),
+                    
+                    multi_size: Joi.boolean(),
+                    
+                    tags: Joi.array().items(Joi.string().allow('')),
                     
                     product_publish: this.ProductPublish(),
                     
                     description: Joi.string().allow(''),
                     
-                    item_type: Joi.string().allow('').required(),
-                    
-                    bulk_job_id: Joi.string().allow(''),
-                    
-                    variants: Joi.any(),
-                    
-                    multi_size: Joi.boolean(),
-                    
-                    departments: Joi.array().items(Joi.number()).required(),
-                    
-                    product_group_tag: Joi.array().items(Joi.string().allow('')),
-                    
-                    requester: Joi.string().allow(''),
-                    
-                    highlights: Joi.array().items(Joi.string().allow('').allow(null)),
-                    
-                    is_set: Joi.boolean(),
-                    
-                    trader: this.Trader().required(),
-                    
-                    item_code: Joi.string().allow('').required(),
-                    
-                    trader_type: Joi.string().allow(''),
-                    
-                    hsn_code: Joi.string().allow('').required(),
-                    
-                    tags: Joi.array().items(Joi.string().allow('')),
-                    
-                    moq: this.OrderQuantity(),
-                    
                     _custom_json: Joi.any(),
-                    
-                    change_request_id: Joi.string().allow('').allow(null),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    company_id: Joi.number().required(),
                     
                     size_guide: Joi.string().allow(''),
                     
-                    short_description: Joi.string().allow(''),
+                    trader_type: Joi.string().allow(''),
                     
-                    country_of_origin: Joi.string().allow('').required(),
-                    
-                    template_tag: Joi.string().allow('').required(),
-                    
-                    slug: Joi.string().allow('').required(),
-                    
-                    currency: Joi.string().allow('').required(),
-                    
-                    return_config: this.ReturnConfig().required(),
+                    no_of_boxes: Joi.number(),
                     
                     action: Joi.string().allow(''),
                     
-                    is_image_less_product: Joi.boolean(),
+                    currency: Joi.string().allow('').required(),
                     
-                    teaser_tag: this.TeaserTag(),
+                    country_of_origin: Joi.string().allow('').required(),
+                    
+                    item_type: Joi.string().allow('').required(),
+                    
+                    product_group_tag: Joi.array().items(Joi.string().allow('')),
+                    
+                    slug: Joi.string().allow('').required(),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    trader: this.Trader().required(),
+                    
+                    template_tag: Joi.string().allow('').required(),
+                    
+                    uid: Joi.number().allow(null),
+                    
+                    is_dependent: Joi.boolean(),
+                    
+                    departments: Joi.array().items(Joi.number()).required(),
+                    
+                    item_code: Joi.string().allow('').required(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    moq: this.OrderQuantity(),
+                    
+                    short_description: Joi.string().allow(''),
+                    
+                    hsn_code: Joi.string().allow('').required(),
+                    
+                    return_config: this.ReturnConfig().required(),
                     
                  
             })
@@ -14750,11 +14750,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    user_id: Joi.string().allow(''),
+                    username: Joi.string().allow(''),
                     
                     full_name: Joi.string().allow(''),
                     
-                    username: Joi.string().allow(''),
+                    user_id: Joi.string().allow(''),
                     
                  
             })
@@ -14765,37 +14765,37 @@ class Validator{
             return Joi.object({
                 
                     
-                    template_tag: Joi.string().allow(''),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    cancelled_records: Joi.array().items(Joi.string().allow('')),
-                    
-                    file_path: Joi.string().allow(''),
-                    
-                    template: this.ProductTemplate(),
-                    
-                    modified_by: this.UserDetail(),
-                    
-                    is_active: Joi.boolean(),
-                    
                     company_id: Joi.number(),
                     
+                    modified_on: Joi.string().allow(''),
+                    
                     failed_records: Joi.array().items(Joi.string().allow('')),
-                    
-                    failed: Joi.number(),
-                    
-                    total: Joi.number(),
                     
                     created_by: this.UserDetail(),
                     
                     succeed: Joi.number(),
                     
-                    modified_on: Joi.string().allow(''),
+                    is_active: Joi.boolean(),
+                    
+                    modified_by: this.UserDetail(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    total: Joi.number(),
+                    
+                    template: this.ProductTemplate(),
+                    
+                    failed: Joi.number(),
                     
                     cancelled: Joi.number(),
                     
-                    stage: Joi.string().allow(''),
+                    template_tag: Joi.string().allow(''),
+                    
+                    cancelled_records: Joi.array().items(Joi.string().allow('')),
+                    
+                    file_path: Joi.string().allow(''),
                     
                  
             })
@@ -14806,9 +14806,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: this.ProductBulkRequest(),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -14819,13 +14819,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    uid: Joi.string().allow(''),
-                    
                     email: Joi.string().allow(''),
                     
                     username: Joi.string().allow(''),
                     
                     user_id: Joi.string().allow(''),
+                    
+                    uid: Joi.string().allow(''),
                     
                  
             })
@@ -14836,39 +14836,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow('').required(),
-                    
-                    template_tag: Joi.string().allow(''),
-                    
-                    cancelled_records: Joi.array().items(Joi.any()),
-                    
-                    custom_template_tag: Joi.string().allow(''),
-                    
-                    file_path: Joi.string().allow(''),
-                    
-                    modified_by: this.UserInfo1(),
-                    
-                    is_active: Joi.boolean(),
-                    
                     company_id: Joi.number().required(),
-                    
-                    failed_records: Joi.array().items(Joi.any()),
-                    
-                    failed: Joi.number(),
-                    
-                    total: Joi.number().required(),
                     
                     created_by: this.UserInfo1(),
                     
                     succeed: Joi.number(),
                     
-                    modified_on: Joi.string().allow(''),
+                    failed_records: Joi.array().items(Joi.any()),
+                    
+                    modified_by: this.UserInfo1(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    total: Joi.number().required(),
+                    
+                    created_on: Joi.string().allow('').required(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    template_tag: Joi.string().allow(''),
                     
                     tracking_url: Joi.string().allow(''),
                     
                     cancelled: Joi.number(),
                     
-                    stage: Joi.string().allow(''),
+                    failed: Joi.number(),
+                    
+                    custom_template_tag: Joi.string().allow(''),
+                    
+                    modified_on: Joi.string().allow(''),
+                    
+                    cancelled_records: Joi.array().items(Joi.any()),
+                    
+                    file_path: Joi.string().allow(''),
                     
                  
             })
@@ -14879,13 +14879,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    template_tag: Joi.string().allow('').required(),
-                    
                     company_id: Joi.number().required(),
+                    
+                    batch_id: Joi.string().allow('').required(),
                     
                     data: Joi.array().items(Joi.any()).required(),
                     
-                    batch_id: Joi.string().allow('').required(),
+                    template_tag: Joi.string().allow('').required(),
                     
                  
             })
@@ -14918,11 +14918,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    user_id: Joi.string().allow(''),
-                    
                     company_id: Joi.number(),
                     
                     username: Joi.string().allow(''),
+                    
+                    user_id: Joi.string().allow(''),
                     
                  
             })
@@ -14933,39 +14933,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    created_on: Joi.string().allow(''),
-                    
-                    cancelled_records: Joi.array().items(Joi.string().allow('')),
-                    
-                    file_path: Joi.string().allow(''),
-                    
-                    retry: Joi.number(),
-                    
-                    modified_by: this.UserCommon(),
-                    
-                    id: Joi.string().allow(''),
-                    
-                    failed_records: Joi.array().items(Joi.string().allow('')),
-                    
-                    is_active: Joi.boolean(),
-                    
                     company_id: Joi.number(),
-                    
-                    failed: Joi.number(),
-                    
-                    total: Joi.number(),
                     
                     created_by: this.UserCommon(),
                     
                     succeed: Joi.number(),
                     
-                    modified_on: Joi.string().allow(''),
+                    failed_records: Joi.array().items(Joi.string().allow('')),
+                    
+                    modified_by: this.UserCommon(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    total: Joi.number(),
+                    
+                    retry: Joi.number(),
+                    
+                    id: Joi.string().allow(''),
                     
                     tracking_url: Joi.string().allow(''),
                     
+                    failed: Joi.number(),
+                    
                     cancelled: Joi.number(),
                     
-                    stage: Joi.string().allow(''),
+                    modified_on: Joi.string().allow(''),
+                    
+                    cancelled_records: Joi.array().items(Joi.string().allow('')),
+                    
+                    file_path: Joi.string().allow(''),
                     
                  
             })
@@ -14976,9 +14976,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.Items()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -14989,9 +14989,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    user: Joi.any().required(),
-                    
                     company_id: Joi.number(),
+                    
+                    user: Joi.any().required(),
                     
                     url: Joi.string().allow('').required(),
                     
@@ -15004,11 +15004,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_id: Joi.number(),
-                    
                     company_id: Joi.number(),
                     
                     size: Joi.string().allow(''),
+                    
+                    item_id: Joi.number(),
                     
                  
             })
@@ -15032,31 +15032,31 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_id: Joi.number(),
-                    
-                    currency: Joi.string().allow(''),
-                    
                     price_effective: Joi.number(),
                     
-                    uid: Joi.string().allow(''),
-                    
-                    price: Joi.number(),
+                    size: Joi.string().allow(''),
                     
                     quantity: Joi.number(),
                     
+                    currency: Joi.string().allow(''),
+                    
                     sellable_quantity: Joi.number(),
                     
-                    seller_identifier: Joi.number(),
-                    
                     store: Joi.any(),
+                    
+                    price: Joi.number(),
                     
                     inventory_updated_on: Joi.string().allow(''),
                     
                     price_transfer: Joi.number(),
                     
-                    size: Joi.string().allow(''),
+                    uid: Joi.string().allow(''),
                     
                     identifiers: Joi.any(),
+                    
+                    seller_identifier: Joi.number(),
+                    
+                    item_id: Joi.number(),
                     
                  
             })
@@ -15067,11 +15067,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    uid: Joi.number(),
-                    
                     brand_uid: Joi.number(),
                     
                     item_code: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
                     
                  
             })
@@ -15106,9 +15106,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    size_distribution: this.SizeDistribution().required(),
-                    
                     quantity: Joi.number(),
+                    
+                    size_distribution: this.SizeDistribution().required(),
                     
                  
             })
@@ -15119,11 +15119,11 @@ class Validator{
             return Joi.object({
                 
                     
+                    gtin_value: Joi.string().allow('').required(),
+                    
                     gtin_type: Joi.string().allow('').required(),
                     
                     primary: Joi.boolean(),
-                    
-                    gtin_value: Joi.string().allow('').required(),
                     
                  
             })
@@ -15134,39 +15134,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_height: Joi.number().allow(null),
+                    item_weight: Joi.number().allow(null),
+                    
+                    price_effective: Joi.number().required(),
+                    
+                    item_length: Joi.number().allow(null),
+                    
+                    item_width: Joi.number().allow(null),
+                    
+                    item_weight_unit_of_measure: Joi.string().allow('').allow(null),
+                    
+                    item_dimensions_unit_of_measure: Joi.string().allow('').allow(null),
+                    
+                    quantity: Joi.number().required(),
                     
                     set: this.InventorySet(),
                     
-                    price_effective: Joi.number().required(),
+                    expiration_date: Joi.string().allow(''),
+                    
+                    store_code: Joi.string().allow('').required(),
                     
                     currency: Joi.string().allow('').required(),
                     
                     price: Joi.number().required(),
                     
-                    item_weight_unit_of_measure: Joi.string().allow('').allow(null),
-                    
-                    quantity: Joi.number().required(),
-                    
-                    store_code: Joi.string().allow('').required(),
-                    
-                    item_weight: Joi.number().allow(null),
-                    
-                    item_dimensions_unit_of_measure: Joi.string().allow('').allow(null),
-                    
-                    is_set: Joi.boolean(),
-                    
-                    expiration_date: Joi.string().allow(''),
-                    
-                    item_length: Joi.number().allow(null),
-                    
                     price_transfer: Joi.number().allow(null),
+                    
+                    item_height: Joi.number().allow(null),
                     
                     size: Joi.string().allow('').required(),
                     
-                    item_width: Joi.number().allow(null),
-                    
                     identifiers: Joi.array().items(this.GTIN()).required(),
+                    
+                    is_set: Joi.boolean(),
                     
                  
             })
@@ -15177,11 +15177,11 @@ class Validator{
             return Joi.object({
                 
                     
+                    company_id: Joi.number().required(),
+                    
                     item: this.ItemQuery().required(),
                     
                     sizes: Joi.array().items(this.InvSize()).required(),
-                    
-                    company_id: Joi.number().required(),
                     
                  
             })
@@ -15192,11 +15192,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_id: Joi.number(),
+                    size: Joi.string().allow(''),
                     
                     location_id: Joi.number(),
                     
-                    size: Joi.string().allow(''),
+                    item_id: Joi.number(),
                     
                  
             })
@@ -15220,35 +15220,35 @@ class Validator{
             return Joi.object({
                 
                     
+                    company_id: Joi.number(),
+                    
+                    created_by: Joi.any(),
+                    
+                    failed_records: Joi.array().items(Joi.string().allow('')),
+                    
+                    succeed: Joi.number(),
+                    
+                    is_active: Joi.boolean(),
+                    
+                    modified_by: Joi.any(),
+                    
+                    stage: Joi.string().allow(''),
+                    
                     created_on: Joi.string().allow(''),
+                    
+                    total: Joi.number(),
+                    
+                    id: Joi.string().allow(''),
+                    
+                    cancelled: Joi.number(),
+                    
+                    failed: Joi.number(),
+                    
+                    modified_on: Joi.string().allow(''),
                     
                     cancelled_records: Joi.array().items(Joi.string().allow('')),
                     
                     file_path: Joi.string().allow(''),
-                    
-                    modified_by: Joi.any(),
-                    
-                    id: Joi.string().allow(''),
-                    
-                    company_id: Joi.number(),
-                    
-                    failed_records: Joi.array().items(Joi.string().allow('')),
-                    
-                    is_active: Joi.boolean(),
-                    
-                    failed: Joi.number(),
-                    
-                    total: Joi.number(),
-                    
-                    created_by: Joi.any(),
-                    
-                    succeed: Joi.number(),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    cancelled: Joi.number(),
-                    
-                    stage: Joi.string().allow(''),
                     
                  
             })
@@ -15259,9 +15259,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page(),
-                    
                     items: Joi.array().items(this.BulkInventoryGetItems()),
+                    
+                    page: this.Page(),
                     
                  
             })
@@ -15283,41 +15283,41 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_height: Joi.number().allow(null),
+                    item_weight: Joi.number().allow(null),
+                    
+                    seller_identifier: Joi.string().allow('').required(),
+                    
+                    price_effective: Joi.number().required(),
+                    
+                    item_length: Joi.number().allow(null),
+                    
+                    item_width: Joi.number().allow(null),
+                    
+                    item_weight_unit_of_measure: Joi.string().allow('').allow(null),
+                    
+                    item_dimensions_unit_of_measure: Joi.string().allow('').allow(null),
+                    
+                    quantity: Joi.number().required(),
                     
                     set: this.InventorySet(),
                     
-                    price_effective: Joi.number().required(),
+                    expiration_date: Joi.string().allow(''),
+                    
+                    store_code: Joi.string().allow('').required(),
                     
                     currency: Joi.string().allow('').required(),
                     
                     price: Joi.number().required(),
                     
-                    item_weight_unit_of_measure: Joi.string().allow('').allow(null),
-                    
-                    quantity: Joi.number().required(),
-                    
-                    store_code: Joi.string().allow('').required(),
-                    
-                    seller_identifier: Joi.string().allow('').required(),
-                    
-                    item_weight: Joi.number().allow(null),
-                    
-                    item_dimensions_unit_of_measure: Joi.string().allow('').allow(null),
-                    
-                    is_set: Joi.boolean(),
-                    
-                    expiration_date: Joi.string().allow(''),
-                    
-                    item_length: Joi.number().allow(null),
-                    
                     price_transfer: Joi.number().allow(null),
+                    
+                    item_height: Joi.number().allow(null),
                     
                     size: Joi.string().allow('').allow(null),
                     
-                    item_width: Joi.number().allow(null),
-                    
                     identifiers: Joi.array().items(Joi.any().allow(null)),
+                    
+                    is_set: Joi.boolean(),
                     
                  
             })
@@ -15328,11 +15328,11 @@ class Validator{
             return Joi.object({
                 
                     
+                    company_id: Joi.number().required(),
+                    
                     user: Joi.any(),
                     
                     sizes: Joi.array().items(this.Size1()).required(),
-                    
-                    company_id: Joi.number().required(),
                     
                     batch_id: Joi.string().allow('').required(),
                     
@@ -15345,19 +15345,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    task_id: Joi.string().allow('').required(),
-                    
-                    seller_id: Joi.number().required(),
-                    
-                    completed_on: Joi.string().allow(''),
+                    status: Joi.string().allow(''),
                     
                     url: Joi.string().allow(''),
                     
                     trigger_on: Joi.string().allow(''),
                     
-                    status: Joi.string().allow(''),
+                    seller_id: Joi.number().required(),
+                    
+                    completed_on: Joi.string().allow(''),
                     
                     request_params: Joi.any(),
+                    
+                    task_id: Joi.string().allow('').required(),
                     
                  
             })
@@ -15368,9 +15368,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    store: Joi.array().items(Joi.number()),
-                    
                     type: Joi.string().allow('').allow(null),
+                    
+                    store: Joi.array().items(Joi.number()),
                     
                     brand: Joi.array().items(Joi.number()),
                     
@@ -15383,9 +15383,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    display: Joi.string().allow(''),
-                    
                     value: Joi.string().allow(''),
+                    
+                    display: Joi.string().allow(''),
                     
                  
             })
@@ -15396,28 +15396,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    multivalues: Joi.boolean(),
-                    
                     data: Joi.array().items(this.FilerList()),
                     
-                 
-            })
-        }
-    
-        static PageResponse(){
-
-            return Joi.object({
-                
-                    
-                    current: Joi.string().allow(''),
-                    
-                    has_next: Joi.boolean(),
-                    
-                    has_previous: Joi.boolean(),
-                    
-                    item_total: Joi.number(),
-                    
-                    size: Joi.number(),
+                    multivalues: Joi.boolean(),
                     
                  
             })
@@ -15428,27 +15409,46 @@ class Validator{
             return Joi.object({
                 
                     
-                    tax_on_esp: Joi.boolean(),
-                    
-                    threshold2: Joi.number(),
-                    
-                    hs2_code: Joi.string().allow(''),
-                    
-                    id: Joi.string().allow(''),
-                    
                     company_id: Joi.number(),
+                    
+                    tax_on_esp: Joi.boolean(),
                     
                     tax_on_mrp: Joi.boolean(),
                     
-                    tax2: Joi.number(),
+                    threshold2: Joi.number(),
                     
                     threshold1: Joi.number(),
                     
+                    id: Joi.string().allow(''),
+                    
                     hsn_code: Joi.string().allow(''),
+                    
+                    tax2: Joi.number(),
+                    
+                    hs2_code: Joi.string().allow(''),
                     
                     modified_on: Joi.string().allow(''),
                     
                     tax1: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static PageResponse(){
+
+            return Joi.object({
+                
+                    
+                    item_total: Joi.number(),
+                    
+                    current: Joi.string().allow(''),
+                    
+                    has_previous: Joi.boolean(),
+                    
+                    has_next: Joi.boolean(),
+                    
+                    size: Joi.number(),
                     
                  
             })
@@ -15459,9 +15459,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.PageResponse(),
-                    
                     items: Joi.array().items(this.HsnCodesObject()),
+                    
+                    page: this.PageResponse(),
                     
                  
             })
@@ -15472,23 +15472,23 @@ class Validator{
             return Joi.object({
                 
                     
-                    tax_on_esp: Joi.boolean(),
-                    
-                    threshold2: Joi.number(),
-                    
-                    hs2_code: Joi.string().allow('').allow(null).required(),
-                    
-                    uid: Joi.number(),
-                    
                     company_id: Joi.number().required(),
+                    
+                    tax_on_esp: Joi.boolean(),
                     
                     tax_on_mrp: Joi.boolean().required(),
                     
-                    tax2: Joi.number(),
+                    threshold2: Joi.number(),
                     
                     threshold1: Joi.number().required(),
                     
                     hsn_code: Joi.string().allow('').required(),
+                    
+                    tax2: Joi.number(),
+                    
+                    hs2_code: Joi.string().allow('').allow(null).required(),
+                    
+                    uid: Joi.number(),
                     
                     tax1: Joi.number().required(),
                     
@@ -15534,17 +15534,17 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
+                    action: this.Action(),
                     
                     discount: Joi.string().allow(''),
                     
-                    uid: Joi.number(),
-                    
-                    name: Joi.string().allow(''),
+                    slug: Joi.string().allow(''),
                     
                     logo: this.Media(),
                     
-                    action: this.Action(),
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
                     
                     banners: this.ImageUrls(),
                     
@@ -15559,9 +15559,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    page: this.Page().required(),
-                    
                     items: Joi.array().items(this.BrandItem()),
+                    
+                    page: this.Page().required(),
                     
                  
             })
@@ -15572,15 +15572,15 @@ class Validator{
             return Joi.object({
                 
                     
+                    priority_order: Joi.number(),
+                    
                     slug: Joi.string().allow(''),
-                    
-                    uid: Joi.number(),
-                    
-                    name: Joi.string().allow(''),
                     
                     logo: this.Media(),
                     
-                    priority_order: Joi.number(),
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
                     
                  
             })
@@ -15602,9 +15602,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    uid: Joi.number(),
-                    
                     slug: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
                     
                  
             })
@@ -15615,19 +15615,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
+                    action: this.Action(),
                     
-                    uid: Joi.number(),
+                    _custom_json: Joi.any(),
+                    
+                    slug: Joi.string().allow(''),
                     
                     name: Joi.string().allow(''),
                     
-                    action: this.Action(),
-                    
-                    childs: Joi.array().items(Joi.any()),
+                    uid: Joi.number(),
                     
                     banners: this.ImageUrls(),
                     
-                    _custom_json: Joi.any(),
+                    childs: Joi.array().items(Joi.any()),
                     
                  
             })
@@ -15638,19 +15638,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
+                    action: this.Action(),
                     
-                    uid: Joi.number(),
+                    _custom_json: Joi.any(),
+                    
+                    slug: Joi.string().allow(''),
                     
                     name: Joi.string().allow(''),
                     
-                    action: this.Action(),
-                    
-                    childs: Joi.array().items(this.ThirdLevelChild()),
+                    uid: Joi.number(),
                     
                     banners: this.ImageUrls(),
                     
-                    _custom_json: Joi.any(),
+                    childs: Joi.array().items(this.ThirdLevelChild()),
                     
                  
             })
@@ -15661,19 +15661,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
+                    action: this.Action(),
                     
-                    uid: Joi.number(),
+                    _custom_json: Joi.any(),
+                    
+                    slug: Joi.string().allow(''),
                     
                     name: Joi.string().allow(''),
                     
-                    action: this.Action(),
-                    
-                    childs: Joi.array().items(this.SecondLevelChild()),
+                    uid: Joi.number(),
                     
                     banners: this.ImageUrls(),
                     
-                    _custom_json: Joi.any(),
+                    childs: Joi.array().items(this.SecondLevelChild()),
                     
                  
             })
@@ -15684,17 +15684,17 @@ class Validator{
             return Joi.object({
                 
                     
-                    slug: Joi.string().allow(''),
+                    action: this.Action(),
                     
-                    uid: Joi.number(),
+                    slug: Joi.string().allow(''),
                     
                     name: Joi.string().allow(''),
                     
-                    action: this.Action(),
-                    
-                    childs: Joi.array().items(this.Child()),
+                    uid: Joi.number(),
                     
                     banners: this.ImageUrls(),
+                    
+                    childs: Joi.array().items(this.Child()),
                     
                  
             })
@@ -15705,9 +15705,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    department: Joi.string().allow(''),
-                    
                     items: Joi.array().items(this.CategoryItems()),
+                    
+                    department: Joi.string().allow(''),
                     
                  
             })
@@ -15731,13 +15731,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    filters: Joi.array().items(this.ProductFilters()),
+                    items: Joi.array().items(this.ProductListingDetail()),
                     
                     page: this.Page().required(),
                     
                     sort_on: Joi.array().items(this.ProductSortOn()),
                     
-                    items: Joi.array().items(this.ProductListingDetail()),
+                    filters: Joi.array().items(this.ProductFilters()),
                     
                  
             })
@@ -15748,51 +15748,51 @@ class Validator{
             return Joi.object({
                 
                     
-                    attributes: Joi.any(),
-                    
                     rating_count: Joi.number(),
-                    
-                    uid: Joi.number(),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    tryouts: Joi.array().items(Joi.string().allow('')),
                     
                     brand: this.ProductBrand(),
                     
-                    image_nature: Joi.string().allow(''),
+                    tryouts: Joi.array().items(Joi.string().allow('')),
                     
-                    highlights: Joi.array().items(Joi.string().allow('')),
-                    
-                    rating: Joi.number(),
+                    teaser_tag: Joi.any(),
                     
                     type: Joi.string().allow(''),
                     
-                    item_code: Joi.string().allow(''),
-                    
                     promo_meta: Joi.any(),
                     
-                    name: Joi.string().allow(''),
-                    
-                    product_online_date: Joi.string().allow(''),
-                    
-                    medias: Joi.array().items(this.Media1()),
-                    
-                    similars: Joi.array().items(Joi.string().allow('')),
-                    
-                    short_description: Joi.string().allow(''),
-                    
-                    slug: Joi.string().allow('').required(),
-                    
-                    has_variant: Joi.boolean(),
-                    
-                    grouped_attributes: Joi.array().items(this.ProductDetailGroupedAttribute()),
+                    highlights: Joi.array().items(Joi.string().allow('')),
                     
                     color: Joi.string().allow(''),
                     
+                    description: Joi.string().allow(''),
+                    
+                    image_nature: Joi.string().allow(''),
+                    
+                    medias: Joi.array().items(this.Media1()),
+                    
+                    has_variant: Joi.boolean(),
+                    
+                    attributes: Joi.any(),
+                    
+                    similars: Joi.array().items(Joi.string().allow('')),
+                    
                     item_type: Joi.string().allow(''),
                     
-                    teaser_tag: Joi.any(),
+                    grouped_attributes: Joi.array().items(this.ProductDetailGroupedAttribute()),
+                    
+                    slug: Joi.string().allow('').required(),
+                    
+                    product_online_date: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                    item_code: Joi.string().allow(''),
+                    
+                    short_description: Joi.string().allow(''),
+                    
+                    rating: Joi.number(),
                     
                  
             })
@@ -15803,11 +15803,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_id: Joi.number().required(),
-                    
                     ignored_stores: Joi.array().items(Joi.number()),
                     
                     size: Joi.string().allow('').required(),
+                    
+                    item_id: Joi.number().required(),
                     
                  
             })
@@ -15820,13 +15820,13 @@ class Validator{
                     
                     quantity: Joi.number(),
                     
-                    group_id: Joi.string().allow(''),
-                    
-                    meta: Joi.any(),
-                    
                     article_assignment: this.ArticleAssignment(),
                     
+                    group_id: Joi.string().allow(''),
+                    
                     query: this.ArticleQuery(),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -15837,19 +15837,19 @@ class Validator{
             return Joi.object({
                 
                     
-                    channel_type: Joi.string().allow(''),
-                    
-                    pincode: Joi.string().allow('').required(),
-                    
                     company_id: Joi.number(),
                     
-                    articles: Joi.array().items(this.AssignStoreArticle()).required(),
+                    app_id: Joi.string().allow('').required(),
                     
                     channel_identifier: Joi.string().allow(''),
                     
-                    store_ids: Joi.array().items(Joi.number()),
+                    articles: Joi.array().items(this.AssignStoreArticle()).required(),
                     
-                    app_id: Joi.string().allow('').required(),
+                    pincode: Joi.string().allow('').required(),
+                    
+                    channel_type: Joi.string().allow(''),
+                    
+                    store_ids: Joi.array().items(Joi.number()),
                     
                  
             })
@@ -15860,9 +15860,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    level: Joi.string().allow(''),
-                    
                     strategy: Joi.string().allow(''),
+                    
+                    level: Joi.string().allow(''),
                     
                  
             })
@@ -15873,55 +15873,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    item_id: Joi.number().required(),
-                    
-                    strategy_wise_listing: Joi.array().items(Joi.any()),
-                    
-                    price_effective: Joi.number(),
-                    
-                    store_pincode: Joi.number(),
-                    
-                    uid: Joi.string().allow(''),
-                    
                     company_id: Joi.number(),
-                    
-                    quantity: Joi.number().required(),
-                    
-                    price_marked: Joi.number(),
-                    
-                    s_city: Joi.string().allow(''),
-                    
-                    group_id: Joi.string().allow(''),
-                    
-                    meta: Joi.any(),
-                    
-                    _id: Joi.string().allow(''),
-                    
-                    store_id: Joi.number(),
-                    
-                    article_assignment: this.ArticleAssignment1().required(),
-                    
-                    status: Joi.boolean().required(),
-                    
-                    size: Joi.string().allow('').required(),
                     
                     index: Joi.number(),
                     
-                 
-            })
-        }
-    
-    
-
-    
-        static BusinessCountryInfo(){
-
-            return Joi.object({
-                
+                    _id: Joi.string().allow(''),
                     
-                    country: Joi.string().allow(''),
+                    price_effective: Joi.number(),
                     
-                    country_code: Joi.string().allow(''),
+                    status: Joi.boolean().required(),
+                    
+                    store_id: Joi.number(),
+                    
+                    strategy_wise_listing: Joi.array().items(Joi.any()),
+                    
+                    quantity: Joi.number().required(),
+                    
+                    article_assignment: this.ArticleAssignment1().required(),
+                    
+                    group_id: Joi.string().allow(''),
+                    
+                    price_marked: Joi.number(),
+                    
+                    uid: Joi.string().allow(''),
+                    
+                    item_id: Joi.number().required(),
+                    
+                    s_city: Joi.string().allow(''),
+                    
+                    size: Joi.string().allow('').required(),
+                    
+                    store_pincode: Joi.number(),
+                    
+                    meta: Joi.any(),
                     
                  
             })
@@ -15932,68 +15916,15 @@ class Validator{
             return Joi.object({
                 
                     
+                    url: Joi.string().allow(''),
+                    
                     value: Joi.string().allow('').required(),
                     
                     type: Joi.string().allow('').required(),
                     
-                    verified: Joi.boolean(),
-                    
                     legal_name: Joi.string().allow(''),
                     
-                    url: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static GetAddressSerializer(){
-
-            return Joi.object({
-                
-                    
-                    address_type: Joi.string().allow(''),
-                    
-                    longitude: Joi.number(),
-                    
-                    landmark: Joi.string().allow(''),
-                    
-                    country: Joi.string().allow(''),
-                    
-                    country_code: Joi.string().allow(''),
-                    
-                    latitude: Joi.number(),
-                    
-                    pincode: Joi.number(),
-                    
-                    city: Joi.string().allow(''),
-                    
-                    address2: Joi.string().allow(''),
-                    
-                    state: Joi.string().allow(''),
-                    
-                    address1: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static Website(){
-
-            return Joi.object({
-                
-                    
-                    url: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static BusinessDetails(){
-
-            return Joi.object({
-                
-                    
-                    website: this.Website(),
+                    verified: Joi.boolean(),
                     
                  
             })
@@ -16004,375 +15935,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    number: Joi.string().allow('').required(),
-                    
                     country_code: Joi.number().required(),
                     
-                 
-            })
-        }
-    
-        static ContactDetails(){
-
-            return Joi.object({
-                
-                    
-                    phone: Joi.array().items(this.SellerPhoneNumber()),
-                    
-                    emails: Joi.array().items(Joi.string().allow('')),
-                    
-                 
-            })
-        }
-    
-        static GetCompanyProfileSerializerResponse(){
-
-            return Joi.object({
-                
-                    
-                    created_by: this.UserSerializer(),
-                    
-                    uid: Joi.number().required(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    mode: Joi.string().allow(''),
-                    
-                    verified_by: this.UserSerializer(),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    company_type: Joi.string().allow('').required(),
-                    
-                    business_country_info: this.BusinessCountryInfo(),
-                    
-                    documents: Joi.array().items(this.Document()),
-                    
-                    addresses: Joi.array().items(this.GetAddressSerializer()),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    warnings: Joi.any(),
-                    
-                    modified_by: this.UserSerializer(),
-                    
-                    business_type: Joi.string().allow('').required(),
-                    
-                    business_details: this.BusinessDetails(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
-                    
-                    contact_details: this.ContactDetails(),
-                    
-                    franchise_enabled: Joi.boolean(),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    business_info: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static CreateUpdateAddressSerializer(){
-
-            return Joi.object({
-                
-                    
-                    address_type: Joi.string().allow('').required(),
-                    
-                    longitude: Joi.number().required(),
-                    
-                    landmark: Joi.string().allow(''),
-                    
-                    country: Joi.string().allow('').required(),
-                    
-                    country_code: Joi.string().allow(''),
-                    
-                    latitude: Joi.number().required(),
-                    
-                    pincode: Joi.number().required(),
-                    
-                    city: Joi.string().allow('').required(),
-                    
-                    address2: Joi.string().allow(''),
-                    
-                    state: Joi.string().allow('').required(),
-                    
-                    address1: Joi.string().allow('').required(),
-                    
-                 
-            })
-        }
-    
-        static UpdateCompany(){
-
-            return Joi.object({
-                
-                    
-                    addresses: Joi.array().items(this.CreateUpdateAddressSerializer()),
-                    
-                    business_type: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
-                    
-                    contact_details: this.ContactDetails(),
-                    
-                    business_details: this.BusinessDetails(),
-                    
-                    franchise_enabled: Joi.boolean(),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    reject_reason: Joi.string().allow(''),
-                    
-                    company_type: Joi.string().allow(''),
-                    
-                    warnings: Joi.any(),
-                    
-                    documents: Joi.array().items(this.Document()),
-                    
-                    business_info: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static DocumentsObj(){
-
-            return Joi.object({
-                
-                    
-                    verified: Joi.number(),
-                    
-                    pending: Joi.number(),
-                    
-                 
-            })
-        }
-    
-        static MetricsSerializer(){
-
-            return Joi.object({
-                
-                    
-                    product: this.DocumentsObj(),
-                    
-                    company_documents: this.DocumentsObj(),
-                    
-                    uid: Joi.number(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    brand: this.DocumentsObj(),
-                    
-                    store: this.DocumentsObj(),
-                    
-                    store_documents: this.DocumentsObj(),
-                    
-                 
-            })
-        }
-    
-        static BrandBannerSerializer(){
-
-            return Joi.object({
-                
-                    
-                    landscape: Joi.string().allow(''),
-                    
-                    portrait: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static CreateUpdateBrandRequestSerializer(){
-
-            return Joi.object({
-                
-                    
-                    company_id: Joi.number(),
-                    
-                    uid: Joi.number(),
-                    
-                    _locale_language: Joi.any(),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    banner: this.BrandBannerSerializer(),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    brand_tier: Joi.string().allow(''),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    synonyms: Joi.array().items(Joi.string().allow('')),
-                    
-                    logo: Joi.string().allow('').required(),
-                    
-                 
-            })
-        }
-    
-        static UserSerializer1(){
-
-            return Joi.object({
-                
-                    
-                    username: Joi.string().allow(''),
-                    
-                    user_id: Joi.string().allow(''),
-                    
-                    contact: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static GetBrandResponseSerializer(){
-
-            return Joi.object({
-                
-                    
-                    created_by: this.UserSerializer1(),
-                    
-                    uid: Joi.number(),
-                    
-                    _locale_language: Joi.any(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    mode: Joi.string().allow(''),
-                    
-                    verified_by: this.UserSerializer1(),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    synonyms: Joi.array().items(Joi.string().allow('')),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    warnings: Joi.any(),
-                    
-                    modified_by: this.UserSerializer1(),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    reject_reason: Joi.string().allow(''),
-                    
-                    logo: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    banner: this.BrandBannerSerializer(),
-                    
-                    slug_key: Joi.string().allow(''),
-                    
-                    description: Joi.string().allow(''),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static CompanyBrandPostRequestSerializer(){
-
-            return Joi.object({
-                
-                    
-                    company: Joi.number().required(),
-                    
-                    uid: Joi.number(),
-                    
-                    brands: Joi.array().items(Joi.number()).required(),
-                    
-                 
-            })
-        }
-    
-        static GetCompanySerializer(){
-
-            return Joi.object({
-                
-                    
-                    created_by: this.UserSerializer(),
-                    
-                    uid: Joi.number(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    business_type: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    addresses: Joi.array().items(this.GetAddressSerializer()),
-                    
-                    verified_by: this.UserSerializer(),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    reject_reason: Joi.string().allow(''),
-                    
-                    company_type: Joi.string().allow(''),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    modified_by: this.UserSerializer(),
-                    
-                 
-            })
-        }
-    
-        static CompanyBrandSerializer(){
-
-            return Joi.object({
-                
-                    
-                    created_by: this.UserSerializer1(),
-                    
-                    uid: Joi.number(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    verified_by: this.UserSerializer1(),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    created_on: Joi.string().allow(''),
-                    
-                    reject_reason: Joi.string().allow(''),
-                    
-                    warnings: Joi.any(),
-                    
-                    brand: this.GetBrandResponseSerializer(),
-                    
-                    company: this.GetCompanySerializer(),
-                    
-                    modified_on: Joi.string().allow(''),
-                    
-                    modified_by: this.UserSerializer1(),
-                    
-                 
-            })
-        }
-    
-        static CompanyBrandListSerializer(){
-
-            return Joi.object({
-                
-                    
-                    page: this.Page(),
-                    
-                    items: Joi.array().items(this.CompanyBrandSerializer()),
+                    number: Joi.string().allow('').required(),
                     
                  
             })
@@ -16398,55 +15963,37 @@ class Validator{
             return Joi.object({
                 
                     
-                    e_waybill: this.InvoiceCredSerializer(),
-                    
                     e_invoice: this.InvoiceCredSerializer(),
                     
-                 
-            })
-        }
-    
-        static GetAddressSerializer1(){
-
-            return Joi.object({
-                
-                    
-                    address_type: Joi.string().allow(''),
-                    
-                    longitude: Joi.number(),
-                    
-                    landmark: Joi.string().allow(''),
-                    
-                    country: Joi.string().allow(''),
-                    
-                    country_code: Joi.string().allow(''),
-                    
-                    latitude: Joi.number(),
-                    
-                    pincode: Joi.number(),
-                    
-                    city: Joi.string().allow(''),
-                    
-                    address2: Joi.string().allow(''),
-                    
-                    state: Joi.string().allow(''),
-                    
-                    address1: Joi.string().allow(''),
+                    e_waybill: this.InvoiceCredSerializer(),
                     
                  
             })
         }
     
-        static LocationManagerSerializer(){
+        static LocationIntegrationType(){
 
             return Joi.object({
                 
                     
-                    mobile_no: this.SellerPhoneNumber().required(),
+                    order: Joi.string().allow(''),
                     
-                    email: Joi.string().allow(''),
+                    inventory: Joi.string().allow(''),
                     
-                    name: Joi.string().allow(''),
+                 
+            })
+        }
+    
+        static UserSerializer1(){
+
+            return Joi.object({
+                
+                    
+                    username: Joi.string().allow(''),
+                    
+                    contact: Joi.string().allow(''),
+                    
+                    user_id: Joi.string().allow(''),
                     
                  
             })
@@ -16460,6 +16007,102 @@ class Validator{
                     on_same_store: Joi.boolean(),
                     
                     store_uid: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static LocationManagerSerializer(){
+
+            return Joi.object({
+                
+                    
+                    email: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    mobile_no: this.SellerPhoneNumber().required(),
+                    
+                 
+            })
+        }
+    
+        static GetAddressSerializer(){
+
+            return Joi.object({
+                
+                    
+                    city: Joi.string().allow(''),
+                    
+                    address2: Joi.string().allow(''),
+                    
+                    state: Joi.string().allow(''),
+                    
+                    country_code: Joi.string().allow(''),
+                    
+                    country: Joi.string().allow(''),
+                    
+                    address1: Joi.string().allow(''),
+                    
+                    pincode: Joi.number(),
+                    
+                    latitude: Joi.number(),
+                    
+                    address_type: Joi.string().allow(''),
+                    
+                    longitude: Joi.number(),
+                    
+                    landmark: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static UserSerializer2(){
+
+            return Joi.object({
+                
+                    
+                    username: Joi.string().allow(''),
+                    
+                    contact: Joi.string().allow(''),
+                    
+                    user_id: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static GetCompanySerializer(){
+
+            return Joi.object({
+                
+                    
+                    created_by: this.UserSerializer2(),
+                    
+                    modified_by: this.UserSerializer2(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    company_type: Joi.string().allow(''),
+                    
+                    reject_reason: Joi.string().allow(''),
+                    
+                    business_type: Joi.string().allow(''),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    verified_on: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                    modified_on: Joi.string().allow(''),
+                    
+                    addresses: Joi.array().items(this.GetAddressSerializer()),
+                    
+                    verified_by: this.UserSerializer2(),
                     
                  
             })
@@ -16495,116 +16138,60 @@ class Validator{
             })
         }
     
-        static LocationSerializer(){
-
-            return Joi.object({
-                
-                    
-                    gst_credentials: this.InvoiceDetailsSerializer(),
-                    
-                    address: this.GetAddressSerializer1().required(),
-                    
-                    uid: Joi.number(),
-                    
-                    manager: this.LocationManagerSerializer(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    name: Joi.string().allow('').required(),
-                    
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
-                    
-                    display_name: Joi.string().allow('').required(),
-                    
-                    _custom_json: Joi.any(),
-                    
-                    code: Joi.string().allow('').required(),
-                    
-                    warnings: Joi.any(),
-                    
-                    product_return_config: this.ProductReturnConfigSerializer(),
-                    
-                    store_type: Joi.string().allow(''),
-                    
-                    documents: Joi.array().items(this.Document()),
-                    
-                    company: Joi.number().required(),
-                    
-                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
-                    
-                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
-                    
-                 
-            })
-        }
-    
-        static LocationIntegrationType(){
-
-            return Joi.object({
-                
-                    
-                    order: Joi.string().allow(''),
-                    
-                    inventory: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
         static GetLocationSerializer(){
 
             return Joi.object({
                 
                     
-                    created_by: this.UserSerializer1(),
-                    
-                    uid: Joi.number(),
-                    
-                    stage: Joi.string().allow(''),
-                    
-                    verified_by: this.UserSerializer1(),
-                    
-                    verified_on: Joi.string().allow(''),
-                    
-                    code: Joi.string().allow('').required(),
-                    
                     documents: Joi.array().items(this.Document()),
-                    
-                    company: this.GetCompanySerializer(),
-                    
-                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
                     
                     created_on: Joi.string().allow(''),
                     
-                    warnings: Joi.any(),
+                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
                     
-                    product_return_config: this.ProductReturnConfigSerializer(),
-                    
-                    modified_by: this.UserSerializer1(),
-                    
-                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
+                    display_name: Joi.string().allow('').required(),
                     
                     gst_credentials: this.InvoiceDetailsSerializer(),
                     
+                    integration_type: this.LocationIntegrationType(),
+                    
+                    verified_by: this.UserSerializer1(),
+                    
                     phone_number: Joi.string().allow('').required(),
+                    
+                    created_by: this.UserSerializer1(),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    
+                    store_type: Joi.string().allow(''),
                     
                     _custom_json: Joi.any(),
                     
-                    store_type: Joi.string().allow(''),
+                    product_return_config: this.ProductReturnConfigSerializer(),
                     
                     manager: this.LocationManagerSerializer(),
                     
                     address: this.GetAddressSerializer().required(),
                     
+                    company: this.GetCompanySerializer(),
+                    
+                    code: Joi.string().allow('').required(),
+                    
+                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
+                    
                     name: Joi.string().allow('').required(),
                     
-                    integration_type: this.LocationIntegrationType(),
+                    verified_on: Joi.string().allow(''),
                     
-                    display_name: Joi.string().allow('').required(),
+                    warnings: Joi.any(),
                     
-                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    uid: Joi.number(),
                     
                     modified_on: Joi.string().allow(''),
+                    
+                    modified_by: this.UserSerializer1(),
+                    
+                    stage: Joi.string().allow(''),
                     
                  
             })
@@ -16615,9 +16202,437 @@ class Validator{
             return Joi.object({
                 
                     
+                    items: Joi.array().items(this.GetLocationSerializer()),
+                    
                     page: this.Page(),
                     
-                    items: Joi.array().items(this.GetLocationSerializer()),
+                 
+            })
+        }
+    
+    
+
+    
+        static Website(){
+
+            return Joi.object({
+                
+                    
+                    url: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static BusinessDetails(){
+
+            return Joi.object({
+                
+                    
+                    website: this.Website(),
+                    
+                 
+            })
+        }
+    
+        static CreateUpdateAddressSerializer(){
+
+            return Joi.object({
+                
+                    
+                    country: Joi.string().allow('').required(),
+                    
+                    pincode: Joi.number().required(),
+                    
+                    city: Joi.string().allow('').required(),
+                    
+                    address_type: Joi.string().allow('').required(),
+                    
+                    landmark: Joi.string().allow(''),
+                    
+                    state: Joi.string().allow('').required(),
+                    
+                    address1: Joi.string().allow('').required(),
+                    
+                    address2: Joi.string().allow(''),
+                    
+                    longitude: Joi.number().required(),
+                    
+                    country_code: Joi.string().allow(''),
+                    
+                    latitude: Joi.number().required(),
+                    
+                 
+            })
+        }
+    
+        static ContactDetails(){
+
+            return Joi.object({
+                
+                    
+                    phone: Joi.array().items(this.SellerPhoneNumber()),
+                    
+                    emails: Joi.array().items(Joi.string().allow('')),
+                    
+                 
+            })
+        }
+    
+        static UpdateCompany(){
+
+            return Joi.object({
+                
+                    
+                    business_info: Joi.string().allow(''),
+                    
+                    documents: Joi.array().items(this.Document()),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    business_type: Joi.string().allow(''),
+                    
+                    reject_reason: Joi.string().allow(''),
+                    
+                    franchise_enabled: Joi.boolean(),
+                    
+                    business_details: this.BusinessDetails(),
+                    
+                    company_type: Joi.string().allow(''),
+                    
+                    warnings: Joi.any(),
+                    
+                    addresses: Joi.array().items(this.CreateUpdateAddressSerializer()),
+                    
+                    _custom_json: Joi.any(),
+                    
+                    contact_details: this.ContactDetails(),
+                    
+                 
+            })
+        }
+    
+        static BusinessCountryInfo(){
+
+            return Joi.object({
+                
+                    
+                    country: Joi.string().allow(''),
+                    
+                    country_code: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static GetCompanyProfileSerializerResponse(){
+
+            return Joi.object({
+                
+                    
+                    mode: Joi.string().allow(''),
+                    
+                    created_by: this.UserSerializer(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    franchise_enabled: Joi.boolean(),
+                    
+                    addresses: Joi.array().items(this.GetAddressSerializer()),
+                    
+                    modified_by: this.UserSerializer(),
+                    
+                    uid: Joi.number().required(),
+                    
+                    verified_by: this.UserSerializer(),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    business_details: this.BusinessDetails(),
+                    
+                    contact_details: this.ContactDetails(),
+                    
+                    documents: Joi.array().items(this.Document()),
+                    
+                    verified_on: Joi.string().allow(''),
+                    
+                    business_type: Joi.string().allow('').required(),
+                    
+                    business_country_info: this.BusinessCountryInfo(),
+                    
+                    company_type: Joi.string().allow('').required(),
+                    
+                    warnings: Joi.any(),
+                    
+                    business_info: Joi.string().allow(''),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    
+                    modified_on: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static DocumentsObj(){
+
+            return Joi.object({
+                
+                    
+                    verified: Joi.number(),
+                    
+                    pending: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static MetricsSerializer(){
+
+            return Joi.object({
+                
+                    
+                    store: this.DocumentsObj(),
+                    
+                    store_documents: this.DocumentsObj(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    brand: this.DocumentsObj(),
+                    
+                    uid: Joi.number(),
+                    
+                    product: this.DocumentsObj(),
+                    
+                    company_documents: this.DocumentsObj(),
+                    
+                 
+            })
+        }
+    
+        static BrandBannerSerializer(){
+
+            return Joi.object({
+                
+                    
+                    landscape: Joi.string().allow(''),
+                    
+                    portrait: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static GetBrandResponseSerializer(){
+
+            return Joi.object({
+                
+                    
+                    slug_key: Joi.string().allow(''),
+                    
+                    mode: Joi.string().allow(''),
+                    
+                    created_by: this.UserSerializer1(),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    logo: Joi.string().allow(''),
+                    
+                    banner: this.BrandBannerSerializer(),
+                    
+                    modified_by: this.UserSerializer1(),
+                    
+                    uid: Joi.number(),
+                    
+                    verified_by: this.UserSerializer1(),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    _custom_json: Joi.any(),
+                    
+                    verified_on: Joi.string().allow(''),
+                    
+                    reject_reason: Joi.string().allow(''),
+                    
+                    synonyms: Joi.array().items(Joi.string().allow('')),
+                    
+                    _locale_language: Joi.any(),
+                    
+                    warnings: Joi.any(),
+                    
+                    modified_on: Joi.string().allow(''),
+                    
+                    description: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static CreateUpdateBrandRequestSerializer(){
+
+            return Joi.object({
+                
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    uid: Joi.number(),
+                    
+                    synonyms: Joi.array().items(Joi.string().allow('')),
+                    
+                    _locale_language: Joi.any(),
+                    
+                    brand_tier: Joi.string().allow(''),
+                    
+                    logo: Joi.string().allow('').required(),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    banner: this.BrandBannerSerializer(),
+                    
+                    company_id: Joi.number(),
+                    
+                    _custom_json: Joi.any(),
+                    
+                 
+            })
+        }
+    
+        static CompanyBrandSerializer(){
+
+            return Joi.object({
+                
+                    
+                    modified_by: this.UserSerializer1(),
+                    
+                    verified_on: Joi.string().allow(''),
+                    
+                    created_by: this.UserSerializer1(),
+                    
+                    brand: this.GetBrandResponseSerializer(),
+                    
+                    uid: Joi.number(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    reject_reason: Joi.string().allow(''),
+                    
+                    verified_by: this.UserSerializer1(),
+                    
+                    created_on: Joi.string().allow(''),
+                    
+                    warnings: Joi.any(),
+                    
+                    modified_on: Joi.string().allow(''),
+                    
+                    company: this.GetCompanySerializer(),
+                    
+                 
+            })
+        }
+    
+        static CompanyBrandListSerializer(){
+
+            return Joi.object({
+                
+                    
+                    page: this.Page(),
+                    
+                    items: Joi.array().items(this.CompanyBrandSerializer()),
+                    
+                 
+            })
+        }
+    
+        static CompanyBrandPostRequestSerializer(){
+
+            return Joi.object({
+                
+                    
+                    uid: Joi.number(),
+                    
+                    company: Joi.number().required(),
+                    
+                    brands: Joi.array().items(Joi.number()).required(),
+                    
+                 
+            })
+        }
+    
+        static GetAddressSerializer1(){
+
+            return Joi.object({
+                
+                    
+                    address_type: Joi.string().allow(''),
+                    
+                    pincode: Joi.number(),
+                    
+                    country: Joi.string().allow(''),
+                    
+                    city: Joi.string().allow(''),
+                    
+                    landmark: Joi.string().allow(''),
+                    
+                    state: Joi.string().allow(''),
+                    
+                    address1: Joi.string().allow(''),
+                    
+                    address2: Joi.string().allow(''),
+                    
+                    longitude: Joi.number(),
+                    
+                    country_code: Joi.string().allow(''),
+                    
+                    latitude: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static LocationSerializer(){
+
+            return Joi.object({
+                
+                    
+                    address: this.GetAddressSerializer1().required(),
+                    
+                    code: Joi.string().allow('').required(),
+                    
+                    documents: Joi.array().items(this.Document()),
+                    
+                    contact_numbers: Joi.array().items(this.SellerPhoneNumber()),
+                    
+                    name: Joi.string().allow('').required(),
+                    
+                    manager: this.LocationManagerSerializer(),
+                    
+                    stage: Joi.string().allow(''),
+                    
+                    uid: Joi.number(),
+                    
+                    notification_emails: Joi.array().items(Joi.string().allow('')),
+                    
+                    product_return_config: this.ProductReturnConfigSerializer(),
+                    
+                    timing: Joi.array().items(this.LocationDayWiseSerializer()),
+                    
+                    store_type: Joi.string().allow(''),
+                    
+                    gst_credentials: this.InvoiceDetailsSerializer(),
+                    
+                    warnings: Joi.any(),
+                    
+                    display_name: Joi.string().allow('').required(),
+                    
+                    company: Joi.number().required(),
+                    
+                    _custom_json: Joi.any(),
                     
                  
             })
@@ -21316,33 +21331,73 @@ class Validator{
     
 
     
-        static CouponAuthor(){
+        static RuleDefinition(){
 
             return Joi.object({
                 
                     
-                    modified_by: Joi.string().allow('').allow(null),
+                    is_exact: Joi.boolean(),
                     
-                    created_by: Joi.string().allow('').allow(null),
+                    calculate_on: Joi.string().allow('').required(),
+                    
+                    auto_apply: Joi.boolean(),
+                    
+                    type: Joi.string().allow('').required(),
+                    
+                    scope: Joi.array().items(Joi.string().allow('')),
+                    
+                    value_type: Joi.string().allow('').required(),
+                    
+                    applicable_on: Joi.string().allow('').required(),
+                    
+                    currency_code: Joi.string().allow(''),
                     
                  
             })
         }
     
-        static Rule(){
+        static CouponSchedule(){
 
             return Joi.object({
                 
                     
-                    value: Joi.number(),
+                    cron: Joi.string().allow('').allow(null),
                     
-                    max: Joi.number(),
+                    end: Joi.string().allow('').allow(null),
                     
-                    discount_qty: Joi.number(),
+                    start: Joi.string().allow(''),
                     
-                    min: Joi.number(),
+                    duration: Joi.number().allow(null),
                     
-                    key: Joi.number(),
+                    next_schedule: Joi.array().items(Joi.any()),
+                    
+                 
+            })
+        }
+    
+        static State(){
+
+            return Joi.object({
+                
+                    
+                    is_public: Joi.boolean(),
+                    
+                    is_archived: Joi.boolean(),
+                    
+                    is_display: Joi.boolean(),
+                    
+                 
+            })
+        }
+    
+        static CouponAuthor(){
+
+            return Joi.object({
+                
+                    
+                    created_by: Joi.string().allow('').allow(null),
+                    
+                    modified_by: Joi.string().allow('').allow(null),
                     
                  
             })
@@ -21353,22 +21408,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    app_id: Joi.array().items(Joi.string().allow('')),
-                    
                     user_registered_after: Joi.string().allow('').allow(null),
                     
+                    app_id: Joi.array().items(Joi.string().allow('')),
+                    
                     anonymous: Joi.boolean(),
-                    
-                 
-            })
-        }
-    
-        static Validity(){
-
-            return Joi.object({
-                
-                    
-                    priority: Joi.number(),
                     
                  
             })
@@ -21387,29 +21431,42 @@ class Validator{
             })
         }
     
-        static UsesRemaining(){
+        static PaymentAllowValue(){
 
             return Joi.object({
                 
                     
-                    total: Joi.number(),
-                    
-                    user: Joi.number(),
-                    
-                    app: Joi.number(),
+                    max: Joi.number(),
                     
                  
             })
         }
     
-        static UsesRestriction(){
+        static PaymentModes(){
 
             return Joi.object({
                 
                     
-                    remaining: this.UsesRemaining(),
+                    networks: Joi.array().items(Joi.string().allow('')),
                     
-                    maximum: this.UsesRemaining(),
+                    types: Joi.array().items(Joi.string().allow('')),
+                    
+                    codes: Joi.array().items(Joi.string().allow('')),
+                    
+                    uses: this.PaymentAllowValue(),
+                    
+                 
+            })
+        }
+    
+        static PriceRange(){
+
+            return Joi.object({
+                
+                    
+                    min: Joi.number(),
+                    
+                    max: Joi.number(),
                     
                  
             })
@@ -21439,42 +21496,29 @@ class Validator{
             })
         }
     
-        static PaymentAllowValue(){
+        static UsesRemaining(){
 
             return Joi.object({
                 
                     
-                    max: Joi.number(),
+                    app: Joi.number(),
+                    
+                    user: Joi.number(),
+                    
+                    total: Joi.number(),
                     
                  
             })
         }
     
-        static PaymentModes(){
+        static UsesRestriction(){
 
             return Joi.object({
                 
                     
-                    uses: this.PaymentAllowValue(),
+                    maximum: this.UsesRemaining(),
                     
-                    types: Joi.array().items(Joi.string().allow('')),
-                    
-                    networks: Joi.array().items(Joi.string().allow('')),
-                    
-                    codes: Joi.array().items(Joi.string().allow('')),
-                    
-                 
-            })
-        }
-    
-        static PriceRange(){
-
-            return Joi.object({
-                
-                    
-                    max: Joi.number(),
-                    
-                    min: Joi.number(),
+                    remaining: this.UsesRemaining(),
                     
                  
             })
@@ -21485,46 +21529,57 @@ class Validator{
             return Joi.object({
                 
                     
-                    uses: this.UsesRestriction(),
-                    
-                    bulk_bundle: this.BulkBundleRestriction(),
-                    
-                    post_order: this.PostOrder(),
-                    
                     platforms: Joi.array().items(Joi.string().allow('')),
                     
                     payments: Joi.object().pattern(/\S/,this.PaymentModes()),
                     
-                    coupon_allowed: Joi.boolean(),
-                    
                     price_range: this.PriceRange(),
                     
+                    bulk_bundle: this.BulkBundleRestriction(),
+                    
                     ordering_stores: Joi.array().items(Joi.number()),
+                    
+                    post_order: this.PostOrder(),
+                    
+                    uses: this.UsesRestriction(),
+                    
+                    coupon_allowed: Joi.boolean(),
                     
                  
             })
         }
     
-        static RuleDefinition(){
+        static Validity(){
 
             return Joi.object({
                 
                     
-                    currency_code: Joi.string().allow(''),
+                    priority: Joi.number(),
                     
-                    auto_apply: Joi.boolean(),
+                 
+            })
+        }
+    
+        static Identifier(){
+
+            return Joi.object({
+                
                     
-                    is_exact: Joi.boolean(),
+                    brand_id: Joi.array().items(Joi.number()),
                     
-                    calculate_on: Joi.string().allow('').required(),
+                    item_id: Joi.array().items(Joi.number()),
                     
-                    value_type: Joi.string().allow('').required(),
+                    collection_id: Joi.array().items(Joi.string().allow('')),
                     
-                    type: Joi.string().allow('').required(),
+                    category_id: Joi.array().items(Joi.number()),
                     
-                    scope: Joi.array().items(Joi.string().allow('')),
+                    store_id: Joi.array().items(Joi.number()),
                     
-                    applicable_on: Joi.string().allow('').required(),
+                    article_id: Joi.array().items(Joi.string().allow('')),
+                    
+                    company_id: Joi.array().items(Joi.number()),
+                    
+                    user_id: Joi.array().items(Joi.string().allow('')),
                     
                  
             })
@@ -21535,9 +21590,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    modified_on: Joi.string().allow('').allow(null),
-                    
                     created_on: Joi.string().allow('').allow(null),
+                    
+                    modified_on: Joi.string().allow('').allow(null),
                     
                  
             })
@@ -21551,25 +21606,6 @@ class Validator{
                     action_date: Joi.string().allow('').allow(null),
                     
                     txn_mode: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static CouponSchedule(){
-
-            return Joi.object({
-                
-                    
-                    next_schedule: Joi.array().items(Joi.any()),
-                    
-                    end: Joi.string().allow('').allow(null),
-                    
-                    duration: Joi.number().allow(null),
-                    
-                    start: Joi.string().allow(''),
-                    
-                    cron: Joi.string().allow('').allow(null),
                     
                  
             })
@@ -21593,57 +21629,36 @@ class Validator{
             return Joi.object({
                 
                     
+                    subtitle: Joi.string().allow(''),
+                    
                     auto: this.DisplayMetaDict(),
-                    
-                    title: Joi.string().allow(''),
-                    
-                    apply: this.DisplayMetaDict(),
                     
                     description: Joi.string().allow(''),
                     
+                    title: Joi.string().allow(''),
+                    
                     remove: this.DisplayMetaDict(),
                     
-                    subtitle: Joi.string().allow(''),
+                    apply: this.DisplayMetaDict(),
                     
                  
             })
         }
     
-        static State(){
+        static Rule(){
 
             return Joi.object({
                 
                     
-                    is_public: Joi.boolean(),
+                    discount_qty: Joi.number(),
                     
-                    is_archived: Joi.boolean(),
+                    min: Joi.number(),
                     
-                    is_display: Joi.boolean(),
+                    value: Joi.number(),
                     
-                 
-            })
-        }
-    
-        static Identifier(){
-
-            return Joi.object({
-                
+                    key: Joi.number(),
                     
-                    article_id: Joi.array().items(Joi.string().allow('')),
-                    
-                    brand_id: Joi.array().items(Joi.number()),
-                    
-                    store_id: Joi.array().items(Joi.number()),
-                    
-                    item_id: Joi.array().items(Joi.number()),
-                    
-                    category_id: Joi.array().items(Joi.number()),
-                    
-                    collection_id: Joi.array().items(Joi.string().allow('')),
-                    
-                    company_id: Joi.array().items(Joi.number()),
-                    
-                    user_id: Joi.array().items(Joi.string().allow('')),
+                    max: Joi.number(),
                     
                  
             })
@@ -21654,37 +21669,37 @@ class Validator{
             return Joi.object({
                 
                     
-                    author: this.CouponAuthor(),
+                    rule_definition: this.RuleDefinition().required(),
                     
-                    rule: Joi.array().items(this.Rule()).required(),
-                    
-                    validation: this.Validation(),
-                    
-                    validity: this.Validity().required(),
-                    
-                    ownership: this.Ownership().required(),
-                    
-                    restrictions: this.Restrictions(),
+                    _schedule: this.CouponSchedule(),
                     
                     code: Joi.string().allow('').required(),
                     
-                    rule_definition: this.RuleDefinition().required(),
+                    state: this.State(),
+                    
+                    author: this.CouponAuthor(),
+                    
+                    validation: this.Validation(),
+                    
+                    ownership: this.Ownership().required(),
+                    
+                    tags: Joi.array().items(Joi.string().allow('')),
+                    
+                    restrictions: this.Restrictions(),
+                    
+                    validity: this.Validity().required(),
+                    
+                    type_slug: Joi.string().allow('').required(),
+                    
+                    identifiers: this.Identifier().required(),
                     
                     date_meta: this.CouponDateMeta(),
                     
                     action: this.CouponAction(),
                     
-                    _schedule: this.CouponSchedule(),
-                    
-                    type_slug: Joi.string().allow('').required(),
-                    
-                    tags: Joi.array().items(Joi.string().allow('')),
-                    
                     display_meta: this.DisplayMeta().required(),
                     
-                    state: this.State(),
-                    
-                    identifiers: this.Identifier().required(),
+                    rule: Joi.array().items(this.Rule()).required(),
                     
                  
             })
@@ -21734,37 +21749,37 @@ class Validator{
             return Joi.object({
                 
                     
-                    author: this.CouponAuthor(),
+                    rule_definition: this.RuleDefinition().required(),
                     
-                    rule: Joi.array().items(this.Rule()).required(),
-                    
-                    validation: this.Validation(),
-                    
-                    validity: this.Validity().required(),
-                    
-                    ownership: this.Ownership().required(),
-                    
-                    restrictions: this.Restrictions(),
+                    _schedule: this.CouponSchedule(),
                     
                     code: Joi.string().allow('').required(),
                     
-                    rule_definition: this.RuleDefinition().required(),
+                    state: this.State(),
+                    
+                    author: this.CouponAuthor(),
+                    
+                    validation: this.Validation(),
+                    
+                    ownership: this.Ownership().required(),
+                    
+                    tags: Joi.array().items(Joi.string().allow('')),
+                    
+                    restrictions: this.Restrictions(),
+                    
+                    validity: this.Validity().required(),
+                    
+                    type_slug: Joi.string().allow('').required(),
+                    
+                    identifiers: this.Identifier().required(),
                     
                     date_meta: this.CouponDateMeta(),
                     
                     action: this.CouponAction(),
                     
-                    _schedule: this.CouponSchedule(),
-                    
-                    type_slug: Joi.string().allow('').required(),
-                    
-                    tags: Joi.array().items(Joi.string().allow('')),
-                    
                     display_meta: this.DisplayMeta().required(),
                     
-                    state: this.State(),
-                    
-                    identifiers: this.Identifier().required(),
+                    rule: Joi.array().items(this.Rule()).required(),
                     
                  
             })
@@ -21775,9 +21790,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    archive: Joi.boolean(),
-                    
                     schedule: this.CouponSchedule(),
+                    
+                    archive: Joi.boolean(),
                     
                  
             })
@@ -21788,11 +21803,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    quantity: Joi.number(),
-                    
                     size: Joi.string().allow('').required(),
                     
                     product_id: Joi.string().allow('').required(),
+                    
+                    quantity: Joi.number(),
                     
                  
             })
@@ -21809,199 +21824,22 @@ class Validator{
             })
         }
     
-        static CouponBreakup(){
-
-            return Joi.object({
-                
-                    
-                    value: Joi.number(),
-                    
-                    uid: Joi.string().allow(''),
-                    
-                    code: Joi.string().allow(''),
-                    
-                    message: Joi.string().allow(''),
-                    
-                    is_applied: Joi.boolean(),
-                    
-                    type: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static LoyaltyPoints(){
-
-            return Joi.object({
-                
-                    
-                    applicable: Joi.number(),
-                    
-                    total: Joi.number(),
-                    
-                    is_applied: Joi.boolean(),
-                    
-                    description: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static DisplayBreakup(){
-
-            return Joi.object({
-                
-                    
-                    currency_code: Joi.string().allow(''),
-                    
-                    value: Joi.number(),
-                    
-                    message: Joi.array().items(Joi.string().allow('')),
-                    
-                    display: Joi.string().allow(''),
-                    
-                    key: Joi.string().allow(''),
-                    
-                    currency_symbol: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static RawBreakup(){
-
-            return Joi.object({
-                
-                    
-                    convenience_fee: Joi.number(),
-                    
-                    subtotal: Joi.number(),
-                    
-                    gst_charges: Joi.number(),
-                    
-                    mrp_total: Joi.number(),
-                    
-                    total: Joi.number(),
-                    
-                    cod_charge: Joi.number(),
-                    
-                    delivery_charge: Joi.number(),
-                    
-                    discount: Joi.number(),
-                    
-                    vog: Joi.number(),
-                    
-                    fynd_cash: Joi.number(),
-                    
-                    coupon: Joi.number(),
-                    
-                    you_saved: Joi.number(),
-                    
-                 
-            })
-        }
-    
-        static CartBreakup(){
-
-            return Joi.object({
-                
-                    
-                    coupon: this.CouponBreakup(),
-                    
-                    loyalty_points: this.LoyaltyPoints(),
-                    
-                    display: Joi.array().items(this.DisplayBreakup()),
-                    
-                    raw: this.RawBreakup(),
-                    
-                 
-            })
-        }
-    
-        static BasePrice(){
-
-            return Joi.object({
-                
-                    
-                    currency_code: Joi.string().allow(''),
-                    
-                    effective: Joi.number(),
-                    
-                    marked: Joi.number(),
-                    
-                    currency_symbol: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
-        static ArticlePriceInfo(){
-
-            return Joi.object({
-                
-                    
-                    base: this.BasePrice(),
-                    
-                    converted: this.BasePrice(),
-                    
-                 
-            })
-        }
-    
-        static BaseInfo(){
-
-            return Joi.object({
-                
-                    
-                    name: Joi.string().allow(''),
-                    
-                    uid: Joi.number(),
-                    
-                 
-            })
-        }
-    
-        static ProductArticle(){
-
-            return Joi.object({
-                
-                    
-                    price: this.ArticlePriceInfo(),
-                    
-                    size: Joi.string().allow(''),
-                    
-                    uid: Joi.string().allow(''),
-                    
-                    extra_meta: Joi.any(),
-                    
-                    quantity: Joi.number(),
-                    
-                    seller: this.BaseInfo(),
-                    
-                    store: this.BaseInfo(),
-                    
-                    type: Joi.string().allow(''),
-                    
-                 
-            })
-        }
-    
         static ProductPrice(){
 
             return Joi.object({
                 
                     
-                    currency_code: Joi.string().allow(''),
-                    
-                    effective: Joi.number(),
+                    add_on: Joi.number(),
                     
                     marked: Joi.number(),
                     
                     selling: Joi.number(),
                     
-                    add_on: Joi.number(),
-                    
                     currency_symbol: Joi.string().allow(''),
+                    
+                    effective: Joi.number(),
+                    
+                    currency_code: Joi.string().allow(''),
                     
                  
             })
@@ -22020,31 +21858,29 @@ class Validator{
             })
         }
     
-        static PromoMeta(){
+        static ProductImage(){
 
             return Joi.object({
                 
                     
-                    message: Joi.string().allow(''),
+                    secure_url: Joi.string().allow(''),
+                    
+                    aspect_ratio: Joi.string().allow(''),
+                    
+                    url: Joi.string().allow(''),
                     
                  
             })
         }
     
-        static ProductAvailability(){
+        static BaseInfo(){
 
             return Joi.object({
                 
                     
-                    deliverable: Joi.boolean(),
+                    name: Joi.string().allow(''),
                     
-                    out_of_stock: Joi.boolean(),
-                    
-                    sizes: Joi.array().items(Joi.string().allow('')),
-                    
-                    is_valid: Joi.boolean(),
-                    
-                    other_store_quantity: Joi.number(),
+                    uid: Joi.number(),
                     
                  
             })
@@ -22058,21 +21894,6 @@ class Validator{
                     name: Joi.string().allow(''),
                     
                     uid: Joi.number(),
-                    
-                 
-            })
-        }
-    
-        static ProductImage(){
-
-            return Joi.object({
-                
-                    
-                    aspect_ratio: Joi.string().allow(''),
-                    
-                    url: Joi.string().allow(''),
-                    
-                    secure_url: Joi.string().allow(''),
                     
                  
             })
@@ -22096,9 +21917,9 @@ class Validator{
                     
                     query: this.ActionQuery(),
                     
-                    url: Joi.string().allow(''),
-                    
                     type: Joi.string().allow(''),
+                    
+                    url: Joi.string().allow(''),
                     
                  
             })
@@ -22109,13 +21930,7 @@ class Validator{
             return Joi.object({
                 
                     
-                    categories: Joi.array().items(this.CategoryInfo()),
-                    
-                    uid: Joi.number(),
-                    
                     images: Joi.array().items(this.ProductImage()),
-                    
-                    action: this.ProductAction(),
                     
                     brand: this.BaseInfo(),
                     
@@ -22124,6 +21939,86 @@ class Validator{
                     type: Joi.string().allow(''),
                     
                     slug: Joi.string().allow(''),
+                    
+                    categories: Joi.array().items(this.CategoryInfo()),
+                    
+                    action: this.ProductAction(),
+                    
+                    uid: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static BasePrice(){
+
+            return Joi.object({
+                
+                    
+                    currency_symbol: Joi.string().allow(''),
+                    
+                    effective: Joi.number(),
+                    
+                    marked: Joi.number(),
+                    
+                    currency_code: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static ArticlePriceInfo(){
+
+            return Joi.object({
+                
+                    
+                    base: this.BasePrice(),
+                    
+                    converted: this.BasePrice(),
+                    
+                 
+            })
+        }
+    
+        static ProductArticle(){
+
+            return Joi.object({
+                
+                    
+                    price: this.ArticlePriceInfo(),
+                    
+                    seller: this.BaseInfo(),
+                    
+                    size: Joi.string().allow(''),
+                    
+                    store: this.BaseInfo(),
+                    
+                    type: Joi.string().allow(''),
+                    
+                    extra_meta: Joi.any(),
+                    
+                    quantity: Joi.number(),
+                    
+                    uid: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static ProductAvailability(){
+
+            return Joi.object({
+                
+                    
+                    out_of_stock: Joi.boolean(),
+                    
+                    is_valid: Joi.boolean(),
+                    
+                    sizes: Joi.array().items(Joi.string().allow('')),
+                    
+                    deliverable: Joi.boolean(),
+                    
+                    other_store_quantity: Joi.number(),
                     
                  
             })
@@ -22140,38 +22035,158 @@ class Validator{
             })
         }
     
+        static PromoMeta(){
+
+            return Joi.object({
+                
+                    
+                    message: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
         static CartProductInfo(){
 
             return Joi.object({
                 
                     
-                    article: this.ProductArticle(),
+                    price_per_unit: this.ProductPriceInfo(),
+                    
+                    message: Joi.string().allow(''),
+                    
+                    bulk_offer: Joi.any(),
+                    
+                    product: this.CartProduct(),
                     
                     price: this.ProductPriceInfo(),
                     
                     is_set: Joi.boolean(),
                     
-                    price_per_unit: this.ProductPriceInfo(),
-                    
-                    bulk_offer: Joi.any(),
-                    
-                    quantity: Joi.number(),
-                    
-                    promo_meta: this.PromoMeta(),
+                    article: this.ProductArticle(),
                     
                     availability: this.ProductAvailability(),
                     
-                    message: Joi.string().allow(''),
-                    
-                    product: this.CartProduct(),
-                    
                     discount: Joi.string().allow(''),
+                    
+                    identifiers: this.CartProductIdentifer().required(),
                     
                     key: Joi.string().allow(''),
                     
                     coupon_message: Joi.string().allow(''),
                     
-                    identifiers: this.CartProductIdentifer().required(),
+                    promo_meta: this.PromoMeta(),
+                    
+                    quantity: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static DisplayBreakup(){
+
+            return Joi.object({
+                
+                    
+                    display: Joi.string().allow(''),
+                    
+                    value: Joi.number(),
+                    
+                    currency_symbol: Joi.string().allow(''),
+                    
+                    key: Joi.string().allow(''),
+                    
+                    message: Joi.array().items(Joi.string().allow('')),
+                    
+                    currency_code: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static LoyaltyPoints(){
+
+            return Joi.object({
+                
+                    
+                    is_applied: Joi.boolean(),
+                    
+                    applicable: Joi.number(),
+                    
+                    description: Joi.string().allow(''),
+                    
+                    total: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static CouponBreakup(){
+
+            return Joi.object({
+                
+                    
+                    code: Joi.string().allow(''),
+                    
+                    type: Joi.string().allow(''),
+                    
+                    is_applied: Joi.boolean(),
+                    
+                    value: Joi.number(),
+                    
+                    message: Joi.string().allow(''),
+                    
+                    uid: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static RawBreakup(){
+
+            return Joi.object({
+                
+                    
+                    vog: Joi.number(),
+                    
+                    gst_charges: Joi.number(),
+                    
+                    mrp_total: Joi.number(),
+                    
+                    convenience_fee: Joi.number(),
+                    
+                    delivery_charge: Joi.number(),
+                    
+                    coupon: Joi.number(),
+                    
+                    fynd_cash: Joi.number(),
+                    
+                    discount: Joi.number(),
+                    
+                    you_saved: Joi.number(),
+                    
+                    subtotal: Joi.number(),
+                    
+                    cod_charge: Joi.number(),
+                    
+                    total: Joi.number(),
+                    
+                 
+            })
+        }
+    
+        static CartBreakup(){
+
+            return Joi.object({
+                
+                    
+                    display: Joi.array().items(this.DisplayBreakup()),
+                    
+                    loyalty_points: this.LoyaltyPoints(),
+                    
+                    coupon: this.CouponBreakup(),
+                    
+                    raw: this.RawBreakup(),
                     
                  
             })
@@ -22182,13 +22197,13 @@ class Validator{
             return Joi.object({
                 
                     
-                    breakup_values: this.CartBreakup(),
-                    
-                    message: Joi.string().allow(''),
+                    items: Joi.array().items(this.CartProductInfo()),
                     
                     is_valid: Joi.boolean(),
                     
-                    items: Joi.array().items(this.CartProductInfo()),
+                    message: Joi.string().allow(''),
+                    
+                    breakup_values: this.CartBreakup(),
                     
                  
             })
@@ -22199,9 +22214,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    message: Joi.string().allow(''),
-                    
                     errors: Joi.any(),
+                    
+                    message: Joi.string().allow(''),
                     
                     success: Joi.boolean(),
                     
@@ -22214,35 +22229,35 @@ class Validator{
             return Joi.object({
                 
                     
-                    landmark: Joi.string().allow(''),
-                    
-                    email: Joi.string().allow(''),
-                    
-                    address: Joi.string().allow(''),
-                    
-                    state: Joi.string().allow('').allow(null),
-                    
-                    area_code_slug: Joi.string().allow(''),
+                    phone: Joi.number(),
                     
                     pincode: Joi.number(),
                     
+                    state: Joi.string().allow('').allow(null),
+                    
+                    address_type: Joi.string().allow(''),
+                    
                     name: Joi.string().allow(''),
                     
-                    city: Joi.string().allow('').allow(null),
+                    area_code: Joi.string().allow('').required(),
                     
                     country_code: Joi.string().allow(''),
                     
-                    address_type: Joi.string().allow(''),
+                    city: Joi.string().allow('').allow(null),
+                    
+                    meta: Joi.any(),
                     
                     country: Joi.string().allow('').allow(null),
                     
                     area: Joi.string().allow(''),
                     
-                    phone: Joi.number(),
+                    landmark: Joi.string().allow(''),
                     
-                    meta: Joi.any(),
+                    address: Joi.string().allow(''),
                     
-                    area_code: Joi.string().allow('').required(),
+                    area_code_slug: Joi.string().allow(''),
+                    
+                    email: Joi.string().allow(''),
                     
                  
             })
@@ -22253,22 +22268,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    cart_items: this.CartItem(),
-                    
                     shipping_address: this.ShippingAddress().required(),
                     
-                 
-            })
-        }
-    
-        static PromiseTimestamp(){
-
-            return Joi.object({
-                
-                    
-                    max: Joi.number(),
-                    
-                    min: Joi.number(),
+                    cart_items: this.CartItem(),
                     
                  
             })
@@ -22279,9 +22281,22 @@ class Validator{
             return Joi.object({
                 
                     
+                    min: Joi.string().allow(''),
+                    
                     max: Joi.string().allow(''),
                     
-                    min: Joi.string().allow(''),
+                 
+            })
+        }
+    
+        static PromiseTimestamp(){
+
+            return Joi.object({
+                
+                    
+                    min: Joi.number(),
+                    
+                    max: Joi.number(),
                     
                  
             })
@@ -22292,9 +22307,9 @@ class Validator{
             return Joi.object({
                 
                     
-                    timestamp: this.PromiseTimestamp(),
-                    
                     formatted: this.PromiseFormatted(),
+                    
+                    timestamp: this.PromiseTimestamp(),
                     
                  
             })
@@ -22305,15 +22320,51 @@ class Validator{
             return Joi.object({
                 
                     
-                    message: Joi.string().allow(''),
-                    
                     items: Joi.array().items(this.CartProductInfo()),
                     
-                    breakup_values: this.CartBreakup(),
+                    delivery_promise: this.ShipmentPromise(),
                     
                     is_valid: Joi.boolean(),
                     
-                    delivery_promise: this.ShipmentPromise(),
+                    breakup_values: this.CartBreakup(),
+                    
+                    message: Joi.string().allow(''),
+                    
+                 
+            })
+        }
+    
+        static MultiTenderPaymentMeta(){
+
+            return Joi.object({
+                
+                    
+                    current_status: Joi.string().allow('').allow(null),
+                    
+                    payment_id: Joi.string().allow('').allow(null),
+                    
+                    payment_gateway: Joi.string().allow('').allow(null),
+                    
+                    order_id: Joi.string().allow('').allow(null),
+                    
+                    extra_meta: Joi.any().allow(null),
+                    
+                 
+            })
+        }
+    
+        static MultiTenderPaymentMethod(){
+
+            return Joi.object({
+                
+                    
+                    amount: Joi.number().required(),
+                    
+                    name: Joi.string().allow(''),
+                    
+                    meta: this.MultiTenderPaymentMeta(),
+                    
+                    mode: Joi.string().allow('').required(),
                     
                  
             })
@@ -22327,42 +22378,6 @@ class Validator{
                     key: Joi.string().allow('').required(),
                     
                     values: Joi.array().items(Joi.string().allow('')).required(),
-                    
-                 
-            })
-        }
-    
-        static MultiTenderPaymentMeta(){
-
-            return Joi.object({
-                
-                    
-                    extra_meta: Joi.any().allow(null),
-                    
-                    payment_id: Joi.string().allow('').allow(null),
-                    
-                    current_status: Joi.string().allow('').allow(null),
-                    
-                    order_id: Joi.string().allow('').allow(null),
-                    
-                    payment_gateway: Joi.string().allow('').allow(null),
-                    
-                 
-            })
-        }
-    
-        static MultiTenderPaymentMethod(){
-
-            return Joi.object({
-                
-                    
-                    mode: Joi.string().allow('').required(),
-                    
-                    name: Joi.string().allow(''),
-                    
-                    meta: this.MultiTenderPaymentMeta(),
-                    
-                    amount: Joi.number().required(),
                     
                  
             })
@@ -22386,39 +22401,39 @@ class Validator{
             return Joi.object({
                 
                     
-                    loyalty_discount: Joi.number(),
-                    
-                    amount_paid: Joi.number().required(),
-                    
-                    cashback_applied: Joi.number().required(),
-                    
-                    employee_discount: Joi.number(),
-                    
-                    coupon_effective_discount: Joi.number().required(),
-                    
-                    files: Joi.array().items(this.OpenApiFiles()),
-                    
-                    quantity: Joi.number(),
-                    
-                    extra_meta: Joi.any(),
-                    
-                    payment_methods: Joi.array().items(this.MultiTenderPaymentMethod()).required(),
+                    product_id: Joi.number().required(),
                     
                     size: Joi.string().allow('').required(),
                     
+                    cashback_applied: Joi.number().required(),
+                    
                     price_effective: Joi.number().required(),
                     
-                    discount: Joi.number().required(),
+                    amount_paid: Joi.number().required(),
                     
-                    cod_charges: Joi.number().required(),
+                    payment_methods: Joi.array().items(this.MultiTenderPaymentMethod()).required(),
                     
-                    product_id: Joi.number().required(),
+                    files: Joi.array().items(this.OpenApiFiles()),
                     
                     delivery_charges: Joi.number().required(),
                     
+                    coupon_effective_discount: Joi.number().required(),
+                    
+                    employee_discount: Joi.number(),
+                    
+                    cod_charges: Joi.number().required(),
+                    
                     price_marked: Joi.number().required(),
                     
+                    loyalty_discount: Joi.number(),
+                    
                     meta: this.CartItemMeta(),
+                    
+                    extra_meta: Joi.any(),
+                    
+                    discount: Joi.number().required(),
+                    
+                    quantity: Joi.number(),
                     
                  
             })
@@ -22429,41 +22444,41 @@ class Validator{
             return Joi.object({
                 
                     
-                    employee_discount: Joi.any(),
-                    
-                    cashback_applied: Joi.number().required(),
-                    
-                    files: Joi.array().items(this.OpenApiFiles()),
-                    
-                    payment_methods: Joi.array().items(this.MultiTenderPaymentMethod()).required(),
-                    
-                    cod_charges: Joi.number().required(),
-                    
-                    delivery_charges: Joi.number().required(),
-                    
-                    order_id: Joi.string().allow(''),
-                    
                     cart_value: Joi.number().required(),
-                    
-                    loyalty_discount: Joi.number(),
-                    
-                    currency_code: Joi.string().allow(''),
-                    
-                    payment_mode: Joi.string().allow(''),
-                    
-                    billing_address: this.ShippingAddress().required(),
                     
                     affiliate_order_id: Joi.string().allow(''),
                     
-                    shipping_address: this.ShippingAddress(),
+                    payment_methods: Joi.array().items(this.MultiTenderPaymentMethod()).required(),
                     
-                    cart_items: Joi.array().items(this.OpenApiOrderItem()).required(),
+                    employee_discount: Joi.any(),
+                    
+                    order_id: Joi.string().allow(''),
                     
                     coupon_code: Joi.string().allow('').required(),
                     
                     coupon: Joi.string().allow(''),
                     
+                    billing_address: this.ShippingAddress().required(),
+                    
                     coupon_value: Joi.number().required(),
+                    
+                    payment_mode: Joi.string().allow(''),
+                    
+                    cashback_applied: Joi.number().required(),
+                    
+                    files: Joi.array().items(this.OpenApiFiles()),
+                    
+                    delivery_charges: Joi.number().required(),
+                    
+                    cod_charges: Joi.number().required(),
+                    
+                    loyalty_discount: Joi.number(),
+                    
+                    shipping_address: this.ShippingAddress(),
+                    
+                    cart_items: Joi.array().items(this.OpenApiOrderItem()).required(),
+                    
+                    currency_code: Joi.string().allow(''),
                     
                  
             })
@@ -22474,11 +22489,11 @@ class Validator{
             return Joi.object({
                 
                     
-                    order_ref_id: Joi.string().allow(''),
-                    
                     order_id: Joi.string().allow('').required(),
                     
                     message: Joi.string().allow(''),
+                    
+                    order_ref_id: Joi.string().allow(''),
                     
                     success: Joi.boolean(),
                     
@@ -24366,20 +24381,20 @@ class Validator{
                     }).required()
             }
             
-            static deleteProduct(){
-
-                return Joi.object({
-                   itemId: Joi.number().required(),
-                
-                    }).required()
-            }
-            
             static getProduct(){
 
                 return Joi.object({
                   itemCode: Joi.string().allow(''),
                    itemId: Joi.number().required(),
                   brandUid: Joi.number(),
+                
+                    }).required()
+            }
+            
+            static deleteProduct(){
+
+                return Joi.object({
+                   itemId: Joi.number().required(),
                 
                     }).required()
             }
@@ -24426,19 +24441,19 @@ class Validator{
                     }).required()
             }
             
-            static deleteProductBulkJob(){
-
-                return Joi.object({
-                   batchId: Joi.number().required(),
-                
-                    }).required()
-            }
-            
             static createProductsInBulk(){
 
                 return Joi.object({
                    batchId: Joi.string().allow('').required(),
                  body: Validator.BulkProductRequest().required()
+                    }).required()
+            }
+            
+            static deleteProductBulkJob(){
+
+                return Joi.object({
+                   batchId: Joi.number().required(),
+                
                     }).required()
             }
             
@@ -24535,19 +24550,19 @@ class Validator{
                     }).required()
             }
             
-            static deleteBulkInventoryJob(){
-
-                return Joi.object({
-                   batchId: Joi.string().allow('').required(),
-                
-                    }).required()
-            }
-            
             static createBulkInventory(){
 
                 return Joi.object({
                    batchId: Joi.string().allow('').required(),
                  body: Validator.InventoryBulkRequest().required()
+                    }).required()
+            }
+            
+            static deleteBulkInventoryJob(){
+
+                return Joi.object({
+                   batchId: Joi.string().allow('').required(),
+                
                     }).required()
             }
             
@@ -24627,13 +24642,6 @@ class Validator{
         class CompanyProfileValidator {
 
             
-            static cbsOnboardGet(){
-
-                return Joi.object({
-                 
-                    }).required()
-            }
-            
             static updateCompany(){
 
                 return Joi.object({
@@ -24641,18 +24649,17 @@ class Validator{
                     }).required()
             }
             
-            static getCompanyMetrics(){
+            static cbsOnboardGet(){
 
                 return Joi.object({
                  
                     }).required()
             }
             
-            static editBrand(){
+            static getCompanyMetrics(){
 
                 return Joi.object({
-                   brandId: Joi.string().allow('').required(),
-                 body: Validator.CreateUpdateBrandRequestSerializer().required()
+                 
                     }).required()
             }
             
@@ -24664,17 +24671,18 @@ class Validator{
                     }).required()
             }
             
+            static editBrand(){
+
+                return Joi.object({
+                   brandId: Joi.string().allow('').required(),
+                 body: Validator.CreateUpdateBrandRequestSerializer().required()
+                    }).required()
+            }
+            
             static createBrand(){
 
                 return Joi.object({
                   body: Validator.CreateUpdateBrandRequestSerializer().required()
-                    }).required()
-            }
-            
-            static createCompanyBrandMapping(){
-
-                return Joi.object({
-                  body: Validator.CompanyBrandPostRequestSerializer().required()
                     }).required()
             }
             
@@ -24688,10 +24696,10 @@ class Validator{
                     }).required()
             }
             
-            static createLocation(){
+            static createCompanyBrandMapping(){
 
                 return Joi.object({
-                  body: Validator.LocationSerializer().required()
+                  body: Validator.CompanyBrandPostRequestSerializer().required()
                     }).required()
             }
             
@@ -24707,11 +24715,10 @@ class Validator{
                     }).required()
             }
             
-            static updateLocation(){
+            static createLocation(){
 
                 return Joi.object({
-                   locationId: Joi.string().allow('').required(),
-                 body: Validator.LocationSerializer().required()
+                  body: Validator.LocationSerializer().required()
                     }).required()
             }
             
@@ -24720,6 +24727,14 @@ class Validator{
                 return Joi.object({
                    locationId: Joi.string().allow('').required(),
                 
+                    }).required()
+            }
+            
+            static updateLocation(){
+
+                return Joi.object({
+                   locationId: Joi.string().allow('').required(),
+                 body: Validator.LocationSerializer().required()
                     }).required()
             }
             

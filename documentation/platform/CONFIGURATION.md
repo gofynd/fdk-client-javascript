@@ -1347,11 +1347,13 @@ Application inventory enabled companies
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").configuration.getAppCompanies({  pageNo : value,
+const promise = client.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
+ pageNo : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").configuration.getAppCompanies({  pageNo : value,
+const data = await client.application("<APPLICATION_ID>").configuration.getAppCompanies({  uid : value,
+ pageNo : value,
  pageSize : value });
 ```
 
@@ -1361,6 +1363,7 @@ const data = await client.application("<APPLICATION_ID>").configuration.getAppCo
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
+| uid | number | no | uid of companies to be fetched |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |  
 
