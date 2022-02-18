@@ -226,7 +226,7 @@ Get Subscribers By ExtensionID
 
 
 
-[SubscriberResponse](#SubscriberResponse)
+[SubscriberConfigList](#SubscriberConfigList)
 
 Success
 
@@ -477,6 +477,7 @@ Success
  | name | string |  no  |  |
  | webhook_url | string |  no  |  |
  | association | [Association](#Association) |  no  |  |
+ | custom_headers | string |  no  |  |
  | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
  | email_id | string |  no  |  |
  | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
@@ -495,6 +496,7 @@ Success
  | name | string |  no  |  |
  | webhook_url | string |  no  |  |
  | association | [Association](#Association) |  no  |  |
+ | custom_headers | string |  no  |  |
  | email_id | string |  no  |  |
  | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
  | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
@@ -541,6 +543,20 @@ Success
  | application_id | [string] |  no  |  |
  | extension_id | string |  no  |  |
  | criteria | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventConfigBase](#EventConfigBase)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | event_name | string |  no  |  |
+ | event_type | string |  no  |  |
+ | event_category | string |  no  |  |
+ | version | string |  no  |  |
 
 ---
 

@@ -6,6 +6,7 @@
 
 ## Billing Methods
 Handle platform subscription
+* [checkCouponValidity](#checkcouponvalidity)
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
@@ -21,6 +22,65 @@ Handle platform subscription
 
 
 ## Methods with example and description
+
+
+### checkCouponValidity
+Check coupon validity
+
+
+
+```javascript
+// Promise
+const promise = client.billing.checkCouponValidity({  plan : value,
+ couponCode : value });
+
+// Async/Await
+const data = await client.billing.checkCouponValidity({  plan : value,
+ couponCode : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| plan | string | yes | ID of the plan. |   
+| couponCode | string | yes | Coupon code. |  
+
+
+
+Check coupon validity.
+
+*Returned Response:*
+
+
+
+
+[CheckValidityResponse](#CheckValidityResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### createSubscriptionCharge
@@ -1454,6 +1514,18 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  | Internal server Server error |
  | code | string |  no  | Error code |
+
+---
+
+
+ 
+ 
+ #### [CheckValidityResponse](#CheckValidityResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean |  no  |  |
+ | discount_amount | number |  no  |  |
 
 ---
 
