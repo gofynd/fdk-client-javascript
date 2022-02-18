@@ -16,6 +16,7 @@
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Order](ORDER.md) - Handles Platform websites OMS 
+* [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [Feedback](FEEDBACK.md) - User Reviews and Rating System 
 * [PosCart](POSCART.md) - Cart APIs 
 * [Logistic](LOGISTIC.md) - Handles Platform websites OMS 

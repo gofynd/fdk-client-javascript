@@ -21,7 +21,9 @@ Content System
 * [getDataLoaders](#getdataloaders)
 * [deleteDataLoader](#deletedataloader)
 * [editDataLoader](#editdataloader)
+* [getDataLoadersByService](#getdataloadersbyservice)
 * [selectDataLoader](#selectdataloader)
+* [resetDataLoader](#resetdataloader)
 * [getFaqCategories](#getfaqcategories)
 * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
 * [createFaqCategory](#createfaqcategory)
@@ -125,7 +127,60 @@ Success. Refer `GetAnnouncementListSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/GetAnnouncementList"
+  "value": {
+    "items": [
+      {
+        "_id": "6026283125f06a827dc1a5cc",
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "title": "test",
+        "announcement": "<p>test</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ]
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:03:13.503Z",
+        "id": "6026283125f06a827dc1a5cc"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
 }
 ```
 </details>
@@ -188,7 +243,53 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/CreateAnnouncement"
+  "value": {
+    "message": "Successfully saved announcement",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
 }
 ```
 </details>
@@ -252,7 +353,48 @@ Success. Refer `AdminAnnouncementSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/Announcement"
+  "value": {
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "_id": "6026283125f06a827dc1a5cc",
+    "title": "test",
+    "announcement": "<p>test123</p>\n",
+    "pages": [
+      {
+        "page_slug": "$all",
+        "type": "custom"
+      }
+    ],
+    "editor_meta": {
+      "foreground_color": "#000",
+      "background_color": "#fff",
+      "content_type": "markdown",
+      "content": "test"
+    },
+    "_schedule": {
+      "published": true,
+      "next_schedule": [
+        {
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z"
+        }
+      ],
+      "cron": null,
+      "start": "2021-02-10T20:40:00.000Z",
+      "end": "2021-02-18T22:00:00.000Z",
+      "duration": null
+    },
+    "app": "000000000000000000000001",
+    "author": {
+      "created_by": "5e199e6998cfe1776f1385dc",
+      "modified_by": "5e199e6998cfe1776f1385dc"
+    },
+    "created_at": "2021-02-12T07:03:13.503Z",
+    "modified_at": "2021-02-12T07:05:57.020Z"
+  }
 }
 ```
 </details>
@@ -318,7 +460,53 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/UpdateAnnouncement"
+  "value": {
+    "message": "Successfully updated announcement",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
 }
 ```
 </details>
@@ -384,7 +572,53 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PatchAnnouncement"
+  "value": {
+    "message": "Announcement unpublished",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": false,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
 }
 ```
 </details>
@@ -448,7 +682,53 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/DeleteAnnouncement"
+  "value": {
+    "message": "Successfully deleted announcement",
+    "data": {
+      "value": {
+        "platforms": [
+          "web",
+          "android",
+          "ios"
+        ],
+        "_id": "6026283125f06a827dc1a5cc",
+        "title": "test",
+        "announcement": "<p>test123</p>\n",
+        "pages": [
+          {
+            "page_slug": "$all",
+            "type": "custom"
+          }
+        ],
+        "editor_meta": {
+          "foreground_color": "#000",
+          "background_color": "#fff",
+          "content_type": "markdown",
+          "content": "test"
+        },
+        "_schedule": {
+          "published": true,
+          "next_schedule": [
+            {
+              "start": "2021-02-10T20:40:00.000Z",
+              "end": "2021-02-18T22:00:00.000Z"
+            }
+          ],
+          "cron": null,
+          "start": "2021-02-10T20:40:00.000Z",
+          "end": "2021-02-18T22:00:00.000Z",
+          "duration": null
+        },
+        "app": "000000000000000000000001",
+        "author": {
+          "created_by": "5e199e6998cfe1776f1385dc",
+          "modified_by": "5e199e6998cfe1776f1385dc"
+        },
+        "created_at": "2021-02-12T07:03:13.503Z",
+        "modified_at": "2021-02-12T07:05:57.020Z"
+      }
+    }
+  }
 }
 ```
 </details>
@@ -511,7 +791,44 @@ Success. Refer `BlogSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/BlogResponse"
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
 }
 ```
 </details>
@@ -578,7 +895,48 @@ Success. Refer `BlogGetResponse` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/BlogGetResponse"
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T06:49:03.945Z",
+          "modified_on": "2021-03-14T06:49:03.945Z"
+        },
+        "tags": [],
+        "_id": "604db275b3ae202873964d94",
+        "content": [
+          {
+            "type": "html",
+            "value": "<p>test abhinav</p>"
+          }
+        ],
+        "title": "1st Blog",
+        "slug": "1st-blog",
+        "published": true,
+        "_schedule": {
+          "next_schedule": [
+            {}
+          ],
+          "start": "2021-04-08T07:15:13.000Z",
+          "end": "2021-04-10T02:00:00.000Z"
+        },
+        "feature_image": {
+          "secure_url": ""
+        },
+        "application": "000000000000000000000001",
+        "author": {
+          "name": "Fynd App"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
 }
 ```
 </details>
@@ -644,7 +1002,44 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/BlogResponse"
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
 }
 ```
 </details>
@@ -708,7 +1103,44 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/BlogResponse"
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
 }
 ```
 </details>
@@ -772,7 +1204,44 @@ Success. Returns a a JSON object with components. Refer `BlogSchema` for more de
 
 ```json
 {
-  "$ref": "#/components/examples/BlogResponse"
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
 }
 ```
 </details>
@@ -897,7 +1366,7 @@ Success. Refer `DataLoaderResponseSchema` for more details.
     "_id": "61bc4523a7ffc7504f4de4a5",
     "service": "catalog",
     "operation_id": "fetchSuggestions",
-    "url": "www.dddd.ddd",
+    "url": "/ext/example/url",
     "__source": {
       "type": "extension",
       "id": "000000000000000000000003"
@@ -912,7 +1381,7 @@ Success. Refer `DataLoaderResponseSchema` for more details.
     "_id": "61bc452da7ffc7504f4de4a7",
     "service": "catalog",
     "operation_id": "fetchSuggestions",
-    "url": "www.dddd.ddd",
+    "url": "/ext/example/url",
     "__source": {
       "type": "extension",
       "id": "000000000000000000000003"
@@ -1065,6 +1534,93 @@ Success.
 ---
 
 
+### getDataLoadersByService
+Get all the data loaders in an application by service name
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| serviceName | string | yes | Service name of the data loader. |  
+
+
+
+Use this to get all data loaders of an application by service name
+
+*Returned Response:*
+
+
+
+
+[Array<DataLoaderResponseSchema>](#Array<DataLoaderResponseSchema>)
+
+Success. Refer `DataLoaderResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+[
+  {
+    "name": "Algolia",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc4523a7ffc7504f4de4a5",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "/ext/example/url",
+    "__source": {
+      "type": "extension",
+      "id": "000000000000000000000003"
+    },
+    "application": "100000000000000000000001",
+    "__v": 0
+  },
+  {
+    "name": "Algolia v3",
+    "is_selected": false,
+    "type": "url",
+    "_id": "61bc452da7ffc7504f4de4a7",
+    "service": "catalog",
+    "operation_id": "fetchSuggestions",
+    "url": "/ext/example/url",
+    "__source": {
+      "type": "extension",
+      "id": "000000000000000000000003"
+    },
+    "application": "100000000000000000000001",
+    "__v": 0
+  }
+]
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### selectDataLoader
 Select a data loader by id
 
@@ -1114,6 +1670,67 @@ Success.
   "type": "url",
   "application": "000000000000000000000001",
   "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### resetDataLoader
+Reset a data loader by serive name and operation Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.resetDataLoader({  service : value,
+ operationId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.resetDataLoader({  service : value,
+ operationId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| service | string | yes | Name of service. |   
+| operationId | string | yes | Name of operation id of the service. |  
+
+
+
+Use this API to reselect a data loader.
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "reset": true
 }
 ```
 </details>
@@ -1844,7 +2461,39 @@ Success. Refer `LandingPageGetResponse` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/LandingPageGetResponse"
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-12T09:26:12.157Z",
+          "modified_on": "2021-03-12T09:26:12.157Z"
+        },
+        "platform": [
+          "android"
+        ],
+        "_id": "604b342e29f19310d8ae9743",
+        "slug": "landing-page-default-2",
+        "action": {
+          "page": {
+            "type": "default"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "application": "5cd3db5e9d692cfe5302a7bb",
+        "archived": false,
+        "_custom_json": null,
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
 }
 ```
 </details>
@@ -1907,7 +2556,30 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/LandingPageResponse"
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": null,
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": false
+  }
 }
 ```
 </details>
@@ -1973,7 +2645,30 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/LandingPageResponse"
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "_custom_json": null,
+    "slug": "pnc-landing",
+    "action": {
+      "page": {
+        "type": "home"
+      },
+      "popup": {},
+      "type": "page"
+    },
+    "platform": [
+      "web"
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2020-04-30T03:25:14.549Z",
+      "modified_on": "2020-04-30T03:25:14.549Z"
+    },
+    "archived": false
+  }
 }
 ```
 </details>
@@ -2119,7 +2814,39 @@ Success. Refer `ApplicationLegal` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/Legal"
+  "value": {
+    "tnc": "TERMS AND CONDITIONS FOR RECURRING PAYMENTS ON FYND PLATFORM\n\nUpdated On: July 11, 2020\n\nWhen you purchase (“**Services**”) from Fynd Platform (“**Fynd Platform**”, “**We**” or “**Us**”), you have the option to make payments on a recurring basis (“**Recurring Payments**”) on the (“**Terms and Conditions**”) below for your monthly usage charges towards the services provided to you under the account you operate with Fynd Platform (“**Account**”). We may, at our sole discretion, refuse Recurring Payments to anyone without notice for any reason at any time. \n\n\n1. **Recurring Payments** - You are not required to make Recurring Payments, and you may cancel Recurring Payments for your Account at your discretion. We will make Recurring Payments available to you only if you have designated an eligible payment method for your Account that is current, valid and otherwise acceptable to us. Such a method is hereinafter referred to as \"Payment Method\". We reserve the right to decide the payment methods eligible for Recurring Payments and we will automatically charge your Payment Method. You are solely responsible for the accuracy of the information you provide us regarding your Payment Method. We may limit the amount that you can pay using Recurring Payments every month.\n\n2. **Enabling Recurring Payments**- You agree that Recurring Payments will be enabled automatically for your Account if you chose an eligible Payment Method. Once Recurring Payments have been enabled for your Account, you authorize us to use your Payment Method to pay for your monthly invoices automatically until you cancel Recurring Payments for your Account. In Addition, once Recurring Payments has been enabled, you authorize us to charge the fees for the Services, unless you cancel or disable Recurring Payment, by means specified by us and applicable at such time, in which case you will be required to take action and pay for the Services.\n\n3. **Verification and Authentication**- Before Recurring Payments are enabled for your Fynd Platform Account, verification and authentication of your Payment Method will be performed. Once the verification and authentication are successful, you will be registered for Recurring Payments. This verification and authentication may also be repeated if (a) there are changes to your Account or Payment Method; (b) you cancel or disable Recurring Payments; (c) one of your Recurring Payments is declined for any reason whatsoever, including without limitation, expiry of your card.\n\n4. **Third Party Payment Processors** - You agree, understand and acknowledge that Fynd Platform may engage third party payment processors or gateway service providers to process Recurring Payments. Therefore, you may be required to agree to the terms and conditions of the third party payment processors or gateway service providers as communicated to you from time to time.\n\n5. **Cancelling Recurring Payments** - You have the right to cancel Recurring Payments for your Fynd Platform Account by contacting our customer support.\n\n6. **Notifications** - You authorize us to communicate with you by email regarding Recurring Payments. You acknowledge that we may also communicate with you through our affiliates that provide Services to you.\n\n7. **Disclaimer of Liability** - You agree that we will not be liable for any losses or damages suffered by you because of your use of Recurring Payments for your Fynd Platform Account, including any fraud in connection with any payment using your Payment Method. You realize that neither Fynd Platform nor Shopsense Retail Technologies Pvt. Ltd. which fully owns and controls the Fynd Platform, will be held responsible for any damages, whether partial or full.\n\n\n8. **Agreement Changes** - We may in our discretion change these Terms and Conditions at any time. If any change is found to be invalid, void, or for any reason unenforceable, that change is severable and does not affect the validity and enforceability of any other changes or the remainder of these Terms and Conditions.\n\nYOUR CONTINUED USE OF RECURRING PAYMENTS FOR YOUR FYND PLATFORM ACCOUNT AFTER WE CHANGE THESE TERMS AND CONDITIONS CONSTITUTES YOUR ACCEPTANCE OF THESE CHANGES.",
+    "policy": "**Privacy policy test**",
+    "shipping": "**Shipping term and conditions**",
+    "returns": "**Terms & conditions for returns **",
+    "_id": "5e8b2b96abe7dc94c02c9ac9",
+    "application": "000000000000000000000001",
+    "faq": [
+      {
+        "question": "New Question",
+        "answer": "New Answer"
+      },
+      {
+        "question": "New",
+        "answer": "sdfghjhg"
+      },
+      {
+        "question": "test",
+        "answer": "test"
+      },
+      {
+        "question": "New Test",
+        "answer": "New Test answer"
+      },
+      {
+        "question": "test",
+        "answer": "test"
+      }
+    ],
+    "created_at": "2020-04-06T13:16:06.818Z",
+    "updated_at": "2020-07-16T09:47:40.751Z",
+    "__v": 260
+  }
 }
 ```
 </details>
@@ -2253,7 +2980,194 @@ Success. Refer `NavigationGetResponse` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/NavigationGetResponse"
+  "value": {
+    "items": [
+      {
+        "_id": "5ffbd9b90ac98678ae0458d7",
+        "application": "000000000000000000000001",
+        "_custom_json": null,
+        "name": "temp",
+        "slug": "temp",
+        "platform": "web",
+        "position": "top",
+        "orientation": "landscape",
+        "navigation": [
+          {
+            "display": "Home",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "home"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            },
+            "sub_navigation": [
+              {
+                "display": "Brands",
+                "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+                "sort_order": 1,
+                "type": "",
+                "action": {
+                  "page": {
+                    "url": "/brands/",
+                    "type": "brands"
+                  },
+                  "popup": {},
+                  "type": "page"
+                },
+                "active": true,
+                "tags": null,
+                "acl": [
+                  "all"
+                ],
+                "_locale_language": {
+                  "hi": {
+                    "display": ""
+                  },
+                  "ar": {
+                    "display": ""
+                  },
+                  "en_us": {
+                    "display": ""
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "display": "Collections",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+            "sort_order": 2,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/collections/",
+                "type": "collections"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            },
+            "sub_navigation": [
+              {
+                "display": "Categories",
+                "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+                "sort_order": 1,
+                "type": "",
+                "action": {
+                  "page": {
+                    "url": "/categories/",
+                    "type": "categories"
+                  },
+                  "popup": {},
+                  "type": "page"
+                },
+                "active": true,
+                "tags": null,
+                "acl": [
+                  "all"
+                ],
+                "_locale_language": {
+                  "hi": {
+                    "display": ""
+                  },
+                  "ar": {
+                    "display": ""
+                  },
+                  "en_us": {
+                    "display": ""
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "display": "Primary Menu",
+            "image": "",
+            "sort_order": 3,
+            "type": "",
+            "action": {
+              "page": {
+                "type": "home"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ],
+        "created_by": {
+          "id": "000000000000000000000000"
+        },
+        "date_meta": {
+          "created_on": "2021-01-11T04:53:13.585Z",
+          "modified_on": "2021-01-14T10:24:34.485Z"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
 }
 ```
 </details>
@@ -2316,7 +3230,190 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/NavigationResponse"
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "test-nav",
+    "slug": "test-nav",
+    "platform": [
+      "ios",
+      "android"
+    ],
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": false
+  }
 }
 ```
 </details>
@@ -2375,7 +3472,669 @@ Success. Refer `DefaultNavigationResponse` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/DefaultNavigationResponse"
+  "value": {
+    "items": [
+      {
+        "name": "default-bottom",
+        "slug": "default-bottom-vIhLiJKQvUZdQvGWzDdrzLP3CTC4Hbxg",
+        "orientation": {
+          "landscape": [
+            "bottom"
+          ]
+        },
+        "version": 3,
+        "navigation": [
+          {
+            "display": "Home",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+            "sort_order": 1,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "home"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 2,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "brands"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Collections",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+            "sort_order": 3,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "collections"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 4,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "categories"
+              },
+              "type": "page"
+            },
+            "active": true
+          }
+        ],
+        "created_by": {},
+        "_id": "6050244dbd9e072063f1586b",
+        "platform": [
+          "android"
+        ]
+      },
+      {
+        "name": "default-bottom",
+        "slug": "default-bottom-SB0zLTfiPN4Z5doJQBKRagsLTDldm8Ug",
+        "orientation": {
+          "landscape": [
+            "bottom"
+          ]
+        },
+        "version": 3,
+        "navigation": [
+          {
+            "display": "Home",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+            "sort_order": 1,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "home"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 2,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "brands"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Collections",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+            "sort_order": 3,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "collections"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 4,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "categories"
+              },
+              "type": "page"
+            },
+            "active": true
+          }
+        ],
+        "created_by": {},
+        "_id": "6050244dbd9e072063f1586c",
+        "platform": [
+          "ios"
+        ]
+      },
+      {
+        "name": "default-left",
+        "slug": "default-left-dWrrfpfcNw6Arl0QtmK5VgunYYAHhGRR",
+        "orientation": {
+          "portrait": [
+            "left"
+          ]
+        },
+        "version": 3,
+        "navigation": [
+          {
+            "display": "Profile",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938091/production/applications/app_000000000000000000000001/media/navigation/icon/hv0cd5jdo0rkhsqoizmi.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "profile"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Orders",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938144/production/applications/app_000000000000000000000001/media/navigation/icon/lmv4fzpxxk0a6acitlfg.png",
+            "sort_order": 2,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "orders"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Track Order",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938144/production/applications/app_000000000000000000000001/media/navigation/icon/lmv4fzpxxk0a6acitlfg.png",
+            "sort_order": 3,
+            "type": "",
+            "action": {
+              "page": {
+                "type": "track-order"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "anonymous"
+            ]
+          },
+          {
+            "display": "Addresses",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938161/production/applications/app_000000000000000000000001/media/navigation/icon/qbod8vkjmot3qnaroibr.png",
+            "sort_order": 4,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "addresses"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Wishlist",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938125/production/applications/app_000000000000000000000001/media/navigation/icon/u8c7jdke4a3wwc0ftz8x.png",
+            "sort_order": 5,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/wishlist/",
+                "type": "wishlist"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Settings",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1584003256/production/applications/app_000000000000000000000001/media/navigation/icon/vywbdiio1zi7cbnltvgz.png",
+            "sort_order": 6,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "settings"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Policy",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939301/production/applications/app_000000000000000000000001/media/navigation/icon/bygqvme7hkrd45oemzy0.png",
+            "sort_order": 7,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "policy"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Terms & Conditions",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939382/production/applications/app_000000000000000000000001/media/navigation/icon/eaq0aagqr0xirojbuki3.png",
+            "sort_order": 8,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "tnc"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Need Help",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939416/production/applications/app_000000000000000000000001/media/navigation/icon/xeqv7pzyxagwtxcwvxbw.png",
+            "sort_order": 9,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/faq/",
+                "type": "faq"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "About Us",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939196/production/applications/app_000000000000000000000001/media/navigation/icon/dccm5et4sgylisbug9xr.png",
+            "sort_order": 10,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "about-us"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Rate Us",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1584091739/production/applications/app_000000000000000000000001/media/navigation/icon/afryyfeccqgjyeosdmbz.png",
+            "sort_order": 11,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "rate-us"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          }
+        ],
+        "created_by": {},
+        "_id": "6050244dbd9e072063f1586d",
+        "platform": [
+          "android"
+        ]
+      },
+      {
+        "name": "default-left",
+        "slug": "default-left-tRK1fsQVUD7BmdvX30Fb4u5ZVSrSi3KW",
+        "orientation": {
+          "portrait": [
+            "left"
+          ]
+        },
+        "version": 3,
+        "navigation": [
+          {
+            "display": "Profile",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938091/production/applications/app_000000000000000000000001/media/navigation/icon/hv0cd5jdo0rkhsqoizmi.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "profile"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Orders",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938144/production/applications/app_000000000000000000000001/media/navigation/icon/lmv4fzpxxk0a6acitlfg.png",
+            "sort_order": 2,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "orders"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Track Order",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938144/production/applications/app_000000000000000000000001/media/navigation/icon/lmv4fzpxxk0a6acitlfg.png",
+            "sort_order": 3,
+            "type": "",
+            "action": {
+              "page": {
+                "type": "track-order"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "anonymous"
+            ]
+          },
+          {
+            "display": "Addresses",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938161/production/applications/app_000000000000000000000001/media/navigation/icon/qbod8vkjmot3qnaroibr.png",
+            "sort_order": 4,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "addresses"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Wishlist",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583938125/production/applications/app_000000000000000000000001/media/navigation/icon/u8c7jdke4a3wwc0ftz8x.png",
+            "sort_order": 5,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/wishlist/",
+                "type": "wishlist"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          },
+          {
+            "display": "Settings",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1584003256/production/applications/app_000000000000000000000001/media/navigation/icon/vywbdiio1zi7cbnltvgz.png",
+            "sort_order": 6,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "settings"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Policy",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939301/production/applications/app_000000000000000000000001/media/navigation/icon/bygqvme7hkrd45oemzy0.png",
+            "sort_order": 7,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "policy"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Terms & Conditions",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939382/production/applications/app_000000000000000000000001/media/navigation/icon/eaq0aagqr0xirojbuki3.png",
+            "sort_order": 8,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "tnc"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Need Help",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939416/production/applications/app_000000000000000000000001/media/navigation/icon/xeqv7pzyxagwtxcwvxbw.png",
+            "sort_order": 9,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/faq/",
+                "type": "faq"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "About Us",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1583939196/production/applications/app_000000000000000000000001/media/navigation/icon/dccm5et4sgylisbug9xr.png",
+            "sort_order": 10,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "about-us"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "all"
+            ]
+          },
+          {
+            "display": "Rate Us",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1584091739/production/applications/app_000000000000000000000001/media/navigation/icon/afryyfeccqgjyeosdmbz.png",
+            "sort_order": 11,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/",
+                "type": "rate-us"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "acl": [
+              "registered"
+            ]
+          }
+        ],
+        "created_by": {},
+        "_id": "6050244dbd9e072063f1586e",
+        "platform": [
+          "ios"
+        ]
+      },
+      {
+        "name": "default-top",
+        "slug": "default-top-qrprb8dxqr3m698wwUGXWsvTfVkjt4cR",
+        "orientation": {
+          "landscape": [
+            "top"
+          ]
+        },
+        "version": 3,
+        "navigation": [
+          {
+            "display": "Home",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+            "sort_order": 1,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "home"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 2,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "brands"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Collections",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+            "sort_order": 3,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "collections"
+              },
+              "type": "page"
+            },
+            "active": true
+          },
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 4,
+            "acl": [
+              "all"
+            ],
+            "action": {
+              "page": {
+                "type": "categories"
+              },
+              "type": "page"
+            },
+            "active": true
+          }
+        ],
+        "created_by": {},
+        "_id": "6050244dbd9e072063f1586f",
+        "platform": [
+          "web"
+        ]
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -2442,7 +4201,190 @@ Success. Refer `NavigationSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/NavigationResponse"
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "test-nav",
+    "slug": "test-nav",
+    "platform": [
+      "ios",
+      "android"
+    ],
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": false
+  }
 }
 ```
 </details>
@@ -2508,7 +4450,190 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/NavigationResponse"
+  "value": {
+    "_id": "5ffbd9b90ac98678ae0458d7",
+    "application": "000000000000000000000001",
+    "_custom_json": null,
+    "name": "test-nav",
+    "slug": "test-nav",
+    "platform": [
+      "ios",
+      "android"
+    ],
+    "orientation": {
+      "portrait": [
+        "left"
+      ]
+    },
+    "navigation": [
+      {
+        "display": "Home",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/mystore-tab_y0dqzt.png",
+        "sort_order": 1,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/",
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Brands",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/brands/",
+                "type": "brands"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Collections",
+        "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/collections-tab_a0tg9c.png",
+        "sort_order": 2,
+        "type": "",
+        "action": {
+          "page": {
+            "url": "/collections/",
+            "type": "collections"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        },
+        "sub_navigation": [
+          {
+            "display": "Categories",
+            "image": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148154/production/system/icons/categories-tab_ss8e0q.png",
+            "sort_order": 1,
+            "type": "",
+            "action": {
+              "page": {
+                "url": "/categories/",
+                "type": "categories"
+              },
+              "popup": {},
+              "type": "page"
+            },
+            "active": true,
+            "tags": null,
+            "acl": [
+              "all"
+            ],
+            "_locale_language": {
+              "hi": {
+                "display": ""
+              },
+              "ar": {
+                "display": ""
+              },
+              "en_us": {
+                "display": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "display": "Primary Menu",
+        "image": "",
+        "sort_order": 3,
+        "type": "",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "popup": {},
+          "type": "page"
+        },
+        "active": true,
+        "tags": null,
+        "acl": [
+          "all"
+        ],
+        "_locale_language": {
+          "hi": {
+            "display": ""
+          },
+          "ar": {
+            "display": ""
+          },
+          "en_us": {
+            "display": ""
+          }
+        }
+      }
+    ],
+    "created_by": {
+      "id": "000000000000000000000000"
+    },
+    "date_meta": {
+      "created_on": "2021-01-11T04:53:13.585Z",
+      "modified_on": "2021-01-14T10:24:34.485Z"
+    },
+    "archived": false
+  }
 }
 ```
 </details>
@@ -2811,7 +4936,61 @@ Success. Refer `PageMetaSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PageMeta"
+  "value": {
+    "application_id": "000000000000000000000001",
+    "system_pages": [
+      {
+        "display": "Home",
+        "action": {
+          "page": {
+            "type": "home"
+          },
+          "type": "page"
+        },
+        "page_type": "home"
+      },
+      {
+        "display": "Brands",
+        "action": {
+          "page": {
+            "type": "brands"
+          },
+          "type": "page"
+        },
+        "page_type": "brands"
+      },
+      {
+        "display": "Collections",
+        "action": {
+          "page": {
+            "type": "collections"
+          },
+          "type": "page"
+        },
+        "page_type": "collections"
+      },
+      {
+        "display": "Categories",
+        "action": {
+          "page": {
+            "type": "categories"
+          },
+          "type": "page"
+        },
+        "page_type": "categories"
+      }
+    ],
+    "custom_pages": [
+      {
+        "display": "my first page",
+        "slug": "first_page"
+      },
+      {
+        "display": "my second page",
+        "slug": "second_page"
+      }
+    ]
+  }
 }
 ```
 </details>
@@ -2959,7 +5138,61 @@ Success. Refer `PageSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PageResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
 }
 ```
 </details>
@@ -3025,7 +5258,61 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/PageResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
 }
 ```
 </details>
@@ -3089,7 +5376,61 @@ Success.
 
 ```json
 {
-  "$ref": "#/components/examples/PageResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
 }
 ```
 </details>
@@ -3210,7 +5551,18 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PathMapping"
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirections": [
+      {
+        "redirect_from": "/from",
+        "redirect_to": "/to"
+      }
+    ],
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
 }
 ```
 </details>
@@ -3269,7 +5621,32 @@ Success. Refer `SeoComponent` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/Seo"
+  "value": {
+    "seo": {
+      "details": {
+        "title": "Zyosa Zyosa"
+      },
+      "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
+      "sitemap_enabled": false,
+      "_id": "6009819ee463ad40de397eb2",
+      "app": "000000000000000000000001",
+      "created_at": "2021-01-21T13:29:02.543Z",
+      "updated_at": "2021-02-05T06:36:16.048Z",
+      "__v": 11,
+      "custom_meta_tags": [
+        {
+          "name": "test 0000",
+          "content": "<meta name=\"test\" content=\"0000 cn dcje dcj rejre cjrenurenc \">",
+          "_id": "6017c301bde3c21dbb13b284"
+        },
+        {
+          "name": "cwdcdc",
+          "content": "<meta content=\"wdcewdewc\">",
+          "_id": "6017c675bde3c22cfb13b290"
+        }
+      ]
+    }
+  }
 }
 ```
 </details>
@@ -3425,7 +5802,58 @@ Success. Refer `SlideshowGetResponse` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/SlideshowGetResponse"
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T05:27:12.319Z",
+          "modified_on": "2021-03-14T05:27:12.319Z"
+        },
+        "archived": false,
+        "_id": "604d9eb975e9d136bb1b8b83",
+        "configuration": {
+          "start_on_launch": false,
+          "duration": 50,
+          "sleep_time": 100,
+          "slide_direction": "horizontal"
+        },
+        "slug": "ss-sfsd-updated",
+        "platform": "ios",
+        "media": [
+          {
+            "auto_decide_duration": false,
+            "type": "image",
+            "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+            "bg_color": "#ffffff",
+            "duration": 10,
+            "action": {
+              "type": ""
+            }
+          },
+          {
+            "auto_decide_duration": true,
+            "type": "youtube",
+            "url": "https://www.youtube.com/embed/9vJRopau0g0",
+            "bg_color": "#ffffff",
+            "duration": 909,
+            "action": {
+              "type": ""
+            }
+          }
+        ],
+        "application": "5cd3db5e9d692cfe5302a7bb",
+        "active": true,
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
 }
 ```
 </details>
@@ -3488,7 +5916,46 @@ Success. Refer `SlideshowSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/SlideshowResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": false,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
 }
 ```
 </details>
@@ -3555,7 +6022,46 @@ Success. Refer `SlideshowSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/SlideshowResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": false,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
 }
 ```
 </details>
@@ -3621,7 +6127,46 @@ Success. Refer `SlideshowSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/SlideshowResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-14T05:27:12.319Z",
+      "modified_on": "2021-03-14T05:27:12.319Z"
+    },
+    "archived": false,
+    "_id": "604d9eb975e9d136bb1b8b83",
+    "configuration": {
+      "start_on_launch": false,
+      "duration": 50,
+      "sleep_time": 100,
+      "slide_direction": "horizontal"
+    },
+    "slug": "ss-sfsd-updated",
+    "platform": "ios",
+    "media": [
+      {
+        "auto_decide_duration": false,
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1567148153/production/system/icons/brands-tab_sfinpk.png",
+        "bg_color": "#ffffff",
+        "duration": 10,
+        "action": {
+          "type": ""
+        }
+      },
+      {
+        "auto_decide_duration": true,
+        "type": "youtube",
+        "url": "https://www.youtube.com/embed/9vJRopau0g0",
+        "bg_color": "#ffffff",
+        "duration": 909,
+        "action": {
+          "type": ""
+        }
+      }
+    ],
+    "application": "5cd3db5e9d692cfe5302a7bb",
+    "active": true
+  }
 }
 ```
 </details>
@@ -3783,7 +6328,30 @@ Success. Refer `Support` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/Support"
+  "value": {
+    "_id": "5ea4980b87a7944094216193",
+    "config_type": "app",
+    "application": "000000000000000000000001",
+    "created_at": "2020-04-25T20:05:31.300Z",
+    "updated_at": "2020-12-04T10:48:12.194Z",
+    "contact": {
+      "phone": {
+        "active": true,
+        "phone": [
+          {
+            "key": "Jane Doe",
+            "code": "91",
+            "number": "9988776655"
+          }
+        ]
+      },
+      "email": {
+        "active": false,
+        "email": []
+      }
+    },
+    "created": true
+  }
 }
 ```
 </details>
@@ -3846,7 +6414,30 @@ Success. Refer `Support` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/Support"
+  "value": {
+    "_id": "5ea4980b87a7944094216193",
+    "config_type": "app",
+    "application": "000000000000000000000001",
+    "created_at": "2020-04-25T20:05:31.300Z",
+    "updated_at": "2020-12-04T10:48:12.194Z",
+    "contact": {
+      "phone": {
+        "active": true,
+        "phone": [
+          {
+            "key": "Jane Doe",
+            "code": "91",
+            "number": "9988776655"
+          }
+        ]
+      },
+      "email": {
+        "active": false,
+        "email": []
+      }
+    },
+    "created": true
+  }
 }
 ```
 </details>
@@ -4330,7 +6921,61 @@ Success. Refer `PageSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PageResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
 }
 ```
 </details>
@@ -4397,7 +7042,52 @@ Success. Refer `PageGetResponse` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PageGetResponse"
+  "value": {
+    "items": [
+      {
+        "date_meta": {
+          "created_on": "2021-03-14T06:49:03.945Z",
+          "modified_on": "2021-03-14T06:49:03.945Z"
+        },
+        "tags": [
+          "my first page"
+        ],
+        "_id": "604db275b3ae202873964d94",
+        "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+        "title": "test-page",
+        "slug": "test-page",
+        "published": true,
+        "_schedule": {
+          "next_schedule": [
+            {}
+          ],
+          "start": "2021-04-08T07:15:13.000Z",
+          "end": "2021-04-10T02:00:00.000Z"
+        },
+        "feature_image": {
+          "secure_url": "https://google.com/some-image"
+        },
+        "seo": {
+          "title": "my first page",
+          "description": "hey this is my first page",
+          "image": {
+            "url": ""
+          }
+        },
+        "application": "000000000000000000000001",
+        "author": {
+          "name": "Abhinav Maurya"
+        }
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 2,
+      "has_next": true
+    }
+  }
 }
 ```
 </details>
@@ -4463,7 +7153,61 @@ Success. Refer `PageSchema` for more details.
 
 ```json
 {
-  "$ref": "#/components/examples/PageResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
 }
 ```
 </details>
@@ -4527,7 +7271,61 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 
 ```json
 {
-  "$ref": "#/components/examples/PageResponse"
+  "value": {
+    "date_meta": {
+      "created_on": "2021-03-16T08:24:19.197Z",
+      "modified_on": "2021-03-16T08:24:19.197Z"
+    },
+    "tags": [
+      "my first page"
+    ],
+    "published": true,
+    "component_ids": [],
+    "archived": false,
+    "_id": "60506dcad18cb33946026862",
+    "title": "my first page",
+    "slug": "1st_page",
+    "feature_image": {
+      "secure_url": "https://google.com/some-image"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
+      },
+      {
+        "type": "css",
+        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
+      },
+      {
+        "type": "js",
+        "value": ""
+      }
+    ],
+    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
+    "platform": "web",
+    "description": "hey this is my first page",
+    "visibility": {
+      "test": true
+    },
+    "_schedule": {
+      "start": "2021-04-23T23:50:00.000Z",
+      "next_schedule": [
+        {}
+      ]
+    },
+    "seo": {
+      "title": "my first page",
+      "description": "hey this is my first page",
+      "image": {
+        "url": ""
+      }
+    },
+    "type": "rawhtml",
+    "application": "000000000000000000000001",
+    "orientation": "portrait",
+    "page_meta": []
+  }
 }
 ```
 </details>
@@ -4933,6 +7731,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | string |  no  |  |
+ | company | string |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
  | service | string |  no  |  |
@@ -4941,6 +7740,17 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | content | string |  no  |  |
  | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reset | string |  no  |  |
 
 ---
 
@@ -5224,7 +8034,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
 
  
  
- #### [APIError](#APIError)
+ #### [ContentAPIError](#ContentAPIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -5927,6 +8737,19 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | position | string |  no  |  |
  | attributes | string |  no  |  |
  | content | string |  no  |  |
+ | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TagSourceSchema](#TagSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 

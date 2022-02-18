@@ -499,13 +499,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  |  |
- | url | string |  yes  |  |
+ | title | string |  yes  | Give a name to the link. |
+ | url | string |  yes  | The web address to shorten. |
  | hash | string |  no  |  |
  | active | boolean |  no  |  |
  | expire_at | string |  no  |  |
  | enable_tracking | boolean |  no  |  |
- | personalized | boolean |  no  | To create personalized short links |
+ | personalized | boolean |  no  | To create personalized short links. |
  | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
  | redirects | [Redirects](#Redirects) |  no  |  |
  | attribution | [Attribution](#Attribution) |  no  |  |
@@ -546,6 +546,7 @@ Success
  | application | string |  no  |  |
  | user_id | string |  no  |  |
  | created_at | string |  no  |  |
+ | meta | string |  no  |  |
  | updated_at | string |  no  |  |
  | personalized | boolean |  no  | To create personalized short links |
  | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |

@@ -636,6 +636,7 @@ Success
  | company_id | number |  yes  |  |
  | is_active | boolean |  yes  |  |
  | app_ids | [string] |  yes  |  |
+ | extension_ids | [string] |  yes  |  |
  | job_type | string |  yes  |  |
  | discount_type | string |  yes  |  |
  | discount_level | string |  yes  |  |

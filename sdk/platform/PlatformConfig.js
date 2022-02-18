@@ -9,7 +9,7 @@ class PlatformConfig {
    */
   constructor(config) {
     this.companyId = config.companyId;
-    this.domain = config.domain || 'https://api.fyndx0.de';
+    this.domain = config.domain || 'https://api.fynd.com';
     this.apiKey = config.apiKey;
     this.apiSecret = config.apiSecret;
     this.oauthClient = new OauthClient(this);

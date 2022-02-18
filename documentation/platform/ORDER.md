@@ -14,6 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getOrderDetails](#getorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -24,6 +25,7 @@ Handles Platform websites OMS
 * [getShipmentTrackDetails](#getshipmenttrackdetails)
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
+* [getOrdersByApplicationId](#getordersbyapplicationid)
 * [getPing](#getping)
 * [voiceCallback](#voicecallback)
 * [voiceClickToCall](#voiceclicktocall)
@@ -328,6 +330,7 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  salesChannels : value,
  orderId : value,
  stores : value,
+ deploymentStores : value,
  status : value,
  dp : value,
  shortenUrls : value,
@@ -345,6 +348,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  salesChannels : value,
  orderId : value,
  stores : value,
+ deploymentStores : value,
  status : value,
  dp : value,
  shortenUrls : value,
@@ -368,6 +372,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | salesChannels | string | no | Selected Sales Channel |    
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
+| deploymentStores | string | no | Selected Deployment Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
 | shortenUrls | boolean | no | Shorten URL option |    
@@ -510,6 +515,68 @@ const promise = client.order.getOrderDetails({  orderId : value,
 
 // Async/Await
 const data = await client.order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderId | string | no | Order Id |    
+| next | string | no | Next |    
+| previous | string | no | Previous |  
+
+
+
+Get Orders
+
+*Returned Response:*
+
+
+
+
+[OrderDetails](#OrderDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```
@@ -1137,6 +1204,98 @@ Update Shipment Address
 [UpdateShipmentAddressResponse](#UpdateShipmentAddressResponse)
 
 Success. Check the example shown below or refer `UpdateShipmentAddressResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrdersByApplicationId
+Get Orders for company based on Company Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicationId({  pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ dp : value,
+ shortenUrls : value,
+ filterType : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").order.getOrdersByApplicationId({  pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ q : value,
+ stage : value,
+ salesChannels : value,
+ orderId : value,
+ stores : value,
+ status : value,
+ dp : value,
+ shortenUrls : value,
+ filterType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | string | no | Current page number |    
+| pageSize | string | no | Page limit |    
+| fromDate | string | no | From Date |    
+| toDate | string | no | To Date |    
+| q | string | no | Keyword for Search |    
+| stage | string | no | Specefic Order Stage |    
+| salesChannels | string | no | Selected Sales Channel |    
+| orderId | string | no | Order Id |    
+| stores | string | no | Selected Stores |    
+| status | string | no | Status of order |    
+| dp | string | no | Delivery Partners |    
+| shortenUrls | boolean | no | Shorten URL option |    
+| filterType | string | no | Filters |  
+
+
+
+Get Orders at Application Level
+
+*Returned Response:*
+
+
+
+
+[OrderListing](#OrderListing)
+
+Success
 
 
 
@@ -2517,6 +2676,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | stage | string |  no  |  |
  | stores | [string] |  no  |  |
+ | deployment_stores | [string] |  no  |  |
  | dp | [number] |  no  |  |
  | from_date | string |  no  |  |
  | to_date | string |  no  |  |
@@ -2557,6 +2717,7 @@ Success
  | created_at | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
  | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
+ | payment_methods | string |  no  |  |
 
 ---
 
@@ -2598,6 +2759,7 @@ Success
  | breakup_values | [ShipmentBreakupValues](#ShipmentBreakupValues) |  no  |  |
  | id | string |  no  |  |
  | dp_details | [DpDetails](#DpDetails) |  no  |  |
+ | payment_methods | string |  no  |  |
  | invoice | [ShipmentInvoice](#ShipmentInvoice) |  no  |  |
  | fulfilling_store | [PlatformFulfillingStore](#PlatformFulfillingStore) |  no  |  |
  | payments | [Payments](#Payments) |  no  |  |
@@ -2663,6 +2825,9 @@ Success
  | update_time | number |  no  |  |
  | current_status | [BagCurrentStatus](#BagCurrentStatus) |  no  |  |
  | bag_status | [BagStatus](#BagStatus) |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | can_return | boolean |  no  |  |
+ | payment_methods | string |  no  |  |
 
 ---
 
@@ -3361,6 +3526,7 @@ Success
  | created_at | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
  | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
+ | payment_methods | string |  no  |  |
 
 ---
 

@@ -226,7 +226,7 @@ Get Subscribers By ExtensionID
 
 
 
-[SubscriberResponse](#SubscriberResponse)
+[SubscriberConfigList](#SubscriberConfigList)
 
 Success
 
@@ -333,7 +333,7 @@ Get All Webhook Events
 
 
 
-[EventConfigList](#EventConfigList)
+[EventConfigResponse](#EventConfigResponse)
 
 Success
 
@@ -388,6 +388,17 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[EventConfig](#EventConfig)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EventConfigResponse](#EventConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | event_configs | [[EventConfig](#EventConfig)] |  no  |  |
 
 ---
 
@@ -466,6 +477,7 @@ Success
  | name | string |  no  |  |
  | webhook_url | string |  no  |  |
  | association | [Association](#Association) |  no  |  |
+ | custom_headers | string |  no  |  |
  | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
  | email_id | string |  no  |  |
  | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
@@ -484,6 +496,7 @@ Success
  | name | string |  no  |  |
  | webhook_url | string |  no  |  |
  | association | [Association](#Association) |  no  |  |
+ | custom_headers | string |  no  |  |
  | email_id | string |  no  |  |
  | status | [SubscriberStatus](#SubscriberStatus) |  no  |  |
  | auth_meta | [AuthMeta](#AuthMeta) |  no  |  |
@@ -534,6 +547,20 @@ Success
 ---
 
 
+ 
+ 
+ #### [EventConfigBase](#EventConfigBase)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | event_name | string |  no  |  |
+ | event_type | string |  no  |  |
+ | event_category | string |  no  |  |
+ | version | string |  no  |  |
+
+---
+
+
 
 
 ### Enums
@@ -549,6 +576,7 @@ Success
  | ---- | ----- | ----------- |
  | active | active | Status is active |
  | inactive | inactive | Status is inactive |
+ | blocked | blocked | Subscriber is blocked by system due to multiple failed delivery attempts. |
 
 ---
 
