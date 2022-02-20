@@ -5,6 +5,7 @@ const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
+const SessionStorage = require('./session/session_storage');
 
 class Extension {
     constructor() {
@@ -79,7 +80,8 @@ class Extension {
             companyId: parseInt(companyId),
             domain: this.cluster,
             apiKey: this.api_key,
-            apiSecret: this.api_secret
+            apiSecret: this.api_secret,
+            useAutoRenewTimer: false
         });
         return platformConfig;
     }
@@ -87,11 +89,16 @@ class Extension {
     async getPlatformClient(companyId, session) {
         let platformConfig =  this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
-        if(session.access_token_validity) {
+        session.
+        platformConfig.oauthClient.token_expires_at = session.access_token_validity;
+        if(session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime())/ 1000) <= 120;
             if(ac_nr_expired) {
                 logger.debug(`Renewing access token for company ${companyId}`);
-                await platformConfig.oauthClient.renewAccessToken();
+                const renewTokenRes = await platformConfig.oauthClient.renewAccessToken();
+                renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+                renewTokenRes.expires = new Date(platformConfig.oauthClient.token_expires_at);
+                await SessionStorage.saveSession(renewTokenRes);
                 logger.debug(`Access token renewed for company ${companyId}`);
             }
         }

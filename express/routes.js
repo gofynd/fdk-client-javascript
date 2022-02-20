@@ -106,16 +106,14 @@ function setupRoutes(ext) {
             let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
             
             if(ext.isOnlineAccessMode()) {
-                req.fdkSession.expires = sessionExpires;
+                token.expires = sessionExpires;
             } else {
-                req.fdkSession.expires = null;
+                token.expires = null;
             }
+            
+            token.access_token_validity = sessionExpires.getTime();
+            req.fdkSession.updateToken(token);
 
-            req.fdkSession.access_token = token.access_token;
-            req.fdkSession.expires_in = token.expires_in;
-            req.fdkSession.access_token_validity = sessionExpires.getTime();
-            req.fdkSession.current_user = token.current_user;
-            req.fdkSession.refresh_token = token.refresh_token;
             await SessionStorage.saveSession(req.fdkSession);
 
             const compCookieName = `${SESSION_COOKIE_NAME}_${req.fdkSession.company_id}`
