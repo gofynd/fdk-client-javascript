@@ -96,7 +96,8 @@ class Extension {
                 const renewTokenRes = await platformConfig.oauthClient.renewAccessToken();
                 renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                 renewTokenRes.expires = new Date(platformConfig.oauthClient.token_expires_at);
-                await SessionStorage.saveSession(renewTokenRes);
+                session.updateToken(renewTokenRes);
+                await SessionStorage.saveSession(session);
                 logger.debug(`Access token renewed for company ${companyId}`);
             }
         }
