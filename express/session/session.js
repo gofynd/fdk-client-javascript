@@ -42,7 +42,7 @@ class Session {
     }
 
     updateToken(rawToken) {
-        this.expires = rawToken.expires && this.expires.getTime(),
+        this.expires = rawToken.expires && rawToken.expires.getTime(),
         this.access_mode = rawToken.access_mode,
         this.access_token = rawToken.access_token,
         this.current_user = rawToken.current_user,
