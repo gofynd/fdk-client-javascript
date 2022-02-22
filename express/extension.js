@@ -5,7 +5,6 @@ const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
-const SessionStorage = require('./session/session_storage');
 
 class Extension {
     constructor() {
@@ -89,7 +88,6 @@ class Extension {
     async getPlatformClient(companyId, session) {
         let platformConfig =  this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
-        session.
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
         if(session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime())/ 1000) <= 120;
@@ -111,3 +109,4 @@ const extension = new Extension();
 module.exports = {
     extension
 };
+const SessionStorage = require('./session/session_storage');
