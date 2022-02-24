@@ -12,6 +12,8 @@ Authentication Service
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
+* [getActiveSessions](#getactivesessions)
+* [deleteActiveSessions](#deleteactivesessions)
 * [getPlatformConfig](#getplatformconfig)
 * [updatePlatformConfig](#updateplatformconfig)
 
@@ -542,6 +544,144 @@ Create user session
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getActiveSessions
+Get a list of all sections for a user
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.getActiveSessions({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |  
+
+
+
+Use this API to retrieve a list of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionListResponseSchema](#SessionListResponseSchema)
+
+Success. Refer `SessionListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteActiveSessions
+Get a list of all sections for a user
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |  
+
+
+
+Use this API to retrieve a list of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionListResponseSchema](#SessionListResponseSchema)
+
+Success. Refer `SessionListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -1352,6 +1492,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | has_next | boolean |  no  |  |
  | type | string |  no  |  |
  | current | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListResponseSchema](#SessionListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
 
 ---
 

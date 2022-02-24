@@ -3566,6 +3566,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [SessionListResponseSchema](#SessionListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+
+---
+
+
+ 
+ 
  #### [UnauthorizedSchema](#UnauthorizedSchema)
 
  | Properties | Type | Nullable | Description |

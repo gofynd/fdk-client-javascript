@@ -13,6 +13,10 @@ class ApplicationConfig {
         this.validate();
     }
 
+    setCookie(cookie){
+        this.cookie = cookie;
+    }
+
     validate() {
         if (!this.applicationID) {
             throw new FDKInvalidCredentialError("No Application ID Present");
