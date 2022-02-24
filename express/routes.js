@@ -21,20 +21,8 @@ function setupRoutes(ext) {
             let companyId = parseInt(req.query.company_id);
             let platformConfig = ext.getPlatformConfig(companyId);
             let session;
-            if(ext.isOnlineAccessMode()) {
-                session = new Session(Session.generateSessionId(true));
-            } else {
-                let sid = Session.generateSessionId(false, {
-                    cluster: ext.cluster,
-                    companyId: companyId
-                });
-                session = await SessionStorage.getSession(sid);
-                if(!session) {
-                    session = new Session(sid);
-                } else if(session.extension_id !== ext.api_key) {
-                    session = new Session(sid);
-                }
-            }
+        
+            session = new Session(Session.generateSessionId(true));
 
             let sessionExpires = new Date(Date.now() + 900000); // 15 min
 
@@ -42,7 +30,7 @@ function setupRoutes(ext) {
                 session.company_id = companyId;
                 session.scope = ext.scopes;
                 session.expires = sessionExpires;
-                session.access_mode = ext.access_mode;
+                session.access_mode = 'online'; // Always generate online mode token for extension launch
                 session.extension_id = ext.api_key;
             } else {
                 if(session.expires) {
@@ -73,12 +61,12 @@ function setupRoutes(ext) {
                 authCallback += "?application_id="+req.query.application_id;
             }
 
-            // start authorization flow
+            // start authorization flow 
             redirectUrl = platformConfig.oauthClient.startAuthorization({
                 scope: session.scope,
                 redirectUri: authCallback,
                 state: session.state,
-                access_mode: ext.access_mode
+                access_mode: 'online' // Always generate online mode token for extension launch
             });
             await SessionStorage.saveSession(session);
             logger.debug(`Redirecting after install callback to url: ${redirectUrl}`);
@@ -98,27 +86,57 @@ function setupRoutes(ext) {
             if(req.fdkSession.state !== req.query.state) {
                 throw new FdkInvalidOAuthError("Invalid oauth call");
             }
-
+            let companyId = req.fdkSession.company_id
             let platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
             let token = platformConfig.oauthClient.raw_token;
-
-            let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
             
-            if(ext.isOnlineAccessMode()) {
-                req.fdkSession.expires = sessionExpires;
-            } else {
-                req.fdkSession.expires = null;
-            }
+            // TODO: check what happens when token expires
+            let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
+        
+            if(!ext.isOnlineAccessMode()) {
+                
+                let sid = Session.generateSessionId(false, {
+                    cluster: ext.cluster,
+                    companyId: companyId
+                });
+                let session;
+                session = await SessionStorage.getSession(sid);
+                if(!session) {
+                    let offlineToken = await ext.getOfflineOAuthToken(companyId, req.query.code);
+                    
+                    if(ext.scopes.every(val => offlineToken.scope.indexOf(val) >= 0)){
+                        session = new Session(sid);
 
+                        session.company_id = companyId;
+                        session.scope = ext.scopes;
+                        session.state = req.fdkSession.state;
+                        session.expires_in = offlineToken.expires_in;
+                        session.access_mode = 'offline';
+                        session.extension_id = ext.api_key;
+                        session.access_token = offlineToken.access_token;
+                        session.refresh_token = offlineToken.refresh_token;
+                        session.access_token_validity =  new Date(Date.now() + offlineToken.expires_in * 1000).getTime();
+
+                        await SessionStorage.saveSession(session);
+                    }
+
+                } else if(session.extension_id !== ext.api_key) {
+                    session = new Session(sid);
+                }
+                
+                
+            } 
+
+            req.fdkSession.expires = sessionExpires;
             req.fdkSession.access_token = token.access_token;
             req.fdkSession.expires_in = token.expires_in;
             req.fdkSession.access_token_validity = sessionExpires.getTime();
             req.fdkSession.current_user = token.current_user;
-            req.fdkSession.refresh_token = token.refresh_token;
+
             await SessionStorage.saveSession(req.fdkSession);
 
-            const compCookieName = `${SESSION_COOKIE_NAME}_${req.fdkSession.company_id}`
+            const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
             res.cookie(compCookieName, req.fdkSession.id, { 
                 secure: true,
                 httpOnly: true,
@@ -126,11 +144,11 @@ function setupRoutes(ext) {
                 signed: true,
                 sameSite: "None"
             });
-            res.header['x-company-id'] = req.fdkSession.company_id;
+            res.header['x-company-id'] = companyId;
 
             req.extension = ext;
             if(ext.webhookRegistry.isInitialized()) {
-                const client = await ext.getPlatformClient(req.fdkSession.company_id, req.fdkSession);
+                const client = await ext.getPlatformClient(companyId, req.fdkSession);
                 await ext.webhookRegistry.syncEvents(client, null, true);
             }
             let redirectUrl = await ext.callbacks.auth(req);
@@ -144,6 +162,7 @@ function setupRoutes(ext) {
     FdkRoutes.post("/fp/uninstall", async (req, res, next) => {
         try {
             let {client_id, company_id} = req.body;
+            // TODO: Need to discuss - clear session after uninstall, platformClient in not found in request
             if(!ext.isOnlineAccessMode()) {
                 let sid = Session.generateSessionId(false, {
                     cluster: ext.cluster,

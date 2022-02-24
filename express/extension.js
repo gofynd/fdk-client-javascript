@@ -5,7 +5,8 @@ const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
-
+const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
+const querystring = require("query-string");
 class Extension {
     constructor() {
         this.api_key = null;
@@ -96,6 +97,25 @@ class Extension {
             }
         }
         return new PlatformClient(platformConfig);
+    }
+
+    async getOfflineOAuthToken(companyId, code){
+        let url = `${this.cluster}/service/panel/authentication/v1.0/company/${companyId}/oauth/offline-token`;
+        let data = { client_id: this.api_key, client_secret: this.api_secret, grant_type: 'client_credentials', scope: this.scopes, code: code };
+        const token = Buffer.from(
+            `${this.api_key}:${this.api_secret}`,
+            "utf8"
+        ).toString("base64");
+        const rawRequest = {
+            method: "post",
+            url: url,
+            data: querystring.stringify(data),
+            headers: {
+              Authorization: `Basic ${token}`,
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          };
+        return fdkAxios.request(rawRequest);
     }
 }
 
