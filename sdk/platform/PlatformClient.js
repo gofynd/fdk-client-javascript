@@ -10549,46 +10549,10 @@ class PlatformClient{
 
     
     /**
-        @typedef SearchKeywordResult
+        @typedef DeleteResponse
         
         
-        @property { string } sort_on
-        
-        @property { Object } query
-        
-         
-    */
-
-    /**
-        @typedef CreateSearchKeyword
-        
-        
-        @property { SearchKeywordResult } result
-        
-        @property { string } [app_id]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Array<string> } [words]
-        
-        @property { boolean } [is_active]
-        
-         
-    */
-
-    /**
-        @typedef GetSearchWordsData
-        
-        
-        @property { Object } [result]
-        
-        @property { string } [app_id]
-        
-        @property { string } [uid]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Array<string> } [words]
+        @property { string } [message]
         
          
     */
@@ -10599,20 +10563,28 @@ class PlatformClient{
         
         @property { Object } [meta]
         
-        @property { number } [status]
+        @property { string } [message]
         
         @property { string } [code]
         
-        @property { string } [message]
+        @property { number } [status]
         
          
     */
 
     /**
-        @typedef DeleteResponse
+        @typedef GetSearchWordsData
         
         
-        @property { string } [message]
+        @property { string } [app_id]
+        
+        @property { Object } [_custom_json]
+        
+        @property { Object } [result]
+        
+        @property { string } [uid]
+        
+        @property { Array<string> } [words]
         
          
     */
@@ -10629,10 +10601,66 @@ class PlatformClient{
     */
 
     /**
+        @typedef SearchKeywordResult
+        
+        
+        @property { Object } query
+        
+        @property { string } sort_on
+        
+         
+    */
+
+    /**
+        @typedef CreateSearchKeyword
+        
+        
+        @property { string } [app_id]
+        
+        @property { Object } [_custom_json]
+        
+        @property { Array<string> } [words]
+        
+        @property { SearchKeywordResult } result
+        
+        @property { boolean } [is_active]
+        
+         
+    */
+
+    /**
         @typedef GetSearchWordsResponse
         
         
         @property { Array<GetSearchWordsData> } [items]
+        
+        @property { Page } [page]
+        
+         
+    */
+
+    /**
+        @typedef GetAutocompleteWordsData
+        
+        
+        @property { string } [app_id]
+        
+        @property { Object } [_custom_json]
+        
+        @property { Array<Object> } [results]
+        
+        @property { string } [uid]
+        
+        @property { Array<string> } [words]
+        
+         
+    */
+
+    /**
+        @typedef GetAutocompleteWordsResponse
+        
+        
+        @property { Array<GetAutocompleteWordsData> } [items]
         
         @property { Page } [page]
         
@@ -10680,13 +10708,13 @@ class PlatformClient{
         @typedef AutocompleteResult
         
         
+        @property { Object } [_custom_json]
+        
         @property { AutocompleteAction } [action]
         
         @property { Media } [logo]
         
         @property { string } [display]
-        
-        @property { Object } [_custom_json]
         
          
     */
@@ -10697,41 +10725,13 @@ class PlatformClient{
         
         @property { string } [app_id]
         
+        @property { Object } [_custom_json]
+        
+        @property { Array<string> } [words]
+        
         @property { Array<AutocompleteResult> } [results]
         
-        @property { Object } [_custom_json]
-        
-        @property { Array<string> } [words]
-        
         @property { boolean } [is_active]
-        
-         
-    */
-
-    /**
-        @typedef GetAutocompleteWordsData
-        
-        
-        @property { string } [app_id]
-        
-        @property { string } [uid]
-        
-        @property { Object } [_custom_json]
-        
-        @property { Array<string> } [words]
-        
-        @property { Array<Object> } [results]
-        
-         
-    */
-
-    /**
-        @typedef GetAutocompleteWordsResponse
-        
-        
-        @property { Array<GetAutocompleteWordsData> } [items]
-        
-        @property { Page } [page]
         
          
     */
@@ -10740,13 +10740,13 @@ class PlatformClient{
         @typedef CreateAutocompleteWordsResponse
         
         
-        @property { Object } [_custom_json]
-        
         @property { string } [app_id]
         
         @property { Array<Object> } [results]
         
         @property { Array<string> } [words]
+        
+        @property { Object } [_custom_json]
         
          
     */
@@ -10755,17 +10755,17 @@ class PlatformClient{
         @typedef ProductBundleItem
         
         
-        @property { boolean } [auto_add_to_cart]
-        
-        @property { number } product_uid
-        
         @property { boolean } [allow_remove]
         
         @property { number } min_quantity
         
-        @property { boolean } [auto_select]
+        @property { boolean } [auto_add_to_cart]
         
         @property { number } max_quantity
+        
+        @property { boolean } [auto_select]
+        
+        @property { number } product_uid
         
          
     */
@@ -10776,29 +10776,29 @@ class PlatformClient{
         
         @property { Object } [meta]
         
-        @property { Array<string> } [page_visibility]
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { Object } [created_by]
-        
-        @property { string } [logo]
-        
         @property { string } choice
-        
-        @property { string } slug
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-        @property { boolean } is_active
         
         @property { Object } [modified_by]
         
-        @property { string } name
+        @property { Array<ProductBundleItem> } products
+        
+        @property { string } [created_on]
+        
+        @property { Array<string> } [page_visibility]
+        
+        @property { string } [modified_on]
+        
+        @property { Object } [created_by]
         
         @property { boolean } [same_store_assignment]
+        
+        @property { string } [logo]
+        
+        @property { boolean } is_active
+        
+        @property { string } slug
+        
+        @property { string } name
         
          
     */
@@ -10807,35 +10807,35 @@ class PlatformClient{
         @typedef GetProductBundleCreateResponse
         
         
-        @property { number } [company_id]
-        
         @property { Object } [meta]
-        
-        @property { Array<string> } [page_visibility]
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { Object } [created_by]
-        
-        @property { string } [logo]
         
         @property { string } choice
         
-        @property { string } slug
+        @property { Object } [modified_by]
         
         @property { string } [id]
         
+        @property { Array<ProductBundleItem> } products
+        
+        @property { number } [company_id]
+        
         @property { string } [created_on]
+        
+        @property { Array<string> } [page_visibility]
         
         @property { string } [modified_on]
         
-        @property { boolean } is_active
-        
-        @property { Object } [modified_by]
-        
-        @property { string } name
+        @property { Object } [created_by]
         
         @property { boolean } [same_store_assignment]
+        
+        @property { string } [logo]
+        
+        @property { boolean } is_active
+        
+        @property { string } slug
+        
+        @property { string } name
         
          
     */
@@ -10852,47 +10852,18 @@ class PlatformClient{
     */
 
     /**
-        @typedef ProductBundleUpdateRequest
-        
-        
-        @property { Object } [meta]
-        
-        @property { Array<string> } [page_visibility]
-        
-        @property { Array<ProductBundleItem> } products
-        
-        @property { string } [logo]
-        
-        @property { string } choice
-        
-        @property { string } slug
-        
-        @property { string } [modified_on]
-        
-        @property { boolean } is_active
-        
-        @property { Object } [modified_by]
-        
-        @property { string } name
-        
-        @property { boolean } [same_store_assignment]
-        
-         
-    */
-
-    /**
         @typedef Price
         
         
+        @property { number } [max_marked]
+        
         @property { number } [max_effective]
-        
-        @property { number } [min_marked]
-        
-        @property { string } [currency]
         
         @property { number } [min_effective]
         
-        @property { number } [max_marked]
+        @property { string } [currency]
+        
+        @property { number } [min_marked]
         
          
     */
@@ -10901,13 +10872,13 @@ class PlatformClient{
         @typedef Size
         
         
-        @property { number } [quantity]
+        @property { string } [value]
         
         @property { boolean } [is_available]
         
-        @property { string } [display]
+        @property { number } [quantity]
         
-        @property { string } [value]
+        @property { string } [display]
         
          
     */
@@ -10916,29 +10887,29 @@ class PlatformClient{
         @typedef LimitedProductData
         
         
-        @property { string } [item_code]
+        @property { Object } [price]
+        
+        @property { Array<string> } [sizes]
+        
+        @property { Object } [attributes]
+        
+        @property { string } [short_description]
+        
+        @property { string } [country_of_origin]
+        
+        @property { Array<string> } [images]
+        
+        @property { number } [quantity]
         
         @property { Object } [identifier]
         
         @property { number } [uid]
         
-        @property { number } [quantity]
-        
-        @property { Object } [price]
-        
-        @property { Array<string> } [sizes]
-        
-        @property { string } [country_of_origin]
+        @property { string } [item_code]
         
         @property { string } [slug]
         
         @property { string } [name]
-        
-        @property { string } [short_description]
-        
-        @property { Array<string> } [images]
-        
-        @property { Object } [attributes]
         
          
     */
@@ -10947,23 +10918,23 @@ class PlatformClient{
         @typedef GetProducts
         
         
-        @property { Price } [price]
-        
-        @property { boolean } [auto_add_to_cart]
-        
         @property { boolean } [allow_remove]
-        
-        @property { number } [product_uid]
         
         @property { number } [min_quantity]
         
+        @property { Price } [price]
+        
         @property { Array<Size> } [sizes]
+        
+        @property { boolean } [auto_add_to_cart]
+        
+        @property { number } [max_quantity]
         
         @property { boolean } [auto_select]
         
         @property { LimitedProductData } [product_details]
         
-        @property { number } [max_quantity]
+        @property { number } [product_uid]
         
          
     */
@@ -10972,25 +10943,54 @@ class PlatformClient{
         @typedef GetProductBundleResponse
         
         
-        @property { number } [company_id]
-        
         @property { Object } [meta]
-        
-        @property { Array<string> } [page_visibility]
-        
-        @property { Array<GetProducts> } [products]
-        
-        @property { string } [logo]
         
         @property { string } [choice]
         
-        @property { string } [slug]
+        @property { Array<string> } [page_visibility]
         
-        @property { boolean } [is_active]
+        @property { string } [logo]
         
         @property { string } [name]
         
         @property { boolean } [same_store_assignment]
+        
+        @property { number } [company_id]
+        
+        @property { boolean } [is_active]
+        
+        @property { string } [slug]
+        
+        @property { Array<GetProducts> } [products]
+        
+         
+    */
+
+    /**
+        @typedef ProductBundleUpdateRequest
+        
+        
+        @property { Object } [meta]
+        
+        @property { string } choice
+        
+        @property { Object } [modified_by]
+        
+        @property { Array<ProductBundleItem> } products
+        
+        @property { Array<string> } [page_visibility]
+        
+        @property { string } [modified_on]
+        
+        @property { boolean } [same_store_assignment]
+        
+        @property { string } [logo]
+        
+        @property { boolean } is_active
+        
+        @property { string } slug
+        
+        @property { string } name
         
          
     */
@@ -10999,11 +10999,11 @@ class PlatformClient{
         @typedef Meta
         
         
+        @property { string } [unit]
+        
         @property { Array<Object> } [values]
         
         @property { Object } [headers]
-        
-        @property { string } [unit]
         
          
     */
@@ -11021,35 +11021,35 @@ class PlatformClient{
         @typedef ValidateSizeGuide
         
         
-        @property { string } [modified_on]
+        @property { Guide } [guide]
         
-        @property { string } [tag]
+        @property { Object } [modified_by]
+        
+        @property { string } [id]
         
         @property { number } [company_id]
+        
+        @property { string } [image]
+        
+        @property { string } [created_on]
+        
+        @property { string } [modified_on]
+        
+        @property { string } [subtitle]
         
         @property { boolean } [active]
         
         @property { Object } [created_by]
         
-        @property { string } [id]
-        
-        @property { string } [subtitle]
-        
         @property { string } title
         
-        @property { string } [created_on]
+        @property { string } [tag]
         
-        @property { string } [image]
-        
-        @property { Guide } [guide]
+        @property { number } [brand_id]
         
         @property { string } [description]
         
-        @property { Object } [modified_by]
-        
         @property { string } name
-        
-        @property { number } [brand_id]
         
          
     */
@@ -11058,9 +11058,9 @@ class PlatformClient{
         @typedef SuccessResponse
         
         
-        @property { boolean } [success]
-        
         @property { number } [uid]
+        
+        @property { boolean } [success]
         
          
     */
@@ -11080,31 +11080,31 @@ class PlatformClient{
         @typedef SizeGuideResponse
         
         
-        @property { string } [tag]
-        
-        @property { number } [company_id]
-        
-        @property { Object } [created_by]
-        
-        @property { boolean } [active]
-        
         @property { string } [id]
         
-        @property { string } [subtitle]
-        
-        @property { string } [title]
+        @property { number } [company_id]
         
         @property { string } [created_on]
         
         @property { string } [modified_on]
         
-        @property { Object } [guide]
+        @property { string } [subtitle]
         
-        @property { Object } [modified_by]
+        @property { boolean } [active]
+        
+        @property { Object } [created_by]
         
         @property { string } [name]
         
+        @property { string } [title]
+        
+        @property { string } [tag]
+        
         @property { number } [brand_id]
+        
+        @property { Object } [guide]
+        
+        @property { Object } [modified_by]
         
          
     */
@@ -11130,29 +11130,14 @@ class PlatformClient{
     */
 
     /**
-        @typedef GetCatalogConfigurationDetailsProduct
-        
-        
-        @property { Object } [similar]
-        
-        @property { Object } [compare]
-        
-        @property { Object } [variant]
-        
-        @property { Object } [detail]
-        
-         
-    */
-
-    /**
         @typedef MetaDataListingFilterMetaResponse
         
+        
+        @property { Array<string> } [filter_types]
         
         @property { string } [display]
         
         @property { string } [key]
-        
-        @property { Array<string> } [filter_types]
         
         @property { Array<Object> } [units]
         
@@ -11200,12 +11185,109 @@ class PlatformClient{
     */
 
     /**
+        @typedef GetCatalogConfigurationDetailsProduct
+        
+        
+        @property { Object } [detail]
+        
+        @property { Object } [variant]
+        
+        @property { Object } [similar]
+        
+        @property { Object } [compare]
+        
+         
+    */
+
+    /**
         @typedef GetCatalogConfigurationMetaData
         
         
+        @property { MetaDataListingResponse } [listing]
+        
         @property { GetCatalogConfigurationDetailsProduct } [product]
         
-        @property { MetaDataListingResponse } [listing]
+         
+    */
+
+    /**
+        @typedef ProductSize
+        
+        
+        @property { number } max
+        
+        @property { number } min
+        
+         
+    */
+
+    /**
+        @typedef ConfigurationProductVariantConfig
+        
+        
+        @property { ProductSize } size
+        
+        @property { string } key
+        
+        @property { number } priority
+        
+        @property { string } [logo]
+        
+        @property { boolean } is_active
+        
+        @property { string } display_type
+        
+        @property { string } name
+        
+         
+    */
+
+    /**
+        @typedef ConfigurationProductVariant
+        
+        
+        @property { Array<ConfigurationProductVariantConfig> } [config]
+        
+         
+    */
+
+    /**
+        @typedef ConfigurationProductConfig
+        
+        
+        @property { ProductSize } [size]
+        
+        @property { string } key
+        
+        @property { string } [subtitle]
+        
+        @property { string } [title]
+        
+        @property { number } priority
+        
+        @property { string } [logo]
+        
+        @property { boolean } is_active
+        
+         
+    */
+
+    /**
+        @typedef ConfigurationProductSimilar
+        
+        
+        @property { Array<ConfigurationProductConfig> } [config]
+        
+         
+    */
+
+    /**
+        @typedef ConfigurationProduct
+        
+        
+        @property { ConfigurationProductVariant } variant
+        
+        @property { ConfigurationProductSimilar } similar
         
          
     */
@@ -11214,9 +11296,9 @@ class PlatformClient{
         @typedef ConfigurationBucketPoints
         
         
-        @property { number } [end]
-        
         @property { number } [start]
+        
+        @property { number } [end]
         
          
     */
@@ -11225,15 +11307,15 @@ class PlatformClient{
         @typedef ConfigurationListingFilterValue
         
         
-        @property { string } [sort]
-        
-        @property { string } [condition]
-        
-        @property { Array<ConfigurationBucketPoints> } [bucket_points]
+        @property { string } [value]
         
         @property { Object } [map]
         
-        @property { string } [value]
+        @property { Array<ConfigurationBucketPoints> } [bucket_points]
+        
+        @property { string } [condition]
+        
+        @property { string } [sort]
         
          
     */
@@ -11242,19 +11324,19 @@ class PlatformClient{
         @typedef ConfigurationListingFilterConfig
         
         
-        @property { ConfigurationListingFilterValue } [value_config]
+        @property { string } type
         
         @property { string } key
         
+        @property { ConfigurationListingFilterValue } [value_config]
+        
+        @property { number } priority
+        
         @property { string } [logo]
-        
-        @property { string } type
-        
-        @property { string } [name]
         
         @property { boolean } is_active
         
-        @property { number } priority
+        @property { string } [name]
         
          
     */
@@ -11276,13 +11358,13 @@ class PlatformClient{
         
         @property { string } key
         
-        @property { string } [logo]
+        @property { number } priority
         
-        @property { string } [name]
+        @property { string } [logo]
         
         @property { boolean } is_active
         
-        @property { number } priority
+        @property { string } [name]
         
          
     */
@@ -11310,100 +11392,18 @@ class PlatformClient{
     */
 
     /**
-        @typedef ProductSize
-        
-        
-        @property { number } max
-        
-        @property { number } min
-        
-         
-    */
-
-    /**
-        @typedef ConfigurationProductConfig
-        
-        
-        @property { ProductSize } [size]
-        
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { string } [subtitle]
-        
-        @property { string } [title]
-        
-        @property { boolean } is_active
-        
-        @property { number } priority
-        
-         
-    */
-
-    /**
-        @typedef ConfigurationProductSimilar
-        
-        
-        @property { Array<ConfigurationProductConfig> } [config]
-        
-         
-    */
-
-    /**
-        @typedef ConfigurationProductVariantConfig
-        
-        
-        @property { string } display_type
-        
-        @property { ProductSize } size
-        
-        @property { string } key
-        
-        @property { string } [logo]
-        
-        @property { string } name
-        
-        @property { boolean } is_active
-        
-        @property { number } priority
-        
-         
-    */
-
-    /**
-        @typedef ConfigurationProductVariant
-        
-        
-        @property { Array<ConfigurationProductVariantConfig> } [config]
-        
-         
-    */
-
-    /**
-        @typedef ConfigurationProduct
-        
-        
-        @property { ConfigurationProductSimilar } similar
-        
-        @property { ConfigurationProductVariant } variant
-        
-         
-    */
-
-    /**
         @typedef AppConfiguration
         
         
-        @property { string } [config_id]
+        @property { string } app_id
         
         @property { string } config_type
         
-        @property { string } app_id
-        
-        @property { ConfigurationListing } [listing]
+        @property { string } [config_id]
         
         @property { ConfigurationProduct } [product]
+        
+        @property { ConfigurationListing } [listing]
         
          
     */
@@ -11412,17 +11412,17 @@ class PlatformClient{
         @typedef AppCatalogConfiguration
         
         
-        @property { string } [config_id]
+        @property { string } app_id
         
         @property { string } config_type
         
-        @property { string } app_id
-        
-        @property { ConfigurationListing } [listing]
-        
         @property { string } [id]
         
+        @property { string } [config_id]
+        
         @property { ConfigurationProduct } [product]
+        
+        @property { ConfigurationListing } [listing]
         
          
     */
@@ -11431,9 +11431,9 @@ class PlatformClient{
         @typedef GetAppCatalogConfiguration
         
         
-        @property { boolean } [is_default]
-        
         @property { AppCatalogConfiguration } [data]
+        
+        @property { boolean } [is_default]
         
          
     */
@@ -11453,17 +11453,17 @@ class PlatformClient{
         @typedef EntityConfiguration
         
         
-        @property { string } [config_id]
+        @property { string } app_id
         
         @property { string } config_type
         
-        @property { string } app_id
-        
-        @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
-        
         @property { string } [id]
         
+        @property { string } [config_id]
+        
         @property { GetCatalogConfigurationDetailsProduct } [product]
+        
+        @property { GetCatalogConfigurationDetailsSchemaListing } [listing]
         
          
     */
@@ -11472,22 +11472,9 @@ class PlatformClient{
         @typedef GetAppCatalogEntityConfiguration
         
         
-        @property { boolean } [is_default]
-        
         @property { EntityConfiguration } [data]
         
-         
-    */
-
-    /**
-        @typedef ProductSortOn
-        
-        
-        @property { boolean } [is_selected]
-        
-        @property { string } [value]
-        
-        @property { string } [name]
+        @property { boolean } [is_default]
         
          
     */
@@ -11496,29 +11483,29 @@ class PlatformClient{
         @typedef ProductFiltersValue
         
         
-        @property { number } [count]
-        
-        @property { number } [max]
-        
-        @property { string } [currency_code]
-        
-        @property { number } [selected_max]
-        
-        @property { string } [display_format]
-        
-        @property { boolean } is_selected
-        
-        @property { number } [min]
-        
-        @property { string } display
-        
-        @property { number } [selected_min]
+        @property { string } value
         
         @property { string } [query_format]
         
+        @property { string } display
+        
+        @property { number } [selected_max]
+        
+        @property { string } [currency_code]
+        
+        @property { number } [min]
+        
+        @property { number } [selected_min]
+        
+        @property { string } [display_format]
+        
         @property { string } [currency_symbol]
         
-        @property { string } value
+        @property { boolean } is_selected
+        
+        @property { number } [max]
+        
+        @property { number } [count]
         
          
     */
@@ -11550,23 +11537,36 @@ class PlatformClient{
     */
 
     /**
-        @typedef GetCollectionQueryOptionResponse
+        @typedef ProductSortOn
         
         
-        @property { Array<ProductSortOn> } [sort_on]
+        @property { string } [value]
         
-        @property { Array<ProductFilters> } [filters]
+        @property { boolean } [is_selected]
+        
+        @property { string } [name]
         
          
     */
 
     /**
-        @typedef CollectionBadge
+        @typedef GetCollectionQueryOptionResponse
         
         
-        @property { string } [color]
+        @property { Array<ProductFilters> } [filters]
         
-        @property { string } [text]
+        @property { Array<ProductSortOn> } [sort_on]
+        
+         
+    */
+
+    /**
+        @typedef SeoDetail
+        
+        
+        @property { string } [title]
+        
+        @property { string } [description]
         
          
     */
@@ -11583,12 +11583,12 @@ class PlatformClient{
     */
 
     /**
-        @typedef SeoDetail
+        @typedef CollectionBadge
         
         
-        @property { string } [description]
+        @property { string } [text]
         
-        @property { string } [title]
+        @property { string } [color]
         
          
     */
@@ -11605,23 +11605,10 @@ class PlatformClient{
     */
 
     /**
-        @typedef UserInfo
-        
-        
-        @property { string } [user_id]
-        
-        @property { string } [email]
-        
-        @property { string } [uid]
-        
-        @property { string } [username]
-        
-         
-    */
-
-    /**
         @typedef Schedule
         
+        
+        @property { string } [start]
         
         @property { number } [duration]
         
@@ -11629,7 +11616,20 @@ class PlatformClient{
         
         @property { string } [cron]
         
-        @property { string } [start]
+         
+    */
+
+    /**
+        @typedef UserInfo
+        
+        
+        @property { string } [email]
+        
+        @property { string } [uid]
+        
+        @property { string } [username]
+        
+        @property { string } [user_id]
         
          
     */
@@ -11638,53 +11638,53 @@ class PlatformClient{
         @typedef CreateCollection
         
         
-        @property { boolean } [allow_sort]
-        
-        @property { string } app_id
-        
-        @property { boolean } [published]
-        
-        @property { CollectionBadge } [badge]
-        
-        @property { string } name
-        
-        @property { boolean } [allow_facets]
-        
-        @property { CollectionImage } logo
-        
-        @property { string } type
-        
-        @property { boolean } [is_active]
-        
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [description]
-        
-        @property { SeoDetail } [seo]
+        @property { Object } [meta]
         
         @property { Object } [_custom_json]
         
-        @property { CollectionBanner } banners
+        @property { boolean } [allow_sort]
         
-        @property { string } slug
+        @property { Array<string> } [tags]
+        
+        @property { string } name
+        
+        @property { string } type
+        
+        @property { SeoDetail } [seo]
+        
+        @property { CollectionImage } logo
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [allow_facets]
         
         @property { string } [sort_on]
         
-        @property { Object } [_locale_language]
-        
-        @property { UserInfo } [modified_by]
-        
         @property { Object } [query]
+        
+        @property { boolean } [is_visible]
+        
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { CollectionBadge } [badge]
+        
+        @property { CollectionBanner } banners
+        
+        @property { Object } [_locale_language]
         
         @property { Schedule } [_schedule]
         
-        @property { Object } [meta]
+        @property { boolean } [is_active]
+        
+        @property { string } [description]
+        
+        @property { string } slug
+        
+        @property { UserInfo } [modified_by]
+        
+        @property { string } app_id
         
         @property { UserInfo } [created_by]
-        
-        @property { boolean } [is_visible]
         
          
     */
@@ -11715,33 +11715,33 @@ class PlatformClient{
         @typedef CollectionCreateResponse
         
         
-        @property { Array<string> } [visible_facets_keys]
+        @property { string } [app_id]
+        
+        @property { boolean } [allow_facets]
+        
+        @property { string } [type]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [cron]
         
         @property { Object } [query]
         
         @property { boolean } [allow_sort]
         
-        @property { Object } [_schedule]
-        
-        @property { Array<string> } [tag]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { string } [app_id]
-        
-        @property { Object } [meta]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { BannerImage } [logo]
+        @property { Array<string> } [visible_facets_keys]
         
         @property { string } [slug]
         
-        @property { Object } [cron]
-        
-        @property { string } [type]
+        @property { ImageUrls } [banners]
         
         @property { Object } [badge]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Object } [_schedule]
+        
+        @property { BannerImage } [logo]
         
         @property { boolean } [is_active]
         
@@ -11769,56 +11769,43 @@ class PlatformClient{
         @typedef GetCollectionDetailNest
         
         
-        @property { boolean } [allow_sort]
-        
-        @property { string } [app_id]
-        
-        @property { Object } [badge]
-        
-        @property { string } [name]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { string } [uid]
-        
-        @property { Media1 } [logo]
-        
-        @property { string } [type]
-        
-        @property { boolean } [is_active]
-        
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { string } [description]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { string } [slug]
-        
-        @property { Object } [query]
-        
-        @property { Object } [_schedule]
-        
-        @property { Array<string> } [tag]
-        
         @property { Object } [meta]
         
         @property { Action } [action]
         
-        @property { Object } [cron]
+        @property { string } [uid]
         
-         
-    */
-
-    /**
-        @typedef CollectionListingFilterTag
-        
-        
-        @property { boolean } [is_selected]
-        
-        @property { string } [display]
+        @property { boolean } [allow_sort]
         
         @property { string } [name]
+        
+        @property { string } [type]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Media1 } [logo]
+        
+        @property { boolean } [allow_facets]
+        
+        @property { Object } [cron]
+        
+        @property { Object } [query]
+        
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { Object } [badge]
+        
+        @property { ImageUrls } [banners]
+        
+        @property { Object } [_schedule]
+        
+        @property { boolean } [is_active]
+        
+        @property { string } [slug]
+        
+        @property { string } [description]
+        
+        @property { string } [app_id]
         
          
     */
@@ -11837,12 +11824,25 @@ class PlatformClient{
     */
 
     /**
+        @typedef CollectionListingFilterTag
+        
+        
+        @property { boolean } [is_selected]
+        
+        @property { string } [display]
+        
+        @property { string } [name]
+        
+         
+    */
+
+    /**
         @typedef CollectionListingFilter
         
         
-        @property { Array<CollectionListingFilterTag> } [tags]
-        
         @property { Array<CollectionListingFilterType> } [type]
+        
+        @property { Array<CollectionListingFilterTag> } [tags]
         
          
     */
@@ -11853,9 +11853,9 @@ class PlatformClient{
         
         @property { Array<GetCollectionDetailNest> } [items]
         
-        @property { Page } [page]
-        
         @property { CollectionListingFilter } [filters]
+        
+        @property { Page } [page]
         
          
     */
@@ -11864,33 +11864,33 @@ class PlatformClient{
         @typedef CollectionDetailResponse
         
         
-        @property { Array<string> } [visible_facets_keys]
+        @property { string } [app_id]
+        
+        @property { boolean } [allow_facets]
+        
+        @property { string } [type]
+        
+        @property { Object } [meta]
+        
+        @property { Object } [cron]
         
         @property { Object } [query]
         
         @property { boolean } [allow_sort]
         
-        @property { Object } [_schedule]
-        
-        @property { Array<string> } [tag]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { string } [app_id]
-        
-        @property { Object } [meta]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Media1 } [logo]
+        @property { Array<string> } [visible_facets_keys]
         
         @property { string } [slug]
         
-        @property { Object } [cron]
-        
-        @property { string } [type]
+        @property { ImageUrls } [banners]
         
         @property { Object } [badge]
+        
+        @property { Array<string> } [tag]
+        
+        @property { Object } [_schedule]
+        
+        @property { Media1 } [logo]
         
         @property { boolean } [is_active]
         
@@ -11905,47 +11905,47 @@ class PlatformClient{
         @typedef UpdateCollection
         
         
-        @property { boolean } [allow_sort]
-        
-        @property { boolean } [published]
-        
-        @property { CollectionBadge } [badge]
-        
-        @property { string } [name]
-        
-        @property { boolean } [allow_facets]
-        
-        @property { CollectionImage } [logo]
-        
-        @property { boolean } [is_active]
-        
-        @property { Array<string> } [visible_facets_keys]
-        
-        @property { Array<string> } [tags]
-        
-        @property { string } [description]
-        
-        @property { SeoDetail } [seo]
+        @property { Object } [meta]
         
         @property { Object } [_custom_json]
         
-        @property { CollectionBanner } [banners]
+        @property { boolean } [allow_sort]
         
-        @property { string } [slug]
+        @property { string } [name]
+        
+        @property { Array<string> } [tags]
+        
+        @property { SeoDetail } [seo]
+        
+        @property { CollectionImage } [logo]
+        
+        @property { boolean } [published]
+        
+        @property { boolean } [allow_facets]
         
         @property { string } [sort_on]
         
-        @property { Object } [_locale_language]
-        
-        @property { UserInfo } [modified_by]
-        
         @property { Object } [query]
+        
+        @property { boolean } [is_visible]
+        
+        @property { CollectionBadge } [badge]
+        
+        @property { Array<string> } [visible_facets_keys]
+        
+        @property { CollectionBanner } [banners]
+        
+        @property { Object } [_locale_language]
         
         @property { Schedule } [_schedule]
         
-        @property { Object } [meta]
+        @property { boolean } [is_active]
         
-        @property { boolean } [is_visible]
+        @property { string } [description]
+        
+        @property { string } [slug]
+        
+        @property { UserInfo } [modified_by]
         
          
     */
@@ -11954,9 +11954,9 @@ class PlatformClient{
         @typedef CollectionItemRequest
         
         
-        @property { number } page_size
-        
         @property { number } page_no
+        
+        @property { number } page_size
         
          
     */
@@ -11971,38 +11971,12 @@ class PlatformClient{
     */
 
     /**
-        @typedef Price1
-        
-        
-        @property { number } [max]
-        
-        @property { string } [currency_symbol]
-        
-        @property { number } [min]
-        
-        @property { string } [currency_code]
-        
-         
-    */
-
-    /**
-        @typedef ProductListingPrice
-        
-        
-        @property { Price1 } [marked]
-        
-        @property { Price1 } [effective]
-        
-         
-    */
-
-    /**
         @typedef ProductDetailAttribute
         
         
-        @property { string } [type]
-        
         @property { string } [value]
+        
+        @property { string } [type]
         
         @property { string } [key]
         
@@ -12024,13 +11998,39 @@ class PlatformClient{
         @typedef ProductBrand
         
         
+        @property { number } [uid]
+        
         @property { Action } [action]
         
         @property { Media1 } [logo]
         
-        @property { number } [uid]
-        
         @property { string } [name]
+        
+         
+    */
+
+    /**
+        @typedef Price1
+        
+        
+        @property { string } [currency_symbol]
+        
+        @property { number } [max]
+        
+        @property { number } [min]
+        
+        @property { string } [currency_code]
+        
+         
+    */
+
+    /**
+        @typedef ProductListingPrice
+        
+        
+        @property { Price1 } [effective]
+        
+        @property { Price1 } [marked]
         
          
     */
@@ -12039,57 +12039,57 @@ class PlatformClient{
         @typedef ProductListingDetail
         
         
-        @property { Array<string> } [highlights]
-        
-        @property { ProductListingPrice } [price]
-        
-        @property { Array<Media1> } [medias]
-        
-        @property { string } [name]
-        
-        @property { Object } [attributes]
-        
-        @property { boolean } [sellable]
-        
-        @property { string } [item_type]
-        
-        @property { number } [rating]
-        
-        @property { Object } [teaser_tag]
-        
-        @property { string } [discount]
-        
-        @property { number } [uid]
+        @property { string } [product_online_date]
         
         @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
         
-        @property { ProductBrand } [brand]
+        @property { string } [item_type]
         
-        @property { string } [color]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [type]
-        
-        @property { Object } [promo_meta]
-        
-        @property { string } [short_description]
-        
-        @property { string } [description]
-        
-        @property { string } slug
+        @property { Object } [attributes]
         
         @property { Array<string> } [tryouts]
         
-        @property { string } [product_online_date]
+        @property { number } [rating]
         
-        @property { string } [item_code]
+        @property { number } [uid]
         
         @property { number } [rating_count]
         
+        @property { string } [item_code]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } [name]
+        
         @property { string } [image_nature]
         
+        @property { string } [type]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { boolean } [sellable]
+        
+        @property { string } [discount]
+        
+        @property { Object } [promo_meta]
+        
+        @property { Array<Media1> } [medias]
+        
         @property { boolean } [has_variant]
+        
+        @property { ProductListingPrice } [price]
+        
+        @property { string } [short_description]
+        
+        @property { string } [color]
+        
+        @property { string } slug
+        
+        @property { string } [description]
+        
+        @property { Object } [teaser_tag]
+        
+        @property { Array<string> } [highlights]
         
          
     */
@@ -12098,26 +12098,13 @@ class PlatformClient{
         @typedef GetCollectionItemsResponse
         
         
-        @property { Array<ProductSortOn> } [sort_on]
-        
         @property { Array<ProductListingDetail> } [items]
-        
-        @property { Page } [page]
         
         @property { Array<ProductFilters> } [filters]
         
-         
-    */
-
-    /**
-        @typedef CatalogInsightItem
+        @property { Page } [page]
         
-        
-        @property { number } [out_of_stock_count]
-        
-        @property { number } [count]
-        
-        @property { number } [sellable_count]
+        @property { Array<ProductSortOn> } [sort_on]
         
          
     */
@@ -12126,17 +12113,30 @@ class PlatformClient{
         @typedef CatalogInsightBrand
         
         
-        @property { number } [available_sizes]
+        @property { number } [available_articles]
         
-        @property { number } [total_articles]
+        @property { number } [available_sizes]
         
         @property { number } [total_sizes]
         
         @property { number } [article_freshness]
         
-        @property { number } [available_articles]
+        @property { number } [total_articles]
         
         @property { string } [name]
+        
+         
+    */
+
+    /**
+        @typedef CatalogInsightItem
+        
+        
+        @property { number } [count]
+        
+        @property { number } [sellable_count]
+        
+        @property { number } [out_of_stock_count]
         
          
     */
@@ -12145,9 +12145,9 @@ class PlatformClient{
         @typedef CatalogInsightResponse
         
         
-        @property { CatalogInsightItem } [item]
-        
         @property { CatalogInsightBrand } [brand_distribution]
+        
+        @property { CatalogInsightItem } [item]
         
          
     */
@@ -12167,9 +12167,9 @@ class PlatformClient{
         @typedef CrossSellingResponse
         
         
-        @property { CatalogInsightBrand } [brand_distribution]
-        
         @property { CrossSellingData } [data]
+        
+        @property { CatalogInsightBrand } [brand_distribution]
         
          
     */
@@ -12178,11 +12178,11 @@ class PlatformClient{
         @typedef OptInPostRequest
         
         
-        @property { boolean } [enabled]
+        @property { Array<number> } [store_ids]
         
         @property { string } opt_level
         
-        @property { Array<number> } [store_ids]
+        @property { boolean } [enabled]
         
         @property { Array<number> } [brand_ids]
         
@@ -12193,23 +12193,23 @@ class PlatformClient{
         @typedef CompanyOptIn
         
         
-        @property { string } platform
-        
-        @property { Array<number> } brand_ids
-        
-        @property { number } company_id
-        
-        @property { boolean } enabled
-        
-        @property { Object } [created_by]
-        
         @property { string } opt_level
         
         @property { Array<number> } store_ids
         
+        @property { boolean } enabled
+        
         @property { number } created_on
         
         @property { number } modified_on
+        
+        @property { Object } [created_by]
+        
+        @property { string } platform
+        
+        @property { number } company_id
+        
+        @property { Array<number> } brand_ids
         
         @property { Object } [modified_by]
         
@@ -12231,13 +12231,13 @@ class PlatformClient{
         @typedef OptinCompanyDetail
         
         
-        @property { string } [business_type]
-        
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { string } [business_type]
         
         @property { string } [company_type]
+        
+        @property { string } [name]
         
          
     */
@@ -12246,11 +12246,11 @@ class PlatformClient{
         @typedef CompanyBrandDetail
         
         
-        @property { number } [company_id]
+        @property { number } [total_article]
         
         @property { string } [brand_name]
         
-        @property { number } [total_article]
+        @property { number } [company_id]
         
         @property { number } [brand_id]
         
@@ -12272,9 +12272,9 @@ class PlatformClient{
         @typedef OptinCompanyMetrics
         
         
-        @property { string } [company]
-        
         @property { number } [brand]
+        
+        @property { string } [company]
         
         @property { number } [store]
         
@@ -12285,27 +12285,27 @@ class PlatformClient{
         @typedef StoreDetail
         
         
-        @property { Object } [timing]
-        
         @property { Array<Object> } [documents]
-        
-        @property { string } [store_type]
-        
-        @property { number } [company_id]
-        
-        @property { number } [uid]
-        
-        @property { Array<Object> } [additional_contacts]
-        
-        @property { string } [store_code]
         
         @property { string } [created_on]
         
         @property { string } [modified_on]
         
-        @property { string } [name]
+        @property { string } [store_code]
+        
+        @property { string } [store_type]
         
         @property { string } [display_name]
+        
+        @property { Object } [timing]
+        
+        @property { number } [uid]
+        
+        @property { number } [company_id]
+        
+        @property { Array<Object> } [additional_contacts]
+        
+        @property { string } [name]
         
          
     */
@@ -12317,19 +12317,6 @@ class PlatformClient{
         @property { Array<StoreDetail> } [items]
         
         @property { Page } [page]
-        
-         
-    */
-
-    /**
-        @typedef AttributeMasterFilter
-        
-        
-        @property { Array<string> } [depends_on]
-        
-        @property { boolean } indexing
-        
-        @property { number } [priority]
         
          
     */
@@ -12347,9 +12334,31 @@ class PlatformClient{
         @typedef AttributeMasterMeta
         
         
+        @property { AttributeMasterMandatoryDetails } mandatory_details
+        
         @property { boolean } [enriched]
         
-        @property { AttributeMasterMandatoryDetails } mandatory_details
+         
+    */
+
+    /**
+        @typedef AttributeMasterDetails
+        
+        
+        @property { string } display_type
+        
+         
+    */
+
+    /**
+        @typedef AttributeMasterFilter
+        
+        
+        @property { Array<string> } [depends_on]
+        
+        @property { boolean } indexing
+        
+        @property { number } [priority]
         
          
     */
@@ -12369,26 +12378,17 @@ class PlatformClient{
         @typedef AttributeMaster
         
         
-        @property { Array<string> } [allowed_values]
-        
-        @property { boolean } [multi]
-        
-        @property { AttributeSchemaRange } [range]
+        @property { string } [format]
         
         @property { string } type
         
-        @property { string } [format]
+        @property { boolean } [multi]
         
         @property { boolean } [mandatory]
         
-         
-    */
-
-    /**
-        @typedef AttributeMasterDetails
+        @property { AttributeSchemaRange } [range]
         
-        
-        @property { string } display_type
+        @property { Array<string> } [allowed_values]
         
          
     */
@@ -12397,27 +12397,27 @@ class PlatformClient{
         @typedef GenderDetail
         
         
-        @property { boolean } [enabled_for_end_consumer]
-        
-        @property { AttributeMasterFilter } [filters]
-        
         @property { AttributeMasterMeta } [meta]
-        
-        @property { Array<string> } [departments]
-        
-        @property { boolean } [is_nested]
         
         @property { string } [id]
         
-        @property { string } [logo]
+        @property { Array<string> } [departments]
         
-        @property { string } [slug]
-        
-        @property { AttributeMaster } [schema]
+        @property { boolean } [enabled_for_end_consumer]
         
         @property { AttributeMasterDetails } [details]
         
+        @property { AttributeMasterFilter } [filters]
+        
+        @property { boolean } [is_nested]
+        
+        @property { AttributeMaster } [schema]
+        
+        @property { string } [logo]
+        
         @property { string } [description]
+        
+        @property { string } [slug]
         
         @property { string } [name]
         
@@ -12439,15 +12439,15 @@ class PlatformClient{
         @typedef PTErrorResponse
         
         
-        @property { Object } [errors]
+        @property { Object } [meta]
         
         @property { number } [status]
         
-        @property { Object } [meta]
-        
-        @property { string } [message]
+        @property { Object } [errors]
         
         @property { string } [code]
+        
+        @property { string } [message]
         
          
     */
@@ -12456,11 +12456,11 @@ class PlatformClient{
         @typedef UserSerializer
         
         
-        @property { string } [user_id]
+        @property { string } [contact]
         
         @property { string } [username]
         
-        @property { string } [contact]
+        @property { string } [user_id]
         
          
     */
@@ -12469,33 +12469,33 @@ class PlatformClient{
         @typedef GetDepartment
         
         
-        @property { string } [item_type]
+        @property { UserSerializer } [modified_by]
         
-        @property { number } [uid]
+        @property { number } [priority_order]
         
         @property { Array<string> } [synonyms]
         
-        @property { string } [search]
-        
-        @property { UserSerializer } [created_by]
-        
-        @property { string } [logo]
-        
-        @property { number } [page_size]
-        
-        @property { string } [slug]
-        
-        @property { number } [priority_order]
+        @property { string } [item_type]
         
         @property { number } [page_no]
         
         @property { string } [created_on]
         
+        @property { string } [search]
+        
         @property { string } [modified_on]
+        
+        @property { UserSerializer } [created_by]
+        
+        @property { number } [page_size]
+        
+        @property { number } [uid]
+        
+        @property { string } [logo]
         
         @property { boolean } [is_active]
         
-        @property { UserSerializer } [modified_by]
+        @property { string } [slug]
         
         @property { string } [name]
         
@@ -12517,15 +12517,15 @@ class PlatformClient{
         @typedef DepartmentErrorResponse
         
         
-        @property { Object } [errors]
+        @property { Object } [meta]
         
         @property { number } [status]
         
-        @property { Object } [meta]
-        
-        @property { string } [message]
+        @property { Object } [errors]
         
         @property { string } [code]
+        
+        @property { string } [message]
         
          
     */
@@ -12536,35 +12536,35 @@ class PlatformClient{
         
         @property { Array<string> } [categories]
         
-        @property { boolean } [is_archived]
-        
-        @property { string } [tag]
+        @property { Object } [modified_by]
         
         @property { Array<string> } [departments]
         
-        @property { Object } [modified_by]
+        @property { string } [created_on]
         
-        @property { Object } [created_by]
+        @property { Array<string> } [attributes]
         
-        @property { string } [logo]
+        @property { boolean } [is_archived]
+        
+        @property { boolean } is_physical
+        
+        @property { string } [modified_on]
         
         @property { string } slug
         
-        @property { boolean } is_expirable
+        @property { Object } [created_by]
         
-        @property { string } [created_on]
+        @property { string } [tag]
         
-        @property { string } [modified_on]
+        @property { string } [logo]
         
         @property { boolean } [is_active]
         
         @property { string } [description]
         
-        @property { boolean } is_physical
+        @property { boolean } is_expirable
         
         @property { string } [name]
-        
-        @property { Array<string> } [attributes]
         
          
     */
@@ -12581,101 +12581,68 @@ class PlatformClient{
     */
 
     /**
-        @typedef TemplateDetails
-        
-        
-        @property { Array<string> } [categories]
-        
-        @property { boolean } [is_archived]
-        
-        @property { string } [tag]
-        
-        @property { Array<string> } [departments]
-        
-        @property { string } [id]
-        
-        @property { string } [logo]
-        
-        @property { string } slug
-        
-        @property { boolean } is_expirable
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [description]
-        
-        @property { boolean } is_physical
-        
-        @property { string } [name]
-        
-        @property { Array<string> } [attributes]
-        
-         
-    */
-
-    /**
         @typedef Properties
         
         
-        @property { Object } [highlights]
-        
-        @property { Object } [hsn_code]
-        
-        @property { Object } [sizes]
-        
-        @property { Object } [is_dependent]
-        
-        @property { Object } [moq]
-        
-        @property { Object } [trader_type]
-        
-        @property { Object } [name]
+        @property { Object } [trader]
         
         @property { Object } [item_type]
         
-        @property { Object } [teaser_tag]
-        
-        @property { Object } [brand_uid]
-        
-        @property { Object } [variants]
-        
-        @property { Object } [custom_order]
-        
-        @property { Object } [is_active]
-        
-        @property { Object } [short_description]
-        
-        @property { Object } [description]
-        
-        @property { Object } [tags]
-        
-        @property { Object } [media]
-        
-        @property { Object } [command]
-        
-        @property { Object } [country_of_origin]
+        @property { Object } [moq]
         
         @property { Object } [no_of_boxes]
         
-        @property { Object } [slug]
-        
-        @property { Object } [product_publish]
+        @property { Object } [item_code]
         
         @property { Object } [size_guide]
         
-        @property { Object } [product_group_tag]
+        @property { Object } [name]
         
-        @property { Object } [item_code]
+        @property { Object } [tags]
         
-        @property { Object } [multi_size]
+        @property { Object } [sizes]
+        
+        @property { Object } [country_of_origin]
         
         @property { Object } [category_slug]
         
-        @property { Object } [currency]
+        @property { Object } [product_group_tag]
         
-        @property { Object } [trader]
+        @property { Object } [variants]
+        
+        @property { Object } [is_dependent]
+        
+        @property { Object } [product_publish]
+        
+        @property { Object } [short_description]
+        
+        @property { Object } [media]
+        
+        @property { Object } [multi_size]
+        
+        @property { Object } [hsn_code]
+        
+        @property { Object } [is_active]
+        
+        @property { Object } [slug]
+        
+        @property { Object } [description]
+        
+        @property { Object } [teaser_tag]
+        
+        @property { Object } [highlights]
+        
+        @property { Object } [custom_order]
+        
+        @property { Object } [brand_uid]
         
         @property { Object } [return_config]
+        
+        @property { Object } [command]
+        
+        @property { Object } [currency]
+        
+        @property { Object } [trader_type]
         
          
     */
@@ -12686,15 +12653,15 @@ class PlatformClient{
         
         @property { string } [type]
         
+        @property { Object } [definitions]
+        
         @property { string } [title]
         
-        @property { Object } [definitions]
+        @property { Properties } [properties]
         
         @property { Array<string> } [required]
         
         @property { string } [description]
-        
-        @property { Properties } [properties]
         
          
     */
@@ -12711,12 +12678,45 @@ class PlatformClient{
     */
 
     /**
+        @typedef TemplateDetails
+        
+        
+        @property { Array<string> } [categories]
+        
+        @property { string } [id]
+        
+        @property { Array<string> } [departments]
+        
+        @property { Array<string> } [attributes]
+        
+        @property { boolean } [is_archived]
+        
+        @property { boolean } is_physical
+        
+        @property { string } slug
+        
+        @property { string } [tag]
+        
+        @property { string } [logo]
+        
+        @property { boolean } [is_active]
+        
+        @property { string } [description]
+        
+        @property { boolean } is_expirable
+        
+        @property { string } [name]
+        
+         
+    */
+
+    /**
         @typedef TemplatesValidationResponse
         
         
-        @property { TemplateDetails } [template_details]
-        
         @property { TemplateValidationData } [data]
+        
+        @property { TemplateDetails } [template_details]
         
          
     */
@@ -12736,9 +12736,9 @@ class PlatformClient{
         @typedef HSNData
         
         
-        @property { Array<string> } [country_of_origin]
-        
         @property { Array<string> } [hsn_code]
+        
+        @property { Array<string> } [country_of_origin]
         
          
     */
@@ -12755,25 +12755,25 @@ class PlatformClient{
     */
 
     /**
-        @typedef VerifiedBy
-        
-        
-        @property { string } [user_id]
-        
-        @property { string } [username]
-        
-         
-    */
-
-    /**
         @typedef ProductDownloadItemsData
         
+        
+        @property { Array<string> } [brand]
         
         @property { Array<string> } [templates]
         
         @property { string } [type]
         
-        @property { Array<string> } [brand]
+         
+    */
+
+    /**
+        @typedef VerifiedBy
+        
+        
+        @property { string } [username]
+        
+        @property { string } [user_id]
         
          
     */
@@ -12782,25 +12782,25 @@ class PlatformClient{
         @typedef ProductDownloadsItems
         
         
-        @property { string } [status]
-        
-        @property { Object } [template_tags]
-        
-        @property { VerifiedBy } [created_by]
+        @property { ProductDownloadItemsData } [data]
         
         @property { string } [id]
         
-        @property { ProductDownloadItemsData } [data]
+        @property { string } [status]
         
         @property { string } [task_id]
         
+        @property { VerifiedBy } [created_by]
+        
         @property { number } [seller_id]
+        
+        @property { Object } [template_tags]
         
         @property { string } [completed_on]
         
-        @property { string } [trigger_on]
-        
         @property { string } [url]
+        
+        @property { string } [trigger_on]
         
          
     */
@@ -12820,35 +12820,9 @@ class PlatformClient{
         @typedef ProductConfigurationDownloads
         
         
-        @property { boolean } [multivalue]
-        
         @property { Array<Object> } [data]
         
-         
-    */
-
-    /**
-        @typedef Media2
-        
-        
-        @property { string } portrait
-        
-        @property { string } logo
-        
-        @property { string } landscape
-        
-         
-    */
-
-    /**
-        @typedef Hierarchy
-        
-        
-        @property { number } department
-        
-        @property { number } l2
-        
-        @property { number } l1
+        @property { boolean } [multivalue]
         
          
     */
@@ -12870,9 +12844,35 @@ class PlatformClient{
         
         @property { CategoryMappingValues } [google]
         
+        @property { CategoryMappingValues } [facebook]
+        
         @property { CategoryMappingValues } [ajio]
         
-        @property { CategoryMappingValues } [facebook]
+         
+    */
+
+    /**
+        @typedef Media2
+        
+        
+        @property { string } logo
+        
+        @property { string } portrait
+        
+        @property { string } landscape
+        
+         
+    */
+
+    /**
+        @typedef Hierarchy
+        
+        
+        @property { number } l2
+        
+        @property { number } department
+        
+        @property { number } l1
         
          
     */
@@ -12881,27 +12881,27 @@ class PlatformClient{
         @typedef CategoryRequestBody
         
         
-        @property { Media2 } [media]
-        
-        @property { number } level
+        @property { Array<string> } [synonyms]
         
         @property { Array<number> } departments
         
-        @property { Array<string> } [synonyms]
+        @property { CategoryMapping } [marketplaces]
         
-        @property { number } [priority]
-        
-        @property { string } [slug]
-        
-        @property { Array<Hierarchy> } [hierarchy]
+        @property { string } name
         
         @property { Array<string> } [tryouts]
         
-        @property { CategoryMapping } [marketplaces]
+        @property { Media2 } [media]
+        
+        @property { number } [priority]
         
         @property { boolean } is_active
         
-        @property { string } name
+        @property { string } [slug]
+        
+        @property { number } level
+        
+        @property { Array<Hierarchy> } [hierarchy]
         
          
     */
@@ -12921,39 +12921,39 @@ class PlatformClient{
         @typedef Category
         
         
-        @property { Media2 } [media]
-        
-        @property { number } level
-        
-        @property { Array<number> } departments
-        
-        @property { number } [uid]
+        @property { Object } [modified_by]
         
         @property { Array<string> } [synonyms]
         
-        @property { Object } [created_by]
-        
-        @property { string } [_id]
-        
-        @property { number } [priority]
-        
-        @property { string } [slug]
-        
-        @property { Array<Hierarchy> } [hierarchy]
-        
-        @property { Array<string> } [tryouts]
+        @property { Array<number> } departments
         
         @property { string } [created_on]
         
+        @property { CategoryMapping } [marketplaces]
+        
         @property { string } [modified_on]
         
-        @property { CategoryMapping } [marketplaces]
+        @property { string } name
+        
+        @property { Object } [created_by]
+        
+        @property { Array<string> } [tryouts]
+        
+        @property { Media2 } [media]
+        
+        @property { number } [priority]
+        
+        @property { number } [uid]
+        
+        @property { string } [_id]
         
         @property { boolean } is_active
         
-        @property { Object } [modified_by]
+        @property { string } [slug]
         
-        @property { string } name
+        @property { number } level
+        
+        @property { Array<Hierarchy> } [hierarchy]
         
          
     */
@@ -12970,17 +12970,6 @@ class PlatformClient{
     */
 
     /**
-        @typedef CategoryUpdateResponse
-        
-        
-        @property { boolean } [success]
-        
-        @property { string } [message]
-        
-         
-    */
-
-    /**
         @typedef SingleCategoryResponse
         
         
@@ -12990,49 +12979,12 @@ class PlatformClient{
     */
 
     /**
-        @typedef OrderQuantity
+        @typedef CategoryUpdateResponse
         
         
-        @property { number } [maximum]
+        @property { boolean } [success]
         
-        @property { number } [minimum]
-        
-        @property { boolean } [is_set]
-        
-         
-    */
-
-    /**
-        @typedef TeaserTag
-        
-        
-        @property { string } [url]
-        
-        @property { string } [tag]
-        
-         
-    */
-
-    /**
-        @typedef CustomOrder
-        
-        
-        @property { number } [manufacturing_time]
-        
-        @property { string } [manufacturing_time_unit]
-        
-        @property { boolean } [is_custom_order]
-        
-         
-    */
-
-    /**
-        @typedef ProductPublish
-        
-        
-        @property { boolean } [is_set]
-        
-        @property { string } [product_online_date]
+        @property { string } [message]
         
          
     */
@@ -13049,14 +13001,62 @@ class PlatformClient{
     */
 
     /**
+        @typedef OrderQuantity
+        
+        
+        @property { number } [minimum]
+        
+        @property { boolean } [is_set]
+        
+        @property { number } [maximum]
+        
+         
+    */
+
+    /**
+        @typedef ProductPublish
+        
+        
+        @property { string } [product_online_date]
+        
+        @property { boolean } [is_set]
+        
+         
+    */
+
+    /**
+        @typedef TeaserTag
+        
+        
+        @property { string } [tag]
+        
+        @property { string } [url]
+        
+         
+    */
+
+    /**
+        @typedef CustomOrder
+        
+        
+        @property { boolean } [is_custom_order]
+        
+        @property { string } [manufacturing_time_unit]
+        
+        @property { number } [manufacturing_time]
+        
+         
+    */
+
+    /**
         @typedef ReturnConfig
         
         
         @property { number } time
         
-        @property { boolean } returnable
-        
         @property { string } unit
+        
+        @property { boolean } returnable
         
          
     */
@@ -13065,122 +13065,83 @@ class PlatformClient{
         @typedef ProductCreateUpdate
         
         
-        @property { string } template_tag
-        
-        @property { Array<string> } [highlights]
-        
-        @property { string } [requester]
-        
-        @property { string } hsn_code
-        
-        @property { Array<number> } departments
-        
-        @property { string } [bulk_job_id]
-        
-        @property { boolean } [is_dependent]
-        
-        @property { OrderQuantity } [moq]
-        
-        @property { string } [trader_type]
-        
-        @property { string } name
-        
-        @property { string } item_type
-        
-        @property { number } company_id
-        
-        @property { TeaserTag } [teaser_tag]
-        
-        @property { number } brand_uid
-        
-        @property { number } [uid]
-        
-        @property { boolean } [is_set]
-        
-        @property { Object } [variants]
-        
-        @property { CustomOrder } [custom_order]
-        
-        @property { boolean } [is_active]
-        
-        @property { string } [short_description]
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [tags]
-        
-        @property { Array<Media1> } [media]
-        
-        @property { string } [change_request_id]
-        
         @property { Object } [_custom_json]
-        
-        @property { string } country_of_origin
-        
-        @property { number } [no_of_boxes]
-        
-        @property { string } slug
-        
-        @property { ProductPublish } [product_publish]
-        
-        @property { string } [size_guide]
-        
-        @property { Array<string> } [product_group_tag]
-        
-        @property { string } item_code
-        
-        @property { boolean } [multi_size]
-        
-        @property { string } category_slug
-        
-        @property { string } currency
-        
-        @property { boolean } [is_image_less_product]
         
         @property { string } [action]
         
         @property { Trader } trader
         
-        @property { ReturnConfig } return_config
+        @property { string } item_type
         
-         
-    */
-
-    /**
-        @typedef Logo
+        @property { string } template_tag
         
+        @property { OrderQuantity } [moq]
         
-        @property { string } [aspect_ratio]
+        @property { string } [requester]
         
-        @property { number } [aspect_ratio_f]
-        
-        @property { string } [url]
-        
-        @property { string } [secure_url]
-        
-         
-    */
-
-    /**
-        @typedef Brand
-        
-        
-        @property { Logo } [logo]
+        @property { string } [bulk_job_id]
         
         @property { number } [uid]
         
-        @property { string } [name]
+        @property { string } item_code
         
-         
-    */
-
-    /**
-        @typedef ProductPublished
+        @property { number } [no_of_boxes]
         
+        @property { string } [size_guide]
+        
+        @property { string } name
+        
+        @property { Array<string> } [tags]
+        
+        @property { boolean } [is_image_less_product]
+        
+        @property { Array<number> } departments
+        
+        @property { string } category_slug
+        
+        @property { string } country_of_origin
+        
+        @property { Array<string> } [product_group_tag]
+        
+        @property { string } [change_request_id]
+        
+        @property { Object } [variants]
+        
+        @property { boolean } [is_dependent]
+        
+        @property { ProductPublish } [product_publish]
+        
+        @property { string } [short_description]
+        
+        @property { Array<Media1> } [media]
+        
+        @property { boolean } [multi_size]
+        
+        @property { string } hsn_code
+        
+        @property { number } company_id
+        
+        @property { boolean } [is_active]
+        
+        @property { string } [description]
+        
+        @property { string } slug
         
         @property { boolean } [is_set]
         
-        @property { number } [product_online_date]
+        @property { TeaserTag } [teaser_tag]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { CustomOrder } [custom_order]
+        
+        @property { number } brand_uid
+        
+        @property { ReturnConfig } return_config
+        
+        @property { string } currency
+        
+        @property { string } [trader_type]
         
          
     */
@@ -13191,11 +13152,50 @@ class PlatformClient{
         
         @property { string } [aspect_ratio]
         
-        @property { number } [aspect_ratio_f]
-        
         @property { string } [url]
         
         @property { string } [secure_url]
+        
+        @property { number } [aspect_ratio_f]
+        
+         
+    */
+
+    /**
+        @typedef Logo
+        
+        
+        @property { string } [aspect_ratio]
+        
+        @property { string } [secure_url]
+        
+        @property { string } [url]
+        
+        @property { number } [aspect_ratio_f]
+        
+         
+    */
+
+    /**
+        @typedef Brand
+        
+        
+        @property { number } [uid]
+        
+        @property { Logo } [logo]
+        
+        @property { string } [name]
+        
+         
+    */
+
+    /**
+        @typedef ProductPublished
+        
+        
+        @property { number } [product_online_date]
+        
+        @property { boolean } [is_set]
         
          
     */
@@ -13204,79 +13204,79 @@ class PlatformClient{
         @typedef Product
         
         
-        @property { string } [template_tag]
-        
-        @property { Array<string> } [highlights]
-        
-        @property { number } [category_uid]
-        
-        @property { string } [hsn_code]
-        
-        @property { Array<number> } [departments]
-        
-        @property { Array<Object> } [sizes]
-        
-        @property { boolean } [is_dependent]
-        
-        @property { Object } [moq]
-        
-        @property { string } [name]
+        @property { Object } [_custom_json]
         
         @property { string } [item_type]
         
-        @property { number } [brand_uid]
+        @property { string } [template_tag]
+        
+        @property { Array<Image> } [images]
+        
+        @property { Object } [moq]
         
         @property { Array<string> } [l3_mapping]
         
         @property { number } [uid]
         
-        @property { boolean } [is_set]
+        @property { string } [item_code]
+        
+        @property { string } [size_guide]
+        
+        @property { string } [name]
+        
+        @property { string } [image_nature]
         
         @property { Brand } [brand]
         
-        @property { string } [color]
+        @property { Array<number> } [departments]
         
-        @property { Array<Object> } [all_sizes]
+        @property { Array<Object> } [sizes]
+        
+        @property { string } [country_of_origin]
+        
+        @property { string } [category_slug]
         
         @property { Object } [variants]
         
-        @property { Object } [custom_order]
+        @property { boolean } [is_dependent]
         
-        @property { string } [primary_color]
+        @property { Array<Object> } [all_sizes]
         
-        @property { boolean } [is_active]
+        @property { ProductPublished } [product_publish]
         
-        @property { string } [description]
+        @property { boolean } [is_physical]
         
         @property { string } [short_description]
         
         @property { Array<Media1> } [media]
         
-        @property { Object } [_custom_json]
-        
-        @property { string } [country_of_origin]
-        
-        @property { string } [slug]
-        
-        @property { ProductPublished } [product_publish]
-        
-        @property { string } [size_guide]
-        
-        @property { boolean } [is_physical]
-        
-        @property { Array<Image> } [images]
-        
-        @property { string } [item_code]
+        @property { string } [color]
         
         @property { boolean } [multi_size]
         
-        @property { string } [category_slug]
+        @property { string } [hsn_code]
         
-        @property { string } [currency]
+        @property { boolean } [is_active]
+        
+        @property { string } [slug]
+        
+        @property { string } [description]
         
         @property { string } [id]
         
-        @property { string } [image_nature]
+        @property { string } [primary_color]
+        
+        @property { boolean } [is_set]
+        
+        @property { Array<string> } [highlights]
+        
+        @property { number } [category_uid]
+        
+        @property { Object } [custom_order]
+        
+        @property { number } [brand_uid]
+        
+        @property { string } [currency]
         
          
     */
@@ -13305,13 +13305,13 @@ class PlatformClient{
         @typedef UserInfo1
         
         
-        @property { string } [user_id]
-        
         @property { string } [email]
         
         @property { string } [uid]
         
         @property { string } [username]
+        
+        @property { string } [user_id]
         
          
     */
@@ -13320,37 +13320,37 @@ class PlatformClient{
         @typedef BulkJob
         
         
-        @property { string } [file_path]
-        
-        @property { string } [template_tag]
-        
-        @property { string } [tracking_url]
-        
-        @property { Array<Object> } [cancelled_records]
-        
-        @property { number } company_id
-        
-        @property { string } [custom_template_tag]
-        
-        @property { string } [stage]
-        
-        @property { number } [cancelled]
-        
-        @property { UserInfo1 } [created_by]
+        @property { number } [succeed]
         
         @property { Array<Object> } [failed_records]
         
-        @property { number } total
-        
         @property { number } [failed]
+        
+        @property { string } [tracking_url]
         
         @property { string } created_on
         
         @property { string } [modified_on]
         
+        @property { string } [template_tag]
+        
+        @property { UserInfo1 } [created_by]
+        
+        @property { number } total
+        
+        @property { Array<Object> } [cancelled_records]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [stage]
+        
+        @property { string } [custom_template_tag]
+        
+        @property { number } company_id
+        
         @property { boolean } [is_active]
         
-        @property { number } [succeed]
+        @property { string } [file_path]
         
         @property { UserInfo1 } [modified_by]
         
@@ -13361,11 +13361,11 @@ class PlatformClient{
         @typedef UserDetail
         
         
-        @property { string } [user_id]
-        
         @property { string } [full_name]
         
         @property { string } [username]
+        
+        @property { string } [user_id]
         
          
     */
@@ -13374,27 +13374,11 @@ class PlatformClient{
         @typedef ProductBulkRequest
         
         
-        @property { string } [file_path]
-        
-        @property { string } [template_tag]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { number } [company_id]
-        
-        @property { string } [stage]
-        
-        @property { number } [cancelled]
-        
-        @property { UserDetail } [modified_by]
-        
-        @property { UserDetail } [created_by]
+        @property { ProductTemplate } [template]
         
         @property { Array<string> } [failed_records]
         
-        @property { ProductTemplate } [template]
-        
-        @property { number } [total]
+        @property { number } [succeed]
         
         @property { number } [failed]
         
@@ -13402,9 +13386,25 @@ class PlatformClient{
         
         @property { string } [modified_on]
         
+        @property { string } [template_tag]
+        
+        @property { Array<string> } [cancelled_records]
+        
+        @property { UserDetail } [created_by]
+        
+        @property { number } [total]
+        
+        @property { string } [stage]
+        
+        @property { number } [cancelled]
+        
+        @property { number } [company_id]
+        
         @property { boolean } [is_active]
         
-        @property { number } [succeed]
+        @property { string } [file_path]
+        
+        @property { UserDetail } [modified_by]
         
          
     */
@@ -13424,13 +13424,13 @@ class PlatformClient{
         @typedef BulkProductRequest
         
         
+        @property { Array<Object> } data
+        
         @property { number } company_id
         
         @property { string } batch_id
         
         @property { string } template_tag
-        
-        @property { Array<Object> } data
         
          
     */
@@ -13457,11 +13457,11 @@ class PlatformClient{
         @typedef ProductBulkAssets
         
         
-        @property { number } [company_id]
+        @property { Object } user
         
         @property { string } url
         
-        @property { Object } user
+        @property { number } [company_id]
         
          
     */
@@ -13470,11 +13470,11 @@ class PlatformClient{
         @typedef UserCommon
         
         
-        @property { string } [user_id]
-        
         @property { string } [username]
         
         @property { number } [company_id]
+        
+        @property { string } [user_id]
         
          
     */
@@ -13483,37 +13483,37 @@ class PlatformClient{
         @typedef Items
         
         
-        @property { string } [file_path]
+        @property { string } [id]
         
-        @property { string } [tracking_url]
-        
-        @property { number } [retry]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { number } [company_id]
-        
-        @property { string } [stage]
-        
-        @property { number } [cancelled]
-        
-        @property { UserCommon } [created_by]
+        @property { number } [succeed]
         
         @property { Array<string> } [failed_records]
         
-        @property { string } [id]
-        
-        @property { number } [total]
-        
         @property { number } [failed]
+        
+        @property { string } [tracking_url]
         
         @property { string } [created_on]
         
         @property { string } [modified_on]
         
+        @property { number } [retry]
+        
+        @property { UserCommon } [created_by]
+        
+        @property { Array<string> } [cancelled_records]
+        
+        @property { number } [total]
+        
+        @property { string } [stage]
+        
+        @property { number } [cancelled]
+        
+        @property { number } [company_id]
+        
         @property { boolean } [is_active]
         
-        @property { number } [succeed]
+        @property { string } [file_path]
         
         @property { UserCommon } [modified_by]
         
@@ -13535,11 +13535,11 @@ class PlatformClient{
         @typedef ProductSizeDeleteDataResponse
         
         
-        @property { number } [item_id]
-        
         @property { string } [size]
         
         @property { number } [company_id]
+        
+        @property { number } [item_id]
         
          
     */
@@ -13548,22 +13548,22 @@ class PlatformClient{
         @typedef ProductSizeDeleteResponse
         
         
-        @property { boolean } [success]
-        
         @property { ProductSizeDeleteDataResponse } [data]
+        
+        @property { boolean } [success]
         
          
     */
 
     /**
-        @typedef ItemQuery
+        @typedef GTIN
         
         
-        @property { number } [brand_uid]
+        @property { string } gtin_type
         
-        @property { string } [item_code]
+        @property { string } gtin_value
         
-        @property { number } [uid]
+        @property { boolean } [primary]
         
          
     */
@@ -13592,22 +13592,9 @@ class PlatformClient{
         @typedef InventorySet
         
         
-        @property { SizeDistribution } size_distribution
-        
         @property { number } [quantity]
         
-         
-    */
-
-    /**
-        @typedef GTIN
-        
-        
-        @property { string } gtin_value
-        
-        @property { string } gtin_type
-        
-        @property { boolean } [primary]
+        @property { SizeDistribution } size_distribution
         
          
     */
@@ -13616,39 +13603,52 @@ class PlatformClient{
         @typedef InvSize
         
         
-        @property { number } [item_length]
-        
         @property { string } size
         
-        @property { number } price_effective
+        @property { string } [item_dimensions_unit_of_measure]
         
-        @property { InventorySet } [set]
-        
-        @property { string } [item_weight_unit_of_measure]
+        @property { boolean } [is_set]
         
         @property { string } [expiration_date]
         
         @property { number } price
         
-        @property { boolean } [is_set]
+        @property { Array<GTIN> } identifiers
         
-        @property { number } [item_height]
+        @property { number } [item_length]
         
         @property { number } [price_transfer]
         
-        @property { string } [item_dimensions_unit_of_measure]
-        
-        @property { number } [item_weight]
-        
-        @property { number } quantity
+        @property { number } [item_width]
         
         @property { string } store_code
         
+        @property { number } quantity
+        
         @property { string } currency
         
-        @property { Array<GTIN> } identifiers
+        @property { number } [item_weight]
         
-        @property { number } [item_width]
+        @property { InventorySet } [set]
+        
+        @property { number } price_effective
+        
+        @property { string } [item_weight_unit_of_measure]
+        
+        @property { number } [item_height]
+        
+         
+    */
+
+    /**
+        @typedef ItemQuery
+        
+        
+        @property { number } [uid]
+        
+        @property { number } [brand_uid]
+        
+        @property { string } [item_code]
         
          
     */
@@ -13657,11 +13657,11 @@ class PlatformClient{
         @typedef InventoryRequest
         
         
+        @property { Array<InvSize> } sizes
+        
         @property { number } company_id
         
         @property { ItemQuery } item
-        
-        @property { Array<InvSize> } sizes
         
          
     */
@@ -13672,29 +13672,29 @@ class PlatformClient{
         
         @property { string } [size]
         
-        @property { number } [price_effective]
-        
-        @property { number } [seller_identifier]
-        
-        @property { string } [currency]
+        @property { Object } [identifiers]
         
         @property { number } [price]
         
-        @property { number } [quantity]
+        @property { number } [sellable_quantity]
         
         @property { string } [uid]
         
-        @property { number } [item_id]
-        
         @property { number } [price_transfer]
         
-        @property { number } [sellable_quantity]
+        @property { number } [quantity]
         
-        @property { string } [inventory_updated_on]
+        @property { number } [item_id]
+        
+        @property { string } [currency]
+        
+        @property { number } [seller_identifier]
+        
+        @property { number } [price_effective]
         
         @property { Object } [store]
         
-        @property { Object } [identifiers]
+        @property { string } [inventory_updated_on]
         
          
     */
@@ -13703,11 +13703,11 @@ class PlatformClient{
         @typedef InventoryDeleteData
         
         
-        @property { number } [item_id]
+        @property { number } [location_id]
         
         @property { string } [size]
         
-        @property { number } [location_id]
+        @property { number } [item_id]
         
          
     */
@@ -13716,9 +13716,9 @@ class PlatformClient{
         @typedef InventoryDelete
         
         
-        @property { boolean } [success]
-        
         @property { InventoryDeleteData } [data]
+        
+        @property { boolean } [success]
         
          
     */
@@ -13736,23 +13736,11 @@ class PlatformClient{
         @typedef BulkInventoryGetItems
         
         
-        @property { string } [file_path]
-        
-        @property { Array<string> } [cancelled_records]
-        
-        @property { number } [company_id]
-        
-        @property { string } [stage]
-        
-        @property { number } [cancelled]
-        
-        @property { Object } [created_by]
+        @property { string } [id]
         
         @property { Array<string> } [failed_records]
         
-        @property { string } [id]
-        
-        @property { number } [total]
+        @property { number } [succeed]
         
         @property { number } [failed]
         
@@ -13760,9 +13748,21 @@ class PlatformClient{
         
         @property { string } [modified_on]
         
+        @property { Array<string> } [cancelled_records]
+        
+        @property { Object } [created_by]
+        
+        @property { number } [total]
+        
+        @property { number } [cancelled]
+        
+        @property { string } [stage]
+        
+        @property { number } [company_id]
+        
         @property { boolean } [is_active]
         
-        @property { number } [succeed]
+        @property { string } [file_path]
         
         @property { Object } [modified_by]
         
@@ -13784,41 +13784,41 @@ class PlatformClient{
         @typedef Size1
         
         
-        @property { number } [item_length]
-        
         @property { string } [size]
         
-        @property { number } price_effective
+        @property { string } [item_dimensions_unit_of_measure]
         
-        @property { InventorySet } [set]
-        
-        @property { string } [item_weight_unit_of_measure]
+        @property { boolean } [is_set]
         
         @property { string } [expiration_date]
         
         @property { number } price
         
-        @property { boolean } [is_set]
+        @property { Array<Object> } [identifiers]
         
-        @property { number } [item_height]
+        @property { number } [item_length]
         
         @property { number } [price_transfer]
         
-        @property { string } [item_dimensions_unit_of_measure]
-        
-        @property { number } [item_weight]
-        
-        @property { number } quantity
+        @property { number } [item_width]
         
         @property { string } store_code
         
+        @property { number } quantity
+        
         @property { string } currency
+        
+        @property { number } [item_weight]
+        
+        @property { InventorySet } [set]
         
         @property { string } seller_identifier
         
-        @property { Array<Object> } [identifiers]
+        @property { number } price_effective
         
-        @property { number } [item_width]
+        @property { string } [item_weight_unit_of_measure]
+        
+        @property { number } [item_height]
         
          
     */
@@ -13827,13 +13827,13 @@ class PlatformClient{
         @typedef InventoryBulkRequest
         
         
-        @property { number } company_id
-        
-        @property { string } batch_id
+        @property { Object } [user]
         
         @property { Array<Size1> } sizes
         
-        @property { Object } [user]
+        @property { number } company_id
+        
+        @property { string } batch_id
         
          
     */
@@ -13842,11 +13842,11 @@ class PlatformClient{
         @typedef InventoryExportRequest
         
         
-        @property { Array<number> } [store]
+        @property { Array<number> } [brand]
         
         @property { string } [type]
         
-        @property { Array<number> } [brand]
+        @property { Array<number> } [store]
         
          
     */
@@ -13857,17 +13857,17 @@ class PlatformClient{
         
         @property { string } [status]
         
-        @property { Object } [request_params]
-        
         @property { string } task_id
         
+        @property { Object } [request_params]
+        
         @property { number } seller_id
+        
+        @property { string } [url]
         
         @property { string } [completed_on]
         
         @property { string } [trigger_on]
-        
-        @property { string } [url]
         
          
     */
@@ -13876,9 +13876,9 @@ class PlatformClient{
         @typedef FilerList
         
         
-        @property { string } [display]
-        
         @property { string } [value]
+        
+        @property { string } [display]
         
          
     */
@@ -13887,9 +13887,9 @@ class PlatformClient{
         @typedef InventoryConfig
         
         
-        @property { boolean } [multivalues]
-        
         @property { Array<FilerList> } [data]
+        
+        @property { boolean } [multivalues]
         
          
     */
@@ -13898,25 +13898,25 @@ class PlatformClient{
         @typedef HsnUpsert
         
         
-        @property { string } hsn_code
-        
-        @property { number } company_id
-        
-        @property { boolean } tax_on_mrp
-        
-        @property { boolean } [tax_on_esp]
-        
-        @property { number } [uid]
-        
-        @property { number } threshold1
-        
-        @property { number } [tax2]
-        
-        @property { number } [threshold2]
-        
         @property { number } tax1
         
         @property { string } hs2_code
+        
+        @property { number } [uid]
+        
+        @property { number } [tax2]
+        
+        @property { boolean } [tax_on_esp]
+        
+        @property { number } threshold1
+        
+        @property { string } hsn_code
+        
+        @property { boolean } tax_on_mrp
+        
+        @property { number } company_id
+        
+        @property { number } [threshold2]
         
          
     */
@@ -13925,27 +13925,27 @@ class PlatformClient{
         @typedef HsnCodesObject
         
         
-        @property { string } [hsn_code]
-        
-        @property { number } [company_id]
-        
-        @property { boolean } [tax_on_mrp]
-        
-        @property { boolean } [tax_on_esp]
-        
         @property { string } [id]
-        
-        @property { number } [threshold1]
-        
-        @property { number } [tax2]
-        
-        @property { number } [threshold2]
         
         @property { number } [tax1]
         
         @property { string } [hs2_code]
         
+        @property { number } [tax2]
+        
         @property { string } [modified_on]
+        
+        @property { boolean } [tax_on_esp]
+        
+        @property { number } [threshold1]
+        
+        @property { string } [hsn_code]
+        
+        @property { boolean } [tax_on_mrp]
+        
+        @property { number } [company_id]
+        
+        @property { number } [threshold2]
         
          
     */
@@ -13963,15 +13963,15 @@ class PlatformClient{
         @typedef PageResponse
         
         
-        @property { boolean } [has_next]
-        
         @property { number } [size]
         
-        @property { number } [item_total]
+        @property { boolean } [has_previous]
         
         @property { string } [current]
         
-        @property { boolean } [has_previous]
+        @property { boolean } [has_next]
+        
+        @property { number } [item_total]
         
          
     */
@@ -14009,17 +14009,17 @@ class PlatformClient{
         @typedef BrandItem
         
         
+        @property { Action } [action]
+        
+        @property { Array<string> } [departments]
+        
+        @property { ImageUrls } [banners]
+        
         @property { string } [discount]
         
         @property { number } [uid]
         
-        @property { Array<string> } [departments]
-        
-        @property { Action } [action]
-        
         @property { Media } [logo]
-        
-        @property { ImageUrls } [banners]
         
         @property { string } [slug]
         
@@ -14043,11 +14043,11 @@ class PlatformClient{
         @typedef Department
         
         
+        @property { number } [priority_order]
+        
         @property { number } [uid]
         
         @property { Media } [logo]
-        
-        @property { number } [priority_order]
         
         @property { string } [slug]
         
@@ -14066,29 +14066,18 @@ class PlatformClient{
     */
 
     /**
-        @typedef DepartmentIdentifier
-        
-        
-        @property { string } [slug]
-        
-        @property { number } [uid]
-        
-         
-    */
-
-    /**
         @typedef ThirdLevelChild
         
+        
+        @property { Object } [_custom_json]
+        
+        @property { Action } [action]
+        
+        @property { ImageUrls } [banners]
         
         @property { Array<Object> } [childs]
         
         @property { number } [uid]
-        
-        @property { Object } [_custom_json]
-        
-        @property { ImageUrls } [banners]
-        
-        @property { Action } [action]
         
         @property { string } [slug]
         
@@ -14101,15 +14090,15 @@ class PlatformClient{
         @typedef SecondLevelChild
         
         
-        @property { Array<ThirdLevelChild> } [childs]
-        
-        @property { number } [uid]
-        
         @property { Object } [_custom_json]
+        
+        @property { Action } [action]
         
         @property { ImageUrls } [banners]
         
-        @property { Action } [action]
+        @property { Array<ThirdLevelChild> } [childs]
+        
+        @property { number } [uid]
         
         @property { string } [slug]
         
@@ -14122,15 +14111,15 @@ class PlatformClient{
         @typedef Child
         
         
-        @property { Array<SecondLevelChild> } [childs]
-        
-        @property { number } [uid]
-        
         @property { Object } [_custom_json]
+        
+        @property { Action } [action]
         
         @property { ImageUrls } [banners]
         
-        @property { Action } [action]
+        @property { Array<SecondLevelChild> } [childs]
+        
+        @property { number } [uid]
         
         @property { string } [slug]
         
@@ -14143,13 +14132,13 @@ class PlatformClient{
         @typedef CategoryItems
         
         
-        @property { Array<Child> } [childs]
-        
-        @property { number } [uid]
-        
         @property { Action } [action]
         
         @property { ImageUrls } [banners]
+        
+        @property { Array<Child> } [childs]
+        
+        @property { number } [uid]
         
         @property { string } [slug]
         
@@ -14162,9 +14151,20 @@ class PlatformClient{
         @typedef DepartmentCategoryTree
         
         
+        @property { Array<CategoryItems> } [items]
+        
         @property { string } [department]
         
-        @property { Array<CategoryItems> } [items]
+         
+    */
+
+    /**
+        @typedef DepartmentIdentifier
+        
+        
+        @property { number } [uid]
+        
+        @property { string } [slug]
         
          
     */
@@ -14173,9 +14173,9 @@ class PlatformClient{
         @typedef CategoryListingResponse
         
         
-        @property { Array<DepartmentIdentifier> } [departments]
-        
         @property { Array<DepartmentCategoryTree> } [data]
+        
+        @property { Array<DepartmentIdentifier> } [departments]
         
          
     */
@@ -14184,13 +14184,13 @@ class PlatformClient{
         @typedef ApplicationProductListingResponse
         
         
-        @property { Array<ProductSortOn> } [sort_on]
-        
         @property { Array<ProductListingDetail> } [items]
+        
+        @property { Array<ProductFilters> } [filters]
         
         @property { Page } page
         
-        @property { Array<ProductFilters> } [filters]
+        @property { Array<ProductSortOn> } [sort_on]
         
          
     */
@@ -14199,51 +14199,51 @@ class PlatformClient{
         @typedef ProductDetail
         
         
-        @property { Array<string> } [highlights]
-        
-        @property { Array<Media1> } [medias]
-        
-        @property { string } [name]
-        
-        @property { Object } [attributes]
-        
-        @property { string } [item_type]
-        
-        @property { number } [rating]
-        
-        @property { Object } [teaser_tag]
-        
-        @property { number } [uid]
+        @property { string } [product_online_date]
         
         @property { Array<ProductDetailGroupedAttribute> } [grouped_attributes]
         
-        @property { ProductBrand } [brand]
+        @property { string } [item_type]
         
-        @property { string } [color]
-        
-        @property { Array<string> } [similars]
-        
-        @property { string } [type]
-        
-        @property { Object } [promo_meta]
-        
-        @property { string } [short_description]
-        
-        @property { string } [description]
-        
-        @property { string } slug
+        @property { Object } [attributes]
         
         @property { Array<string> } [tryouts]
         
-        @property { string } [product_online_date]
+        @property { number } [rating]
         
-        @property { string } [item_code]
+        @property { number } [uid]
         
         @property { number } [rating_count]
         
+        @property { string } [item_code]
+        
+        @property { Array<string> } [similars]
+        
+        @property { string } [name]
+        
         @property { string } [image_nature]
         
+        @property { string } [type]
+        
+        @property { ProductBrand } [brand]
+        
+        @property { Object } [promo_meta]
+        
+        @property { Array<Media1> } [medias]
+        
         @property { boolean } [has_variant]
+        
+        @property { string } [short_description]
+        
+        @property { string } [color]
+        
+        @property { string } slug
+        
+        @property { string } [description]
+        
+        @property { Object } [teaser_tag]
+        
+        @property { Array<string> } [highlights]
         
          
     */
@@ -14265,15 +14265,15 @@ class PlatformClient{
         @typedef AssignStoreArticle
         
         
-        @property { ArticleQuery } [query]
-        
         @property { Object } [meta]
+        
+        @property { ArticleQuery } [query]
         
         @property { number } [quantity]
         
-        @property { string } [group_id]
-        
         @property { ArticleAssignment } [article_assignment]
+        
+        @property { string } [group_id]
         
          
     */
@@ -14282,19 +14282,19 @@ class PlatformClient{
         @typedef AssignStore
         
         
-        @property { number } [company_id]
-        
         @property { string } app_id
         
-        @property { string } pincode
-        
         @property { string } [channel_identifier]
-        
-        @property { string } [channel_type]
         
         @property { Array<number> } [store_ids]
         
         @property { Array<AssignStoreArticle> } articles
+        
+        @property { string } pincode
+        
+        @property { string } [channel_type]
+        
+        @property { number } [company_id]
         
          
     */
@@ -14303,9 +14303,9 @@ class PlatformClient{
         @typedef ArticleAssignment1
         
         
-        @property { string } [level]
-        
         @property { string } [strategy]
+        
+        @property { string } [level]
         
          
     */
@@ -14314,125 +14314,65 @@ class PlatformClient{
         @typedef StoreAssignResponse
         
         
-        @property { boolean } status
-        
-        @property { number } [store_pincode]
-        
-        @property { string } size
-        
-        @property { number } [company_id]
-        
-        @property { number } [price_effective]
-        
         @property { Object } [meta]
-        
-        @property { Array<Object> } [strategy_wise_listing]
-        
-        @property { string } [_id]
-        
-        @property { number } [index]
-        
-        @property { string } [uid]
-        
-        @property { number } item_id
-        
-        @property { number } quantity
         
         @property { number } [store_id]
         
-        @property { string } [s_city]
+        @property { string } size
         
-        @property { string } [group_id]
+        @property { boolean } status
         
-        @property { ArticleAssignment1 } article_assignment
+        @property { number } [company_id]
         
         @property { number } [price_marked]
         
-         
-    */
-
-    /**
-        @typedef GetAddressSerializer
+        @property { number } [store_pincode]
         
+        @property { ArticleAssignment1 } article_assignment
         
-        @property { string } [city]
+        @property { string } [s_city]
         
-        @property { number } [longitude]
+        @property { number } quantity
         
-        @property { string } [country]
+        @property { number } item_id
         
-        @property { string } [address1]
+        @property { Array<Object> } [strategy_wise_listing]
         
-        @property { string } [address2]
+        @property { string } [uid]
         
-        @property { number } [pincode]
+        @property { string } [_id]
         
-        @property { string } [country_code]
+        @property { number } [price_effective]
         
-        @property { string } [landmark]
+        @property { number } [index]
         
-        @property { string } [address_type]
-        
-        @property { number } [latitude]
-        
-        @property { string } [state]
+        @property { string } [group_id]
         
          
     */
 
     /**
-        @typedef UserSerializer1
+        @typedef LocationTimingSerializer
         
         
-        @property { string } [user_id]
+        @property { number } [minute]
         
-        @property { string } [username]
-        
-        @property { string } [contact]
+        @property { number } [hour]
         
          
     */
 
     /**
-        @typedef GetCompanySerializer
+        @typedef LocationDayWiseSerializer
         
         
-        @property { Array<GetAddressSerializer> } [addresses]
+        @property { string } weekday
         
-        @property { string } [company_type]
+        @property { LocationTimingSerializer } [opening]
         
-        @property { string } [stage]
+        @property { boolean } open
         
-        @property { UserSerializer1 } [modified_by]
-        
-        @property { number } [uid]
-        
-        @property { UserSerializer1 } [created_by]
-        
-        @property { string } [business_type]
-        
-        @property { string } [reject_reason]
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-        @property { UserSerializer1 } [verified_by]
-        
-        @property { string } [verified_on]
-        
-        @property { string } [name]
-        
-         
-    */
-
-    /**
-        @typedef ProductReturnConfigSerializer
-        
-        
-        @property { boolean } [on_same_store]
-        
-        @property { number } [store_uid]
+        @property { LocationTimingSerializer } [closing]
         
          
     */
@@ -14441,9 +14381,9 @@ class PlatformClient{
         @typedef LocationIntegrationType
         
         
-        @property { string } [inventory]
-        
         @property { string } [order]
+        
+        @property { string } [inventory]
         
          
     */
@@ -14460,12 +14400,36 @@ class PlatformClient{
     */
 
     /**
+        @typedef LocationManagerSerializer
+        
+        
+        @property { string } [email]
+        
+        @property { SellerPhoneNumber } mobile_no
+        
+        @property { string } [name]
+        
+         
+    */
+
+    /**
+        @typedef ProductReturnConfigSerializer
+        
+        
+        @property { number } [store_uid]
+        
+        @property { boolean } [on_same_store]
+        
+         
+    */
+
+    /**
         @typedef InvoiceCredSerializer
         
         
-        @property { boolean } [enabled]
-        
         @property { string } [password]
+        
+        @property { boolean } [enabled]
         
         @property { string } [username]
         
@@ -14476,35 +14440,9 @@ class PlatformClient{
         @typedef InvoiceDetailsSerializer
         
         
-        @property { InvoiceCredSerializer } [e_invoice]
-        
         @property { InvoiceCredSerializer } [e_waybill]
         
-         
-    */
-
-    /**
-        @typedef LocationTimingSerializer
-        
-        
-        @property { number } [hour]
-        
-        @property { number } [minute]
-        
-         
-    */
-
-    /**
-        @typedef LocationDayWiseSerializer
-        
-        
-        @property { string } weekday
-        
-        @property { LocationTimingSerializer } [closing]
-        
-        @property { LocationTimingSerializer } [opening]
-        
-        @property { boolean } open
+        @property { InvoiceCredSerializer } [e_invoice]
         
          
     */
@@ -14513,15 +14451,90 @@ class PlatformClient{
         @typedef Document
         
         
-        @property { string } [legal_name]
-        
-        @property { boolean } [verified]
+        @property { string } value
         
         @property { string } type
         
-        @property { string } value
+        @property { boolean } [verified]
         
         @property { string } [url]
+        
+        @property { string } [legal_name]
+        
+         
+    */
+
+    /**
+        @typedef UserSerializer1
+        
+        
+        @property { string } [contact]
+        
+        @property { string } [username]
+        
+        @property { string } [user_id]
+        
+         
+    */
+
+    /**
+        @typedef GetAddressSerializer
+        
+        
+        @property { string } [country_code]
+        
+        @property { string } [address_type]
+        
+        @property { string } [country]
+        
+        @property { number } [latitude]
+        
+        @property { number } [pincode]
+        
+        @property { string } [address2]
+        
+        @property { string } [address1]
+        
+        @property { string } [landmark]
+        
+        @property { string } [state]
+        
+        @property { string } [city]
+        
+        @property { number } [longitude]
+        
+         
+    */
+
+    /**
+        @typedef GetCompanySerializer
+        
+        
+        @property { string } [reject_reason]
+        
+        @property { string } [business_type]
+        
+        @property { string } [created_on]
+        
+        @property { string } [modified_on]
+        
+        @property { UserSerializer1 } [created_by]
+        
+        @property { string } [verified_on]
+        
+        @property { string } [name]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { string } [company_type]
+        
+        @property { string } [stage]
+        
+        @property { number } [uid]
+        
+        @property { UserSerializer1 } [verified_by]
+        
+        @property { UserSerializer1 } [modified_by]
         
          
     */
@@ -14530,24 +14543,11 @@ class PlatformClient{
         @typedef UserSerializer2
         
         
-        @property { string } [user_id]
+        @property { string } [contact]
         
         @property { string } [username]
         
-        @property { string } [contact]
-        
-         
-    */
-
-    /**
-        @typedef LocationManagerSerializer
-        
-        
-        @property { SellerPhoneNumber } mobile_no
-        
-        @property { string } [email]
-        
-        @property { string } [name]
+        @property { string } [user_id]
         
          
     */
@@ -14556,55 +14556,55 @@ class PlatformClient{
         @typedef GetLocationSerializer
         
         
-        @property { GetCompanySerializer } [company]
-        
-        @property { ProductReturnConfigSerializer } [product_return_config]
-        
-        @property { string } phone_number
-        
-        @property { LocationIntegrationType } [integration_type]
-        
-        @property { string } [created_on]
-        
-        @property { string } [modified_on]
-        
-        @property { string } name
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { number } [uid]
+        @property { Object } [_custom_json]
         
         @property { Object } [warnings]
         
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { Array<Document> } [documents]
-        
-        @property { GetAddressSerializer } address
-        
-        @property { Object } [_custom_json]
-        
         @property { string } code
         
-        @property { UserSerializer2 } [verified_by]
+        @property { Array<LocationDayWiseSerializer> } [timing]
         
-        @property { UserSerializer2 } [modified_by]
+        @property { LocationIntegrationType } [integration_type]
+        
+        @property { number } [uid]
+        
+        @property { string } name
         
         @property { LocationManagerSerializer } [manager]
         
-        @property { string } [store_type]
+        @property { string } [created_on]
         
-        @property { string } [stage]
-        
-        @property { UserSerializer2 } [created_by]
-        
-        @property { Array<string> } [notification_emails]
+        @property { ProductReturnConfigSerializer } [product_return_config]
         
         @property { string } [verified_on]
         
+        @property { InvoiceDetailsSerializer } [gst_credentials]
+        
         @property { string } display_name
+        
+        @property { Array<Document> } [documents]
+        
+        @property { string } phone_number
+        
+        @property { Array<string> } [notification_emails]
+        
+        @property { GetCompanySerializer } [company]
+        
+        @property { UserSerializer2 } [modified_by]
+        
+        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        
+        @property { string } [modified_on]
+        
+        @property { string } [store_type]
+        
+        @property { UserSerializer2 } [created_by]
+        
+        @property { GetAddressSerializer } address
+        
+        @property { string } [stage]
+        
+        @property { UserSerializer2 } [verified_by]
         
          
     */
@@ -14622,6 +14622,35 @@ class PlatformClient{
 
 
     
+    /**
+        @typedef CreateUpdateAddressSerializer
+        
+        
+        @property { string } state
+        
+        @property { number } latitude
+        
+        @property { number } pincode
+        
+        @property { string } address_type
+        
+        @property { string } city
+        
+        @property { string } [address2]
+        
+        @property { string } [country_code]
+        
+        @property { string } address1
+        
+        @property { string } [landmark]
+        
+        @property { number } longitude
+        
+        @property { string } country
+        
+         
+    */
+
     /**
         @typedef Website
         
@@ -14644,38 +14673,9 @@ class PlatformClient{
         @typedef ContactDetails
         
         
-        @property { Array<string> } [emails]
-        
         @property { Array<SellerPhoneNumber> } [phone]
         
-         
-    */
-
-    /**
-        @typedef CreateUpdateAddressSerializer
-        
-        
-        @property { number } pincode
-        
-        @property { string } [landmark]
-        
-        @property { string } city
-        
-        @property { number } longitude
-        
-        @property { number } latitude
-        
-        @property { string } [address2]
-        
-        @property { string } [country_code]
-        
-        @property { string } address1
-        
-        @property { string } country
-        
-        @property { string } address_type
-        
-        @property { string } state
+        @property { Array<string> } [emails]
         
          
     */
@@ -14684,31 +14684,31 @@ class PlatformClient{
         @typedef UpdateCompany
         
         
+        @property { string } [business_info]
+        
+        @property { Array<string> } [notification_emails]
+        
         @property { Object } [warnings]
+        
+        @property { boolean } [franchise_enabled]
+        
+        @property { Array<Document> } [documents]
+        
+        @property { string } [reject_reason]
         
         @property { string } [business_type]
         
         @property { string } [name]
         
-        @property { BusinessDetails } [business_details]
-        
         @property { Object } [_custom_json]
-        
-        @property { ContactDetails } [contact_details]
-        
-        @property { boolean } [franchise_enabled]
-        
-        @property { string } [reject_reason]
-        
-        @property { string } [business_info]
         
         @property { string } [company_type]
         
         @property { Array<CreateUpdateAddressSerializer> } [addresses]
         
-        @property { Array<string> } [notification_emails]
+        @property { BusinessDetails } [business_details]
         
-        @property { Array<Document> } [documents]
+        @property { ContactDetails } [contact_details]
         
          
     */
@@ -14728,47 +14728,47 @@ class PlatformClient{
         @typedef GetCompanyProfileSerializerResponse
         
         
-        @property { ContactDetails } [contact_details]
-        
-        @property { string } [business_info]
-        
-        @property { string } company_type
-        
-        @property { Array<Document> } [documents]
-        
-        @property { string } [modified_on]
-        
-        @property { BusinessCountryInfo } [business_country_info]
-        
-        @property { string } [mode]
-        
-        @property { Array<GetAddressSerializer> } [addresses]
-        
         @property { string } [stage]
         
         @property { Object } [warnings]
         
-        @property { string } business_type
-        
-        @property { UserSerializer } [created_by]
-        
-        @property { BusinessDetails } [business_details]
-        
-        @property { number } uid
-        
-        @property { string } [verified_on]
-        
         @property { string } [name]
-        
-        @property { boolean } [franchise_enabled]
         
         @property { UserSerializer } [modified_by]
         
-        @property { string } [created_on]
+        @property { BusinessCountryInfo } [business_country_info]
         
-        @property { UserSerializer } [verified_by]
+        @property { ContactDetails } [contact_details]
+        
+        @property { boolean } [franchise_enabled]
         
         @property { Array<string> } [notification_emails]
+        
+        @property { string } business_type
+        
+        @property { number } uid
+        
+        @property { string } company_type
+        
+        @property { UserSerializer } [created_by]
+        
+        @property { string } [verified_on]
+        
+        @property { string } [created_on]
+        
+        @property { string } [modified_on]
+        
+        @property { Array<GetAddressSerializer> } [addresses]
+        
+        @property { BusinessDetails } [business_details]
+        
+        @property { string } [business_info]
+        
+        @property { Array<Document> } [documents]
+        
+        @property { string } [mode]
+        
+        @property { UserSerializer } [verified_by]
         
          
     */
@@ -14777,9 +14777,9 @@ class PlatformClient{
         @typedef DocumentsObj
         
         
-        @property { number } [verified]
-        
         @property { number } [pending]
+        
+        @property { number } [verified]
         
          
     */
@@ -14790,17 +14790,17 @@ class PlatformClient{
         
         @property { string } [stage]
         
+        @property { DocumentsObj } [product]
+        
         @property { DocumentsObj } [store_documents]
+        
+        @property { DocumentsObj } [brand]
+        
+        @property { number } [uid]
         
         @property { DocumentsObj } [company_documents]
         
         @property { DocumentsObj } [store]
-        
-        @property { number } [uid]
-        
-        @property { DocumentsObj } [product]
-        
-        @property { DocumentsObj } [brand]
         
          
     */
@@ -14809,36 +14809,9 @@ class PlatformClient{
         @typedef BrandBannerSerializer
         
         
-        @property { string } [portrait]
-        
         @property { string } [landscape]
         
-         
-    */
-
-    /**
-        @typedef CreateUpdateBrandRequestSerializer
-        
-        
-        @property { number } [company_id]
-        
-        @property { string } name
-        
-        @property { Object } [_custom_json]
-        
-        @property { string } [description]
-        
-        @property { Array<string> } [synonyms]
-        
-        @property { string } [brand_tier]
-        
-        @property { Object } [_locale_language]
-        
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { string } logo
-        
-        @property { number } [uid]
+        @property { string } [portrait]
         
          
     */
@@ -14847,43 +14820,70 @@ class PlatformClient{
         @typedef GetBrandResponseSerializer
         
         
-        @property { Object } [_custom_json]
-        
-        @property { Object } [_locale_language]
-        
-        @property { string } [modified_on]
-        
-        @property { string } [mode]
-        
         @property { string } [stage]
         
         @property { Object } [warnings]
         
-        @property { UserSerializer1 } [created_by]
+        @property { Array<string> } [synonyms]
         
-        @property { BrandBannerSerializer } [banner]
-        
-        @property { string } [description]
-        
-        @property { string } [logo]
-        
-        @property { number } [uid]
-        
-        @property { string } [verified_on]
+        @property { Object } [_custom_json]
         
         @property { string } name
-        
-        @property { string } [reject_reason]
-        
-        @property { Array<string> } [synonyms]
         
         @property { UserSerializer1 } [modified_by]
         
         @property { string } [slug_key]
         
+        @property { string } [logo]
+        
+        @property { string } [description]
+        
+        @property { number } [uid]
+        
+        @property { UserSerializer1 } [created_by]
+        
+        @property { string } [verified_on]
+        
         @property { string } [created_on]
         
+        @property { string } [modified_on]
+        
+        @property { string } [reject_reason]
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { string } [mode]
+        
         @property { UserSerializer1 } [verified_by]
+        
+        @property { Object } [_locale_language]
+        
+         
+    */
+
+    /**
+        @typedef CreateUpdateBrandRequestSerializer
+        
+        
+        @property { BrandBannerSerializer } [banner]
+        
+        @property { Array<string> } [synonyms]
+        
+        @property { number } [company_id]
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } name
+        
+        @property { string } [brand_tier]
+        
+        @property { string } [description]
+        
+        @property { string } logo
+        
+        @property { number } [uid]
+        
+        @property { Object } [_locale_language]
         
          
     */
@@ -14892,9 +14892,9 @@ class PlatformClient{
         @typedef CompanyBrandPostRequestSerializer
         
         
-        @property { number } company
-        
         @property { Array<number> } brands
+        
+        @property { number } company
         
         @property { number } [uid]
         
@@ -14905,29 +14905,29 @@ class PlatformClient{
         @typedef CompanyBrandSerializer
         
         
-        @property { string } [verified_on]
+        @property { string } [modified_on]
         
         @property { string } [stage]
         
         @property { Object } [warnings]
         
-        @property { UserSerializer1 } [created_by]
-        
         @property { GetCompanySerializer } [company]
-        
-        @property { GetBrandResponseSerializer } [brand]
         
         @property { string } [reject_reason]
         
+        @property { GetBrandResponseSerializer } [brand]
+        
         @property { UserSerializer1 } [modified_by]
+        
+        @property { number } [uid]
+        
+        @property { UserSerializer1 } [created_by]
+        
+        @property { string } [verified_on]
         
         @property { string } [created_on]
         
         @property { UserSerializer1 } [verified_by]
-        
-        @property { string } [modified_on]
-        
-        @property { number } [uid]
         
          
     */
@@ -14947,13 +14947,15 @@ class PlatformClient{
         @typedef GetAddressSerializer1
         
         
-        @property { string } [landmark]
-        
-        @property { string } [city]
-        
-        @property { number } [longitude]
+        @property { string } [state]
         
         @property { number } [latitude]
+        
+        @property { number } [pincode]
+        
+        @property { string } [address_type]
+        
+        @property { string } [city]
         
         @property { string } [address2]
         
@@ -14961,13 +14963,11 @@ class PlatformClient{
         
         @property { string } [address1]
         
+        @property { string } [landmark]
+        
+        @property { number } [longitude]
+        
         @property { string } [country]
-        
-        @property { string } [address_type]
-        
-        @property { string } [state]
-        
-        @property { number } [pincode]
         
          
     */
@@ -14976,39 +14976,39 @@ class PlatformClient{
         @typedef LocationSerializer
         
         
-        @property { GetAddressSerializer1 } address
-        
         @property { string } [stage]
-        
-        @property { Object } [warnings]
-        
-        @property { string } name
-        
-        @property { InvoiceDetailsSerializer } [gst_credentials]
-        
-        @property { number } company
         
         @property { Array<string> } [notification_emails]
         
-        @property { Object } [_custom_json]
-        
-        @property { string } display_name
-        
-        @property { LocationManagerSerializer } [manager]
-        
-        @property { string } [store_type]
-        
-        @property { string } code
-        
-        @property { Array<LocationDayWiseSerializer> } [timing]
-        
-        @property { Array<SellerPhoneNumber> } [contact_numbers]
-        
         @property { Array<Document> } [documents]
+        
+        @property { number } company
+        
+        @property { Object } [warnings]
         
         @property { ProductReturnConfigSerializer } [product_return_config]
         
+        @property { Array<SellerPhoneNumber> } [contact_numbers]
+        
+        @property { string } code
+        
+        @property { Object } [_custom_json]
+        
+        @property { string } name
+        
+        @property { string } display_name
+        
+        @property { string } [store_type]
+        
+        @property { GetAddressSerializer1 } address
+        
         @property { number } [uid]
+        
+        @property { LocationManagerSerializer } [manager]
+        
+        @property { Array<LocationDayWiseSerializer> } [timing]
+        
+        @property { InvoiceDetailsSerializer } [gst_credentials]
         
          
     */
@@ -23201,6 +23201,40 @@ class Catalog {
     
     /**
     *
+    * @summary: Get a particular Product Bundle details
+    * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
+    
+    **/
+        getProductBundleDetail({
+            id
+            
+        } = {}) {
+
+            const { error } = CatalogValidator.getProductBundleDetail().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Update a Product Bundle
     * @description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
     * @param {Object} arg - arg object.
@@ -23231,40 +23265,6 @@ class Catalog {
                     `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
                     query_params,
                     body,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Get a particular Product Bundle details
-    * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve.
-    
-    **/
-        getProductBundleDetail({
-            id
-            
-        } = {}) {
-
-            const { error } = CatalogValidator.getProductBundleDetail().validate({
-                id
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "get",
-                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
-                    query_params,
-                     undefined ,
             );
         }
         
@@ -23355,6 +23355,40 @@ class Catalog {
     
     /**
     *
+    * @summary: Get a single size guide.
+    * @description: This API helps to get data associated to a size guide.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Id of the size guide to be viewed.
+    
+    **/
+        getSizeGuide({
+            id
+            
+        } = {}) {
+
+            const { error } = CatalogValidator.getSizeGuide().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Edit a size guide.
     * @description: This API allows to edit a size guide.
     * @param {Object} arg - arg object.
@@ -23385,40 +23419,6 @@ class Catalog {
                     `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
                     query_params,
                     body,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Get a single size guide.
-    * @description: This API helps to get data associated to a size guide.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Id of the size guide to be viewed.
-    
-    **/
-        getSizeGuide({
-            id
-            
-        } = {}) {
-
-            const { error } = CatalogValidator.getSizeGuide().validate({
-                id
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "get",
-                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
-                    query_params,
-                     undefined ,
             );
         }
         
@@ -24194,6 +24194,40 @@ class Catalog {
     
     /**
     *
+    * @summary: Get product category by uid
+    * @description: This API gets meta associated to product categories.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.uid - Category unique id
+    
+    **/
+        getCategoryData({
+            uid
+            
+        } = {}) {
+
+            const { error } = CatalogValidator.getCategoryData().validate({
+                uid
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Update product categories
     * @description: Update a product category using this apu
     * @param {Object} arg - arg object.
@@ -24224,40 +24258,6 @@ class Catalog {
                     `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
                     query_params,
                     body,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Get product category by uid
-    * @description: This API gets meta associated to product categories.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.uid - Category unique id
-    
-    **/
-        getCategoryData({
-            uid
-            
-        } = {}) {
-
-            const { error } = CatalogValidator.getCategoryData().validate({
-                uid
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "get",
-                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
-                    query_params,
-                     undefined ,
             );
         }
         
@@ -24364,42 +24364,6 @@ class Catalog {
     
     /**
     *
-    * @summary: Edit a product.
-    * @description: This API allows to edit product.
-    * @param {Object} arg - arg object.
-    * @param {number} arg.itemId - Id of the product to be updated.
-    * @param {ProductCreateUpdate} arg.body
-    **/
-        editProduct({
-            itemId,
-            body
-            
-        } = {}) {
-
-            const { error } = CatalogValidator.editProduct().validate({
-                itemId,
-            body
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "put",
-                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/`,
-                    query_params,
-                    body,
-            );
-        }
-        
-    
-    /**
-    *
     * @summary: Delete a product.
     * @description: This API allows to delete product.
     * @param {Object} arg - arg object.
@@ -24470,6 +24434,42 @@ class Catalog {
                     `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/`,
                     query_params,
                      undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Edit a product.
+    * @description: This API allows to edit product.
+    * @param {Object} arg - arg object.
+    * @param {number} arg.itemId - Id of the product to be updated.
+    * @param {ProductCreateUpdate} arg.body
+    **/
+        editProduct({
+            itemId,
+            body
+            
+        } = {}) {
+
+            const { error } = CatalogValidator.editProduct().validate({
+                itemId,
+            body
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "put",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/`,
+                    query_params,
+                    body,
             );
         }
         
@@ -25337,6 +25337,40 @@ class Catalog {
     
     /**
     *
+    * @summary: Fetch Hsn Code.
+    * @description: Fetch Hsn Code.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.id - Unique id
+    
+    **/
+        getHsnCode({
+            id
+            
+        } = {}) {
+
+            const { error } = CatalogValidator.getHsnCode().validate({
+                id
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Update Hsn Code.
     * @description: Update Hsn Code.
     * @param {Object} arg - arg object.
@@ -25367,40 +25401,6 @@ class Catalog {
                     `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
                     query_params,
                     body,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Fetch Hsn Code.
-    * @description: Fetch Hsn Code.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.id - Unique id
-    
-    **/
-        getHsnCode({
-            id
-            
-        } = {}) {
-
-            const { error } = CatalogValidator.getHsnCode().validate({
-                id
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "get",
-                    `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
-                    query_params,
-                     undefined ,
             );
         }
         
@@ -25577,6 +25577,40 @@ class CompanyProfile {
     
     /**
     *
+    * @summary: Get a single brand.
+    * @description: This API helps to get data associated to a particular brand.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.brandId - Id of the brand to be viewed.
+    
+    **/
+        getBrand({
+            brandId
+            
+        } = {}) {
+
+            const { error } = CompanyProfileValidator.getBrand().validate({
+                brandId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Edit a brand.
     * @description: This API allows to edit meta of a brand.
     * @param {Object} arg - arg object.
@@ -25607,40 +25641,6 @@ class CompanyProfile {
                     `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
                     query_params,
                     body,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Get a single brand.
-    * @description: This API helps to get data associated to a particular brand.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.brandId - Id of the brand to be viewed.
-    
-    **/
-        getBrand({
-            brandId
-            
-        } = {}) {
-
-            const { error } = CompanyProfileValidator.getBrand().validate({
-                brandId
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "get",
-                    `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-                    query_params,
-                     undefined ,
             );
         }
         
@@ -25960,6 +25960,40 @@ class CompanyProfile {
     
     /**
     *
+    * @summary: Get details of a specific location.
+    * @description: This API helps to get data associated to a specific location.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.locationId - Id of the location which you want to view.
+    
+    **/
+        getLocationDetail({
+            locationId
+            
+        } = {}) {
+
+            const { error } = CompanyProfileValidator.getLocationDetail().validate({
+                locationId
+            
+            },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            
+            const query_params = {};
+            
+
+            return PlatformAPIClient.execute(
+                    this.config,
+                    "get",
+                    `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
     * @summary: Edit a location asscoiated to a company.
     * @description: This API allows to edit a location associated to a company.
     * @param {Object} arg - arg object.
@@ -25990,40 +26024,6 @@ class CompanyProfile {
                     `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
                     query_params,
                     body,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Get details of a specific location.
-    * @description: This API helps to get data associated to a specific location.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.locationId - Id of the location which you want to view.
-    
-    **/
-        getLocationDetail({
-            locationId
-            
-        } = {}) {
-
-            const { error } = CompanyProfileValidator.getLocationDetail().validate({
-                locationId
-            
-            },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            
-            const query_params = {};
-            
-
-            return PlatformAPIClient.execute(
-                    this.config,
-                    "get",
-                    `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
-                    query_params,
-                     undefined ,
             );
         }
         
