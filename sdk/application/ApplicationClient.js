@@ -93,8 +93,8 @@ class Catalog {
             getCollectionItemsBySlug: "/service/application/catalog/v1.0/collections/{slug}/items/",
             getCollectionDetailBySlug: "/service/application/catalog/v1.0/collections/{slug}/",
             getFollowedListing: "/service/application/catalog/v1.0/follow/{collection_type}/",
-            followById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
             unfollowById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+            followById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
             getFollowerCountById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
             getFollowIds: "/service/application/catalog/v1.0/follow/ids/",
             getStores: "/service/application/catalog/v1.0/locations/",
@@ -1536,44 +1536,6 @@ class Catalog {
     
     /**
     *
-    * @summary: Follow an entity (product/brand/collection)
-    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.
-    * @param {string} arg.collectionId - The ID of the collection type.
-    
-    
-    * @return {Promise<FollowPostResponse>} - success response
-    **/
-        followById({
-            collectionType,
-            collectionId
-            
-        } = {}) {
-            const { error } = CatalogValidator.followById().validate({ collectionType,
-            collectionId
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            const query_params = {};
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "post",
-                    constructUrl({
-                        url: this._urls["followById"],
-                        params: { collectionType, collectionId }
-                    }),
-                    query_params,
-                     undefined ,
-            );
-        }
-        
-    
-    /**
-    *
     * @summary: Unfollow an entity (product/brand/collection)
     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
     * @param {Object} arg - arg object.
@@ -1602,6 +1564,44 @@ class Catalog {
                     "delete",
                     constructUrl({
                         url: this._urls["unfollowById"],
+                        params: { collectionType, collectionId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Follow an entity (product/brand/collection)
+    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.
+    * @param {string} arg.collectionId - The ID of the collection type.
+    
+    
+    * @return {Promise<FollowPostResponse>} - success response
+    **/
+        followById({
+            collectionType,
+            collectionId
+            
+        } = {}) {
+            const { error } = CatalogValidator.followById().validate({ collectionType,
+            collectionId
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["followById"],
                         params: { collectionType, collectionId }
                     }),
                     query_params,
@@ -3298,6 +3298,7 @@ class Cart {
     * @description: Use this API to get applicable ladder price promotion for current product
     * @param {Object} arg - arg object.
     * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
+    * @param {string} [arg.storeId] - Store uid of assigned store on PDP page. If not passed default first created ladder will be assigned
     * @param {string} [arg.promotionId] - Get ladder information of given promotion id explicitely
     * @param {number} [arg.pageSize] - Number of offers to be fetched to show
     
@@ -3306,11 +3307,13 @@ class Cart {
     **/
         getLadderOffers({
             slug,
+            storeId,
             promotionId,
             pageSize
             
         } = {}) {
             const { error } = CartValidator.getLadderOffers().validate({ slug,
+            storeId,
             promotionId,
             pageSize
              },{ abortEarly: false });
@@ -3319,6 +3322,7 @@ class Cart {
             }
             const query_params = {};
             query_params['slug'] = slug;
+            query_params['store_id'] = storeId;
             query_params['promotion_id'] = promotionId;
             query_params['page_size'] = pageSize;
             
