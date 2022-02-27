@@ -117,7 +117,8 @@ function setupRoutes(ext) {
                         session.access_token = offlineToken.access_token;
                         session.refresh_token = offlineToken.refresh_token;
                         session.access_token_validity =  new Date(Date.now() + offlineToken.expires_in * 1000).getTime();
-
+                        session.current_user = offlineToken.current_user;
+                        
                         await SessionStorage.saveSession(session);
                     }
 

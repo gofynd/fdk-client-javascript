@@ -19,7 +19,8 @@ class Extension {
         this.webhookRegistry = null;
     }
 
-    initialize(data) {
+    async initialize(data) {
+    
         this.storage = data.storage;
 
         if(!data.api_key){
@@ -31,13 +32,6 @@ class Extension {
             throw new FdkInvalidExtensionJson("Invalid api_secret");
         }
         this.api_secret = data.api_secret;
-
-        if(!validator.isURL(data.base_url)) {
-            throw new FdkInvalidExtensionJson("Invalid base_url");
-        }
-        
-        this.base_url = data.base_url;
-        this.scopes = this.verifyScopes(data.scopes);
 
         if(!data.callbacks || ( data.callbacks && ( !data.callbacks.auth || !data.callbacks.uninstall))) {
             throw new FdkInvalidExtensionJson("Missing some of callbacks. Please add all `auth` and `uninstall` callbacks.");
@@ -52,6 +46,15 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
+    
+        let extensionData = await getExtensionDetails(this.cluster, this.api_key, this.api_secret);
+    
+        if(!validator.isURL(extensionData.base_url)) {
+            throw new FdkInvalidExtensionJson("Invalid base_url");
+        }
+        this.base_url = extensionData.base_url;
+        this.scopes = this.verifyScopes(extensionData.scope);
+
         logger.debug(`Extension initialized`);
         this.webhookRegistry = new WebhookRegistry();
 
@@ -116,6 +119,30 @@ class Extension {
             },
           };
         return fdkAxios.request(rawRequest);
+    }
+
+}
+
+
+async function getExtensionDetails(cluster, api_key, api_secret){
+    try{
+        let url = `${cluster}/service/panel/partners/v1.0/extensions/details/${api_key}`;
+        const token = Buffer.from(
+            `${api_key}:${api_secret}`,
+            "utf8"
+        ).toString("base64");
+        const rawRequest = {
+            method: "get",
+            url: url,
+            headers: {
+                Authorization: `Basic ${token}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        };
+        let extensionData = await fdkAxios.request(rawRequest);
+        return extensionData;
+    }catch(err){
+        throw new FdkInvalidExtensionJson("Invalid api_key or api_secret");
     }
 }
 

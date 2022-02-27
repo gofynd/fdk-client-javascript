@@ -21,7 +21,8 @@
             "name": "Current File",
             "request": "launch",
             "type": "node",
-            "args": ["${file}"]
+            "args": ["${file}"],
+            "outputCapture": "std"
         }
 
     ]
