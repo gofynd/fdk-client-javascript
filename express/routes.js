@@ -91,7 +91,6 @@ function setupRoutes(ext) {
             await platformConfig.oauthClient.verifyCallback(req.query);
             let token = platformConfig.oauthClient.raw_token;
             
-            // TODO: check what happens when token expires
             let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
         
             if(!ext.isOnlineAccessMode()) {
@@ -134,6 +133,10 @@ function setupRoutes(ext) {
             req.fdkSession.expires_in = token.expires_in;
             req.fdkSession.access_token_validity = sessionExpires.getTime();
             req.fdkSession.current_user = token.current_user;
+            token.expires = sessionExpires;
+            token.access_token_validity = sessionExpires.getTime();
+            
+            req.fdkSession.updateToken(token);
 
             await SessionStorage.saveSession(req.fdkSession);
 
