@@ -110,7 +110,7 @@ class Extension {
 
     async getOfflineOAuthToken(companyId, code){
         let url = `${this.cluster}/service/panel/authentication/v1.0/company/${companyId}/oauth/offline-token`;
-        let data = { client_id: this.api_key, client_secret: this.api_secret, grant_type: 'client_credentials', scope: this.scopes, code: code };
+        let data = { client_id: this.api_key, client_secret: this.api_secret, grant_type: 'authorization_code', scope: this.scopes, code: code };
         const token = Buffer.from(
             `${this.api_key}:${this.api_secret}`,
             "utf8"
