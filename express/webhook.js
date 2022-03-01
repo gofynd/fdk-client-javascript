@@ -1,10 +1,13 @@
 'use strict';
 
 const hmacSHA256 = require("crypto-js/hmac-sha256");
+const { fdkAxios } = require("fdk-client-javascript/sdk/common/AxiosHelper");
 const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 const logger = require("./logger");
+const querystring = require("query-string");
 
+let eventConfig = {}
 class WebhookRegistry {
     constructor() {
         this._handlerMap = null;
@@ -12,7 +15,7 @@ class WebhookRegistry {
         this._fdkConfig = null;
     }
 
-    initialize(config, fdkConfig) {
+    async initialize(config, fdkConfig) {
         const emailRegex = new RegExp(/^\S+@\S+\.\S+$/, 'gi');
         if (!config.notification_email || !emailRegex.test(config.notification_email)) {
             throw new FdkInvalidWebhookConfig(`Invalid or missing "notification_email"`);
@@ -30,11 +33,24 @@ class WebhookRegistry {
         for (let [eventName, handlerData] of Object.entries(this._config.event_map)) {
             this._handlerMap[eventName] = handlerData;
         }
+
+        await this.getEventConfig();                                            // get event config for required event_map in eventConfig.event_configs
+        eventConfig.eventsMap = this._getEventIdMap(eventConfig.event_configs); // generate eventIdMap from eventConfig.event_configs 
+        if(!this._validateEventsMap()){                                         // validate eventIdMap for every element in _handlerMap 
+            throw new FdkWebhookRegistrationError(`Webhook config not found`);
+        }
+
         logger.debug('Webhook registry initialized');
     }
 
     isInitialized() {
         return !!this._handlerMap && this._config.subscribe_on_install;
+    }
+
+    _validateEventsMap(){
+        return Object.keys(this._handlerMap).every((key)=>{
+            return `${key}/${this._handlerMap[key].version}` in eventConfig.eventsMap
+        })
     }
 
     _getEventIdMap(events) {
@@ -87,16 +103,8 @@ class WebhookRegistry {
             this.initialize(config, this._fdkConfig);
         }
 
-        let subscriberConfig = null;
-        let eventsMap = null;
-        const promises = [];
+        let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key });
 
-        promises.push(platformClient.webhook.fetchAllEventConfigurations()); // TODO:  replace with validate API
-        promises.push(platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key }));
-
-        [eventsMap, subscriberConfig] = await Promise.all(promises);
-
-        eventsMap = this._getEventIdMap(eventsMap.event_configs);
         let registerNew = false;
         let configUpdated = false;
         let existingEvents = [];
@@ -140,7 +148,7 @@ class WebhookRegistry {
         }
         for (let eventName of Object.keys(this._handlerMap)) {
             eventName = `${eventName}/${this._handlerMap[eventName].version}`
-            let event_id = eventsMap[eventName]
+            let event_id = eventConfig.eventsMap[eventName]
             if (event_id) {
                 subscriberConfig.event_id.push(event_id);
             }
@@ -150,8 +158,8 @@ class WebhookRegistry {
             if (registerNew) {
                 await platformClient.webhook.registerSubscriberToEvent({ body: subscriberConfig });
                 if(this._fdkConfig.debug) {
-                    const event_map = Object.keys(eventsMap).reduce((map, eventName)=>{
-                        map[eventsMap[eventName]] = eventName;
+                    const event_map = Object.keys(eventConfig.eventsMap).reduce((map, eventName)=>{
+                        map[eventConfig.eventsMap[eventName]] = eventName;
                         return map;
                     }, {});
                     subscriberConfig.event_id = subscriberConfig.event_id.map(id=>event_map[id]);
@@ -167,8 +175,8 @@ class WebhookRegistry {
                 if (eventDiff.length || configUpdated) {
                     await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
                     if(this._fdkConfig.debug) {
-                        const event_map = Object.keys(eventsMap).reduce((map, eventName)=>{
-                            map[eventsMap[eventName]] = eventName;
+                        const event_map = Object.keys(eventConfig.eventsMap).reduce((map, eventName)=>{
+                            map[eventConfig.eventsMap[eventName]] = eventName;
                             return map;
                         }, {});
                         subscriberConfig.event_id = subscriberConfig.event_id.map(id=>event_map[id]);
@@ -187,13 +195,13 @@ class WebhookRegistry {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
         try {
-            let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
-            subscriberConfig = subscriberConfig.items[0];
+            let subscriberConfig = this.getSubscribeConfig();
             if (!subscriberConfig) {
                 throw new FdkWebhookRegistrationError(`Subscriber config not found`);
             }
             const { id, name, webhook_url, association, status, auth_meta, email_id, event_configs } = subscriberConfig;
             subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
+            // TODO: Check if event_id is array received in subscriberConfig 
             subscriberConfig.event_id = event_configs.map(event => event.id);
             const arrApplicationId = subscriberConfig.association.application_id || [];
             const rmIndex = arrApplicationId.indexOf(applicationId);
@@ -215,8 +223,8 @@ class WebhookRegistry {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
         try {
-            let subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key })
-            subscriberConfig = subscriberConfig.items[0];
+
+            let subscriberConfig = this.getSubscribeConfig();
             if (!subscriberConfig) {
                 throw new FdkWebhookRegistrationError(`Subscriber config not found`);
             }
@@ -277,11 +285,46 @@ class WebhookRegistry {
         }
     }
 
-    async getSubscribeConfig(req) {
+    async getSubscribeConfig() {
         const subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key });
         return subscriberConfig.items[0];
     }
 
+    async getEventConfig() {
+        try{
+            let data = [];
+            Object.keys(this._handlerMap).forEach((key)=>{
+                let eventObj = {}
+                let eventDetails = key.split('/');
+                if(eventDetails.length !== 3){
+                    throw new FdkWebhookRegistrationError(`Invalid webhook events configuration`)
+                }
+                eventObj.event_name = eventDetails[1].trim();
+                eventObj.version = this._handlerMap[key].version;
+                eventObj.event_type = eventDetails[2];
+                eventObj.event_category = eventDetails[0]
+                data.push(eventObj);
+            });
+            let url = `${this._fdkConfig.cluster}/service/common/webhook/v1.0/events/query-event-details`;
+            const rawRequest = {
+                method: "post",
+                url: url,
+                data: data,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            let responseData = await fdkAxios.request(rawRequest);
+            eventConfig.event_configs = responseData.event_configs;
+        }
+        catch(err){
+            if(err instanceof FdkWebhookRegistrationError){
+                throw err;
+            }
+            throw new FdkWebhookRegistrationError(`Error while fetching webhook events configuration`)
+        }
+        
+    }
 }
 
 module.exports = {

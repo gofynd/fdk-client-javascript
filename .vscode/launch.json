@@ -23,6 +23,13 @@
             "type": "node",
             "args": ["${file}"],
             "outputCapture": "std"
+        },
+        {
+            "name": "Launch example extension",
+            "request": "launch",
+            "type": "node",
+            "args": ["examples/test.js"],
+            "outputCapture": "std"
         }
 
     ]

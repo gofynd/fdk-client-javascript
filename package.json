@@ -1,10 +1,10 @@
 {
   "dependencies": {
+    "axios": "^0.21.1",
+    "crypto-js": "^4.0.0",
     "url-join": "^4.0.1",
     "uuid": "^8.3.2",
     "validator": "^13.5.2",
-    "axios": "^0.21.1",
-    "crypto-js": "^4.0.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
