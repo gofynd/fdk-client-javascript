@@ -15,6 +15,7 @@ const {
     PaymentValidator,
     OrderValidator,
     RewardsValidator,
+    FeedbackValidator,
     PosCartValidator,
     LogisticValidator
     
@@ -56,6 +57,7 @@ class ApplicationClient{
         this.payment = new Payment(config);
         this.order = new Order(config);
         this.rewards = new Rewards(config);
+        this.feedback = new Feedback(config);
         this.posCart = new PosCart(config);
         this.logistic = new Logistic(config);
         
@@ -72,8 +74,6 @@ class Catalog {
         this._relativeUrls = {
             getProductDetailBySlug: "/service/application/catalog/v1.0/products/{slug}/",
             getProductSizesBySlug: "/service/application/catalog/v1.0/products/{slug}/sizes/",
-            getProductPriceBySlug: "/service/application/catalog/v1.0/products/{slug}/sizes/{size}/pincode/{pincode}/price/",
-            getProductSellersBySlug: "/service/application/catalog/v1.0/products/{slug}/sizes/{size}/pincode/{pincode}/sellers/",
             getProductComparisonBySlugs: "/service/application/catalog/v1.0/products/compare/",
             getSimilarComparisonProductBySlug: "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
             getComparedFrequentlyProductBySlug: "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/",
@@ -93,16 +93,16 @@ class Catalog {
             getCollectionItemsBySlug: "/service/application/catalog/v1.0/collections/{slug}/items/",
             getCollectionDetailBySlug: "/service/application/catalog/v1.0/collections/{slug}/",
             getFollowedListing: "/service/application/catalog/v1.0/follow/{collection_type}/",
-            unfollowById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
             followById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+            unfollowById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
             getFollowerCountById: "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
             getFollowIds: "/service/application/catalog/v1.0/follow/ids/",
             getStores: "/service/application/catalog/v1.0/locations/",
             getInStockLocations: "/service/application/catalog/v1.0/in-stock/locations/",
             getLocationDetailsById: "/service/application/catalog/v1.0/locations/{location_id}/",
             getProductBundlesBySlug: "/service/application/catalog/v1.0/product-grouping/",
-            getProductPriceBySlugV2: "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/",
-            getProductSellersBySlugV2: "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/"
+            getProductPriceBySlug: "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/",
+            getProductSellersBySlug: "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/"
             
         }
         this._urls = Object.entries(this._relativeUrls).reduce((urls, [method, relativeUrl]) => {
@@ -191,173 +191,6 @@ class Catalog {
                      undefined ,
             );
         }
-        
-    
-    /**
-    *
-    * @summary: Get the price of a product size at a PIN Code
-    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
-    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
-    * @param {string} arg.pincode - The PIN Code of the area near which the selling locations should be searched, e.g. 400059
-    * @param {number} [arg.storeId] - The ID of the store that is selling the product, e.g. 1,2,3.
-    
-    
-    * @return {Promise<ProductSizePriceResponse>} - success response
-    **/
-        getProductPriceBySlug({
-            slug,
-            size,
-            pincode,
-            storeId
-            
-        } = {}) {
-            const { error } = CatalogValidator.getProductPriceBySlug().validate({ slug,
-            size,
-            pincode,
-            storeId
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            const query_params = {};
-            query_params['store_id'] = storeId;
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "get",
-                    constructUrl({
-                        url: this._urls["getProductPriceBySlug"],
-                        params: { slug, size, pincode }
-                    }),
-                    query_params,
-                     undefined ,
-            );
-        }
-        
-    
-    /**
-    *
-    * @summary: Get the sellers of a product size at a PIN Code
-    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
-    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
-    * @param {string} arg.pincode - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059
-    * @param {string} [arg.strategy] - Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal.
-    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results.
-    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-    
-    
-    * @return {Promise<ProductSizeSellersResponse>} - success response
-    **/
-        getProductSellersBySlug({
-            slug,
-            size,
-            pincode,
-            strategy,
-            pageNo,
-            pageSize
-            
-        } = {}) {
-            const { error } = CatalogValidator.getProductSellersBySlug().validate({ slug,
-            size,
-            pincode,
-            strategy,
-            pageNo,
-            pageSize
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            const query_params = {};
-            query_params['strategy'] = strategy;
-            query_params['page_no'] = pageNo;
-            query_params['page_size'] = pageSize;
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "get",
-                    constructUrl({
-                        url: this._urls["getProductSellersBySlug"],
-                        params: { slug, size, pincode }
-                    }),
-                    query_params,
-                     undefined ,
-            );
-        }
-        
-            
-            
-                
-                    
-                        
-                    
-                    
-                
-                    
-                        
-                    
-                    
-                
-                    
-                        
-                    
-                    
-                
-                    
-                        
-                    
-                    
-                
-                    
-                    
-                
-                    
-                        
-                    
-                    
-                
-
-    /**
-    *
-    * @summary: Get the sellers of a product size at a PIN Code
-    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/
-    * @param {string} arg.size - A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes
-    * @param {string} arg.pincode - The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059
-    * @param {string} [arg.strategy] - Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal.
-    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-    
-    **/
-                getProductSellersBySlugPaginator( { slug, size, pincode, strategy, pageSize
-                } = {}){
-                const paginator = new Paginator();
-                const callback = async () => {
-                    const pageId = paginator.nextId;
-                    const pageNo = paginator.pageNo;
-                    const pageType = "number";
-                    const data = await this.getProductSellersBySlug({
-                        slug:slug ,
-                        size:size ,
-                        pincode:pincode ,
-                        strategy:strategy ,
-                        pageNo:pageNo ,
-                        pageSize:pageSize 
-                        }) 
-                        paginator.setPaginator({
-                            hasNext: data.page.has_next ? true : false,
-                            nextId: data.page.next_id,
-                        });
-                    return data; 
-                };
-                paginator.setCallback(callback);
-                return paginator;
-            }
         
     
     /**
@@ -1536,44 +1369,6 @@ class Catalog {
     
     /**
     *
-    * @summary: Unfollow an entity (product/brand/collection)
-    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-    * @param {Object} arg - arg object.
-    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.
-    * @param {string} arg.collectionId - The ID of the collection type.
-    
-    
-    * @return {Promise<FollowPostResponse>} - success response
-    **/
-        unfollowById({
-            collectionType,
-            collectionId
-            
-        } = {}) {
-            const { error } = CatalogValidator.unfollowById().validate({ collectionType,
-            collectionId
-             },{ abortEarly: false });
-            if (error) {
-                return Promise.reject(new FDKClientValidationError(error));
-            }
-            const query_params = {};
-            
-
-            return APIClient.execute(
-                    this._conf,
-                    "delete",
-                    constructUrl({
-                        url: this._urls["unfollowById"],
-                        params: { collectionType, collectionId }
-                    }),
-                    query_params,
-                     undefined ,
-            );
-        }
-        
-    
-    /**
-    *
     * @summary: Follow an entity (product/brand/collection)
     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
     * @param {Object} arg - arg object.
@@ -1602,6 +1397,44 @@ class Catalog {
                     "post",
                     constructUrl({
                         url: this._urls["followById"],
+                        params: { collectionType, collectionId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Unfollow an entity (product/brand/collection)
+    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.collectionType - Type of collection followed, i.e. products, brands, or collections.
+    * @param {string} arg.collectionId - The ID of the collection type.
+    
+    
+    * @return {Promise<FollowPostResponse>} - success response
+    **/
+        unfollowById({
+            collectionType,
+            collectionId
+            
+        } = {}) {
+            const { error } = CatalogValidator.unfollowById().validate({ collectionType,
+            collectionId
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "delete",
+                    constructUrl({
+                        url: this._urls["unfollowById"],
                         params: { collectionType, collectionId }
                     }),
                     query_params,
@@ -2044,14 +1877,14 @@ class Catalog {
     
     * @return {Promise<ProductSizePriceResponseV2>} - success response
     **/
-        getProductPriceBySlugV2({
+        getProductPriceBySlug({
             slug,
             size,
             storeId,
             pincode
             
         } = {}) {
-            const { error } = CatalogValidator.getProductPriceBySlugV2().validate({ slug,
+            const { error } = CatalogValidator.getProductPriceBySlug().validate({ slug,
             size,
             storeId,
             pincode
@@ -2068,7 +1901,7 @@ class Catalog {
                     this._conf,
                     "get",
                     constructUrl({
-                        url: this._urls["getProductPriceBySlugV2"],
+                        url: this._urls["getProductPriceBySlug"],
                         params: { slug, size }
                     }),
                     query_params,
@@ -2092,7 +1925,7 @@ class Catalog {
     
     * @return {Promise<ProductSizeSellersResponseV2>} - success response
     **/
-        getProductSellersBySlugV2({
+        getProductSellersBySlug({
             slug,
             size,
             pincode,
@@ -2101,7 +1934,7 @@ class Catalog {
             pageSize
             
         } = {}) {
-            const { error } = CatalogValidator.getProductSellersBySlugV2().validate({ slug,
+            const { error } = CatalogValidator.getProductSellersBySlug().validate({ slug,
             size,
             pincode,
             strategy,
@@ -2122,7 +1955,7 @@ class Catalog {
                     this._conf,
                     "get",
                     constructUrl({
-                        url: this._urls["getProductSellersBySlugV2"],
+                        url: this._urls["getProductSellersBySlug"],
                         params: { slug, size }
                     }),
                     query_params,
@@ -2174,14 +2007,14 @@ class Catalog {
     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
     
     **/
-                getProductSellersBySlugV2Paginator( { slug, size, pincode, strategy, pageSize
+                getProductSellersBySlugPaginator( { slug, size, pincode, strategy, pageSize
                 } = {}){
                 const paginator = new Paginator();
                 const callback = async () => {
                     const pageId = paginator.nextId;
                     const pageNo = paginator.pageNo;
                     const pageType = "number";
-                    const data = await this.getProductSellersBySlugV2({
+                    const data = await this.getProductSellersBySlug({
                         slug:slug ,
                         size:size ,
                         pincode:pincode ,
@@ -8923,6 +8756,1683 @@ class Rewards {
     
 }
 
+class Feedback {
+    constructor(_conf) {
+        this._conf = _conf;
+        this._relativeUrls = {
+            createAbuseReport: "/service/application/feedback/v1.0/abuse",
+            updateAbuseReport: "/service/application/feedback/v1.0/abuse",
+            getAbuseReports: "/service/application/feedback/v1.0/abuse/entity/{entity_type}/entity-id/{entity_id}",
+            getAttributes: "/service/application/feedback/v1.0/attributes",
+            createAttribute: "/service/application/feedback/v1.0/attributes",
+            getAttribute: "/service/application/feedback/v1.0/attributes/{slug}",
+            updateAttribute: "/service/application/feedback/v1.0/attributes/{slug}",
+            createComment: "/service/application/feedback/v1.0/comment",
+            updateComment: "/service/application/feedback/v1.0/comment",
+            getComments: "/service/application/feedback/v1.0/comment/entity/{entity_type}",
+            checkEligibility: "/service/application/feedback/v1.0/config/entity/{entity_type}/entity-id/{entity_id}",
+            deleteMedia: "/service/application/feedback/v1.0/media/",
+            createMedia: "/service/application/feedback/v1.0/media/",
+            updateMedia: "/service/application/feedback/v1.0/media/",
+            getMedias: "/service/application/feedback/v1.0/media/entity/{entity_type}/entity-id/{entity_id}",
+            getReviewSummaries: "/service/application/feedback/v1.0/rating/summary/entity/{entity_type}/entity-id/{entity_id}",
+            createReview: "/service/application/feedback/v1.0/review/",
+            updateReview: "/service/application/feedback/v1.0/review/",
+            getReviews: "/service/application/feedback/v1.0/review/entity/{entity_type}/entity-id/{entity_id}",
+            getTemplates: "/service/application/feedback/v1.0/template/",
+            createQuestion: "/service/application/feedback/v1.0/template/qna/",
+            updateQuestion: "/service/application/feedback/v1.0/template/qna/",
+            getQuestionAndAnswers: "/service/application/feedback/v1.0/template/qna/entity/{entity_type}/entity-id/{entity_id}",
+            getVotes: "/service/application/feedback/v1.0/vote/",
+            createVote: "/service/application/feedback/v1.0/vote/",
+            updateVote: "/service/application/feedback/v1.0/vote/"
+            
+        }
+        this._urls = Object.entries(this._relativeUrls).reduce((urls, [method, relativeUrl]) => {
+            urls[method] = `${_conf.domain}${relativeUrl}`;
+            return urls;
+        }, {})
+    }
+
+    updateUrls(urls) {
+        this._urls = {
+            ...this._urls,
+            ...urls
+        }
+    }
+
+    
+    /**
+    *
+    * @summary: Post a new abuse request
+    * @description: Use this API to report a specific entity (question/review/comment) for abuse.
+    * @param {Object} arg - arg object.
+    
+    * @param {ReportAbuseRequest} arg.body
+    * @return {Promise<InsertResponse>} - success response
+    **/
+        createAbuseReport({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createAbuseReport().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createAbuseReport"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update abuse details
+    * @description: Use this API to update the abuse details, i.e. status and description.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateAbuseStatusRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateAbuseReport({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateAbuseReport().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateAbuseReport"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get a list of abuse data
+    * @description: Use this API to retrieve a list of abuse data from entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID).
+    * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
+    * @param {string} [arg.id] - abuse id
+    * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<ReportAbuseGetResponse>} - success response
+    **/
+        getAbuseReports({
+            entityId,
+            entityType,
+            id,
+            pageId,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getAbuseReports().validate({ entityId,
+            entityType,
+            id,
+            pageId,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['page_id'] = pageId;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getAbuseReports"],
+                        params: { entityId, entityType }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get a list of abuse data
+    * @description: Use this API to retrieve a list of abuse data from entity type and entity ID.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID).
+    * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
+    * @param {string} [arg.id] - abuse id
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getAbuseReportsPaginator( { entityId, entityType, id, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getAbuseReports({
+                        entityId:entityId ,
+                        entityType:entityType ,
+                        id:id ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Get a list of attribute data
+    * @description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results. Default value is 1. 
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<AttributeResponse>} - success response
+    **/
+        getAttributes({
+            pageNo,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getAttributes().validate({ pageNo,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['page_no'] = pageNo;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getAttributes"],
+                        params: {  }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get a list of attribute data
+    * @description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
+    * @param {Object} arg - arg object.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getAttributesPaginator( { pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getAttributes({
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Add a new attribute request
+    * @description: Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
+    * @param {Object} arg - arg object.
+    
+    * @param {SaveAttributeRequest} arg.body
+    * @return {Promise<InsertResponse>} - success response
+    **/
+        createAttribute({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createAttribute().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createAttribute"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get data of a single attribute
+    * @description: Use this API to retrieve a single attribute data from a given slug.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'.
+    
+    
+    * @return {Promise<Attribute>} - success response
+    **/
+        getAttribute({
+            slug
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getAttribute().validate({ slug
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getAttribute"],
+                        params: { slug }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update details of an attribute 
+    * @description: Use this API update the attribute's name and description.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.slug - A short, human-readable, URL-friendly identifier of an attribute. You can get slug value from the endpoint 'service/application/feedback/v1.0/attributes'.
+    
+    * @param {UpdateAttributeRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateAttribute({
+            slug,
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateAttribute().validate({ slug,
+            body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateAttribute"],
+                        params: { slug }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Post a new comment
+    * @description: Use this API to add a new comment for a specific entity.
+    * @param {Object} arg - arg object.
+    
+    * @param {CommentRequest} arg.body
+    * @return {Promise<InsertResponse>} - success response
+    **/
+        createComment({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createComment().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createComment"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update the status of a comment
+    * @description: Use this API to update the comment status (active or approve) along with new comment if any.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateCommentRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateComment({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateComment().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateComment"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get a list of comments
+    * @description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
+    * @param {string} [arg.id] - Comment ID
+    * @param {string} [arg.entityId] - ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID).
+    * @param {string} [arg.userId] - User ID - a flag/filter to get comments for a user.
+    * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<CommentGetResponse>} - success response
+    **/
+        getComments({
+            entityType,
+            id,
+            entityId,
+            userId,
+            pageId,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getComments().validate({ entityType,
+            id,
+            entityId,
+            userId,
+            pageId,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['entity_id'] = entityId;
+            query_params['user_id'] = userId;
+            query_params['page_id'] = pageId;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getComments"],
+                        params: { entityType }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get a list of comments
+    * @description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
+    * @param {string} [arg.id] - Comment ID
+    * @param {string} [arg.entityId] - ID of the eligible entity as specified in the entity type (question ID/review ID/comment ID).
+    * @param {string} [arg.userId] - User ID - a flag/filter to get comments for a user.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getCommentsPaginator( { entityType, id, entityId, userId, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getComments({
+                        entityType:entityType ,
+                        id:id ,
+                        entityId:entityId ,
+                        userId:userId ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Checks eligibility to rate and review, and shows the cloud media configuration
+    * @description: Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. question, rate, review, answer, or comment.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    
+    
+    * @return {Promise<CheckEligibilityResponse>} - success response
+    **/
+        checkEligibility({
+            entityType,
+            entityId
+            
+        } = {}) {
+            const { error } = FeedbackValidator.checkEligibility().validate({ entityType,
+            entityId
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["checkEligibility"],
+                        params: { entityType, entityId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Delete Media
+    * @description: Use this API to delete media for an entity ID.
+    * @param {Object} arg - arg object.
+    
+    
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        deleteMedia({
+            
+        } = {}) {
+            const { error } = FeedbackValidator.deleteMedia().validate({  },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "delete",
+                    constructUrl({
+                        url: this._urls["deleteMedia"],
+                        params: {  }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Add Media
+    * @description: Use this API to add media to an entity, e.g. review.
+    * @param {Object} arg - arg object.
+    
+    * @param {AddMediaListRequest} arg.body
+    * @return {Promise<InsertResponse>} - success response
+    **/
+        createMedia({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createMedia().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createMedia"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update Media
+    * @description: Use this API to update media (archive/approve) for an entity.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateMediaListRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateMedia({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateMedia().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateMedia"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get Media
+    * @description: Use this API to retrieve all media from an entity.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. question or product.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type(question ID/product ID).
+    * @param {string} [arg.id] - ID of the media.
+    * @param {string} [arg.type] - Media type.
+    * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<MediaGetResponse>} - success response
+    **/
+        getMedias({
+            entityType,
+            entityId,
+            id,
+            type,
+            pageId,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getMedias().validate({ entityType,
+            entityId,
+            id,
+            type,
+            pageId,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['type'] = type;
+            query_params['page_id'] = pageId;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getMedias"],
+                        params: { entityType, entityId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get Media
+    * @description: Use this API to retrieve all media from an entity.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. question or product.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type(question ID/product ID).
+    * @param {string} [arg.id] - ID of the media.
+    * @param {string} [arg.type] - Media type.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getMediasPaginator( { entityType, entityId, id, type, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getMedias({
+                        entityType:entityType ,
+                        entityId:entityId ,
+                        id:id ,
+                        type:type ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Get a review summary
+    * @description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.id] - Review summary identifier.
+    * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<ReviewMetricGetResponse>} - success response
+    **/
+        getReviewSummaries({
+            entityType,
+            entityId,
+            id,
+            pageId,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getReviewSummaries().validate({ entityType,
+            entityId,
+            id,
+            pageId,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['page_id'] = pageId;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getReviewSummaries"],
+                        params: { entityType, entityId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get a review summary
+    * @description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. product, delivery, seller, order placed, order delivered, application, or template.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.id] - Review summary identifier.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getReviewSummariesPaginator( { entityType, entityId, id, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getReviewSummaries({
+                        entityType:entityType ,
+                        entityId:entityId ,
+                        id:id ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Add customer reviews
+    * @description: Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateReviewRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        createReview({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createReview().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createReview"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update customer reviews
+    * @description: Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateReviewRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateReview({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateReview().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateReview"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get list of customer reviews
+    * @description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.id] - ID of the review.
+    * @param {string} [arg.userId] - ID of the user.
+    * @param {string} [arg.media] - media type, e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, e.g. 1-5
+    * @param {Array<string>} [arg.attributeRating] - Filter for attribute rating.
+    * @param {boolean} [arg.facets] - This is a boolean value for enabling metadata (facets). Selecting *true* will enable facets.
+    * @param {string} [arg.sort] - Sort by: default | top | recent
+    * @param {boolean} [arg.active] - Get the active reviews.
+    * @param {boolean} [arg.approve] - Get the approved reviews.
+    * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<ReviewGetResponse>} - success response
+    **/
+        getReviews({
+            entityType,
+            entityId,
+            id,
+            userId,
+            media,
+            rating,
+            attributeRating,
+            facets,
+            sort,
+            active,
+            approve,
+            pageId,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getReviews().validate({ entityType,
+            entityId,
+            id,
+            userId,
+            media,
+            rating,
+            attributeRating,
+            facets,
+            sort,
+            active,
+            approve,
+            pageId,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['user_id'] = userId;
+            query_params['media'] = media;
+            query_params['rating'] = rating;
+            query_params['attribute_rating'] = attributeRating;
+            query_params['facets'] = facets;
+            query_params['sort'] = sort;
+            query_params['active'] = active;
+            query_params['approve'] = approve;
+            query_params['page_id'] = pageId;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getReviews"],
+                        params: { entityType, entityId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get list of customer reviews
+    * @description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, application, or template.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.id] - ID of the review.
+    * @param {string} [arg.userId] - ID of the user.
+    * @param {string} [arg.media] - media type, e.g. image | video | video_file | video_link
+    * @param {Array<number>} [arg.rating] - rating filter, e.g. 1-5
+    * @param {Array<string>} [arg.attributeRating] - Filter for attribute rating.
+    * @param {boolean} [arg.facets] - This is a boolean value for enabling metadata (facets). Selecting *true* will enable facets.
+    * @param {string} [arg.sort] - Sort by: default | top | recent
+    * @param {boolean} [arg.active] - Get the active reviews.
+    * @param {boolean} [arg.approve] - Get the approved reviews.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getReviewsPaginator( { entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, active, approve, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getReviews({
+                        entityType:entityType ,
+                        entityId:entityId ,
+                        id:id ,
+                        userId:userId ,
+                        media:media ,
+                        rating:rating ,
+                        attributeRating:attributeRating ,
+                        facets:facets ,
+                        sort:sort ,
+                        active:active ,
+                        approve:approve ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Get the feedback templates for a product or l3
+    * @description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.templateId] - ID of the feedback template.
+    * @param {string} [arg.entityId] - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.entityType] - Type of entity, e.g. product, delivery, seller, l3, order placed, order delivered, or application.
+    
+    
+    * @return {Promise<TemplateGetResponse>} - success response
+    **/
+        getTemplates({
+            templateId,
+            entityId,
+            entityType
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getTemplates().validate({ templateId,
+            entityId,
+            entityType
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['template_id'] = templateId;
+            query_params['entity_id'] = entityId;
+            query_params['entity_type'] = entityType;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getTemplates"],
+                        params: {  }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Create a new question
+    * @description: Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
+    * @param {Object} arg - arg object.
+    
+    * @param {CreateQNARequest} arg.body
+    * @return {Promise<InsertResponse>} - success response
+    **/
+        createQuestion({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createQuestion().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createQuestion"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update a question
+    * @description: Use this API to update the status of a question, its tags and its choices.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateQNARequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateQuestion({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateQuestion().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateQuestion"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Get a list of QnA
+    * @description: Use this API to retrieve a list of questions and answers for a given entity.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. product, l3, etc.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.id] - QNA ID
+    * @param {string} [arg.userId] - User ID
+    * @param {boolean} [arg.showAnswer] - This is a boolean value. Select *true* to display answers given.
+    * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<QNAGetResponse>} - success response
+    **/
+        getQuestionAndAnswers({
+            entityType,
+            entityId,
+            id,
+            userId,
+            showAnswer,
+            pageId,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getQuestionAndAnswers().validate({ entityType,
+            entityId,
+            id,
+            userId,
+            showAnswer,
+            pageId,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['user_id'] = userId;
+            query_params['show_answer'] = showAnswer;
+            query_params['page_id'] = pageId;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getQuestionAndAnswers"],
+                        params: { entityType, entityId }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get a list of QnA
+    * @description: Use this API to retrieve a list of questions and answers for a given entity.
+    * @param {Object} arg - arg object.
+    * @param {string} arg.entityType - Type of entity, e.g. product, l3, etc.
+    * @param {string} arg.entityId - ID of the eligible entity as specified in the entity type.
+    * @param {string} [arg.id] - QNA ID
+    * @param {string} [arg.userId] - User ID
+    * @param {boolean} [arg.showAnswer] - This is a boolean value. Select *true* to display answers given.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getQuestionAndAnswersPaginator( { entityType, entityId, id, userId, showAnswer, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "cursor";
+                    const data = await this.getQuestionAndAnswers({
+                        entityType:entityType ,
+                        entityId:entityId ,
+                        id:id ,
+                        userId:userId ,
+                        showAnswer:showAnswer ,
+                        pageId:pageId ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Get a list of votes
+    * @description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - vote ID
+    * @param {string} [arg.refType] - Entity type, e.g. review | comment.
+    * @param {number} [arg.pageNo] - The page number to navigate through the given set of results. Default value is 1.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    
+    * @return {Promise<VoteResponse>} - success response
+    **/
+        getVotes({
+            id,
+            refType,
+            pageNo,
+            pageSize
+            
+        } = {}) {
+            const { error } = FeedbackValidator.getVotes().validate({ id,
+            refType,
+            pageNo,
+            pageSize
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            query_params['id'] = id;
+            query_params['ref_type'] = refType;
+            query_params['page_no'] = pageNo;
+            query_params['page_size'] = pageSize;
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "get",
+                    constructUrl({
+                        url: this._urls["getVotes"],
+                        params: {  }
+                    }),
+                    query_params,
+                     undefined ,
+            );
+        }
+        
+            
+            
+                
+                    
+                        
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+                    
+                    
+                
+                    
+                        
+                    
+                    
+                
+
+    /**
+    *
+    * @summary: Get a list of votes
+    * @description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
+    * @param {Object} arg - arg object.
+    * @param {string} [arg.id] - vote ID
+    * @param {string} [arg.refType] - Entity type, e.g. review | comment.
+    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+    
+    **/
+                getVotesPaginator( { id, refType, pageSize
+                } = {}){
+                const paginator = new Paginator();
+                const callback = async () => {
+                    const pageId = paginator.nextId;
+                    const pageNo = paginator.pageNo;
+                    const pageType = "number";
+                    const data = await this.getVotes({
+                        id:id ,
+                        refType:refType ,
+                        pageNo:pageNo ,
+                        pageSize:pageSize 
+                        }) 
+                        paginator.setPaginator({
+                            hasNext: data.page.has_next ? true : false,
+                            nextId: data.page.next_id,
+                        });
+                    return data; 
+                };
+                paginator.setCallback(callback);
+                return paginator;
+            }
+        
+    
+    /**
+    *
+    * @summary: Create a new vote
+    * @description: Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
+    * @param {Object} arg - arg object.
+    
+    * @param {VoteRequest} arg.body
+    * @return {Promise<InsertResponse>} - success response
+    **/
+        createVote({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.createVote().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "post",
+                    constructUrl({
+                        url: this._urls["createVote"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+    /**
+    *
+    * @summary: Update a vote
+    * @description: Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
+    * @param {Object} arg - arg object.
+    
+    * @param {UpdateVoteRequest} arg.body
+    * @return {Promise<UpdateResponse>} - success response
+    **/
+        updateVote({
+            body
+            
+        } = {}) {
+            const { error } = FeedbackValidator.updateVote().validate({ body
+             },{ abortEarly: false });
+            if (error) {
+                return Promise.reject(new FDKClientValidationError(error));
+            }
+            const query_params = {};
+            
+
+            return APIClient.execute(
+                    this._conf,
+                    "put",
+                    constructUrl({
+                        url: this._urls["updateVote"],
+                        params: {  }
+                    }),
+                    query_params,
+                    body,
+            );
+        }
+        
+    
+}
+
 class PosCart {
     constructor(_conf) {
         this._conf = _conf;
@@ -10214,6 +11724,54 @@ class Logistic {
         
     
 }
+
+
+
+
+/**
+ * @param  {} data
+ * @param  {string} file_name
+ * @param  {string} content_type
+ * @param  {string} namespace
+ * @param  {number} size
+ * @param  {number} tags
+ */
+FileStorage.prototype.upload = function({
+  data,
+  file_name,
+  content_type,
+  namespace,
+  size,
+  tags
+} = {}){
+  return new Promise(async (resolve, reject) => {
+    try {
+      const dataObj = await this.startUpload({
+        namespace,
+        body: {
+          file_name,
+          content_type,
+          size: size,
+          tags: tags,
+        },
+      });
+      if (dataObj.upload && dataObj.upload.url) {
+        await axios.put(dataObj.upload.url, data, {
+          withCredentials: false,
+          headers: { "Content-Type": content_type },
+        });
+      } else {
+        reject({ message: "Failed to upload file" });
+      }
+      delete dataObj.tags;
+      const completeRes = await this.completeUpload({namespace, body:dataObj});
+      resolve(completeRes);
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 
 
 module.exports = ApplicationClient;
