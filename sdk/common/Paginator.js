@@ -1,5 +1,4 @@
 class Paginator {
-
   constructor(pageNo) {
     this.pageNo = pageNo;
     this.callback = undefined;
@@ -18,8 +17,6 @@ class Paginator {
     this.nextId = nextId;
     this.pageNo = pageNo;
   }
-
-
 
   next() {
     return this.callback();
