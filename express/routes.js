@@ -165,10 +165,10 @@ function setupRoutes(ext) {
 
     FdkRoutes.post("/fp/uninstall", async (req, res, next) => {
         try {
-            let {client_id, company_id} = req.body;
-            // TODO: Need to discuss - clear session after uninstall, platformClient in not found in request
+            let { company_id } = req.body;
+            let sid;
             if(!ext.isOnlineAccessMode()) {
-                let sid = Session.generateSessionId(false, {
+                sid = Session.generateSessionId(false, {
                     cluster: ext.cluster,
                     companyId: company_id
                 });
@@ -178,6 +178,9 @@ function setupRoutes(ext) {
             }
             req.extension = ext;
             await ext.callbacks.uninstall(req);
+            if(sid){
+                await SessionStorage.deleteSession(sid);
+            }
             res.json({success: true});
         } catch (error) {
             res.status(500).json({success: false, message: error});

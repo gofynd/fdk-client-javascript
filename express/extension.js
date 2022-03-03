@@ -59,7 +59,7 @@ class Extension {
         this.webhookRegistry = new WebhookRegistry();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
-            await this.webhookRegistry.initialize(data.webhook_config, data);
+            await this.webhookRegistry.initialize(data.webhook_config, { ...data, base_url: this.base_url });
         }
     }
 
