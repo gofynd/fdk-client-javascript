@@ -5862,6 +5862,7 @@ Success
  | image | [string] |  no  |  |
  | franchise_enabled | boolean |  no  |  |
  | out_of_stock | boolean |  no  |  |
+ | only_verified_products | boolean |  no  |  |
  | payment | [InventoryPaymentConfig](#InventoryPaymentConfig) |  no  |  |
  | article_assignment | [InventoryArticleAssignment](#InventoryArticleAssignment) |  no  |  |
 

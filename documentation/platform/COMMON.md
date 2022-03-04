@@ -40,7 +40,7 @@ const data = await common.searchApplication({  authorization : value,
 
 
 
-Search Application.
+Provide application name or domain url
 
 *Returned Response:*
 

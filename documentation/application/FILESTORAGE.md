@@ -174,10 +174,10 @@ Explain here
 
 ```javascript
 // Promise
-const promise = client.fileStorage.signUrls({  body : value });
+const promise = fileStorage.signUrls({  body : value });
 
 // Async/Await
-const data = await client.fileStorage.signUrls({  body : value });
+const data = await fileStorage.signUrls({  body : value });
 ```
 
 

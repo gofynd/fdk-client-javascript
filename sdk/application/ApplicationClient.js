@@ -42,6 +42,7 @@ const constructUrl = ({url, params}) => {
 class ApplicationClient{
 
     constructor(config){
+        this.config = config;
         this.catalog = new Catalog(config);
         this.cart = new Cart(config);
         this.common = new Common(config);
@@ -60,6 +61,9 @@ class ApplicationClient{
         this.posCart = new PosCart(config);
         this.logistic = new Logistic(config);
         
+    }
+    setCookie(cookie){
+        this.config.cookie = cookie;
     }
 }
 
@@ -3106,7 +3110,7 @@ class Common {
     /**
     *
     * @summary: Search Application
-    * @description: Search Application.
+    * @description: Provide application name or domain url
     * @param {Object} arg - arg object.
     * @param {string} [arg.authorization] - 
     * @param {string} [arg.query] - Provide application name
@@ -6146,7 +6150,7 @@ class FileStorage {
         this._relativeUrls = {
             startUpload: "/service/application/assets/v1.0/namespaces/{namespace}/upload/start/",
             completeUpload: "/service/application/assets/v1.0/namespaces/{namespace}/upload/complete/",
-            signUrls: "/service/application/assets/v1.0/company/{company_id}/sign-urls/"
+            signUrls: "/service/application/assets/v1.0/sign-urls/"
             
         }
         this._urls = Object.entries(this._relativeUrls).reduce((urls, [method, relativeUrl]) => {
@@ -6278,18 +6282,15 @@ This operation will return the URL of the uploaded file.
     * @summary: Explain here
     * @description: Describe here
     * @param {Object} arg - arg object.
-    * @param {number} arg.companyId - company_id
     
     * @param {SignUrlRequest} arg.body
     * @return {Promise<SignUrlResponse>} - success response
     **/
         signUrls({
-            companyId,
             body
             
         } = {}) {
-            const { error } = FileStorageValidator.signUrls().validate({ companyId,
-            body
+            const { error } = FileStorageValidator.signUrls().validate({ body
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -6302,7 +6303,7 @@ This operation will return the URL of the uploaded file.
                     "post",
                     constructUrl({
                         url: this._urls["signUrls"],
-                        params: { companyId }
+                        params: {  }
                     }),
                     query_params,
                     body,
