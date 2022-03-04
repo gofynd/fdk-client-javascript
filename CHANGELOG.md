@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.4.0] - 2021-02-17
+## [0.4.0] - 2021-02-22
 ### Changed
 - Support for the webhook event category
 - Support for the webhook event versioning
