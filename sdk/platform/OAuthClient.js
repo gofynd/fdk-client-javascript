@@ -12,7 +12,7 @@ class OAuthClient {
     this.token_expires_in = null;
   }
 
-  getAccessToken() {
+  getAccessToken(){
     return this.token;
   }
 
@@ -71,7 +71,7 @@ class OAuthClient {
 
     try {
       let res = await this.getAccesstokenObj({
-        grant_type: "authorization_code",
+        grant_type:'authorization_code',
         code: query.code,
       });
       this.setToken(res);
@@ -86,8 +86,8 @@ class OAuthClient {
   async renewAccessToken() {
     try {
       let res = await this.getAccesstokenObj({
-        grant_type: "refresh_token",
-        refresh_token: this.refreshToken,
+        grant_type:'refresh_token',
+        refresh_token: this.refreshToken
       });
       this.setToken(res);
       return res;
@@ -103,10 +103,10 @@ class OAuthClient {
     let reqData = {
       grant_type: grant_type,
     };
-    if (grant_type === "refresh_token") {
-      reqData = { ...reqData, refresh_token };
-    } else if (grant_type === "authorization_code") {
-      reqData = { ...reqData, code };
+    if (grant_type === 'refresh_token') {
+      reqData = { ...reqData, refresh_token }
+    } else if (grant_type === 'authorization_code') {
+      reqData = { ...reqData, code }
     }
 
     const token = Buffer.from(

@@ -1,4 +1,4 @@
 module.exports = {
-  PlatformConfig: require("./PlatformConfig"),
-  PlatformClient: require("./PlatformClient"),
+    PlatformConfig: require("./PlatformConfig"),
+    PlatformClient: require("./PlatformClient")
 };

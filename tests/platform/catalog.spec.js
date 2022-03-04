@@ -1,5 +1,8 @@
-const { PlatformConfig, PlatformClient } = require("../../index.js");
-require("dotenv").config();
+const {
+  PlatformConfig,
+  PlatformClient,
+} = require("../../index.js");
+require('dotenv').config();
 const setAccesstokenObj = require("../helpers/oauth.helper");
 let platformClient;
 
@@ -17,15 +20,16 @@ beforeAll(async () => {
   } catch (err) {
     console.log(err);
   }
-});
+
+})
 
 afterAll(() => {
   platformClient = null;
-});
+})
 
 describe("Platform Lead Test Cases", () => {
   it("getTickets testing", async () => {
     const tickets = await platformClient.lead.getTickets();
-    expect(typeof tickets.page.item_total).toBe("number");
-  });
-});
+    expect(typeof tickets.page.item_total).toBe('number');
+  })
+})
