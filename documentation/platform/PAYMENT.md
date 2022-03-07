@@ -2678,6 +2678,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
  | is_active | boolean |  no  | Enable/ Disable Flag |
  | secret | string |  yes  | Secret Key of the payment aggregator |
  | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
+ | config_type | string |  yes  | Config Type of the aggregator |
 
 ---
 
@@ -3039,6 +3040,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
  | email | string |  yes  | Email of the Account Holder |
  | address | string |  no  | Address of the User |
  | account_no | string |  yes  | Account NUmber of the Account Holder |
+ | email | string |  yes  | Email of the Account Holder |
  | branch_name | string |  yes  | Branch Name of the Account |
  | comment | string |  no  | Remarks added by The user |
  | bank_name | string |  yes  | Bank Name of the Account |
@@ -3180,9 +3182,9 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  yes  | Unique order id |
  | success | boolean |  yes  | Payment confirmation updated or not. |
  | message | string |  yes  | Message |
- | order_id | string |  yes  | Unique order id |
 
 ---
 

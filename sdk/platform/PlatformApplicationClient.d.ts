@@ -3334,6 +3334,7 @@ declare namespace PlatformApplicationClient {
  * @property {boolean} [is_active]
  * @property {string} secret
  * @property {string} merchant_salt
+ * @property {string} config_type
  */
 /**
  * @typedef PaymentGatewayConfigRequest
@@ -3520,6 +3521,7 @@ declare namespace PlatformApplicationClient {
  * @property {string} email
  * @property {string} [address]
  * @property {string} account_no
+ * @property {string} email
  * @property {string} branch_name
  * @property {string} [comment]
  * @property {string} bank_name
@@ -3598,9 +3600,9 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef PaymentConfirmationResponse
+ * @property {string} order_id
  * @property {boolean} success
  * @property {string} message
- * @property {string} order_id
  */
 /**
  * @typedef GetActivityStatus
@@ -4983,8 +4985,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef SearchKeywordResult
- * @property {string} sort_on
  * @property {Object} query
+ * @property {string} sort_on
  */
 /**
  * @typedef CreateSearchKeyword
@@ -5004,6 +5006,7 @@ declare namespace PlatformApplicationClient {
  * @property {string} [app_id]
  * @property {string} [uid]
  * @property {Object} [_custom_json]
+ * @property {string} [uid]
  * @property {string[]} [words]
  * @property {Object[]} [results]
  */
@@ -5011,6 +5014,11 @@ declare namespace PlatformApplicationClient {
  * @typedef GetAutocompleteWordsResponse
  * @property {GetAutocompleteWordsData[]} [items]
  * @property {Page} [page]
+ */
+/**
+ * @typedef Media
+ * @property {string} [type]
+ * @property {string} [url]
  */
 /**
  * @typedef AutocompletePageAction
@@ -5021,13 +5029,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef AutocompleteAction
- * @property {string} [type]
  * @property {AutocompletePageAction} [page]
- */
-/**
- * @typedef Media
  * @property {string} [type]
- * @property {string} [url]
  */
 /**
  * @typedef AutocompleteResult
@@ -5035,18 +5038,23 @@ declare namespace PlatformApplicationClient {
  * @property {string} [display]
  * @property {AutocompleteAction} [action]
  * @property {Media} [logo]
+ * @property {Object} [_custom_json]
+ * @property {string} [display]
+ * @property {AutocompleteAction} [action]
  */
 /**
  * @typedef CreateAutocompleteKeyword
  * @property {string} [app_id]
  * @property {Object} [_custom_json]
+ * @property {string} [uid]
+ * @property {Object[]} [results]
  * @property {string[]} [words]
  * @property {AutocompleteResult[]} [results]
  * @property {boolean} [is_active]
  */
 /**
  * @typedef CreateAutocompleteWordsResponse
- * @property {string} [app_id]
+ * @property {string[]} [words]
  * @property {Object} [_custom_json]
  * @property {string[]} [words]
  * @property {Object[]} [results]
@@ -5059,6 +5067,8 @@ declare namespace PlatformApplicationClient {
  * @property {number} max_quantity
  * @property {boolean} [auto_select]
  * @property {boolean} [allow_remove]
+ * @property {boolean} [auto_select]
+ * @property {number} min_quantity
  */
 /**
  * @typedef GetProductBundleCreateResponse
@@ -5203,8 +5213,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef SuccessResponse
- * @property {boolean} [success]
  * @property {number} [uid]
+ * @property {boolean} [success]
  */
 /**
  * @typedef SizeGuideResponse
@@ -5344,7 +5354,6 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef ConfigurationListingFilter
- * @property {boolean} allow_single
  * @property {ConfigurationListingFilterConfig[]} [attribute_config]
  */
 /**
@@ -5386,6 +5395,8 @@ declare namespace PlatformApplicationClient {
  * @property {string} [config_id]
  * @property {GetCatalogConfigurationDetailsProduct} [product]
  * @property {GetCatalogConfigurationDetailsSchemaListing} [listing]
+ * @property {GetCatalogConfigurationDetailsProduct} [product]
+ * @property {string} [config_id]
  * @property {string} [id]
  */
 /**
@@ -5572,6 +5583,24 @@ declare namespace PlatformApplicationClient {
  * @property {boolean} [is_active]
  * @property {BannerImage} [logo]
  * @property {Object} [cron]
+ * @property {string} [description]
+ */
+/**
+ * @typedef CollectionListingFilterTag
+ * @property {string} [name]
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ */
+/**
+ * @typedef CollectionListingFilterType
+ * @property {string} [name]
+ * @property {string} [display]
+ * @property {boolean} [is_selected]
+ */
+/**
+ * @typedef CollectionListingFilter
+ * @property {CollectionListingFilterTag[]} [tags]
+ * @property {CollectionListingFilterType[]} [type]
  */
 /**
  * @typedef CollectionDetailResponse
@@ -5619,6 +5648,7 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef Price1
+ * @property {number} [min]
  * @property {string} [currency_code]
  * @property {number} [max]
  * @property {number} [min]
@@ -5631,8 +5661,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef ProductDetailAttribute
- * @property {string} [type]
  * @property {string} [value]
+ * @property {string} [type]
  * @property {string} [key]
  */
 /**
@@ -5709,8 +5739,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef CatalogInsightResponse
- * @property {CatalogInsightBrand} [brand_distribution]
  * @property {CatalogInsightItem} [item]
+ * @property {CatalogInsightBrand} [brand_distribution]
  */
 /**
  * @typedef CrossSellingData
@@ -5753,6 +5783,9 @@ declare namespace PlatformApplicationClient {
  * @property {string} [name]
  * @property {string} [company_type]
  * @property {number} [uid]
+ * @property {string} [name]
+ * @property {string} [business_type]
+ * @property {string} [company_type]
  */
 /**
  * @typedef CompanyBrandDetail
@@ -5802,9 +5835,13 @@ declare namespace PlatformApplicationClient {
  * @property {string} display_type
  */
 /**
+ * @typedef AttributeMasterDetails
+ * @property {string} display_type
+ */
+/**
  * @typedef AttributeSchemaRange
- * @property {number} [max]
  * @property {number} [min]
+ * @property {number} [max]
  */
 /**
  * @typedef AttributeMaster
@@ -5821,7 +5858,6 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef AttributeMasterMeta
- * @property {AttributeMasterMandatoryDetails} mandatory_details
  * @property {boolean} [enriched]
  */
 /**
@@ -5875,6 +5911,10 @@ declare namespace PlatformApplicationClient {
  * @property {string} [logo]
  * @property {number} [priority_order]
  * @property {string[]} [synonyms]
+ * @property {UserSerializer} [modified_by]
+ * @property {boolean} [is_active]
+ * @property {number} [priority_order]
+ * @property {number} [page_no]
  */
 /**
  * @typedef DepartmentsResponse
@@ -5950,6 +5990,8 @@ declare namespace PlatformApplicationClient {
  * @typedef GlobalValidation
  * @property {string} [type]
  * @property {Properties} [properties]
+ * @property {string} [type]
+ * @property {string[]} [required]
  * @property {string} [description]
  * @property {Object} [definitions]
  * @property {string[]} [required]
@@ -6003,9 +6045,14 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef ProductDownloadItemsData
- * @property {string} [type]
  * @property {string[]} [brand]
+ * @property {string} [type]
  * @property {string[]} [templates]
+ */
+/**
+ * @typedef VerifiedBy
+ * @property {string} [username]
+ * @property {string} [user_id]
  */
 /**
  * @typedef ProductDownloadsItems
@@ -6015,6 +6062,7 @@ declare namespace PlatformApplicationClient {
  * @property {number} [seller_id]
  * @property {string} [url]
  * @property {ProductDownloadItemsData} [data]
+ * @property {string} [task_id]
  * @property {string} [status]
  * @property {string} [id]
  * @property {string} [completed_on]
@@ -6280,10 +6328,10 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef UserInfo1
- * @property {string} [email]
- * @property {string} [user_id]
  * @property {string} [username]
  * @property {string} [uid]
+ * @property {string} [email]
+ * @property {string} [user_id]
  */
 /**
  * @typedef BulkJob
@@ -6325,6 +6373,7 @@ declare namespace PlatformApplicationClient {
  * @property {string} [user_id]
  * @property {string} [username]
  * @property {number} [company_id]
+ * @property {string} [user_id]
  */
 /**
  * @typedef Items
@@ -6429,12 +6478,14 @@ declare namespace PlatformApplicationClient {
  * @property {number} [brand_uid]
  * @property {string} [item_code]
  * @property {number} [uid]
+ * @property {number} [brand_uid]
  */
 /**
  * @typedef InventoryRequest
  * @property {number} company_id
  * @property {InvSize[]} sizes
  * @property {ItemQuery} item
+ * @property {number} company_id
  */
 /**
  * @typedef InventoryDeleteData
@@ -6514,8 +6565,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef InventoryExportRequest
- * @property {string} [type]
  * @property {number[]} [brand]
+ * @property {string} [type]
  * @property {number[]} [store]
  */
 /**
@@ -6539,6 +6590,11 @@ declare namespace PlatformApplicationClient {
  * @property {string} [id]
  * @property {number} [company_id]
  * @property {string} [hs2_code]
+ * @property {number} [tax1]
+ * @property {boolean} [tax_on_mrp]
+ * @property {string} [id]
+ * @property {string} [modified_on]
+ * @property {number} [threshold2]
  * @property {string} [hsn_code]
  * @property {number} [threshold2]
  */
@@ -6649,13 +6705,13 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef DepartmentCategoryTree
- * @property {CategoryItems[]} [items]
  * @property {string} [department]
+ * @property {CategoryItems[]} [items]
  */
 /**
  * @typedef DepartmentIdentifier
- * @property {string} [slug]
  * @property {number} [uid]
+ * @property {string} [slug]
  */
 /**
  * @typedef CategoryListingResponse
@@ -6706,6 +6762,7 @@ declare namespace PlatformApplicationClient {
  * @property {string} [group_id]
  * @property {number} [quantity]
  * @property {ArticleAssignment} [article_assignment]
+ * @property {string} [group_id]
  * @property {ArticleQuery} [query]
  * @property {Object} [meta]
  */
@@ -6721,8 +6778,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef ArticleAssignment1
- * @property {string} [level]
  * @property {string} [strategy]
+ * @property {string} [level]
  */
 /**
  * @typedef StoreAssignResponse
@@ -6759,8 +6816,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef SellerPhoneNumber
- * @property {number} country_code
  * @property {string} number
+ * @property {number} country_code
  */
 /**
  * @typedef LocationManagerSerializer
@@ -6936,6 +6993,11 @@ declare namespace PlatformApplicationClient {
  * @property {BusinessDetails} [business_details]
  * @property {Object} [warnings]
  * @property {Document[]} [documents]
+ * @property {string} [mode]
+ * @property {string} [business_info]
+ * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer} [created_by]
+ * @property {Object} [warnings]
  * @property {string[]} [notification_emails]
  * @property {string} [reject_reason]
  * @property {string} [business_info]
@@ -6957,6 +7019,10 @@ declare namespace PlatformApplicationClient {
  * @property {DocumentsObj} [product]
  * @property {DocumentsObj} [brand]
  * @property {DocumentsObj} [store]
+ * @property {DocumentsObj} [brand]
+ * @property {DocumentsObj} [company_documents]
+ * @property {DocumentsObj} [store_documents]
+ * @property {number} [uid]
  */
 /**
  * @typedef BrandBannerSerializer
@@ -7015,8 +7081,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef CompanyBrandListSerializer
- * @property {CompanyBrandSerializer[]} [items]
  * @property {Page} [page]
+ * @property {CompanyBrandSerializer[]} [items]
  */
 /**
  * @typedef CompanyBrandPostRequestSerializer
@@ -8968,6 +9034,22 @@ declare namespace PlatformApplicationClient {
  * @property {string} [txn_mode]
  */
 /**
+ * @typedef RuleDefinition
+ * @property {string} type
+ * @property {string} applicable_on
+ * @property {string} [currency_code]
+ * @property {boolean} [is_exact]
+ * @property {string} value_type
+ * @property {boolean} [auto_apply]
+ * @property {string[]} [scope]
+ * @property {string} calculate_on
+ */
+/**
+ * @typedef CouponAuthor
+ * @property {string} [modified_by]
+ * @property {string} [created_by]
+ */
+/**
  * @typedef CouponDateMeta
  * @property {string} [modified_on]
  * @property {string} [created_on]
@@ -9050,9 +9132,12 @@ declare namespace PlatformApplicationClient {
  * @property {string} [end]
  */
 /**
- * @typedef DisplayMetaDict
- * @property {string} [subtitle]
- * @property {string} [title]
+ * @typedef Rule
+ * @property {number} [key]
+ * @property {number} [value]
+ * @property {number} [max]
+ * @property {number} [discount_qty]
+ * @property {number} [min]
  */
 /**
  * @typedef DisplayMeta
@@ -9124,8 +9209,8 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef CouponPartialUpdate
- * @property {CouponSchedule} [schedule]
  * @property {boolean} [archive]
+ * @property {CouponSchedule} [schedule]
  */
 /**
  * @typedef CartItem
@@ -9297,6 +9382,7 @@ declare namespace PlatformApplicationClient {
  * @property {CartBreakup} [breakup_values]
  * @property {string} [message]
  * @property {boolean} [is_valid]
+ * @property {CartProductInfo[]} [items]
  */
 /**
  * @typedef OpenApiErrorResponse
@@ -9324,7 +9410,6 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef OpenApiCartServiceabilityRequest
- * @property {ShippingAddress} shipping_address
  * @property {CartItem} [cart_items]
  */
 /**
@@ -9336,6 +9421,11 @@ declare namespace PlatformApplicationClient {
  * @typedef PromiseFormatted
  * @property {string} [min]
  * @property {string} [max]
+ */
+/**
+ * @typedef PromiseFormatted
+ * @property {string} [max]
+ * @property {string} [min]
  */
 /**
  * @typedef ShipmentPromise
@@ -9420,6 +9510,7 @@ declare namespace PlatformApplicationClient {
  * @typedef OpenApiCheckoutResponse
  * @property {string} order_id
  * @property {string} [message]
+ * @property {boolean} [success]
  * @property {string} [order_ref_id]
  * @property {boolean} [success]
  */
@@ -11266,6 +11357,65 @@ declare class Content {
     getPageBySlug({ slug }?: {
         slug: string;
     }): any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PageRequest} arg.body
+     * @summary: Create a page
+     * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
+     */
+    createPage({ body }?: {
+        body: PageRequest;
+    }): any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @summary: Get a list of pages
+     * @description: Use this API to retrieve a list of pages.
+     */
+    getPages({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }): any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.companyId - Numeric ID allotted to a business account
+     *   on Fynd Platform
+     * @param {string} arg.applicationId - Numeric ID allotted to an application
+     *   created within a business account.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @summary: Get a list of pages
+     * @description: Use this API to retrieve a list of pages.
+     */
+    getPagesPaginator({ companyId, applicationId, pageSize }?: {
+        companyId: string;
+        applicationId: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID allotted to the page.
+     * @param {PageSchema} arg.body
+     * @summary: Update a page
+     * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+     */
+    updatePage({ id, body }?: {
+        id: string;
+        body: PageSchema;
+    }): any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a page. You can get slug value of a page from `getPages` API.
+     * @summary: Get pages by component Id
+     * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+     */
+    getPageBySlug({ slug }?: {
+        slug: string;
+    }): any;
 }
 declare class Communication {
     constructor(config: any, applicationId: any);
@@ -12043,11 +12193,13 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @summary: Delete a Search Keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+     * @param {CreateSearchKeyword} arg.body
+     * @summary: Update Search Keyword
+     * @description: Update Search Keyword by its id. On successful request, returns the updated collection
      */
-    deleteSearchKeywords({ id }?: {
+    updateSearchKeywords({ id, body }?: {
         id: string;
+        body: CreateSearchKeyword;
     }): any;
     /**
      * @param {Object} arg - Arg object.
@@ -12063,13 +12215,11 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @param {CreateSearchKeyword} arg.body
-     * @summary: Update Search Keyword
-     * @description: Update Search Keyword by its id. On successful request, returns the updated collection
+     * @summary: Delete a Search Keywords
+     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
-    updateSearchKeywords({ id, body }?: {
+    deleteSearchKeywords({ id }?: {
         id: string;
-        body: CreateSearchKeyword;
     }): any;
     /**
      * @param {Object} arg - Arg object.
@@ -12090,11 +12240,13 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @summary: Delete a Autocomplete Keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+     * @param {CreateAutocompleteKeyword} arg.body
+     * @summary: Create & Update Autocomplete Keyword
+     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
      */
-    deleteAutocompleteKeyword({ id }?: {
+    updateAutocompleteKeyword({ id, body }?: {
         id: string;
+        body: CreateAutocompleteKeyword;
     }): any;
     /**
      * @param {Object} arg - Arg object.
@@ -12110,13 +12262,11 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @param {CreateAutocompleteKeyword} arg.body
-     * @summary: Create & Update Autocomplete Keyword
-     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+     * @summary: Delete a Autocomplete Keywords
+     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
-    updateAutocompleteKeyword({ id, body }?: {
+    deleteAutocompleteKeyword({ id }?: {
         id: string;
-        body: CreateAutocompleteKeyword;
     }): any;
     /**
      * @param {Object} arg - Arg object.
@@ -12220,15 +12370,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
-     * @summary: Delete a Collection
-     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-     */
-    deleteCollection({ id }?: {
-        id: string;
-    }): any;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier of a collection.
      * @param {UpdateCollection} arg.body
      * @summary: Update a collection
      * @description: Update a collection by it's id. On successful request, returns the updated collection
@@ -12236,6 +12377,15 @@ declare class Catalog {
     updateCollection({ id, body }?: {
         id: string;
         body: UpdateCollection;
+    }): any;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @summary: Delete a Collection
+     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+     */
+    deleteCollection({ id }?: {
+        id: string;
     }): any;
     /**
      * @param {Object} arg - Arg object.
@@ -16238,6 +16388,7 @@ type PaymentGatewayConfig = {
     is_active?: boolean;
     secret: string;
     merchant_salt: string;
+    config_type: string;
 };
 type PaymentGatewayConfigRequest = {
     aggregator_name?: PaymentGatewayConfig;
@@ -16399,6 +16550,7 @@ type BeneficiaryModeDetails = {
     email: string;
     address?: string;
     account_no: string;
+    email: string;
     branch_name: string;
     comment?: string;
     bank_name: string;
@@ -16468,9 +16620,9 @@ type PaymentConfirmationRequest = {
     payment_methods: PaymentConfirmationMode[];
 };
 type PaymentConfirmationResponse = {
+    order_id: string;
     success: boolean;
     message: string;
-    order_id: string;
 };
 type GetActivityStatus = {
     activity_history: ActivityHistory;
@@ -17692,8 +17844,8 @@ type GetSearchWordsDetailResponse = {
     page?: Page;
 };
 type SearchKeywordResult = {
-    sort_on: string;
     query: any;
+    sort_on: string;
 };
 type CreateSearchKeyword = {
     app_id?: string;
@@ -17710,12 +17862,17 @@ type GetAutocompleteWordsData = {
     app_id?: string;
     uid?: string;
     _custom_json?: any;
+    uid?: string;
     words?: string[];
     results?: any[];
 };
 type GetAutocompleteWordsResponse = {
     items?: GetAutocompleteWordsData[];
     page?: Page;
+};
+type Media = {
+    type?: string;
+    url?: string;
 };
 type AutocompletePageAction = {
     type?: string;
@@ -17724,28 +17881,29 @@ type AutocompletePageAction = {
     url?: string;
 };
 type AutocompleteAction = {
-    type?: string;
     page?: AutocompletePageAction;
-};
-type Media = {
     type?: string;
-    url?: string;
 };
 type AutocompleteResult = {
     _custom_json?: any;
     display?: string;
     action?: AutocompleteAction;
     logo?: Media;
+    _custom_json?: any;
+    display?: string;
+    action?: AutocompleteAction;
 };
 type CreateAutocompleteKeyword = {
     app_id?: string;
     _custom_json?: any;
+    uid?: string;
+    results?: any[];
     words?: string[];
     results?: AutocompleteResult[];
     is_active?: boolean;
 };
 type CreateAutocompleteWordsResponse = {
-    app_id?: string;
+    words?: string[];
     _custom_json?: any;
     words?: string[];
     results?: any[];
@@ -17757,6 +17915,8 @@ type ProductBundleItem = {
     max_quantity: number;
     auto_select?: boolean;
     allow_remove?: boolean;
+    auto_select?: boolean;
+    min_quantity: number;
 };
 type GetProductBundleCreateResponse = {
     name: string;
@@ -17887,8 +18047,8 @@ type ValidateSizeGuide = {
     tag?: string;
 };
 type SuccessResponse = {
-    success?: boolean;
     uid?: number;
+    success?: boolean;
 };
 type SizeGuideResponse = {
     brand_id?: number;
@@ -17912,12 +18072,14 @@ type MetaFields = {
 type ApplicationItemMeta = {
     _custom_meta: MetaFields[];
 };
-type MetaDataListingSortMetaResponse = {
+type MetaDataListingFilterMetaResponse = {
+    filter_types?: string[];
     display?: string;
+    units?: any[];
     key?: string;
 };
-type MetaDataListingSortResponse = {
-    data?: MetaDataListingSortMetaResponse[];
+type MetaDataListingFilterResponse = {
+    data?: MetaDataListingFilterMetaResponse[];
 };
 type MetaDataListingFilterMetaResponse = {
     display?: string;
@@ -18006,8 +18168,8 @@ type ConfigurationListingFilterConfig = {
     logo?: string;
 };
 type ConfigurationListingFilter = {
-    allow_single: boolean;
     attribute_config?: ConfigurationListingFilterConfig[];
+    allow_single: boolean;
 };
 type ConfigurationListing = {
     sort: ConfigurationListingSort;
@@ -18019,6 +18181,8 @@ type AppCatalogConfiguration = {
     config_id?: string;
     product?: ConfigurationProduct;
     listing?: ConfigurationListing;
+    product?: ConfigurationProduct;
+    config_id?: string;
     id?: string;
 };
 type GetAppCatalogConfiguration = {
@@ -18042,6 +18206,8 @@ type EntityConfiguration = {
     config_id?: string;
     product?: GetCatalogConfigurationDetailsProduct;
     listing?: GetCatalogConfigurationDetailsSchemaListing;
+    product?: GetCatalogConfigurationDetailsProduct;
+    config_id?: string;
     id?: string;
 };
 type GetAppCatalogEntityConfiguration = {
@@ -18206,6 +18372,21 @@ type CollectionCreateResponse = {
     is_active?: boolean;
     logo?: BannerImage;
     cron?: any;
+    description?: string;
+};
+type CollectionListingFilterTag = {
+    name?: string;
+    display?: string;
+    is_selected?: boolean;
+};
+type CollectionListingFilterType = {
+    name?: string;
+    display?: string;
+    is_selected?: boolean;
+};
+type CollectionListingFilter = {
+    tags?: CollectionListingFilterTag[];
+    type?: CollectionListingFilterType[];
 };
 type CollectionDetailResponse = {
     app_id?: string;
@@ -18250,6 +18431,7 @@ type UpdateCollection = {
     logo?: CollectionImage;
 };
 type Price1 = {
+    min?: number;
     currency_code?: string;
     max?: number;
     min?: number;
@@ -18260,8 +18442,8 @@ type ProductListingPrice = {
     effective?: Price1;
 };
 type ProductDetailAttribute = {
-    type?: string;
     value?: string;
+    type?: string;
     key?: string;
 };
 type ProductDetailGroupedAttribute = {
@@ -18329,8 +18511,8 @@ type CatalogInsightItem = {
     sellable_count?: number;
 };
 type CatalogInsightResponse = {
-    brand_distribution?: CatalogInsightBrand;
     item?: CatalogInsightItem;
+    brand_distribution?: CatalogInsightBrand;
 };
 type CrossSellingData = {
     articles?: number;
@@ -18367,6 +18549,9 @@ type OptinCompanyDetail = {
     name?: string;
     company_type?: string;
     uid?: number;
+    name?: string;
+    business_type?: string;
+    company_type?: string;
 };
 type CompanyBrandDetail = {
     brand_id?: number;
@@ -18408,9 +18593,12 @@ type AttributeMasterFilter = {
 type AttributeMasterDetails = {
     display_type: string;
 };
+type AttributeMasterDetails = {
+    display_type: string;
+};
 type AttributeSchemaRange = {
-    max?: number;
     min?: number;
+    max?: number;
 };
 type AttributeMaster = {
     format?: string;
@@ -18424,7 +18612,6 @@ type AttributeMasterMandatoryDetails = {
     l3_keys?: string[];
 };
 type AttributeMasterMeta = {
-    mandatory_details: AttributeMasterMandatoryDetails;
     enriched?: boolean;
 };
 type GenderDetail = {
@@ -18473,6 +18660,10 @@ type GetDepartment = {
     logo?: string;
     priority_order?: number;
     synonyms?: string[];
+    modified_by?: UserSerializer;
+    is_active?: boolean;
+    priority_order?: number;
+    page_no?: number;
 };
 type DepartmentsResponse = {
     items?: GetDepartment[];
@@ -18542,6 +18733,8 @@ type Properties = {
 type GlobalValidation = {
     type?: string;
     properties?: Properties;
+    type?: string;
+    required?: string[];
     description?: string;
     definitions?: any;
     required?: string[];
@@ -18587,9 +18780,13 @@ type VerifiedBy = {
     username?: string;
 };
 type ProductDownloadItemsData = {
-    type?: string;
     brand?: string[];
+    type?: string;
     templates?: string[];
+};
+type VerifiedBy = {
+    username?: string;
+    user_id?: string;
 };
 type ProductDownloadsItems = {
     template_tags?: any;
@@ -18598,6 +18795,7 @@ type ProductDownloadsItems = {
     seller_id?: number;
     url?: string;
     data?: ProductDownloadItemsData;
+    task_id?: string;
     status?: string;
     id?: string;
     completed_on?: string;
@@ -18834,10 +19032,10 @@ type ProductBulkRequestList = {
     page?: Page;
 };
 type UserInfo1 = {
-    email?: string;
-    user_id?: string;
     username?: string;
     uid?: string;
+    email?: string;
+    user_id?: string;
 };
 type BulkJob = {
     created_by?: UserInfo1;
@@ -18874,6 +19072,7 @@ type UserCommon = {
     user_id?: string;
     username?: string;
     company_id?: number;
+    user_id?: string;
 };
 type Items = {
     created_by?: UserCommon;
@@ -18966,11 +19165,13 @@ type ItemQuery = {
     brand_uid?: number;
     item_code?: string;
     uid?: number;
+    brand_uid?: number;
 };
 type InventoryRequest = {
     company_id: number;
     sizes: InvSize[];
     item: ItemQuery;
+    company_id: number;
 };
 type InventoryDeleteData = {
     size?: string;
@@ -19041,8 +19242,8 @@ type InventoryExportJob = {
     trigger_on?: string;
 };
 type InventoryExportRequest = {
-    type?: string;
     brand?: number[];
+    type?: string;
     store?: number[];
 };
 type FilerList = {
@@ -19063,6 +19264,11 @@ type HsnCodesObject = {
     id?: string;
     company_id?: number;
     hs2_code?: string;
+    tax1?: number;
+    tax_on_mrp?: boolean;
+    id?: string;
+    modified_on?: string;
+    threshold2?: number;
     hsn_code?: string;
     threshold2?: number;
 };
@@ -19158,12 +19364,12 @@ type CategoryItems = {
     action?: Action;
 };
 type DepartmentCategoryTree = {
-    items?: CategoryItems[];
     department?: string;
+    items?: CategoryItems[];
 };
 type DepartmentIdentifier = {
-    slug?: string;
     uid?: number;
+    slug?: string;
 };
 type CategoryListingResponse = {
     data?: DepartmentCategoryTree[];
@@ -19209,6 +19415,7 @@ type AssignStoreArticle = {
     group_id?: string;
     quantity?: number;
     article_assignment?: ArticleAssignment;
+    group_id?: string;
     query?: ArticleQuery;
     meta?: any;
 };
@@ -19222,8 +19429,8 @@ type AssignStore = {
     channel_identifier?: string;
 };
 type ArticleAssignment1 = {
-    level?: string;
     strategy?: string;
+    level?: string;
 };
 type StoreAssignResponse = {
     _id?: string;
@@ -19256,8 +19463,8 @@ type Document = {
     legal_name?: string;
 };
 type SellerPhoneNumber = {
-    country_code: number;
     number: string;
+    country_code: number;
 };
 type LocationManagerSerializer = {
     email?: string;
@@ -19414,6 +19621,11 @@ type UpdateCompany = {
     business_details?: BusinessDetails;
     warnings?: any;
     documents?: Document[];
+    mode?: string;
+    business_info?: string;
+    modified_by?: UserSerializer;
+    created_by?: UserSerializer;
+    warnings?: any;
     notification_emails?: string[];
     reject_reason?: string;
     business_info?: string;
@@ -19433,6 +19645,10 @@ type MetricsSerializer = {
     product?: DocumentsObj;
     brand?: DocumentsObj;
     store?: DocumentsObj;
+    brand?: DocumentsObj;
+    company_documents?: DocumentsObj;
+    store_documents?: DocumentsObj;
+    uid?: number;
 };
 type BrandBannerSerializer = {
     landscape?: string;
@@ -19486,8 +19702,8 @@ type CompanyBrandSerializer = {
     modified_on?: string;
 };
 type CompanyBrandListSerializer = {
-    items?: CompanyBrandSerializer[];
     page?: Page;
+    items?: CompanyBrandSerializer[];
 };
 type CompanyBrandPostRequestSerializer = {
     brands: number[];
@@ -21183,6 +21399,20 @@ type CouponAction = {
     action_date?: string;
     txn_mode?: string;
 };
+type RuleDefinition = {
+    type: string;
+    applicable_on: string;
+    currency_code?: string;
+    is_exact?: boolean;
+    value_type: string;
+    auto_apply?: boolean;
+    scope?: string[];
+    calculate_on: string;
+};
+type CouponAuthor = {
+    modified_by?: string;
+    created_by?: string;
+};
 type CouponDateMeta = {
     modified_on?: string;
     created_on?: string;
@@ -21218,13 +21448,11 @@ type UsesRemaining = {
     user?: number;
     app?: number;
     total?: number;
+    user?: number;
 };
 type UsesRestriction = {
-    maximum?: UsesRemaining;
     remaining?: UsesRemaining;
-};
-type BulkBundleRestriction = {
-    multi_store_allowed: boolean;
+    maximum?: UsesRemaining;
 };
 type Restrictions = {
     platforms?: string[];
@@ -21319,8 +21547,8 @@ type CouponUpdate = {
     validation?: Validation;
 };
 type CouponPartialUpdate = {
-    schedule?: CouponSchedule;
     archive?: boolean;
+    schedule?: CouponSchedule;
 };
 type CartItem = {
     quantity?: number;
@@ -21380,6 +21608,13 @@ type CartProduct = {
     categories?: CategoryInfo[];
     type?: string;
     name?: string;
+};
+type ProductAvailability = {
+    other_store_quantity?: number;
+    sizes?: string[];
+    out_of_stock?: boolean;
+    is_valid?: boolean;
+    deliverable?: boolean;
 };
 type ProductPrice = {
     effective?: number;
@@ -21469,6 +21704,7 @@ type OpenapiCartDetailsResponse = {
     breakup_values?: CartBreakup;
     message?: string;
     is_valid?: boolean;
+    items?: CartProductInfo[];
 };
 type OpenApiErrorResponse = {
     message?: string;
@@ -21493,7 +21729,6 @@ type ShippingAddress = {
     address_type?: string;
 };
 type OpenApiCartServiceabilityRequest = {
-    shipping_address: ShippingAddress;
     cart_items?: CartItem;
 };
 type PromiseTimestamp = {
@@ -21503,6 +21738,10 @@ type PromiseTimestamp = {
 type PromiseFormatted = {
     min?: string;
     max?: string;
+};
+type PromiseFormatted = {
+    max?: string;
+    min?: string;
 };
 type ShipmentPromise = {
     timestamp?: PromiseTimestamp;
@@ -21578,6 +21817,7 @@ type OpenApiPlatformCheckoutReq = {
 type OpenApiCheckoutResponse = {
     order_id: string;
     message?: string;
+    success?: boolean;
     order_ref_id?: string;
     success?: boolean;
 };

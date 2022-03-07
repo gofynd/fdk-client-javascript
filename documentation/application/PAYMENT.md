@@ -2194,8 +2194,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
  | success | boolean |  yes  | Response is successful or not |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
 
 ---
 
@@ -2247,8 +2247,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  yes  | Response is successful or not. |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
  | message | string |  yes  | Human readable message. |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  | Card's payment gateway with customer id. |
 
 ---
 
@@ -2364,9 +2364,11 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  yes  | Unique order id. |
+ | success | boolean |  yes  | Response is successful or not. |
+ | status | string |  yes  | Status of charged payment. |
  | cart_id | string |  no  | Cart id of customer |
  | message | string |  yes  | Human readable message. |
- | delivery_address_id | string |  no  | Delivery adddress id of customer |
  | aggregator | string |  yes  | Payment gateway name i.e Simpl, Mswipe |
  | success | boolean |  yes  | Response is successful or not. |
  | order_id | string |  yes  | Unique order id. |
@@ -2434,6 +2436,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
  | merchant_order_id | string |  yes  | Unique fynd order id |
  | contact | string |  yes  | Customer valid mobile number |
  | method | string |  yes  | Payment method |
+ | order_id | string |  yes  | Payment gateway order id |
+ | merchant_order_id | string |  yes  | Unique fynd order id |
  | email | string |  yes  | Customer valid email |
  | customer_id | string |  yes  | Payment gateway customer id. |
  | amount | number |  yes  | Payable amount. |
@@ -2628,8 +2632,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | kyc_url | string |  no  | Rupifi KYC banner url. |
  | status | string |  no  | Rupifi KYC status |
+ | kyc_url | string |  no  | Rupifi KYC banner url. |
 
 ---
 
@@ -2768,6 +2772,7 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  | Response is successful or not |
+ | bank_name | string |  yes  | Bank Name Of Account |
  | branch_name | string |  yes  | Branch Name Of Account |
  | bank_name | string |  yes  | Bank Name Of Account |
 
@@ -2869,8 +2874,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_verified_flag | boolean |  no  |  |
  | success | boolean |  yes  | Success or failure flag. |
+ | is_verified_flag | boolean |  no  |  |
  | data | string |  no  | Refund account data. |
  | message | string |  yes  | Response message |
 
@@ -2898,8 +2903,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
  | order_id | string |  yes  |  |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
 
 ---
 

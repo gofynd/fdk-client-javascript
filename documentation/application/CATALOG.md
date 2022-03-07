@@ -6337,12 +6337,10 @@ const data = await catalog.getProductBundlesBySlug({  slug : value,
 
 
 
-
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | slug | string | no | Product slug for which bundles need to be fetched. |    
 | id | string | no | Product uid |  
-
 
 
 Use this API to retrieve products bundles to the one specified by its slug.
@@ -6927,6 +6925,9 @@ Success. Returns a ProductSizeSellerV2 object. Check the example shown below or 
  | discount | string |  no  |  |
  | rating | number |  no  |  |
  | tryouts | [string] |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | short_description | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
  | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
  | uid | number |  no  |  |
  | teaser_tag | string |  no  |  |
@@ -6974,7 +6975,7 @@ Success. Returns a ProductSizeSellerV2 object. Check the example shown below or 
 
  
  
- #### [SizeChartValues](#SizeChartValues)
+ #### [ColumnHeaders](#ColumnHeaders)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7213,9 +7214,9 @@ Success. Returns a ProductSizeSellerV2 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | name | string |  no  |  |
  | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -7704,6 +7705,7 @@ Success. Returns a ProductSizeSellerV2 object. Check the example shown below or 
  | visible_facets_keys | [string] |  no  |  |
  | uid | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | discount | string |  no  |  |
 
 ---
 
@@ -7887,6 +7889,8 @@ Success. Returns a ProductSizeSellerV2 object. Check the example shown below or 
  | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
  | email | string |  no  |  |
  | name | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 

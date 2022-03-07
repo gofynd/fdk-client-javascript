@@ -307,6 +307,7 @@ export class Validator {
     static StoreDetail(): any;
     static Seller(): any;
     static CompanyDetail(): any;
+    static StoreDetail(): any;
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
@@ -400,6 +401,7 @@ export class Validator {
     static ActionQuery(): any;
     static ProductAction(): any;
     static CategoryInfo(): any;
+    static BaseInfo(): any;
     static CartProduct(): any;
     static CartProductInfo(): any;
     static CartDetailResponse(): any;
@@ -414,9 +416,9 @@ export class Validator {
     static Coupon(): any;
     static GetCouponResponse(): any;
     static ApplyCouponRequest(): any;
-    static OfferSeller(): any;
     static OfferPrice(): any;
     static OfferItem(): any;
+    static OfferSeller(): any;
     static BulkPriceOffer(): any;
     static BulkPriceResponse(): any;
     static RewardPointRequest(): any;

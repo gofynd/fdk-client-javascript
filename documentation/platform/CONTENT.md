@@ -5794,11 +5794,7 @@ Success. Refer `SlideshowGetResponse` for more details.
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
@@ -5858,8 +5854,6 @@ Success. Refer `SlideshowGetResponse` for more details.
 ```
 </details>
 
-</details>
-
 
 
 
@@ -5912,7 +5906,7 @@ Success. Refer `SlideshowSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
 {
@@ -7326,6 +7320,266 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
     "orientation": "portrait",
     "page_meta": []
   }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createPage
+Create a page
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.createPage({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.createPage({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PageRequest](#PageRequest) | yes | Request body |
+
+
+Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPages
+Get a list of pages
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.getPages({  pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Use this API to retrieve a list of pages.
+
+*Returned Response:*
+
+
+
+
+[PageGetResponse](#PageGetResponse)
+
+Success. Refer `PageGetResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/PageGetResponse"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePage
+Update a page
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.updatePage({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.updatePage({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID allotted to the page. |  
+| body | [PageSchema](#PageSchema) | yes | Request body |
+
+
+Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Refer `PageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPageBySlug
+Get pages by component Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.getPageBySlug({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| slug | string | yes | A short, human-readable, URL-friendly identifier of a page. You can get slug value of a page from `getPages` API. |  
+
+
+
+Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
+
+*Returned Response:*
+
+
+
+
+[PageSchema](#PageSchema)
+
+Success. Returns a JSON object of components. Refer `PageSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "$ref": "#/components/examples/PageResponse"
 }
 ```
 </details>
