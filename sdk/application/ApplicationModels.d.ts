@@ -1,8 +1,6 @@
 export class CatalogValidator {
     static getProductDetailBySlug(): any;
     static getProductSizesBySlug(): any;
-    static getProductPriceBySlug(): any;
-    static getProductSellersBySlug(): any;
     static getProductComparisonBySlugs(): any;
     static getSimilarComparisonProductBySlug(): any;
     static getComparedFrequentlyProductBySlug(): any;
@@ -22,13 +20,16 @@ export class CatalogValidator {
     static getCollectionItemsBySlug(): any;
     static getCollectionDetailBySlug(): any;
     static getFollowedListing(): any;
-    static followById(): any;
     static unfollowById(): any;
+    static followById(): any;
     static getFollowerCountById(): any;
     static getFollowIds(): any;
     static getStores(): any;
     static getInStockLocations(): any;
     static getLocationDetailsById(): any;
+    static getProductBundlesBySlug(): any;
+    static getProductPriceBySlug(): any;
+    static getProductSellersBySlug(): any;
 }
 export class CartValidator {
     static getCart(): any;
@@ -57,6 +58,7 @@ export class CartValidator {
     static updateCartWithSharedItems(): any;
 }
 export class CommonValidator {
+    static searchApplication(): any;
     static getLocations(): any;
 }
 export class LeadValidator {
@@ -113,6 +115,7 @@ export class ContentValidator {
     static getAnnouncements(): any;
     static getBlog(): any;
     static getBlogs(): any;
+    static getDataLoaders(): any;
     static getFaqs(): any;
     static getFaqCategories(): any;
     static getFaqBySlug(): any;
@@ -146,6 +149,7 @@ export class ShareValidator {
 export class FileStorageValidator {
     static startUpload(): any;
     static completeUpload(): any;
+    static signUrls(): any;
 }
 export class ConfigurationValidator {
     static getApplication(): any;
@@ -271,38 +275,25 @@ export class LogisticValidator {
     static getPincodeCity(): any;
 }
 export class Validator {
-    static Meta(): any;
-    static Media(): any;
-    static ProductListingActionPage(): any;
-    static ProductListingAction(): any;
-    static ProductBrand(): any;
-    static Price(): any;
-    static ProductListingPrice(): any;
     static ProductDetailAttribute(): any;
     static ProductDetailGroupedAttribute(): any;
+    static Price(): any;
+    static ProductListingPrice(): any;
+    static ProductListingActionPage(): any;
+    static ProductListingAction(): any;
+    static Meta(): any;
+    static Media(): any;
+    static ProductBrand(): any;
+    static MetaFields(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
+    static ProductSize(): any;
     static SizeChartValues(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
     static SizeChart(): any;
-    static ProductSize(): any;
     static ProductSizeStores(): any;
     static ProductSizes(): any;
-    static Details(): any;
-    static MarketPlaceSttributes(): any;
-    static ArticleAssignment(): any;
-    static Seller(): any;
-    static Store(): any;
-    static ProductSetDistributionSize(): any;
-    static ProductSetDistribution(): any;
-    static ProductSet(): any;
-    static StrategyWiseListing(): any;
-    static ProductStockPrice(): any;
-    static ReturnConfig(): any;
-    static ProductSizePriceResponse(): any;
-    static ProductSizeSellerFilter(): any;
-    static ProductSizeSellersResponse(): any;
     static AttributeDetail(): any;
     static AttributeMetadata(): any;
     static ProductsComparisonResponse(): any;
@@ -313,16 +304,18 @@ export class Validator {
     static ProductVariantItemResponse(): any;
     static ProductVariantResponse(): any;
     static ProductVariantsResponse(): any;
-    static CompanyDetail(): any;
     static StoreDetail(): any;
+    static ProductStockPrice(): any;
+    static CompanyDetail(): any;
+    static Seller(): any;
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
-    static ProductFiltersKey(): any;
     static ProductFiltersValue(): any;
+    static ProductFiltersKey(): any;
     static ProductFilters(): any;
-    static ProductListingDetail(): any;
     static ProductSortOn(): any;
+    static ProductListingDetail(): any;
     static ProductListingResponse(): any;
     static ImageUrls(): any;
     static BrandItem(): any;
@@ -341,10 +334,10 @@ export class Validator {
     static DepartmentResponse(): any;
     static AutocompleteItem(): any;
     static AutoCompleteResponse(): any;
+    static GetCollectionDetailNest(): any;
     static CollectionListingFilterTag(): any;
     static CollectionListingFilterType(): any;
     static CollectionListingFilter(): any;
-    static GetCollectionDetailNest(): any;
     static GetCollectionListingResponse(): any;
     static CollectionDetailResponse(): any;
     static GetFollowListingResponse(): any;
@@ -353,11 +346,11 @@ export class Validator {
     static FollowIdsData(): any;
     static FollowIdsResponse(): any;
     static LatLong(): any;
-    static Store1(): any;
+    static Store(): any;
     static StoreListingResponse(): any;
+    static SellerPhoneNumber(): any;
     static StoreDepartments(): any;
     static CompanyStore(): any;
-    static SellerPhoneNumber(): any;
     static StoreManagerSerializer(): any;
     static StoreAddressSerializer(): any;
     static AppStore(): any;
@@ -365,31 +358,51 @@ export class Validator {
     static Time(): any;
     static StoreTiming(): any;
     static StoreDetails(): any;
-    static PromiseFormatted(): any;
-    static PromiseTimestamp(): any;
-    static ShipmentPromise(): any;
-    static CartCurrency(): any;
+    static Size(): any;
+    static ProductDetails(): any;
+    static Price1(): any;
+    static Products(): any;
+    static GetGroupedProducts(): any;
+    static ProductBundle(): any;
+    static ArticleAssignmentV2(): any;
+    static ReturnConfigSchemaV2(): any;
+    static ProductStockPriceV2(): any;
+    static StoreV2(): any;
+    static ProductSetDistributionSizeV2(): any;
+    static ProductSetDistributionV2(): any;
+    static ProductSetV2(): any;
+    static DetailsSchemaV2(): any;
+    static MarketPlaceSttributesSchemaV2(): any;
+    static StrategyWiseListingSchemaV2(): any;
+    static SellerV2(): any;
+    static ProductSizePriceResponseV2(): any;
+    static ProductSizeSellerFilterSchemaV2(): any;
+    static ProductSizeSellersResponseV2(): any;
     static LoyaltyPoints(): any;
+    static RawBreakup(): any;
     static DisplayBreakup(): any;
     static CouponBreakup(): any;
-    static RawBreakup(): any;
     static CartBreakup(): any;
-    static PaymentSelectionLock(): any;
-    static ProductPrice(): any;
-    static ProductPriceInfo(): any;
     static PromoMeta(): any;
-    static ProductAvailability(): any;
-    static ProductImage(): any;
-    static ActionQuery(): any;
-    static ProductAction(): any;
-    static CategoryInfo(): any;
     static BaseInfo(): any;
-    static CartProduct(): any;
     static BasePrice(): any;
     static ArticlePriceInfo(): any;
     static ProductArticle(): any;
     static CartProductIdentifer(): any;
+    static ProductPrice(): any;
+    static ProductPriceInfo(): any;
+    static CategoryInfo(): any;
+    static ProductImage(): any;
+    static ActionQuery(): any;
+    static ProductAction(): any;
+    static CartProduct(): any;
+    static ProductAvailability(): any;
     static CartProductInfo(): any;
+    static CartCurrency(): any;
+    static PromiseTimestamp(): any;
+    static PromiseFormatted(): any;
+    static ShipmentPromise(): any;
+    static PaymentSelectionLock(): any;
     static CartDetailResponse(): any;
     static AddProductCart(): any;
     static AddCartRequest(): any;
@@ -432,6 +445,18 @@ export class Validator {
     static SharedCartDetails(): any;
     static SharedCart(): any;
     static SharedCartResponse(): any;
+    static ApplicationResponse(): any;
+    static Currency(): any;
+    static Domain(): any;
+    static ApplicationWebsite(): any;
+    static ApplicationCors(): any;
+    static ApplicationAuth(): any;
+    static ApplicationRedirections(): any;
+    static ApplicationMeta(): any;
+    static SecureUrl(): any;
+    static Application(): any;
+    static NotFound(): any;
+    static BadRequest(): any;
     static LocationDefaultLanguage(): any;
     static LocationDefaultCurrency(): any;
     static LocationCountry(): any;
@@ -480,7 +505,7 @@ export class Validator {
     static Ticket(): any;
     static PriorityEnum(): any;
     static HistoryTypeEnum(): any;
-    static TicketAssetType(): any;
+    static TicketAssetTypeEnum(): any;
     static TicketSourceEnum(): any;
     static AvailablePageSchema(): any;
     static AvailablePageSectionMetaAttributes(): any;
@@ -630,6 +655,8 @@ export class Validator {
     static BlogRequest(): any;
     static GetAnnouncementListSchema(): any;
     static CreateAnnouncementSchema(): any;
+    static DataLoaderResponseSchema(): any;
+    static DataLoaderResetResponseSchema(): any;
     static Navigation(): any;
     static LocaleLanguage(): any;
     static Language(): any;
@@ -647,8 +674,10 @@ export class Validator {
     static RemoveHandpickedSchema(): any;
     static CreateTagSchema(): any;
     static CreateTagRequestSchema(): any;
+    static DataLoaderSchema(): any;
+    static DataLoaderSourceSchema(): any;
     static TagDeleteSuccessResponse(): any;
-    static APIError(): any;
+    static ContentAPIError(): any;
     static CategorySchema(): any;
     static ChildrenSchema(): any;
     static CategoryRequestSchema(): any;
@@ -697,6 +726,7 @@ export class Validator {
     static ContactSchema(): any;
     static TagsSchema(): any;
     static TagSchema(): any;
+    static TagSourceSchema(): any;
     static PageType(): any;
     static CommunicationConsentReq(): any;
     static CommunicationConsentRes(): any;
@@ -794,16 +824,6 @@ export class Validator {
     static OrderFeature(): any;
     static AppFeatureRequest(): any;
     static AppFeatureResponse(): any;
-    static Currency(): any;
-    static Domain(): any;
-    static ApplicationWebsite(): any;
-    static ApplicationCors(): any;
-    static ApplicationAuth(): any;
-    static ApplicationRedirections(): any;
-    static ApplicationMeta(): any;
-    static SecureUrl(): any;
-    static Application(): any;
-    static NotFound(): any;
     static UnhandledError(): any;
     static InvalidPayloadRequest(): any;
     static SuccessMessageResponse(): any;
@@ -865,6 +885,8 @@ export class Validator {
     static AggregatorRoute(): any;
     static PaymentFlow(): any;
     static PaymentModeLogo(): any;
+    static IntentApp(): any;
+    static IntentAppErrorList(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptionAndFlow(): any;

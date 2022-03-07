@@ -2,323 +2,29 @@
 
 
 
-##### [Back to Platform docs](./README.md)
+##### [Back to Public docs](./README.md)
 
 ## Webhook Methods
 Webhook dispatcher with retry and one event to many subscriber vice versa
-* [getSubscribersByCompany](#getsubscribersbycompany)
-* [registerSubscriberToEvent](#registersubscribertoevent)
-* [updateSubscriberConfig](#updatesubscriberconfig)
-* [getSubscribersByExtensionId](#getsubscribersbyextensionid)
-* [getSubscriberById](#getsubscriberbyid)
-* [fetchAllEventConfigurations](#fetchalleventconfigurations)
+* [fetchAllWebhookEvents](#fetchallwebhookevents)
+* [queryWebhookEventDetails](#querywebhookeventdetails)
 
 
 
 ## Methods with example and description
 
 
-### getSubscribersByCompany
-Get Subscribers By Company ID
-
-
-
-```javascript
-// Promise
-const promise = client.webhook.getSubscribersByCompany({  pageNo : value,
- pageSize : value,
- extensionId : value });
-
-// Async/Await
-const data = await client.webhook.getSubscribersByCompany({  pageNo : value,
- pageSize : value,
- extensionId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |    
-| extensionId | string | no | Extension ID |  
-
-
-
-Get Subscribers By CompanyId
-
-*Returned Response:*
-
-
-
-
-[SubscriberResponse](#SubscriberResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### registerSubscriberToEvent
-Register Subscriber
-
-
-
-```javascript
-// Promise
-const promise = client.webhook.registerSubscriberToEvent({  body : value });
-
-// Async/Await
-const data = await client.webhook.registerSubscriberToEvent({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
-
-
-Register Subscriber
-
-*Returned Response:*
-
-
-
-
-[SubscriberConfig](#SubscriberConfig)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateSubscriberConfig
-Update Subscriber
-
-
-
-```javascript
-// Promise
-const promise = client.webhook.updateSubscriberConfig({  body : value });
-
-// Async/Await
-const data = await client.webhook.updateSubscriberConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SubscriberConfig](#SubscriberConfig) | yes | Request body |
-
-
-Update Subscriber
-
-*Returned Response:*
-
-
-
-
-[SubscriberConfig](#SubscriberConfig)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSubscribersByExtensionId
-Get Subscribers By Extension ID
-
-
-
-```javascript
-// Promise
-const promise = client.webhook.getSubscribersByExtensionId({  extensionId : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await client.webhook.getSubscribersByExtensionId({  extensionId : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |   
-| extensionId | string | yes | Extension ID |  
-
-
-
-Get Subscribers By ExtensionID
-
-*Returned Response:*
-
-
-
-
-[SubscriberConfigList](#SubscriberConfigList)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSubscriberById
-Get Subscriber By Subscriber ID
-
-
-
-```javascript
-// Promise
-const promise = client.webhook.getSubscriberById({  subscriberId : value });
-
-// Async/Await
-const data = await client.webhook.getSubscriberById({  subscriberId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| subscriberId | number | yes | Subscriber ID |  
-
-
-
-Get Subscriber By Subscriber ID
-
-*Returned Response:*
-
-
-
-
-[SubscriberResponse](#SubscriberResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### fetchAllEventConfigurations
+### fetchAllWebhookEvents
 Get All Webhook Events
 
 
 
 ```javascript
 // Promise
-const promise = client.webhook.fetchAllEventConfigurations();
+const promise = webhook.fetchAllWebhookEvents();
 
 // Async/Await
-const data = await client.webhook.fetchAllEventConfigurations();
+const data = await webhook.fetchAllWebhookEvents();
 ```
 
 
@@ -327,6 +33,61 @@ const data = await client.webhook.fetchAllEventConfigurations();
 
 
 Get All Webhook Events
+
+*Returned Response:*
+
+
+
+
+[EventConfigResponse](#EventConfigResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### queryWebhookEventDetails
+Send webhook event name, type, version, category in request body to get complete details of event from server
+
+
+
+```javascript
+// Promise
+const promise = webhook.queryWebhookEventDetails({  body : value });
+
+// Async/Await
+const data = await webhook.queryWebhookEventDetails({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [Array<EventConfigBase>](#Array<EventConfigBase>) | yes | Request body |
+
+
+Get Webhook Event Details for provided events
 
 *Returned Response:*
 

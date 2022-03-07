@@ -70,6 +70,13 @@ export class ContentValidator {
     static updateBlog(): any;
     static deleteBlog(): any;
     static getComponentById(): any;
+    static addDataLoader(): any;
+    static getDataLoaders(): any;
+    static deleteDataLoader(): any;
+    static editDataLoader(): any;
+    static getDataLoadersByService(): any;
+    static selectDataLoader(): any;
+    static resetDataLoader(): any;
     static getFaqCategories(): any;
     static getFaqCategoryBySlugOrId(): any;
     static createFaqCategory(): any;
@@ -141,6 +148,8 @@ export class CommunicationValidator {
     static getEmailTemplateById(): any;
     static updateEmailTemplateById(): any;
     static deleteEmailTemplateById(): any;
+    static sendCommunicationSynchronously(): any;
+    static sendCommunicationAsynchronously(): any;
     static getEventSubscriptions(): any;
     static getJobs(): any;
     static triggerCampaignJob(): any;
@@ -168,6 +177,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
+    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -175,38 +185,42 @@ export class OrderValidator {
     static updateShipment(): any;
     static getPlatformShipmentReasons(): any;
     static getShipmentTrackDetails(): any;
+    static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
     static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static createCustomKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
+    static updateAppProduct(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static addCollectionItems(): any;
+    static updateCollection(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
+    static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
     static getCategories(): any;
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getAppLocations(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;

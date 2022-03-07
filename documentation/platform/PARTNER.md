@@ -187,12 +187,14 @@ Success
 
  
  
- #### [ApiError](#ApiError)
+ #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string |  no  |  |
  | message | string |  no  |  |
+ | info | string |  no  | Error code description link |
+ | request_id | string |  no  |  |
  | meta | string |  no  |  |
 
 ---

@@ -2,9 +2,9 @@
 
 
 
-##### [Back to Platform docs](./README.md)
+##### [Back to Public docs](./README.md)
 
-## Common Methods
+## Configuration Methods
 Application configuration apis
 * [searchApplication](#searchapplication)
 * [getLocations](#getlocations)
@@ -21,11 +21,11 @@ Search Application
 
 ```javascript
 // Promise
-const promise = common.searchApplication({  authorization : value,
+const promise = configuration.searchApplication({  authorization : value,
  query : value });
 
 // Async/Await
-const data = await common.searchApplication({  authorization : value,
+const data = await configuration.searchApplication({  authorization : value,
  query : value });
 ```
 
@@ -141,11 +141,11 @@ Get countries, states, cities
 
 ```javascript
 // Promise
-const promise = common.getLocations({  locationType : value,
+const promise = configuration.getLocations({  locationType : value,
  id : value });
 
 // Async/Await
-const data = await common.getLocations({  locationType : value,
+const data = await configuration.getLocations({  locationType : value,
  id : value });
 ```
 

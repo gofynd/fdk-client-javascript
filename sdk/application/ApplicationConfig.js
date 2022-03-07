@@ -8,8 +8,12 @@ class ApplicationConfig {
     this.applicationID = _conf.applicationID || "";
     this.applicationToken = _conf.applicationToken || "";
     this.opts = _opts || {};
-    this.domain = _conf.domain || "https://api.fyndx0.de";
+    this.domain = _conf.domain || "https://api.fynd.com";
     this.validate();
+  }
+
+  setCookie(cookie) {
+    this.cookie = cookie;
   }
 
   validate() {

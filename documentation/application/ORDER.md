@@ -1133,6 +1133,8 @@ Success, the code is valid and returns a session token
  | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
  | track_url | string |  no  |  |
  | traking_no | string |  no  |  |
+ | awb_no | string |  no  |  |
+ | dp_name | string |  no  |  |
  | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
  | beneficiary_details | boolean |  no  |  |
  | can_return | boolean |  no  |  |

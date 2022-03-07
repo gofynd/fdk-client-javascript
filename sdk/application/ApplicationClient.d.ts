@@ -1,6 +1,7 @@
 export = ApplicationClient;
 declare class ApplicationClient {
     constructor(config: any);
+    config: any;
     catalog: Catalog;
     cart: Cart;
     common: Common;
@@ -18,10 +19,46 @@ declare class ApplicationClient {
     feedback: Feedback;
     posCart: PosCart;
     logistic: Logistic;
+    setCookie(cookie: any): void;
 }
 declare class Catalog {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getProductDetailBySlug: string;
+        getProductSizesBySlug: string;
+        getProductComparisonBySlugs: string;
+        getSimilarComparisonProductBySlug: string;
+        getComparedFrequentlyProductBySlug: string;
+        getProductSimilarByIdentifier: string;
+        getProductVariantsBySlug: string;
+        getProductStockByIds: string;
+        getProductStockForTimeByIds: string;
+        getProducts: string;
+        getBrands: string;
+        getBrandDetailBySlug: string;
+        getCategories: string;
+        getCategoryDetailBySlug: string;
+        getHomeProducts: string;
+        getDepartments: string;
+        getSearchResults: string;
+        getCollections: string;
+        getCollectionItemsBySlug: string;
+        getCollectionDetailBySlug: string;
+        getFollowedListing: string;
+        unfollowById: string;
+        followById: string;
+        getFollowerCountById: string;
+        getFollowIds: string;
+        getStores: string;
+        getInStockLocations: string;
+        getLocationDetailsById: string;
+        getProductBundlesBySlug: string;
+        getProductPriceBySlug: string;
+        getProductSellersBySlug: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -49,78 +86,6 @@ declare class Catalog {
         slug: string;
         storeId?: number;
     }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
-     * @param {string} arg.size - A string indicating the size of the product,
-     *   e.g. S, M, XL. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/sizes
-     * @param {string} arg.pincode - The PIN Code of the area near which the
-     *   selling locations should be searched, e.g. 400059
-     * @param {number} [arg.storeId] - The ID of the store that is selling the
-     *   product, e.g. 1,2,3.
-     * @returns {Promise<ProductSizePriceResponse>} - Success response
-     * @summary: Get the price of a product size at a PIN Code
-     * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
-     */
-    getProductPriceBySlug({ slug, size, pincode, storeId }?: {
-        slug: string;
-        size: string;
-        pincode: string;
-        storeId?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
-     * @param {string} arg.size - A string indicating the size of the product,
-     *   e.g. S, M, XL. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/sizes
-     * @param {string} arg.pincode - The 6-digit PIN Code of the area near which
-     *   the selling locations should be searched, e.g. 400059
-     * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
-     *   eg, fast-delivery, low-price, optimal.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ProductSizeSellersResponse>} - Success response
-     * @summary: Get the sellers of a product size at a PIN Code
-     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
-     */
-    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, }?: {
-        slug: string;
-        size: string;
-        pincode: string;
-        strategy?: string;
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
-     * @param {string} arg.size - A string indicating the size of the product,
-     *   e.g. S, M, XL. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/sizes
-     * @param {string} arg.pincode - The 6-digit PIN Code of the area near which
-     *   the selling locations should be searched, e.g. 400059
-     * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
-     *   eg, fast-delivery, low-price, optimal.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get the sellers of a product size at a PIN Code
-     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
-     */
-    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, }?: {
-        slug: string;
-        size: string;
-        pincode: string;
-        strategy?: string;
-        pageSize?: number;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {string[]} arg.slug - A short, human-readable, URL-friendly
@@ -533,10 +498,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -546,10 +511,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -683,10 +648,122 @@ declare class Catalog {
     getLocationDetailsById({ locationId }?: {
         locationId: number;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
+     * @param {string} [arg.id] - Product uid
+     * @returns {Promise<ProductBundle>} - Success response
+     * @summary: Get product bundles
+     * @description: Use this API to retrieve products bundles to the one specified by its slug.
+     */
+    getProductBundlesBySlug({ slug, id }?: {
+        slug?: string;
+        id?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {string} arg.size - A string indicating the size of the product,
+     *   e.g. S, M, XL. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/sizes
+     * @param {number} [arg.storeId] - The ID of the store that is selling the
+     *   product, e.g. 1,2,3.
+     * @param {string} [arg.pincode] - The PIN Code of the area near which the
+     *   selling locations should be searched, e.g. 400059.
+     * @returns {Promise<ProductSizePriceResponseV2>} - Success response
+     * @summary: Get the price of a product size at a PIN Code
+     * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
+     */
+    getProductPriceBySlug({ slug, size, storeId, pincode }?: {
+        slug: string;
+        size: string;
+        storeId?: number;
+        pincode?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {string} arg.size - A string indicating the size of the product,
+     *   e.g. S, M, XL. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/sizes
+     * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+     *   which the selling locations should be searched, e.g. 400059
+     * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
+     *   eg, fast-delivery, low-price, optimal.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
+     * @summary: Get the sellers of a product size at a PIN Code
+     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+     */
+    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, }?: {
+        slug: string;
+        size: string;
+        pincode?: string;
+        strategy?: string;
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {string} arg.size - A string indicating the size of the product,
+     *   e.g. S, M, XL. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/sizes
+     * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+     *   which the selling locations should be searched, e.g. 400059
+     * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
+     *   eg, fast-delivery, low-price, optimal.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get the sellers of a product size at a PIN Code
+     * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+     */
+    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, }?: {
+        slug: string;
+        size: string;
+        pincode?: string;
+        strategy?: string;
+        pageSize?: number;
+    }): Paginator;
 }
 declare class Cart {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getCart: string;
+        getCartLastModified: string;
+        addItems: string;
+        updateCart: string;
+        getItemCount: string;
+        getCoupons: string;
+        applyCoupon: string;
+        removeCoupon: string;
+        getBulkDiscountOffers: string;
+        applyRewardPoints: string;
+        getAddresses: string;
+        addAddress: string;
+        getAddressById: string;
+        updateAddress: string;
+        removeAddress: string;
+        selectAddress: string;
+        selectPaymentMode: string;
+        validateCouponForPayment: string;
+        getShipments: string;
+        checkoutCart: string;
+        updateCartMeta: string;
+        getCartShareLink: string;
+        getCartSharedItems: string;
+        updateCartWithSharedItems: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -1020,6 +1097,24 @@ declare class Cart {
 declare class Common {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        searchApplication: string;
+        getLocations: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.authorization] -
+     * @param {string} [arg.query] - Provide application name
+     * @returns {Promise<ApplicationResponse>} - Success response
+     * @summary: Search Application
+     * @description: Provide application name or domain url
+     */
+    searchApplication({ authorization, query }?: {
+        authorization?: string;
+        query?: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.locationType] - Provide location type to query on.
@@ -1039,6 +1134,17 @@ declare class Common {
 declare class Lead {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getTicket: string;
+        createHistory: string;
+        createTicket: string;
+        getCustomForm: string;
+        submitCustomForm: string;
+        getParticipantsInsideVideoRoom: string;
+        getTokenForVideoRoom: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of ticket to be retrieved
@@ -1117,6 +1223,14 @@ declare class Lead {
 declare class Theme {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getAllPages: string;
+        getPage: string;
+        getAppliedTheme: string;
+        getThemeForPreview: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.themeId - ID of the theme to be retrieved
@@ -1160,6 +1274,43 @@ declare class Theme {
 declare class User {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        loginWithFacebook: string;
+        loginWithGoogle: string;
+        loginWithGoogleAndroid: string;
+        loginWithGoogleIOS: string;
+        loginWithAppleIOS: string;
+        loginWithOTP: string;
+        loginWithEmailAndPassword: string;
+        sendResetPasswordEmail: string;
+        forgotPassword: string;
+        sendResetToken: string;
+        loginWithToken: string;
+        registerWithForm: string;
+        verifyEmail: string;
+        verifyMobile: string;
+        hasPassword: string;
+        updatePassword: string;
+        logout: string;
+        sendOTPOnMobile: string;
+        verifyMobileOTP: string;
+        sendOTPOnEmail: string;
+        verifyEmailOTP: string;
+        getLoggedInUser: string;
+        getListOfActiveSessions: string;
+        getPlatformConfig: string;
+        updateProfile: string;
+        addMobileNumber: string;
+        deleteMobileNumber: string;
+        setMobileNumberAsPrimary: string;
+        sendVerificationLinkToMobile: string;
+        addEmail: string;
+        deleteEmail: string;
+        setEmailAsPrimary: string;
+        sendVerificationLinkToEmail: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -1544,6 +1695,29 @@ declare class User {
 declare class Content {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getAnnouncements: string;
+        getBlog: string;
+        getBlogs: string;
+        getDataLoaders: string;
+        getFaqs: string;
+        getFaqCategories: string;
+        getFaqBySlug: string;
+        getFaqCategoryBySlug: string;
+        getFaqsByCategorySlug: string;
+        getLandingPage: string;
+        getLegalInformation: string;
+        getNavigations: string;
+        getSEOConfiguration: string;
+        getSlideshows: string;
+        getSlideshow: string;
+        getSupportInformation: string;
+        getTags: string;
+        getPage: string;
+        getPages: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<AnnouncementsResponseSchema>} - Success response
@@ -1587,6 +1761,13 @@ declare class Content {
     getBlogsPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<DataLoaderSchema>} - Success response
+     * @summary: Get the data loaders associated with an application
+     * @description: Use this API to get all selected data loaders of the application in the form of tags.
+     */
+    getDataLoaders({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<FaqResponseSchema>} - Success response
@@ -1768,6 +1949,13 @@ declare class Content {
 declare class Communication {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getCommunicationConsent: string;
+        upsertCommunicationConsent: string;
+        upsertAppPushtoken: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<CommunicationConsent>} - Success response
@@ -1799,6 +1987,17 @@ declare class Communication {
 declare class Share {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getApplicationQRCode: string;
+        getProductQRCodeBySlug: string;
+        getCollectionQRCodeBySlug: string;
+        getUrlQRCode: string;
+        createShortLink: string;
+        getShortLinkByHash: string;
+        getOriginalShortLinkByHash: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<QRCodeResp>} - Success response
@@ -1874,6 +2073,13 @@ declare class Share {
 declare class FileStorage {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        startUpload: string;
+        completeUpload: string;
+        signUrls: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Name of the bucket created for storing objects.
@@ -1932,6 +2138,16 @@ declare class FileStorage {
         namespace: string;
         body: any;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SignUrlRequest} arg.body
+     * @returns {Promise<SignUrlResponse>} - Success response
+     * @summary: Explain here
+     * @description: Describe here
+     */
+    signUrls({ body }?: {
+        body: any;
+    }): Promise<any>;
     upload({ data, file_name, content_type, namespace, size, tags, }?: {
         data: any;
         file_name: any;
@@ -1944,6 +2160,25 @@ declare class FileStorage {
 declare class Configuration {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getApplication: string;
+        getOwnerInfo: string;
+        getBasicDetails: string;
+        getIntegrationTokens: string;
+        getOrderingStores: string;
+        getStoreDetailById: string;
+        getFeatures: string;
+        getContactInfo: string;
+        getCurrencies: string;
+        getCurrencyById: string;
+        getAppCurrencies: string;
+        getLanguages: string;
+        getOrderingStoreCookie: string;
+        removeOrderingStoreCookie: string;
+        getAppStaffs: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<Application>} - Success response
@@ -2093,6 +2328,32 @@ declare class Configuration {
 declare class Payment {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getAggregatorsConfig: string;
+        attachCardToCustomer: string;
+        getActiveCardAggregator: string;
+        getActiveUserCards: string;
+        deleteUserCard: string;
+        verifyCustomerForPayment: string;
+        verifyAndChargePayment: string;
+        initialisePayment: string;
+        checkAndUpdatePaymentStatus: string;
+        getPaymentModeRoutes: string;
+        getPosPaymentModeRoutes: string;
+        getRupifiBannerDetails: string;
+        getActiveRefundTransferModes: string;
+        enableOrDisableRefundTransferMode: string;
+        getUserBeneficiariesDetail: string;
+        verifyIfscCode: string;
+        getOrderBeneficiariesDetail: string;
+        verifyOtpAndAddBeneficiaryForBank: string;
+        addBeneficiaryDetails: string;
+        addRefundBankAccountUsingOTP: string;
+        verifyOtpAndAddBeneficiaryForWallet: string;
+        updateDefaultBeneficiary: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.xApiToken] - Used for basic authentication.
@@ -2354,6 +2615,20 @@ declare class Payment {
 declare class Order {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getOrders: string;
+        getOrderById: string;
+        getShipmentById: string;
+        getShipmentReasons: string;
+        updateShipmentStatus: string;
+        trackShipment: string;
+        getPosOrderById: string;
+        getCustomerDetailsByShipmentId: string;
+        sendOtpToShipmentCustomer: string;
+        verifyOtpShipmentCustomer: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -2499,6 +2774,17 @@ declare class Order {
 declare class Rewards {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getPointsOnProduct: string;
+        getOfferByName: string;
+        getOrderDiscount: string;
+        getUserPoints: string;
+        getUserPointsHistory: string;
+        getUserReferralDetails: string;
+        redeemReferralCode: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {CatalogueOrderRequest} arg.body
@@ -2579,6 +2865,36 @@ declare class Rewards {
 declare class Feedback {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        createAbuseReport: string;
+        updateAbuseReport: string;
+        getAbuseReports: string;
+        getAttributes: string;
+        createAttribute: string;
+        getAttribute: string;
+        updateAttribute: string;
+        createComment: string;
+        updateComment: string;
+        getComments: string;
+        checkEligibility: string;
+        deleteMedia: string;
+        createMedia: string;
+        updateMedia: string;
+        getMedias: string;
+        getReviewSummaries: string;
+        createReview: string;
+        updateReview: string;
+        getReviews: string;
+        getTemplates: string;
+        createQuestion: string;
+        updateQuestion: string;
+        getQuestionAndAnswers: string;
+        getVotes: string;
+        createVote: string;
+        updateVote: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {ReportAbuseRequest} arg.body
@@ -3099,6 +3415,37 @@ declare class Feedback {
 declare class PosCart {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getCart: string;
+        getCartLastModified: string;
+        addItems: string;
+        updateCart: string;
+        getItemCount: string;
+        getCoupons: string;
+        applyCoupon: string;
+        removeCoupon: string;
+        getBulkDiscountOffers: string;
+        applyRewardPoints: string;
+        getAddresses: string;
+        addAddress: string;
+        getAddressById: string;
+        updateAddress: string;
+        removeAddress: string;
+        selectAddress: string;
+        selectPaymentMode: string;
+        validateCouponForPayment: string;
+        getShipments: string;
+        updateShipments: string;
+        checkoutCart: string;
+        updateCartMeta: string;
+        getAvailableDeliveryModes: string;
+        getStoreAddressByUid: string;
+        getCartShareLink: string;
+        getCartSharedItems: string;
+        updateCartWithSharedItems: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
@@ -3488,6 +3835,12 @@ declare class PosCart {
 declare class Logistic {
     constructor(_conf: any);
     _conf: any;
+    _relativeUrls: {
+        getTatProduct: string;
+        getPincodeCity: string;
+    };
+    _urls: {};
+    updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetTatProductReqBody} arg.body

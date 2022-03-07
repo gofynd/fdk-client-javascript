@@ -72,7 +72,7 @@ const data = await client.lead.getTickets({  items : value,
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
 | status | string | no | Filter tickets on status |    
-| priority | any | no | Filter tickets on priority |    
+| priority | PriorityEnum | no | Filter tickets on priority |    
 | category | string | no | Filter tickets on category |    
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |  
@@ -772,7 +772,7 @@ const data = await client.application("<APPLICATION_ID>").lead.getTickets({  ite
 | filters | boolean | no | Decides that the reponse will contain the ticket filters |    
 | q | string | no | Search through ticket titles and description |    
 | status | string | no | Filter tickets on status |    
-| priority | any | no | Filter tickets on priority |    
+| priority | PriorityEnum | no | Filter tickets on priority |    
 | category | string | no | Filter tickets on category |  
 
 
@@ -4273,7 +4273,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | display | string |  no  | Display text for asset |
  | value | string |  yes  | To be used for details |
- | type | any |  yes  | Type of asset |
+ | type | [TicketAssetTypeEnum](#TicketAssetTypeEnum) |  yes  | Type of asset |
 
 ---
 
@@ -4557,7 +4557,7 @@ Success
 
 
 
- #### [TicketAssetType](#TicketAssetType)
+ #### [TicketAssetTypeEnum](#TicketAssetTypeEnum)
  Type : string
 
  | Name | Value | Description |

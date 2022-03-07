@@ -9,5 +9,7 @@ declare class ApplicationConfig {
     applicationToken: any;
     opts: any;
     domain: any;
+    setCookie(cookie: any): void;
+    cookie: any;
     validate(): void;
 }
