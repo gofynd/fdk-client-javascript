@@ -6,9 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 ## [0.5.0] - 2021-03-10
-### Added
-- Online and Offline mode distinction
 ### Changed
+- Seperate sessions for Online and offline mode access [complete details](https://github.com/gofynd/fdk-extension-javascript/pull/20#issue-1089270288)
 - Change in required Extension config details
 
 ---
