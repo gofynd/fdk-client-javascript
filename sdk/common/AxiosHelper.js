@@ -4,7 +4,6 @@ const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
 const { FDKServerResponseError } = require("./FDKError");
-const { Logger } = require('./Logger');
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -37,12 +36,12 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = "0.1.14"
+    headers["x-fp-sdk-version"] = "0.1.14";
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
     if (querySearchObj && Object.keys(querySearchObj).length) {
-      if(querystring.stringify(querySearchObj).trim() !== "") {
+      if (querystring.stringify(querySearchObj).trim() !== "") {
         queryParam = `?${querystring.stringify(querySearchObj)}`;
       }
     }
@@ -69,14 +68,13 @@ function requestInterceptorFn() {
       host: host,
       path: pathname + search + queryParam,
       body: transformedData,
-      headers: headersToSign
+      headers: headersToSign,
     };
     sign(signingOptions);
 
     config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
     // config.headers["fp-sdk-version"] = version;
-    Logger({level: 'INFO', type: 'REQUEST', message: config, url: config.url})
     return config;
   };
 }
@@ -89,16 +87,14 @@ const fdkAxios = axios.create({
 fdkAxios.interceptors.request.use(requestInterceptorFn());
 fdkAxios.interceptors.response.use(
   function (response) {
-    if(response.config.method == 'head'){
+    if (response.config.method == "head") {
       return response.headers;
     }
-    Logger({level: 'INFO', type: 'RESPONSE', message: response.config, url: response.config.url})
     return response.data; // IF 2XX then return response.data only
   },
   function (error) {
     if (error.response) {
       // Request made and server responded
-      Logger({level: 'ERROR', message: error})
       throw new FDKServerResponseError(
         error.response.data.message || error.message,
         error.response.data.stack || error.stack,
@@ -108,11 +104,14 @@ fdkAxios.interceptors.response.use(
       );
     } else if (error.request) {
       // The request was made but no error.response was received
-      Logger({level: 'ERROR', message: error})
-      throw new FDKServerResponseError(error.message, error.stack, error.code, error.code);
+      throw new FDKServerResponseError(
+        error.message,
+        error.stack,
+        error.code,
+        error.code
+      );
     } else {
       // Something happened in setting up the request that triggered an Error
-      Logger({level: 'ERROR', message: error})
       throw new FDKServerResponseError(error.message, error.stack);
     }
   }
