@@ -28,8 +28,6 @@ let extensionHandler = {
   },
 };
 
-let baseUrl = "https://test.extension.com";
-
 let fdkClient = setupFdk({
   api_key: "<API_KEY>",
   api_secret: "<API_SECRET>",
