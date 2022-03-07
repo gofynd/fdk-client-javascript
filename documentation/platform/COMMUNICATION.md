@@ -27,6 +27,8 @@ Manages email, sms, push notifications sent to users
 * [getEmailTemplateById](#getemailtemplatebyid)
 * [updateEmailTemplateById](#updateemailtemplatebyid)
 * [deleteEmailTemplateById](#deleteemailtemplatebyid)
+* [sendCommunicationSynchronously](#sendcommunicationsynchronously)
+* [sendCommunicationAsynchronously](#sendcommunicationasynchronously)
 * [getEventSubscriptions](#geteventsubscriptions)
 * [getJobs](#getjobs)
 * [triggerCampaignJob](#triggercampaignjob)
@@ -2009,6 +2011,136 @@ Success
   "value": {
     "success": true,
     "message": "Deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendCommunicationSynchronously
+Send email or sms synchronously
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EngineRequest](#EngineRequest) | yes | Request body |
+
+
+Send email or sms synchronously
+
+*Returned Response:*
+
+
+
+
+[EngineResponse](#EngineResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendCommunicationAsynchronously
+Send email or sms asynchronously
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EngineRequest](#EngineRequest) | yes | Request body |
+
+
+Send email or sms asynchronously
+
+*Returned Response:*
+
+
+
+
+[EngineResponse](#EngineResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
   }
 }
 ```
@@ -4561,6 +4693,127 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[SystemEmailTemplate](#SystemEmailTemplate)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadEmailProviderStructure](#PayloadEmailProviderStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadEmailStructure](#PayloadEmailStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | [PayloadEmailTemplateStructure](#PayloadEmailTemplateStructure) |  no  |  |
+ | provider | [PayloadEmailProviderStructure](#PayloadEmailProviderStructure) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadSmsProviderStructure](#PayloadSmsProviderStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadSmsStructure](#PayloadSmsStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | template | [PayloadSmsTemplateStructure](#PayloadSmsTemplateStructure) |  no  |  |
+ | provider | [PayloadSmsProviderStructure](#PayloadSmsProviderStructure) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PayloadStructure](#PayloadStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string] |  no  |  |
+ | email | [PayloadEmailStructure](#PayloadEmailStructure) |  no  |  |
+ | sms | [PayloadSmsStructure](#PayloadSmsStructure) |  no  |  |
+ | application | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaStructure](#MetaStructure)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_type | string |  no  |  |
+ | action | string |  no  |  |
+ | trace | string |  no  |  |
+ | timestamp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EngineRequest](#EngineRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payload | [PayloadStructure](#PayloadStructure) |  no  |  |
+ | meta | [MetaStructure](#MetaStructure) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EngineResponse](#EngineResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
 
 ---
 
