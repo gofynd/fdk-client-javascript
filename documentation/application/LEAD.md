@@ -281,11 +281,11 @@ Create history for specific Ticket
 
 ```javascript
 // Promise
-const promise = lead.createHistory({  ticketId : value,
+const promise = lead.createHistory({  id : value,
  body : value });
 
 // Async/Await
-const data = await lead.createHistory({  ticketId : value,
+const data = await lead.createHistory({  id : value,
  body : value });
 ```
 
@@ -295,7 +295,7 @@ const data = await lead.createHistory({  ticketId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| ticketId | string | yes | Ticket ID for which history is created |  
+| id | string | yes | Ticket ID for which history is created |  
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
 
@@ -324,7 +324,7 @@ Success
 {
   "value": {
     "_id": "601a9d52c26687d086c499ef",
-    "ticket_id": "6012f38557751ee8fc162cf7",
+    "ticket_id": "41",
     "type": "comment",
     "value": {
       "text": "d",
@@ -1136,9 +1136,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Ticket](#Ticket)] |  no  |  |
- | filters | [Filter](#Filter) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | items | [[Ticket](#Ticket)] |  no  | List of tickets |
+ | filters | [Filter](#Filter) |  no  | All the filters available for tickets |
+ | page | [Page](#Page) |  no  | Describes the pagination state |
 
 ---
 
@@ -1166,11 +1166,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | docs | [[TicketHistory](#TicketHistory)] |  no  |  |
- | limit | number |  no  |  |
- | page | number |  no  |  |
- | pages | number |  no  |  |
- | total | number |  no  |  |
+ | items | [[TicketHistory](#TicketHistory)] |  no  | List of ticket history |
+ | page | [Page](#Page) |  no  | Describes the pagination state |
 
 ---
 
@@ -1181,11 +1178,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | docs | [[CustomForm](#CustomForm)] |  no  |  |
- | limit | number |  no  |  |
- | page | number |  no  |  |
- | pages | number |  no  |  |
- | total | number |  no  |  |
+ | items | [[CustomForm](#CustomForm)] |  no  | List of forms |
+ | page | [Page](#Page) |  no  | Describes the pagination state |
 
 ---
 
@@ -1196,14 +1190,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  yes  |  |
- | title | string |  yes  |  |
- | inputs | [string] |  yes  |  |
- | description | string |  no  |  |
- | header_image | string |  no  |  |
- | should_notify | boolean |  no  |  |
- | success_message | string |  no  |  |
- | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  |
+ | slug | string |  yes  | Slug for the form |
+ | title | string |  yes  | Title for the form |
+ | inputs | [string] |  yes  | List of all the form components |
+ | description | string |  no  | Description of the form |
+ | header_image | string |  no  | Header image that is to be shown for the form |
+ | priority | [PriorityEnum](#PriorityEnum) |  yes  | Describes the priority of the tickets created by the form |
+ | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
+ | success_message | string |  no  | Success message that will be shown on submission |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Describes how polling will be done for the tickets createds |
 
 ---
 
@@ -1214,14 +1209,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  |  |
- | inputs | [string] |  yes  |  |
- | description | string |  no  |  |
- | header_image | string |  no  |  |
- | should_notify | boolean |  no  |  |
- | login_required | boolean |  no  |  |
- | success_message | string |  no  |  |
- | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  |
+ | title | string |  yes  | Title for the form |
+ | inputs | [string] |  yes  | List of all the form components |
+ | description | string |  no  | Description of the form |
+ | priority | [PriorityEnum](#PriorityEnum) |  yes  | Describes the priority of the tickets created by the form |
+ | header_image | string |  no  | Header image that is to be shown for the form |
+ | should_notify | boolean |  no  | Indicates if staff should be notified when a response is received |
+ | login_required | boolean |  no  | Denotes if login is required to make a form response submission |
+ | success_message | string |  no  | Success message that will be shown on submission |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Describes how polling will be done for the tickets createds |
 
 ---
 
@@ -1232,13 +1228,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | content | [TicketContent](#TicketContent) |  no  |  |
- | category | string |  no  |  |
- | source | string |  no  |  |
- | status | string |  no  |  |
- | priority | string |  no  |  |
- | assigned_to | [AgentChangePayload](#AgentChangePayload) |  no  |  |
- | tags | [string] |  no  |  |
+ | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
+ | category | string |  no  | Category assigned to the ticket |
+ | sub_category | string |  no  | Sub-category assigned to the ticket |
+ | source | string |  no  | Denotes if the ticket was created at company or application level |
+ | status | string |  no  | Denotes in what state is the ticket |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  | Denotes the priority of ticket |
+ | assigned_to | [AgentChangePayload](#AgentChangePayload) |  no  | Details of support staff to whom ticket is assigned |
+ | tags | [string] |  no  | Tags relevant to ticket |
 
 ---
 
@@ -1249,7 +1246,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | agent_id | string |  yes  |  |
+ | agent_id | string |  yes  | Agent's unique ID |
 
 ---
 
@@ -1260,7 +1257,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_name | string |  yes  |  |
+ | unique_name | string |  yes  | Video Room's unique name |
 
 ---
 
@@ -1271,7 +1268,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | success | boolean |  yes  | Denotes if operation was successfully |
 
 ---
 
@@ -1282,8 +1279,20 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_name | string |  yes  |  |
- | notify | [string] |  no  |  |
+ | unique_name | string |  yes  | Ticket id |
+ | notify | [[NotifyUser](#NotifyUser)] |  no  | List of people to be notified |
+
+---
+
+
+ 
+ 
+ #### [NotifyUser](#NotifyUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  yes  | Country code |
+ | phone_number | string |  yes  | Phone number |
 
 ---
 
@@ -1294,10 +1303,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priorities | [[Priority](#Priority)] |  yes  |  |
- | categories | [[TicketCategory](#TicketCategory)] |  no  |  |
- | statuses | [[Status](#Status)] |  yes  |  |
- | assignees | [string] |  yes  |  |
+ | priorities | [[Priority](#Priority)] |  yes  | List of possible priorities for tickets |
+ | categories | [[TicketCategory](#TicketCategory)] |  no  | List of possible categories for tickets |
+ | statuses | [[Status](#Status)] |  yes  | List of possible statuses for tickets |
+ | assignees | [string] |  yes  | List of support staff availble for tickets assignment |
 
 ---
 
@@ -1308,8 +1317,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  yes  |  |
- | type | string |  yes  |  |
+ | value | string |  yes  | Details of history event |
+ | type | [HistoryTypeEnum](#HistoryTypeEnum) |  yes  | Type of history event |
 
 ---
 
@@ -1320,7 +1329,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | [[KeyValue](#KeyValue)] |  yes  |  |
+ | response | [[KeyValue](#KeyValue)] |  yes  | Form response |
+ | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the form |
 
 ---
 
@@ -1331,8 +1341,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | value | string |  yes  |  |
+ | key | string |  yes  | Parameter for evaluating |
+ | value | string |  yes  | Response for the parameter |
 
 ---
 
@@ -1343,7 +1353,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | access_token | string |  yes  |  |
+ | access_token | string |  yes  | Access token to be used for video room |
 
 ---
 
@@ -1354,7 +1364,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | participants | [[Participant](#Participant)] |  yes  |  |
+ | participants | [[Participant](#Participant)] |  yes  | List of participants of the video room |
 
 ---
 
@@ -1365,9 +1375,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema) |  no  |  |
- | identity | string |  no  |  |
- | status | string |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  | Details of participant |
+ | identity | string |  no  | Unique identifier of participant |
+ | status | string |  no  | Status of participant |
 
 ---
 
@@ -1378,21 +1388,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
- | emails | [[Email](#Email)] |  no  |  |
- | gender | string |  no  |  |
- | active | boolean |  no  |  |
- | profile_pic_url | string |  no  |  |
- | username | string |  no  |  |
- | account_type | string |  no  |  |
- | uid | string |  no  |  |
- | debug | [Debug](#Debug) |  no  |  |
- | has_old_password_hash | boolean |  no  |  |
- | _id | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
+ | first_name | string |  no  | First name |
+ | last_name | string |  no  | Last name |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  | List of phone numbers |
+ | emails | [[Email](#Email)] |  no  | List of email addresses |
+ | gender | string |  no  | Gender of user |
+ | active | boolean |  no  | Is account active |
+ | profile_pic_url | string |  no  | URL for profile pic |
+ | username | string |  no  | username of user |
+ | account_type | string |  no  | Type of account |
+ | uid | string |  no  | Unique identifier of user |
+ | debug | [Debug](#Debug) |  no  | Used for debugging |
+ | has_old_password_hash | boolean |  no  | Denotes if user has old password hash |
+ | _id | string |  no  | Unique identifier of user |
+ | created_at | string |  no  | Time of user creation |
+ | updated_at | string |  no  | Last time of user details update |
 
 ---
 
@@ -1403,11 +1413,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
- | phone | string |  no  |  |
- | country_code | number |  no  |  |
+ | active | boolean |  no  | Denotes if the phone number is active |
+ | primary | boolean |  no  | Denotes it's the primary phone number for the account |
+ | verified | boolean |  no  | Denotes it's a verified phone number |
+ | phone | string |  no  | Phone number |
+ | country_code | number |  no  | Country code |
 
 ---
 
@@ -1418,10 +1428,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
- | email | string |  no  |  |
- | active | boolean |  no  |  |
+ | primary | boolean |  no  | Denotes it's the primary email for the account |
+ | verified | boolean |  no  | Denotes it's a verified email |
+ | email | string |  no  | Email Address |
+ | active | boolean |  no  | Denotes if the email is active |
 
 ---
 
@@ -1432,8 +1442,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | platform | string |  no  |  |
+ | source | string |  no  | Source of user |
+ | platform | string |  no  | Platform of user |
 
 ---
 
@@ -1444,7 +1454,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ticket | [Ticket](#Ticket) |  yes  |  |
+ | ticket | [Ticket](#Ticket) |  yes  | Ticket created on form submission |
 
 ---
 
@@ -1455,8 +1465,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | string |  no  |  |
- | company_id | string |  yes  |  |
+ | application_id | string |  no  | Application ID related to the ticket |
+ | company_id | string |  yes  | Company ID related to the ticket |
 
 ---
 
@@ -1467,7 +1477,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_agent | string |  yes  |  |
+ | user_agent | string |  yes  | Useragent details |
 
 ---
 
@@ -1478,9 +1488,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | value | string |  yes  |  |
- | type | string |  yes  |  |
+ | display | string |  no  | Display text for asset |
+ | value | string |  yes  | To be used for details |
+ | type | [TicketAssetTypeEnum](#TicketAssetTypeEnum) |  yes  | Type of asset |
 
 ---
 
@@ -1491,9 +1501,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  |  |
- | description | string |  no  |  |
- | attachments | [[TicketAsset](#TicketAsset)] |  no  |  |
+ | title | string |  yes  | Title for ticket |
+ | description | string |  no  | Long description of issue |
+ | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the ticket |
 
 ---
 
@@ -1504,10 +1514,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  yes  |  |
- | priority | string |  yes  |  |
- | category | string |  yes  |  |
- | content | [TicketContent](#TicketContent) |  yes  |  |
+ | created_by | string |  no  | Creator of the ticket |
+ | status | string |  no  | Status of the ticket |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  | Priority of the ticket |
+ | category | string |  yes  | Category of the ticket |
+ | content | [TicketContent](#TicketContent) |  yes  | Content for the ticket |
 
 ---
 
@@ -1518,9 +1529,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | display | string |  yes  |  |
- | color | string |  yes  |  |
+ | key | [PriorityEnum](#PriorityEnum) |  yes  | Key for priority |
+ | display | string |  yes  | Display text for priority |
+ | color | string |  yes  | Color for priority |
 
 ---
 
@@ -1531,9 +1542,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | display | string |  yes  |  |
- | color | string |  yes  |  |
+ | key | string |  yes  | Key for status |
+ | display | string |  yes  | Display text for status |
+ | color | string |  yes  | Color for status |
 
 ---
 
@@ -1544,9 +1555,57 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | display | string |  yes  |  |
- | form | [CustomForm](#CustomForm) |  no  |  |
+ | key | string |  yes  | Key for category |
+ | display | string |  yes  | Display text for category |
+ | form | [CustomForm](#CustomForm) |  no  | Form related to the category |
+ | sub_categories | [[TicketSubCategory](#TicketSubCategory)] |  no  | Sub-category related to the category |
+ | feedback_form | [TicketFeedbackForm](#TicketFeedbackForm) |  no  | Feedback form of category used to submit ticket feedback |
+
+---
+
+
+ 
+ 
+ #### [TicketSubCategory](#TicketSubCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  yes  | Key for sub-category |
+ | display | string |  yes  | Display text for sub-category |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedbackForm](#TicketFeedbackForm)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  yes  | Feedback form title that will be shown to the user |
+ | display | [string] |  no  | List of all the form fields |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedbackList](#TicketFeedbackList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[TicketFeedback](#TicketFeedback)] |  no  | List of all ticket feedback for the ticket |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedbackPayload](#TicketFeedbackPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | form_response | string |  no  | Key-value pairs of all the form fields and their response |
 
 ---
 
@@ -1557,9 +1616,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  yes  |  |
- | title_color | string |  yes  |  |
- | background_color | string |  yes  |  |
+ | title | string |  yes  | Title for submit button |
+ | title_color | string |  yes  | Title color submit button |
+ | background_color | string |  yes  | Color for submit button |
 
 ---
 
@@ -1570,10 +1629,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  yes  |  |
- | message | string |  yes  |  |
- | success_message | string |  yes  |  |
- | failure_message | string |  yes  |  |
+ | duration | number |  yes  | Duration for polling of staff |
+ | message | string |  yes  | Message for polling |
+ | success_message | string |  yes  | Message for successful polling |
+ | failure_message | string |  yes  | Message if polling failed |
 
 ---
 
@@ -1584,20 +1643,52 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application_id | string |  yes  |  |
- | slug | string |  yes  |  |
- | header_image | string |  no  |  |
- | title | string |  yes  |  |
- | description | string |  no  |  |
- | login_required | boolean |  yes  |  |
- | should_notify | boolean |  yes  |  |
- | success_message | string |  no  |  |
- | submit_button | [SubmitButton](#SubmitButton) |  no  |  |
- | inputs | [string] |  yes  |  |
- | created_on | [CreatedOn](#CreatedOn) |  no  |  |
- | created_by | string |  no  |  |
- | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  |
- | _id | string |  yes  |  |
+ | application_id | string |  yes  | Application ID for form |
+ | slug | string |  yes  | Slug for the form, which is to be used for accessing the form |
+ | header_image | string |  no  | Form header image that will be shown to the user |
+ | title | string |  yes  | Form title that will be shown to the user |
+ | description | string |  no  | Form description that will be shown to the user |
+ | priority | [Priority](#Priority) |  yes  | Sets priority of tickets created by form response |
+ | login_required | boolean |  yes  | Denotes if login is required to make a form response submission |
+ | should_notify | boolean |  yes  | Denotes if new response submission for the form should be notified to the assignees |
+ | success_message | string |  no  | Message that is to be shown on succesfull form response submission |
+ | submit_button | [SubmitButton](#SubmitButton) |  no  | Details for submit button |
+ | inputs | [string] |  yes  | List of all the form fields |
+ | created_on | [CreatedOn](#CreatedOn) |  no  | Gives details of when the form was created |
+ | created_by | string |  no  | Gives details of user who created the form |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Details of how polling should be done for support |
+ | _id | string |  yes  | Unique identifier for the form |
+
+---
+
+
+ 
+ 
+ #### [FeedbackResponseItem](#FeedbackResponseItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  | Question/Title of the form field |
+ | key | string |  yes  | Key of the form field |
+ | value | string |  yes  | User response value for the form field |
+
+---
+
+
+ 
+ 
+ #### [TicketFeedback](#TicketFeedback)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  | Unique identifier for the feedback |
+ | ticket_id | string |  yes  | Readable ticket number |
+ | company_id | string |  yes  | Company id for which ticket was raised |
+ | response | [[FeedbackResponseItem](#FeedbackResponseItem)] |  yes  |  |
+ | category | string |  no  | Category of the ticket |
+ | user | string |  no  | User who submitted the feedback |
+ | updated_at | string |  no  | Time when the feedback was last updated |
+ | created_at | string |  no  | Time when the feedback was created |
 
 ---
 
@@ -1608,14 +1699,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | value | string |  yes  |  |
- | ticket_id | string |  yes  |  |
- | created_on | [CreatedOn](#CreatedOn) |  no  |  |
- | created_by | string |  no  |  |
- | _id | string |  yes  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
+ | type | string |  yes  | Type of the history event |
+ | value | string |  yes  | Data of the history event |
+ | ticket_id | string |  yes  | Readable ticket number |
+ | created_on | [CreatedOn](#CreatedOn) |  no  | Time of creation of the history event |
+ | created_by | string |  no  | User who created the history event |
+ | _id | string |  yes  | Unique identifier of the history event |
+ | updated_at | string |  no  | Time of last update of the history event |
+ | created_at | string |  no  | Time of creation of the history event |
 
 ---
 
@@ -1626,24 +1717,93 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | context | [TicketContext](#TicketContext) |  no  |  |
- | created_on | [CreatedOn](#CreatedOn) |  no  |  |
- | response_id | string |  no  |  |
- | content | [TicketContent](#TicketContent) |  no  |  |
- | ticket_id | string |  yes  |  |
- | category | [TicketCategory](#TicketCategory) |  yes  |  |
- | source | string |  yes  |  |
- | status | [Status](#Status) |  yes  |  |
- | priority | [Priority](#Priority) |  yes  |  |
- | created_by | string |  no  |  |
- | assigned_to | string |  no  |  |
- | tags | [string] |  no  |  |
- | _custom_json | string |  no  |  |
- | _id | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
+ | context | [TicketContext](#TicketContext) |  no  | Details of company and application realated to the ticket |
+ | created_on | [CreatedOn](#CreatedOn) |  no  | Details of company and application realated to the ticket |
+ | response_id | string |  no  | Details of company and application realated to the ticket |
+ | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
+ | ticket_id | string |  yes  | Readable ticket number |
+ | category | [TicketCategory](#TicketCategory) |  yes  | Category assigned to the ticket |
+ | sub_category | [TicketSubCategory](#TicketSubCategory) |  no  | Sub-category assigned to the ticket |
+ | source | [TicketSourceEnum](#TicketSourceEnum) |  yes  | Denotes if the ticket was created at company or application level |
+ | status | [Status](#Status) |  yes  | Denotes in what state is the ticket |
+ | priority | [Priority](#Priority) |  yes  | Denotes the priority of ticket |
+ | created_by | string |  no  | User details of ticket creator |
+ | assigned_to | string |  no  | Details of support staff to whom ticket is assigned |
+ | tags | [string] |  no  | Tags relevant to ticket |
+ | _custom_json | string |  no  | custom json relevant to the ticket |
+ | is_feedback_pending | boolean |  no  | Denotes if feedback submission is pending for the ticket |
+ | _id | string |  yes  | Unique identifier for the ticket |
+ | updated_at | string |  no  | Time when the ticket was last updated |
+ | created_at | string |  no  | Time when the ticket was created |
 
 ---
+
+
+
+
+### Enums
+
+
+
+
+
+ #### [PriorityEnum](#PriorityEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | low | low | This means ticket is low priority |
+ | medium | medium | This means ticket is medium priority |
+ | high | high | This means ticket is high priority |
+ | urgent | urgent | This means ticket is of urgent priority |
+
+---
+
+
+
+ #### [HistoryTypeEnum](#HistoryTypeEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | rating | rating | This means history event is a rating |
+ | log | log | This means history event is a changelog |
+ | comment | comment | This means history event is a comment |
+
+---
+
+
+
+ #### [TicketAssetTypeEnum](#TicketAssetTypeEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | image | image | Denotes asset is of image type |
+ | video | video | Denotes asset is of video type |
+ | file | file | Denotes asset is of file type |
+ | youtube | youtube | Denotes asset is an youtube link |
+ | product | product | Denotes asset is of product type |
+ | collection | collection | Denotes asset is of collection type |
+ | brand | brand | Denotes asset is of brand type |
+ | shipment | shipment | Denotes asset is of shipment type |
+ | order | order | Denotes asset is of order type |
+
+---
+
+
+
+ #### [TicketSourceEnum](#TicketSourceEnum)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | platformPanel | platform_panel | This means it is company level ticket |
+ | salesChannel | sales_channel | This means it is a application/sales channel level ticket |
+
+---
+
+
 
 
 
