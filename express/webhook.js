@@ -42,7 +42,7 @@ class WebhookRegistry {
             Object.keys(eventConfig.eventsNotFound).forEach((key)=>{
                 errors.push(`Name: ${key}, Version: ${eventConfig.eventsNotFound[key]}`) 
             })
-            throw new FdkInvalidWebhookConfig(`Webhooks with configs ${errors.join(' and ')} not found`);
+            throw new FdkInvalidWebhookConfig(`Webhooks events ${errors.join(' and ')} not found`);
         }
 
         logger.debug('Webhook registry initialized');
