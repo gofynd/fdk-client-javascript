@@ -90,7 +90,7 @@ class Extension {
     }
 
     async getPlatformClient(companyId, session) {
-        let platformConfig =  this.getPlatformConfig(companyId);
+        let platformConfig = this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
         if(session.access_token_validity && session.refresh_token) {
@@ -99,7 +99,6 @@ class Extension {
                 logger.debug(`Renewing access token for company ${companyId}`);
                 const renewTokenRes = await platformConfig.oauthClient.renewAccessToken();
                 renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
-                renewTokenRes.expires = new Date(platformConfig.oauthClient.token_expires_at);
                 session.updateToken(renewTokenRes);
                 await SessionStorage.saveSession(session);
                 logger.debug(`Access token renewed for company ${companyId}`);

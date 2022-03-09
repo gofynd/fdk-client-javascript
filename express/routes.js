@@ -1,6 +1,6 @@
 'use strict';
 const express = require('express');
-const { v4 : uuidv4} = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code");
@@ -21,19 +21,19 @@ function setupRoutes(ext) {
             let companyId = parseInt(req.query.company_id);
             let platformConfig = ext.getPlatformConfig(companyId);
             let session;
-        
+
             session = new Session(Session.generateSessionId(true));
 
             let sessionExpires = new Date(Date.now() + 900000); // 15 min
 
-            if(session.isNew) {
+            if (session.isNew) {
                 session.company_id = companyId;
                 session.scope = ext.scopes;
                 session.expires = sessionExpires;
                 session.access_mode = 'online'; // Always generate online mode token for extension launch
                 session.extension_id = ext.api_key;
             } else {
-                if(session.expires) {
+                if (session.expires) {
                     session.expires = new Date(session.expires);
                 }
             }
@@ -43,22 +43,22 @@ function setupRoutes(ext) {
 
             const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
             res.header['x-company-id'] = companyId;
-            res.cookie(compCookieName, session.id, { 
+            res.cookie(compCookieName, session.id, {
                 secure: true,
                 httpOnly: true,
                 expires: session.expires,
                 signed: true,
                 sameSite: "None"
             });
-            
+
             let redirectUrl;
 
             session.state = uuidv4();
 
             // pass application id if received
             let authCallback = ext.getAuthCallback();
-            if(req.query.application_id) {
-                authCallback += "?application_id="+req.query.application_id;
+            if (req.query.application_id) {
+                authCallback += "?application_id=" + req.query.application_id;
             }
 
             // start authorization flow 
@@ -79,32 +79,31 @@ function setupRoutes(ext) {
     FdkRoutes.get("/fp/auth", sessionMiddleware(false), async (req, res, next) => {
         // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&state=jashoh
         try {
-            if(!req.fdkSession) {
+            if (!req.fdkSession) {
                 throw new FdkSessionNotFoundError("Can not complete oauth process as session not found");
             }
 
-            if(req.fdkSession.state !== req.query.state) {
+            if (req.fdkSession.state !== req.query.state) {
                 throw new FdkInvalidOAuthError("Invalid oauth call");
             }
             let companyId = req.fdkSession.company_id
             let platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
             let token = platformConfig.oauthClient.raw_token;
-            
+
             let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
-        
-            if(!ext.isOnlineAccessMode()) {
-                
+            if (!ext.isOnlineAccessMode()) {
+
                 let sid = Session.generateSessionId(false, {
                     cluster: ext.cluster,
                     companyId: companyId
                 });
                 let session;
                 session = await SessionStorage.getSession(sid);
-                if(!session) {
+                if (!session) {
                     let offlineToken = await ext.getOfflineOAuthToken(companyId, req.query.code);
-                    
-                    if(ext.scopes.every(val => offlineToken.scope.indexOf(val) >= 0)){
+
+                    if (ext.scopes.every(val => offlineToken.scope.indexOf(val) >= 0)) {
                         session = new Session(sid);
 
                         session.company_id = companyId;
@@ -115,33 +114,27 @@ function setupRoutes(ext) {
                         session.extension_id = ext.api_key;
                         session.access_token = offlineToken.access_token;
                         session.refresh_token = offlineToken.refresh_token;
-                        session.access_token_validity =  new Date(Date.now() + offlineToken.expires_in * 1000).getTime();
+                        session.access_token_validity = new Date().getTime() + offlineToken.expires_in * 1000
                         session.current_user = offlineToken.current_user;
-                        
+
                         await SessionStorage.saveSession(session);
                     }
 
-                } else if(session.extension_id !== ext.api_key) {
+                } else if (session.extension_id !== ext.api_key) {
                     session = new Session(sid);
                 }
-                
-                
-            } 
+
+
+            }
 
             req.fdkSession.expires = sessionExpires;
-            req.fdkSession.access_token = token.access_token;
-            req.fdkSession.expires_in = token.expires_in;
-            req.fdkSession.access_token_validity = sessionExpires.getTime();
-            req.fdkSession.current_user = token.current_user;
-            token.expires = sessionExpires;
             token.access_token_validity = sessionExpires.getTime();
-            
             req.fdkSession.updateToken(token);
 
             await SessionStorage.saveSession(req.fdkSession);
 
             const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
-            res.cookie(compCookieName, req.fdkSession.id, { 
+            res.cookie(compCookieName, req.fdkSession.id, {
                 secure: true,
                 httpOnly: true,
                 expires: sessionExpires,
@@ -149,9 +142,8 @@ function setupRoutes(ext) {
                 sameSite: "None"
             });
             res.header['x-company-id'] = companyId;
-
             req.extension = ext;
-            if(ext.webhookRegistry.isInitialized()) {
+            if (ext.webhookRegistry.isInitialized()) {
                 const client = await ext.getPlatformClient(companyId, req.fdkSession);
                 await ext.webhookRegistry.syncEvents(client, null, true);
             }
@@ -167,7 +159,7 @@ function setupRoutes(ext) {
         try {
             let { company_id } = req.body;
             let sid;
-            if(!ext.isOnlineAccessMode()) {
+            if (!ext.isOnlineAccessMode()) {
                 sid = Session.generateSessionId(false, {
                     cluster: ext.cluster,
                     companyId: company_id
@@ -178,12 +170,12 @@ function setupRoutes(ext) {
             }
             req.extension = ext;
             await ext.callbacks.uninstall(req);
-            if(sid){
+            if (sid) {
                 await SessionStorage.deleteSession(sid);
             }
-            res.json({success: true});
+            res.json({ success: true });
         } catch (error) {
-            res.status(500).json({success: false, message: error});
+            res.status(500).json({ success: false, message: error });
         }
     });
 
