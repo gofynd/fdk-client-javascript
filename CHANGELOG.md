@@ -64,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial draft of extension creation library
 ---
-
+[0.5.0]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.5.0
 [0.4.0]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.4.0
 [0.3.0]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.3.0
 [0.3.0-beta.2]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.3.0-beta.2
