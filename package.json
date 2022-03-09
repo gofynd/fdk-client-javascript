@@ -5,7 +5,8 @@
     "url-join": "^4.0.1",
     "uuid": "^8.3.2",
     "validator": "^13.5.2",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "querystring": "^0.2.1"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.18.1",
@@ -19,7 +20,6 @@
     "jshint": "^2.12.0",
     "ngrok": "^3.4.0",
     "nyc": "^15.0.1",
-    "querystring": "^0.2.1",
     "sinon": "^9.0.2",
     "supertest": "^4.0.2"
   },

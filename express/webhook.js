@@ -5,7 +5,6 @@ const { fdkAxios } = require("fdk-client-javascript/sdk/common/AxiosHelper");
 const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 const logger = require("./logger");
-const querystring = require("query-string");
 
 let eventConfig = {}
 class WebhookRegistry {
@@ -34,10 +33,16 @@ class WebhookRegistry {
             this._handlerMap[eventName] = handlerData;
         }
 
-        await this.getEventConfig();                                              // get event config for required event_map in eventConfig.event_configs
-        eventConfig.eventsMap = this._getEventIdMap(eventConfig.event_configs);   // generate eventIdMap from eventConfig.event_configs 
-        if (!this._validateEventsMap()) {                                         // validate eventIdMap for every element in _handlerMap 
-            throw new FdkWebhookRegistrationError(`Webhook config not found`);
+        await this.getEventConfig();                                             // get event config for required event_map in eventConfig.event_configs
+        eventConfig.eventsMap = this._getEventIdMap(eventConfig.event_configs);  // generate eventIdMap from eventConfig.event_configs
+        this._validateEventsMap();                    
+        
+        if(Object.keys(eventConfig.eventsNotFound).length > 0){
+            let errors = []
+            Object.keys(eventConfig.eventsNotFound).forEach((key)=>{
+                errors.push(`Name: ${key}, Version: ${eventConfig.eventsNotFound[key]}`) 
+            })
+            throw new FdkInvalidWebhookConfig(`Webhooks with configs ${errors.join(' and ')} not found`);
         }
 
         logger.debug('Webhook registry initialized');
@@ -48,8 +53,12 @@ class WebhookRegistry {
     }
 
     _validateEventsMap() {
-        return Object.keys(this._handlerMap).every((key) => {
-            return `${key}/${this._handlerMap[key].version}` in eventConfig.eventsMap
+        delete eventConfig.eventsNotFound
+        eventConfig.eventsNotFound = {}
+        Object.keys(this._handlerMap).forEach((key) => {
+            if(!eventConfig.eventsMap.hasOwnProperty(`${key}/${this._handlerMap[key].version}`)){
+                eventConfig.eventsNotFound[key] = this._handlerMap[key].version            
+            }
         })
     }
 
@@ -300,7 +309,7 @@ class WebhookRegistry {
                 let eventObj = {}
                 let eventDetails = key.split('/');
                 if (eventDetails.length !== 3) {
-                    throw new FdkWebhookRegistrationError(`Invalid webhook events configuration`)
+                    throw new FdkInvalidWebhookConfig(`Invalid webhook events configuration`)
                 }
                 eventObj.event_name = eventDetails[1].trim();
                 eventObj.version = this._handlerMap[key].version;
@@ -321,10 +330,10 @@ class WebhookRegistry {
             eventConfig.event_configs = responseData.event_configs;
         }
         catch (err) {
-            if (err instanceof FdkWebhookRegistrationError) {
+            if (err instanceof FdkInvalidWebhookConfig) {
                 throw err;
             }
-            throw new FdkWebhookRegistrationError(`Error while fetching webhook events configuration`)
+            throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration`)
         }
 
     }
