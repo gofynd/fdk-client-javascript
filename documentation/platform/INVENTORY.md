@@ -1564,11 +1564,14 @@ JobCode Metrics entry Created Successfully
  | total_added_count | number |  no  |  |
  | total_updated_count | number |  no  |  |
  | total_suppressed_count | number |  no  |  |
+ | total_initial_count | number |  no  |  |
  | job_id | number |  no  |  |
  | status | string |  no  |  |
  | job_code | string |  no  |  |
  | processed_on | string |  no  |  |
  | filename | [string] |  no  |  |
+ | error_type | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 

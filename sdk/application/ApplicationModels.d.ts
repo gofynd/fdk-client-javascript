@@ -881,9 +881,9 @@ export class Validator {
     static PaymentStatusUpdateResponse(): any;
     static AggregatorRoute(): any;
     static PaymentFlow(): any;
+    static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
     static IntentApp(): any;
-    static IntentAppErrorList(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptionAndFlow(): any;
