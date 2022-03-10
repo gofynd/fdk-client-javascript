@@ -109,10 +109,10 @@ class WebhookRegistry {
     async syncEvents(platformClient, config = null, enableWebhooks) {
         logger.debug('Sync events started');
         if (config) {
-            this.initialize(config, this._fdkConfig);
+            await this.initialize(config, this._fdkConfig);
         }
 
-        let subscriberConfig = await this.getSubscribeConfig(platformClient);
+        let subscriberConfig = await this.getSubscriberConfig(platformClient);
 
         let registerNew = false;
         let configUpdated = false;
@@ -207,7 +207,7 @@ class WebhookRegistry {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
         try {
-            let subscriberConfig = await this.getSubscribeConfig(platformClient);
+            let subscriberConfig = await this.getSubscriberConfig(platformClient);
             if (!subscriberConfig) {
                 throw new FdkWebhookRegistrationError(`Subscriber config not found`);
             }
@@ -236,7 +236,7 @@ class WebhookRegistry {
         }
         try {
 
-            let subscriberConfig = await this.getSubscribeConfig(platformClient);
+            const subscriberConfig = await this.getSubscriberConfig(platformClient);
             if (!subscriberConfig) {
                 throw new FdkWebhookRegistrationError(`Subscriber config not found`);
             }
@@ -297,7 +297,7 @@ class WebhookRegistry {
         }
     }
 
-    async getSubscribeConfig(platformClient) {
+    async getSubscriberConfig(platformClient) {
         const subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key });
         return subscriberConfig.items[0];
     }
