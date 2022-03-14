@@ -304,7 +304,6 @@ Success
  | file_name | string |  yes  |  |
  | file_path | string |  yes  |  |
  | content_type | string |  yes  |  |
- | method | string |  yes  |  |
  | namespace | string |  yes  |  |
  | operation | string |  yes  |  |
  | size | number |  yes  |  |
