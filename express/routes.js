@@ -101,7 +101,7 @@ function setupRoutes(ext) {
                 let session;
                 session = await SessionStorage.getSession(sid);
                 if (!session) {
-                    let offlineToken = await ext.getOfflineOAuthToken(companyId, req.query.code);
+                    let offlineToken = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
 
                     if (ext.scopes.every(val => offlineToken.scope.indexOf(val) >= 0)) {
                         session = new Session(sid);
@@ -143,7 +143,7 @@ function setupRoutes(ext) {
             });
             res.header['x-company-id'] = companyId;
             req.extension = ext;
-            if (ext.webhookRegistry.isInitialized()) {
+            if (ext.webhookRegistry.isInitialized) {
                 const client = await ext.getPlatformClient(companyId, req.fdkSession);
                 await ext.webhookRegistry.syncEvents(client, null, true);
             }

@@ -29,35 +29,38 @@ class WebhookRegistry {
         this._handlerMap = {};
         this._config = config;
         this._fdkConfig = fdkConfig;
+
+        let handlerConfig = {};
+
         for (let [eventName, handlerData] of Object.entries(this._config.event_map)) {
-            this._handlerMap[eventName] = handlerData;
+            handlerConfig[eventName] = handlerData;
         }
 
-        await this.getEventConfig();                                             // get event config for required event_map in eventConfig.event_configs
-        eventConfig.eventsMap = this._getEventIdMap(eventConfig.event_configs);  // generate eventIdMap from eventConfig.event_configs
-        this._validateEventsMap();                    
+        await this.getEventConfig(handlerConfig);                                             // get event config for required event_map in eventConfig.event_configs
+        eventConfig.eventsMap = this._getEventIdMap(eventConfig.event_configs);               // generate eventIdMap from eventConfig.event_configs
+        this._validateEventsMap(handlerConfig);                    
         
-        if(Object.keys(eventConfig.eventsNotFound).length > 0){
+        if(Object.keys(eventConfig.eventsNotFound).length){
             let errors = []
             Object.keys(eventConfig.eventsNotFound).forEach((key)=>{
                 errors.push(`Name: ${key}, Version: ${eventConfig.eventsNotFound[key]}`) 
             })
             throw new FdkInvalidWebhookConfig(`Webhooks events ${errors.join(' and ')} not found`);
         }
-
+        this._handlerMap = handlerConfig;
         logger.debug('Webhook registry initialized');
     }
 
-    isInitialized() {
+    get isInitialized() {
         return !!this._handlerMap && this._config.subscribe_on_install;
     }
 
-    _validateEventsMap() {
+    _validateEventsMap(handlerConfig) {
         delete eventConfig.eventsNotFound
         eventConfig.eventsNotFound = {}
-        Object.keys(this._handlerMap).forEach((key) => {
-            if(!eventConfig.eventsMap.hasOwnProperty(`${key}/${this._handlerMap[key].version}`)){
-                eventConfig.eventsNotFound[key] = this._handlerMap[key].version            
+        Object.keys(handlerConfig).forEach((key) => {
+            if(!eventConfig.eventsMap.hasOwnProperty(`${key}/${handlerConfig[key].version}`)){
+                eventConfig.eventsNotFound[key] = handlerConfig[key].version            
             }
         })
     }
@@ -107,6 +110,9 @@ class WebhookRegistry {
     }
 
     async syncEvents(platformClient, config = null, enableWebhooks) {
+        if (!this.isInitialized){
+            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+        }
         logger.debug('Sync events started');
         if (config) {
             await this.initialize(config, this._fdkConfig);
@@ -203,6 +209,9 @@ class WebhookRegistry {
     }
 
     async enableSalesChannelWebhook(platformClient, applicationId) {
+        if (!this.isInitialized){
+            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+        }
         if (this._config.subscribed_saleschannel !== 'specific') {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
@@ -213,7 +222,6 @@ class WebhookRegistry {
             }
             const { id, name, webhook_url, association, status, auth_meta, email_id, event_configs } = subscriberConfig;
             subscriberConfig = { id, name, webhook_url, association, status, auth_meta, email_id };
-            // TODO: Check if event_id is array received in subscriberConfig 
             subscriberConfig.event_id = event_configs.map(event => event.id);
             const arrApplicationId = subscriberConfig.association.application_id || [];
             const rmIndex = arrApplicationId.indexOf(applicationId);
@@ -231,6 +239,9 @@ class WebhookRegistry {
     }
 
     async disableSalesChannelWebhook(platformClient, applicationId) {
+        if (!this.isInitialized){
+            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+        }
         if (this._config.subscribed_saleschannel !== 'specific') {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
         }
@@ -269,6 +280,9 @@ class WebhookRegistry {
     }
 
     async processWebhook(req) {
+        if (!this.isInitialized){
+            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+        }
         try {
             const { body } = req;
             if (body.event.name === TEST_WEBHOOK_EVENT_NAME) {
@@ -302,17 +316,17 @@ class WebhookRegistry {
         return subscriberConfig.items[0];
     }
 
-    async getEventConfig() {
+    async getEventConfig(handlerConfig) {
         try {
             let data = [];
-            Object.keys(this._handlerMap).forEach((key) => {
+            Object.keys(handlerConfig).forEach((key) => {
                 let eventObj = {}
                 let eventDetails = key.split('/');
                 if (eventDetails.length !== 3) {
                     throw new FdkInvalidWebhookConfig(`Invalid webhook events configuration`)
                 }
                 eventObj.event_name = eventDetails[1].trim();
-                eventObj.version = this._handlerMap[key].version;
+                eventObj.version = handlerConfig[key].version;
                 eventObj.event_type = eventDetails[2];
                 eventObj.event_category = eventDetails[0]
                 data.push(eventObj);
@@ -330,10 +344,7 @@ class WebhookRegistry {
             eventConfig.event_configs = responseData.event_configs;
         }
         catch (err) {
-            if (err instanceof FdkInvalidWebhookConfig) {
-                throw err;
-            }
-            throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration`)
+            throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration, Reason: ${err.message}`)
         }
 
     }

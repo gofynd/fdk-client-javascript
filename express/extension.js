@@ -1,13 +1,12 @@
 'use strict';
 const validator = require('validator');
-const { FdkInvalidExtensionJson } = require("./error_code");
+const { FdkInvalidExtensionConfig } = require("./error_code");
 const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
 const querystring = require("query-string");
-const SessionStorage = require('./session/session_storage');
 
 class Extension {
     constructor() {
@@ -19,24 +18,27 @@ class Extension {
         this.access_mode = null;
         this.cluster = "https://api.fynd.com";
         this.webhookRegistry = null;
+        this._isInitialized = false;
     }
 
     async initialize(data) {
 
+        this._isInitialized = false;
+
         this.storage = data.storage;
 
         if (!data.api_key) {
-            throw new FdkInvalidExtensionJson("Invalid api_key");
+            throw new FdkInvalidExtensionConfig("Invalid api_key");
         }
         this.api_key = data.api_key;
 
         if (!data.api_secret) {
-            throw new FdkInvalidExtensionJson("Invalid api_secret");
+            throw new FdkInvalidExtensionConfig("Invalid api_secret");
         }
         this.api_secret = data.api_secret;
 
         if (!data.callbacks || (data.callbacks && (!data.callbacks.auth || !data.callbacks.uninstall))) {
-            throw new FdkInvalidExtensionJson("Missing some of callbacks. Please add all `auth` and `uninstall` callbacks.");
+            throw new FdkInvalidExtensionConfig("Missing some of callbacks. Please add all `auth` and `uninstall` callbacks.");
         }
 
         this.callbacks = data.callbacks;
@@ -44,7 +46,7 @@ class Extension {
 
         if (data.cluster) {
             if (!validator.isURL(data.cluster)) {
-                throw new FdkInvalidExtensionJson("Invalid cluster");
+                throw new FdkInvalidExtensionConfig("Invalid cluster");
             }
             this.cluster = data.cluster;
         }
@@ -52,7 +54,7 @@ class Extension {
         let extensionData = await this.getExtensionDetails();
 
         if (data.base_url && !validator.isURL(data.base_url)) {
-            throw new FdkInvalidExtensionJson("Invalid base_url");
+            throw new FdkInvalidExtensionConfig("Invalid base_url");
         }
         else if (!data.base_url) {
             data.base_url = extensionData.base_url;
@@ -70,11 +72,17 @@ class Extension {
         if (data.webhook_config && Object.keys(data.webhook_config)) {
             await this.webhookRegistry.initialize(data.webhook_config, data);
         }
+
+        this._isInitialized = true;
+    }
+
+    get isInitialized(){
+        return this._isInitialized;
     }
 
     verifyScopes(scopes) {
         if (!scopes || scopes.length <= 0) {
-            throw new FdkInvalidExtensionJson("Invalid scopes in extension.json");
+            throw new FdkInvalidExtensionConfig("Invalid scopes in extension.json");
         }
         return scopes;
     }
@@ -88,6 +96,9 @@ class Extension {
     }
 
     getPlatformConfig(companyId) {
+        if (!this._isInitialized){
+            throw new FdkInvalidExtensionConfig('Extension not initialized')    
+        }
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),
             domain: this.cluster,
@@ -96,9 +107,13 @@ class Extension {
             useAutoRenewTimer: false
         });
         return platformConfig;
+        
     }
 
     async getPlatformClient(companyId, session) {
+        if (!this._isInitialized){
+            throw new FdkInvalidExtensionConfig('Extension not initialized')    
+        }
         let platformConfig = this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
@@ -116,25 +131,6 @@ class Extension {
         return new PlatformClient(platformConfig);
     }
 
-    async getOfflineOAuthToken(companyId, code) {
-        let url = `${this.cluster}/service/panel/authentication/v1.0/company/${companyId}/oauth/offline-token`;
-        let data = { client_id: this.api_key, client_secret: this.api_secret, grant_type: 'authorization_code', scope: this.scopes, code: code };
-        const token = Buffer.from(
-            `${this.api_key}:${this.api_secret}`,
-            "utf8"
-        ).toString("base64");
-        const rawRequest = {
-            method: "post",
-            url: url,
-            data: querystring.stringify(data),
-            headers: {
-                Authorization: `Basic ${token}`,
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-        };
-        return fdkAxios.request(rawRequest);
-    }
-
     async getExtensionDetails() {
         try {
             let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
@@ -147,13 +143,13 @@ class Extension {
                 url: url,
                 headers: {
                     Authorization: `Basic ${token}`,
-                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Content-Type": "application/json",
                 },
             };
             let extensionData = await fdkAxios.request(rawRequest);
             return extensionData;
         } catch (err) {
-            throw new FdkInvalidExtensionJson("Invalid api_key or api_secret");
+            throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret");
         }
     }
 }
@@ -165,3 +161,4 @@ module.exports = {
     extension
 };
 
+const SessionStorage = require('./session/session_storage');
