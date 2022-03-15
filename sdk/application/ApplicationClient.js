@@ -2090,6 +2090,7 @@ class Cart {
     * @param {boolean} [arg.i] - 
     * @param {boolean} [arg.b] - 
     * @param {number} [arg.assignCardId] - 
+    * @param {string} [arg.areaCode] - 
     
     
     * @return {Promise<CartDetailResponse>} - success response
@@ -2098,13 +2099,15 @@ class Cart {
             id,
             i,
             b,
-            assignCardId
+            assignCardId,
+            areaCode
             
         } = {}) {
             const { error } = CartValidator.getCart().validate({ id,
             i,
             b,
-            assignCardId
+            assignCardId,
+            areaCode
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -2114,6 +2117,7 @@ class Cart {
             query_params['i'] = i;
             query_params['b'] = b;
             query_params['assign_card_id'] = assignCardId;
+            query_params['area_code'] = areaCode;
             
 
             return APIClient.execute(
@@ -2172,6 +2176,7 @@ class Cart {
     * @param {Object} arg - arg object.
     * @param {boolean} [arg.i] - 
     * @param {boolean} [arg.b] - 
+    * @param {string} [arg.areaCode] - 
     
     * @param {AddCartRequest} arg.body
     * @return {Promise<AddCartDetailResponse>} - success response
@@ -2179,12 +2184,14 @@ class Cart {
         addItems({
             body,
             i,
-            b
+            b,
+            areaCode
             
         } = {}) {
             const { error } = CartValidator.addItems().validate({ body,
             i,
-            b
+            b,
+            areaCode
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -2192,6 +2199,7 @@ class Cart {
             const query_params = {};
             query_params['i'] = i;
             query_params['b'] = b;
+            query_params['area_code'] = areaCode;
             
 
             return APIClient.execute(
@@ -2215,6 +2223,7 @@ class Cart {
     * @param {string} [arg.id] - 
     * @param {boolean} [arg.i] - 
     * @param {boolean} [arg.b] - 
+    * @param {string} [arg.areaCode] - 
     
     * @param {UpdateCartRequest} arg.body
     * @return {Promise<UpdateCartDetailResponse>} - success response
@@ -2223,13 +2232,15 @@ class Cart {
             body,
             id,
             i,
-            b
+            b,
+            areaCode
             
         } = {}) {
             const { error } = CartValidator.updateCart().validate({ body,
             id,
             i,
-            b
+            b,
+            areaCode
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -2238,6 +2249,7 @@ class Cart {
             query_params['id'] = id;
             query_params['i'] = i;
             query_params['b'] = b;
+            query_params['area_code'] = areaCode;
             
 
             return APIClient.execute(
@@ -10493,6 +10505,7 @@ class PosCart {
     * @param {boolean} [arg.i] - 
     * @param {boolean} [arg.b] - 
     * @param {number} [arg.assignCardId] - 
+    * @param {string} [arg.areaCode] - 
     
     
     * @return {Promise<CartDetailResponse>} - success response
@@ -10501,13 +10514,15 @@ class PosCart {
             id,
             i,
             b,
-            assignCardId
+            assignCardId,
+            areaCode
             
         } = {}) {
             const { error } = PosCartValidator.getCart().validate({ id,
             i,
             b,
-            assignCardId
+            assignCardId,
+            areaCode
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -10517,6 +10532,7 @@ class PosCart {
             query_params['i'] = i;
             query_params['b'] = b;
             query_params['assign_card_id'] = assignCardId;
+            query_params['area_code'] = areaCode;
             
 
             return APIClient.execute(
@@ -10575,6 +10591,7 @@ class PosCart {
     * @param {Object} arg - arg object.
     * @param {boolean} [arg.i] - 
     * @param {boolean} [arg.b] - 
+    * @param {string} [arg.areaCode] - 
     
     * @param {AddCartRequest} arg.body
     * @return {Promise<AddCartDetailResponse>} - success response
@@ -10582,12 +10599,14 @@ class PosCart {
         addItems({
             body,
             i,
-            b
+            b,
+            areaCode
             
         } = {}) {
             const { error } = PosCartValidator.addItems().validate({ body,
             i,
-            b
+            b,
+            areaCode
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -10595,6 +10614,7 @@ class PosCart {
             const query_params = {};
             query_params['i'] = i;
             query_params['b'] = b;
+            query_params['area_code'] = areaCode;
             
 
             return APIClient.execute(
@@ -10618,6 +10638,7 @@ class PosCart {
     * @param {string} [arg.id] - 
     * @param {boolean} [arg.i] - 
     * @param {boolean} [arg.b] - 
+    * @param {string} [arg.areaCode] - 
     
     * @param {UpdateCartRequest} arg.body
     * @return {Promise<UpdateCartDetailResponse>} - success response
@@ -10626,13 +10647,15 @@ class PosCart {
             body,
             id,
             i,
-            b
+            b,
+            areaCode
             
         } = {}) {
             const { error } = PosCartValidator.updateCart().validate({ body,
             id,
             i,
-            b
+            b,
+            areaCode
              },{ abortEarly: false });
             if (error) {
                 return Promise.reject(new FDKClientValidationError(error));
@@ -10641,6 +10664,7 @@ class PosCart {
             query_params['id'] = id;
             query_params['i'] = i;
             query_params['b'] = b;
+            query_params['area_code'] = areaCode;
             
 
             return APIClient.execute(
