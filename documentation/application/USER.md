@@ -3326,6 +3326,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | ---------- | ---- | -------- | ----------- |
  | user | [UserSchema](#UserSchema) |  no  |  |
  | register_token | string |  no  |  |
+ | resend_email_token | string |  no  |  |
  | user_exists | boolean |  no  |  |
  | verify_email_link | boolean |  no  |  |
  | verify_email_otp | boolean |  no  |  |
