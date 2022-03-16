@@ -2181,6 +2181,14 @@ declare class FileStorage {
     signUrls({ body }?: {
         body: any;
     }): Promise<any>;
+    upload({ data, file_name, content_type, namespace, size, tags, }?: {
+        data: any;
+        file_name: any;
+        content_type: any;
+        namespace: any;
+        size: any;
+        tags: any;
+    }): Promise<any>;
 }
 declare class Configuration {
     constructor(_conf: any);
