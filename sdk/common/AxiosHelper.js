@@ -3,7 +3,7 @@ const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
 const querystring = require("query-string");
 const { sign } = require("./RequestSigner");
-const FDKError = require("./FDKError");
+const { FDKServerResponseError } = require("./FDKError");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -36,12 +36,13 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
+    headers["x-fp-sdk-version"] = "0.1.14"
+    let querySearchObj = querystring.parse(search);
+    querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
-    if (params && Object.keys(params).length) {
-      if (search && search.trim() !== "") {
-        queryParam = `&${querystring.stringify(params)}`;
-      } else {
-        queryParam = `?${querystring.stringify(params)}`;
+    if (querySearchObj && Object.keys(querySearchObj).length) {
+      if(querystring.stringify(querySearchObj).trim() !== "") {
+        queryParam = `?${querystring.stringify(querySearchObj)}`;
       }
     }
     let transformedData;
@@ -67,12 +68,13 @@ function requestInterceptorFn() {
       host: host,
       path: pathname + search + queryParam,
       body: transformedData,
-      headers: headersToSign,
+      headers: headersToSign
     };
     sign(signingOptions);
 
     config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
+    // config.headers["fp-sdk-version"] = version;
     return config;
   };
 }
@@ -85,23 +87,27 @@ const fdkAxios = axios.create({
 fdkAxios.interceptors.request.use(requestInterceptorFn());
 fdkAxios.interceptors.response.use(
   function (response) {
+    if(response.config.method == 'head'){
+      return response.headers;
+    }
     return response.data; // IF 2XX then return response.data only
   },
   function (error) {
     if (error.response) {
       // Request made and server responded
-      throw new FDKError(
+      throw new FDKServerResponseError(
         error.response.data.message || error.message,
         error.response.data.stack || error.stack,
         error.response.statusText,
-        error.response.status
+        error.response.status,
+        error.response.data
       );
     } else if (error.request) {
       // The request was made but no error.response was received
-      throw new FDKError(error.message, error.stack, error.code, error.code);
+      throw new FDKServerResponseError(error.message, error.stack, error.code, error.code);
     } else {
       // Something happened in setting up the request that triggered an Error
-      throw new FDKError(error.message, error.stack);
+      throw new FDKServerResponseError(error.message, error.stack);
     }
   }
 );
