@@ -2,11 +2,11 @@ const { fdkAxios } = require("../common/AxiosHelper");
 
 class APIClient {
   /**
-   * @param  {object} conf
-   * @param  {string} method
-   * @param  {string} url
-   * @param  {object} query
-   * @param  {object} body
+   * @param {object} conf
+   * @param {string} method
+   * @param {string} url
+   * @param {object} query
+   * @param {object} body
    */
 
   static execute(conf, method, url, query, body) {
@@ -16,8 +16,8 @@ class APIClient {
     ).toString("base64");
 
     let headers = { Authorization: "Bearer " + token };
-    if(conf.cookie){
-      headers = { ...headers, cookie: conf.cookie }
+    if (conf.cookie) {
+      headers = { ...headers, cookie: conf.cookie };
     }
 
     const rawRequest = {
@@ -25,7 +25,7 @@ class APIClient {
       url: url,
       params: query,
       data: body,
-      headers
+      headers,
     };
     return fdkAxios.request(rawRequest);
   }

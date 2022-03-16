@@ -2245,94 +2245,17 @@ Checkout cart and create Fynd order id
 
  
  
- #### [Rule](#Rule)
+ #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount_qty | number |  no  |  |
- | max | number |  no  |  |
- | value | number |  no  |  |
- | min | number |  no  |  |
- | key | number |  no  |  |
-
----
-
-
- 
- 
- #### [Validation](#Validation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_registered_after | string |  no  |  |
- | anonymous | boolean |  no  |  |
- | app_id | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [State](#State)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_archived | boolean |  no  |  |
- | is_display | boolean |  no  |  |
- | is_public | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CouponAuthor](#CouponAuthor)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_by | string |  no  |  |
- | created_by | string |  no  |  |
-
----
-
-
- 
- 
- #### [Ownership](#Ownership)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
- | payable_category | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Identifier](#Identifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store_id | [number] |  no  |  |
- | brand_id | [number] |  no  |  |
- | collection_id | [string] |  no  |  |
- | user_id | [string] |  no  |  |
- | company_id | [number] |  no  |  |
- | item_id | [number] |  no  |  |
- | article_id | [string] |  no  |  |
- | category_id | [number] |  no  |  |
-
----
-
-
- 
- 
- #### [Validity](#Validity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | number |  no  |  |
+ | current | number |  no  | Current page no |
+ | has_next | boolean |  no  | True if more records are present for next pages |
+ | type | string |  yes  |  |
+ | next_id | string |  no  | Cursor id for next set of records. |
+ | item_total | number |  no  | Total coupon count in system |
+ | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
+ | size | number |  no  | Current request page size |
 
 ---
 
@@ -2351,34 +2274,6 @@ Checkout cart and create Fynd order id
 
  
  
- #### [DisplayMetaDict](#DisplayMetaDict)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayMeta](#DisplayMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
- | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
-
----
-
-
- 
- 
  #### [CouponDateMeta](#CouponDateMeta)
 
  | Properties | Type | Nullable | Description |
@@ -2391,11 +2286,41 @@ Checkout cart and create Fynd order id
 
  
  
+ #### [RuleDefinition](#RuleDefinition)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable_on | string |  yes  |  |
+ | auto_apply | boolean |  no  |  |
+ | value_type | string |  yes  |  |
+ | type | string |  yes  |  |
+ | is_exact | boolean |  no  |  |
+ | currency_code | string |  no  |  |
+ | scope | [string] |  no  |  |
+ | calculate_on | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [BulkBundleRestriction](#BulkBundleRestriction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | multi_store_allowed | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PostOrder](#PostOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean |  no  |  |
 
 ---
 
@@ -2417,34 +2342,10 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | networks | [string] |  no  |  |
- | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
- | codes | [string] |  no  |  |
  | types | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [PriceRange](#PriceRange)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
- | min | number |  no  |  |
-
----
-
-
- 
- 
- #### [PostOrder](#PostOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | return_allowed | boolean |  no  |  |
- | cancellation_allowed | boolean |  no  |  |
+ | codes | [string] |  no  |  |
+ | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
+ | networks | [string] |  no  |  |
 
 ---
 
@@ -2456,8 +2357,8 @@ Checkout cart and create Fynd order id
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | total | number |  no  |  |
- | user | number |  no  |  |
  | app | number |  no  |  |
+ | user | number |  no  |  |
 
 ---
 
@@ -2468,8 +2369,20 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
  | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceRange](#PriceRange)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
 
 ---
 
@@ -2481,32 +2394,93 @@ Checkout cart and create Fynd order id
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
+ | platforms | [string] |  no  |  |
+ | post_order | [PostOrder](#PostOrder) |  no  |  |
+ | user_groups | [number] |  no  |  |
+ | ordering_stores | [number] |  no  |  |
  | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
+ | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
  | coupon_allowed | boolean |  no  |  |
  | price_range | [PriceRange](#PriceRange) |  no  |  |
- | post_order | [PostOrder](#PostOrder) |  no  |  |
- | ordering_stores | [number] |  no  |  |
- | platforms | [string] |  no  |  |
- | user_groups | [number] |  no  |  |
- | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
 
 ---
 
 
  
  
- #### [RuleDefinition](#RuleDefinition)
+ #### [Validity](#Validity)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | calculate_on | string |  yes  |  |
- | auto_apply | boolean |  no  |  |
- | currency_code | string |  no  |  |
- | scope | [string] |  no  |  |
- | is_exact | boolean |  no  |  |
- | value_type | string |  yes  |  |
- | type | string |  yes  |  |
- | applicable_on | string |  yes  |  |
+ | priority | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponAuthor](#CouponAuthor)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  |  |
+ | modified_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Validation](#Validation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | [string] |  no  |  |
+ | anonymous | boolean |  no  |  |
+ | user_registered_after | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMetaDict](#DisplayMetaDict)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | subtitle | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMeta](#DisplayMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | description | string |  no  |  |
+ | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | title | string |  no  |  |
+ | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | subtitle | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Rule](#Rule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | discount_qty | number |  no  |  |
+ | value | number |  no  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ | key | number |  no  |  |
 
 ---
 
@@ -2517,11 +2491,54 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  no  |  |
- | duration | number |  no  |  |
- | cron | string |  no  |  |
  | next_schedule | [string] |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
  | start | string |  no  |  |
+ | cron | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [State](#State)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_public | boolean |  no  |  |
+ | is_display | boolean |  no  |  |
+ | is_archived | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifier](#Identifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_id | [number] |  no  |  |
+ | category_id | [number] |  no  |  |
+ | article_id | [string] |  no  |  |
+ | item_id | [number] |  no  |  |
+ | user_id | [string] |  no  |  |
+ | collection_id | [string] |  no  |  |
+ | company_id | [number] |  no  |  |
+ | brand_id | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Ownership](#Ownership)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_category | string |  yes  |  |
+ | payable_by | string |  yes  |  |
 
 ---
 
@@ -2532,39 +2549,22 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | rule | [[Rule](#Rule)] |  yes  |  |
- | validation | [Validation](#Validation) |  no  |  |
- | tags | [string] |  no  |  |
- | state | [State](#State) |  no  |  |
- | author | [CouponAuthor](#CouponAuthor) |  no  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | type_slug | string |  yes  |  |
- | validity | [Validity](#Validity) |  yes  |  |
  | action | [CouponAction](#CouponAction) |  no  |  |
- | code | string |  yes  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
  | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
  | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | code | string |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | tags | [string] |  no  |  |
+ | type_slug | string |  yes  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
  | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | has_next | boolean |  no  | True if more records are present for next pages |
- | current | number |  no  | Current page no |
- | next_id | string |  no  | Cursor id for next set of records. |
- | size | number |  no  | Current request page size |
- | item_total | number |  no  | Total coupon count in system |
- | type | string |  yes  |  |
- | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
+ | state | [State](#State) |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
 
 ---
 
@@ -2575,8 +2575,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [CouponAdd](#CouponAdd) |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [CouponAdd](#CouponAdd) |  no  |  |
 
 ---
 
@@ -2587,8 +2587,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -2599,8 +2599,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -2611,22 +2611,22 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | rule | [[Rule](#Rule)] |  yes  |  |
- | validation | [Validation](#Validation) |  no  |  |
- | tags | [string] |  no  |  |
- | state | [State](#State) |  no  |  |
- | author | [CouponAuthor](#CouponAuthor) |  no  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | type_slug | string |  yes  |  |
- | validity | [Validity](#Validity) |  yes  |  |
  | action | [CouponAction](#CouponAction) |  no  |  |
- | code | string |  yes  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
  | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
  | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | code | string |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | tags | [string] |  no  |  |
+ | type_slug | string |  yes  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
  | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
 
 ---
 
@@ -2645,154 +2645,6 @@ Checkout cart and create Fynd order id
 
  
  
- #### [CompareObject](#CompareObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | less_than | number |  no  |  |
- | greater_than | number |  no  |  |
- | greater_than_equals | number |  no  |  |
- | less_than_equals | number |  no  |  |
- | equals | number |  no  |  |
-
----
-
-
- 
- 
- #### [ItemCriteria](#ItemCriteria)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_sku | [string] |  no  |  |
- | item_category | [number] |  no  |  |
- | item_exclude_company | [number] |  no  |  |
- | item_exclude_brand | [number] |  no  |  |
- | buy_expression | string |  no  |  |
- | item_size | [string] |  no  |  |
- | item_store | [number] |  no  |  |
- | cart_total | [CompareObject](#CompareObject) |  no  |  |
- | item_exclude_sku | [string] |  no  |  |
- | item_company | [number] |  no  |  |
- | item_brand | [number] |  no  |  |
- | item_exclude_category | [number] |  no  |  |
- | item_id | [number] |  no  |  |
- | item_exclude_store | [number] |  no  |  |
- | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
-
----
-
-
- 
- 
- #### [Ownership1](#Ownership1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
- | payable_category | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Visibility](#Visibility)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pdp | boolean |  yes  |  |
- | coupon_list | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [PromotionSchedule](#PromotionSchedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string |  yes  |  |
- | duration | number |  no  |  |
- | cron | string |  no  |  |
- | next_schedule | [string] |  no  |  |
- | start | string |  yes  |  |
- | published | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [PromotionAction](#PromotionAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_date | string |  yes  |  |
- | action_type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [DiscountOffer](#DiscountOffer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount_percentage | number |  no  |  |
- | min_offer_quantity | number |  no  |  |
- | discount_price | number |  no  |  |
- | discount_amount | number |  no  |  |
- | max_discount_amount | number |  no  |  |
- | code | string |  no  |  |
- | max_offer_quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [DiscountRule](#DiscountRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_condition | string |  yes  |  |
- | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
- | discount_type | string |  yes  |  |
- | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
-
----
-
-
- 
- 
- #### [PromotionAuthor](#PromotionAuthor)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_by | string |  no  |  |
- | created_by | string |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayMeta1](#DisplayMeta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | description | string |  no  |  |
- | offer_text | string |  no  |  |
-
----
-
-
- 
- 
  #### [PromotionDateMeta](#PromotionDateMeta)
 
  | Properties | Type | Nullable | Description |
@@ -2805,24 +2657,148 @@ Checkout cart and create Fynd order id
 
  
  
- #### [PaymentAllowValue1](#PaymentAllowValue1)
+ #### [CompareObject](#CompareObject)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
+ | equals | number |  no  |  |
+ | greater_than_equals | number |  no  |  |
+ | greater_than | number |  no  |  |
+ | less_than_equals | number |  no  |  |
+ | less_than | number |  no  |  |
 
 ---
 
 
  
  
- #### [PromotionPaymentModes](#PromotionPaymentModes)
+ #### [ItemCriteria](#ItemCriteria)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | codes | [string] |  no  |  |
- | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
+ | item_exclude_sku | [string] |  no  |  |
+ | item_company | [number] |  no  |  |
+ | buy_expression | string |  no  |  |
+ | item_exclude_brand | [number] |  no  |  |
+ | item_exclude_company | [number] |  no  |  |
+ | item_brand | [number] |  no  |  |
+ | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
+ | item_id | [number] |  no  |  |
+ | item_store | [number] |  no  |  |
+ | item_size | [string] |  no  |  |
+ | item_sku | [string] |  no  |  |
+ | cart_total | [CompareObject](#CompareObject) |  no  |  |
+ | item_exclude_category | [number] |  no  |  |
+ | item_category | [number] |  no  |  |
+ | item_exclude_store | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionAction](#PromotionAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action_type | string |  yes  |  |
+ | action_date | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionAuthor](#PromotionAuthor)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  |  |
+ | modified_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountOffer](#DiscountOffer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | discount_price | number |  no  |  |
+ | discount_amount | number |  no  |  |
+ | max_offer_quantity | number |  no  |  |
+ | min_offer_quantity | number |  no  |  |
+ | discount_percentage | number |  no  |  |
+ | max_discount_amount | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DiscountRule](#DiscountRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
+ | discount_type | string |  yes  |  |
+ | buy_condition | string |  yes  |  |
+ | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMeta1](#DisplayMeta1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | offer_text | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Ownership1](#Ownership1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_category | string |  yes  |  |
+ | payable_by | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionSchedule](#PromotionSchedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | next_schedule | [string] |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  yes  |  |
+ | published | boolean |  yes  |  |
+ | start | string |  yes  |  |
+ | cron | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Visibility](#Visibility)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_list | boolean |  yes  |  |
+ | pdp | boolean |  yes  |  |
 
 ---
 
@@ -2853,6 +2829,30 @@ Checkout cart and create Fynd order id
 
  
  
+ #### [PaymentAllowValue1](#PaymentAllowValue1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionPaymentModes](#PromotionPaymentModes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | codes | [string] |  no  |  |
+ | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
+ | type | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [UsesRemaining1](#UsesRemaining1)
 
  | Properties | Type | Nullable | Description |
@@ -2869,8 +2869,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
  | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
 
 ---
 
@@ -2881,15 +2881,15 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | anonymous_users | boolean |  no  |  |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
- | user_id | [string] |  no  |  |
  | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
- | order_quantity | number |  no  |  |
- | post_order | [PostOrder1](#PostOrder1) |  no  |  |
  | platforms | [string] |  no  |  |
+ | post_order | [PostOrder1](#PostOrder1) |  no  |  |
  | user_groups | [number] |  no  |  |
+ | user_id | [string] |  no  |  |
+ | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
  | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
+ | anonymous_users | boolean |  no  |  |
+ | order_quantity | number |  no  |  |
 
 ---
 
@@ -2900,27 +2900,27 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _custom_json | string |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_priority | number |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | mode | string |  yes  |  |
- | promotion_type | string |  yes  |  |
- | code | string |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | application_id | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | promo_group | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | promotion_type | string |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | currency | string |  no  |  |
+ | stackable | boolean |  no  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | application_id | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | visiblility | [Visibility](#Visibility) |  no  |  |
  | apply_exclusive | string |  no  |  |
+ | code | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | apply_priority | number |  no  |  |
+ | mode | string |  yes  |  |
 
 ---
 
@@ -2931,8 +2931,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [PromotionListItem](#PromotionListItem) |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [PromotionListItem](#PromotionListItem) |  no  |  |
 
 ---
 
@@ -2943,27 +2943,27 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _custom_json | string |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_priority | number |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | mode | string |  yes  |  |
- | promotion_type | string |  yes  |  |
- | code | string |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | application_id | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | promo_group | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | promotion_type | string |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | currency | string |  no  |  |
+ | stackable | boolean |  no  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | application_id | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | visiblility | [Visibility](#Visibility) |  no  |  |
  | apply_exclusive | string |  no  |  |
+ | code | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | apply_priority | number |  no  |  |
+ | mode | string |  yes  |  |
 
 ---
 
@@ -2974,27 +2974,27 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _custom_json | string |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_priority | number |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | mode | string |  yes  |  |
- | promotion_type | string |  yes  |  |
- | code | string |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | application_id | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
  | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | promo_group | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | promotion_type | string |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | currency | string |  no  |  |
+ | stackable | boolean |  no  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | application_id | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | visiblility | [Visibility](#Visibility) |  no  |  |
  | apply_exclusive | string |  no  |  |
+ | code | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | apply_priority | number |  no  |  |
+ | mode | string |  yes  |  |
 
 ---
 
@@ -3017,9 +3017,9 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
- | product_id | string |  yes  |  |
  | size | string |  yes  |  |
+ | product_id | string |  yes  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -3037,66 +3037,36 @@ Checkout cart and create Fynd order id
 
  
  
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | deliverable | boolean |  no  |  |
- | is_valid | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | other_store_quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_symbol | string |  no  |  |
- | selling | number |  no  |  |
- | effective | number |  no  |  |
- | currency_code | string |  no  |  |
- | marked | number |  no  |  |
- | add_on | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
-
----
-
-
- 
- 
  #### [CategoryInfo](#CategoryInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
  | uid | number |  no  | Product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_slug | [string] |  no  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
@@ -3128,42 +3098,87 @@ Checkout cart and create Fynd order id
 
  
  
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | url | string |  no  |  |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
-
----
-
-
- 
- 
  #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | uid | number |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
  | action | [ProductAction](#ProductAction) |  no  |  |
- | type | string |  no  |  |
+ | slug | string |  no  | Unique product url name generated via product name and other meta data |
  | name | string |  no  |  |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | uid | number |  no  |  |
+ | type | string |  no  |  |
+ | images | [[ProductImage](#ProductImage)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
+ | deliverable | boolean |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | add_on | number |  no  |  |
+ | selling | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromotion](#AppliedPromotion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  | Per unit discount amount applied with current promotion |
+ | promotion_type | string |  no  | Promotion type of current promotion |
+ | promo_id | string |  no  | Promotion id |
+ | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
+ | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
 
 ---
 
@@ -3174,10 +3189,10 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_symbol | string |  no  |  |
- | marked | number |  no  |  |
  | effective | number |  no  |  |
+ | marked | number |  no  |  |
  | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
 
 ---
 
@@ -3188,8 +3203,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
  | base | [BasePrice](#BasePrice) |  no  |  |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
 
 ---
 
@@ -3200,16 +3215,16 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | extra_meta | string |  no  |  |
- | parent_item_id | string |  no  |  |
- | quantity | number |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | uid | string |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | size | string |  no  |  |
- | type | string |  no  |  |
  | parent_item_size | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | uid | string |  no  |  |
+ | quantity | number |  no  |  |
+ | type | string |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | parent_item_id | string |  no  |  |
+ | size | string |  no  |  |
  | product_group_tags | [string] |  no  |  |
 
 ---
@@ -3228,40 +3243,41 @@ Checkout cart and create Fynd order id
 
  
  
- #### [AppliedPromotion](#AppliedPromotion)
+ #### [CartProductInfo](#CartProductInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
- | promotion_type | string |  no  | Promotion type of current promotion |
- | promo_id | string |  no  | Promotion id |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
+ | product | [CartProduct](#CartProduct) |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | quantity | number |  no  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | is_set | boolean |  no  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | message | string |  no  |  |
+ | coupon_message | string |  no  |  |
+ | bulk_offer | string |  no  |  |
+ | promotion_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | discount | string |  no  |  |
+ | key | string |  no  |  |
 
 ---
 
 
  
  
- #### [CartProductInfo](#CartProductInfo)
+ #### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | is_set | boolean |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | promotion_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | bulk_offer | string |  no  |  |
- | coupon_message | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | display | string |  no  |  |
+ | value | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | message | [string] |  no  |  |
  | key | string |  no  |  |
- | quantity | number |  no  |  |
- | discount | string |  no  |  |
 
 ---
 
@@ -3274,47 +3290,8 @@ Checkout cart and create Fynd order id
  | ---------- | ---- | -------- | ----------- |
  | total | number |  no  |  |
  | applicable | number |  no  |  |
- | description | string |  no  |  |
  | is_applied | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_value | number |  no  |  |
- | max_discount_value | number |  no  |  |
- | message | string |  no  |  |
- | value | number |  no  |  |
  | description | string |  no  |  |
- | uid | string |  no  |  |
- | sub_title | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | coupon_type | string |  no  |  |
- | title | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | code | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_symbol | string |  no  |  |
- | message | [string] |  no  |  |
- | value | number |  no  |  |
- | currency_code | string |  no  |  |
- | key | string |  no  |  |
- | display | string |  no  |  |
 
 ---
 
@@ -3325,18 +3302,41 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | subtotal | number |  no  |  |
- | gst_charges | number |  no  |  |
- | discount | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | mrp_total | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | vog | number |  no  |  |
- | total | number |  no  |  |
  | cod_charge | number |  no  |  |
  | coupon | number |  no  |  |
- | delivery_charge | number |  no  |  |
+ | fynd_cash | number |  no  |  |
+ | subtotal | number |  no  |  |
+ | total | number |  no  |  |
+ | convenience_fee | number |  no  |  |
  | you_saved | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | vog | number |  no  |  |
+ | discount | number |  no  |  |
+ | mrp_total | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max_discount_value | number |  no  |  |
+ | code | string |  no  |  |
+ | coupon_type | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | value | number |  no  |  |
+ | uid | string |  no  |  |
+ | type | string |  no  |  |
+ | description | string |  no  |  |
+ | coupon_value | number |  no  |  |
+ | sub_title | string |  no  |  |
+ | message | string |  no  |  |
+ | title | string |  no  |  |
+ | minimum_cart_value | number |  no  |  |
 
 ---
 
@@ -3347,10 +3347,10 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
  | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
  | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
 
 ---
 
@@ -3361,8 +3361,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | is_valid | boolean |  no  |  |
+ | message | string |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
 
@@ -3375,8 +3375,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
+ | success | boolean |  no  |  |
  | errors | string |  no  | Contains field name which has error as key and error message as value |
 
 ---
@@ -3388,21 +3388,21 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | city | string |  no  |  |
+ | area_code | string |  yes  |  |
+ | name | string |  no  |  |
  | area | string |  no  |  |
+ | email | string |  no  |  |
+ | meta | string |  no  |  |
+ | country | string |  no  |  |
+ | phone | number |  no  |  |
+ | pincode | number |  no  |  |
+ | address | string |  no  |  |
+ | city | string |  no  |  |
+ | landmark | string |  no  |  |
  | state | string |  no  |  |
  | country_code | string |  no  |  |
- | address | string |  no  |  |
- | meta | string |  no  |  |
  | area_code_slug | string |  no  |  |
- | email | string |  no  |  |
- | area_code | string |  yes  |  |
- | phone | number |  no  |  |
- | landmark | string |  no  |  |
  | address_type | string |  no  |  |
- | name | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
 
 ---
 
@@ -3413,8 +3413,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
  | cart_items | [CartItem](#CartItem) |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
 
 ---
 
@@ -3425,8 +3425,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
  | min | number |  no  |  |
+ | max | number |  no  |  |
 
 ---
 
@@ -3437,8 +3437,8 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | string |  no  |  |
  | min | string |  no  |  |
+ | max | string |  no  |  |
 
 ---
 
@@ -3461,23 +3461,11 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
  | is_valid | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [OpenApiFiles](#OpenApiFiles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | values | [string] |  yes  |  |
- | key | string |  yes  |  |
+ | message | string |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
 
 ---
 
@@ -3490,9 +3478,9 @@ Checkout cart and create Fynd order id
  | ---------- | ---- | -------- | ----------- |
  | extra_meta | string |  no  |  |
  | order_id | string |  no  |  |
- | payment_gateway | string |  no  |  |
  | current_status | string |  no  |  |
  | payment_id | string |  no  |  |
+ | payment_gateway | string |  no  |  |
 
 ---
 
@@ -3504,9 +3492,9 @@ Checkout cart and create Fynd order id
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | string |  no  | Payment mode name |
- | mode | string |  yes  |  |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
  | amount | number |  yes  | Payment amount |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+ | mode | string |  yes  |  |
 
 ---
 
@@ -3525,27 +3513,39 @@ Checkout cart and create Fynd order id
 
  
  
+ #### [OpenApiFiles](#OpenApiFiles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | values | [string] |  yes  |  |
+ | key | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [OpenApiOrderItem](#OpenApiOrderItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | coupon_effective_discount | number |  yes  |  |
+ | extra_meta | string |  no  |  |
  | price_effective | number |  yes  |  |
  | amount_paid | number |  yes  |  |
- | extra_meta | string |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | cashback_applied | number |  yes  |  |
- | size | string |  yes  |  |
- | price_marked | number |  yes  |  |
- | employee_discount | number |  no  |  |
- | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
- | loyalty_discount | number |  no  |  |
  | product_id | number |  yes  |  |
+ | quantity | number |  no  |  |
+ | size | string |  yes  |  |
+ | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
+ | employee_discount | number |  no  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | loyalty_discount | number |  no  |  |
  | delivery_charges | number |  yes  |  |
  | cod_charges | number |  yes  |  |
- | coupon_effective_discount | number |  yes  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | quantity | number |  no  |  |
  | discount | number |  yes  |  |
+ | cashback_applied | number |  yes  |  |
+ | price_marked | number |  yes  |  |
 
 ---
 
@@ -3556,24 +3556,24 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | coupon | string |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
+ | employee_discount | string |  no  |  |
+ | coupon_value | number |  yes  |  |
  | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | loyalty_discount | number |  no  |  |
+ | cart_value | number |  yes  |  |
+ | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | payment_mode | string |  no  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | order_id | string |  no  |  |
+ | coupon_code | string |  yes  |  |
+ | affiliate_order_id | string |  no  |  |
  | currency_code | string |  no  |  |
  | delivery_charges | number |  yes  |  |
  | cod_charges | number |  yes  |  |
- | payment_mode | string |  no  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | coupon_code | string |  yes  |  |
- | coupon_value | number |  yes  |  |
- | cart_value | number |  yes  |  |
  | cashback_applied | number |  yes  |  |
- | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
- | employee_discount | string |  no  |  |
- | loyalty_discount | number |  no  |  |
- | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
- | order_id | string |  no  |  |
- | affiliate_order_id | string |  no  |  |
- | coupon | string |  no  |  |
 
 ---
 
@@ -3584,10 +3584,10 @@ Checkout cart and create Fynd order id
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
  | order_id | string |  yes  | Fynd order id |
  | order_ref_id | string |  no  | Order id sent in request |
+ | success | boolean |  no  |  |
 
 ---
 
