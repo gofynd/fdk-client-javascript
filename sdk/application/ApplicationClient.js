@@ -5861,6 +5861,8 @@ class Payment {
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
       getEpaylaterBannerDetails:
         "/service/application/payment/v1.0/epaylater/banner",
+      resendOrCancelPayment:
+        "/service/application/payment/v1.0/payment/resend_or_cancel",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -6352,6 +6354,35 @@ class Payment {
       }),
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ResendOrCancelPaymentRequest} arg.body
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+   * @summary: API to resend and cancel a payment link which was already generated.
+   * @description: Use this API to perform resend or cancel a payment link based on request payload.
+   */
+  resendOrCancelPayment({ body } = {}) {
+    const { error } = PaymentValidator.resendOrCancelPayment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["resendOrCancelPayment"],
+        params: {},
+      }),
+      query_params,
+      body
     );
   }
 

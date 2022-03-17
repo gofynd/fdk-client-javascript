@@ -2365,6 +2365,7 @@ declare class Payment {
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
         getEpaylaterBannerDetails: string;
+        resendOrCancelPayment: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -2546,6 +2547,16 @@ declare class Payment {
      * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
      */
     getEpaylaterBannerDetails({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ResendOrCancelPaymentRequest} arg.body
+     * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+     * @summary: API to resend and cancel a payment link which was already generated.
+     * @description: Use this API to perform resend or cancel a payment link based on request payload.
+     */
+    resendOrCancelPayment({ body }?: {
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response
