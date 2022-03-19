@@ -154,7 +154,7 @@ class Extension {
             let extensionData = await fdkAxios.request(rawRequest);
             return extensionData;
         } catch (err) {
-            throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret");
+            throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
         }
     }
 }
