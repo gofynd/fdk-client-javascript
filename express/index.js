@@ -12,7 +12,11 @@ function setupFdk(data) {
     if (data.debug) {
         logger.transports[0].level = 'debug';
     }
-    extension.initialize(data);
+    extension.initialize(data)
+        .catch(err=>{
+            logger.error(err);
+            throw err;
+        });
     let router = setupRoutes(extension);
     let { apiRoutes, applicationProxyRoutes } = setupProxyRoutes();
 

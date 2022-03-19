@@ -6,9 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 ## [0.5.0] - 2021-03-10
+### Added
+- Fetching and verifying extension details using `api_key` and `api_secret` on server/consumer start. Given invalid extension api_key and api_secret, it will throw error. Same will be done if `scopes` are included which are not registered on Fynd Partners panel.
+- Added webhook event name validation. Now each webhook event details mentioned in `webhook_config` will be validated on server/consumer start. It will throw error in case of invalid event name passed.
 ### Changed
-- Seperate sessions for Online and offline mode access [complete details](https://github.com/gofynd/fdk-extension-javascript/pull/20#issue-1089270288)
-- base_url and scopes in Extension config details are optional
+- Added support for generating different tokens for `online` and `offline` access mode for fetching proper user details in extension launch on platform panel and background task handling  
+- setupFdk config parameters `base_url` and `scopes` in Extension config details are optional
+- Now passing event category with event name and type is compulsory in `webhook_config` dictionary. Refer examples and README.md
+- Fixed unnecessary token issue due to bug on renew access token. Fixes also includes changes in `fdk-client-javascript`. Refer "peer-dependency" for required minimum version upgrade.
 
 ---
 
