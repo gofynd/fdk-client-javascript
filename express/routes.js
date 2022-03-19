@@ -86,52 +86,48 @@ function setupRoutes(ext) {
             if (req.fdkSession.state !== req.query.state) {
                 throw new FdkInvalidOAuthError("Invalid oauth call");
             }
-            let companyId = req.fdkSession.company_id
-            let platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
+            const companyId = req.fdkSession.company_id
+            
+            const platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
+            
             let token = platformConfig.oauthClient.raw_token;
-
             let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
-            if (!ext.isOnlineAccessMode()) {
-
-                let sid = Session.generateSessionId(false, {
-                    cluster: ext.cluster,
-                    companyId: companyId
-                });
-                let session;
-                session = await SessionStorage.getSession(sid);
-                if (!session) {
-                    let offlineToken = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
-
-                    if (ext.scopes.every(val => offlineToken.scope.indexOf(val) >= 0)) {
-                        session = new Session(sid);
-
-                        session.company_id = companyId;
-                        session.scope = ext.scopes;
-                        session.state = req.fdkSession.state;
-                        session.expires_in = offlineToken.expires_in;
-                        session.access_mode = 'offline';
-                        session.extension_id = ext.api_key;
-                        session.access_token = offlineToken.access_token;
-                        session.refresh_token = offlineToken.refresh_token;
-                        session.access_token_validity = new Date().getTime() + offlineToken.expires_in * 1000
-                        session.current_user = offlineToken.current_user;
-
-                        await SessionStorage.saveSession(session);
-                    }
-
-                } else if (session.extension_id !== ext.api_key) {
-                    session = new Session(sid);
-                }
-
-
-            }
 
             req.fdkSession.expires = sessionExpires;
             token.access_token_validity = sessionExpires.getTime();
             req.fdkSession.updateToken(token);
 
             await SessionStorage.saveSession(req.fdkSession);
+
+            // Generate separate access token for offline mode
+            if (!ext.isOnlineAccessMode()) {
+
+                let sid = Session.generateSessionId(false, {
+                    cluster: ext.cluster,
+                    companyId: companyId
+                });
+                let session = await SessionStorage.getSession(sid);
+                if (!session) {
+                    let offlineTokenRes = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
+
+                    session = new Session(sid);
+                    
+                    session.company_id = companyId;
+                    session.scope = ext.scopes;
+                    session.state = req.fdkSession.state;
+                    session.extension_id = ext.api_key;
+                    offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+                    session.updateToken(offlineTokenRes);
+
+                    await SessionStorage.saveSession(session);
+                    
+                } else if (session.extension_id !== ext.api_key) {
+                    session = new Session(sid);
+                }
+
+
+            }
 
             const compCookieName = `${SESSION_COOKIE_NAME}_${companyId}`
             res.cookie(compCookieName, req.fdkSession.id, {

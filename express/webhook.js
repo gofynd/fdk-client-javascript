@@ -30,7 +30,7 @@ class WebhookRegistry {
         this._config = config;
         this._fdkConfig = fdkConfig;
 
-        let handlerConfig = {};
+        const handlerConfig = {};
 
         for (let [eventName, handlerData] of Object.entries(this._config.event_map)) {
             handlerConfig[eventName] = handlerData;
@@ -43,7 +43,7 @@ class WebhookRegistry {
         if(Object.keys(eventConfig.eventsNotFound).length){
             let errors = []
             Object.keys(eventConfig.eventsNotFound).forEach((key)=>{
-                errors.push(`Name: ${key}, Version: ${eventConfig.eventsNotFound[key]}`) 
+                errors.push(`name: ${key}, version: ${eventConfig.eventsNotFound[key]}`) 
             })
             throw new FdkInvalidWebhookConfig(`Webhooks events ${errors.join(' and ')} not found`);
         }
@@ -323,12 +323,12 @@ class WebhookRegistry {
                 let eventObj = {}
                 let eventDetails = key.split('/');
                 if (eventDetails.length !== 3) {
-                    throw new FdkInvalidWebhookConfig(`Invalid webhook events configuration`)
+                    throw new FdkInvalidWebhookConfig(`Invalid webhook event map key. Invalid key: ${key}`)
                 }
-                eventObj.event_name = eventDetails[1].trim();
-                eventObj.version = handlerConfig[key].version;
-                eventObj.event_type = eventDetails[2];
                 eventObj.event_category = eventDetails[0]
+                eventObj.event_name = eventDetails[1];
+                eventObj.event_type = eventDetails[2];
+                eventObj.version = handlerConfig[key].version;
                 data.push(eventObj);
             });
             let url = `${this._fdkConfig.cluster}/service/common/webhook/v1.0/events/query-event-details`;

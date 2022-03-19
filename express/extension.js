@@ -46,7 +46,7 @@ class Extension {
 
         if (data.cluster) {
             if (!validator.isURL(data.cluster)) {
-                throw new FdkInvalidExtensionConfig("Invalid cluster");
+                throw new FdkInvalidExtensionConfig("Invalid cluster value. Invalid value: " + data.cluster);
             }
             this.cluster = data.cluster;
         }
@@ -54,7 +54,7 @@ class Extension {
         let extensionData = await this.getExtensionDetails();
 
         if (data.base_url && !validator.isURL(data.base_url)) {
-            throw new FdkInvalidExtensionConfig("Invalid base_url");
+            throw new FdkInvalidExtensionConfig("Invalid base_url value. Invalid value: " + data.base_url);
         }
         else if (!data.base_url) {
             data.base_url = extensionData.base_url;
@@ -80,9 +80,10 @@ class Extension {
         return this._isInitialized;
     }
 
-    verifyScopes(scopes) {
-        if (!scopes || scopes.length <= 0) {
-            throw new FdkInvalidExtensionConfig("Invalid scopes in extension.json");
+    verifyScopes(scopes, extensionData) {
+        const missingScopes = scopes.filter(val => extensionData.scope.indexOf(val) === -1);
+        if (!scopes || scopes.length <= 0 || missingScopes.length) {
+            throw new FdkInvalidExtensionConfig("Invalid scopes in extension config. Invalid scopes: " + missingScopes.join(", "));
         }
         return scopes;
     }
@@ -97,7 +98,7 @@ class Extension {
 
     getPlatformConfig(companyId) {
         if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized')    
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
         }
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),
@@ -112,11 +113,14 @@ class Extension {
 
     async getPlatformClient(companyId, session) {
         if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized')    
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
         }
+        const SessionStorage = require('./session/session_storage');
+        
         let platformConfig = this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
+        
         if (session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
@@ -128,6 +132,7 @@ class Extension {
                 logger.debug(`Access token renewed for company ${companyId}`);
             }
         }
+       
         return new PlatformClient(platformConfig);
     }
 
@@ -160,5 +165,3 @@ const extension = new Extension();
 module.exports = {
     extension
 };
-
-const SessionStorage = require('./session/session_storage');
