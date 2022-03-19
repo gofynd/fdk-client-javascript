@@ -342,11 +342,11 @@ class WebhookRegistry {
             };
             let responseData = await fdkAxios.request(rawRequest);
             eventConfig.event_configs = responseData.event_configs;
+            return responseData;
         }
         catch (err) {
             throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration, Reason: ${err.message}`)
         }
-
     }
 }
 

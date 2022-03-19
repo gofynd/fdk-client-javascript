@@ -62,7 +62,7 @@ class Extension {
         this.base_url = data.base_url;
 
         if (data.scopes) {
-            data.scopes = this.verifyScopes(data.scopes);
+            data.scopes = this.verifyScopes(data.scopes, extensionData);
         }
         this.scopes = data.scopes || extensionData.scope;
 
