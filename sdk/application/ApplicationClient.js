@@ -2494,13 +2494,14 @@ class Cart {
    *   identifier of a product. You can get slug value from the endpoint
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+   * @param {number} [arg.promotionGroup] - Type of promotion groups
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  getPromotionOffers({ slug, pageSize } = {}) {
+  getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize },
+      { slug, pageSize, promotionGroup },
       { abortEarly: false }
     );
     if (error) {
@@ -2509,6 +2510,7 @@ class Cart {
     const query_params = {};
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
+    query_params["promotion_group"] = promotionGroup;
 
     return APIClient.execute(
       this._conf,

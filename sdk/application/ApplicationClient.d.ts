@@ -1101,13 +1101,15 @@ declare class Cart {
      *   identifier of a product. You can get slug value from the endpoint
      *   /service/application/catalog/v1.0/products/
      * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+     * @param {number} [arg.promotionGroup] - Type of promotion groups
      * @returns {Promise<PromotionOffersResponse>} - Success response
      * @summary: Fetch available promotions
      * @description: Use this API to get top 5 offers available for current product
      */
-    getPromotionOffers({ slug, pageSize }?: {
+    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
         slug?: string;
         pageSize?: number;
+        promotionGroup?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
