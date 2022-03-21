@@ -102,7 +102,7 @@ const data = await client.serviceability.getEntityRegionView({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [EntityRegionView_Request_schema](#EntityRegionView_Request_schema) | yes | Request body |
+| body | [EntityRegionView_Request](#EntityRegionView_Request) | yes | Request body |
 
 
 This API returns response for Entity Region View.
@@ -112,7 +112,7 @@ This API returns response for Entity Region View.
 
 
 
-[EntityRegionView_Response_schema](#EntityRegionView_Response_schema)
+[EntityRegionView_Response](#EntityRegionView_Response)
 
 Response status_code
 
@@ -214,7 +214,7 @@ This API returns Company Store View of the application.
 
 
 
-[CompanyStoreView_Response_schema](#CompanyStoreView_Response_schema)
+[CompanyStoreView_Response](#CompanyStoreView_Response)
 
 Get Company Store View Data
 
@@ -472,19 +472,6 @@ Response status_code
 
  
  
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | value | string |  yes  |  |
- | type | string |  yes  |  |
-
----
-
-
- 
- 
  #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
@@ -498,20 +485,33 @@ Response status_code
 
  
  
- #### [ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
+ #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
- | error | [ErrorResponse](#ErrorResponse) |  no  |  |
- | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) |  no  |  |
+ | value | string |  yes  |  |
+ | type | string |  yes  |  |
+ | message | string |  yes  |  |
 
 ---
 
 
  
  
- #### [EntityRegionView_Request_schema](#EntityRegionView_Request_schema)
+ #### [ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) |  no  |  |
+ | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse) |  no  |  |
+ | success | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Request](#EntityRegionView_Request)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -527,22 +527,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sub_type | string |  yes  |  |
- | name | string |  yes  |  |
  | uid | string |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionView_Error](#EntityRegionView_Error)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | value | string |  no  |  |
- | type | string |  no  |  |
+ | name | string |  yes  |  |
+ | sub_type | string |  yes  |  |
 
 ---
 
@@ -553,53 +540,38 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
  | item_total | number |  yes  |  |
  | type | string |  yes  |  |
- | has_next | boolean |  yes  |  |
  | current | number |  yes  |  |
- | size | number |  yes  |  |
 
 ---
 
 
  
  
- #### [EntityRegionView_Response_schema](#EntityRegionView_Response_schema)
+ #### [EntityRegionView_Error](#EntityRegionView_Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ | type | string |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Response](#EntityRegionView_Response)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  yes  |  |
+ | page | [EntityRegionView_page](#EntityRegionView_page) |  yes  |  |
  | error | [EntityRegionView_Error](#EntityRegionView_Error) |  yes  |  |
  | success | boolean |  yes  |  |
- | page | [EntityRegionView_page](#EntityRegionView_page) |  yes  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total_zones | number |  yes  |  |
- | total_pincodes_served | number |  yes  |  |
- | total_active_zones | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ZoneDataItem](#ZoneDataItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_total | number |  yes  |  |
- | type | string |  yes  |  |
- | has_next | boolean |  yes  |  |
- | current | number |  yes  |  |
- | size | number |  yes  |  |
 
 ---
 
@@ -634,15 +606,43 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stores_count | number |  yes  |  |
- | name | string |  yes  |  |
+ | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
  | id | string |  yes  |  |
+ | pincodes_count | number |  yes  |  |
+ | name | string |  yes  |  |
  | slug | string |  yes  |  |
  | company_id | number |  yes  |  |
- | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
- | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
- | is_active | boolean |  yes  |  |
- | pincodes_count | number |  yes  |  |
+ | stores_count | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDataItem](#ZoneDataItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
+ | item_total | number |  yes  |  |
+ | type | string |  yes  |  |
+ | current | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_pincodes_served | number |  yes  |  |
+ | total_zones | number |  yes  |  |
+ | total_active_zones | number |  yes  |  |
 
 ---
 
@@ -653,9 +653,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
  | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
+ | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
 
 ---
 
@@ -666,23 +666,23 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
  | item_total | number |  yes  |  |
  | type | string |  yes  |  |
- | has_next | boolean |  yes  |  |
  | current | number |  yes  |  |
- | size | number |  yes  |  |
 
 ---
 
 
  
  
- #### [CompanyStoreView_Response_schema](#CompanyStoreView_Response_schema)
+ #### [CompanyStoreView_Response](#CompanyStoreView_Response)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  yes  |  |
  | items | [string] |  no  |  |
+ | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  yes  |  |
 
 ---
 
@@ -706,9 +706,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | status_code | number |  yes  |  |
  | zone_id | string |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -719,8 +719,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -755,15 +755,15 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zone_id | string |  yes  |  |
- | stores_count | number |  yes  |  |
+ | channels | [GetZoneDataViewChannels](#GetZoneDataViewChannels) |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | product | [GetZoneDataViewProduct](#GetZoneDataViewProduct) |  yes  |  |
+ | pincodes_count | number |  yes  |  |
  | name | string |  yes  |  |
  | slug | string |  yes  |  |
- | channels | [GetZoneDataViewChannels](#GetZoneDataViewChannels) |  yes  |  |
- | pincodes_count | number |  yes  |  |
- | product | [GetZoneDataViewProduct](#GetZoneDataViewProduct) |  yes  |  |
- | is_active | boolean |  yes  |  |
  | company_id | number |  yes  |  |
+ | stores_count | number |  yes  |  |
+ | zone_id | string |  yes  |  |
 
 ---
 
@@ -774,7 +774,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[GetZoneDataViewItems](#GetZoneDataViewItems)] |  yes  |  |
+ | data | [GetZoneDataViewItems](#GetZoneDataViewItems) |  yes  |  |
 
 ---
 
@@ -785,8 +785,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  yes  |  |
  | pincode | string |  yes  |  |
+ | country | string |  yes  |  |
 
 ---
 
