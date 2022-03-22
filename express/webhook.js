@@ -340,6 +340,7 @@ class WebhookRegistry {
                     "Content-Type": "application/json",
                 },
             };
+            logger.debug(`Webhook events config received: ${responseData}`);
             let responseData = await fdkAxios.request(rawRequest);
             eventConfig.event_configs = responseData.event_configs;
             return responseData;
