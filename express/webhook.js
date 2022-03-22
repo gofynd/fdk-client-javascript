@@ -340,10 +340,10 @@ class WebhookRegistry {
                     "Content-Type": "application/json",
                 },
             };
-            logger.debug(`Webhook events config received: ${responseData}`);
             let responseData = await fdkAxios.request(rawRequest);
             eventConfig.event_configs = responseData.event_configs;
-            return responseData;
+            logger.debug(`Webhook events config received: ${responseData}`);
+            return responseData;            
         }
         catch (err) {
             throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration, Reason: ${err.message}`)
