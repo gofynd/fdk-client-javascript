@@ -160,15 +160,10 @@ function setupRoutes(ext) {
                     cluster: ext.cluster,
                     companyId: company_id
                 });
-                let session = await SessionStorage.getSession(sid);
-                const client = await ext.getPlatformClient(company_id, session);
-                req.platformClient = client;
+                await SessionStorage.deleteSession(sid);
             }
             req.extension = ext;
             await ext.callbacks.uninstall(req);
-            if (sid) {
-                await SessionStorage.deleteSession(sid);
-            }
             res.json({ success: true });
         } catch (error) {
             res.status(500).json({ success: false, message: error });
