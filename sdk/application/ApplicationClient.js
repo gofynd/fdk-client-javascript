@@ -100,9 +100,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      unfollowById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       followById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      unfollowById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -1130,37 +1130,6 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      constructUrl({
-        url: this._urls["unfollowById"],
-        params: { collectionType, collectionId },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1179,6 +1148,37 @@ class Catalog {
       "post",
       constructUrl({
         url: this._urls["followById"],
+        params: { collectionType, collectionId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.
+   * @param {string} arg.collectionId - The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      constructUrl({
+        url: this._urls["unfollowById"],
         params: { collectionType, collectionId },
       }),
       query_params,
@@ -5889,6 +5889,8 @@ class Payment {
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
+      resendOrCancelPayment:
+        "/service/application/payment/v1.0/payment/resend_or_cancel",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -6346,6 +6348,35 @@ class Payment {
       }),
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ResendOrCancelPaymentRequest} arg.body
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+   * @summary: API to resend and cancel a payment link which was already generated.
+   * @description: Use this API to perform resend or cancel a payment link based on request payload.
+   */
+  resendOrCancelPayment({ body } = {}) {
+    const { error } = PaymentValidator.resendOrCancelPayment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["resendOrCancelPayment"],
+        params: {},
+      }),
+      query_params,
+      body
     );
   }
 
@@ -9608,52 +9639,5 @@ class Logistic {
     );
   }
 }
-
-/**
- * @param data
- * @param {string} file_name
- * @param {string} content_type
- * @param {string} namespace
- * @param {number} size
- * @param {number} tags
- */
-FileStorage.prototype.upload = function ({
-  data,
-  file_name,
-  content_type,
-  namespace,
-  size,
-  tags,
-} = {}) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const dataObj = await this.startUpload({
-        namespace,
-        body: {
-          file_name,
-          content_type,
-          size: size,
-          tags: tags,
-        },
-      });
-      if (dataObj.upload && dataObj.upload.url) {
-        await axios.put(dataObj.upload.url, data, {
-          withCredentials: false,
-          headers: { "Content-Type": content_type },
-        });
-      } else {
-        reject({ message: "Failed to upload file" });
-      }
-      delete dataObj.tags;
-      const completeRes = await this.completeUpload({
-        namespace,
-        body: dataObj,
-      });
-      resolve(completeRes);
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
 
 module.exports = ApplicationClient;

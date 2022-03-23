@@ -46,8 +46,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        unfollowById: string;
         followById: string;
+        unfollowById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -498,10 +498,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -511,10 +511,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -2181,14 +2181,6 @@ declare class FileStorage {
     signUrls({ body }?: {
         body: any;
     }): Promise<any>;
-    upload({ data, file_name, content_type, namespace, size, tags, }?: {
-        data: any;
-        file_name: any;
-        content_type: any;
-        namespace: any;
-        size: any;
-        tags: any;
-    }): Promise<any>;
 }
 declare class Configuration {
     constructor(_conf: any);
@@ -2374,6 +2366,7 @@ declare class Payment {
         getPaymentModeRoutes: string;
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
+        resendOrCancelPayment: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -2544,6 +2537,16 @@ declare class Payment {
      * @description: Get CreditLine Offer if user is tentatively approved by rupifi
      */
     getRupifiBannerDetails({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ResendOrCancelPaymentRequest} arg.body
+     * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+     * @summary: API to resend and cancel a payment link which was already generated.
+     * @description: Use this API to perform resend or cancel a payment link based on request payload.
+     */
+    resendOrCancelPayment({ body }?: {
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response
