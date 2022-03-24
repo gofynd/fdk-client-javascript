@@ -124,8 +124,8 @@ export class CatalogValidator {
     static getOptimalLocations(): any;
 }
 export class CompanyProfileValidator {
-    static cbsOnboardGet(): any;
     static updateCompany(): any;
+    static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
     static editBrand(): any;
     static getBrand(): any;
@@ -208,7 +208,7 @@ export class ServiceabilityValidator {
     static getEntityRegionView(): any;
     static getListView(): any;
     static getCompanyStoreView(): any;
-    static upsertZoneControllerView(): any;
-    static updateZoneControllerView(): any;
     static getZoneDataView(): any;
+    static updateZoneControllerView(): any;
+    static upsertZoneControllerView(): any;
 }
