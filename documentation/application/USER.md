@@ -3333,6 +3333,12 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verify_mobile_otp | boolean |  no  |  |
  | email | string |  no  |  |
  | request_id | string |  no  |  |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
 
 ---
 
