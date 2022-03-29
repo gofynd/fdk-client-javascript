@@ -1763,7 +1763,7 @@ declare class Content {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<DataLoaderSchema>} - Success response
+     * @returns {Promise<DataLoadersSchema>} - Success response
      * @summary: Get the data loaders associated with an application
      * @description: Use this API to get all selected data loaders of the application in the form of tags.
      */

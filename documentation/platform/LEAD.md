@@ -4112,20 +4112,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | [[KeyValue](#KeyValue)] |  yes  | Form response |
+ | response | [string] |  yes  | Form response |
  | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the form |
-
----
-
-
- 
- 
- #### [KeyValue](#KeyValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  | Parameter for evaluating |
- | value | string |  yes  | Response for the parameter |
 
 ---
 

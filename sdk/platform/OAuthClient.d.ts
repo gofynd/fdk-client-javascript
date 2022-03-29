@@ -7,7 +7,10 @@ declare class OAuthClient {
     retryOAuthTokenTimer: NodeJS.Timeout;
     raw_token: any;
     token_expires_in: any;
-    getAccessToken(): any;
+    token_expires_at: number;
+    useAutoRenewTimer: any;
+    getAccessToken(): Promise<any>;
+    isTokenExpired(ttl?: number): boolean;
     setToken(token: any): void;
     retryOAuthToken(expires_in: any): void;
     startAuthorization(options: any): string;
@@ -18,4 +21,6 @@ declare class OAuthClient {
         refresh_token: any;
         code: any;
     }): Promise<any>;
+    getOfflineAccessToken(scopes: any, code: any): Promise<any>;
+    getOfflineAccessTokenObj(scopes: any, code: any): Promise<any>;
 }
