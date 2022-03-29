@@ -8,8 +8,8 @@ class APIClient {
    * @param {object} query
    * @param {object} body
    */
-  static execute(conf, method, url, query, body) {
-    const token = conf.oauthClient.getAccessToken();
+  static async execute(conf, method, url, query, body) {
+    const token = await conf.oauthClient.getAccessToken();
 
     const rawRequest = {
       baseURL: conf.domain,

@@ -309,7 +309,7 @@ Success
  | size | number |  yes  |  |
  | upload | [Upload](#Upload) |  yes  |  |
  | cdn | [CDN](#CDN) |  yes  |  |
- | success | string |  yes  |  |
+ | success | boolean |  yes  |  |
  | tags | [string] |  no  |  |
  | created_on | string |  yes  |  |
  | modified_on | string |  yes  |  |

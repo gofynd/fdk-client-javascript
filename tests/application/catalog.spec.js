@@ -18,10 +18,8 @@ afterAll(() => {
 });
 
 describe("Application Catalog Test Cases", () => {
-  it("getProductDetailBySlug testing", async () => {
-    let productDetail = await applicationClient.catalog.getProductDetailBySlug({
-      slug: "walrus-black-wallet-436997-db85b6",
-    });
-    expect(productDetail.slug).toBe("walrus-black-wallet-436997-db85b6");
+  it("getProducts testing", async () => {
+    let products = await applicationClient.catalog.getProducts();
+    expect(products.items.length).toBeGreaterThan(0);
   });
 });
