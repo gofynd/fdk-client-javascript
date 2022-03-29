@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
-## [0.5.0] - 2021-03-10
+## [0.5.0] - 2022-03-30
 ### Added
 - Fetching and verifying extension details using `api_key` and `api_secret` on server/consumer start. Given invalid extension api_key and api_secret, it will throw error. Same will be done if `scopes` are included which are not registered on Fynd Partners panel.
 - Added webhook event name validation. Now each webhook event details mentioned in `webhook_config` will be validated on server/consumer start. It will throw error in case of invalid event name passed.
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.4.0] - 2021-02-22
+## [0.4.0] - 2022-02-22
 ### Changed
 - Support for the webhook event category
 - Support for the webhook event versioning
