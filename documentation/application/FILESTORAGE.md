@@ -304,13 +304,12 @@ Success
  | file_name | string |  yes  |  |
  | file_path | string |  yes  |  |
  | content_type | string |  yes  |  |
- | method | string |  yes  |  |
  | namespace | string |  yes  |  |
  | operation | string |  yes  |  |
  | size | number |  yes  |  |
  | upload | [Upload](#Upload) |  yes  |  |
  | cdn | [CDN](#CDN) |  yes  |  |
- | success | string |  yes  |  |
+ | success | boolean |  yes  |  |
  | tags | [string] |  no  |  |
  | created_on | string |  yes  |  |
  | modified_on | string |  yes  |  |

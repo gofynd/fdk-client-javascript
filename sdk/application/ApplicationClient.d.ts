@@ -42,20 +42,20 @@ declare class Catalog {
         getHomeProducts: string;
         getDepartments: string;
         getSearchResults: string;
-        getCollections: string;
-        getCollectionItemsBySlug: string;
-        getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        unfollowById: string;
         followById: string;
+        unfollowById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
         getInStockLocations: string;
         getLocationDetailsById: string;
-        getProductBundlesBySlug: string;
         getProductPriceBySlug: string;
         getProductSellersBySlug: string;
+        getCollections: string;
+        getCollectionItemsBySlug: string;
+        getCollectionDetailBySlug: string;
+        getProductBundlesBySlug: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -376,97 +376,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @param {string[]} [arg.tag] - List of tags to filter collections
-     * @returns {Promise<GetCollectionListingResponse>} - Success response
-     * @summary: List all the collections
-     * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
-     */
-    getCollections({ pageNo, pageSize, tag }?: {
-        pageNo?: number;
-        pageSize?: number;
-        tag?: string[];
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @param {string[]} [arg.tag] - List of tags to filter collections
-     * @summary: List all the collections
-     * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
-     */
-    getCollectionsPaginator({ pageSize, tag }?: {
-        pageSize?: number;
-        tag?: string[];
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a collection. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/collections/.
-     * @param {string} [arg.f] - The search filter parameters. Filter parameters
-     *   will be passed in f parameter as shown in the example below. Double
-     *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
-     *   indicates a new filter paramater applied as an AND condition.
-     * @param {boolean} [arg.filters] - This is a boolean value, True for
-     *   fetching all filter parameters and False for disabling the filter parameters.
-     * @param {string} [arg.sortOn] - The order in which the list of products
-     *   should be sorted, e.g. popularity, price, latest and discount, in
-     *   either ascending or descending order. See the supported values below.
-     * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ProductListingResponse>} - Success response
-     * @summary: Get the items in a collection
-     * @description: Get items in a collection specified by its `slug`.
-     */
-    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, }?: {
-        slug: string;
-        f?: string;
-        filters?: boolean;
-        sortOn?: string;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a collection. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/collections/.
-     * @param {string} [arg.f] - The search filter parameters. Filter parameters
-     *   will be passed in f parameter as shown in the example below. Double
-     *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
-     *   indicates a new filter paramater applied as an AND condition.
-     * @param {boolean} [arg.filters] - This is a boolean value, True for
-     *   fetching all filter parameters and False for disabling the filter parameters.
-     * @param {string} [arg.sortOn] - The order in which the list of products
-     *   should be sorted, e.g. popularity, price, latest and discount, in
-     *   either ascending or descending order. See the supported values below.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get the items in a collection
-     * @description: Get items in a collection specified by its `slug`.
-     */
-    getCollectionItemsBySlugPaginator({ slug, f, filters, sortOn, pageSize, }?: {
-        slug: string;
-        f?: string;
-        filters?: boolean;
-        sortOn?: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a collection. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/collections/.
-     * @returns {Promise<CollectionDetailResponse>} - Success response
-     * @summary: Get a particular collection
-     * @description: Get the details of a collection by its `slug`.
-     */
-    getCollectionDetailBySlug({ slug }?: {
-        slug: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.collectionType - Type of collection followed, i.e.
      *   products, brands, or collections.
      * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
@@ -498,10 +407,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -511,10 +420,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -650,18 +559,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
-     * @param {string} [arg.id] - Product uid
-     * @returns {Promise<ProductBundle>} - Success response
-     * @summary: Get product bundles
-     * @description: Use this API to retrieve products bundles to the one specified by its slug.
-     */
-    getProductBundlesBySlug({ slug, id }?: {
-        slug?: string;
-        id?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of a product. You can get slug value from the endpoint
      *   /service/application/catalog/v1.0/products/
@@ -672,7 +569,7 @@ declare class Catalog {
      *   product, e.g. 1,2,3.
      * @param {string} [arg.pincode] - The PIN Code of the area near which the
      *   selling locations should be searched, e.g. 400059.
-     * @returns {Promise<ProductSizePriceResponseV2>} - Success response
+     * @returns {Promise<ProductSizePriceResponse>} - Success response
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
      */
@@ -697,7 +594,7 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
+     * @returns {Promise<ProductSizeSellersResponse>} - Success response
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
@@ -732,6 +629,109 @@ declare class Catalog {
         strategy?: string;
         pageSize?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string[]} [arg.tag] - List of tags to filter collections
+     * @returns {Promise<GetCollectionListingResponse>} - Success response
+     * @summary: List all the collections
+     * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
+     */
+    getCollections({ pageNo, pageSize, tag }?: {
+        pageNo?: number;
+        pageSize?: number;
+        tag?: string[];
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string[]} [arg.tag] - List of tags to filter collections
+     * @summary: List all the collections
+     * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
+     */
+    getCollectionsPaginator({ pageSize, tag }?: {
+        pageSize?: number;
+        tag?: string[];
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a collection. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/collections/.
+     * @param {string} [arg.f] - The search filter parameters. Filter parameters
+     *   will be passed in f parameter as shown in the example below. Double
+     *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
+     *   indicates a new filter paramater applied as an AND condition.
+     * @param {boolean} [arg.filters] - This is a boolean value, True for
+     *   fetching all filter parameters and False for disabling the filter parameters.
+     * @param {string} [arg.sortOn] - The order in which the list of products
+     *   should be sorted, e.g. popularity, price, latest and discount, in
+     *   either ascending or descending order. See the supported values below.
+     * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Promise<ProductListingResponse>} - Success response
+     * @summary: Get the items in a collection
+     * @description: Get items in a collection specified by its `slug`.
+     */
+    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, }?: {
+        slug: string;
+        f?: string;
+        filters?: boolean;
+        sortOn?: string;
+        pageId?: string;
+        pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a collection. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/collections/.
+     * @param {string} [arg.f] - The search filter parameters. Filter parameters
+     *   will be passed in f parameter as shown in the example below. Double
+     *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
+     *   indicates a new filter paramater applied as an AND condition.
+     * @param {boolean} [arg.filters] - This is a boolean value, True for
+     *   fetching all filter parameters and False for disabling the filter parameters.
+     * @param {string} [arg.sortOn] - The order in which the list of products
+     *   should be sorted, e.g. popularity, price, latest and discount, in
+     *   either ascending or descending order. See the supported values below.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @summary: Get the items in a collection
+     * @description: Get items in a collection specified by its `slug`.
+     */
+    getCollectionItemsBySlugPaginator({ slug, f, filters, sortOn, pageSize, }?: {
+        slug: string;
+        f?: string;
+        filters?: boolean;
+        sortOn?: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a collection. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/collections/.
+     * @returns {Promise<CollectionDetailResponse>} - Success response
+     * @summary: Get a particular collection
+     * @description: Get the details of a collection by its `slug`.
+     */
+    getCollectionDetailBySlug({ slug }?: {
+        slug: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
+     * @param {string} [arg.id] - Product uid
+     * @returns {Promise<ProductBundle>} - Success response
+     * @summary: Get product bundles
+     * @description: Use this API to retrieve products bundles to the one specified by its slug.
+     */
+    getProductBundlesBySlug({ slug, id }?: {
+        slug?: string;
+        id?: string;
+    }): Promise<any>;
 }
 declare class Cart {
     constructor(_conf: any);
@@ -1699,6 +1699,7 @@ declare class Content {
         getAnnouncements: string;
         getBlog: string;
         getBlogs: string;
+        getDataLoaders: string;
         getFaqs: string;
         getFaqCategories: string;
         getFaqBySlug: string;
@@ -1760,6 +1761,13 @@ declare class Content {
     getBlogsPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<DataLoadersSchema>} - Success response
+     * @summary: Get the data loaders associated with an application
+     * @description: Use this API to get all selected data loaders of the application in the form of tags.
+     */
+    getDataLoaders({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<FaqResponseSchema>} - Success response
