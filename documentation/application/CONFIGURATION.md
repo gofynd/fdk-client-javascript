@@ -20,6 +20,7 @@ Application configuration apis
 * [getLanguages](#getlanguages)
 * [getOrderingStoreCookie](#getorderingstorecookie)
 * [removeOrderingStoreCookie](#removeorderingstorecookie)
+* [getAppStaffList](#getappstafflist)
 * [getAppStaffs](#getappstaffs)
 
 
@@ -1312,6 +1313,74 @@ Success
 ---
 
 
+### getAppStaffList
+Get a list of staff.
+
+
+
+```javascript
+// Promise
+const promise = configuration.getAppStaffList({  pageNo : value,
+ pageSize : value,
+ orderIncent : value,
+ orderingStore : value,
+ user : value });
+
+// Async/Await
+const data = await configuration.getAppStaffList({  pageNo : value,
+ pageSize : value,
+ orderIncent : value,
+ orderingStore : value,
+ user : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
+| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+
+
+
+Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+
+*Returned Response:*
+
+
+
+
+[AppStaffListResponse](#AppStaffListResponse)
+
+Success. Check the example shown below or refer `AppStaffListResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getAppStaffs
 Get a list of staff.
 
@@ -1530,6 +1599,18 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | staff_users | [[AppStaff](#AppStaff)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppStaffListResponse](#AppStaffListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[AppStaff](#AppStaff)] |  no  |  |
 
 ---
 

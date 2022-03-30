@@ -2175,6 +2175,7 @@ declare class Configuration {
         getLanguages: string;
         getOrderingStoreCookie: string;
         removeOrderingStoreCookie: string;
+        getAppStaffList: string;
         getAppStaffs: string;
     };
     _urls: {};
@@ -2307,6 +2308,45 @@ declare class Configuration {
      * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
      */
     removeOrderingStoreCookie({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+     *   `true` to retrieve the staff members eligible for getting incentives on orders.
+     * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+     *   retrieving staff members working at a particular ordering store.
+     * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+     *   the details of a particular staff member.
+     * @returns {Promise<AppStaffListResponse>} - Success response
+     * @summary: Get a list of staff.
+     * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+     */
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user }?: {
+        pageNo?: number;
+        pageSize?: number;
+        orderIncent?: boolean;
+        orderingStore?: number;
+        user?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] -
+     * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+     *   `true` to retrieve the staff members eligible for getting incentives on orders.
+     * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+     *   retrieving staff members working at a particular ordering store.
+     * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+     *   the details of a particular staff member.
+     * @summary: Get a list of staff.
+     * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+     */
+    getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, }?: {
+        pageSize?: number;
+        orderIncent?: boolean;
+        orderingStore?: number;
+        user?: string;
+    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
