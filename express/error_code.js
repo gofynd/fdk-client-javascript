@@ -1,10 +1,11 @@
 'use strict';
 
-class FdkInvalidExtensionJson extends Error {
+class FdkInvalidExtensionConfig extends Error {
     constructor(message) {
         super(message);
     }
 }
+
 
 class FdkClusterMetaMissingEror extends Error {
     constructor(message) {
@@ -55,7 +56,7 @@ class FdkWebhookHandlerNotFound extends Error {
 
 
 module.exports = {
-    FdkInvalidExtensionJson,
+    FdkInvalidExtensionConfig,
     FdkClusterMetaMissingEror,
     FdkSessionNotFoundError,
     FdkInvalidOAuthError,

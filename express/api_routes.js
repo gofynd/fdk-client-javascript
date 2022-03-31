@@ -2,7 +2,7 @@
 const { extension } = require('./extension');
 const express = require('express');
 const { sessionMiddleware } = require('./middleware/session_middleware');
-const { PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
+const { ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 
 
 function setupProxyRoutes() {

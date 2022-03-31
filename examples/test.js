@@ -21,7 +21,6 @@ let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
 let baseUrl = data.toString() || "http://localhost:5070";
 console.log(baseUrl);
 
-
 function handleCouponEdit(eventName, payload, companyId, applicationId) {
     console.log(`Event received for ${companyId} and ${applicationId}`);
     console.log(payload);
@@ -46,10 +45,10 @@ function handleLocationEvent(eventName, payload, companyId) {
 const redis = new Redis();
 
 let fdkExtension = setupFdk({
-    api_key: "6113bded193f51772ed6f29d",
-    api_secret: "P3mR.4UpD3SFjat",
-    base_url: baseUrl,
-    scopes: ["company/product"],
+    api_key: "6220daa4a5414621b975a41f",
+    api_secret: "EbeGBRC~Fthv5om",
+    base_url: baseUrl, // this is optional 
+    scopes: ["company/product"], // this is optional
     callbacks: extensionHandler,
     storage: new RedisStorage(redis),
     access_mode: "offline",

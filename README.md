@@ -28,13 +28,11 @@ let extensionHandler = {
   },
 };
 
-let baseUrl = "https://test.extension.com";
-
 let fdkClient = setupFdk({
   api_key: "<API_KEY>",
   api_secret: "<API_SECRET>",
-  base_url: baseUrl,
-  scopes: ["company/products"],
+  base_url: baseUrl, // this is optional
+  scopes: ["company/products"], // this is optional
   callbacks: extensionHandler,
   storage: new RedisStorage(redis),
   access_mode: "offline",
@@ -94,8 +92,8 @@ Webhook events can be helpful to handle tasks when certan events occur on platfo
 let fdkClient = setupFdk({
   api_key: "<API_KEY>",
   api_secret: "<API_SECRET>",
-  base_url: baseUrl,
-  scopes: ["company/products"],
+  base_url: baseUrl, // this is optional
+  scopes: ["company/products"], // this is optional
   callbacks: extensionHandler,
   storage: new RedisStorage(redis),
   access_mode: "offline",

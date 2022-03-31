@@ -1,10 +1,12 @@
 'use strict';
 const validator = require('validator');
-const {FdkInvalidExtensionJson} = require("./error_code");
+const { FdkInvalidExtensionConfig } = require("./error_code");
 const urljoin = require('url-join');
-const { PlatformConfig, PlatformClient, ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
+const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
+const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
+const querystring = require("query-string");
 
 class Extension {
     constructor() {
@@ -16,52 +18,72 @@ class Extension {
         this.access_mode = null;
         this.cluster = "https://api.fynd.com";
         this.webhookRegistry = null;
+        this._isInitialized = false;
     }
 
-    initialize(data) {
+    async initialize(data) {
+
+        this._isInitialized = false;
+
         this.storage = data.storage;
 
-        if(!data.api_key){
-            throw new FdkInvalidExtensionJson("Invalid api_key");
+        if (!data.api_key) {
+            throw new FdkInvalidExtensionConfig("Invalid api_key");
         }
         this.api_key = data.api_key;
 
-        if(!data.api_secret){
-            throw new FdkInvalidExtensionJson("Invalid api_secret");
+        if (!data.api_secret) {
+            throw new FdkInvalidExtensionConfig("Invalid api_secret");
         }
         this.api_secret = data.api_secret;
 
-        if(!validator.isURL(data.base_url)) {
-            throw new FdkInvalidExtensionJson("Invalid base_url");
-        }
-        
-        this.base_url = data.base_url;
-        this.scopes = this.verifyScopes(data.scopes);
-
-        if(!data.callbacks || ( data.callbacks && ( !data.callbacks.auth || !data.callbacks.uninstall))) {
-            throw new FdkInvalidExtensionJson("Missing some of callbacks. Please add all `auth` and `uninstall` callbacks.");
+        if (!data.callbacks || (data.callbacks && (!data.callbacks.auth || !data.callbacks.uninstall))) {
+            throw new FdkInvalidExtensionConfig("Missing some of callbacks. Please add all `auth` and `uninstall` callbacks.");
         }
 
         this.callbacks = data.callbacks;
         this.access_mode = data.access_mode || "offline";
-        
-        if(data.cluster) {
-            if(!validator.isURL(data.cluster)) {
-                throw new FdkInvalidExtensionJson("Invalid cluster");
+
+        if (data.cluster) {
+            if (!validator.isURL(data.cluster)) {
+                throw new FdkInvalidExtensionConfig("Invalid cluster value. Invalid value: " + data.cluster);
             }
             this.cluster = data.cluster;
         }
+
+        let extensionData = await this.getExtensionDetails();
+
+        if (data.base_url && !validator.isURL(data.base_url)) {
+            throw new FdkInvalidExtensionConfig("Invalid base_url value. Invalid value: " + data.base_url);
+        }
+        else if (!data.base_url) {
+            data.base_url = extensionData.base_url;
+        }
+        this.base_url = data.base_url;
+
+        if (data.scopes) {
+            data.scopes = this.verifyScopes(data.scopes, extensionData);
+        }
+        this.scopes = data.scopes || extensionData.scope;
+
         logger.debug(`Extension initialized`);
         this.webhookRegistry = new WebhookRegistry();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
-            this.webhookRegistry.initialize(data.webhook_config, data);
+            await this.webhookRegistry.initialize(data.webhook_config, data);
         }
+
+        this._isInitialized = true;
     }
 
-    verifyScopes(scopes) {
-        if(!scopes || scopes.length <= 0 ) {
-            throw new FdkInvalidExtensionJson("Invalid scopes in extension.json");
+    get isInitialized(){
+        return this._isInitialized;
+    }
+
+    verifyScopes(scopes, extensionData) {
+        const missingScopes = scopes.filter(val => extensionData.scope.indexOf(val) === -1);
+        if (!scopes || scopes.length <= 0 || missingScopes.length) {
+            throw new FdkInvalidExtensionConfig("Invalid scopes in extension config. Invalid scopes: " + missingScopes.join(", "));
         }
         return scopes;
     }
@@ -75,29 +97,69 @@ class Extension {
     }
 
     getPlatformConfig(companyId) {
+        if (!this._isInitialized){
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+        }
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),
             domain: this.cluster,
             apiKey: this.api_key,
-            apiSecret: this.api_secret
+            apiSecret: this.api_secret,
+            useAutoRenewTimer: false
         });
         return platformConfig;
+        
     }
 
     async getPlatformClient(companyId, session) {
-        let platformConfig =  this.getPlatformConfig(companyId);
+        if (!this._isInitialized){
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+        }
+        const SessionStorage = require('./session/session_storage');
+        
+        let platformConfig = this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
-        if(session.access_token_validity) {
-            let ac_nr_expired = ((session.access_token_validity - new Date().getTime())/ 1000) <= 120;
-            if(ac_nr_expired) {
+        platformConfig.oauthClient.token_expires_at = session.access_token_validity;
+        
+        if (session.access_token_validity && session.refresh_token) {
+            let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
+            if (ac_nr_expired) {
                 logger.debug(`Renewing access token for company ${companyId}`);
-                await platformConfig.oauthClient.renewAccessToken();
+                const renewTokenRes = await platformConfig.oauthClient.renewAccessToken();
+                renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+                session.updateToken(renewTokenRes);
+                await SessionStorage.saveSession(session);
                 logger.debug(`Access token renewed for company ${companyId}`);
             }
         }
+       
         return new PlatformClient(platformConfig);
     }
+
+    async getExtensionDetails() {
+        try {
+            let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
+            const token = Buffer.from(
+                `${this.api_key}:${this.api_secret}`,
+                "utf8"
+            ).toString("base64");
+            const rawRequest = {
+                method: "get",
+                url: url,
+                headers: {
+                    Authorization: `Basic ${token}`,
+                    "Content-Type": "application/json",
+                },
+            };
+            let extensionData = await fdkAxios.request(rawRequest);
+            logger.debug(`Extension details received: ${extensionData}`);
+            return extensionData;
+        } catch (err) {
+            throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
+        }
+    }
 }
+
 
 const extension = new Extension();
 

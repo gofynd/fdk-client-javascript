@@ -2,7 +2,7 @@
 
 async function auth(req) {
     // Writee you code here to return initial launch url
-   return req.extension.base_url;
+    return req.extension.base_url + `?company_id=${req.query.company_id}`;
 }
 
 async function uninstall(req) {
