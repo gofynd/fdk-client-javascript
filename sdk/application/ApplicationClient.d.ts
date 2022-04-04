@@ -761,6 +761,8 @@ declare class Cart {
         getCartShareLink: string;
         getCartSharedItems: string;
         updateCartWithSharedItems: string;
+        getPromotionOffers: string;
+        getLadderOffers: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -1092,6 +1094,42 @@ declare class Cart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.slug] - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+     * @param {number} [arg.promotionGroup] - Type of promotion groups
+     * @returns {Promise<PromotionOffersResponse>} - Success response
+     * @summary: Fetch available promotions
+     * @description: Use this API to get top 5 offers available for current product
+     */
+    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
+        slug?: string;
+        pageSize?: number;
+        promotionGroup?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {string} [arg.storeId] - Store uid of assigned store on PDP page.
+     *   If not passed default first created ladder will be returned
+     * @param {string} [arg.promotionId] - Get ladder information of given
+     *   promotion id explicitely
+     * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+     * @returns {Promise<LadderPriceOffers>} - Success response
+     * @summary: Fetch ladder price promotion
+     * @description: Use this API to get applicable ladder price promotion for current product
+     */
+    getLadderOffers({ slug, storeId, promotionId, pageSize }?: {
+        slug: string;
+        storeId?: string;
+        promotionId?: string;
+        pageSize?: number;
     }): Promise<any>;
 }
 declare class Common {
@@ -2381,6 +2419,7 @@ declare class Payment {
         getPaymentModeRoutes: string;
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
+        resendOrCancelPayment: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -2551,6 +2590,16 @@ declare class Payment {
      * @description: Get CreditLine Offer if user is tentatively approved by rupifi
      */
     getRupifiBannerDetails({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ResendOrCancelPaymentRequest} arg.body
+     * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+     * @summary: API to resend and cancel a payment link which was already generated.
+     * @description: Use this API to perform resend or cancel a payment link based on request payload.
+     */
+    resendOrCancelPayment({ body }?: {
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response

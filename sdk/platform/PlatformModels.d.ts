@@ -93,9 +93,9 @@ export class CatalogValidator {
     static updateCategory(): any;
     static getProducts(): any;
     static createProduct(): any;
+    static getProduct(): any;
     static deleteProduct(): any;
     static editProduct(): any;
-    static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;
@@ -128,15 +128,15 @@ export class CompanyProfileValidator {
     static cbsOnboardGet(): any;
     static updateCompany(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
-    static getLocationDetail(): any;
+    static getLocations(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {
@@ -158,9 +158,6 @@ export class InventoryValidator {
     static getJobByCode(): any;
     static getJobCodeMetrics(): any;
     static getJobCodesByCompanyAndIntegration(): any;
-    static getJobConfigByIntegrationType(): any;
-    static getJobCodesMetrics(): any;
-    static saveJobCodesMetrics(): any;
 }
 export class ConfigurationValidator {
     static createApplication(): any;
