@@ -18,6 +18,7 @@ const {
   FeedbackValidator,
   PosCartValidator,
   LogisticValidator,
+  LocationValidator,
 } = require("./ApplicationModels");
 
 const APIClient = require("./ApplicationAPIClient");
@@ -57,8 +58,29 @@ class ApplicationClient {
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
   }
+
   setCookie(cookie) {
     this.config.cookie = cookie;
+  }
+
+  setLocationDetails(locationDetails) {
+    const {
+      error,
+    } = LocationValidator.validateLocationObj().validate(locationDetails, {
+      abortEarly: false,
+    });
+    if (error) {
+      throw new FDKClientValidationError(error);
+    }
+    this.config.locationDetails = locationDetails;
+  }
+
+  setExtraHeaders(header) {
+    if (typeof header === "object") {
+      this.config.extraHeaders.push(header);
+    } else {
+      throw new FDKClientValidationError("Context value should be an object");
+    }
   }
 }
 
@@ -100,9 +122,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      followById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       unfollowById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      followById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -1130,37 +1152,6 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-   */
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["followById"],
-        params: { collectionType, collectionId },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Unfollow an entity (product/brand/collection)
    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
@@ -1179,6 +1170,37 @@ class Catalog {
       "delete",
       constructUrl({
         url: this._urls["unfollowById"],
+        params: { collectionType, collectionId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.
+   * @param {string} arg.collectionId - The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Follow an entity (product/brand/collection)
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   */
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["followById"],
         params: { collectionType, collectionId },
       }),
       query_params,

@@ -14,6 +14,14 @@ beforeAll(async () => {
     const tokenResponse = await setAccesstokenObj(platformConfig);
     platformConfig.oauthClient.setToken(tokenResponse);
     platformClient = new PlatformClient(platformConfig);
+    platformClient.setExtraHeaders({
+      "x-platform-header": {
+        pincode: "",
+        country: "",
+        city: "",
+        location: { longitude: "", latitude: "" },
+      },
+    });
   } catch (err) {
     console.log(err);
   }

@@ -16,6 +16,7 @@ class PlatformConfig {
     this.useAutoRenewTimer =
       config.useAutoRenewTimer !== undefined ? config.useAutoRenewTimer : true;
     this.oauthClient = new OauthClient(this);
+    this.extraHeaders = [];
   }
   async getAccessToken() {
     let token = await this.oauthClient.getAccessToken();
