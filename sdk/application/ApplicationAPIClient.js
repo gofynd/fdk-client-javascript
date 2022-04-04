@@ -20,7 +20,10 @@ class APIClient {
       headers = { ...headers, cookie: conf.cookie };
     }
     if (conf.locationDetails) {
-      headers = { ...headers, "x-location-detail": conf.locationDetails };
+      headers = {
+        ...headers,
+        "x-location-detail": JSON.stringify(conf.locationDetails),
+      };
     }
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
       acc = { ...acc, ...curr };
