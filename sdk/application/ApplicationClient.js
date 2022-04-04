@@ -2575,6 +2575,8 @@ class Common {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      searchApplication:
+        "/service/common/configuration/v1.0/application/search-application",
       getLocations: "/service/common/configuration/v1.0/location",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -2591,6 +2593,37 @@ class Common {
       ...this._urls,
       ...urls,
     };
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.authorization] -
+   * @param {string} [arg.query] - Provide application name
+   * @returns {Promise<ApplicationResponse>} - Success response
+   * @summary: Search Application
+   * @description: Provide application name or domain url
+   */
+  searchApplication({ authorization, query } = {}) {
+    const { error } = CommonValidator.searchApplication().validate(
+      { authorization, query },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["query"] = query;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["searchApplication"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
   }
 
   /**
@@ -5355,6 +5388,7 @@ class Configuration {
         "/service/application/configuration/v1.0/ordering-store/select",
       removeOrderingStoreCookie:
         "/service/application/configuration/v1.0/ordering-store/select",
+      getAppStaffList: "/service/application/configuration/v1.0/staff/list",
       getAppStaffs: "/service/application/configuration/v1.0/staff",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -5805,6 +5839,87 @@ class Configuration {
       query_params,
       undefined
     );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @returns {Promise<AppStaffListResponse>} - Success response
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+   */
+  getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user } = {}) {
+    const { error } = ConfigurationValidator.getAppStaffList().validate(
+      { pageNo, pageSize, orderIncent, orderingStore, user },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["order_incent"] = orderIncent;
+    query_params["ordering_store"] = orderingStore;
+    query_params["user"] = user;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAppStaffList"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+   */
+  getAppStaffListPaginator({
+    pageSize,
+    orderIncent,
+    orderingStore,
+    user,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppStaffList({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        orderIncent: orderIncent,
+        orderingStore: orderingStore,
+        user: user,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
   }
 
   /**
