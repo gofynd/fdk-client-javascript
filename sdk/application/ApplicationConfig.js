@@ -1,4 +1,8 @@
-const { FDKInvalidCredentialError } = require("../common/FDKError");
+const {
+  FDKInvalidCredentialError,
+  FDKClientValidationError,
+} = require("../common/FDKError");
+const { LocationValidator } = require("../application/ApplicationModels");
 class ApplicationConfig {
   /**
    * @param {object} _conf
@@ -9,6 +13,8 @@ class ApplicationConfig {
     this.applicationToken = _conf.applicationToken || "";
     this.opts = _opts || {};
     this.domain = _conf.domain || "https://api.fynd.com";
+    this.extraHeaders = [];
+    this.locationDetails = _conf.locationDetails;
     this.validate();
   }
 
@@ -17,6 +23,13 @@ class ApplicationConfig {
   }
 
   validate() {
+    const { error } = LocationValidator.validateLocationObj().validate(
+      this.locationDetails,
+      { abortEarly: false }
+    );
+    if (error) {
+      throw new FDKClientValidationError(error);
+    }
     if (!this.applicationID) {
       throw new FDKInvalidCredentialError("No Application ID Present");
     }

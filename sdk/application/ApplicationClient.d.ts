@@ -20,6 +20,8 @@ declare class ApplicationClient {
     posCart: PosCart;
     logistic: Logistic;
     setCookie(cookie: any): void;
+    setLocationDetails(locationDetails: any): void;
+    setExtraHeaders(header: any): void;
 }
 declare class Catalog {
     constructor(_conf: any);
@@ -46,8 +48,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        followById: string;
         unfollowById: string;
+        followById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -498,10 +500,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -511,10 +513,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -2419,6 +2421,7 @@ declare class Payment {
         getPaymentModeRoutes: string;
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
+        getEpaylaterBannerDetails: string;
         resendOrCancelPayment: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
@@ -2430,6 +2433,10 @@ declare class Payment {
         addRefundBankAccountUsingOTP: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
         updateDefaultBeneficiary: string;
+        customerCreditSummary: string;
+        redirectToAggregator: string;
+        checkCredit: string;
+        customerOnboard: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -2592,6 +2599,13 @@ declare class Payment {
     getRupifiBannerDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<EpaylaterBannerResponse>} - Success response
+     * @summary: Get Epaylater Enabled
+     * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
+     */
+    getEpaylaterBannerDetails({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {ResendOrCancelPaymentRequest} arg.body
      * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
      * @summary: API to resend and cancel a payment link which was already generated.
@@ -2698,6 +2712,50 @@ declare class Payment {
      * @description: Use this API to set a default beneficiary for getting a refund.
      */
     updateDefaultBeneficiary({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
+     * @summary: API to fetch the customer credit summary
+     * @description: Use this API to fetch the customer credit summary.
+     */
+    customerCreditSummary({ aggregator }?: {
+        aggregator?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.source] - This is a String value that contains
+     *   callback URL as value.
+     * @param {string} [arg.aggregator] - This is a String value that contains
+     *   aggregator name as value.
+     * @returns {Promise<RedirectToAggregatorResponse>} - Success response
+     * @summary: API to get the redirect url to redirect the user to aggregator's page
+     * @description: Use this API to get the redirect url to redirect the user to aggregator's page
+     */
+    redirectToAggregator({ source, aggregator }?: {
+        source?: string;
+        aggregator?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<CheckCreditResponse>} - Success response
+     * @summary: API to fetch the customer credit summary
+     * @description: Use this API to fetch the customer credit summary.
+     */
+    checkCredit({ aggregator }?: {
+        aggregator?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CustomerOnboardingRequest} arg.body
+     * @returns {Promise<CustomerOnboardingResponse>} - Success response
+     * @summary: API to fetch the customer credit summary
+     * @description: Use this API to fetch the customer credit summary.
+     */
+    customerOnboard({ body }?: {
         body: any;
     }): Promise<any>;
 }
