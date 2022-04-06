@@ -2779,6 +2779,7 @@ declare class Order {
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
+        getInvoiceByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -2922,6 +2923,18 @@ declare class Order {
         orderId: string;
         shipmentId: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @summary: Get Invoice URL
+     * @description: Use this API to get a generated Invoice URL for viewing or download.
+     */
+    getInvoiceByShipmentId({ shipmentId }?: {
+        shipmentId: string;
     }): Promise<any>;
 }
 declare class Rewards {
