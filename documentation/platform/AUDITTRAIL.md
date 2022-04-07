@@ -333,6 +333,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
  | type | string |  no  |  |
  | action | string |  no  |  |
 

@@ -4225,6 +4225,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Success message for form submission |
  | ticket | [Ticket](#Ticket) |  yes  | Ticket created on form submission |
 
 ---
