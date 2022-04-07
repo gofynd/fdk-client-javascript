@@ -11,6 +11,11 @@ class APIClient {
   static async execute(conf, method, url, query, body) {
     const token = await conf.oauthClient.getAccessToken();
 
+    const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
+      acc = { ...acc, ...curr };
+      return acc;
+    }, {});
+
     const rawRequest = {
       baseURL: conf.domain,
       method: method,
@@ -19,6 +24,7 @@ class APIClient {
       data: body,
       headers: {
         Authorization: "Bearer " + token,
+        ...extraHeaders,
       },
     };
 

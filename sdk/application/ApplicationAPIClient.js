@@ -19,13 +19,23 @@ class APIClient {
     if (conf.cookie) {
       headers = { ...headers, cookie: conf.cookie };
     }
+    if (conf.locationDetails) {
+      headers = {
+        ...headers,
+        "x-location-detail": JSON.stringify(conf.locationDetails),
+      };
+    }
+    const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
+      acc = { ...acc, ...curr };
+      return acc;
+    }, {});
 
     const rawRequest = {
       method: method,
       url: url,
       params: query,
       data: body,
-      headers,
+      headers: { ...headers, ...extraHeaders },
     };
     return fdkAxios.request(rawRequest);
   }
