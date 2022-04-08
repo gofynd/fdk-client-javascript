@@ -48,8 +48,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        unfollowById: string;
         followById: string;
+        unfollowById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -500,10 +500,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -513,10 +513,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -3249,11 +3249,14 @@ declare class Feedback {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string[]} arg.ids - List of media ID
      * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Delete Media
      * @description: Use this API to delete media for an entity ID.
      */
-    deleteMedia({}?: any): Promise<any>;
+    deleteMedia({ ids }?: {
+        ids: string[];
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddMediaListRequest} arg.body

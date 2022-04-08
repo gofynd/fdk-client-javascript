@@ -122,9 +122,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      unfollowById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       followById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      unfollowById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -1152,37 +1152,6 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      constructUrl({
-        url: this._urls["unfollowById"],
-        params: { collectionType, collectionId },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1201,6 +1170,37 @@ class Catalog {
       "post",
       constructUrl({
         url: this._urls["followById"],
+        params: { collectionType, collectionId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.
+   * @param {string} arg.collectionId - The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      constructUrl({
+        url: this._urls["unfollowById"],
         params: { collectionType, collectionId },
       }),
       query_params,
@@ -7625,16 +7625,16 @@ class Feedback {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      createAbuseReport: "/service/application/feedback/v1.0/abuse",
-      updateAbuseReport: "/service/application/feedback/v1.0/abuse",
+      createAbuseReport: "/service/application/feedback/v1.0/abuse/",
+      updateAbuseReport: "/service/application/feedback/v1.0/abuse/",
       getAbuseReports:
         "/service/application/feedback/v1.0/abuse/entity/{entity_type}/entity-id/{entity_id}",
-      getAttributes: "/service/application/feedback/v1.0/attributes",
-      createAttribute: "/service/application/feedback/v1.0/attributes",
+      getAttributes: "/service/application/feedback/v1.0/attributes/",
+      createAttribute: "/service/application/feedback/v1.0/attributes/",
       getAttribute: "/service/application/feedback/v1.0/attributes/{slug}",
       updateAttribute: "/service/application/feedback/v1.0/attributes/{slug}",
-      createComment: "/service/application/feedback/v1.0/comment",
-      updateComment: "/service/application/feedback/v1.0/comment",
+      createComment: "/service/application/feedback/v1.0/comment/",
+      updateComment: "/service/application/feedback/v1.0/comment/",
       getComments:
         "/service/application/feedback/v1.0/comment/entity/{entity_type}",
       checkEligibility:
@@ -8121,19 +8121,21 @@ class Feedback {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string[]} arg.ids - List of media ID
    * @returns {Promise<UpdateResponse>} - Success response
    * @summary: Delete Media
    * @description: Use this API to delete media for an entity ID.
    */
-  deleteMedia({} = {}) {
+  deleteMedia({ ids } = {}) {
     const { error } = FeedbackValidator.deleteMedia().validate(
-      {},
+      { ids },
       { abortEarly: false }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
+    query_params["ids"] = ids;
 
     return APIClient.execute(
       this._conf,
