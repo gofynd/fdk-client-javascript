@@ -826,7 +826,7 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | statuses | [[StatusesBody](#StatusesBody)] |  yes  |  |
  | force_transition | boolean |  yes  |  |
- | task | boolean |  yes  |  |
+ | task | boolean |  no  |  |
 
 ---
 

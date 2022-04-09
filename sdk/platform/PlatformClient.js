@@ -3893,28 +3893,28 @@ class PlatformClient {
 
 /**
  * @typedef PaymentGatewayConfigResponse
+ * @property {boolean} success
+ * @property {string[]} excluded_fields
  * @property {string} app_id
  * @property {string[]} display_fields
  * @property {boolean} created
- * @property {boolean} success
  * @property {Object[]} [aggregators]
- * @property {string[]} excluded_fields
  */
 
 /**
  * @typedef ErrorCodeDescription
  * @property {boolean} success
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
  * @typedef PaymentGatewayConfig
- * @property {string} key
- * @property {string} config_type
  * @property {string} secret
- * @property {string} merchant_salt
+ * @property {string} key
  * @property {boolean} [is_active]
+ * @property {string} merchant_salt
+ * @property {string} config_type
  */
 
 /**
@@ -3932,8 +3932,8 @@ class PlatformClient {
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
@@ -3943,69 +3943,69 @@ class PlatformClient {
  */
 
 /**
+ * @typedef IntentAppErrorList
+ * @property {string} [code]
+ * @property {string} [package_name]
+ */
+
+/**
  * @typedef PaymentModeLogo
- * @property {string} large
  * @property {string} small
+ * @property {string} large
  */
 
 /**
  * @typedef IntentApp
- * @property {string} [display_name]
- * @property {string} [package_name]
  * @property {string} [code]
  * @property {PaymentModeLogo} [logos]
- */
-
-/**
- * @typedef IntentAppErrorList
+ * @property {string} [display_name]
  * @property {string} [package_name]
- * @property {string} [code]
  */
 
 /**
  * @typedef PaymentModeList
- * @property {string} [card_isin]
- * @property {number} [retry_count]
- * @property {number} [exp_year]
- * @property {string} [card_brand]
- * @property {string} [fynd_vpa]
- * @property {string} [nickname]
- * @property {string} [card_issuer]
- * @property {string} [card_type]
- * @property {number} [timeout]
- * @property {string} aggregator_name
- * @property {string} [card_reference]
- * @property {string} [card_id]
- * @property {number} [display_priority]
- * @property {PaymentModeLogo} [logo_url]
- * @property {string} [card_token]
- * @property {string} [display_name]
- * @property {string} [merchant_code]
- * @property {boolean} [expired]
- * @property {IntentApp[]} [intent_app]
- * @property {string} [card_fingerprint]
- * @property {string} [card_name]
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
- * @property {string} [card_brand_image]
- * @property {string} [card_number]
- * @property {number} [exp_month]
- * @property {string} [code]
- * @property {string} [name]
  * @property {boolean} [intent_flow]
+ * @property {string} aggregator_name
+ * @property {string} [card_isin]
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
+ * @property {string} [fynd_vpa]
+ * @property {string} [name]
+ * @property {string} [nickname]
+ * @property {IntentApp[]} [intent_app]
+ * @property {string} [card_number]
+ * @property {string} [merchant_code]
+ * @property {string} [card_fingerprint]
+ * @property {string} [card_brand_image]
+ * @property {number} [display_priority]
+ * @property {string} [card_issuer]
+ * @property {boolean} [expired]
+ * @property {string} [card_token]
+ * @property {string} [card_name]
+ * @property {number} [retry_count]
+ * @property {string} [card_reference]
+ * @property {number} [exp_year]
+ * @property {string} [code]
  * @property {string[]} [intent_app_error_list]
+ * @property {number} [timeout]
+ * @property {string} [display_name]
+ * @property {string} [card_id]
+ * @property {string} [card_type]
+ * @property {string} [card_brand]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {number} [exp_month]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {PaymentModeLogo} [logo_url]
- * @property {string} name
- * @property {string} display_name
  * @property {string} [aggregator_name]
  * @property {PaymentModeList[]} [list]
+ * @property {PaymentModeLogo} [logo_url]
  * @property {boolean} [add_card_enabled]
  * @property {string} [logo]
  * @property {number} display_priority
  * @property {boolean} [anonymous_enable]
+ * @property {string} name
+ * @property {string} display_name
  */
 
 /**
@@ -4021,51 +4021,51 @@ class PlatformClient {
 
 /**
  * @typedef PayoutsResponse
- * @property {Object} more_attributes
+ * @property {Object} customers
  * @property {Object[]} payouts_aggregators
- * @property {string} transfer_type
- * @property {boolean} is_default
  * @property {Object} unique_transfer_no
  * @property {boolean} is_active
- * @property {Object} customers
+ * @property {string} transfer_type
+ * @property {Object} more_attributes
+ * @property {boolean} is_default
  */
 
 /**
  * @typedef PayoutBankDetails
- * @property {number} [pincode]
- * @property {string} account_type
- * @property {string} [account_no]
- * @property {string} [account_holder]
- * @property {string} [state]
- * @property {string} [country]
- * @property {string} [city]
- * @property {string} [branch_name]
  * @property {string} ifsc_code
+ * @property {string} [city]
+ * @property {string} [account_no]
+ * @property {string} [branch_name]
+ * @property {string} [country]
+ * @property {string} [state]
  * @property {string} [bank_name]
+ * @property {number} [pincode]
+ * @property {string} [account_holder]
+ * @property {string} account_type
  */
 
 /**
  * @typedef PayoutRequest
  * @property {string} aggregator
- * @property {string} transfer_type
- * @property {boolean} is_active
- * @property {Object} users
  * @property {PayoutBankDetails} bank_details
+ * @property {Object} users
+ * @property {boolean} is_active
+ * @property {string} transfer_type
  * @property {string} unique_external_id
  */
 
 /**
  * @typedef PayoutResponse
- * @property {Object} users
- * @property {string} aggregator
- * @property {string} transfer_type
- * @property {string} unique_transfer_no
- * @property {Object} payouts
- * @property {boolean} is_active
- * @property {string} payment_status
- * @property {boolean} created
  * @property {boolean} success
+ * @property {Object} payouts
+ * @property {string} aggregator
  * @property {Object} bank_details
+ * @property {boolean} created
+ * @property {string} payment_status
+ * @property {string} unique_transfer_no
+ * @property {Object} users
+ * @property {boolean} is_active
+ * @property {string} transfer_type
  */
 
 /**
@@ -4077,9 +4077,9 @@ class PlatformClient {
 
 /**
  * @typedef UpdatePayoutRequest
+ * @property {boolean} is_default
  * @property {string} unique_external_id
  * @property {boolean} is_active
- * @property {boolean} is_default
  */
 
 /**
@@ -4118,43 +4118,43 @@ class PlatformClient {
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} email
- * @property {string} [address]
+ * @property {string} ifsc_code
+ * @property {string} [vpa]
  * @property {string} account_no
- * @property {string} [wallet]
- * @property {string} account_holder
  * @property {string} [comment]
+ * @property {string} email
  * @property {string} mobile
  * @property {string} branch_name
+ * @property {string} [wallet]
  * @property {string} bank_name
- * @property {string} [vpa]
- * @property {string} ifsc_code
+ * @property {string} [address]
+ * @property {string} account_holder
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {string} [otp]
- * @property {string} order_id
- * @property {BeneficiaryModeDetails} details
- * @property {string} transfer_mode
- * @property {string} [request_id]
- * @property {boolean} delights
  * @property {string} shipment_id
+ * @property {string} order_id
+ * @property {boolean} delights
+ * @property {string} transfer_mode
+ * @property {string} [otp]
+ * @property {string} [request_id]
+ * @property {BeneficiaryModeDetails} details
  */
 
 /**
  * @typedef RefundAccountResponse
  * @property {boolean} success
  * @property {boolean} [is_verified_flag]
- * @property {Object} [data]
  * @property {string} message
+ * @property {Object} [data]
  */
 
 /**
  * @typedef NotFoundResourceError
  * @property {boolean} success
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
@@ -4166,25 +4166,25 @@ class PlatformClient {
 
 /**
  * @typedef OrderBeneficiaryDetails
- * @property {string} address
- * @property {string} account_holder
- * @property {boolean} [comment]
- * @property {boolean} [mobile]
- * @property {string} bank_name
- * @property {string} email
  * @property {string} account_no
- * @property {string} modified_on
- * @property {string} created_on
- * @property {string} beneficiary_id
- * @property {string} display_name
- * @property {string} title
- * @property {boolean} [branch_name]
- * @property {string} ifsc_code
  * @property {string} [delights_user_name]
+ * @property {string} address
+ * @property {string} title
+ * @property {string} created_on
+ * @property {boolean} [comment]
  * @property {number} id
- * @property {string} transfer_mode
  * @property {boolean} is_active
  * @property {string} subtitle
+ * @property {string} modified_on
+ * @property {boolean} [branch_name]
+ * @property {string} bank_name
+ * @property {string} account_holder
+ * @property {string} display_name
+ * @property {string} email
+ * @property {boolean} [mobile]
+ * @property {string} transfer_mode
+ * @property {string} ifsc_code
+ * @property {string} beneficiary_id
  */
 
 /**
@@ -4195,16 +4195,16 @@ class PlatformClient {
 
 /**
  * @typedef PaymentConfirmationMode
- * @property {string} [name]
- * @property {number} amount
- * @property {string} mode
  * @property {Object} [meta]
+ * @property {string} [name]
+ * @property {string} mode
+ * @property {number} amount
  */
 
 /**
  * @typedef PaymentConfirmationRequest
- * @property {string} order_id
  * @property {PaymentConfirmationMode[]} payment_methods
+ * @property {string} order_id
  */
 
 /**
@@ -11467,101 +11467,101 @@ class PlatformClient {
  */
 
 /**
- * @typedef ApplicationServiceabilityConfig
- * @property {string} channel_id
- * @property {string} serviceability_type
- * @property {string} channel_type
+ * @typedef ServiceabilityrErrorResponse
+ * @property {string} value
+ * @property {string} message
+ * @property {string} type
  */
 
 /**
- * @typedef ServiceabilityrErrorResponse
- * @property {string} type
- * @property {string} message
- * @property {string} value
+ * @typedef ApplicationServiceabilityConfig
+ * @property {string} channel_type
+ * @property {string} serviceability_type
+ * @property {string} channel_id
  */
 
 /**
  * @typedef ApplicationServiceabilityConfigResponse
- * @property {boolean} success
- * @property {ApplicationServiceabilityConfig} [data]
  * @property {ServiceabilityrErrorResponse} [error]
+ * @property {ApplicationServiceabilityConfig} [data]
+ * @property {boolean} success
  */
 
 /**
  * @typedef EntityRegionView_Request
- * @property {string[]} sub_type
  * @property {string[]} [parent_id]
+ * @property {string[]} sub_type
+ */
+
+/**
+ * @typedef EntityRegionView_Error
+ * @property {string} [value]
+ * @property {string} [message]
+ * @property {string} [type]
  */
 
 /**
  * @typedef EntityRegionView_Items
  * @property {string} sub_type
- * @property {string} name
  * @property {string} uid
+ * @property {string} name
  */
 
 /**
  * @typedef EntityRegionView_page
+ * @property {string} type
+ * @property {boolean} has_next
+ * @property {number} size
  * @property {number} item_total
  * @property {number} current
- * @property {string} type
- * @property {number} size
- * @property {boolean} has_next
- */
-
-/**
- * @typedef EntityRegionView_Error
- * @property {string} [type]
- * @property {string} [message]
- * @property {string} [value]
  */
 
 /**
  * @typedef EntityRegionView_Response
- * @property {boolean} success
+ * @property {EntityRegionView_Error} error
  * @property {EntityRegionView_Items[]} data
  * @property {EntityRegionView_page} page
- * @property {EntityRegionView_Error} error
- */
-
-/**
- * @typedef ListViewProduct
- * @property {string} type
- * @property {number} count
+ * @property {boolean} success
  */
 
 /**
  * @typedef ListViewChannels
- * @property {string} channel_id
  * @property {string} channel_type
+ * @property {string} channel_id
+ */
+
+/**
+ * @typedef ListViewProduct
+ * @property {number} count
+ * @property {string} type
  */
 
 /**
  * @typedef ListViewItems
- * @property {boolean} is_active
- * @property {ListViewProduct} product
- * @property {number} company_id
- * @property {string} slug
+ * @property {string} zone_id
+ * @property {number} stores_count
  * @property {ListViewChannels} channels
  * @property {number} pincodes_count
- * @property {string} zone_id
+ * @property {string} slug
+ * @property {ListViewProduct} product
+ * @property {number} company_id
+ * @property {boolean} is_active
  * @property {string} name
- * @property {number} stores_count
  */
 
 /**
  * @typedef ZoneDataItem
- * @property {number} item_total
- * @property {number} current
- * @property {string} type
- * @property {number} size
  * @property {boolean} has_next
+ * @property {number} size
+ * @property {number} item_total
+ * @property {string} type
+ * @property {number} current
  */
 
 /**
  * @typedef ListViewSummary
- * @property {number} total_active_zones
  * @property {number} total_pincodes_served
+ * @property {number} total_active_zones
  * @property {number} total_zones
  */
 
@@ -11574,11 +11574,11 @@ class PlatformClient {
 
 /**
  * @typedef CompanyStoreView_PageItems
+ * @property {string} type
+ * @property {boolean} has_next
+ * @property {number} size
  * @property {number} item_total
  * @property {number} current
- * @property {string} type
- * @property {number} size
- * @property {boolean} has_next
  */
 
 /**
@@ -11588,64 +11588,64 @@ class PlatformClient {
  */
 
 /**
- * @typedef ZoneProductTypes
- * @property {string} type
- * @property {string[]} tags
+ * @typedef ZoneMappingType
+ * @property {string} country
+ * @property {string[]} [pincode]
+ * @property {string[]} [state]
  */
 
 /**
  * @typedef GetZoneDataViewChannels
- * @property {string} channel_id
  * @property {string} channel_type
+ * @property {string} channel_id
  */
 
 /**
- * @typedef ZoneMappingType
- * @property {string[]} [pincode]
- * @property {string[]} [state]
- * @property {string} country
+ * @typedef ZoneProductTypes
+ * @property {string[]} tags
+ * @property {string} type
  */
 
 /**
  * @typedef UpdateZoneData
- * @property {boolean} is_active
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {number} company_id
- * @property {string} slug
- * @property {string} region_type
- * @property {GetZoneDataViewChannels[]} channels
  * @property {string} zone_id
- * @property {string} name
  * @property {ZoneMappingType[]} mapping
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} region_type
+ * @property {number[]} store_ids
+ * @property {string} slug
+ * @property {ZoneProductTypes} product
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {string} name
  */
 
 /**
  * @typedef ZoneUpdateRequest
- * @property {UpdateZoneData} data
  * @property {string} identifier
+ * @property {UpdateZoneData} data
  */
 
 /**
  * @typedef ZoneSuccessResponse
- * @property {boolean} success
  * @property {number} status_code
+ * @property {boolean} success
  */
 
 /**
  * @typedef GetZoneDataViewItems
- * @property {boolean} is_active
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {number} company_id
- * @property {string} slug
- * @property {string} region_type
- * @property {GetZoneDataViewChannels[]} channels
- * @property {number} pincodes_count
  * @property {string} zone_id
  * @property {number} stores_count
- * @property {string} name
  * @property {ZoneMappingType[]} mapping
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {string} region_type
+ * @property {number[]} store_ids
+ * @property {number} pincodes_count
+ * @property {string} slug
+ * @property {ZoneProductTypes} product
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {string} name
  */
 
 /**
@@ -11655,28 +11655,28 @@ class PlatformClient {
 
 /**
  * @typedef CreateZoneData
- * @property {boolean} is_active
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {number} company_id
- * @property {string} slug
- * @property {string} region_type
- * @property {GetZoneDataViewChannels[]} channels
- * @property {string} name
  * @property {ZoneMappingType[]} mapping
+ * @property {string} region_type
+ * @property {number[]} store_ids
+ * @property {string} slug
+ * @property {ZoneProductTypes} product
+ * @property {number} company_id
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {boolean} is_active
+ * @property {string} name
  */
 
 /**
  * @typedef ZoneRequest
- * @property {CreateZoneData} data
  * @property {string} identifier
+ * @property {CreateZoneData} data
  */
 
 /**
  * @typedef ZoneResponse
- * @property {boolean} success
- * @property {string} zone_id
  * @property {number} status_code
+ * @property {string} zone_id
+ * @property {boolean} success
  */
 
 /**
