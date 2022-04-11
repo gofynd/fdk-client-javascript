@@ -32,9 +32,18 @@ const {
 const config = new ApplicationConfig({
   applicationID: "YOUR_APPLICATION_ID",
   applicationToken: "YOUR_APPLICATION_TOKEN",
+  locationDetails: "LOCATION_DETAILS_OBJECT"
 });
 
 const applicationClient = new ApplicationClient(config);
+
+applicationClient.setLocationDetails({ 
+  pincode:"385001",
+  country: "India",
+  city:  "Ahmedabad",
+  location: {longitude: "72.585022", latitude: "23.033863"}
+  });
+
 
 async function getProductDetails() {
   try {
@@ -60,6 +69,7 @@ let platformConfig = new PlatformConfig({
   apiKey: "API_KEY", 
   apiSecret: "API_SECRET", 
   domain: "DOMAIN",
+  useAutoRenewTimer: true
 });
 
 async function getData() {

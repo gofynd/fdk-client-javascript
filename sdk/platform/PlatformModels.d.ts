@@ -205,3 +205,8 @@ export class WebhookValidator {
     static getSubscriberById(): any;
     static fetchAllEventConfigurations(): any;
 }
+export class AuditTrailValidator {
+    static getAuditLogs(): any;
+    static createAuditLog(): any;
+    static getAuditLog(): any;
+}

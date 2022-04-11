@@ -9,8 +9,20 @@ beforeAll(() => {
     domain: "https://api.fynd.com",
     applicationID: "000000000000000000000001",
     applicationToken: "9502d710-5a22-11e9-a001-57d85417c280",
+    locationDetails: {
+      pincode: "385001",
+      country: "India",
+      city: "Ahmedabad",
+      location: { longitude: "72.585022", latitude: "23.033863" },
+    },
   });
   applicationClient = new ApplicationClient(config);
+  applicationClient.setLocationDetails({
+    pincode: "385002",
+    country: "India",
+    city: "Ahmedabad",
+    location: { longitude: "72.585022", latitude: "23.033863" },
+  });
 });
 
 afterAll(() => {
@@ -18,10 +30,8 @@ afterAll(() => {
 });
 
 describe("Application Catalog Test Cases", () => {
-  it("getProductDetailBySlug testing", async () => {
-    let productDetail = await applicationClient.catalog.getProductDetailBySlug({
-      slug: "walrus-black-wallet-436997-db85b6",
-    });
-    expect(productDetail.slug).toBe("walrus-black-wallet-436997-db85b6");
+  it("getProducts testing", async () => {
+    let products = await applicationClient.catalog.getProducts();
+    expect(products.items.length).toBeGreaterThan(0);
   });
 });

@@ -18,6 +18,7 @@ const {
   FeedbackValidator,
   PosCartValidator,
   LogisticValidator,
+  LocationValidator,
 } = require("./ApplicationModels");
 
 const APIClient = require("./ApplicationAPIClient");
@@ -57,8 +58,29 @@ class ApplicationClient {
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
   }
+
   setCookie(cookie) {
     this.config.cookie = cookie;
+  }
+
+  setLocationDetails(locationDetails) {
+    const {
+      error,
+    } = LocationValidator.validateLocationObj().validate(locationDetails, {
+      abortEarly: false,
+    });
+    if (error) {
+      throw new FDKClientValidationError(error);
+    }
+    this.config.locationDetails = locationDetails;
+  }
+
+  setExtraHeaders(header) {
+    if (typeof header === "object") {
+      this.config.extraHeaders.push(header);
+    } else {
+      throw new FDKClientValidationError("Context value should be an object");
+    }
   }
 }
 
@@ -100,9 +122,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      unfollowById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       followById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      unfollowById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -1130,37 +1152,6 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      constructUrl({
-        url: this._urls["unfollowById"],
-        params: { collectionType, collectionId },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1179,6 +1170,37 @@ class Catalog {
       "post",
       constructUrl({
         url: this._urls["followById"],
+        params: { collectionType, collectionId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.
+   * @param {string} arg.collectionId - The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      constructUrl({
+        url: this._urls["unfollowById"],
         params: { collectionType, collectionId },
       }),
       query_params,
@@ -5377,6 +5399,7 @@ class Configuration {
         "/service/application/configuration/v1.0/ordering-store/select",
       removeOrderingStoreCookie:
         "/service/application/configuration/v1.0/ordering-store/select",
+      getAppStaffList: "/service/application/configuration/v1.0/staff/list",
       getAppStaffs: "/service/application/configuration/v1.0/staff",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -5831,6 +5854,87 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @returns {Promise<AppStaffListResponse>} - Success response
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+   */
+  getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user } = {}) {
+    const { error } = ConfigurationValidator.getAppStaffList().validate(
+      { pageNo, pageSize, orderIncent, orderingStore, user },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["order_incent"] = orderIncent;
+    query_params["ordering_store"] = orderingStore;
+    query_params["user"] = user;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAppStaffList"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @summary: Get a list of staff.
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+   */
+  getAppStaffListPaginator({
+    pageSize,
+    orderIncent,
+    orderingStore,
+    user,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAppStaffList({
+        pageNo: pageNo,
+        pageSize: pageSize,
+        orderIncent: orderIncent,
+        orderingStore: orderingStore,
+        user: user,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
    *   `true` to retrieve the staff members eligible for getting incentives on orders.
    * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
@@ -5889,6 +5993,8 @@ class Payment {
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
+      getEpaylaterBannerDetails:
+        "/service/application/payment/v1.0/epaylater/banner",
       resendOrCancelPayment:
         "/service/application/payment/v1.0/payment/resend_or_cancel",
       getActiveRefundTransferModes:
@@ -5909,6 +6015,12 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/wallet",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
+      customerCreditSummary:
+        "/service/application/payment/v1.0/payment/credit-summary/",
+      redirectToAggregator:
+        "/service/application/payment/v1.0/payment/redirect-to-aggregator/",
+      checkCredit: "/service/application/payment/v1.0/check-credits/",
+      customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -6353,6 +6465,34 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<EpaylaterBannerResponse>} - Success response
+   * @summary: Get Epaylater Enabled
+   * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
+   */
+  getEpaylaterBannerDetails({} = {}) {
+    const { error } = PaymentValidator.getEpaylaterBannerDetails().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getEpaylaterBannerDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {ResendOrCancelPaymentRequest} arg.body
    * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
    * @summary: API to resend and cancel a payment link which was already generated.
@@ -6674,6 +6814,129 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["updateDefaultBeneficiary"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  customerCreditSummary({ aggregator } = {}) {
+    const { error } = PaymentValidator.customerCreditSummary().validate(
+      { aggregator },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["customerCreditSummary"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.source] - This is a String value that contains
+   *   callback URL as value.
+   * @param {string} [arg.aggregator] - This is a String value that contains
+   *   aggregator name as value.
+   * @returns {Promise<RedirectToAggregatorResponse>} - Success response
+   * @summary: API to get the redirect url to redirect the user to aggregator's page
+   * @description: Use this API to get the redirect url to redirect the user to aggregator's page
+   */
+  redirectToAggregator({ source, aggregator } = {}) {
+    const { error } = PaymentValidator.redirectToAggregator().validate(
+      { source, aggregator },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["source"] = source;
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["redirectToAggregator"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CheckCreditResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  checkCredit({ aggregator } = {}) {
+    const { error } = PaymentValidator.checkCredit().validate(
+      { aggregator },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["checkCredit"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CustomerOnboardingRequest} arg.body
+   * @returns {Promise<CustomerOnboardingResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  customerOnboard({ body } = {}) {
+    const { error } = PaymentValidator.customerOnboard().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["customerOnboard"],
         params: {},
       }),
       query_params,

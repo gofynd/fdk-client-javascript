@@ -4866,6 +4866,7 @@ Success
  | price | [InventoryPrice](#InventoryPrice) |  no  |  |
  | discount | [InventoryDiscount](#InventoryDiscount) |  no  |  |
  | out_of_stock | boolean |  no  |  |
+ | only_verified_products | boolean |  no  |  |
  | franchise_enabled | boolean |  no  |  |
  | exclude_category | [any] |  no  |  |
  | image | [string] |  no  |  |
@@ -5861,6 +5862,7 @@ Success
  | image | [string] |  no  |  |
  | franchise_enabled | boolean |  no  |  |
  | out_of_stock | boolean |  no  |  |
+ | only_verified_products | boolean |  no  |  |
  | payment | [InventoryPaymentConfig](#InventoryPaymentConfig) |  no  |  |
  | article_assignment | [InventoryArticleAssignment](#InventoryArticleAssignment) |  no  |  |
 
