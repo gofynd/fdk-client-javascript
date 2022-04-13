@@ -2516,13 +2516,14 @@ class Cart {
    *   identifier of a product. You can get slug value from the endpoint
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+   * @param {string} [arg.promotionGroup] - Type of promotion groups
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  getPromotionOffers({ slug, pageSize } = {}) {
+  getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize },
+      { slug, pageSize, promotionGroup },
       { abortEarly: false }
     );
     if (error) {
@@ -2531,6 +2532,7 @@ class Cart {
     const query_params = {};
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
+    query_params["promotion_group"] = promotionGroup;
 
     return APIClient.execute(
       this._conf,
@@ -2549,6 +2551,8 @@ class Cart {
    * @param {string} arg.slug - A short, human-readable, URL-friendly
    *   identifier of a product. You can get slug value from the endpoint
    *   /service/application/catalog/v1.0/products/
+   * @param {string} [arg.storeId] - Store uid of assigned store on PDP page.
+   *   If not passed default first created ladder will be returned
    * @param {string} [arg.promotionId] - Get ladder information of given
    *   promotion id explicitely
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
@@ -2556,9 +2560,9 @@ class Cart {
    * @summary: Fetch ladder price promotion
    * @description: Use this API to get applicable ladder price promotion for current product
    */
-  getLadderOffers({ slug, promotionId, pageSize } = {}) {
+  getLadderOffers({ slug, storeId, promotionId, pageSize } = {}) {
     const { error } = CartValidator.getLadderOffers().validate(
-      { slug, promotionId, pageSize },
+      { slug, storeId, promotionId, pageSize },
       { abortEarly: false }
     );
     if (error) {
@@ -2566,6 +2570,7 @@ class Cart {
     }
     const query_params = {};
     query_params["slug"] = slug;
+    query_params["store_id"] = storeId;
     query_params["promotion_id"] = promotionId;
     query_params["page_size"] = pageSize;
 
