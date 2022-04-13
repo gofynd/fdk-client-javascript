@@ -10,8 +10,8 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getCompanyStoreView](#getcompanystoreview)
-* [updateZoneControllerView](#updatezonecontrollerview)
 * [getZoneDataView](#getzonedataview)
+* [updateZoneControllerView](#updatezonecontrollerview)
 * [upsertZoneControllerView](#upsertzonecontrollerview)
 * [getZoneFromPincode](#getzonefrompincode)
 
@@ -257,6 +257,62 @@ Get Company Store View Data
 ---
 
 
+### getZoneDataView
+Zone Data View of application.
+
+
+
+```javascript
+// Promise
+const promise = client.serviceability.getZoneDataView({  zoneId : value });
+
+// Async/Await
+const data = await client.serviceability.getZoneDataView({  zoneId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| zoneId | string | yes | A `zone_id` is a unique identifier for a particular zone. |  
+
+
+
+This API returns Zone Data View of the application.
+
+*Returned Response:*
+
+
+
+
+[GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
+
+Get Application Zone Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateZoneControllerView
 Updation of zone collections in database.
 
@@ -292,62 +348,6 @@ This API returns response of updation of zone in mongo database.
 [ZoneSuccessResponse](#ZoneSuccessResponse)
 
 Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getZoneDataView
-Zone Data View of application.
-
-
-
-```javascript
-// Promise
-const promise = client.serviceability.getZoneDataView({  zoneId : value });
-
-// Async/Await
-const data = await client.serviceability.getZoneDataView({  zoneId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| zoneId | string | yes | A `zone_id` is a unique identifier for a particular zone. |  
-
-
-
-This API returns Zone Data View of the application.
-
-*Returned Response:*
-
-
-
-
-[GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
-
-Get Application Zone Data
 
 
 
@@ -486,26 +486,26 @@ Response status_code
 
  
  
- #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
+ #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  yes  |  |
- | message | string |  yes  |  |
- | type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
+ | serviceability_type | string |  yes  |  |
 
 ---
 
 
  
  
- #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
+ #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
- | serviceability_type | string |  yes  |  |
- | channel_id | string |  yes  |  |
+ | type | string |  yes  |  |
+ | message | string |  yes  |  |
+ | value | string |  yes  |  |
 
 ---
 
@@ -516,9 +516,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse) |  no  |  |
  | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) |  no  |  |
  | success | boolean |  yes  |  |
+ | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse) |  no  |  |
 
 ---
 
@@ -529,21 +529,23 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | parent_id | [string] |  no  |  |
  | sub_type | [string] |  yes  |  |
+ | parent_id | [string] |  no  |  |
 
 ---
 
 
  
  
- #### [EntityRegionView_Error](#EntityRegionView_Error)
+ #### [EntityRegionView_page](#EntityRegionView_page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | message | string |  no  |  |
- | type | string |  no  |  |
+ | item_total | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
+ | size | number |  yes  |  |
+ | type | string |  yes  |  |
+ | current | number |  yes  |  |
 
 ---
 
@@ -563,15 +565,13 @@ Response status_code
 
  
  
- #### [EntityRegionView_page](#EntityRegionView_page)
+ #### [EntityRegionView_Error](#EntityRegionView_Error)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | has_next | boolean |  yes  |  |
- | size | number |  yes  |  |
- | item_total | number |  yes  |  |
- | current | number |  yes  |  |
+ | type | string |  no  |  |
+ | message | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -582,10 +582,10 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [EntityRegionView_Error](#EntityRegionView_Error) |  yes  |  |
- | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  yes  |  |
- | page | [EntityRegionView_page](#EntityRegionView_page) |  yes  |  |
  | success | boolean |  yes  |  |
+ | page | [EntityRegionView_page](#EntityRegionView_page) |  yes  |  |
+ | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  yes  |  |
+ | error | [EntityRegionView_Error](#EntityRegionView_Error) |  yes  |  |
 
 ---
 
@@ -596,8 +596,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
  | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
 
 ---
 
@@ -608,8 +608,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  yes  |  |
  | type | string |  yes  |  |
+ | count | number |  yes  |  |
 
 ---
 
@@ -621,29 +621,14 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | zone_id | string |  yes  |  |
- | stores_count | number |  yes  |  |
- | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
- | pincodes_count | number |  yes  |  |
- | slug | string |  yes  |  |
- | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
  | company_id | number |  yes  |  |
+ | slug | string |  yes  |  |
  | is_active | boolean |  yes  |  |
+ | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
+ | stores_count | number |  yes  |  |
  | name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ZoneDataItem](#ZoneDataItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | has_next | boolean |  yes  |  |
- | size | number |  yes  |  |
- | item_total | number |  yes  |  |
- | type | string |  yes  |  |
- | current | number |  yes  |  |
+ | pincodes_count | number |  yes  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
 
 ---
 
@@ -654,9 +639,24 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | total_zones | number |  yes  |  |
  | total_pincodes_served | number |  yes  |  |
  | total_active_zones | number |  yes  |  |
- | total_zones | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDataItem](#ZoneDataItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_total | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
+ | size | number |  yes  |  |
+ | current | number |  yes  |  |
+ | type | string |  yes  |  |
 
 ---
 
@@ -668,8 +668,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
  | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
+ | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
 
 ---
 
@@ -680,10 +680,10 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
+ | item_total | number |  yes  |  |
  | has_next | boolean |  yes  |  |
  | size | number |  yes  |  |
- | item_total | number |  yes  |  |
+ | type | string |  yes  |  |
  | current | number |  yes  |  |
 
 ---
@@ -707,9 +707,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  yes  |  |
- | pincode | [string] |  no  |  |
  | state | [string] |  no  |  |
+ | pincode | [string] |  no  |  |
+ | country | string |  yes  |  |
 
 ---
 
@@ -720,8 +720,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
  | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
 
 ---
 
@@ -740,20 +740,53 @@ Response status_code
 
  
  
+ #### [GetZoneDataViewItems](#GetZoneDataViewItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zone_id | string |  yes  |  |
+ | mapping | [[ZoneMappingType](#ZoneMappingType)] |  yes  |  |
+ | slug | string |  yes  |  |
+ | name | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | store_ids | [number] |  yes  |  |
+ | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  yes  |  |
+ | region_type | string |  yes  |  |
+ | stores_count | number |  yes  |  |
+ | company_id | number |  yes  |  |
+ | pincodes_count | number |  yes  |  |
+ | product | [ZoneProductTypes](#ZoneProductTypes) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [GetZoneDataViewItems](#GetZoneDataViewItems) |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [UpdateZoneData](#UpdateZoneData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | zone_id | string |  yes  |  |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  yes  |  |
+ | slug | string |  yes  |  |
+ | name | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | store_ids | [number] |  yes  |  |
  | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  yes  |  |
  | region_type | string |  yes  |  |
- | store_ids | [number] |  yes  |  |
- | slug | string |  yes  |  |
- | product | [ZoneProductTypes](#ZoneProductTypes) |  yes  |  |
  | company_id | number |  yes  |  |
- | is_active | boolean |  yes  |  |
- | name | string |  yes  |  |
+ | product | [ZoneProductTypes](#ZoneProductTypes) |  yes  |  |
 
 ---
 
@@ -784,52 +817,19 @@ Response status_code
 
  
  
- #### [GetZoneDataViewItems](#GetZoneDataViewItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | zone_id | string |  yes  |  |
- | stores_count | number |  yes  |  |
- | mapping | [[ZoneMappingType](#ZoneMappingType)] |  yes  |  |
- | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  yes  |  |
- | region_type | string |  yes  |  |
- | store_ids | [number] |  yes  |  |
- | pincodes_count | number |  yes  |  |
- | slug | string |  yes  |  |
- | product | [ZoneProductTypes](#ZoneProductTypes) |  yes  |  |
- | company_id | number |  yes  |  |
- | is_active | boolean |  yes  |  |
- | name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [GetZoneDataViewItems](#GetZoneDataViewItems) |  yes  |  |
-
----
-
-
- 
- 
  #### [CreateZoneData](#CreateZoneData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  yes  |  |
- | region_type | string |  yes  |  |
- | store_ids | [number] |  yes  |  |
  | slug | string |  yes  |  |
- | product | [ZoneProductTypes](#ZoneProductTypes) |  yes  |  |
- | company_id | number |  yes  |  |
- | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  yes  |  |
- | is_active | boolean |  yes  |  |
  | name | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | store_ids | [number] |  yes  |  |
+ | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  yes  |  |
+ | region_type | string |  yes  |  |
+ | company_id | number |  yes  |  |
+ | product | [ZoneProductTypes](#ZoneProductTypes) |  yes  |  |
 
 ---
 
@@ -852,8 +852,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status_code | number |  yes  |  |
  | zone_id | string |  yes  |  |
+ | status_code | number |  yes  |  |
  | success | boolean |  yes  |  |
 
 ---
@@ -865,8 +865,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  yes  |  |
  | pincode | string |  yes  |  |
+ | country | string |  yes  |  |
 
 ---
 

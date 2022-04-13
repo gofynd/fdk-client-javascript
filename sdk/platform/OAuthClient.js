@@ -97,7 +97,8 @@ class OAuthClient {
         code: query.code,
       });
       this.setToken(res);
-      this.token_expires_at = new Date().getTime() + this.token_expires_in;
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
     } catch (error) {
       if (error.isAxiosError) {
         throw new FDKTokenIssueError(error.message);
@@ -113,7 +114,8 @@ class OAuthClient {
         refresh_token: this.refreshToken,
       });
       this.setToken(res);
-      this.token_expires_at = new Date().getTime() + this.token_expires_in;
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
       return res;
     } catch (error) {
       if (error.isAxiosError) {
@@ -154,7 +156,8 @@ class OAuthClient {
     try {
       let res = await this.getOfflineAccessTokenObj(scopes, code);
       this.setToken(res);
-      this.token_expires_at = new Date().getTime() + this.token_expires_in;
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
       return res;
     } catch (error) {
       if (error.isAxiosError) {
