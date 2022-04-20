@@ -54,6 +54,7 @@ export class UserValidator {
     static searchUsers(): any;
     static createUser(): any;
     static blockOrUnblockUsers(): any;
+    static archiveUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
     static getActiveSessions(): any;
