@@ -6066,18 +6066,6 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | symbol | string |  no  |  |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
-
----
-
-
- 
- 
  #### [PromiseFormatted](#PromiseFormatted)
 
  | Properties | Type | Nullable | Description |
@@ -6118,124 +6106,37 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_options | string |  no  |  |
  | payment_identifier | string |  no  |  |
  | enabled | boolean |  no  |  |
+ | default_options | string |  no  |  |
 
 ---
 
 
  
  
- #### [DisplayBreakup](#DisplayBreakup)
+ #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | value | number |  no  |  |
- | message | [string] |  no  |  |
- | currency_symbol | string |  no  |  |
- | display | string |  no  |  |
- | currency_code | string |  no  |  |
+ | code | string |  no  | Currency code defined by ISO 4217:2015 |
+ | symbol | string |  no  |  |
 
 ---
 
 
  
  
- #### [RawBreakup](#RawBreakup)
+ #### [AppliedPromotion](#AppliedPromotion)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_charge | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | total | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | subtotal | number |  no  |  |
- | mrp_total | number |  no  |  |
- | you_saved | number |  no  |  |
- | coupon | number |  no  |  |
- | gst_charges | number |  no  |  |
- | vog | number |  no  |  |
- | discount | number |  no  |  |
- | cod_charge | number |  no  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | sub_title | string |  no  |  |
- | description | string |  no  |  |
- | value | number |  no  |  |
- | uid | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | max_discount_value | number |  no  |  |
- | message | string |  no  |  |
- | coupon_value | number |  no  |  |
- | coupon_type | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | code | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_applied | boolean |  no  |  |
- | total | number |  no  |  |
- | applicable | number |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartBreakup](#CartBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | other_store_quantity | number |  no  |  |
- | deliverable | boolean |  no  |  |
- | is_valid | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | out_of_stock | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | promo_id | string |  no  | Promotion id |
+ | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
+ | promotion_type | string |  no  | Promotion type of current promotion |
+ | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
+ | offer_text | string |  no  | Offer text of current promotion |
+ | amount | number |  no  | Per unit discount amount applied with current promotion |
 
 ---
 
@@ -6254,102 +6155,25 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [BasePrice](#BasePrice)
+ #### [CategoryInfo](#CategoryInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | marked | number |  no  |  |
- | effective | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  | Product Category Id |
 
 ---
 
 
  
  
- #### [ArticlePriceInfo](#ArticlePriceInfo)
+ #### [ProductImage](#ProductImage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
- | base | [BasePrice](#BasePrice) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | extra_meta | string |  no  |  |
- | parent_item_id | string |  no  |  |
- | type | string |  no  |  |
- | uid | string |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | parent_item_size | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | quantity | number |  no  |  |
- | size | string |  no  |  |
-
----
-
-
- 
- 
- #### [AppliedPromotion](#AppliedPromotion)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | promotion_type | string |  no  | Promotion type of current promotion |
- | promo_id | string |  no  | Promotion id |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
- | offer_text | string |  no  | Offer text of current promotion |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | add_on | number |  no  |  |
- | selling | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | marked | number |  no  |  |
- | currency_code | string |  no  |  |
- | effective | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  | Article idenfier generated by cart |
+ | secure_url | string |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
 
 ---
 
@@ -6380,43 +6204,130 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  | Product Category Id |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | secure_url | string |  no  |  |
- | url | string |  no  |  |
-
----
-
-
- 
- 
  #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | type | string |  no  |  |
  | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | name | string |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
  | uid | number |  no  |  |
  | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
  | images | [[ProductImage](#ProductImage)] |  no  |  |
+ | name | string |  no  |  |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | parent_item_size | string |  no  |  |
+ | size | string |  no  |  |
+ | product_group_tags | [string] |  no  |  |
  | type | string |  no  |  |
+ | uid | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | quantity | number |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | parent_item_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_valid | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | deliverable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | number |  no  |  |
+ | selling | number |  no  |  |
+ | effective | number |  no  |  |
+ | add_on | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
 
 ---
 
@@ -6427,21 +6338,110 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | coupon_message | string |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | key | string |  no  |  |
- | bulk_offer | string |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | message | string |  no  |  |
- | quantity | number |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
  | discount | string |  no  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | coupon_message | string |  no  |  |
+ | product | [CartProduct](#CartProduct) |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | key | string |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | message | string |  no  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
  | is_set | boolean |  no  |  |
+ | quantity | number |  no  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | bulk_offer | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total | number |  no  |  |
+ | applicable | number |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_cash | number |  no  |  |
+ | you_saved | number |  no  |  |
+ | discount | number |  no  |  |
+ | mrp_total | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | total | number |  no  |  |
+ | convenience_fee | number |  no  |  |
+ | coupon | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | cod_charge | number |  no  |  |
+ | subtotal | number |  no  |  |
+ | vog | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sub_title | string |  no  |  |
+ | coupon_value | number |  no  |  |
+ | title | string |  no  |  |
+ | code | string |  no  |  |
+ | value | number |  no  |  |
+ | message | string |  no  |  |
+ | description | string |  no  |  |
+ | coupon_type | string |  no  |  |
+ | type | string |  no  |  |
+ | uid | string |  no  |  |
+ | minimum_cart_value | number |  no  |  |
+ | max_discount_value | number |  no  |  |
+ | is_applied | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | number |  no  |  |
+ | key | string |  no  |  |
+ | message | [string] |  no  |  |
+ | currency_code | string |  no  |  |
+ | display | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+ | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
 
 ---
 
@@ -6452,21 +6452,21 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | restrict_checkout | boolean |  no  |  |
- | is_valid | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
  | delivery_charge_info | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | checkout_mode | string |  no  |  |
- | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | message | string |  no  |  |
- | id | string |  no  |  |
+ | is_valid | boolean |  no  |  |
  | gstin | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | last_modified | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | id | string |  no  |  |
+ | message | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | comment | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | coupon_text | string |  no  |  |
+ | last_modified | string |  no  |  |
+ | checkout_mode | string |  no  |  |
 
 ---
 
@@ -6477,16 +6477,16 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
  | pos | boolean |  no  |  |
- | article_id | string |  no  |  |
+ | store_id | number |  no  |  |
+ | item_id | number |  no  |  |
  | article_assignment | string |  no  |  |
+ | extra_meta | string |  no  |  |
  | quantity | number |  no  |  |
- | seller_id | number |  no  |  |
  | item_size | string |  no  |  |
  | display | string |  no  |  |
- | item_id | number |  no  |  |
- | store_id | number |  no  |  |
+ | seller_id | number |  no  |  |
+ | article_id | string |  no  |  |
 
 ---
 
@@ -6508,10 +6508,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | message | string |  no  |  |
  | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
  | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | message | string |  no  |  |
 
 ---
 
@@ -6522,13 +6522,13 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
- | item_index | number |  no  |  |
- | article_id | string |  no  |  |
+ | item_id | number |  no  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | item_index | number |  no  |  |
+ | extra_meta | string |  no  |  |
  | quantity | number |  no  |  |
  | item_size | string |  no  |  |
- | item_id | number |  no  |  |
+ | article_id | string |  no  |  |
 
 ---
 
@@ -6552,8 +6552,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | message | string |  no  |  |
  | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | message | string |  no  |  |
 
 ---
 
@@ -6571,37 +6571,37 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  
  
- #### [PageCoupon](#PageCoupon)
+ #### [Coupon](#Coupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | total_item_count | number |  no  |  |
+ | sub_title | string |  no  |  |
+ | is_applicable | boolean |  no  |  |
+ | coupon_value | number |  no  |  |
+ | title | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | description | string |  no  |  |
+ | message | string |  no  |  |
+ | coupon_type | string |  no  |  |
+ | minimum_cart_value | number |  no  |  |
+ | coupon_code | string |  no  |  |
+ | max_discount_value | number |  no  |  |
+ | is_applied | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [Coupon](#Coupon)
+ #### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | sub_title | string |  no  |  |
- | description | string |  no  |  |
- | is_applicable | boolean |  no  |  |
- | expires_on | string |  no  |  |
- | coupon_code | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | max_discount_value | number |  no  |  |
- | message | string |  no  |  |
- | coupon_value | number |  no  |  |
- | coupon_type | string |  no  |  |
- | is_applied | boolean |  no  |  |
+ | total_item_count | number |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | current | number |  no  |  |
 
 ---
 
@@ -6612,8 +6612,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [PageCoupon](#PageCoupon) |  no  |  |
  | available_coupon_list | [[Coupon](#Coupon)] |  no  |  |
+ | page | [PageCoupon](#PageCoupon) |  no  |  |
 
 ---
 
@@ -6647,11 +6647,11 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | marked | number |  no  | Original price of product |
+ | effective | number |  no  | Current per unit price of product after existing deductions |
+ | currency_code | string |  no  | Currency code for all amounts |
  | bulk_effective | number |  no  | Discounted per unit price for current offer object |
  | currency_symbol | string |  no  | Currency symbol for currency |
- | marked | number |  no  | Original price of product |
- | currency_code | string |  no  | Currency code for all amounts |
- | effective | number |  no  | Current per unit price of product after existing deductions |
 
 ---
 
@@ -6662,13 +6662,13 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | number |  no  | Total price of offer quantity with discount |
- | auto_applied | boolean |  no  | Whether offer discount is auto applied in cart |
  | margin | number |  no  | Percentage value of discount |
- | price | [OfferPrice](#OfferPrice) |  no  |  |
  | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
- | quantity | number |  no  | Quantity on which offer is applicable |
+ | total | number |  no  | Total price of offer quantity with discount |
  | type | string |  no  | Offer type |
+ | quantity | number |  no  | Quantity on which offer is applicable |
+ | price | [OfferPrice](#OfferPrice) |  no  |  |
+ | auto_applied | boolean |  no  | Whether offer discount is auto applied in cart |
 
 ---
 
@@ -6713,8 +6713,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | longitude | number |  no  |  |
  | latitude | number |  no  |  |
+ | longitude | number |  no  |  |
 
 ---
 
@@ -6725,28 +6725,28 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | google_map_point | string |  no  |  |
- | is_active | boolean |  no  |  |
- | meta | string |  no  |  |
- | phone | string |  no  |  |
- | address | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
- | landmark | string |  no  |  |
- | area | string |  no  |  |
- | user_id | string |  no  |  |
- | email | string |  no  |  |
- | city | string |  no  |  |
  | state | string |  no  |  |
- | tags | [string] |  no  |  |
  | id | string |  no  |  |
- | country | string |  no  |  |
- | area_code_slug | string |  no  |  |
  | name | string |  no  |  |
+ | area_code_slug | string |  no  |  |
  | address_type | string |  no  |  |
+ | area | string |  no  |  |
  | area_code | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | email | string |  no  |  |
+ | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
+ | address | string |  no  |  |
+ | meta | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | country | string |  no  |  |
+ | city | string |  no  |  |
+ | user_id | string |  no  |  |
+ | landmark | string |  no  |  |
+ | google_map_point | string |  no  |  |
+ | checkout_mode | string |  no  |  |
  | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+ | is_default_address | boolean |  no  |  |
 
 ---
 
@@ -6783,8 +6783,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | ---------- | ---- | -------- | ----------- |
  | is_default_address | boolean |  no  |  |
  | success | boolean |  no  |  |
- | is_updated | boolean |  no  |  |
  | id | string |  no  |  |
+ | is_updated | boolean |  no  |  |
 
 ---
 
@@ -6807,8 +6807,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_id | string |  no  |  |
  | billing_address_id | string |  no  |  |
+ | cart_id | string |  no  |  |
  | id | string |  no  |  |
 
 ---
@@ -6820,12 +6820,12 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchant_code | string |  no  |  |
- | aggregator_name | string |  no  |  |
- | payment_mode | string |  no  |  |
- | address_id | string |  no  |  |
  | payment_identifier | string |  no  |  |
+ | merchant_code | string |  no  |  |
  | id | string |  no  |  |
+ | aggregator_name | string |  no  |  |
+ | address_id | string |  no  |  |
+ | payment_mode | string |  no  |  |
 
 ---
 
@@ -6837,10 +6837,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | title | string |  no  |  |
- | valid | boolean |  no  |  |
  | display_message_en | string |  no  |  |
  | discount | number |  no  |  |
  | code | string |  no  |  |
+ | valid | boolean |  no  |  |
 
 ---
 
@@ -6851,9 +6851,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
  | success | boolean |  yes  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -6864,16 +6864,16 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillment_id | number |  no  |  |
- | box_type | string |  no  |  |
- | shipment_type | string |  no  |  |
- | shipments | number |  no  |  |
- | fulfillment_type | string |  no  |  |
- | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
  | order_type | string |  no  |  |
+ | fulfillment_id | number |  no  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | box_type | string |  no  |  |
+ | shipments | number |  no  |  |
  | dp_options | string |  no  |  |
- | dp_id | string |  no  |  |
+ | fulfillment_type | string |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | shipment_type | string |  no  |  |
+ | dp_id | string |  no  |  |
 
 ---
 
@@ -6884,24 +6884,24 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | boolean |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
  | delivery_charge_info | string |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
+ | cart_id | number |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | error | boolean |  no  |  |
+ | id | string |  no  |  |
+ | message | string |  no  |  |
  | uid | string |  no  |  |
  | comment | string |  no  |  |
- | message | string |  no  |  |
- | id | string |  no  |  |
- | gstin | string |  no  |  |
- | cart_id | number |  no  |  |
- | is_valid | boolean |  no  |  |
  | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | checkout_mode | string |  no  |  |
- | coupon_text | string |  no  |  |
- | last_modified | string |  no  |  |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | coupon_text | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | gstin | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | last_modified | string |  no  |  |
 
 ---
 
@@ -6912,9 +6912,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
  | first_name | string |  yes  |  |
  | user | string |  yes  |  |
- | _id | string |  yes  |  |
  | last_name | string |  yes  |  |
 
 ---
@@ -6926,21 +6926,21 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
- | payment_auto_confirm | boolean |  no  |  |
- | merchant_code | string |  no  |  |
- | payment_params | string |  no  |  |
- | ordering_store | number |  no  |  |
- | payment_mode | string |  yes  |  |
- | address_id | string |  no  |  |
- | billing_address | string |  no  |  |
- | callback_url | string |  no  |  |
- | meta | string |  no  |  |
  | payment_identifier | string |  no  |  |
+ | merchant_code | string |  no  |  |
+ | ordering_store | number |  no  |  |
+ | payment_auto_confirm | boolean |  no  |  |
  | delivery_address | string |  no  |  |
- | billing_address_id | string |  no  |  |
  | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
+ | billing_address | string |  no  |  |
+ | payment_params | string |  no  |  |
+ | callback_url | string |  no  |  |
+ | billing_address_id | string |  no  |  |
+ | extra_meta | string |  no  |  |
  | aggregator | string |  no  |  |
+ | meta | string |  no  |  |
+ | address_id | string |  no  |  |
+ | payment_mode | string |  yes  |  |
 
 ---
 
@@ -6951,34 +6951,34 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | restrict_checkout | boolean |  no  |  |
- | store_emps | [string] |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | cod_charges | number |  no  |  |
- | comment | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | store_code | string |  no  |  |
+ | id | string |  no  |  |
  | message | string |  no  |  |
- | error_message | string |  no  |  |
  | user_type | string |  no  |  |
+ | cod_charges | number |  no  |  |
+ | delivery_charges | number |  no  |  |
+ | comment | string |  no  |  |
+ | success | boolean |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | error_message | string |  no  |  |
  | is_valid | boolean |  no  |  |
- | delivery_charge_order_value | number |  no  |  |
- | checkout_mode | string |  no  |  |
+ | gstin | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | last_modified | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | order_id | string |  no  |  |
+ | uid | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
  | cod_available | boolean |  no  |  |
  | coupon_text | string |  no  |  |
- | last_modified | string |  no  |  |
- | store_code | string |  no  |  |
- | delivery_charges | number |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | delivery_charge_order_value | number |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | store_emps | [string] |  no  |  |
  | cod_message | string |  no  |  |
- | uid | string |  no  |  |
- | id | string |  no  |  |
- | gstin | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | order_id | string |  no  |  |
- | success | boolean |  no  |  |
- | cart_id | number |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
 
 ---
 
@@ -6989,14 +6989,14 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CheckCart](#CheckCart) |  no  |  |
- | data | string |  no  |  |
- | order_id | string |  no  |  |
- | callback_url | string |  no  |  |
  | app_intercept_url | string |  no  |  |
+ | order_id | string |  no  |  |
  | payment_confirm_url | string |  no  |  |
  | message | string |  no  |  |
+ | callback_url | string |  no  |  |
  | success | boolean |  no  |  |
+ | cart | [CheckCart](#CheckCart) |  no  |  |
+ | data | string |  no  |  |
 
 ---
 
@@ -7007,9 +7007,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
  | gstin | string |  no  |  |
  | comment | string |  no  |  |
- | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
  | checkout_mode | string |  no  |  |
 
 ---
@@ -7043,8 +7043,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  no  | Cart uid for generating sharing |
  | meta | string |  no  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | id | string |  no  | Cart uid for generating sharing |
 
 ---
 
@@ -7067,9 +7067,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user | string |  no  | User details of who generated share link |
- | source | string |  no  | Share link device and other source information |
  | token | string |  no  | Short link id |
+ | source | string |  no  | Share link device and other source information |
+ | user | string |  no  | User details of who generated share link |
  | meta | string |  no  | Meta data sent while generating share cart link |
  | created_on | string |  no  |  |
 
@@ -7082,24 +7082,24 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | cart_id | number |  no  |  |
- | is_valid | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
  | delivery_charge_info | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | gstin | string |  no  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | checkout_mode | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | id | string |  no  |  |
+ | message | string |  no  |  |
+ | last_modified | string |  no  |  |
  | uid | string |  no  |  |
  | comment | string |  no  |  |
- | coupon_text | string |  no  |  |
- | message | string |  no  |  |
- | id | string |  no  |  |
- | gstin | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | last_modified | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | coupon_text | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | checkout_mode | string |  no  |  |
 
 ---
 
@@ -7110,8 +7110,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [SharedCart](#SharedCart) |  no  |  |
  | error | string |  no  |  |
+ | cart | [SharedCart](#SharedCart) |  no  |  |
 
 ---
 
@@ -7122,9 +7122,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  | Offer details including T&C |
  | promotion_group | string |  no  | Group of promotion belongs to |
  | id | string |  no  | Promotion id |
+ | description | string |  no  | Offer details including T&C |
  | offer_text | string |  no  | Offer title |
  | valid_till | string |  no  | Datetime ISOString for promotion end date |
 
@@ -7148,20 +7148,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CurrencyInfo](#CurrencyInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | symbol | string |  no  |  |
- | code | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -7173,10 +7161,10 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | offer_price | number |  no  | Discounted per unit price for current offer object |
- | currency_symbol | string |  no  | Currency symbol for currency |
  | marked | number |  no  | Original price of product |
- | currency_code | string |  no  | Currency code for all amounts |
  | effective | number |  no  | Current per unit price of product after existing deductions |
+ | currency_code | string |  no  | Currency code for all amounts |
+ | currency_symbol | string |  no  | Currency symbol for currency |
 
 ---
 
@@ -7189,9 +7177,9 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | ---------- | ---- | -------- | ----------- |
  | max_quantity | number |  no  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
  | margin | number |  no  | Percentage value of discount |
+ | type | string |  no  | Offer type |
  | price | [LadderPrice](#LadderPrice) |  no  |  |
  | min_quantity | number |  no  | Minimum quantity from which offer is applicable |
- | type | string |  no  | Offer type |
 
 ---
 
@@ -7203,11 +7191,23 @@ Success. Returns a object containing the applicable ladder price offers (if exis
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | offer_prices | [[LadderOfferItem](#LadderOfferItem)] |  no  |  |
- | description | string |  no  | Offer details including T&C |
  | promotion_group | string |  no  | Group of promotion belongs to |
  | id | string |  no  | Promotion id |
+ | description | string |  no  | Offer details including T&C |
  | offer_text | string |  no  | Offer title |
  | valid_till | string |  no  | Datetime ISOString for promotion end date |
+
+---
+
+
+ 
+ 
+ #### [CurrencyInfo](#CurrencyInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | symbol | string |  no  |  |
 
 ---
 
@@ -7218,8 +7218,8 @@ Success. Returns a object containing the applicable ladder price offers (if exis
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | [CurrencyInfo](#CurrencyInfo) |  no  |  |
  | available_offers | [[LadderPriceOffer](#LadderPriceOffer)] |  no  |  |
+ | currency | [CurrencyInfo](#CurrencyInfo) |  no  |  |
 
 ---
 
