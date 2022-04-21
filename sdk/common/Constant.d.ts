@@ -41,6 +41,7 @@ export namespace AVAILABLE_PAGE_TYPE {
     const CART_DELIVERY: string;
     const CART_PAYMENT: string;
     const CART_REVIEW: string;
+    const LOGIN: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -272,6 +273,10 @@ export const NAVIGATORS: {
         link: string;
     };
     "cart-review": {
+        name: string;
+        link: string;
+    };
+    login: {
         name: string;
         link: string;
     };
