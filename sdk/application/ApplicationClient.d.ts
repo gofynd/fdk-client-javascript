@@ -20,6 +20,8 @@ declare class ApplicationClient {
     posCart: PosCart;
     logistic: Logistic;
     setCookie(cookie: any): void;
+    setLocationDetails(locationDetails: any): void;
+    setExtraHeaders(header: any): void;
 }
 declare class Catalog {
     constructor(_conf: any);

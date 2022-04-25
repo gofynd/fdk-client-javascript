@@ -18,6 +18,7 @@ const {
   FeedbackValidator,
   PosCartValidator,
   LogisticValidator,
+  LocationValidator,
 } = require("./ApplicationModels");
 
 const APIClient = require("./ApplicationAPIClient");
@@ -57,8 +58,29 @@ class ApplicationClient {
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
   }
+
   setCookie(cookie) {
     this.config.cookie = cookie;
+  }
+
+  setLocationDetails(locationDetails) {
+    const {
+      error,
+    } = LocationValidator.validateLocationObj().validate(locationDetails, {
+      abortEarly: false,
+    });
+    if (error) {
+      throw new FDKClientValidationError(error);
+    }
+    this.config.locationDetails = locationDetails;
+  }
+
+  setExtraHeaders(header) {
+    if (typeof header === "object") {
+      this.config.extraHeaders.push(header);
+    } else {
+      throw new FDKClientValidationError("Context value should be an object");
+    }
   }
 }
 

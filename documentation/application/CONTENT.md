@@ -3312,6 +3312,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | cartDelivery | cart-delivery | Symbolic link for Cart Delivery: /cart/delivery |
  | cartPayment | cart-payment | Symbolic link for Cart Payment Information: /cart/payment-info |
  | cartReview | cart-review | Symbolic link for Cart Order Review: /cart/order-review |
+ | login | login | Symbolic link for Login: /auth/login |
 
 ---
 

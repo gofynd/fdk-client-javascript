@@ -93,13 +93,13 @@ export class CatalogValidator {
     static getCategoryData(): any;
     static getProducts(): any;
     static createProduct(): any;
+    static deleteProduct(): any;
     static editProduct(): any;
     static getProduct(): any;
-    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;
-    static updateProductAssetsInBulk(): any;
+    static createBulkProductUploadJob(): any;
     static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
     static getProductTags(): any;
@@ -117,6 +117,8 @@ export class CatalogValidator {
     static getInventoryExport(): any;
     static createInventoryExportJob(): any;
     static exportInventoryConfig(): any;
+    static upsertInventory(): any;
+    static upsertBulkInventory(): any;
     static getAllHsnCodes(): any;
     static createHsnCode(): any;
     static updateHsnCode(): any;
@@ -125,16 +127,16 @@ export class CatalogValidator {
     static getOptimalLocations(): any;
 }
 export class CompanyProfileValidator {
-    static updateCompany(): any;
     static cbsOnboardGet(): any;
+    static updateCompany(): any;
     static getCompanyMetrics(): any;
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
+    static createLocation(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
