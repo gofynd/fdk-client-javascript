@@ -6,6 +6,7 @@
 
 ## Inventory Methods
 
+* [getConfigByCompany](#getconfigbycompany)
 * [getJobsByCompany](#getjobsbycompany)
 * [updateJob](#updatejob)
 * [createJob](#createjob)
@@ -20,6 +21,57 @@
 
 
 ## Methods with example and description
+
+
+### getConfigByCompany
+Get Slingshot Configuration Of  A Company
+
+
+
+```javascript
+// Promise
+const promise = client.inventory.getConfigByCompany();
+
+// Async/Await
+const data = await client.inventory.getConfigByCompany();
+```
+
+
+
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getJobsByCompany
@@ -607,6 +659,123 @@ Successful operation
 
  
  
+ #### [GCompany](#GCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | token | string |  no  |  |
+ | name | string |  no  |  |
+ | stores | [[GStore](#GStore)] |  no  |  |
+ | gstores | [[GStore](#GStore)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GStore](#GStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | token | string |  no  |  |
+ | code | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Integration](#Integration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | [[Metum](#Metum)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Metum](#Metum)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  |
+ | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | [Integration](#Integration) |  no  |  |
+ | companies | [[GCompany](#GCompany)] |  no  |  |
+
+---
+
+
+ 
+ 
  #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
@@ -658,23 +827,6 @@ Successful operation
  | ---------- | ---- | -------- | ----------- |
  | type | number |  no  |  |
  | group_list | [[GenericDTO](#GenericDTO)] |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
 
 ---
 
