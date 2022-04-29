@@ -6,7 +6,7 @@ const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
-const querystring = require("query-string");
+const { version } = require('./../package.json');
 
 class Extension {
     constructor() {
@@ -132,8 +132,11 @@ class Extension {
                 logger.debug(`Access token renewed for company ${companyId}`);
             }
         }
-       
-        return new PlatformClient(platformConfig);
+        let platformClient = new PlatformClient(platformConfig);
+        platformClient.setExtraHeaders({
+            'x-ext-lib-version': version
+        })
+        return platformClient;
     }
 
     async getExtensionDetails() {
