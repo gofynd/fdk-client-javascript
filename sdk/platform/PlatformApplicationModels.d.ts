@@ -223,6 +223,7 @@ export class CatalogValidator {
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getAppZoneProducts(): any;
     static getAppLocations(): any;
 }
 export class FileStorageValidator {
@@ -307,4 +308,8 @@ export class AnalyticsValidator {
 export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
+}
+export class ServiceabilityValidator {
+    static getApplicationServiceability(): any;
+    static getZoneFromPincode(): any;
 }

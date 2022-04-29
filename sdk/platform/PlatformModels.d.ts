@@ -124,18 +124,18 @@ export class CatalogValidator {
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
-    static updateCompany(): any;
     static cbsOnboardGet(): any;
+    static updateCompany(): any;
     static getCompanyMetrics(): any;
-    static editBrand(): any;
     static getBrand(): any;
+    static editBrand(): any;
     static createBrand(): any;
     static getBrands(): any;
     static createCompanyBrandMapping(): any;
     static getLocations(): any;
     static createLocation(): any;
-    static updateLocation(): any;
     static getLocationDetail(): any;
+    static updateLocation(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {
@@ -203,6 +203,14 @@ export class WebhookValidator {
     static getSubscribersByExtensionId(): any;
     static getSubscriberById(): any;
     static fetchAllEventConfigurations(): any;
+}
+export class ServiceabilityValidator {
+    static getEntityRegionView(): any;
+    static getListView(): any;
+    static getCompanyStoreView(): any;
+    static updateZoneControllerView(): any;
+    static getZoneDataView(): any;
+    static upsertZoneControllerView(): any;
 }
 export class AuditTrailValidator {
     static getAuditLogs(): any;
