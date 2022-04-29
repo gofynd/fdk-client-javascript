@@ -125,16 +125,16 @@ export class CatalogValidator {
     static getOptimalLocations(): any;
 }
 export class CompanyProfileValidator {
-    static updateCompany(): any;
     static cbsOnboardGet(): any;
+    static updateCompany(): any;
     static getCompanyMetrics(): any;
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static getBrands(): any;
     static createCompanyBrandMapping(): any;
-    static getLocations(): any;
+    static getBrands(): any;
     static createLocation(): any;
+    static getLocations(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
@@ -158,9 +158,6 @@ export class InventoryValidator {
     static getJobByCode(): any;
     static getJobCodeMetrics(): any;
     static getJobCodesByCompanyAndIntegration(): any;
-    static getJobConfigByIntegrationType(): any;
-    static getJobCodesMetrics(): any;
-    static saveJobCodesMetrics(): any;
 }
 export class ConfigurationValidator {
     static createApplication(): any;
