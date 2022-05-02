@@ -21,6 +21,8 @@ let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
 let baseUrl = data.toString() || "http://localhost:5070";
 console.log(baseUrl);
 
+// let baseUrl = 'https://fdk-extension-javascript-local.loca.lt'
+
 function handleCouponEdit(eventName, payload, companyId, applicationId) {
     console.log(`Event received for ${companyId} and ${applicationId}`);
     console.log(payload);

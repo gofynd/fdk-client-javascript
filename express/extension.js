@@ -125,7 +125,7 @@ class Extension {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
                 logger.debug(`Renewing access token for company ${companyId}`);
-                const renewTokenRes = await platformConfig.oauthClient.renewAccessToken();
+                const renewTokenRes = await platformConfig.oauthClient.renewAccessToken(session.access_mode === 'offline');
                 renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                 session.updateToken(renewTokenRes);
                 await SessionStorage.saveSession(session);

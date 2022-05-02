@@ -113,13 +113,13 @@ function setupRoutes(ext) {
 
                     session = new Session(sid);
                     
+                    session.access_mode = 'offline';
                     session.company_id = companyId;
                     session.scope = ext.scopes;
                     session.state = req.fdkSession.state;
                     session.extension_id = ext.api_key;
                     offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                     session.updateToken(offlineTokenRes);
-
                     await SessionStorage.saveSession(session);
                     
                 } else if (session.extension_id !== ext.api_key) {
