@@ -117,7 +117,6 @@ class WebhookRegistry {
         if (config) {
             await this.initialize(config, this._fdkConfig);
         }
-
         let subscriberConfig = await this.getSubscriberConfig(platformClient);
 
         let registerNew = false;
@@ -312,8 +311,13 @@ class WebhookRegistry {
     }
 
     async getSubscriberConfig(platformClient) {
-        const subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key });
-        return subscriberConfig.items[0];
+        try {
+            const subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key });
+            return subscriberConfig.items[0];
+        }
+        catch(err){
+            throw new FdkInvalidWebhookConfig(`Error while fetching webhook subscriber configuration, Reason: ${err.message}`)
+        }
     }
 
     async getEventConfig(handlerConfig) {

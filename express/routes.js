@@ -141,7 +141,9 @@ function setupRoutes(ext) {
             req.extension = ext;
             if (ext.webhookRegistry.isInitialized) {
                 const client = await ext.getPlatformClient(companyId, req.fdkSession);
-                await ext.webhookRegistry.syncEvents(client, null, true);
+                await ext.webhookRegistry.syncEvents(client, null, true).catch((err)=>{
+                    logger.error(err);
+                });
             }
             let redirectUrl = await ext.callbacks.auth(req);
             logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`);
