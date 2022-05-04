@@ -51,6 +51,7 @@ export class Validator {
     static Metum(): any;
     static ResponseEnvelopeSlingshotConfigurationDetail(): any;
     static SlingshotConfigurationDetail(): any;
+    static StoreData(): any;
     static ResponseEnvelopeObject(): any;
     static DataTresholdDTO(): any;
     static GenericDTO(): any;

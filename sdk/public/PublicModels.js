@@ -452,6 +452,8 @@ class Validator {
       code: Joi.string().allow(""),
 
       name: Joi.string().allow(""),
+
+      data: this.StoreData(),
     });
   }
 
@@ -510,6 +512,12 @@ class Validator {
       integration: this.Integration(),
 
       companies: Joi.array().items(this.GCompany()),
+    });
+  }
+
+  static StoreData() {
+    return Joi.object({
+      location_id: Joi.string().allow(""),
     });
   }
 

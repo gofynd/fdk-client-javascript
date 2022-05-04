@@ -748,6 +748,7 @@ Successful operation
  | token | string |  no  |  |
  | code | string |  no  |  |
  | name | string |  no  |  |
+ | data | [StoreData](#StoreData) |  no  |  |
 
 ---
 
@@ -826,6 +827,17 @@ Successful operation
  | ---------- | ---- | -------- | ----------- |
  | integration | [Integration](#Integration) |  no  |  |
  | companies | [[GCompany](#GCompany)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_id | string |  no  |  |
 
 ---
 

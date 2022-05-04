@@ -2,7 +2,6 @@ const querystring = require("query-string");
 const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
-const refreshTokenRequestCache = {};
 class OAuthClient {
   constructor(config) {
     this.config = config;
@@ -108,26 +107,12 @@ class OAuthClient {
     }
   }
 
-  async renewAccessToken(isOfflineToken = false) {
+  async renewAccessToken() {
     try {
-      let res;
-      if (isOfflineToken) {
-        let requestCacheKey = `${this.config.apiKey}:${this.config.companyId}`;
-        if (!refreshTokenRequestCache[requestCacheKey]) {
-          refreshTokenRequestCache[requestCacheKey] = this.getAccesstokenObj({
-            grant_type: "refresh_token",
-            refresh_token: this.refreshToken,
-          });
-        }
-        res = await refreshTokenRequestCache[requestCacheKey].finally(() => {
-          delete refreshTokenRequestCache[requestCacheKey];
-        });
-      } else {
-        res = await this.getAccesstokenObj({
-          grant_type: "refresh_token",
-          refresh_token: this.refreshToken,
-        });
-      }
+      let res = await this.getAccesstokenObj({
+        grant_type: "refresh_token",
+        refresh_token: this.refreshToken,
+      });
       this.setToken(res);
       this.token_expires_at =
         new Date().getTime() + this.token_expires_in * 1000;

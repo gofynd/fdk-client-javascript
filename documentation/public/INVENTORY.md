@@ -400,6 +400,7 @@ JobCode Metrics entry Created Successfully
  | token | string |  no  |  |
  | code | string |  no  |  |
  | name | string |  no  |  |
+ | data | [StoreData](#StoreData) |  no  |  |
 
 ---
 
@@ -478,6 +479,17 @@ JobCode Metrics entry Created Successfully
  | ---------- | ---- | -------- | ----------- |
  | integration | [Integration](#Integration) |  no  |  |
  | companies | [[GCompany](#GCompany)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_id | string |  no  |  |
 
 ---
 
