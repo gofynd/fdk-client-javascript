@@ -93,15 +93,15 @@ export class CatalogValidator {
     static getCategoryData(): any;
     static createProduct(): any;
     static getProducts(): any;
-    static deleteProduct(): any;
     static editProduct(): any;
     static getProduct(): any;
+    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static createBulkProductUploadJob(): any;
     static getProductBulkUploadHistory(): any;
-    static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
+    static deleteProductBulkJob(): any;
     static getProductTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -112,8 +112,8 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
+    static deleteBulkInventoryJob(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
