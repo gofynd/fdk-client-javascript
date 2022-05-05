@@ -134,7 +134,7 @@ class Extension {
         }
         let platformClient = new PlatformClient(platformConfig);
         platformClient.setExtraHeaders({
-            'x-ext-lib-version': `js:${version}`
+            'x-ext-lib-version': `js/${version}`
         })
         return platformClient;
     }
