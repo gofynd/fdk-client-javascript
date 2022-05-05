@@ -42,13 +42,13 @@ class Session {
     }
 
     updateToken(rawToken) {
-        this.expires = rawToken.expires || this.expires,
-        this.access_mode = rawToken.access_mode || this.access_mode,
-        this.access_token = rawToken.access_token || this.access_token,
-        this.current_user = rawToken.current_user || this.current_user,
-        this.refresh_token = rawToken.refresh_token || this.refresh_token,
-        this.expires_in = rawToken.expires_in || this.expires_in,
-        this.access_token_validity = rawToken.access_token_validity || this.access_token_validity
+        this.expires = rawToken.expires,
+        this.access_mode = rawToken.access_mode,
+        this.access_token = rawToken.access_token,
+        this.current_user = rawToken.current_user,
+        this.refresh_token = rawToken.refresh_token,
+        this.expires_in = rawToken.expires_in,
+        this.access_token_validity = rawToken.access_token_validity
     }
 
     static generateSessionId(isOnline, options) {
