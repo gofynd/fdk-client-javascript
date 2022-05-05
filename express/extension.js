@@ -134,7 +134,7 @@ class Extension {
         }
         let platformClient = new PlatformClient(platformConfig);
         platformClient.setExtraHeaders({
-            'x-ext-lib-version': version
+            'x-ext-lib-version': `fdk-ext-js:${version}`
         })
         return platformClient;
     }
