@@ -407,21 +407,6 @@ JobCode Metrics entry Created Successfully
 
  
  
- #### [Integration](#Integration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | meta | [[Metum](#Metum)] |  no  |  |
-
----
-
-
- 
- 
  #### [Metum](#Metum)
 
  | Properties | Type | Nullable | Description |
@@ -477,8 +462,23 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | integration | [Integration](#Integration) |  no  |  |
+ | integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
  | companies | [[GCompany](#GCompany)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotIntegration](#SlingshotIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | [[Metum](#Metum)] |  no  |  |
 
 ---
 

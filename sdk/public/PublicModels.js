@@ -457,20 +457,6 @@ class Validator {
     });
   }
 
-  static Integration() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      slug: Joi.string().allow(""),
-
-      meta: Joi.array().items(this.Metum()),
-    });
-  }
-
   static Metum() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -509,9 +495,23 @@ class Validator {
 
   static SlingshotConfigurationDetail() {
     return Joi.object({
-      integration: this.Integration(),
+      integration: this.SlingshotIntegration(),
 
       companies: Joi.array().items(this.GCompany()),
+    });
+  }
+
+  static SlingshotIntegration() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      meta: Joi.array().items(this.Metum()),
     });
   }
 

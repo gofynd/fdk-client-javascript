@@ -47,10 +47,10 @@ export class Validator {
     static SubscriberStatus(): any;
     static GCompany(): any;
     static GStore(): any;
-    static Integration(): any;
     static Metum(): any;
     static ResponseEnvelopeSlingshotConfigurationDetail(): any;
     static SlingshotConfigurationDetail(): any;
+    static SlingshotIntegration(): any;
     static StoreData(): any;
     static ResponseEnvelopeObject(): any;
     static DataTresholdDTO(): any;
