@@ -192,13 +192,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
@@ -217,6 +217,7 @@ export class CatalogValidator {
     static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
+    static getApplicationBrandListing(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
     static getCategories(): any;
@@ -225,6 +226,9 @@ export class CatalogValidator {
     static getAppProducts(): any;
     static getAppZoneProducts(): any;
     static getAppLocations(): any;
+}
+export class CompanyProfileValidator {
+    static updateAppBrand(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;
