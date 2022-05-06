@@ -124,12 +124,12 @@ class Extension {
         if (session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
-                logger.debug(`Renewing access token for company ${companyId}`);
+                logger.debug(`Renewing access token for company ${companyId} with platform config ${JSON.stringify(platformConfig)}`);
                 const renewTokenRes = await platformConfig.oauthClient.renewAccessToken(session.access_mode === 'offline');
                 renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                 session.updateToken(renewTokenRes);
                 await SessionStorage.saveSession(session);
-                logger.debug(`Access token renewed for company ${companyId}`);
+                logger.debug(`Access token renewed for company ${companyId} with response ${JSON.stringify(renewTokenRes)}`);
             }
         }
         let platformClient = new PlatformClient(platformConfig);
@@ -152,6 +152,7 @@ class Extension {
                 headers: {
                     Authorization: `Basic ${token}`,
                     "Content-Type": "application/json",
+                    'x-ext-lib-version': `js/${version}`
                 },
             };
             let extensionData = await fdkAxios.request(rawRequest);
