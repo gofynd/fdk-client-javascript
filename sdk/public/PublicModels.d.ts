@@ -52,7 +52,8 @@ export class Validator {
     static SlingshotConfigurationDetail(): any;
     static SlingshotIntegration(): any;
     static StoreData(): any;
-    static ResponseEnvelopeObject(): any;
+    static ApikeyModel(): any;
+    static ResponseEnvelopeApikeyModel(): any;
     static DataTresholdDTO(): any;
     static GenericDTO(): any;
     static JobConfigDTO(): any;
@@ -61,4 +62,5 @@ export class Validator {
     static ResponseEnvelopeListJobConfigDTO(): any;
     static EmailJobMetrics(): any;
     static ResponseEnvelopeEmailJobMetrics(): any;
+    static ResponseEnvelopeObject(): any;
 }

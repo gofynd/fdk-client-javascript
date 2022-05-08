@@ -268,7 +268,7 @@ class Inventory {
    * @param {Object} arg - Arg object.
    * @param {string} arg.userName - Integration id
    * @param {string} arg.password - Company/store token
-   * @returns {Promise<ResponseEnvelopeObject>} - Success response
+   * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
    * @summary: Get Slingshot Configuration Of  A Company
    * @description: REST Endpoint that returns apikey by username by password
    */

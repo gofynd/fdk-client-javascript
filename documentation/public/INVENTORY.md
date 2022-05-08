@@ -107,7 +107,7 @@ REST Endpoint that returns apikey by username by password
 
 
 
-[ResponseEnvelopeObject](#ResponseEnvelopeObject)
+[ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
 
 Successful operation
 
@@ -496,7 +496,19 @@ JobCode Metrics entry Created Successfully
 
  
  
- #### [ResponseEnvelopeObject](#ResponseEnvelopeObject)
+ #### [ApikeyModel](#ApikeyModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | session_id | string |  no  |  |
+ | error_message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -507,8 +519,8 @@ JobCode Metrics entry Created Successfully
  | message | string |  no  |  |
  | total_time_taken_in_millis | number |  no  |  |
  | http_status | string |  no  |  |
- | items | string |  no  |  |
- | payload | string |  no  |  |
+ | items | [ApikeyModel](#ApikeyModel) |  no  |  |
+ | payload | [ApikeyModel](#ApikeyModel) |  no  |  |
  | trace_id | string |  no  |  |
  | page | [Page](#Page) |  no  |  |
 
@@ -644,6 +656,27 @@ JobCode Metrics entry Created Successfully
  | http_status | string |  no  |  |
  | items | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
  | payload | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeObject](#ResponseEnvelopeObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | string |  no  |  |
+ | payload | string |  no  |  |
  | trace_id | string |  no  |  |
  | page | [Page](#Page) |  no  |  |
 

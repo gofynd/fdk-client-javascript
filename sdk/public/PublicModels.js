@@ -521,7 +521,15 @@ class Validator {
     });
   }
 
-  static ResponseEnvelopeObject() {
+  static ApikeyModel() {
+    return Joi.object({
+      session_id: Joi.string().allow(""),
+
+      error_message: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeApikeyModel() {
     return Joi.object({
       timestamp: Joi.string().allow(""),
 
@@ -537,9 +545,9 @@ class Validator {
 
       http_status: Joi.string().allow(""),
 
-      items: Joi.any(),
+      items: this.ApikeyModel(),
 
-      payload: Joi.any(),
+      payload: this.ApikeyModel(),
 
       trace_id: Joi.string().allow(""),
 
@@ -682,6 +690,32 @@ class Validator {
       items: this.EmailJobMetrics(),
 
       payload: this.EmailJobMetrics(),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
+  static ResponseEnvelopeObject() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: Joi.any(),
+
+      payload: Joi.any(),
 
       trace_id: Joi.string().allow(""),
 
