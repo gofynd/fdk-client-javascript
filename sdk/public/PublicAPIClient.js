@@ -11,17 +11,24 @@ class PublicAPIClient {
 
   static execute(conf, method, url, query, body) {
     let headers = {};
+    headers["User-Agent"] = conf.userAgent ? conf.userAgent : "";
+    headers["Accept-Language"] = conf.language ? conf.language : "en-IN";
+    headers["x-currency-code"] = conf.currency ? conf.currency : "INR";
 
-    conf.userAgent ? headers["User-Agent"] : conf.userAgent;
-    conf.language ? headers["Accept-Language"] : conf.language;
-    conf.currency ? headers["x-currency-code"] : conf.currency;
+    const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
+      acc = { ...acc, ...curr };
+      return acc;
+    }, {});
 
     const rawRequest = {
       method: method,
       url: url,
       params: query,
       data: body,
-      headers,
+      headers: {
+        ...headers,
+        ...extraHeaders,
+      },
     };
     return fdkAxios.request(rawRequest);
   }
