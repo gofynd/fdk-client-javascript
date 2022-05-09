@@ -10,9 +10,6 @@ beforeAll(() => {
     currency: "rupees",
   });
   publicClient = new PublicClient(config);
-  publicClient.setExtraHeaders({
-    "x-public-header": { pincode: "", country: "" },
-  });
 });
 
 afterAll(() => {
@@ -20,7 +17,7 @@ afterAll(() => {
 });
 
 describe("Get All Locations", () => {
-  it("get locations by type country", async () => {
+  it("getProductDetailBySlug testing", async () => {
     let locations = await publicClient.configuration.getLocations({
       locationType: "country",
     });

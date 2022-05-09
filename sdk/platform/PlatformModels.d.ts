@@ -127,18 +127,18 @@ export class CatalogValidator {
     static getOptimalLocations(): any;
 }
 export class CompanyProfileValidator {
-    static cbsOnboardGet(): any;
     static updateCompany(): any;
+    static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
-    static getLocationDetail(): any;
+    static createLocation(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {

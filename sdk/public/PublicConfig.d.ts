@@ -6,5 +6,4 @@ declare class PublicConfig {
     userAgent: any;
     language: any;
     currency: any;
-    extraHeaders: any[];
 }
