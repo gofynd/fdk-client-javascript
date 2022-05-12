@@ -29,6 +29,14 @@ class PublicClient {
     this.webhook = new Webhook(config);
     this.inventory = new Inventory(config);
   }
+
+  setExtraHeaders(header) {
+    if (typeof header === "object") {
+      this.config.extraHeaders.push(header);
+    } else {
+      throw new FDKClientValidationError("Context value should be an object");
+    }
+  }
 }
 
 class Configuration {

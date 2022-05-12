@@ -131,10 +131,10 @@ export class CompanyProfileValidator {
     static getBrand(): any;
     static editBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
+    static createLocation(): any;
     static getLocationDetail(): any;
     static updateLocation(): any;
     static createLocationBulk(): any;
@@ -209,4 +209,5 @@ export class AuditTrailValidator {
     static getAuditLogs(): any;
     static createAuditLog(): any;
     static getAuditLog(): any;
+    static getEntityTypes(): any;
 }

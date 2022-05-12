@@ -5,6 +5,7 @@ declare class PublicClient {
     configuration: Configuration;
     webhook: Webhook;
     inventory: Inventory;
+    setExtraHeaders(header: any): void;
 }
 declare class Configuration {
     constructor(_conf: any);
