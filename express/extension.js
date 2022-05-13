@@ -157,7 +157,7 @@ class Extension {
                 },
             };
             let extensionData = await fdkAxios.request(rawRequest);
-            logger.debug(`Extension details received: ${extensionData}`);
+            logger.debug(`Extension details received: ${safeStringify(extensionData)}`);
             return extensionData;
         } catch (err) {
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
