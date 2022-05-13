@@ -5,6 +5,7 @@ const urljoin = require('url-join');
 const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
+const { safeStringify } = require('./logger');
 const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
 const { version } = require('./../package.json');
 
@@ -124,12 +125,12 @@ class Extension {
         if (session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
-                logger.debug(`Renewing access token for company ${companyId} with platform config ${JSON.stringify(platformConfig)}`);
+                logger.debug(`Renewing access token for company ${companyId} with platform config ${safeStringify(platformConfig)}`);
                 const renewTokenRes = await platformConfig.oauthClient.renewAccessToken(session.access_mode === 'offline');
                 renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                 session.updateToken(renewTokenRes);
                 await SessionStorage.saveSession(session);
-                logger.debug(`Access token renewed for company ${companyId} with response ${JSON.stringify(renewTokenRes)}`);
+                logger.debug(`Access token renewed for company ${companyId} with response ${safeStringify(renewTokenRes)}`);
             }
         }
         let platformClient = new PlatformClient(platformConfig);
