@@ -19,7 +19,6 @@ app.use(bodyParser.json({
 
 let data = fs.readFileSync(path.join(__dirname + "/.ngrock"));
 let baseUrl = data.toString() || "http://localhost:5070";
-console.log(baseUrl);
 
 // let baseUrl = 'https://fdk-extension-javascript-local.loca.lt'
 
