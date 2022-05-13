@@ -16,6 +16,7 @@ Handles Platform websites OMS
 * [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
 * [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
 * [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
+* [getInvoiceByShipmentId](#getinvoicebyshipmentid)
 
 
 
@@ -607,6 +608,62 @@ Success, the code is valid and returns a session token
 ---
 
 
+### getInvoiceByShipmentId
+Get Invoice URL
+
+
+
+```javascript
+// Promise
+const promise = order.getInvoiceByShipmentId({  shipmentId : value });
+
+// Async/Await
+const data = await order.getInvoiceByShipmentId({  shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to get a generated Invoice URL for viewing or download.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+
+Success, the code is valid and returns a SignedUrl
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -687,6 +744,20 @@ Success, the code is valid and returns a session token
 
  
  
+ #### [ResponseGetInvoiceShipment](#ResponseGetInvoiceShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | presigned_type | string |  yes  |  |
+ | shipment_id | string |  yes  |  |
+ | presigned_url | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ResponseVerifyOTPShipment](#ResponseVerifyOTPShipment)
 
  | Properties | Type | Nullable | Description |
@@ -755,6 +826,7 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | statuses | [[StatusesBody](#StatusesBody)] |  yes  |  |
  | force_transition | boolean |  yes  |  |
+ | task | boolean |  no  |  |
 
 ---
 
@@ -1104,6 +1176,7 @@ Success, the code is valid and returns a session token
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | title | string |  no  |  |
+ | value | string |  no  |  |
  | hex_code | string |  no  |  |
 
 ---

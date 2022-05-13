@@ -53,8 +53,12 @@ export class UserValidator {
     static getCustomers(): any;
     static searchUsers(): any;
     static createUser(): any;
+    static blockOrUnblockUsers(): any;
+    static archiveUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
+    static getActiveSessions(): any;
+    static deleteActiveSessions(): any;
     static getPlatformConfig(): any;
     static updatePlatformConfig(): any;
 }
@@ -177,7 +181,6 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -188,13 +191,13 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
@@ -270,6 +273,11 @@ export class CartValidator {
     static getCouponById(): any;
     static updateCoupon(): any;
     static updateCouponPartially(): any;
+    static getPromotions(): any;
+    static createPromotion(): any;
+    static getPromotionById(): any;
+    static updatePromotion(): any;
+    static updatePromotionPartially(): any;
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;

@@ -122,9 +122,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      unfollowById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       followById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      unfollowById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -1152,37 +1152,6 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
-   */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "delete",
-      constructUrl({
-        url: this._urls["unfollowById"],
-        params: { collectionType, collectionId },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
@@ -1201,6 +1170,37 @@ class Catalog {
       "post",
       constructUrl({
         url: this._urls["followById"],
+        params: { collectionType, collectionId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.
+   * @param {string} arg.collectionId - The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   */
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "delete",
+      constructUrl({
+        url: this._urls["unfollowById"],
         params: { collectionType, collectionId },
       }),
       query_params,
@@ -1685,6 +1685,8 @@ class Cart {
       getCartSharedItems: "/service/application/cart/v1.0/share-cart/{token}",
       updateCartWithSharedItems:
         "/service/application/cart/v1.0/share-cart/{token}/{action}",
+      getPromotionOffers: "/service/application/cart/v1.0/available-promotions",
+      getLadderOffers: "/service/application/cart/v1.0/available-ladder-prices",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -1708,13 +1710,14 @@ class Cart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {number} [arg.assignCardId] -
+   * @param {string} [arg.areaCode] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  getCart({ id, i, b, assignCardId } = {}) {
+  getCart({ id, i, b, assignCardId, areaCode } = {}) {
     const { error } = CartValidator.getCart().validate(
-      { id, i, b, assignCardId },
+      { id, i, b, assignCardId, areaCode },
       { abortEarly: false }
     );
     if (error) {
@@ -1725,6 +1728,7 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
+    query_params["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -1772,14 +1776,15 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  addItems({ body, i, b } = {}) {
+  addItems({ body, i, b, areaCode } = {}) {
     const { error } = CartValidator.addItems().validate(
-      { body, i, b },
+      { body, i, b, areaCode },
       { abortEarly: false }
     );
     if (error) {
@@ -1788,6 +1793,7 @@ class Cart {
     const query_params = {};
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -1806,14 +1812,15 @@ class Cart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
    * @param {UpdateCartRequest} arg.body
    * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  updateCart({ body, id, i, b } = {}) {
+  updateCart({ body, id, i, b, areaCode } = {}) {
     const { error } = CartValidator.updateCart().validate(
-      { body, id, i, b },
+      { body, id, i, b, areaCode },
       { abortEarly: false }
     );
     if (error) {
@@ -1823,6 +1830,7 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -2502,6 +2510,82 @@ class Cart {
       constructUrl({
         url: this._urls["updateCartWithSharedItems"],
         params: { token, action },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.slug] - A short, human-readable, URL-friendly
+   *   identifier of a product. You can get slug value from the endpoint
+   *   /service/application/catalog/v1.0/products/
+   * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+   * @param {string} [arg.promotionGroup] - Type of promotion groups
+   * @returns {Promise<PromotionOffersResponse>} - Success response
+   * @summary: Fetch available promotions
+   * @description: Use this API to get top 5 offers available for current product
+   */
+  getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
+    const { error } = CartValidator.getPromotionOffers().validate(
+      { slug, pageSize, promotionGroup },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["slug"] = slug;
+    query_params["page_size"] = pageSize;
+    query_params["promotion_group"] = promotionGroup;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPromotionOffers"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a product. You can get slug value from the endpoint
+   *   /service/application/catalog/v1.0/products/
+   * @param {string} [arg.storeId] - Store uid of assigned store on PDP page.
+   *   If not passed default first created ladder will be returned
+   * @param {string} [arg.promotionId] - Get ladder information of given
+   *   promotion id explicitely
+   * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+   * @returns {Promise<LadderPriceOffers>} - Success response
+   * @summary: Fetch ladder price promotion
+   * @description: Use this API to get applicable ladder price promotion for current product
+   */
+  getLadderOffers({ slug, storeId, promotionId, pageSize } = {}) {
+    const { error } = CartValidator.getLadderOffers().validate(
+      { slug, storeId, promotionId, pageSize },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["slug"] = slug;
+    query_params["store_id"] = storeId;
+    query_params["promotion_id"] = promotionId;
+    query_params["page_size"] = pageSize;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getLadderOffers"],
+        params: {},
       }),
       query_params,
       undefined
@@ -5920,6 +6004,10 @@ class Payment {
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
+      getEpaylaterBannerDetails:
+        "/service/application/payment/v1.0/epaylater/banner",
+      resendOrCancelPayment:
+        "/service/application/payment/v1.0/payment/resend_or_cancel",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -5938,6 +6026,12 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/wallet",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
+      customerCreditSummary:
+        "/service/application/payment/v1.0/payment/credit-summary/",
+      redirectToAggregator:
+        "/service/application/payment/v1.0/payment/redirect-to-aggregator/",
+      checkCredit: "/service/application/payment/v1.0/check-credits/",
+      customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -6382,6 +6476,63 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<EpaylaterBannerResponse>} - Success response
+   * @summary: Get Epaylater Enabled
+   * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
+   */
+  getEpaylaterBannerDetails({} = {}) {
+    const { error } = PaymentValidator.getEpaylaterBannerDetails().validate(
+      {},
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getEpaylaterBannerDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ResendOrCancelPaymentRequest} arg.body
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+   * @summary: API to resend and cancel a payment link which was already generated.
+   * @description: Use this API to perform resend or cancel a payment link based on request payload.
+   */
+  resendOrCancelPayment({ body } = {}) {
+    const { error } = PaymentValidator.resendOrCancelPayment().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["resendOrCancelPayment"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<TransferModeResponse>} - Success response
    * @summary: Lists the mode of refund
    * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
@@ -6680,6 +6831,129 @@ class Payment {
       body
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  customerCreditSummary({ aggregator } = {}) {
+    const { error } = PaymentValidator.customerCreditSummary().validate(
+      { aggregator },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["customerCreditSummary"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.source] - This is a String value that contains
+   *   callback URL as value.
+   * @param {string} [arg.aggregator] - This is a String value that contains
+   *   aggregator name as value.
+   * @returns {Promise<RedirectToAggregatorResponse>} - Success response
+   * @summary: API to get the redirect url to redirect the user to aggregator's page
+   * @description: Use this API to get the redirect url to redirect the user to aggregator's page
+   */
+  redirectToAggregator({ source, aggregator } = {}) {
+    const { error } = PaymentValidator.redirectToAggregator().validate(
+      { source, aggregator },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["source"] = source;
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["redirectToAggregator"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CheckCreditResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  checkCredit({ aggregator } = {}) {
+    const { error } = PaymentValidator.checkCredit().validate(
+      { aggregator },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["checkCredit"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CustomerOnboardingRequest} arg.body
+   * @returns {Promise<CustomerOnboardingResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  customerOnboard({ body } = {}) {
+    const { error } = PaymentValidator.customerOnboard().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["customerOnboard"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
 }
 
 class Order {
@@ -6704,6 +6978,8 @@ class Order {
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       verifyOtpShipmentCustomer:
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify",
+      getInvoiceByShipmentId:
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -7045,6 +7321,37 @@ class Order {
       }),
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @summary: Get Invoice URL
+   * @description: Use this API to get a generated Invoice URL for viewing or download.
+   */
+  getInvoiceByShipmentId({ shipmentId } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+      { shipmentId },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getInvoiceByShipmentId"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined
     );
   }
 }
@@ -8626,13 +8933,14 @@ class PosCart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {number} [arg.assignCardId] -
+   * @param {string} [arg.areaCode] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  getCart({ id, i, b, assignCardId } = {}) {
+  getCart({ id, i, b, assignCardId, areaCode } = {}) {
     const { error } = PosCartValidator.getCart().validate(
-      { id, i, b, assignCardId },
+      { id, i, b, assignCardId, areaCode },
       { abortEarly: false }
     );
     if (error) {
@@ -8643,6 +8951,7 @@ class PosCart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
+    query_params["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -8690,14 +8999,15 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  addItems({ body, i, b } = {}) {
+  addItems({ body, i, b, areaCode } = {}) {
     const { error } = PosCartValidator.addItems().validate(
-      { body, i, b },
+      { body, i, b, areaCode },
       { abortEarly: false }
     );
     if (error) {
@@ -8706,6 +9016,7 @@ class PosCart {
     const query_params = {};
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -8724,14 +9035,15 @@ class PosCart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
    * @param {UpdateCartRequest} arg.body
    * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  updateCart({ body, id, i, b } = {}) {
+  updateCart({ body, id, i, b, areaCode } = {}) {
     const { error } = PosCartValidator.updateCart().validate(
-      { body, id, i, b },
+      { body, id, i, b, areaCode },
       { abortEarly: false }
     );
     if (error) {
@@ -8741,6 +9053,7 @@ class PosCart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["area_code"] = areaCode;
 
     return APIClient.execute(
       this._conf,
@@ -9563,6 +9876,7 @@ class Logistic {
     this._conf = _conf;
     this._relativeUrls = {
       getTatProduct: "/service/application/logistics/v1.0",
+      getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -9603,6 +9917,35 @@ class Logistic {
       "post",
       constructUrl({
         url: this._urls["getTatProduct"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {GetPincodeZonesReqBody} arg.body
+   * @returns {Promise<GetPincodeZonesResponse>} - Success response
+   * @summary: Get Pincode Zones
+   * @description: Get to know the zones of a specefic pincode
+   */
+  getPincodeZones({ body } = {}) {
+    const { error } = LogisticValidator.getPincodeZones().validate(
+      { body },
+      { abortEarly: false }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getPincodeZones"],
         params: {},
       }),
       query_params,
