@@ -62,12 +62,12 @@ export class OrderValidator {
 export class CatalogValidator {
     static createProductBundle(): any;
     static getProductBundle(): any;
-    static getProductBundleDetail(): any;
     static updateProductBundle(): any;
+    static getProductBundleDetail(): any;
     static createSizeGuide(): any;
     static getSizeGuides(): any;
-    static getSizeGuide(): any;
     static updateSizeGuide(): any;
+    static getSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -89,8 +89,8 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static createCategories(): any;
     static listCategories(): any;
-    static getCategoryData(): any;
     static updateCategory(): any;
+    static getCategoryData(): any;
     static createProduct(): any;
     static getProducts(): any;
     static editProduct(): any;
@@ -119,23 +119,23 @@ export class CatalogValidator {
     static exportInventoryConfig(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
-    static getHsnCode(): any;
     static updateHsnCode(): any;
+    static getHsnCode(): any;
     static bulkHsnCode(): any;
 }
 export class CompanyProfileValidator {
-    static cbsOnboardGet(): any;
     static updateCompany(): any;
+    static cbsOnboardGet(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
     static createCompanyBrandMapping(): any;
     static getBrands(): any;
     static createLocation(): any;
     static getLocations(): any;
-    static getLocationDetail(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {
@@ -208,8 +208,8 @@ export class ServiceabilityValidator {
     static getEntityRegionView(): any;
     static getListView(): any;
     static getCompanyStoreView(): any;
-    static updateZoneControllerView(): any;
     static getZoneDataView(): any;
+    static updateZoneControllerView(): any;
     static upsertZoneControllerView(): any;
 }
 export class AuditTrailValidator {
