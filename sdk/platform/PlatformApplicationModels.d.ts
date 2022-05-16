@@ -192,13 +192,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static updateSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
     static updateAutocompleteKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static deleteAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;

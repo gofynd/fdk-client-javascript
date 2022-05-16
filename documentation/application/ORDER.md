@@ -1147,6 +1147,7 @@ Success, the code is valid and returns a SignedUrl
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | show_promise | boolean |  no  |  |
  | min | string |  no  |  |
  | max | string |  no  |  |
 
