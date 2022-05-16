@@ -408,6 +408,174 @@ class Validator {
       "blocked"
     );
   }
+
+  static DataTresholdDTO() {
+    return Joi.object({
+      min_price: Joi.number(),
+
+      safe_stock: Joi.number(),
+
+      period_threshold: Joi.number(),
+
+      period_threshold_type: Joi.string().allow(""),
+
+      period_type_list: Joi.array().items(this.GenericDTO()),
+    });
+  }
+
+  static GenericDTO() {
+    return Joi.object({
+      text: Joi.string().allow(""),
+
+      value: Joi.any(),
+    });
+  }
+
+  static JobConfigDTO() {
+    return Joi.object({
+      integration: Joi.string().allow("").required(),
+
+      integration_data: Joi.object().pattern(/\S/, Joi.any()),
+
+      company_name: Joi.string().allow(""),
+
+      company_id: Joi.number().required(),
+
+      task_details: this.TaskDTO(),
+
+      threshold_details: this.DataTresholdDTO(),
+
+      job_code: Joi.string().allow(""),
+
+      alias: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeJobConfigDTO() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: this.JobConfigDTO(),
+
+      payload: this.JobConfigDTO(),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
+  static TaskDTO() {
+    return Joi.object({
+      type: Joi.number(),
+
+      group_list: Joi.array().items(this.GenericDTO()),
+    });
+  }
+
+  static ResponseEnvelopeListJobConfigDTO() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: Joi.array().items(this.JobConfigDTO()),
+
+      payload: Joi.array().items(this.JobConfigDTO()),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
+  static EmailJobMetrics() {
+    return Joi.object({
+      executed: Joi.boolean(),
+
+      id: Joi.string().allow(""),
+
+      job_code: Joi.string().allow(""),
+
+      daily_job: Joi.boolean(),
+
+      last_executed_on: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeEmailJobMetrics() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: this.EmailJobMetrics(),
+
+      payload: this.EmailJobMetrics(),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
+  static ResponseEnvelopeObject() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: Joi.any(),
+
+      payload: Joi.any(),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
 }
 
 class ConfigurationValidator {
@@ -438,8 +606,37 @@ class WebhookValidator {
   }
 }
 
+class InventoryValidator {
+  static getJobByCode() {
+    return Joi.object({
+      code: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getJobConfigByIntegrationType() {
+    return Joi.object({
+      integrationType: Joi.string().allow("").required(),
+      disable: Joi.boolean(),
+    }).required();
+  }
+
+  static getJobCodesMetrics() {
+    return Joi.object({
+      dailyJob: Joi.boolean(),
+      jobCode: Joi.string().allow(""),
+    });
+  }
+
+  static saveJobCodesMetrics() {
+    return Joi.object({
+      body: Validator.EmailJobMetrics().required(),
+    }).required();
+  }
+}
+
 module.exports = {
   ConfigurationValidator,
   WebhookValidator,
+  InventoryValidator,
   Validator,
 };

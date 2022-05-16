@@ -6,6 +6,12 @@ export class WebhookValidator {
     static fetchAllWebhookEvents(): any;
     static queryWebhookEventDetails(): any;
 }
+export class InventoryValidator {
+    static getJobByCode(): any;
+    static getJobConfigByIntegrationType(): any;
+    static getJobCodesMetrics(): any;
+    static saveJobCodesMetrics(): any;
+}
 export class Validator {
     static ApplicationResponse(): any;
     static Currency(): any;
@@ -37,4 +43,13 @@ export class Validator {
     static Association(): any;
     static EventConfigBase(): any;
     static SubscriberStatus(): any;
+    static DataTresholdDTO(): any;
+    static GenericDTO(): any;
+    static JobConfigDTO(): any;
+    static ResponseEnvelopeJobConfigDTO(): any;
+    static TaskDTO(): any;
+    static ResponseEnvelopeListJobConfigDTO(): any;
+    static EmailJobMetrics(): any;
+    static ResponseEnvelopeEmailJobMetrics(): any;
+    static ResponseEnvelopeObject(): any;
 }

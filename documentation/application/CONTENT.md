@@ -3282,7 +3282,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | collection | collection | Symbolic link for Collection: /collection/:slug |
  | collections | collections | Symbolic link for Collections: /collections/ |
  | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
- | external | external | Symbolic link for External Link: /external/:url |
+ | external | external | Symbolic link for External Link: /external/ |
  | faq | faq | Symbolic link for FAQ: /faq/:category |
  | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
  | home | home | Symbolic link for Home: / |
