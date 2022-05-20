@@ -13,6 +13,7 @@ jas.loadConfig({
       "helpers/**/*.js"
     ],
     "stopSpecOnExpectationFailure": true,
+    "exitOnCompletion": false,
     "random": false,
     "seed": "1234"
 });
@@ -31,7 +32,7 @@ const reporter = new JasmineConsoleReporter({
 
 jas.addReporter(reporter);
 
-jas.onComplete(function(passed) {
+jas.execute().then((passed)=>{
     if(passed) { 
         console.log('passed');
         process.exit(0);
@@ -40,7 +41,8 @@ jas.onComplete(function(passed) {
         console.log('failed');
         process.exit(1);
     }
-
+}).catch((err)=>{
+    console.log(err);
+    console.log('failed')
+    process.exit(1);
 });
-
-jas.execute();
