@@ -51,6 +51,7 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
+        this.webhookRegistry = new WebhookRegistry();
 
         let extensionData = await this.getExtensionDetails();
 
@@ -68,7 +69,6 @@ class Extension {
         this.scopes = data.scopes || extensionData.scope;
 
         logger.debug(`Extension initialized`);
-        this.webhookRegistry = new WebhookRegistry();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
             await this.webhookRegistry.initialize(data.webhook_config, data);
