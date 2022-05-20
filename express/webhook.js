@@ -5,7 +5,6 @@ const { fdkAxios } = require("fdk-client-javascript/sdk/common/AxiosHelper");
 const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 const logger = require("./logger");
-const { safeStringify } = require("./logger");
 
 let eventConfig = {}
 class WebhookRegistry {
@@ -114,7 +113,7 @@ class WebhookRegistry {
         if (!this.isInitialized){
             throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
         }
-        logger.debug('Sync events started');
+        logger.debug('Webhook sync events started');
         if (config) {
             await this.initialize(config, this._fdkConfig);
         }
@@ -347,7 +346,7 @@ class WebhookRegistry {
             };
             let responseData = await fdkAxios.request(rawRequest);
             eventConfig.event_configs = responseData.event_configs;
-            logger.debug(`Webhook events config received: ${safeStringify(responseData)}`);
+            logger.debug(`Webhook events config received: ${logger.safeStringify(responseData)}`);
             return responseData;            
         }
         catch (err) {

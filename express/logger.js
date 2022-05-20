@@ -29,8 +29,10 @@ logger.add(
     })
 )
 
+module.exports = logger;
+
 module.exports.safeStringify = function(jsonObj) {
-    var cache = [];
+    let cache = [];
     return JSON.stringify(jsonObj, (key, value) => {
         if (typeof value === 'object' && value !== null) {
             // Duplicate reference found, discard key
@@ -41,7 +43,4 @@ module.exports.safeStringify = function(jsonObj) {
         }
         return value;
     });
-    cache = null;
 }
-
-module.exports = logger;
