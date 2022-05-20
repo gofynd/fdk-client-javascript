@@ -8,11 +8,11 @@ const SessionStorage = require("./session/session_storage");
 const { ApplicationConfig, ApplicationClient } = require("fdk-client-javascript");
 const logger = require('./logger');
 
-function setupFdk(data) {
+function setupFdk(data, syncInitialization) {
     if (data.debug) {
         logger.transports[0].level = 'debug';
     }
-    extension.initialize(data)
+    const promiseInit = extension.initialize(data)
         .catch(err=>{
             logger.error(err);
             throw err;
@@ -43,7 +43,7 @@ function setupFdk(data) {
         return applicationClient;
     }
 
-    return {
+    const configInstance =  {
         fdkHandler: router,
         extension: extension,
         apiRoutes: apiRoutes,
@@ -52,6 +52,8 @@ function setupFdk(data) {
         getPlatformClient: getPlatformClient,
         getApplicationClient: getApplicationClient
     };
+
+    return syncInitialization? promiseInit.then(()=>configInstance).catch(()=>configInstance): configInstance;
 }
 
 module.exports = {
