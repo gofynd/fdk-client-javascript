@@ -48,8 +48,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        unfollowById: string;
         followById: string;
+        unfollowById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -500,10 +500,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -513,10 +513,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -763,6 +763,8 @@ declare class Cart {
         getCartShareLink: string;
         getCartSharedItems: string;
         updateCartWithSharedItems: string;
+        getPromotionOffers: string;
+        getLadderOffers: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -1094,6 +1096,42 @@ declare class Cart {
     updateCartWithSharedItems({ token, action }?: {
         token: string;
         action: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.slug] - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+     * @param {string} [arg.promotionGroup] - Type of promotion groups
+     * @returns {Promise<PromotionOffersResponse>} - Success response
+     * @summary: Fetch available promotions
+     * @description: Use this API to get top 5 offers available for current product
+     */
+    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
+        slug?: string;
+        pageSize?: number;
+        promotionGroup?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint
+     *   /service/application/catalog/v1.0/products/
+     * @param {string} [arg.storeId] - Store uid of assigned store on PDP page.
+     *   If not passed default first created ladder will be returned
+     * @param {string} [arg.promotionId] - Get ladder information of given
+     *   promotion id explicitely
+     * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+     * @returns {Promise<LadderPriceOffers>} - Success response
+     * @summary: Fetch ladder price promotion
+     * @description: Use this API to get applicable ladder price promotion for current product
+     */
+    getLadderOffers({ slug, storeId, promotionId, pageSize }?: {
+        slug: string;
+        storeId?: string;
+        promotionId?: string;
+        pageSize?: number;
     }): Promise<any>;
 }
 declare class Common {
