@@ -2706,6 +2706,7 @@ declare class Order {
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
+        getInvoiceByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -2849,6 +2850,18 @@ declare class Order {
         orderId: string;
         shipmentId: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @summary: Get Invoice URL
+     * @description: Use this API to get a generated Invoice URL for viewing or download.
+     */
+    getInvoiceByShipmentId({ shipmentId }?: {
+        shipmentId: string;
     }): Promise<any>;
 }
 declare class Rewards {
@@ -3917,6 +3930,7 @@ declare class Logistic {
     _conf: any;
     _relativeUrls: {
         getTatProduct: string;
+        getPincodeZones: string;
         getPincodeCity: string;
     };
     _urls: {};
@@ -3929,6 +3943,16 @@ declare class Logistic {
      * @description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
      */
     getTatProduct({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {GetPincodeZonesReqBody} arg.body
+     * @returns {Promise<GetPincodeZonesResponse>} - Success response
+     * @summary: Get Pincode Zones
+     * @description: Get to know the zones of a specefic pincode
+     */
+    getPincodeZones({ body }?: {
         body: any;
     }): Promise<any>;
     /**
