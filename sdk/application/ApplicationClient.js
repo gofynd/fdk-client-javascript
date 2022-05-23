@@ -68,6 +68,7 @@ class ApplicationClient {
       error,
     } = LocationValidator.validateLocationObj().validate(locationDetails, {
       abortEarly: false,
+      allowUnknown: true,
     });
     if (error) {
       throw new FDKClientValidationError(error);
@@ -122,9 +123,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      followById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       unfollowById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      followById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -169,7 +170,7 @@ class Catalog {
   getProductDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getProductDetailBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -202,7 +203,7 @@ class Catalog {
   getProductSizesBySlug({ slug, storeId } = {}) {
     const { error } = CatalogValidator.getProductSizesBySlug().validate(
       { slug, storeId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -234,7 +235,7 @@ class Catalog {
   getProductComparisonBySlugs({ slug } = {}) {
     const { error } = CatalogValidator.getProductComparisonBySlugs().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -268,7 +269,7 @@ class Catalog {
       error,
     } = CatalogValidator.getSimilarComparisonProductBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -301,7 +302,7 @@ class Catalog {
       error,
     } = CatalogValidator.getComparedFrequentlyProductBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -338,7 +339,7 @@ class Catalog {
   getProductSimilarByIdentifier({ slug, similarType } = {}) {
     const { error } = CatalogValidator.getProductSimilarByIdentifier().validate(
       { slug, similarType },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -369,7 +370,7 @@ class Catalog {
   getProductVariantsBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getProductVariantsBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -406,7 +407,7 @@ class Catalog {
   getProductStockByIds({ itemId, alu, skuCode, ean, upc } = {}) {
     const { error } = CatalogValidator.getProductStockByIds().validate(
       { itemId, alu, skuCode, ean, upc },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -442,7 +443,7 @@ class Catalog {
   getProductStockForTimeByIds({ timestamp, pageSize, pageId } = {}) {
     const { error } = CatalogValidator.getProductStockForTimeByIds().validate(
       { timestamp, pageSize, pageId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -526,7 +527,7 @@ class Catalog {
   } = {}) {
     const { error } = CatalogValidator.getProducts().validate(
       { q, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -612,7 +613,7 @@ class Catalog {
   getBrands({ department, pageNo, pageSize } = {}) {
     const { error } = CatalogValidator.getBrands().validate(
       { department, pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -677,7 +678,7 @@ class Catalog {
   getBrandDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getBrandDetailBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -709,7 +710,7 @@ class Catalog {
   getCategories({ department } = {}) {
     const { error } = CatalogValidator.getCategories().validate(
       { department },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -741,7 +742,7 @@ class Catalog {
   getCategoryDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getCategoryDetailBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -774,7 +775,7 @@ class Catalog {
   getHomeProducts({ sortOn, pageId, pageSize } = {}) {
     const { error } = CatalogValidator.getHomeProducts().validate(
       { sortOn, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -835,7 +836,7 @@ class Catalog {
   getDepartments({} = {}) {
     const { error } = CatalogValidator.getDepartments().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -867,7 +868,7 @@ class Catalog {
   getSearchResults({ q } = {}) {
     const { error } = CatalogValidator.getSearchResults().validate(
       { q },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -900,7 +901,7 @@ class Catalog {
   getCollections({ pageNo, pageSize, tag } = {}) {
     const { error } = CatalogValidator.getCollections().validate(
       { pageNo, pageSize, tag },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -980,7 +981,7 @@ class Catalog {
   } = {}) {
     const { error } = CatalogValidator.getCollectionItemsBySlug().validate(
       { slug, f, filters, sortOn, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1064,7 +1065,7 @@ class Catalog {
   getCollectionDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getCollectionDetailBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1096,7 +1097,7 @@ class Catalog {
   getFollowedListing({ collectionType, pageId, pageSize } = {}) {
     const { error } = CatalogValidator.getFollowedListing().validate(
       { collectionType, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1152,44 +1153,13 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
-   */
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
-      { collectionType, collectionId },
-      { abortEarly: false }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["followById"],
-        params: { collectionType, collectionId },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
    * @summary: Unfollow an entity (product/brand/collection)
    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
   unfollowById({ collectionType, collectionId } = {}) {
     const { error } = CatalogValidator.unfollowById().validate(
       { collectionType, collectionId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1210,6 +1180,37 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.collectionType - Type of collection followed, i.e.
+   *   products, brands, or collections.
+   * @param {string} arg.collectionId - The ID of the collection type.
+   * @returns {Promise<FollowPostResponse>} - Success response
+   * @summary: Follow an entity (product/brand/collection)
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   */
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["followById"],
+        params: { collectionType, collectionId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.collectionType - Type of collection, i.e. products,
    *   brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
@@ -1220,7 +1221,7 @@ class Catalog {
   getFollowerCountById({ collectionType, collectionId } = {}) {
     const { error } = CatalogValidator.getFollowerCountById().validate(
       { collectionType, collectionId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1250,7 +1251,7 @@ class Catalog {
   getFollowIds({ collectionType } = {}) {
     const { error } = CatalogValidator.getFollowIds().validate(
       { collectionType },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1290,7 +1291,7 @@ class Catalog {
   getStores({ pageNo, pageSize, q, city, range, latitude, longitude } = {}) {
     const { error } = CatalogValidator.getStores().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1383,7 +1384,7 @@ class Catalog {
   } = {}) {
     const { error } = CatalogValidator.getInStockLocations().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1465,7 +1466,7 @@ class Catalog {
   getLocationDetailsById({ locationId } = {}) {
     const { error } = CatalogValidator.getLocationDetailsById().validate(
       { locationId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1495,7 +1496,7 @@ class Catalog {
   getProductBundlesBySlug({ slug, id } = {}) {
     const { error } = CatalogValidator.getProductBundlesBySlug().validate(
       { slug, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1535,7 +1536,7 @@ class Catalog {
   getProductPriceBySlug({ slug, size, storeId, pincode } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
       { slug, size, storeId, pincode },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1585,7 +1586,7 @@ class Catalog {
   } = {}) {
     const { error } = CatalogValidator.getProductSellersBySlug().validate(
       { slug, size, pincode, strategy, pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1717,7 +1718,7 @@ class Cart {
   getCart({ id, i, b, assignCardId } = {}) {
     const { error } = CartValidator.getCart().validate(
       { id, i, b, assignCardId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1750,7 +1751,7 @@ class Cart {
   getCartLastModified({ id } = {}) {
     const { error } = CartValidator.getCartLastModified().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1782,7 +1783,7 @@ class Cart {
   addItems({ body, i, b } = {}) {
     const { error } = CartValidator.addItems().validate(
       { body, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1816,7 +1817,7 @@ class Cart {
   updateCart({ body, id, i, b } = {}) {
     const { error } = CartValidator.updateCart().validate(
       { body, id, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1848,7 +1849,7 @@ class Cart {
   getItemCount({ id } = {}) {
     const { error } = CartValidator.getItemCount().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1878,7 +1879,7 @@ class Cart {
   getCoupons({ id } = {}) {
     const { error } = CartValidator.getCoupons().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1912,7 +1913,7 @@ class Cart {
   applyCoupon({ body, i, b, p, id } = {}) {
     const { error } = CartValidator.applyCoupon().validate(
       { body, i, b, p, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1945,7 +1946,7 @@ class Cart {
   removeCoupon({ id } = {}) {
     const { error } = CartValidator.removeCoupon().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -1980,7 +1981,7 @@ class Cart {
   getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
     const { error } = CartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2016,7 +2017,7 @@ class Cart {
   applyRewardPoints({ body, id, i, b } = {}) {
     const { error } = CartValidator.applyRewardPoints().validate(
       { body, id, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2052,7 +2053,7 @@ class Cart {
   getAddresses({ cartId, mobileNo, checkoutMode, tags, isDefault } = {}) {
     const { error } = CartValidator.getAddresses().validate(
       { cartId, mobileNo, checkoutMode, tags, isDefault },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2086,7 +2087,7 @@ class Cart {
   addAddress({ body } = {}) {
     const { error } = CartValidator.addAddress().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2120,7 +2121,7 @@ class Cart {
   getAddressById({ id, cartId, mobileNo, checkoutMode, tags, isDefault } = {}) {
     const { error } = CartValidator.getAddressById().validate(
       { id, cartId, mobileNo, checkoutMode, tags, isDefault },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2155,7 +2156,7 @@ class Cart {
   updateAddress({ id, body } = {}) {
     const { error } = CartValidator.updateAddress().validate(
       { id, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2184,7 +2185,7 @@ class Cart {
   removeAddress({ id } = {}) {
     const { error } = CartValidator.removeAddress().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2216,7 +2217,7 @@ class Cart {
   selectAddress({ body, cartId, i, b } = {}) {
     const { error } = CartValidator.selectAddress().validate(
       { body, cartId, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2249,7 +2250,7 @@ class Cart {
   selectPaymentMode({ body, id } = {}) {
     const { error } = CartValidator.selectPaymentMode().validate(
       { body, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2298,7 +2299,7 @@ class Cart {
         aggregatorName,
         merchantCode,
       },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2338,7 +2339,7 @@ class Cart {
   getShipments({ p, id, addressId, areaCode } = {}) {
     const { error } = CartValidator.getShipments().validate(
       { p, id, addressId, areaCode },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2371,7 +2372,7 @@ class Cart {
   checkoutCart({ body } = {}) {
     const { error } = CartValidator.checkoutCart().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2401,7 +2402,7 @@ class Cart {
   updateCartMeta({ body, id } = {}) {
     const { error } = CartValidator.updateCartMeta().validate(
       { body, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2431,7 +2432,7 @@ class Cart {
   getCartShareLink({ body } = {}) {
     const { error } = CartValidator.getCartShareLink().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2460,7 +2461,7 @@ class Cart {
   getCartSharedItems({ token } = {}) {
     const { error } = CartValidator.getCartSharedItems().validate(
       { token },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2491,7 +2492,7 @@ class Cart {
   updateCartWithSharedItems({ token, action } = {}) {
     const { error } = CartValidator.updateCartWithSharedItems().validate(
       { token, action },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2524,7 +2525,7 @@ class Cart {
   getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
       { slug, pageSize, promotionGroup },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2563,7 +2564,7 @@ class Cart {
   getLadderOffers({ slug, storeId, promotionId, pageSize } = {}) {
     const { error } = CartValidator.getLadderOffers().validate(
       { slug, storeId, promotionId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2622,7 +2623,7 @@ class Common {
   searchApplication({ authorization, query } = {}) {
     const { error } = CommonValidator.searchApplication().validate(
       { authorization, query },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2656,7 +2657,7 @@ class Common {
   getLocations({ locationType, id } = {}) {
     const { error } = CommonValidator.getLocations().validate(
       { locationType, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2718,7 +2719,7 @@ class Lead {
   getTicket({ id } = {}) {
     const { error } = LeadValidator.getTicket().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2748,7 +2749,7 @@ class Lead {
   createHistory({ id, body } = {}) {
     const { error } = LeadValidator.createHistory().validate(
       { id, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2777,7 +2778,7 @@ class Lead {
   createTicket({ body } = {}) {
     const { error } = LeadValidator.createTicket().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2806,7 +2807,7 @@ class Lead {
   getCustomForm({ slug } = {}) {
     const { error } = LeadValidator.getCustomForm().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2836,7 +2837,7 @@ class Lead {
   submitCustomForm({ slug, body } = {}) {
     const { error } = LeadValidator.submitCustomForm().validate(
       { slug, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2865,7 +2866,7 @@ class Lead {
   getParticipantsInsideVideoRoom({ uniqueName } = {}) {
     const { error } = LeadValidator.getParticipantsInsideVideoRoom().validate(
       { uniqueName },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2894,7 +2895,7 @@ class Lead {
   getTokenForVideoRoom({ uniqueName } = {}) {
     const { error } = LeadValidator.getTokenForVideoRoom().validate(
       { uniqueName },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2949,7 +2950,7 @@ class Theme {
   getAllPages({ themeId } = {}) {
     const { error } = ThemeValidator.getAllPages().validate(
       { themeId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -2979,7 +2980,7 @@ class Theme {
   getPage({ themeId, pageValue } = {}) {
     const { error } = ThemeValidator.getPage().validate(
       { themeId, pageValue },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3007,7 +3008,7 @@ class Theme {
   getAppliedTheme({} = {}) {
     const { error } = ThemeValidator.getAppliedTheme().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3036,7 +3037,7 @@ class Theme {
   getThemeForPreview({ themeId } = {}) {
     const { error } = ThemeValidator.getThemeForPreview().validate(
       { themeId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3141,7 +3142,7 @@ class User {
   loginWithFacebook({ body, platform } = {}) {
     const { error } = UserValidator.loginWithFacebook().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3172,7 +3173,7 @@ class User {
   loginWithGoogle({ body, platform } = {}) {
     const { error } = UserValidator.loginWithGoogle().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3203,7 +3204,7 @@ class User {
   loginWithGoogleAndroid({ body, platform } = {}) {
     const { error } = UserValidator.loginWithGoogleAndroid().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3234,7 +3235,7 @@ class User {
   loginWithGoogleIOS({ body, platform } = {}) {
     const { error } = UserValidator.loginWithGoogleIOS().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3265,7 +3266,7 @@ class User {
   loginWithAppleIOS({ body, platform } = {}) {
     const { error } = UserValidator.loginWithAppleIOS().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3296,7 +3297,7 @@ class User {
   loginWithOTP({ body, platform } = {}) {
     const { error } = UserValidator.loginWithOTP().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3326,7 +3327,7 @@ class User {
   loginWithEmailAndPassword({ body } = {}) {
     const { error } = UserValidator.loginWithEmailAndPassword().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3356,7 +3357,7 @@ class User {
   sendResetPasswordEmail({ body, platform } = {}) {
     const { error } = UserValidator.sendResetPasswordEmail().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3386,7 +3387,7 @@ class User {
   forgotPassword({ body } = {}) {
     const { error } = UserValidator.forgotPassword().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3415,7 +3416,7 @@ class User {
   sendResetToken({ body } = {}) {
     const { error } = UserValidator.sendResetToken().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3444,7 +3445,7 @@ class User {
   loginWithToken({ body } = {}) {
     const { error } = UserValidator.loginWithToken().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3474,7 +3475,7 @@ class User {
   registerWithForm({ body, platform } = {}) {
     const { error } = UserValidator.registerWithForm().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3504,7 +3505,7 @@ class User {
   verifyEmail({ body } = {}) {
     const { error } = UserValidator.verifyEmail().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3533,7 +3534,7 @@ class User {
   verifyMobile({ body } = {}) {
     const { error } = UserValidator.verifyMobile().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3561,7 +3562,7 @@ class User {
   hasPassword({} = {}) {
     const { error } = UserValidator.hasPassword().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3590,7 +3591,7 @@ class User {
   updatePassword({ body } = {}) {
     const { error } = UserValidator.updatePassword().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3618,7 +3619,7 @@ class User {
   logout({} = {}) {
     const { error } = UserValidator.logout().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3648,7 +3649,7 @@ class User {
   sendOTPOnMobile({ body, platform } = {}) {
     const { error } = UserValidator.sendOTPOnMobile().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3679,7 +3680,7 @@ class User {
   verifyMobileOTP({ body, platform } = {}) {
     const { error } = UserValidator.verifyMobileOTP().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3710,7 +3711,7 @@ class User {
   sendOTPOnEmail({ body, platform } = {}) {
     const { error } = UserValidator.sendOTPOnEmail().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3741,7 +3742,7 @@ class User {
   verifyEmailOTP({ body, platform } = {}) {
     const { error } = UserValidator.verifyEmailOTP().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3770,7 +3771,7 @@ class User {
   getLoggedInUser({} = {}) {
     const { error } = UserValidator.getLoggedInUser().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3798,7 +3799,7 @@ class User {
   getListOfActiveSessions({} = {}) {
     const { error } = UserValidator.getListOfActiveSessions().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3827,7 +3828,7 @@ class User {
   getPlatformConfig({ name } = {}) {
     const { error } = UserValidator.getPlatformConfig().validate(
       { name },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3858,7 +3859,7 @@ class User {
   updateProfile({ body, platform } = {}) {
     const { error } = UserValidator.updateProfile().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3889,7 +3890,7 @@ class User {
   addMobileNumber({ body, platform } = {}) {
     const { error } = UserValidator.addMobileNumber().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3936,7 +3937,7 @@ class User {
   } = {}) {
     const { error } = UserValidator.deleteMobileNumber().validate(
       { active, primary, verified, countryCode, phone, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -3971,7 +3972,7 @@ class User {
   setMobileNumberAsPrimary({ body } = {}) {
     const { error } = UserValidator.setMobileNumberAsPrimary().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4001,7 +4002,7 @@ class User {
   sendVerificationLinkToMobile({ body, platform } = {}) {
     const { error } = UserValidator.sendVerificationLinkToMobile().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4032,7 +4033,7 @@ class User {
   addEmail({ body, platform } = {}) {
     const { error } = UserValidator.addEmail().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4071,7 +4072,7 @@ class User {
   deleteEmail({ active, primary, verified, email, platform } = {}) {
     const { error } = UserValidator.deleteEmail().validate(
       { active, primary, verified, email, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4105,7 +4106,7 @@ class User {
   setEmailAsPrimary({ body } = {}) {
     const { error } = UserValidator.setEmailAsPrimary().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4135,7 +4136,7 @@ class User {
   sendVerificationLinkToEmail({ body, platform } = {}) {
     const { error } = UserValidator.sendVerificationLinkToEmail().validate(
       { body, platform },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4207,7 +4208,7 @@ class Content {
   getAnnouncements({} = {}) {
     const { error } = ContentValidator.getAnnouncements().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4239,7 +4240,7 @@ class Content {
   getBlog({ slug, rootId } = {}) {
     const { error } = ContentValidator.getBlog().validate(
       { slug, rootId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4271,7 +4272,7 @@ class Content {
   getBlogs({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getBlogs().validate(
       { pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4327,7 +4328,7 @@ class Content {
   getDataLoaders({} = {}) {
     const { error } = ContentValidator.getDataLoaders().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4355,7 +4356,7 @@ class Content {
   getFaqs({} = {}) {
     const { error } = ContentValidator.getFaqs().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4383,7 +4384,7 @@ class Content {
   getFaqCategories({} = {}) {
     const { error } = ContentValidator.getFaqCategories().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4414,7 +4415,7 @@ class Content {
   getFaqBySlug({ slug } = {}) {
     const { error } = ContentValidator.getFaqBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4445,7 +4446,7 @@ class Content {
   getFaqCategoryBySlug({ slug } = {}) {
     const { error } = ContentValidator.getFaqCategoryBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4476,7 +4477,7 @@ class Content {
   getFaqsByCategorySlug({ slug } = {}) {
     const { error } = ContentValidator.getFaqsByCategorySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4504,7 +4505,7 @@ class Content {
   getLandingPage({} = {}) {
     const { error } = ContentValidator.getLandingPage().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4532,7 +4533,7 @@ class Content {
   getLegalInformation({} = {}) {
     const { error } = ContentValidator.getLegalInformation().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4563,7 +4564,7 @@ class Content {
   getNavigations({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getNavigations().validate(
       { pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4619,7 +4620,7 @@ class Content {
   getSEOConfiguration({} = {}) {
     const { error } = ContentValidator.getSEOConfiguration().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4650,7 +4651,7 @@ class Content {
   getSlideshows({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getSlideshows().validate(
       { pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4709,7 +4710,7 @@ class Content {
   getSlideshow({ slug } = {}) {
     const { error } = ContentValidator.getSlideshow().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4737,7 +4738,7 @@ class Content {
   getSupportInformation({} = {}) {
     const { error } = ContentValidator.getSupportInformation().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4765,7 +4766,7 @@ class Content {
   getTags({} = {}) {
     const { error } = ContentValidator.getTags().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4797,7 +4798,7 @@ class Content {
   getPage({ slug, rootId } = {}) {
     const { error } = ContentValidator.getPage().validate(
       { slug, rootId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4829,7 +4830,7 @@ class Content {
   getPages({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getPages().validate(
       { pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4912,7 +4913,7 @@ class Communication {
   getCommunicationConsent({} = {}) {
     const { error } = CommunicationValidator.getCommunicationConsent().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4943,7 +4944,7 @@ class Communication {
       error,
     } = CommunicationValidator.upsertCommunicationConsent().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -4972,7 +4973,7 @@ class Communication {
   upsertAppPushtoken({ body } = {}) {
     const { error } = CommunicationValidator.upsertAppPushtoken().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5033,7 +5034,7 @@ class Share {
   getApplicationQRCode({} = {}) {
     const { error } = ShareValidator.getApplicationQRCode().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5063,7 +5064,7 @@ class Share {
   getProductQRCodeBySlug({ slug } = {}) {
     const { error } = ShareValidator.getProductQRCodeBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5093,7 +5094,7 @@ class Share {
   getCollectionQRCodeBySlug({ slug } = {}) {
     const { error } = ShareValidator.getCollectionQRCodeBySlug().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5122,7 +5123,7 @@ class Share {
   getUrlQRCode({ url } = {}) {
     const { error } = ShareValidator.getUrlQRCode().validate(
       { url },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5152,7 +5153,7 @@ class Share {
   createShortLink({ body } = {}) {
     const { error } = ShareValidator.createShortLink().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5182,7 +5183,7 @@ class Share {
   getShortLinkByHash({ hash } = {}) {
     const { error } = ShareValidator.getShortLinkByHash().validate(
       { hash },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5212,7 +5213,7 @@ class Share {
   getOriginalShortLinkByHash({ hash } = {}) {
     const { error } = ShareValidator.getOriginalShortLinkByHash().validate(
       { hash },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5286,7 +5287,7 @@ class FileStorage {
   startUpload({ namespace, body } = {}) {
     const { error } = FileStorageValidator.startUpload().validate(
       { namespace, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5333,7 +5334,7 @@ class FileStorage {
   completeUpload({ namespace, body } = {}) {
     const { error } = FileStorageValidator.completeUpload().validate(
       { namespace, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5362,7 +5363,7 @@ class FileStorage {
   signUrls({ body } = {}) {
     const { error } = FileStorageValidator.signUrls().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5432,7 +5433,7 @@ class Configuration {
   getApplication({} = {}) {
     const { error } = ConfigurationValidator.getApplication().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5460,7 +5461,7 @@ class Configuration {
   getOwnerInfo({} = {}) {
     const { error } = ConfigurationValidator.getOwnerInfo().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5488,7 +5489,7 @@ class Configuration {
   getBasicDetails({} = {}) {
     const { error } = ConfigurationValidator.getBasicDetails().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5516,7 +5517,7 @@ class Configuration {
   getIntegrationTokens({} = {}) {
     const { error } = ConfigurationValidator.getIntegrationTokens().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5549,7 +5550,7 @@ class Configuration {
   getOrderingStores({ pageNo, pageSize, q } = {}) {
     const { error } = ConfigurationValidator.getOrderingStores().validate(
       { pageNo, pageSize, q },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5610,7 +5611,7 @@ class Configuration {
   getStoreDetailById({ storeId } = {}) {
     const { error } = ConfigurationValidator.getStoreDetailById().validate(
       { storeId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5638,7 +5639,7 @@ class Configuration {
   getFeatures({} = {}) {
     const { error } = ConfigurationValidator.getFeatures().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5666,7 +5667,7 @@ class Configuration {
   getContactInfo({} = {}) {
     const { error } = ConfigurationValidator.getContactInfo().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5694,7 +5695,7 @@ class Configuration {
   getCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getCurrencies().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5723,7 +5724,7 @@ class Configuration {
   getCurrencyById({ id } = {}) {
     const { error } = ConfigurationValidator.getCurrencyById().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5751,7 +5752,7 @@ class Configuration {
   getAppCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getAppCurrencies().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5779,7 +5780,7 @@ class Configuration {
   getLanguages({} = {}) {
     const { error } = ConfigurationValidator.getLanguages().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5808,7 +5809,7 @@ class Configuration {
   getOrderingStoreCookie({ body } = {}) {
     const { error } = ConfigurationValidator.getOrderingStoreCookie().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5838,7 +5839,7 @@ class Configuration {
       error,
     } = ConfigurationValidator.removeOrderingStoreCookie().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5874,7 +5875,7 @@ class Configuration {
   getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user } = {}) {
     const { error } = ConfigurationValidator.getAppStaffList().validate(
       { pageNo, pageSize, orderIncent, orderingStore, user },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -5953,7 +5954,7 @@ class Configuration {
   getAppStaffs({ orderIncent, orderingStore, user } = {}) {
     const { error } = ConfigurationValidator.getAppStaffs().validate(
       { orderIncent, orderingStore, user },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6046,7 +6047,7 @@ class Payment {
   getAggregatorsConfig({ xApiToken, refresh } = {}) {
     const { error } = PaymentValidator.getAggregatorsConfig().validate(
       { xApiToken, refresh },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6076,7 +6077,7 @@ class Payment {
   attachCardToCustomer({ body } = {}) {
     const { error } = PaymentValidator.attachCardToCustomer().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6105,7 +6106,7 @@ class Payment {
   getActiveCardAggregator({ refresh } = {}) {
     const { error } = PaymentValidator.getActiveCardAggregator().validate(
       { refresh },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6135,7 +6136,7 @@ class Payment {
   getActiveUserCards({ forceRefresh } = {}) {
     const { error } = PaymentValidator.getActiveUserCards().validate(
       { forceRefresh },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6165,7 +6166,7 @@ class Payment {
   deleteUserCard({ body } = {}) {
     const { error } = PaymentValidator.deleteUserCard().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6194,7 +6195,7 @@ class Payment {
   verifyCustomerForPayment({ body } = {}) {
     const { error } = PaymentValidator.verifyCustomerForPayment().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6223,7 +6224,7 @@ class Payment {
   verifyAndChargePayment({ body } = {}) {
     const { error } = PaymentValidator.verifyAndChargePayment().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6252,7 +6253,7 @@ class Payment {
   initialisePayment({ body } = {}) {
     const { error } = PaymentValidator.initialisePayment().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6281,7 +6282,7 @@ class Payment {
   checkAndUpdatePaymentStatus({ body } = {}) {
     const { error } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6336,7 +6337,7 @@ class Payment {
         cardReference,
         userDetails,
       },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6403,7 +6404,7 @@ class Payment {
         cardReference,
         userDetails,
       },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6439,7 +6440,7 @@ class Payment {
   getRupifiBannerDetails({} = {}) {
     const { error } = PaymentValidator.getRupifiBannerDetails().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6467,7 +6468,7 @@ class Payment {
   getActiveRefundTransferModes({} = {}) {
     const { error } = PaymentValidator.getActiveRefundTransferModes().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6498,7 +6499,7 @@ class Payment {
       error,
     } = PaymentValidator.enableOrDisableRefundTransferMode().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6528,7 +6529,7 @@ class Payment {
   getUserBeneficiariesDetail({ orderId } = {}) {
     const { error } = PaymentValidator.getUserBeneficiariesDetail().validate(
       { orderId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6559,7 +6560,7 @@ class Payment {
   verifyIfscCode({ ifscCode } = {}) {
     const { error } = PaymentValidator.verifyIfscCode().validate(
       { ifscCode },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6590,7 +6591,7 @@ class Payment {
   getOrderBeneficiariesDetail({ orderId } = {}) {
     const { error } = PaymentValidator.getOrderBeneficiariesDetail().validate(
       { orderId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6622,7 +6623,7 @@ class Payment {
       error,
     } = PaymentValidator.verifyOtpAndAddBeneficiaryForBank().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6651,7 +6652,7 @@ class Payment {
   addBeneficiaryDetails({ body } = {}) {
     const { error } = PaymentValidator.addBeneficiaryDetails().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6680,7 +6681,7 @@ class Payment {
   addRefundBankAccountUsingOTP({ body } = {}) {
     const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6711,7 +6712,7 @@ class Payment {
       error,
     } = PaymentValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6740,7 +6741,7 @@ class Payment {
   updateDefaultBeneficiary({ body } = {}) {
     const { error } = PaymentValidator.updateDefaultBeneficiary().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6819,7 +6820,7 @@ class Order {
   getOrders({ pageNo, pageSize, fromDate, toDate, status } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       { pageNo, pageSize, fromDate, toDate, status },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6854,7 +6855,7 @@ class Order {
   getOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getOrderById().validate(
       { orderId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6885,7 +6886,7 @@ class Order {
   getShipmentById({ shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
       { shipmentId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6916,7 +6917,7 @@ class Order {
   getShipmentReasons({ shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentReasons().validate(
       { shipmentId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6948,7 +6949,7 @@ class Order {
   updateShipmentStatus({ shipmentId, body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
       { shipmentId, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -6979,7 +6980,7 @@ class Order {
   trackShipment({ shipmentId } = {}) {
     const { error } = OrderValidator.trackShipment().validate(
       { shipmentId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7009,7 +7010,7 @@ class Order {
   getPosOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getPosOrderById().validate(
       { orderId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7042,7 +7043,7 @@ class Order {
   getCustomerDetailsByShipmentId({ orderId, shipmentId } = {}) {
     const { error } = OrderValidator.getCustomerDetailsByShipmentId().validate(
       { orderId, shipmentId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7075,7 +7076,7 @@ class Order {
   sendOtpToShipmentCustomer({ orderId, shipmentId } = {}) {
     const { error } = OrderValidator.sendOtpToShipmentCustomer().validate(
       { orderId, shipmentId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7109,7 +7110,7 @@ class Order {
   verifyOtpShipmentCustomer({ orderId, shipmentId, body } = {}) {
     const { error } = OrderValidator.verifyOtpShipmentCustomer().validate(
       { orderId, shipmentId, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7140,7 +7141,7 @@ class Order {
   getInvoiceByShipmentId({ shipmentId } = {}) {
     const { error } = OrderValidator.getInvoiceByShipmentId().validate(
       { shipmentId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7203,7 +7204,7 @@ class Rewards {
   getPointsOnProduct({ body } = {}) {
     const { error } = RewardsValidator.getPointsOnProduct().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7232,7 +7233,7 @@ class Rewards {
   getOfferByName({ name } = {}) {
     const { error } = RewardsValidator.getOfferByName().validate(
       { name },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7261,7 +7262,7 @@ class Rewards {
   getOrderDiscount({ body } = {}) {
     const { error } = RewardsValidator.getOrderDiscount().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7289,7 +7290,7 @@ class Rewards {
   getUserPoints({} = {}) {
     const { error } = RewardsValidator.getUserPoints().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7320,7 +7321,7 @@ class Rewards {
   getUserPointsHistory({ pageId, pageSize } = {}) {
     const { error } = RewardsValidator.getUserPointsHistory().validate(
       { pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7376,7 +7377,7 @@ class Rewards {
   getUserReferralDetails({} = {}) {
     const { error } = RewardsValidator.getUserReferralDetails().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7405,7 +7406,7 @@ class Rewards {
   redeemReferralCode({ body } = {}) {
     const { error } = RewardsValidator.redeemReferralCode().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7489,7 +7490,7 @@ class Feedback {
   createAbuseReport({ body } = {}) {
     const { error } = FeedbackValidator.createAbuseReport().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7518,7 +7519,7 @@ class Feedback {
   updateAbuseReport({ body } = {}) {
     const { error } = FeedbackValidator.updateAbuseReport().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7552,7 +7553,7 @@ class Feedback {
   getAbuseReports({ entityId, entityType, id, pageId, pageSize } = {}) {
     const { error } = FeedbackValidator.getAbuseReports().validate(
       { entityId, entityType, id, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7619,7 +7620,7 @@ class Feedback {
   getAttributes({ pageNo, pageSize } = {}) {
     const { error } = FeedbackValidator.getAttributes().validate(
       { pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7676,7 +7677,7 @@ class Feedback {
   createAttribute({ body } = {}) {
     const { error } = FeedbackValidator.createAttribute().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7707,7 +7708,7 @@ class Feedback {
   getAttribute({ slug } = {}) {
     const { error } = FeedbackValidator.getAttribute().validate(
       { slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7739,7 +7740,7 @@ class Feedback {
   updateAttribute({ slug, body } = {}) {
     const { error } = FeedbackValidator.updateAttribute().validate(
       { slug, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7768,7 +7769,7 @@ class Feedback {
   createComment({ body } = {}) {
     const { error } = FeedbackValidator.createComment().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7797,7 +7798,7 @@ class Feedback {
   updateComment({ body } = {}) {
     const { error } = FeedbackValidator.updateComment().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7832,7 +7833,7 @@ class Feedback {
   getComments({ entityType, id, entityId, userId, pageId, pageSize } = {}) {
     const { error } = FeedbackValidator.getComments().validate(
       { entityType, id, entityId, userId, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7904,7 +7905,7 @@ class Feedback {
   checkEligibility({ entityType, entityId } = {}) {
     const { error } = FeedbackValidator.checkEligibility().validate(
       { entityType, entityId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7933,7 +7934,7 @@ class Feedback {
   deleteMedia({ ids } = {}) {
     const { error } = FeedbackValidator.deleteMedia().validate(
       { ids },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7963,7 +7964,7 @@ class Feedback {
   createMedia({ body } = {}) {
     const { error } = FeedbackValidator.createMedia().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -7992,7 +7993,7 @@ class Feedback {
   updateMedia({ body } = {}) {
     const { error } = FeedbackValidator.updateMedia().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8027,7 +8028,7 @@ class Feedback {
   getMedias({ entityType, entityId, id, type, pageId, pageSize } = {}) {
     const { error } = FeedbackValidator.getMedias().validate(
       { entityType, entityId, id, type, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8101,7 +8102,7 @@ class Feedback {
   getReviewSummaries({ entityType, entityId, id, pageId, pageSize } = {}) {
     const { error } = FeedbackValidator.getReviewSummaries().validate(
       { entityType, entityId, id, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8167,7 +8168,7 @@ class Feedback {
   createReview({ body } = {}) {
     const { error } = FeedbackValidator.createReview().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8196,7 +8197,7 @@ class Feedback {
   updateReview({ body } = {}) {
     const { error } = FeedbackValidator.updateReview().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8269,7 +8270,7 @@ class Feedback {
         pageId,
         pageSize,
       },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8378,7 +8379,7 @@ class Feedback {
   getTemplates({ templateId, entityId, entityType } = {}) {
     const { error } = FeedbackValidator.getTemplates().validate(
       { templateId, entityId, entityType },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8410,7 +8411,7 @@ class Feedback {
   createQuestion({ body } = {}) {
     const { error } = FeedbackValidator.createQuestion().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8439,7 +8440,7 @@ class Feedback {
   updateQuestion({ body } = {}) {
     const { error } = FeedbackValidator.updateQuestion().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8484,7 +8485,7 @@ class Feedback {
   } = {}) {
     const { error } = FeedbackValidator.getQuestionAndAnswers().validate(
       { entityType, entityId, id, userId, showAnswer, pageId, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8567,7 +8568,7 @@ class Feedback {
   getVotes({ id, refType, pageNo, pageSize } = {}) {
     const { error } = FeedbackValidator.getVotes().validate(
       { id, refType, pageNo, pageSize },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8630,7 +8631,7 @@ class Feedback {
   createVote({ body } = {}) {
     const { error } = FeedbackValidator.createVote().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8659,7 +8660,7 @@ class Feedback {
   updateVote({ body } = {}) {
     const { error } = FeedbackValidator.updateVote().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8744,7 +8745,7 @@ class PosCart {
   getCart({ id, i, b, assignCardId } = {}) {
     const { error } = PosCartValidator.getCart().validate(
       { id, i, b, assignCardId },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8777,7 +8778,7 @@ class PosCart {
   getCartLastModified({ id } = {}) {
     const { error } = PosCartValidator.getCartLastModified().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8809,7 +8810,7 @@ class PosCart {
   addItems({ body, i, b } = {}) {
     const { error } = PosCartValidator.addItems().validate(
       { body, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8843,7 +8844,7 @@ class PosCart {
   updateCart({ body, id, i, b } = {}) {
     const { error } = PosCartValidator.updateCart().validate(
       { body, id, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8875,7 +8876,7 @@ class PosCart {
   getItemCount({ id } = {}) {
     const { error } = PosCartValidator.getItemCount().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8905,7 +8906,7 @@ class PosCart {
   getCoupons({ id } = {}) {
     const { error } = PosCartValidator.getCoupons().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8939,7 +8940,7 @@ class PosCart {
   applyCoupon({ body, i, b, p, id } = {}) {
     const { error } = PosCartValidator.applyCoupon().validate(
       { body, i, b, p, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -8972,7 +8973,7 @@ class PosCart {
   removeCoupon({ id } = {}) {
     const { error } = PosCartValidator.removeCoupon().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9007,7 +9008,7 @@ class PosCart {
   getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
     const { error } = PosCartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9043,7 +9044,7 @@ class PosCart {
   applyRewardPoints({ body, id, i, b } = {}) {
     const { error } = PosCartValidator.applyRewardPoints().validate(
       { body, id, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9079,7 +9080,7 @@ class PosCart {
   getAddresses({ cartId, mobileNo, checkoutMode, tags, isDefault } = {}) {
     const { error } = PosCartValidator.getAddresses().validate(
       { cartId, mobileNo, checkoutMode, tags, isDefault },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9113,7 +9114,7 @@ class PosCart {
   addAddress({ body } = {}) {
     const { error } = PosCartValidator.addAddress().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9147,7 +9148,7 @@ class PosCart {
   getAddressById({ id, cartId, mobileNo, checkoutMode, tags, isDefault } = {}) {
     const { error } = PosCartValidator.getAddressById().validate(
       { id, cartId, mobileNo, checkoutMode, tags, isDefault },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9182,7 +9183,7 @@ class PosCart {
   updateAddress({ id, body } = {}) {
     const { error } = PosCartValidator.updateAddress().validate(
       { id, body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9211,7 +9212,7 @@ class PosCart {
   removeAddress({ id } = {}) {
     const { error } = PosCartValidator.removeAddress().validate(
       { id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9243,7 +9244,7 @@ class PosCart {
   selectAddress({ body, cartId, i, b } = {}) {
     const { error } = PosCartValidator.selectAddress().validate(
       { body, cartId, i, b },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9276,7 +9277,7 @@ class PosCart {
   selectPaymentMode({ body, id } = {}) {
     const { error } = PosCartValidator.selectPaymentMode().validate(
       { body, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9325,7 +9326,7 @@ class PosCart {
         aggregatorName,
         merchantCode,
       },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9386,7 +9387,7 @@ class PosCart {
         areaCode,
         orderType,
       },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9431,7 +9432,7 @@ class PosCart {
   updateShipments({ body, i, p, id, addressId, orderType } = {}) {
     const { error } = PosCartValidator.updateShipments().validate(
       { body, i, p, id, addressId, orderType },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9466,7 +9467,7 @@ class PosCart {
   checkoutCart({ body, id } = {}) {
     const { error } = PosCartValidator.checkoutCart().validate(
       { body, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9497,7 +9498,7 @@ class PosCart {
   updateCartMeta({ body, id } = {}) {
     const { error } = PosCartValidator.updateCartMeta().validate(
       { body, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9528,7 +9529,7 @@ class PosCart {
   getAvailableDeliveryModes({ areaCode, id } = {}) {
     const { error } = PosCartValidator.getAvailableDeliveryModes().validate(
       { areaCode, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9559,7 +9560,7 @@ class PosCart {
   getStoreAddressByUid({ storeUid } = {}) {
     const { error } = PosCartValidator.getStoreAddressByUid().validate(
       { storeUid },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9589,7 +9590,7 @@ class PosCart {
   getCartShareLink({ body } = {}) {
     const { error } = PosCartValidator.getCartShareLink().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9618,7 +9619,7 @@ class PosCart {
   getCartSharedItems({ token } = {}) {
     const { error } = PosCartValidator.getCartSharedItems().validate(
       { token },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9649,7 +9650,7 @@ class PosCart {
   updateCartWithSharedItems({ token, action } = {}) {
     const { error } = PosCartValidator.updateCartWithSharedItems().validate(
       { token, action },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9703,7 +9704,7 @@ class Logistic {
   getTatProduct({ body } = {}) {
     const { error } = LogisticValidator.getTatProduct().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9732,7 +9733,7 @@ class Logistic {
   getPincodeZones({ body } = {}) {
     const { error } = LogisticValidator.getPincodeZones().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -9761,7 +9762,7 @@ class Logistic {
   getPincodeCity({ pincode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
       { pincode },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
