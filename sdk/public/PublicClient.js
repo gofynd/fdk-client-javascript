@@ -74,7 +74,7 @@ class Configuration {
   searchApplication({ authorization, query } = {}) {
     const { error } = ConfigurationValidator.searchApplication().validate(
       { authorization, query },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -108,7 +108,7 @@ class Configuration {
   getLocations({ locationType, id } = {}) {
     const { error } = ConfigurationValidator.getLocations().validate(
       { locationType, id },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -163,7 +163,7 @@ class Webhook {
   fetchAllWebhookEvents({} = {}) {
     const { error } = WebhookValidator.fetchAllWebhookEvents().validate(
       {},
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -192,7 +192,7 @@ class Webhook {
   queryWebhookEventDetails({ body } = {}) {
     const { error } = WebhookValidator.queryWebhookEventDetails().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -250,7 +250,7 @@ class Inventory {
   getJobByCode({ code } = {}) {
     const { error } = InventoryValidator.getJobByCode().validate(
       { code },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -282,7 +282,7 @@ class Inventory {
       error,
     } = InventoryValidator.getJobConfigByIntegrationType().validate(
       { integrationType, disable },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -314,7 +314,7 @@ class Inventory {
   getJobCodesMetrics({ dailyJob, jobCode } = {}) {
     const { error } = InventoryValidator.getJobCodesMetrics().validate(
       { dailyJob, jobCode },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
@@ -345,7 +345,7 @@ class Inventory {
   saveJobCodesMetrics({ body } = {}) {
     const { error } = InventoryValidator.saveJobCodesMetrics().validate(
       { body },
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
