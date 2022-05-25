@@ -109,23 +109,22 @@ function setupRoutes(ext) {
                 });
                 let session = await SessionStorage.getSession(sid);
                 if (!session) {
-                    let offlineTokenRes = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
-
                     session = new Session(sid);
-                    
-                    session.company_id = companyId;
-                    session.scope = ext.scopes;
-                    session.state = req.fdkSession.state;
-                    session.extension_id = ext.api_key;
-                    offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
-                    session.updateToken(offlineTokenRes);
-
-                    await SessionStorage.saveSession(session);
-                    
                 } else if (session.extension_id !== ext.api_key) {
                     session = new Session(sid);
                 }
 
+                let offlineTokenRes = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
+                
+                session.company_id = companyId;
+                session.scope = ext.scopes;
+                session.state = req.fdkSession.state;
+                session.extension_id = ext.api_key;
+                offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+                offlineTokenRes.access_mode = 'offline';
+                session.updateToken(offlineTokenRes);
+                
+                await SessionStorage.saveSession(session);
 
             }
 
@@ -141,7 +140,9 @@ function setupRoutes(ext) {
             req.extension = ext;
             if (ext.webhookRegistry.isInitialized) {
                 const client = await ext.getPlatformClient(companyId, req.fdkSession);
-                await ext.webhookRegistry.syncEvents(client, null, true);
+                await ext.webhookRegistry.syncEvents(client, null, true).catch((err)=>{
+                    logger.error(err);
+                });
             }
             let redirectUrl = await ext.callbacks.auth(req);
             logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`);

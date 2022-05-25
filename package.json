@@ -13,7 +13,7 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#0.1.15",
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#0.1.19",
     "ioredis": "^4.24.2",
     "jasmine": "^3.5.0",
     "jasmine-console-reporter": "^3.1.0",
@@ -52,7 +52,7 @@
     "report-dir": "./coverage"
   },
   "peerDependencies": {
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#>=0.1.15"
+    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#>=0.1.19"
   },
   "name": "fdk-extension-javascript",
   "description": "FDK Extension Helper Library",

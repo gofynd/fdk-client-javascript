@@ -6,7 +6,7 @@ const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
-const querystring = require("query-string");
+const { version } = require('./../package.json');
 
 class Extension {
     constructor() {
@@ -50,6 +50,7 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
+        this.webhookRegistry = new WebhookRegistry();
 
         let extensionData = await this.getExtensionDetails();
 
@@ -67,7 +68,6 @@ class Extension {
         this.scopes = data.scopes || extensionData.scope;
 
         logger.debug(`Extension initialized`);
-        this.webhookRegistry = new WebhookRegistry();
 
         if (data.webhook_config && Object.keys(data.webhook_config)) {
             await this.webhookRegistry.initialize(data.webhook_config, data);
@@ -124,16 +124,19 @@ class Extension {
         if (session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
-                logger.debug(`Renewing access token for company ${companyId}`);
-                const renewTokenRes = await platformConfig.oauthClient.renewAccessToken();
+                logger.debug(`Renewing access token for company ${companyId} with platform config ${logger.safeStringify(platformConfig)}`);
+                const renewTokenRes = await platformConfig.oauthClient.renewAccessToken(session.access_mode === 'offline');
                 renewTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                 session.updateToken(renewTokenRes);
                 await SessionStorage.saveSession(session);
-                logger.debug(`Access token renewed for company ${companyId}`);
+                logger.debug(`Access token renewed for company ${companyId} with response ${logger.safeStringify(renewTokenRes)}`);
             }
         }
-       
-        return new PlatformClient(platformConfig);
+        let platformClient = new PlatformClient(platformConfig);
+        platformClient.setExtraHeaders({
+            'x-ext-lib-version': `js/${version}`
+        })
+        return platformClient;
     }
 
     async getExtensionDetails() {
@@ -149,10 +152,11 @@ class Extension {
                 headers: {
                     Authorization: `Basic ${token}`,
                     "Content-Type": "application/json",
+                    'x-ext-lib-version': `js/${version}`
                 },
             };
             let extensionData = await fdkAxios.request(rawRequest);
-            logger.debug(`Extension details received: ${extensionData}`);
+            logger.debug(`Extension details received: ${logger.safeStringify(extensionData)}`);
             return extensionData;
         } catch (err) {
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
