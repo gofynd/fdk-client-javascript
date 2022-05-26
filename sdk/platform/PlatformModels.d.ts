@@ -93,15 +93,15 @@ export class CatalogValidator {
     static updateCategory(): any;
     static createProduct(): any;
     static getProducts(): any;
-    static deleteProduct(): any;
     static getProduct(): any;
     static editProduct(): any;
+    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
-    static createBulkProductUploadJob(): any;
+    static updateProductAssetsInBulk(): any;
     static getProductBulkUploadHistory(): any;
-    static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
+    static deleteProductBulkJob(): any;
     static getProductTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -112,8 +112,8 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
+    static deleteBulkInventoryJob(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
@@ -122,21 +122,20 @@ export class CatalogValidator {
     static getHsnCode(): any;
     static updateHsnCode(): any;
     static bulkHsnCode(): any;
-    static getOptimalLocations(): any;
 }
 export class CompanyProfileValidator {
-    static updateCompany(): any;
     static cbsOnboardGet(): any;
+    static updateCompany(): any;
     static getCompanyMetrics(): any;
-    static getBrand(): any;
     static editBrand(): any;
+    static getBrand(): any;
     static createBrand(): any;
-    static createCompanyBrandMapping(): any;
     static getBrands(): any;
-    static createLocation(): any;
+    static createCompanyBrandMapping(): any;
     static getLocations(): any;
-    static getLocationDetail(): any;
+    static createLocation(): any;
     static updateLocation(): any;
+    static getLocationDetail(): any;
     static createLocationBulk(): any;
 }
 export class FileStorageValidator {
@@ -209,5 +208,4 @@ export class AuditTrailValidator {
     static getAuditLogs(): any;
     static createAuditLog(): any;
     static getAuditLog(): any;
-    static getEntityTypes(): any;
 }

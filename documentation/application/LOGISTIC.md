@@ -7,6 +7,7 @@
 ## Logistic Methods
 Handles Platform websites OMS
 * [getTatProduct](#gettatproduct)
+* [getPincodeZones](#getpincodezones)
 * [getPincodeCity](#getpincodecity)
 
 
@@ -44,6 +45,61 @@ Use this API to know the delivery turnaround time (TAT) by entering the product 
 
 
 [GetTatProductResponse](#GetTatProductResponse)
+
+Success. Check the example shown below or refer `GetTatProductResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPincodeZones
+Get Pincode Zones
+
+
+
+```javascript
+// Promise
+const promise = logistic.getPincodeZones({  body : value });
+
+// Async/Await
+const data = await logistic.getPincodeZones({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetPincodeZonesReqBody](#GetPincodeZonesReqBody) | yes | Request body |
+
+
+Get to know the zones of a specefic pincode
+
+*Returned Response:*
+
+
+
+
+[GetPincodeZonesResponse](#GetPincodeZonesResponse)
 
 Success. Check the example shown below or refer `GetTatProductResponse` for more details.
 
@@ -200,6 +256,30 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  
  
+ #### [GetPincodeZonesReqBody](#GetPincodeZonesReqBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetPincodeZonesResponse](#GetPincodeZonesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zones | [any] |  yes  |  |
+ | serviceability_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [GetTatProductReqBody](#GetTatProductReqBody)
 
  | Properties | Type | Nullable | Description |
@@ -230,8 +310,6 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturing_time | number |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
  | category | [LogisticRequestCategory](#LogisticRequestCategory) |  no  |  |
 
 ---
