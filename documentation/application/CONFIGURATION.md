@@ -1651,23 +1651,6 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  
  
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
-
----
-
-
- 
- 
  #### [AppStaff](#AppStaff)
 
  | Properties | Type | Nullable | Description |
@@ -2535,6 +2518,23 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | verified | boolean |  no  |  |
  | country_code | number |  no  |  |
  | phone | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | has_previous | boolean |  no  |  |
 
 ---
 
