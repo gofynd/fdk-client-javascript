@@ -26,6 +26,15 @@ const {
 } = require("fdk-client-javascript");
 ```
 
+### Logging
+
+For logging support user can pass `logLevel` in `ApplicationConfig` or `PlatformConfig` while declaration.
+
+```
+Available logging levels: TRACE, DEBUG, INFO, WARN, ERROR.
+
+Default log level: ERROR
+```
 ### Sample Usage - ApplicationClient
 
 ```javascript

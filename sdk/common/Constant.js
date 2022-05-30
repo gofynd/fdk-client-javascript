@@ -133,7 +133,7 @@ const NAVIGATORS = {
   },
   external: {
     name: "External Link",
-    link: "/external/",
+    link: "/external/:url",
     query: [
       {
         key: "url",
