@@ -1136,6 +1136,7 @@ Success, the code is valid and returns a SignedUrl
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | show_promise | boolean |  no  |  |
  | timestamp | [Timestamp](#Timestamp) |  no  |  |
 
 ---
@@ -1147,7 +1148,6 @@ Success, the code is valid and returns a SignedUrl
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | show_promise | boolean |  no  |  |
  | min | string |  no  |  |
  | max | string |  no  |  |
 
@@ -1255,6 +1255,7 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | logo | string |  no  |  |
  | mode | string |  no  |  |
+ | mop | string |  no  |  |
  | status | string |  no  |  |
 
 ---

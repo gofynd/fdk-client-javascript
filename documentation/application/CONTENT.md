@@ -1848,6 +1848,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | tnc | string |  no  |  |
  | policy | string |  no  |  |
  | shipping | string |  no  |  |
+ | returns | string |  no  |  |
  | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)] |  no  |  |
  | _id | string |  no  |  |
  | updated_at | string |  no  |  |

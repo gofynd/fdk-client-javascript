@@ -2099,7 +2099,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | primary | boolean |  no  |  |
  | verified | boolean |  no  |  |
  | phone | string |  no  |  |
- | country_code | number |  no  |  |
+ | country_code | string |  no  |  |
 
 ---
 

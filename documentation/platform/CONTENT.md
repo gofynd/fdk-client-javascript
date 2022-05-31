@@ -7360,6 +7360,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | tnc | string |  no  |  |
  | policy | string |  no  |  |
  | shipping | string |  no  |  |
+ | returns | string |  no  |  |
  | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)] |  no  |  |
  | _id | string |  no  |  |
  | updated_at | string |  no  |  |
