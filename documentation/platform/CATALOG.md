@@ -6,24 +6,24 @@
 
 ## Catalog Methods
 Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
-* [updateSearchKeywords](#updatesearchkeywords)
 * [getSearchKeywords](#getsearchkeywords)
+* [updateSearchKeywords](#updatesearchkeywords)
 * [deleteSearchKeywords](#deletesearchkeywords)
 * [getAllSearchKeyword](#getallsearchkeyword)
 * [createCustomKeyword](#createcustomkeyword)
-* [updateAutocompleteKeyword](#updateautocompletekeyword)
 * [getAutocompleteKeywordDetail](#getautocompletekeyworddetail)
+* [updateAutocompleteKeyword](#updateautocompletekeyword)
 * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
 * [getAutocompleteConfig](#getautocompleteconfig)
 * [createCustomAutocompleteRule](#createcustomautocompleterule)
 * [getProductBundle](#getproductbundle)
 * [createProductBundle](#createproductbundle)
-* [updateProductBundle](#updateproductbundle)
 * [getProductBundleDetail](#getproductbundledetail)
+* [updateProductBundle](#updateproductbundle)
 * [getSizeGuides](#getsizeguides)
 * [createSizeGuide](#createsizeguide)
-* [updateSizeGuide](#updatesizeguide)
 * [getSizeGuide](#getsizeguide)
+* [updateSizeGuide](#updatesizeguide)
 * [updateAppProduct](#updateappproduct)
 * [getCatalogConfiguration](#getcatalogconfiguration)
 * [getConfigurations](#getconfigurations)
@@ -60,12 +60,12 @@ Catalog API's allows you to access list of products, prices, seller details, sim
 * [listTemplateBrandTypeValues](#listtemplatebrandtypevalues)
 * [listCategories](#listcategories)
 * [createCategories](#createcategories)
-* [updateCategory](#updatecategory)
 * [getCategoryData](#getcategorydata)
+* [updateCategory](#updatecategory)
 * [getProducts](#getproducts)
 * [createProduct](#createproduct)
-* [editProduct](#editproduct)
 * [getProduct](#getproduct)
+* [editProduct](#editproduct)
 * [deleteProduct](#deleteproduct)
 * [getProductValidation](#getproductvalidation)
 * [getProductSize](#getproductsize)
@@ -93,8 +93,8 @@ Catalog API's allows you to access list of products, prices, seller details, sim
 * [updateInventories](#updateinventories)
 * [getAllHsnCodes](#getallhsncodes)
 * [createHsnCode](#createhsncode)
-* [updateHsnCode](#updatehsncode)
 * [getHsnCode](#gethsncode)
+* [updateHsnCode](#updatehsncode)
 * [bulkHsnCode](#bulkhsncode)
 * [getApplicationBrands](#getapplicationbrands)
 * [getDepartments](#getdepartments)
@@ -108,64 +108,6 @@ Catalog API's allows you to access list of products, prices, seller details, sim
 
 
 ## Methods with example and description
-
-
-### updateSearchKeywords
-Update Search Keyword
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
-
-
-Update Search Keyword by its id. On successful request, returns the updated collection
-
-*Returned Response:*
-
-
-
-
-[GetSearchWordsData](#GetSearchWordsData)
-
-The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getSearchKeywords
@@ -226,6 +168,64 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
   },
   "_custom_json": {}
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSearchKeywords
+Update Search Keyword
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.updateSearchKeywords({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [CreateSearchKeyword](#CreateSearchKeyword) | yes | Request body |
+
+
+Update Search Keyword by its id. On successful request, returns the updated collection
+
+*Returned Response:*
+
+
+
+
+[GetSearchWordsData](#GetSearchWordsData)
+
+The Collection object. See example below or refer `GetSearchWordsDataSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -447,64 +447,6 @@ Get keyword object with id that is added. See example below or refer `GetSearchW
 ---
 
 
-### updateAutocompleteKeyword
-Create & Update Autocomplete Keyword
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
-| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
-
-
-Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-
-*Returned Response:*
-
-
-
-
-[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
-The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getAutocompleteKeywordDetail
 Get a Autocomplete Keywords Details
 
@@ -575,6 +517,64 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
     }
   ]
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAutocompleteKeyword
+Create & Update Autocomplete Keyword
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").catalog.updateAutocompleteKeyword({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to delete. |  
+| body | [CreateAutocompleteKeyword](#CreateAutocompleteKeyword) | yes | Request body |
+
+
+Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+
+*Returned Response:*
+
+
+
+
+[GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+The Mapping object. See example below or refer `GetAutocompleteWordsResponseSchema` for details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -1085,6 +1085,96 @@ Get bundle with id that is added. See example below or refer `GetProductBundleCr
 ---
 
 
+### getProductBundleDetail
+Get a particular Product Bundle details
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.getProductBundleDetail({  id : value });
+
+// Async/Await
+const data = await client.catalog.getProductBundleDetail({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
+
+
+
+Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+
+*Returned Response:*
+
+
+
+
+[GetProductBundleResponse](#GetProductBundleResponse)
+
+The Collection object. See example below or refer `GetProductBundleResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "slug": "bag",
+  "company_id": 1,
+  "logo": "http://g.com/poo.png/",
+  "name": "Bag",
+  "choice": "multi",
+  "products": [
+    {
+      "product_uid": 7500001,
+      "product_details": {
+        "country_of_origin": "India",
+        "slug": "slug-1",
+        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
+        "attributes": {
+          "brand_name": "brand 2"
+        },
+        "name": "Some Phone",
+        "images": [
+          "https://hdn-1.addsale.com/x0/media/pictures/tagged_items/original/random_code_4/FE6DUR_000000.png"
+        ],
+        "uid": 7500001
+      },
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "allow_remove": true
+    }
+  ],
+  "meta": {},
+  "same_store_assignment": true,
+  "page_visibility": [
+    "pdp"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateProductBundle
 Update a Product Bundle
 
@@ -1161,96 +1251,6 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
   },
   "modified_on": "2021-02-19 16:40:26.310027",
   "id": "602f9ca2a596ce312f5956f9"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getProductBundleDetail
-Get a particular Product Bundle details
-
-
-
-```javascript
-// Promise
-const promise = client.catalog.getProductBundleDetail({  id : value });
-
-// Async/Await
-const data = await client.catalog.getProductBundleDetail({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | A `id` is a unique identifier for a particular detail. Pass the `id` of the keywords which you want to retrieve. |  
-
-
-
-Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-
-*Returned Response:*
-
-
-
-
-[GetProductBundleResponse](#GetProductBundleResponse)
-
-The Collection object. See example below or refer `GetProductBundleResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "slug": "bag",
-  "company_id": 1,
-  "logo": "http://g.com/poo.png/",
-  "name": "Bag",
-  "choice": "multi",
-  "products": [
-    {
-      "product_uid": 7500001,
-      "product_details": {
-        "country_of_origin": "India",
-        "slug": "slug-1",
-        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
-        "attributes": {
-          "brand_name": "brand 2"
-        },
-        "name": "Some Phone",
-        "images": [
-          "https://hdn-1.addsale.com/x0/media/pictures/tagged_items/original/random_code_4/FE6DUR_000000.png"
-        ],
-        "uid": 7500001
-      },
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "allow_remove": true
-    }
-  ],
-  "meta": {},
-  "same_store_assignment": true,
-  "page_visibility": [
-    "pdp"
-  ]
 }
 ```
 </details>
@@ -1450,66 +1450,6 @@ Returns a success response
 ---
 
 
-### updateSizeGuide
-Edit a size guide.
-
-
-
-```javascript
-// Promise
-const promise = client.catalog.updateSizeGuide({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.catalog.updateSizeGuide({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Mongo id of the size guide to be edited |  
-| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
-
-
-This API allows to edit a size guide.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getSizeGuide
 Get a single size guide.
 
@@ -1599,6 +1539,66 @@ Brand object. See example below or refer `SizeGuideResponseSchema` for details
   "title": "Demo SG",
   "subtitle": "I am demo",
   "id": "60364384f08385bee776f83d"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSizeGuide
+Edit a size guide.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.updateSizeGuide({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.catalog.updateSizeGuide({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Mongo id of the size guide to be edited |  
+| body | [ValidateSizeGuide](#ValidateSizeGuide) | yes | Request body |
+
+
+This API allows to edit a size guide.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
 }
 ```
 </details>
@@ -7856,64 +7856,6 @@ Category Meta. See example below or refer `CategoryCreateResponse` for details
 ---
 
 
-### updateCategory
-Update product categories
-
-
-
-```javascript
-// Promise
-const promise = client.catalog.updateCategory({  uid : value,
- body : value });
-
-// Async/Await
-const data = await client.catalog.updateCategory({  uid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uid | string | yes | Category unique id |  
-| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
-
-
-Update a product category using this apu
-
-*Returned Response:*
-
-
-
-
-[CategoryUpdateResponse](#CategoryUpdateResponse)
-
-Category Meta. See example below or refer `CategoryUpdateResponse` for details
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getCategoryData
 Get product category by uid
 
@@ -7994,6 +7936,64 @@ Get Data for one category. See example below or refer `CategoryResponse` for det
     "id": "60673bbf7896da00017885ad"
   }
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCategory
+Update product categories
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.updateCategory({  uid : value,
+ body : value });
+
+// Async/Await
+const data = await client.catalog.updateCategory({  uid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | Category unique id |  
+| body | [CategoryRequestBody](#CategoryRequestBody) | yes | Request body |
+
+
+Update a product category using this apu
+
+*Returned Response:*
+
+
+
+
+[CategoryUpdateResponse](#CategoryUpdateResponse)
+
+Category Meta. See example below or refer `CategoryUpdateResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -8311,66 +8311,6 @@ Returns a success response
 ---
 
 
-### editProduct
-Edit a product.
-
-
-
-```javascript
-// Promise
-const promise = client.catalog.editProduct({  itemId : value,
- body : value });
-
-// Async/Await
-const data = await client.catalog.editProduct({  itemId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| itemId | number | yes | Id of the product to be updated. |  
-| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
-
-
-This API allows to edit product.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getProduct
 Get a single product.
 
@@ -8539,6 +8479,66 @@ Product object. See example below or refer `product.utils.format_product_respons
       "other_available_sizes": []
     }
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editProduct
+Edit a product.
+
+
+
+```javascript
+// Promise
+const promise = client.catalog.editProduct({  itemId : value,
+ body : value });
+
+// Async/Await
+const data = await client.catalog.editProduct({  itemId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| itemId | number | yes | Id of the product to be updated. |  
+| body | [ProductCreateUpdate](#ProductCreateUpdate) | yes | Request body |
+
+
+This API allows to edit product.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
 }
 ```
 </details>
@@ -9847,7 +9847,7 @@ This API allows get Inventory data for particular company grouped by size and st
 
 
 
-[InventoryResponsePaginated](#InventoryResponsePaginated)
+[InventorySellerIdentifierResponsePaginated](#InventorySellerIdentifierResponsePaginated)
 
 returns a list of all inventory grouped by size and store
 
@@ -10200,7 +10200,7 @@ This API allows get Inventory data for particular company grouped by size and st
 
 
 
-[InventoryResponsePaginated](#InventoryResponsePaginated)
+[InventorySellerIdentifierResponsePaginated](#InventorySellerIdentifierResponsePaginated)
 
 returns a list of all inventory grouped by size and store
 
@@ -11626,19 +11626,17 @@ See example below for details
 ---
 
 
-### updateHsnCode
-Update Hsn Code.
+### getHsnCode
+Fetch Hsn Code.
 
 
 
 ```javascript
 // Promise
-const promise = client.catalog.updateHsnCode({  id : value,
- body : value });
+const promise = client.catalog.getHsnCode({  id : value });
 
 // Async/Await
-const data = await client.catalog.updateHsnCode({  id : value,
- body : value });
+const data = await client.catalog.getHsnCode({  id : value });
 ```
 
 
@@ -11648,10 +11646,10 @@ const data = await client.catalog.updateHsnCode({  id : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Unique id |  
-| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
 
 
-Update Hsn Code.
+
+Fetch Hsn Code.
 
 *Returned Response:*
 
@@ -11660,7 +11658,7 @@ Update Hsn Code.
 
 [HsnCode](#HsnCode)
 
-See example below for details
+See example below details
 
 
 
@@ -11706,17 +11704,19 @@ See example below for details
 ---
 
 
-### getHsnCode
-Fetch Hsn Code.
+### updateHsnCode
+Update Hsn Code.
 
 
 
 ```javascript
 // Promise
-const promise = client.catalog.getHsnCode({  id : value });
+const promise = client.catalog.updateHsnCode({  id : value,
+ body : value });
 
 // Async/Await
-const data = await client.catalog.getHsnCode({  id : value });
+const data = await client.catalog.updateHsnCode({  id : value,
+ body : value });
 ```
 
 
@@ -11726,10 +11726,10 @@ const data = await client.catalog.getHsnCode({  id : value });
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Unique id |  
+| body | [HsnUpsert](#HsnUpsert) | yes | Request body |
 
 
-
-Fetch Hsn Code.
+Update Hsn Code.
 
 *Returned Response:*
 
@@ -11738,7 +11738,7 @@ Fetch Hsn Code.
 
 [HsnCode](#HsnCode)
 
-See example below details
+See example below for details
 
 
 
@@ -13545,6 +13545,64 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | next_id | string |  no  |  |
+ | current | number |  no  |  |
+ | item_total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetSearchWordsData](#GetSearchWordsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | uid | string |  no  |  |
+ | result | string |  no  |  |
+ | words | [string] |  no  |  |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [GetSearchWordsData](#GetSearchWordsData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | string |  no  |  |
+ | status | number |  no  |  |
+ | message | string |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [SearchKeywordResult](#SearchKeywordResult)
 
  | Properties | Type | Nullable | Description |
@@ -13562,68 +13620,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
- | words | [string] |  no  |  |
- | is_active | boolean |  no  |  |
  | result | [SearchKeywordResult](#SearchKeywordResult) |  yes  |  |
  | app_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetSearchWordsData](#GetSearchWordsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
  | words | [string] |  no  |  |
- | uid | string |  no  |  |
- | result | string |  no  |  |
- | app_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse](#ErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | message | string |  no  |  |
- | meta | string |  no  |  |
- | status | number |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | size | number |  no  |  |
- | next_id | string |  no  |  |
- | item_total | number |  no  |  |
-
----
-
-
- 
- 
- #### [GetSearchWordsDetailResponse](#GetSearchWordsDetailResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [GetSearchWordsData](#GetSearchWordsData) |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | is_active | boolean |  no  |  |
 
 ---
 
@@ -13645,20 +13645,35 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetSearchWordsData](#GetSearchWordsData)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[GetSearchWordsData](#GetSearchWordsData)] |  no  |  |
 
 ---
 
 
  
  
- #### [Media](#Media)
+ #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | type | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | results | [string] |  no  |  |
+ | uid | string |  no  |  |
+ | words | [string] |  no  |  |
+ | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)] |  no  |  |
 
 ---
 
@@ -13669,10 +13684,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | params | string |  no  |  |
  | type | string |  no  |  |
+ | params | string |  no  |  |
  | query | string |  no  |  |
+ | url | string |  no  |  |
 
 ---
 
@@ -13691,14 +13706,26 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
+ #### [Media](#Media)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [AutocompleteResult](#AutocompleteResult)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | action | [AutocompleteAction](#AutocompleteAction) |  no  |  |
  | _custom_json | string |  no  |  |
  | logo | [Media](#Media) |  no  |  |
- | action | [AutocompleteAction](#AutocompleteAction) |  no  |  |
- | display | string |  no  |  |
 
 ---
 
@@ -13710,37 +13737,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
- | words | [string] |  no  |  |
  | results | [[AutocompleteResult](#AutocompleteResult)] |  no  |  |
- | is_active | boolean |  no  |  |
  | app_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetAutocompleteWordsData](#GetAutocompleteWordsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
  | words | [string] |  no  |  |
- | uid | string |  no  |  |
- | results | [string] |  no  |  |
- | app_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetAutocompleteWordsResponse](#GetAutocompleteWordsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[GetAutocompleteWordsData](#GetAutocompleteWordsData)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | is_active | boolean |  no  |  |
 
 ---
 
@@ -13751,9 +13751,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | results | [string] |  no  |  |
  | _custom_json | string |  no  |  |
  | words | [string] |  no  |  |
- | results | [string] |  no  |  |
  | app_id | string |  no  |  |
 
 ---
@@ -13765,12 +13765,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max_quantity | number |  yes  |  |
- | auto_select | boolean |  no  |  |
- | allow_remove | boolean |  no  |  |
- | auto_add_to_cart | boolean |  no  |  |
  | min_quantity | number |  yes  |  |
+ | allow_remove | boolean |  no  |  |
  | product_uid | number |  yes  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+ | auto_select | boolean |  no  |  |
+ | max_quantity | number |  yes  |  |
 
 ---
 
@@ -13781,21 +13781,21 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_by | string |  no  |  |
- | slug | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | logo | string |  no  |  |
  | choice | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | same_store_assignment | boolean |  no  |  |
- | created_by | string |  no  |  |
- | created_on | string |  no  |  |
- | company_id | number |  no  |  |
- | meta | string |  no  |  |
- | modified_on | string |  no  |  |
+ | slug | string |  yes  |  |
  | name | string |  yes  |  |
  | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
  | id | string |  no  |  |
+ | created_by | string |  no  |  |
+ | created_on | string |  no  |  |
+ | meta | string |  no  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | modified_by | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | company_id | number |  no  |  |
+ | page_visibility | [string] |  no  |  |
+ | logo | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -13806,8 +13806,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[GetProductBundleCreateResponse](#GetProductBundleCreateResponse)] |  no  |  |
 
 ---
 
@@ -13818,76 +13818,19 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_by | string |  no  |  |
- | slug | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | logo | string |  no  |  |
  | choice | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | same_store_assignment | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | name | string |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
  | created_by | string |  no  |  |
  | created_on | string |  no  |  |
  | meta | string |  no  |  |
- | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_by | string |  no  |  |
- | slug | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | logo | string |  no  |  |
- | choice | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
  | same_store_assignment | boolean |  no  |  |
- | meta | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | page_visibility | [string] |  no  |  |
+ | logo | string |  no  |  |
  | modified_on | string |  no  |  |
- | name | string |  yes  |  |
- | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
-
----
-
-
- 
- 
- #### [LimitedProductData](#LimitedProductData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
- | slug | string |  no  |  |
- | country_of_origin | string |  no  |  |
- | item_code | string |  no  |  |
- | sizes | [string] |  no  |  |
- | quantity | number |  no  |  |
- | short_description | string |  no  |  |
- | attributes | string |  no  |  |
- | price | string |  no  |  |
- | identifier | string |  no  |  |
- | images | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [Size](#Size)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | quantity | number |  no  |  |
- | is_available | boolean |  no  |  |
- | display | string |  no  |  |
 
 ---
 
@@ -13898,11 +13841,47 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max_marked | number |  no  |  |
  | max_effective | number |  no  |  |
  | currency | string |  no  |  |
  | min_marked | number |  no  |  |
+ | max_marked | number |  no  |  |
  | min_effective | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Size](#Size)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | quantity | number |  no  |  |
+ | is_available | boolean |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LimitedProductData](#LimitedProductData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price | string |  no  |  |
+ | slug | string |  no  |  |
+ | identifier | string |  no  |  |
+ | name | string |  no  |  |
+ | item_code | string |  no  |  |
+ | images | [string] |  no  |  |
+ | attributes | string |  no  |  |
+ | uid | number |  no  |  |
+ | sizes | [string] |  no  |  |
+ | short_description | string |  no  |  |
+ | quantity | number |  no  |  |
+ | country_of_origin | string |  no  |  |
 
 ---
 
@@ -13913,15 +13892,15 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max_quantity | number |  no  |  |
- | auto_select | boolean |  no  |  |
- | product_details | [LimitedProductData](#LimitedProductData) |  no  |  |
- | allow_remove | boolean |  no  |  |
- | sizes | [[Size](#Size)] |  no  |  |
  | price | [Price](#Price) |  no  |  |
- | auto_add_to_cart | boolean |  no  |  |
  | min_quantity | number |  no  |  |
  | product_uid | number |  no  |  |
+ | max_quantity | number |  no  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+ | sizes | [[Size](#Size)] |  no  |  |
+ | product_details | [LimitedProductData](#LimitedProductData) |  no  |  |
+ | auto_select | boolean |  no  |  |
+ | allow_remove | boolean |  no  |  |
 
 ---
 
@@ -13932,16 +13911,37 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  no  |  |
- | page_visibility | [string] |  no  |  |
  | choice | string |  no  |  |
- | logo | string |  no  |  |
- | is_active | boolean |  no  |  |
- | same_store_assignment | boolean |  no  |  |
- | company_id | number |  no  |  |
- | meta | string |  no  |  |
- | name | string |  no  |  |
+ | slug | string |  no  |  |
  | products | [[GetProducts](#GetProducts)] |  no  |  |
+ | name | string |  no  |  |
+ | page_visibility | [string] |  no  |  |
+ | meta | string |  no  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | company_id | number |  no  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBundleUpdateRequest](#ProductBundleUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | choice | string |  yes  |  |
+ | slug | string |  yes  |  |
+ | name | string |  yes  |  |
+ | products | [[ProductBundleItem](#ProductBundleItem)] |  yes  |  |
+ | meta | string |  no  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | modified_by | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | page_visibility | [string] |  no  |  |
+ | logo | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -13952,8 +13952,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
  | page | string |  no  |  |
+ | items | [string] |  no  |  |
 
 ---
 
@@ -13964,9 +13964,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | headers | string |  no  |  |
- | values | [string] |  no  |  |
  | unit | string |  no  |  |
+ | values | [string] |  no  |  |
+ | headers | string |  no  |  |
 
 ---
 
@@ -13988,21 +13988,21 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
  | guide | [Guide](#Guide) |  no  |  |
- | modified_by | string |  no  |  |
- | created_on | string |  no  |  |
- | created_by | string |  no  |  |
+ | id | string |  no  |  |
+ | brand_id | number |  no  |  |
  | image | string |  no  |  |
+ | created_by | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | active | boolean |  no  |  |
+ | description | string |  no  |  |
+ | title | string |  yes  |  |
  | company_id | number |  no  |  |
  | tag | string |  no  |  |
- | description | string |  no  |  |
  | modified_on | string |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  yes  |  |
- | name | string |  yes  |  |
- | active | boolean |  no  |  |
- | brand_id | number |  no  |  |
- | id | string |  no  |  |
 
 ---
 
@@ -14024,19 +14024,19 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
  | guide | string |  no  |  |
- | modified_by | string |  no  |  |
- | created_on | string |  no  |  |
+ | id | string |  no  |  |
+ | brand_id | number |  no  |  |
  | created_by | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | active | boolean |  no  |  |
+ | title | string |  no  |  |
  | company_id | number |  no  |  |
  | tag | string |  no  |  |
  | modified_on | string |  no  |  |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
- | name | string |  no  |  |
- | active | boolean |  no  |  |
- | brand_id | number |  no  |  |
- | id | string |  no  |  |
 
 ---
 
@@ -14047,8 +14047,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  yes  |  |
  | key | string |  yes  |  |
+ | value | string |  yes  |  |
 
 ---
 
@@ -14070,8 +14070,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
  | display | string |  no  |  |
+ | key | string |  no  |  |
 
 ---
 
@@ -14093,10 +14093,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
  | units | [string] |  no  |  |
- | filter_types | [string] |  no  |  |
  | display | string |  no  |  |
+ | key | string |  no  |  |
+ | filter_types | [string] |  no  |  |
 
 ---
 
@@ -14130,10 +14130,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | detail | string |  no  |  |
  | similar | string |  no  |  |
  | compare | string |  no  |  |
  | variant | string |  no  |  |
- | detail | string |  no  |  |
 
 ---
 
@@ -14146,102 +14146,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | ---------- | ---- | -------- | ----------- |
  | listing | [MetaDataListingResponse](#MetaDataListingResponse) |  no  |  |
  | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingSortConfig](#ConfigurationListingSortConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | priority | number |  yes  |  |
- | logo | string |  no  |  |
- | key | string |  yes  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingSort](#ConfigurationListingSort)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | default_key | string |  yes  |  |
- | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)] |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationBucketPoints](#ConfigurationBucketPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | number |  no  |  |
- | start | number |  no  |  |
- | display | string |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | condition | string |  no  |  |
- | map | string |  no  |  |
- | value | string |  no  |  |
- | sort | string |  no  |  |
- | bucket_points | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)] |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | is_active | boolean |  yes  |  |
- | priority | number |  yes  |  |
- | logo | string |  no  |  |
- | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue) |  no  |  |
- | key | string |  yes  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListingFilter](#ConfigurationListingFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attribute_config | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)] |  no  |  |
- | allow_single | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [ConfigurationListing](#ConfigurationListing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  yes  |  |
- | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  yes  |  |
 
 ---
 
@@ -14264,13 +14168,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | priority | number |  yes  |  |
- | logo | string |  no  |  |
- | size | [ProductSize](#ProductSize) |  no  |  |
- | subtitle | string |  no  |  |
  | key | string |  yes  |  |
+ | priority | number |  yes  |  |
+ | subtitle | string |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | size | [ProductSize](#ProductSize) |  no  |  |
  | title | string |  no  |  |
+ | logo | string |  no  |  |
 
 ---
 
@@ -14292,13 +14196,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | priority | number |  yes  |  |
- | logo | string |  no  |  |
  | display_type | string |  yes  |  |
- | size | [ProductSize](#ProductSize) |  yes  |  |
  | key | string |  yes  |  |
  | name | string |  yes  |  |
+ | priority | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | size | [ProductSize](#ProductSize) |  yes  |  |
+ | logo | string |  no  |  |
 
 ---
 
@@ -14328,16 +14232,112 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
+ #### [ConfigurationListingSortConfig](#ConfigurationListingSortConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingSort](#ConfigurationListingSort)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [[ConfigurationListingSortConfig](#ConfigurationListingSortConfig)] |  no  |  |
+ | default_key | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationBucketPoints](#ConfigurationBucketPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | number |  no  |  |
+ | display | string |  no  |  |
+ | start | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilterValue](#ConfigurationListingFilterValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort | string |  no  |  |
+ | condition | string |  no  |  |
+ | bucket_points | [[ConfigurationBucketPoints](#ConfigurationBucketPoints)] |  no  |  |
+ | map | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  yes  |  |
+ | name | string |  no  |  |
+ | priority | number |  yes  |  |
+ | value_config | [ConfigurationListingFilterValue](#ConfigurationListingFilterValue) |  no  |  |
+ | is_active | boolean |  yes  |  |
+ | type | string |  yes  |  |
+ | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListingFilter](#ConfigurationListingFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_single | boolean |  yes  |  |
+ | attribute_config | [[ConfigurationListingFilterConfig](#ConfigurationListingFilterConfig)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationListing](#ConfigurationListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort | [ConfigurationListingSort](#ConfigurationListingSort) |  yes  |  |
+ | filter | [ConfigurationListingFilter](#ConfigurationListingFilter) |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [AppCatalogConfiguration](#AppCatalogConfiguration)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config_type | string |  yes  |  |
- | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
  | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
- | app_id | string |  yes  |  |
- | config_id | string |  no  |  |
  | id | string |  no  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
+ | config_id | string |  no  |  |
+ | config_type | string |  yes  |  |
+ | app_id | string |  yes  |  |
 
 ---
 
@@ -14360,11 +14360,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config_type | string |  yes  |  |
- | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
  | product | [ConfigurationProduct](#ConfigurationProduct) |  no  |  |
- | app_id | string |  yes  |  |
+ | listing | [ConfigurationListing](#ConfigurationListing) |  no  |  |
  | config_id | string |  no  |  |
+ | config_type | string |  yes  |  |
+ | app_id | string |  yes  |  |
 
 ---
 
@@ -14387,12 +14387,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | config_type | string |  yes  |  |
- | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing) |  no  |  |
  | product | [GetCatalogConfigurationDetailsProduct](#GetCatalogConfigurationDetailsProduct) |  no  |  |
- | app_id | string |  yes  |  |
- | config_id | string |  no  |  |
  | id | string |  no  |  |
+ | listing | [GetCatalogConfigurationDetailsSchemaListing](#GetCatalogConfigurationDetailsSchemaListing) |  no  |  |
+ | config_id | string |  no  |  |
+ | config_type | string |  yes  |  |
+ | app_id | string |  yes  |  |
 
 ---
 
@@ -14415,9 +14415,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
  | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -14428,11 +14428,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operators | [string] |  no  |  |
- | kind | string |  no  |  |
- | logo | string |  no  |  |
- | display | string |  yes  |  |
  | name | string |  yes  |  |
+ | display | string |  yes  |  |
+ | kind | string |  no  |  |
+ | operators | [string] |  no  |  |
+ | logo | string |  no  |  |
 
 ---
 
@@ -14443,18 +14443,18 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
- | selected_max | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | is_selected | boolean |  yes  |  |
  | min | number |  no  |  |
- | currency_code | string |  no  |  |
+ | selected_max | number |  no  |  |
  | display | string |  yes  |  |
- | display_format | string |  no  |  |
- | value | string |  yes  |  |
- | max | number |  no  |  |
- | query_format | string |  no  |  |
+ | currency_symbol | string |  no  |  |
  | selected_min | number |  no  |  |
+ | display_format | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | query_format | string |  no  |  |
+ | count | number |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | max | number |  no  |  |
+ | value | string |  yes  |  |
 
 ---
 
@@ -14509,19 +14509,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [Media1](#Media1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  |  |
- | type | string |  no  |  |
- | url | string |  yes  |  |
-
----
-
-
- 
- 
  #### [ActionPage](#ActionPage)
 
  | Properties | Type | Nullable | Description |
@@ -14562,16 +14549,29 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount | [CollectionPrice](#CollectionPrice) |  no  |  |
+ | brands | [number] |  no  |  |
+ | price | [CollectionPrice](#CollectionPrice) |  no  |  |
+ | sort_on | string |  no  |  |
  | genders | [string] |  no  |  |
  | categories | [number] |  no  |  |
- | sizes | [string] |  no  |  |
+ | discount | [CollectionPrice](#CollectionPrice) |  no  |  |
  | image_nature | [string] |  no  |  |
- | brands | [number] |  no  |  |
  | departments | [string] |  no  |  |
- | price | [CollectionPrice](#CollectionPrice) |  no  |  |
+ | sizes | [string] |  no  |  |
  | store_ids | [number] |  no  |  |
- | sort_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Media1](#Media1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | meta | string |  no  |  |
+ | url | string |  yes  |  |
 
 ---
 
@@ -14582,39 +14582,26 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_sort | boolean |  no  |  |
- | cron | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | priority | number |  no  |  |
- | logo | [Media1](#Media1) |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | app_id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | badge | string |  no  |  |
- | type | string |  no  |  |
- | uid | string |  no  |  |
  | visible_facets_keys | [string] |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | tag | [string] |  no  |  |
- | allow_facets | boolean |  no  |  |
- | name | string |  no  |  |
  | slug | string |  no  |  |
- | _schedule | string |  no  |  |
- | meta | string |  no  |  |
- | description | string |  no  |  |
-
----
-
-
- 
- 
- #### [CollectionListingFilterTag](#CollectionListingFilterTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_selected | boolean |  no  |  |
  | name | string |  no  |  |
- | display | string |  no  |  |
+ | cron | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | priority | number |  no  |  |
+ | type | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | uid | string |  no  |  |
+ | meta | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | app_id | string |  no  |  |
+ | description | string |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
+ | badge | string |  no  |  |
+ | _schedule | string |  no  |  |
 
 ---
 
@@ -14626,8 +14613,21 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_selected | boolean |  no  |  |
- | name | string |  no  |  |
  | display | string |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CollectionListingFilterTag](#CollectionListingFilterTag)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | display | string |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -14638,8 +14638,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
  | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
 
 ---
 
@@ -14650,21 +14650,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
  | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
  | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [SeoDetail](#SeoDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | description | string |  no  |  |
 
 ---
 
@@ -14695,12 +14683,25 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [CollectionBadge](#CollectionBadge)
+ #### [CollectionQuery1](#CollectionQuery1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | string |  no  |  |
- | color | string |  no  |  |
+ | op | string |  yes  |  |
+ | attribute | string |  yes  |  |
+ | value | [string] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SeoDetail](#SeoDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | title | string |  no  |  |
 
 ---
 
@@ -14711,9 +14712,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
  | email | string |  no  |  |
  | username | string |  no  |  |
- | user_id | string |  no  |  |
  | uid | string |  no  |  |
 
 ---
@@ -14721,13 +14722,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [CollectionQuery1](#CollectionQuery1)
+ #### [CollectionBadge](#CollectionBadge)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | [string] |  yes  |  |
- | attribute | string |  yes  |  |
- | op | string |  yes  |  |
+ | color | string |  no  |  |
+ | text | string |  no  |  |
 
 ---
 
@@ -14738,8 +14738,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | end | string |  no  |  |
  | cron | string |  no  |  |
+ | end | string |  no  |  |
  | duration | number |  no  |  |
  | start | string |  no  |  |
 
@@ -14752,31 +14752,31 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_sort | boolean |  no  |  |
- | seo | [SeoDetail](#SeoDetail) |  no  |  |
- | published | boolean |  no  |  |
- | _locale_language | string |  no  |  |
  | banners | [CollectionBanner](#CollectionBanner) |  yes  |  |
- | priority | number |  no  |  |
- | logo | [CollectionImage](#CollectionImage) |  yes  |  |
- | app_id | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
  | is_visible | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | type | string |  yes  |  |
- | modified_by | [UserInfo](#UserInfo) |  no  |  |
  | visible_facets_keys | [string] |  no  |  |
- | created_by | [UserInfo](#UserInfo) |  no  |  |
- | query | [[CollectionQuery1](#CollectionQuery1)] |  no  |  |
- | tags | [string] |  no  |  |
- | allow_facets | boolean |  no  |  |
- | name | string |  yes  |  |
  | slug | string |  yes  |  |
- | _schedule | [Schedule](#Schedule) |  no  |  |
- | meta | string |  no  |  |
- | description | string |  no  |  |
+ | name | string |  yes  |  |
+ | tags | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | type | string |  yes  |  |
+ | priority | number |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | query | [[CollectionQuery1](#CollectionQuery1)] |  no  |  |
  | sort_on | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | seo | [SeoDetail](#SeoDetail) |  no  |  |
+ | created_by | [UserInfo](#UserInfo) |  no  |  |
+ | _locale_language | string |  no  |  |
+ | meta | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | app_id | string |  yes  |  |
+ | description | string |  no  |  |
+ | published | boolean |  no  |  |
+ | logo | [CollectionImage](#CollectionImage) |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
+ | modified_by | [UserInfo](#UserInfo) |  no  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
 
 ---
 
@@ -14787,25 +14787,25 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_sort | boolean |  no  |  |
- | cron | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | priority | number |  no  |  |
- | logo | [BannerImage](#BannerImage) |  no  |  |
- | app_id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | badge | string |  no  |  |
- | type | string |  no  |  |
  | visible_facets_keys | [string] |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | tag | [string] |  no  |  |
- | allow_facets | boolean |  no  |  |
- | name | string |  no  |  |
  | slug | string |  no  |  |
- | _schedule | string |  no  |  |
- | meta | string |  no  |  |
- | description | string |  no  |  |
+ | name | string |  no  |  |
+ | cron | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | priority | number |  no  |  |
+ | type | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
  | sort_on | string |  no  |  |
+ | meta | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | app_id | string |  no  |  |
+ | description | string |  no  |  |
+ | logo | [BannerImage](#BannerImage) |  no  |  |
+ | badge | string |  no  |  |
+ | _schedule | string |  no  |  |
 
 ---
 
@@ -14816,24 +14816,24 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_sort | boolean |  no  |  |
- | cron | string |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | priority | number |  no  |  |
  | type | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | is_active | boolean |  no  |  |
- | priority | number |  no  |  |
- | logo | [Media1](#Media1) |  no  |  |
- | slug | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | _schedule | string |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | cron | string |  no  |  |
  | badge | string |  no  |  |
+ | _schedule | string |  no  |  |
  | meta | string |  no  |  |
- | tag | [string] |  no  |  |
- | description | string |  no  |  |
- | app_id | string |  no  |  |
  | allow_facets | boolean |  no  |  |
- | name | string |  no  |  |
+ | app_id | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | description | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
 
 ---
 
@@ -14844,28 +14844,42 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_sort | boolean |  no  |  |
- | seo | [SeoDetail](#SeoDetail) |  no  |  |
- | published | boolean |  no  |  |
- | _locale_language | string |  no  |  |
  | banners | [CollectionBanner](#CollectionBanner) |  no  |  |
- | priority | number |  no  |  |
- | logo | [CollectionImage](#CollectionImage) |  no  |  |
- | is_active | boolean |  no  |  |
- | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
  | is_visible | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | modified_by | [UserInfo](#UserInfo) |  no  |  |
  | visible_facets_keys | [string] |  no  |  |
- | query | [[CollectionQuery1](#CollectionQuery1)] |  no  |  |
- | tags | [string] |  no  |  |
- | allow_facets | boolean |  no  |  |
- | name | string |  no  |  |
  | slug | string |  no  |  |
- | _schedule | [Schedule](#Schedule) |  no  |  |
- | meta | string |  no  |  |
- | description | string |  no  |  |
+ | name | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | priority | number |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | query | [[CollectionQuery1](#CollectionQuery1)] |  no  |  |
  | sort_on | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | seo | [SeoDetail](#SeoDetail) |  no  |  |
+ | _locale_language | string |  no  |  |
+ | meta | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | description | string |  no  |  |
+ | published | boolean |  no  |  |
+ | logo | [CollectionImage](#CollectionImage) |  no  |  |
+ | badge | [CollectionBadge](#CollectionBadge) |  no  |  |
+ | modified_by | [UserInfo](#UserInfo) |  no  |  |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBrand](#ProductBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [Action](#Action) |  no  |  |
+ | name | string |  no  |  |
+ | logo | [Media1](#Media1) |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -14877,9 +14891,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | max | number |  no  |  |
- | currency_code | string |  no  |  |
- | min | number |  no  |  |
  | currency_symbol | string |  no  |  |
+ | min | number |  no  |  |
+ | currency_code | string |  no  |  |
 
 ---
 
@@ -14898,27 +14912,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [ProductBrand](#ProductBrand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Media1](#Media1) |  no  |  |
- | name | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
  #### [ProductDetailAttribute](#ProductDetailAttribute)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | key | string |  no  |  |
  | type | string |  no  |  |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -14941,32 +14941,32 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | highlights | [string] |  no  |  |
- | item_code | string |  no  |  |
- | short_description | string |  no  |  |
+ | tryouts | [string] |  no  |  |
  | rating | number |  no  |  |
- | promo_meta | string |  no  |  |
- | product_online_date | string |  no  |  |
- | similars | [string] |  no  |  |
  | medias | [[Media1](#Media1)] |  no  |  |
- | color | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | slug | string |  yes  |  |
+ | name | string |  no  |  |
+ | promo_meta | string |  no  |  |
+ | item_code | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | short_description | string |  no  |  |
+ | type | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | item_type | string |  no  |  |
  | discount | string |  no  |  |
  | uid | number |  no  |  |
- | type | string |  no  |  |
- | rating_count | number |  no  |  |
- | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | has_variant | boolean |  no  |  |
- | name | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | item_type | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | slug | string |  yes  |  |
- | image_nature | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | attributes | string |  no  |  |
+ | color | string |  no  |  |
  | description | string |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | rating_count | number |  no  |  |
  | sellable | boolean |  no  |  |
+ | attributes | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | product_online_date | string |  no  |  |
 
 ---
 
@@ -14977,10 +14977,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
 
 ---
 
@@ -14991,8 +14991,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page_size | number |  yes  |  |
  | page_no | number |  yes  |  |
+ | page_size | number |  yes  |  |
 
 ---
 
@@ -15010,29 +15010,29 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [CatalogInsightBrand](#CatalogInsightBrand)
+ #### [CatalogInsightItem](#CatalogInsightItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total_articles | number |  no  |  |
- | total_sizes | number |  no  |  |
- | article_freshness | number |  no  |  |
- | name | string |  no  |  |
- | available_sizes | number |  no  |  |
- | available_articles | number |  no  |  |
+ | out_of_stock_count | number |  no  |  |
+ | sellable_count | number |  no  |  |
+ | count | number |  no  |  |
 
 ---
 
 
  
  
- #### [CatalogInsightItem](#CatalogInsightItem)
+ #### [CatalogInsightBrand](#CatalogInsightBrand)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sellable_count | number |  no  |  |
- | count | number |  no  |  |
- | out_of_stock_count | number |  no  |  |
+ | name | string |  no  |  |
+ | total_sizes | number |  no  |  |
+ | article_freshness | number |  no  |  |
+ | available_sizes | number |  no  |  |
+ | available_articles | number |  no  |  |
+ | total_articles | number |  no  |  |
 
 ---
 
@@ -15043,8 +15043,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
  | item | [CatalogInsightItem](#CatalogInsightItem) |  no  |  |
+ | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
 
 ---
 
@@ -15055,8 +15055,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | number |  no  |  |
  | products | number |  no  |  |
+ | articles | number |  no  |  |
 
 ---
 
@@ -15067,8 +15067,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CrossSellingData](#CrossSellingData) |  no  |  |
  | brand_distribution | [CatalogInsightBrand](#CatalogInsightBrand) |  no  |  |
+ | data | [CrossSellingData](#CrossSellingData) |  no  |  |
 
 ---
 
@@ -15079,10 +15079,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_ids | [number] |  no  |  |
- | brand_ids | [number] |  no  |  |
  | enabled | boolean |  no  |  |
  | opt_level | string |  yes  |  |
+ | brand_ids | [number] |  no  |  |
+ | store_ids | [number] |  no  |  |
 
 ---
 
@@ -15093,16 +15093,16 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  yes  |  |
- | modified_by | string |  no  |  |
- | created_on | number |  yes  |  |
- | platform | string |  yes  |  |
  | created_by | string |  no  |  |
- | company_id | number |  yes  |  |
- | brand_ids | [number] |  yes  |  |
+ | platform | string |  yes  |  |
  | opt_level | string |  yes  |  |
- | modified_on | number |  yes  |  |
+ | created_on | number |  yes  |  |
+ | modified_by | string |  no  |  |
  | store_ids | [number] |  yes  |  |
+ | enabled | boolean |  yes  |  |
+ | brand_ids | [number] |  yes  |  |
+ | company_id | number |  yes  |  |
+ | modified_on | number |  yes  |  |
 
 ---
 
@@ -15113,8 +15113,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CompanyOptIn](#CompanyOptIn)] |  yes  |  |
  | page | [Page](#Page) |  yes  |  |
+ | items | [[CompanyOptIn](#CompanyOptIn)] |  yes  |  |
 
 ---
 
@@ -15125,10 +15125,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_type | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
  | business_type | string |  no  |  |
+ | name | string |  no  |  |
+ | company_type | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -15139,10 +15139,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
  | total_article | number |  no  |  |
- | brand_id | number |  no  |  |
  | brand_name | string |  no  |  |
+ | company_id | number |  no  |  |
+ | brand_id | number |  no  |  |
 
 ---
 
@@ -15153,8 +15153,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CompanyBrandDetail](#CompanyBrandDetail)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[CompanyBrandDetail](#CompanyBrandDetail)] |  no  |  |
 
 ---
 
@@ -15166,8 +15166,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | company | string |  no  |  |
- | store | number |  no  |  |
  | brand | number |  no  |  |
+ | store | number |  no  |  |
 
 ---
 
@@ -15178,17 +15178,17 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_type | string |  no  |  |
+ | store_code | string |  no  |  |
+ | name | string |  no  |  |
+ | documents | [string] |  no  |  |
+ | timing | string |  no  |  |
  | uid | number |  no  |  |
  | created_on | string |  no  |  |
- | documents | [string] |  no  |  |
+ | store_type | string |  no  |  |
+ | additional_contacts | [string] |  no  |  |
  | company_id | number |  no  |  |
  | display_name | string |  no  |  |
  | modified_on | string |  no  |  |
- | additional_contacts | [string] |  no  |  |
- | timing | string |  no  |  |
- | name | string |  no  |  |
- | store_code | string |  no  |  |
 
 ---
 
@@ -15199,32 +15199,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[StoreDetail](#StoreDetail)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterDetails](#AttributeMasterDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterFilter](#AttributeMasterFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | indexing | boolean |  yes  |  |
- | priority | number |  no  |  |
- | depends_on | [string] |  no  |  |
+ | items | [[StoreDetail](#StoreDetail)] |  no  |  |
 
 ---
 
@@ -15247,12 +15223,36 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | multi | boolean |  no  |  |
+ | range | [AttributeSchemaRange](#AttributeSchemaRange) |  no  |  |
  | format | string |  no  |  |
  | allowed_values | [string] |  no  |  |
+ | multi | boolean |  no  |  |
+ | type | string |  yes  |  |
  | mandatory | boolean |  no  |  |
- | range | [AttributeSchemaRange](#AttributeSchemaRange) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterDetails](#AttributeMasterDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterFilter](#AttributeMasterFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | number |  no  |  |
+ | depends_on | [string] |  no  |  |
+ | indexing | boolean |  yes  |  |
 
 ---
 
@@ -15274,8 +15274,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mandatory_details | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  yes  |  |
  | enriched | boolean |  no  |  |
+ | mandatory_details | [AttributeMasterMandatoryDetails](#AttributeMasterMandatoryDetails) |  yes  |  |
 
 ---
 
@@ -15286,18 +15286,18 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_nested | boolean |  no  |  |
  | slug | string |  no  |  |
- | logo | string |  no  |  |
+ | name | string |  no  |  |
+ | enabled_for_end_consumer | boolean |  no  |  |
+ | id | string |  no  |  |
+ | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
  | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
  | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
- | is_nested | boolean |  no  |  |
- | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
  | meta | [AttributeMasterMeta](#AttributeMasterMeta) |  no  |  |
  | departments | [string] |  no  |  |
  | description | string |  no  |  |
- | enabled_for_end_consumer | boolean |  no  |  |
- | name | string |  no  |  |
- | id | string |  no  |  |
+ | logo | string |  no  |  |
 
 ---
 
@@ -15308,8 +15308,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [string] |  no  |  |
 
 ---
 
@@ -15320,11 +15320,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | code | string |  no  |  |
+ | status | number |  no  |  |
+ | message | string |  no  |  |
  | errors | string |  no  |  |
  | meta | string |  no  |  |
- | status | number |  no  |  |
 
 ---
 
@@ -15335,9 +15335,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | contact | string |  no  |  |
  | user_id | string |  no  |  |
  | username | string |  no  |  |
- | contact | string |  no  |  |
 
 ---
 
@@ -15348,21 +15348,21 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page_size | number |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
  | item_type | string |  no  |  |
+ | synonyms | [string] |  no  |  |
+ | search | string |  no  |  |
+ | created_by | [UserSerializer](#UserSerializer) |  no  |  |
  | uid | number |  no  |  |
  | priority_order | number |  no  |  |
+ | page_no | number |  no  |  |
+ | created_on | string |  no  |  |
  | modified_by | [UserSerializer](#UserSerializer) |  no  |  |
- | slug | string |  no  |  |
  | is_active | boolean |  no  |  |
  | logo | string |  no  |  |
- | page_no | number |  no  |  |
- | search | string |  no  |  |
- | created_on | string |  no  |  |
- | created_by | [UserSerializer](#UserSerializer) |  no  |  |
  | modified_on | string |  no  |  |
- | page_size | number |  no  |  |
- | name | string |  no  |  |
- | synonyms | [string] |  no  |  |
 
 ---
 
@@ -15373,8 +15373,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetDepartment](#GetDepartment)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[GetDepartment](#GetDepartment)] |  no  |  |
 
 ---
 
@@ -15385,11 +15385,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | code | string |  no  |  |
+ | status | number |  no  |  |
+ | message | string |  no  |  |
  | errors | string |  no  |  |
  | meta | string |  no  |  |
- | status | number |  no  |  |
 
 ---
 
@@ -15400,22 +15400,22 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_expirable | boolean |  yes  |  |
- | is_physical | boolean |  yes  |  |
- | modified_by | string |  no  |  |
  | slug | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | logo | string |  no  |  |
- | created_on | string |  no  |  |
- | created_by | string |  no  |  |
+ | name | string |  no  |  |
+ | is_expirable | boolean |  yes  |  |
+ | is_archived | boolean |  no  |  |
  | categories | [string] |  no  |  |
+ | created_by | string |  no  |  |
+ | attributes | [string] |  no  |  |
+ | is_physical | boolean |  yes  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
  | departments | [string] |  no  |  |
  | tag | string |  no  |  |
+ | is_active | boolean |  no  |  |
  | description | string |  no  |  |
- | attributes | [string] |  no  |  |
+ | logo | string |  no  |  |
  | modified_on | string |  no  |  |
- | name | string |  no  |  |
- | is_archived | boolean |  no  |  |
 
 ---
 
@@ -15426,8 +15426,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductTemplate](#ProductTemplate) |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [ProductTemplate](#ProductTemplate) |  no  |  |
 
 ---
 
@@ -15438,36 +15438,36 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_code | string |  no  |  |
- | highlights | string |  no  |  |
- | short_description | string |  no  |  |
- | no_of_boxes | string |  no  |  |
- | is_dependent | string |  no  |  |
- | custom_order | string |  no  |  |
- | multi_size | string |  no  |  |
- | size_guide | string |  no  |  |
- | trader_type | string |  no  |  |
- | is_active | string |  no  |  |
- | trader | string |  no  |  |
- | variants | string |  no  |  |
- | sizes | string |  no  |  |
- | product_publish | string |  no  |  |
- | product_group_tag | string |  no  |  |
  | category_slug | string |  no  |  |
- | moq | string |  no  |  |
- | tags | string |  no  |  |
- | currency | string |  no  |  |
- | name | string |  no  |  |
- | hsn_code | string |  no  |  |
- | return_config | string |  no  |  |
- | item_type | string |  no  |  |
+ | is_dependent | string |  no  |  |
  | brand_uid | string |  no  |  |
- | teaser_tag | string |  no  |  |
+ | return_config | string |  no  |  |
+ | sizes | string |  no  |  |
+ | trader | string |  no  |  |
+ | highlights | string |  no  |  |
  | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | currency | string |  no  |  |
+ | no_of_boxes | string |  no  |  |
+ | item_code | string |  no  |  |
+ | product_publish | string |  no  |  |
+ | tags | string |  no  |  |
+ | short_description | string |  no  |  |
+ | is_active | string |  no  |  |
+ | variants | string |  no  |  |
  | country_of_origin | string |  no  |  |
- | media | string |  no  |  |
- | description | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | trader_type | string |  no  |  |
+ | custom_order | string |  no  |  |
+ | item_type | string |  no  |  |
  | command | string |  no  |  |
+ | multi_size | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | description | string |  no  |  |
+ | media | string |  no  |  |
+ | product_group_tag | string |  no  |  |
+ | moq | string |  no  |  |
+ | size_guide | string |  no  |  |
 
 ---
 
@@ -15479,11 +15479,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | definitions | string |  no  |  |
+ | required | [string] |  no  |  |
+ | properties | [Properties](#Properties) |  no  |  |
  | type | string |  no  |  |
  | description | string |  no  |  |
- | required | [string] |  no  |  |
  | title | string |  no  |  |
- | properties | [Properties](#Properties) |  no  |  |
 
 ---
 
@@ -15494,8 +15494,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | global_validation | [GlobalValidation](#GlobalValidation) |  no  |  |
  | template_validation | string |  no  |  |
+ | global_validation | [GlobalValidation](#GlobalValidation) |  no  |  |
 
 ---
 
@@ -15506,19 +15506,19 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_expirable | boolean |  yes  |  |
- | is_physical | boolean |  yes  |  |
  | slug | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | logo | string |  no  |  |
+ | name | string |  no  |  |
+ | is_expirable | boolean |  yes  |  |
+ | id | string |  no  |  |
+ | is_archived | boolean |  no  |  |
  | categories | [string] |  no  |  |
+ | attributes | [string] |  no  |  |
+ | is_physical | boolean |  yes  |  |
  | departments | [string] |  no  |  |
  | tag | string |  no  |  |
+ | is_active | boolean |  no  |  |
  | description | string |  no  |  |
- | attributes | [string] |  no  |  |
- | name | string |  no  |  |
- | is_archived | boolean |  no  |  |
- | id | string |  no  |  |
+ | logo | string |  no  |  |
 
 ---
 
@@ -15553,8 +15553,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_of_origin | [string] |  no  |  |
  | hsn_code | [string] |  no  |  |
+ | country_of_origin | [string] |  no  |  |
 
 ---
 
@@ -15573,19 +15573,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [ProductDownloadItemsData](#ProductDownloadItemsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | [string] |  no  |  |
- | templates | [string] |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
  #### [VerifiedBy](#VerifiedBy)
 
  | Properties | Type | Nullable | Description |
@@ -15598,20 +15585,33 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
+ #### [ProductDownloadItemsData](#ProductDownloadItemsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | templates | [string] |  no  |  |
+ | brand | [string] |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductDownloadsItems](#ProductDownloadsItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ProductDownloadItemsData](#ProductDownloadItemsData) |  no  |  |
- | completed_on | string |  no  |  |
- | template_tags | string |  no  |  |
- | seller_id | number |  no  |  |
  | task_id | string |  no  |  |
- | trigger_on | string |  no  |  |
- | created_by | [VerifiedBy](#VerifiedBy) |  no  |  |
+ | completed_on | string |  no  |  |
+ | seller_id | number |  no  |  |
+ | id | string |  no  |  |
  | url | string |  no  |  |
  | status | string |  no  |  |
- | id | string |  no  |  |
+ | created_by | [VerifiedBy](#VerifiedBy) |  no  |  |
+ | trigger_on | string |  no  |  |
+ | data | [ProductDownloadItemsData](#ProductDownloadItemsData) |  no  |  |
+ | template_tags | string |  no  |  |
 
 ---
 
@@ -15622,8 +15622,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductDownloadsItems](#ProductDownloadsItems) |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [ProductDownloadsItems](#ProductDownloadsItems) |  no  |  |
 
 ---
 
@@ -15634,8 +15634,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [string] |  no  |  |
  | multivalue | boolean |  no  |  |
+ | data | [string] |  no  |  |
 
 ---
 
@@ -15659,8 +15659,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | facebook | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
- | google | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
  | ajio | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
+ | google | [CategoryMappingValues](#CategoryMappingValues) |  no  |  |
 
 ---
 
@@ -15671,8 +15671,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | string |  yes  |  |
  | portrait | string |  yes  |  |
+ | logo | string |  yes  |  |
  | landscape | string |  yes  |  |
 
 ---
@@ -15697,23 +15697,23 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
- | uid | number |  no  |  |
- | modified_by | string |  no  |  |
  | slug | string |  no  |  |
- | priority | number |  no  |  |
- | is_active | boolean |  yes  |  |
- | created_on | string |  no  |  |
- | created_by | string |  no  |  |
- | media | [Media2](#Media2) |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
- | tryouts | [string] |  no  |  |
- | departments | [number] |  yes  |  |
- | modified_on | string |  no  |  |
- | _id | string |  no  |  |
- | level | number |  yes  |  |
  | name | string |  yes  |  |
+ | priority | number |  no  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
+ | media | [Media2](#Media2) |  no  |  |
  | synonyms | [string] |  no  |  |
+ | created_by | string |  no  |  |
+ | uid | number |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | departments | [number] |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | _id | string |  no  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
+ | level | number |  yes  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -15724,8 +15724,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Category](#Category)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[Category](#Category)] |  no  |  |
 
 ---
 
@@ -15736,17 +15736,17 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
  | slug | string |  no  |  |
+ | name | string |  yes  |  |
  | priority | number |  no  |  |
- | is_active | boolean |  yes  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping) |  no  |  |
  | media | [Media2](#Media2) |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
+ | synonyms | [string] |  no  |  |
  | tryouts | [string] |  no  |  |
  | departments | [number] |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)] |  no  |  |
  | level | number |  yes  |  |
- | name | string |  yes  |  |
- | synonyms | [string] |  no  |  |
 
 ---
 
@@ -15765,18 +15765,6 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [CategoryUpdateResponse](#CategoryUpdateResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
  #### [SingleCategoryResponse](#SingleCategoryResponse)
 
  | Properties | Type | Nullable | Description |
@@ -15788,39 +15776,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [ProductPublished](#ProductPublished)
+ #### [CategoryUpdateResponse](#CategoryUpdateResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | product_online_date | number |  no  |  |
-
----
-
-
- 
- 
- #### [Logo](#Logo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | url | string |  no  |  |
- | secure_url | string |  no  |  |
- | aspect_ratio_f | number |  no  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [Logo](#Logo) |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -15831,10 +15792,49 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
+ | aspect_ratio_f | number |  no  |  |
  | url | string |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Logo](#Logo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | secure_url | string |  no  |  |
  | aspect_ratio_f | number |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | logo | [Logo](#Logo) |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublished](#ProductPublished)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | number |  no  |  |
+ | is_set | boolean |  no  |  |
 
 ---
 
@@ -15845,44 +15845,44 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_code | string |  no  |  |
- | highlights | [string] |  no  |  |
- | short_description | string |  no  |  |
+ | category_slug | string |  no  |  |
+ | images | [[Image](#Image)] |  no  |  |
+ | brand_uid | number |  no  |  |
  | is_dependent | boolean |  no  |  |
- | custom_order | string |  no  |  |
- | multi_size | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
  | l3_mapping | [string] |  no  |  |
- | size_guide | string |  no  |  |
+ | highlights | [string] |  no  |  |
+ | brand | [Brand](#Brand) |  no  |  |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | currency | string |  no  |  |
+ | item_code | string |  no  |  |
+ | is_physical | boolean |  no  |  |
+ | product_publish | [ProductPublished](#ProductPublished) |  no  |  |
+ | short_description | string |  no  |  |
  | is_active | boolean |  no  |  |
  | variants | string |  no  |  |
- | sizes | [string] |  no  |  |
- | all_sizes | [string] |  no  |  |
- | product_publish | [ProductPublished](#ProductPublished) |  no  |  |
- | category_slug | string |  no  |  |
- | id | string |  no  |  |
- | color | string |  no  |  |
- | is_set | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | moq | string |  no  |  |
- | currency | string |  no  |  |
- | template_tag | string |  no  |  |
- | name | string |  no  |  |
- | hsn_code | string |  no  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | images | [[Image](#Image)] |  no  |  |
- | item_type | string |  no  |  |
- | brand_uid | number |  no  |  |
- | is_physical | boolean |  no  |  |
- | is_expirable | boolean |  no  |  |
- | slug | string |  no  |  |
- | primary_color | string |  no  |  |
  | country_of_origin | string |  no  |  |
+ | _custom_json | string |  no  |  |
+ | custom_order | string |  no  |  |
+ | item_type | string |  no  |  |
+ | primary_color | string |  no  |  |
+ | uid | number |  no  |  |
+ | multi_size | boolean |  no  |  |
+ | color | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | template_tag | string |  no  |  |
+ | description | string |  no  |  |
+ | is_expirable | boolean |  no  |  |
+ | is_set | boolean |  no  |  |
+ | id | string |  no  |  |
  | media | [[Media1](#Media1)] |  no  |  |
+ | moq | string |  no  |  |
+ | size_guide | string |  no  |  |
  | image_nature | string |  no  |  |
  | departments | [number] |  no  |  |
- | description | string |  no  |  |
  | category_uid | number |  no  |  |
+ | all_sizes | [string] |  no  |  |
 
 ---
 
@@ -15893,72 +15893,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Product](#Product)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [CustomOrder](#CustomOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | manufacturing_time | number |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
- | is_custom_order | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Trader](#Trader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [string] |  no  |  |
- | name | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPublish](#ProductPublish)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | product_online_date | string |  no  |  |
-
----
-
-
- 
- 
- #### [OrderQuantity](#OrderQuantity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | minimum | number |  no  |  |
- | maximum | number |  no  |  |
-
----
-
-
- 
- 
- #### [TaxIdentifier](#TaxIdentifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reporting_hsn | string |  no  |  |
- | hsn_code | string |  no  |  |
- | hsn_code_id | string |  no  |  |
+ | items | [[Product](#Product)] |  no  |  |
 
 ---
 
@@ -15969,9 +15905,47 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | boolean |  yes  |  |
- | unit | string |  yes  |  |
  | time | number |  yes  |  |
+ | unit | string |  yes  |  |
+ | returnable | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Trader](#Trader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | address | [string] |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPublish](#ProductPublish)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_online_date | string |  no  |  |
+ | is_set | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TaxIdentifier](#TaxIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hsn_code_id | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | reporting_hsn | string |  no  |  |
 
 ---
 
@@ -15982,8 +15956,34 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tag | string |  no  |  |
  | url | string |  no  |  |
+ | tag | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomOrder](#CustomOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | manufacturing_time_unit | string |  no  |  |
+ | is_custom_order | boolean |  no  |  |
+ | manufacturing_time | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderQuantity](#OrderQuantity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | maximum | number |  no  |  |
+ | is_set | boolean |  no  |  |
+ | minimum | number |  no  |  |
 
 ---
 
@@ -15994,44 +15994,44 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | item_code | string |  yes  |  |
- | highlights | [string] |  no  |  |
- | requester | string |  no  |  |
- | short_description | string |  no  |  |
- | no_of_boxes | number |  no  |  |
- | is_dependent | boolean |  no  |  |
- | custom_order | [CustomOrder](#CustomOrder) |  no  |  |
- | multi_size | boolean |  no  |  |
- | size_guide | string |  no  |  |
- | is_active | boolean |  no  |  |
- | trader | [[Trader](#Trader)] |  yes  |  |
- | variants | string |  no  |  |
- | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
- | product_group_tag | [string] |  no  |  |
  | category_slug | string |  yes  |  |
- | is_set | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | moq | [OrderQuantity](#OrderQuantity) |  no  |  |
- | company_id | number |  yes  |  |
- | tags | [string] |  no  |  |
- | template_tag | string |  yes  |  |
- | currency | string |  yes  |  |
- | is_image_less_product | boolean |  no  |  |
- | bulk_job_id | string |  no  |  |
- | tax_identifier | [TaxIdentifier](#TaxIdentifier) |  yes  |  |
- | name | string |  yes  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  yes  |  |
- | item_type | string |  yes  |  |
  | brand_uid | number |  yes  |  |
- | teaser_tag | [TeaserTag](#TeaserTag) |  no  |  |
- | slug | string |  yes  |  |
- | country_of_origin | string |  yes  |  |
- | media | [[Media1](#Media1)] |  no  |  |
- | departments | [number] |  yes  |  |
- | description | string |  no  |  |
+ | is_dependent | boolean |  no  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  yes  |  |
+ | requester | string |  no  |  |
+ | trader | [[Trader](#Trader)] |  yes  |  |
+ | is_image_less_product | boolean |  no  |  |
+ | highlights | [string] |  no  |  |
  | change_request_id | string |  no  |  |
+ | slug | string |  yes  |  |
+ | name | string |  yes  |  |
+ | currency | string |  yes  |  |
+ | no_of_boxes | number |  no  |  |
+ | item_code | string |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
+ | tags | [string] |  no  |  |
+ | tax_identifier | [TaxIdentifier](#TaxIdentifier) |  yes  |  |
+ | short_description | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | action | string |  no  |  |
+ | variants | string |  no  |  |
+ | company_id | number |  yes  |  |
+ | country_of_origin | string |  yes  |  |
+ | teaser_tag | [TeaserTag](#TeaserTag) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | custom_order | [CustomOrder](#CustomOrder) |  no  |  |
+ | item_type | string |  yes  |  |
+ | uid | number |  no  |  |
+ | multi_size | boolean |  no  |  |
+ | template_tag | string |  yes  |  |
+ | description | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | media | [[Media1](#Media1)] |  no  |  |
+ | product_group_tag | [string] |  no  |  |
+ | moq | [OrderQuantity](#OrderQuantity) |  no  |  |
+ | size_guide | string |  no  |  |
+ | bulk_job_id | string |  no  |  |
+ | departments | [number] |  yes  |  |
 
 ---
 
@@ -16053,9 +16053,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | full_name | string |  no  |  |
  | user_id | string |  no  |  |
  | username | string |  no  |  |
- | full_name | string |  no  |  |
 
 ---
 
@@ -16066,22 +16066,22 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled_records | [string] |  no  |  |
- | succeed | number |  no  |  |
- | modified_by | [UserDetail](#UserDetail) |  no  |  |
- | is_active | boolean |  no  |  |
- | created_on | string |  no  |  |
- | failed_records | [string] |  no  |  |
  | file_path | string |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | template | [ProductTemplate](#ProductTemplate) |  no  |  |
+ | succeed | number |  no  |  |
  | created_by | [UserDetail](#UserDetail) |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserDetail](#UserDetail) |  no  |  |
+ | failed | number |  no  |  |
+ | template_tag | string |  no  |  |
  | stage | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | total | number |  no  |  |
  | cancelled | number |  no  |  |
  | company_id | number |  no  |  |
- | template_tag | string |  no  |  |
- | total | number |  no  |  |
- | template | [ProductTemplate](#ProductTemplate) |  no  |  |
+ | cancelled_records | [string] |  no  |  |
  | modified_on | string |  no  |  |
- | failed | number |  no  |  |
 
 ---
 
@@ -16092,8 +16092,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductBulkRequest](#ProductBulkRequest) |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [ProductBulkRequest](#ProductBulkRequest) |  no  |  |
 
 ---
 
@@ -16104,9 +16104,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
  | email | string |  no  |  |
  | username | string |  no  |  |
- | user_id | string |  no  |  |
  | uid | string |  no  |  |
 
 ---
@@ -16118,23 +16118,23 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled_records | [string] |  no  |  |
- | succeed | number |  no  |  |
- | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
- | is_active | boolean |  no  |  |
- | created_on | string |  yes  |  |
- | failed_records | [string] |  no  |  |
  | file_path | string |  no  |  |
+ | custom_template_tag | string |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | tracking_url | string |  no  |  |
+ | succeed | number |  no  |  |
  | created_by | [UserInfo1](#UserInfo1) |  no  |  |
  | stage | string |  no  |  |
- | cancelled | number |  no  |  |
- | tracking_url | string |  no  |  |
- | company_id | number |  yes  |  |
+ | created_on | string |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
  | total | number |  yes  |  |
- | template_tag | string |  no  |  |
- | modified_on | string |  no  |  |
+ | cancelled | number |  no  |  |
  | failed | number |  no  |  |
- | custom_template_tag | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | template_tag | string |  no  |  |
+ | company_id | number |  yes  |  |
+ | cancelled_records | [string] |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -16145,11 +16145,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
- | is_active | boolean |  no  |  |
- | created_on | string |  yes  |  |
  | created_by | [UserInfo1](#UserInfo1) |  no  |  |
+ | created_on | string |  yes  |  |
+ | modified_by | [UserInfo1](#UserInfo1) |  no  |  |
  | batch_id | string |  yes  |  |
+ | is_active | boolean |  no  |  |
  | modified_on | string |  no  |  |
 
 ---
@@ -16161,10 +16161,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
  | data | [string] |  yes  |  |
- | batch_id | string |  yes  |  |
+ | company_id | number |  yes  |  |
  | template_tag | string |  yes  |  |
+ | batch_id | string |  yes  |  |
 
 ---
 
@@ -16197,9 +16197,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
  | user_id | string |  no  |  |
  | username | string |  no  |  |
- | company_id | number |  no  |  |
 
 ---
 
@@ -16210,23 +16210,23 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled_records | [string] |  no  |  |
- | succeed | number |  no  |  |
- | modified_by | [UserCommon](#UserCommon) |  no  |  |
- | created_on | string |  no  |  |
- | is_active | boolean |  no  |  |
+ | file_path | string |  no  |  |
  | retry | number |  no  |  |
  | failed_records | [string] |  no  |  |
- | file_path | string |  no  |  |
- | created_by | [UserCommon](#UserCommon) |  no  |  |
- | stage | string |  no  |  |
- | cancelled | number |  no  |  |
- | tracking_url | string |  no  |  |
- | company_id | number |  no  |  |
- | total | number |  no  |  |
- | modified_on | string |  no  |  |
- | failed | number |  no  |  |
  | id | string |  no  |  |
+ | tracking_url | string |  no  |  |
+ | succeed | number |  no  |  |
+ | created_by | [UserCommon](#UserCommon) |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserCommon](#UserCommon) |  no  |  |
+ | failed | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | total | number |  no  |  |
+ | cancelled_records | [string] |  no  |  |
+ | cancelled | number |  no  |  |
+ | company_id | number |  no  |  |
+ | stage | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -16237,8 +16237,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Items](#Items)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[Items](#Items)] |  no  |  |
 
 ---
 
@@ -16250,8 +16250,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | company_id | number |  no  |  |
- | url | string |  yes  |  |
  | user | string |  yes  |  |
+ | url | string |  yes  |  |
 
 ---
 
@@ -16263,8 +16263,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | item_id | number |  no  |  |
- | size | string |  no  |  |
  | company_id | number |  no  |  |
+ | size | string |  no  |  |
 
 ---
 
@@ -16275,8 +16275,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse) |  no  |  |
  | success | boolean |  no  |  |
+ | data | [ProductSizeDeleteDataResponse](#ProductSizeDeleteDataResponse) |  no  |  |
 
 ---
 
@@ -16287,19 +16287,19 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price_effective | number |  no  |  |
- | uid | string |  no  |  |
- | inventory_updated_on | string |  no  |  |
- | price_transfer | number |  no  |  |
- | quantity | number |  no  |  |
- | currency | string |  no  |  |
- | price | number |  no  |  |
- | seller_identifier | number |  no  |  |
- | store | string |  no  |  |
- | item_id | number |  no  |  |
- | size | string |  no  |  |
  | sellable_quantity | number |  no  |  |
+ | price | number |  no  |  |
+ | inventory_updated_on | string |  no  |  |
+ | currency | string |  no  |  |
+ | seller_identifier | number |  no  |  |
  | identifiers | string |  no  |  |
+ | size | string |  no  |  |
+ | uid | string |  no  |  |
+ | store | string |  no  |  |
+ | price_effective | number |  no  |  |
+ | price_transfer | number |  no  |  |
+ | item_id | number |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -16310,8 +16310,34 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[InventoryResponse](#InventoryResponse)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[InventoryResponse](#InventoryResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemQuery](#ItemQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_uid | number |  no  |  |
+ | item_code | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GTIN](#GTIN)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gtin_type | string |  yes  |  |
+ | primary | boolean |  no  |  |
+ | gtin_value | string |  yes  |  |
 
 ---
 
@@ -16345,21 +16371,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size_distribution | [SizeDistribution](#SizeDistribution) |  yes  |  |
  | quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [GTIN](#GTIN)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | primary | boolean |  no  |  |
- | gtin_type | string |  yes  |  |
- | gtin_value | string |  yes  |  |
+ | size_distribution | [SizeDistribution](#SizeDistribution) |  yes  |  |
 
 ---
 
@@ -16370,36 +16383,23 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | price_effective | number |  yes  |  |
- | item_weight_unit_of_measure | string |  no  |  |
- | item_width | number |  no  |  |
- | price_transfer | number |  no  |  |
- | expiration_date | string |  no  |  |
+ | store_code | string |  yes  |  |
  | price | number |  yes  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | item_width | number |  no  |  |
+ | is_set | boolean |  no  |  |
+ | item_weight | number |  no  |  |
+ | currency | string |  yes  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
  | item_height | number |  no  |  |
+ | identifiers | [[GTIN](#GTIN)] |  yes  |  |
+ | expiration_date | string |  no  |  |
+ | item_length | number |  no  |  |
+ | price_effective | number |  yes  |  |
+ | price_transfer | number |  no  |  |
+ | size | string |  yes  |  |
  | quantity | number |  yes  |  |
  | set | [InventorySet](#InventorySet) |  no  |  |
- | currency | string |  yes  |  |
- | size | string |  yes  |  |
- | item_weight | number |  no  |  |
- | identifiers | [[GTIN](#GTIN)] |  yes  |  |
- | item_length | number |  no  |  |
- | store_code | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ItemQuery](#ItemQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_uid | number |  no  |  |
- | uid | number |  no  |  |
- | item_code | string |  no  |  |
 
 ---
 
@@ -16410,9 +16410,41 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | [[InvSize](#InvSize)] |  yes  |  |
- | company_id | number |  yes  |  |
  | item | [ItemQuery](#ItemQuery) |  yes  |  |
+ | company_id | number |  yes  |  |
+ | sizes | [[InvSize](#InvSize)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InventorySellerResponse](#InventorySellerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price | string |  no  |  |
+ | identifier | string |  no  |  |
+ | inventory_updated_on | string |  no  |  |
+ | sellable | string |  no  |  |
+ | seller_identifier | number |  no  |  |
+ | size | string |  no  |  |
+ | uid | string |  no  |  |
+ | item_id | number |  no  |  |
+ | store | string |  no  |  |
+ | total_quantity | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InventorySellerIdentifierResponsePaginated](#InventorySellerIdentifierResponsePaginated)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[InventorySellerResponse](#InventorySellerResponse)] |  no  |  |
 
 ---
 
@@ -16423,21 +16455,21 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled_records | [string] |  no  |  |
- | succeed | number |  no  |  |
- | modified_by | string |  no  |  |
- | created_on | string |  no  |  |
- | is_active | boolean |  no  |  |
- | failed_records | [string] |  no  |  |
  | file_path | string |  no  |  |
- | created_by | string |  no  |  |
- | stage | string |  no  |  |
- | cancelled | number |  no  |  |
- | company_id | number |  no  |  |
- | total | number |  no  |  |
- | modified_on | string |  no  |  |
- | failed | number |  no  |  |
+ | failed_records | [string] |  no  |  |
  | id | string |  no  |  |
+ | succeed | number |  no  |  |
+ | created_by | string |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | string |  no  |  |
+ | cancelled | number |  no  |  |
+ | failed | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | cancelled_records | [string] |  no  |  |
+ | total | number |  no  |  |
+ | company_id | number |  no  |  |
+ | stage | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -16448,8 +16480,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BulkInventoryGetItems](#BulkInventoryGetItems)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[BulkInventoryGetItems](#BulkInventoryGetItems)] |  no  |  |
 
 ---
 
@@ -16460,24 +16492,24 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_set | boolean |  no  |  |
- | item_dimensions_unit_of_measure | string |  no  |  |
- | price_effective | number |  yes  |  |
- | item_weight_unit_of_measure | string |  no  |  |
- | item_width | number |  no  |  |
- | price_transfer | number |  no  |  |
- | expiration_date | string |  no  |  |
+ | store_code | string |  yes  |  |
  | price | number |  yes  |  |
+ | item_dimensions_unit_of_measure | string |  no  |  |
+ | item_width | number |  no  |  |
+ | is_set | boolean |  no  |  |
+ | item_weight | number |  no  |  |
+ | currency | string |  yes  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
  | item_height | number |  no  |  |
+ | seller_identifier | string |  yes  |  |
+ | identifiers | [string] |  no  |  |
+ | expiration_date | string |  no  |  |
+ | item_length | number |  no  |  |
+ | price_effective | number |  yes  |  |
+ | price_transfer | number |  no  |  |
+ | size | string |  no  |  |
  | quantity | number |  yes  |  |
  | set | [InventorySet](#InventorySet) |  no  |  |
- | currency | string |  yes  |  |
- | size | string |  no  |  |
- | seller_identifier | string |  yes  |  |
- | item_weight | number |  no  |  |
- | identifiers | [string] |  no  |  |
- | item_length | number |  no  |  |
- | store_code | string |  yes  |  |
 
 ---
 
@@ -16488,10 +16520,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | [[Size1](#Size1)] |  yes  |  |
  | company_id | number |  yes  |  |
- | batch_id | string |  yes  |  |
+ | sizes | [[Size1](#Size1)] |  yes  |  |
  | user | string |  no  |  |
+ | batch_id | string |  yes  |  |
 
 ---
 
@@ -16502,13 +16534,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | task_id | string |  yes  |  |
  | completed_on | string |  no  |  |
  | seller_id | number |  yes  |  |
- | task_id | string |  yes  |  |
- | trigger_on | string |  no  |  |
- | url | string |  no  |  |
  | status | string |  no  |  |
+ | trigger_on | string |  no  |  |
  | request_params | string |  no  |  |
+ | url | string |  no  |  |
 
 ---
 
@@ -16519,9 +16551,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
  | brand | [number] |  no  |  |
  | store | [number] |  no  |  |
- | type | string |  no  |  |
 
 ---
 
@@ -16532,10 +16564,10 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seller_id | number |  yes  |  |
  | task_id | string |  yes  |  |
- | trigger_on | string |  no  |  |
+ | seller_id | number |  yes  |  |
  | status | string |  no  |  |
+ | trigger_on | string |  no  |  |
  | request_params | string |  no  |  |
 
 ---
@@ -16547,8 +16579,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
  | display | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -16559,8 +16591,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[FilerList](#FilerList)] |  no  |  |
  | multivalues | boolean |  no  |  |
+ | data | [[FilerList](#FilerList)] |  no  |  |
 
 ---
 
@@ -16571,12 +16603,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price_effective | number |  yes  |  |
- | price_marked | number |  yes  |  |
- | total_quantity | number |  yes  |  |
- | expiration_date | string |  no  |  |
  | seller_identifier | string |  yes  |  |
+ | price_marked | number |  yes  |  |
+ | expiration_date | string |  no  |  |
+ | price_effective | number |  yes  |  |
  | store_id | number |  yes  |  |
+ | total_quantity | number |  yes  |  |
 
 ---
 
@@ -16587,8 +16619,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
  | meta | string |  no  |  |
+ | company_id | number |  yes  |  |
  | payload | [[InventoryPayload](#InventoryPayload)] |  no  |  |
 
 ---
@@ -16623,29 +16655,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
  | items | [[InventoryResponseItem](#InventoryResponseItem)] |  no  |  |
-
----
-
-
- 
- 
- #### [HsnCodesObject](#HsnCodesObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | threshold1 | number |  no  |  |
- | tax2 | number |  no  |  |
- | tax1 | number |  no  |  |
- | threshold2 | number |  no  |  |
- | hs2_code | string |  no  |  |
- | company_id | number |  no  |  |
- | tax_on_mrp | boolean |  no  |  |
- | modified_on | string |  no  |  |
- | tax_on_esp | boolean |  no  |  |
- | hsn_code | string |  no  |  |
- | id | string |  no  |  |
+ | message | string |  yes  |  |
 
 ---
 
@@ -16657,10 +16668,31 @@ Company profile object. See example below or refer `LocationListSerializer` for 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | current | string |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | size | number |  no  |  |
  | item_total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | size | number |  no  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [HsnCodesObject](#HsnCodesObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | threshold2 | number |  no  |  |
+ | threshold1 | number |  no  |  |
+ | tax2 | number |  no  |  |
+ | id | string |  no  |  |
+ | modified_on | string |  no  |  |
+ | hs2_code | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | tax_on_mrp | boolean |  no  |  |
+ | tax1 | number |  no  |  |
+ | company_id | number |  no  |  |
+ | tax_on_esp | boolean |  no  |  |
 
 ---
 
@@ -16671,8 +16703,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[HsnCodesObject](#HsnCodesObject)] |  no  |  |
  | page | [PageResponse](#PageResponse) |  no  |  |
+ | items | [[HsnCodesObject](#HsnCodesObject)] |  no  |  |
 
 ---
 
@@ -16683,16 +16715,16 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | threshold1 | number |  yes  |  |
- | uid | number |  no  |  |
- | tax2 | number |  no  |  |
- | tax1 | number |  yes  |  |
  | threshold2 | number |  no  |  |
+ | threshold1 | number |  yes  |  |
+ | tax2 | number |  no  |  |
  | hs2_code | string |  yes  |  |
- | company_id | number |  yes  |  |
- | tax_on_mrp | boolean |  yes  |  |
- | tax_on_esp | boolean |  no  |  |
+ | uid | number |  no  |  |
  | hsn_code | string |  yes  |  |
+ | tax_on_mrp | boolean |  yes  |  |
+ | tax1 | number |  yes  |  |
+ | company_id | number |  yes  |  |
+ | tax_on_esp | boolean |  no  |  |
 
 ---
 
@@ -16736,14 +16768,14 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | discount | string |  no  |  |
  | uid | number |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | action | [Action](#Action) |  no  |  |
  | departments | [string] |  no  |  |
- | name | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -16754,8 +16786,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BrandItem](#BrandItem)] |  no  |  |
  | page | [Page](#Page) |  yes  |  |
+ | items | [[BrandItem](#BrandItem)] |  no  |  |
 
 ---
 
@@ -16766,11 +16798,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | priority_order | number |  no  |  |
  | slug | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
  | name | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -16792,13 +16824,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | childs | [string] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | slug | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
+ | _custom_json | string |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [string] |  no  |  |
+ | uid | number |  no  |  |
+ | action | [Action](#Action) |  no  |  |
 
 ---
 
@@ -16809,13 +16841,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | slug | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
+ | _custom_json | string |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
+ | uid | number |  no  |  |
+ | action | [Action](#Action) |  no  |  |
 
 ---
 
@@ -16826,13 +16858,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | slug | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
+ | _custom_json | string |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
+ | uid | number |  no  |  |
+ | action | [Action](#Action) |  no  |  |
 
 ---
 
@@ -16843,12 +16875,12 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | childs | [[Child](#Child)] |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | slug | string |  no  |  |
- | action | [Action](#Action) |  no  |  |
  | name | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[Child](#Child)] |  no  |  |
+ | uid | number |  no  |  |
+ | action | [Action](#Action) |  no  |  |
 
 ---
 
@@ -16895,11 +16927,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operators | string |  no  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
- | page | [Page](#Page) |  yes  |  |
  | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | operators | string |  no  |  |
 
 ---
 
@@ -16910,29 +16942,29 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | highlights | [string] |  no  |  |
- | item_code | string |  no  |  |
- | short_description | string |  no  |  |
- | rating | number |  no  |  |
- | promo_meta | string |  no  |  |
- | product_online_date | string |  no  |  |
- | similars | [string] |  no  |  |
- | medias | [[Media1](#Media1)] |  no  |  |
- | color | string |  no  |  |
- | uid | number |  no  |  |
- | type | string |  no  |  |
- | rating_count | number |  no  |  |
- | has_variant | boolean |  no  |  |
- | name | string |  no  |  |
- | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
- | item_type | string |  no  |  |
- | teaser_tag | string |  no  |  |
- | slug | string |  yes  |  |
- | image_nature | string |  no  |  |
  | tryouts | [string] |  no  |  |
- | attributes | string |  no  |  |
+ | rating | number |  no  |  |
+ | medias | [[Media1](#Media1)] |  no  |  |
+ | highlights | [string] |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | slug | string |  yes  |  |
+ | name | string |  no  |  |
+ | promo_meta | string |  no  |  |
+ | item_code | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | short_description | string |  no  |  |
+ | type | string |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | item_type | string |  no  |  |
+ | uid | number |  no  |  |
+ | color | string |  no  |  |
  | description | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | attributes | string |  no  |  |
+ | image_nature | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | product_online_date | string |  no  |  |
 
 ---
 
@@ -16955,9 +16987,9 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_id | number |  yes  |  |
  | size | string |  yes  |  |
  | ignored_stores | [number] |  no  |  |
+ | item_id | number |  yes  |  |
 
 ---
 
@@ -16968,11 +17000,11 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | group_id | string |  no  |  |
  | article_assignment | [ArticleAssignment](#ArticleAssignment) |  no  |  |
- | query | [ArticleQuery](#ArticleQuery) |  no  |  |
- | quantity | number |  no  |  |
+ | group_id | string |  no  |  |
  | meta | string |  no  |  |
+ | quantity | number |  no  |  |
+ | query | [ArticleQuery](#ArticleQuery) |  no  |  |
 
 ---
 
@@ -16983,13 +17015,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | string |  yes  |  |
- | channel_type | string |  no  |  |
- | company_id | number |  no  |  |
+ | channel_identifier | string |  no  |  |
  | articles | [[AssignStoreArticle](#AssignStoreArticle)] |  yes  |  |
+ | channel_type | string |  no  |  |
  | app_id | string |  yes  |  |
  | store_ids | [number] |  no  |  |
- | channel_identifier | string |  no  |  |
+ | company_id | number |  no  |  |
+ | pincode | string |  yes  |  |
 
 ---
 
@@ -17012,23 +17044,23 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price_effective | number |  no  |  |
- | group_id | string |  no  |  |
- | uid | string |  no  |  |
- | price_marked | number |  no  |  |
+ | s_city | string |  no  |  |
  | store_id | number |  no  |  |
  | article_assignment | [ArticleAssignment1](#ArticleAssignment1) |  yes  |  |
- | _id | string |  no  |  |
- | company_id | number |  no  |  |
- | quantity | number |  yes  |  |
- | meta | string |  no  |  |
- | store_pincode | number |  no  |  |
  | status | boolean |  yes  |  |
- | item_id | number |  yes  |  |
- | size | string |  yes  |  |
+ | price_marked | number |  no  |  |
  | strategy_wise_listing | [string] |  no  |  |
+ | size | string |  yes  |  |
+ | uid | string |  no  |  |
+ | group_id | string |  no  |  |
+ | meta | string |  no  |  |
  | index | number |  no  |  |
- | s_city | string |  no  |  |
+ | _id | string |  no  |  |
+ | price_effective | number |  no  |  |
+ | item_id | number |  yes  |  |
+ | quantity | number |  yes  |  |
+ | company_id | number |  no  |  |
+ | store_pincode | number |  no  |  |
 
 ---
 
@@ -17039,65 +17071,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | inventory | string |  no  |  |
  | order | string |  no  |  |
-
----
-
-
- 
- 
- #### [UserSerializer1](#UserSerializer1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
- | contact | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetAddressSerializer](#GetAddressSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country | string |  no  |  |
- | city | string |  no  |  |
- | landmark | string |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
- | address_type | string |  no  |  |
- | latitude | number |  no  |  |
- | country_code | string |  no  |  |
- | longitude | number |  no  |  |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
-
----
-
-
- 
- 
- #### [GetCompanySerializer](#GetCompanySerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_type | string |  no  |  |
- | verified_on | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
- | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | created_on | string |  no  |  |
- | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | business_type | string |  no  |  |
- | stage | string |  no  |  |
- | reject_reason | string |  no  |  |
- | modified_on | string |  no  |  |
- | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
- | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
+ | inventory | string |  no  |  |
 
 ---
 
@@ -17116,79 +17091,13 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
- #### [Document](#Document)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | legal_name | string |  no  |  |
- | value | string |  yes  |  |
- | url | string |  no  |  |
- | verified | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [UserSerializer2](#UserSerializer2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | username | string |  no  |  |
- | contact | string |  no  |  |
-
----
-
-
- 
- 
- #### [SellerPhoneNumber](#SellerPhoneNumber)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | number |  yes  |  |
- | number | string |  yes  |  |
-
----
-
-
- 
- 
- #### [LocationTimingSerializer](#LocationTimingSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hour | number |  no  |  |
- | minute | number |  no  |  |
-
----
-
-
- 
- 
- #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | closing | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
- | opening | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
- | open | boolean |  yes  |  |
- | weekday | string |  yes  |  |
-
----
-
-
- 
- 
  #### [InvoiceCredSerializer](#InvoiceCredSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
  | password | string |  no  |  |
  | enabled | boolean |  no  |  |
+ | username | string |  no  |  |
 
 ---
 
@@ -17207,13 +17116,136 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  
  
+ #### [Document](#Document)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | legal_name | string |  no  |  |
+ | verified | boolean |  no  |  |
+ | value | string |  yes  |  |
+ | type | string |  yes  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SellerPhoneNumber](#SellerPhoneNumber)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | number | string |  yes  |  |
+ | country_code | number |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [LocationManagerSerializer](#LocationManagerSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
  | name | string |  no  |  |
+ | email | string |  no  |  |
  | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSerializer1](#UserSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | contact | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationTimingSerializer](#LocationTimingSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | minute | number |  no  |  |
+ | hour | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LocationDayWiseSerializer](#LocationDayWiseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | open | boolean |  yes  |  |
+ | closing | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
+ | opening | [LocationTimingSerializer](#LocationTimingSerializer) |  no  |  |
+ | weekday | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserSerializer2](#UserSerializer2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | contact | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetAddressSerializer](#GetAddressSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | number |  no  |  |
+ | address2 | string |  no  |  |
+ | latitude | number |  no  |  |
+ | country_code | string |  no  |  |
+ | address_type | string |  no  |  |
+ | landmark | string |  no  |  |
+ | address1 | string |  no  |  |
+ | city | string |  no  |  |
+ | pincode | number |  no  |  |
+ | country | string |  no  |  |
+ | state | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCompanySerializer](#GetCompanySerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reject_reason | string |  no  |  |
+ | verified_on | string |  no  |  |
+ | name | string |  no  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
+ | business_type | string |  no  |  |
+ | created_by | [UserSerializer2](#UserSerializer2) |  no  |  |
+ | company_type | string |  no  |  |
+ | uid | number |  no  |  |
+ | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
+ | stage | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -17224,31 +17256,31 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
- | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
- | verified_on | string |  no  |  |
- | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
- | documents | [[Document](#Document)] |  no  |  |
- | verified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
  | store_type | string |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | modified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
  | notification_emails | [string] |  no  |  |
- | created_on | string |  no  |  |
- | created_by | [UserSerializer2](#UserSerializer2) |  no  |  |
- | phone_number | string |  yes  |  |
+ | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
+ | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer) |  no  |  |
+ | modified_on | string |  no  |  |
+ | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
+ | name | string |  yes  |  |
+ | documents | [[Document](#Document)] |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | created_on | string |  no  |  |
+ | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
+ | phone_number | string |  yes  |  |
  | stage | string |  no  |  |
  | display_name | string |  yes  |  |
- | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
- | name | string |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | uid | number |  no  |  |
  | warnings | string |  no  |  |
- | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
- | address | [GetAddressSerializer](#GetAddressSerializer) |  yes  |  |
- | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
+ | verified_on | string |  no  |  |
  | code | string |  yes  |  |
- | modified_on | string |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
+ | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | address | [GetAddressSerializer](#GetAddressSerializer) |  yes  |  |
 
 ---
 
@@ -17259,8 +17291,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetLocationSerializer](#GetLocationSerializer)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[GetLocationSerializer](#GetLocationSerializer)] |  no  |  |
 
 ---
 
