@@ -655,6 +655,8 @@ export class Validator {
     static Google(): any;
     static UpdateUserRequestSchema(): any;
     static UserSchema(): any;
+    static UserPhoneNumber(): any;
+    static UserEmail(): any;
     static ApplicationLegal(): any;
     static ApplicationLegalFAQ(): any;
     static PathMappingSchema(): any;
@@ -864,8 +866,6 @@ export class Validator {
     static ArticleAssignmentRule(): any;
     static InventoryArticleAssignment(): any;
     static CompanyAboutAddress(): any;
-    static UserEmail(): any;
-    static UserPhoneNumber(): any;
     static ApplicationInformation(): any;
     static InformationAddress(): any;
     static InformationPhone(): any;
@@ -959,8 +959,8 @@ export class Validator {
     static DeviceDetails(): any;
     static KYCAddress(): any;
     static UserPersonalInfoInDetails(): any;
-    static BusinessDetails(): any;
     static MarketplaceInfo(): any;
+    static BusinessDetails(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;

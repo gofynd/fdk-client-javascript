@@ -615,7 +615,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -785,7 +785,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -952,7 +952,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -1754,7 +1754,7 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2044,7 +2044,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2284,7 +2284,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2394,7 +2394,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2745,7 +2745,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -2855,7 +2855,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
           "primary": true,
           "verified": true,
           "phone": "8652523958",
-          "country_code": 91
+          "country_code": "91"
         }
       ],
       "emails": [
@@ -4043,8 +4043,8 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | first_name | string |  no  |  |
  | meta | string |  no  |  |
  | last_name | string |  no  |  |
- | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
- | emails | [[Email](#Email)] |  no  |  |
+ | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
+ | emails | [[UserEmail](#UserEmail)] |  no  |  |
  | gender | string |  no  |  |
  | dob | string |  no  |  |
  | active | boolean |  no  |  |
@@ -4062,7 +4062,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [PhoneNumber](#PhoneNumber)
+ #### [UserPhoneNumber](#UserPhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -4077,7 +4077,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [Email](#Email)
+ #### [UserEmail](#UserEmail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
