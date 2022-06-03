@@ -4043,8 +4043,8 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | first_name | string |  no  |  |
  | meta | string |  no  |  |
  | last_name | string |  no  |  |
- | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
- | emails | [[UserEmail](#UserEmail)] |  no  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
+ | emails | [[Email](#Email)] |  no  |  |
  | gender | string |  no  |  |
  | dob | string |  no  |  |
  | active | boolean |  no  |  |
@@ -4062,7 +4062,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [UserPhoneNumber](#UserPhoneNumber)
+ #### [PhoneNumber](#PhoneNumber)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -4077,7 +4077,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [UserEmail](#UserEmail)
+ #### [Email](#Email)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

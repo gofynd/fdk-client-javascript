@@ -25,7 +25,7 @@ class ApplicationConfig {
   validate() {
     const { error } = LocationValidator.validateLocationObj().validate(
       this.locationDetails,
-      { abortEarly: false }
+      { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       throw new FDKClientValidationError(error);
