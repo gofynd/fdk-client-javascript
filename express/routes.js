@@ -153,7 +153,7 @@ function setupRoutes(ext) {
     });
 
 
-    FdkRoutes.get("/fp/auto_install", sessionMiddleware(false), async (req, res, next) => {
+    FdkRoutes.post("/fp/auto_install", sessionMiddleware(false), async (req, res, next) => {
         // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&state=jashoh
         try {
 
