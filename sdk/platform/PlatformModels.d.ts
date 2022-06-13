@@ -204,16 +204,16 @@ export class WebhookValidator {
     static getSubscriberById(): any;
     static fetchAllEventConfigurations(): any;
 }
-export class AuditTrailValidator {
-    static getAuditLogs(): any;
-    static createAuditLog(): any;
-    static getAuditLog(): any;
-}
 export class ServiceabilityValidator {
     static getEntityRegionView(): any;
     static getListView(): any;
     static getCompanyStoreView(): any;
-    static updateZoneControllerView(): any;
     static getZoneDataView(): any;
+    static updateZoneControllerView(): any;
     static upsertZoneControllerView(): any;
+}
+export class AuditTrailValidator {
+    static getAuditLogs(): any;
+    static createAuditLog(): any;
+    static getAuditLog(): any;
 }
