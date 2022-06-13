@@ -12,14 +12,16 @@ function convertUrlToAction(url) {
   for (nav in allNavigations) {
     let linkNav = allNavigations[nav]["link"];
     typeLink[linkNav] = nav;
-    if (
-      allNavigations[nav]["params"] &&
-      allNavigations[nav]["params"][0]["required"] === false
-    ) {
-      linkNav = allNavigations[nav]["link"]
-        .replace(`:${allNavigations[nav]["params"][0]["key"]}`, "")
-        .replace("//", "/");
-      typeLink[linkNav] = nav;
+    if (allNavigations[nav]["params"]) {
+      for (let p = 0; p < allNavigations[nav]["params"].length; p++) {
+        if (allNavigations[nav]["params"][p]["required"] === false) {
+          linkNav = allNavigations[nav]["link"].split(
+            `:${allNavigations[nav]["params"][p]["key"]}`
+          )[0];
+          linkNav = linkNav.replace("//", "/");
+          typeLink[linkNav] = nav;
+        }
+      }
     }
   }
   const allLinks = Object.keys(typeLink);
@@ -27,10 +29,10 @@ function convertUrlToAction(url) {
     return b.length - a.length;
   });
   const bestMatchingLink = utils.findBestMatchingLink(allLinks, pathname);
-  let closestMatchingNavKey = Object.keys(typeLink).find((pageType) => {
+  const closestMatchingNavLink = Object.keys(typeLink).find((pageType) => {
     return utils.trimChar(pageType) === bestMatchingLink.value;
   });
-  closestMatchingNavKey = typeLink[closestMatchingNavKey];
+  let closestMatchingNavKey = typeLink[closestMatchingNavLink];
   if (!closestMatchingNavKey) {
     closestMatchingNavKey = "home";
   }

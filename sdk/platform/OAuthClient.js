@@ -2,6 +2,8 @@ const querystring = require("query-string");
 const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
+const { Logger } = require("../common/Logger");
+
 const refreshTokenRequestCache = {};
 class OAuthClient {
   constructor(config) {
@@ -47,9 +49,11 @@ class OAuthClient {
     if (this.refreshToken && this.useAutoRenewTimer) {
       this.retryOAuthToken(token.expires_in);
     }
+    Logger({ type: "INFO", message: "Token set." });
   }
 
   retryOAuthToken(expires_in) {
+    Logger({ type: "INFO", message: "Retrying OAuth Token..." });
     if (this.retryOAuthTokenTimer) {
       clearTimeout(this.retryOAuthTokenTimer);
     }
@@ -61,6 +65,7 @@ class OAuthClient {
   }
 
   startAuthorization(options) {
+    Logger({ type: "INFO", message: "Starting Authorization..." });
     let query = {
       client_id: this.config.apiKey,
       scope: options.scope.join(","),
@@ -81,6 +86,7 @@ class OAuthClient {
       signQuery: true,
     };
     signingOptions = sign(signingOptions);
+    Logger({ type: "INFO", message: "Authorization successful.!" });
 
     return `${this.config.domain}${signingOptions.path}`;
   }
@@ -109,6 +115,7 @@ class OAuthClient {
   }
 
   async renewAccessToken(isOfflineToken = false) {
+    Logger({ type: "INFO", message: "Renewing Access token..." });
     try {
       let res;
       if (isOfflineToken) {
@@ -131,6 +138,7 @@ class OAuthClient {
       this.setToken(res);
       this.token_expires_at =
         new Date().getTime() + this.token_expires_in * 1000;
+      Logger({ type: "INFO", message: "Done." });
       return res;
     } catch (error) {
       if (error.isAxiosError) {
@@ -141,6 +149,7 @@ class OAuthClient {
   }
 
   async getAccesstokenObj({ grant_type, refresh_token, code }) {
+    Logger({ type: "INFO", message: "Processing Access token object..." });
     let reqData = {
       grant_type: grant_type,
     };
@@ -162,6 +171,48 @@ class OAuthClient {
       headers: {
         Authorization: `Basic ${token}`,
         "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+    Logger({ type: "INFO", message: "Done." });
+    return fdkAxios.request(rawRequest);
+  }
+
+  async getOfflineAccessToken(scopes, code) {
+    Logger({ type: "INFO", message: "Getting new offline access token" });
+    try {
+      let res = await this.getOfflineAccessTokenObj(scopes, code);
+      Logger({ type: "INFO", message: "Offline access token fetched" });
+      this.setToken(res);
+      this.token_expires_at = new Date().getTime() + this.token_expires_in;
+      return res;
+    } catch (error) {
+      if (error.isAxiosError) {
+        throw new FDKTokenIssueError(error.message);
+      }
+      throw error;
+    }
+  }
+
+  async getOfflineAccessTokenObj(scopes, code) {
+    let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/offline-token`;
+    let data = {
+      client_id: this.config.apiKey,
+      client_secret: this.config.apiSecret,
+      grant_type: "authorization_code",
+      scope: scopes,
+      code: code,
+    };
+    const token = Buffer.from(
+      `${this.config.apiKey}:${this.config.apiSecret}`,
+      "utf8"
+    ).toString("base64");
+    const rawRequest = {
+      method: "post",
+      url: url,
+      data: data,
+      headers: {
+        Authorization: `Basic ${token}`,
+        "Content-Type": "application/json",
       },
     };
     return fdkAxios.request(rawRequest);

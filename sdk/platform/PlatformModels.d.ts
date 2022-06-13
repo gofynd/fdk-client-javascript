@@ -60,12 +60,12 @@ export class OrderValidator {
     static voiceClickToCall(): any;
 }
 export class CatalogValidator {
-    static createProductBundle(): any;
     static getProductBundle(): any;
+    static createProductBundle(): any;
     static updateProductBundle(): any;
     static getProductBundleDetail(): any;
-    static createSizeGuide(): any;
     static getSizeGuides(): any;
+    static createSizeGuide(): any;
     static updateSizeGuide(): any;
     static getSizeGuide(): any;
     static getSellerInsights(): any;
@@ -87,38 +87,38 @@ export class CatalogValidator {
     static listHSNCodes(): any;
     static listProductTemplateExportDetails(): any;
     static listTemplateBrandTypeValues(): any;
-    static createCategories(): any;
     static listCategories(): any;
+    static createCategories(): any;
     static updateCategory(): any;
     static getCategoryData(): any;
-    static createProduct(): any;
     static getProducts(): any;
-    static deleteProduct(): any;
+    static createProduct(): any;
     static editProduct(): any;
     static getProduct(): any;
+    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
-    static updateProductAssetsInBulk(): any;
     static getProductBulkUploadHistory(): any;
+    static createBulkProductUploadJob(): any;
     static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
     static getProductTags(): any;
-    static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
+    static createProductAssetsInBulk(): any;
     static deleteSize(): any;
-    static addInventory(): any;
     static getInventoryBySize(): any;
+    static addInventory(): any;
     static getInventoryBySizeIdentifier(): any;
     static deleteInventory(): any;
-    static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
+    static createBulkInventoryJob(): any;
     static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
-    static createInventoryExportJob(): any;
     static getInventoryExport(): any;
+    static createInventoryExportJob(): any;
     static exportInventoryConfig(): any;
-    static createHsnCode(): any;
     static getAllHsnCodes(): any;
+    static createHsnCode(): any;
     static updateHsnCode(): any;
     static getHsnCode(): any;
     static bulkHsnCode(): any;
@@ -204,6 +204,11 @@ export class WebhookValidator {
     static getSubscriberById(): any;
     static fetchAllEventConfigurations(): any;
 }
+export class AuditTrailValidator {
+    static getAuditLogs(): any;
+    static createAuditLog(): any;
+    static getAuditLog(): any;
+}
 export class ServiceabilityValidator {
     static getEntityRegionView(): any;
     static getListView(): any;
@@ -211,9 +216,4 @@ export class ServiceabilityValidator {
     static updateZoneControllerView(): any;
     static getZoneDataView(): any;
     static upsertZoneControllerView(): any;
-}
-export class AuditTrailValidator {
-    static getAuditLogs(): any;
-    static createAuditLog(): any;
-    static getAuditLog(): any;
 }

@@ -1,0 +1,115 @@
+{
+  "tests": [
+    {
+      "name": "brand listing query param  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "brand",
+          "params": {
+            "slug": ["test"]
+          },
+          "query": {
+            "department": ["men", "women"]
+          }
+        }
+      },
+      "result": {
+        "path": "/brand/test/?department=men&department=women"
+      }
+    },
+    {
+      "name": "category listing query param  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "category",
+          "params": {
+            "slug": ["test"]
+          },
+          "query": {
+            "department": ["men", "women"]
+          }
+        }
+      },
+      "result": {
+        "path": "/category/test/?department=men&department=women"
+      }
+    },
+    {
+      "name": "products listing query param  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "products",
+          "query": {
+            "department": ["men", "women"]
+          }
+        }
+      },
+      "result": {
+        "path": "/products/?department=men&department=women"
+      }
+    },
+    {
+      "name": "external url action to link",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "external",
+          "query": {
+            "url": ["https://abhay.dev"]
+          }
+        }
+      },
+      "result": {
+        "path": "/external/?url=https%3A%2F%2Fabhay.dev"
+      }
+    },
+    {
+      "name": "Sections with group  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "sections",
+          "params": {
+            "group": ["home"]
+          }
+        }
+      },
+      "result": {
+        "path": "/sections/home"
+      }
+    },
+    {
+      "name": "Review page",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "product-reviews",
+          "params": {
+            "slug": ["test-product"]
+          }
+        }
+      },
+      "result": {
+        "path": "/product/test-product/reviews"
+      }
+    },
+    {
+      "name": "Multiple slugs",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "product-reviews",
+          "params": {
+            "slug": ["test-product", "test-product-2"]
+          }
+        }
+      },
+      "result": {
+        "path": "/product/test-product:::test-product-2/reviews"
+      }
+    }
+  ]
+}
