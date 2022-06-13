@@ -35429,7 +35429,6 @@ Success. Refer `ThemesSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | string |  no  |  |
- | links | [string] |  no  |  |
 
 ---
 
@@ -35452,7 +35451,6 @@ Success. Refer `ThemesSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | string |  no  |  |
- | links | [string] |  no  |  |
 
 ---
 
