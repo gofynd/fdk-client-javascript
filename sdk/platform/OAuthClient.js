@@ -115,8 +115,8 @@ class OAuthClient {
   }
 
   async renewAccessToken(isOfflineToken = false) {
-    Logger({ type: "INFO", message: "Renewing Access token..." });
     try {
+      Logger({ type: "INFO", message: "Renewing Access token..." });
       let res;
       if (isOfflineToken) {
         let requestCacheKey = `${this.config.apiKey}:${this.config.companyId}`;

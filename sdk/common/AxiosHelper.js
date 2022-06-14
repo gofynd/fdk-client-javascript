@@ -77,10 +77,12 @@ function requestInterceptorFn() {
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
     // config.headers["fp-sdk-version"] = version;
     Logger({
-      level: "INFO",
+      level: "DEBUG",
       type: "REQUEST",
       message: config,
       url: config.url,
+      headers: config.headers,
+      body: signingOptions.body,
     });
     return config;
   };
@@ -98,10 +100,11 @@ fdkAxios.interceptors.response.use(
       return response.headers;
     }
     Logger({
-      level: "INFO",
+      level: "DEBUG",
       type: "RESPONSE",
       message: response.config,
       url: response.config.url,
+      response: response,
     });
     return response.data; // IF 2XX then return response.data only
   },

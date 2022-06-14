@@ -78,7 +78,7 @@ let platformConfig = new PlatformConfig({
   apiKey: "API_KEY", 
   apiSecret: "API_SECRET", 
   domain: "DOMAIN",
-  useAutoRenewTimer: true
+  useAutoRenewTimer: true // Setting `true` will use timer based logic to refresh the access token. With `false` will issue refresh token just before any api call when it is expired. 
 });
 
 async function getData() {
