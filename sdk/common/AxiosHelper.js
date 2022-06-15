@@ -104,7 +104,7 @@ fdkAxios.interceptors.response.use(
       type: "RESPONSE",
       message: response.config,
       url: response.config.url,
-      response: response,
+      response: response.data,
     });
     return response.data; // IF 2XX then return response.data only
   },
