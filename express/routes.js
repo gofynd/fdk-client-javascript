@@ -154,15 +154,14 @@ function setupRoutes(ext) {
 
 
     FdkRoutes.post("/fp/auto_install", sessionMiddleware(false), async (req, res, next) => {
-        // ?code=ddjfhdsjfsfh&client_id=jsfnsajfhkasf&company_id=1&state=jashoh
         try {
 
-            let { companyId, code } = req.params;
+            let { company_id, code } = req.body;
 
-            let platformConfig = ext.getPlatformConfig(companyId);
+            let platformConfig = ext.getPlatformConfig(company_id);
             let sid = Session.generateSessionId(false, {
                 cluster: ext.cluster,
-                companyId: companyId
+                companyId: company_id
             });
             
             let session = await SessionStorage.getSession(sid);
