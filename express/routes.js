@@ -158,6 +158,8 @@ function setupRoutes(ext) {
 
             let { company_id, code } = req.body;
 
+            logger.debug(`Extension auto install started for company: ${company_id} on company creation.`);
+
             let platformConfig = ext.getPlatformConfig(company_id);
             let sid = Session.generateSessionId(false, {
                 cluster: ext.cluster,
@@ -173,7 +175,7 @@ function setupRoutes(ext) {
 
             let offlineTokenRes = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, code);
 
-            session.company_id = companyId;
+            session.company_id = company_id;
             session.scope = ext.scopes;
             session.state = uuidv4();
             session.extension_id = ext.api_key;
@@ -186,12 +188,12 @@ function setupRoutes(ext) {
             }
             
             if (ext.webhookRegistry.isInitialized) {
-                const client = await ext.getPlatformClient(companyId, session);
+                const client = await ext.getPlatformClient(company_id, session);
                 await ext.webhookRegistry.syncEvents(client, null, true).catch((err) => {
                     logger.error(err);
                 });
             }
-            logger.debug(`Extension installed for company: ${companyId} on company creation.`);
+            logger.debug(`Extension installed for company: ${company_id} on company creation.`);
             res.json({ message: "success" });
         } catch (error) {
             next(error);
