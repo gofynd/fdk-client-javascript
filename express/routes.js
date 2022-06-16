@@ -148,6 +148,7 @@ function setupRoutes(ext) {
             logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`);
             res.redirect(redirectUrl);
         } catch (error) {
+            logger.error(error);
             next(error);
         }
     });
@@ -196,6 +197,7 @@ function setupRoutes(ext) {
             logger.debug(`Extension installed for company: ${company_id} on company creation.`);
             res.json({ message: "success" });
         } catch (error) {
+            logger.error(error);
             next(error);
         }
     });
@@ -215,7 +217,8 @@ function setupRoutes(ext) {
             await ext.callbacks.uninstall(req);
             res.json({ success: true });
         } catch (error) {
-            res.status(500).json({ success: false, message: error });
+            logger.error(error);
+            next(error);
         }
     });
 
