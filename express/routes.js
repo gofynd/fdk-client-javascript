@@ -195,6 +195,9 @@ function setupRoutes(ext) {
                 });
             }
             logger.debug(`Extension installed for company: ${company_id} on company creation.`);
+            if (ext.callbacks.auto_install) {
+                await ext.callbacks.auto_install(req);
+            }            
             res.json({ message: "success" });
         } catch (error) {
             logger.error(error);

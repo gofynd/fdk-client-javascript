@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
+## [0.5.1] - 2022-06-16
+### Added
+- Added support to auto install extensions feature. Now selected auto install extensions will be installed for company. It will generate access token for offline mode and register webhook subscribers for company it is getting auto installed.
+
+### Changed
+- With introduction of auto install feature, any handling done on extension installation or first launch event on `auth` callback should be done here as well. Since auto install event will install extension in background on company creation. And `auth` callback is only triggered when extension is launched. 
+---
 ## [0.5.0] - 2022-05-24
 ### Added
 - Fetching and verifying extension details using `api_key` and `api_secret` on server/consumer start. Given invalid extension api_key and api_secret, it will throw error. Same will be done if `scopes` are included which are not registered on Fynd Partners panel.
