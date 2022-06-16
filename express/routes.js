@@ -87,10 +87,10 @@ function setupRoutes(ext) {
                 throw new FdkInvalidOAuthError("Invalid oauth call");
             }
             const companyId = req.fdkSession.company_id
-            
+
             const platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
-            
+
             let token = platformConfig.oauthClient.raw_token;
             let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
 
@@ -115,7 +115,7 @@ function setupRoutes(ext) {
                 }
 
                 let offlineTokenRes = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
-                
+
                 session.company_id = companyId;
                 session.scope = ext.scopes;
                 session.state = req.fdkSession.state;
@@ -123,7 +123,7 @@ function setupRoutes(ext) {
                 offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
                 offlineTokenRes.access_mode = 'offline';
                 session.updateToken(offlineTokenRes);
-                
+
                 await SessionStorage.saveSession(session);
 
             }
@@ -140,7 +140,7 @@ function setupRoutes(ext) {
             req.extension = ext;
             if (ext.webhookRegistry.isInitialized) {
                 const client = await ext.getPlatformClient(companyId, req.fdkSession);
-                await ext.webhookRegistry.syncEvents(client, null, true).catch((err)=>{
+                await ext.webhookRegistry.syncEvents(client, null, true).catch((err) => {
                     logger.error(err);
                 });
             }
@@ -148,6 +148,59 @@ function setupRoutes(ext) {
             logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`);
             res.redirect(redirectUrl);
         } catch (error) {
+            logger.error(error);
+            next(error);
+        }
+    });
+
+
+    FdkRoutes.post("/fp/auto_install", sessionMiddleware(false), async (req, res, next) => {
+        try {
+
+            let { company_id, code } = req.body;
+
+            logger.debug(`Extension auto install started for company: ${company_id} on company creation.`);
+
+            let platformConfig = ext.getPlatformConfig(company_id);
+            let sid = Session.generateSessionId(false, {
+                cluster: ext.cluster,
+                companyId: company_id
+            });
+            
+            let session = await SessionStorage.getSession(sid);
+            if (!session) {
+                session = new Session(sid);
+            } else if (session.extension_id !== ext.api_key) {
+                session = new Session(sid);
+            }
+
+            let offlineTokenRes = await platformConfig.oauthClient.getOfflineAccessToken(ext.scopes, code);
+
+            session.company_id = company_id;
+            session.scope = ext.scopes;
+            session.state = uuidv4();
+            session.extension_id = ext.api_key;
+            offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+            offlineTokenRes.access_mode = 'offline';
+            session.updateToken(offlineTokenRes);
+
+            if (!ext.isOnlineAccessMode()) {
+                await SessionStorage.saveSession(session);  
+            }
+            
+            if (ext.webhookRegistry.isInitialized) {
+                const client = await ext.getPlatformClient(company_id, session);
+                await ext.webhookRegistry.syncEvents(client, null, true).catch((err) => {
+                    logger.error(err);
+                });
+            }
+            logger.debug(`Extension installed for company: ${company_id} on company creation.`);
+            if (ext.callbacks.auto_install) {
+                await ext.callbacks.auto_install(req);
+            }            
+            res.json({ message: "success" });
+        } catch (error) {
+            logger.error(error);
             next(error);
         }
     });
@@ -167,7 +220,8 @@ function setupRoutes(ext) {
             await ext.callbacks.uninstall(req);
             res.json({ success: true });
         } catch (error) {
-            res.status(500).json({ success: false, message: error });
+            logger.error(error);
+            next(error);
         }
     });
 
