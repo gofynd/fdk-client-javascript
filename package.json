@@ -23,7 +23,6 @@
     "crypto-js": "^4.0.0",
     "joi": "^17.4.0",
     "query-string": "^6.14.1",
-    "loglevel": "^1.8.0",
     "camelcase": "^6.2.0"
   },
   "devDependencies": {
