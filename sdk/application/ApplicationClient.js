@@ -2409,20 +2409,22 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
    * @param {CartCheckoutDetailRequest} arg.body
    * @returns {Promise<CartCheckoutResponse>} - Success response
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
-  checkoutCart({ body } = {}) {
+  checkoutCart({ body, buyNow } = {}) {
     const { error } = CartValidator.checkoutCart().validate(
-      { body },
+      { body, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
+    query_params["buy_now"] = buyNow;
 
     return APIClient.execute(
       this._conf,
@@ -6046,6 +6048,10 @@ class Payment {
       getPosPaymentModeRoutes:
         "/service/application/payment/v1.0/payment/options/pos",
       getRupifiBannerDetails: "/service/application/payment/v1.0/rupifi/banner",
+      getEpaylaterBannerDetails:
+        "/service/application/payment/v1.0/epaylater/banner",
+      resendOrCancelPayment:
+        "/service/application/payment/v1.0/payment/resend_or_cancel",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -6064,6 +6070,12 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/wallet",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
+      customerCreditSummary:
+        "/service/application/payment/v1.0/payment/credit-summary/",
+      redirectToAggregator:
+        "/service/application/payment/v1.0/payment/redirect-to-aggregator/",
+      checkCredit: "/service/application/payment/v1.0/check-credits/",
+      customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -6508,6 +6520,63 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<EpaylaterBannerResponse>} - Success response
+   * @summary: Get Epaylater Enabled
+   * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
+   */
+  getEpaylaterBannerDetails({} = {}) {
+    const { error } = PaymentValidator.getEpaylaterBannerDetails().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getEpaylaterBannerDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ResendOrCancelPaymentRequest} arg.body
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+   * @summary: API to resend and cancel a payment link which was already generated.
+   * @description: Use this API to perform resend or cancel a payment link based on request payload.
+   */
+  resendOrCancelPayment({ body } = {}) {
+    const { error } = PaymentValidator.resendOrCancelPayment().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["resendOrCancelPayment"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<TransferModeResponse>} - Success response
    * @summary: Lists the mode of refund
    * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
@@ -6800,6 +6869,129 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["updateDefaultBeneficiary"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  customerCreditSummary({ aggregator } = {}) {
+    const { error } = PaymentValidator.customerCreditSummary().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["customerCreditSummary"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.source] - This is a String value that contains
+   *   callback URL as value.
+   * @param {string} [arg.aggregator] - This is a String value that contains
+   *   aggregator name as value.
+   * @returns {Promise<RedirectToAggregatorResponse>} - Success response
+   * @summary: API to get the redirect url to redirect the user to aggregator's page
+   * @description: Use this API to get the redirect url to redirect the user to aggregator's page
+   */
+  redirectToAggregator({ source, aggregator } = {}) {
+    const { error } = PaymentValidator.redirectToAggregator().validate(
+      { source, aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["source"] = source;
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["redirectToAggregator"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<CheckCreditResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  checkCredit({ aggregator } = {}) {
+    const { error } = PaymentValidator.checkCredit().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["checkCredit"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CustomerOnboardingRequest} arg.body
+   * @returns {Promise<CustomerOnboardingResponse>} - Success response
+   * @summary: API to fetch the customer credit summary
+   * @description: Use this API to fetch the customer credit summary.
+   */
+  customerOnboard({ body } = {}) {
+    const { error } = PaymentValidator.customerOnboard().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["customerOnboard"],
         params: {},
       }),
       query_params,
