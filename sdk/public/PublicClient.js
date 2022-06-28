@@ -216,6 +216,8 @@ class Inventory {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      getConfigByApiKey: "/service/common/inventory/v1.0/company/slingshot",
+      getApiKey: "/service/common/inventory/v1.0/company/slingshot/apikey",
       getJobByCode: "/service/common/inventory/v1.0/company/jobs/code/{code}",
       getJobConfigByIntegrationType:
         "/service/common/inventory/v1.0/company/job/config",
@@ -238,6 +240,68 @@ class Inventory {
       ...this._urls,
       ...urls,
     };
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.apikey - Api key
+   * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+   * @summary: Get Slingshot Configuration Of  A Company
+   * @description: REST Endpoint that returns all configuration detail of a company
+   */
+  getConfigByApiKey({ apikey } = {}) {
+    const { error } = InventoryValidator.getConfigByApiKey().validate(
+      { apikey },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["apikey"] = apikey;
+
+    return PublicAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getConfigByApiKey"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.userName - Integration id
+   * @param {string} arg.password - Company/store token
+   * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
+   * @summary: Get Slingshot Configuration Of  A Company
+   * @description: REST Endpoint that returns apikey by username by password
+   */
+  getApiKey({ userName, password } = {}) {
+    const { error } = InventoryValidator.getApiKey().validate(
+      { userName, password },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["user_name"] = userName;
+    query_params["password"] = password;
+
+    return PublicAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getApiKey"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
   }
 
   /**
