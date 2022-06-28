@@ -6783,6 +6783,8 @@ class Order {
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       verifyOtpShipmentCustomer:
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify",
+      getInvoiceByShipmentId:
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -7124,6 +7126,37 @@ class Order {
       }),
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @summary: Get Invoice URL
+   * @description: Use this API to get a generated Invoice URL for viewing or download.
+   */
+  getInvoiceByShipmentId({ shipmentId } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+      { shipmentId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getInvoiceByShipmentId"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined
     );
   }
 }
@@ -9642,6 +9675,7 @@ class Logistic {
     this._conf = _conf;
     this._relativeUrls = {
       getTatProduct: "/service/application/logistics/v1.0",
+      getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -9682,6 +9716,35 @@ class Logistic {
       "post",
       constructUrl({
         url: this._urls["getTatProduct"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {GetPincodeZonesReqBody} arg.body
+   * @returns {Promise<GetPincodeZonesResponse>} - Success response
+   * @summary: Get Pincode Zones
+   * @description: Get to know the zones of a specefic pincode
+   */
+  getPincodeZones({ body } = {}) {
+    const { error } = LogisticValidator.getPincodeZones().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getPincodeZones"],
         params: {},
       }),
       query_params,
