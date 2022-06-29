@@ -15,6 +15,7 @@ const {
   AnalyticsValidator,
   DiscountValidator,
   WebhookValidator,
+  ServiceabilityValidator,
   AuditTrailValidator,
 } = require("./PlatformModels");
 const PlatformApplicationClient = require("./PlatformApplicationClient");
@@ -39,6 +40,7 @@ class PlatformClient {
     this.analytics = new Analytics(config);
     this.discount = new Discount(config);
     this.webhook = new Webhook(config);
+    this.serviceability = new Serviceability(config);
     this.auditTrail = new AuditTrail(config);
   }
   application(applicationId) {
@@ -3903,119 +3905,119 @@ class PlatformClient {
 
 /**
  * @typedef PaymentGatewayConfigResponse
- * @property {string} app_id
- * @property {Object[]} [aggregators]
  * @property {string[]} display_fields
- * @property {boolean} success
- * @property {string[]} excluded_fields
+ * @property {string} app_id
  * @property {boolean} created
+ * @property {string[]} excluded_fields
+ * @property {Object[]} [aggregators]
+ * @property {boolean} success
  */
 
 /**
  * @typedef ErrorCodeDescription
+ * @property {string} description
  * @property {boolean} success
  * @property {string} code
- * @property {string} description
  */
 
 /**
  * @typedef PaymentGatewayConfig
- * @property {string} merchant_salt
- * @property {boolean} [is_active]
  * @property {string} config_type
+ * @property {boolean} [is_active]
  * @property {string} secret
  * @property {string} key
+ * @property {string} merchant_salt
  */
 
 /**
  * @typedef PaymentGatewayConfigRequest
+ * @property {boolean} [is_active]
  * @property {string} app_id
  * @property {PaymentGatewayConfig} [aggregator_name]
- * @property {boolean} [is_active]
  */
 
 /**
  * @typedef PaymentGatewayToBeReviewed
- * @property {boolean} success
  * @property {string[]} aggregator
+ * @property {boolean} success
  */
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} code
  * @property {string} description
+ * @property {string} code
  */
 
 /**
  * @typedef HttpErrorCodeAndResponse
- * @property {boolean} success
  * @property {ErrorCodeAndDescription} error
+ * @property {boolean} success
  */
 
 /**
  * @typedef PaymentModeLogo
- * @property {string} large
  * @property {string} small
+ * @property {string} large
  */
 
 /**
  * @typedef IntentApp
- * @property {string} [display_name]
- * @property {string} [code]
- * @property {PaymentModeLogo} [logos]
  * @property {string} [package_name]
+ * @property {string} [display_name]
+ * @property {PaymentModeLogo} [logos]
+ * @property {string} [code]
  */
 
 /**
  * @typedef IntentAppErrorList
- * @property {string} [code]
  * @property {string} [package_name]
+ * @property {string} [code]
  */
 
 /**
  * @typedef PaymentModeList
- * @property {string} [card_name]
- * @property {string} aggregator_name
- * @property {string} [fynd_vpa]
- * @property {number} [timeout]
- * @property {string[]} [intent_app_error_list]
- * @property {boolean} [intent_flow]
- * @property {string} [card_id]
- * @property {string} [card_reference]
  * @property {string} [card_number]
- * @property {string} [display_name]
- * @property {string} [name]
- * @property {string} [card_brand]
- * @property {number} [retry_count]
- * @property {string} [card_issuer]
- * @property {string} [card_token]
- * @property {string} [card_brand_image]
- * @property {number} [display_priority]
- * @property {string} [merchant_code]
- * @property {string} [card_isin]
- * @property {string} [card_fingerprint]
- * @property {number} [exp_year]
  * @property {IntentApp[]} [intent_app]
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
- * @property {boolean} [expired]
  * @property {number} [exp_month]
- * @property {string} [code]
+ * @property {number} [display_priority]
+ * @property {string} [card_token]
  * @property {string} [card_type]
- * @property {PaymentModeLogo} [logo_url]
+ * @property {string} aggregator_name
+ * @property {string} [name]
+ * @property {string} [card_id]
+ * @property {string} [merchant_code]
  * @property {string} [nickname]
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
+ * @property {number} [retry_count]
+ * @property {string} [card_brand_image]
+ * @property {string} [card_reference]
+ * @property {string[]} [intent_app_error_list]
+ * @property {string} [card_fingerprint]
+ * @property {boolean} [expired]
+ * @property {string} [card_brand]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {string} [fynd_vpa]
+ * @property {string} [display_name]
+ * @property {number} [exp_year]
+ * @property {string} [code]
+ * @property {string} [card_issuer]
+ * @property {string} [card_isin]
+ * @property {boolean} [intent_flow]
+ * @property {string} [card_name]
+ * @property {number} [timeout]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {boolean} [add_card_enabled]
- * @property {PaymentModeList[]} [list]
- * @property {number} display_priority
- * @property {string} [aggregator_name]
- * @property {string} [logo]
- * @property {PaymentModeLogo} [logo_url]
- * @property {boolean} [anonymous_enable]
  * @property {string} display_name
+ * @property {boolean} [add_card_enabled]
+ * @property {string} [logo]
+ * @property {number} display_priority
  * @property {string} name
+ * @property {PaymentModeList[]} [list]
+ * @property {boolean} [anonymous_enable]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {string} [aggregator_name]
  */
 
 /**
@@ -4025,71 +4027,71 @@ class PlatformClient {
 
 /**
  * @typedef PaymentOptionsResponse
- * @property {boolean} success
  * @property {PaymentOptions} payment_options
+ * @property {boolean} success
  */
 
 /**
  * @typedef PayoutsResponse
- * @property {string} transfer_type
- * @property {Object[]} payouts_aggregators
- * @property {boolean} is_default
  * @property {boolean} is_active
- * @property {Object} more_attributes
- * @property {Object} unique_transfer_no
+ * @property {string} transfer_type
  * @property {Object} customers
+ * @property {Object} more_attributes
+ * @property {boolean} is_default
+ * @property {Object[]} payouts_aggregators
+ * @property {Object} unique_transfer_no
  */
 
 /**
  * @typedef PayoutBankDetails
+ * @property {string} account_type
  * @property {string} [bank_name]
- * @property {string} [account_holder]
  * @property {string} [country]
  * @property {string} [state]
- * @property {string} [account_no]
- * @property {string} account_type
- * @property {number} [pincode]
- * @property {string} [branch_name]
- * @property {string} [city]
+ * @property {string} [account_holder]
  * @property {string} ifsc_code
+ * @property {number} [pincode]
+ * @property {string} [account_no]
+ * @property {string} [city]
+ * @property {string} [branch_name]
  */
 
 /**
  * @typedef PayoutRequest
- * @property {string} transfer_type
  * @property {boolean} is_active
- * @property {string} unique_external_id
- * @property {string} aggregator
- * @property {PayoutBankDetails} bank_details
  * @property {Object} users
+ * @property {PayoutBankDetails} bank_details
+ * @property {string} transfer_type
+ * @property {string} aggregator
+ * @property {string} unique_external_id
  */
 
 /**
  * @typedef PayoutResponse
- * @property {string} transfer_type
- * @property {string} payment_status
  * @property {boolean} is_active
- * @property {string} aggregator
- * @property {Object} bank_details
  * @property {Object} users
+ * @property {boolean} created
+ * @property {Object} bank_details
+ * @property {string} payment_status
+ * @property {string} transfer_type
+ * @property {Object} payouts
+ * @property {string} aggregator
  * @property {string} unique_transfer_no
  * @property {boolean} success
- * @property {Object} payouts
- * @property {boolean} created
  */
 
 /**
  * @typedef UpdatePayoutResponse
- * @property {boolean} success
  * @property {boolean} is_active
  * @property {boolean} is_default
+ * @property {boolean} success
  */
 
 /**
  * @typedef UpdatePayoutRequest
  * @property {boolean} is_active
- * @property {string} unique_external_id
  * @property {boolean} is_default
+ * @property {string} unique_external_id
  */
 
 /**
@@ -4099,8 +4101,8 @@ class PlatformClient {
 
 /**
  * @typedef SubscriptionPaymentMethodResponse
- * @property {boolean} success
  * @property {Object[]} data
+ * @property {boolean} success
  */
 
 /**
@@ -4110,9 +4112,9 @@ class PlatformClient {
 
 /**
  * @typedef SubscriptionConfigResponse
- * @property {boolean} success
- * @property {string} aggregator
  * @property {Object} config
+ * @property {string} aggregator
+ * @property {boolean} success
  */
 
 /**
@@ -4122,79 +4124,79 @@ class PlatformClient {
 
 /**
  * @typedef SaveSubscriptionSetupIntentResponse
- * @property {boolean} success
  * @property {Object} data
+ * @property {boolean} success
  */
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} bank_name
- * @property {string} account_holder
- * @property {string} account_no
- * @property {string} [address]
  * @property {string} email
+ * @property {string} bank_name
  * @property {string} [wallet]
- * @property {string} branch_name
+ * @property {string} account_holder
+ * @property {string} ifsc_code
  * @property {string} mobile
+ * @property {string} account_no
+ * @property {string} branch_name
+ * @property {string} [address]
  * @property {string} [comment]
  * @property {string} [vpa]
- * @property {string} ifsc_code
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
  * @property {string} transfer_mode
- * @property {string} [request_id]
  * @property {string} order_id
- * @property {string} shipment_id
  * @property {string} [otp]
  * @property {boolean} delights
  * @property {BeneficiaryModeDetails} details
+ * @property {string} [request_id]
+ * @property {string} shipment_id
  */
 
 /**
  * @typedef RefundAccountResponse
- * @property {boolean} success
- * @property {Object} [data]
  * @property {boolean} [is_verified_flag]
+ * @property {Object} [data]
  * @property {string} message
+ * @property {boolean} success
  */
 
 /**
  * @typedef NotFoundResourceError
+ * @property {string} description
  * @property {boolean} success
  * @property {string} code
- * @property {string} description
  */
 
 /**
  * @typedef IfscCodeResponse
- * @property {string} bank_name
  * @property {string} branch_name
+ * @property {string} bank_name
  * @property {boolean} [success]
  */
 
 /**
  * @typedef OrderBeneficiaryDetails
+ * @property {string} modified_on
  * @property {string} account_holder
+ * @property {boolean} [branch_name]
+ * @property {string} transfer_mode
+ * @property {string} title
+ * @property {string} [delights_user_name]
+ * @property {boolean} [mobile]
+ * @property {string} address
+ * @property {string} email
+ * @property {string} bank_name
+ * @property {string} ifsc_code
+ * @property {number} id
+ * @property {boolean} [comment]
+ * @property {boolean} is_active
+ * @property {string} beneficiary_id
+ * @property {string} display_name
  * @property {string} subtitle
  * @property {string} account_no
- * @property {string} modified_on
- * @property {boolean} [branch_name]
- * @property {boolean} [mobile]
- * @property {string} email
- * @property {string} beneficiary_id
- * @property {string} [delights_user_name]
- * @property {boolean} is_active
- * @property {string} display_name
- * @property {boolean} [comment]
- * @property {number} id
- * @property {string} bank_name
- * @property {string} transfer_mode
- * @property {string} address
  * @property {string} created_on
- * @property {string} title
- * @property {string} ifsc_code
  */
 
 /**
@@ -4206,9 +4208,9 @@ class PlatformClient {
 /**
  * @typedef PaymentConfirmationMode
  * @property {string} [name]
- * @property {number} amount
  * @property {Object} [meta]
  * @property {string} mode
+ * @property {number} amount
  */
 
 /**
@@ -4219,9 +4221,9 @@ class PlatformClient {
 
 /**
  * @typedef PaymentConfirmationResponse
+ * @property {string} message
  * @property {boolean} success
  * @property {string} order_id
- * @property {string} message
  */
 
 /**
@@ -11922,6 +11924,234 @@ class PlatformClient {
  */
 
 /**
+ * @typedef ServiceabilityrErrorResponse
+ * @property {string} type
+ * @property {string} value
+ * @property {string} message
+ */
+
+/**
+ * @typedef ApplicationServiceabilityConfig
+ * @property {string} channel_type
+ * @property {string} serviceability_type
+ * @property {string} channel_id
+ */
+
+/**
+ * @typedef ApplicationServiceabilityConfigResponse
+ * @property {ServiceabilityrErrorResponse} [error]
+ * @property {ApplicationServiceabilityConfig} [data]
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef EntityRegionView_Request
+ * @property {string[]} sub_type
+ * @property {string[]} [parent_id]
+ */
+
+/**
+ * @typedef EntityRegionView_Error
+ * @property {string} [type]
+ * @property {string} [value]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef EntityRegionView_page
+ * @property {number} current
+ * @property {number} item_total
+ * @property {boolean} has_next
+ * @property {number} size
+ * @property {string} type
+ */
+
+/**
+ * @typedef EntityRegionView_Items
+ * @property {string} sub_type
+ * @property {string} uid
+ * @property {string} name
+ */
+
+/**
+ * @typedef EntityRegionView_Response
+ * @property {EntityRegionView_Error} error
+ * @property {EntityRegionView_page} page
+ * @property {EntityRegionView_Items[]} data
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef ListViewSummary
+ * @property {number} total_zones
+ * @property {number} total_active_zones
+ * @property {number} total_pincodes_served
+ */
+
+/**
+ * @typedef ListViewProduct
+ * @property {number} count
+ * @property {string} type
+ */
+
+/**
+ * @typedef ListViewChannels
+ * @property {string} channel_type
+ * @property {string} channel_id
+ */
+
+/**
+ * @typedef ListViewItems
+ * @property {number} company_id
+ * @property {ListViewProduct} product
+ * @property {string} zone_id
+ * @property {string} name
+ * @property {number} stores_count
+ * @property {string} slug
+ * @property {ListViewChannels} channels
+ * @property {number} pincodes_count
+ * @property {boolean} is_active
+ */
+
+/**
+ * @typedef ZoneDataItem
+ * @property {string} type
+ * @property {number} current
+ * @property {number} item_total
+ * @property {boolean} has_next
+ * @property {number} size
+ */
+
+/**
+ * @typedef ListViewResponse
+ * @property {ListViewSummary[]} summary
+ * @property {ListViewItems[]} items
+ * @property {ZoneDataItem[]} page
+ */
+
+/**
+ * @typedef CompanyStoreView_PageItems
+ * @property {number} current
+ * @property {number} item_total
+ * @property {boolean} has_next
+ * @property {number} size
+ * @property {string} type
+ */
+
+/**
+ * @typedef CompanyStoreView_Response
+ * @property {Object[]} [items]
+ * @property {CompanyStoreView_PageItems[]} page
+ */
+
+/**
+ * @typedef GetZoneDataViewChannels
+ * @property {string} channel_type
+ * @property {string} channel_id
+ */
+
+/**
+ * @typedef ZoneProductTypes
+ * @property {string[]} tags
+ * @property {string} type
+ */
+
+/**
+ * @typedef ZoneMappingType
+ * @property {string} country
+ * @property {string[]} [state]
+ * @property {string[]} [pincode]
+ */
+
+/**
+ * @typedef UpdateZoneData
+ * @property {string} zone_id
+ * @property {string} name
+ * @property {string} slug
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {ZoneProductTypes} product
+ * @property {number[]} store_ids
+ * @property {string} region_type
+ * @property {ZoneMappingType[]} mapping
+ * @property {string} [assignment_preference]
+ */
+
+/**
+ * @typedef ZoneUpdateRequest
+ * @property {string} identifier
+ * @property {UpdateZoneData} data
+ */
+
+/**
+ * @typedef ZoneSuccessResponse
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef GetZoneDataViewItems
+ * @property {string} zone_id
+ * @property {string} name
+ * @property {string} slug
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {ZoneProductTypes} product
+ * @property {number[]} store_ids
+ * @property {string} region_type
+ * @property {ZoneMappingType[]} mapping
+ * @property {string} [assignment_preference]
+ * @property {number} stores_count
+ * @property {number} pincodes_count
+ */
+
+/**
+ * @typedef GetSingleZoneDataViewResponse
+ * @property {GetZoneDataViewItems} data
+ */
+
+/**
+ * @typedef CreateZoneData
+ * @property {string} name
+ * @property {string} slug
+ * @property {number} company_id
+ * @property {boolean} is_active
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {ZoneProductTypes} product
+ * @property {number[]} store_ids
+ * @property {string} region_type
+ * @property {ZoneMappingType[]} mapping
+ * @property {string} [assignment_preference]
+ */
+
+/**
+ * @typedef ZoneRequest
+ * @property {string} identifier
+ * @property {CreateZoneData} data
+ */
+
+/**
+ * @typedef ZoneResponse
+ * @property {string} zone_id
+ * @property {number} status_code
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef GetZoneFromPincodeViewRequest
+ * @property {string} country
+ * @property {string} pincode
+ */
+
+/**
+ * @typedef GetZoneFromPincodeViewResponse
+ * @property {string} serviceability_type
+ * @property {string[]} zones
+ */
+
+/**
  * @typedef RequestBodyAuditLog
  * @property {LogMetaObj} log_meta
  * @property {Object} log_payload
@@ -18367,6 +18597,198 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/events`,
       query_params,
       undefined
+    );
+  }
+}
+
+class Serviceability {
+  constructor(config) {
+    this.config = config;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {EntityRegionView_Request} arg.body
+   * @summary: Get country and state list
+   * @description: This API returns response for Entity Region View.
+   */
+  getEntityRegionView({ body } = {}) {
+    const { error } = ServiceabilityValidator.getEntityRegionView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/regions`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNumber] - Index of the item to start returning with
+   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+   * @param {string} [arg.name] - Name of particular zone in the seller account
+   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
+   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+   * @summary: Zone List of application.
+   * @description: This API returns Zone List View of the application.
+   */
+  getListView({ pageNumber, pageSize, name, isActive, channelIds } = {}) {
+    const { error } = ServiceabilityValidator.getListView().validate(
+      {
+        pageNumber,
+        pageSize,
+        name,
+        isActive,
+        channelIds,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_number"] = pageNumber;
+    query_params["page_size"] = pageSize;
+    query_params["name"] = name;
+    query_params["is_active"] = isActive;
+    query_params["channel_ids"] = channelIds;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zones`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Company Store View of application.
+   * @description: This API returns Company Store View of the application.
+   */
+  getCompanyStoreView({} = {}) {
+    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/all-stores`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+   *   particular zone.
+   * @param {ZoneUpdateRequest} arg.body
+   * @summary: Updation of zone collections in database.
+   * @description: This API returns response of updation of zone in mongo database.
+   */
+  updateZoneControllerView({ zoneId, body } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.updateZoneControllerView().validate(
+      {
+        zoneId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+   *   particular zone.
+   * @summary: Zone Data View of application.
+   * @description: This API returns Zone Data View of the application.
+   */
+  getZoneDataView({ zoneId } = {}) {
+    const { error } = ServiceabilityValidator.getZoneDataView().validate(
+      {
+        zoneId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ZoneRequest} arg.body
+   * @summary: Insertion of zone in database.
+   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+   */
+  upsertZoneControllerView({ body } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.upsertZoneControllerView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/`,
+      query_params,
+      body
     );
   }
 }
