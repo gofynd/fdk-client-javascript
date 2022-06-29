@@ -1126,7 +1126,7 @@ Success
       {
         "type": "application",
         "provider": "falconide",
-        "from_address": [
+        "from": [
           {
             "is_default": true,
             "name": "abc",
@@ -1217,7 +1217,7 @@ Success
   "value": {
     "type": "application",
     "provider": "falconide",
-    "from_address": [
+    "from": [
       {
         "is_default": true,
         "name": "abc",
@@ -1300,7 +1300,7 @@ Success
   "value": {
     "type": "application",
     "provider": "falconide",
-    "from_address": [
+    "from": [
       {
         "is_default": true,
         "name": "abc",
@@ -1385,7 +1385,7 @@ Success
   "value": {
     "type": "application",
     "provider": "falconide",
-    "from_address": [
+    "from": [
       {
         "is_default": true,
         "name": "abc",
@@ -1486,6 +1486,7 @@ Success
         "_id": "5ef42a49c8b67d279c27a980",
         "slug": "application-creation",
         "name": "Application creation",
+        "from": "hey@gofynd.com",
         "from_name": "Fynd",
         "subject": {
           "template_type": "nunjucks",
@@ -1597,6 +1598,7 @@ Success
     "keys": {
       "bcc": "abc@gofynd.com"
     },
+    "from": "abc@gofynd.com",
     "reply_to": "abc@gofynd.com",
     "headers": [
       {
@@ -1706,6 +1708,7 @@ Success
         "_id": "5ef42a49c8b67d279c27a980",
         "slug": "application-creation",
         "name": "Application creation",
+        "from": "hey@gofynd.com",
         "from_name": "Fynd",
         "subject": {
           "template_type": "nunjucks",
@@ -1810,6 +1813,7 @@ Success
     "_id": "5ef42a49c8b67d279c27a980",
     "slug": "application-creation",
     "name": "Application creation",
+    "from": "hey@gofynd.com",
     "from_name": "Fynd",
     "subject": {
       "template_type": "nunjucks",
@@ -1915,6 +1919,7 @@ Success
     "keys": {
       "bcc": "abc@gofynd.com"
     },
+    "from": "abc@gofynd.com",
     "reply_to": "abc@gofynd.com",
     "headers": [
       {
@@ -4447,7 +4452,7 @@ Success
  | api_key | string |  no  |  |
  | type | string |  no  |  |
  | provider | string |  no  |  |
- | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
+ | from | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
 
 ---
 
@@ -4460,7 +4465,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | type | string |  no  |  |
  | provider | string |  no  |  |
- | from_address | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
+ | from | [[EmailProviderReqFrom](#EmailProviderReqFrom)] |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
  | description | string |  no  |  |
@@ -4544,6 +4549,7 @@ Success
  | name | string |  no  |  |
  | description | string |  no  |  |
  | keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  |
+ | from | string |  no  |  |
  | static_to | [string] |  no  |  |
  | static_cc | [string] |  no  |  |
  | static_bcc | [string] |  no  |  |
@@ -4588,6 +4594,7 @@ Success
  | _id | string |  no  |  |
  | name | string |  no  |  |
  | keys | [EmailTemplateKeys](#EmailTemplateKeys) |  no  |  |
+ | from | string |  no  |  |
  | reply_to | string |  no  |  |
  | headers | [[EmailTemplateHeaders](#EmailTemplateHeaders)] |  no  |  |
  | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
@@ -4620,6 +4627,7 @@ Success
  | _id | string |  no  |  |
  | slug | string |  no  |  |
  | name | string |  no  |  |
+ | from | string |  no  |  |
  | from_name | string |  no  |  |
  | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
  | html | [TemplateAndType](#TemplateAndType) |  no  |  |
@@ -4651,6 +4659,7 @@ Success
  | _id | string |  no  |  |
  | slug | string |  no  |  |
  | name | string |  no  |  |
+ | from | string |  no  |  |
  | from_name | string |  no  |  |
  | subject | [TemplateAndType](#TemplateAndType) |  no  |  |
  | html | [TemplateAndType](#TemplateAndType) |  no  |  |

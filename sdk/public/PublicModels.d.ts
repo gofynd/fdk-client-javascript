@@ -7,6 +7,8 @@ export class WebhookValidator {
     static queryWebhookEventDetails(): any;
 }
 export class InventoryValidator {
+    static getConfigByApiKey(): any;
+    static getApiKey(): any;
     static getJobByCode(): any;
     static getJobConfigByIntegrationType(): any;
     static getJobCodesMetrics(): any;
@@ -43,6 +45,15 @@ export class Validator {
     static Association(): any;
     static EventConfigBase(): any;
     static SubscriberStatus(): any;
+    static GCompany(): any;
+    static GStore(): any;
+    static Metum(): any;
+    static ResponseEnvelopeSlingshotConfigurationDetail(): any;
+    static SlingshotConfigurationDetail(): any;
+    static SlingshotIntegration(): any;
+    static StoreData(): any;
+    static ApikeyModel(): any;
+    static ResponseEnvelopeApikeyModel(): any;
     static DataTresholdDTO(): any;
     static GenericDTO(): any;
     static JobConfigDTO(): any;

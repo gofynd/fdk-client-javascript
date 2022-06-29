@@ -774,15 +774,17 @@ declare class Cart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {number} [arg.assignCardId] -
+     * @param {string} [arg.areaCode] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId }?: {
+    getCart({ id, i, b, assignCardId, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
+        areaCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -798,14 +800,16 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
+     * @param {string} [arg.areaCode] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b }?: {
+    addItems({ body, i, b, areaCode }?: {
         i?: boolean;
         b?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -813,15 +817,17 @@ declare class Cart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
+     * @param {string} [arg.areaCode] -
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
-    updateCart({ body, id, i, b }?: {
+    updateCart({ body, id, i, b, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -2421,6 +2427,8 @@ declare class Payment {
         getPaymentModeRoutes: string;
         getPosPaymentModeRoutes: string;
         getRupifiBannerDetails: string;
+        getEpaylaterBannerDetails: string;
+        resendOrCancelPayment: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -2431,6 +2439,10 @@ declare class Payment {
         addRefundBankAccountUsingOTP: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
         updateDefaultBeneficiary: string;
+        customerCreditSummary: string;
+        redirectToAggregator: string;
+        checkCredit: string;
+        customerOnboard: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -2593,6 +2605,23 @@ declare class Payment {
     getRupifiBannerDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<EpaylaterBannerResponse>} - Success response
+     * @summary: Get Epaylater Enabled
+     * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
+     */
+    getEpaylaterBannerDetails({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ResendOrCancelPaymentRequest} arg.body
+     * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
+     * @summary: API to resend and cancel a payment link which was already generated.
+     * @description: Use this API to perform resend or cancel a payment link based on request payload.
+     */
+    resendOrCancelPayment({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response
      * @summary: Lists the mode of refund
      * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
@@ -2689,6 +2718,50 @@ declare class Payment {
      * @description: Use this API to set a default beneficiary for getting a refund.
      */
     updateDefaultBeneficiary({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
+     * @summary: API to fetch the customer credit summary
+     * @description: Use this API to fetch the customer credit summary.
+     */
+    customerCreditSummary({ aggregator }?: {
+        aggregator?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.source] - This is a String value that contains
+     *   callback URL as value.
+     * @param {string} [arg.aggregator] - This is a String value that contains
+     *   aggregator name as value.
+     * @returns {Promise<RedirectToAggregatorResponse>} - Success response
+     * @summary: API to get the redirect url to redirect the user to aggregator's page
+     * @description: Use this API to get the redirect url to redirect the user to aggregator's page
+     */
+    redirectToAggregator({ source, aggregator }?: {
+        source?: string;
+        aggregator?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.aggregator] -
+     * @returns {Promise<CheckCreditResponse>} - Success response
+     * @summary: API to fetch the customer credit summary
+     * @description: Use this API to fetch the customer credit summary.
+     */
+    checkCredit({ aggregator }?: {
+        aggregator?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CustomerOnboardingRequest} arg.body
+     * @returns {Promise<CustomerOnboardingResponse>} - Success response
+     * @summary: API to fetch the customer credit summary
+     * @description: Use this API to fetch the customer credit summary.
+     */
+    customerOnboard({ body }?: {
         body: any;
     }): Promise<any>;
 }
@@ -3545,15 +3618,17 @@ declare class PosCart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {number} [arg.assignCardId] -
+     * @param {string} [arg.areaCode] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId }?: {
+    getCart({ id, i, b, assignCardId, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
+        areaCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -3569,14 +3644,16 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
+     * @param {string} [arg.areaCode] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b }?: {
+    addItems({ body, i, b, areaCode }?: {
         i?: boolean;
         b?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -3584,15 +3661,17 @@ declare class PosCart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
+     * @param {string} [arg.areaCode] -
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
-    updateCart({ body, id, i, b }?: {
+    updateCart({ body, id, i, b, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**

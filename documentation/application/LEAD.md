@@ -1652,6 +1652,35 @@ Success
 
  
  
+ #### [CommunicationDetails](#CommunicationDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  | Value for the communication method |
+ | description | string |  no  | Short description for the communication method |
+ | enabled | boolean |  no  | Denotes if this communication method has to be shown |
+
+---
+
+
+ 
+ 
+ #### [SupportGeneralConfig](#SupportGeneralConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | support_email | [CommunicationDetails](#CommunicationDetails) |  no  | Support e-mail details |
+ | support_phone | [CommunicationDetails](#CommunicationDetails) |  no  | Support Phone number details |
+ | support_faq | [CommunicationDetails](#CommunicationDetails) |  no  | Support FAQ details |
+ | show_communication_info | boolean |  no  | Denotes if support communication info should be shown |
+ | show_support_dris | boolean |  no  | Denotes if support DRIS info should be shown |
+ | integration | string |  no  | Contains integrations basic information |
+
+---
+
+
+ 
+ 
  #### [FeedbackResponseItem](#FeedbackResponseItem)
 
  | Properties | Type | Nullable | Description |
