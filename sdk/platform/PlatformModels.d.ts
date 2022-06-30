@@ -13,6 +13,7 @@ export class LeadValidator {
     static submitFeedback(): any;
     static getTokenForVideoRoom(): any;
     static getVideoParticipants(): any;
+    static getGeneralConfig(): any;
 }
 export class BillingValidator {
     static checkCouponValidity(): any;
@@ -62,12 +63,12 @@ export class OrderValidator {
 export class CatalogValidator {
     static createProductBundle(): any;
     static getProductBundle(): any;
-    static updateProductBundle(): any;
     static getProductBundleDetail(): any;
+    static updateProductBundle(): any;
     static createSizeGuide(): any;
     static getSizeGuides(): any;
-    static updateSizeGuide(): any;
     static getSizeGuide(): any;
+    static updateSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -89,19 +90,19 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static createCategories(): any;
     static listCategories(): any;
-    static updateCategory(): any;
     static getCategoryData(): any;
+    static updateCategory(): any;
     static createProduct(): any;
     static getProducts(): any;
-    static editProduct(): any;
     static getProduct(): any;
     static deleteProduct(): any;
+    static editProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static createBulkProductUploadJob(): any;
     static getProductBulkUploadHistory(): any;
-    static createProductsInBulk(): any;
     static deleteProductBulkJob(): any;
+    static createProductsInBulk(): any;
     static getProductTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -112,18 +113,18 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static createBulkInventory(): any;
     static deleteBulkInventoryJob(): any;
+    static createBulkInventory(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
-    static updateRealtimeInventory(): any;
     static deleteRealtimeInventory(): any;
+    static updateRealtimeInventory(): any;
     static updateInventories(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
-    static updateHsnCode(): any;
     static getHsnCode(): any;
+    static updateHsnCode(): any;
     static bulkHsnCode(): any;
     static getAllProductHsnCodes(): any;
     static getSingleProductHSNCode(): any;
