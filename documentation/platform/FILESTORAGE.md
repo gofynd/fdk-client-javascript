@@ -771,7 +771,7 @@ Success
  | file_name | string |  yes  |  |
  | file_path | string |  yes  |  |
  | content_type | string |  yes  |  |
- | method | string |  yes  |  |
+ | method | string |  no  |  |
  | namespace | string |  yes  |  |
  | operation | string |  yes  |  |
  | size | number |  yes  |  |
