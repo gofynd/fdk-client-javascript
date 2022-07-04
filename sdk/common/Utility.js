@@ -8,29 +8,19 @@ function convertUrlToAction(url) {
     ? new URL(path).pathname
     : path.split("?")[0];
   const allNavigations = Object.assign({}, Constant.NAVIGATORS);
-  const typeLink = {};
-  for (nav in allNavigations) {
-    let linkNav = allNavigations[nav]["link"];
-    typeLink[linkNav] = nav;
-    if (
-      allNavigations[nav]["params"] &&
-      allNavigations[nav]["params"][0]["required"] === false
-    ) {
-      linkNav = allNavigations[nav]["link"]
-        .replace(`:${allNavigations[nav]["params"][0]["key"]}`, "")
-        .replace("//", "/");
-      typeLink[linkNav] = nav;
-    }
-  }
-  const allLinks = Object.keys(typeLink);
+  const allLinks = Object.values(allNavigations).map((nav) => {
+    return nav["link"];
+  });
   allLinks.sort(function (a, b) {
     return b.length - a.length;
   });
   const bestMatchingLink = utils.findBestMatchingLink(allLinks, pathname);
-  let closestMatchingNavKey = Object.keys(typeLink).find((pageType) => {
-    return utils.trimChar(pageType) === bestMatchingLink.value;
+  let closestMatchingNavKey = Object.keys(allNavigations).find((pageType) => {
+    return (
+      utils.trimChar(allNavigations[pageType]["link"]) ===
+      bestMatchingLink.value
+    );
   });
-  closestMatchingNavKey = typeLink[closestMatchingNavKey];
   if (!closestMatchingNavKey) {
     closestMatchingNavKey = "home";
   }
