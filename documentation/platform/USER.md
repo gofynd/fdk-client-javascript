@@ -10,6 +10,7 @@ Authentication Service
 * [searchUsers](#searchusers)
 * [createUser](#createuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
+* [archiveUser](#archiveuser)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
 * [getActiveSessions](#getactivesessions)
@@ -45,7 +46,7 @@ const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| q | Object | no | The search query. Mobile number or email ID of a customer. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -79,9 +80,6 @@ Success. Refer `CustomerListResponseSchema` for more details.
       {
         "_id": "000000000000000023106198",
         "gender": "male",
-        "roles": [
-          "Ark-Qnatemplate-FullAccess"
-        ],
         "active": true,
         "emails": [
           {
@@ -161,7 +159,7 @@ const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | Object | no | The search query. Mobile number or email ID of a customer. |  
+| q | string | no | The search query. Mobile number or email ID of a customer. |  
 
 
 
@@ -367,6 +365,63 @@ Block/Unblock user
 
 
 [BlockUserSuccess](#BlockUserSuccess)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### archiveUser
+archive user
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.archiveUser({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.archiveUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ArchiveUserRequestSchema](#ArchiveUserRequestSchema) | yes | Request body |
+
+
+archive user
+
+*Returned Response:*
+
+
+
+
+[ArchiveUserSuccess](#ArchiveUserSuccess)
 
 Success
 
@@ -949,6 +1004,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [EditEmailRequestSchema](#EditEmailRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1265,6 +1331,12 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | verify_mobile_otp | boolean |  no  |  |
  | email | string |  no  |  |
  | request_id | string |  no  |  |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
 
 ---
 
@@ -1365,6 +1437,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  
  
  #### [BlockUserSuccess](#BlockUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveUserSuccess](#ArchiveUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
