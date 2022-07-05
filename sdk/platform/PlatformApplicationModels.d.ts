@@ -48,6 +48,7 @@ export class ThemeValidator {
     static unpublishTheme(): any;
     static archiveTheme(): any;
     static unarchiveTheme(): any;
+    static getThemeLastModified(): any;
 }
 export class UserValidator {
     static getCustomers(): any;

@@ -6,8 +6,19 @@ describe("Convert from URL to actionObject", () => {
   urlToActionConvert.tests.forEach((test) => {
     it(test.name, () => {
       let path = convertUrlToAction(test.path);
-      console.log(path);
       expect(path.page.type).toEqual(test.result.action.page.type);
     });
+  });
+
+  it("empty string as url", () => {
+    expect(() => convertUrlToAction("")).toThrow("URL is not valid");
+  });
+
+  it("null as url", () => {
+    expect(() => convertUrlToAction(null)).toThrow("URL is not valid");
+  });
+
+  it("undefined as url", () => {
+    expect(() => convertUrlToAction(undefined)).toThrow("URL is not valid");
   });
 });

@@ -1,7 +1,7 @@
 {
   "tests": [
     {
-      "name": "Bug by Abhay without preceeding and ending /",
+      "name": "without preceeding and ending /",
       "path": "products?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
       "result": {
         "action": {
@@ -19,7 +19,7 @@
       }
     },
     {
-      "name": "Bug by Abhay without preceeding /",
+      "name": "without preceeding /",
       "path": "products/?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
       "result": {
         "action": {
@@ -37,7 +37,7 @@
       }
     },
     {
-      "name": "Bug by Abhay",
+      "name": "products link",
       "path": "/products/?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
       "result": {
         "action": {
@@ -204,7 +204,7 @@
       }
     },
     {
-      "name": "non matching single slash query param ",
+      "name": "non matching single slash query param",
       "path": "/xxx?asd=ss",
       "result": {
         "action": {
@@ -219,7 +219,7 @@
       }
     },
     {
-      "name": "home root ",
+      "name": "home root",
       "path": "/",
       "result": {
         "action": {
@@ -232,20 +232,7 @@
       }
     },
     {
-      "name": "empty string ",
-      "path": "",
-      "result": {
-        "action": {
-          "type": "page",
-          "page": {
-            "type": "home",
-            "query": {}
-          }
-        }
-      }
-    },
-    {
-      "name": " non matching double slash path ",
+      "name": "non matching double slash path",
       "path": "/produc/wierdo",
       "result": {
         "action": {
@@ -273,7 +260,7 @@
       }
     },
     {
-      "name": "Sections with group ",
+      "name": "Sections with group",
       "path": "/sections/home",
       "result": {
         "action": {
@@ -435,7 +422,7 @@
       }
     },
     {
-      "name": "prdduct request",
+      "name": "product request",
       "path": "/product-request/",
       "result": {
         "action": {
@@ -530,6 +517,90 @@
           "type": "page",
           "page": {
             "type": "cart-review",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 1",
+      "path": "/brands/mobile/dualsim",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "brands",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 2",
+      "path": "/categories/jeans/tappered",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 3",
+      "path": "/categories/jeans/tappered",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 4",
+      "path": "/categories/jeans/tappered",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 5",
+      "path": "/shirt/floral",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 6",
+      "path": "/collection",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
             "query": {},
             "params": {}
           }
