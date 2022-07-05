@@ -21,7 +21,9 @@ declare class PlatformConfig {
     apiSecret: string;
     useAutoRenewTimer: boolean;
     oauthClient: OauthClient;
+    logLevel: any;
     extraHeaders: any[];
+    setLogLevel(level: any): void;
     getAccessToken(): Promise<any>;
 }
 import OauthClient = require("./OAuthClient");
