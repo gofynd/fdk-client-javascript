@@ -41,6 +41,7 @@ const AVAILABLE_PAGE_TYPE = {
   CART_DELIVERY: "cart-delivery",
   CART_PAYMENT: "cart-payment",
   CART_REVIEW: "cart-review",
+  LOGIN: "login",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -132,7 +133,7 @@ const NAVIGATORS = {
   },
   external: {
     name: "External Link",
-    link: "/external/:url",
+    link: "/external/",
     query: [
       {
         key: "url",
@@ -309,6 +310,10 @@ const NAVIGATORS = {
   "cart-review": {
     name: "Cart Order Review",
     link: "/cart/order-review",
+  },
+  login: {
+    name: "Login",
+    link: "/auth/login",
   },
 };
 

@@ -602,9 +602,6 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -775,9 +772,6 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -945,9 +939,6 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -1470,9 +1461,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -1647,9 +1635,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -1756,9 +1741,6 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2049,9 +2031,6 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2166,9 +2145,6 @@ Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for mor
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2295,9 +2271,6 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2408,9 +2381,6 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2525,9 +2495,6 @@ Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` fo
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2642,9 +2609,6 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2768,9 +2732,6 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -2881,9 +2842,6 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
       },
       "gender": "male",
       "account_type": "user",
-      "roles": [
-        "Test-Role"
-      ],
       "active": true,
       "profile_pic_url": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
       "has_old_password_hash": false,
@@ -3011,6 +2969,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | status | boolean |  no  |  |
  | user_id | [string] |  no  |  |
  | reason | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
 
 ---
 
@@ -3333,6 +3302,12 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verify_mobile_otp | boolean |  no  |  |
  | email | string |  no  |  |
  | request_id | string |  no  |  |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
 
 ---
 
@@ -3433,6 +3408,17 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  
  
  #### [BlockUserSuccess](#BlockUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveUserSuccess](#ArchiveUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

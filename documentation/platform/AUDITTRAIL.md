@@ -9,6 +9,7 @@
 * [getAuditLogs](#getauditlogs)
 * [createAuditLog](#createauditlog)
 * [getAuditLog](#getauditlog)
+* [getEntityTypes](#getentitytypes)
 
 
 
@@ -285,6 +286,76 @@ Success
 ---
 
 
+### getEntityTypes
+Get entity types
+
+
+
+```javascript
+// Promise
+const promise = client.auditTrail.getEntityTypes();
+
+// Async/Await
+const data = await client.auditTrail.getEntityTypes();
+```
+
+
+
+
+
+
+Get entity types
+
+*Returned Response:*
+
+
+
+
+[EntityTypesResponse](#EntityTypesResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "entity_value:\"sales-channel\"": null,
+        "display_name": "Sales Channel"
+      },
+      {
+        "entity_value:\"shipment-update\"": null,
+        "display_name": "Shipment Update"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -451,6 +522,29 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  | Internal server Server error |
  | code | string |  no  | Error code |
+
+---
+
+
+ 
+ 
+ #### [EntityTypesResponse](#EntityTypesResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EntityTypeObj](#EntityTypeObj)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityTypeObj](#EntityTypeObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_value | string |  no  |  |
+ | display_name | string |  no  |  |
 
 ---
 

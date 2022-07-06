@@ -1442,6 +1442,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Success message for form submission |
  | ticket | [Ticket](#Ticket) |  yes  | Ticket created on form submission |
 
 ---
@@ -1643,7 +1644,6 @@ Success
  | submit_button | [SubmitButton](#SubmitButton) |  no  | Details for submit button |
  | inputs | [string] |  yes  | List of all the form fields |
  | created_on | [CreatedOn](#CreatedOn) |  no  | Gives details of when the form was created |
- | created_by | string |  no  | Gives details of user who created the form |
  | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Details of how polling should be done for support |
  | _id | string |  yes  | Unique identifier for the form |
 
