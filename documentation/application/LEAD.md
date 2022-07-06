@@ -1669,6 +1669,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | Unique id |
  | support_email | [CommunicationDetails](#CommunicationDetails) |  no  | Support e-mail details |
  | support_phone | [CommunicationDetails](#CommunicationDetails) |  no  | Support Phone number details |
  | support_faq | [CommunicationDetails](#CommunicationDetails) |  no  | Support FAQ details |

@@ -6,25 +6,25 @@
 
 ## Orders Methods
 Handles all platform order and shipment api(s)
-* [getOrderShipmentDetails](#getordershipmentdetails)
 * [getShipmentDetails](#getshipmentdetails)
+* [getOrderShipmentDetails](#getordershipmentdetails)
 
 
 
 ## Methods with example and description
 
 
-### getOrderShipmentDetails
+### getShipmentDetails
 
 
 
 
 ```javascript
 // Promise
-const promise = client.orders.getOrderShipmentDetails({  shipmentId : value });
+const promise = client.orders.getShipmentDetails({  shipmentId : value });
 
 // Async/Await
-const data = await client.orders.getOrderShipmentDetails({  shipmentId : value });
+const data = await client.orders.getShipmentDetails({  shipmentId : value });
 ```
 
 
@@ -70,17 +70,17 @@ We are processing the report!
 ---
 
 
-### getShipmentDetails
+### getOrderShipmentDetails
 
 
 
 
 ```javascript
 // Promise
-const promise = client.orders.getShipmentDetails({  orderId : value });
+const promise = client.orders.getOrderShipmentDetails({  orderId : value });
 
 // Async/Await
-const data = await client.orders.getShipmentDetails({  orderId : value });
+const data = await client.orders.getOrderShipmentDetails({  orderId : value });
 ```
 
 
@@ -131,7 +131,7 @@ We are processing the report!
 
  
  
- #### [OrderDetails](#OrderDetails)
+ #### [OrderDetailsData](#OrderDetailsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -146,50 +146,17 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  yes  |  |
  | store_name | string |  yes  |  |
- | city | string |  yes  |  |
- | phone | string |  yes  |  |
- | contact_person | string |  yes  |  |
+ | country | string |  yes  |  |
  | code | string |  yes  |  |
+ | address | string |  yes  |  |
+ | city | string |  yes  |  |
  | id | string |  yes  |  |
  | state | string |  yes  |  |
+ | pincode | string |  yes  |  |
  | fulfillment_channel | string |  yes  |  |
- | country | string |  yes  |  |
- | pincode | string |  yes  |  |
-
----
-
-
- 
- 
- #### [UserDetails](#UserDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | city | string |  yes  |  |
- | address | string |  yes  |  |
+ | contact_person | string |  yes  |  |
  | phone | string |  yes  |  |
- | state | string |  yes  |  |
- | email | string |  yes  |  |
- | country | string |  yes  |  |
- | pincode | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentPrices](#ShipmentPrices)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_calculated_amount | number |  no  |  |
- | tax_collected_at_source | number |  no  |  |
- | gstin_code | string |  no  |  |
- | value_of_good | number |  no  |  |
- | gst_fee | number |  no  |  |
 
 ---
 
@@ -200,14 +167,47 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | country | string |  no  |  |
  | awb_no | string |  no  |  |
+ | name | string |  no  |  |
  | gst_tag | string |  no  |  |
+ | eway_bill_id | string |  no  |  |
+ | id | string |  no  |  |
  | pincode | string |  no  |  |
  | track_url | string |  no  |  |
- | id | string |  no  |  |
- | country | string |  no  |  |
- | eway_bill_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserDetailsData](#UserDetailsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  yes  |  |
+ | address | string |  yes  |  |
+ | phone | string |  yes  |  |
+ | name | string |  yes  |  |
+ | email | string |  yes  |  |
+ | state | string |  yes  |  |
+ | pincode | string |  yes  |  |
+ | city | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPricesData](#ShipmentPricesData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value_of_good | number |  no  |  |
+ | brand_calculated_amount | number |  no  |  |
+ | gstin_code | string |  no  |  |
+ | gst_fee | number |  no  |  |
+ | tax_collected_at_source | number |  no  |  |
 
 ---
 
@@ -218,19 +218,19 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | [OrderDetails](#OrderDetails) |  no  |  |
- | payment_mode | string |  yes  |  |
- | bag_status_history | [string] |  no  |  |
- | delivery_slot | string |  yes  |  |
- | shipment_quantity | number |  yes  |  |
+ | order | [OrderDetailsData](#OrderDetailsData) |  no  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | shipment_id | string |  yes  |  |
- | delivery_details | [UserDetails](#UserDetails) |  no  |  |
- | shipment_prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
- | billing_details | [UserDetails](#UserDetails) |  no  |  |
- | journey_type | string |  yes  |  |
- | dp_details | [DPDetails](#DPDetails) |  no  |  |
  | bags | string |  yes  |  |
+ | journey_type | string |  yes  |  |
+ | payment_mode | string |  yes  |  |
+ | dp_details | [DPDetails](#DPDetails) |  no  |  |
+ | delivery_slot | string |  yes  |  |
+ | billing_details | [UserDetailsData](#UserDetailsData) |  no  |  |
+ | shipment_prices | [ShipmentPricesData](#ShipmentPricesData) |  no  |  |
+ | shipment_quantity | number |  yes  |  |
+ | bag_status_history | [string] |  no  |  |
+ | shipment_id | string |  yes  |  |
+ | delivery_details | [UserDetailsData](#UserDetailsData) |  no  |  |
 
 ---
 
@@ -241,8 +241,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [[Shipment](#Shipment)] |  no  |  |
  | success | boolean |  yes  |  |
+ | shipments | [[Shipment](#Shipment)] |  no  |  |
 
 ---
 
@@ -253,8 +253,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | string |  no  |  |
  | success | boolean |  no  |  |
+ | reason | string |  no  |  |
 
 ---
 
