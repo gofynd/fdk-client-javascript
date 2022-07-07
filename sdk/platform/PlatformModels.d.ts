@@ -225,9 +225,7 @@ export class AuditTrailValidator {
     static getEntityTypes(): any;
 }
 export class OrdersValidator {
-    static getShipmentDetails(): any;
-    static getLaneConfig(): any;
     static getOrderShipmentDetails(): any;
-    static getShipmentList(): any;
+    static getShipmentDetails(): any;
     static getShipmentToManifest(): any;
 }
