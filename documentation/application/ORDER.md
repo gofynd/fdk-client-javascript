@@ -1212,6 +1212,7 @@ Success, the code is valid and returns a SignedUrl
  | beneficiary_details | boolean |  no  |  |
  | can_return | boolean |  no  |  |
  | can_break | string |  no  |  |
+ | show_download_invoice | boolean |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
  | need_help_url | string |  no  |  |
  | shipment_id | string |  no  |  |

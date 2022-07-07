@@ -9170,6 +9170,8 @@ class Validator {
 
       can_break: Joi.any(),
 
+      show_download_invoice: Joi.boolean(),
+
       prices: this.Prices(),
 
       need_help_url: Joi.string().allow(""),
