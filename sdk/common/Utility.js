@@ -43,7 +43,14 @@ function convertUrlToAction(url) {
       },
     };
   } else {
-    throw "URL is not valid";
+    return {
+      type: "page",
+      page: {
+        type: "home",
+        query: {},
+        params: {},
+      },
+    };
   }
 }
 
@@ -69,7 +76,7 @@ function convertActionToUrl(action) {
       }
     }
   } else {
-    throw "Action Object is not valid";
+    return "";
   }
 }
 

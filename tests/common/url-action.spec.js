@@ -11,14 +11,38 @@ describe("Convert from URL to actionObject", () => {
   });
 
   it("empty string as url", () => {
-    expect(() => convertUrlToAction("")).toThrow("URL is not valid");
+    let path = convertUrlToAction("");
+    expect(path).toEqual({
+      type: "page",
+      page: {
+        type: "home",
+        query: {},
+        params: {},
+      },
+    });
   });
 
   it("null as url", () => {
-    expect(() => convertUrlToAction(null)).toThrow("URL is not valid");
+    let path = convertUrlToAction(null);
+    expect(path).toEqual({
+      type: "page",
+      page: {
+        type: "home",
+        query: {},
+        params: {},
+      },
+    });
   });
 
   it("undefined as url", () => {
-    expect(() => convertUrlToAction(undefined)).toThrow("URL is not valid");
+    let path = convertUrlToAction(undefined);
+    expect(path).toEqual({
+      type: "page",
+      page: {
+        type: "home",
+        query: {},
+        params: {},
+      },
+    });
   });
 });

@@ -11,13 +11,13 @@ describe("Convert to URl  from ActionObject", () => {
   });
 
   it("empty object as actionObj", () => {
-    expect(() => convertActionToUrl({})).toThrow("Action Object is not valid");
+    let path = convertActionToUrl({});
+    expect(path).toEqual("");
   });
 
   it("null as actionObj", () => {
-    expect(() => convertActionToUrl(null)).toThrow(
-      "Action Object is not valid"
-    );
+    let path = convertActionToUrl(null);
+    expect(path).toEqual("");
   });
 
   it("wrong actionObj format", () => {
@@ -29,8 +29,7 @@ describe("Convert to URl  from ActionObject", () => {
         },
       },
     };
-    expect(() => convertActionToUrl(testObj)).toThrow(
-      "Action Object is not valid"
-    );
+    let path = convertActionToUrl(testObj);
+    expect(path).toEqual("");
   });
 });
