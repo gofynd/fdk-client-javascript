@@ -12167,73 +12167,73 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef UserDetailsData
+ * @property {string} email
+ * @property {string} address
+ * @property {string} city
+ * @property {string} pincode
+ * @property {string} phone
+ * @property {string} state
+ * @property {string} country
+ * @property {string} name
+ */
+
+/**
+ * @typedef DPDetails
+ * @property {string} [awb_no]
+ * @property {string} [eway_bill_id]
+ * @property {string} [gst_tag]
+ * @property {string} [pincode]
+ * @property {string} [track_url]
+ * @property {string} [country]
+ * @property {string} [name]
+ * @property {string} [id]
+ */
+
+/**
  * @typedef OrderDetailsData
  * @property {string} [data]
  */
 
 /**
- * @typedef UserDetailsData
- * @property {string} state
- * @property {string} phone
+ * @typedef FulfillingStore
  * @property {string} address
- * @property {string} country
- * @property {string} email
- * @property {string} name
- * @property {string} pincode
  * @property {string} city
+ * @property {string} pincode
+ * @property {string} phone
+ * @property {string} country
+ * @property {string} store_name
+ * @property {string} fulfillment_channel
+ * @property {string} code
+ * @property {string} state
+ * @property {string} id
+ * @property {string} contact_person
  */
 
 /**
  * @typedef ShipmentPricesData
- * @property {number} [gst_fee]
- * @property {number} [brand_calculated_amount]
- * @property {number} [value_of_good]
  * @property {number} [tax_collected_at_source]
+ * @property {number} [brand_calculated_amount]
+ * @property {number} [gst_fee]
+ * @property {number} [value_of_good]
  * @property {string} [gstin_code]
  */
 
 /**
- * @typedef DPDetails
- * @property {string} [eway_bill_id]
- * @property {string} [id]
- * @property {string} [track_url]
- * @property {string} [country]
- * @property {string} [awb_no]
- * @property {string} [name]
- * @property {string} [pincode]
- * @property {string} [gst_tag]
- */
-
-/**
- * @typedef FulfillingStore
- * @property {string} fulfillment_channel
- * @property {string} state
- * @property {string} phone
- * @property {string} id
- * @property {string} contact_person
- * @property {string} address
- * @property {string} country
- * @property {string} store_name
- * @property {string} pincode
- * @property {string} city
- * @property {string} code
- */
-
-/**
  * @typedef Shipment
+ * @property {UserDetailsData} [delivery_details]
+ * @property {DPDetails} [dp_details]
+ * @property {OrderDetailsData} [order]
  * @property {string} journey_type
  * @property {Object} delivery_slot
- * @property {OrderDetailsData} [order]
- * @property {UserDetailsData} [delivery_details]
  * @property {string} payment_mode
- * @property {UserDetailsData} [billing_details]
- * @property {ShipmentPricesData} [shipment_prices]
- * @property {DPDetails} [dp_details]
- * @property {string[]} [bag_status_history]
- * @property {string} shipment_id
- * @property {number} shipment_quantity
  * @property {FulfillingStore} [fulfilling_store]
  * @property {Object} bags
+ * @property {ShipmentPricesData} [shipment_prices]
+ * @property {UserDetailsData} [billing_details]
+ * @property {string[]} [bag_status_history]
+ * @property {number} shipment_quantity
+ * @property {string} shipment_id
  */
 
 /**
@@ -12249,38 +12249,262 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef SubLane
+ * @property {number} index
+ * @property {string} display_name
+ * @property {number} total_shipments
+ * @property {string[]} [current_state]
+ * @property {string[]} [next_state]
+ * @property {string} name
+ */
+
+/**
+ * @typedef SuperLane
+ * @property {string} display_name
+ * @property {SubLane[]} [options]
+ */
+
+/**
+ * @typedef LaneConfigResponse
+ * @property {SuperLane[]} [super_lanes]
+ */
+
+/**
+ * @typedef PaymentModeInfo
+ * @property {string} type
+ * @property {string} logo
+ */
+
+/**
+ * @typedef FulFillingStore
+ * @property {string} code
+ * @property {string} id
+ */
+
+/**
+ * @typedef Item
+ * @property {string} size
+ * @property {number} l3_category
+ * @property {string[]} [l1_category]
+ * @property {string} l3_category_name
+ * @property {boolean} can_return
+ * @property {number} department_id
+ * @property {string[]} [image]
+ * @property {string} code
+ * @property {boolean} can_cancel
+ * @property {string} [color]
+ * @property {string} name
+ * @property {number} id
+ */
+
+/**
+ * @typedef GST
+ * @property {number} tax_collected_at_source
+ * @property {number} brand_calculated_amount
+ * @property {number} gst_fee
+ * @property {number} value_of_good
+ * @property {string} gstin_code
+ */
+
+/**
+ * @typedef Prices
+ * @property {number} tax_collected_at_source
+ * @property {number} cod_charges
+ * @property {number} discount
+ * @property {number} cashback_applied
+ * @property {number} price_marked
+ * @property {number} coupon_value
+ * @property {number} promotion_effective_discount
+ * @property {number} refund_credit
+ * @property {number} value_of_good
+ * @property {number} amount_paid
+ * @property {number} refund_amount
+ * @property {number} price_effective
+ * @property {number} amount_paid_roundoff
+ * @property {number} cashback
+ * @property {number} fynd_credits
+ * @property {number} delivery_charge
+ */
+
+/**
+ * @typedef BagUnit
+ * @property {string} ordering_channel
+ * @property {Item} [item]
+ * @property {number} bag_id
+ * @property {GST} [gst]
+ * @property {number} item_quantity
+ * @property {number} total_shipment_bags
+ * @property {Prices} [prices]
+ * @property {Object} status
+ * @property {string} shipment_id
+ */
+
+/**
+ * @typedef UserDataInfo
+ * @property {string} mobile
+ * @property {number} uid
+ * @property {string} email
+ * @property {string} last_name
+ * @property {boolean} is_anonymous_user
+ * @property {string} gender
+ * @property {string} first_name
+ * @property {string} avis_user_id
+ */
+
+/**
+ * @typedef ShipmentStatus
+ * @property {string} ops_status
+ * @property {string} hex_code
+ * @property {string} title
+ * @property {string} actual_status
+ * @property {string} status
+ */
+
+/**
+ * @typedef ShipmentItem
+ * @property {number} total_bags_count
+ * @property {PaymentModeInfo} [payment_mode_info]
+ * @property {FulFillingStore} [fulfilling_store]
+ * @property {Object} [sla]
+ * @property {BagUnit[]} [bags]
+ * @property {number} shipment_created_at
+ * @property {UserDataInfo} [user]
+ * @property {ShipmentStatus} [shipment_status]
+ * @property {Object} [application]
+ * @property {Prices} [prices]
+ * @property {string} created_at
+ * @property {string} fulfilling_centre
+ * @property {number} total_shipments_in_order
+ * @property {Object} [channel]
+ * @property {string} id
+ */
+
+/**
+ * @typedef FilterInfoOption
+ * @property {string} text
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef FiltersInfo
+ * @property {string} type
+ * @property {string} text
+ * @property {string} value
+ * @property {FilterInfoOption[]} [options]
+ */
+
+/**
+ * @typedef ShipmentInternalPlatformViewResponse
+ * @property {ShipmentItem[]} [items]
+ * @property {Object} [applied_filters]
+ * @property {Object} [page]
+ * @property {FiltersInfo[]} [filters]
+ */
+
+/**
  * @typedef ShipmentPricesDataSet
- * @property {number} [gst_fee]
- * @property {number} [coupon_effective_discount]
- * @property {number} [refund_credit]
- * @property {number} [brand_calculated_amount]
- * @property {number} [value_of_good]
- * @property {number} [cashback_applied]
  * @property {number} [tax_collected_at_source]
- * @property {string} [discount]
  * @property {number} [cod_charges]
- * @property {number} [fynd_credits]
- * @property {number} [delivery_charge]
+ * @property {string} [discount]
+ * @property {number} [cashback_applied]
  * @property {number} [price_marked]
+ * @property {number} [brand_calculated_amount]
+ * @property {number} [refund_credit]
+ * @property {number} [gst_fee]
+ * @property {number} [value_of_good]
+ * @property {number} [coupon_effective_discount]
  * @property {number} [amount_paid]
  * @property {number} [price_effective]
  * @property {number} [cashback]
+ * @property {number} [fynd_credits]
+ * @property {number} [delivery_charge]
  */
 
 /**
  * @typedef Shipment1
+ * @property {string} order_id
  * @property {string} shipment_status
+ * @property {string} total_items
  * @property {ShipmentPricesDataSet} [prices]
  * @property {string} rtd_done
- * @property {string} order_id
  * @property {string} shipment_id
- * @property {string} total_items
  */
 
 /**
  * @typedef ManifestShipmentResponse
  * @property {Shipment1[]} [shipments]
  * @property {boolean} success
+ */
+
+/**
+ * @typedef ErrorSchemaDataSet
+ * @property {string} [reason]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef ShipmentPricesDataInfo
+ * @property {number} [cod_charges]
+ * @property {number} [discount]
+ * @property {string} [coupon_value]
+ * @property {number} [price_marked]
+ * @property {number} [cashback_applied]
+ * @property {number} [refund_credit]
+ * @property {number} [value_of_good]
+ * @property {number} [amount_paid]
+ * @property {number} [refund_amount]
+ * @property {number} [price_effective]
+ * @property {number} [cashback]
+ * @property {number} [fynd_credits]
+ * @property {number} [delivery_charge]
+ */
+
+/**
+ * @typedef ShipmentDataSet
+ * @property {number} [tax_collected_at_source]
+ * @property {number} [cashback_applied]
+ * @property {number} [brand_calculated_amount]
+ * @property {number} [refund_credit]
+ * @property {number} [coupon_effective_discount]
+ * @property {number} [value_of_good]
+ * @property {Object} shipment_status
+ * @property {number} [price_effective]
+ * @property {number} [cashback]
+ * @property {number} total_items
+ * @property {ShipmentPricesDataInfo} [prices]
+ * @property {number} total_bags
+ * @property {number} [fynd_credits]
+ * @property {number} [delivery_charge]
+ * @property {string[]} [shipment_images]
+ * @property {string} shipment_id
+ */
+
+/**
+ * @typedef UserDataSet
+ * @property {number} mobile
+ * @property {string} [gender]
+ * @property {string} name
+ * @property {string} [email]
+ */
+
+/**
+ * @typedef OrderDataSet
+ * @property {string} order_created_time
+ * @property {ShipmentDataSet[]} [shipments]
+ * @property {string} order_id
+ * @property {UserDataSet} [user_info]
+ */
+
+/**
+ * @typedef OrderListingResponse
+ * @property {OrderDataSet[]} [orders]
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef OrderErrorSchemaDataSet
+ * @property {string} [reason]
+ * @property {boolean} [success]
  */
 
 class Lead {
