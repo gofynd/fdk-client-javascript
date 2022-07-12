@@ -233,3 +233,7 @@ export class OrdersValidator {
     static getOrders(): any;
     static getfilters(): any;
 }
+export class OrderManageValidator {
+    static statusInternalUpdate(): any;
+    static getShipmentHistory(): any;
+}

@@ -181,6 +181,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
+    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
