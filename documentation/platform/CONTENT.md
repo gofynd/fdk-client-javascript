@@ -4906,14 +4906,22 @@ Get page meta
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPageMeta();
+const promise = client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
+ cartPages : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPageMeta();
+const data = await client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
+ cartPages : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageType | string | no | Fetch meta by page type. Acceptable values are: system, custom and all |    
+| cartPages | boolean | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
@@ -5555,7 +5563,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirections": [
@@ -8009,6 +8017,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | content | string |  no  |  |
  | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+ | _id | string |  no  |  |
 
 ---
 
