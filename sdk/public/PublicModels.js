@@ -409,6 +409,152 @@ class Validator {
     );
   }
 
+  static GCompany() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      integration: Joi.string().allow(""),
+
+      level: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      opted: Joi.boolean(),
+
+      permissions: Joi.array().items(Joi.string().allow("")),
+
+      token: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      stores: Joi.array().items(this.GStore()),
+
+      gstores: Joi.array().items(this.GStore()),
+    });
+  }
+
+  static GStore() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      integration: Joi.string().allow(""),
+
+      level: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      opted: Joi.boolean(),
+
+      permissions: Joi.array().items(Joi.string().allow("")),
+
+      token: Joi.string().allow(""),
+
+      code: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      data: this.StoreData(),
+    });
+  }
+
+  static Metum() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      value: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeSlingshotConfigurationDetail() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: this.SlingshotConfigurationDetail(),
+
+      payload: this.SlingshotConfigurationDetail(),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
+  static SlingshotConfigurationDetail() {
+    return Joi.object({
+      integration: this.SlingshotIntegration(),
+
+      companies: Joi.array().items(this.GCompany()),
+    });
+  }
+
+  static SlingshotIntegration() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      meta: Joi.array().items(this.Metum()),
+    });
+  }
+
+  static StoreData() {
+    return Joi.object({
+      location_id: Joi.string().allow(""),
+    });
+  }
+
+  static ApikeyModel() {
+    return Joi.object({
+      session_id: Joi.string().allow(""),
+
+      error_message: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeApikeyModel() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: this.ApikeyModel(),
+
+      payload: this.ApikeyModel(),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
   static DataTresholdDTO() {
     return Joi.object({
       min_price: Joi.number(),
@@ -607,6 +753,19 @@ class WebhookValidator {
 }
 
 class InventoryValidator {
+  static getConfigByApiKey() {
+    return Joi.object({
+      apikey: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getApiKey() {
+    return Joi.object({
+      userName: Joi.string().allow("").required(),
+      password: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getJobByCode() {
     return Joi.object({
       code: Joi.string().allow("").required(),
