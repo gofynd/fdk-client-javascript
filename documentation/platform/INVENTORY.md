@@ -610,8 +610,8 @@ const data = await client.inventory.getJobCodeMetrics({  code : value,
 | code | string | yes | Code |    
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |    
-| status | string | no |  |    
-| date | string | no |  |  
+| status | string | no | Status |    
+| date | string | no | From Date |  
 
 
 
