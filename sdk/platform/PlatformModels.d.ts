@@ -224,16 +224,3 @@ export class AuditTrailValidator {
     static getAuditLog(): any;
     static getEntityTypes(): any;
 }
-export class OrdersValidator {
-    static getShipmentDetails(): any;
-    static getLaneConfig(): any;
-    static getOrderShipmentDetails(): any;
-    static getShipmentList(): any;
-    static getShipmentToManifest(): any;
-    static getOrders(): any;
-    static getfilters(): any;
-}
-export class OrderManageValidator {
-    static statusInternalUpdate(): any;
-    static getShipmentHistory(): any;
-}

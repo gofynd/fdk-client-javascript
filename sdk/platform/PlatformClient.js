@@ -16,8 +16,6 @@ const {
   DiscountValidator,
   WebhookValidator,
   AuditTrailValidator,
-  OrdersValidator,
-  OrderManageValidator,
 } = require("./PlatformModels");
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const Paginator = require("../common/Paginator");
@@ -42,8 +40,6 @@ class PlatformClient {
     this.discount = new Discount(config);
     this.webhook = new Webhook(config);
     this.auditTrail = new AuditTrail(config);
-    this.orders = new Orders(config);
-    this.orderManage = new OrderManage(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -3921,47 +3917,47 @@ class PlatformClient {
 
 /**
  * @typedef PaymentGatewayConfigResponse
- * @property {Object[]} [aggregators]
  * @property {string[]} display_fields
  * @property {string} app_id
- * @property {boolean} created
- * @property {string[]} excluded_fields
+ * @property {Object[]} [aggregators]
  * @property {boolean} success
+ * @property {string[]} excluded_fields
+ * @property {boolean} created
  */
 
 /**
  * @typedef ErrorCodeDescription
- * @property {string} code
- * @property {boolean} success
  * @property {string} description
+ * @property {boolean} success
+ * @property {string} code
  */
 
 /**
  * @typedef PaymentGatewayConfig
- * @property {string} config_type
- * @property {string} merchant_salt
  * @property {string} secret
+ * @property {string} merchant_salt
+ * @property {string} config_type
  * @property {string} key
  * @property {boolean} [is_active]
  */
 
 /**
  * @typedef PaymentGatewayConfigRequest
+ * @property {PaymentGatewayConfig} [aggregator_name]
  * @property {string} app_id
  * @property {boolean} [is_active]
- * @property {PaymentGatewayConfig} [aggregator_name]
  */
 
 /**
  * @typedef PaymentGatewayToBeReviewed
- * @property {boolean} success
  * @property {string[]} aggregator
+ * @property {boolean} success
  */
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} code
  * @property {string} description
+ * @property {string} code
  */
 
 /**
@@ -3971,67 +3967,67 @@ class PlatformClient {
  */
 
 /**
- * @typedef IntentAppErrorList
- * @property {string} [code]
- * @property {string} [package_name]
- */
-
-/**
  * @typedef PaymentModeLogo
- * @property {string} large
  * @property {string} small
+ * @property {string} large
  */
 
 /**
  * @typedef IntentApp
  * @property {PaymentModeLogo} [logos]
+ * @property {string} [package_name]
  * @property {string} [code]
  * @property {string} [display_name]
+ */
+
+/**
+ * @typedef IntentAppErrorList
  * @property {string} [package_name]
+ * @property {string} [code]
  */
 
 /**
  * @typedef PaymentModeList
- * @property {string} [card_number]
- * @property {boolean} [intent_flow]
+ * @property {string} [card_id]
+ * @property {IntentApp[]} [intent_app]
+ * @property {string} [card_issuer]
  * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
- * @property {boolean} [expired]
- * @property {string} [card_reference]
- * @property {string} [card_token]
+ * @property {number} [exp_month]
+ * @property {string} [card_number]
+ * @property {string} [card_name]
  * @property {string} [code]
- * @property {string} aggregator_name
- * @property {string} [card_brand]
  * @property {string} [fynd_vpa]
  * @property {string} [display_name]
- * @property {number} [exp_year]
- * @property {string} [card_isin]
- * @property {PaymentModeLogo} [logo_url]
+ * @property {string[]} [intent_app_error_list]
  * @property {number} [timeout]
- * @property {string} [card_issuer]
- * @property {number} [display_priority]
- * @property {string} [merchant_code]
- * @property {string} [card_fingerprint]
+ * @property {boolean} [intent_flow]
+ * @property {string} [nickname]
+ * @property {number} [exp_year]
+ * @property {number} [retry_count]
+ * @property {boolean} [expired]
+ * @property {string} aggregator_name
  * @property {string} [name]
  * @property {string} [card_brand_image]
- * @property {string} [card_name]
- * @property {number} [retry_count]
- * @property {IntentApp[]} [intent_app]
- * @property {string[]} [intent_app_error_list]
- * @property {number} [exp_month]
- * @property {string} [nickname]
- * @property {string} [card_id]
+ * @property {string} [card_reference]
  * @property {string} [card_type]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {string} [card_isin]
+ * @property {string} [card_brand]
+ * @property {number} [display_priority]
+ * @property {string} [card_token]
+ * @property {string} [merchant_code]
+ * @property {string} [card_fingerprint]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {string} name
- * @property {number} display_priority
  * @property {string} [aggregator_name]
+ * @property {string} name
  * @property {boolean} [anonymous_enable]
- * @property {PaymentModeList[]} [list]
  * @property {string} display_name
+ * @property {number} display_priority
  * @property {boolean} [add_card_enabled]
+ * @property {PaymentModeList[]} [list]
  */
 
 /**
@@ -4041,71 +4037,71 @@ class PlatformClient {
 
 /**
  * @typedef PaymentOptionsResponse
- * @property {boolean} success
  * @property {PaymentOptions} payment_options
+ * @property {boolean} success
  */
 
 /**
  * @typedef PayoutsResponse
- * @property {Object} unique_transfer_no
- * @property {string} transfer_type
- * @property {Object} more_attributes
- * @property {boolean} is_default
  * @property {Object} customers
- * @property {boolean} is_active
+ * @property {boolean} is_default
  * @property {Object[]} payouts_aggregators
+ * @property {Object} more_attributes
+ * @property {boolean} is_active
+ * @property {string} transfer_type
+ * @property {Object} unique_transfer_no
  */
 
 /**
  * @typedef PayoutBankDetails
- * @property {string} account_type
- * @property {number} [pincode]
- * @property {string} ifsc_code
- * @property {string} [account_holder]
- * @property {string} [bank_name]
- * @property {string} [city]
- * @property {string} [country]
- * @property {string} [branch_name]
- * @property {string} [account_no]
  * @property {string} [state]
+ * @property {string} [bank_name]
+ * @property {string} ifsc_code
+ * @property {number} [pincode]
+ * @property {string} account_type
+ * @property {string} [country]
+ * @property {string} [account_no]
+ * @property {string} [account_holder]
+ * @property {string} [branch_name]
+ * @property {string} [city]
  */
 
 /**
  * @typedef PayoutRequest
- * @property {string} unique_external_id
- * @property {string} transfer_type
  * @property {string} aggregator
- * @property {Object} users
- * @property {PayoutBankDetails} bank_details
  * @property {boolean} is_active
+ * @property {PayoutBankDetails} bank_details
+ * @property {string} transfer_type
+ * @property {Object} users
+ * @property {string} unique_external_id
  */
 
 /**
  * @typedef PayoutResponse
- * @property {string} unique_transfer_no
- * @property {string} transfer_type
+ * @property {string} aggregator
+ * @property {boolean} created
  * @property {Object} payouts
  * @property {boolean} success
  * @property {string} payment_status
- * @property {Object} users
- * @property {Object} bank_details
- * @property {string} aggregator
- * @property {boolean} created
  * @property {boolean} is_active
+ * @property {Object} bank_details
+ * @property {string} transfer_type
+ * @property {string} unique_transfer_no
+ * @property {Object} users
  */
 
 /**
  * @typedef UpdatePayoutResponse
- * @property {boolean} is_active
- * @property {boolean} success
  * @property {boolean} is_default
+ * @property {boolean} success
+ * @property {boolean} is_active
  */
 
 /**
  * @typedef UpdatePayoutRequest
+ * @property {boolean} is_default
  * @property {boolean} is_active
  * @property {string} unique_external_id
- * @property {boolean} is_default
  */
 
 /**
@@ -4126,9 +4122,9 @@ class PlatformClient {
 
 /**
  * @typedef SubscriptionConfigResponse
- * @property {boolean} success
- * @property {string} aggregator
  * @property {Object} config
+ * @property {string} aggregator
+ * @property {boolean} success
  */
 
 /**
@@ -4144,87 +4140,87 @@ class PlatformClient {
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} [address]
- * @property {string} [vpa]
- * @property {string} [comment]
- * @property {string} email
- * @property {string} ifsc_code
- * @property {string} [wallet]
  * @property {string} mobile
- * @property {string} account_holder
+ * @property {string} email
  * @property {string} bank_name
- * @property {string} branch_name
+ * @property {string} ifsc_code
+ * @property {string} [address]
+ * @property {string} [wallet]
+ * @property {string} [vpa]
  * @property {string} account_no
+ * @property {string} account_holder
+ * @property {string} [comment]
+ * @property {string} branch_name
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {BeneficiaryModeDetails} details
  * @property {string} shipment_id
+ * @property {string} [request_id]
+ * @property {string} order_id
+ * @property {BeneficiaryModeDetails} details
  * @property {boolean} delights
  * @property {string} [otp]
- * @property {string} [request_id]
  * @property {string} transfer_mode
- * @property {string} order_id
  */
 
 /**
  * @typedef RefundAccountResponse
  * @property {Object} [data]
- * @property {boolean} success
  * @property {boolean} [is_verified_flag]
+ * @property {boolean} success
  * @property {string} message
  */
 
 /**
  * @typedef NotFoundResourceError
- * @property {string} code
- * @property {boolean} success
  * @property {string} description
+ * @property {boolean} success
+ * @property {string} code
  */
 
 /**
  * @typedef IfscCodeResponse
- * @property {string} branch_name
  * @property {boolean} [success]
  * @property {string} bank_name
+ * @property {string} branch_name
  */
 
 /**
  * @typedef OrderBeneficiaryDetails
  * @property {string} modified_on
  * @property {string} title
- * @property {string} account_no
- * @property {string} [delights_user_name]
- * @property {string} beneficiary_id
- * @property {boolean} is_active
- * @property {string} display_name
- * @property {string} created_on
  * @property {string} email
- * @property {boolean} [comment]
- * @property {string} ifsc_code
- * @property {number} id
- * @property {string} bank_name
- * @property {boolean} [branch_name]
  * @property {string} address
- * @property {boolean} [mobile]
+ * @property {boolean} [comment]
+ * @property {string} [delights_user_name]
+ * @property {string} display_name
+ * @property {boolean} is_active
  * @property {string} account_holder
- * @property {string} subtitle
+ * @property {string} beneficiary_id
+ * @property {number} id
+ * @property {string} account_no
  * @property {string} transfer_mode
+ * @property {boolean} [mobile]
+ * @property {string} bank_name
+ * @property {string} ifsc_code
+ * @property {string} created_on
+ * @property {string} subtitle
+ * @property {boolean} [branch_name]
  */
 
 /**
  * @typedef OrderBeneficiaryResponse
- * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  * @property {boolean} [show_beneficiary_details]
+ * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  */
 
 /**
  * @typedef PaymentConfirmationMode
- * @property {Object} [meta]
- * @property {string} [name]
- * @property {number} amount
  * @property {string} mode
+ * @property {string} [name]
+ * @property {Object} [meta]
+ * @property {number} amount
  */
 
 /**
@@ -4235,8 +4231,8 @@ class PlatformClient {
 
 /**
  * @typedef PaymentConfirmationResponse
- * @property {boolean} success
  * @property {string} order_id
+ * @property {boolean} success
  * @property {string} message
  */
 
@@ -4248,8 +4244,8 @@ class PlatformClient {
 
 /**
  * @typedef PennyDropPayload
- * @property {string} [service_provider]
  * @property {boolean} enabled
+ * @property {string} [service_provider]
  */
 
 /**
@@ -8177,15 +8173,9 @@ class PlatformClient {
  */
 
 /**
- * @typedef BusinessCountryInfo
- * @property {string} [country]
- * @property {string} [country_code]
- */
-
-/**
  * @typedef CompanyTaxesSerializer
- * @property {string} [effective_date]
  * @property {boolean} [enable]
+ * @property {string} [effective_date]
  * @property {number} [rate]
  */
 
@@ -8200,170 +8190,176 @@ class PlatformClient {
  */
 
 /**
+ * @typedef BusinessCountryInfo
+ * @property {string} [country_code]
+ * @property {string} [country]
+ */
+
+/**
  * @typedef ContactDetails
- * @property {SellerPhoneNumber[]} [phone]
  * @property {string[]} [emails]
+ * @property {SellerPhoneNumber[]} [phone]
  */
 
 /**
  * @typedef GetCompanyProfileSerializerResponse
- * @property {UserSerializer} [created_by]
- * @property {BusinessCountryInfo} [business_country_info]
- * @property {number} uid
- * @property {string} [business_info]
- * @property {string} [modified_on]
- * @property {Document[]} [documents]
- * @property {Object} [warnings]
- * @property {string} [about_business]
- * @property {CompanyTaxesSerializer[]} [taxes]
- * @property {string} [store_name]
- * @property {GetAddressSerializer[]} [addresses]
- * @property {string} business_type
- * @property {string} [created_on]
  * @property {UserSerializer} [verified_by]
- * @property {Object[]} [corrections]
+ * @property {Object} [warnings]
+ * @property {CompanyTaxesSerializer[]} [taxes]
+ * @property {boolean} [sell_gst_exempted_products]
+ * @property {string} [business_info]
+ * @property {UserSerializer} [modified_by]
+ * @property {string} [mode]
+ * @property {Document[]} [documents]
+ * @property {string} [code]
+ * @property {UserSerializer} [created_by]
+ * @property {string[]} [notification_emails]
+ * @property {GetAddressSerializer[]} [addresses]
  * @property {BusinessDetails} [business_details]
  * @property {Object[]} [suppressions]
- * @property {string} [stage]
- * @property {string} [annual_turnover]
- * @property {string} [name]
- * @property {string[]} [notification_emails]
- * @property {UserSerializer} [modified_by]
- * @property {string} company_type
- * @property {boolean} [franchise_enabled]
- * @property {string} [code]
- * @property {string} [mode]
- * @property {boolean} [sell_gst_exempted_products]
- * @property {ContactDetails} [contact_details]
+ * @property {Object[]} [corrections]
  * @property {string} [verified_on]
+ * @property {string} [stage]
+ * @property {boolean} [franchise_enabled]
+ * @property {BusinessCountryInfo} [business_country_info]
+ * @property {number} uid
+ * @property {string} business_type
+ * @property {string} [store_name]
+ * @property {string} [annual_turnover]
+ * @property {ContactDetails} [contact_details]
+ * @property {string} [modified_on]
+ * @property {string} [about_business]
+ * @property {string} company_type
+ * @property {string} [created_on]
+ * @property {string} [name]
  */
 
 /**
  * @typedef CreateUpdateAddressSerializer
- * @property {string} city
- * @property {string} state
+ * @property {number} pincode
+ * @property {string} [landmark]
+ * @property {string} country
  * @property {string} [country_code]
- * @property {number} latitude
- * @property {string} address_type
- * @property {number} longitude
  * @property {string} address1
  * @property {string} [address2]
- * @property {string} country
- * @property {string} [landmark]
- * @property {number} pincode
+ * @property {number} longitude
+ * @property {number} latitude
+ * @property {string} city
+ * @property {string} state
+ * @property {string} address_type
  */
 
 /**
  * @typedef UpdateCompany
- * @property {string} [business_info]
- * @property {Document[]} [documents]
  * @property {Object} [warnings]
- * @property {string} [about_business]
  * @property {CompanyTaxesSerializer[]} [taxes]
- * @property {CreateUpdateAddressSerializer[]} [addresses]
- * @property {string} [business_type]
- * @property {string} [website_url]
- * @property {string} [composite_taxation]
- * @property {BusinessDetails} [business_details]
- * @property {string} [annual_turnover]
- * @property {string} [name]
- * @property {string[]} [notification_emails]
- * @property {string} [company_type]
- * @property {boolean} [franchise_enabled]
- * @property {string} [code]
- * @property {string} [reject_reason]
- * @property {ContactDetails} [contact_details]
+ * @property {string} [business_info]
  * @property {Object} [_custom_json]
+ * @property {Document[]} [documents]
+ * @property {string} [composite_taxation]
+ * @property {string} [code]
+ * @property {string[]} [notification_emails]
+ * @property {string} [website_url]
+ * @property {BusinessDetails} [business_details]
+ * @property {CreateUpdateAddressSerializer[]} [addresses]
+ * @property {boolean} [franchise_enabled]
+ * @property {string} [reject_reason]
+ * @property {string} [business_type]
+ * @property {string} [annual_turnover]
+ * @property {ContactDetails} [contact_details]
+ * @property {string} [about_business]
+ * @property {string} [company_type]
+ * @property {string} [name]
  */
 
 /**
  * @typedef ProfileSuccessResponse
- * @property {number} [uid]
  * @property {boolean} [success]
+ * @property {number} [uid]
  */
 
 /**
  * @typedef DocumentsObj
- * @property {number} [verified]
  * @property {number} [pending]
+ * @property {number} [verified]
  */
 
 /**
  * @typedef MetricsSerializer
- * @property {string} [stage]
- * @property {DocumentsObj} [company_documents]
- * @property {DocumentsObj} [product]
- * @property {DocumentsObj} [store_documents]
- * @property {number} [uid]
  * @property {DocumentsObj} [brand]
  * @property {DocumentsObj} [store]
- */
-
-/**
- * @typedef BrandBannerSerializer
- * @property {string} landscape
- * @property {string} portrait
+ * @property {DocumentsObj} [product]
+ * @property {string} [stage]
+ * @property {DocumentsObj} [company_documents]
+ * @property {number} [uid]
+ * @property {DocumentsObj} [store_documents]
  */
 
 /**
  * @typedef BrandDocumentsSerializer
- * @property {string} url
  * @property {string} type
+ * @property {string} url
+ */
+
+/**
+ * @typedef BrandBannerSerializer
+ * @property {string} portrait
+ * @property {string} landscape
  */
 
 /**
  * @typedef GetBrandResponseSerializer
- * @property {UserSerializer} [created_by]
- * @property {BrandBannerSerializer} [banner]
- * @property {number} [uid]
- * @property {string} [modified_on]
- * @property {BrandDocumentsSerializer[]} [documents]
+ * @property {UserSerializer} [verified_by]
  * @property {Object} [warnings]
  * @property {string} [slug_key]
- * @property {Object} [_locale_language]
- * @property {string} [created_on]
- * @property {string} [verified_on]
- * @property {UserSerializer} [verified_by]
- * @property {string} [brand_owner]
- * @property {Object[]} [corrections]
- * @property {string} [description]
- * @property {string} [stage]
- * @property {string} name
  * @property {UserSerializer} [modified_by]
- * @property {string[]} [synonyms]
- * @property {number} [owner_id]
- * @property {string} [mode]
- * @property {string} [logo]
- * @property {string} [reject_reason]
  * @property {Object} [_custom_json]
+ * @property {string} [brand_owner]
+ * @property {string} [description]
+ * @property {string} [mode]
+ * @property {BrandDocumentsSerializer[]} [documents]
+ * @property {UserSerializer} [created_by]
+ * @property {Object} [_locale_language]
+ * @property {BrandBannerSerializer} [banner]
+ * @property {string} [logo]
+ * @property {string} [verified_on]
+ * @property {number} [owner_id]
+ * @property {Object[]} [corrections]
+ * @property {string} [stage]
+ * @property {string} [reject_reason]
+ * @property {number} [uid]
+ * @property {string} [modified_on]
+ * @property {string} [created_on]
+ * @property {string[]} [synonyms]
+ * @property {string} name
  */
 
 /**
  * @typedef BrandDocumentSerializer
- * @property {string} url
  * @property {string} type
+ * @property {string} url
  */
 
 /**
  * @typedef CreateUpdateBrandRequestSerializer
- * @property {boolean} [document_required]
  * @property {string} [description]
- * @property {string[]} [synonyms]
- * @property {number} [company_id]
- * @property {string} name
- * @property {BrandBannerSerializer} banner
  * @property {Object} [_locale_language]
- * @property {number} [uid]
- * @property {BrandDocumentSerializer[]} [documents]
+ * @property {BrandBannerSerializer} banner
  * @property {string} logo
- * @property {string} [brand_tier]
+ * @property {BrandDocumentSerializer[]} [documents]
+ * @property {number} [company_id]
+ * @property {number} [uid]
  * @property {Object} [_custom_json]
+ * @property {string} [brand_tier]
+ * @property {string[]} [synonyms]
+ * @property {boolean} [document_required]
+ * @property {string} name
  */
 
 /**
  * @typedef CompanyBrandDocumentsResponseSerializer
- * @property {string} [url]
  * @property {string} [type]
+ * @property {string} [url]
  */
 
 /**
@@ -8380,42 +8376,42 @@ class PlatformClient {
 
 /**
  * @typedef CompanySerializer
- * @property {UserSerializer} [created_by]
- * @property {CompanyDetails} [details]
+ * @property {UserSerializer} [verified_by]
+ * @property {Object} [_custom_json]
+ * @property {string} [modified_on]
+ * @property {string[]} [notification_emails]
+ * @property {string} [verified_on]
  * @property {string} [stage]
- * @property {string} [name]
+ * @property {CompanyDetails} [details]
+ * @property {BusinessCountryInfo} [business_country_info]
+ * @property {string} [reject_reason]
+ * @property {number} [uid]
+ * @property {string} [created_on]
+ * @property {UserSerializer} [created_by]
+ * @property {UserSerializer} [modified_by]
  * @property {string} company_type
  * @property {string} business_type
  * @property {GetAddressSerializer[]} [addresses]
- * @property {string} [created_on]
  * @property {string[]} [market_channels]
- * @property {string[]} [notification_emails]
- * @property {UserSerializer} [verified_by]
- * @property {BusinessCountryInfo} [business_country_info]
- * @property {number} [uid]
- * @property {UserSerializer} [modified_by]
- * @property {Object} [_custom_json]
- * @property {string} [modified_on]
- * @property {string} [reject_reason]
- * @property {string} [verified_on]
+ * @property {string} [name]
  */
 
 /**
  * @typedef CompanyBrandSerializer
- * @property {UserSerializer} [created_by]
- * @property {string} [stage]
- * @property {string} [created_on]
  * @property {UserSerializer} [verified_by]
- * @property {number} [uid]
- * @property {GetBrandResponseSerializer} [brand]
  * @property {Object} [warnings]
- * @property {UserSerializer} [modified_by]
  * @property {string} [modified_on]
+ * @property {GetBrandResponseSerializer} [brand]
  * @property {CompanyBrandDocumentsResponseSerializer[]} [documents]
  * @property {Object[]} [corrections]
- * @property {CompanySerializer} [company]
- * @property {string} [reject_reason]
  * @property {string} [verified_on]
+ * @property {string} [stage]
+ * @property {string} [reject_reason]
+ * @property {number} [uid]
+ * @property {string} [created_on]
+ * @property {UserSerializer} [created_by]
+ * @property {UserSerializer} [modified_by]
+ * @property {CompanySerializer} [company]
  */
 
 /**
@@ -8426,72 +8422,72 @@ class PlatformClient {
 
 /**
  * @typedef CompanyBrandDocumentsSerializer
- * @property {string} url
  * @property {string} type
+ * @property {string} url
  */
 
 /**
  * @typedef CompanyBrandPostRequestSerializer
- * @property {boolean} [document_required]
- * @property {number} [uid]
  * @property {CompanyBrandDocumentsSerializer[]} [documents]
- * @property {number} company
+ * @property {number} [uid]
  * @property {number[]} brands
- */
-
-/**
- * @typedef Storeholiday
- * @property {string} slug
- * @property {string} name
- * @property {string} start_date
- * @property {number} year
- * @property {string} type
- * @property {string} end_date
- */
-
-/**
- * @typedef Correction
- * @property {string} [reason_code]
- * @property {string} [desc]
+ * @property {number} company
+ * @property {boolean} [document_required]
  */
 
 /**
  * @typedef Deactivation
- * @property {string} [description]
  * @property {string[]} [reason]
+ * @property {string} [description]
+ */
+
+/**
+ * @typedef Correction
+ * @property {string} [desc]
+ * @property {string} [reason_code]
+ */
+
+/**
+ * @typedef Storeholiday
+ * @property {string} type
+ * @property {string} start_date
+ * @property {string} end_date
+ * @property {number} year
+ * @property {string} slug
+ * @property {string} name
  */
 
 /**
  * @typedef Storeholiday1
+ * @property {string} type
+ * @property {string} start_date
+ * @property {string} end_date
+ * @property {number} year
  * @property {string} slug
  * @property {string} name
- * @property {string} start_date
- * @property {number} year
- * @property {string} type
- * @property {string} end_date
  */
 
 /**
  * @typedef LocationSerializer
- * @property {number} [uid]
- * @property {Document[]} [documents]
- * @property {number} company
  * @property {Object} [warnings]
- * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {Storeholiday1[]} [holiday]
- * @property {string} [store_type]
- * @property {string} [stage]
- * @property {LocationDayWiseSerializer[]} [timing]
- * @property {string} name
- * @property {string[]} [notification_emails]
- * @property {LocationManagerSerializer} [manager]
- * @property {string} display_name
- * @property {GetAddressSerializer} address
- * @property {string} code
- * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [fulfilment_type]
- * @property {InvoiceDetailsSerializer} [gst_credentials]
+ * @property {GetAddressSerializer} address
+ * @property {LocationManagerSerializer} [manager]
  * @property {Object} [_custom_json]
+ * @property {number} company
+ * @property {string} [store_type]
+ * @property {Document[]} [documents]
+ * @property {string} code
+ * @property {LocationDayWiseSerializer[]} [timing]
+ * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {string[]} [notification_emails]
+ * @property {ProductReturnConfigSerializer} [product_return_config]
+ * @property {string} display_name
+ * @property {string} [stage]
+ * @property {number} [uid]
+ * @property {Storeholiday1[]} [holiday]
+ * @property {string} name
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
  */
 
 /**
@@ -8513,39 +8509,39 @@ class PlatformClient {
 
 /**
  * @typedef RestrictedCategoryFiles
- * @property {string} url
  * @property {string} type
+ * @property {string} url
  */
 
 /**
  * @typedef StageReasonResponse
- * @property {string} [reason_code]
  * @property {string} [desc]
+ * @property {string} [reason_code]
  */
 
 /**
  * @typedef RestrictedCategoryResponseInfoSerializer
- * @property {string} [value]
+ * @property {boolean} [primary]
+ * @property {number} [store_id]
+ * @property {string} [_id]
+ * @property {RestrictedCategoryFiles[]} [documents]
  * @property {string} [stage]
  * @property {number} [company_id]
- * @property {string} [issue_date]
- * @property {string} [_id]
- * @property {string} [expiry_date]
- * @property {boolean} [primary]
- * @property {string} [category_type]
- * @property {RestrictedCategoryFiles[]} [documents]
- * @property {number} [store_id]
- * @property {StageReasonResponse[]} [stage_reason]
  * @property {string} [document_type]
+ * @property {StageReasonResponse[]} [stage_reason]
+ * @property {string} [value]
+ * @property {string} [category_type]
+ * @property {string} [expiry_date]
+ * @property {string} [issue_date]
  */
 
 /**
  * @typedef RestrictedCategoryResponseSerializer
- * @property {string} name
  * @property {string} store_type
+ * @property {RestrictedCategoryResponseInfoSerializer[]} restricted_categories
  * @property {string} code
  * @property {number} uid
- * @property {RestrictedCategoryResponseInfoSerializer[]} restricted_categories
+ * @property {string} name
  */
 
 /**
@@ -8557,8 +8553,8 @@ class PlatformClient {
 
 /**
  * @typedef SuccessResponseSerializer
- * @property {string} [message]
  * @property {boolean} [success]
+ * @property {string} [message]
  */
 
 /**
@@ -12176,641 +12172,6 @@ class PlatformClient {
  * @typedef EntityTypeObj
  * @property {string} [entity_value]
  * @property {string} [display_name]
- */
-
-/**
- * @typedef FulfillingStore
- * @property {string} address
- * @property {string} code
- * @property {string} country
- * @property {string} phone
- * @property {string} contact_person
- * @property {string} state
- * @property {string} pincode
- * @property {string} store_name
- * @property {string} city
- * @property {string} id
- * @property {string} fulfillment_channel
- * @property {Object} meta
- */
-
-/**
- * @typedef BagStatusHistory
- * @property {string} status
- * @property {boolean} [forward]
- * @property {string} [updated_at]
- * @property {boolean} [state_type]
- * @property {boolean} [display_name]
- * @property {boolean} [app_display_name]
- */
-
-/**
- * @typedef DPDetails
- * @property {string} [country]
- * @property {string} [awb_no]
- * @property {string} [pincode]
- * @property {string} [gst_tag]
- * @property {string} [eway_bill_id]
- * @property {string} [id]
- * @property {string} [track_url]
- * @property {string} [name]
- */
-
-/**
- * @typedef OrderDetailsData
- * @property {string} [order_value]
- * @property {string} [cod_charges]
- * @property {Object} [ordering_channel_logo]
- * @property {string} [affiliate_id]
- * @property {string} [ordering_channel]
- * @property {string} [order_date]
- * @property {string} [source]
- * @property {Object} [tax_details]
- * @property {string} fynd_order_id
- */
-
-/**
- * @typedef ShipmentStatusData
- * @property {string} [status]
- * @property {string} [created_at]
- * @property {string} [shipment_id]
- * @property {number[]} [bag_list]
- * @property {number} [id]
- */
-
-/**
- * @typedef UserDetailsData
- * @property {string} address
- * @property {string} country
- * @property {string} phone
- * @property {string} state
- * @property {string} pincode
- * @property {string} city
- * @property {string} email
- * @property {string} name
- */
-
-/**
- * @typedef OrderBagArticle
- * @property {Object} [return_config]
- * @property {string} [uid]
- * @property {Object} [identifiers]
- */
-
-/**
- * @typedef OrderBrandName
- * @property {number} [modified_on]
- * @property {string} brand_name
- * @property {string} logo
- * @property {string} company
- * @property {number} created_on
- * @property {number} id
- */
-
-/**
- * @typedef FinancialBreakup
- * @property {number} discount
- * @property {string} hsn_code
- * @property {string} gst_tag
- * @property {number} amount_paid
- * @property {number} promotion_effective_discount
- * @property {Object} identifiers
- * @property {number} delivery_charge
- * @property {number} transfer_price
- * @property {number} fynd_credits
- * @property {number} cashback_applied
- * @property {string} item_name
- * @property {number} value_of_good
- * @property {number} brand_calculated_amount
- * @property {number} price_marked
- * @property {string} size
- * @property {boolean} added_to_fynd_cash
- * @property {string} gst_fee
- * @property {number} refund_credit
- * @property {number} cashback
- * @property {number} coupon_value
- * @property {number} coupon_effective_discount
- * @property {number} total_units
- * @property {number} gst_tax_percentage
- * @property {number} cod_charges
- * @property {Object} pm_price_split
- * @property {number} price_effective
- */
-
-/**
- * @typedef BagConfigs
- * @property {boolean} is_returnable
- * @property {boolean} is_active
- * @property {boolean} can_be_cancelled
- * @property {boolean} is_customer_return_allowed
- * @property {boolean} allow_force_return
- * @property {boolean} enable_tracking
- */
-
-/**
- * @typedef BagGST
- * @property {number} [gst_fee]
- * @property {number} [value_of_good]
- * @property {number} [brand_calculated_amount]
- * @property {string} [hsn_code]
- * @property {string} [gst_tag]
- * @property {boolean} [is_default_hsn_code]
- * @property {string} [gstin_code]
- * @property {number} [gst_tax_percentage]
- */
-
-/**
- * @typedef OrderBagItem
- * @property {string} brand
- * @property {string} slug_key
- * @property {number} l3_category
- * @property {string[]} [image]
- * @property {string[]} [l1_category]
- * @property {string} size
- * @property {string} name
- */
-
-/**
- * @typedef OrderBags
- * @property {OrderBagArticle} [article]
- * @property {number} bag_id
- * @property {OrderBrandName} [brand]
- * @property {number} quantity
- * @property {FinancialBreakup[]} [financial_breakup]
- * @property {string} current_status
- * @property {string} entity_type
- * @property {BagConfigs} [bag_configs]
- * @property {BagGST} [gst_details]
- * @property {string} display_name
- * @property {OrderBagItem} [item]
- */
-
-/**
- * @typedef ShipmentPayments
- * @property {string} [logo]
- * @property {string} mode
- * @property {string} [source]
- */
-
-/**
- * @typedef GST
- * @property {number} gst_fee
- * @property {number} value_of_good
- * @property {number} brand_calculated_amount
- * @property {string} gstin_code
- * @property {number} tax_collected_at_source
- */
-
-/**
- * @typedef Prices
- * @property {number} cashback
- * @property {number} cashback_applied
- * @property {number} fynd_credits
- * @property {number} cod_charges
- * @property {number} refund_credit
- * @property {number} value_of_good
- * @property {number} discount
- * @property {number} amount_paid_roundoff
- * @property {number} tax_collected_at_source
- * @property {number} amount_paid
- * @property {number} refund_amount
- * @property {number} price_marked
- * @property {number} coupon_value
- * @property {number} price_effective
- * @property {number} promotion_effective_discount
- * @property {number} delivery_charge
- */
-
-/**
- * @typedef TrackingList
- * @property {string} status
- * @property {boolean} [is_passed]
- * @property {string} [time]
- * @property {boolean} [is_current]
- */
-
-/**
- * @typedef ShipmentInfoResponse
- * @property {boolean} [go_green]
- * @property {FulfillingStore} [fulfilling_store]
- * @property {Object} current_shipment_status
- * @property {Object} [coupon]
- * @property {boolean} platform_logo
- * @property {Object[]} [forward_tracking_list]
- * @property {BagStatusHistory[]} [bag_status_history]
- * @property {string} [vertical]
- * @property {string[]} [child_nodes]
- * @property {string} [secured_delivery_flag]
- * @property {string} credit_note_id
- * @property {string} user_agent
- * @property {boolean} [can_cancel]
- * @property {boolean} [beneficiary_details]
- * @property {DPDetails} [dp_details]
- * @property {Object} invoice
- * @property {string} [is_fynd_store]
- * @property {string} [pay_button]
- * @property {OrderDetailsData} [order]
- * @property {string} [replacement_details]
- * @property {string} [is_pdsr]
- * @property {Object} ordering_store
- * @property {string} payment_mode
- * @property {Object[]} [forward_shipment_status]
- * @property {Object[]} items
- * @property {string} tracking_url
- * @property {string} user_id
- * @property {Object} [bank_data]
- * @property {string} packaging_type
- * @property {boolean} is_invoiced
- * @property {string} [order_created_time]
- * @property {ShipmentStatusData} [status]
- * @property {string} affiliate_shipment_id
- * @property {Object} [refund_details]
- * @property {UserDetailsData} [delivery_details]
- * @property {OrderBags} [bags]
- * @property {Object} [user_info]
- * @property {string} [priority_text]
- * @property {ShipmentPayments} [payments]
- * @property {boolean} is_fynd_coupon
- * @property {Object} fyndstore_emp
- * @property {string} [due_date]
- * @property {Object} delivery_slot
- * @property {number} [total_items]
- * @property {string} order_type
- * @property {string} picked_date
- * @property {boolean} [enable_tracking]
- * @property {GST} [gst_details]
- * @property {Object[]} delivery_status
- * @property {boolean} is_not_fynd_source
- * @property {boolean} [can_return]
- * @property {boolean} is_packaging_order
- * @property {Object} order_status
- * @property {number} status_progress
- * @property {Object} [escalation]
- * @property {UserDetailsData} [billing_details]
- * @property {number} shipment_quantity
- * @property {string} [mid]
- * @property {string} [refund_text]
- * @property {string} shipment_id
- * @property {Object} company
- * @property {Prices} [prices]
- * @property {string} [kirana_store_id]
- * @property {Object[]} [forward_order_status]
- * @property {string} journey_type
- * @property {TrackingList[]} [tracking_list]
- * @property {string} can_break
- * @property {string} enable_dp_tracking
- * @property {string} lock_status
- * @property {string} email_id
- */
-
-/**
- * @typedef Error
- * @property {string} [reason]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef SubLane
- * @property {number} index
- * @property {number} total_shipments
- * @property {string} value
- * @property {string} text
- * @property {string[]} [next_state]
- * @property {string[]} [current_state]
- */
-
-/**
- * @typedef SuperLane
- * @property {string} text
- * @property {string} value
- * @property {SubLane[]} [options]
- */
-
-/**
- * @typedef LaneConfigResponse
- * @property {SuperLane[]} [super_lanes]
- */
-
-/**
- * @typedef OrderDict
- * @property {string} order_date
- * @property {number} shipment_count
- * @property {string} fynd_order_id
- */
-
-/**
- * @typedef Shipment
- * @property {FulfillingStore} [fulfilling_store]
- * @property {string} platform_logo
- * @property {BagStatusHistory[]} [bag_status_history]
- * @property {string} [vertical]
- * @property {string} user_agent
- * @property {DPDetails} [dp_details]
- * @property {OrderDetailsData} [order]
- * @property {string} payment_mode
- * @property {string} packaging_type
- * @property {ShipmentStatusData} [status]
- * @property {UserDetailsData} [delivery_details]
- * @property {OrderBags} [bags]
- * @property {string} [priority_text]
- * @property {ShipmentPayments} [payments]
- * @property {Object} delivery_slot
- * @property {number} [total_items]
- * @property {string} picked_date
- * @property {GST} [gst_details]
- * @property {UserDetailsData} [billing_details]
- * @property {number} shipment_quantity
- * @property {string} shipment_id
- * @property {Prices} [prices]
- * @property {string} journey_type
- * @property {TrackingList[]} [tracking_list]
- * @property {string} enable_dp_tracking
- */
-
-/**
- * @typedef ShipmentDetailsResponse
- * @property {OrderDict} [order]
- * @property {Shipment[]} [shipments]
- * @property {boolean} success
- */
-
-/**
- * @typedef ShipmentStatus
- * @property {string} status
- * @property {string} actual_status
- * @property {string} ops_status
- * @property {string} hex_code
- * @property {string} title
- */
-
-/**
- * @typedef ShipmentItemFulFillingStore
- * @property {string} id
- * @property {string} code
- */
-
-/**
- * @typedef Item
- * @property {string} code
- * @property {string} l3_category_name
- * @property {number} department_id
- * @property {string[]} [image]
- * @property {number} l3_category
- * @property {boolean} can_cancel
- * @property {number} id
- * @property {string} [color]
- * @property {string[]} [l1_category]
- * @property {string} size
- * @property {string} name
- * @property {boolean} can_return
- */
-
-/**
- * @typedef BagUnit
- * @property {Object} status
- * @property {number} bag_id
- * @property {number} item_quantity
- * @property {number} total_shipment_bags
- * @property {string} ordering_channel
- * @property {string} shipment_id
- * @property {Prices} [prices]
- * @property {GST} [gst]
- * @property {Item} [item]
- */
-
-/**
- * @typedef PaymentModeInfo
- * @property {string} logo
- * @property {string} type
- */
-
-/**
- * @typedef UserDataInfo
- * @property {string} mobile
- * @property {string} first_name
- * @property {boolean} is_anonymous_user
- * @property {string} avis_user_id
- * @property {string} email
- * @property {number} uid
- * @property {string} gender
- * @property {string} last_name
- */
-
-/**
- * @typedef ShipmentItem
- * @property {Object} [channel]
- * @property {ShipmentStatus} [shipment_status]
- * @property {string} created_at
- * @property {Object} [application]
- * @property {ShipmentItemFulFillingStore} [fulfilling_store]
- * @property {BagUnit[]} [bags]
- * @property {Object} [sla]
- * @property {Prices} [prices]
- * @property {string} fulfilling_centre
- * @property {number} shipment_created_at
- * @property {string} id
- * @property {number} total_shipments_in_order
- * @property {PaymentModeInfo} [payment_mode_info]
- * @property {number} total_bags_count
- * @property {UserDataInfo} [user]
- */
-
-/**
- * @typedef FilterInfoOption
- * @property {string} text
- * @property {string} [value]
- */
-
-/**
- * @typedef FiltersInfo
- * @property {string} text
- * @property {string} value
- * @property {FilterInfoOption[]} [options]
- * @property {string} type
- */
-
-/**
- * @typedef ShipmentInternalPlatformViewResponse
- * @property {Object} [applied_filters]
- * @property {ShipmentItem[]} [items]
- * @property {FiltersInfo[]} [filters]
- * @property {Object} [page]
- */
-
-/**
- * @typedef ShipmentPricesDataSet
- * @property {number} [gst_fee]
- * @property {number} [cashback]
- * @property {number} [cashback_applied]
- * @property {number} [fynd_credits]
- * @property {number} [cod_charges]
- * @property {number} [refund_credit]
- * @property {number} [value_of_good]
- * @property {string} [discount]
- * @property {number} [brand_calculated_amount]
- * @property {number} [tax_collected_at_source]
- * @property {number} [amount_paid]
- * @property {number} [price_marked]
- * @property {number} [coupon_effective_discount]
- * @property {number} [price_effective]
- * @property {number} [delivery_charge]
- */
-
-/**
- * @typedef Shipment1
- * @property {string} shipment_status
- * @property {string} rtd_done
- * @property {string} shipment_id
- * @property {ShipmentPricesDataSet} [prices]
- * @property {string} total_items
- * @property {string} order_id
- */
-
-/**
- * @typedef ManifestShipmentResponse
- * @property {Shipment1[]} [shipments]
- * @property {boolean} success
- */
-
-/**
- * @typedef ErrorSchemaDataSet
- * @property {string} [reason]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef ShipmentPricesDataInfo
- * @property {number} [cashback]
- * @property {number} [cashback_applied]
- * @property {number} [fynd_credits]
- * @property {number} [cod_charges]
- * @property {number} [refund_credit]
- * @property {number} [value_of_good]
- * @property {number} [discount]
- * @property {number} [amount_paid]
- * @property {number} [refund_amount]
- * @property {number} [price_marked]
- * @property {string} [coupon_value]
- * @property {number} [price_effective]
- * @property {number} [delivery_charge]
- */
-
-/**
- * @typedef ShipmentDataSet
- * @property {number} [cashback]
- * @property {Object} shipment_status
- * @property {number} [cashback_applied]
- * @property {number} [fynd_credits]
- * @property {number} [refund_credit]
- * @property {number} [value_of_good]
- * @property {number} [brand_calculated_amount]
- * @property {string} shipment_id
- * @property {number} [tax_collected_at_source]
- * @property {ShipmentPricesDataInfo} [prices]
- * @property {number} total_bags
- * @property {number} total_items
- * @property {string[]} [shipment_images]
- * @property {number} [coupon_effective_discount]
- * @property {number} [price_effective]
- * @property {number} [delivery_charge]
- */
-
-/**
- * @typedef UserDataSet
- * @property {string} name
- * @property {string} [email]
- * @property {string} [gender]
- * @property {number} mobile
- */
-
-/**
- * @typedef OrderDataSet
- * @property {string} order_id
- * @property {string} order_created_time
- * @property {ShipmentDataSet[]} [shipments]
- * @property {UserDataSet} [user_info]
- */
-
-/**
- * @typedef OrderListingResponse
- * @property {OrderDataSet[]} [orders]
- * @property {boolean} success
- */
-
-/**
- * @typedef OrderErrorSchemaDataSet
- * @property {string} [reason]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef FilterDict
- * @property {string} text
- * @property {string} value
- * @property {string} name
- */
-
-/**
- * @typedef FiltersResponse
- * @property {Filters[]} [delivery_partners]
- * @property {Filters[]} [channels]
- */
-
-/**
- * @typedef ShipmentBody
- * @property {string} [store_invoice_id]
- * @property {ProductDetail[]} [products]
- * @property {number[]} [reason]
- * @property {Object} [data_update]
- */
-
-/**
- * @typedef ShipmentDetail
- * @property {ShipmentBody} [shipment_id]
- */
-
-/**
- * @typedef Statuses
- * @property {string} exclude_bags_next_state
- * @property {ShipmentDetail} [shipments]
- * @property {string} status
- */
-
-/**
- * @typedef PlatformShipmentStatusInternal
- * @property {boolean} [task]
- * @property {boolean} [force_transition]
- * @property {Statuses} [statuses]
- */
-
-/**
- * @typedef ResponseDetail
- * @property {string[]} [message]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef ErrorDetail
- * @property {string} [message]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef HistoryDict
- * @property {string} type
- * @property {string} user
- * @property {string} [l3_detail]
- * @property {string} [ticket_id]
- * @property {string} createdat
- * @property {string} message
- * @property {string} [l1_detail]
- * @property {string} [l2_detail]
- * @property {string} [ticket_url]
- */
-
-/**
- * @typedef ShipmentHistoryResponse
- * @property {HistoryDict[]} [activity_history]
  */
 
 class Common {
@@ -19497,394 +18858,6 @@ class AuditTrail {
       this.config,
       "get",
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/entity-types`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Orders {
-  constructor(config) {
-    this.config = config;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
-   * @param {string} [arg.orderingCompanyId] -
-   * @param {string} [arg.requestByExt] -
-   * @summary:
-   * @description:
-   */
-  getShipmentDetails({ shipmentId, orderingCompanyId, requestByExt } = {}) {
-    const { error } = OrdersValidator.getShipmentDetails().validate(
-      {
-        shipmentId,
-        orderingCompanyId,
-        requestByExt,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["ordering_company_id"] = orderingCompanyId;
-    query_params["request_by_ext"] = requestByExt;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details/${shipmentId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.superLane] -
-   * @param {string} [arg.groupEntity] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @summary:
-   * @description:
-   */
-  getLaneConfig({ superLane, groupEntity, fromDate, toDate } = {}) {
-    const { error } = OrdersValidator.getLaneConfig().validate(
-      {
-        superLane,
-        groupEntity,
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["super_lane"] = superLane;
-    query_params["group_entity"] = groupEntity;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/lane-config/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @summary:
-   * @description:
-   */
-  getOrderShipmentDetails({ orderId } = {}) {
-    const { error } = OrdersValidator.getOrderShipmentDetails().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/order-details`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchId] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
-   * @param {string} [arg.orderingCompanyId] -
-   * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
-   * @param {string} [arg.requestByExt] -
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.customerId] -
-   * @param {boolean} [arg.isPrioritySort] -
-   * @summary:
-   * @description:
-   */
-  getShipmentList({
-    lane,
-    searchType,
-    searchId,
-    fromDate,
-    toDate,
-    dpIds,
-    orderingCompanyId,
-    stores,
-    salesChannel,
-    requestByExt,
-    pageNo,
-    pageSize,
-    customerId,
-    isPrioritySort,
-  } = {}) {
-    const { error } = OrdersValidator.getShipmentList().validate(
-      {
-        lane,
-        searchType,
-        searchId,
-        fromDate,
-        toDate,
-        dpIds,
-        orderingCompanyId,
-        stores,
-        salesChannel,
-        requestByExt,
-        pageNo,
-        pageSize,
-        customerId,
-        isPrioritySort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["lane"] = lane;
-    query_params["search_type"] = searchType;
-    query_params["search_id"] = searchId;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["dp_ids"] = dpIds;
-    query_params["ordering_company_id"] = orderingCompanyId;
-    query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
-    query_params["request_by_ext"] = requestByExt;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["customer_id"] = customerId;
-    query_params["is_priority_sort"] = isPrioritySort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-listing`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.groupEntity -
-   * @param {string} [arg.salesChannel] -
-   * @param {string} [arg.dpIds] -
-   * @summary:
-   * @description:
-   */
-  getShipmentToManifest({ groupEntity, salesChannel, dpIds } = {}) {
-    const { error } = OrdersValidator.getShipmentToManifest().validate(
-      {
-        groupEntity,
-        salesChannel,
-        dpIds,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["group_entity"] = groupEntity;
-    query_params["sales_channel"] = salesChannel;
-    query_params["dp_ids"] = dpIds;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/manifest-listing`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchValue] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
-   * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {boolean} [arg.isPrioritySort] -
-   * @summary:
-   * @description:
-   */
-  getOrders({
-    lane,
-    searchType,
-    searchValue,
-    fromDate,
-    toDate,
-    dpIds,
-    stores,
-    salesChannel,
-    pageNo,
-    pageSize,
-    isPrioritySort,
-  } = {}) {
-    const { error } = OrdersValidator.getOrders().validate(
-      {
-        lane,
-        searchType,
-        searchValue,
-        fromDate,
-        toDate,
-        dpIds,
-        stores,
-        salesChannel,
-        pageNo,
-        pageSize,
-        isPrioritySort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["lane"] = lane;
-    query_params["search_type"] = searchType;
-    query_params["search_value"] = searchValue;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["dp_ids"] = dpIds;
-    query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["is_priority_sort"] = isPrioritySort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders-listing`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.view -
-   * @summary:
-   * @description:
-   */
-  getfilters({ view } = {}) {
-    const { error } = OrdersValidator.getfilters().validate(
-      {
-        view,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["view"] = view;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/filter-listing`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class OrderManage {
-  constructor(config) {
-    this.config = config;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PlatformShipmentStatusInternal} arg.body
-   * @summary:
-   * @description:
-   */
-  statusInternalUpdate({ body } = {}) {
-    const { error } = OrderManageValidator.statusInternalUpdate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/status-internal`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.bagId -
-   * @summary:
-   * @description:
-   */
-  getShipmentHistory({ bagId } = {}) {
-    const { error } = OrderManageValidator.getShipmentHistory().validate(
-      {
-        bagId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["bag_id"] = bagId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
       undefined
     );
