@@ -189,13 +189,13 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
@@ -290,6 +290,7 @@ export class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static getAbandonedCart(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;
