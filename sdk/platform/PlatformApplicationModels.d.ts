@@ -48,6 +48,7 @@ export class ThemeValidator {
     static unpublishTheme(): any;
     static archiveTheme(): any;
     static unarchiveTheme(): any;
+    static getThemeLastModified(): any;
 }
 export class UserValidator {
     static getCustomers(): any;
@@ -191,14 +192,14 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;
@@ -323,4 +324,9 @@ export class AnalyticsValidator {
 export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
+}
+export class ServiceabilityValidator {
+    static postApplicationServiceability(): any;
+    static getApplicationServiceability(): any;
+    static upsertZoneControllerView(): any;
 }
