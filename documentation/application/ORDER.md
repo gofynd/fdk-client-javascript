@@ -952,6 +952,7 @@ Success, the code is valid and returns a SignedUrl
  | image | [string] |  no  |  |
  | code | string |  no  |  |
  | id | number |  no  |  |
+ | seller_identifier | string |  no  |  |
 
 ---
 

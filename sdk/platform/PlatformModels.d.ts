@@ -96,15 +96,15 @@ export class CatalogValidator {
     static createProduct(): any;
     static getProducts(): any;
     static getProductAttributes(): any;
+    static deleteProduct(): any;
     static getProduct(): any;
     static editProduct(): any;
-    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static createBulkProductUploadJob(): any;
     static getProductBulkUploadHistory(): any;
-    static createProductsInBulk(): any;
     static deleteProductBulkJob(): any;
+    static createProductsInBulk(): any;
     static getProductTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -115,13 +115,13 @@ export class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static createBulkInventory(): any;
     static deleteBulkInventoryJob(): any;
+    static createBulkInventory(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
-    static updateRealtimeInventory(): any;
     static deleteRealtimeInventory(): any;
+    static updateRealtimeInventory(): any;
     static updateInventories(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
@@ -223,4 +223,24 @@ export class AuditTrailValidator {
     static createAuditLog(): any;
     static getAuditLog(): any;
     static getEntityTypes(): any;
+}
+export class OrdersValidator {
+    static getShipmentDetails(): any;
+    static getLaneConfig(): any;
+    static getOrderShipmentDetails(): any;
+    static getShipmentList(): any;
+    static getShipmentToManifest(): any;
+    static getOrders(): any;
+    static getMetricCount(): any;
+    static getfilters(): any;
+}
+export class OrderManageValidator {
+    static statusInternalUpdate(): any;
+    static getShipmentHistory(): any;
+}
+export class OrderInvoiceEngineValidator {
+    static generateBulkPackageLabel(): any;
+    static generateBulkBoxLabel(): any;
+    static getLabelStatus(): any;
+    static getLabelPresignedURL(): any;
 }
