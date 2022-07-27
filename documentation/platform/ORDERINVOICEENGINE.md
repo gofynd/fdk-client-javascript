@@ -133,14 +133,19 @@ Get Staus of Label generations
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.getLabelStatus();
+const promise = client.orderInvoiceEngine.getLabelStatus({  uid : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.getLabelStatus();
+const data = await client.orderInvoiceEngine.getLabelStatus({  uid : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | UID given at time of generate request |  
 
 
 
@@ -184,14 +189,19 @@ Get Presigned URL to download labels
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.getLabelPresignedURL();
+const promise = client.orderInvoiceEngine.getLabelPresignedURL({  uid : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.getLabelPresignedURL();
+const data = await client.orderInvoiceEngine.getLabelPresignedURL({  uid : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | UID given at time of generate request |  
 
 
 
