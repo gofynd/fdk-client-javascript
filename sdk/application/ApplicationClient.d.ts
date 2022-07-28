@@ -48,8 +48,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        followById: string;
         unfollowById: string;
+        followById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -500,10 +500,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -513,10 +513,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -1329,6 +1329,7 @@ declare class User {
         loginWithOTP: string;
         loginWithEmailAndPassword: string;
         sendResetPasswordEmail: string;
+        sendResetPasswordMobile: string;
         forgotPassword: string;
         sendResetToken: string;
         loginWithToken: string;
@@ -1448,6 +1449,18 @@ declare class User {
      * @description: Use this API to reset a password using the link sent on email.
      */
     sendResetPasswordEmail({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
+     * @param {SendResetPasswordMobileRequestSchema} arg.body
+     * @returns {Promise<ResetPasswordSuccess>} - Success response
+     * @summary: Reset Password
+     * @description: Use this API to reset a password using the link sent on mobile.
+     */
+    sendResetPasswordMobile({ body, platform }?: {
         platform?: string;
         body: any;
     }): Promise<any>;
