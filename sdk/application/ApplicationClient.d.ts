@@ -48,8 +48,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        followById: string;
         unfollowById: string;
+        followById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -500,10 +500,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -513,10 +513,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -699,17 +699,19 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.depth] - For getting seller or store based on query param
      * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, }?: {
+    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, depth, }?: {
         slug: string;
         size: string;
         pincode?: string;
         strategy?: string;
         pageNo?: number;
         pageSize?: number;
+        depth?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -724,15 +726,17 @@ declare class Catalog {
      * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
      *   eg, fast-delivery, low-price, optimal.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.depth] - For getting seller or store based on query param
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, }?: {
+    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, depth, }?: {
         slug: string;
         size: string;
         pincode?: string;
         strategy?: string;
         pageSize?: number;
+        depth?: string;
     }): Paginator;
 }
 declare class Cart {

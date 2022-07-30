@@ -243,6 +243,132 @@ Sucess Response, Presigned URL of Labels
 
  
  
+ #### [GenerateBulkInvoiceLabelShipment](#GenerateBulkInvoiceLabelShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_id | number |  yes  |  |
+ | from_date | string |  yes  |  |
+ | to_date | string |  yes  |  |
+ | document_type | string |  yes  |  |
+ | shipment_ids | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateBulkInvoiceOrLabelUrl](#GenerateBulkInvoiceOrLabelUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  yes  |  |
+ | document_type | string |  yes  |  |
+ | batch_id | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DocumentType](#DocumentType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice | string |  yes  |  |
+ | label | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkListBadRequestResponse](#BulkListBadRequestResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | error | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkListFailedResponse](#BulkListFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | error | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuccessResponseGenerateBulkShipment](#SuccessResponseGenerateBulkShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | job_id | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateBulkUrlSuccessResponse](#GenerateBulkUrlSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  yes  |  |
+ | uid | string |  yes  |  |
+ | expires_in | number |  yes  |  |
+ | presigned_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InternalErrorResponseGenerateBulkShipment](#InternalErrorResponseGenerateBulkShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | error | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BadRequestResponseGenerateBulkUrl](#BadRequestResponseGenerateBulkUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InternalErrorResponseGenerateBulkUrl](#InternalErrorResponseGenerateBulkUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [BadRequestResponseGenerateBulkItemParameters](#BadRequestResponseGenerateBulkItemParameters)
 
  | Properties | Type | Nullable | Description |
@@ -309,11 +435,11 @@ Sucess Response, Presigned URL of Labels
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | box_id | string |  no  |  |
- | total_quantity | string |  no  |  |
- | package_count | string |  no  |  |
- | dimension | string |  no  |  |
- | weight | string |  no  |  |
+ | box_id | string |  yes  |  |
+ | total_quantity | string |  yes  |  |
+ | package_count | string |  yes  |  |
+ | dimension | string |  yes  |  |
+ | weight | string |  yes  |  |
 
 ---
 
@@ -324,12 +450,12 @@ Sucess Response, Presigned URL of Labels
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stock_transfer_id | string |  no  |  |
- | label_type | string |  no  |  |
- | uid | string |  no  |  |
- | seller_name | string |  no  |  |
- | template_id | number |  no  |  |
- | box_details | [[BoxDetails](#BoxDetails)] |  no  |  |
+ | stock_transfer_id | string |  yes  |  |
+ | label_type | string |  yes  |  |
+ | uid | string |  yes  |  |
+ | seller_name | string |  yes  |  |
+ | template_id | number |  yes  |  |
+ | box_details | [[BoxDetails](#BoxDetails)] |  yes  |  |
 
 ---
 
@@ -389,7 +515,7 @@ Sucess Response, Presigned URL of Labels
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | boolean |  no  |  |
+ | uid | string |  no  |  |
  | url | string |  no  |  |
  | expires_in | number |  no  |  |
 
@@ -452,6 +578,71 @@ Sucess Response, Presigned URL of Labels
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  |  |
  | error_message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateManifest](#GenerateManifest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_id | number |  yes  |  |
+ | from_date | string |  yes  |  |
+ | to_date | string |  yes  |  |
+ | shipment_ids | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GeneratePresignedManifestUrl](#GeneratePresignedManifestUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | manifest_id | string |  yes  |  |
+ | uid | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ManifestLink](#ManifestLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | manifest_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateManifestUrlSuccessResponse](#GenerateManifestUrlSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  yes  |  |
+ | uid | string |  yes  |  |
+ | manifest_id | string |  yes  |  |
+ | expires_in | number |  yes  |  |
+ | presigned_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ManifestListFailedResponse](#ManifestListFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | error | string |  no  |  |
 
 ---
 
