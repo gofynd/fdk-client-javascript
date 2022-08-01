@@ -210,10 +210,12 @@ Get reasons behind full or partial cancellation of a shipment
 
 ```javascript
 // Promise
-const promise = order.getShipmentReasons({  shipmentId : value });
+const promise = order.getShipmentReasons({  shipmentId : value,
+ bagId : value });
 
 // Async/Await
-const data = await order.getShipmentReasons({  shipmentId : value });
+const data = await order.getShipmentReasons({  shipmentId : value,
+ bagId : value });
 ```
 
 
@@ -222,7 +224,8 @@ const data = await order.getShipmentReasons({  shipmentId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |    
+| bagId | number | no | Bag Id of a specefic bags which will help to categorize the reasons |  
 
 
 
