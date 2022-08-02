@@ -20,6 +20,8 @@ Cart APIs
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
 * [getAbandonedCart](#getabandonedcart)
+* [addItems](#additems)
+* [updateCart](#updatecart)
 
 
 
@@ -2472,24 +2474,1300 @@ Abandoned Cart List for sent page_size and page_no
 ---
 
 
+### addItems
+Add items to abandoned cart
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.addItems({  cartId : value,
+ body : value,
+ b : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.addItems({  cartId : value,
+ body : value,
+ b : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cartId | string | yes | Current Cart _id |    
+| b | boolean | no |  |  
+| body | [AddCartRequest](#AddCartRequest) | yes | Request body |
+
+
+Use this API to add items to the abandoned cart.
+
+*Returned Response:*
+
+
+
+
+[AddCartDetailResponse](#AddCartDetailResponse)
+
+Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Product has been added to your cart</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Product has been added to your cart",
+    "success": true,
+    "cart": {
+      "breakup_values": {
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 17486,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Discount",
+            "key": "discount",
+            "value": -3540,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 13946,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 13946,
+            "currency_code": "INR"
+          }
+        ],
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": -3540,
+          "fynd_cash": 0,
+          "gst_charges": 1529.96,
+          "mrp_total": 17486,
+          "subtotal": 13946,
+          "total": 13946,
+          "vog": 12416.04,
+          "you_saved": 0
+        },
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        },
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        }
+      },
+      "items": [
+        {
+          "key": "751083_10",
+          "parent_item_identifiers": {
+            "identifier": "ZASFF",
+            "parent_item_id": 7501190,
+            "parent_item_size": "OS"
+          },
+          "article": {
+            "type": "article",
+            "uid": "612_9_SE61201_19100302_10",
+            "size": "10",
+            "seller": {
+              "uid": 612,
+              "name": "SSR ENTERPRISE"
+            },
+            "store": {
+              "uid": 4431,
+              "name": "Motilal Nagar 1, Goregaon"
+            },
+            "quantity": 4,
+            "price": {
+              "base": {
+                "marked": 3999,
+                "effective": 2399,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 3999,
+                "effective": 2399,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 4798,
+              "marked": 7998,
+              "effective": 4798,
+              "selling": 4798,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 4798,
+              "marked": 7998,
+              "effective": 4798,
+              "selling": 4798,
+              "currency_code": "INR"
+            }
+          },
+          "availability": {
+            "sizes": [
+              "10"
+            ],
+            "other_store_quantity": 2,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 751083,
+            "name": "Carson 2",
+            "slug": "puma-carson-2-751083-6ad98d",
+            "brand": {
+              "uid": 9,
+              "name": "Puma"
+            },
+            "categories": [
+              {
+                "uid": 165,
+                "name": "Outdoor Sports Shoes"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/9_19100302/1_1542807042296.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/puma-carson-2-751083-6ad98d/",
+              "query": {
+                "product_slug": [
+                  "puma-carson-2-751083-6ad98d"
+                ]
+              }
+            }
+          },
+          "coupon_message": "",
+          "quantity": 2,
+          "message": "",
+          "bulk_offer": {},
+          "discount": "41% OFF"
+        },
+        {
+          "key": "246228_S",
+          "article": {
+            "type": "article",
+            "uid": "46_235_TM62_M11029ONDSXNS_S",
+            "size": "S",
+            "seller": {
+              "uid": 46,
+              "name": "RELIANCE BRANDS LIMITED"
+            },
+            "store": {
+              "uid": 4550,
+              "name": "VR Mall"
+            },
+            "quantity": 1,
+            "price": {
+              "base": {
+                "marked": 4490,
+                "effective": 4490,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 4490,
+                "effective": 4490,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 4490,
+              "marked": 4490,
+              "effective": 4490,
+              "selling": 4490,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 4490,
+              "marked": 4490,
+              "effective": 4490,
+              "selling": 4490,
+              "currency_code": "INR"
+            }
+          },
+          "availability": {
+            "sizes": [
+              "L",
+              "M",
+              "S",
+              "XL",
+              "XXL"
+            ],
+            "other_store_quantity": 0,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 246228,
+            "name": "Blue Solid T-Shirt",
+            "slug": "superdry-blue-solid-t-shirt-2",
+            "brand": {
+              "uid": 235,
+              "name": "Superdry"
+            },
+            "categories": [
+              {
+                "uid": 192,
+                "name": "T-Shirts"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/235_M11029ONDSXNS/1.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/superdry-blue-solid-t-shirt-2/",
+              "query": {
+                "product_slug": [
+                  "superdry-blue-solid-t-shirt-2"
+                ]
+              }
+            }
+          },
+          "coupon_message": "",
+          "quantity": 1,
+          "message": "",
+          "bulk_offer": {},
+          "discount": ""
+        },
+        {
+          "key": "443175_S",
+          "article": {
+            "type": "article",
+            "uid": "162_207_1271_LJ03LBLUDN88_S",
+            "size": "S",
+            "seller": {
+              "uid": 162,
+              "name": "GO FASHION INDIA PRIVATE LIMITED"
+            },
+            "store": {
+              "uid": 5784,
+              "name": "Vega City mall"
+            },
+            "quantity": 3,
+            "price": {
+              "base": {
+                "marked": 1599,
+                "effective": 1599,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 1599,
+                "effective": 1599,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 1599,
+              "marked": 1599,
+              "effective": 1599,
+              "selling": 1599,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 1599,
+              "marked": 1599,
+              "effective": 1599,
+              "selling": 1599,
+              "currency_code": "INR"
+            }
+          },
+          "availability": {
+            "sizes": [
+              "XL",
+              "M",
+              "L",
+              "S"
+            ],
+            "other_store_quantity": 8,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 443175,
+            "name": "Light Blue Denim Jeggings",
+            "slug": "go-colors-light-blue-denim-jeggings-443175-3c688c",
+            "brand": {
+              "uid": 207,
+              "name": "Go Colors"
+            },
+            "categories": [
+              {
+                "uid": 267,
+                "name": "Jeggings"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/207_LJ03LBLUDN88/1_1512382513548.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/go-colors-light-blue-denim-jeggings-443175-3c688c/",
+              "query": {
+                "product_slug": [
+                  "go-colors-light-blue-denim-jeggings-443175-3c688c"
+                ]
+              }
+            }
+          },
+          "coupon_message": "",
+          "quantity": 1,
+          "message": "",
+          "bulk_offer": {},
+          "discount": ""
+        },
+        {
+          "key": "778937_OS",
+          "article": {
+            "type": "article",
+            "uid": "686_963_IC68601_PWUPC01977_OS",
+            "size": "OS",
+            "seller": {
+              "uid": 686,
+              "name": "INDUS CORPORATION"
+            },
+            "store": {
+              "uid": 5059,
+              "name": "Vidyaranyapura Main Road"
+            },
+            "quantity": 3,
+            "price": {
+              "base": {
+                "marked": 3399,
+                "effective": 3059,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 3399,
+                "effective": 3059,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 3059,
+              "marked": 3399,
+              "effective": 3059,
+              "selling": 3059,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 3059,
+              "marked": 3399,
+              "effective": 3059,
+              "selling": 3059,
+              "currency_code": "INR"
+            }
+          },
+          "availability": {
+            "sizes": [
+              "OS"
+            ],
+            "other_store_quantity": 2,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 778937,
+            "name": "Colourful Carnival Bouncer",
+            "slug": "fisher-price-colourful-carnival-bouncer-778937-fafa1f",
+            "brand": {
+              "uid": 963,
+              "name": "Fisher-Price"
+            },
+            "categories": [
+              {
+                "uid": 576,
+                "name": "Cradles"
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/963_PWUPC01977/1_1545308400588.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/platform/content/v1/products/fisher-price-colourful-carnival-bouncer-778937-fafa1f/",
+              "query": {
+                "product_slug": [
+                  "fisher-price-colourful-carnival-bouncer-778937-fafa1f"
+                ]
+              }
+            }
+          },
+          "coupon_message": "",
+          "quantity": 1,
+          "message": "",
+          "bulk_offer": {},
+          "discount": "11% OFF"
+        }
+      ],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "buy_now": false,
+      "cart_id": 7927,
+      "uid": "7927",
+      "gstin": null,
+      "checkout_mode": "self",
+      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
+      "restrict_checkout": false,
+      "is_valid": true
+    },
+    "result": {}
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Sorry, item is out of stock</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Sorry, item is out of stock",
+    "success": false,
+    "cart": {
+      "breakup_values": {
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": -202000,
+          "fynd_cash": 0,
+          "gst_charges": 4804.71,
+          "mrp_total": 302899,
+          "subtotal": 100899,
+          "total": 100899,
+          "vog": 96094.29,
+          "you_saved": 0
+        },
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 302899,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Discount",
+            "key": "discount",
+            "value": -202000,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 100899,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 100899,
+            "currency_code": "INR"
+          }
+        ],
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        }
+      },
+      "items": [
+        {
+          "bulk_offer": {},
+          "discount": "67% OFF",
+          "parent_item_identifiers": {
+            "identifier": "ZASFF",
+            "parent_item_id": 7501190,
+            "parent_item_size": "OS"
+          },
+          "article": {
+            "type": "article",
+            "uid": "604_902_SSTC60401_636BLUE_1",
+            "size": "1",
+            "seller": {
+              "uid": 604,
+              "name": "SHRI SHANTINATH TRADING COMPANY"
+            },
+            "store": {
+              "uid": 4579,
+              "name": "Gandhi Nagar"
+            },
+            "quantity": 108,
+            "price": {
+              "base": {
+                "marked": 2999,
+                "effective": 999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 2999,
+                "effective": 999,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "coupon_message": "",
+          "key": "707569_1",
+          "availability": {
+            "sizes": [
+              "1",
+              "8",
+              "7",
+              "2",
+              "9",
+              "5",
+              "3",
+              "6"
+            ],
+            "other_store_quantity": 7,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 707569,
+            "name": "Blue and Gold Printed Ethnic Set",
+            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+            "brand": {
+              "uid": 902,
+              "name": ""
+            },
+            "categories": [
+              {
+                "uid": 525,
+                "name": ""
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+              "query": {
+                "product_slug": [
+                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+                ]
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 100899,
+              "marked": 302899,
+              "effective": 100899,
+              "selling": 100899,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 100899,
+              "marked": 302899,
+              "effective": 100899,
+              "selling": 100899,
+              "currency_code": "INR"
+            }
+          },
+          "message": "",
+          "quantity": 101
+        }
+      ],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "buy_now": false,
+      "cart_id": 54,
+      "uid": "54",
+      "gstin": null,
+      "checkout_mode": "self",
+      "restrict_checkout": false,
+      "is_valid": false,
+      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
+    },
+    "result": {}
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCart
+Update items in the abandoned cart
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.updateCart({  cartId : value,
+ body : value,
+ b : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.updateCart({  cartId : value,
+ body : value,
+ b : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| cartId | string | yes | Current Cart _id |    
+| b | boolean | no |  |  
+| body | [UpdateCartRequest](#UpdateCartRequest) | yes | Request body |
+
+
+<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+
+*Returned Response:*
+
+
+
+
+[UpdateCartDetailResponse](#UpdateCartDetailResponse)
+
+Success. Updates and returns a cart object as shown below. Refer `UpdateCartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Nothing updated</i></summary>
+
+```json
+{
+  "value": {
+    "cart": {
+      "breakup_values": {
+        "raw": {
+          "cod_charge": 0,
+          "convenience_fee": 0,
+          "coupon": 0,
+          "delivery_charge": 0,
+          "discount": -202000,
+          "fynd_cash": 0,
+          "gst_charges": 4804.71,
+          "mrp_total": 302899,
+          "subtotal": 100899,
+          "total": 100899,
+          "vog": 96094.29,
+          "you_saved": 0
+        },
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid Coupon"
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "value": 302899,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Discount",
+            "key": "discount",
+            "value": -202000,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "value": 100899,
+            "currency_code": "INR"
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "value": 100899,
+            "currency_code": "INR"
+          }
+        ],
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+        }
+      },
+      "items": [
+        {
+          "bulk_offer": {},
+          "discount": "67% OFF",
+          "parent_item_identifiers": {
+            "identifier": "ZASFF",
+            "parent_item_id": 7501190,
+            "parent_item_size": "OS"
+          },
+          "article": {
+            "type": "article",
+            "uid": "604_902_SSTC60401_636BLUE_1",
+            "size": "1",
+            "seller": {
+              "uid": 604,
+              "name": "SHRI SHANTINATH TRADING COMPANY"
+            },
+            "store": {
+              "uid": 4579,
+              "name": "Gandhi Nagar"
+            },
+            "quantity": 108,
+            "price": {
+              "base": {
+                "marked": 2999,
+                "effective": 999,
+                "currency_code": "INR"
+              },
+              "converted": {
+                "marked": 2999,
+                "effective": 999,
+                "currency_code": "INR"
+              }
+            }
+          },
+          "coupon_message": "",
+          "key": "707569_1",
+          "availability": {
+            "sizes": [
+              "1",
+              "8",
+              "7",
+              "2",
+              "9",
+              "5",
+              "3",
+              "6"
+            ],
+            "other_store_quantity": 7,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true
+          },
+          "product": {
+            "type": "product",
+            "uid": 707569,
+            "name": "Blue and Gold Printed Ethnic Set",
+            "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+            "brand": {
+              "uid": 902,
+              "name": ""
+            },
+            "categories": [
+              {
+                "uid": 525,
+                "name": ""
+              }
+            ],
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+                "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+              "query": {
+                "product_slug": [
+                  "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+                ]
+              }
+            }
+          },
+          "price": {
+            "base": {
+              "add_on": 100899,
+              "marked": 302899,
+              "effective": 100899,
+              "selling": 100899,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "add_on": 100899,
+              "marked": 302899,
+              "effective": 100899,
+              "selling": 100899,
+              "currency_code": "INR"
+            }
+          },
+          "message": "",
+          "quantity": 101
+        }
+      ],
+      "delivery_charge_info": "",
+      "coupon_text": "View all offers",
+      "buy_now": false,
+      "cart_id": 54,
+      "uid": "54",
+      "gstin": null,
+      "checkout_mode": "self",
+      "restrict_checkout": false,
+      "is_valid": true,
+      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
+    },
+    "result": {
+      "707569_90": {
+        "success": true,
+        "message": "Nothing updated"
+      }
+    },
+    "message": "Nothing updated",
+    "success": true
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Item updated in the cart</i></summary>
+
+```json
+{
+  "value": {
+    "cart": {
+      "breakup_values": {
+        "raw": {
+          "sub_total": 8000,
+          "subtotal": 8000,
+          "coupon": 0,
+          "promotion": -100,
+          "delivery_charge": 100,
+          "you_saved": 0,
+          "fynd_cash": 0,
+          "cod_charge": 0,
+          "total": 8000,
+          "gst_charges": 0,
+          "vog": 0,
+          "convenience_fee": 0,
+          "mrp_total": 20010,
+          "discount": -12010
+        },
+        "coupon": {
+          "type": "cash",
+          "code": "",
+          "uid": null,
+          "value": 0,
+          "is_applied": false,
+          "message": "Sorry! Invalid coupon"
+        },
+        "loyalty_points": {
+          "total": 0,
+          "applicable": 0,
+          "is_applied": false,
+          "description": "Your cashback, reward points, and refund amount get credited to Fynd Cash which can be redeemed while placing an order.",
+          "message": "Reward point not applicable with Coupon"
+        },
+        "display": [
+          {
+            "display": "MRP Total",
+            "key": "mrp_total",
+            "original": 20010,
+            "attr": "mrp_total",
+            "value": 20010,
+            "currency_code": "INR",
+            "currency_symbol": "₹",
+            "message": []
+          },
+          {
+            "display": "Discount",
+            "key": "discount",
+            "original": -12010,
+            "attr": "discount",
+            "value": -12010,
+            "currency_code": "INR",
+            "currency_symbol": "₹",
+            "message": []
+          },
+          {
+            "display": "Subtotal",
+            "key": "subtotal",
+            "original": 8000,
+            "attr": "subtotal",
+            "value": 8000,
+            "currency_code": "INR",
+            "currency_symbol": "₹",
+            "message": []
+          },
+          {
+            "display": "Promotion",
+            "key": "promotion",
+            "original": -100,
+            "attr": "promotion",
+            "value": -100,
+            "currency_code": "INR",
+            "currency_symbol": "₹",
+            "message": []
+          },
+          {
+            "display": "Delivery Charge",
+            "key": "delivery_charge",
+            "original": 100,
+            "attr": "delivery_charge",
+            "value": 100,
+            "currency_code": "INR",
+            "currency_symbol": "₹",
+            "message": [
+              "Delivery charges applicable ₹100.00 on order upto ₹10,000.00",
+              "Free delivery on order above ₹10,000.00"
+            ]
+          },
+          {
+            "display": "Total",
+            "key": "total",
+            "original": 8000,
+            "attr": "total",
+            "value": 8000,
+            "currency_code": "INR",
+            "currency_symbol": "₹",
+            "message": []
+          }
+        ]
+      },
+      "items": [
+        {
+          "parent_item_identifiers": {
+            "identifier": null,
+            "parent_item_size": null,
+            "parent_item_id": null
+          },
+          "article": {
+            "type": "article",
+            "uid": "618c1a6874b93908c98f6d18",
+            "size": "XL",
+            "product_group_tags": null,
+            "seller": {
+              "uid": 61,
+              "name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
+            },
+            "store": {
+              "uid": 11491,
+              "name": "Store46"
+            },
+            "quantity": 200,
+            "price": {
+              "base": {
+                "marked": 2001,
+                "effective": 800,
+                "selling": 800,
+                "currency_code": "INR",
+                "currency_symbol": "₹"
+              },
+              "converted": {
+                "marked": 2001,
+                "effective": 800,
+                "selling": 800,
+                "currency_code": "INR",
+                "currency_symbol": "INR"
+              }
+            },
+            "extra_meta": {}
+          },
+          "product": {
+            "type": "product",
+            "uid": 75252592,
+            "name": "Nike Yellow Top",
+            "slug": "nike-black-top",
+            "brand": {
+              "uid": 18,
+              "name": "Nike"
+            },
+            "categories": [
+              {
+                "uid": 258,
+                "name": "Blouson Top"
+              }
+            ],
+            "attributes": {
+              "hsn_code": "62040000",
+              "short_description": "test description1",
+              "essential": "No",
+              "item_code": "1304678617",
+              "gender": "Women",
+              "currency": "INR",
+              "media": [
+                {
+                  "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/oy168nSHP-Nike-Black-Top.jpeg",
+                  "type": "image"
+                }
+              ],
+              "marketer-address": "Tops Range",
+              "marketer-name": "Bandra(W), Link Road",
+              "brand_name": "Nike"
+            },
+            "images": [
+              {
+                "aspect_ratio": "16:25",
+                "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/oy168nSHP-Nike-Black-Top.jpeg",
+                "secure_url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/oy168nSHP-Nike-Black-Top.jpeg"
+              }
+            ],
+            "action": {
+              "type": "product",
+              "url": "https://api.fyndx0.de/platform/content/v1/products/nike-black-top/",
+              "query": {
+                "product_slug": [
+                  "nike-black-top"
+                ]
+              }
+            },
+            "item_code": "1304678617",
+            "_custom_json": {}
+          },
+          "message": "",
+          "price_per_unit": {
+            "base": {
+              "marked": 2001,
+              "effective": 800,
+              "selling_price": 800,
+              "currency_code": "INR",
+              "currency_symbol": "₹"
+            },
+            "converted": {
+              "marked": 2001,
+              "effective": 800,
+              "selling_price": 800,
+              "currency_code": "INR",
+              "currency_symbol": "₹"
+            }
+          },
+          "promo_meta": {},
+          "bulk_offer": {},
+          "price": {
+            "base": {
+              "add_on": 8000,
+              "marked": 20010,
+              "effective": 8000,
+              "selling": 8000,
+              "currency_code": "INR",
+              "currency_symbol": "₹"
+            },
+            "converted": {
+              "add_on": 8000,
+              "marked": 20010,
+              "effective": 8000,
+              "selling": 8000,
+              "currency_code": "INR",
+              "currency_symbol": "₹"
+            }
+          },
+          "is_set": false,
+          "identifiers": {
+            "identifier": "SfOmcAtTR4ut4pI_eVU6FQ"
+          },
+          "discount": "60% OFF",
+          "moq": {},
+          "availability": {
+            "sizes": [
+              "S",
+              "XL",
+              "L"
+            ],
+            "other_store_quantity": 984,
+            "out_of_stock": false,
+            "deliverable": true,
+            "is_valid": true,
+            "available_sizes": [
+              {
+                "is_available": true,
+                "display": "S",
+                "value": "S"
+              },
+              {
+                "is_available": true,
+                "display": "XL",
+                "value": "XL"
+              },
+              {
+                "is_available": false,
+                "display": "CLL",
+                "value": "CLL"
+              },
+              {
+                "is_available": true,
+                "display": "L",
+                "value": "L"
+              },
+              {
+                "is_available": false,
+                "display": "XLL",
+                "value": "XLL"
+              },
+              {
+                "is_available": false,
+                "display": "XLLL",
+                "value": "XLLL"
+              }
+            ]
+          },
+          "quantity": 10,
+          "promotions_applied": [
+            {
+              "promo_id": "62da8b75e951ea5e67b1454b",
+              "amount": 10,
+              "article_quantity": 10,
+              "mrp_promotion": false,
+              "promotion_type": "shipping_price",
+              "offer_text": "Free shipping 22/07/2"
+            }
+          ],
+          "key": "75252592_XL",
+          "delivery_promise": null,
+          "coupon_message": ""
+        }
+      ],
+      "cart_id": 22251,
+      "id": "62d4ff76d6aec8db897de407",
+      "uid": "22251",
+      "buy_now": false,
+      "gstin": null,
+      "comment": "",
+      "checkout_mode": "self",
+      "restrict_checkout": false,
+      "is_valid": true,
+      "currency": {
+        "code": "INR",
+        "symbol": "₹"
+      },
+      "last_modified": "Mon, 01 Aug 2022 09:33:20 GMT"
+    },
+    "message": "Item updated in the bag",
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
  
  
- #### [Page](#Page)
+ #### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | number |  no  | Current request page size |
- | item_total | number |  no  | Total coupon count in system |
- | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
- | last_id | string |  no  | Last objects id |
- | page | number |  no  | Page requested |
- | type | string |  yes  |  |
- | current | number |  no  | Current page no |
- | has_next | boolean |  no  | True if more records are present for next pages |
- | next_id | string |  no  | Cursor id for next set of records. |
+ | company_id | [number] |  no  |  |
+ | exclude_brand_id | [number] |  no  |  |
+ | collection_id | [string] |  no  |  |
+ | user_id | [string] |  no  |  |
+ | brand_id | [number] |  no  |  |
+ | store_id | [number] |  no  |  |
+ | article_id | [string] |  no  |  |
+ | category_id | [number] |  no  |  |
+ | item_id | [number] |  no  |  |
 
 ---
 
@@ -2500,79 +3778,11 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | start | string |  no  |  |
  | duration | number |  no  |  |
+ | start | string |  no  |  |
  | next_schedule | [string] |  no  |  |
  | end | string |  no  |  |
-
----
-
-
- 
- 
- #### [Identifier](#Identifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | [string] |  no  |  |
- | company_id | [number] |  no  |  |
- | category_id | [number] |  no  |  |
- | exclude_brand_id | [number] |  no  |  |
- | brand_id | [number] |  no  |  |
- | collection_id | [string] |  no  |  |
- | article_id | [string] |  no  |  |
- | store_id | [number] |  no  |  |
- | item_id | [number] |  no  |  |
-
----
-
-
- 
- 
- #### [State](#State)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_public | boolean |  no  |  |
- | is_display | boolean |  no  |  |
- | is_archived | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Validity](#Validity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | number |  no  |  |
-
----
-
-
- 
- 
- #### [CouponDateMeta](#CouponDateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
-
----
-
-
- 
- 
- #### [Validation](#Validation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous | boolean |  no  |  |
- | user_registered_after | string |  no  |  |
- | app_id | [string] |  no  |  |
+ | cron | string |  no  |  |
 
 ---
 
@@ -2583,20 +3793,44 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
  | modified_by | string |  no  |  |
+ | created_by | string |  no  |  |
 
 ---
 
 
  
  
- #### [PostOrder](#PostOrder)
+ #### [UsesRemaining](#UsesRemaining)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancellation_allowed | boolean |  no  |  |
- | return_allowed | boolean |  no  |  |
+ | total | number |  no  |  |
+ | user | number |  no  |  |
+ | app | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UsesRestriction](#UsesRestriction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkBundleRestriction](#BulkBundleRestriction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | multi_store_allowed | boolean |  yes  |  |
 
 ---
 
@@ -2615,25 +3849,12 @@ Abandoned Cart List for sent page_size and page_no
 
  
  
- #### [UsesRemaining](#UsesRemaining)
+ #### [PostOrder](#PostOrder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | number |  no  |  |
- | user | number |  no  |  |
- | total | number |  no  |  |
-
----
-
-
- 
- 
- #### [UsesRestriction](#UsesRestriction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
- | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean |  no  |  |
 
 ---
 
@@ -2655,21 +3876,10 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
  | networks | [string] |  no  |  |
  | codes | [string] |  no  |  |
  | types | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [BulkBundleRestriction](#BulkBundleRestriction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | multi_store_allowed | boolean |  yes  |  |
+ | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
 
 ---
 
@@ -2680,15 +3890,57 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_allowed | boolean |  no  |  |
- | platforms | [string] |  no  |  |
- | post_order | [PostOrder](#PostOrder) |  no  |  |
- | price_range | [PriceRange](#PriceRange) |  no  |  |
- | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
  | ordering_stores | [number] |  no  |  |
- | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
+ | coupon_allowed | boolean |  no  |  |
+ | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
  | user_groups | [number] |  no  |  |
  | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
+ | price_range | [PriceRange](#PriceRange) |  no  |  |
+ | platforms | [string] |  no  |  |
+ | post_order | [PostOrder](#PostOrder) |  no  |  |
+ | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RuleDefinition](#RuleDefinition)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable_on | string |  yes  |  |
+ | value_type | string |  yes  |  |
+ | is_exact | boolean |  no  |  |
+ | currency_code | string |  no  |  |
+ | calculate_on | string |  yes  |  |
+ | type | string |  yes  |  |
+ | auto_apply | boolean |  no  |  |
+ | scope | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Validity](#Validity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [State](#State)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_public | boolean |  no  |  |
+ | is_archived | boolean |  no  |  |
+ | is_display | boolean |  no  |  |
 
 ---
 
@@ -2707,61 +3959,12 @@ Abandoned Cart List for sent page_size and page_no
 
  
  
- #### [RuleDefinition](#RuleDefinition)
+ #### [CouponDateMeta](#CouponDateMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auto_apply | boolean |  no  |  |
- | applicable_on | string |  yes  |  |
- | currency_code | string |  no  |  |
- | is_exact | boolean |  no  |  |
- | value_type | string |  yes  |  |
- | type | string |  yes  |  |
- | scope | [string] |  no  |  |
- | calculate_on | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Rule](#Rule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount_qty | number |  no  |  |
- | value | number |  no  |  |
- | key | number |  no  |  |
- | min | number |  no  |  |
- | max | number |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayMetaDict](#DisplayMetaDict)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayMeta](#DisplayMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | title | string |  no  |  |
- | subtitle | string |  no  |  |
- | description | string |  no  |  |
- | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -2772,8 +3975,64 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
  | payable_category | string |  yes  |  |
+ | payable_by | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Rule](#Rule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | key | number |  no  |  |
+ | min | number |  no  |  |
+ | value | number |  no  |  |
+ | discount_qty | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMetaDict](#DisplayMetaDict)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | subtitle | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMeta](#DisplayMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | title | string |  no  |  |
+ | subtitle | string |  no  |  |
+ | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Validation](#Validation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_registered_after | string |  no  |  |
+ | app_id | [string] |  no  |  |
+ | anonymous | boolean |  no  |  |
 
 ---
 
@@ -2784,22 +4043,41 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
  | identifiers | [Identifier](#Identifier) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | validation | [Validation](#Validation) |  no  |  |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
  | author | [CouponAuthor](#CouponAuthor) |  no  |  |
  | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | action | [CouponAction](#CouponAction) |  no  |  |
  | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | tags | [string] |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
  | code | string |  yes  |  |
  | type_slug | string |  yes  |  |
- | tags | [string] |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | action | [CouponAction](#CouponAction) |  no  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
  | rule | [[Rule](#Rule)] |  yes  |  |
  | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | number |  no  | Page requested |
+ | last_id | string |  no  | Last objects id |
+ | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
+ | has_next | boolean |  no  | True if more records are present for next pages |
+ | type | string |  yes  |  |
+ | next_id | string |  no  | Cursor id for next set of records. |
+ | current | number |  no  | Current page no |
+ | size | number |  no  | Current request page size |
+ | item_total | number |  no  | Total coupon count in system |
 
 ---
 
@@ -2810,8 +4088,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [CouponAdd](#CouponAdd) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -2822,8 +4100,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | success | boolean |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -2834,8 +4112,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | success | boolean |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -2846,22 +4124,22 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
  | identifiers | [Identifier](#Identifier) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | validation | [Validation](#Validation) |  no  |  |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
  | author | [CouponAuthor](#CouponAuthor) |  no  |  |
  | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | action | [CouponAction](#CouponAction) |  no  |  |
  | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | tags | [string] |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
  | code | string |  yes  |  |
  | type_slug | string |  yes  |  |
- | tags | [string] |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | action | [CouponAction](#CouponAction) |  no  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
  | rule | [[Rule](#Rule)] |  yes  |  |
  | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
+ | validation | [Validation](#Validation) |  no  |  |
 
 ---
 
@@ -2880,24 +4158,12 @@ Abandoned Cart List for sent page_size and page_no
 
  
  
- #### [PromotionDateMeta](#PromotionDateMeta)
+ #### [PromotionAuthor](#PromotionAuthor)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
-
----
-
-
- 
- 
- #### [Visibility](#Visibility)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pdp | boolean |  yes  |  |
- | coupon_list | boolean |  yes  |  |
+ | modified_by | string |  no  |  |
+ | created_by | string |  no  |  |
 
 ---
 
@@ -2908,11 +4174,11 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | greater_than | number |  no  |  |
- | less_than | number |  no  |  |
- | equals | number |  no  |  |
  | greater_than_equals | number |  no  |  |
+ | greater_than | number |  no  |  |
  | less_than_equals | number |  no  |  |
+ | equals | number |  no  |  |
+ | less_than | number |  no  |  |
 
 ---
 
@@ -2923,62 +4189,66 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | all_items | boolean |  no  |  |
  | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
- | buy_rules | [string] |  no  |  |
- | item_size | [string] |  no  |  |
- | item_sku | [string] |  no  |  |
- | item_exclude_category | [number] |  no  |  |
- | item_exclude_company | [number] |  no  |  |
- | cart_total | [CompareObject](#CompareObject) |  no  |  |
+ | item_company | [number] |  no  |  |
  | item_exclude_store | [number] |  no  |  |
  | item_exclude_sku | [string] |  no  |  |
- | item_brand | [number] |  no  |  |
- | item_exclude_brand | [number] |  no  |  |
- | item_category | [number] |  no  |  |
  | item_store | [number] |  no  |  |
+ | item_exclude_brand | [number] |  no  |  |
+ | item_exclude_category | [number] |  no  |  |
+ | buy_rules | [string] |  no  |  |
+ | all_items | boolean |  no  |  |
+ | item_category | [number] |  no  |  |
+ | item_sku | [string] |  no  |  |
+ | item_size | [string] |  no  |  |
+ | cart_total | [CompareObject](#CompareObject) |  no  |  |
  | item_id | [number] |  no  |  |
- | item_company | [number] |  no  |  |
+ | item_exclude_company | [number] |  no  |  |
+ | item_brand | [number] |  no  |  |
 
 ---
 
 
  
  
- #### [PromotionSchedule](#PromotionSchedule)
+ #### [DiscountOffer](#DiscountOffer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | start | string |  yes  |  |
- | duration | number |  no  |  |
- | next_schedule | [string] |  no  |  |
- | published | boolean |  yes  |  |
- | end | string |  no  |  |
+ | discount_amount | number |  no  |  |
+ | max_discount_amount | number |  no  |  |
+ | code | string |  no  |  |
+ | max_offer_quantity | number |  no  |  |
+ | discount_percentage | number |  no  |  |
+ | min_offer_quantity | number |  no  |  |
+ | discount_price | number |  no  |  |
 
 ---
 
 
  
  
- #### [PromotionAction](#PromotionAction)
+ #### [DiscountRule](#DiscountRule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action_type | string |  yes  |  |
- | action_date | string |  yes  |  |
+ | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
+ | buy_condition | string |  yes  |  |
+ | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
+ | discount_type | string |  yes  |  |
 
 ---
 
 
  
  
- #### [PromotionAuthor](#PromotionAuthor)
+ #### [DisplayMeta1](#DisplayMeta1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
+ | name | string |  no  |  |
+ | offer_text | string |  no  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -2989,20 +4259,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | start | string |  no  |  |
  | end | string |  no  |  |
-
----
-
-
- 
- 
- #### [PostOrder1](#PostOrder1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cancellation_allowed | boolean |  no  |  |
- | return_allowed | boolean |  no  |  |
+ | start | string |  no  |  |
 
 ---
 
@@ -3025,8 +4283,20 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
  | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PostOrder1](#PostOrder1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean |  no  |  |
 
 ---
 
@@ -3048,8 +4318,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
  | codes | [string] |  no  |  |
+ | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
  | type | string |  yes  |  |
 
 ---
@@ -3061,28 +4331,51 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
  | user_id | [string] |  no  |  |
- | platforms | [string] |  no  |  |
- | post_order | [PostOrder1](#PostOrder1) |  no  |  |
- | anonymous_users | boolean |  no  |  |
+ | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
  | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
- | order_quantity | number |  no  |  |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
  | user_groups | [number] |  no  |  |
+ | anonymous_users | boolean |  no  |  |
+ | platforms | [string] |  no  |  |
+ | order_quantity | number |  no  |  |
+ | post_order | [PostOrder1](#PostOrder1) |  no  |  |
+ | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
 
 ---
 
 
  
  
- #### [DisplayMeta1](#DisplayMeta1)
+ #### [PromotionAction](#PromotionAction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | offer_text | string |  no  |  |
- | name | string |  no  |  |
- | description | string |  no  |  |
+ | action_type | string |  yes  |  |
+ | action_date | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Visibility](#Visibility)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pdp | boolean |  yes  |  |
+ | coupon_list | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionDateMeta](#PromotionDateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -3093,39 +4386,24 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
  | payable_category | string |  yes  |  |
+ | payable_by | string |  yes  |  |
 
 ---
 
 
  
  
- #### [DiscountOffer](#DiscountOffer)
+ #### [PromotionSchedule](#PromotionSchedule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min_offer_quantity | number |  no  |  |
- | discount_price | number |  no  |  |
- | max_offer_quantity | number |  no  |  |
- | code | string |  no  |  |
- | discount_percentage | number |  no  |  |
- | discount_amount | number |  no  |  |
- | max_discount_amount | number |  no  |  |
-
----
-
-
- 
- 
- #### [DiscountRule](#DiscountRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount_type | string |  yes  |  |
- | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
- | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
- | buy_condition | string |  yes  |  |
+ | duration | number |  no  |  |
+ | start | string |  yes  |  |
+ | next_schedule | [string] |  no  |  |
+ | published | boolean |  yes  |  |
+ | end | string |  no  |  |
+ | cron | string |  no  |  |
 
 ---
 
@@ -3136,27 +4414,27 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | mode | string |  yes  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | promo_group | string |  yes  |  |
+ | apply_priority | number |  no  |  |
+ | currency | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | code | string |  no  |  |
+ | application_id | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
  | promotion_type | string |  yes  |  |
+ | apply_exclusive | string |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
  | visiblility | [Visibility](#Visibility) |  no  |  |
  | stackable | boolean |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | apply_exclusive | string |  no  |  |
- | code | string |  no  |  |
- | mode | string |  yes  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
  | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | promo_group | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
  | _custom_json | string |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | currency | string |  no  |  |
- | application_id | string |  yes  |  |
- | apply_priority | number |  no  |  |
 
 ---
 
@@ -3167,8 +4445,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
  | items | [PromotionListItem](#PromotionListItem) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -3179,27 +4457,27 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | mode | string |  yes  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | promo_group | string |  yes  |  |
+ | apply_priority | number |  no  |  |
+ | currency | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | code | string |  no  |  |
+ | application_id | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
  | promotion_type | string |  yes  |  |
+ | apply_exclusive | string |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
  | visiblility | [Visibility](#Visibility) |  no  |  |
  | stackable | boolean |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | apply_exclusive | string |  no  |  |
- | code | string |  no  |  |
- | mode | string |  yes  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
  | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | promo_group | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
  | _custom_json | string |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | currency | string |  no  |  |
- | application_id | string |  yes  |  |
- | apply_priority | number |  no  |  |
 
 ---
 
@@ -3210,27 +4488,27 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | mode | string |  yes  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | promo_group | string |  yes  |  |
+ | apply_priority | number |  no  |  |
+ | currency | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | code | string |  no  |  |
+ | application_id | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
  | promotion_type | string |  yes  |  |
+ | apply_exclusive | string |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
  | visiblility | [Visibility](#Visibility) |  no  |  |
  | stackable | boolean |  no  |  |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | apply_exclusive | string |  no  |  |
- | code | string |  no  |  |
- | mode | string |  yes  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
  | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | promo_group | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
  | _custom_json | string |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | currency | string |  no  |  |
- | application_id | string |  yes  |  |
- | apply_priority | number |  no  |  |
 
 ---
 
@@ -3253,9 +4531,9 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | product_id | string |  yes  |  |
  | size | string |  yes  |  |
  | quantity | number |  no  |  |
- | product_id | string |  yes  |  |
 
 ---
 
@@ -3273,85 +4551,6 @@ Abandoned Cart List for sent page_size and page_no
 
  
  
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  | Product Category Id |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
- | aspect_ratio | string |  no  |  |
- | url | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartProduct](#CartProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | uid | number |  no  |  |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | type | string |  no  |  |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
  #### [CartProductIdentifer](#CartProductIdentifer)
 
  | Properties | Type | Nullable | Description |
@@ -3363,31 +4562,40 @@ Abandoned Cart List for sent page_size and page_no
 
  
  
- #### [ProductAvailability](#ProductAvailability)
+ #### [ProductPrice](#ProductPrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | deliverable | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | is_valid | boolean |  no  |  |
- | other_store_quantity | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | selling | number |  no  |  |
+ | effective | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | marked | number |  no  |  |
+ | add_on | number |  no  |  |
 
 ---
 
 
  
  
- #### [AppliedPromotion](#AppliedPromotion)
+ #### [ProductPriceInfo](#ProductPriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promo_id | string |  no  | Promotion id |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
- | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
- | promotion_type | string |  no  | Promotion type of current promotion |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | offer_text | string |  no  | Offer text of current promotion |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -3399,9 +4607,9 @@ Abandoned Cart List for sent page_size and page_no
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | marked | number |  no  |  |
+ | effective | number |  no  |  |
  | currency_code | string |  no  |  |
  | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
 
 ---
 
@@ -3424,44 +4632,16 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
- | size | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
  | uid | string |  no  |  |
  | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | type | string |  no  |  |
- | quantity | number |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
  | product_group_tags | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | add_on | number |  no  |  |
- | effective | number |  no  |  |
- | currency_code | string |  no  |  |
- | selling | number |  no  |  |
- | marked | number |  no  |  |
- | currency_symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | type | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | quantity | number |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | size | string |  no  |  |
+ | extra_meta | string |  no  |  |
 
 ---
 
@@ -3479,26 +4659,154 @@ Abandoned Cart List for sent page_size and page_no
 
  
  
+ #### [AppliedPromotion](#AppliedPromotion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
+ | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
+ | promotion_type | string |  no  | Promotion type of current promotion |
+ | promo_id | string |  no  | Promotion id |
+ | amount | number |  no  | Per unit discount amount applied with current promotion |
+ | offer_text | string |  no  | Offer text of current promotion |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  | Product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | url | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_slug | [string] |  no  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProduct](#CartProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
+ | uid | number |  no  |  |
+ | name | string |  no  |  |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | type | string |  no  |  |
+ | images | [[ProductImage](#ProductImage)] |  no  |  |
+ | slug | string |  no  | Unique product url name generated via product name and other meta data |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | other_store_quantity | number |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | deliverable | boolean |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CartProductInfo](#CartProductInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | parent_item_identifiers | string |  no  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | key | string |  no  |  |
  | coupon_message | string |  no  |  |
- | message | string |  no  |  |
  | is_set | boolean |  no  |  |
- | bulk_offer | string |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | quantity | number |  no  |  |
- | discount | string |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | key | string |  no  |  |
+ | bulk_offer | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | discount | string |  no  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | quantity | number |  no  |  |
+ | message | string |  no  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | product | [CartProduct](#CartProduct) |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable | number |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | description | string |  no  |  |
+ | total | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | type | string |  no  |  |
+ | code | string |  no  |  |
+ | message | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | value | number |  no  |  |
 
 ---
 
@@ -3510,25 +4818,11 @@ Abandoned Cart List for sent page_size and page_no
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | display | string |  no  |  |
- | value | number |  no  |  |
- | currency_code | string |  no  |  |
- | key | string |  no  |  |
- | message | [string] |  no  |  |
  | currency_symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_applied | boolean |  no  |  |
- | total | number |  no  |  |
- | applicable | number |  no  |  |
- | description | string |  no  |  |
+ | key | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | message | [string] |  no  |  |
+ | value | number |  no  |  |
 
 ---
 
@@ -3539,34 +4833,18 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_charge | number |  no  |  |
+ | cod_charge | number |  no  |  |
  | you_saved | number |  no  |  |
- | gst_charges | number |  no  |  |
- | coupon | number |  no  |  |
- | vog | number |  no  |  |
- | subtotal | number |  no  |  |
  | fynd_cash | number |  no  |  |
+ | coupon | number |  no  |  |
+ | mrp_total | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | subtotal | number |  no  |  |
+ | discount | number |  no  |  |
+ | delivery_charge | number |  no  |  |
  | total | number |  no  |  |
  | convenience_fee | number |  no  |  |
- | discount | number |  no  |  |
- | cod_charge | number |  no  |  |
- | mrp_total | number |  no  |  |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | code | string |  no  |  |
- | uid | string |  no  |  |
- | message | string |  no  |  |
- | type | string |  no  |  |
- | is_applied | boolean |  no  |  |
+ | vog | number |  no  |  |
 
 ---
 
@@ -3577,10 +4855,10 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
  | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
  | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+ | raw | [RawBreakup](#RawBreakup) |  no  |  |
 
 ---
 
@@ -3592,8 +4870,8 @@ Abandoned Cart List for sent page_size and page_no
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | message | string |  no  |  |
  | is_valid | boolean |  no  |  |
 
 ---
@@ -3605,9 +4883,9 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | errors | string |  no  | Contains field name which has error as key and error message as value |
  | success | boolean |  no  |  |
+ | errors | string |  no  | Contains field name which has error as key and error message as value |
+ | message | string |  no  |  |
 
 ---
 
@@ -3618,21 +4896,21 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | number |  no  |  |
- | state | string |  no  |  |
- | address | string |  no  |  |
- | city | string |  no  |  |
- | address_type | string |  no  |  |
- | email | string |  no  |  |
- | country_code | string |  no  |  |
- | area | string |  no  |  |
- | pincode | number |  no  |  |
- | area_code_slug | string |  no  |  |
  | country | string |  no  |  |
  | area_code | string |  yes  |  |
- | meta | string |  no  |  |
  | name | string |  no  |  |
+ | city | string |  no  |  |
+ | address_type | string |  no  |  |
+ | phone | number |  no  |  |
+ | address | string |  no  |  |
+ | pincode | number |  no  |  |
+ | area_code_slug | string |  no  |  |
  | landmark | string |  no  |  |
+ | state | string |  no  |  |
+ | meta | string |  no  |  |
+ | country_code | string |  no  |  |
+ | area | string |  no  |  |
+ | email | string |  no  |  |
 
 ---
 
@@ -3643,8 +4921,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem) |  no  |  |
  | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | cart_items | [CartItem](#CartItem) |  no  |  |
 
 ---
 
@@ -3691,11 +4969,11 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | is_valid | boolean |  no  |  |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
  | message | string |  no  |  |
- | is_valid | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
 
 ---
 
@@ -3706,11 +4984,11 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_id | string |  no  |  |
  | current_status | string |  no  |  |
+ | payment_id | string |  no  |  |
+ | order_id | string |  no  |  |
  | payment_gateway | string |  no  |  |
+ | extra_meta | string |  no  |  |
 
 ---
 
@@ -3722,9 +5000,9 @@ Abandoned Cart List for sent page_size and page_no
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | mode | string |  yes  |  |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
  | name | string |  no  | Payment mode name |
  | amount | number |  yes  | Payment amount |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
 
 ---
 
@@ -3747,8 +5025,8 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | primary_item | boolean |  no  |  |
  | group_id | string |  no  |  |
+ | primary_item | boolean |  no  |  |
 
 ---
 
@@ -3759,23 +5037,23 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
- | delivery_charges | number |  yes  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | size | string |  yes  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
  | amount_paid | number |  yes  |  |
- | cod_charges | number |  yes  |  |
  | price_marked | number |  yes  |  |
+ | cod_charges | number |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | cashback_applied | number |  yes  |  |
  | employee_discount | number |  no  |  |
  | price_effective | number |  yes  |  |
  | loyalty_discount | number |  no  |  |
- | coupon_effective_discount | number |  yes  |  |
- | quantity | number |  no  |  |
  | discount | number |  yes  |  |
- | product_id | number |  yes  |  |
+ | size | string |  yes  |  |
+ | quantity | number |  no  |  |
  | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
- | cashback_applied | number |  yes  |  |
+ | product_id | number |  yes  |  |
+ | coupon_effective_discount | number |  yes  |  |
+ | extra_meta | string |  no  |  |
+ | delivery_charges | number |  yes  |  |
 
 ---
 
@@ -3786,26 +5064,26 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | delivery_charges | number |  yes  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | employee_discount | string |  no  |  |
- | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
- | payment_mode | string |  no  |  |
- | coupon_code | string |  yes  |  |
- | gstin | string |  no  |  |
- | order_id | string |  no  |  |
- | cart_value | number |  yes  |  |
- | coupon | string |  no  |  |
- | cod_charges | number |  yes  |  |
- | currency_code | string |  no  |  |
- | coupon_value | number |  yes  |  |
- | loyalty_discount | number |  no  |  |
- | affiliate_order_id | string |  no  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
- | comment | string |  no  |  |
  | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | cod_charges | number |  yes  |  |
+ | affiliate_order_id | string |  no  |  |
+ | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
+ | coupon | string |  no  |  |
+ | employee_discount | string |  no  |  |
+ | loyalty_discount | number |  no  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | currency_code | string |  no  |  |
+ | comment | string |  no  |  |
+ | delivery_charges | number |  yes  |  |
+ | coupon_value | number |  yes  |  |
+ | coupon_code | string |  yes  |  |
+ | order_id | string |  no  |  |
  | cashback_applied | number |  yes  |  |
+ | cart_value | number |  yes  |  |
+ | gstin | string |  no  |  |
+ | payment_mode | string |  no  |  |
 
 ---
 
@@ -3816,10 +5094,10 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_ref_id | string |  no  | Order id sent in request |
- | message | string |  no  |  |
  | order_id | string |  yes  | Fynd order id |
  | success | boolean |  no  |  |
+ | order_ref_id | string |  no  | Order id sent in request |
+ | message | string |  no  |  |
 
 ---
 
@@ -3830,39 +5108,39 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | last_modified | string |  yes  |  |
- | delivery_charges | string |  no  |  |
- | shipments | [string] |  no  |  |
- | user_id | string |  yes  |  |
- | is_default | boolean |  yes  |  |
- | fynd_credits | string |  no  |  |
- | app_id | string |  no  |  |
- | discount | number |  no  |  |
- | meta | string |  no  |  |
- | fc_index_map | [number] |  no  |  |
- | promotion | string |  no  |  |
- | is_archive | boolean |  no  |  |
- | uid | number |  yes  |  |
- | expire_at | string |  yes  |  |
  | pick_up_customer_details | string |  no  |  |
- | comment | string |  no  |  |
+ | user_id | string |  yes  |  |
+ | expire_at | string |  yes  |  |
  | payment_methods | [string] |  no  |  |
- | is_active | boolean |  no  |  |
- | articles | [string] |  yes  |  |
- | payment_mode | string |  no  |  |
- | payments | string |  no  |  |
- | gstin | string |  no  |  |
- | cashback | string |  yes  |  |
- | _id | string |  yes  |  |
- | created_on | string |  yes  |  |
- | order_id | string |  no  |  |
- | cart_value | number |  no  |  |
+ | is_default | boolean |  yes  |  |
+ | app_id | string |  no  |  |
  | coupon | string |  no  |  |
- | cod_charges | string |  no  |  |
- | merge_qty | boolean |  no  |  |
- | buy_now | boolean |  no  |  |
- | bulk_coupon_discount | number |  no  |  |
+ | articles | [string] |  yes  |  |
+ | promotion | string |  no  |  |
+ | delivery_charges | string |  no  |  |
  | checkout_mode | string |  no  |  |
+ | last_modified | string |  yes  |  |
+ | cart_value | number |  no  |  |
+ | meta | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | fynd_credits | string |  no  |  |
+ | uid | number |  yes  |  |
+ | cod_charges | string |  no  |  |
+ | _id | string |  yes  |  |
+ | bulk_coupon_discount | number |  no  |  |
+ | discount | number |  no  |  |
+ | comment | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | merge_qty | boolean |  no  |  |
+ | fc_index_map | [number] |  no  |  |
+ | is_active | boolean |  no  |  |
+ | shipments | [string] |  no  |  |
+ | order_id | string |  no  |  |
+ | is_archive | boolean |  no  |  |
+ | gstin | string |  no  |  |
+ | buy_now | boolean |  no  |  |
+ | cashback | string |  yes  |  |
+ | payments | string |  no  |  |
 
 ---
 
@@ -3873,10 +5151,151 @@ Abandoned Cart List for sent page_size and page_no
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | message of the response |
- | page | [Page](#Page) |  no  |  |
- | success | boolean |  no  | the request success is defined |
  | result | [[AbandonedCart](#AbandonedCart)] |  no  |  |
+ | success | boolean |  no  | the request success is defined |
+ | page | [Page](#Page) |  no  |  |
+ | message | string |  no  | message of the response |
+
+---
+
+
+ 
+ 
+ #### [AddProductCart](#AddProductCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | article_assignment | string |  no  |  |
+ | store_id | number |  no  |  |
+ | article_id | string |  no  |  |
+ | product_group_tags | [string] |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | seller_id | number |  no  |  |
+ | item_size | string |  no  |  |
+ | quantity | number |  no  |  |
+ | item_id | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | pos | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddCartRequest](#AddCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AddProductCart](#AddProductCart)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCurrency](#CartCurrency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  | Currency code defined by ISO 4217:2015 |
+ | symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentSelectionLock](#PaymentSelectionLock)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | default_options | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | enabled | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartDetailResponse](#CartDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_text | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | last_modified | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | gstin | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | comment | string |  no  |  |
+ | buy_now | boolean |  no  |  |
+ | message | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddCartDetailResponse](#AddCartDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | message | string |  no  |  |
+ | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
+
+---
+
+
+ 
+ 
+ #### [UpdateProductCart](#UpdateProductCart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | item_index | number |  no  |  |
+ | article_id | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | item_size | string |  no  |  |
+ | quantity | number |  no  |  |
+ | item_id | number |  no  |  |
+ | extra_meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCartRequest](#UpdateCartRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
+ | operation | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
