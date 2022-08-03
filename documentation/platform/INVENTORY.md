@@ -6,6 +6,8 @@
 
 ## Inventory Methods
 
+* [getConfigByCompany](#getconfigbycompany)
+* [suppressStores](#suppressstores)
 * [getJobsByCompany](#getjobsbycompany)
 * [updateJob](#updatejob)
 * [createJob](#createjob)
@@ -20,6 +22,112 @@
 
 
 ## Methods with example and description
+
+
+### getConfigByCompany
+Get Slingshot Configuration Of  A Company
+
+
+
+```javascript
+// Promise
+const promise = client.inventory.getConfigByCompany();
+
+// Async/Await
+const data = await client.inventory.getConfigByCompany();
+```
+
+
+
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### suppressStores
+Get Slingshot Configuration Of  A Company
+
+
+
+```javascript
+// Promise
+const promise = client.inventory.suppressStores({  body : value });
+
+// Async/Await
+const data = await client.inventory.suppressStores({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SuppressStorePayload](#SuppressStorePayload) | yes | Request body |
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getJobsByCompany
@@ -607,6 +715,207 @@ Successful operation
 
  
  
+ #### [GCompany](#GCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | token | string |  no  |  |
+ | name | string |  no  |  |
+ | stores | [[GStore](#GStore)] |  no  |  |
+ | gstores | [[GStore](#GStore)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GStore](#GStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | token | string |  no  |  |
+ | code | string |  no  |  |
+ | name | string |  no  |  |
+ | data | [StoreData](#StoreData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Metum](#Metum)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeListSlingshotConfigurationDetail](#ResponseEnvelopeListSlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  |
+ | payload | [[SlingshotConfigurationDetail](#SlingshotConfigurationDetail)] |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
+ | companies | [[GCompany](#GCompany)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotIntegration](#SlingshotIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | [[Metum](#Metum)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [KafkaMetaModel](#KafkaMetaModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_type | string |  no  |  |
+ | batch_id | number |  no  |  |
+ | action | string |  no  |  |
+ | trace | [string] |  no  |  |
+ | created_on | string |  no  |  |
+ | created_timestamp | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuppressStoreModel](#SuppressStoreModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stores | [number] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuppressStorePayload](#SuppressStorePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payload | [[SuppressStoreModel](#SuppressStoreModel)] |  no  |  |
+ | meta | [KafkaMetaModel](#KafkaMetaModel) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [KafkaResponse](#KafkaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offset | number |  no  |  |
+ | partition | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeKafkaResponse](#ResponseEnvelopeKafkaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [KafkaResponse](#KafkaResponse) |  no  |  |
+ | payload | [KafkaResponse](#KafkaResponse) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
@@ -658,23 +967,6 @@ Successful operation
  | ---------- | ---- | -------- | ----------- |
  | type | number |  no  |  |
  | group_list | [[GenericDTO](#GenericDTO)] |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
 
 ---
 
