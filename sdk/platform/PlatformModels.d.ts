@@ -96,8 +96,8 @@ export class CatalogValidator {
     static createProduct(): any;
     static getProducts(): any;
     static getProductAttributes(): any;
-    static deleteProduct(): any;
     static editProduct(): any;
+    static deleteProduct(): any;
     static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
@@ -231,7 +231,6 @@ export class OrdersValidator {
     static getShipmentList(): any;
     static getShipmentToManifest(): any;
     static getOrders(): any;
-    static getMetricCount(): any;
     static getfilters(): any;
 }
 export class OrderManageValidator {

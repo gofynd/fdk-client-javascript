@@ -491,7 +491,7 @@ Sucess Response, Presigned URL of Labels
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | string |  yes  |  |
+ | address | string |  yes  |  |
  | city | string |  yes  |  |
  | state | string |  yes  |  |
  | country | string |  yes  |  |
@@ -507,7 +507,7 @@ Sucess Response, Presigned URL of Labels
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | string |  yes  |  |
- | address1 | string |  yes  |  |
+ | address | string |  yes  |  |
  | city | string |  yes  |  |
  | state | string |  yes  |  |
  | country | string |  yes  |  |

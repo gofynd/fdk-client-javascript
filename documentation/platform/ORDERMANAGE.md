@@ -185,10 +185,10 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | [number] |  no  |  |
- | data_update | string |  no  |  |
  | products | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | data_update | string |  no  |  |
  | store_invoice_id | string |  no  |  |
+ | reason | [number] |  no  |  |
 
 ---
 
@@ -223,9 +223,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | force_transition | boolean |  no  |  |
  | task | boolean |  no  |  |
  | statuses | [Statuses](#Statuses) |  no  |  |
- | force_transition | boolean |  no  |  |
 
 ---
 
@@ -260,14 +260,14 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | ticket_id | string |  no  |  |
- | l2_detail | string |  no  |  |
- | message | string |  yes  |  |
- | ticket_url | string |  no  |  |
  | l1_detail | string |  no  |  |
- | l3_detail | string |  no  |  |
  | createdat | string |  yes  |  |
+ | ticket_url | string |  no  |  |
+ | message | string |  yes  |  |
+ | l3_detail | string |  no  |  |
+ | ticket_id | string |  no  |  |
+ | type | string |  yes  |  |
+ | l2_detail | string |  no  |  |
  | user | string |  yes  |  |
 
 ---
