@@ -8,6 +8,7 @@
 Handles financial pdf generation of Fulfilment
 * [generateBulkPackageLabel](#generatebulkpackagelabel)
 * [generateBulkBoxLabel](#generatebulkboxlabel)
+* [generateBulkShipmentLabel](#generatebulkshipmentlabel)
 * [getLabelStatus](#getlabelstatus)
 * [getLabelPresignedURL](#getlabelpresignedurl)
 
@@ -94,6 +95,61 @@ const data = await client.orderInvoiceEngine.generateBulkBoxLabel({  body : valu
 
 
 Use this API to generate label for Boxes
+
+*Returned Response:*
+
+
+
+
+[SuccessResponseGenerateBulk](#SuccessResponseGenerateBulk)
+
+Sucsess Response, Labels will be generated
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generateBulkShipmentLabel
+Generate Labels for Shipments which contains packaged
+
+
+
+```javascript
+// Promise
+const promise = client.orderInvoiceEngine.generateBulkShipmentLabel({  body : value });
+
+// Async/Await
+const data = await client.orderInvoiceEngine.generateBulkShipmentLabel({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GenerateBulkShipmentLabel](#GenerateBulkShipmentLabel) | yes | Request body |
+
+
+Use this API to generate label for Shipments
 
 *Returned Response:*
 
@@ -431,6 +487,37 @@ Sucess Response, Presigned URL of Labels
 
  
  
+ #### [ShippingAddress](#ShippingAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  yes  |  |
+ | city | string |  yes  |  |
+ | state | string |  yes  |  |
+ | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SellerAddress](#SellerAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | address1 | string |  yes  |  |
+ | city | string |  yes  |  |
+ | state | string |  yes  |  |
+ | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [BoxDetails](#BoxDetails)
 
  | Properties | Type | Nullable | Description |
@@ -440,6 +527,25 @@ Sucess Response, Presigned URL of Labels
  | package_count | string |  yes  |  |
  | dimension | string |  yes  |  |
  | weight | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentDetails](#ShipmentDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_no | string |  yes  |  |
+ | appointment_no | string |  yes  |  |
+ | total_sku | string |  yes  |  |
+ | item_qty | string |  yes  |  |
+ | no_of_boxes | string |  yes  |  |
+ | shipping_to | string |  yes  |  |
+ | gstin_number | string |  yes  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | seller_address | [SellerAddress](#SellerAddress) |  yes  |  |
 
 ---
 
@@ -456,6 +562,20 @@ Sucess Response, Presigned URL of Labels
  | seller_name | string |  yes  |  |
  | template_id | number |  yes  |  |
  | box_details | [[BoxDetails](#BoxDetails)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateBulkShipmentLabel](#GenerateBulkShipmentLabel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | label_type | string |  yes  |  |
+ | uid | string |  yes  |  |
+ | template_id | number |  yes  |  |
+ | shipments | [[ShipmentDetails](#ShipmentDetails)] |  yes  |  |
 
 ---
 
