@@ -1329,6 +1329,7 @@ declare class User {
         loginWithOTP: string;
         loginWithEmailAndPassword: string;
         sendResetPasswordEmail: string;
+        sendResetPasswordMobile: string;
         forgotPassword: string;
         sendResetToken: string;
         loginWithToken: string;
@@ -1449,6 +1450,18 @@ declare class User {
      * @description: Use this API to reset a password using the link sent on email.
      */
     sendResetPasswordEmail({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
+     * @param {SendResetPasswordMobileRequestSchema} arg.body
+     * @returns {Promise<ResetPasswordSuccess>} - Success response
+     * @summary: Reset Password
+     * @description: Use this API to reset a password using the link sent on mobile.
+     */
+    sendResetPasswordMobile({ body, platform }?: {
         platform?: string;
         body: any;
     }): Promise<any>;
