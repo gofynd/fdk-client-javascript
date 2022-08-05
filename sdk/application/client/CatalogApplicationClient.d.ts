@@ -24,8 +24,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        followById: string;
         unfollowById: string;
+        followById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -476,10 +476,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -489,10 +489,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -650,15 +650,17 @@ declare class Catalog {
      *   product, e.g. 1,2,3.
      * @param {string} [arg.pincode] - The PIN Code of the area near which the
      *   selling locations should be searched, e.g. 400059.
+     * @param {string} [arg.depth] - For getting seller or store based on query param
      * @returns {Promise<ProductSizePriceResponseV2>} - Success response
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
      */
-    getProductPriceBySlug({ slug, size, storeId, pincode }?: {
+    getProductPriceBySlug({ slug, size, storeId, pincode, depth }?: {
         slug: string;
         size: string;
         storeId?: number;
         pincode?: string;
+        depth?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
