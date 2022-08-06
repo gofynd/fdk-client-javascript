@@ -36,6 +36,7 @@ class User {
         "/service/application/user/authentication/v1.0/verify/mobile",
       hasPassword: "/service/application/user/authentication/v1.0/has-password",
       updatePassword: "/service/application/user/authentication/v1.0/password",
+      archiveUser: "/service/application/user/authentication/v1.0/archive",
       logout: "/service/application/user/authentication/v1.0/logout",
       sendOTPOnMobile:
         "/service/application/user/authentication/v1.0/otp/mobile/send",
@@ -550,6 +551,35 @@ class User {
       "post",
       constructUrl({
         url: this._urls["updatePassword"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ArchiveApplicationUserRequestSchema} arg.body
+   * @returns {Promise<ArchiveUserSuccess>} - Success response
+   * @summary: verify otp and archive user
+   * @description: verify otp and archive user
+   */
+  archiveUser({ body } = {}) {
+    const { error } = UserValidator.archiveUser().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["archiveUser"],
         params: {},
       }),
       query_params,
