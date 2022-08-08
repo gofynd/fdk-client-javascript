@@ -246,7 +246,7 @@ class Inventory {
    * @param {Object} arg - Arg object.
    * @param {string} arg.apikey - Api key
    * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
-   * @summary: Get Slingshot Configuration Of  A Company
+   * @summary: Get Slingshot Configuration Of  A Company using API key
    * @description: REST Endpoint that returns all configuration detail of a company
    */
   getConfigByApiKey({ apikey } = {}) {
@@ -277,7 +277,7 @@ class Inventory {
    * @param {string} arg.userName - Integration id
    * @param {string} arg.password - Company/store token
    * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
-   * @summary: Get Slingshot Configuration Of  A Company
+   * @summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
    * @description: REST Endpoint that returns apikey by username by password
    */
   getApiKey({ userName, password } = {}) {

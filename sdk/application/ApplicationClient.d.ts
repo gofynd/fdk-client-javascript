@@ -48,16 +48,16 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        followById: string;
         unfollowById: string;
+        followById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
         getInStockLocations: string;
         getLocationDetailsById: string;
+        getProductBundlesBySlug: string;
         getProductPriceBySlug: string;
         getProductSellersBySlug: string;
-        getProductBundlesBySlug: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -500,10 +500,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -513,10 +513,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -652,6 +652,18 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
+     * @param {string} [arg.id] - Product uid
+     * @returns {Promise<ProductBundle>} - Success response
+     * @summary: Get product bundles
+     * @description: Use this API to retrieve products bundles to the one specified by its slug.
+     */
+    getProductBundlesBySlug({ slug, id }?: {
+        slug?: string;
+        id?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
      *   identifier of a product. You can get slug value from the endpoint
      *   /service/application/catalog/v1.0/products/
@@ -722,18 +734,6 @@ declare class Catalog {
         strategy?: string;
         pageSize?: number;
     }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
-     * @param {string} [arg.id] - Product uid
-     * @returns {Promise<ProductBundle>} - Success response
-     * @summary: Get product bundles
-     * @description: Use this API to retrieve products bundles to the one specified by its slug.
-     */
-    getProductBundlesBySlug({ slug, id }?: {
-        slug?: string;
-        id?: string;
-    }): Promise<any>;
 }
 declare class Cart {
     constructor(_conf: any);
@@ -2187,14 +2187,6 @@ declare class FileStorage {
      */
     signUrls({ body }?: {
         body: any;
-    }): Promise<any>;
-    upload({ data, file_name, content_type, namespace, size, tags, }?: {
-        data: any;
-        file_name: any;
-        content_type: any;
-        namespace: any;
-        size: any;
-        tags: any;
     }): Promise<any>;
 }
 declare class Configuration {
