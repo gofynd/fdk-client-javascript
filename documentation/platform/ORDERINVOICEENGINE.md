@@ -9,8 +9,11 @@ Handles financial pdf generation of Fulfilment
 * [generateBulkPackageLabel](#generatebulkpackagelabel)
 * [generateBulkBoxLabel](#generatebulkboxlabel)
 * [generateBulkShipmentLabel](#generatebulkshipmentlabel)
+* [generateNoc](#generatenoc)
 * [getLabelStatus](#getlabelstatus)
+* [getNocStatus](#getnocstatus)
 * [getLabelPresignedURL](#getlabelpresignedurl)
+* [getNocPresignedURL](#getnocpresignedurl)
 
 
 
@@ -182,6 +185,71 @@ Sucsess Response, Labels will be generated
 ---
 
 
+### generateNoc
+Generate NOC for Seller having access to a fullfillment center
+
+
+
+```javascript
+// Promise
+const promise = client.orderInvoiceEngine.generateNoc({  body : value });
+
+// Async/Await
+const data = await client.orderInvoiceEngine.generateNoc({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GenerateNoc](#GenerateNoc) | yes | Request body |
+
+
+Use this API to generate NOC for Seller
+
+*Returned Response:*
+
+
+
+
+[SuccessResponseGenerateBulk](#SuccessResponseGenerateBulk)
+
+Sucsess Response, NOC Pdf will be generated
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success response</i></summary>
+
+```json
+{
+  "value": {
+    "status": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getLabelStatus
 Get Staus of Label generations
 
@@ -238,6 +306,73 @@ Sucess Response, Status Of Label generation
 ---
 
 
+### getNocStatus
+Get Staus of NOC generation
+
+
+
+```javascript
+// Promise
+const promise = client.orderInvoiceEngine.getNocStatus({  uid : value });
+
+// Async/Await
+const data = await client.orderInvoiceEngine.getNocStatus({  uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | UID given at time of generate request |  
+
+
+
+Use this API to fetch status of PDF generation of NOC
+
+*Returned Response:*
+
+
+
+
+[StatusSuccessResponse](#StatusSuccessResponse)
+
+Sucess Response, Status Of NOC Pdf generation
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success response</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "status": "created"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getLabelPresignedURL
 Get Presigned URL to download labels
 
@@ -281,6 +416,74 @@ Sucess Response, Presigned URL of Labels
 ```json
 
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getNocPresignedURL
+Get Presigned URL to download NOC Pdf
+
+
+
+```javascript
+// Promise
+const promise = client.orderInvoiceEngine.getNocPresignedURL({  uid : value });
+
+// Async/Await
+const data = await client.orderInvoiceEngine.getNocPresignedURL({  uid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uid | string | yes | UID given at time of generate request |  
+
+
+
+Use this API to generate Presigned URL for downloading NOC Pdf
+
+*Returned Response:*
+
+
+
+
+[SignedSuccessResponse](#SignedSuccessResponse)
+
+Sucess Response, Presigned URL of NOC Pdf
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success response</i></summary>
+
+```json
+{
+  "value": {
+    "uid": "l27h38uy",
+    "expires_in": 300,
+    "url": "presigned-url"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -445,7 +648,7 @@ Sucess Response, Presigned URL of Labels
  | data_path | string |  no  |  |
  | schema_path | string |  no  |  |
  | parameters | [BadRequestResponseGenerateBulkItemParameters](#BadRequestResponseGenerateBulkItemParameters) |  no  |  |
- | error_message | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -576,6 +779,23 @@ Sucess Response, Presigned URL of Labels
  | uid | string |  yes  |  |
  | template_id | number |  yes  |  |
  | shipments | [[ShipmentDetails](#ShipmentDetails)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateNoc](#GenerateNoc)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  yes  |  |
+ | seller_name | string |  yes  |  |
+ | seller_gstin | string |  yes  |  |
+ | fc_gstin | string |  yes  |  |
+ | template_id | number |  yes  |  |
+ | fc_address | [SellerAddress](#SellerAddress) |  yes  |  |
+ | seller_address | [SellerAddress](#SellerAddress) |  yes  |  |
 
 ---
 

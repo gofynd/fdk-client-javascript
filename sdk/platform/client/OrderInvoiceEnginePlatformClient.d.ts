@@ -31,6 +31,15 @@ declare class OrderInvoiceEngine {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {GenerateNoc} arg.body
+     * @summary: Generate NOC for Seller having access to a fullfillment center
+     * @description: Use this API to generate NOC for Seller
+     */
+    generateNoc({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.uid - UID given at time of generate request
      * @summary: Get Staus of Label generations
      * @description: Use this API to fetch status of PDF generation of Labels
@@ -41,10 +50,28 @@ declare class OrderInvoiceEngine {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - UID given at time of generate request
+     * @summary: Get Staus of NOC generation
+     * @description: Use this API to fetch status of PDF generation of NOC
+     */
+    getNocStatus({ uid }?: {
+        uid: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - UID given at time of generate request
      * @summary: Get Presigned URL to download labels
      * @description: Use this API to generate Presigned URLs for downloading labels
      */
     getLabelPresignedURL({ uid }?: {
+        uid: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - UID given at time of generate request
+     * @summary: Get Presigned URL to download NOC Pdf
+     * @description: Use this API to generate Presigned URL for downloading NOC Pdf
+     */
+    getNocPresignedURL({ uid }?: {
         uid: string;
     }): Promise<any>;
 }

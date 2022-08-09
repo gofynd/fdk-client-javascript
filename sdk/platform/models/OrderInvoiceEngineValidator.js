@@ -19,13 +19,31 @@ class OrderInvoiceEngineValidator {
     }).required();
   }
 
+  static generateNoc() {
+    return Joi.object({
+      body: Validator.GenerateNoc().required(),
+    }).required();
+  }
+
   static getLabelStatus() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
     }).required();
   }
 
+  static getNocStatus() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getLabelPresignedURL() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getNocPresignedURL() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
     }).required();

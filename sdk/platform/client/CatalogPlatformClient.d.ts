@@ -26,16 +26,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
-     *   detail. Pass the `id` of the keywords which you want to retrieve.
-     * @summary: Get a particular Product Bundle details
-     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-     */
-    getProductBundleDetail({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
      * @param {ProductBundleUpdateRequest} arg.body
      * @summary: Update a Product Bundle
@@ -44,6 +34,16 @@ declare class Catalog {
     updateProductBundle({ id, body }?: {
         id: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @summary: Get a particular Product Bundle details
+     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+     */
+    getProductBundleDetail({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -75,15 +75,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id of the size guide to be viewed.
-     * @summary: Get a single size guide.
-     * @description: This API helps to get data associated to a size guide.
-     */
-    getSizeGuide({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Mongo id of the size guide to be edited
      * @param {ValidateSizeGuide} arg.body
      * @summary: Edit a size guide.
@@ -92,6 +83,15 @@ declare class Catalog {
     updateSizeGuide({ id, body }?: {
         id: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Id of the size guide to be viewed.
+     * @summary: Get a single size guide.
+     * @description: This API helps to get data associated to a size guide.
+     */
+    getSizeGuide({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -321,15 +321,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - Category unique id
-     * @summary: Get product category by uid
-     * @description: This API gets meta associated to product categories.
-     */
-    getCategoryData({ uid }?: {
-        uid: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - Category unique id
      * @param {CategoryRequestBody} arg.body
      * @summary: Update product categories
      * @description: Update a product category using this apu
@@ -337,6 +328,15 @@ declare class Catalog {
     updateCategory({ uid, body }?: {
         uid: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - Category unique id
+     * @summary: Get product category by uid
+     * @description: This API gets meta associated to product categories.
+     */
+    getCategoryData({ uid }?: {
+        uid: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -391,11 +391,13 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
+     * @param {ProductCreateUpdate} arg.body
+     * @summary: Edit a product.
+     * @description: This API allows to edit product.
      */
-    deleteProduct({ itemId }?: {
+    editProduct({ itemId, body }?: {
         itemId: number;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -413,13 +415,11 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
-     * @param {ProductCreateUpdate} arg.body
-     * @summary: Edit a product.
-     * @description: This API allows to edit product.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
      */
-    editProduct({ itemId, body }?: {
+    deleteProduct({ itemId }?: {
         itemId: number;
-        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -724,15 +724,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Unique id
-     * @summary: Fetch Hsn Code.
-     * @description: Fetch Hsn Code.
-     */
-    getHsnCode({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Unique id
      * @param {HsnUpsert} arg.body
      * @summary: Update Hsn Code.
      * @description: Update Hsn Code.
@@ -740,6 +731,15 @@ declare class Catalog {
     updateHsnCode({ id, body }?: {
         id: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Unique id
+     * @summary: Fetch Hsn Code.
+     * @description: Fetch Hsn Code.
+     */
+    getHsnCode({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

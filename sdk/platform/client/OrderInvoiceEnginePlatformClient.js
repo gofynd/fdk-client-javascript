@@ -99,6 +99,34 @@ class OrderInvoiceEngine {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {GenerateNoc} arg.body
+   * @summary: Generate NOC for Seller having access to a fullfillment center
+   * @description: Use this API to generate NOC for Seller
+   */
+  generateNoc({ body } = {}) {
+    const { error } = OrderInvoiceEngineValidator.generateNoc().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/invoice/v1.0/company/${this.config.companyId}/generate-noc`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.uid - UID given at time of generate request
    * @summary: Get Staus of Label generations
    * @description: Use this API to fetch status of PDF generation of Labels
@@ -121,6 +149,35 @@ class OrderInvoiceEngine {
       this.config,
       "get",
       `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-label-list`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uid - UID given at time of generate request
+   * @summary: Get Staus of NOC generation
+   * @description: Use this API to fetch status of PDF generation of NOC
+   */
+  getNocStatus({ uid } = {}) {
+    const { error } = OrderInvoiceEngineValidator.getNocStatus().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["uid"] = uid;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-noc-status`,
       query_params,
       undefined
     );
@@ -152,6 +209,35 @@ class OrderInvoiceEngine {
       this.config,
       "get",
       `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-label-presigned-url`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uid - UID given at time of generate request
+   * @summary: Get Presigned URL to download NOC Pdf
+   * @description: Use this API to generate Presigned URL for downloading NOC Pdf
+   */
+  getNocPresignedURL({ uid } = {}) {
+    const { error } = OrderInvoiceEngineValidator.getNocPresignedURL().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["uid"] = uid;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-noc-presigned-url`,
       query_params,
       undefined
     );
