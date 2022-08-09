@@ -14,6 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getOrderDetails](#getorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -514,6 +515,68 @@ const promise = client.order.getOrderDetails({  orderId : value,
 
 // Async/Await
 const data = await client.order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderId | string | no | Order Id |    
+| next | string | no | Next |    
+| previous | string | no | Previous |  
+
+
+
+Get Orders
+
+*Returned Response:*
+
+
+
+
+[OrderDetails](#OrderDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```

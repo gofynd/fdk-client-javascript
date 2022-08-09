@@ -13,17 +13,6 @@ export class LeadValidator {
     static openVideoRoom(): any;
     static closeVideoRoom(): any;
 }
-export class FeedbackValidator {
-    static getAttributes(): any;
-    static getCustomerReviews(): any;
-    static updateApprove(): any;
-    static getHistory(): any;
-    static getApplicationTemplates(): any;
-    static createTemplate(): any;
-    static getTemplateById(): any;
-    static updateTemplate(): any;
-    static updateTemplateStatus(): any;
-}
 export class ThemeValidator {
     static getAllPages(): any;
     static createPage(): any;
@@ -182,6 +171,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
+    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -192,41 +182,41 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static createCustomKeyword(): any;
+    static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
+    static createCustomKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
-    static createCustomAutocompleteRule(): any;
+    static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
+    static createGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
     static updateGroupConfiguration(): any;
-    static createListingConfiguration(): any;
     static getListingConfigurations(): any;
+    static createListingConfiguration(): any;
     static deleteListingConfiguration(): any;
     static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
     static deleteCollection(): any;
     static updateCollection(): any;
-    static addCollectionItems(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
@@ -236,6 +226,11 @@ export class CatalogValidator {
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
     static getAppLocations(): any;
+    static getApplicationBrandListing(): any;
+    static updateAppBrand(): any;
+    static getApplicationCategoryListing(): any;
+    static updateAppCategory(): any;
+    static updateAppLocation(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;
