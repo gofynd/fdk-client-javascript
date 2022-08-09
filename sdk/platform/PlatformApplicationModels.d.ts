@@ -181,17 +181,28 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
+    static getConfigurationMetadata(): any;
+    static createGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
+    static updateGroupConfiguration(): any;
+    static deleteGroupConfiguration(): any;
+    static createListingConfiguration(): any;
+    static getListingConfigurations(): any;
+    static updateListingConfiguration(): any;
+    static deleteListingConfiguration(): any;
+    static updateAllowSingle(): any;
+    static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
     static createConfigurationProductListing(): any;
     static getConfigurations(): any;
@@ -201,8 +212,8 @@ export class CatalogValidator {
     static createCollection(): any;
     static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static addCollectionItems(): any;
     static getCollectionItems(): any;
     static getCatalogInsights(): any;
@@ -214,6 +225,11 @@ export class CatalogValidator {
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
     static getAppLocations(): any;
+    static getApplicationBrandListing(): any;
+    static updateAppBrand(): any;
+    static getApplicationCategoryListing(): any;
+    static updateAppCategory(): any;
+    static updateAppLocation(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;

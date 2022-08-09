@@ -62,12 +62,12 @@ export class OrderValidator {
 export class CatalogValidator {
     static createProductBundle(): any;
     static getProductBundle(): any;
-    static getProductBundleDetail(): any;
     static updateProductBundle(): any;
+    static getProductBundleDetail(): any;
     static createSizeGuide(): any;
     static getSizeGuides(): any;
-    static getSizeGuide(): any;
     static updateSizeGuide(): any;
+    static getSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -89,16 +89,17 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static createCategories(): any;
     static listCategories(): any;
-    static getCategoryData(): any;
     static updateCategory(): any;
+    static getCategoryData(): any;
     static createProduct(): any;
     static getProducts(): any;
-    static getProduct(): any;
-    static deleteProduct(): any;
+    static getProductAttributes(): any;
     static editProduct(): any;
+    static deleteProduct(): any;
+    static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
-    static updateProductAssetsInBulk(): any;
+    static createBulkProductUploadJob(): any;
     static getProductBulkUploadHistory(): any;
     static createProductsInBulk(): any;
     static deleteProductBulkJob(): any;
@@ -117,11 +118,16 @@ export class CatalogValidator {
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
+    static updateRealtimeInventory(): any;
+    static deleteRealtimeInventory(): any;
+    static updateInventories(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
-    static getHsnCode(): any;
     static updateHsnCode(): any;
+    static getHsnCode(): any;
     static bulkHsnCode(): any;
+    static getAllProductHsnCodes(): any;
+    static getSingleProductHSNCode(): any;
 }
 export class CompanyProfileValidator {
     static cbsOnboardGet(): any;
