@@ -46,7 +46,7 @@ const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| q | Object | no | The search query. Mobile number or email ID of a customer. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -159,7 +159,7 @@ const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | Object | no | The search query. Mobile number or email ID of a customer. |  
+| q | string | no | The search query. Mobile number or email ID of a customer. |  
 
 
 
@@ -1212,6 +1212,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string |  no  |  |
+ | captcha_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
  | captcha_code | string |  no  |  |
 
 ---
