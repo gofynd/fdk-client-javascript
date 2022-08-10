@@ -2,6 +2,8 @@ const querystring = require("query-string");
 const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
+const { Logger } = require("../common/Logger");
+
 const refreshTokenRequestCache = {};
 class OAuthClient {
   constructor(config) {
@@ -47,9 +49,11 @@ class OAuthClient {
     if (this.refreshToken && this.useAutoRenewTimer) {
       this.retryOAuthToken(token.expires_in);
     }
+    Logger({ type: "INFO", message: "Token set." });
   }
 
   retryOAuthToken(expires_in) {
+    Logger({ type: "INFO", message: "Retrying OAuth Token..." });
     if (this.retryOAuthTokenTimer) {
       clearTimeout(this.retryOAuthTokenTimer);
     }
@@ -61,6 +65,7 @@ class OAuthClient {
   }
 
   startAuthorization(options) {
+    Logger({ type: "INFO", message: "Starting Authorization..." });
     let query = {
       client_id: this.config.apiKey,
       scope: options.scope.join(","),
@@ -81,6 +86,7 @@ class OAuthClient {
       signQuery: true,
     };
     signingOptions = sign(signingOptions);
+    Logger({ type: "INFO", message: "Authorization successful.!" });
 
     return `${this.config.domain}${signingOptions.path}`;
   }
@@ -110,6 +116,7 @@ class OAuthClient {
 
   async renewAccessToken(isOfflineToken = false) {
     try {
+      Logger({ type: "INFO", message: "Renewing Access token..." });
       let res;
       if (isOfflineToken) {
         let requestCacheKey = `${this.config.apiKey}:${this.config.companyId}`;
@@ -131,6 +138,7 @@ class OAuthClient {
       this.setToken(res);
       this.token_expires_at =
         new Date().getTime() + this.token_expires_in * 1000;
+      Logger({ type: "INFO", message: "Done." });
       return res;
     } catch (error) {
       if (error.isAxiosError) {
@@ -141,6 +149,7 @@ class OAuthClient {
   }
 
   async getAccesstokenObj({ grant_type, refresh_token, code }) {
+    Logger({ type: "INFO", message: "Processing Access token object..." });
     let reqData = {
       grant_type: grant_type,
     };
@@ -164,6 +173,7 @@ class OAuthClient {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     };
+    Logger({ type: "INFO", message: "Done." });
     return fdkAxios.request(rawRequest);
   }
 

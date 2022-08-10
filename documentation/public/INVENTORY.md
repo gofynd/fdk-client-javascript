@@ -6,6 +6,8 @@
 
 ## Inventory Methods
 
+* [getConfigByApiKey](#getconfigbyapikey)
+* [getApiKey](#getapikey)
 * [getJobByCode](#getjobbycode)
 * [getJobConfigByIntegrationType](#getjobconfigbyintegrationtype)
 * [getJobCodesMetrics](#getjobcodesmetrics)
@@ -14,6 +16,121 @@
 
 
 ## Methods with example and description
+
+
+### getConfigByApiKey
+Get Slingshot Configuration Of  A Company using API key
+
+
+
+```javascript
+// Promise
+const promise = inventory.getConfigByApiKey({  apikey : value });
+
+// Async/Await
+const data = await inventory.getConfigByApiKey({  apikey : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| apikey | string | yes | Api key |  
+
+
+
+REST Endpoint that returns all configuration detail of a company
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeSlingshotConfigurationDetail](#ResponseEnvelopeSlingshotConfigurationDetail)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getApiKey
+Get apikey  for  Company  to call other Slingshot Configuration APIs 
+
+
+
+```javascript
+// Promise
+const promise = inventory.getApiKey({  userName : value,
+ password : value });
+
+// Async/Await
+const data = await inventory.getApiKey({  userName : value,
+ password : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userName | string | yes | Integration id |   
+| password | string | yes | company/store token |  
+
+
+
+REST Endpoint that returns apikey by username by password
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getJobByCode
@@ -250,6 +367,168 @@ JobCode Metrics entry Created Successfully
 
  
  
+ #### [GCompany](#GCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | token | string |  no  |  |
+ | name | string |  no  |  |
+ | stores | [[GStore](#GStore)] |  no  |  |
+ | gstores | [[GStore](#GStore)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GStore](#GStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | level | string |  no  |  |
+ | uid | number |  no  |  |
+ | opted | boolean |  no  |  |
+ | permissions | [string] |  no  |  |
+ | token | string |  no  |  |
+ | code | string |  no  |  |
+ | name | string |  no  |  |
+ | data | [StoreData](#StoreData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Metum](#Metum)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeSlingshotConfigurationDetail](#ResponseEnvelopeSlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail) |  no  |  |
+ | payload | [SlingshotConfigurationDetail](#SlingshotConfigurationDetail) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotConfigurationDetail](#SlingshotConfigurationDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | integration | [SlingshotIntegration](#SlingshotIntegration) |  no  |  |
+ | companies | [[GCompany](#GCompany)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SlingshotIntegration](#SlingshotIntegration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | meta | [[Metum](#Metum)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreData](#StoreData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | location_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApikeyModel](#ApikeyModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | session_id | string |  no  |  |
+ | error_message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeApikeyModel](#ResponseEnvelopeApikeyModel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [ApikeyModel](#ApikeyModel) |  no  |  |
+ | payload | [ApikeyModel](#ApikeyModel) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [DataTresholdDTO](#DataTresholdDTO)
 
  | Properties | Type | Nullable | Description |
@@ -289,23 +568,6 @@ JobCode Metrics entry Created Successfully
  | threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
  | job_code | string |  no  |  |
  | alias | string |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
 
 ---
 

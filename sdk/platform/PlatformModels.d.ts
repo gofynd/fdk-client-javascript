@@ -93,6 +93,7 @@ export class CatalogValidator {
     static updateCategory(): any;
     static createProduct(): any;
     static getProducts(): any;
+    static getProductAttributes(): any;
     static getProduct(): any;
     static editProduct(): any;
     static deleteProduct(): any;
@@ -117,11 +118,16 @@ export class CatalogValidator {
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static exportInventoryConfig(): any;
+    static updateRealtimeInventory(): any;
+    static deleteRealtimeInventory(): any;
+    static updateInventories(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
     static getHsnCode(): any;
     static updateHsnCode(): any;
     static bulkHsnCode(): any;
+    static getAllProductHsnCodes(): any;
+    static getSingleProductHSNCode(): any;
 }
 export class CompanyProfileValidator {
     static cbsOnboardGet(): any;
@@ -147,6 +153,8 @@ export class FileStorageValidator {
     static proxy(): any;
 }
 export class InventoryValidator {
+    static getConfigByCompany(): any;
+    static suppressStores(): any;
     static getJobsByCompany(): any;
     static updateJob(): any;
     static createJob(): any;

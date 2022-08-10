@@ -29,6 +29,7 @@ Responsible for themes
 * [unpublishTheme](#unpublishtheme)
 * [archiveTheme](#archivetheme)
 * [unarchiveTheme](#unarchivetheme)
+* [getThemeLastModified](#getthemelastmodified)
 
 
 
@@ -35073,6 +35074,43 @@ Success. Refer `ThemesSchema` for more details.
 ---
 
 
+### getThemeLastModified
+Fetch last modified timestamp
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").theme.getThemeLastModified({  themeId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").theme.getThemeLastModified({  themeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| themeId | string | yes | ID allotted to the theme. |  
+
+
+
+Use this API to fetch Last-Modified timestamp in header metadata.
+
+*Returned Response:*
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -35429,6 +35467,7 @@ Success. Refer `ThemesSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | string |  no  |  |
+ | links | [string] |  no  |  |
 
 ---
 
@@ -35451,6 +35490,7 @@ Success. Refer `ThemesSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | string |  no  |  |
+ | links | [string] |  no  |  |
 
 ---
 

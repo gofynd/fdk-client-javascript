@@ -48,6 +48,7 @@ export class ThemeValidator {
     static unpublishTheme(): any;
     static archiveTheme(): any;
     static unarchiveTheme(): any;
+    static getThemeLastModified(): any;
 }
 export class UserValidator {
     static getCustomers(): any;
@@ -202,6 +203,17 @@ export class CatalogValidator {
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
+    static getConfigurationMetadata(): any;
+    static createGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
+    static updateGroupConfiguration(): any;
+    static deleteGroupConfiguration(): any;
+    static createListingConfiguration(): any;
+    static getListingConfigurations(): any;
+    static updateListingConfiguration(): any;
+    static deleteListingConfiguration(): any;
+    static updateAllowSingle(): any;
+    static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
     static createConfigurationProductListing(): any;
     static getConfigurations(): any;
