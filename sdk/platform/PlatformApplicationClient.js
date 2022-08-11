@@ -1,5 +1,6 @@
 const {
   LeadValidator,
+  FeedbackValidator,
   ThemeValidator,
   UserValidator,
   ContentValidator,
@@ -14,7 +15,6 @@ const {
   RewardsValidator,
   AnalyticsValidator,
   PartnerValidator,
-  ServiceabilityValidator,
 } = require("./PlatformApplicationModels");
 const PlatformAPIClient = require("./PlatformAPIClient");
 const Paginator = require("../common/Paginator");
@@ -27,6 +27,7 @@ class PlatformApplicationClient {
     this.applicationId = applicationId;
 
     this.lead = new Lead(config, applicationId);
+    this.feedback = new Feedback(config, applicationId);
     this.theme = new Theme(config, applicationId);
     this.user = new User(config, applicationId);
     this.content = new Content(config, applicationId);
@@ -41,7 +42,6 @@ class PlatformApplicationClient {
     this.rewards = new Rewards(config, applicationId);
     this.analytics = new Analytics(config, applicationId);
     this.partner = new Partner(config, applicationId);
-    this.serviceability = new Serviceability(config, applicationId);
   }
 
   setExtraHeaders(header) {
@@ -508,6 +508,365 @@ class PlatformApplicationClient {
  * @property {string} _id
  * @property {string} [updated_at]
  * @property {string} [created_at]
+ */
+
+/**
+ * @typedef Activity
+ * @property {Object} [current_state]
+ * @property {string} [document_id]
+ * @property {Object} [previous_state]
+ */
+
+/**
+ * @typedef ActivityDump
+ * @property {Activity} [activity]
+ * @property {CreatedBy} [created_by]
+ * @property {DateMeta} [date_meta]
+ * @property {string} [id]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef AddMediaListRequest
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {AddMediaRequest[]} [media_list]
+ * @property {string} [ref_id]
+ * @property {string} [ref_type]
+ */
+
+/**
+ * @typedef AddMediaRequest
+ * @property {string} [cloud_id]
+ * @property {string} [cloud_name]
+ * @property {string} [cloud_provider]
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {string} [media_url]
+ * @property {string} [ref_id]
+ * @property {string} [ref_type]
+ * @property {string[]} [tags]
+ * @property {string} [thumbnail_url]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ApproveRequest
+ * @property {boolean} [approve]
+ * @property {string} [entity_type]
+ * @property {string} id
+ * @property {string} [reason]
+ */
+
+/**
+ * @typedef Attribute
+ * @property {DateMeta} [date_meta]
+ * @property {string} [description]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {TagMeta[]} [tags]
+ */
+
+/**
+ * @typedef AttributeObject
+ * @property {string} [description]
+ * @property {string} name
+ * @property {string} [slug]
+ * @property {string} [title]
+ * @property {string} type
+ * @property {number} value
+ */
+
+/**
+ * @typedef CreatedBy
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {TagMeta[]} [tags]
+ */
+
+/**
+ * @typedef CursorGetResponse
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef DateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef DeviceMeta
+ * @property {string} [app_version]
+ * @property {string} [platform]
+ */
+
+/**
+ * @typedef Entity
+ * @property {string} [id]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef EntityRequest
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ */
+
+/**
+ * @typedef FeedbackAttributes
+ * @property {Attribute[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef FeedbackError
+ * @property {Object} [code]
+ * @property {string} [exception]
+ * @property {string} [info]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [request_id]
+ * @property {string} [stack_trace]
+ * @property {number} [status]
+ */
+
+/**
+ * @typedef FeedbackState
+ * @property {boolean} [active]
+ * @property {boolean} [archive]
+ * @property {string} [media]
+ * @property {boolean} [qna]
+ * @property {boolean} [rating]
+ * @property {boolean} [review]
+ */
+
+/**
+ * @typedef GetResponse
+ * @property {Object} [data]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef GetReviewResponse
+ * @property {ReviewFacet[]} [facets]
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ * @property {SortMethod[]} [sort]
+ */
+
+/**
+ * @typedef InsertResponse
+ * @property {number} [count]
+ */
+
+/**
+ * @typedef MediaMeta
+ * @property {number} [max_count]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef MediaMetaRequest
+ * @property {number} max_count
+ * @property {number} size
+ */
+
+/**
+ * @typedef NumberGetResponse
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef PageCursor
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} size
+ * @property {string} type
+ */
+
+/**
+ * @typedef PageNumber
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef Rating
+ * @property {Attribute[]} [attributes]
+ * @property {string[]} [attributes_slugs]
+ * @property {UI} [ui]
+ */
+
+/**
+ * @typedef RatingRequest
+ * @property {string[]} attributes
+ * @property {UI} [ui]
+ */
+
+/**
+ * @typedef ReportAbuseRequest
+ * @property {string} [description]
+ * @property {string} entity_id
+ * @property {string} entity_type
+ */
+
+/**
+ * @typedef Review
+ * @property {string} [description]
+ * @property {string} [header]
+ * @property {MediaMeta} [image_meta]
+ * @property {string} [title]
+ * @property {MediaMeta} [video_meta]
+ * @property {boolean} [vote_allowed]
+ */
+
+/**
+ * @typedef ReviewFacet
+ * @property {string} [display]
+ * @property {string} [name]
+ * @property {boolean} [selected]
+ * @property {string} [slug]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ReviewRequest
+ * @property {string} description
+ * @property {string} header
+ * @property {MediaMetaRequest} image_meta
+ * @property {boolean} is_vote_allowed
+ * @property {string} title
+ * @property {MediaMetaRequest} video_meta
+ */
+
+/**
+ * @typedef SaveAttributeRequest
+ * @property {string} [description]
+ * @property {string} name
+ * @property {string} slug
+ */
+
+/**
+ * @typedef SortMethod
+ * @property {string} [name]
+ * @property {boolean} [selected]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef TagMeta
+ * @property {MediaMeta[]} [media]
+ * @property {string} [name]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef Template
+ * @property {DateMeta} [date_meta]
+ * @property {Entity} [entity]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {Rating} [rating]
+ * @property {Review} [review]
+ * @property {FeedbackState} [state]
+ * @property {TagMeta[]} [tags]
+ */
+
+/**
+ * @typedef TemplateGetResponse
+ * @property {Template[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef TemplateRequest
+ * @property {boolean} active
+ * @property {string} [enable_media_type]
+ * @property {boolean} [enable_qna]
+ * @property {boolean} enable_rating
+ * @property {boolean} enable_review
+ * @property {EntityRequest} entity
+ * @property {RatingRequest} rating
+ * @property {ReviewRequest} review
+ */
+
+/**
+ * @typedef TemplateRequestList
+ * @property {TemplateRequest[]} template_list
+ */
+
+/**
+ * @typedef UI
+ * @property {string[]} [feedback_question]
+ * @property {UIIcon} [icon]
+ * @property {string[]} [text]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef UIIcon
+ * @property {string} [active]
+ * @property {string} [inactive]
+ * @property {string[]} [selected]
+ */
+
+/**
+ * @typedef UpdateAttributeRequest
+ * @property {string} [description]
+ * @property {string} name
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef UpdateResponse
+ * @property {number} [count]
+ */
+
+/**
+ * @typedef UpdateReviewRequest
+ * @property {boolean} [active]
+ * @property {string} [application]
+ * @property {boolean} [approve]
+ * @property {boolean} [archive]
+ * @property {AttributeObject[]} [attributes_rating]
+ * @property {string} [description]
+ * @property {DeviceMeta} [device_meta]
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {MediaMeta[]} [media_resource]
+ * @property {number} [rating]
+ * @property {string} [review_id]
+ * @property {string} [template_id]
+ * @property {string} [title]
+ */
+
+/**
+ * @typedef UpdateTemplateRequest
+ * @property {boolean} active
+ * @property {string} [enable_media_type]
+ * @property {boolean} [enable_qna]
+ * @property {boolean} enable_rating
+ * @property {boolean} enable_review
+ * @property {EntityRequest} entity
+ * @property {RatingRequest} rating
+ * @property {ReviewRequest} review
+ */
+
+/**
+ * @typedef UpdateTemplateStatusRequest
+ * @property {boolean} [active]
+ * @property {boolean} [archive]
  */
 
 /**
@@ -1636,12 +1995,6 @@ class PlatformApplicationClient {
 /**
  * @typedef SEOImage
  * @property {string} [url]
- */
-
-/**
- * @typedef DateMeta
- * @property {string} [created_on]
- * @property {string} [modified_on]
  */
 
 /**
@@ -11706,239 +12059,6 @@ class PlatformApplicationClient {
  * @property {Object} [extra_meta]
  */
 
-/**
- * @typedef ApplicationServiceabilityConfig
- * @property {string} serviceability_type
- */
-
-/**
- * @typedef ApplicationServiceabilityResponse
- * @property {string} channel_type
- * @property {string} channel_id
- * @property {string} serviceability_type
- */
-
-/**
- * @typedef ServiceabilityErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-
-/**
- * @typedef ApplicationServiceabilityConfigResponse
- * @property {ApplicationServiceabilityResponse} [data]
- * @property {boolean} success
- * @property {ServiceabilityErrorResponse} [error]
- */
-
-/**
- * @typedef EntityRegionViewRequest
- * @property {string[]} sub_type
- * @property {string[]} [parent_id]
- */
-
-/**
- * @typedef EntityRegionViewItems
- * @property {string} uid
- * @property {string} name
- * @property {string} sub_type
- */
-
-/**
- * @typedef EntityRegionViewError
- * @property {string} [message]
- * @property {string} [type]
- * @property {string} [value]
- */
-
-/**
- * @typedef EntityRegionViewPage
- * @property {string} type
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} current
- * @property {number} size
- */
-
-/**
- * @typedef EntityRegionViewResponse
- * @property {EntityRegionViewItems[]} data
- * @property {boolean} success
- * @property {EntityRegionViewError} error
- * @property {EntityRegionViewPage} page
- */
-
-/**
- * @typedef ListViewProduct
- * @property {string} type
- * @property {number} count
- */
-
-/**
- * @typedef ListViewChannels
- * @property {string} channel_type
- * @property {string} channel_id
- */
-
-/**
- * @typedef ListViewItems
- * @property {string} name
- * @property {string} zone_id
- * @property {number} stores_count
- * @property {number} pincodes_count
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {ListViewProduct} product
- * @property {ListViewChannels} channels
- * @property {string} slug
- */
-
-/**
- * @typedef ZoneDataItem
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {string} type
- * @property {number} current
- * @property {number} size
- */
-
-/**
- * @typedef ListViewSummary
- * @property {number} total_zones
- * @property {number} total_pincodes_served
- * @property {number} total_active_zones
- */
-
-/**
- * @typedef ListViewResponse
- * @property {ListViewItems[]} items
- * @property {ZoneDataItem[]} page
- * @property {ListViewSummary[]} summary
- */
-
-/**
- * @typedef CompanyStoreView_PageItems
- * @property {string} type
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} current
- * @property {number} size
- */
-
-/**
- * @typedef CompanyStoreView_Response
- * @property {Object[]} [items]
- * @property {CompanyStoreView_PageItems[]} page
- */
-
-/**
- * @typedef GetZoneDataViewChannels
- * @property {string} channel_type
- * @property {string} channel_id
- */
-
-/**
- * @typedef ZoneProductTypes
- * @property {string} type
- * @property {string[]} tags
- */
-
-/**
- * @typedef ZoneMappingType
- * @property {string[]} [pincode]
- * @property {string[]} [state]
- * @property {string} country
- */
-
-/**
- * @typedef GetZoneDataViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
- * @property {number} pincodes_count
- */
-
-/**
- * @typedef GetSingleZoneDataViewResponse
- * @property {GetZoneDataViewItems} data
- */
-
-/**
- * @typedef UpdateZoneData
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- */
-
-/**
- * @typedef ZoneUpdateRequest
- * @property {UpdateZoneData} data
- * @property {string} identifier
- */
-
-/**
- * @typedef ZoneSuccessResponse
- * @property {boolean} success
- * @property {number} status_code
- */
-
-/**
- * @typedef CreateZoneData
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- */
-
-/**
- * @typedef ZoneRequest
- * @property {CreateZoneData} data
- * @property {string} identifier
- */
-
-/**
- * @typedef ZoneResponse
- * @property {string} zone_id
- * @property {boolean} success
- * @property {number} status_code
- */
-
-/**
- * @typedef GetZoneFromPincodeViewRequest
- * @property {string} pincode
- * @property {string} country
- */
-
-/**
- * @typedef GetZoneFromPincodeViewResponse
- * @property {string[]} zones
- * @property {string} serviceability_type
- */
-
 class Lead {
   constructor(config, applicationId) {
     this.config = config;
@@ -12327,6 +12447,482 @@ class Lead {
       `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}`,
       query_params,
       undefined
+    );
+  }
+}
+
+class Feedback {
+  constructor(config, applicationId) {
+    this.config = config;
+    this.applicationId = applicationId;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Pagination page no
+   * @param {number} [arg.pageSize] - Pagination page size
+   * @summary: Get list of attribute data
+   * @description: Provides a list of all attribute data.
+   */
+  getAttributes({ pageNo, pageSize } = {}) {
+    const { error } = FeedbackValidator.getAttributes().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/attributes/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Pagination page size
+   * @summary: Get list of attribute data
+   * @description: Provides a list of all attribute data.
+   */
+  getAttributesPaginator({ companyId, applicationId, pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAttributes({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] - Review id
+   * @param {string} [arg.entityId] - Entity id
+   * @param {string} [arg.entityType] - Entity type
+   * @param {string} [arg.userId] - User id
+   * @param {string} [arg.media] - Media type e.g. image | video | video_file
+   *   | video_link
+   * @param {number[]} [arg.rating] - Rating filter, 1-5
+   * @param {string[]} [arg.attributeRating] - Attribute rating filter with
+   *   ma,e of attribute
+   * @param {boolean} [arg.facets] - Facets (true|false)
+   * @param {string} [arg.sort] - Sort by : default | top | recent
+   * @param {string} [arg.next] - Pagination next
+   * @param {string} [arg.start] - Pagination start
+   * @param {string} [arg.limit] - Pagination limit
+   * @param {string} [arg.count] - Pagination count
+   * @param {string} [arg.pageId] - Pagination page id
+   * @param {number} [arg.pageSize] - Pagination page size
+   * @summary: Get list of customer reviews [admin]
+   * @description: The endpoint provides a list of customer reviews based on entity and provided filters
+   */
+  getCustomerReviews({
+    id,
+    entityId,
+    entityType,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    next,
+    start,
+    limit,
+    count,
+    pageId,
+    pageSize,
+  } = {}) {
+    const { error } = FeedbackValidator.getCustomerReviews().validate(
+      {
+        id,
+        entityId,
+        entityType,
+        userId,
+        media,
+        rating,
+        attributeRating,
+        facets,
+        sort,
+        next,
+        start,
+        limit,
+        count,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["entity_id"] = entityId;
+    query_params["entity_type"] = entityType;
+    query_params["user_id"] = userId;
+    query_params["media"] = media;
+    query_params["rating"] = rating;
+    query_params["attribute_rating"] = attributeRating;
+    query_params["facets"] = facets;
+    query_params["sort"] = sort;
+    query_params["next"] = next;
+    query_params["start"] = start;
+    query_params["limit"] = limit;
+    query_params["count"] = count;
+    query_params["page_id"] = pageId;
+    query_params["page_size"] = pageSize;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {string} [arg.id] - Review id
+   * @param {string} [arg.entityId] - Entity id
+   * @param {string} [arg.entityType] - Entity type
+   * @param {string} [arg.userId] - User id
+   * @param {string} [arg.media] - Media type e.g. image | video | video_file
+   *   | video_link
+   * @param {number[]} [arg.rating] - Rating filter, 1-5
+   * @param {string[]} [arg.attributeRating] - Attribute rating filter with
+   *   ma,e of attribute
+   * @param {boolean} [arg.facets] - Facets (true|false)
+   * @param {string} [arg.sort] - Sort by : default | top | recent
+   * @param {string} [arg.next] - Pagination next
+   * @param {string} [arg.start] - Pagination start
+   * @param {string} [arg.limit] - Pagination limit
+   * @param {string} [arg.count] - Pagination count
+   * @param {number} [arg.pageSize] - Pagination page size
+   * @summary: Get list of customer reviews [admin]
+   * @description: The endpoint provides a list of customer reviews based on entity and provided filters
+   */
+  getCustomerReviewsPaginator({
+    companyId,
+    applicationId,
+    id,
+    entityId,
+    entityType,
+    userId,
+    media,
+    rating,
+    attributeRating,
+    facets,
+    sort,
+    next,
+    start,
+    limit,
+    count,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getCustomerReviews({
+        companyId: companyId,
+        applicationId: applicationId,
+        id: id,
+        entityId: entityId,
+        entityType: entityType,
+        userId: userId,
+        media: media,
+        rating: rating,
+        attributeRating: attributeRating,
+        facets: facets,
+        sort: sort,
+        next: next,
+        start: start,
+        limit: limit,
+        count: count,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.reviewId - Review id
+   * @param {ApproveRequest} arg.body
+   * @summary: update approve details
+   * @description: The is used to update approve details like status and description text
+   */
+  updateApprove({ reviewId, body } = {}) {
+    const { error } = FeedbackValidator.updateApprove().validate(
+      {
+        reviewId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/approve/`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.reviewId - Review id
+   * @summary: get history details
+   * @description: The is used to get the history details like status and description text
+   */
+  getHistory({ reviewId } = {}) {
+    const { error } = FeedbackValidator.getHistory().validate(
+      {
+        reviewId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/history/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.pageId] - Pagination page id
+   * @param {number} [arg.pageSize] - Pagination page size
+   * @summary: Get list of templates
+   * @description: Get all templates of application
+   */
+  getApplicationTemplates({ pageId, pageSize } = {}) {
+    const { error } = FeedbackValidator.getApplicationTemplates().validate(
+      {
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_id"] = pageId;
+    query_params["page_size"] = pageSize;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Pagination page size
+   * @summary: Get list of templates
+   * @description: Get all templates of application
+   */
+  getApplicationTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "cursor";
+      const data = await this.getApplicationTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageId: pageId,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {TemplateRequestList} arg.body
+   * @summary: Create a new template
+   * @description: Create a new template for review with following data:
+   * - Enable media, rating and review
+   * - Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+   * - Review - header, title, description, image and video meta, enable votes
+   */
+  createTemplate({ body } = {}) {
+    const { error } = FeedbackValidator.createTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Template id
+   * @summary: Get a template by ID
+   * @description: Get the template for product or l3 type by ID
+   */
+  getTemplateById({ id } = {}) {
+    const { error } = FeedbackValidator.getTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Template id
+   * @param {UpdateTemplateRequest} arg.body
+   * @summary: Update a template's status
+   * @description: Update existing template status, active/archive
+   */
+  updateTemplate({ id, body } = {}) {
+    const { error } = FeedbackValidator.updateTemplate().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Template id
+   * @param {UpdateTemplateStatusRequest} arg.body
+   * @summary: Update a template's status
+   * @description: Update existing template status, active/archive
+   */
+  updateTemplateStatus({ id, body } = {}) {
+    const { error } = FeedbackValidator.updateTemplateStatus().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/status/`,
+      query_params,
+      body
     );
   }
 }
@@ -17580,6 +18176,7 @@ class Order {
    * @param {string} [arg.stores] - Selected Stores
    * @param {string} [arg.status] - Status of order
    * @param {string} [arg.dp] - Delivery Partners
+   * @param {string} [arg.userId] - User Id
    * @param {boolean} [arg.shortenUrls] - Shorten URL option
    * @param {string} [arg.filterType] - Filters
    * @summary: Get Orders for company based on Company Id
@@ -17597,6 +18194,7 @@ class Order {
     stores,
     status,
     dp,
+    userId,
     shortenUrls,
     filterType,
   } = {}) {
@@ -17613,6 +18211,7 @@ class Order {
         stores,
         status,
         dp,
+        userId,
         shortenUrls,
         filterType,
       },
@@ -17634,6 +18233,7 @@ class Order {
     query_params["stores"] = stores;
     query_params["status"] = status;
     query_params["dp"] = dp;
+    query_params["user_id"] = userId;
     query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
 
@@ -22148,100 +22748,6 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
       query_params,
       undefined
-    );
-  }
-}
-
-class Serviceability {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationServiceabilityConfig} arg.body
-   * @summary: Zone configuration of application.
-   * @description: This API returns serviceability config of the application.
-   */
-  postApplicationServiceability({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.postApplicationServiceability().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/serviceability`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Zone configuration of application.
-   * @description: This API returns serviceability config of the application.
-   */
-  getApplicationServiceability({} = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.getApplicationServiceability().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/serviceability`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {GetZoneFromPincodeViewRequest} arg.body
-   * @summary: GET zone from the Pincode.
-   * @description: This API returns zone from the Pincode View.
-   */
-  upsertZoneControllerView({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.upsertZoneControllerView().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
-      query_params,
-      body
     );
   }
 }

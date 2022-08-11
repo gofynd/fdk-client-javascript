@@ -5,6 +5,7 @@
 
 * [Common](COMMON.md) - Application configuration apis 
 * [Lead](LEAD.md) - Handles communication between Administrator <-> Staff and Staff <-> Users 
+* [Feedback](FEEDBACK.md) - User Reviews and Rating System 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 
 * [Content](CONTENT.md) - Content System 
@@ -25,4 +26,3 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) -  
-* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  

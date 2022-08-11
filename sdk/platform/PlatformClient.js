@@ -16,7 +16,6 @@ const {
   DiscountValidator,
   WebhookValidator,
   AuditTrailValidator,
-  ServiceabilityValidator,
 } = require("./PlatformModels");
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const Paginator = require("../common/Paginator");
@@ -41,7 +40,6 @@ class PlatformClient {
     this.discount = new Discount(config);
     this.webhook = new Webhook(config);
     this.auditTrail = new AuditTrail(config);
-    this.serviceability = new Serviceability(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -516,6 +514,365 @@ class PlatformClient {
  * @property {string} _id
  * @property {string} [updated_at]
  * @property {string} [created_at]
+ */
+
+/**
+ * @typedef Activity
+ * @property {Object} [current_state]
+ * @property {string} [document_id]
+ * @property {Object} [previous_state]
+ */
+
+/**
+ * @typedef ActivityDump
+ * @property {Activity} [activity]
+ * @property {CreatedBy} [created_by]
+ * @property {DateMeta} [date_meta]
+ * @property {string} [id]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef AddMediaListRequest
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {AddMediaRequest[]} [media_list]
+ * @property {string} [ref_id]
+ * @property {string} [ref_type]
+ */
+
+/**
+ * @typedef AddMediaRequest
+ * @property {string} [cloud_id]
+ * @property {string} [cloud_name]
+ * @property {string} [cloud_provider]
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {string} [media_url]
+ * @property {string} [ref_id]
+ * @property {string} [ref_type]
+ * @property {string[]} [tags]
+ * @property {string} [thumbnail_url]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ApproveRequest
+ * @property {boolean} [approve]
+ * @property {string} [entity_type]
+ * @property {string} id
+ * @property {string} [reason]
+ */
+
+/**
+ * @typedef Attribute
+ * @property {DateMeta} [date_meta]
+ * @property {string} [description]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {TagMeta[]} [tags]
+ */
+
+/**
+ * @typedef AttributeObject
+ * @property {string} [description]
+ * @property {string} name
+ * @property {string} [slug]
+ * @property {string} [title]
+ * @property {string} type
+ * @property {number} value
+ */
+
+/**
+ * @typedef CreatedBy
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {TagMeta[]} [tags]
+ */
+
+/**
+ * @typedef CursorGetResponse
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef DateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef DeviceMeta
+ * @property {string} [app_version]
+ * @property {string} [platform]
+ */
+
+/**
+ * @typedef Entity
+ * @property {string} [id]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef EntityRequest
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ */
+
+/**
+ * @typedef FeedbackAttributes
+ * @property {Attribute[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef FeedbackError
+ * @property {Object} [code]
+ * @property {string} [exception]
+ * @property {string} [info]
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [request_id]
+ * @property {string} [stack_trace]
+ * @property {number} [status]
+ */
+
+/**
+ * @typedef FeedbackState
+ * @property {boolean} [active]
+ * @property {boolean} [archive]
+ * @property {string} [media]
+ * @property {boolean} [qna]
+ * @property {boolean} [rating]
+ * @property {boolean} [review]
+ */
+
+/**
+ * @typedef GetResponse
+ * @property {Object} [data]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef GetReviewResponse
+ * @property {ReviewFacet[]} [facets]
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ * @property {SortMethod[]} [sort]
+ */
+
+/**
+ * @typedef InsertResponse
+ * @property {number} [count]
+ */
+
+/**
+ * @typedef MediaMeta
+ * @property {number} [max_count]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef MediaMetaRequest
+ * @property {number} max_count
+ * @property {number} size
+ */
+
+/**
+ * @typedef NumberGetResponse
+ * @property {Object[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef PageCursor
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} size
+ * @property {string} type
+ */
+
+/**
+ * @typedef PageNumber
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef Rating
+ * @property {Attribute[]} [attributes]
+ * @property {string[]} [attributes_slugs]
+ * @property {UI} [ui]
+ */
+
+/**
+ * @typedef RatingRequest
+ * @property {string[]} attributes
+ * @property {UI} [ui]
+ */
+
+/**
+ * @typedef ReportAbuseRequest
+ * @property {string} [description]
+ * @property {string} entity_id
+ * @property {string} entity_type
+ */
+
+/**
+ * @typedef Review
+ * @property {string} [description]
+ * @property {string} [header]
+ * @property {MediaMeta} [image_meta]
+ * @property {string} [title]
+ * @property {MediaMeta} [video_meta]
+ * @property {boolean} [vote_allowed]
+ */
+
+/**
+ * @typedef ReviewFacet
+ * @property {string} [display]
+ * @property {string} [name]
+ * @property {boolean} [selected]
+ * @property {string} [slug]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ReviewRequest
+ * @property {string} description
+ * @property {string} header
+ * @property {MediaMetaRequest} image_meta
+ * @property {boolean} is_vote_allowed
+ * @property {string} title
+ * @property {MediaMetaRequest} video_meta
+ */
+
+/**
+ * @typedef SaveAttributeRequest
+ * @property {string} [description]
+ * @property {string} name
+ * @property {string} slug
+ */
+
+/**
+ * @typedef SortMethod
+ * @property {string} [name]
+ * @property {boolean} [selected]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef TagMeta
+ * @property {MediaMeta[]} [media]
+ * @property {string} [name]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef Template
+ * @property {DateMeta} [date_meta]
+ * @property {Entity} [entity]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {Rating} [rating]
+ * @property {Review} [review]
+ * @property {FeedbackState} [state]
+ * @property {TagMeta[]} [tags]
+ */
+
+/**
+ * @typedef TemplateGetResponse
+ * @property {Template[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef TemplateRequest
+ * @property {boolean} active
+ * @property {string} [enable_media_type]
+ * @property {boolean} [enable_qna]
+ * @property {boolean} enable_rating
+ * @property {boolean} enable_review
+ * @property {EntityRequest} entity
+ * @property {RatingRequest} rating
+ * @property {ReviewRequest} review
+ */
+
+/**
+ * @typedef TemplateRequestList
+ * @property {TemplateRequest[]} template_list
+ */
+
+/**
+ * @typedef UI
+ * @property {string[]} [feedback_question]
+ * @property {UIIcon} [icon]
+ * @property {string[]} [text]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef UIIcon
+ * @property {string} [active]
+ * @property {string} [inactive]
+ * @property {string[]} [selected]
+ */
+
+/**
+ * @typedef UpdateAttributeRequest
+ * @property {string} [description]
+ * @property {string} name
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef UpdateResponse
+ * @property {number} [count]
+ */
+
+/**
+ * @typedef UpdateReviewRequest
+ * @property {boolean} [active]
+ * @property {string} [application]
+ * @property {boolean} [approve]
+ * @property {boolean} [archive]
+ * @property {AttributeObject[]} [attributes_rating]
+ * @property {string} [description]
+ * @property {DeviceMeta} [device_meta]
+ * @property {string} [entity_id]
+ * @property {string} [entity_type]
+ * @property {MediaMeta[]} [media_resource]
+ * @property {number} [rating]
+ * @property {string} [review_id]
+ * @property {string} [template_id]
+ * @property {string} [title]
+ */
+
+/**
+ * @typedef UpdateTemplateRequest
+ * @property {boolean} active
+ * @property {string} [enable_media_type]
+ * @property {boolean} [enable_qna]
+ * @property {boolean} enable_rating
+ * @property {boolean} enable_review
+ * @property {EntityRequest} entity
+ * @property {RatingRequest} rating
+ * @property {ReviewRequest} review
+ */
+
+/**
+ * @typedef UpdateTemplateStatusRequest
+ * @property {boolean} [active]
+ * @property {boolean} [archive]
  */
 
 /**
@@ -1644,12 +2001,6 @@ class PlatformClient {
 /**
  * @typedef SEOImage
  * @property {string} [url]
- */
-
-/**
- * @typedef DateMeta
- * @property {string} [created_on]
- * @property {string} [modified_on]
  */
 
 /**
@@ -11714,239 +12065,6 @@ class PlatformClient {
  * @property {Object} [extra_meta]
  */
 
-/**
- * @typedef ApplicationServiceabilityConfig
- * @property {string} serviceability_type
- */
-
-/**
- * @typedef ApplicationServiceabilityResponse
- * @property {string} channel_type
- * @property {string} channel_id
- * @property {string} serviceability_type
- */
-
-/**
- * @typedef ServiceabilityErrorResponse
- * @property {string} message
- * @property {string} type
- * @property {string} value
- */
-
-/**
- * @typedef ApplicationServiceabilityConfigResponse
- * @property {ApplicationServiceabilityResponse} [data]
- * @property {boolean} success
- * @property {ServiceabilityErrorResponse} [error]
- */
-
-/**
- * @typedef EntityRegionViewRequest
- * @property {string[]} sub_type
- * @property {string[]} [parent_id]
- */
-
-/**
- * @typedef EntityRegionViewItems
- * @property {string} uid
- * @property {string} name
- * @property {string} sub_type
- */
-
-/**
- * @typedef EntityRegionViewError
- * @property {string} [message]
- * @property {string} [type]
- * @property {string} [value]
- */
-
-/**
- * @typedef EntityRegionViewPage
- * @property {string} type
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} current
- * @property {number} size
- */
-
-/**
- * @typedef EntityRegionViewResponse
- * @property {EntityRegionViewItems[]} data
- * @property {boolean} success
- * @property {EntityRegionViewError} error
- * @property {EntityRegionViewPage} page
- */
-
-/**
- * @typedef ListViewProduct
- * @property {string} type
- * @property {number} count
- */
-
-/**
- * @typedef ListViewChannels
- * @property {string} channel_type
- * @property {string} channel_id
- */
-
-/**
- * @typedef ListViewItems
- * @property {string} name
- * @property {string} zone_id
- * @property {number} stores_count
- * @property {number} pincodes_count
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {ListViewProduct} product
- * @property {ListViewChannels} channels
- * @property {string} slug
- */
-
-/**
- * @typedef ZoneDataItem
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {string} type
- * @property {number} current
- * @property {number} size
- */
-
-/**
- * @typedef ListViewSummary
- * @property {number} total_zones
- * @property {number} total_pincodes_served
- * @property {number} total_active_zones
- */
-
-/**
- * @typedef ListViewResponse
- * @property {ListViewItems[]} items
- * @property {ZoneDataItem[]} page
- * @property {ListViewSummary[]} summary
- */
-
-/**
- * @typedef CompanyStoreView_PageItems
- * @property {string} type
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {number} current
- * @property {number} size
- */
-
-/**
- * @typedef CompanyStoreView_Response
- * @property {Object[]} [items]
- * @property {CompanyStoreView_PageItems[]} page
- */
-
-/**
- * @typedef GetZoneDataViewChannels
- * @property {string} channel_type
- * @property {string} channel_id
- */
-
-/**
- * @typedef ZoneProductTypes
- * @property {string} type
- * @property {string[]} tags
- */
-
-/**
- * @typedef ZoneMappingType
- * @property {string[]} [pincode]
- * @property {string[]} [state]
- * @property {string} country
- */
-
-/**
- * @typedef GetZoneDataViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
- * @property {number} pincodes_count
- */
-
-/**
- * @typedef GetSingleZoneDataViewResponse
- * @property {GetZoneDataViewItems} data
- */
-
-/**
- * @typedef UpdateZoneData
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- */
-
-/**
- * @typedef ZoneUpdateRequest
- * @property {UpdateZoneData} data
- * @property {string} identifier
- */
-
-/**
- * @typedef ZoneSuccessResponse
- * @property {boolean} success
- * @property {number} status_code
- */
-
-/**
- * @typedef CreateZoneData
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- */
-
-/**
- * @typedef ZoneRequest
- * @property {CreateZoneData} data
- * @property {string} identifier
- */
-
-/**
- * @typedef ZoneResponse
- * @property {string} zone_id
- * @property {boolean} success
- * @property {number} status_code
- */
-
-/**
- * @typedef GetZoneFromPincodeViewRequest
- * @property {string} pincode
- * @property {string} country
- */
-
-/**
- * @typedef GetZoneFromPincodeViewResponse
- * @property {string[]} zones
- * @property {string} serviceability_type
- */
-
 class Common {
   constructor(config) {
     this.config = config;
@@ -13249,6 +13367,7 @@ class Order {
    * @param {string} [arg.toDate] - To Date
    * @param {boolean} [arg.isPrioritySort] - Sorting Order
    * @param {boolean} [arg.lockStatus] - Hide Lock Status
+   * @param {string} [arg.userId] - User Id
    * @param {string} [arg.q] - Keyword for Search
    * @param {string} [arg.stage] - Specefic Order Stage
    * @param {string} [arg.salesChannels] - Selected Sales Channel
@@ -13269,6 +13388,7 @@ class Order {
     toDate,
     isPrioritySort,
     lockStatus,
+    userId,
     q,
     stage,
     salesChannels,
@@ -13288,6 +13408,7 @@ class Order {
         toDate,
         isPrioritySort,
         lockStatus,
+        userId,
         q,
         stage,
         salesChannels,
@@ -13312,6 +13433,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["lock_status"] = lockStatus;
+    query_params["user_id"] = userId;
     query_params["q"] = q;
     query_params["stage"] = stage;
     query_params["sales_channels"] = salesChannels;
@@ -18444,198 +18566,6 @@ class AuditTrail {
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/${id}`,
       query_params,
       undefined
-    );
-  }
-}
-
-class Serviceability {
-  constructor(config) {
-    this.config = config;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EntityRegionViewRequest} arg.body
-   * @summary: Get country and state list
-   * @description: This API returns response for Entity Region View.
-   */
-  getEntityRegionView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getEntityRegionView().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/regions`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.name] - Name of particular zone in the seller account
-   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-   * @summary: Zone List of application.
-   * @description: This API returns Zone List View of the application.
-   */
-  getListView({ pageNumber, pageSize, name, isActive, channelIds } = {}) {
-    const { error } = ServiceabilityValidator.getListView().validate(
-      {
-        pageNumber,
-        pageSize,
-        name,
-        isActive,
-        channelIds,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_number"] = pageNumber;
-    query_params["page_size"] = pageSize;
-    query_params["name"] = name;
-    query_params["is_active"] = isActive;
-    query_params["channel_ids"] = channelIds;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zones`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Company Store View of application.
-   * @description: This API returns Company Store View of the application.
-   */
-  getCompanyStoreView({} = {}) {
-    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/all-stores`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @summary: Zone Data View of application.
-   * @description: This API returns Zone Data View of the application.
-   */
-  getZoneDataView({ zoneId } = {}) {
-    const { error } = ServiceabilityValidator.getZoneDataView().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @param {ZoneUpdateRequest} arg.body
-   * @summary: Updation of zone collections in database.
-   * @description: This API returns response of updation of zone in mongo database.
-   */
-  updateZoneControllerView({ zoneId, body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
-      {
-        zoneId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ZoneRequest} arg.body
-   * @summary: Insertion of zone in database.
-   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
-   */
-  upsertZoneControllerView({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.upsertZoneControllerView().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone`,
-      query_params,
-      body
     );
   }
 }

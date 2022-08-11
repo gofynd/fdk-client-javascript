@@ -217,11 +217,3 @@ export class AuditTrailValidator {
     static createAuditLog(): any;
     static getAuditLog(): any;
 }
-export class ServiceabilityValidator {
-    static getEntityRegionView(): any;
-    static getListView(): any;
-    static getCompanyStoreView(): any;
-    static getZoneDataView(): any;
-    static updateZoneControllerView(): any;
-    static upsertZoneControllerView(): any;
-}
