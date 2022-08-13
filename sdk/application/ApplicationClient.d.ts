@@ -16,7 +16,6 @@ declare class ApplicationClient {
     payment: Payment;
     order: Order;
     rewards: Rewards;
-    feedback: Feedback;
     posCart: PosCart;
     logistic: Logistic;
     setCookie(cookie: any): void;
@@ -48,8 +47,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        unfollowById: string;
         followById: string;
+        unfollowById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -500,10 +499,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -513,10 +512,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -674,15 +673,17 @@ declare class Catalog {
      *   product, e.g. 1,2,3.
      * @param {string} [arg.pincode] - The PIN Code of the area near which the
      *   selling locations should be searched, e.g. 400059.
+     * @param {string} [arg.depth] - For getting seller or store based on query param
      * @returns {Promise<ProductSizePriceResponseV2>} - Success response
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
      */
-    getProductPriceBySlug({ slug, size, storeId, pincode }?: {
+    getProductPriceBySlug({ slug, size, storeId, pincode, depth }?: {
         slug: string;
         size: string;
         storeId?: number;
         pincode?: string;
+        depth?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -699,17 +700,19 @@ declare class Catalog {
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.depth] - For getting seller or store based on query param
      * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, }?: {
+    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, depth, }?: {
         slug: string;
         size: string;
         pincode?: string;
         strategy?: string;
         pageNo?: number;
         pageSize?: number;
+        depth?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -724,15 +727,17 @@ declare class Catalog {
      * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
      *   eg, fast-delivery, low-price, optimal.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.depth] - For getting seller or store based on query param
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, }?: {
+    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, depth, }?: {
         slug: string;
         size: string;
         pincode?: string;
         strategy?: string;
         pageSize?: number;
+        depth?: string;
     }): Paginator;
 }
 declare class Cart {
@@ -774,17 +779,17 @@ declare class Cart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {number} [arg.assignCardId] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.areaCode] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId, buyNow }?: {
+    getCart({ id, i, b, assignCardId, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
-        buyNow?: boolean;
+        areaCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -800,16 +805,16 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.areaCode] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, buyNow }?: {
+    addItems({ body, i, b, areaCode }?: {
         i?: boolean;
         b?: boolean;
-        buyNow?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -817,42 +822,38 @@ declare class Cart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.areaCode] -
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
-    updateCart({ body, id, i, b, buyNow }?: {
+    updateCart({ body, id, i, b, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
-        buyNow?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - The unique identifier of the cart.
-     * @param {boolean} [arg.buyNow] -
      * @returns {Promise<CartItemCountResponse>} - Success response
      * @summary: Count items in the cart
      * @description: Use this API to get the total number of items present in cart.
      */
-    getItemCount({ id, buyNow }?: {
+    getItemCount({ id }?: {
         id?: string;
-        buyNow?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @returns {Promise<GetCouponResponse>} - Success response
      * @summary: Fetch Coupon
      * @description: Use this API to get a list of available coupons along with their details.
      */
-    getCoupons({ id, buyNow }?: {
+    getCoupons({ id }?: {
         id?: string;
-        buyNow?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -860,31 +861,27 @@ declare class Cart {
      * @param {boolean} [arg.b] -
      * @param {boolean} [arg.p] -
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @param {ApplyCouponRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart.
      */
-    applyCoupon({ body, i, b, p, id, buyNow }?: {
+    applyCoupon({ body, i, b, p, id }?: {
         i?: boolean;
         b?: boolean;
         p?: boolean;
         id?: string;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] - The unique identifier of the cart
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Remove Coupon Applied
      * @description: Remove Coupon applied on the cart by passing uid in request body.
      */
-    removeCoupon({ id, buyNow }?: {
+    removeCoupon({ id }?: {
         id?: string;
-        buyNow?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -909,23 +906,20 @@ declare class Cart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
      * @param {RewardPointRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply reward points at cart
      * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
      */
-    applyRewardPoints({ body, id, i, b, buyNow }?: {
+    applyRewardPoints({ body, id, i, b }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.mobileNo] -
      * @param {string} [arg.checkoutMode] -
      * @param {string} [arg.tags] -
@@ -934,9 +928,8 @@ declare class Cart {
      * @summary: Fetch address
      * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
      */
-    getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, }?: {
+    getAddresses({ cartId, mobileNo, checkoutMode, tags, isDefault }?: {
         cartId?: string;
-        buyNow?: boolean;
         mobileNo?: string;
         checkoutMode?: string;
         tags?: string;
@@ -956,7 +949,6 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.mobileNo] -
      * @param {string} [arg.checkoutMode] -
      * @param {string} [arg.tags] -
@@ -965,10 +957,9 @@ declare class Cart {
      * @summary: Fetch a single address by its ID
      * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
      */
-    getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, }?: {
+    getAddressById({ id, cartId, mobileNo, checkoutMode, tags, isDefault }?: {
         id: string;
         cartId?: string;
-        buyNow?: boolean;
         mobileNo?: string;
         checkoutMode?: string;
         tags?: string;
@@ -999,7 +990,6 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {SelectCartAddressRequest} arg.body
@@ -1007,9 +997,8 @@ declare class Cart {
      * @summary: Select an address from available addresses
      * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
      */
-    selectAddress({ body, cartId, buyNow, i, b }?: {
+    selectAddress({ body, cartId, i, b }?: {
         cartId?: string;
-        buyNow?: boolean;
         i?: boolean;
         b?: boolean;
         body: any;
@@ -1017,21 +1006,18 @@ declare class Cart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @param {UpdateCartPaymentRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentMode({ body, id, buyNow }?: {
+    selectPaymentMode({ body, id }?: {
         id?: string;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.addressId] -
      * @param {string} [arg.paymentMode] -
      * @param {string} [arg.paymentIdentifier] -
@@ -1041,9 +1027,8 @@ declare class Cart {
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+    validateCouponForPayment({ id, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
         id?: string;
-        buyNow?: boolean;
         addressId?: string;
         paymentMode?: string;
         paymentIdentifier?: string;
@@ -1055,7 +1040,6 @@ declare class Cart {
      * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
      *   getting a payment option in response.
      * @param {string} [arg.id] - The unique identifier of the cart
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.addressId] - ID allotted to the selected address
      * @param {string} [arg.areaCode] - The PIN Code of the destination address,
      *   e.g. 400059
@@ -1063,37 +1047,32 @@ declare class Cart {
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ p, id, buyNow, addressId, areaCode }?: {
+    getShipments({ p, id, addressId, areaCode }?: {
         p?: boolean;
         id?: string;
-        buyNow?: boolean;
         addressId?: string;
         areaCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
      * @param {CartCheckoutDetailRequest} arg.body
      * @returns {Promise<CartCheckoutResponse>} - Success response
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
      */
-    checkoutCart({ body, buyNow }?: {
-        buyNow?: boolean;
+    checkoutCart({ body }?: {
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] - The unique identifier of the cart
      * @param {CartMetaRequest} arg.body
      * @returns {Promise<CartMetaResponse>} - Success response
      * @summary: Update the cart meta
      * @description: Use this API to update cart meta like checkout_mode and gstin.
      */
-    updateCartMeta({ body, id, buyNow }?: {
+    updateCartMeta({ body, id }?: {
         id?: string;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
@@ -2465,15 +2444,6 @@ declare class Payment {
         addRefundBankAccountUsingOTP: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
         updateDefaultBeneficiary: string;
-        getPaymentLink: string;
-        createPaymentLink: string;
-        resendPaymentLink: string;
-        cancelPaymentLink: string;
-        getPaymentModeRoutesPaymentLink: string;
-        pollingPaymentLink: string;
-        createOrderHandlerPaymentLink: string;
-        initialisePaymentPaymentLink: string;
-        checkAndUpdatePaymentStatusPaymentLink: string;
         customerCreditSummary: string;
         redirectToAggregator: string;
         checkCredit: string;
@@ -2757,96 +2727,6 @@ declare class Payment {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<GetPaymentLinkResponse>} - Success response
-     * @summary: Get payment link
-     * @description: Use this API to get a payment link
-     */
-    getPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreatePaymentLinkRequest} arg.body
-     * @returns {Promise<CreatePaymentLinkResponse>} - Success response
-     * @summary: Create payment link
-     * @description: Use this API to create a payment link for the customer
-     */
-    createPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<ResendPaymentLinkResponse>} - Success response
-     * @summary: Resend payment link
-     * @description: Use this API to resend a payment link for the customer
-     */
-    resendPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<CancelPaymentLinkResponse>} - Success response
-     * @summary: Cancel payment link
-     * @description: Use this API to cancel a payment link for the customer
-     */
-    cancelPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.paymentLinkId - Payment link id
-     * @returns {Promise<PaymentModeRouteResponse>} - Success response
-     * @summary: Get applicable payment options for payment link
-     * @description: Use this API to get all valid payment options for doing a payment through payment link
-     */
-    getPaymentModeRoutesPaymentLink({ paymentLinkId }?: {
-        paymentLinkId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<PollingPaymentLinkResponse>} - Success response
-     * @summary: Used for polling if payment successful or not
-     * @description: Use this API to poll if payment through payment was successful or not
-     */
-    pollingPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateOrderUserRequest} arg.body
-     * @returns {Promise<CreateOrderUserResponse>} - Success response
-     * @summary: Create Order user
-     * @description: Use this API to create a order and payment on aggregator side
-     */
-    createOrderHandlerPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentInitializationRequest} arg.body
-     * @returns {Promise<PaymentInitializationResponse>} - Success response
-     * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-     * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
-     */
-    initialisePaymentPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentStatusUpdateRequest} arg.body
-     * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
-     * @summary: Performs continuous polling to check status of payment on the server
-     * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-     */
-    checkAndUpdatePaymentStatusPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.aggregator] -
      * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
      * @summary: API to fetch the customer credit summary
@@ -2905,6 +2785,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
         getInvoiceByShipmentId: string;
+        getCreditNoteByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -2958,12 +2839,15 @@ declare class Order {
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
+     * @param {number} [arg.bagId] - Bag Id of a specefic bags which will help
+     *   to categorize the reasons
      * @returns {Promise<ShipmentReasons>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
-    getShipmentReasons({ shipmentId }?: {
+    getShipmentReasons({ shipmentId, bagId }?: {
         shipmentId: string;
+        bagId?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -3061,6 +2945,18 @@ declare class Order {
     getInvoiceByShipmentId({ shipmentId }?: {
         shipmentId: string;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ResponseGetCreditNoteShipment>} - Success response
+     * @summary: Get Credit Note URL
+     * @description: Use this API to get a generated Credit Note URL for viewing or download.
+     */
+    getCreditNoteByShipmentId({ shipmentId }?: {
+        shipmentId: string;
+    }): Promise<any>;
 }
 declare class Rewards {
     constructor(_conf: any);
@@ -3153,556 +3049,6 @@ declare class Rewards {
         body: any;
     }): Promise<any>;
 }
-declare class Feedback {
-    constructor(_conf: any);
-    _conf: any;
-    _relativeUrls: {
-        createAbuseReport: string;
-        updateAbuseReport: string;
-        getAbuseReports: string;
-        getAttributes: string;
-        createAttribute: string;
-        getAttribute: string;
-        updateAttribute: string;
-        createComment: string;
-        updateComment: string;
-        getComments: string;
-        checkEligibility: string;
-        deleteMedia: string;
-        createMedia: string;
-        updateMedia: string;
-        getMedias: string;
-        getReviewSummaries: string;
-        createReview: string;
-        updateReview: string;
-        getReviews: string;
-        getTemplates: string;
-        createQuestion: string;
-        updateQuestion: string;
-        getQuestionAndAnswers: string;
-        getVotes: string;
-        createVote: string;
-        updateVote: string;
-    };
-    _urls: {};
-    updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ReportAbuseRequest} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Post a new abuse request
-     * @description: Use this API to report a specific entity (question/review/comment) for abuse.
-     */
-    createAbuseReport({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateAbuseStatusRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update abuse details
-     * @description: Use this API to update the abuse details, i.e. status and description.
-     */
-    updateAbuseReport({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type (question ID/review ID/comment ID).
-     * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
-     * @param {string} [arg.id] - Abuse id
-     * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ReportAbuseGetResponse>} - Success response
-     * @summary: Get a list of abuse data
-     * @description: Use this API to retrieve a list of abuse data from entity type and entity ID.
-     */
-    getAbuseReports({ entityId, entityType, id, pageId, pageSize }?: {
-        entityId: string;
-        entityType: string;
-        id?: string;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type (question ID/review ID/comment ID).
-     * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
-     * @param {string} [arg.id] - Abuse id
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get a list of abuse data
-     * @description: Use this API to retrieve a list of abuse data from entity type and entity ID.
-     */
-    getAbuseReportsPaginator({ entityId, entityType, id, pageSize }?: {
-        entityId: string;
-        entityType: string;
-        id?: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<AttributeResponse>} - Success response
-     * @summary: Get a list of attribute data
-     * @description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
-     */
-    getAttributes({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get a list of attribute data
-     * @description: Use this API to retrieve a list of all attribute data, e.g. quality, material, product fitting, packaging, etc.
-     */
-    getAttributesPaginator({ pageSize }?: {
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SaveAttributeRequest} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Add a new attribute request
-     * @description: Use this API to add a new attribute (e.g. product quality/material/value for money) with its name, slug and description.
-     */
-    createAttribute({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of an attribute. You can get slug value from the endpoint
-     *   'service/application/feedback/v1.0/attributes'.
-     * @returns {Promise<Attribute>} - Success response
-     * @summary: Get data of a single attribute
-     * @description: Use this API to retrieve a single attribute data from a given slug.
-     */
-    getAttribute({ slug }?: {
-        slug: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of an attribute. You can get slug value from the endpoint
-     *   'service/application/feedback/v1.0/attributes'.
-     * @param {UpdateAttributeRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update details of an attribute
-     * @description: Use this API update the attribute's name and description.
-     */
-    updateAttribute({ slug, body }?: {
-        slug: string;
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CommentRequest} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Post a new comment
-     * @description: Use this API to add a new comment for a specific entity.
-     */
-    createComment({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateCommentRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update the status of a comment
-     * @description: Use this API to update the comment status (active or approve) along with new comment if any.
-     */
-    updateComment({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
-     * @param {string} [arg.id] - Comment ID
-     * @param {string} [arg.entityId] - ID of the eligible entity as specified
-     *   in the entity type (question ID/review ID/comment ID).
-     * @param {string} [arg.userId] - User ID - a flag/filter to get comments for a user.
-     * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<CommentGetResponse>} - Success response
-     * @summary: Get a list of comments
-     * @description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
-     */
-    getComments({ entityType, id, entityId, userId, pageId, pageSize }?: {
-        entityType: string;
-        id?: string;
-        entityId?: string;
-        userId?: string;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. question, review or comment.
-     * @param {string} [arg.id] - Comment ID
-     * @param {string} [arg.entityId] - ID of the eligible entity as specified
-     *   in the entity type (question ID/review ID/comment ID).
-     * @param {string} [arg.userId] - User ID - a flag/filter to get comments for a user.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get a list of comments
-     * @description: Use this API to retrieve a list of comments for a specific entity type, e.g. products.
-     */
-    getCommentsPaginator({ entityType, id, entityId, userId, pageSize }?: {
-        entityType: string;
-        id?: string;
-        entityId?: string;
-        userId?: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. question, rate,
-     *   review, answer, or comment.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @returns {Promise<CheckEligibilityResponse>} - Success response
-     * @summary: Checks eligibility to rate and review, and shows the cloud media configuration
-     * @description: Use this API to check whether an entity is eligible to be rated and reviewed. Moreover, it shows the cloud media configuration too.
-     */
-    checkEligibility({ entityType, entityId }?: {
-        entityType: string;
-        entityId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string[]} arg.ids - List of media ID
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Delete Media
-     * @description: Use this API to delete media for an entity ID.
-     */
-    deleteMedia({ ids }?: {
-        ids: string[];
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {AddMediaListRequest} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Add Media
-     * @description: Use this API to add media to an entity, e.g. review.
-     */
-    createMedia({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateMediaListRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update Media
-     * @description: Use this API to update media (archive/approve) for an entity.
-     */
-    updateMedia({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. question or product.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type(question ID/product ID).
-     * @param {string} [arg.id] - ID of the media.
-     * @param {string} [arg.type] - Media type.
-     * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<MediaGetResponse>} - Success response
-     * @summary: Get Media
-     * @description: Use this API to retrieve all media from an entity.
-     */
-    getMedias({ entityType, entityId, id, type, pageId, pageSize }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        type?: string;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. question or product.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type(question ID/product ID).
-     * @param {string} [arg.id] - ID of the media.
-     * @param {string} [arg.type] - Media type.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get Media
-     * @description: Use this API to retrieve all media from an entity.
-     */
-    getMediasPaginator({ entityType, entityId, id, type, pageSize }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        type?: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
-     *   seller, order placed, order delivered, application, or template.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @param {string} [arg.id] - Review summary identifier.
-     * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ReviewMetricGetResponse>} - Success response
-     * @summary: Get a review summary
-     * @description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
-     */
-    getReviewSummaries({ entityType, entityId, id, pageId, pageSize }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
-     *   seller, order placed, order delivered, application, or template.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @param {string} [arg.id] - Review summary identifier.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get a review summary
-     * @description: Review summary gives ratings and attribute metrics of a review per entity. Use this API to retrieve the following response data: review count, rating average. 'review metrics'/'attribute rating metrics' which contains name, type, average and count.
-     */
-    getReviewSummariesPaginator({ entityType, entityId, id, pageSize }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateReviewRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Add customer reviews
-     * @description: Use this API to add customer reviews for a specific entity along with the following data: attributes rating, entity rating, title, description, media resources and template ID.
-     */
-    createReview({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateReviewRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update customer reviews
-     * @description: Use this API to update customer reviews for a specific entity along with following data: attributes rating, entity rating, title, description, media resources and template ID.
-     */
-    updateReview({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
-     *   seller, l3, order placed, order delivered, application, or template.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @param {string} [arg.id] - ID of the review.
-     * @param {string} [arg.userId] - ID of the user.
-     * @param {string} [arg.media] - Media type, e.g. image | video | video_file
-     *   | video_link
-     * @param {number[]} [arg.rating] - Rating filter, e.g. 1-5
-     * @param {string[]} [arg.attributeRating] - Filter for attribute rating.
-     * @param {boolean} [arg.facets] - This is a boolean value for enabling
-     *   metadata (facets). Selecting *true* will enable facets.
-     * @param {string} [arg.sort] - Sort by: default | top | recent
-     * @param {boolean} [arg.active] - Get the active reviews.
-     * @param {boolean} [arg.approve] - Get the approved reviews.
-     * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<ReviewGetResponse>} - Success response
-     * @summary: Get list of customer reviews
-     * @description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
-     */
-    getReviews({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, active, approve, pageId, pageSize, }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        userId?: string;
-        media?: string;
-        rating?: number[];
-        attributeRating?: string[];
-        facets?: boolean;
-        sort?: string;
-        active?: boolean;
-        approve?: boolean;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. product, delivery,
-     *   seller, l3, order placed, order delivered, application, or template.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @param {string} [arg.id] - ID of the review.
-     * @param {string} [arg.userId] - ID of the user.
-     * @param {string} [arg.media] - Media type, e.g. image | video | video_file
-     *   | video_link
-     * @param {number[]} [arg.rating] - Rating filter, e.g. 1-5
-     * @param {string[]} [arg.attributeRating] - Filter for attribute rating.
-     * @param {boolean} [arg.facets] - This is a boolean value for enabling
-     *   metadata (facets). Selecting *true* will enable facets.
-     * @param {string} [arg.sort] - Sort by: default | top | recent
-     * @param {boolean} [arg.active] - Get the active reviews.
-     * @param {boolean} [arg.approve] - Get the approved reviews.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get list of customer reviews
-     * @description: Use this API to retrieve a list of customer reviews based on entity and filters provided.
-     */
-    getReviewsPaginator({ entityType, entityId, id, userId, media, rating, attributeRating, facets, sort, active, approve, pageSize, }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        userId?: string;
-        media?: string;
-        rating?: number[];
-        attributeRating?: string[];
-        facets?: boolean;
-        sort?: string;
-        active?: boolean;
-        approve?: boolean;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.templateId] - ID of the feedback template.
-     * @param {string} [arg.entityId] - ID of the eligible entity as specified
-     *   in the entity type.
-     * @param {string} [arg.entityType] - Type of entity, e.g. product,
-     *   delivery, seller, l3, order placed, order delivered, or application.
-     * @returns {Promise<TemplateGetResponse>} - Success response
-     * @summary: Get the feedback templates for a product or l3
-     * @description: Use this API to retrieve the details of the following feedback template. order, delivered, application, seller, order, placed, product
-     */
-    getTemplates({ templateId, entityId, entityType }?: {
-        templateId?: string;
-        entityId?: string;
-        entityType?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateQNARequest} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Create a new question
-     * @description: Use this API to create a new question with following data- tags, text, type, choices for MCQ type questions, maximum length of answer.
-     */
-    createQuestion({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateQNARequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update a question
-     * @description: Use this API to update the status of a question, its tags and its choices.
-     */
-    updateQuestion({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. product, l3, etc.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @param {string} [arg.id] - QNA ID
-     * @param {string} [arg.userId] - User ID
-     * @param {boolean} [arg.showAnswer] - This is a boolean value. Select
-     *   *true* to display answers given.
-     * @param {string} [arg.pageId] - Pagination page ID to retrieve next set of results.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<QNAGetResponse>} - Success response
-     * @summary: Get a list of QnA
-     * @description: Use this API to retrieve a list of questions and answers for a given entity.
-     */
-    getQuestionAndAnswers({ entityType, entityId, id, userId, showAnswer, pageId, pageSize, }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        userId?: string;
-        showAnswer?: boolean;
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entityType - Type of entity, e.g. product, l3, etc.
-     * @param {string} arg.entityId - ID of the eligible entity as specified in
-     *   the entity type.
-     * @param {string} [arg.id] - QNA ID
-     * @param {string} [arg.userId] - User ID
-     * @param {boolean} [arg.showAnswer] - This is a boolean value. Select
-     *   *true* to display answers given.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get a list of QnA
-     * @description: Use this API to retrieve a list of questions and answers for a given entity.
-     */
-    getQuestionAndAnswersPaginator({ entityType, entityId, id, userId, showAnswer, pageSize, }?: {
-        entityType: string;
-        entityId: string;
-        id?: string;
-        userId?: string;
-        showAnswer?: boolean;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] - Vote ID
-     * @param {string} [arg.refType] - Entity type, e.g. review | comment.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Promise<VoteResponse>} - Success response
-     * @summary: Get a list of votes
-     * @description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
-     */
-    getVotes({ id, refType, pageNo, pageSize }?: {
-        id?: string;
-        refType?: string;
-        pageNo?: number;
-        pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] - Vote ID
-     * @param {string} [arg.refType] - Entity type, e.g. review | comment.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @summary: Get a list of votes
-     * @description: Use this API to retrieve a list of votes of a current logged in user. Votes can be filtered using `ref_type`, i.e. review | comment.
-     */
-    getVotesPaginator({ id, refType, pageSize }?: {
-        id?: string;
-        refType?: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {VoteRequest} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Create a new vote
-     * @description: Use this API to create a new vote, where the action could be an upvote or a downvote. This is useful when you want to give a vote (say upvote) to a review (ref_type) of a product (entity_type).
-     */
-    createVote({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdateVoteRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: Update a vote
-     * @description: Use this API to update a vote with a new action, i.e. either an upvote or a downvote.
-     */
-    updateVote({ body }?: {
-        body: any;
-    }): Promise<any>;
-}
 declare class PosCart {
     constructor(_conf: any);
     _conf: any;
@@ -3743,17 +3089,17 @@ declare class PosCart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {number} [arg.assignCardId] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.areaCode] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId, buyNow }?: {
+    getCart({ id, i, b, assignCardId, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
-        buyNow?: boolean;
+        areaCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -3769,16 +3115,16 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.areaCode] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, buyNow }?: {
+    addItems({ body, i, b, areaCode }?: {
         i?: boolean;
         b?: boolean;
-        buyNow?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
@@ -3786,42 +3132,38 @@ declare class PosCart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.areaCode] -
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
-    updateCart({ body, id, i, b, buyNow }?: {
+    updateCart({ body, id, i, b, areaCode }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
-        buyNow?: boolean;
+        areaCode?: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - The unique identifier of the cart.
-     * @param {boolean} [arg.buyNow] -
      * @returns {Promise<CartItemCountResponse>} - Success response
      * @summary: Count items in the cart
      * @description: Use this API to get the total number of items present in cart.
      */
-    getItemCount({ id, buyNow }?: {
+    getItemCount({ id }?: {
         id?: string;
-        buyNow?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @returns {Promise<GetCouponResponse>} - Success response
      * @summary: Fetch Coupon
      * @description: Use this API to get a list of available coupons along with their details.
      */
-    getCoupons({ id, buyNow }?: {
+    getCoupons({ id }?: {
         id?: string;
-        buyNow?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -3829,31 +3171,27 @@ declare class PosCart {
      * @param {boolean} [arg.b] -
      * @param {boolean} [arg.p] -
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @param {ApplyCouponRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart.
      */
-    applyCoupon({ body, i, b, p, id, buyNow }?: {
+    applyCoupon({ body, i, b, p, id }?: {
         i?: boolean;
         b?: boolean;
         p?: boolean;
         id?: string;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] - The unique identifier of the cart
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Remove Coupon Applied
      * @description: Remove Coupon applied on the cart by passing uid in request body.
      */
-    removeCoupon({ id, buyNow }?: {
+    removeCoupon({ id }?: {
         id?: string;
-        buyNow?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -3878,23 +3216,20 @@ declare class PosCart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
      * @param {RewardPointRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Apply reward points at cart
      * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
      */
-    applyRewardPoints({ body, id, i, b, buyNow }?: {
+    applyRewardPoints({ body, id, i, b }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.mobileNo] -
      * @param {string} [arg.checkoutMode] -
      * @param {string} [arg.tags] -
@@ -3903,9 +3238,8 @@ declare class PosCart {
      * @summary: Fetch address
      * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
      */
-    getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, }?: {
+    getAddresses({ cartId, mobileNo, checkoutMode, tags, isDefault }?: {
         cartId?: string;
-        buyNow?: boolean;
         mobileNo?: string;
         checkoutMode?: string;
         tags?: string;
@@ -3925,7 +3259,6 @@ declare class PosCart {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
      * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.mobileNo] -
      * @param {string} [arg.checkoutMode] -
      * @param {string} [arg.tags] -
@@ -3934,10 +3267,9 @@ declare class PosCart {
      * @summary: Fetch a single address by its ID
      * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
      */
-    getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, }?: {
+    getAddressById({ id, cartId, mobileNo, checkoutMode, tags, isDefault }?: {
         id: string;
         cartId?: string;
-        buyNow?: boolean;
         mobileNo?: string;
         checkoutMode?: string;
         tags?: string;
@@ -3968,7 +3300,6 @@ declare class PosCart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {SelectCartAddressRequest} arg.body
@@ -3976,9 +3307,8 @@ declare class PosCart {
      * @summary: Select an address from available addresses
      * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
      */
-    selectAddress({ body, cartId, buyNow, i, b }?: {
+    selectAddress({ body, cartId, i, b }?: {
         cartId?: string;
-        buyNow?: boolean;
         i?: boolean;
         b?: boolean;
         body: any;
@@ -3986,21 +3316,18 @@ declare class PosCart {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @param {UpdateCartPaymentRequest} arg.body
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Update cart payment
      * @description: Use this API to update cart payment.
      */
-    selectPaymentMode({ body, id, buyNow }?: {
+    selectPaymentMode({ body, id }?: {
         id?: string;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
      * @param {string} [arg.addressId] -
      * @param {string} [arg.paymentMode] -
      * @param {string} [arg.paymentIdentifier] -
@@ -4010,9 +3337,8 @@ declare class PosCart {
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+    validateCouponForPayment({ id, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
         id?: string;
-        buyNow?: boolean;
         addressId?: string;
         paymentMode?: string;
         paymentIdentifier?: string;
@@ -4083,16 +3409,14 @@ declare class PosCart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] - The unique identifier of the cart
      * @param {CartMetaRequest} arg.body
      * @returns {Promise<CartMetaResponse>} - Success response
      * @summary: Update the cart meta
      * @description: Use this API to update cart meta like checkout_mode and gstin.
      */
-    updateCartMeta({ body, id, buyNow }?: {
+    updateCartMeta({ body, id }?: {
         id?: string;
-        buyNow?: boolean;
         body: any;
     }): Promise<any>;
     /**
