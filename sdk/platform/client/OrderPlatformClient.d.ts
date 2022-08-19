@@ -55,6 +55,7 @@ declare class Order {
      * @param {string} [arg.toDate] - To Date
      * @param {boolean} [arg.isPrioritySort] - Sorting Order
      * @param {boolean} [arg.lockStatus] - Hide Lock Status
+     * @param {string} [arg.userId] - User Id
      * @param {string} [arg.q] - Keyword for Search
      * @param {string} [arg.stage] - Specefic Order Stage
      * @param {string} [arg.salesChannels] - Selected Sales Channel
@@ -68,13 +69,14 @@ declare class Order {
      * @summary: Get Orders for company based on Company Id
      * @description: Get Orders
      */
-    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, isPrioritySort, lockStatus, q, stage, salesChannels, orderId, stores, deploymentStores, status, dp, shortenUrls, filterType, }?: {
+    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, isPrioritySort, lockStatus, userId, q, stage, salesChannels, orderId, stores, deploymentStores, status, dp, shortenUrls, filterType, }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
         toDate?: string;
         isPrioritySort?: boolean;
         lockStatus?: boolean;
+        userId?: string;
         q?: string;
         stage?: string;
         salesChannels?: string;

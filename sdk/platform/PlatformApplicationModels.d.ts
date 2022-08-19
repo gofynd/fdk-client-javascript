@@ -183,13 +183,13 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
@@ -220,11 +220,6 @@ export class CatalogValidator {
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
-    static getApplicationBrandListing(): any;
-    static updateAppBrand(): any;
-    static getApplicationCategoryListing(): any;
-    static updateAppCategory(): any;
-    static updateAppLocation(): any;
     static getApplicationBrands(): any;
     static getDepartments(): any;
     static getCategories(): any;
@@ -232,6 +227,11 @@ export class CatalogValidator {
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
     static getAppLocations(): any;
+    static getApplicationBrandListing(): any;
+    static updateAppBrand(): any;
+    static getApplicationCategoryListing(): any;
+    static updateAppCategory(): any;
+    static updateAppLocation(): any;
 }
 export class FileStorageValidator {
     static appStartUpload(): any;
@@ -315,6 +315,9 @@ export class AnalyticsValidator {
 export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
+}
+export class OrdersValidator {
+    static getApplicationShipments(): any;
 }
 export class ServiceabilityValidator {
     static getApplicationServiceability(): any;

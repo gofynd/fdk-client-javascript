@@ -76,5 +76,11 @@ class OrderValidator {
       shipmentId: Joi.string().allow("").required(),
     }).required();
   }
+
+  static getCreditNoteByShipmentId() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
 }
 module.exports = OrderValidator;

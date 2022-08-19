@@ -4,6 +4,8 @@ class OrdersValidator {
   static getShipmentDetails() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+      orderingCompanyId: Joi.string().allow(""),
+      requestByExt: Joi.string().allow(""),
     }).required();
   }
 
@@ -13,6 +15,11 @@ class OrdersValidator {
       groupEntity: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
+      paymentMode: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
     }).required();
   }
 
@@ -65,9 +72,36 @@ class OrdersValidator {
     }).required();
   }
 
+  static getMetricCount() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
   static getfilters() {
     return Joi.object({
       view: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static createShipmentReport() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getReportsShipmentListing() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
+  static upsertJioCode() {
+    return Joi.object({
+      body: Validator.JioCodeUpsertPayload().required(),
     }).required();
   }
 }

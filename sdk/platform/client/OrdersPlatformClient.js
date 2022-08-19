@@ -10,13 +10,17 @@ class Orders {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
+   * @param {string} [arg.orderingCompanyId] -
+   * @param {string} [arg.requestByExt] -
    * @summary:
    * @description:
    */
-  getShipmentDetails({ shipmentId } = {}) {
+  getShipmentDetails({ shipmentId, orderingCompanyId, requestByExt } = {}) {
     const { error } = OrdersValidator.getShipmentDetails().validate(
       {
         shipmentId,
+        orderingCompanyId,
+        requestByExt,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -25,6 +29,8 @@ class Orders {
     }
 
     const query_params = {};
+    query_params["ordering_company_id"] = orderingCompanyId;
+    query_params["request_by_ext"] = requestByExt;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -41,16 +47,36 @@ class Orders {
    * @param {string} [arg.groupEntity] -
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
+   * @param {string} [arg.dpIds] -
+   * @param {string} [arg.stores] -
+   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.paymentMode] -
+   * @param {string} [arg.bagStatus] -
    * @summary:
    * @description:
    */
-  getLaneConfig({ superLane, groupEntity, fromDate, toDate } = {}) {
+  getLaneConfig({
+    superLane,
+    groupEntity,
+    fromDate,
+    toDate,
+    dpIds,
+    stores,
+    salesChannel,
+    paymentMode,
+    bagStatus,
+  } = {}) {
     const { error } = OrdersValidator.getLaneConfig().validate(
       {
         superLane,
         groupEntity,
         fromDate,
         toDate,
+        dpIds,
+        stores,
+        salesChannel,
+        paymentMode,
+        bagStatus,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -63,6 +89,11 @@ class Orders {
     query_params["group_entity"] = groupEntity;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
+    query_params["dp_ids"] = dpIds;
+    query_params["stores"] = stores;
+    query_params["sales_channel"] = salesChannel;
+    query_params["payment_mode"] = paymentMode;
+    query_params["bag_status"] = bagStatus;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -293,6 +324,38 @@ class Orders {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @summary:
+   * @description:
+   */
+  getMetricCount({ fromDate, toDate } = {}) {
+    const { error } = OrdersValidator.getMetricCount().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment/metrics-count`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.view -
    * @summary:
    * @description:
@@ -317,6 +380,98 @@ class Orders {
       `/service/platform/orders/v1.0/company/${this.config.companyId}/filter-listing`,
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @summary:
+   * @description:
+   */
+  createShipmentReport({ fromDate, toDate } = {}) {
+    const { error } = OrdersValidator.createShipmentReport().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @summary:
+   * @description:
+   */
+  getReportsShipmentListing({ pageNo, pageSize } = {}) {
+    const { error } = OrdersValidator.getReportsShipmentListing().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {JioCodeUpsertPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  upsertJioCode({ body } = {}) {
+    const { error } = OrdersValidator.upsertJioCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
+      query_params,
+      body
     );
   }
 }
