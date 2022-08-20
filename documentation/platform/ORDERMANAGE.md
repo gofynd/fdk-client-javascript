@@ -173,8 +173,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
  | identifier | string |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -185,10 +185,10 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_invoice_id | string |  no  |  |
  | reason | [number] |  no  |  |
- | products | [[ProductDetail](#ProductDetail)] |  no  |  |
  | data_update | string |  no  |  |
+ | products | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | store_invoice_id | string |  no  |  |
 
 ---
 
@@ -210,9 +210,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  yes  |  |
- | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
  | exclude_bags_next_state | string |  yes  |  |
+ | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
+ | status | string |  yes  |  |
 
 ---
 
@@ -224,8 +224,8 @@ It shows the journey of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | statuses | [Statuses](#Statuses) |  no  |  |
- | task | boolean |  no  |  |
  | force_transition | boolean |  no  |  |
+ | task | boolean |  no  |  |
 
 ---
 
@@ -260,15 +260,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l2_detail | string |  no  |  |
- | l1_detail | string |  no  |  |
- | type | string |  yes  |  |
  | message | string |  yes  |  |
- | l3_detail | string |  no  |  |
- | ticket_url | string |  no  |  |
- | createdat | string |  yes  |  |
- | user | string |  yes  |  |
  | ticket_id | string |  no  |  |
+ | user | string |  yes  |  |
+ | l1_detail | string |  no  |  |
+ | ticket_url | string |  no  |  |
+ | l3_detail | string |  no  |  |
+ | createdat | string |  yes  |  |
+ | l2_detail | string |  no  |  |
+ | type | string |  yes  |  |
 
 ---
 
