@@ -5,7 +5,6 @@
 
 * [Common](COMMON.md) - Application configuration apis 
 * [Lead](LEAD.md) - Handles communication between Administrator <-> Staff and Staff <-> Users 
-* [Feedback](FEEDBACK.md) - User Reviews and Rating System 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 
 * [Content](CONTENT.md) - Content System 
