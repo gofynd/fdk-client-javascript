@@ -1336,6 +1336,7 @@ declare class User {
         verifyMobile: string;
         hasPassword: string;
         updatePassword: string;
+        archiveUser: string;
         logout: string;
         sendOTPOnMobile: string;
         verifyMobileOTP: string;
@@ -1527,6 +1528,16 @@ declare class User {
      * @description: Use this API to update the password.
      */
     updatePassword({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ArchiveApplicationUserRequestSchema} arg.body
+     * @returns {Promise<ArchiveUserSuccess>} - Success response
+     * @summary: verify otp and archive user
+     * @description: verify otp and archive user
+     */
+    archiveUser({ body }?: {
         body: any;
     }): Promise<any>;
     /**

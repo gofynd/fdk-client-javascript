@@ -11,6 +11,7 @@ Authentication Service
 * [createUser](#createuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [archiveUser](#archiveuser)
+* [unArchiveUser](#unarchiveuser)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
 * [getActiveSessions](#getactivesessions)
@@ -46,7 +47,7 @@ const data = await client.application("<APPLICATION_ID>").user.getCustomers({  q
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| q | Object | no | The search query. Mobile number or email ID of a customer. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -159,7 +160,7 @@ const data = await client.application("<APPLICATION_ID>").user.searchUsers({  q 
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | Object | no | The search query. Mobile number or email ID of a customer. |  
+| q | string | no | The search query. Mobile number or email ID of a customer. |  
 
 
 
@@ -422,6 +423,63 @@ archive user
 
 
 [ArchiveUserSuccess](#ArchiveUserSuccess)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### unArchiveUser
+unarchive user who archived from applcation
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.unArchiveUser({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.unArchiveUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UnArchiveUserRequestSchema](#UnArchiveUserRequestSchema) | yes | Request body |
+
+
+unarchive user who archived from applcation
+
+*Returned Response:*
+
+
+
+
+[UnArchiveUserSuccess](#UnArchiveUserSuccess)
 
 Success
 
@@ -847,6 +905,18 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "token_123"
     }
   },
+  "support_email": "test@gmail.com",
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -967,6 +1037,18 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
       "appId": "token_123"
     }
   },
+  "support_email": "test@gmail.com",
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -1009,6 +1091,34 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArchiveApplicationUserRequestSchema](#ArchiveApplicationUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | request_id | string |  no  |  |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnArchiveUserRequestSchema](#UnArchiveUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
 
 ---
 
@@ -1458,6 +1568,17 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [UnArchiveUserSuccess](#UnArchiveUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [OtpSuccess](#OtpSuccess)
 
  | Properties | Type | Nullable | Description |
@@ -1862,6 +1983,10 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | register | boolean |  no  |  |
  | mobile_image | string |  no  |  |
  | desktop_image | string |  no  |  |
+ | support_email | string |  no  |  |
+ | delete_account_day | number |  no  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
+ | delete_account_consent | string |  no  |  |
 
 ---
 
@@ -2015,6 +2140,30 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
+ #### [DeleteAccountReasons](#DeleteAccountReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | show_text_area | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consent_text | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Facebook](#Facebook)
 
  | Properties | Type | Nullable | Description |
@@ -2099,7 +2248,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | primary | boolean |  no  |  |
  | verified | boolean |  no  |  |
  | phone | string |  no  |  |
- | country_code | string |  no  |  |
+ | country_code | number |  no  |  |
 
 ---
 
