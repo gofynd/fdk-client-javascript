@@ -22,5 +22,7 @@ declare class OAuthClient {
         code: any;
     }): Promise<any>;
     getOfflineAccessToken(scopes: any, code: any): Promise<any>;
+    getOfflineAccessToken(scopes: any, code: any): Promise<any>;
+    getOfflineAccessTokenObj(scopes: any, code: any): Promise<any>;
     getOfflineAccessTokenObj(scopes: any, code: any): Promise<any>;
 }

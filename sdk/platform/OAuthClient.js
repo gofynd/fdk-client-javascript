@@ -178,6 +178,47 @@ class OAuthClient {
   }
 
   async getOfflineAccessToken(scopes, code) {
+    Logger({ type: "INFO", message: "Getting new offline access token" });
+    try {
+      let res = await this.getOfflineAccessTokenObj(scopes, code);
+      Logger({ type: "INFO", message: "Offline access token fetched" });
+      this.setToken(res);
+      this.token_expires_at = new Date().getTime() + this.token_expires_in;
+      return res;
+    } catch (error) {
+      if (error.isAxiosError) {
+        throw new FDKTokenIssueError(error.message);
+      }
+      throw error;
+    }
+  }
+
+  async getOfflineAccessTokenObj(scopes, code) {
+    let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/offline-token`;
+    let data = {
+      client_id: this.config.apiKey,
+      client_secret: this.config.apiSecret,
+      grant_type: "authorization_code",
+      scope: scopes,
+      code: code,
+    };
+    const token = Buffer.from(
+      `${this.config.apiKey}:${this.config.apiSecret}`,
+      "utf8"
+    ).toString("base64");
+    const rawRequest = {
+      method: "post",
+      url: url,
+      data: data,
+      headers: {
+        Authorization: `Basic ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return fdkAxios.request(rawRequest);
+  }
+
+  async getOfflineAccessToken(scopes, code) {
     try {
       let res = await this.getOfflineAccessTokenObj(scopes, code);
       this.setToken(res);
