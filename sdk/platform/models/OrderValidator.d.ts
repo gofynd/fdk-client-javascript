@@ -6,12 +6,8 @@ declare class OrderValidator {
     static checkRefund(): any;
     static shipmentBagsCanBreak(): any;
     static getOrdersByCompanyId(): any;
-    static getOrderLanesCountByCompanyId(): any;
     static getOrderDetails(): any;
     static getPicklistOrdersByCompanyId(): any;
     static getShipmentAddress(): any;
     static updateShipmentAddress(): any;
-    static getPing(): any;
-    static voiceCallback(): any;
-    static voiceClickToCall(): any;
 }

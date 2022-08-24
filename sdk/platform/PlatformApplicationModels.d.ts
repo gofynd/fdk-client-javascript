@@ -43,8 +43,12 @@ export class UserValidator {
     static getCustomers(): any;
     static searchUsers(): any;
     static createUser(): any;
+    static blockOrUnblockUsers(): any;
+    static archiveUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
+    static getActiveSessions(): any;
+    static deleteActiveSessions(): any;
     static getPlatformConfig(): any;
     static updatePlatformConfig(): any;
 }
@@ -167,7 +171,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
+    static getApplicationOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
