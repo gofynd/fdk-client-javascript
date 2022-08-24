@@ -1,5 +1,20 @@
-export = Validator;
-declare class Validator {
+export class ConfigurationValidator {
+    static searchApplication(): any;
+    static getLocations(): any;
+}
+export class WebhookValidator {
+    static fetchAllWebhookEvents(): any;
+    static queryWebhookEventDetails(): any;
+}
+export class InventoryValidator {
+    static getConfigByApiKey(): any;
+    static getApiKey(): any;
+    static getJobByCode(): any;
+    static getJobConfigByIntegrationType(): any;
+    static getJobCodesMetrics(): any;
+    static saveJobCodesMetrics(): any;
+}
+export class Validator {
     static ApplicationResponse(): any;
     static Currency(): any;
     static Domain(): any;
@@ -29,6 +44,7 @@ declare class Validator {
     static AuthMeta(): any;
     static Association(): any;
     static EventConfigBase(): any;
+    static SubscriberStatus(): any;
     static GCompany(): any;
     static GStore(): any;
     static Metum(): any;
