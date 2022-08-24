@@ -99,8 +99,8 @@ export class CatalogValidator {
     static createProduct(): any;
     static getProductAttributes(): any;
     static getProduct(): any;
-    static deleteProduct(): any;
     static editProduct(): any;
+    static deleteProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static getProductBulkUploadHistory(): any;

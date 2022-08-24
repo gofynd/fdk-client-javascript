@@ -932,11 +932,11 @@ export class Validator {
     static RedirectToAggregatorResponse(): any;
     static CreditDetail(): any;
     static CheckCreditResponse(): any;
+    static DeviceDetails(): any;
+    static MarketplaceInfo(): any;
     static KYCAddress(): any;
     static UserPersonalInfoInDetails(): any;
     static BusinessDetails(): any;
-    static DeviceDetails(): any;
-    static MarketplaceInfo(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;
