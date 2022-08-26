@@ -4730,7 +4730,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | key | string |  no  |  |
- | value | string |  no  |  |
+ | value | any |  no  |  |
 
 ---
 

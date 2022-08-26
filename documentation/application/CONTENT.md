@@ -2333,7 +2333,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
- | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
+ | sub_navigation | [any] |  no  |  |
 
 ---
 
@@ -2550,6 +2550,17 @@ Success. Returns a list of pages along with their details. Check the example sho
  | request_id | string |  no  |  |
  | stack_trace | string |  no  |  |
  | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
 
 ---
 

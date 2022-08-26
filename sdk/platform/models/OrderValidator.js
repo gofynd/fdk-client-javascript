@@ -39,6 +39,7 @@ class OrderValidator {
       toDate: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
       lockStatus: Joi.boolean(),
+      userId: Joi.string().allow(""),
       q: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),

@@ -162,7 +162,7 @@ class Webhook {
 
   /**
    * @param {Object} arg - Arg object.
-   * @summary:
+   * @summary: Get All Webhook Events
    * @description: Get All Webhook Events
    */
   fetchAllEventConfigurations({} = {}) {

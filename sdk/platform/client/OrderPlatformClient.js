@@ -156,6 +156,7 @@ class Order {
    * @param {string} [arg.toDate] - To Date
    * @param {boolean} [arg.isPrioritySort] - Sorting Order
    * @param {boolean} [arg.lockStatus] - Hide Lock Status
+   * @param {string} [arg.userId] - User Id
    * @param {string} [arg.q] - Keyword for Search
    * @param {string} [arg.stage] - Specefic Order Stage
    * @param {string} [arg.salesChannels] - Selected Sales Channel
@@ -176,6 +177,7 @@ class Order {
     toDate,
     isPrioritySort,
     lockStatus,
+    userId,
     q,
     stage,
     salesChannels,
@@ -195,6 +197,7 @@ class Order {
         toDate,
         isPrioritySort,
         lockStatus,
+        userId,
         q,
         stage,
         salesChannels,
@@ -219,6 +222,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["lock_status"] = lockStatus;
+    query_params["user_id"] = userId;
     query_params["q"] = q;
     query_params["stage"] = stage;
     query_params["sales_channels"] = salesChannels;
