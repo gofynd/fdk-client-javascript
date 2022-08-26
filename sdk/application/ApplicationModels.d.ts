@@ -1,280 +1,24 @@
-export class CatalogValidator {
-    static getProductDetailBySlug(): any;
-    static getProductSizesBySlug(): any;
-    static getProductComparisonBySlugs(): any;
-    static getSimilarComparisonProductBySlug(): any;
-    static getComparedFrequentlyProductBySlug(): any;
-    static getProductSimilarByIdentifier(): any;
-    static getProductVariantsBySlug(): any;
-    static getProductStockByIds(): any;
-    static getProductStockForTimeByIds(): any;
-    static getProducts(): any;
-    static getBrands(): any;
-    static getBrandDetailBySlug(): any;
-    static getCategories(): any;
-    static getCategoryDetailBySlug(): any;
-    static getHomeProducts(): any;
-    static getDepartments(): any;
-    static getSearchResults(): any;
-    static getCollections(): any;
-    static getCollectionItemsBySlug(): any;
-    static getCollectionDetailBySlug(): any;
-    static getFollowedListing(): any;
-    static followById(): any;
-    static unfollowById(): any;
-    static getFollowerCountById(): any;
-    static getFollowIds(): any;
-    static getStores(): any;
-    static getInStockLocations(): any;
-    static getLocationDetailsById(): any;
-    static getProductBundlesBySlug(): any;
-    static getProductPriceBySlug(): any;
-    static getProductSellersBySlug(): any;
-}
-export class CartValidator {
-    static getCart(): any;
-    static getCartLastModified(): any;
-    static addItems(): any;
-    static updateCart(): any;
-    static getItemCount(): any;
-    static getCoupons(): any;
-    static applyCoupon(): any;
-    static removeCoupon(): any;
-    static getBulkDiscountOffers(): any;
-    static applyRewardPoints(): any;
-    static getAddresses(): any;
-    static addAddress(): any;
-    static getAddressById(): any;
-    static updateAddress(): any;
-    static removeAddress(): any;
-    static selectAddress(): any;
-    static selectPaymentMode(): any;
-    static validateCouponForPayment(): any;
-    static getShipments(): any;
-    static checkoutCart(): any;
-    static updateCartMeta(): any;
-    static getCartShareLink(): any;
-    static getCartSharedItems(): any;
-    static updateCartWithSharedItems(): any;
-    static getPromotionOffers(): any;
-    static getLadderOffers(): any;
-}
-export class CommonValidator {
-    static searchApplication(): any;
-    static getLocations(): any;
-}
-export class LeadValidator {
-    static getTicket(): any;
-    static createHistory(): any;
-    static createTicket(): any;
-    static getCustomForm(): any;
-    static submitCustomForm(): any;
-    static getParticipantsInsideVideoRoom(): any;
-    static getTokenForVideoRoom(): any;
-}
-export class ThemeValidator {
-    static getAllPages(): any;
-    static getPage(): any;
-    static getAppliedTheme(): any;
-    static getThemeForPreview(): any;
-}
-export class UserValidator {
-    static loginWithFacebook(): any;
-    static loginWithGoogle(): any;
-    static loginWithGoogleAndroid(): any;
-    static loginWithGoogleIOS(): any;
-    static loginWithAppleIOS(): any;
-    static loginWithOTP(): any;
-    static loginWithEmailAndPassword(): any;
-    static sendResetPasswordEmail(): any;
-    static forgotPassword(): any;
-    static sendResetToken(): any;
-    static loginWithToken(): any;
-    static registerWithForm(): any;
-    static verifyEmail(): any;
-    static verifyMobile(): any;
-    static hasPassword(): any;
-    static updatePassword(): any;
-    static logout(): any;
-    static sendOTPOnMobile(): any;
-    static verifyMobileOTP(): any;
-    static sendOTPOnEmail(): any;
-    static verifyEmailOTP(): any;
-    static getLoggedInUser(): any;
-    static getListOfActiveSessions(): any;
-    static getPlatformConfig(): any;
-    static updateProfile(): any;
-    static addMobileNumber(): any;
-    static deleteMobileNumber(): any;
-    static setMobileNumberAsPrimary(): any;
-    static sendVerificationLinkToMobile(): any;
-    static addEmail(): any;
-    static deleteEmail(): any;
-    static setEmailAsPrimary(): any;
-    static sendVerificationLinkToEmail(): any;
-}
-export class ContentValidator {
-    static getAnnouncements(): any;
-    static getBlog(): any;
-    static getBlogs(): any;
-    static getDataLoaders(): any;
-    static getFaqs(): any;
-    static getFaqCategories(): any;
-    static getFaqBySlug(): any;
-    static getFaqCategoryBySlug(): any;
-    static getFaqsByCategorySlug(): any;
-    static getLandingPage(): any;
-    static getLegalInformation(): any;
-    static getNavigations(): any;
-    static getSEOConfiguration(): any;
-    static getSlideshows(): any;
-    static getSlideshow(): any;
-    static getSupportInformation(): any;
-    static getTags(): any;
-    static getPage(): any;
-    static getPages(): any;
-}
-export class CommunicationValidator {
-    static getCommunicationConsent(): any;
-    static upsertCommunicationConsent(): any;
-    static upsertAppPushtoken(): any;
-}
-export class ShareValidator {
-    static getApplicationQRCode(): any;
-    static getProductQRCodeBySlug(): any;
-    static getCollectionQRCodeBySlug(): any;
-    static getUrlQRCode(): any;
-    static createShortLink(): any;
-    static getShortLinkByHash(): any;
-    static getOriginalShortLinkByHash(): any;
-}
-export class FileStorageValidator {
-    static startUpload(): any;
-    static completeUpload(): any;
-    static signUrls(): any;
-}
-export class ConfigurationValidator {
-    static getApplication(): any;
-    static getOwnerInfo(): any;
-    static getBasicDetails(): any;
-    static getIntegrationTokens(): any;
-    static getOrderingStores(): any;
-    static getStoreDetailById(): any;
-    static getFeatures(): any;
-    static getContactInfo(): any;
-    static getCurrencies(): any;
-    static getCurrencyById(): any;
-    static getAppCurrencies(): any;
-    static getLanguages(): any;
-    static getOrderingStoreCookie(): any;
-    static removeOrderingStoreCookie(): any;
-    static getAppStaffList(): any;
-    static getAppStaffs(): any;
-}
-export class PaymentValidator {
-    static getAggregatorsConfig(): any;
-    static attachCardToCustomer(): any;
-    static getActiveCardAggregator(): any;
-    static getActiveUserCards(): any;
-    static deleteUserCard(): any;
-    static verifyCustomerForPayment(): any;
-    static verifyAndChargePayment(): any;
-    static initialisePayment(): any;
-    static checkAndUpdatePaymentStatus(): any;
-    static getPaymentModeRoutes(): any;
-    static getPosPaymentModeRoutes(): any;
-    static getRupifiBannerDetails(): any;
-    static getEpaylaterBannerDetails(): any;
-    static resendOrCancelPayment(): any;
-    static getActiveRefundTransferModes(): any;
-    static enableOrDisableRefundTransferMode(): any;
-    static getUserBeneficiariesDetail(): any;
-    static verifyIfscCode(): any;
-    static getOrderBeneficiariesDetail(): any;
-    static verifyOtpAndAddBeneficiaryForBank(): any;
-    static addBeneficiaryDetails(): any;
-    static addRefundBankAccountUsingOTP(): any;
-    static verifyOtpAndAddBeneficiaryForWallet(): any;
-    static updateDefaultBeneficiary(): any;
-    static customerCreditSummary(): any;
-    static redirectToAggregator(): any;
-    static checkCredit(): any;
-    static customerOnboard(): any;
-}
-export class OrderValidator {
-    static getOrders(): any;
-    static getOrderById(): any;
-    static getShipmentById(): any;
-    static getShipmentReasons(): any;
-    static updateShipmentStatus(): any;
-    static trackShipment(): any;
-    static getPosOrderById(): any;
-    static getCustomerDetailsByShipmentId(): any;
-    static sendOtpToShipmentCustomer(): any;
-    static verifyOtpShipmentCustomer(): any;
-    static getInvoiceByShipmentId(): any;
-}
-export class RewardsValidator {
-    static getPointsOnProduct(): any;
-    static getOfferByName(): any;
-    static getOrderDiscount(): any;
-    static getUserPoints(): any;
-    static getUserPointsHistory(): any;
-    static getUserReferralDetails(): any;
-    static redeemReferralCode(): any;
-}
-export class PosCartValidator {
-    static getCart(): any;
-    static getCartLastModified(): any;
-    static addItems(): any;
-    static updateCart(): any;
-    static getItemCount(): any;
-    static getCoupons(): any;
-    static applyCoupon(): any;
-    static removeCoupon(): any;
-    static getBulkDiscountOffers(): any;
-    static applyRewardPoints(): any;
-    static getAddresses(): any;
-    static addAddress(): any;
-    static getAddressById(): any;
-    static updateAddress(): any;
-    static removeAddress(): any;
-    static selectAddress(): any;
-    static selectPaymentMode(): any;
-    static validateCouponForPayment(): any;
-    static getShipments(): any;
-    static updateShipments(): any;
-    static checkoutCart(): any;
-    static updateCartMeta(): any;
-    static getAvailableDeliveryModes(): any;
-    static getStoreAddressByUid(): any;
-    static getCartShareLink(): any;
-    static getCartSharedItems(): any;
-    static updateCartWithSharedItems(): any;
-}
-export class LogisticValidator {
-    static getTatProduct(): any;
-    static getPincodeZones(): any;
-    static getPincodeCity(): any;
+export class LocationValidator {
+    static validateLocationObj(): any;
 }
 export class Validator {
-    static Meta(): any;
-    static Media(): any;
+    static ProductDetailAttribute(): any;
+    static ProductDetailGroupedAttribute(): any;
     static ProductListingActionPage(): any;
     static ProductListingAction(): any;
+    static Meta(): any;
+    static Media(): any;
     static ProductBrand(): any;
     static Price(): any;
     static ProductListingPrice(): any;
     static CustomMetaFields(): any;
-    static ProductDetailAttribute(): any;
-    static ProductDetailGroupedAttribute(): any;
     static ProductDetail(): any;
     static ErrorResponse(): any;
     static ProductSizeStores(): any;
     static ProductSize(): any;
+    static SizeChartValues(): any;
     static ColumnHeader(): any;
     static ColumnHeaders(): any;
-    static SizeChartValues(): any;
     static SizeChart(): any;
     static ProductSizes(): any;
     static AttributeDetail(): any;
@@ -288,29 +32,29 @@ export class Validator {
     static ProductVariantResponse(): any;
     static ProductVariantsResponse(): any;
     static CompanyDetail(): any;
-    static ProductStockPrice(): any;
-    static StoreDetail(): any;
     static Seller(): any;
+    static StoreDetail(): any;
+    static ProductStockPrice(): any;
     static ProductStockStatusItem(): any;
     static ProductStockStatusResponse(): any;
     static ProductStockPolling(): any;
-    static ProductSortOn(): any;
+    static ProductVariantListingResponse(): any;
+    static ProductListingDetail(): any;
     static ProductFiltersKey(): any;
     static ProductFiltersValue(): any;
     static ProductFilters(): any;
-    static ProductVariantListingResponse(): any;
-    static ProductListingDetail(): any;
+    static ProductSortOn(): any;
     static ProductListingResponse(): any;
     static ImageUrls(): any;
     static BrandItem(): any;
     static BrandListingResponse(): any;
     static BrandDetailResponse(): any;
+    static DepartmentIdentifier(): any;
     static ThirdLevelChild(): any;
     static SecondLevelChild(): any;
     static Child(): any;
     static CategoryItems(): any;
     static DepartmentCategoryTree(): any;
-    static DepartmentIdentifier(): any;
     static CategoryListingResponse(): any;
     static CategoryMetaResponse(): any;
     static HomeListingResponse(): any;
@@ -318,11 +62,11 @@ export class Validator {
     static DepartmentResponse(): any;
     static AutocompleteItem(): any;
     static AutoCompleteResponse(): any;
-    static CollectionListingFilterType(): any;
-    static CollectionListingFilterTag(): any;
-    static CollectionListingFilter(): any;
     static CollectionQuery(): any;
     static GetCollectionDetailNest(): any;
+    static CollectionListingFilterTag(): any;
+    static CollectionListingFilterType(): any;
+    static CollectionListingFilter(): any;
     static GetCollectionListingResponse(): any;
     static CollectionDetailResponse(): any;
     static GetFollowListingResponse(): any;
@@ -333,9 +77,9 @@ export class Validator {
     static LatLong(): any;
     static Store(): any;
     static StoreListingResponse(): any;
-    static StoreDepartments(): any;
     static CompanyStore(): any;
     static SellerPhoneNumber(): any;
+    static StoreDepartments(): any;
     static StoreAddressSerializer(): any;
     static StoreManagerSerializer(): any;
     static AppStore(): any;
@@ -343,53 +87,53 @@ export class Validator {
     static Time(): any;
     static StoreTiming(): any;
     static StoreDetails(): any;
+    static Size(): any;
     static ProductDetails(): any;
     static Price1(): any;
-    static Size(): any;
     static Products(): any;
     static GetGroupedProducts(): any;
     static ProductBundle(): any;
-    static DetailsSchemaV2(): any;
-    static MarketPlaceSttributesSchemaV2(): any;
-    static StrategyWiseListingSchemaV2(): any;
-    static ArticleAssignmentV2(): any;
-    static ProductStockPriceV2(): any;
-    static SellerGroupAttributes(): any;
-    static StoreV2(): any;
-    static ReturnConfigSchemaV2(): any;
-    static SellerV2(): any;
     static ProductSetDistributionSizeV2(): any;
     static ProductSetDistributionV2(): any;
     static ProductSetV2(): any;
+    static StrategyWiseListingSchemaV2(): any;
+    static SellerV2(): any;
+    static ReturnConfigSchemaV2(): any;
+    static ArticleAssignmentV2(): any;
+    static ProductStockPriceV2(): any;
+    static DetailsSchemaV2(): any;
+    static MarketPlaceSttributesSchemaV2(): any;
+    static SellerGroupAttributes(): any;
+    static StoreV2(): any;
     static ProductSizePriceResponseV2(): any;
     static ProductSizeSellerFilterSchemaV2(): any;
     static ProductSizeSellersResponseV2(): any;
+    static LoyaltyPoints(): any;
+    static DisplayBreakup(): any;
+    static CouponBreakup(): any;
+    static RawBreakup(): any;
+    static CartBreakup(): any;
+    static PaymentSelectionLock(): any;
+    static CartCurrency(): any;
+    static AppliedPromotion(): any;
     static ProductAvailability(): any;
+    static ProductPrice(): any;
+    static ProductPriceInfo(): any;
+    static ProductImage(): any;
     static BaseInfo(): any;
-    static BasePrice(): any;
-    static ArticlePriceInfo(): any;
-    static ProductArticle(): any;
     static ActionQuery(): any;
     static ProductAction(): any;
     static CategoryInfo(): any;
-    static ProductImage(): any;
     static CartProduct(): any;
-    static ProductPrice(): any;
-    static ProductPriceInfo(): any;
+    static BasePrice(): any;
+    static ArticlePriceInfo(): any;
+    static ProductArticle(): any;
     static PromoMeta(): any;
     static CartProductIdentifer(): any;
-    static AppliedPromotion(): any;
     static CartProductInfo(): any;
-    static PromiseFormatted(): any;
     static PromiseTimestamp(): any;
+    static PromiseFormatted(): any;
     static ShipmentPromise(): any;
-    static PaymentSelectionLock(): any;
-    static CartCurrency(): any;
-    static RawBreakup(): any;
-    static LoyaltyPoints(): any;
-    static CouponBreakup(): any;
-    static DisplayBreakup(): any;
-    static CartBreakup(): any;
     static CartDetailResponse(): any;
     static AddProductCart(): any;
     static AddCartRequest(): any;
@@ -402,9 +146,9 @@ export class Validator {
     static PageCoupon(): any;
     static GetCouponResponse(): any;
     static ApplyCouponRequest(): any;
-    static OfferSeller(): any;
     static OfferPrice(): any;
     static OfferItem(): any;
+    static OfferSeller(): any;
     static BulkPriceOffer(): any;
     static BulkPriceResponse(): any;
     static RewardPointRequest(): any;
@@ -1024,7 +768,4 @@ export class Validator {
     static LogisticPromise(): any;
     static LogisticTimestamp(): any;
     static Formatted(): any;
-}
-export class LocationValidator {
-    static validateLocationObj(): any;
 }
