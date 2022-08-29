@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 ## [v0.5.2] - 2022-09-28
 ### Changed
-- Fixed TTL not getting set for `online` mode access token set for extension users. It caused redis to fill-in with non-expiring keys.
+- Fixed TTL not getting set for `online` mode access token set for extension users. It caused redis to fill-in with non-expiring keys since all users who launches extension, a new session key is generated and stored without TTL due to this bug. 
 ---
 ## [v0.5.1] - 2022-06-16
 ### Added
