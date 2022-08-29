@@ -62,12 +62,12 @@ export class OrderValidator {
 export class CatalogValidator {
     static createProductBundle(): any;
     static getProductBundle(): any;
-    static updateProductBundle(): any;
     static getProductBundleDetail(): any;
+    static updateProductBundle(): any;
     static createSizeGuide(): any;
     static getSizeGuides(): any;
-    static updateSizeGuide(): any;
     static getSizeGuide(): any;
+    static updateSizeGuide(): any;
     static getSellerInsights(): any;
     static createMarketplaceOptin(): any;
     static getMarketplaceOptinDetail(): any;
@@ -79,8 +79,8 @@ export class CatalogValidator {
     static listProductTemplateCategories(): any;
     static createDepartments(): any;
     static listDepartmentsData(): any;
-    static updateDepartment(): any;
     static getDepartmentData(): any;
+    static updateDepartment(): any;
     static listProductTemplate(): any;
     static validateProductTemplate(): any;
     static downloadProductTemplateViews(): any;
@@ -91,14 +91,14 @@ export class CatalogValidator {
     static listTemplateBrandTypeValues(): any;
     static createCategories(): any;
     static listCategories(): any;
-    static updateCategory(): any;
     static getCategoryData(): any;
+    static updateCategory(): any;
     static createProduct(): any;
     static getProducts(): any;
     static getProductAttributes(): any;
-    static editProduct(): any;
-    static deleteProduct(): any;
     static getProduct(): any;
+    static deleteProduct(): any;
+    static editProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
     static createBulkProductUploadJob(): any;
@@ -125,8 +125,8 @@ export class CatalogValidator {
     static updateInventories(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
-    static updateHsnCode(): any;
     static getHsnCode(): any;
+    static updateHsnCode(): any;
     static bulkHsnCode(): any;
     static getAllProductHsnCodes(): any;
     static getSingleProductHSNCode(): any;
