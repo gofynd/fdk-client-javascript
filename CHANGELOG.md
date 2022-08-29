@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
-## [v0.5.2] - 2022-09-28
+## [v0.5.2] - 2022-09-29
 ### Changed
 - Fixed TTL not getting set for `online` mode access token set for extension users. It caused redis to fill-in with non-expiring keys since all users who launches extension, a new session key is generated and stored without TTL due to this bug. 
 ---
