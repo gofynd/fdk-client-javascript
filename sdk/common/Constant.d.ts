@@ -42,6 +42,7 @@ export namespace AVAILABLE_PAGE_TYPE {
     const CART_PAYMENT: string;
     const CART_REVIEW: string;
     const LOGIN: string;
+    const REGISTER: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -277,6 +278,10 @@ export const NAVIGATORS: {
         link: string;
     };
     login: {
+        name: string;
+        link: string;
+    };
+    register: {
         name: string;
         link: string;
     };
