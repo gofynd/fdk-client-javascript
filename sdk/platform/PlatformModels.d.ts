@@ -42,6 +42,7 @@ export class PaymentValidator {
     static getSubscriptionConfig(): any;
     static saveSubscriptionSetupIntent(): any;
     static verifyIfscCode(): any;
+    static getPayoutPennyDropAndChequeConfig(): any;
 }
 export class OrderValidator {
     static shipmentStatusUpdate(): any;
@@ -60,12 +61,12 @@ export class OrderValidator {
     static voiceClickToCall(): any;
 }
 export class CatalogValidator {
-    static createProductBundle(): any;
     static getProductBundle(): any;
+    static createProductBundle(): any;
     static updateProductBundle(): any;
     static getProductBundleDetail(): any;
-    static createSizeGuide(): any;
     static getSizeGuides(): any;
+    static createSizeGuide(): any;
     static updateSizeGuide(): any;
     static getSizeGuide(): any;
     static getSellerInsights(): any;
@@ -78,6 +79,8 @@ export class CatalogValidator {
     static getGenderAttribute(): any;
     static listProductTemplateCategories(): any;
     static listDepartmentsData(): any;
+    static createDepartments(): any;
+    static updateDepartment(): any;
     static getDepartmentData(): any;
     static listProductTemplate(): any;
     static validateProductTemplate(): any;
@@ -87,41 +90,42 @@ export class CatalogValidator {
     static listHSNCodes(): any;
     static listProductTemplateExportDetails(): any;
     static listTemplateBrandTypeValues(): any;
-    static createCategories(): any;
     static listCategories(): any;
+    static createCategories(): any;
     static updateCategory(): any;
     static getCategoryData(): any;
-    static createProduct(): any;
     static getProducts(): any;
+    static createProduct(): any;
+    static getProductAttributes(): any;
     static deleteProduct(): any;
     static editProduct(): any;
     static getProduct(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
-    static createBulkProductUploadJob(): any;
     static getProductBulkUploadHistory(): any;
+    static createBulkProductUploadJob(): any;
     static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
     static getProductTags(): any;
-    static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
+    static createProductAssetsInBulk(): any;
     static deleteSize(): any;
-    static addInventory(): any;
     static getInventoryBySize(): any;
+    static addInventory(): any;
     static getInventoryBySizeIdentifier(): any;
     static deleteInventory(): any;
-    static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
+    static createBulkInventoryJob(): any;
     static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
-    static createInventoryExportJob(): any;
     static getInventoryExport(): any;
+    static createInventoryExportJob(): any;
     static exportInventoryConfig(): any;
     static deleteRealtimeInventory(): any;
     static updateRealtimeInventory(): any;
     static updateInventories(): any;
-    static createHsnCode(): any;
     static getAllHsnCodes(): any;
+    static createHsnCode(): any;
     static updateHsnCode(): any;
     static getHsnCode(): any;
     static bulkHsnCode(): any;
