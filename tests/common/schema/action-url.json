@@ -110,6 +110,30 @@
       "result": {
         "path": "/product/test-product:::test-product-2/reviews"
       }
+    },
+    {
+      "name": "login page  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "login"
+        }
+      },
+      "result": {
+        "path": "/auth/login"
+      }
+    },
+    {
+      "name": "register page  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "register"
+        }
+      },
+      "result": {
+        "path": "/auth/register"
+      }
     }
   ]
 }
