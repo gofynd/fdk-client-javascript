@@ -17,6 +17,7 @@ Handles Platform websites OMS
 * [sendOtpToShipmentCustomer](#sendotptoshipmentcustomer)
 * [verifyOtpShipmentCustomer](#verifyotpshipmentcustomer)
 * [getInvoiceByShipmentId](#getinvoicebyshipmentid)
+* [getCreditNoteByShipmentId](#getcreditnotebyshipmentid)
 
 
 
@@ -664,6 +665,62 @@ Success, the code is valid and returns a SignedUrl
 ---
 
 
+### getCreditNoteByShipmentId
+Get Credit Note URL
+
+
+
+```javascript
+// Promise
+const promise = order.getCreditNoteByShipmentId({  shipmentId : value });
+
+// Async/Await
+const data = await order.getCreditNoteByShipmentId({  shipmentId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+
+
+
+Use this API to get a generated Credit Note URL for viewing or download.
+
+*Returned Response:*
+
+
+
+
+[ResponseGetCreditNoteShipment](#ResponseGetCreditNoteShipment)
+
+Success, the code is valid and returns a SignedUrl
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -738,6 +795,20 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | request_id | string |  yes  |  |
  | otp_code | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseGetCreditNoteShipment](#ResponseGetCreditNoteShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | presigned_type | string |  yes  |  |
+ | shipment_id | string |  yes  |  |
+ | presigned_url | string |  yes  |  |
 
 ---
 
