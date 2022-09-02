@@ -36,6 +36,7 @@ class Cart {
         "/service/application/cart/v1.0/share-cart/{token}/{action}",
       getPromotionOffers: "/service/application/cart/v1.0/available-promotions",
       getLadderOffers: "/service/application/cart/v1.0/available-ladder-prices",
+      overrideCart: "/service/application/cart/v1.0/checkout/over-ride",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -938,6 +939,35 @@ class Cart {
       }),
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {OverrideCheckoutReq} arg.body
+   * @returns {Promise<OverrideCheckoutResponse>} - Success response
+   * @summary: Create Fynd order with overriding cart details
+   * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
+   */
+  overrideCart({ body } = {}) {
+    const { error } = CartValidator.overrideCart().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["overrideCart"],
+        params: {},
+      }),
+      query_params,
+      body
     );
   }
 }

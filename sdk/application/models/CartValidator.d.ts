@@ -26,4 +26,5 @@ declare class CartValidator {
     static updateCartWithSharedItems(): any;
     static getPromotionOffers(): any;
     static getLadderOffers(): any;
+    static overrideCart(): any;
 }
