@@ -42,10 +42,11 @@ class Serviceability {
    * @param {string} [arg.name] - Name of particular zone in the seller account
    * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
    * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+   * @param {string} [arg.q] - Search with name as a free text
    * @summary: Zone List of application.
    * @description: This API returns Zone List View of the application.
    */
-  getListView({ pageNumber, pageSize, name, isActive, channelIds } = {}) {
+  getListView({ pageNumber, pageSize, name, isActive, channelIds, q } = {}) {
     const { error } = ServiceabilityValidator.getListView().validate(
       {
         pageNumber,
@@ -53,6 +54,7 @@ class Serviceability {
         name,
         isActive,
         channelIds,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -66,6 +68,7 @@ class Serviceability {
     query_params["name"] = name;
     query_params["is_active"] = isActive;
     query_params["channel_ids"] = channelIds;
+    query_params["q"] = q;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -105,35 +108,6 @@ class Serviceability {
    * @param {Object} arg - Arg object.
    * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
    *   particular zone.
-   * @summary: Zone Data View of application.
-   * @description: This API returns Zone Data View of the application.
-   */
-  getZoneDataView({ zoneId } = {}) {
-    const { error } = ServiceabilityValidator.getZoneDataView().validate(
-      {
-        zoneId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
    * @param {ZoneUpdateRequest} arg.body
    * @summary: Updation of zone collections in database.
    * @description: This API returns response of updation of zone in mongo database.
@@ -160,6 +134,35 @@ class Serviceability {
       `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+   *   particular zone.
+   * @summary: Zone Data View of application.
+   * @description: This API returns Zone Data View of the application.
+   */
+  getZoneDataView({ zoneId } = {}) {
+    const { error } = ServiceabilityValidator.getZoneDataView().validate(
+      {
+        zoneId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
+      query_params,
+      undefined
     );
   }
 

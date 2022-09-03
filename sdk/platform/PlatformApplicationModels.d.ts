@@ -169,10 +169,11 @@ export class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
-    static getPosPaymentModeRoutes(): any;
+    static getUserCODlimitRoutes(): any;
+    static setUserCODlimitRoutes(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
+    static getApplicationOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -183,41 +184,41 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
+    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
-    static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static createCustomKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static deleteAutocompleteKeyword(): any;
-    static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
+    static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
-    static updateGroupConfiguration(): any;
+    static createGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
-    static createListingConfiguration(): any;
+    static updateGroupConfiguration(): any;
     static getListingConfigurations(): any;
-    static updateListingConfiguration(): any;
+    static createListingConfiguration(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static createConfigurationProductListing(): any;
     static getConfigurations(): any;
-    static createConfigurationByType(): any;
+    static createConfigurationProductListing(): any;
     static getConfigurationByType(): any;
+    static createConfigurationByType(): any;
     static getQueryFilters(): any;
-    static createCollection(): any;
     static getAllCollections(): any;
+    static createCollection(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static addCollectionItems(): any;
+    static updateCollection(): any;
     static getCollectionItems(): any;
+    static addCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;

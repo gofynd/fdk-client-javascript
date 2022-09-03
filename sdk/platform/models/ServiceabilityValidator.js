@@ -14,6 +14,7 @@ class ServiceabilityValidator {
       name: Joi.string().allow(""),
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
+      q: Joi.string().allow(""),
     }).required();
   }
 
@@ -21,16 +22,16 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
-  static getZoneDataView() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
       body: Validator.ZoneUpdateRequest().required(),
+    }).required();
+  }
+
+  static getZoneDataView() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
     }).required();
   }
 
