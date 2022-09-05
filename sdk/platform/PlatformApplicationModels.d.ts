@@ -225,6 +225,7 @@ export class CatalogValidator {
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getAppInventory(): any;
     static getAppLocations(): any;
     static getApplicationBrandListing(): any;
     static updateAppBrand(): any;

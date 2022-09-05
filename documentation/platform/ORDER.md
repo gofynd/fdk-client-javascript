@@ -3540,7 +3540,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | shipments | string |  no  |  |
- | statuses | [any] |  no  |  |
+ | statuses | [string] |  no  |  |
  | force_transition | boolean |  yes  |  |
  | task | boolean |  yes  |  |
 
