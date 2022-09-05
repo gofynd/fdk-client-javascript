@@ -395,20 +395,6 @@ class Validator {
     });
   }
 
-  /*
-        Enum: SubscriberStatus
-        Used By: Webhook
-    */
-  static SubscriberStatus() {
-    return Joi.string().valid(
-      "active",
-
-      "inactive",
-
-      "blocked"
-    );
-  }
-
   static DataTresholdDTO() {
     return Joi.object({
       min_price: Joi.number(),
@@ -577,66 +563,4 @@ class Validator {
     });
   }
 }
-
-class ConfigurationValidator {
-  static searchApplication() {
-    return Joi.object({
-      authorization: Joi.string().allow(""),
-      query: Joi.string().allow(""),
-    });
-  }
-
-  static getLocations() {
-    return Joi.object({
-      locationType: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-    });
-  }
-}
-
-class WebhookValidator {
-  static fetchAllWebhookEvents() {
-    return Joi.object({});
-  }
-
-  static queryWebhookEventDetails() {
-    return Joi.object({
-      body: Joi.array().items(Validator.EventConfigBase()).required(),
-    }).required();
-  }
-}
-
-class InventoryValidator {
-  static getJobByCode() {
-    return Joi.object({
-      code: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getJobConfigByIntegrationType() {
-    return Joi.object({
-      integrationType: Joi.string().allow("").required(),
-      disable: Joi.boolean(),
-    }).required();
-  }
-
-  static getJobCodesMetrics() {
-    return Joi.object({
-      dailyJob: Joi.boolean(),
-      jobCode: Joi.string().allow(""),
-    });
-  }
-
-  static saveJobCodesMetrics() {
-    return Joi.object({
-      body: Validator.EmailJobMetrics().required(),
-    }).required();
-  }
-}
-
-module.exports = {
-  ConfigurationValidator,
-  WebhookValidator,
-  InventoryValidator,
-  Validator,
-};
+module.exports = Validator;
