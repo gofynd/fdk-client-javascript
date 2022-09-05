@@ -3539,10 +3539,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | string |  no  |  |
- | statuses | [string] |  no  |  |
+ | shipments | string |  yes  |  |
+ | statuses | [[ShipmentUpdateObject](#ShipmentUpdateObject)] |  yes  |  |
  | force_transition | boolean |  yes  |  |
  | task | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUpdateObject](#ShipmentUpdateObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | string |  no  |  |
 
 ---
 
