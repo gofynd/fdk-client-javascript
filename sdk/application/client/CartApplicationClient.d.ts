@@ -29,7 +29,6 @@ declare class Cart {
         updateCartWithSharedItems: string;
         getPromotionOffers: string;
         getLadderOffers: string;
-        overrideCart: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -403,15 +402,5 @@ declare class Cart {
         storeId?: string;
         promotionId?: string;
         pageSize?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {OverrideCheckoutReq} arg.body
-     * @returns {Promise<OverrideCheckoutResponse>} - Success response
-     * @summary: Create Fynd order with overriding cart details
-     * @description: Generate Fynd order while overriding cart details sent with provided `cart_items`
-     */
-    overrideCart({ body }?: {
-        body: any;
     }): Promise<any>;
 }

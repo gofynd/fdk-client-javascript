@@ -289,6 +289,7 @@ export class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static overrideCart(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;

@@ -206,11 +206,5 @@ class CartValidator {
       pageSize: Joi.number(),
     }).required();
   }
-
-  static overrideCart() {
-    return Joi.object({
-      body: Validator.OverrideCheckoutReq().required(),
-    }).required();
-  }
 }
 module.exports = CartValidator;
