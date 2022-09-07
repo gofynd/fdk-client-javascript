@@ -3539,8 +3539,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | string |  yes  |  |
- | statuses | [[ShipmentUpdateObject](#ShipmentUpdateObject)] |  yes  |  |
+ | shipments | string |  no  |  |
+ | statuses | [any] |  no  |  |
  | force_transition | boolean |  yes  |  |
  | task | boolean |  yes  |  |
 
