@@ -8009,7 +8009,6 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | content | string |  no  |  |
  | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
- | _id | string |  no  |  |
 
 ---
 

@@ -108,20 +108,5 @@ class OrderValidator {
       body: Validator.UpdateShipmentAddressRequest().required(),
     }).required();
   }
-
-  static getPing() {
-    return Joi.object({}).required();
-  }
-
-  static voiceCallback() {
-    return Joi.object({}).required();
-  }
-
-  static voiceClickToCall() {
-    return Joi.object({
-      caller: Joi.string().allow("").required(),
-      receiver: Joi.string().allow("").required(),
-    }).required();
-  }
 }
 module.exports = OrderValidator;

@@ -2497,7 +2497,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | url | string |  no  |  |
  | content | string |  no  |  |
  | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
- | _id | string |  no  |  |
 
 ---
 
