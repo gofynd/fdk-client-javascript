@@ -103,6 +103,12 @@ class UserValidator {
     }).required();
   }
 
+  static archiveUser() {
+    return Joi.object({
+      body: Validator.ArchiveApplicationUserRequestSchema().required(),
+    }).required();
+  }
+
   static logout() {
     return Joi.object({});
   }
