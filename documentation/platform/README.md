@@ -25,3 +25,4 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) -  
+* [OrderManage](ORDERMANAGE.md) - Update Status all platform shipment api(s) 
