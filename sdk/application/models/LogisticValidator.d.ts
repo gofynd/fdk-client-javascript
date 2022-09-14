@@ -1,6 +1,5 @@
 export = LogisticValidator;
 declare class LogisticValidator {
-    static getTatProduct(): any;
-    static getPincodeZones(): any;
-    static getPincodeCity(): any;
+    static getPincodeView(): any;
+    static getTATView(): any;
 }

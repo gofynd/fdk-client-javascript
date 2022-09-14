@@ -173,8 +173,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
  | quantity | number |  no  |  |
+ | identifier | string |  no  |  |
 
 ---
 
@@ -185,10 +185,10 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | [number] |  no  |  |
- | store_invoice_id | string |  no  |  |
- | products | [[ProductDetail](#ProductDetail)] |  no  |  |
  | data_update | string |  no  |  |
+ | products | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | store_invoice_id | string |  no  |  |
+ | reason | [number] |  no  |  |
 
 ---
 
@@ -210,9 +210,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
  | exclude_bags_next_state | string |  yes  |  |
  | status | string |  yes  |  |
- | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
 
 ---
 
@@ -224,8 +224,8 @@ It shows the journey of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | force_transition | boolean |  no  |  |
- | task | boolean |  no  |  |
  | statuses | [Statuses](#Statuses) |  no  |  |
+ | task | boolean |  no  |  |
 
 ---
 
@@ -236,8 +236,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | [string] |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -248,8 +248,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -260,15 +260,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ticket_id | string |  no  |  |
- | createdat | string |  yes  |  |
- | user | string |  yes  |  |
- | message | string |  yes  |  |
  | l1_detail | string |  no  |  |
- | ticket_url | string |  no  |  |
- | l3_detail | string |  no  |  |
  | type | string |  yes  |  |
+ | message | string |  yes  |  |
+ | createdat | string |  yes  |  |
  | l2_detail | string |  no  |  |
+ | l3_detail | string |  no  |  |
+ | ticket_id | string |  no  |  |
+ | ticket_url | string |  no  |  |
+ | user | string |  yes  |  |
 
 ---
 

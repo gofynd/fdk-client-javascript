@@ -22,7 +22,6 @@ Authentication Service
 * [verifyMobile](#verifymobile)
 * [hasPassword](#haspassword)
 * [updatePassword](#updatepassword)
-* [archiveUser](#archiveuser)
 * [logout](#logout)
 * [sendOTPOnMobile](#sendotponmobile)
 * [verifyMobileOTP](#verifymobileotp)
@@ -1288,63 +1287,6 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 ---
 
 
-### archiveUser
-verify otp and archive user
-
-
-
-```javascript
-// Promise
-const promise = user.archiveUser({  body : value });
-
-// Async/Await
-const data = await user.archiveUser({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ArchiveApplicationUserRequestSchema](#ArchiveApplicationUserRequestSchema) | yes | Request body |
-
-
-verify otp and archive user
-
-*Returned Response:*
-
-
-
-
-[ArchiveUserSuccess](#ArchiveUserSuccess)
-
-Success. Returns a success message. Refer `ArchiveUserSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### logout
 Logs out currently logged in user
 
@@ -2013,17 +1955,6 @@ Success. Returns a JSON object containing the all the platform configurations. R
     "account_kit": {
       "appId": "548529975557631"
     }
-  },
-  "delete_account_reasons": [
-    {
-      "reason_text": "test",
-      "reason_id": "123",
-      "show_text_area": true
-    }
-  ],
-  "delete_account_day": 7,
-  "delete_account_consent": {
-    "consent_text": ""
   },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
@@ -3055,34 +2986,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [ArchiveApplicationUserRequestSchema](#ArchiveApplicationUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | reason | string |  no  |  |
- | reason_id | string |  no  |  |
- | request_id | string |  no  |  |
- | otp | string |  no  |  |
-
----
-
-
- 
- 
- #### [UnArchiveUserRequestSchema](#UnArchiveUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | reason | string |  no  |  |
- | reason_id | string |  no  |  |
-
----
-
-
- 
- 
  #### [EditEmailRequestSchema](#EditEmailRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3526,17 +3429,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [UnArchiveUserSuccess](#UnArchiveUserSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
  #### [OtpSuccess](#OtpSuccess)
 
  | Properties | Type | Nullable | Description |
@@ -3941,9 +3833,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | register | boolean |  no  |  |
  | mobile_image | string |  no  |  |
  | desktop_image | string |  no  |  |
- | delete_account_day | number |  no  |  |
- | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
- | delete_account_consent | string |  no  |  |
 
 ---
 
@@ -4091,30 +3980,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | facebook | [Facebook](#Facebook) |  no  |  |
  | account_kit | [Accountkit](#Accountkit) |  no  |  |
  | google | [Google](#Google) |  no  |  |
-
----
-
-
- 
- 
- #### [DeleteAccountReasons](#DeleteAccountReasons)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reason_text | string |  no  |  |
- | reason_id | string |  no  |  |
- | show_text_area | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [DeleteAccountConsent](#DeleteAccountConsent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | consent_text | string |  no  |  |
 
 ---
 

@@ -3,40 +3,36 @@ declare class Logistic {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getTatProduct: string;
-        getPincodeZones: string;
-        getPincodeCity: string;
+        getPincodeView: string;
+        getTATView: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
-     * @param {GetTatProductReqBody} arg.body
-     * @returns {Promise<GetTatProductResponse>} - Success response
-     * @summary: Get TAT of a product
-     * @description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
+     * @param {string} arg.pincode - A `pincode` contains a specific address of
+     *   a location.
+     * @param {string} [arg.xApplicationId] - Application id is neccessary for
+     *   app authorizations & retrieving config of application
+     * @returns {Promise<PincodeApiResponse>} - Success response
+     * @summary: Get Pincode API
+     * @description: Get pincode data
      */
-    getTatProduct({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {GetPincodeZonesReqBody} arg.body
-     * @returns {Promise<GetPincodeZonesResponse>} - Success response
-     * @summary: Get Pincode Zones
-     * @description: Get to know the zones of a specefic pincode
-     */
-    getPincodeZones({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.pincode - The PIN Code of the area, e.g. 400059
-     * @returns {Promise<GetPincodeCityResponse>} - Success response
-     * @summary: Get city from PIN Code
-     * @description: Use this API to retrieve a city by its PIN Code.
-     */
-    getPincodeCity({ pincode }?: {
+    getPincodeView({ pincode, xApplicationId }?: {
         pincode: string;
+        xApplicationId?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.xApplicationId] - Application id is neccessary for
+     *   app authorizations & retrieving config of application
+     * @param {TATViewRequest} arg.body
+     * @returns {Promise<TATViewResponse>} - Success response
+     * @summary: Get TAT API
+     * @description: Get TAT data
+     */
+    getTATView({ body, xApplicationId }?: {
+        xApplicationId?: string;
+        body: any;
     }): Promise<any>;
 }
