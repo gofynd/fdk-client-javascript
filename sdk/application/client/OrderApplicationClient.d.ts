@@ -14,6 +14,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
         getInvoiceByShipmentId: string;
+        getCreditNoteByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -67,12 +68,15 @@ declare class Order {
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
+     * @param {number} [arg.bagId] - Bag Id of a specefic bags which will help
+     *   to categorize the reasons
      * @returns {Promise<ShipmentReasons>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
-    getShipmentReasons({ shipmentId }?: {
+    getShipmentReasons({ shipmentId, bagId }?: {
         shipmentId: string;
+        bagId?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -168,6 +172,18 @@ declare class Order {
      * @description: Use this API to get a generated Invoice URL for viewing or download.
      */
     getInvoiceByShipmentId({ shipmentId }?: {
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ResponseGetCreditNoteShipment>} - Success response
+     * @summary: Get Credit Note URL
+     * @description: Use this API to get a generated Credit Note URL for viewing or download.
+     */
+    getCreditNoteByShipmentId({ shipmentId }?: {
         shipmentId: string;
     }): Promise<any>;
 }
