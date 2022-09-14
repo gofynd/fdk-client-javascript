@@ -6,26 +6,26 @@
 
 ## Logistic Methods
 Open API Documentation for opex-logistics domain
-* [getPincodeView](#getpincodeview)
-* [getTATView](#gettatview)
+* [getPincodeCity](#getpincodecity)
+* [getTatProduct](#gettatproduct)
 
 
 
 ## Methods with example and description
 
 
-### getPincodeView
+### getPincodeCity
 Get Pincode API
 
 
 
 ```javascript
 // Promise
-const promise = logistic.getPincodeView({  pincode : value,
+const promise = logistic.getPincodeCity({  pincode : value,
  xApplicationId : value });
 
 // Async/Await
-const data = await logistic.getPincodeView({  pincode : value,
+const data = await logistic.getPincodeCity({  pincode : value,
  xApplicationId : value });
 ```
 
@@ -157,18 +157,18 @@ Get pincode data
 ---
 
 
-### getTATView
+### getTatProduct
 Get TAT API
 
 
 
 ```javascript
 // Promise
-const promise = logistic.getTATView({  body : value,
+const promise = logistic.getTatProduct({  body : value,
  xApplicationId : value });
 
 // Async/Await
-const data = await logistic.getTATView({  body : value,
+const data = await logistic.getTatProduct({  body : value,
  xApplicationId : value });
 ```
 
@@ -331,10 +331,10 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | journey | string |  no  |  |
- | source | string |  no  |  |
  | action | string |  yes  |  |
  | to_pincode | string |  yes  |  |
+ | source | string |  no  |  |
+ | journey | string |  no  |  |
 
 ---
 
@@ -345,9 +345,9 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | journey | string |  yes  |  |
  | message | string |  yes  |  |
  | type | string |  yes  |  |
+ | journey | string |  yes  |  |
 
 ---
 
@@ -358,38 +358,13 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorResponse](#ErrorResponse) |  yes  |  |
- | request_uuid | string |  yes  |  |
- | journey | string |  no  |  |
- | action | string |  yes  |  |
  | success | boolean |  yes  |  |
- | to_pincode | string |  yes  |  |
+ | error | [ErrorResponse](#ErrorResponse) |  yes  |  |
+ | journey | string |  no  |  |
  | source | string |  no  |  |
-
----
-
-
- 
- 
- #### [Error](#Error)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | message | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [Meta](#Meta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | internal_zone_id | number |  no  |  |
- | zone | string |  no  |  |
+ | to_pincode | string |  yes  |  |
+ | request_uuid | string |  yes  |  |
+ | action | string |  yes  |  |
 
 ---
 
@@ -400,10 +375,35 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
  | uid | string |  no  |  |
+ | name | string |  no  |  |
  | display_name | string |  no  |  |
  | sub_type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Error](#Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Meta](#Meta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zone | string |  no  |  |
+ | internal_zone_id | number |  no  |  |
 
 ---
 
@@ -414,13 +414,13 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | parents | [[Parents](#Parents)] |  no  |  |
  | error | [Error](#Error) |  yes  |  |
  | sub_type | string |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
- | uid | string |  no  |  |
- | display_name | string |  no  |  |
- | parents | [[Parents](#Parents)] |  no  |  |
  | name | string |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
+ | display_name | string |  no  |  |
 
 ---
 
@@ -431,9 +431,9 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [Error](#Error) |  yes  |  |
  | data | [[DataResponse](#DataResponse)] |  no  |  |
  | success | boolean |  yes  |  |
+ | error | [Error](#Error) |  yes  |  |
 
 ---
 
@@ -456,8 +456,8 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [Category](#Category) |  no  |  |
  | manufacturing_time | number |  no  |  |
+ | category | [Category](#Category) |  no  |  |
  | manufacturing_time_unit | string |  no  |  |
 
 ---
@@ -470,8 +470,8 @@ Get TAT  data
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | from_pincode | string |  no  |  |
- | articles | [[Articles](#Articles)] |  no  |  |
  | fulfillment_id | number |  no  |  |
+ | articles | [[Articles](#Articles)] |  no  |  |
 
 ---
 
@@ -482,12 +482,12 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | location_details | [[LocationDetails](#LocationDetails)] |  no  |  |
- | identifier | string |  yes  |  |
  | journey | string |  yes  |  |
- | action | string |  yes  |  |
- | to_pincode | string |  yes  |  |
+ | identifier | string |  yes  |  |
  | source | string |  yes  |  |
+ | to_pincode | string |  yes  |  |
+ | location_details | [[LocationDetails](#LocationDetails)] |  no  |  |
+ | action | string |  yes  |  |
 
 ---
 
@@ -498,9 +498,9 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
  | message | string |  no  |  |
  | type | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -547,13 +547,13 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | manufacturing_time | number |  no  |  |
  | error | [TATError](#TATError) |  yes  |  |
  | promise | [Promise](#Promise) |  no  |  |
- | manufacturing_time | number |  no  |  |
  | is_cod_available | boolean |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
- | category | [Category](#Category) |  no  |  |
  | _manufacturing_time_seconds | string |  no  |  |
+ | category | [Category](#Category) |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
 
 ---
 
@@ -565,8 +565,8 @@ Get TAT  data
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | from_pincode | string |  no  |  |
- | articles | [[ArticlesResponse](#ArticlesResponse)] |  no  |  |
  | fulfillment_id | number |  no  |  |
+ | articles | [[ArticlesResponse](#ArticlesResponse)] |  no  |  |
 
 ---
 
@@ -577,18 +577,18 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | location_details | [[LocationDetailsResponse](#LocationDetailsResponse)] |  no  |  |
- | identifier | string |  yes  |  |
- | error | [TATError](#TATError) |  yes  |  |
- | request_uuid | string |  yes  |  |
- | journey | string |  yes  |  |
- | action | string |  yes  |  |
- | payment_mode | string |  yes  |  |
- | is_cod_available | boolean |  yes  |  |
  | success | boolean |  yes  |  |
- | to_pincode | string |  yes  |  |
- | to_city | string |  yes  |  |
+ | error | [TATError](#TATError) |  yes  |  |
+ | is_cod_available | boolean |  yes  |  |
+ | journey | string |  yes  |  |
+ | identifier | string |  yes  |  |
+ | payment_mode | string |  yes  |  |
  | source | string |  yes  |  |
+ | to_pincode | string |  yes  |  |
+ | location_details | [[LocationDetailsResponse](#LocationDetailsResponse)] |  no  |  |
+ | request_uuid | string |  yes  |  |
+ | to_city | string |  yes  |  |
+ | action | string |  yes  |  |
  | stormbreaker_uuid | string |  yes  |  |
 
 ---

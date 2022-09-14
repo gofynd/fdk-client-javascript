@@ -8,8 +8,8 @@ class Logistic {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getPincodeView: "/service/application/logistics/v1.0/pincode/{pincode}",
-      getTATView: "/service/application/logistics/v1.0/",
+      getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
+      getTatProduct: "/service/application/logistics/v1.0/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -37,8 +37,8 @@ class Logistic {
    * @summary: Get Pincode API
    * @description: Get pincode data
    */
-  getPincodeView({ pincode, xApplicationId } = {}) {
-    const { error } = LogisticValidator.getPincodeView().validate(
+  getPincodeCity({ pincode, xApplicationId } = {}) {
+    const { error } = LogisticValidator.getPincodeCity().validate(
       { pincode, xApplicationId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -51,7 +51,7 @@ class Logistic {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getPincodeView"],
+        url: this._urls["getPincodeCity"],
         params: { pincode },
       }),
       query_params,
@@ -68,8 +68,8 @@ class Logistic {
    * @summary: Get TAT API
    * @description: Get TAT data
    */
-  getTATView({ body, xApplicationId } = {}) {
-    const { error } = LogisticValidator.getTATView().validate(
+  getTatProduct({ body, xApplicationId } = {}) {
+    const { error } = LogisticValidator.getTatProduct().validate(
       { body, xApplicationId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -82,7 +82,7 @@ class Logistic {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["getTATView"],
+        url: this._urls["getTatProduct"],
         params: {},
       }),
       query_params,

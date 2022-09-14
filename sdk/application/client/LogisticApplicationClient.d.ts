@@ -3,8 +3,8 @@ declare class Logistic {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getPincodeView: string;
-        getTATView: string;
+        getPincodeCity: string;
+        getTatProduct: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -18,7 +18,7 @@ declare class Logistic {
      * @summary: Get Pincode API
      * @description: Get pincode data
      */
-    getPincodeView({ pincode, xApplicationId }?: {
+    getPincodeCity({ pincode, xApplicationId }?: {
         pincode: string;
         xApplicationId?: string;
     }): Promise<any>;
@@ -31,7 +31,7 @@ declare class Logistic {
      * @summary: Get TAT API
      * @description: Get TAT data
      */
-    getTATView({ body, xApplicationId }?: {
+    getTatProduct({ body, xApplicationId }?: {
         xApplicationId?: string;
         body: any;
     }): Promise<any>;
