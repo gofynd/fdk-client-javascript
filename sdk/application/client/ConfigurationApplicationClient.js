@@ -61,6 +61,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -69,7 +71,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -89,6 +92,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -97,7 +102,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -117,6 +123,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -125,7 +133,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -145,6 +154,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -153,7 +164,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -181,6 +193,8 @@ class Configuration {
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -189,7 +203,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -239,6 +254,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -247,7 +264,8 @@ class Configuration {
         params: { storeId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -267,6 +285,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -275,7 +295,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -295,6 +316,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -303,7 +326,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -323,6 +347,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -331,7 +357,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -352,6 +379,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -360,7 +389,8 @@ class Configuration {
         params: { id },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -380,6 +410,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -388,7 +420,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -408,6 +441,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -416,7 +451,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -437,6 +473,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -445,7 +483,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -467,6 +506,8 @@ class Configuration {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -475,7 +516,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -508,6 +550,8 @@ class Configuration {
     query_params["ordering_store"] = orderingStore;
     query_params["user"] = user;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -516,7 +560,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -585,6 +630,8 @@ class Configuration {
     query_params["ordering_store"] = orderingStore;
     query_params["user"] = user;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -593,7 +640,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

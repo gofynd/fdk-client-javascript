@@ -46,6 +46,8 @@ class Communication {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -54,7 +56,8 @@ class Communication {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -77,6 +80,8 @@ class Communication {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -85,7 +90,8 @@ class Communication {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -106,6 +112,8 @@ class Communication {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -114,7 +122,8 @@ class Communication {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

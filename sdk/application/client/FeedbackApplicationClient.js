@@ -75,6 +75,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -83,7 +85,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -104,6 +107,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -112,7 +117,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -141,6 +147,8 @@ class Feedback {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -149,7 +157,8 @@ class Feedback {
         params: { entityId, entityType },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -207,6 +216,8 @@ class Feedback {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -215,7 +226,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -262,6 +274,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -270,7 +284,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -293,6 +308,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -301,7 +318,8 @@ class Feedback {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -325,6 +343,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -333,7 +353,8 @@ class Feedback {
         params: { slug },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -354,6 +375,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -362,7 +385,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -383,6 +407,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -391,7 +417,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -423,6 +450,8 @@ class Feedback {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -431,7 +460,8 @@ class Feedback {
         params: { entityType },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -490,6 +520,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -498,7 +530,8 @@ class Feedback {
         params: { entityType, entityId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -520,6 +553,8 @@ class Feedback {
     const query_params = {};
     query_params["ids"] = ids;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -528,7 +563,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -549,6 +585,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -557,7 +595,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -578,6 +617,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -586,7 +627,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -617,6 +659,8 @@ class Feedback {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -625,7 +669,8 @@ class Feedback {
         params: { entityType, entityId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -690,6 +735,8 @@ class Feedback {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -698,7 +745,8 @@ class Feedback {
         params: { entityType, entityId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -753,6 +801,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -761,7 +811,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -782,6 +833,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -790,7 +843,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -866,6 +920,8 @@ class Feedback {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -874,7 +930,8 @@ class Feedback {
         params: { entityType, entityId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -967,6 +1024,8 @@ class Feedback {
     query_params["entity_id"] = entityId;
     query_params["entity_type"] = entityType;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -975,7 +1034,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -996,6 +1056,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1004,7 +1066,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1025,6 +1088,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -1033,7 +1098,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1075,6 +1141,8 @@ class Feedback {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1083,7 +1151,8 @@ class Feedback {
         params: { entityType, entityId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1157,6 +1226,8 @@ class Feedback {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1165,7 +1236,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1216,6 +1288,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1224,7 +1298,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1245,6 +1320,8 @@ class Feedback {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -1253,7 +1330,8 @@ class Feedback {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }
