@@ -1006,6 +1006,8 @@ Success, the code is valid and returns a SignedUrl
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | can_cancel | boolean |  no  |  |
  | can_return | boolean |  no  |  |
+ | delivery_date | string |  no  |  |
+ | returnable_date | string |  no  |  |
 
 ---
 
@@ -1359,6 +1361,21 @@ Success, the code is valid and returns a SignedUrl
  
  
  #### [TrackingDetails](#TrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_current | boolean |  no  |  |
+ | status | string |  no  |  |
+ | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+ | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NestedTrackingDetails](#NestedTrackingDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
