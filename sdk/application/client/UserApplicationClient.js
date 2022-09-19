@@ -36,6 +36,7 @@ class User {
         "/service/application/user/authentication/v1.0/verify/mobile",
       hasPassword: "/service/application/user/authentication/v1.0/has-password",
       updatePassword: "/service/application/user/authentication/v1.0/password",
+      deleteUser: "/service/application/user/authentication/v1.0/delete",
       logout: "/service/application/user/authentication/v1.0/logout",
       sendOTPOnMobile:
         "/service/application/user/authentication/v1.0/otp/mobile/send",
@@ -550,6 +551,35 @@ class User {
       "post",
       constructUrl({
         url: this._urls["updatePassword"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {DeleteApplicationUserRequestSchema} arg.body
+   * @returns {Promise<DeleteUserSuccess>} - Success response
+   * @summary: verify otp and delete user
+   * @description: verify otp and delete user
+   */
+  deleteUser({ body } = {}) {
+    const { error } = UserValidator.deleteUser().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["deleteUser"],
         params: {},
       }),
       query_params,

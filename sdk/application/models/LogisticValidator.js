@@ -4,14 +4,18 @@ class LogisticValidator {
   static getPincodeCity() {
     return Joi.object({
       pincode: Joi.string().allow("").required(),
-      xApplicationId: Joi.string().allow(""),
     }).required();
   }
 
   static getTatProduct() {
     return Joi.object({
-      xApplicationId: Joi.string().allow(""),
       body: Validator.TATViewRequest().required(),
+    }).required();
+  }
+
+  static getPincodeZones() {
+    return Joi.object({
+      body: Validator.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 }

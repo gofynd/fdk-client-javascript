@@ -10,6 +10,7 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
+      getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -31,15 +32,13 @@ class Logistic {
    * @param {Object} arg - Arg object.
    * @param {string} arg.pincode - A `pincode` contains a specific address of
    *   a location.
-   * @param {string} [arg.xApplicationId] - Application id is neccessary for
-   *   app authorizations & retrieving config of application
    * @returns {Promise<PincodeApiResponse>} - Success response
    * @summary: Get Pincode API
    * @description: Get pincode data
    */
-  getPincodeCity({ pincode, xApplicationId } = {}) {
+  getPincodeCity({ pincode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
-      { pincode, xApplicationId },
+      { pincode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -61,16 +60,14 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.xApplicationId] - Application id is neccessary for
-   *   app authorizations & retrieving config of application
    * @param {TATViewRequest} arg.body
    * @returns {Promise<TATViewResponse>} - Success response
    * @summary: Get TAT API
    * @description: Get TAT data
    */
-  getTatProduct({ body, xApplicationId } = {}) {
+  getTatProduct({ body } = {}) {
     const { error } = LogisticValidator.getTatProduct().validate(
-      { body, xApplicationId },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -83,6 +80,35 @@ class Logistic {
       "post",
       constructUrl({
         url: this._urls["getTatProduct"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {GetZoneFromPincodeViewRequest} arg.body
+   * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+   * @summary: GET zone from the Pincode.
+   * @description: This API returns zone from the Pincode View.
+   */
+  getPincodeZones({ body } = {}) {
+    const { error } = LogisticValidator.getPincodeZones().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getPincodeZones"],
         params: {},
       }),
       query_params,
