@@ -23,6 +23,8 @@ class User {
         "/service/application/user/authentication/v1.0/login/password",
       sendResetPasswordEmail:
         "/service/application/user/authentication/v1.0/login/password/reset",
+      sendResetPasswordMobile:
+        "/service/application/user/authentication/v1.0/login/password/mobile/reset",
       forgotPassword:
         "/service/application/user/authentication/v1.0/login/password/reset/forgot",
       sendResetToken:
@@ -36,7 +38,7 @@ class User {
         "/service/application/user/authentication/v1.0/verify/mobile",
       hasPassword: "/service/application/user/authentication/v1.0/has-password",
       updatePassword: "/service/application/user/authentication/v1.0/password",
-      archiveUser: "/service/application/user/authentication/v1.0/archive",
+      deleteUser: "/service/application/user/authentication/v1.0/delete",
       logout: "/service/application/user/authentication/v1.0/logout",
       sendOTPOnMobile:
         "/service/application/user/authentication/v1.0/otp/mobile/send",
@@ -351,6 +353,40 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendResetPasswordMobileRequestSchema} arg.body
+   * @returns {Promise<ResetPasswordSuccess>} - Success response
+   * @summary: Reset Password
+   * @description: Use this API to reset a password using the link sent on mobile.
+   */
+  sendResetPasswordMobile({ body, platform } = {}) {
+    const { error } = UserValidator.sendResetPasswordMobile().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["sendResetPasswordMobile"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {ForgotPasswordRequestSchema} arg.body
    * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Forgot Password
@@ -608,13 +644,13 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ArchiveApplicationUserRequestSchema} arg.body
-   * @returns {Promise<ArchiveUserSuccess>} - Success response
-   * @summary: verify otp and archive user
-   * @description: verify otp and archive user
+   * @param {DeleteApplicationUserRequestSchema} arg.body
+   * @returns {Promise<DeleteUserSuccess>} - Success response
+   * @summary: verify otp and delete user
+   * @description: verify otp and delete user
    */
-  archiveUser({ body } = {}) {
-    const { error } = UserValidator.archiveUser().validate(
+  deleteUser({ body } = {}) {
+    const { error } = UserValidator.deleteUser().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -629,7 +665,7 @@ class User {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["archiveUser"],
+        url: this._urls["deleteUser"],
         params: {},
       }),
       query_params,

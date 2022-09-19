@@ -19,7 +19,7 @@
 
 
 ### getConfigByApiKey
-Get Slingshot Configuration Of  A Company
+Get Slingshot Configuration Of  A Company using API key
 
 
 
@@ -75,7 +75,7 @@ Successful operation
 
 
 ### getApiKey
-Get Slingshot Configuration Of  A Company
+Get apikey  for  Company  to call other Slingshot Configuration APIs 
 
 
 

@@ -11,7 +11,7 @@ Authentication Service
 * [createUser](#createuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [archiveUser](#archiveuser)
-* [unArchiveUser](#unarchiveuser)
+* [unDeleteUser](#undeleteuser)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
 * [getActiveSessions](#getactivesessions)
@@ -450,17 +450,17 @@ Success
 ---
 
 
-### unArchiveUser
-unarchive user who archived from application and have not elapsed the platform configured archive days
+### unDeleteUser
+undelete user who deleted from application and have not elapsed the platform configured delete days
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").user.unArchiveUser({  body : value });
+const promise = client.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").user.unArchiveUser({  body : value });
+const data = await client.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
 ```
 
 
@@ -469,17 +469,17 @@ const data = await client.application("<APPLICATION_ID>").user.unArchiveUser({  
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [UnArchiveUserRequestSchema](#UnArchiveUserRequestSchema) | yes | Request body |
+| body | [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema) | yes | Request body |
 
 
-unarchive user who archived from application and have not elapsed the platform configured archive days
+undelete user who deleted from application and have not elapsed the platform configured delete days
 
 *Returned Response:*
 
 
 
 
-[UnArchiveUserSuccess](#UnArchiveUserSuccess)
+[UnDeleteUserSuccess](#UnDeleteUserSuccess)
 
 Success
 
@@ -1095,7 +1095,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
- #### [ArchiveApplicationUserRequestSchema](#ArchiveApplicationUserRequestSchema)
+ #### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -1110,7 +1110,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
- #### [UnArchiveUserRequestSchema](#UnArchiveUserRequestSchema)
+ #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -1320,6 +1320,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string |  no  |  |
+ | captcha_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
  | captcha_code | string |  no  |  |
 
 ---
@@ -1566,7 +1579,18 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
  
  
- #### [UnArchiveUserSuccess](#UnArchiveUserSuccess)
+ #### [DeleteUserSuccess](#DeleteUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

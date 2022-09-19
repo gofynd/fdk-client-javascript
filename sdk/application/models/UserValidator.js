@@ -56,6 +56,13 @@ class UserValidator {
     }).required();
   }
 
+  static sendResetPasswordMobile() {
+    return Joi.object({
+      platform: Joi.string().allow(""),
+      body: Validator.SendResetPasswordMobileRequestSchema().required(),
+    }).required();
+  }
+
   static forgotPassword() {
     return Joi.object({
       body: Validator.ForgotPasswordRequestSchema().required(),
@@ -103,9 +110,9 @@ class UserValidator {
     }).required();
   }
 
-  static archiveUser() {
+  static deleteUser() {
     return Joi.object({
-      body: Validator.ArchiveApplicationUserRequestSchema().required(),
+      body: Validator.DeleteApplicationUserRequestSchema().required(),
     }).required();
   }
 

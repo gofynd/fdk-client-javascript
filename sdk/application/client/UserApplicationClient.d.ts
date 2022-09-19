@@ -11,6 +11,7 @@ declare class User {
         loginWithOTP: string;
         loginWithEmailAndPassword: string;
         sendResetPasswordEmail: string;
+        sendResetPasswordMobile: string;
         forgotPassword: string;
         sendResetToken: string;
         loginWithToken: string;
@@ -19,7 +20,7 @@ declare class User {
         verifyMobile: string;
         hasPassword: string;
         updatePassword: string;
-        archiveUser: string;
+        deleteUser: string;
         logout: string;
         sendOTPOnMobile: string;
         verifyMobileOTP: string;
@@ -136,6 +137,18 @@ declare class User {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.platform] - ID of the application
+     * @param {SendResetPasswordMobileRequestSchema} arg.body
+     * @returns {Promise<ResetPasswordSuccess>} - Success response
+     * @summary: Reset Password
+     * @description: Use this API to reset a password using the link sent on mobile.
+     */
+    sendResetPasswordMobile({ body, platform }?: {
+        platform?: string;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {ForgotPasswordRequestSchema} arg.body
      * @returns {Promise<LoginSuccess>} - Success response
      * @summary: Forgot Password
@@ -215,12 +228,12 @@ declare class User {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ArchiveApplicationUserRequestSchema} arg.body
-     * @returns {Promise<ArchiveUserSuccess>} - Success response
-     * @summary: verify otp and archive user
-     * @description: verify otp and archive user
+     * @param {DeleteApplicationUserRequestSchema} arg.body
+     * @returns {Promise<DeleteUserSuccess>} - Success response
+     * @summary: verify otp and delete user
+     * @description: verify otp and delete user
      */
-    archiveUser({ body }?: {
+    deleteUser({ body }?: {
         body: any;
     }): Promise<any>;
     /**
