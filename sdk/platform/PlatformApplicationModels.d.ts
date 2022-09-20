@@ -317,3 +317,8 @@ export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
 }
+export class ServiceabilityValidator {
+    static postApplicationServiceability(): any;
+    static getApplicationServiceability(): any;
+    static upsertZoneControllerView(): any;
+}
