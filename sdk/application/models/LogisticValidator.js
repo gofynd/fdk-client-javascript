@@ -12,11 +12,5 @@ class LogisticValidator {
       body: Validator.TATViewRequest().required(),
     }).required();
   }
-
-  static getPincodeZones() {
-    return Joi.object({
-      body: Validator.GetZoneFromPincodeViewRequest().required(),
-    }).required();
-  }
 }
 module.exports = LogisticValidator;

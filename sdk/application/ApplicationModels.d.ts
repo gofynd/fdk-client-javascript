@@ -775,6 +775,4 @@ export class Validator {
     static TATArticlesResponse(): any;
     static TATLocationDetailsResponse(): any;
     static TATViewResponse(): any;
-    static GetZoneFromPincodeViewRequest(): any;
-    static GetZoneFromPincodeViewResponse(): any;
 }

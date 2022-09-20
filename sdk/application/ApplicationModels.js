@@ -9566,17 +9566,17 @@ class Validator {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
 
-      value: Joi.string().allow("").allow(null),
-
       type: Joi.string().allow("").allow(null),
+
+      value: Joi.string().allow("").allow(null),
     });
   }
 
   static PincodeMetaResponse() {
     return Joi.object({
-      zone: Joi.string().allow(""),
-
       internal_zone_id: Joi.number(),
+
+      zone: Joi.string().allow(""),
     });
   }
 
@@ -9584,11 +9584,11 @@ class Validator {
     return Joi.object({
       uid: Joi.string().allow(""),
 
-      sub_type: Joi.string().allow(""),
-
       name: Joi.string().allow(""),
 
       display_name: Joi.string().allow(""),
+
+      sub_type: Joi.string().allow(""),
     });
   }
 
@@ -9596,25 +9596,25 @@ class Validator {
     return Joi.object({
       sub_type: Joi.string().allow(""),
 
+      meta: this.PincodeMetaResponse(),
+
       name: Joi.string().allow(""),
 
       uid: Joi.string().allow(""),
 
-      meta: this.PincodeMetaResponse(),
-
-      display_name: Joi.string().allow(""),
+      parents: Joi.array().items(this.PincodeParentsResponse()),
 
       error: this.PincodeErrorSchemaResponse().required(),
 
-      parents: Joi.array().items(this.PincodeParentsResponse()),
+      display_name: Joi.string().allow(""),
     });
   }
 
   static PincodeApiResponse() {
     return Joi.object({
-      success: Joi.boolean().required(),
-
       error: this.PincodeErrorSchemaResponse().required(),
+
+      success: Joi.boolean().required(),
 
       data: Joi.array().items(this.PincodeDataResponse()),
     });
@@ -9632,17 +9632,17 @@ class Validator {
     return Joi.object({
       manufacturing_time_unit: Joi.string().allow(""),
 
-      category: this.TATCategoryRequest(),
-
       manufacturing_time: Joi.number(),
+
+      category: this.TATCategoryRequest(),
     });
   }
 
   static TATLocationDetailsRequest() {
     return Joi.object({
-      articles: Joi.array().items(this.TATArticlesRequest()),
-
       from_pincode: Joi.string().allow(""),
+
+      articles: Joi.array().items(this.TATArticlesRequest()),
 
       fulfillment_id: Joi.number(),
     });
@@ -9650,17 +9650,17 @@ class Validator {
 
   static TATViewRequest() {
     return Joi.object({
-      to_pincode: Joi.string().allow("").required(),
+      action: Joi.string().allow(""),
 
       location_details: Joi.array().items(this.TATLocationDetailsRequest()),
 
-      action: Joi.string().allow("").required(),
+      identifier: Joi.string().allow(""),
 
-      source: Joi.string().allow("").required(),
+      source: Joi.string().allow(""),
 
-      journey: Joi.string().allow("").required(),
+      journey: Joi.string().allow(""),
 
-      identifier: Joi.string().allow("").required(),
+      to_pincode: Joi.string().allow(""),
     });
   }
 
@@ -9692,35 +9692,35 @@ class Validator {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
 
-      value: Joi.string().allow("").allow(null),
-
       type: Joi.string().allow("").allow(null),
+
+      value: Joi.string().allow("").allow(null),
     });
   }
 
   static TATArticlesResponse() {
     return Joi.object({
-      manufacturing_time_unit: Joi.string().allow(""),
+      promise: this.TATPromiseResponse(),
 
-      category: this.TATCategoryRequest(),
+      manufacturing_time: Joi.number(),
 
       _manufacturing_time_seconds: Joi.string().allow(""),
 
-      promise: this.TATPromiseResponse(),
+      category: this.TATCategoryRequest(),
 
       is_cod_available: Joi.boolean(),
 
-      error: this.TATErrorSchemaResponse().required(),
+      error: this.TATErrorSchemaResponse(),
 
-      manufacturing_time: Joi.number(),
+      manufacturing_time_unit: Joi.string().allow(""),
     });
   }
 
   static TATLocationDetailsResponse() {
     return Joi.object({
-      articles: Joi.array().items(this.TATArticlesResponse()),
-
       from_pincode: Joi.string().allow(""),
+
+      articles: Joi.array().items(this.TATArticlesResponse()),
 
       fulfillment_id: Joi.number(),
     });
@@ -9728,47 +9728,31 @@ class Validator {
 
   static TATViewResponse() {
     return Joi.object({
-      to_pincode: Joi.string().allow("").required(),
+      action: Joi.string().allow(""),
 
-      request_uuid: Joi.string().allow("").required(),
+      to_city: Joi.string().allow(""),
 
-      payment_mode: Joi.string().allow("").required(),
+      payment_mode: Joi.string().allow(""),
 
       location_details: Joi.array().items(this.TATLocationDetailsResponse()),
 
-      success: Joi.boolean().required(),
+      identifier: Joi.string().allow(""),
 
-      action: Joi.string().allow("").required(),
+      source: Joi.string().allow(""),
 
-      source: Joi.string().allow("").required(),
+      journey: Joi.string().allow(""),
 
-      journey: Joi.string().allow("").required(),
+      request_uuid: Joi.string().allow(""),
 
-      stormbreaker_uuid: Joi.string().allow("").required(),
+      is_cod_available: Joi.boolean(),
 
-      is_cod_available: Joi.boolean().required(),
+      error: this.TATErrorSchemaResponse(),
 
-      error: this.TATErrorSchemaResponse().required(),
+      stormbreaker_uuid: Joi.string().allow(""),
 
-      identifier: Joi.string().allow("").required(),
+      to_pincode: Joi.string().allow(""),
 
-      to_city: Joi.string().allow("").required(),
-    });
-  }
-
-  static GetZoneFromPincodeViewRequest() {
-    return Joi.object({
-      country: Joi.string().allow("").required(),
-
-      pincode: Joi.string().allow("").required(),
-    });
-  }
-
-  static GetZoneFromPincodeViewResponse() {
-    return Joi.object({
-      zones: Joi.array().items(Joi.string().allow("")).required(),
-
-      serviceability_type: Joi.string().allow("").required(),
+      success: Joi.boolean(),
     });
   }
 }
