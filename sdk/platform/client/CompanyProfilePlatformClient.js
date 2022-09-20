@@ -23,12 +23,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -51,12 +54,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -76,12 +82,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -104,12 +113,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -134,12 +146,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -162,12 +177,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -199,12 +217,15 @@ class CompanyProfile {
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -258,12 +279,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -303,12 +327,15 @@ class CompanyProfile {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -366,12 +393,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -394,12 +424,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -424,12 +457,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -452,12 +488,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/bulk`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

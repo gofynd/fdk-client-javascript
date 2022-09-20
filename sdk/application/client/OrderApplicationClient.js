@@ -75,6 +75,8 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["status"] = status;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -83,7 +85,8 @@ class Order {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -105,6 +108,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -113,7 +118,8 @@ class Order {
         params: { orderId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -136,6 +142,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -144,7 +152,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -167,6 +176,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -175,7 +186,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -199,6 +211,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -207,7 +221,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -230,6 +245,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -238,7 +255,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -260,6 +278,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -268,7 +288,8 @@ class Order {
         params: { orderId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -293,6 +314,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -301,7 +324,8 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -326,6 +350,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -334,7 +360,8 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -360,6 +387,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -368,7 +397,8 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -391,6 +421,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -399,7 +431,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

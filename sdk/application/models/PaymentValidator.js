@@ -137,6 +137,8 @@ class PaymentValidator {
 
   static addRefundBankAccountUsingOTP() {
     return Joi.object({
+      companyId: Joi.number().required(),
+      applicationId: Joi.string().allow("").required(),
       body: Validator.AddBeneficiaryDetailsOTPRequest().required(),
     }).required();
   }

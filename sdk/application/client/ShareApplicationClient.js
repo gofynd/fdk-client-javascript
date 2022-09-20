@@ -52,6 +52,8 @@ class Share {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -60,7 +62,8 @@ class Share {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -82,6 +85,8 @@ class Share {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -90,7 +95,8 @@ class Share {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -112,6 +118,8 @@ class Share {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -120,7 +128,8 @@ class Share {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -142,6 +151,8 @@ class Share {
     const query_params = {};
     query_params["url"] = url;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -150,7 +161,8 @@ class Share {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -171,6 +183,8 @@ class Share {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -179,7 +193,8 @@ class Share {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -201,6 +216,8 @@ class Share {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -209,7 +226,8 @@ class Share {
         params: { hash },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -231,6 +249,8 @@ class Share {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -239,7 +259,8 @@ class Share {
         params: { hash },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }
