@@ -1448,13 +1448,15 @@ class Catalog {
    *   product, e.g. 1,2,3.
    * @param {string} [arg.pincode] - The PIN Code of the area near which the
    *   selling locations should be searched, e.g. 400059.
+   * @param {number} [arg.moq] - An Integer indication the Minimum Order
+   *   Quantity of a product, e.g. 100.
    * @returns {Promise<ProductSizePriceResponseV2>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
-  getProductPriceBySlug({ slug, size, storeId, pincode } = {}) {
+  getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, pincode },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1463,6 +1465,7 @@ class Catalog {
     const query_params = {};
     query_params["store_id"] = storeId;
     query_params["pincode"] = pincode;
+    query_params["moq"] = moq;
 
     return APIClient.execute(
       this._conf,
