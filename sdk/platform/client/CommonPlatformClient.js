@@ -29,12 +29,16 @@ class Common {
     const query_params = {};
     query_params["query"] = query;
 
+    const xHeaders = {};
+    xHeaders["authorization"] = authorization;
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/common/configuration/v1.0/application/search-application`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -64,12 +68,15 @@ class Common {
     query_params["location_type"] = locationType;
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/common/configuration/v1.0/location`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

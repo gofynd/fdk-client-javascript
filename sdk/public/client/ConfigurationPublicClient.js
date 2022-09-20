@@ -45,6 +45,9 @@ class Configuration {
     const query_params = {};
     query_params["query"] = query;
 
+    const xHeaders = {};
+    xHeaders["authorization"] = authorization;
+
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -53,7 +56,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -80,6 +84,8 @@ class Configuration {
     query_params["location_type"] = locationType;
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -88,7 +94,8 @@ class Configuration {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }
