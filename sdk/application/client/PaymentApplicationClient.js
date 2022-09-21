@@ -848,8 +848,8 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Company Id
-   * @param {string} arg.applicationId - Application id
+   * @param {number} arg.companyId -
+   * @param {string} arg.applicationId -
    * @param {AddBeneficiaryDetailsOTPRequest} arg.body
    * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order

@@ -21,6 +21,7 @@ Content System
 * [getDataLoaders](#getdataloaders)
 * [deleteDataLoader](#deletedataloader)
 * [editDataLoader](#editdataloader)
+* [getDataLoadersByService](#getdataloadersbyservice)
 * [selectDataLoader](#selectdataloader)
 * [resetDataLoader](#resetdataloader)
 * [getFaqCategories](#getfaqcategories)
@@ -1520,6 +1521,95 @@ Success.
   "type": "url",
   "application": "000000000000000000000001",
   "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDataLoadersByService
+Get all the data loaders in an application by service name
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| serviceName | string | yes | Service name of the data loader. |  
+
+
+
+Use this to get all data loaders of an application by service name
+
+*Returned Response:*
+
+
+
+
+[DataLoadersSchema](#DataLoadersSchema)
+
+Success. Refer `DataLoaderResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "Algolia",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc4523a7ffc7504f4de4a5",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url",
+      "__source": {
+        "type": "extension",
+        "id": "000000000000000000000003"
+      },
+      "application": "100000000000000000000001",
+      "__v": 0
+    },
+    {
+      "name": "Algolia v3",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc452da7ffc7504f4de4a7",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url",
+      "__source": {
+        "type": "extension",
+        "id": "000000000000000000000003"
+      },
+      "application": "100000000000000000000001",
+      "__v": 0
+    }
+  ]
 }
 ```
 </details>
@@ -4816,22 +4906,14 @@ Get page meta
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
- cartPages : value });
+const promise = client.application("<APPLICATION_ID>").content.getPageMeta();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
- cartPages : value });
+const data = await client.application("<APPLICATION_ID>").content.getPageMeta();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageType | string | no | Fetch meta by page type. Acceptable values are: system, custom and all |    
-| cartPages | boolean | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
@@ -7764,7 +7846,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
- | sub_navigation | [any] |  no  |  |
+ | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
 
@@ -7981,17 +8063,6 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | request_id | string |  no  |  |
  | stack_trace | string |  no  |  |
  | meta | string |  no  |  |
-
----
-
-
- 
- 
- #### [CommonError](#CommonError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
 
 ---
 
