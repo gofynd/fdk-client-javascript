@@ -6,7 +6,6 @@ declare class OrderValidator {
     static checkRefund(): any;
     static shipmentBagsCanBreak(): any;
     static getOrdersByCompanyId(): any;
-    static getOrderLanesCountByCompanyId(): any;
     static getOrderDetails(): any;
     static getPicklistOrdersByCompanyId(): any;
     static getShipmentAddress(): any;

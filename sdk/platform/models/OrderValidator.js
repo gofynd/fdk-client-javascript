@@ -39,6 +39,7 @@ class OrderValidator {
       toDate: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
       lockStatus: Joi.boolean(),
+      userId: Joi.string().allow(""),
       q: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       salesChannels: Joi.string().allow(""),
@@ -47,22 +48,7 @@ class OrderValidator {
       deploymentStores: Joi.string().allow(""),
       status: Joi.string().allow(""),
       dp: Joi.string().allow(""),
-      filterType: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getOrderLanesCountByCompanyId() {
-    return Joi.object({
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-      stage: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
-      orderId: Joi.string().allow(""),
-      stores: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }
@@ -87,6 +73,7 @@ class OrderValidator {
       orderId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       status: Joi.string().allow(""),
+      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }

@@ -12,9 +12,8 @@ Handles Platform websites OMS
 * [checkRefund](#checkrefund)
 * [shipmentBagsCanBreak](#shipmentbagscanbreak)
 * [getOrdersByCompanyId](#getordersbycompanyid)
-* [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
-* [getOrderDetails](#getorderdetails)
+* [getApplicationOrderDetails](#getapplicationorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -322,6 +321,7 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  toDate : value,
  isPrioritySort : value,
  lockStatus : value,
+ userId : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -330,6 +330,7 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
+ shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -339,6 +340,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  toDate : value,
  isPrioritySort : value,
  lockStatus : value,
+ userId : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -347,6 +349,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
+ shortenUrls : value,
  filterType : value });
 ```
 
@@ -362,6 +365,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | toDate | string | no | To Date |    
 | isPrioritySort | boolean | no | Sorting Order |    
 | lockStatus | boolean | no | Hide Lock Status |    
+| userId | string | no | User Id |    
 | q | string | no | Keyword for Search |    
 | stage | string | no | Specefic Order Stage |    
 | salesChannels | string | no | Selected Sales Channel |    
@@ -370,6 +374,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | deploymentStores | string | no | Selected Deployment Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
+| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -382,92 +387,6 @@ Get Orders
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderLanesCountByCompanyId
-Get Order Lanes Count for company based on Company Id
-
-
-
-```javascript
-// Promise
-const promise = client.order.getOrderLanesCountByCompanyId({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- q : value,
- stage : value,
- salesChannels : value,
- orderId : value,
- stores : value,
- status : value,
- filterType : value });
-
-// Async/Await
-const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- q : value,
- stage : value,
- salesChannels : value,
- orderId : value,
- stores : value,
- status : value,
- filterType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | string | no | Current page number |    
-| pageSize | string | no | Page limit |    
-| fromDate | string | no | From Date |    
-| toDate | string | no | To Date |    
-| q | string | no | Keyword for Search |    
-| stage | string | no | Specefic Order Stage |    
-| salesChannels | string | no | Selected Sales Channel |    
-| orderId | string | no | Order Id |    
-| stores | string | no | Selected Stores |    
-| status | string | no | Status of order |    
-| filterType | string | no | Filters |  
-
-
-
-Get Orders Seperate Lane Count
-
-*Returned Response:*
-
-
-
-
-[OrderLanesCount](#OrderLanesCount)
 
 Success
 
@@ -555,19 +474,19 @@ Success
 ---
 
 
-### getOrderDetails
+### getApplicationOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+const promise = client.application("<APPLICATION_ID>").order.getApplicationOrderDetails({  orderId : value,
  next : value,
  previous : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+const data = await client.application("<APPLICATION_ID>").order.getApplicationOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```
@@ -634,6 +553,7 @@ const promise = client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
+ shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -647,6 +567,7 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
+ shortenUrls : value,
  filterType : value });
 ```
 
@@ -666,6 +587,7 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
+| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -1233,6 +1155,8 @@ const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicat
  stores : value,
  status : value,
  dp : value,
+ userId : value,
+ shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -1247,6 +1171,8 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
  stores : value,
  status : value,
  dp : value,
+ userId : value,
+ shortenUrls : value,
  filterType : value });
 ```
 
@@ -1267,6 +1193,8 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
+| userId | string | no | User Id |    
+| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -2356,6 +2284,7 @@ Success
  | image | [string] |  no  |  |
  | brand | string |  no  |  |
  | last_updated_at | string |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -3610,9 +3539,21 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | string |  yes  |  |
+ | shipments | string |  no  |  |
+ | statuses | [any] |  no  |  |
  | force_transition | boolean |  yes  |  |
  | task | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUpdateObject](#ShipmentUpdateObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments | string |  no  |  |
 
 ---
 

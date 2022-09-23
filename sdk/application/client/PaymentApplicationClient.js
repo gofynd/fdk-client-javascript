@@ -48,23 +48,6 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/wallet",
       updateDefaultBeneficiary:
         "/service/application/payment/v1.0/refund/beneficiary/default",
-      getPaymentLink: "/service/application/payment/v1.0/create-payment-link/",
-      createPaymentLink:
-        "/service/application/payment/v1.0/create-payment-link/",
-      resendPaymentLink:
-        "/service/application/payment/v1.0/resend-payment-link/",
-      cancelPaymentLink:
-        "/service/application/payment/v1.0/cancel-payment-link/",
-      getPaymentModeRoutesPaymentLink:
-        "/service/application/payment/v1.0/payment/options/link/",
-      pollingPaymentLink:
-        "/service/application/payment/v1.0/polling-payment-link/",
-      createOrderHandlerPaymentLink:
-        "/service/application/payment/v1.0/create-order/link/",
-      initialisePaymentPaymentLink:
-        "/service/application/payment/v1.0/payment/request/link/",
-      checkAndUpdatePaymentStatusPaymentLink:
-        "/service/application/payment/v1.0/payment/confirm/polling/link/",
       customerCreditSummary:
         "/service/application/payment/v1.0/payment/credit-summary/",
       redirectToAggregator:
@@ -848,16 +831,14 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Company Id
-   * @param {string} arg.applicationId - Application id
    * @param {AddBeneficiaryDetailsOTPRequest} arg.body
    * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
    * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
    */
-  addRefundBankAccountUsingOTP({ companyId, applicationId, body } = {}) {
+  addRefundBankAccountUsingOTP({ body } = {}) {
     const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
-      { companyId, applicationId, body },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -872,7 +853,7 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["addRefundBankAccountUsingOTP"],
-        params: { companyId, applicationId },
+        params: {},
       }),
       query_params,
       body,
@@ -938,301 +919,6 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["updateDefaultBeneficiary"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.paymentLinkId] -
-   * @returns {Promise<GetPaymentLinkResponse>} - Success response
-   * @summary: Get payment link
-   * @description: Use this API to get a payment link
-   */
-  getPaymentLink({ paymentLinkId } = {}) {
-    const { error } = PaymentValidator.getPaymentLink().validate(
-      { paymentLinkId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-    query_params["payment_link_id"] = paymentLinkId;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreatePaymentLinkRequest} arg.body
-   * @returns {Promise<CreatePaymentLinkResponse>} - Success response
-   * @summary: Create payment link
-   * @description: Use this API to create a payment link for the customer
-   */
-  createPaymentLink({ body } = {}) {
-    const { error } = PaymentValidator.createPaymentLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["createPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CancelOrResendPaymentLinkRequest} arg.body
-   * @returns {Promise<ResendPaymentLinkResponse>} - Success response
-   * @summary: Resend payment link
-   * @description: Use this API to resend a payment link for the customer
-   */
-  resendPaymentLink({ body } = {}) {
-    const { error } = PaymentValidator.resendPaymentLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["resendPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CancelOrResendPaymentLinkRequest} arg.body
-   * @returns {Promise<CancelPaymentLinkResponse>} - Success response
-   * @summary: Cancel payment link
-   * @description: Use this API to cancel a payment link for the customer
-   */
-  cancelPaymentLink({ body } = {}) {
-    const { error } = PaymentValidator.cancelPaymentLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["cancelPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.paymentLinkId - Payment link id
-   * @returns {Promise<PaymentModeRouteResponse>} - Success response
-   * @summary: Get applicable payment options for payment link
-   * @description: Use this API to get all valid payment options for doing a payment through payment link
-   */
-  getPaymentModeRoutesPaymentLink({ paymentLinkId } = {}) {
-    const {
-      error,
-    } = PaymentValidator.getPaymentModeRoutesPaymentLink().validate(
-      { paymentLinkId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-    query_params["payment_link_id"] = paymentLinkId;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPaymentModeRoutesPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.paymentLinkId] -
-   * @returns {Promise<PollingPaymentLinkResponse>} - Success response
-   * @summary: Used for polling if payment successful or not
-   * @description: Use this API to poll if payment through payment was successful or not
-   */
-  pollingPaymentLink({ paymentLinkId } = {}) {
-    const { error } = PaymentValidator.pollingPaymentLink().validate(
-      { paymentLinkId },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-    query_params["payment_link_id"] = paymentLinkId;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["pollingPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateOrderUserRequest} arg.body
-   * @returns {Promise<CreateOrderUserResponse>} - Success response
-   * @summary: Create Order user
-   * @description: Use this API to create a order and payment on aggregator side
-   */
-  createOrderHandlerPaymentLink({ body } = {}) {
-    const { error } = PaymentValidator.createOrderHandlerPaymentLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["createOrderHandlerPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentInitializationRequest} arg.body
-   * @returns {Promise<PaymentInitializationResponse>} - Success response
-   * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-   * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
-   */
-  initialisePaymentPaymentLink({ body } = {}) {
-    const { error } = PaymentValidator.initialisePaymentPaymentLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["initialisePaymentPaymentLink"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentStatusUpdateRequest} arg.body
-   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
-   * @summary: Performs continuous polling to check status of payment on the server
-   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-   */
-  checkAndUpdatePaymentStatusPaymentLink({ body } = {}) {
-    const {
-      error,
-    } = PaymentValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["checkAndUpdatePaymentStatusPaymentLink"],
         params: {},
       }),
       query_params,
