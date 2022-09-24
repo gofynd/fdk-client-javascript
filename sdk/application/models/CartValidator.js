@@ -155,6 +155,7 @@ class CartValidator {
       id: Joi.string().allow(""),
       addressId: Joi.string().allow(""),
       areaCode: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
     });
   }
 

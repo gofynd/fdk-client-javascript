@@ -302,15 +302,19 @@ declare class Cart {
      * @param {string} [arg.addressId] - ID allotted to the selected address
      * @param {string} [arg.areaCode] - The PIN Code of the destination address,
      *   e.g. 400059
+     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+     *   - If the customer wants the order home-delivered PickAtStore - If the
+     *   customer wants the handover of an order at the store itself.
      * @returns {Promise<CartShipmentsResponse>} - Success response
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ p, id, addressId, areaCode }?: {
+    getShipments({ p, id, addressId, areaCode, orderType }?: {
         p?: boolean;
         id?: string;
         addressId?: string;
         areaCode?: string;
+        orderType?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

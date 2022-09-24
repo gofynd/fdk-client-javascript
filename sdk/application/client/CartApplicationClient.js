@@ -686,13 +686,16 @@ class Cart {
    * @param {string} [arg.addressId] - ID allotted to the selected address
    * @param {string} [arg.areaCode] - The PIN Code of the destination address,
    *   e.g. 400059
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself.
    * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  getShipments({ p, id, addressId, areaCode } = {}) {
+  getShipments({ p, id, addressId, areaCode, orderType } = {}) {
     const { error } = CartValidator.getShipments().validate(
-      { p, id, addressId, areaCode },
+      { p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -703,6 +706,7 @@ class Cart {
     query_params["id"] = id;
     query_params["address_id"] = addressId;
     query_params["area_code"] = areaCode;
+    query_params["order_type"] = orderType;
 
     return APIClient.execute(
       this._conf,
