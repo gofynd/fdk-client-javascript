@@ -27,15 +27,12 @@ class Payment {
     const query_params = {};
     query_params["unique_external_id"] = uniqueExternalId;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -58,15 +55,12 @@ class Payment {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -91,15 +85,12 @@ class Payment {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -124,15 +115,12 @@ class Payment {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -155,15 +143,12 @@ class Payment {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -187,15 +172,12 @@ class Payment {
     const query_params = {};
     query_params["unique_external_id"] = uniqueExternalId;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -224,15 +206,12 @@ class Payment {
     query_params["unique_external_id"] = uniqueExternalId;
     query_params["payment_method_id"] = paymentMethodId;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -252,15 +231,12 @@ class Payment {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/configs`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -283,15 +259,12 @@ class Payment {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/setup/intent`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -315,15 +288,12 @@ class Payment {
     const query_params = {};
     query_params["ifsc_code"] = ifscCode;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/ifsc-code/verify`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

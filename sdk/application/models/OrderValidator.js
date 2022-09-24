@@ -26,6 +26,7 @@ class OrderValidator {
   static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+      bagId: Joi.number(),
     }).required();
   }
 
@@ -71,6 +72,12 @@ class OrderValidator {
   }
 
   static getInvoiceByShipmentId() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getCreditNoteByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();

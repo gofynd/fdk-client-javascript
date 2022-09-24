@@ -45,8 +45,6 @@ class Logistic {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -55,8 +53,7 @@ class Logistic {
         params: {},
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -77,8 +74,6 @@ class Logistic {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -87,8 +82,7 @@ class Logistic {
         params: {},
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -109,8 +103,6 @@ class Logistic {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -119,8 +111,7 @@ class Logistic {
         params: { pincode },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

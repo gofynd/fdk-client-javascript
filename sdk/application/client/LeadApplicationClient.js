@@ -51,8 +51,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -61,8 +59,7 @@ class Lead {
         params: { id },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -84,8 +81,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -94,8 +89,7 @@ class Lead {
         params: { id },
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -116,8 +110,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -126,8 +118,7 @@ class Lead {
         params: {},
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -148,8 +139,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -158,8 +147,7 @@ class Lead {
         params: { slug },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -181,8 +169,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -191,8 +177,7 @@ class Lead {
         params: { slug },
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -213,8 +198,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -223,8 +206,7 @@ class Lead {
         params: { uniqueName },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -245,8 +227,6 @@ class Lead {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -255,8 +235,7 @@ class Lead {
         params: { uniqueName },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

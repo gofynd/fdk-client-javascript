@@ -61,15 +61,12 @@ class Lead {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -141,15 +138,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -172,15 +166,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -205,15 +196,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -238,15 +226,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -269,15 +254,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -300,15 +282,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -333,15 +312,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -364,15 +340,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/token`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -395,15 +368,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/participants`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -423,15 +393,12 @@ class Lead {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/general-config`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }
