@@ -8,6 +8,7 @@ declare class UserValidator {
     static loginWithOTP(): any;
     static loginWithEmailAndPassword(): any;
     static sendResetPasswordEmail(): any;
+    static sendResetPasswordMobile(): any;
     static forgotPassword(): any;
     static sendResetToken(): any;
     static loginWithToken(): any;
