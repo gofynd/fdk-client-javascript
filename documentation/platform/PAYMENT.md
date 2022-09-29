@@ -2705,12 +2705,12 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created | boolean |  yes  | Response is created or not |
- | success | boolean |  yes  | Response is successful or not |
- | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
  | app_id | string |  yes  | Application Id to which Payment config Mapped |
  | aggregators | [string] |  no  | List of all speceific Payment options with their Details. |
+ | success | boolean |  yes  | Response is successful or not |
+ | created | boolean |  yes  | Response is created or not |
  | display_fields | [string] |  yes  | List of all included  options with their Details. |
+ | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
 
 ---
 
@@ -2721,9 +2721,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  | Response is successful or not |
  | code | string |  yes  | Error descrption code. |
  | description | string |  yes  | Error human understandable description. |
- | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -2734,11 +2734,11 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
  | config_type | string |  yes  | Config Type of the aggregator |
  | secret | string |  yes  | Secret Key of the payment aggregator |
- | is_active | boolean |  no  | Enable/ Disable Flag |
- | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
  | key | string |  yes  | Api key of the payment aggregator |
+ | is_active | boolean |  no  | Enable/ Disable Flag |
 
 ---
 
@@ -2774,8 +2774,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Error descrption code. |
  | description | string |  yes  | Error human understandable description. |
+ | code | string |  yes  | Error descrption code. |
 
 ---
 
@@ -2810,10 +2810,10 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  | display_name |
- | code | string |  no  | code |
- | package_name | string |  no  | package_name |
  | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  | logos |
+ | package_name | string |  no  | package_name |
+ | code | string |  no  | code |
+ | display_name | string |  no  | display_name |
 
 ---
 
@@ -2836,35 +2836,35 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_token | string |  no  | card_token |
- | display_priority | number |  no  | Dispaly Priority |
- | code | string |  no  | code |
- | card_name | string |  no  | card_name |
  | intent_flow | boolean |  no  | intent_flow |
- | exp_year | number |  no  | exp_year |
- | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
- | card_brand | string |  no  | card_brand |
  | display_name | string |  no  | display name |
- | merchant_code | string |  no  | merchant code |
- | retry_count | number |  no  | retry_count |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
- | card_fingerprint | string |  no  | card_fingerprint |
- | nickname | string |  no  | nickname |
- | fynd_vpa | string |  no  | fynd_vpa |
- | card_isin | string |  no  | card_isin |
- | card_brand_image | string |  no  | card_brand_image |
- | card_reference | string |  no  | card_reference |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | card_type | string |  no  | card_type |
- | name | string |  no  | name |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
- | card_issuer | string |  no  | card_issuer |
  | card_id | string |  no  | card_id |
- | exp_month | number |  no  | exp_month |
- | expired | boolean |  no  | expired |
- | card_number | string |  no  | card_number |
- | aggregator_name | string |  yes  | aggregator_name |
+ | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | card_token | string |  no  | card_token |
+ | card_type | string |  no  | card_type |
+ | card_reference | string |  no  | card_reference |
  | timeout | number |  no  | timeout |
+ | card_issuer | string |  no  | card_issuer |
+ | card_fingerprint | string |  no  | card_fingerprint |
+ | card_isin | string |  no  | card_isin |
+ | aggregator_name | string |  yes  | aggregator_name |
+ | card_number | string |  no  | card_number |
+ | retry_count | number |  no  | retry_count |
+ | expired | boolean |  no  | expired |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+ | fynd_vpa | string |  no  | fynd_vpa |
+ | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
+ | card_brand_image | string |  no  | card_brand_image |
+ | exp_month | number |  no  | exp_month |
+ | merchant_code | string |  no  | merchant code |
+ | card_name | string |  no  | card_name |
+ | code | string |  no  | code |
+ | name | string |  no  | name |
+ | nickname | string |  no  | nickname |
+ | card_brand | string |  no  | card_brand |
+ | display_priority | number |  no  | Dispaly Priority |
+ | exp_year | number |  no  | exp_year |
 
 ---
 
@@ -2875,13 +2875,13 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  yes  | Payment mode display name |
  | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | name | string |  yes  | Payment mode name |
- | display_priority | number |  yes  | Dispaly Priority |
- | add_card_enabled | boolean |  no  | Annonymous card flag |
- | anonymous_enable | boolean |  no  | Annonymous card flag |
  | aggregator_name | string |  no  | Dispaly Priority |
+ | add_card_enabled | boolean |  no  | Annonymous card flag |
+ | display_name | string |  yes  | Payment mode display name |
+ | name | string |  yes  | Payment mode name |
+ | anonymous_enable | boolean |  no  | Annonymous card flag |
+ | display_priority | number |  yes  | Dispaly Priority |
 
 ---
 
@@ -2915,12 +2915,12 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payouts_aggregators | [string] |  yes  | payout aggregator object |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
- | is_default | boolean |  yes  | default or not  |
- | transfer_type | string |  yes  | transafer type |
  | customers | string |  yes  | customers details object |
  | unique_transfer_no | string |  yes  | display priority of the payment mode |
+ | transfer_type | string |  yes  | transafer type |
+ | is_default | boolean |  yes  | default or not  |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | payouts_aggregators | [string] |  yes  | payout aggregator object |
  | more_attributes | string |  yes  | bank details object |
 
 ---
@@ -2932,15 +2932,15 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  no  |  |
- | account_type | string |  yes  |  |
- | branch_name | string |  no  |  |
- | state | string |  no  |  |
- | account_no | string |  no  |  |
- | ifsc_code | string |  yes  |  |
- | city | string |  no  |  |
  | pincode | number |  no  |  |
+ | branch_name | string |  no  |  |
  | bank_name | string |  no  |  |
+ | state | string |  no  |  |
+ | account_holder | string |  no  |  |
+ | ifsc_code | string |  yes  |  |
+ | account_type | string |  yes  |  |
+ | account_no | string |  no  |  |
+ | city | string |  no  |  |
  | country | string |  no  |  |
 
 ---
@@ -2952,12 +2952,12 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | users | string |  yes  | payout users object |
+ | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
+ | transfer_type | string |  yes  | transafer type |
+ | is_active | boolean |  yes  | Enable/Disable Flag Payout |
  | aggregator | string |  yes  | Aggregator Name |
  | unique_external_id | string |  yes  | Unique Id of Payout |
- | users | string |  yes  | payout users object |
- | is_active | boolean |  yes  | Enable/Disable Flag Payout |
- | transfer_type | string |  yes  | transafer type |
- | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
 
 ---
 
@@ -2968,15 +2968,15 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Aggregator Name |
- | created | boolean |  yes  | created flag |
+ | payouts | string |  yes  | payout  object |
+ | bank_details | string |  yes  | payout bank_details object |
  | users | string |  yes  | users details object |
  | success | boolean |  yes  | Response is successful or not |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
- | bank_details | string |  yes  | payout bank_details object |
- | transfer_type | string |  yes  | transfer type |
  | unique_transfer_no | string |  yes  | unique transfer no |
- | payouts | string |  yes  | payout  object |
+ | transfer_type | string |  yes  | transfer type |
+ | created | boolean |  yes  | created flag |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | aggregator | string |  yes  | Aggregator Name |
  | payment_status | string |  yes  | status of payment |
 
 ---
@@ -3001,9 +3001,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_external_id | string |  yes  | Unique Id of Payout |
  | is_default | boolean |  yes  | Enable/Disable Default Payout |
  | is_active | boolean |  yes  | Enable/Disable Flag Payout |
+ | unique_external_id | string |  yes  | Unique Id of Payout |
 
 ---
 
@@ -3084,17 +3084,17 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | vpa | string |  no  |  |
- | account_holder | string |  yes  | Name of the Account Holder |
- | mobile | string |  yes  | Moblie Number of the User |
- | branch_name | string |  yes  | Branch Name of the Account |
- | account_no | string |  yes  | Account NUmber of the Account Holder |
- | ifsc_code | string |  yes  | Ifsc Code of the Account |
- | comment | string |  no  | Remarks added by The user |
  | address | string |  no  | Address of the User |
  | wallet | string |  no  |  |
- | bank_name | string |  yes  | Bank Name of the Account |
  | email | string |  yes  | Email of the Account Holder |
+ | branch_name | string |  yes  | Branch Name of the Account |
+ | bank_name | string |  yes  | Bank Name of the Account |
+ | account_holder | string |  yes  | Name of the Account Holder |
+ | mobile | string |  yes  | Moblie Number of the User |
+ | vpa | string |  no  |  |
+ | ifsc_code | string |  yes  | Ifsc Code of the Account |
+ | account_no | string |  yes  | Account NUmber of the Account Holder |
+ | comment | string |  no  | Remarks added by The user |
 
 ---
 
@@ -3105,13 +3105,13 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
- | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
  | otp | string |  no  |  |
+ | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
+ | request_id | string |  no  |  |
+ | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
  | order_id | string |  yes  | Merchant Order Id |
  | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
- | request_id | string |  no  |  |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
 
 ---
 
@@ -3124,8 +3124,8 @@ save payout response object
  | ---------- | ---- | -------- | ----------- |
  | data | string |  no  | Refund account data. |
  | is_verified_flag | boolean |  no  |  |
- | success | boolean |  yes  | Success or failure flag. |
  | message | string |  yes  | Response message |
+ | success | boolean |  yes  | Success or failure flag. |
 
 ---
 
@@ -3136,9 +3136,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  | Response is successful or not |
  | code | string |  yes  | Bad Request Data |
  | description | string |  yes  | Not Found |
- | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3149,9 +3149,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bank_name | string |  yes  | Bank Name Of Account |
- | success | boolean |  no  | Response is successful or not |
  | branch_name | string |  yes  | Branch Name Of Account |
+ | success | boolean |  no  | Response is successful or not |
+ | bank_name | string |  yes  | Bank Name Of Account |
 
 ---
 
@@ -3162,25 +3162,25 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | subtitle | string |  yes  | SHort Title Of Account |
- | account_no | string |  yes  | Account Number |
- | comment | string |  no  | Remarks |
- | account_holder | string |  yes  | Account Holder Name |
- | display_name | string |  yes  | Display Name Of Account |
- | mobile | string |  no  | MObile no of User |
  | branch_name | string |  no  | Branch Name Of Account |
- | title | string |  yes  | Title Of Account |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | address | string |  yes  | Address of User |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
  | bank_name | string |  yes  | Bank Name Of Account |
- | email | string |  yes  | EMail of User |
+ | display_name | string |  yes  | Display Name Of Account |
+ | account_no | string |  yes  | Account Number |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
+ | title | string |  yes  | Title Of Account |
  | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
- | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | created_on | string |  yes  | Creation Date of Beneficiary |
  | transfer_mode | string |  yes  | Transfer Mode Of Account |
+ | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
+ | comment | string |  no  | Remarks |
+ | subtitle | string |  yes  | SHort Title Of Account |
  | id | number |  yes  |   |
+ | mobile | string |  no  | MObile no of User |
  | ifsc_code | string |  yes  | Ifsc Code Of Account |
+ | address | string |  yes  | Address of User |
+ | email | string |  yes  | EMail of User |
+ | account_holder | string |  yes  | Account Holder Name |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | modified_on | string |  yes  | MOdification Date of Beneficiary |
 
 ---
 
@@ -3191,8 +3191,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
  | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
 
 ---
 
@@ -3203,10 +3203,10 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mode | string |  yes  | Payment mode |
- | name | string |  no  | Payment mode name |
  | meta | string |  no  | Payment meta i.e payment id, order id, gateway |
  | amount | number |  yes  | Payment amount |
+ | mode | string |  yes  | Payment mode |
+ | name | string |  no  | Payment mode name |
 
 ---
 
@@ -3217,8 +3217,8 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  yes  | Unique order id |
  | payment_methods | [[PaymentConfirmationMode](#PaymentConfirmationMode)] |  yes  |  |
+ | order_id | string |  yes  | Unique order id |
 
 ---
 
@@ -3229,21 +3229,9 @@ save payout response object
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  yes  | Unique order id |
- | success | boolean |  yes  | Payment confirmation updated or not. |
  | message | string |  yes  | Message |
-
----
-
-
- 
- 
- #### [CancelledChequePayload](#CancelledChequePayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  yes  |  |
- | document_mandatory | boolean |  no  |  |
+ | success | boolean |  yes  | Payment confirmation updated or not. |
+ | order_id | string |  yes  | Unique order id |
 
 ---
 
@@ -3262,12 +3250,24 @@ save payout response object
 
  
  
+ #### [CancelledChequePayload](#CancelledChequePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  yes  |  |
+ | document_mandatory | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [PayoutPennyDropAndChequePayload](#PayoutPennyDropAndChequePayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancelled_cheque | [CancelledChequePayload](#CancelledChequePayload) |  yes  |  |
  | penny_drop | [PennyDropPayload](#PennyDropPayload) |  yes  |  |
+ | cancelled_cheque | [CancelledChequePayload](#CancelledChequePayload) |  yes  |  |
 
 ---
 
