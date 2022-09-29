@@ -4,6 +4,8 @@ declare class BillingValidator {
     static createSubscriptionCharge(): any;
     static getSubscriptionCharge(): any;
     static cancelSubscriptionCharge(): any;
+    static createOneTimeCharge(): any;
+    static getChargeDetails(): any;
     static getInvoices(): any;
     static getInvoiceById(): any;
     static getCustomerDetail(): any;

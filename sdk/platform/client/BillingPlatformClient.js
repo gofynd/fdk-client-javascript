@@ -143,6 +143,72 @@ class Billing {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {CreateOneTimeCharge} arg.body
+   * @summary: Create one time subscription charge
+   * @description: Register one time subscription charge for a seller of your extension.
+   */
+  createOneTimeCharge({ extensionId, body } = {}) {
+    const { error } = BillingValidator.createOneTimeCharge().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/one_time_charge`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {string} arg.chargeId - Standalone charge _id
+   * @summary: Get subscription charge details
+   * @description: Get created subscription charge details
+   */
+  getChargeDetails({ extensionId, chargeId } = {}) {
+    const { error } = BillingValidator.getChargeDetails().validate(
+      {
+        extensionId,
+        chargeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/charge/${chargeId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @summary: Get invoices
    * @description: Get invoices.
    */

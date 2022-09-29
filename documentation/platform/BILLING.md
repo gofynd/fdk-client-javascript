@@ -10,6 +10,8 @@ Handle platform subscription
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
+* [createOneTimeCharge](#createonetimecharge)
+* [getChargeDetails](#getchargedetails)
 * [getInvoices](#getinvoices)
 * [getInvoiceById](#getinvoicebyid)
 * [getCustomerDetail](#getcustomerdetail)
@@ -234,6 +236,123 @@ Cancel subscription and attached charges.
 
 
 [EntitySubscription](#EntitySubscription)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createOneTimeCharge
+Create one time subscription charge
+
+
+
+```javascript
+// Promise
+const promise = client.billing.createOneTimeCharge({  extensionId : value,
+ body : value });
+
+// Async/Await
+const data = await client.billing.createOneTimeCharge({  extensionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| extensionId | string | yes | Extension _id |  
+| body | [CreateOneTimeCharge](#CreateOneTimeCharge) | yes | Request body |
+
+
+Register one time subscription charge for a seller of your extension.
+
+*Returned Response:*
+
+
+
+
+[CreateOneTimeChargeResponse](#CreateOneTimeChargeResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getChargeDetails
+Get subscription charge details
+
+
+
+```javascript
+// Promise
+const promise = client.billing.getChargeDetails({  extensionId : value,
+ chargeId : value });
+
+// Async/Await
+const data = await client.billing.getChargeDetails({  extensionId : value,
+ chargeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| extensionId | string | yes | Extension _id |   
+| chargeId | string | yes | Standalone charge _id |  
+
+
+
+Get created subscription charge details
+
+*Returned Response:*
+
+
+
+
+[OneTimeChargeEntity](#OneTimeChargeEntity)
 
 Success
 
@@ -1690,6 +1809,37 @@ Success
 
  
  
+ #### [OneTimeChargeItem](#OneTimeChargeItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | term | string |  no  |  |
+ | pricing_type | string |  yes  |  |
+ | price | [EntityChargePrice](#EntityChargePrice) |  yes  |  |
+ | capped_amount | number |  no  |  |
+ | is_test | boolean |  no  |  |
+ | metadata | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateOneTimeCharge](#CreateOneTimeCharge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | charge | [OneTimeChargeItem](#OneTimeChargeItem) |  yes  |  |
+ | is_test | boolean |  no  |  |
+ | return_url | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CurrentPeriod](#CurrentPeriod)
 
  | Properties | Type | Nullable | Description |
@@ -1708,7 +1858,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | _id | string |  no  |  |
  | name | string |  no  |  |
- | term | string |  no  |  |
+ | term | string |  no  | Brief description for a charge |
  | pricing_type | string |  no  |  |
  | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
  | recurring | [EntityChargeRecurring](#EntityChargeRecurring) |  no  |  |
@@ -1740,6 +1890,42 @@ Success
  | trial_period | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod) |  no  |  |
  | metadata | string |  no  |  |
  | line_items | [[SubscriptionCharge](#SubscriptionCharge)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OneTimeChargeEntity](#OneTimeChargeEntity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | name | string |  no  |  |
+ | status | string |  no  |  |
+ | activated_on | string |  no  |  |
+ | cancelled_on | string |  no  |  |
+ | metadata | string |  no  |  |
+ | return_url | string |  no  |  |
+ | is_test | boolean |  no  |  |
+ | pricing_type | string |  no  |  |
+ | subscriber_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | entity_id | string |  no  |  |
+ | meta | string |  no  |  |
+ | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateOneTimeChargeResponse](#CreateOneTimeChargeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charge | [OneTimeChargeEntity](#OneTimeChargeEntity) |  no  |  |
+ | confirm_url | string |  no  |  |
 
 ---
 

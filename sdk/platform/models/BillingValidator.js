@@ -29,6 +29,20 @@ class BillingValidator {
     }).required();
   }
 
+  static createOneTimeCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: Validator.CreateOneTimeCharge().required(),
+    }).required();
+  }
+
+  static getChargeDetails() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      chargeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getInvoices() {
     return Joi.object({}).required();
   }
