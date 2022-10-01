@@ -289,16 +289,12 @@ declare class Payment {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId -
-     * @param {string} arg.applicationId -
      * @param {AddBeneficiaryDetailsOTPRequest} arg.body
      * @returns {Promise<RefundAccountResponse>} - Success response
      * @summary: Save bank details for cancelled/returned order
      * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
      */
-    addRefundBankAccountUsingOTP({ companyId, applicationId, body }?: {
-        companyId: number;
-        applicationId: string;
+    addRefundBankAccountUsingOTP({ body }?: {
         body: any;
     }): Promise<any>;
     /**

@@ -433,6 +433,7 @@ export class Validator {
     static DataLoadersSchema(): any;
     static TagDeleteSuccessResponse(): any;
     static ContentAPIError(): any;
+    static CommonError(): any;
     static CategorySchema(): any;
     static ChildrenSchema(): any;
     static CategoryRequestSchema(): any;
@@ -490,6 +491,7 @@ export class Validator {
     static CommunicationConsentChannelsWhatsapp(): any;
     static CommunicationConsentChannels(): any;
     static CommunicationConsent(): any;
+    static BadRequestSchema(): any;
     static PushtokenReq(): any;
     static PushtokenRes(): any;
     static QRCodeResp(): any;
@@ -697,11 +699,11 @@ export class Validator {
     static RedirectToAggregatorResponse(): any;
     static CreditDetail(): any;
     static CheckCreditResponse(): any;
-    static DeviceDetails(): any;
-    static MarketplaceInfo(): any;
     static KYCAddress(): any;
-    static UserPersonalInfoInDetails(): any;
     static BusinessDetails(): any;
+    static DeviceDetails(): any;
+    static UserPersonalInfoInDetails(): any;
+    static MarketplaceInfo(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;

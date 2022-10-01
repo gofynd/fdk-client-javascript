@@ -848,16 +848,14 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId -
-   * @param {string} arg.applicationId -
    * @param {AddBeneficiaryDetailsOTPRequest} arg.body
    * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
    * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
    */
-  addRefundBankAccountUsingOTP({ companyId, applicationId, body } = {}) {
+  addRefundBankAccountUsingOTP({ body } = {}) {
     const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
-      { companyId, applicationId, body },
+      { body },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -872,7 +870,7 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["addRefundBankAccountUsingOTP"],
-        params: { companyId, applicationId },
+        params: {},
       }),
       query_params,
       body,
