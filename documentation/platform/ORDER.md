@@ -322,6 +322,7 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  toDate : value,
  isPrioritySort : value,
  lockStatus : value,
+ userId : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -339,6 +340,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  toDate : value,
  isPrioritySort : value,
  lockStatus : value,
+ userId : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -362,6 +364,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | toDate | string | no | To Date |    
 | isPrioritySort | boolean | no | Sorting Order |    
 | lockStatus | boolean | no | Hide Lock Status |    
+| userId | string | no | User Id |    
 | q | string | no | Keyword for Search |    
 | stage | string | no | Specefic Order Stage |    
 | salesChannels | string | no | Selected Sales Channel |    
@@ -1233,6 +1236,7 @@ const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicat
  stores : value,
  status : value,
  dp : value,
+ userId : value,
  filterType : value });
 
 // Async/Await
@@ -1247,6 +1251,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
  stores : value,
  status : value,
  dp : value,
+ userId : value,
  filterType : value });
 ```
 
@@ -1267,6 +1272,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
+| userId | string | no | User Id |    
 | filterType | string | no | Filters |  
 
 
