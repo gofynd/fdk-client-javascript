@@ -229,8 +229,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
  | quantity | number |  no  |  |
+ | identifier | string |  no  |  |
 
 ---
 
@@ -241,10 +241,10 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | products | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | store_invoice_id | string |  no  |  |
  | data_update | string |  no  |  |
  | reason | [number] |  no  |  |
- | store_invoice_id | string |  no  |  |
- | products | [[ProductDetail](#ProductDetail)] |  no  |  |
 
 ---
 
@@ -279,8 +279,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | task | boolean |  no  |  |
  | force_transition | boolean |  no  |  |
+ | task | boolean |  no  |  |
  | statuses | [Statuses](#Statuses) |  no  |  |
 
 ---
@@ -316,14 +316,14 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | l1_detail | string |  no  |  |
  | l3_detail | string |  no  |  |
+ | type | string |  yes  |  |
  | user | string |  yes  |  |
  | message | string |  yes  |  |
- | l1_detail | string |  no  |  |
  | ticket_id | string |  no  |  |
- | createdat | string |  yes  |  |
  | l2_detail | string |  no  |  |
- | type | string |  yes  |  |
+ | createdat | string |  yes  |  |
  | ticket_url | string |  no  |  |
 
 ---
