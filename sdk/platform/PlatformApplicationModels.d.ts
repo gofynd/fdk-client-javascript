@@ -182,13 +182,13 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
@@ -225,6 +225,7 @@ export class CatalogValidator {
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getAppInventory(): any;
     static getAppLocations(): any;
     static getApplicationBrandListing(): any;
     static updateAppBrand(): any;
@@ -314,4 +315,7 @@ export class AnalyticsValidator {
 export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
+}
+export class OrdersValidator {
+    static getApplicationShipments(): any;
 }
