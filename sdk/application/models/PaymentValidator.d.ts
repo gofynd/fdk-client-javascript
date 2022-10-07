@@ -28,4 +28,6 @@ declare class PaymentValidator {
     static redirectToAggregator(): any;
     static checkCredit(): any;
     static customerOnboard(): any;
+    static outstandingOrderDetails(): any;
+    static paidOrderDetails(): any;
 }

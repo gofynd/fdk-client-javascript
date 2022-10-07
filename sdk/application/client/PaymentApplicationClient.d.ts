@@ -31,6 +31,8 @@ declare class Payment {
         redirectToAggregator: string;
         checkCredit: string;
         customerOnboard: string;
+        outstandingOrderDetails: string;
+        paidOrderDetails: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -351,5 +353,25 @@ declare class Payment {
      */
     customerOnboard({ body }?: {
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.merchantUserId] -
+     * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
+     * @summary: API to fetch the outstanding order details
+     * @description: Use this API to fetch the outstanding order details.
+     */
+    outstandingOrderDetails({ merchantUserId }?: {
+        merchantUserId?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.merchantUserId] -
+     * @returns {Promise<PaidOrderDetailsResponse>} - Success response
+     * @summary: API to fetch the paid order details
+     * @description: Use this API to fetch the paid order details.
+     */
+    paidOrderDetails({ merchantUserId }?: {
+        merchantUserId?: string;
     }): Promise<any>;
 }
