@@ -26,9 +26,6 @@ Handles Platform websites OMS
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
 * [getOrdersByApplicationId](#getordersbyapplicationid)
-* [getPing](#getping)
-* [voiceCallback](#voicecallback)
-* [voiceClickToCall](#voiceclicktocall)
 
 
 
@@ -334,7 +331,6 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -353,7 +349,6 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -378,7 +373,6 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | deploymentStores | string | no | Selected Deployment Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -433,7 +427,6 @@ const promise = client.order.getOrderLanesCountByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -447,7 +440,6 @@ const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -467,7 +459,6 @@ const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -646,7 +637,6 @@ const promise = client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -660,7 +650,6 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -680,7 +669,6 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -1249,7 +1237,6 @@ const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicat
  status : value,
  dp : value,
  userId : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -1265,7 +1252,6 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
  status : value,
  dp : value,
  userId : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -1287,7 +1273,6 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
 | userId | string | no | User Id |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -1300,167 +1285,6 @@ Get Orders at Application Level
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPing
-Get Ping
-
-
-
-```javascript
-// Promise
-const promise = client.order.getPing();
-
-// Async/Await
-const data = await client.order.getPing();
-```
-
-
-
-
-
-
-Get Ping
-
-*Returned Response:*
-
-
-
-
-[GetPingResponse](#GetPingResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### voiceCallback
-Get Voice Callback
-
-
-
-```javascript
-// Promise
-const promise = client.order.voiceCallback();
-
-// Async/Await
-const data = await client.order.voiceCallback();
-```
-
-
-
-
-
-
-Voice Callback
-
-*Returned Response:*
-
-
-
-
-[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### voiceClickToCall
-Get Voice Click to Call
-
-
-
-```javascript
-// Promise
-const promise = client.order.voiceClickToCall({  caller : value,
- receiver : value });
-
-// Async/Await
-const data = await client.order.voiceClickToCall({  caller : value,
- receiver : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| caller | string | yes | Caller contact number |   
-| receiver | string | yes | Receiver contact number |  
-
-
-
-Voice Click to Call
-
-*Returned Response:*
-
-
-
-
-[GetClickToCallResponse](#GetClickToCallResponse)
 
 Success
 
