@@ -1,5 +1,5 @@
-export = OrderInvoiceEngine;
-declare class OrderInvoiceEngine {
+export = DocumentEngine;
+declare class DocumentEngine {
     constructor(config: any);
     config: any;
     /**
@@ -55,6 +55,15 @@ declare class OrderInvoiceEngine {
      */
     getNocStatus({ uid }?: {
         uid: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {InvoiceLabelPresignedRequestBody} arg.body
+     * @summary: Get Presigned URL to download PDFs
+     * @description: Use this API to generate Presigned URLs for downloading PDFs
+     */
+    getPresignedURL({ body }?: {
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

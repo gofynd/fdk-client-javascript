@@ -32,12 +32,15 @@ class Orders {
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["request_by_ext"] = requestByExt;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details/${shipmentId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -95,12 +98,15 @@ class Orders {
     query_params["payment_mode"] = paymentMode;
     query_params["bag_status"] = bagStatus;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/lane-config/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -124,12 +130,15 @@ class Orders {
     const query_params = {};
     query_params["order_id"] = orderId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/order-details`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -207,12 +216,15 @@ class Orders {
     query_params["customer_id"] = customerId;
     query_params["is_priority_sort"] = isPrioritySort;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -242,12 +254,15 @@ class Orders {
     query_params["sales_channel"] = salesChannel;
     query_params["dp_ids"] = dpIds;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/manifest-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -313,12 +328,15 @@ class Orders {
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/orders-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -345,12 +363,15 @@ class Orders {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment/metrics-count`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -374,12 +395,15 @@ class Orders {
     const query_params = {};
     query_params["view"] = view;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/filter-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -406,12 +430,15 @@ class Orders {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -438,12 +465,15 @@ class Orders {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -466,12 +496,15 @@ class Orders {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

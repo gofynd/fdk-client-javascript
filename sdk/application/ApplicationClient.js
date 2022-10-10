@@ -32,6 +32,8 @@ const PosCart = require("./client/PosCartApplicationClient");
 
 const Logistic = require("./client/LogisticApplicationClient");
 
+const DocumentEngine = require("./client/DocumentEngineApplicationClient");
+
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class ApplicationClient {
@@ -53,6 +55,7 @@ class ApplicationClient {
     this.rewards = new Rewards(config);
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
+    this.documentEngine = new DocumentEngine(config);
   }
 
   setCookie(cookie) {

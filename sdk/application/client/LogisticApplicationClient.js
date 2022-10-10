@@ -10,6 +10,7 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
+      getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -45,6 +46,8 @@ class Logistic {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -53,7 +56,8 @@ class Logistic {
         params: { pincode },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -74,6 +78,8 @@ class Logistic {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -82,7 +88,40 @@ class Logistic {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {GetZoneFromPincodeViewRequest} arg.body
+   * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+   * @summary: GET zone from the Pincode.
+   * @description: This API returns zone from the Pincode View.
+   */
+  getPincodeZones({ body } = {}) {
+    const { error } = LogisticValidator.getPincodeZones().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getPincodeZones"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
     );
   }
 }

@@ -30,12 +30,15 @@ class Billing {
     query_params["plan"] = plan;
     query_params["coupon_code"] = couponCode;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/coupon/check-validity`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -60,12 +63,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -90,12 +96,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription/${subscriptionId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -120,12 +129,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription/${subscriptionId}/cancel`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -145,12 +157,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/list`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -173,12 +188,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/${invoiceId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -198,12 +216,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -226,12 +247,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -251,12 +275,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -276,12 +303,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current-limit`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -304,12 +334,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/activate`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -332,12 +365,15 @@ class Billing {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/cancel`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

@@ -37,3 +37,13 @@ describe("Platform Lead Test Cases", () => {
     expect(typeof tickets.page.item_total).toBe("number");
   });
 });
+
+describe("Platform Common Test Cases", () => {
+  it("search application by name", async () => {
+    let locations = await platformClient.common.searchApplication({
+      authorization: `Basic ${process.env.AUTH_HEADER}`,
+      query: "cirnum.hostx0.de",
+    });
+    expect(locations && typeof locations === "object").toBe(true);
+  });
+});

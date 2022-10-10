@@ -1,8 +1,8 @@
 const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
-const OrderInvoiceEngineValidator = require("../models/OrderInvoiceEngineValidator");
-class OrderInvoiceEngine {
+const DocumentEngineValidator = require("../models/DocumentEngineValidator");
+class DocumentEngine {
   constructor(config) {
     this.config = config;
   }
@@ -16,7 +16,7 @@ class OrderInvoiceEngine {
   generateBulkPackageLabel({ body } = {}) {
     const {
       error,
-    } = OrderInvoiceEngineValidator.generateBulkPackageLabel().validate(
+    } = DocumentEngineValidator.generateBulkPackageLabel().validate(
       {
         body,
       },
@@ -28,12 +28,15 @@ class OrderInvoiceEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/generate-bulk-package-label`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/generate-bulk-package-label`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -44,9 +47,7 @@ class OrderInvoiceEngine {
    * @description: Use this API to generate label for Boxes
    */
   generateBulkBoxLabel({ body } = {}) {
-    const {
-      error,
-    } = OrderInvoiceEngineValidator.generateBulkBoxLabel().validate(
+    const { error } = DocumentEngineValidator.generateBulkBoxLabel().validate(
       {
         body,
       },
@@ -58,12 +59,15 @@ class OrderInvoiceEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/generate-bulk-box-label`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/generate-bulk-box-label`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -76,7 +80,7 @@ class OrderInvoiceEngine {
   generateBulkShipmentLabel({ body } = {}) {
     const {
       error,
-    } = OrderInvoiceEngineValidator.generateBulkShipmentLabel().validate(
+    } = DocumentEngineValidator.generateBulkShipmentLabel().validate(
       {
         body,
       },
@@ -88,12 +92,15 @@ class OrderInvoiceEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/generate-bulk-shipment-label`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/generate-bulk-shipment-label`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -104,7 +111,7 @@ class OrderInvoiceEngine {
    * @description: Use this API to generate NOC for Seller
    */
   generateNoc({ body } = {}) {
-    const { error } = OrderInvoiceEngineValidator.generateNoc().validate(
+    const { error } = DocumentEngineValidator.generateNoc().validate(
       {
         body,
       },
@@ -116,12 +123,15 @@ class OrderInvoiceEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/generate-noc`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/generate-noc`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -132,7 +142,7 @@ class OrderInvoiceEngine {
    * @description: Use this API to fetch status of PDF generation of Labels
    */
   getLabelStatus({ uid } = {}) {
-    const { error } = OrderInvoiceEngineValidator.getLabelStatus().validate(
+    const { error } = DocumentEngineValidator.getLabelStatus().validate(
       {
         uid,
       },
@@ -145,12 +155,15 @@ class OrderInvoiceEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-label-list`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/get-label-list`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -161,7 +174,7 @@ class OrderInvoiceEngine {
    * @description: Use this API to fetch status of PDF generation of NOC
    */
   getNocStatus({ uid } = {}) {
-    const { error } = OrderInvoiceEngineValidator.getNocStatus().validate(
+    const { error } = DocumentEngineValidator.getNocStatus().validate(
       {
         uid,
       },
@@ -174,12 +187,46 @@ class OrderInvoiceEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-noc-status`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/get-noc-status`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {InvoiceLabelPresignedRequestBody} arg.body
+   * @summary: Get Presigned URL to download PDFs
+   * @description: Use this API to generate Presigned URLs for downloading PDFs
+   */
+  getPresignedURL({ body } = {}) {
+    const { error } = DocumentEngineValidator.getPresignedURL().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/document/v1.0/company/${this.config.companyId}/get-single-presigned-url`,
+      query_params,
+      body,
+      xHeaders
     );
   }
 
@@ -190,9 +237,7 @@ class OrderInvoiceEngine {
    * @description: Use this API to generate Presigned URLs for downloading labels
    */
   getLabelPresignedURL({ uid } = {}) {
-    const {
-      error,
-    } = OrderInvoiceEngineValidator.getLabelPresignedURL().validate(
+    const { error } = DocumentEngineValidator.getLabelPresignedURL().validate(
       {
         uid,
       },
@@ -205,12 +250,15 @@ class OrderInvoiceEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-label-presigned-url`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/get-label-presigned-url`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -221,7 +269,7 @@ class OrderInvoiceEngine {
    * @description: Use this API to generate Presigned URL for downloading NOC Pdf
    */
   getNocPresignedURL({ uid } = {}) {
-    const { error } = OrderInvoiceEngineValidator.getNocPresignedURL().validate(
+    const { error } = DocumentEngineValidator.getNocPresignedURL().validate(
       {
         uid,
       },
@@ -234,14 +282,17 @@ class OrderInvoiceEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/invoice/v1.0/company/${this.config.companyId}/get-noc-presigned-url`,
+      `/service/platform/document/v1.0/company/${this.config.companyId}/get-noc-presigned-url`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }
 
-module.exports = OrderInvoiceEngine;
+module.exports = DocumentEngine;

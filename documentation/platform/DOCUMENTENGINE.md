@@ -4,7 +4,7 @@
 
 ##### [Back to Platform docs](./README.md)
 
-## OrderInvoiceEngine Methods
+## DocumentEngine Methods
 Handles financial pdf generation of Fulfilment
 * [generateBulkPackageLabel](#generatebulkpackagelabel)
 * [generateBulkBoxLabel](#generatebulkboxlabel)
@@ -12,6 +12,7 @@ Handles financial pdf generation of Fulfilment
 * [generateNoc](#generatenoc)
 * [getLabelStatus](#getlabelstatus)
 * [getNocStatus](#getnocstatus)
+* [getPresignedURL](#getpresignedurl)
 * [getLabelPresignedURL](#getlabelpresignedurl)
 * [getNocPresignedURL](#getnocpresignedurl)
 
@@ -27,10 +28,10 @@ Generate Labels for Packages
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.generateBulkPackageLabel({  body : value });
+const promise = client.documentEngine.generateBulkPackageLabel({  body : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.generateBulkPackageLabel({  body : value });
+const data = await client.documentEngine.generateBulkPackageLabel({  body : value });
 ```
 
 
@@ -82,10 +83,10 @@ Generate Labels for Boxes which will go inside package
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.generateBulkBoxLabel({  body : value });
+const promise = client.documentEngine.generateBulkBoxLabel({  body : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.generateBulkBoxLabel({  body : value });
+const data = await client.documentEngine.generateBulkBoxLabel({  body : value });
 ```
 
 
@@ -137,10 +138,10 @@ Generate Labels for Shipments which contains packaged
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.generateBulkShipmentLabel({  body : value });
+const promise = client.documentEngine.generateBulkShipmentLabel({  body : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.generateBulkShipmentLabel({  body : value });
+const data = await client.documentEngine.generateBulkShipmentLabel({  body : value });
 ```
 
 
@@ -192,10 +193,10 @@ Generate NOC for Seller having access to a fullfillment center
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.generateNoc({  body : value });
+const promise = client.documentEngine.generateNoc({  body : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.generateNoc({  body : value });
+const data = await client.documentEngine.generateNoc({  body : value });
 ```
 
 
@@ -257,10 +258,10 @@ Get Staus of Label generations
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.getLabelStatus({  uid : value });
+const promise = client.documentEngine.getLabelStatus({  uid : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.getLabelStatus({  uid : value });
+const data = await client.documentEngine.getLabelStatus({  uid : value });
 ```
 
 
@@ -313,10 +314,10 @@ Get Staus of NOC generation
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.getNocStatus({  uid : value });
+const promise = client.documentEngine.getNocStatus({  uid : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.getNocStatus({  uid : value });
+const data = await client.documentEngine.getNocStatus({  uid : value });
 ```
 
 
@@ -373,6 +374,61 @@ Sucess Response, Status Of NOC Pdf generation
 ---
 
 
+### getPresignedURL
+Get Presigned URL to download PDFs
+
+
+
+```javascript
+// Promise
+const promise = client.documentEngine.getPresignedURL({  body : value });
+
+// Async/Await
+const data = await client.documentEngine.getPresignedURL({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [InvoiceLabelPresignedRequestBody](#InvoiceLabelPresignedRequestBody) | yes | Request body |
+
+
+Use this API to generate Presigned URLs for downloading PDFs
+
+*Returned Response:*
+
+
+
+
+[SignedSuccessResponse](#SignedSuccessResponse)
+
+Sucess Response, Presigned URL of PDFs
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getLabelPresignedURL
 Get Presigned URL to download labels
 
@@ -380,10 +436,10 @@ Get Presigned URL to download labels
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.getLabelPresignedURL({  uid : value });
+const promise = client.documentEngine.getLabelPresignedURL({  uid : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.getLabelPresignedURL({  uid : value });
+const data = await client.documentEngine.getLabelPresignedURL({  uid : value });
 ```
 
 
@@ -436,10 +492,10 @@ Get Presigned URL to download NOC Pdf
 
 ```javascript
 // Promise
-const promise = client.orderInvoiceEngine.getNocPresignedURL({  uid : value });
+const promise = client.documentEngine.getNocPresignedURL({  uid : value });
 
 // Async/Await
-const data = await client.orderInvoiceEngine.getNocPresignedURL({  uid : value });
+const data = await client.documentEngine.getNocPresignedURL({  uid : value });
 ```
 
 
@@ -983,6 +1039,19 @@ Sucess Response, Presigned URL of NOC Pdf
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  |  |
  | error | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [InvoiceLabelPresignedRequestBody](#InvoiceLabelPresignedRequestBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | document_type | string |  yes  |  |
+ | entity_id | string |  yes  |  |
+ | expires_in | number |  no  |  |
 
 ---
 

@@ -26,12 +26,15 @@ class OrderManage {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/status-internal`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -55,12 +58,15 @@ class OrderManage {
     const query_params = {};
     query_params["bag_id"] = bagId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

@@ -5,6 +5,7 @@ declare class Logistic {
     _relativeUrls: {
         getPincodeCity: string;
         getTatProduct: string;
+        getPincodeZones: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -27,6 +28,16 @@ declare class Logistic {
      * @description: Get TAT data
      */
     getTatProduct({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {GetZoneFromPincodeViewRequest} arg.body
+     * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+     * @summary: GET zone from the Pincode.
+     * @description: This API returns zone from the Pincode View.
+     */
+    getPincodeZones({ body }?: {
         body: any;
     }): Promise<any>;
 }

@@ -27,12 +27,15 @@ class AuditTrail {
     const query_params = {};
     query_params["qs"] = qs;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -55,12 +58,15 @@ class AuditTrail {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -83,12 +89,15 @@ class AuditTrail {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/${id}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -108,12 +117,15 @@ class AuditTrail {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/entity-types`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

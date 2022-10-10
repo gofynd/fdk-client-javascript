@@ -1,6 +1,6 @@
 const Joi = require("joi");
 const Validator = require("../PlatformModels");
-class OrderInvoiceEngineValidator {
+class DocumentEngineValidator {
   static generateBulkPackageLabel() {
     return Joi.object({
       body: Validator.GenerateBulkPackageLabel().required(),
@@ -37,6 +37,12 @@ class OrderInvoiceEngineValidator {
     }).required();
   }
 
+  static getPresignedURL() {
+    return Joi.object({
+      body: Validator.InvoiceLabelPresignedRequestBody().required(),
+    }).required();
+  }
+
   static getLabelPresignedURL() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
@@ -49,4 +55,4 @@ class OrderInvoiceEngineValidator {
     }).required();
   }
 }
-module.exports = OrderInvoiceEngineValidator;
+module.exports = DocumentEngineValidator;

@@ -9,7 +9,7 @@ class PublicAPIClient {
    * @param {object} body
    */
 
-  static execute(conf, method, url, query, body) {
+  static execute(conf, method, url, query, body, xHeaders) {
     let headers = {};
     headers["User-Agent"] = conf.userAgent ? conf.userAgent : "";
     headers["Accept-Language"] = conf.language ? conf.language : "en-IN";
@@ -28,6 +28,7 @@ class PublicAPIClient {
       headers: {
         ...headers,
         ...extraHeaders,
+        ...xHeaders,
       },
     };
     return fdkAxios.request(rawRequest);

@@ -98,6 +98,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -106,7 +108,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -129,6 +132,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -137,7 +142,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -160,6 +166,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -168,7 +176,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -191,6 +200,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -199,7 +210,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -222,6 +234,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -230,7 +244,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -253,6 +268,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -261,7 +278,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -282,6 +300,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -290,7 +310,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -313,6 +334,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -321,7 +344,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -342,6 +366,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -350,7 +376,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -371,6 +398,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -379,7 +408,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -400,6 +430,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -408,7 +440,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -431,6 +464,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -439,7 +474,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -460,6 +496,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -468,7 +506,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -489,6 +528,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -497,7 +538,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -517,6 +559,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -525,7 +569,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -546,6 +591,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -554,7 +601,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -575,6 +623,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -583,7 +633,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -603,6 +654,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -611,7 +664,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -634,6 +688,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -642,7 +698,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -665,6 +722,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -673,7 +732,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -696,6 +756,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -704,7 +766,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -727,6 +790,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -735,7 +800,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -755,6 +821,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -763,7 +831,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -783,6 +852,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -791,7 +862,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -813,6 +885,8 @@ class User {
     const query_params = {};
     query_params["name"] = name;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -821,7 +895,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -844,6 +919,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -852,7 +929,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -875,6 +953,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -883,7 +963,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -927,6 +1008,8 @@ class User {
     query_params["country_code"] = countryCode;
     query_params["phone"] = phone;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -935,7 +1018,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -956,6 +1040,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -964,7 +1050,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -987,6 +1074,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -995,7 +1084,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1018,6 +1108,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -1026,7 +1118,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1061,6 +1154,8 @@ class User {
     query_params["verified"] = verified;
     query_params["email"] = email;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -1069,7 +1164,8 @@ class User {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1090,6 +1186,8 @@ class User {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1098,7 +1196,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1121,6 +1220,8 @@ class User {
     const query_params = {};
     query_params["platform"] = platform;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1129,7 +1230,8 @@ class User {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

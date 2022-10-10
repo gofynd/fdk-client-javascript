@@ -3,54 +3,21 @@ declare class Order {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getOrders: string;
-        getOrderById: string;
         getShipmentById: string;
-        getShipmentReasons: string;
-        updateShipmentStatus: string;
-        trackShipment: string;
-        getPosOrderById: string;
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
+        getShipmentReasons: string;
         verifyOtpShipmentCustomer: string;
+        getOrders: string;
+        getOrderById: string;
+        getPosOrderById: string;
+        trackShipment: string;
+        updateShipmentStatus: string;
         getInvoiceByShipmentId: string;
         getCreditNoteByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @param {string} [arg.fromDate] - The date from which the orders should be
-     *   retrieved.
-     * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
-     * @param {number} [arg.status] - A filter to retrieve orders by their
-     *   current status such as *placed*, *delivered*, etc.
-     * @returns {Promise<OrderList>} - Success response
-     * @summary: Get all orders
-     * @description: Use this API to retrieve all the orders.
-     */
-    getOrders({ pageNo, pageSize, fromDate, toDate, status }?: {
-        pageNo?: number;
-        pageSize?: number;
-        fromDate?: string;
-        toDate?: string;
-        status?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @returns {Promise<OrderById>} - Success response
-     * @summary: Get details of an order
-     * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
-     */
-    getOrderById({ orderId }?: {
-        orderId: string;
-    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
@@ -65,18 +32,121 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {string} arg.shipmentId - A unique number used for identifying and
+     *   tracking your orders.
+     * @returns {Promise<CustomerDetailsResponse>} - Success response
+     * @summary: Get Customer Details by Shipment Id
+     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+     */
+    getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
+        orderId: string;
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
-     * @param {number} [arg.bagId] - Bag Id of a specefic bags which will help
-     *   to categorize the reasons
-     * @returns {Promise<ShipmentReasons>} - Success response
+     * @returns {Promise<SendOtpToCustomerResponse>} - Success response
+     * @summary: Send and Resend Otp code to Order-Shipment customer
+     * @description: Use this API to send OTP to the customer of the mapped Shipment.
+     */
+    sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
+        orderId: string;
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {string} arg.bagId - Bag Id of a specefic bags which will help to
+     *   categorize the reasons
+     * @returns {Promise<ShipmentReasonsResponse>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
     getShipmentReasons({ shipmentId, bagId }?: {
+        shipmentId: number;
+        bagId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.
+     * @param {number} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {VerifyOtp} arg.body
+     * @returns {Promise<VerifyOtpResponse>} - Success response
+     * @summary: Verify Otp code
+     * @description: Use this API to verify OTP and create a session token with custom payload.
+     */
+    verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
+        orderId: string;
+        shipmentId: number;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.status] - A filter to retrieve orders by their
+     *   current status such as *placed*, *delivered*, etc.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {string} [arg.fromDate] - The date from which the orders should be
+     *   retrieved.
+     * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+     * @returns {Promise<OrderList>} - Success response
+     * @summary: Get all orders
+     * @description: Use this API to retrieve all the orders.
+     */
+    getOrders({ status, pageNo, pageSize, fromDate, toDate }?: {
+        status?: number;
+        pageNo?: number;
+        pageSize?: number;
+        fromDate?: string;
+        toDate?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.
+     * @returns {Promise<OrderList>} - Success response
+     * @summary: Get details of an order
+     * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+     */
+    getOrderById({ orderId }?: {
+        orderId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.
+     * @returns {Promise<OrderList>} - Success response
+     * @summary: Get POS Order
+     * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+     */
+    getPosOrderById({ orderId }?: {
+        orderId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<TrackShipmentResponse>} - Success response
+     * @summary: Track shipment
+     * @description: Track Shipment by shipment id, for application based on application Id
+     */
+    trackShipment({ shipmentId }?: {
         shipmentId: string;
-        bagId?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -94,96 +164,26 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ShipmentTrack>} - Success response
-     * @summary: Track shipment
-     * @description: Use this API to track a shipment using its shipment ID.
+     * @param {string} arg.shipmentId - Shiment ID
+     * @param {invoiceParameter} [arg.parameters] -
+     * @returns {Promise<getInvoiceByShipmentId200Response>} - Success response
+     * @summary: Get Presigned URL to download Invoice
+     * @description: Use this API to generate Presigned URLs for downloading Invoice
      */
-    trackShipment({ shipmentId }?: {
+    getInvoiceByShipmentId({ shipmentId, parameters }?: {
         shipmentId: string;
+        parameters?: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @returns {Promise<PosOrderById>} - Success response
-     * @summary: Get POS Order
-     * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+     * @param {string} arg.shipmentId - Shiment ID
+     * @param {creditNoteParameter} [arg.parameters] -
+     * @returns {Promise<getInvoiceByShipmentId200Response>} - Success response
+     * @summary: Get Presigned URL to download Invoice
+     * @description: Use this API to generate Presigned URLs for downloading Invoice
      */
-    getPosOrderById({ orderId }?: {
-        orderId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<CustomerDetailsByShipmentId>} - Success response
-     * @summary: Get Customer Details by Shipment Id
-     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
-     */
-    getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
-        orderId: string;
+    getCreditNoteByShipmentId({ shipmentId, parameters }?: {
         shipmentId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<sendOTPApplicationResponse>} - Success response
-     * @summary: Send and Resend Otp code to Order-Shipment customer
-     * @description: Use this API to send OTP to the customer of the mapped Shipment.
-     */
-    sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
-        orderId: string;
-        shipmentId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {ReqBodyVerifyOTPShipment} arg.body
-     * @returns {Promise<ResponseVerifyOTPShipment>} - Success response
-     * @summary: Verify Otp code
-     * @description: Use this API to verify OTP and create a session token with custom payload.
-     */
-    verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
-        orderId: string;
-        shipmentId: string;
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
-     * @summary: Get Invoice URL
-     * @description: Use this API to get a generated Invoice URL for viewing or download.
-     */
-    getInvoiceByShipmentId({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ResponseGetCreditNoteShipment>} - Success response
-     * @summary: Get Credit Note URL
-     * @description: Use this API to get a generated Credit Note URL for viewing or download.
-     */
-    getCreditNoteByShipmentId({ shipmentId }?: {
-        shipmentId: string;
+        parameters?: any;
     }): Promise<any>;
 }
