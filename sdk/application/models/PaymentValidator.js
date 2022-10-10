@@ -180,13 +180,13 @@ class PaymentValidator {
 
   static outstandingOrderDetails() {
     return Joi.object({
-      merchantUserId: Joi.string().allow(""),
+      aggregator: Joi.string().allow(""),
     });
   }
 
   static paidOrderDetails() {
     return Joi.object({
-      merchantUserId: Joi.string().allow(""),
+      aggregator: Joi.string().allow(""),
     });
   }
 }

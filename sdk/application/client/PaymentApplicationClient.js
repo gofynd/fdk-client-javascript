@@ -1068,21 +1068,21 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.merchantUserId] -
+   * @param {string} [arg.aggregator] -
    * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
    * @summary: API to fetch the outstanding order details
    * @description: Use this API to fetch the outstanding order details.
    */
-  outstandingOrderDetails({ merchantUserId } = {}) {
+  outstandingOrderDetails({ aggregator } = {}) {
     const { error } = PaymentValidator.outstandingOrderDetails().validate(
-      { merchantUserId },
+      { aggregator },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
-    query_params["merchant_user_id"] = merchantUserId;
+    query_params["aggregator"] = aggregator;
 
     const xHeaders = {};
 
@@ -1101,21 +1101,21 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.merchantUserId] -
+   * @param {string} [arg.aggregator] -
    * @returns {Promise<PaidOrderDetailsResponse>} - Success response
    * @summary: API to fetch the paid order details
    * @description: Use this API to fetch the paid order details.
    */
-  paidOrderDetails({ merchantUserId } = {}) {
+  paidOrderDetails({ aggregator } = {}) {
     const { error } = PaymentValidator.paidOrderDetails().validate(
-      { merchantUserId },
+      { aggregator },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
-    query_params["merchant_user_id"] = merchantUserId;
+    query_params["aggregator"] = aggregator;
 
     const xHeaders = {};
 

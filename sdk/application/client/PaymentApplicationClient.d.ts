@@ -356,22 +356,22 @@ declare class Payment {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.merchantUserId] -
+     * @param {string} [arg.aggregator] -
      * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
      * @summary: API to fetch the outstanding order details
      * @description: Use this API to fetch the outstanding order details.
      */
-    outstandingOrderDetails({ merchantUserId }?: {
-        merchantUserId?: string;
+    outstandingOrderDetails({ aggregator }?: {
+        aggregator?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.merchantUserId] -
+     * @param {string} [arg.aggregator] -
      * @returns {Promise<PaidOrderDetailsResponse>} - Success response
      * @summary: API to fetch the paid order details
      * @description: Use this API to fetch the paid order details.
      */
-    paidOrderDetails({ merchantUserId }?: {
-        merchantUserId?: string;
+    paidOrderDetails({ aggregator }?: {
+        aggregator?: string;
     }): Promise<any>;
 }
