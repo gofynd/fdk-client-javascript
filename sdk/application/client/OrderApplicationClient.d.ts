@@ -62,7 +62,7 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.shipmentId - ID of the shipment. An order may contain
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
      * @param {string} arg.bagId - Bag Id of a specefic bags which will help to
@@ -72,7 +72,7 @@ declare class Order {
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
     getShipmentReasons({ shipmentId, bagId }?: {
-        shipmentId: number;
+        shipmentId: string;
         bagId: string;
     }): Promise<any>;
     /**

@@ -154,7 +154,7 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.shipmentId - ID of the shipment. An order may contain
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
    * @param {string} arg.bagId - Bag Id of a specefic bags which will help to

@@ -23,7 +23,7 @@ class OrderValidator {
 
   static getShipmentReasons() {
     return Joi.object({
-      shipmentId: Joi.number().required(),
+      shipmentId: Joi.string().allow("").required(),
       bagId: Joi.string().allow("").required(),
     }).required();
   }
