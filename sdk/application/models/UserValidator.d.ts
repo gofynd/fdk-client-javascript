@@ -8,7 +8,6 @@ declare class UserValidator {
     static loginWithOTP(): any;
     static loginWithEmailAndPassword(): any;
     static sendResetPasswordEmail(): any;
-    static sendResetPasswordMobile(): any;
     static forgotPassword(): any;
     static sendResetToken(): any;
     static loginWithToken(): any;
@@ -17,6 +16,7 @@ declare class UserValidator {
     static verifyMobile(): any;
     static hasPassword(): any;
     static updatePassword(): any;
+    static deleteUser(): any;
     static logout(): any;
     static sendOTPOnMobile(): any;
     static verifyMobileOTP(): any;

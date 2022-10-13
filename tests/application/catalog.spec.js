@@ -35,13 +35,3 @@ describe("Application Catalog Test Cases", () => {
     expect(products.items.length).toBeGreaterThan(0);
   });
 });
-
-describe("Application Common Test Cases ", () => {
-  it("search application by name", async () => {
-    let locations = await applicationClient.common.searchApplication({
-      authorization: `Basic ${process.env.AUTH_HEADER}`,
-      query: "pc.fyndstore.co",
-    });
-    expect(locations && typeof locations === "object").toBe(true);
-  });
-});

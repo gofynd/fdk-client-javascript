@@ -33,15 +33,12 @@ class Webhook {
     query_params["page_size"] = pageSize;
     query_params["extension_id"] = extensionId;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -64,15 +61,12 @@ class Webhook {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -95,15 +89,12 @@ class Webhook {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -132,15 +123,12 @@ class Webhook {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscriber`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -163,15 +151,12 @@ class Webhook {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber/${subscriberId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -191,15 +176,12 @@ class Webhook {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/events`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

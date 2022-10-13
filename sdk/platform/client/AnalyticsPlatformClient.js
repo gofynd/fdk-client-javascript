@@ -28,15 +28,12 @@ class Analytics {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/export/${exportType}`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -61,15 +58,12 @@ class Analytics {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/export/${exportType}/job/${jobId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -100,15 +94,12 @@ class Analytics {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/logs/${logType}`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -169,15 +160,12 @@ class Analytics {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/logs/${logType}/search`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 

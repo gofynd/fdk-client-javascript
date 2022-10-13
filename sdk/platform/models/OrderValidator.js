@@ -48,6 +48,7 @@ class OrderValidator {
       deploymentStores: Joi.string().allow(""),
       status: Joi.string().allow(""),
       dp: Joi.string().allow(""),
+      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }
@@ -64,6 +65,7 @@ class OrderValidator {
       orderId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       status: Joi.string().allow(""),
+      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }
@@ -88,6 +90,7 @@ class OrderValidator {
       orderId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       status: Joi.string().allow(""),
+      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }
@@ -104,6 +107,21 @@ class OrderValidator {
       shipmentId: Joi.string().allow("").required(),
       addressCategory: Joi.string().allow("").required(),
       body: Validator.UpdateShipmentAddressRequest().required(),
+    }).required();
+  }
+
+  static getPing() {
+    return Joi.object({}).required();
+  }
+
+  static voiceCallback() {
+    return Joi.object({}).required();
+  }
+
+  static voiceClickToCall() {
+    return Joi.object({
+      caller: Joi.string().allow("").required(),
+      receiver: Joi.string().allow("").required(),
     }).required();
   }
 }

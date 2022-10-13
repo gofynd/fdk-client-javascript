@@ -28,6 +28,8 @@ class Order {
         "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify",
       getInvoiceByShipmentId:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
+      getCreditNoteByShipmentId:
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/credit-note/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -75,8 +77,6 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["status"] = status;
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -85,8 +85,7 @@ class Order {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -108,8 +107,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -118,8 +115,7 @@ class Order {
         params: { orderId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -142,8 +138,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -152,8 +146,7 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -176,8 +169,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -186,8 +177,7 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -211,8 +201,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "put",
@@ -221,8 +209,7 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -245,8 +232,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -255,8 +240,7 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -278,8 +262,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -288,8 +270,7 @@ class Order {
         params: { orderId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -314,8 +295,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -324,8 +303,7 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -350,8 +328,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -360,8 +336,7 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -387,8 +362,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "post",
@@ -397,8 +370,7 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -421,8 +393,6 @@ class Order {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -431,8 +401,38 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @returns {Promise<ResponseGetCreditNoteShipment>} - Success response
+   * @summary: Get Credit Note URL
+   * @description: Use this API to get a generated Credit Note URL for viewing or download.
+   */
+  getCreditNoteByShipmentId({ shipmentId } = {}) {
+    const { error } = OrderValidator.getCreditNoteByShipmentId().validate(
+      { shipmentId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCreditNoteByShipmentId"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined
     );
   }
 }

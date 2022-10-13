@@ -310,8 +310,6 @@ Success. Returns a JSON object containing the city name, state and country ident
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturing_time | number |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
  | category | [LogisticRequestCategory](#LogisticRequestCategory) |  no  |  |
 
 ---

@@ -47,9 +47,6 @@ class Common {
     const query_params = {};
     query_params["query"] = query;
 
-    const xHeaders = {};
-    xHeaders["authorization"] = authorization;
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -58,8 +55,7 @@ class Common {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -86,8 +82,6 @@ class Common {
     query_params["location_type"] = locationType;
     query_params["id"] = id;
 
-    const xHeaders = {};
-
     return APIClient.execute(
       this._conf,
       "get",
@@ -96,8 +90,7 @@ class Common {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

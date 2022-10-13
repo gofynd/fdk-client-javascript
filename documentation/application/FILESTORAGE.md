@@ -353,7 +353,7 @@ Success
 
  
  
- #### [BulkUploadResponse](#BulkUploadResponse)
+ #### [BulkResponse](#BulkResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

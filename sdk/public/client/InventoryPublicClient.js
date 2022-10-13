@@ -50,8 +50,6 @@ class Inventory {
     const query_params = {};
     query_params["apikey"] = apikey;
 
-    const xHeaders = {};
-
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -60,8 +58,7 @@ class Inventory {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -85,8 +82,6 @@ class Inventory {
     query_params["user_name"] = userName;
     query_params["password"] = password;
 
-    const xHeaders = {};
-
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -95,8 +90,7 @@ class Inventory {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -117,8 +111,6 @@ class Inventory {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -127,8 +119,7 @@ class Inventory {
         params: { code },
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -154,8 +145,6 @@ class Inventory {
     query_params["integration_type"] = integrationType;
     query_params["disable"] = disable;
 
-    const xHeaders = {};
-
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -164,8 +153,7 @@ class Inventory {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -189,8 +177,6 @@ class Inventory {
     query_params["daily_job"] = dailyJob;
     query_params["job_code"] = jobCode;
 
-    const xHeaders = {};
-
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -199,8 +185,7 @@ class Inventory {
         params: {},
       }),
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -221,8 +206,6 @@ class Inventory {
     }
     const query_params = {};
 
-    const xHeaders = {};
-
     return PublicAPIClient.execute(
       this._conf,
       "post",
@@ -231,8 +214,7 @@ class Inventory {
         params: {},
       }),
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 }

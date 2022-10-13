@@ -26,15 +26,12 @@ class Order {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/status`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -58,15 +55,12 @@ class Order {
     const query_params = {};
     query_params["bag_id"] = bagId;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/activity/status`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -89,15 +83,12 @@ class Order {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/store/process-shipments`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -120,15 +111,12 @@ class Order {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/check-refund/${shipmentId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -151,15 +139,12 @@ class Order {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/can-break`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -180,6 +165,7 @@ class Order {
    * @param {string} [arg.deploymentStores] - Selected Deployment Stores
    * @param {string} [arg.status] - Status of order
    * @param {string} [arg.dp] - Delivery Partners
+   * @param {boolean} [arg.shortenUrls] - Shorten URL option
    * @param {string} [arg.filterType] - Filters
    * @summary: Get Orders for company based on Company Id
    * @description: Get Orders
@@ -200,6 +186,7 @@ class Order {
     deploymentStores,
     status,
     dp,
+    shortenUrls,
     filterType,
   } = {}) {
     const { error } = OrderValidator.getOrdersByCompanyId().validate(
@@ -219,6 +206,7 @@ class Order {
         deploymentStores,
         status,
         dp,
+        shortenUrls,
         filterType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -243,17 +231,15 @@ class Order {
     query_params["deployment_stores"] = deploymentStores;
     query_params["status"] = status;
     query_params["dp"] = dp;
+    query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
-
-    const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -269,6 +255,7 @@ class Order {
    * @param {string} [arg.orderId] - Order Id
    * @param {string} [arg.stores] - Selected Stores
    * @param {string} [arg.status] - Status of order
+   * @param {boolean} [arg.shortenUrls] - Shorten URL option
    * @param {string} [arg.filterType] - Filters
    * @summary: Get Order Lanes Count for company based on Company Id
    * @description: Get Orders Seperate Lane Count
@@ -284,6 +271,7 @@ class Order {
     orderId,
     stores,
     status,
+    shortenUrls,
     filterType,
   } = {}) {
     const { error } = OrderValidator.getOrderLanesCountByCompanyId().validate(
@@ -298,6 +286,7 @@ class Order {
         orderId,
         stores,
         status,
+        shortenUrls,
         filterType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -317,17 +306,15 @@ class Order {
     query_params["order_id"] = orderId;
     query_params["stores"] = stores;
     query_params["status"] = status;
+    query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
-
-    const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/lane-count`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -357,15 +344,12 @@ class Order {
     query_params["next"] = next;
     query_params["previous"] = previous;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/details`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -381,6 +365,7 @@ class Order {
    * @param {string} [arg.orderId] - Order Id
    * @param {string} [arg.stores] - Selected Stores
    * @param {string} [arg.status] - Status of order
+   * @param {boolean} [arg.shortenUrls] - Shorten URL option
    * @param {string} [arg.filterType] - Filters
    * @summary: Get Orders for company based on Company Id
    * @description: Get Orders
@@ -396,6 +381,7 @@ class Order {
     orderId,
     stores,
     status,
+    shortenUrls,
     filterType,
   } = {}) {
     const { error } = OrderValidator.getPicklistOrdersByCompanyId().validate(
@@ -410,6 +396,7 @@ class Order {
         orderId,
         stores,
         status,
+        shortenUrls,
         filterType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -429,17 +416,15 @@ class Order {
     query_params["order_id"] = orderId;
     query_params["stores"] = stores;
     query_params["status"] = status;
+    query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
-
-    const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/picklist`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -467,15 +452,12 @@ class Order {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/shipments/${shipmentId}/address/${addressCategory}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -505,15 +487,94 @@ class Order {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/shipments/${shipmentId}/address/${addressCategory}`,
       query_params,
-      body,
-      xHeaders
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Get Ping
+   * @description: Get Ping
+   */
+  getPing({} = {}) {
+    const { error } = OrderValidator.getPing().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/ping`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Get Voice Callback
+   * @description: Voice Callback
+   */
+  voiceCallback({} = {}) {
+    const { error } = OrderValidator.voiceCallback().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/callback`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.caller - Caller contact number
+   * @param {string} arg.receiver - Receiver contact number
+   * @summary: Get Voice Click to Call
+   * @description: Voice Click to Call
+   */
+  voiceClickToCall({ caller, receiver } = {}) {
+    const { error } = OrderValidator.voiceClickToCall().validate(
+      {
+        caller,
+        receiver,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["caller"] = caller;
+    query_params["receiver"] = receiver;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/click-to-call`,
+      query_params,
+      undefined
     );
   }
 }

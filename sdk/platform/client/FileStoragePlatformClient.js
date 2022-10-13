@@ -45,15 +45,12 @@ class FileStorage {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start/`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -95,15 +92,12 @@ class FileStorage {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete/`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -126,15 +120,12 @@ class FileStorage {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls/`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -160,15 +151,12 @@ class FileStorage {
     const query_params = {};
     query_params["sync"] = sync;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy/`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -194,15 +182,12 @@ class FileStorage {
     const query_params = {};
     query_params["page_no"] = pageNo;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse/`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -252,15 +237,12 @@ class FileStorage {
     const query_params = {};
     query_params["url"] = url;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy/`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

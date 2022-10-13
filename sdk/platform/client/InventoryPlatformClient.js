@@ -23,15 +23,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/slingshot`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -54,15 +51,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/kafka/suppressStore`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -89,15 +83,12 @@ class Inventory {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -120,15 +111,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -151,15 +139,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
-      body,
-      xHeaders
+      body
     );
   }
 
@@ -182,15 +167,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/steps/${jobId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -221,15 +203,12 @@ class Inventory {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/integration/${integrationId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -252,15 +231,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/disable/integration/${integrationId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -280,15 +256,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/defaults`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -311,15 +284,12 @@ class Inventory {
 
     const query_params = {};
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/${code}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -354,15 +324,12 @@ class Inventory {
     query_params["status"] = status;
     query_params["date"] = date;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/${code}/metrics`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 
@@ -393,15 +360,12 @@ class Inventory {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const xHeaders = {};
-
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/integration/${integrationId}`,
       query_params,
-      undefined,
-      xHeaders
+      undefined
     );
   }
 }

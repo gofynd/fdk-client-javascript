@@ -99,17 +99,15 @@ declare class CompanyProfile {
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
-     * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company.
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds }?: {
+    getLocations({ storeType, q, stage, pageNo, pageSize }?: {
         storeType?: string;
         q?: string;
         stage?: string;
         pageNo?: number;
         pageSize?: number;
-        locationIds?: number[];
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -120,16 +118,14 @@ declare class CompanyProfile {
      *   unverified companies.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
-     * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company.
      */
-    getLocationsPaginator({ storeType, q, stage, pageSize, locationIds }?: {
+    getLocationsPaginator({ storeType, q, stage, pageSize }?: {
         storeType?: string;
         q?: string;
         stage?: string;
         pageSize?: number;
-        locationIds?: number[];
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.

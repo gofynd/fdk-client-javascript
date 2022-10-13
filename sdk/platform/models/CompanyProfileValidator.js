@@ -55,7 +55,6 @@ class CompanyProfileValidator {
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      locationIds: Joi.array().items(Joi.number()),
     }).required();
   }
 

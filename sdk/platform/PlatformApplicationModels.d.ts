@@ -45,6 +45,7 @@ export class UserValidator {
     static createUser(): any;
     static blockOrUnblockUsers(): any;
     static archiveUser(): any;
+    static unDeleteUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
     static getActiveSessions(): any;
@@ -68,7 +69,6 @@ export class ContentValidator {
     static getDataLoaders(): any;
     static deleteDataLoader(): any;
     static editDataLoader(): any;
-    static getDataLoadersByService(): any;
     static selectDataLoader(): any;
     static resetDataLoader(): any;
     static getFaqCategories(): any;
@@ -149,6 +149,8 @@ export class CommunicationValidator {
     static triggerCampaignJob(): any;
     static getJobLogs(): any;
     static getCommunicationLogs(): any;
+    static sendOtp(): any;
+    static verfiyOtp(): any;
     static getSmsProviders(): any;
     static createSmsProvider(): any;
     static getSmsProviderById(): any;
@@ -165,14 +167,12 @@ export class PaymentValidator {
     static saveBrandPaymentGatewayConfig(): any;
     static updateBrandPaymentGatewayConfig(): any;
     static getPaymentModeRoutes(): any;
-    static getBankAccountDetailsOpenAPI(): any;
-    static addRefundBankAccountUsingOTP(): any;
+    static addBeneficiaryDetails(): any;
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -183,13 +183,13 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static deleteSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static deleteAutocompleteKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
@@ -290,9 +290,6 @@ export class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
-    static getAbandonedCart(): any;
-    static addItems(): any;
-    static updateCart(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;

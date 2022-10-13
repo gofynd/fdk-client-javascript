@@ -14,7 +14,6 @@ Authentication Service
 * [loginWithOTP](#loginwithotp)
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
 * [sendResetPasswordEmail](#sendresetpasswordemail)
-* [sendResetPasswordMobile](#sendresetpasswordmobile)
 * [forgotPassword](#forgotpassword)
 * [sendResetToken](#sendresettoken)
 * [loginWithToken](#loginwithtoken)
@@ -23,6 +22,7 @@ Authentication Service
 * [verifyMobile](#verifymobile)
 * [hasPassword](#haspassword)
 * [updatePassword](#updatepassword)
+* [deleteUser](#deleteuser)
 * [logout](#logout)
 * [sendOTPOnMobile](#sendotponmobile)
 * [verifyMobileOTP](#verifymobileotp)
@@ -720,66 +720,6 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 ---
 
 
-### sendResetPasswordMobile
-Reset Password
-
-
-
-```javascript
-// Promise
-const promise = user.sendResetPasswordMobile({  body : value,
- platform : value });
-
-// Async/Await
-const data = await user.sendResetPasswordMobile({  body : value,
- platform : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| platform | string | no | ID of the application |  
-| body | [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema) | yes | Request body |
-
-
-Use this API to reset a password using the link sent on mobile.
-
-*Returned Response:*
-
-
-
-
-[ResetPasswordSuccess](#ResetPasswordSuccess)
-
-Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "status": "sent"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### forgotPassword
 Forgot Password
 
@@ -1333,6 +1273,63 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 ```json
 {
   "message": "success"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteUser
+verify otp and delete user
+
+
+
+```javascript
+// Promise
+const promise = user.deleteUser({  body : value });
+
+// Async/Await
+const data = await user.deleteUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema) | yes | Request body |
+
+
+verify otp and delete user
+
+*Returned Response:*
+
+
+
+
+[DeleteUserSuccess](#DeleteUserSuccess)
+
+Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
 }
 ```
 </details>
@@ -2016,6 +2013,17 @@ Success. Returns a JSON object containing the all the platform configurations. R
     "account_kit": {
       "appId": "548529975557631"
     }
+  },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
   },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
@@ -3047,6 +3055,34 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | request_id | string |  no  |  |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [EditEmailRequestSchema](#EditEmailRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3244,19 +3280,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string |  no  |  |
- | captcha_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string |  no  |  |
- | mobile | string |  no  |  |
  | captcha_code | string |  no  |  |
 
 ---
@@ -3503,6 +3526,28 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [DeleteUserSuccess](#DeleteUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [OtpSuccess](#OtpSuccess)
 
  | Properties | Type | Nullable | Description |
@@ -3698,6 +3743,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  |  |
+ | is_deleted | boolean |  no  |  |
 
 ---
 
@@ -3907,6 +3953,9 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | register | boolean |  no  |  |
  | mobile_image | string |  no  |  |
  | desktop_image | string |  no  |  |
+ | delete_account_day | number |  no  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
+ | delete_account_consent | string |  no  |  |
 
 ---
 
@@ -4054,6 +4103,30 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | facebook | [Facebook](#Facebook) |  no  |  |
  | account_kit | [Accountkit](#Accountkit) |  no  |  |
  | google | [Google](#Google) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountReasons](#DeleteAccountReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | show_text_area | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consent_text | string |  no  |  |
 
 ---
 

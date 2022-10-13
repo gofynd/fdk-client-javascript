@@ -11,4 +11,7 @@ declare class OrderValidator {
     static getPicklistOrdersByCompanyId(): any;
     static getShipmentAddress(): any;
     static updateShipmentAddress(): any;
+    static getPing(): any;
+    static voiceCallback(): any;
+    static voiceClickToCall(): any;
 }

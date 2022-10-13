@@ -140,11 +140,5 @@ declare class Lead {
     getVideoParticipants({ uniqueName }?: {
         uniqueName: string;
     }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @summary: Get general support configuration.
-     * @description: Get general support configuration.
-     */
-    getGeneralConfig({}?: any): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");
