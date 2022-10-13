@@ -169,8 +169,11 @@ export class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
+    static getUserCODlimitRoutes(): any;
+    static setUserCODlimitRoutes(): any;
 }
 export class OrderValidator {
+    static getApplicationOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -182,25 +185,25 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static getSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static updateGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
+    static updateGroupConfiguration(): any;
     static getListingConfigurations(): any;
     static createListingConfiguration(): any;
-    static updateListingConfiguration(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -212,8 +215,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
+    static updateCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
@@ -224,6 +227,7 @@ export class CatalogValidator {
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getAppInventory(): any;
     static getAppLocations(): any;
     static getApplicationBrandListing(): any;
     static updateAppBrand(): any;

@@ -12,8 +12,8 @@ Handles Platform websites OMS
 * [checkRefund](#checkrefund)
 * [shipmentBagsCanBreak](#shipmentbagscanbreak)
 * [getOrdersByCompanyId](#getordersbycompanyid)
-* [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getApplicationOrderDetails](#getapplicationorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -25,9 +25,6 @@ Handles Platform websites OMS
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
 * [getOrdersByApplicationId](#getordersbyapplicationid)
-* [getPing](#getping)
-* [voiceCallback](#voicecallback)
-* [voiceClickToCall](#voiceclicktocall)
 
 
 
@@ -324,6 +321,7 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  toDate : value,
  isPrioritySort : value,
  lockStatus : value,
+ userId : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -342,6 +340,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  toDate : value,
  isPrioritySort : value,
  lockStatus : value,
+ userId : value,
  q : value,
  stage : value,
  salesChannels : value,
@@ -366,6 +365,7 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | toDate | string | no | To Date |    
 | isPrioritySort | boolean | no | Sorting Order |    
 | lockStatus | boolean | no | Hide Lock Status |    
+| userId | string | no | User Id |    
 | q | string | no | Keyword for Search |    
 | stage | string | no | Specefic Order Stage |    
 | salesChannels | string | no | Selected Sales Channel |    
@@ -412,39 +412,21 @@ Success
 ---
 
 
-### getOrderLanesCountByCompanyId
-Get Order Lanes Count for company based on Company Id
+### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
 
 
 
 ```javascript
 // Promise
-const promise = client.order.getOrderLanesCountByCompanyId({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- q : value,
- stage : value,
- salesChannels : value,
- orderId : value,
- stores : value,
- status : value,
- shortenUrls : value,
- filterType : value });
+const promise = client.order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
 
 // Async/Await
-const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- q : value,
- stage : value,
- salesChannels : value,
- orderId : value,
- stores : value,
- status : value,
- shortenUrls : value,
- filterType : value });
+const data = await client.order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
 ```
 
 
@@ -453,29 +435,20 @@ const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | string | no | Current page number |    
-| pageSize | string | no | Page limit |    
-| fromDate | string | no | From Date |    
-| toDate | string | no | To Date |    
-| q | string | no | Keyword for Search |    
-| stage | string | no | Specefic Order Stage |    
-| salesChannels | string | no | Selected Sales Channel |    
 | orderId | string | no | Order Id |    
-| stores | string | no | Selected Stores |    
-| status | string | no | Status of order |    
-| shortenUrls | boolean | no | Shorten URL option |    
-| filterType | string | no | Filters |  
+| next | string | no | Next |    
+| previous | string | no | Previous |  
 
 
 
-Get Orders Seperate Lane Count
+Get Orders
 
 *Returned Response:*
 
 
 
 
-[OrderLanesCount](#OrderLanesCount)
+[OrderDetails](#OrderDetails)
 
 Success
 
@@ -501,19 +474,19 @@ Success
 ---
 
 
-### getOrderDetails
+### getApplicationOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
 
 
 ```javascript
 // Promise
-const promise = client.order.getOrderDetails({  orderId : value,
+const promise = client.application("<APPLICATION_ID>").order.getApplicationOrderDetails({  orderId : value,
  next : value,
  previous : value });
 
 // Async/Await
-const data = await client.order.getOrderDetails({  orderId : value,
+const data = await client.application("<APPLICATION_ID>").order.getApplicationOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```
@@ -1182,6 +1155,7 @@ const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicat
  stores : value,
  status : value,
  dp : value,
+ userId : value,
  shortenUrls : value,
  filterType : value });
 
@@ -1197,6 +1171,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
  stores : value,
  status : value,
  dp : value,
+ userId : value,
  shortenUrls : value,
  filterType : value });
 ```
@@ -1218,6 +1193,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
+| userId | string | no | User Id |    
 | shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
@@ -1231,167 +1207,6 @@ Get Orders at Application Level
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPing
-Get Ping
-
-
-
-```javascript
-// Promise
-const promise = client.order.getPing();
-
-// Async/Await
-const data = await client.order.getPing();
-```
-
-
-
-
-
-
-Get Ping
-
-*Returned Response:*
-
-
-
-
-[GetPingResponse](#GetPingResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### voiceCallback
-Get Voice Callback
-
-
-
-```javascript
-// Promise
-const promise = client.order.voiceCallback();
-
-// Async/Await
-const data = await client.order.voiceCallback();
-```
-
-
-
-
-
-
-Voice Callback
-
-*Returned Response:*
-
-
-
-
-[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### voiceClickToCall
-Get Voice Click to Call
-
-
-
-```javascript
-// Promise
-const promise = client.order.voiceClickToCall({  caller : value,
- receiver : value });
-
-// Async/Await
-const data = await client.order.voiceClickToCall({  caller : value,
- receiver : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| caller | string | yes | Caller contact number |   
-| receiver | string | yes | Receiver contact number |  
-
-
-
-Voice Click to Call
-
-*Returned Response:*
-
-
-
-
-[GetClickToCallResponse](#GetClickToCallResponse)
 
 Success
 
@@ -3725,6 +3540,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | shipments | string |  yes  |  |
+ | statuses | [any] |  no  |  |
  | force_transition | boolean |  yes  |  |
  | task | boolean |  yes  |  |
 

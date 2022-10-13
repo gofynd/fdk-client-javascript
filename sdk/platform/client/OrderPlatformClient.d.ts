@@ -55,6 +55,7 @@ declare class Order {
      * @param {string} [arg.toDate] - To Date
      * @param {boolean} [arg.isPrioritySort] - Sorting Order
      * @param {boolean} [arg.lockStatus] - Hide Lock Status
+     * @param {string} [arg.userId] - User Id
      * @param {string} [arg.q] - Keyword for Search
      * @param {string} [arg.stage] - Specefic Order Stage
      * @param {string} [arg.salesChannels] - Selected Sales Channel
@@ -68,13 +69,14 @@ declare class Order {
      * @summary: Get Orders for company based on Company Id
      * @description: Get Orders
      */
-    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, isPrioritySort, lockStatus, q, stage, salesChannels, orderId, stores, deploymentStores, status, dp, shortenUrls, filterType, }?: {
+    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, isPrioritySort, lockStatus, userId, q, stage, salesChannels, orderId, stores, deploymentStores, status, dp, shortenUrls, filterType, }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
         toDate?: string;
         isPrioritySort?: boolean;
         lockStatus?: boolean;
+        userId?: string;
         q?: string;
         stage?: string;
         salesChannels?: string;
@@ -83,37 +85,6 @@ declare class Order {
         deploymentStores?: string;
         status?: string;
         dp?: string;
-        shortenUrls?: boolean;
-        filterType?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.pageNo] - Current page number
-     * @param {string} [arg.pageSize] - Page limit
-     * @param {string} [arg.fromDate] - From Date
-     * @param {string} [arg.toDate] - To Date
-     * @param {string} [arg.q] - Keyword for Search
-     * @param {string} [arg.stage] - Specefic Order Stage
-     * @param {string} [arg.salesChannels] - Selected Sales Channel
-     * @param {string} [arg.orderId] - Order Id
-     * @param {string} [arg.stores] - Selected Stores
-     * @param {string} [arg.status] - Status of order
-     * @param {boolean} [arg.shortenUrls] - Shorten URL option
-     * @param {string} [arg.filterType] - Filters
-     * @summary: Get Order Lanes Count for company based on Company Id
-     * @description: Get Orders Seperate Lane Count
-     */
-    getOrderLanesCountByCompanyId({ pageNo, pageSize, fromDate, toDate, q, stage, salesChannels, orderId, stores, status, shortenUrls, filterType, }?: {
-        pageNo?: string;
-        pageSize?: string;
-        fromDate?: string;
-        toDate?: string;
-        q?: string;
-        stage?: string;
-        salesChannels?: string;
-        orderId?: string;
-        stores?: string;
-        status?: string;
         shortenUrls?: boolean;
         filterType?: string;
     }): Promise<any>;
@@ -190,28 +161,5 @@ declare class Order {
         shipmentId: string;
         addressCategory: string;
         body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @summary: Get Ping
-     * @description: Get Ping
-     */
-    getPing({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @summary: Get Voice Callback
-     * @description: Voice Callback
-     */
-    voiceCallback({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.caller - Caller contact number
-     * @param {string} arg.receiver - Receiver contact number
-     * @summary: Get Voice Click to Call
-     * @description: Voice Click to Call
-     */
-    voiceClickToCall({ caller, receiver }?: {
-        caller: string;
-        receiver: string;
     }): Promise<any>;
 }

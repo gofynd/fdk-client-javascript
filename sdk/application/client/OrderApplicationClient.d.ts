@@ -14,6 +14,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
         getInvoiceByShipmentId: string;
+        getCreditNoteByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -168,6 +169,18 @@ declare class Order {
      * @description: Use this API to get a generated Invoice URL for viewing or download.
      */
     getInvoiceByShipmentId({ shipmentId }?: {
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ResponseGetCreditNoteShipment>} - Success response
+     * @summary: Get Credit Note URL
+     * @description: Use this API to get a generated Credit Note URL for viewing or download.
+     */
+    getCreditNoteByShipmentId({ shipmentId }?: {
         shipmentId: string;
     }): Promise<any>;
 }

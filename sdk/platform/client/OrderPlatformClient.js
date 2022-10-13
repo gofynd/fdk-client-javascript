@@ -26,12 +26,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/status`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -55,12 +58,15 @@ class Order {
     const query_params = {};
     query_params["bag_id"] = bagId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/activity/status`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -83,12 +89,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/store/process-shipments`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -111,12 +120,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/check-refund/${shipmentId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -139,12 +151,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/can-break`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -156,6 +171,7 @@ class Order {
    * @param {string} [arg.toDate] - To Date
    * @param {boolean} [arg.isPrioritySort] - Sorting Order
    * @param {boolean} [arg.lockStatus] - Hide Lock Status
+   * @param {string} [arg.userId] - User Id
    * @param {string} [arg.q] - Keyword for Search
    * @param {string} [arg.stage] - Specefic Order Stage
    * @param {string} [arg.salesChannels] - Selected Sales Channel
@@ -176,6 +192,7 @@ class Order {
     toDate,
     isPrioritySort,
     lockStatus,
+    userId,
     q,
     stage,
     salesChannels,
@@ -195,6 +212,7 @@ class Order {
         toDate,
         isPrioritySort,
         lockStatus,
+        userId,
         q,
         stage,
         salesChannels,
@@ -219,6 +237,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["lock_status"] = lockStatus;
+    query_params["user_id"] = userId;
     query_params["q"] = q;
     query_params["stage"] = stage;
     query_params["sales_channels"] = salesChannels;
@@ -230,87 +249,15 @@ class Order {
     query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders`,
       query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.pageNo] - Current page number
-   * @param {string} [arg.pageSize] - Page limit
-   * @param {string} [arg.fromDate] - From Date
-   * @param {string} [arg.toDate] - To Date
-   * @param {string} [arg.q] - Keyword for Search
-   * @param {string} [arg.stage] - Specefic Order Stage
-   * @param {string} [arg.salesChannels] - Selected Sales Channel
-   * @param {string} [arg.orderId] - Order Id
-   * @param {string} [arg.stores] - Selected Stores
-   * @param {string} [arg.status] - Status of order
-   * @param {boolean} [arg.shortenUrls] - Shorten URL option
-   * @param {string} [arg.filterType] - Filters
-   * @summary: Get Order Lanes Count for company based on Company Id
-   * @description: Get Orders Seperate Lane Count
-   */
-  getOrderLanesCountByCompanyId({
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    q,
-    stage,
-    salesChannels,
-    orderId,
-    stores,
-    status,
-    shortenUrls,
-    filterType,
-  } = {}) {
-    const { error } = OrderValidator.getOrderLanesCountByCompanyId().validate(
-      {
-        pageNo,
-        pageSize,
-        fromDate,
-        toDate,
-        q,
-        stage,
-        salesChannels,
-        orderId,
-        stores,
-        status,
-        shortenUrls,
-        filterType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["q"] = q;
-    query_params["stage"] = stage;
-    query_params["sales_channels"] = salesChannels;
-    query_params["order_id"] = orderId;
-    query_params["stores"] = stores;
-    query_params["status"] = status;
-    query_params["shorten_urls"] = shortenUrls;
-    query_params["filter_type"] = filterType;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/orders/lane-count`,
-      query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -340,12 +287,15 @@ class Order {
     query_params["next"] = next;
     query_params["previous"] = previous;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/details`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -415,12 +365,15 @@ class Order {
     query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/picklist`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -448,12 +401,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/shipments/${shipmentId}/address/${addressCategory}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -483,94 +439,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/shipments/${shipmentId}/address/${addressCategory}`,
       query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get Ping
-   * @description: Get Ping
-   */
-  getPing({} = {}) {
-    const { error } = OrderValidator.getPing().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/ping`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get Voice Callback
-   * @description: Voice Callback
-   */
-  voiceCallback({} = {}) {
-    const { error } = OrderValidator.voiceCallback().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/callback`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.caller - Caller contact number
-   * @param {string} arg.receiver - Receiver contact number
-   * @summary: Get Voice Click to Call
-   * @description: Voice Click to Call
-   */
-  voiceClickToCall({ caller, receiver } = {}) {
-    const { error } = OrderValidator.voiceClickToCall().validate(
-      {
-        caller,
-        receiver,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["caller"] = caller;
-    query_params["receiver"] = receiver;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/voice/click-to-call`,
-      query_params,
-      undefined
+      body,
+      xHeaders
     );
   }
 }

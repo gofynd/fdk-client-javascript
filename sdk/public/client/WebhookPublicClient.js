@@ -42,6 +42,8 @@ class Webhook {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return PublicAPIClient.execute(
       this._conf,
       "get",
@@ -50,7 +52,8 @@ class Webhook {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -71,6 +74,8 @@ class Webhook {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return PublicAPIClient.execute(
       this._conf,
       "post",
@@ -79,7 +84,8 @@ class Webhook {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

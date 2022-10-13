@@ -26,12 +26,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -61,12 +64,15 @@ class Configuration {
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -114,12 +120,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/currencies`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -142,12 +151,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/domain/suggestions`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -170,12 +182,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration/${id}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -202,12 +217,15 @@ class Configuration {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/available`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -264,12 +282,15 @@ class Configuration {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/selected/${level}/${uid}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -332,12 +353,15 @@ class Configuration {
     query_params["opted"] = opted;
     query_params["check_permission"] = checkPermission;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -364,12 +388,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -396,12 +423,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -432,12 +462,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -470,12 +503,15 @@ class Configuration {
     const query_params = {};
     query_params["permission"] = permission;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/check/configuration/${id}/${level}/${uid}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -499,12 +535,15 @@ class Configuration {
     const query_params = {};
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/brands-by-companies`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -533,12 +572,15 @@ class Configuration {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/companies-by-brands`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -595,12 +637,15 @@ class Configuration {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/stores-by-brands`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -657,12 +702,15 @@ class Configuration {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -713,12 +761,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -743,12 +794,15 @@ class Configuration {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}/opt_out`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }
