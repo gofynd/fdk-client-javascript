@@ -8850,11 +8850,11 @@ class Validator {
 
   static ShipmentBody() {
     return Joi.object({
+      store_invoice_id: Joi.string().allow(""),
+
       products: Joi.array().items(this.ProductDetail()),
 
       data_update: Joi.any(),
-
-      store_invoice_id: Joi.string().allow(""),
 
       bags: Joi.array().items(Joi.number()),
 
@@ -8870,7 +8870,7 @@ class Validator {
 
   static Statuses1() {
     return Joi.object({
-      exclude_bags_next_state: Joi.string().allow("").required(),
+      exclude_bags_next_state: Joi.string().allow(""),
 
       status: Joi.string().allow("").required(),
 
@@ -8880,19 +8880,19 @@ class Validator {
 
   static ShipmentStatusUpdateBody() {
     return Joi.object({
-      statuses: Joi.array().items(this.Statuses1()),
-
       task: Joi.boolean(),
 
       force_transition: Joi.boolean(),
+
+      statuses: Joi.array().items(this.Statuses1()),
     });
   }
 
   static ShipmentStatusUpdate() {
     return Joi.object({
-      success: Joi.boolean().required(),
-
       message: Joi.array().items(Joi.any()).required(),
+
+      success: Joi.boolean().required(),
     });
   }
 

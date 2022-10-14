@@ -19696,15 +19696,15 @@ class Validator {
 
   static ShipmentBody() {
     return Joi.object({
-      bags: Joi.array().items(Joi.number()),
-
-      reason: Joi.array().items(Joi.number()),
-
-      products: Joi.array().items(this.ProductDetail()),
+      data_update: Joi.any(),
 
       store_invoice_id: Joi.string().allow(""),
 
-      data_update: Joi.any(),
+      products: Joi.array().items(this.ProductDetail()),
+
+      bags: Joi.array().items(Joi.number()),
+
+      reason: Joi.array().items(Joi.number()),
     });
   }
 
@@ -19716,11 +19716,11 @@ class Validator {
 
   static Statuses() {
     return Joi.object({
-      exclude_bags_next_state: Joi.string().allow("").required(),
+      shipments: this.ShipmentDetail(),
+
+      exclude_bags_next_state: Joi.string().allow(""),
 
       status: Joi.string().allow("").required(),
-
-      shipments: this.ShipmentDetail(),
     });
   }
 
@@ -19750,23 +19750,23 @@ class Validator {
 
   static HistoryDict() {
     return Joi.object({
-      message: Joi.string().allow("").required(),
-
-      l1_detail: Joi.string().allow(""),
-
-      createdat: Joi.string().allow("").required(),
-
-      user: Joi.string().allow("").required(),
-
-      l2_detail: Joi.string().allow(""),
+      ticket_url: Joi.string().allow(""),
 
       ticket_id: Joi.string().allow(""),
 
+      user: Joi.string().allow("").required(),
+
+      l1_detail: Joi.string().allow(""),
+
       l3_detail: Joi.string().allow(""),
+
+      l2_detail: Joi.string().allow(""),
+
+      message: Joi.string().allow("").required(),
 
       type: Joi.string().allow("").required(),
 
-      ticket_url: Joi.string().allow(""),
+      createdat: Joi.string().allow("").required(),
     });
   }
 

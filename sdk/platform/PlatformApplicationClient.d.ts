@@ -11174,11 +11174,11 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef ShipmentBody
+ * @property {Object} [data_update]
+ * @property {string} [store_invoice_id]
+ * @property {ProductDetail[]} [products]
  * @property {number[]} [bags]
  * @property {number[]} [reason]
- * @property {ProductDetail[]} [products]
- * @property {string} [store_invoice_id]
- * @property {Object} [data_update]
  */
 /**
  * @typedef ShipmentDetail
@@ -11186,9 +11186,9 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef Statuses
- * @property {string} exclude_bags_next_state
- * @property {string} status
  * @property {ShipmentDetail} [shipments]
+ * @property {string} [exclude_bags_next_state]
+ * @property {string} status
  */
 /**
  * @typedef PlatformShipmentStatusInternal
@@ -11207,15 +11207,15 @@ declare namespace PlatformApplicationClient {
  */
 /**
  * @typedef HistoryDict
- * @property {string} message
- * @property {string} [l1_detail]
- * @property {string} createdat
- * @property {string} user
- * @property {string} [l2_detail]
- * @property {string} [ticket_id]
- * @property {string} [l3_detail]
- * @property {string} type
  * @property {string} [ticket_url]
+ * @property {string} [ticket_id]
+ * @property {string} user
+ * @property {string} [l1_detail]
+ * @property {string} [l3_detail]
+ * @property {string} [l2_detail]
+ * @property {string} message
+ * @property {string} type
+ * @property {string} createdat
  */
 /**
  * @typedef ShipmentHistoryResponse
@@ -25217,19 +25217,19 @@ type JioCodeUpsertResponse = {
     identifier?: string;
 };
 type ShipmentBody = {
+    data_update?: any;
+    store_invoice_id?: string;
+    products?: ProductDetail[];
     bags?: number[];
     reason?: number[];
-    products?: ProductDetail[];
-    store_invoice_id?: string;
-    data_update?: any;
 };
 type ShipmentDetail = {
     shipment_id?: ShipmentBody;
 };
 type Statuses = {
-    exclude_bags_next_state: string;
-    status: string;
     shipments?: ShipmentDetail;
+    exclude_bags_next_state?: string;
+    status: string;
 };
 type PlatformShipmentStatusInternal = {
     statuses?: Statuses;
@@ -25244,15 +25244,15 @@ type ErrorDetail = {
     message?: string;
 };
 type HistoryDict = {
-    message: string;
-    l1_detail?: string;
-    createdat: string;
-    user: string;
-    l2_detail?: string;
-    ticket_id?: string;
-    l3_detail?: string;
-    type: string;
     ticket_url?: string;
+    ticket_id?: string;
+    user: string;
+    l1_detail?: string;
+    l3_detail?: string;
+    l2_detail?: string;
+    message: string;
+    type: string;
+    createdat: string;
 };
 type ShipmentHistoryResponse = {
     activity_history?: HistoryDict[];

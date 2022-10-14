@@ -9786,19 +9786,19 @@ type JioCodeUpsertResponse = {
     identifier?: string;
 };
 type ShipmentBody = {
+    data_update?: any;
+    store_invoice_id?: string;
+    products?: ProductDetail[];
     bags?: number[];
     reason?: number[];
-    products?: ProductDetail[];
-    store_invoice_id?: string;
-    data_update?: any;
 };
 type ShipmentDetail = {
     shipment_id?: ShipmentBody;
 };
 type Statuses = {
-    exclude_bags_next_state: string;
-    status: string;
     shipments?: ShipmentDetail;
+    exclude_bags_next_state?: string;
+    status: string;
 };
 type PlatformShipmentStatusInternal = {
     statuses?: Statuses;
@@ -9813,15 +9813,15 @@ type ErrorDetail = {
     message?: string;
 };
 type HistoryDict = {
-    message: string;
-    l1_detail?: string;
-    createdat: string;
-    user: string;
-    l2_detail?: string;
-    ticket_id?: string;
-    l3_detail?: string;
-    type: string;
     ticket_url?: string;
+    ticket_id?: string;
+    user: string;
+    l1_detail?: string;
+    l3_detail?: string;
+    l2_detail?: string;
+    message: string;
+    type: string;
+    createdat: string;
 };
 type ShipmentHistoryResponse = {
     activity_history?: HistoryDict[];

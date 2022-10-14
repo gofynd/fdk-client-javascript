@@ -2753,9 +2753,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | store_invoice_id | string |  no  |  |
  | products | [[ProductDetail](#ProductDetail)] |  no  |  |
  | data_update | string |  no  |  |
- | store_invoice_id | string |  no  |  |
  | bags | [number] |  no  |  |
  | reason | [number] |  no  |  |
 
@@ -2779,7 +2779,7 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exclude_bags_next_state | string |  yes  |  |
+ | exclude_bags_next_state | string |  no  |  |
  | status | string |  yes  |  |
  | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
 
@@ -2792,9 +2792,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[Statuses1](#Statuses1)] |  no  |  |
  | task | boolean |  no  |  |
  | force_transition | boolean |  no  |  |
+ | statuses | [[Statuses1](#Statuses1)] |  no  |  |
 
 ---
 
@@ -2805,8 +2805,8 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | message | [string] |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 

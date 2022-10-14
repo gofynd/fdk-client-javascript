@@ -12635,11 +12635,11 @@ class PlatformClient {
 
 /**
  * @typedef ShipmentBody
+ * @property {Object} [data_update]
+ * @property {string} [store_invoice_id]
+ * @property {ProductDetail[]} [products]
  * @property {number[]} [bags]
  * @property {number[]} [reason]
- * @property {ProductDetail[]} [products]
- * @property {string} [store_invoice_id]
- * @property {Object} [data_update]
  */
 
 /**
@@ -12649,9 +12649,9 @@ class PlatformClient {
 
 /**
  * @typedef Statuses
- * @property {string} exclude_bags_next_state
- * @property {string} status
  * @property {ShipmentDetail} [shipments]
+ * @property {string} [exclude_bags_next_state]
+ * @property {string} status
  */
 
 /**
@@ -12674,15 +12674,15 @@ class PlatformClient {
 
 /**
  * @typedef HistoryDict
- * @property {string} message
- * @property {string} [l1_detail]
- * @property {string} createdat
- * @property {string} user
- * @property {string} [l2_detail]
- * @property {string} [ticket_id]
- * @property {string} [l3_detail]
- * @property {string} type
  * @property {string} [ticket_url]
+ * @property {string} [ticket_id]
+ * @property {string} user
+ * @property {string} [l1_detail]
+ * @property {string} [l3_detail]
+ * @property {string} [l2_detail]
+ * @property {string} message
+ * @property {string} type
+ * @property {string} createdat
  */
 
 /**
