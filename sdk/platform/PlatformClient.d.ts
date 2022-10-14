@@ -9786,23 +9786,23 @@ type JioCodeUpsertResponse = {
     identifier?: string;
 };
 type ShipmentBody = {
-    data_update?: any;
     bags?: number[];
+    reason?: number[];
     products?: ProductDetail[];
     store_invoice_id?: string;
-    reason?: number[];
+    data_update?: any;
 };
 type ShipmentDetail = {
     shipment_id?: ShipmentBody;
 };
 type Statuses = {
-    shipments?: ShipmentDetail;
     exclude_bags_next_state: string;
     status: string;
+    shipments?: ShipmentDetail;
 };
 type PlatformShipmentStatusInternal = {
-    task?: boolean;
     statuses?: Statuses;
+    task?: boolean;
     force_transition?: boolean;
 };
 type ResponseDetail = {
@@ -9814,14 +9814,14 @@ type ErrorDetail = {
 };
 type HistoryDict = {
     message: string;
-    createdat: string;
-    l3_detail?: string;
-    l2_detail?: string;
     l1_detail?: string;
+    createdat: string;
     user: string;
-    ticket_url?: string;
-    type: string;
+    l2_detail?: string;
     ticket_id?: string;
+    l3_detail?: string;
+    type: string;
+    ticket_url?: string;
 };
 type ShipmentHistoryResponse = {
     activity_history?: HistoryDict[];

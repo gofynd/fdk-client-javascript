@@ -19695,15 +19695,15 @@ class Validator {
 
   static ShipmentBody() {
     return Joi.object({
-      data_update: Joi.any(),
-
       bags: Joi.array().items(Joi.number()),
+
+      reason: Joi.array().items(Joi.number()),
 
       products: Joi.array().items(this.ProductDetail()),
 
       store_invoice_id: Joi.string().allow(""),
 
-      reason: Joi.array().items(Joi.number()),
+      data_update: Joi.any(),
     });
   }
 
@@ -19715,19 +19715,19 @@ class Validator {
 
   static Statuses() {
     return Joi.object({
-      shipments: this.ShipmentDetail(),
-
       exclude_bags_next_state: Joi.string().allow("").required(),
 
       status: Joi.string().allow("").required(),
+
+      shipments: this.ShipmentDetail(),
     });
   }
 
   static PlatformShipmentStatusInternal() {
     return Joi.object({
-      task: Joi.boolean(),
-
       statuses: this.Statuses(),
+
+      task: Joi.boolean(),
 
       force_transition: Joi.boolean(),
     });
@@ -19751,21 +19751,21 @@ class Validator {
     return Joi.object({
       message: Joi.string().allow("").required(),
 
-      createdat: Joi.string().allow("").required(),
-
-      l3_detail: Joi.string().allow(""),
-
-      l2_detail: Joi.string().allow(""),
-
       l1_detail: Joi.string().allow(""),
+
+      createdat: Joi.string().allow("").required(),
 
       user: Joi.string().allow("").required(),
 
-      ticket_url: Joi.string().allow(""),
+      l2_detail: Joi.string().allow(""),
+
+      ticket_id: Joi.string().allow(""),
+
+      l3_detail: Joi.string().allow(""),
 
       type: Joi.string().allow("").required(),
 
-      ticket_id: Joi.string().allow(""),
+      ticket_url: Joi.string().allow(""),
     });
   }
 

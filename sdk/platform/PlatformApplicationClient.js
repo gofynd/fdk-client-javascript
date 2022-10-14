@@ -12611,11 +12611,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ShipmentBody
- * @property {Object} [data_update]
  * @property {number[]} [bags]
+ * @property {number[]} [reason]
  * @property {ProductDetail[]} [products]
  * @property {string} [store_invoice_id]
- * @property {number[]} [reason]
+ * @property {Object} [data_update]
  */
 
 /**
@@ -12625,15 +12625,15 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Statuses
- * @property {ShipmentDetail} [shipments]
  * @property {string} exclude_bags_next_state
  * @property {string} status
+ * @property {ShipmentDetail} [shipments]
  */
 
 /**
  * @typedef PlatformShipmentStatusInternal
- * @property {boolean} [task]
  * @property {Statuses} [statuses]
+ * @property {boolean} [task]
  * @property {boolean} [force_transition]
  */
 
@@ -12651,14 +12651,14 @@ class PlatformApplicationClient {
 /**
  * @typedef HistoryDict
  * @property {string} message
- * @property {string} createdat
- * @property {string} [l3_detail]
- * @property {string} [l2_detail]
  * @property {string} [l1_detail]
+ * @property {string} createdat
  * @property {string} user
- * @property {string} [ticket_url]
- * @property {string} type
+ * @property {string} [l2_detail]
  * @property {string} [ticket_id]
+ * @property {string} [l3_detail]
+ * @property {string} type
+ * @property {string} [ticket_url]
  */
 
 /**
