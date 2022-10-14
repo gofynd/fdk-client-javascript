@@ -20,4 +20,13 @@ declare class OrderManage {
     getShipmentHistory({ bagId }?: {
         bagId: number;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ManualStoreReassign} arg.body
+     * @summary:
+     * @description: Manual Store Reassignment
+     */
+    manualStoreReassignment({ body }?: {
+        body: any;
+    }): Promise<any>;
 }

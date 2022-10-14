@@ -8,6 +8,7 @@
 Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
+* [manualStoreReassignment](#manualstorereassignment)
 
 
 
@@ -164,6 +165,61 @@ It shows the journey of the shipment!
 ---
 
 
+### manualStoreReassignment
+
+
+
+
+```javascript
+// Promise
+const promise = client.orderManage.manualStoreReassignment({  body : value });
+
+// Async/Await
+const data = await client.orderManage.manualStoreReassignment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ManualStoreReassign](#ManualStoreReassign) | yes | Request body |
+
+
+Manual Store Reassignment
+
+*Returned Response:*
+
+
+
+
+[ManualStoreReassignResponse](#ManualStoreReassignResponse)
+
+Successfully reassigned store!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -173,8 +229,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
  | identifier | string |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -223,9 +279,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | statuses | [Statuses](#Statuses) |  no  |  |
  | task | boolean |  no  |  |
  | force_transition | boolean |  no  |  |
- | statuses | [Statuses](#Statuses) |  no  |  |
 
 ---
 
@@ -260,15 +316,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l3_detail | string |  no  |  |
- | ticket_url | string |  no  |  |
- | ticket_id | string |  no  |  |
- | createdat | string |  yes  |  |
- | type | string |  yes  |  |
- | l1_detail | string |  no  |  |
- | user | string |  yes  |  |
- | message | string |  yes  |  |
  | l2_detail | string |  no  |  |
+ | ticket_id | string |  no  |  |
+ | type | string |  yes  |  |
+ | ticket_url | string |  no  |  |
+ | user | string |  yes  |  |
+ | createdat | string |  yes  |  |
+ | message | string |  yes  |  |
+ | l3_detail | string |  no  |  |
+ | l1_detail | string |  no  |  |
 
 ---
 
@@ -280,6 +336,32 @@ It shows the journey of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ManualStoreReassign](#ManualStoreReassign)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | [number] |  no  |  |
+ | store_id | number |  yes  |  |
+ | reason_text | string |  no  |  |
+ | shipment_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ManualStoreReassignResponse](#ManualStoreReassignResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
 
 ---
 

@@ -63,6 +63,34 @@ class OrderManage {
       undefined
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ManualStoreReassign} arg.body
+   * @summary:
+   * @description: Manual Store Reassignment
+   */
+  manualStoreReassignment({ body } = {}) {
+    const { error } = OrderManageValidator.manualStoreReassignment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/store/manual-reassign`,
+      query_params,
+      body
+    );
+  }
 }
 
 module.exports = OrderManage;
