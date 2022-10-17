@@ -110,6 +110,12 @@ class UserValidator {
     }).required();
   }
 
+  static deleteUser() {
+    return Joi.object({
+      body: Validator.DeleteApplicationUserRequestSchema().required(),
+    }).required();
+  }
+
   static logout() {
     return Joi.object({});
   }

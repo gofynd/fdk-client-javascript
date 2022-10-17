@@ -45,6 +45,7 @@ export class UserValidator {
     static createUser(): any;
     static blockOrUnblockUsers(): any;
     static archiveUser(): any;
+    static unDeleteUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
     static getActiveSessions(): any;
@@ -68,7 +69,6 @@ export class ContentValidator {
     static getDataLoaders(): any;
     static deleteDataLoader(): any;
     static editDataLoader(): any;
-    static getDataLoadersByService(): any;
     static selectDataLoader(): any;
     static resetDataLoader(): any;
     static getFaqCategories(): any;
@@ -183,26 +183,26 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
+    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
-    static deleteGroupConfiguration(): any;
     static updateGroupConfiguration(): any;
+    static deleteGroupConfiguration(): any;
     static createListingConfiguration(): any;
     static getListingConfigurations(): any;
-    static deleteListingConfiguration(): any;
     static updateListingConfiguration(): any;
+    static deleteListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -214,8 +214,8 @@ export class CatalogValidator {
     static createCollection(): any;
     static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static addCollectionItems(): any;
     static getCollectionItems(): any;
     static getCatalogInsights(): any;
