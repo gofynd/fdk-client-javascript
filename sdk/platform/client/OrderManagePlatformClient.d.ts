@@ -29,4 +29,13 @@ declare class OrderManage {
     manualStoreReassignment({ body }?: {
         body: any;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ShipmentEDDUpdate} arg.body
+     * @summary:
+     * @description: Shipment EDD Update
+     */
+    shipmentEDDUpdate({ body }?: {
+        body: any;
+    }): Promise<any>;
 }

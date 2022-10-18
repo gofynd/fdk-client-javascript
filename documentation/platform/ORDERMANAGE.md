@@ -9,6 +9,7 @@ Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
 * [manualStoreReassignment](#manualstorereassignment)
+* [shipmentEDDUpdate](#shipmenteddupdate)
 
 
 
@@ -194,9 +195,64 @@ Manual Store Reassignment
 
 
 
-[ManualStoreReassignResponse](#ManualStoreReassignResponse)
+[SuccessResponse](#SuccessResponse)
 
 Successfully reassigned store!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### shipmentEDDUpdate
+
+
+
+
+```javascript
+// Promise
+const promise = client.orderManage.shipmentEDDUpdate({  body : value });
+
+// Async/Await
+const data = await client.orderManage.shipmentEDDUpdate({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ShipmentEDDUpdate](#ShipmentEDDUpdate) | yes | Request body |
+
+
+Shipment EDD Update
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Successfully Updated Shipment EDD!
 
 
 
@@ -241,10 +297,10 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | [number] |  no  |  |
- | store_invoice_id | string |  no  |  |
  | data_update | string |  no  |  |
+ | store_invoice_id | string |  no  |  |
  | products | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | reason | [number] |  no  |  |
 
 ---
 
@@ -266,9 +322,9 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  yes  |  |
- | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
  | exclude_bags_next_state | string |  yes  |  |
+ | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
+ | status | string |  yes  |  |
 
 ---
 
@@ -279,8 +335,8 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [Statuses](#Statuses) |  no  |  |
  | task | boolean |  no  |  |
+ | statuses | [Statuses](#Statuses) |  no  |  |
  | force_transition | boolean |  no  |  |
 
 ---
@@ -316,15 +372,15 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l2_detail | string |  no  |  |
- | ticket_id | string |  no  |  |
  | type | string |  yes  |  |
  | ticket_url | string |  no  |  |
- | user | string |  yes  |  |
  | createdat | string |  yes  |  |
- | message | string |  yes  |  |
  | l3_detail | string |  no  |  |
  | l1_detail | string |  no  |  |
+ | l2_detail | string |  no  |  |
+ | user | string |  yes  |  |
+ | message | string |  yes  |  |
+ | ticket_id | string |  no  |  |
 
 ---
 
@@ -346,22 +402,36 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason_id | [number] |  no  |  |
- | store_id | number |  yes  |  |
  | reason_text | string |  no  |  |
  | shipment_id | string |  yes  |  |
+ | reason_id | [number] |  no  |  |
+ | store_id | number |  yes  |  |
 
 ---
 
 
  
  
- #### [ManualStoreReassignResponse](#ManualStoreReassignResponse)
+ #### [SuccessResponse](#SuccessResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  |  |
  | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentEDDUpdate](#ShipmentEDDUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | edd | string |  yes  |  |
+ | reason_text | string |  no  |  |
+ | shipment_id | string |  yes  |  |
+ | reason_id | [number] |  no  |  |
 
 ---
 

@@ -18,5 +18,11 @@ class OrderManageValidator {
       body: Validator.ManualStoreReassign().required(),
     }).required();
   }
+
+  static shipmentEDDUpdate() {
+    return Joi.object({
+      body: Validator.ShipmentEDDUpdate().required(),
+    }).required();
+  }
 }
 module.exports = OrderManageValidator;
