@@ -3,6 +3,8 @@ declare class Inventory {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
+        getConfigByApiKey: string;
+        getApiKey: string;
         getJobByCode: string;
         getJobConfigByIntegrationType: string;
         getJobCodesMetrics: string;
@@ -10,6 +12,28 @@ declare class Inventory {
     };
     _urls: {};
     updateUrls(urls: any): void;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.apikey - Api key
+     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+     * @summary: Get Slingshot Configuration Of  A Company using API key
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    getConfigByApiKey({ apikey }?: {
+        apikey: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userName - Integration id
+     * @param {string} arg.password - Company/store token
+     * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
+     * @summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
+     * @description: REST Endpoint that returns apikey by username by password
+     */
+    getApiKey({ userName, password }?: {
+        userName: string;
+        password: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.code - Job Code

@@ -96,6 +96,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -104,7 +106,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -130,6 +133,8 @@ class Catalog {
     const query_params = {};
     query_params["store_id"] = storeId;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -138,7 +143,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -162,6 +168,8 @@ class Catalog {
     const query_params = {};
     query_params["slug"] = slug;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -170,7 +178,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -195,6 +204,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -203,7 +214,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -228,6 +240,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -236,7 +250,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -265,6 +280,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -273,7 +290,8 @@ class Catalog {
         params: { slug, similarType },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -296,6 +314,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -304,7 +324,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -338,6 +359,8 @@ class Catalog {
     query_params["ean"] = ean;
     query_params["upc"] = upc;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -346,7 +369,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -372,6 +396,8 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["page_id"] = pageId;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -380,7 +406,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -461,6 +488,8 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_type"] = pageType;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -469,7 +498,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -542,6 +572,8 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -550,7 +582,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -604,6 +637,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -612,7 +647,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -637,6 +673,8 @@ class Catalog {
     const query_params = {};
     query_params["department"] = department;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -645,7 +683,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -668,6 +707,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -676,7 +717,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -704,6 +746,8 @@ class Catalog {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -712,7 +756,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -762,6 +807,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -770,7 +817,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -795,6 +843,8 @@ class Catalog {
     const query_params = {};
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -803,7 +853,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -830,6 +881,8 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["tag"] = tag;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -838,7 +891,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -912,6 +966,8 @@ class Catalog {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -920,7 +976,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -991,6 +1048,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -999,7 +1058,8 @@ class Catalog {
         params: { slug },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1025,6 +1085,8 @@ class Catalog {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1033,7 +1095,8 @@ class Catalog {
         params: { collectionType },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1085,6 +1148,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -1093,7 +1158,8 @@ class Catalog {
         params: { collectionType, collectionId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1116,6 +1182,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1124,7 +1192,8 @@ class Catalog {
         params: { collectionType, collectionId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1147,6 +1216,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1155,7 +1226,8 @@ class Catalog {
         params: { collectionType, collectionId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1178,6 +1250,8 @@ class Catalog {
     const query_params = {};
     query_params["collection_type"] = collectionType;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1186,7 +1260,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1224,6 +1299,8 @@ class Catalog {
     query_params["latitude"] = latitude;
     query_params["longitude"] = longitude;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1232,7 +1309,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1317,6 +1395,8 @@ class Catalog {
     query_params["latitude"] = latitude;
     query_params["longitude"] = longitude;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1325,7 +1405,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1392,6 +1473,8 @@ class Catalog {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1400,7 +1483,8 @@ class Catalog {
         params: { locationId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1424,6 +1508,8 @@ class Catalog {
     query_params["slug"] = slug;
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1432,7 +1518,8 @@ class Catalog {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1448,13 +1535,15 @@ class Catalog {
    *   product, e.g. 1,2,3.
    * @param {string} [arg.pincode] - The PIN Code of the area near which the
    *   selling locations should be searched, e.g. 400059.
+   * @param {number} [arg.moq] - An Integer indication the Minimum Order
+   *   Quantity of a product, e.g. 100.
    * @returns {Promise<ProductSizePriceResponseV2>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
-  getProductPriceBySlug({ slug, size, storeId, pincode } = {}) {
+  getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, pincode },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1463,6 +1552,9 @@ class Catalog {
     const query_params = {};
     query_params["store_id"] = storeId;
     query_params["pincode"] = pincode;
+    query_params["moq"] = moq;
+
+    const xHeaders = {};
 
     return APIClient.execute(
       this._conf,
@@ -1472,7 +1564,8 @@ class Catalog {
         params: { slug, size },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1516,6 +1609,8 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1524,7 +1619,8 @@ class Catalog {
         params: { slug, size },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 

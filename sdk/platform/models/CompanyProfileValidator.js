@@ -15,6 +15,12 @@ class CompanyProfileValidator {
     return Joi.object({}).required();
   }
 
+  static getBrand() {
+    return Joi.object({
+      brandId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static editBrand() {
     return Joi.object({
       brandId: Joi.string().allow("").required(),
@@ -22,21 +28,9 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static getBrand() {
-    return Joi.object({
-      brandId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static createBrand() {
     return Joi.object({
       body: Validator.CreateUpdateBrandRequestSerializer().required(),
-    }).required();
-  }
-
-  static createCompanyBrandMapping() {
-    return Joi.object({
-      body: Validator.CompanyBrandPostRequestSerializer().required(),
     }).required();
   }
 
@@ -48,9 +42,9 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static createLocation() {
+  static createCompanyBrandMapping() {
     return Joi.object({
-      body: Validator.LocationSerializer().required(),
+      body: Validator.CompanyBrandPostRequestSerializer().required(),
     }).required();
   }
 
@@ -64,9 +58,8 @@ class CompanyProfileValidator {
     }).required();
   }
 
-  static updateLocation() {
+  static createLocation() {
     return Joi.object({
-      locationId: Joi.string().allow("").required(),
       body: Validator.LocationSerializer().required(),
     }).required();
   }
@@ -74,6 +67,13 @@ class CompanyProfileValidator {
   static getLocationDetail() {
     return Joi.object({
       locationId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static updateLocation() {
+    return Joi.object({
+      locationId: Joi.string().allow("").required(),
+      body: Validator.LocationSerializer().required(),
     }).required();
   }
 

@@ -26,6 +26,15 @@ declare class CompanyProfile {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.brandId - Id of the brand to be viewed.
+     * @summary: Get a single brand.
+     * @description: This API helps to get data associated to a particular brand.
+     */
+    getBrand({ brandId }?: {
+        brandId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.brandId - Id of the brand to be viewed.
      * @param {CreateUpdateBrandRequestSerializer} arg.body
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand.
@@ -36,29 +45,11 @@ declare class CompanyProfile {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.brandId - Id of the brand to be viewed.
-     * @summary: Get a single brand.
-     * @description: This API helps to get data associated to a particular brand.
-     */
-    getBrand({ brandId }?: {
-        brandId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CreateUpdateBrandRequestSerializer} arg.body
      * @summary: Create a Brand.
      * @description: This API allows to create a brand associated to a company.
      */
     createBrand({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CompanyBrandPostRequestSerializer} arg.body
-     * @summary: Create a company brand mapping.
-     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-     */
-    createCompanyBrandMapping({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -90,11 +81,11 @@ declare class CompanyProfile {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {LocationSerializer} arg.body
-     * @summary: Create a location asscoiated to a company.
-     * @description: This API allows to create a location associated to a company.
+     * @param {CompanyBrandPostRequestSerializer} arg.body
+     * @summary: Create a company brand mapping.
+     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
      */
-    createLocation({ body }?: {
+    createCompanyBrandMapping({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -109,7 +100,7 @@ declare class CompanyProfile {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @summary: Get list of locations
-     * @description: This API allows to view all the locations asscoiated to a company.
+     * @description: This API allows to view all the locations associated to a company.
      */
     getLocations({ storeType, q, stage, pageNo, pageSize }?: {
         storeType?: string;
@@ -128,7 +119,7 @@ declare class CompanyProfile {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @summary: Get list of locations
-     * @description: This API allows to view all the locations asscoiated to a company.
+     * @description: This API allows to view all the locations associated to a company.
      */
     getLocationsPaginator({ storeType, q, stage, pageSize }?: {
         storeType?: string;
@@ -138,13 +129,11 @@ declare class CompanyProfile {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.locationId - Id of the location which you want to edit.
      * @param {LocationSerializer} arg.body
-     * @summary: Edit a location asscoiated to a company.
+     * @summary: Create a location associated to a company.
      * @description: This API allows to edit a location associated to a company.
      */
-    updateLocation({ locationId, body }?: {
-        locationId: string;
+    createLocation({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -155,6 +144,17 @@ declare class CompanyProfile {
      */
     getLocationDetail({ locationId }?: {
         locationId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.locationId - Id of the location which you want to edit.
+     * @param {LocationSerializer} arg.body
+     * @summary: Edit a location asscoiated to a company.
+     * @description: This API allows to edit a location associated to a company.
+     */
+    updateLocation({ locationId, body }?: {
+        locationId: string;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

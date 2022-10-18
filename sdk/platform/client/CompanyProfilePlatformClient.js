@@ -23,12 +23,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -51,12 +54,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -76,12 +82,46 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @summary: Get a single brand.
+   * @description: This API helps to get data associated to a particular brand.
+   */
+  getBrand({ brandId } = {}) {
+    const { error } = CompanyProfileValidator.getBrand().validate(
+      {
+        brandId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
+      query_params,
+      undefined,
+      xHeaders
     );
   }
 
@@ -106,40 +146,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.brandId - Id of the brand to be viewed.
-   * @summary: Get a single brand.
-   * @description: This API helps to get data associated to a particular brand.
-   */
-  getBrand({ brandId } = {}) {
-    const { error } = CompanyProfileValidator.getBrand().validate(
-      {
-        brandId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
-      query_params,
-      undefined
+      body,
+      xHeaders
     );
   }
 
@@ -162,42 +177,15 @@ class CompanyProfile {
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CompanyBrandPostRequestSerializer} arg.body
-   * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
-   */
-  createCompanyBrandMapping({ body } = {}) {
-    const {
-      error,
-    } = CompanyProfileValidator.createCompanyBrandMapping().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
+    const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -229,12 +217,15 @@ class CompanyProfile {
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -269,12 +260,14 @@ class CompanyProfile {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {LocationSerializer} arg.body
-   * @summary: Create a location asscoiated to a company.
-   * @description: This API allows to create a location associated to a company.
+   * @param {CompanyBrandPostRequestSerializer} arg.body
+   * @summary: Create a company brand mapping.
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
    */
-  createLocation({ body } = {}) {
-    const { error } = CompanyProfileValidator.createLocation().validate(
+  createCompanyBrandMapping({ body } = {}) {
+    const {
+      error,
+    } = CompanyProfileValidator.createCompanyBrandMapping().validate(
       {
         body,
       },
@@ -286,12 +279,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -307,7 +303,7 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @summary: Get list of locations
-   * @description: This API allows to view all the locations asscoiated to a company.
+   * @description: This API allows to view all the locations associated to a company.
    */
   getLocations({ storeType, q, stage, pageNo, pageSize } = {}) {
     const { error } = CompanyProfileValidator.getLocations().validate(
@@ -331,12 +327,15 @@ class CompanyProfile {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -350,7 +349,7 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @summary: Get list of locations
-   * @description: This API allows to view all the locations asscoiated to a company.
+   * @description: This API allows to view all the locations associated to a company.
    */
   getLocationsPaginator({ storeType, q, stage, pageSize } = {}) {
     const paginator = new Paginator();
@@ -377,15 +376,13 @@ class CompanyProfile {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.locationId - Id of the location which you want to edit.
    * @param {LocationSerializer} arg.body
-   * @summary: Edit a location asscoiated to a company.
+   * @summary: Create a location associated to a company.
    * @description: This API allows to edit a location associated to a company.
    */
-  updateLocation({ locationId, body } = {}) {
-    const { error } = CompanyProfileValidator.updateLocation().validate(
+  createLocation({ body } = {}) {
+    const { error } = CompanyProfileValidator.createLocation().validate(
       {
-        locationId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -396,12 +393,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -424,12 +424,48 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.locationId - Id of the location which you want to edit.
+   * @param {LocationSerializer} arg.body
+   * @summary: Edit a location asscoiated to a company.
+   * @description: This API allows to edit a location associated to a company.
+   */
+  updateLocation({ locationId, body } = {}) {
+    const { error } = CompanyProfileValidator.updateLocation().validate(
+      {
+        locationId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
+      query_params,
+      body,
+      xHeaders
     );
   }
 
@@ -452,12 +488,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/bulk`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }
