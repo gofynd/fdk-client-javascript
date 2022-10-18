@@ -16,7 +16,6 @@ declare class ApplicationClient {
     payment: Payment;
     order: Order;
     rewards: Rewards;
-    feedback: Feedback;
     posCart: PosCart;
     logistic: Logistic;
     setCookie(cookie: any): void;
@@ -37,6 +36,5 @@ import Configuration = require("./client/ConfigurationApplicationClient");
 import Payment = require("./client/PaymentApplicationClient");
 import Order = require("./client/OrderApplicationClient");
 import Rewards = require("./client/RewardsApplicationClient");
-import Feedback = require("./client/FeedbackApplicationClient");
 import PosCart = require("./client/PosCartApplicationClient");
 import Logistic = require("./client/LogisticApplicationClient");

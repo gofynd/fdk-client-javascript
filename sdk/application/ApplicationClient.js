@@ -28,8 +28,6 @@ const Order = require("./client/OrderApplicationClient");
 
 const Rewards = require("./client/RewardsApplicationClient");
 
-const Feedback = require("./client/FeedbackApplicationClient");
-
 const PosCart = require("./client/PosCartApplicationClient");
 
 const Logistic = require("./client/LogisticApplicationClient");
@@ -53,7 +51,6 @@ class ApplicationClient {
     this.payment = new Payment(config);
     this.order = new Order(config);
     this.rewards = new Rewards(config);
-    this.feedback = new Feedback(config);
     this.posCart = new PosCart(config);
     this.logistic = new Logistic(config);
   }

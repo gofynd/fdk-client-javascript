@@ -13,17 +13,6 @@ export class LeadValidator {
     static openVideoRoom(): any;
     static closeVideoRoom(): any;
 }
-export class FeedbackValidator {
-    static getAttributes(): any;
-    static getCustomerReviews(): any;
-    static updateApprove(): any;
-    static getHistory(): any;
-    static getApplicationTemplates(): any;
-    static createTemplate(): any;
-    static getTemplateById(): any;
-    static updateTemplate(): any;
-    static updateTemplateStatus(): any;
-}
 export class ThemeValidator {
     static getAllPages(): any;
     static createPage(): any;
@@ -195,13 +184,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
