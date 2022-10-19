@@ -91,34 +91,6 @@ class OrderManage {
       body
     );
   }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ShipmentEDDUpdate} arg.body
-   * @summary:
-   * @description: Shipment EDD Update
-   */
-  shipmentEDDUpdate({ body } = {}) {
-    const { error } = OrderManageValidator.shipmentEDDUpdate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/edd-update`,
-      query_params,
-      body
-    );
-  }
 }
 
 module.exports = OrderManage;
