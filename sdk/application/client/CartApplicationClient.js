@@ -79,6 +79,8 @@ class Cart {
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -87,7 +89,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -109,6 +112,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "head",
@@ -117,7 +122,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -144,6 +150,8 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -152,7 +160,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -181,6 +190,8 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -189,7 +200,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -211,6 +223,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -219,7 +233,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -241,6 +256,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -249,7 +266,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -278,6 +296,8 @@ class Cart {
     query_params["p"] = p;
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -286,7 +306,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -308,6 +329,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -316,7 +339,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -346,6 +370,8 @@ class Cart {
     query_params["uid"] = uid;
     query_params["slug"] = slug;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -354,7 +380,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -381,6 +408,8 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -389,7 +418,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -419,6 +449,8 @@ class Cart {
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -427,7 +459,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -448,6 +481,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -456,7 +491,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -487,6 +523,8 @@ class Cart {
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -495,7 +533,8 @@ class Cart {
         params: { id },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -517,6 +556,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -525,7 +566,8 @@ class Cart {
         params: { id },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -546,6 +588,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -554,7 +598,8 @@ class Cart {
         params: { id },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -581,6 +626,8 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -589,7 +636,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -612,6 +660,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -620,7 +670,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -666,6 +717,8 @@ class Cart {
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -674,7 +727,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -704,6 +758,8 @@ class Cart {
     query_params["address_id"] = addressId;
     query_params["area_code"] = areaCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -712,7 +768,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -733,6 +790,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -741,7 +800,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -764,6 +824,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -772,7 +834,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -793,6 +856,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -801,7 +866,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -822,6 +888,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -830,7 +898,8 @@ class Cart {
         params: { token },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -853,6 +922,8 @@ class Cart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -861,7 +932,8 @@ class Cart {
         params: { token, action },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -889,6 +961,8 @@ class Cart {
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -897,7 +971,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -929,6 +1004,8 @@ class Cart {
     query_params["promotion_id"] = promotionId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -937,7 +1014,8 @@ class Cart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

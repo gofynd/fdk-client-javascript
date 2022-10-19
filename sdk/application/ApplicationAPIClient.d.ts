@@ -7,5 +7,5 @@ declare class APIClient {
      * @param {object} query
      * @param {object} body
      */
-    static execute(conf: object, method: string, url: string, query: object, body: object): any;
+    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: any): any;
 }
