@@ -30,6 +30,7 @@ class Payment {
         "/service/application/payment/v1.0/epaylater/banner",
       resendOrCancelPayment:
         "/service/application/payment/v1.0/payment/resend_or_cancel",
+      renderHTML: "/service/application/payment/v1.0/payment/html/render/",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -546,6 +547,35 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["resendOrCancelPayment"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {renderHTMLRequest} arg.body
+   * @returns {Promise<renderHTMLResponse>} - Success response
+   * @summary: Convert base64 string to HTML form
+   * @description: Use this API to decode base64 html form to plain HTML string.
+   */
+  renderHTML({ body } = {}) {
+    const { error } = PaymentValidator.renderHTML().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["renderHTML"],
         params: {},
       }),
       query_params,
