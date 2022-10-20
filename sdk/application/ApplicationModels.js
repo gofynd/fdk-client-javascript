@@ -6080,7 +6080,11 @@ class Validator {
 
       "login",
 
-      "register"
+      "register",
+
+      "shipment-policy",
+
+      "return-policy"
     );
   }
 

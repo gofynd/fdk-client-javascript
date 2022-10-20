@@ -43,6 +43,8 @@ const AVAILABLE_PAGE_TYPE = {
   CART_REVIEW: "cart-review",
   LOGIN: "login",
   REGISTER: "register",
+  SHIPMENT_POLICY: "shipment-policy",
+  RETURN_POLICY: "return-policy",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -319,6 +321,14 @@ const NAVIGATORS = {
   register: {
     name: "Register",
     link: "/auth/register",
+  },
+  "shipment-policy": {
+    name: "Shipping policy",
+    link: "/shipping-policy",
+  },
+  "return-policy": {
+    name: "Return policy",
+    link: "/return-policy",
   },
 };
 
