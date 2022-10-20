@@ -606,34 +606,6 @@
           }
         }
       }
-    },
-    {
-      "name": "login",
-      "path": "/auth/login",
-      "result": {
-        "action": {
-          "type": "page",
-          "page": {
-            "type": "login",
-            "query": {},
-            "params": {}
-          }
-        }
-      }
-    },
-    {
-      "name": "register",
-      "path": "/auth/register",
-      "result": {
-        "action": {
-          "type": "page",
-          "page": {
-            "type": "register",
-            "query": {},
-            "params": {}
-          }
-        }
-      }
     }
   ]
 }

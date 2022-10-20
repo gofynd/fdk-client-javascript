@@ -8,7 +8,7 @@ class APIClient {
    * @param {object} query
    * @param {object} body
    */
-  static async execute(conf, method, url, query, body, xHeaders) {
+  static async execute(conf, method, url, query, body) {
     const token = await conf.oauthClient.getAccessToken();
 
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
@@ -25,7 +25,6 @@ class APIClient {
       headers: {
         Authorization: "Bearer " + token,
         ...extraHeaders,
-        ...xHeaders,
       },
     };
 

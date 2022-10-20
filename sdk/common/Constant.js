@@ -42,7 +42,6 @@ const AVAILABLE_PAGE_TYPE = {
   CART_PAYMENT: "cart-payment",
   CART_REVIEW: "cart-review",
   LOGIN: "login",
-  REGISTER: "register",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -315,10 +314,6 @@ const NAVIGATORS = {
   login: {
     name: "Login",
     link: "/auth/login",
-  },
-  register: {
-    name: "Register",
-    link: "/auth/register",
   },
 };
 
