@@ -161,7 +161,6 @@ class CartValidator {
 
   static checkoutCart() {
     return Joi.object({
-      id: Joi.string().allow(""),
       body: Validator.CartCheckoutDetailRequest().required(),
     }).required();
   }
