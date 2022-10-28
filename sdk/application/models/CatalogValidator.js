@@ -32,6 +32,13 @@ class CatalogValidator {
     }).required();
   }
 
+  static getProductSimilarByIdentifier() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      similarType: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getProductVariantsBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
