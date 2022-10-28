@@ -6096,11 +6096,7 @@ class Validator {
 
       "login",
 
-      "register",
-
-      "shipping-policy",
-
-      "return-policy"
+      "register"
     );
   }
 
