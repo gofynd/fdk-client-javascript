@@ -184,41 +184,41 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
+    static updateSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
-    static updateAutocompleteKeyword(): any;
+    static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
+    static updateAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
+    static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static updateGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
     static deleteGroupConfiguration(): any;
-    static getListingConfigurations(): any;
+    static updateGroupConfiguration(): any;
     static createListingConfiguration(): any;
-    static updateListingConfiguration(): any;
+    static getListingConfigurations(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static getCollectionItems(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
@@ -319,7 +319,8 @@ export class PartnerValidator {
     static removeProxyPath(): any;
 }
 export class ServiceabilityValidator {
-    static postApplicationServiceability(): any;
     static getApplicationServiceability(): any;
-    static upsertZoneControllerView(): any;
+    static postApplicationServiceability(): any;
+    static getZonesFromApplicationIdView(): any;
+    static getZoneFromPincodeView(): any;
 }
