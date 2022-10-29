@@ -636,13 +636,13 @@ export class Validator {
     static PaymentInitializationResponse(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
-    static AggregatorRoute(): any;
-    static PaymentFlow(): any;
     static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
     static IntentApp(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
+    static AggregatorRoute(): any;
+    static PaymentFlow(): any;
     static PaymentOptionAndFlow(): any;
     static PaymentModeRouteResponse(): any;
     static RupifiBannerData(): any;
@@ -683,8 +683,8 @@ export class Validator {
     static CheckCreditResponse(): any;
     static KYCAddress(): any;
     static BusinessDetails(): any;
-    static UserPersonalInfoInDetails(): any;
     static MarketplaceInfo(): any;
+    static UserPersonalInfoInDetails(): any;
     static DeviceDetails(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;

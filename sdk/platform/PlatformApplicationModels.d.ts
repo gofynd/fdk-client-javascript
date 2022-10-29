@@ -324,9 +324,3 @@ export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
 }
-export class ServiceabilityValidator {
-    static getApplicationServiceability(): any;
-    static postApplicationServiceability(): any;
-    static getZonesFromApplicationIdView(): any;
-    static getZoneFromPincodeView(): any;
-}

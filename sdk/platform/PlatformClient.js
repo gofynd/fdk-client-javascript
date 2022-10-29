@@ -27,8 +27,6 @@ const Discount = require("./client/DiscountPlatformClient");
 const Webhook = require("./client/WebhookPlatformClient");
 
 const AuditTrail = require("./client/AuditTrailPlatformClient");
-
-const Serviceability = require("./client/ServiceabilityPlatformClient");
 const PlatformApplicationClient = require("./PlatformApplicationClient");
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -50,7 +48,6 @@ class PlatformClient {
     this.discount = new Discount(config);
     this.webhook = new Webhook(config);
     this.auditTrail = new AuditTrail(config);
-    this.serviceability = new Serviceability(config);
   }
   application(applicationId) {
     if (typeof applicationId == "string") {
@@ -3698,47 +3695,47 @@ class PlatformClient {
 
 /**
  * @typedef PaymentGatewayConfigResponse
- * @property {Object[]} [aggregators]
- * @property {string[]} excluded_fields
  * @property {boolean} success
  * @property {string} app_id
+ * @property {string[]} excluded_fields
  * @property {boolean} created
+ * @property {Object[]} [aggregators]
  * @property {string[]} display_fields
  */
 
 /**
  * @typedef ErrorCodeDescription
- * @property {string} description
  * @property {boolean} success
  * @property {string} code
+ * @property {string} description
  */
 
 /**
  * @typedef PaymentGatewayConfig
- * @property {string} secret
  * @property {string} merchant_salt
  * @property {string} config_type
- * @property {boolean} [is_active]
+ * @property {string} secret
  * @property {string} key
+ * @property {boolean} [is_active]
  */
 
 /**
  * @typedef PaymentGatewayConfigRequest
- * @property {PaymentGatewayConfig} [aggregator_name]
  * @property {string} app_id
+ * @property {PaymentGatewayConfig} [aggregator_name]
  * @property {boolean} [is_active]
  */
 
 /**
  * @typedef PaymentGatewayToBeReviewed
- * @property {string[]} aggregator
  * @property {boolean} success
+ * @property {string[]} aggregator
  */
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
@@ -3756,64 +3753,64 @@ class PlatformClient {
 /**
  * @typedef IntentApp
  * @property {string} [display_name]
- * @property {string} [package_name]
  * @property {string} [code]
  * @property {PaymentModeLogo} [logos]
+ * @property {string} [package_name]
  */
 
 /**
  * @typedef IntentAppErrorList
- * @property {string} [package_name]
  * @property {string} [code]
+ * @property {string} [package_name]
  */
 
 /**
  * @typedef PaymentModeList
- * @property {string} [name]
  * @property {number} [exp_month]
- * @property {string} [code]
+ * @property {string} [name]
  * @property {string} [merchant_code]
- * @property {string[]} [intent_app_error_list]
- * @property {number} [display_priority]
- * @property {number} [retry_count]
- * @property {string} [display_name]
  * @property {number} [cod_limit]
- * @property {string} [card_issuer]
+ * @property {string} [card_type]
+ * @property {number} [cod_limit_per_order]
+ * @property {string} [card_isin]
+ * @property {IntentApp[]} [intent_app]
+ * @property {string} [card_number]
+ * @property {string} [nickname]
+ * @property {string} [card_token]
  * @property {string} [card_id]
+ * @property {string} [card_reference]
+ * @property {string} [code]
+ * @property {string} aggregator_name
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
+ * @property {number} [timeout]
+ * @property {string} [card_name]
+ * @property {boolean} [intent_flow]
+ * @property {boolean} [expired]
+ * @property {string} [card_issuer]
+ * @property {number} [display_priority]
+ * @property {string} [fynd_vpa]
+ * @property {number} [exp_year]
+ * @property {string} [card_fingerprint]
+ * @property {number} [retry_count]
  * @property {string} [card_brand]
  * @property {string} [card_brand_image]
- * @property {string} [fynd_vpa]
- * @property {string} aggregator_name
- * @property {string} [card_token]
- * @property {PaymentModeLogo} [logo_url]
- * @property {IntentApp[]} [intent_app]
- * @property {number} [cod_limit_per_order]
- * @property {string} [nickname]
- * @property {number} [timeout]
- * @property {number} [exp_year]
- * @property {boolean} [intent_flow]
- * @property {string} [card_fingerprint]
- * @property {string} [card_type]
- * @property {string} [card_number]
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
+ * @property {string[]} [intent_app_error_list]
  * @property {number} [remaining_limit]
- * @property {string} [card_isin]
- * @property {boolean} [expired]
- * @property {string} [card_reference]
- * @property {string} [card_name]
+ * @property {string} [display_name]
+ * @property {PaymentModeLogo} [logo_url]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {string} [logo]
+ * @property {string} [aggregator_name]
  * @property {string} name
  * @property {boolean} [add_card_enabled]
- * @property {string} [aggregator_name]
- * @property {number} display_priority
  * @property {boolean} [anonymous_enable]
+ * @property {number} display_priority
+ * @property {string} [logo]
+ * @property {PaymentModeList[]} [list]
  * @property {string} display_name
  * @property {PaymentModeLogo} [logo_url]
- * @property {PaymentModeList[]} [list]
  */
 
 /**
@@ -3829,64 +3826,64 @@ class PlatformClient {
 
 /**
  * @typedef PayoutsResponse
- * @property {Object[]} payouts_aggregators
- * @property {Object} more_attributes
+ * @property {string} transfer_type
  * @property {boolean} is_default
+ * @property {Object} more_attributes
+ * @property {Object} customers
  * @property {boolean} is_active
  * @property {Object} unique_transfer_no
- * @property {string} transfer_type
- * @property {Object} customers
+ * @property {Object[]} payouts_aggregators
  */
 
 /**
  * @typedef PayoutBankDetails
- * @property {string} ifsc_code
- * @property {string} [branch_name]
- * @property {string} [city]
- * @property {string} [bank_name]
- * @property {string} [account_holder]
- * @property {string} account_type
  * @property {string} [country]
+ * @property {string} [branch_name]
+ * @property {string} ifsc_code
+ * @property {string} [bank_name]
+ * @property {string} account_type
  * @property {string} [account_no]
  * @property {string} [state]
+ * @property {string} [city]
+ * @property {string} [account_holder]
  * @property {number} [pincode]
  */
 
 /**
  * @typedef PayoutRequest
+ * @property {string} transfer_type
  * @property {string} unique_external_id
+ * @property {PayoutBankDetails} bank_details
+ * @property {Object} users
  * @property {string} aggregator
  * @property {boolean} is_active
- * @property {string} transfer_type
- * @property {Object} users
- * @property {PayoutBankDetails} bank_details
  */
 
 /**
  * @typedef PayoutResponse
+ * @property {boolean} success
+ * @property {string} transfer_type
+ * @property {Object} bank_details
+ * @property {Object} users
  * @property {Object} payouts
  * @property {string} aggregator
- * @property {boolean} success
- * @property {string} unique_transfer_no
- * @property {boolean} is_active
- * @property {string} transfer_type
- * @property {string} payment_status
- * @property {Object} users
  * @property {boolean} created
- * @property {Object} bank_details
+ * @property {boolean} is_active
+ * @property {string} unique_transfer_no
+ * @property {string} payment_status
  */
 
 /**
  * @typedef UpdatePayoutResponse
- * @property {boolean} is_default
  * @property {boolean} success
+ * @property {boolean} is_default
  * @property {boolean} is_active
  */
 
 /**
  * @typedef UpdatePayoutRequest
- * @property {string} unique_external_id
  * @property {boolean} is_default
+ * @property {string} unique_external_id
  * @property {boolean} is_active
  */
 
@@ -3908,8 +3905,8 @@ class PlatformClient {
 
 /**
  * @typedef SubscriptionConfigResponse
- * @property {string} aggregator
  * @property {boolean} success
+ * @property {string} aggregator
  * @property {Object} config
  */
 
@@ -3926,79 +3923,79 @@ class PlatformClient {
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} ifsc_code
  * @property {string} [vpa]
- * @property {string} branch_name
- * @property {string} [address]
- * @property {string} bank_name
  * @property {string} account_holder
- * @property {string} mobile
- * @property {string} [wallet]
- * @property {string} account_no
- * @property {string} [comment]
  * @property {string} email
+ * @property {string} branch_name
+ * @property {string} ifsc_code
+ * @property {string} bank_name
+ * @property {string} account_no
+ * @property {string} mobile
+ * @property {string} [comment]
+ * @property {string} [address]
+ * @property {string} [wallet]
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {BeneficiaryModeDetails} details
- * @property {string} order_id
- * @property {string} [request_id]
- * @property {string} shipment_id
- * @property {boolean} delights
- * @property {string} [otp]
  * @property {string} transfer_mode
+ * @property {string} shipment_id
+ * @property {string} [request_id]
+ * @property {string} [otp]
+ * @property {boolean} delights
+ * @property {string} order_id
+ * @property {BeneficiaryModeDetails} details
  */
 
 /**
  * @typedef RefundAccountResponse
- * @property {boolean} [is_verified_flag]
- * @property {string} message
  * @property {boolean} success
  * @property {Object} [data]
+ * @property {boolean} [is_verified_flag]
+ * @property {string} message
  */
 
 /**
  * @typedef NotFoundResourceError
- * @property {string} description
  * @property {boolean} success
  * @property {string} code
+ * @property {string} description
  */
 
 /**
  * @typedef IfscCodeResponse
- * @property {string} branch_name
  * @property {boolean} [success]
  * @property {string} bank_name
+ * @property {string} branch_name
  */
 
 /**
  * @typedef OrderBeneficiaryDetails
- * @property {string} ifsc_code
- * @property {string} [branch_name]
- * @property {string} display_name
- * @property {string} subtitle
- * @property {string} modified_on
  * @property {string} created_on
- * @property {string} [comment]
- * @property {string} [delights_user_name]
+ * @property {string} [branch_name]
+ * @property {string} account_holder
+ * @property {string} bank_name
+ * @property {string} account_no
+ * @property {string} [mobile]
+ * @property {boolean} is_active
+ * @property {string} address
  * @property {string} beneficiary_id
  * @property {string} title
- * @property {string} bank_name
- * @property {number} id
- * @property {string} [mobile]
- * @property {string} transfer_mode
- * @property {string} address
- * @property {string} account_holder
- * @property {boolean} is_active
- * @property {string} account_no
  * @property {string} email
+ * @property {string} [comment]
+ * @property {string} modified_on
+ * @property {string} subtitle
+ * @property {string} transfer_mode
+ * @property {string} ifsc_code
+ * @property {string} display_name
+ * @property {number} id
+ * @property {string} [delights_user_name]
  */
 
 /**
  * @typedef OrderBeneficiaryResponse
- * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  * @property {boolean} [show_beneficiary_details]
+ * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  */
 
 /**
@@ -4017,23 +4014,23 @@ class PlatformClient {
 
 /**
  * @typedef PaymentConfirmationResponse
- * @property {string} message
- * @property {string} order_id
  * @property {boolean} success
+ * @property {string} order_id
+ * @property {string} message
  */
 
 /**
  * @typedef RepaymentRequestDetails
- * @property {number} amount
  * @property {string} payment_mode_identifier
- * @property {string} aggregator_order_id
- * @property {string} current_status
- * @property {string} payment_mode
- * @property {string} aggregator
- * @property {string} merchant_order_id
- * @property {number} outstanding_details_id
- * @property {string} fwd_shipment_id
+ * @property {number} amount
  * @property {string} aggregator_transaction_id
+ * @property {number} outstanding_details_id
+ * @property {string} current_status
+ * @property {string} fwd_shipment_id
+ * @property {string} aggregator
+ * @property {string} payment_mode
+ * @property {string} aggregator_order_id
+ * @property {string} merchant_order_id
  */
 
 /**
@@ -4044,11 +4041,11 @@ class PlatformClient {
 
 /**
  * @typedef MerchantOnBoardingRequest
- * @property {string} aggregator
- * @property {string} credit_line_id
- * @property {string} user_id
  * @property {string} app_id
+ * @property {string} credit_line_id
+ * @property {string} aggregator
  * @property {string} status
+ * @property {string} user_id
  */
 
 /**
@@ -11979,245 +11976,6 @@ class PlatformClient {
 /**
  * @typedef Location
  * @property {Object} [extra_meta]
- */
-
-/**
- * @typedef ServiceabilityErrorResponse
- * @property {string} value
- * @property {string} type
- * @property {string} message
- */
-
-/**
- * @typedef ApplicationServiceabilityResponse
- * @property {string} channel_id
- * @property {string} channel_type
- * @property {string} serviceability_type
- */
-
-/**
- * @typedef ApplicationServiceabilityConfigResponse
- * @property {ServiceabilityErrorResponse} [error]
- * @property {boolean} success
- * @property {ApplicationServiceabilityResponse} [data]
- */
-
-/**
- * @typedef ApplicationServiceabilityConfig
- * @property {string} serviceability_type
- */
-
-/**
- * @typedef EntityRegionViewRequest
- * @property {string[]} [parent_id]
- * @property {string[]} sub_type
- */
-
-/**
- * @typedef EntityRegionViewError
- * @property {string} [value]
- * @property {string} [type]
- * @property {string} [message]
- */
-
-/**
- * @typedef EntityRegionViewPage
- * @property {number} size
- * @property {number} current
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {string} type
- */
-
-/**
- * @typedef EntityRegionViewItems
- * @property {string} sub_type
- * @property {string} uid
- * @property {string} name
- */
-
-/**
- * @typedef EntityRegionViewResponse
- * @property {EntityRegionViewError} error
- * @property {EntityRegionViewPage} page
- * @property {boolean} success
- * @property {EntityRegionViewItems[]} data
- */
-
-/**
- * @typedef ListViewChannels
- * @property {string} channel_id
- * @property {string} channel_type
- */
-
-/**
- * @typedef ListViewProduct
- * @property {string} type
- * @property {number} count
- */
-
-/**
- * @typedef ListViewItems
- * @property {string} zone_id
- * @property {number} pincodes_count
- * @property {number} stores_count
- * @property {boolean} is_active
- * @property {ListViewChannels} channels
- * @property {string} name
- * @property {string} slug
- * @property {ListViewProduct} product
- * @property {number} company_id
- */
-
-/**
- * @typedef ZoneDataItem
- * @property {number} size
- * @property {number} current
- * @property {string} type
- * @property {boolean} has_next
- * @property {number} item_total
- */
-
-/**
- * @typedef ListViewSummary
- * @property {number} total_zones
- * @property {number} total_active_zones
- * @property {number} total_pincodes_served
- */
-
-/**
- * @typedef ListViewResponse
- * @property {ListViewItems[]} items
- * @property {ZoneDataItem[]} page
- * @property {ListViewSummary[]} summary
- */
-
-/**
- * @typedef CompanyStoreView_PageItems
- * @property {number} size
- * @property {number} current
- * @property {boolean} has_next
- * @property {number} item_total
- * @property {string} type
- */
-
-/**
- * @typedef CompanyStoreView_Response
- * @property {Object[]} [items]
- * @property {CompanyStoreView_PageItems[]} page
- */
-
-/**
- * @typedef GetZoneDataViewChannels
- * @property {string} channel_id
- * @property {string} channel_type
- */
-
-/**
- * @typedef ZoneProductTypes
- * @property {string} type
- * @property {string[]} tags
- */
-
-/**
- * @typedef ZoneMappingType
- * @property {string[]} [pincode]
- * @property {string[]} [state]
- * @property {string} country
- */
-
-/**
- * @typedef GetZoneDataViewItems
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- * @property {number} stores_count
- * @property {number} pincodes_count
- */
-
-/**
- * @typedef GetSingleZoneDataViewResponse
- * @property {GetZoneDataViewItems} data
- */
-
-/**
- * @typedef UpdateZoneData
- * @property {string} zone_id
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- */
-
-/**
- * @typedef ZoneUpdateRequest
- * @property {string} identifier
- * @property {UpdateZoneData} data
- */
-
-/**
- * @typedef ZoneSuccessResponse
- * @property {number} status_code
- * @property {boolean} success
- */
-
-/**
- * @typedef CreateZoneData
- * @property {string} name
- * @property {string} slug
- * @property {number} company_id
- * @property {boolean} is_active
- * @property {GetZoneDataViewChannels[]} channels
- * @property {ZoneProductTypes} product
- * @property {number[]} store_ids
- * @property {string} region_type
- * @property {ZoneMappingType[]} mapping
- * @property {string} [assignment_preference]
- */
-
-/**
- * @typedef ZoneRequest
- * @property {string} identifier
- * @property {CreateZoneData} data
- */
-
-/**
- * @typedef ZoneResponse
- * @property {string} zone_id
- * @property {number} status_code
- * @property {boolean} success
- */
-
-/**
- * @typedef GetZoneFromApplicationIdViewResponse
- * @property {ListViewItems[]} items
- * @property {ZoneDataItem[]} page
- */
-
-/**
- * @typedef GetZoneFromPincodeViewRequest
- * @property {string} pincode
- * @property {string} country
- */
-
-/**
- * @typedef GetZoneFromPincodeViewResponse
- * @property {string[]} zones
- * @property {string} serviceability_type
  */
 
 module.exports = PlatformClient;
