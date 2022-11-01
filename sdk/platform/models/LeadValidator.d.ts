@@ -10,4 +10,5 @@ declare class LeadValidator {
     static submitFeedback(): any;
     static getTokenForVideoRoom(): any;
     static getVideoParticipants(): any;
+    static getGeneralConfig(): any;
 }

@@ -29,6 +29,7 @@ Handles communication between Administrator <-> Staff and Staff <-> Users
 * [getVideoParticipants](#getvideoparticipants)
 * [openVideoRoom](#openvideoroom)
 * [closeVideoRoom](#closevideoroom)
+* [getGeneralConfig](#getgeneralconfig)
 
 
 
@@ -3910,6 +3911,67 @@ Success
 ---
 
 
+### getGeneralConfig
+Get general support configuration.
+
+
+
+```javascript
+// Promise
+const promise = client.lead.getGeneralConfig();
+
+// Async/Await
+const data = await client.lead.getGeneralConfig();
+```
+
+
+
+
+
+
+Get general support configuration.
+
+*Returned Response:*
+
+
+
+
+[CloseVideoRoomResponse](#CloseVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -4112,20 +4174,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | response | [[KeyValue](#KeyValue)] |  yes  | Form response |
+ | response | [string] |  yes  | Form response |
  | attachments | [[TicketAsset](#TicketAsset)] |  no  | List of all attachments related to the form |
-
----
-
-
- 
- 
- #### [KeyValue](#KeyValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  | Parameter for evaluating |
- | value | string |  yes  | Response for the parameter |
 
 ---
 
@@ -4237,6 +4287,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Success message for form submission |
  | ticket | [Ticket](#Ticket) |  yes  | Ticket created on form submission |
 
 ---
@@ -4302,6 +4353,7 @@ Success
  | priority | [PriorityEnum](#PriorityEnum) |  no  | Priority of the ticket |
  | category | string |  yes  | Category of the ticket |
  | content | [TicketContent](#TicketContent) |  yes  | Content for the ticket |
+ | _custom_json | string |  no  | optional custom data that needs to be sent |
 
 ---
 
@@ -4438,9 +4490,38 @@ Success
  | submit_button | [SubmitButton](#SubmitButton) |  no  | Details for submit button |
  | inputs | [string] |  yes  | List of all the form fields |
  | created_on | [CreatedOn](#CreatedOn) |  no  | Gives details of when the form was created |
- | created_by | string |  no  | Gives details of user who created the form |
  | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  | Details of how polling should be done for support |
  | _id | string |  yes  | Unique identifier for the form |
+
+---
+
+
+ 
+ 
+ #### [CommunicationDetails](#CommunicationDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  | Value for the communication method |
+ | description | string |  no  | Short description for the communication method |
+ | enabled | boolean |  no  | Denotes if this communication method has to be shown |
+
+---
+
+
+ 
+ 
+ #### [SupportGeneralConfig](#SupportGeneralConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | Unique id |
+ | support_email | [CommunicationDetails](#CommunicationDetails) |  no  | Support e-mail details |
+ | support_phone | [CommunicationDetails](#CommunicationDetails) |  no  | Support Phone number details |
+ | support_faq | [CommunicationDetails](#CommunicationDetails) |  no  | Support FAQ details |
+ | show_communication_info | boolean |  no  | Denotes if support communication info should be shown |
+ | show_support_dris | boolean |  no  | Denotes if support DRIS info should be shown |
+ | integration | string |  no  | Contains integrations basic information |
 
 ---
 
