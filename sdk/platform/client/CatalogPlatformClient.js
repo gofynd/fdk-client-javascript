@@ -26,12 +26,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -59,12 +62,15 @@ class Catalog {
     query_params["q"] = q;
     query_params["slug"] = slug;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -90,12 +96,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -119,12 +128,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -147,12 +159,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -190,12 +205,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -220,12 +238,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -248,12 +269,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -277,12 +301,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/cross-selling/${sellerAppId}/analytics/insights/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -308,12 +335,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/${marketplace}/optin/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -333,12 +363,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -358,12 +391,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-details/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -401,12 +437,15 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["marketplace"] = marketplace;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-brand-details/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -426,12 +465,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-metrics/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -462,12 +504,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/location-details/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -491,12 +536,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-attributes/${attributeSlug}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -525,12 +573,15 @@ class Catalog {
     query_params["departments"] = departments;
     query_params["item_type"] = itemType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/categories/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -553,12 +604,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -598,12 +652,15 @@ class Catalog {
     query_params["search"] = search;
     query_params["is_active"] = isActive;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -628,12 +685,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -656,12 +716,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -686,12 +749,15 @@ class Catalog {
     const query_params = {};
     query_params["department"] = department;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -715,12 +781,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/${slug}/validation/schema/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -744,12 +813,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/${slug}/download/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -773,12 +845,15 @@ class Catalog {
     const query_params = {};
     query_params["item_type"] = itemType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/templates/download/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -803,12 +878,15 @@ class Catalog {
     const query_params = {};
     query_params["item_type"] = itemType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/templates/validation/schema/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -828,12 +906,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/hsn/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -855,12 +936,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/downloads/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -885,12 +969,15 @@ class Catalog {
     const query_params = {};
     query_params["filter"] = filter;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/downloads/configuration/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -913,12 +1000,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -956,12 +1046,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -986,12 +1079,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1014,12 +1110,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1042,12 +1141,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1109,12 +1211,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1142,12 +1247,15 @@ class Catalog {
     query_params["category"] = category;
     query_params["filter"] = filter;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-attributes/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1170,12 +1278,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1200,12 +1311,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1234,12 +1348,15 @@ class Catalog {
     query_params["item_code"] = itemCode;
     query_params["brand_uid"] = brandUid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1259,12 +1376,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/validation/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1296,12 +1416,15 @@ class Catalog {
     query_params["brand_uid"] = brandUid;
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1324,12 +1447,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1358,12 +1484,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1386,12 +1515,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1416,12 +1548,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1441,12 +1576,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/tags`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1469,12 +1607,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1503,12 +1644,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1534,12 +1678,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1566,12 +1713,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1610,12 +1760,15 @@ class Catalog {
     query_params["q"] = q;
     query_params["sellable"] = sellable;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1662,12 +1815,15 @@ class Catalog {
     query_params["q"] = q;
     query_params["location_ids"] = locationIds;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/inventory/${sizeIdentifier}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1696,12 +1852,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}/location/${locationId}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1724,12 +1883,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1758,12 +1920,15 @@ class Catalog {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1786,12 +1951,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1816,12 +1984,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1844,12 +2015,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1869,12 +2043,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1899,12 +2076,15 @@ class Catalog {
     const query_params = {};
     query_params["filter_type"] = filterType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/configuration/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1932,12 +2112,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1965,12 +2148,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1993,12 +2179,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -2021,12 +2210,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -2056,12 +2248,15 @@ class Catalog {
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -2086,12 +2281,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -2114,12 +2312,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -2142,12 +2343,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/bulk/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -2180,12 +2384,15 @@ class Catalog {
     query_params["q"] = q;
     query_params["type"] = type;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/hsn/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -2208,12 +2415,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/hsn/${reportingHsn}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -2236,12 +2446,15 @@ class Catalog {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/location/reassign/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

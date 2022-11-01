@@ -32,3 +32,4 @@ jobs:
         API_SECRET: ${{ secrets.API_SECRET }}
         APP_USERNAME: ${{ secrets.APP_USERNAME }}
         PASSWORD: ${{ secrets.PASSWORD }}
+        AUTH_HEADER: ${{ secrets.AUTH_HEADER}}

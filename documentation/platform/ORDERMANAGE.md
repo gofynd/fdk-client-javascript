@@ -279,9 +279,9 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | force_transition | boolean |  no  |  |
  | task | boolean |  no  |  |
  | statuses | [Statuses](#Statuses) |  no  |  |
+ | force_transition | boolean |  no  |  |
 
 ---
 
@@ -292,8 +292,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | [string] |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -304,8 +304,8 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -316,15 +316,15 @@ We are processing the order!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l1_detail | string |  no  |  |
- | l3_detail | string |  no  |  |
- | type | string |  yes  |  |
- | user | string |  yes  |  |
  | message | string |  yes  |  |
- | ticket_id | string |  no  |  |
- | l2_detail | string |  no  |  |
+ | type | string |  yes  |  |
  | createdat | string |  yes  |  |
+ | user | string |  yes  |  |
+ | ticket_id | string |  no  |  |
  | ticket_url | string |  no  |  |
+ | l1_detail | string |  no  |  |
+ | l2_detail | string |  no  |  |
+ | l3_detail | string |  no  |  |
 
 ---
 

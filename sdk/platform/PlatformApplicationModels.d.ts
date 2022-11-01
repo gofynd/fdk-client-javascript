@@ -45,6 +45,7 @@ export class UserValidator {
     static createUser(): any;
     static blockOrUnblockUsers(): any;
     static archiveUser(): any;
+    static unDeleteUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
     static getActiveSessions(): any;
@@ -149,6 +150,8 @@ export class CommunicationValidator {
     static triggerCampaignJob(): any;
     static getJobLogs(): any;
     static getCommunicationLogs(): any;
+    static sendOtp(): any;
+    static verfiyOtp(): any;
     static getSmsProviders(): any;
     static createSmsProvider(): any;
     static getSmsProviderById(): any;
