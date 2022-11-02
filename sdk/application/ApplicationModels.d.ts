@@ -674,13 +674,15 @@ export class Validator {
     static CreditDetail(): any;
     static CheckCreditResponse(): any;
     static KYCAddress(): any;
-    static UserPersonalInfoInDetails(): any;
-    static DeviceDetails(): any;
     static BusinessDetails(): any;
+    static DeviceDetails(): any;
+    static UserPersonalInfoInDetails(): any;
     static MarketplaceInfo(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;
+    static OutstandingOrderDetailsResponse(): any;
+    static PaidOrderDetailsResponse(): any;
     static OrderById(): any;
     static OrderList(): any;
     static OrderPage(): any;
@@ -723,6 +725,7 @@ export class Validator {
     static ShipmentPayment(): any;
     static Track(): any;
     static TrackingDetails(): any;
+    static NestedTrackingDetails(): any;
     static UserInfo(): any;
     static ApefaceApiError(): any;
     static ActionPageParams(): any;

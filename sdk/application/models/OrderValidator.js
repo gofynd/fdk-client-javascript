@@ -7,7 +7,8 @@ class OrderValidator {
       pageSize: Joi.number(),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      status: Joi.number(),
+      status: Joi.string().allow(""),
+      customMeta: Joi.string().allow(""),
     });
   }
 
