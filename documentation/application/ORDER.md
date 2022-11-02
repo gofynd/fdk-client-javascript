@@ -35,14 +35,16 @@ const promise = order.getOrders({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
- status : value });
+ status : value,
+ customMeta : value });
 
 // Async/Await
 const data = await order.getOrders({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
- status : value });
+ status : value,
+ customMeta : value });
 ```
 
 
@@ -55,7 +57,8 @@ const data = await order.getOrders({  pageNo : value,
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | fromDate | string | no | The date from which the orders should be retrieved. |    
 | toDate | string | no | The date till which the orders should be retrieved. |    
-| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |  
+| status | string | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
+| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
 
 
 
@@ -1006,6 +1009,8 @@ Success, the code is valid and returns a SignedUrl
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | can_cancel | boolean |  no  |  |
  | can_return | boolean |  no  |  |
+ | delivery_date | string |  no  |  |
+ | returnable_date | string |  no  |  |
 
 ---
 
@@ -1298,6 +1303,7 @@ Success, the code is valid and returns a SignedUrl
  | invoice | [Invoice](#Invoice) |  no  |  |
  | comment | string |  no  |  |
  | order_type | string |  no  |  |
+ | custom_meta | [any] |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
  | bags | [[Bags](#Bags)] |  no  |  |
@@ -1360,6 +1366,21 @@ Success, the code is valid and returns a SignedUrl
  
  
  #### [TrackingDetails](#TrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_current | boolean |  no  |  |
+ | status | string |  no  |  |
+ | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+ | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NestedTrackingDetails](#NestedTrackingDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

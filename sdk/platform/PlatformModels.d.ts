@@ -459,9 +459,9 @@ declare class Validator {
     static PaymentGatewayToBeReviewed(): any;
     static ErrorCodeAndDescription(): any;
     static HttpErrorCodeAndResponse(): any;
+    static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
     static IntentApp(): any;
-    static IntentAppErrorList(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptions(): any;
