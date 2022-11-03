@@ -61,7 +61,7 @@ declare class FileStorage {
     /**
      * @param {Object} arg - Arg object.
      * @param {SignUrlRequest} arg.body
-     * @summary: Explain here
+     * @summary: Gives signed urls to access private files
      * @description: Describe here
      */
     getSignUrls({ body }?: {
