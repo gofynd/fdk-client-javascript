@@ -278,10 +278,11 @@ class CompanyProfile {
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
-  getLocations({ storeType, q, stage, pageNo, pageSize } = {}) {
+  getLocations({ storeType, q, stage, pageNo, pageSize, locationIds } = {}) {
     const { error } = CompanyProfileValidator.getLocations().validate(
       {
         storeType,
@@ -289,6 +290,7 @@ class CompanyProfile {
         stage,
         pageNo,
         pageSize,
+        locationIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -302,6 +304,7 @@ class CompanyProfile {
     query_params["stage"] = stage;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["location_ids"] = locationIds;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -321,10 +324,11 @@ class CompanyProfile {
    *   unverified companies.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
-  getLocationsPaginator({ storeType, q, stage, pageSize } = {}) {
+  getLocationsPaginator({ storeType, q, stage, pageSize, locationIds } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -336,6 +340,7 @@ class CompanyProfile {
         stage: stage,
         pageNo: pageNo,
         pageSize: pageSize,
+        locationIds: locationIds,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

@@ -12,11 +12,5 @@ class OrderManageValidator {
       bagId: Joi.number().required(),
     }).required();
   }
-
-  static manualStoreReassignment() {
-    return Joi.object({
-      body: Validator.ManualStoreReassign().required(),
-    }).required();
-  }
 }
 module.exports = OrderManageValidator;

@@ -8,7 +8,6 @@
 Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
-* [manualStoreReassignment](#manualstorereassignment)
 
 
 
@@ -165,61 +164,6 @@ It shows the journey of the shipment!
 ---
 
 
-### manualStoreReassignment
-
-
-
-
-```javascript
-// Promise
-const promise = client.orderManage.manualStoreReassignment({  body : value });
-
-// Async/Await
-const data = await client.orderManage.manualStoreReassignment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ManualStoreReassign](#ManualStoreReassign) | yes | Request body |
-
-
-Manual Store Reassignment
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Successfully reassigned store!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
@@ -229,8 +173,8 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
  | quantity | number |  no  |  |
+ | identifier | string |  no  |  |
 
 ---
 
@@ -244,6 +188,7 @@ Successfully reassigned store!
  | reason | [number] |  no  |  |
  | products | [[ProductDetail](#ProductDetail)] |  no  |  |
  | store_invoice_id | string |  no  |  |
+ | bags | [number] |  no  |  |
  | data_update | string |  no  |  |
 
 ---
@@ -266,9 +211,9 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
- | exclude_bags_next_state | string |  yes  |  |
  | status | string |  yes  |  |
+ | exclude_bags_next_state | string |  no  |  |
+ | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
 
 ---
 
@@ -279,9 +224,9 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [Statuses](#Statuses) |  no  |  |
  | task | boolean |  no  |  |
  | force_transition | boolean |  no  |  |
+ | statuses | [[Statuses](#Statuses)] |  no  |  |
 
 ---
 
@@ -292,8 +237,8 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | [string] |  no  |  |
+ | success | boolean |  no  |  |
 
 ---
 
@@ -304,7 +249,6 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
  | message | string |  no  |  |
 
 ---
@@ -316,15 +260,15 @@ Successfully reassigned store!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ticket_url | string |  no  |  |
- | l2_detail | string |  no  |  |
- | user | string |  yes  |  |
- | message | string |  yes  |  |
- | ticket_id | string |  no  |  |
- | createdat | string |  yes  |  |
- | l1_detail | string |  no  |  |
  | type | string |  yes  |  |
  | l3_detail | string |  no  |  |
+ | l2_detail | string |  no  |  |
+ | message | string |  yes  |  |
+ | l1_detail | string |  no  |  |
+ | ticket_id | string |  no  |  |
+ | createdat | string |  yes  |  |
+ | user | string |  yes  |  |
+ | ticket_url | string |  no  |  |
 
 ---
 
@@ -336,32 +280,6 @@ Successfully reassigned store!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
-
----
-
-
- 
- 
- #### [ManualStoreReassign](#ManualStoreReassign)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipment_id | string |  yes  |  |
- | reason_id | [number] |  no  |  |
- | store_id | number |  yes  |  |
- | reason_text | string |  no  |  |
-
----
-
-
- 
- 
- #### [SuccessResponse](#SuccessResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
- | message | string |  no  |  |
 
 ---
 
