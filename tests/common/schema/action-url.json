@@ -134,6 +134,30 @@
       "result": {
         "path": "/auth/register"
       }
+    },
+    {
+      "name": "Shipping policy  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "shipping-policy"
+        }
+      },
+      "result": {
+        "path": "/shipping-policy"
+      }
+    },
+    {
+      "name": "Return policy  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "return-policy"
+        }
+      },
+      "result": {
+        "path": "/return-policy"
+      }
     }
   ]
 }
