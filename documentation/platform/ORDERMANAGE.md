@@ -8,6 +8,7 @@
 Update Status all platform shipment api(s)
 * [statusInternalUpdate](#statusinternalupdate)
 * [getShipmentHistory](#getshipmenthistory)
+* [manualStoreReassignment](#manualstorereassignment)
 
 
 
@@ -164,6 +165,61 @@ It shows the journey of the shipment!
 ---
 
 
+### manualStoreReassignment
+
+
+
+
+```javascript
+// Promise
+const promise = client.orderManage.manualStoreReassignment({  body : value });
+
+// Async/Await
+const data = await client.orderManage.manualStoreReassignment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ManualStoreReassign](#ManualStoreReassign) | yes | Request body |
+
+
+Manual Store Reassignment
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+Successfully reassigned store!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -173,8 +229,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
  | identifier | string |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -185,11 +241,11 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | [number] |  no  |  |
  | products | [[ProductDetail](#ProductDetail)] |  no  |  |
- | store_invoice_id | string |  no  |  |
  | bags | [number] |  no  |  |
  | data_update | string |  no  |  |
+ | store_invoice_id | string |  no  |  |
+ | reason | [number] |  no  |  |
 
 ---
 
@@ -211,8 +267,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  yes  |  |
  | exclude_bags_next_state | string |  no  |  |
+ | status | string |  yes  |  |
  | shipments | [ShipmentDetail](#ShipmentDetail) |  no  |  |
 
 ---
@@ -224,9 +280,9 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | task | boolean |  no  |  |
- | force_transition | boolean |  no  |  |
  | statuses | [[Statuses](#Statuses)] |  no  |  |
+ | force_transition | boolean |  no  |  |
+ | task | boolean |  no  |  |
 
 ---
 
@@ -237,8 +293,8 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | [string] |  no  |  |
  | success | boolean |  no  |  |
+ | message | [string] |  no  |  |
 
 ---
 
@@ -260,15 +316,15 @@ It shows the journey of the shipment!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | l3_detail | string |  no  |  |
  | l2_detail | string |  no  |  |
- | message | string |  yes  |  |
  | l1_detail | string |  no  |  |
- | ticket_id | string |  no  |  |
+ | l3_detail | string |  no  |  |
+ | type | string |  yes  |  |
  | createdat | string |  yes  |  |
- | user | string |  yes  |  |
+ | message | string |  yes  |  |
+ | ticket_id | string |  no  |  |
  | ticket_url | string |  no  |  |
+ | user | string |  yes  |  |
 
 ---
 
@@ -280,6 +336,32 @@ It shows the journey of the shipment!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ManualStoreReassign](#ManualStoreReassign)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | store_id | number |  yes  |  |
+ | reason_id | [number] |  no  |  |
+ | shipment_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SuccessResponse](#SuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
