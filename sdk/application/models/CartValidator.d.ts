@@ -4,6 +4,7 @@ declare class CartValidator {
     static getCartLastModified(): any;
     static addItems(): any;
     static updateCart(): any;
+    static deleteCart(): any;
     static getItemCount(): any;
     static getCoupons(): any;
     static applyCoupon(): any;
