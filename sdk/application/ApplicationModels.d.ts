@@ -630,8 +630,8 @@ export class Validator {
     static PaymentStatusUpdateResponse(): any;
     static AggregatorRoute(): any;
     static PaymentFlow(): any;
-    static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
+    static IntentAppErrorList(): any;
     static IntentApp(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
@@ -673,11 +673,11 @@ export class Validator {
     static RedirectToAggregatorResponse(): any;
     static CreditDetail(): any;
     static CheckCreditResponse(): any;
+    static MarketplaceInfo(): any;
     static KYCAddress(): any;
     static BusinessDetails(): any;
-    static DeviceDetails(): any;
     static UserPersonalInfoInDetails(): any;
-    static MarketplaceInfo(): any;
+    static DeviceDetails(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;
