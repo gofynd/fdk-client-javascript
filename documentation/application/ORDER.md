@@ -35,14 +35,16 @@ const promise = order.getOrders({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
- status : value });
+ status : value,
+ customMeta : value });
 
 // Async/Await
 const data = await order.getOrders({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
- status : value });
+ status : value,
+ customMeta : value });
 ```
 
 
@@ -55,7 +57,8 @@ const data = await order.getOrders({  pageNo : value,
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | fromDate | string | no | The date from which the orders should be retrieved. |    
 | toDate | string | no | The date till which the orders should be retrieved. |    
-| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |  
+| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
+| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
 
 
 
@@ -1082,7 +1085,7 @@ Success, the code is valid and returns a SignedUrl
  | brand_calculated_amount | number |  no  |  |
  | coupon_value | number |  no  |  |
  | amount_paid_roundoff | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | refund_credit | number |  no  |  |
  | cashback | number |  no  |  |
  | refund_amount | number |  no  |  |
@@ -1299,6 +1302,7 @@ Success, the code is valid and returns a SignedUrl
  | invoice | [Invoice](#Invoice) |  no  |  |
  | comment | string |  no  |  |
  | order_type | string |  no  |  |
+ | custom_meta | [any] |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
  | bags | [[Bags](#Bags)] |  no  |  |

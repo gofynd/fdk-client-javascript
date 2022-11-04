@@ -14,6 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
+* [getOrderDetails](#getorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -25,9 +26,6 @@ Handles Platform websites OMS
 * [getShipmentAddress](#getshipmentaddress)
 * [updateShipmentAddress](#updateshipmentaddress)
 * [getOrdersByApplicationId](#getordersbyapplicationid)
-* [getPing](#getping)
-* [voiceCallback](#voicecallback)
-* [voiceClickToCall](#voiceclicktocall)
 
 
 
@@ -333,7 +331,6 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -352,7 +349,6 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -377,7 +373,6 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | deploymentStores | string | no | Selected Deployment Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -432,7 +427,6 @@ const promise = client.order.getOrderLanesCountByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -446,7 +440,6 @@ const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -466,7 +459,6 @@ const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -566,6 +558,68 @@ Success
 ---
 
 
+### getOrderDetails
+Get Order Details for company based on Company Id and Order Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+ next : value,
+ previous : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderId | string | no | Order Id |    
+| next | string | no | Next |    
+| previous | string | no | Previous |  
+
+
+
+Get Orders
+
+*Returned Response:*
+
+
+
+
+[OrderDetails](#OrderDetails)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getPicklistOrdersByCompanyId
 Get Orders for company based on Company Id
 
@@ -583,7 +637,6 @@ const promise = client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -597,7 +650,6 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -617,7 +669,6 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -1224,7 +1275,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
 | userId | string | no | User Id |    
-| shortenUrls | boolean | no | Shorten URL option |    
+| shortenUrls | string | no | User Id |    
 | filterType | string | no | Filters |  
 
 
@@ -1237,167 +1288,6 @@ Get Orders at Application Level
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPing
-Get Ping
-
-
-
-```javascript
-// Promise
-const promise = client.order.getPing();
-
-// Async/Await
-const data = await client.order.getPing();
-```
-
-
-
-
-
-
-Get Ping
-
-*Returned Response:*
-
-
-
-
-[GetPingResponse](#GetPingResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### voiceCallback
-Get Voice Callback
-
-
-
-```javascript
-// Promise
-const promise = client.order.voiceCallback();
-
-// Async/Await
-const data = await client.order.voiceCallback();
-```
-
-
-
-
-
-
-Voice Callback
-
-*Returned Response:*
-
-
-
-
-[GetVoiceCallbackResponse](#GetVoiceCallbackResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### voiceClickToCall
-Get Voice Click to Call
-
-
-
-```javascript
-// Promise
-const promise = client.order.voiceClickToCall({  caller : value,
- receiver : value });
-
-// Async/Await
-const data = await client.order.voiceClickToCall({  caller : value,
- receiver : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| caller | string | yes | Caller contact number |   
-| receiver | string | yes | Receiver contact number |  
-
-
-
-Voice Click to Call
-
-*Returned Response:*
-
-
-
-
-[GetClickToCallResponse](#GetClickToCallResponse)
 
 Success
 
@@ -2785,7 +2675,7 @@ Success
  | hsn_code | string |  no  |  |
  | price_effective | number |  no  |  |
  | cod_charges | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | fynd_credits | number |  no  |  |
  | refund_amount | number |  no  |  |
  | cashback_applied | number |  no  |  |
@@ -2925,7 +2815,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | gst_tag | string |  no  |  |
  | hsn_code | string |  no  |  |
  | value_of_good | number |  no  |  |

@@ -58,13 +58,15 @@ class Order {
    * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
    * @param {number} [arg.status] - A filter to retrieve orders by their
    *   current status such as *placed*, *delivered*, etc.
+   * @param {string} [arg.customMeta] - A filter and retrieve data using
+   *   special fields included for special use-cases
    * @returns {Promise<OrderList>} - Success response
    * @summary: Get all orders
    * @description: Use this API to retrieve all the orders.
    */
-  getOrders({ pageNo, pageSize, fromDate, toDate, status } = {}) {
+  getOrders({ pageNo, pageSize, fromDate, toDate, status, customMeta } = {}) {
     const { error } = OrderValidator.getOrders().validate(
-      { pageNo, pageSize, fromDate, toDate, status },
+      { pageNo, pageSize, fromDate, toDate, status, customMeta },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -76,6 +78,7 @@ class Order {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
     query_params["status"] = status;
+    query_params["custom_meta"] = customMeta;
 
     const xHeaders = {};
 
