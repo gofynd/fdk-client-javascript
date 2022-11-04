@@ -57,7 +57,7 @@ const data = await order.getOrders({  pageNo : value,
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | fromDate | string | no | The date from which the orders should be retrieved. |    
 | toDate | string | no | The date till which the orders should be retrieved. |    
-| status | string | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
+| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
 | customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
 
 

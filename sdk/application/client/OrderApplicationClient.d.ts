@@ -27,7 +27,7 @@ declare class Order {
      * @param {string} [arg.fromDate] - The date from which the orders should be
      *   retrieved.
      * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
-     * @param {string} [arg.status] - A filter to retrieve orders by their
+     * @param {number} [arg.status] - A filter to retrieve orders by their
      *   current status such as *placed*, *delivered*, etc.
      * @param {string} [arg.customMeta] - A filter and retrieve data using
      *   special fields included for special use-cases
@@ -40,7 +40,7 @@ declare class Order {
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
-        status?: string;
+        status?: number;
         customMeta?: string;
     }): Promise<any>;
     /**
