@@ -8,6 +8,7 @@ class OrderValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       status: Joi.number(),
+      customMeta: Joi.string().allow(""),
     });
   }
 

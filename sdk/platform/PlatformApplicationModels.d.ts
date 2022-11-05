@@ -69,7 +69,6 @@ export class ContentValidator {
     static getDataLoaders(): any;
     static deleteDataLoader(): any;
     static editDataLoader(): any;
-    static getDataLoadersByService(): any;
     static selectDataLoader(): any;
     static resetDataLoader(): any;
     static getFaqCategories(): any;
@@ -150,6 +149,8 @@ export class CommunicationValidator {
     static triggerCampaignJob(): any;
     static getJobLogs(): any;
     static getCommunicationLogs(): any;
+    static sendOtp(): any;
+    static verfiyOtp(): any;
     static getSmsProviders(): any;
     static createSmsProvider(): any;
     static getSmsProviderById(): any;
@@ -172,6 +173,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
+    static getOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -183,13 +185,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
@@ -225,6 +227,7 @@ export class CatalogValidator {
     static getAppicationProducts(): any;
     static getProductDetailBySlug(): any;
     static getAppProducts(): any;
+    static getAppInventory(): any;
     static getAppLocations(): any;
     static getApplicationBrandListing(): any;
     static updateAppBrand(): any;

@@ -95,6 +95,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static renderHTML() {
+    return Joi.object({
+      body: Validator.renderHTMLRequest().required(),
+    }).required();
+  }
+
   static getActiveRefundTransferModes() {
     return Joi.object({});
   }

@@ -14,6 +14,7 @@ declare class PaymentValidator {
     static getRupifiBannerDetails(): any;
     static getEpaylaterBannerDetails(): any;
     static resendOrCancelPayment(): any;
+    static renderHTML(): any;
     static getActiveRefundTransferModes(): any;
     static enableOrDisableRefundTransferMode(): any;
     static getUserBeneficiariesDetail(): any;
