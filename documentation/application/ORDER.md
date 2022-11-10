@@ -1007,7 +1007,7 @@ Success, the code is valid and returns a SignedUrl
  | brand_calculated_amount | number |  no  |  |
  | coupon_value | number |  no  |  |
  | amount_paid_roundoff | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | refund_credit | number |  no  |  |
  | cashback | number |  no  |  |
  | refund_amount | number |  no  |  |

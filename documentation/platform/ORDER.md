@@ -2672,7 +2672,7 @@ Success
  | hsn_code | string |  no  |  |
  | price_effective | number |  no  |  |
  | cod_charges | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | fynd_credits | number |  no  |  |
  | refund_amount | number |  no  |  |
  | cashback_applied | number |  no  |  |
@@ -2812,7 +2812,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | gst_tag | string |  no  |  |
  | hsn_code | string |  no  |  |
  | value_of_good | number |  no  |  |

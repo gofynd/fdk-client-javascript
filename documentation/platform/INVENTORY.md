@@ -610,8 +610,8 @@ const data = await client.inventory.getJobCodeMetrics({  code : value,
 | code | string | yes | Code |    
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |    
-| status | string | no | Status |    
-| date | string | no | From Date |  
+| status | string | no |  |    
+| date | string | no |  |  
 
 
 
@@ -1410,7 +1410,6 @@ Successful operation
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | required | boolean |  no  |  |
- | mapping | [String: [PropBeanConfig](#PropBeanConfig)] |  no  |  |
  | optional | boolean |  no  |  |
  | send | [Send](#Send) |  no  |  |
  | validations | [string] |  no  |  |
