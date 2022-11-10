@@ -32,7 +32,6 @@ declare class Catalog {
         getProductComparisonBySlugs: string;
         getSimilarComparisonProductBySlug: string;
         getComparedFrequentlyProductBySlug: string;
-        getProductSimilarByIdentifier: string;
         getProductVariantsBySlug: string;
         getProductStockByIds: string;
         getProductStockForTimeByIds: string;
@@ -123,25 +122,6 @@ declare class Catalog {
      */
     getComparedFrequentlyProductBySlug({ slug }?: {
         slug: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
-     * @param {string} arg.similarType - Similarity criteria such as basic,
-     *   visual, price, seller, category and spec. Visual - Products having
-     *   similar patterns, Price - Products in similar price range, Seller -
-     *   Products sold by the same seller, Category - Products belonging to the
-     *   same category, e.g. sports shoes, Spec - Products having similar
-     *   specifications, e.g. phones with same memory.
-     * @returns {Promise<SimilarProductByTypeResponse>} - Success response
-     * @summary: Get similar products
-     * @description: Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
-     */
-    getProductSimilarByIdentifier({ slug, similarType }?: {
-        slug: string;
-        similarType: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
