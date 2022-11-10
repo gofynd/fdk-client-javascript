@@ -212,7 +212,7 @@ declare class Payment {
     /**
      * @param {Object} arg - Arg object.
      * @param {renderHTMLRequest} arg.body
-     * @returns {Promise<renderHTMLResponse>} - Success response
+     * @returns {Promise<any>} - Success response
      * @summary: Convert base64 string to HTML form
      * @description: Use this API to decode base64 html form to plain HTML string.
      */
