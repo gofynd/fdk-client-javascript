@@ -1876,22 +1876,12 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | string |  no  |  |
- | redirections | [[RedirectionSchema](#RedirectionSchema)] |  no  |  |
  | _id | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
-
----
-
-
- 
- 
- #### [RedirectionSchema](#RedirectionSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | redirect_from | string |  no  |  |
  | redirect_to | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | created_at | string |  no  |  |
+ | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
 
 ---
 
@@ -2334,7 +2324,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
- | sub_navigation | [any] |  no  |  |
+ | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
 
@@ -2642,6 +2632,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | _id | string |  no  |  |
  | question | string |  no  |  |
  | answer | string |  no  |  |
+ | tags | [string] |  no  |  |
 
 ---
 

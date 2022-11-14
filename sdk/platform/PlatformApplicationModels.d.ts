@@ -85,8 +85,6 @@ export class ContentValidator {
     static createLandingPage(): any;
     static updateLandingPage(): any;
     static deleteLandingPage(): any;
-    static getLegalInformation(): any;
-    static updateLegalInformation(): any;
     static getNavigations(): any;
     static createNavigation(): any;
     static getDefaultNavigations(): any;
@@ -98,8 +96,11 @@ export class ContentValidator {
     static createPagePreview(): any;
     static updatePagePreview(): any;
     static deletePage(): any;
-    static updatePathRedirectionRules(): any;
+    static addPathRedirectionRules(): any;
     static getPathRedirectionRules(): any;
+    static getPathRedirectionRule(): any;
+    static updatePathRedirectionRules(): any;
+    static deletePathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -185,16 +186,15 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
-    static getAppProduct(): any;
     static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
