@@ -28,7 +28,7 @@ declare class FileStorage {
      */
     startUpload({ namespace, body }?: {
         namespace: string;
-        body: any;
+        body: StartRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -56,7 +56,7 @@ declare class FileStorage {
      */
     completeUpload({ namespace, body }?: {
         namespace: string;
-        body: any;
+        body: StartResponse;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -65,7 +65,7 @@ declare class FileStorage {
      * @description: Describe here
      */
     getSignUrls({ body }?: {
-        body: any;
+        body: SignUrlRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -76,7 +76,7 @@ declare class FileStorage {
      */
     copyFiles({ body, sync }?: {
         sync?: boolean;
-        body: any;
+        body: BulkRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

@@ -18,7 +18,7 @@ declare class Payment {
      * @description: Save Payout
      */
     savePayout({ body }?: {
-        body: any;
+        body: PayoutRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -29,7 +29,7 @@ declare class Payment {
      */
     updatePayout({ uniqueTransferNo, body }?: {
         uniqueTransferNo: string;
-        body: any;
+        body: PayoutRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -40,7 +40,7 @@ declare class Payment {
      */
     activateAndDectivatePayout({ uniqueTransferNo, body }?: {
         uniqueTransferNo: string;
-        body: any;
+        body: UpdatePayoutRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -84,7 +84,7 @@ declare class Payment {
      * @description: Uses this api to Save Subscription Setup Intent
      */
     saveSubscriptionSetupIntent({ body }?: {
-        body: any;
+        body: SaveSubscriptionSetupIntentRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
