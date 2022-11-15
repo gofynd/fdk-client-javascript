@@ -327,7 +327,7 @@ Success
 
 
 ### getSignUrls
-Explain here
+Gives signed urls to access private files
 
 
 
@@ -413,7 +413,7 @@ Copy Files
 
 
 
-[BulkResponse](#BulkResponse)
+[BulkUploadResponse](#BulkUploadResponse)
 
 Success
 
@@ -498,7 +498,7 @@ Copy Files
 
 
 
-[BulkResponse](#BulkResponse)
+[BulkUploadResponse](#BulkUploadResponse)
 
 Success
 
@@ -856,7 +856,7 @@ Success
 
  
  
- #### [BulkResponse](#BulkResponse)
+ #### [BulkUploadResponse](#BulkUploadResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

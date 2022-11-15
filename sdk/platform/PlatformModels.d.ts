@@ -13,6 +13,7 @@ export class LeadValidator {
     static submitFeedback(): any;
     static getTokenForVideoRoom(): any;
     static getVideoParticipants(): any;
+    static getGeneralConfig(): any;
 }
 export class BillingValidator {
     static checkCouponValidity(): any;
