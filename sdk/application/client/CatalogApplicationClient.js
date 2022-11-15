@@ -826,8 +826,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.q - The search query for entering partial or full
    *   name of a product, brand or category. For example, if the given search
-   *   query `q` is _ski_, the relevant search suggestions could be _skirt_,
-   *   _ski shoes_, __skin cream_ etc.
+   *   query `q` is *ski*, the relevant search suggestions could be *skirt*,
+   *   *ski shoes*, _*skin cream* etc.
    * @returns {Promise<AutoCompleteResponse>} - Success response
    * @summary: Get relevant suggestions for a search query
    * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.

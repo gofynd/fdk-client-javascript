@@ -21,8 +21,8 @@ declare class Rewards {
      * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
      */
     getPointsOnProduct({ body }?: {
-        body: CatalogueOrderRequest;
-    }): Promise<CatalogueOrderResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
@@ -32,7 +32,7 @@ declare class Rewards {
      */
     getOfferByName({ name }?: {
         name: string;
-    }): Promise<Offer>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {OrderDiscountRequest} arg.body
@@ -41,15 +41,15 @@ declare class Rewards {
      * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
      */
     getOrderDiscount({ body }?: {
-        body: OrderDiscountRequest;
-    }): Promise<OrderDiscountResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<PointsResponse>} - Success response
      * @summary: Get reward points available with a user
      * @description: Use this API to retrieve total available points of a user for current application
      */
-    getUserPoints({}?: any): Promise<PointsResponse>;
+    getUserPoints({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
@@ -62,7 +62,7 @@ declare class Rewards {
     getUserPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
-    }): Promise<PointsHistoryResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -78,7 +78,7 @@ declare class Rewards {
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve the referral details a user has configured in the application.
      */
-    getUserReferralDetails({}?: any): Promise<ReferralDetailsResponse>;
+    getUserReferralDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {RedeemReferralCodeRequest} arg.body
@@ -87,7 +87,7 @@ declare class Rewards {
      * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
      */
     redeemReferralCode({ body }?: {
-        body: RedeemReferralCodeRequest;
-    }): Promise<RedeemReferralCodeResponse>;
+        body: any;
+    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

@@ -11,7 +11,7 @@ declare class Analytics {
      */
     createExportJob({ exportType, body }?: {
         exportType: string;
-        body: ExportJobReq;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -37,7 +37,7 @@ declare class Analytics {
         logType: string;
         pageNo?: number;
         pageSize?: number;
-        body: GetLogsListReq;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -50,7 +50,7 @@ declare class Analytics {
     getLogsListPaginator({ logType, pageSize, body }?: {
         logType: string;
         pageSize?: number;
-        body: GetLogsListReq;
+        body: any;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -65,7 +65,7 @@ declare class Analytics {
         pageNo?: number;
         pageSize?: number;
         logType: string;
-        body: SearchLogReq;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -78,7 +78,7 @@ declare class Analytics {
     searchLogsPaginator({ pageSize, logType, body }?: {
         pageSize?: number;
         logType: string;
-        body: SearchLogReq;
+        body: any;
     }): Paginator;
 }
 import Paginator = require("../../common/Paginator");

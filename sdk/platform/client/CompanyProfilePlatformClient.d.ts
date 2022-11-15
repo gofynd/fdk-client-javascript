@@ -15,7 +15,7 @@ declare class CompanyProfile {
      * @description: This API allows to edit the company profile of the seller account.
      */
     updateCompany({ body }?: {
-        body: UpdateCompany;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -41,7 +41,7 @@ declare class CompanyProfile {
      */
     editBrand({ brandId, body }?: {
         brandId: string;
-        body: CreateUpdateBrandRequestSerializer;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -50,7 +50,7 @@ declare class CompanyProfile {
      * @description: This API allows to create a brand associated to a company.
      */
     createBrand({ body }?: {
-        body: CreateUpdateBrandRequestSerializer;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -86,7 +86,7 @@ declare class CompanyProfile {
      * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
      */
     createCompanyBrandMapping({ body }?: {
-        body: CompanyBrandPostRequestSerializer;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -138,7 +138,7 @@ declare class CompanyProfile {
      * @description: This API allows to edit a location associated to a company.
      */
     createLocation({ body }?: {
-        body: LocationSerializer;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -158,7 +158,7 @@ declare class CompanyProfile {
      */
     updateLocation({ locationId, body }?: {
         locationId: string;
-        body: LocationSerializer;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -167,7 +167,7 @@ declare class CompanyProfile {
      * @description: This API allows to create a location associated to a company.
      */
     createLocationBulk({ body }?: {
-        body: BulkLocationSerializer;
+        body: any;
     }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

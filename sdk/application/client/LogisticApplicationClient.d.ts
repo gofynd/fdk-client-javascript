@@ -17,8 +17,8 @@ declare class Logistic {
      * @description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
      */
     getTatProduct({ body }?: {
-        body: GetTatProductReqBody;
-    }): Promise<GetTatProductResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetPincodeZonesReqBody} arg.body
@@ -27,8 +27,8 @@ declare class Logistic {
      * @description: Get to know the zones of a specefic pincode
      */
     getPincodeZones({ body }?: {
-        body: GetPincodeZonesReqBody;
-    }): Promise<GetPincodeZonesResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.pincode - The PIN Code of the area, e.g. 400059
@@ -38,5 +38,5 @@ declare class Logistic {
      */
     getPincodeCity({ pincode }?: {
         pincode: string;
-    }): Promise<GetPincodeCityResponse>;
+    }): Promise<any>;
 }

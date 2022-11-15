@@ -22,7 +22,7 @@ declare class Webhook {
      * @description: Register Subscriber
      */
     registerSubscriberToEvent({ body }?: {
-        body: SubscriberConfig;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -31,7 +31,7 @@ declare class Webhook {
      * @description: Update Subscriber
      */
     updateSubscriberConfig({ body }?: {
-        body: SubscriberConfig;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

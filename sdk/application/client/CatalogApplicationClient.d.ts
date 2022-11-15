@@ -48,7 +48,7 @@ declare class Catalog {
      */
     getProductDetailBySlug({ slug }?: {
         slug: string;
-    }): Promise<ProductDetail>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -63,7 +63,7 @@ declare class Catalog {
     getProductSizesBySlug({ slug, storeId }?: {
         slug: string;
         storeId?: number;
-    }): Promise<ProductSizes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string[]} arg.slug - A short, human-readable, URL-friendly
@@ -75,7 +75,7 @@ declare class Catalog {
      */
     getProductComparisonBySlugs({ slug }?: {
         slug: string[];
-    }): Promise<ProductsComparisonResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -87,7 +87,7 @@ declare class Catalog {
      */
     getSimilarComparisonProductBySlug({ slug }?: {
         slug: string;
-    }): Promise<ProductCompareResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -99,7 +99,7 @@ declare class Catalog {
      */
     getComparedFrequentlyProductBySlug({ slug }?: {
         slug: string;
-    }): Promise<ProductFrequentlyComparedSimilarResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -118,7 +118,7 @@ declare class Catalog {
     getProductSimilarByIdentifier({ slug, similarType }?: {
         slug: string;
         similarType: string;
-    }): Promise<SimilarProductByTypeResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -130,7 +130,7 @@ declare class Catalog {
      */
     getProductVariantsBySlug({ slug }?: {
         slug: string;
-    }): Promise<ProductVariantsResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.itemId] - The Item ID of the product (Max. 50 allowed)
@@ -152,7 +152,7 @@ declare class Catalog {
         skuCode?: string;
         ean?: string;
         upc?: string;
-    }): Promise<ProductStockStatusResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
@@ -166,7 +166,7 @@ declare class Catalog {
         timestamp: string;
         pageSize?: number;
         pageId?: string;
-    }): Promise<ProductStockPolling>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
@@ -209,7 +209,7 @@ declare class Catalog {
         pageSize?: number;
         pageNo?: number;
         pageType?: string;
-    }): Promise<ProductListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - The search query for entering partial or full
@@ -251,7 +251,7 @@ declare class Catalog {
         department?: string;
         pageNo?: number;
         pageSize?: number;
-    }): Promise<BrandListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.department] - The name of the department. Use this
@@ -277,7 +277,7 @@ declare class Catalog {
      */
     getBrandDetailBySlug({ slug }?: {
         slug: string;
-    }): Promise<BrandDetailResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.department] - The name of the department. Use this
@@ -290,7 +290,7 @@ declare class Catalog {
      */
     getCategories({ department }?: {
         department?: string;
-    }): Promise<CategoryListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -302,7 +302,7 @@ declare class Catalog {
      */
     getCategoryDetailBySlug({ slug }?: {
         slug: string;
-    }): Promise<CategoryMetaResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.sortOn] - The order in which the list of products
@@ -318,7 +318,7 @@ declare class Catalog {
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
-    }): Promise<HomeListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.sortOn] - The order in which the list of products
@@ -338,20 +338,20 @@ declare class Catalog {
      * @summary: List all the departments
      * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
      */
-    getDepartments({}?: any): Promise<DepartmentResponse>;
+    getDepartments({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.q - The search query for entering partial or full
      *   name of a product, brand or category. For example, if the given search
-     *   query `q` is _ski_, the relevant search suggestions could be _skirt_,
-     *   _ski shoes_, __skin cream_ etc.
+     *   query `q` is *ski*, the relevant search suggestions could be *skirt*,
+     *   *ski shoes*, _*skin cream* etc.
      * @returns {Promise<AutoCompleteResponse>} - Success response
      * @summary: Get relevant suggestions for a search query
      * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
      */
     getSearchResults({ q }?: {
         q: string;
-    }): Promise<AutoCompleteResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -366,7 +366,7 @@ declare class Catalog {
         pageNo?: number;
         pageSize?: number;
         tag?: string[];
-    }): Promise<GetCollectionListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -405,7 +405,7 @@ declare class Catalog {
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
-    }): Promise<ProductListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -442,7 +442,7 @@ declare class Catalog {
      */
     getCollectionDetailBySlug({ slug }?: {
         slug: string;
-    }): Promise<CollectionDetailResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.collectionType - Type of collection followed, i.e.
@@ -457,7 +457,7 @@ declare class Catalog {
         collectionType: string;
         pageId?: string;
         pageSize?: number;
-    }): Promise<GetFollowListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.collectionType - Type of collection followed, i.e.
@@ -482,7 +482,7 @@ declare class Catalog {
     unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
-    }): Promise<FollowPostResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.collectionType - Type of collection followed, i.e.
@@ -495,7 +495,7 @@ declare class Catalog {
     followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
-    }): Promise<FollowPostResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.collectionType - Type of collection, i.e. products,
@@ -508,7 +508,7 @@ declare class Catalog {
     getFollowerCountById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
-    }): Promise<FollowerCountResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.collectionType] - Type of collection, i.e. products,
@@ -519,7 +519,7 @@ declare class Catalog {
      */
     getFollowIds({ collectionType }?: {
         collectionType?: string;
-    }): Promise<FollowIdsResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -545,7 +545,7 @@ declare class Catalog {
         range?: number;
         latitude?: number;
         longitude?: number;
-    }): Promise<StoreListingResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
@@ -593,7 +593,7 @@ declare class Catalog {
         range?: number;
         latitude?: number;
         longitude?: number;
-    }): Promise<ApplicationStoreListing>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
@@ -625,7 +625,7 @@ declare class Catalog {
      */
     getLocationDetailsById({ locationId }?: {
         locationId: number;
-    }): Promise<StoreDetails>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
@@ -637,7 +637,7 @@ declare class Catalog {
     getProductBundlesBySlug({ slug, id }?: {
         slug?: string;
         id?: string;
-    }): Promise<ProductBundle>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -659,7 +659,7 @@ declare class Catalog {
         size: string;
         storeId?: number;
         pincode?: string;
-    }): Promise<ProductSizePriceResponseV2>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -686,7 +686,7 @@ declare class Catalog {
         strategy?: string;
         pageNo?: number;
         pageSize?: number;
-    }): Promise<ProductSizeSellersResponseV2>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
