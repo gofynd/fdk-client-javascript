@@ -1410,7 +1410,6 @@ Successful operation
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | required | boolean |  no  |  |
- | mapping | [String: [PropBeanConfig](#PropBeanConfig)] |  no  |  |
  | optional | boolean |  no  |  |
  | send | [Send](#Send) |  no  |  |
  | validations | [string] |  no  |  |
