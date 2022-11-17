@@ -14,6 +14,8 @@ class Order {
         "/service/application/order/v1.0/orders/shipments/{shipment_id}",
       getShipmentReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
+      getShipmentBagReasons:
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons/",
       updateShipmentStatus:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
       trackShipment:
@@ -80,6 +82,8 @@ class Order {
     query_params["status"] = status;
     query_params["custom_meta"] = customMeta;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -88,7 +92,8 @@ class Order {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -110,6 +115,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -118,7 +125,8 @@ class Order {
         params: { orderId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -141,6 +149,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -149,7 +159,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -172,6 +183,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -180,7 +193,43 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @param {string} arg.bagId - ID of the bag.
+   * @returns {Promise<ShipmentBagReasons>} - Success response
+   * @summary: Get reasons at l1,l2 and l3 for cancellation and return based on department
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   */
+  getShipmentBagReasons({ shipmentId, bagId } = {}) {
+    const { error } = OrderValidator.getShipmentBagReasons().validate(
+      { shipmentId, bagId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getShipmentBagReasons"],
+        params: { shipmentId, bagId },
+      }),
+      query_params,
+      undefined,
+      xHeaders
     );
   }
 
@@ -204,6 +253,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -212,7 +263,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -235,6 +287,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -243,7 +297,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -265,6 +320,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -273,7 +330,8 @@ class Order {
         params: { orderId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -298,6 +356,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -306,7 +366,8 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -331,6 +392,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -339,7 +402,8 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -365,6 +429,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -373,7 +439,8 @@ class Order {
         params: { orderId, shipmentId },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -396,6 +463,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -404,7 +473,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -427,6 +497,8 @@ class Order {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -435,7 +507,8 @@ class Order {
         params: { shipmentId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

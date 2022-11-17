@@ -26,12 +26,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/status`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -55,12 +58,15 @@ class Order {
     const query_params = {};
     query_params["bag_id"] = bagId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/activity/status`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -83,12 +89,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/store/process-shipments`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -111,12 +120,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/check-refund/${shipmentId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -139,12 +151,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/actions/can-break`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -230,12 +245,15 @@ class Order {
     query_params["dp"] = dp;
     query_params["filter_type"] = filterType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -301,12 +319,15 @@ class Order {
     query_params["status"] = status;
     query_params["filter_type"] = filterType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/lane-count`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -336,12 +357,15 @@ class Order {
     query_params["next"] = next;
     query_params["previous"] = previous;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/details`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -407,12 +431,15 @@ class Order {
     query_params["status"] = status;
     query_params["filter_type"] = filterType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/picklist`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -440,12 +467,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/shipments/${shipmentId}/address/${addressCategory}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -475,12 +505,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/shipments/${shipmentId}/address/${addressCategory}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

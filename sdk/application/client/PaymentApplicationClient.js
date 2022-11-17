@@ -93,6 +93,9 @@ class Payment {
     const query_params = {};
     query_params["refresh"] = refresh;
 
+    const xHeaders = {};
+    xHeaders["x-api-token"] = xApiToken;
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -101,7 +104,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -122,6 +126,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -130,7 +136,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -152,6 +159,8 @@ class Payment {
     const query_params = {};
     query_params["refresh"] = refresh;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -160,7 +169,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -182,6 +192,8 @@ class Payment {
     const query_params = {};
     query_params["force_refresh"] = forceRefresh;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -190,7 +202,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -211,6 +224,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -219,7 +234,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -240,6 +256,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -248,7 +266,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -269,6 +288,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -277,7 +298,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -298,6 +320,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -306,7 +330,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -327,6 +352,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -335,7 +362,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -389,6 +417,8 @@ class Payment {
     query_params["card_reference"] = cardReference;
     query_params["user_details"] = userDetails;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -397,7 +427,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -457,6 +488,8 @@ class Payment {
     query_params["order_type"] = orderType;
     query_params["user_details"] = userDetails;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -465,7 +498,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -485,6 +519,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -493,7 +529,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -513,6 +550,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -521,7 +560,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -542,6 +582,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -550,7 +592,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -571,6 +614,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -579,7 +624,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -599,6 +645,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -607,7 +655,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -630,6 +679,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -638,7 +689,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -661,6 +713,8 @@ class Payment {
     const query_params = {};
     query_params["order_id"] = orderId;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -669,7 +723,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -692,6 +747,8 @@ class Payment {
     const query_params = {};
     query_params["ifsc_code"] = ifscCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -700,7 +757,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -723,6 +781,8 @@ class Payment {
     const query_params = {};
     query_params["order_id"] = orderId;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -731,7 +791,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -754,6 +815,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -762,7 +825,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -783,6 +847,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -791,7 +857,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -812,6 +879,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -820,7 +889,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -843,6 +913,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -851,7 +923,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -872,6 +945,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -880,7 +955,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -902,6 +978,8 @@ class Payment {
     const query_params = {};
     query_params["aggregator"] = aggregator;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -910,7 +988,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -936,6 +1015,8 @@ class Payment {
     query_params["source"] = source;
     query_params["aggregator"] = aggregator;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -944,7 +1025,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -966,6 +1048,8 @@ class Payment {
     const query_params = {};
     query_params["aggregator"] = aggregator;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -974,7 +1058,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -995,6 +1080,8 @@ class Payment {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1003,7 +1090,8 @@ class Payment {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }
