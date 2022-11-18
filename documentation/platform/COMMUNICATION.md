@@ -5192,6 +5192,18 @@ Success
 
  
  
+ #### [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)
 
  | Properties | Type | Nullable | Description |
@@ -5225,6 +5237,7 @@ Success
  | otp_length | number |  no  |  |
  | expiry | number |  no  |  |
  | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate) |  no  |  |
+ | provider | [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider) |  no  |  |
 
 ---
 
@@ -5237,7 +5250,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | otp_length | number |  no  |  |
  | expiry | number |  no  |  |
- | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate) |  no  |  |
+ | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
 
 ---
 
