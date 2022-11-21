@@ -1094,6 +1094,7 @@ Success, the code is valid and returns a SignedUrl
  | can_return | boolean |  no  |  |
  | delivery_date | string |  no  |  |
  | returnable_date | string |  no  |  |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
 
 ---
 
@@ -1216,6 +1217,88 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
  | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromos](#AppliedPromos)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | promo_id | string |  no  |  |
+ | promotion_name | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ | article_quantity | number |  no  |  |
+ | mrp_promotion | boolean |  no  |  |
+ | applied_free_articles | [AppliedFreeArticles](#AppliedFreeArticles) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | article_id | string |  no  |  |
+ | parent_item_identifier | string |  no  |  |
+ | free_gift_item_details | [[FreeGiftItemDetails](#FreeGiftItemDetails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItemDetails](#FreeGiftItemDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_id | string |  no  |  |
+ | item_name | string |  no  |  |
+ | item_brand_name | string |  no  |  |
+ | item_price_details | [ItemPriceDetails](#ItemPriceDetails) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemPriceDetails](#ItemPriceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | marked | [MarkedValues](#MarkedValues) |  no  |  |
+ | effective | [EffectiveValues](#EffectiveValues) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarkedValues](#MarkedValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EffectiveValues](#EffectiveValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
 
 ---
 
