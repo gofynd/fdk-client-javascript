@@ -15,7 +15,7 @@
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
-* [Order](ORDER.md) - Handles Platform websites OMS 
+* [Order](ORDER.md) - Handles all platform order and shipment api(s) 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [PosCart](POSCART.md) - Cart APIs 
 * [Logistic](LOGISTIC.md) - Handles Platform websites OMS 
