@@ -24,6 +24,8 @@ class Order {
         "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
       getPlatformShipmentReasons:
         "/service/application/orders/v1.0/orders/bags/{bag_id}/reasons",
+      updateShipmentStatus:
+        "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -358,6 +360,39 @@ class Order {
       }),
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId -
+   * @param {StatusUpdateInternalRequest} arg.body
+   * @returns {Promise<StatusUpdateInternalResponse>} - Success response
+   * @summary:
+   * @description: updateShipmentStatus
+   */
+  updateShipmentStatus({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentStatus().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["updateShipmentStatus"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body,
       xHeaders
     );
   }

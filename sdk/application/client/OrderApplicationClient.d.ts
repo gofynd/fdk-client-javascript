@@ -12,6 +12,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
         getPlatformShipmentReasons: string;
+        updateShipmentStatus: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -140,5 +141,17 @@ declare class Order {
      */
     getPlatformShipmentReasons({ bagId }?: {
         bagId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId -
+     * @param {StatusUpdateInternalRequest} arg.body
+     * @returns {Promise<StatusUpdateInternalResponse>} - Success response
+     * @summary:
+     * @description: updateShipmentStatus
+     */
+    updateShipmentStatus({ shipmentId, body }?: {
+        shipmentId: string;
+        body: any;
     }): Promise<any>;
 }
