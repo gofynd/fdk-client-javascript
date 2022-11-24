@@ -11,7 +11,7 @@ declare class Order {
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
-        getPlatformShipmentReasons: string;
+        getShipmentBagReasons: string;
         updateShipmentStatus: string;
     };
     _urls: {};
@@ -118,7 +118,7 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
-     * @param {number} arg.shipmentId - ID of the shipment. An order may contain
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
      * @param {VerifyOtp} arg.body
@@ -128,19 +128,23 @@ declare class Order {
      */
     verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
         orderId: string;
-        shipmentId: number;
+        shipmentId: string;
         body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.bagId - ID of the bag. An order may contain multiple
+     * @param {string} arg.shipmentId - ID of the bag. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {number} arg.bagId - ID of the bag. An order may contain multiple
      *   items and may get divided into one or more shipment, each having its own ID.
      * @returns {Promise<ShipmentReasonsResponse>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
-    getPlatformShipmentReasons({ bagId }?: {
-        bagId: string;
+    getShipmentBagReasons({ shipmentId, bagId }?: {
+        shipmentId: string;
+        bagId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

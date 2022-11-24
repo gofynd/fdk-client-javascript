@@ -8,6 +8,6 @@ declare class OrderValidator {
     static getCustomerDetailsByShipmentId(): any;
     static sendOtpToShipmentCustomer(): any;
     static verifyOtpShipmentCustomer(): any;
-    static getPlatformShipmentReasons(): any;
+    static getShipmentBagReasons(): any;
     static updateShipmentStatus(): any;
 }

@@ -234,6 +234,80 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.dpIds] -
+   * @param {string} [arg.stores] -
+   * @param {string} [arg.salesChannel] -
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.isPrioritySort] -
+   * @summary:
+   * @description:
+   */
+  getOrders({
+    lane,
+    searchType,
+    searchValue,
+    fromDate,
+    toDate,
+    dpIds,
+    stores,
+    salesChannel,
+    pageNo,
+    pageSize,
+    isPrioritySort,
+  } = {}) {
+    const { error } = OrderValidator.getOrders().validate(
+      {
+        lane,
+        searchType,
+        searchValue,
+        fromDate,
+        toDate,
+        dpIds,
+        stores,
+        salesChannel,
+        pageNo,
+        pageSize,
+        isPrioritySort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["lane"] = lane;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["dp_ids"] = dpIds;
+    query_params["stores"] = stores;
+    query_params["sales_channel"] = salesChannel;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["is_priority_sort"] = isPrioritySort;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders-listing`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
    * @summary:
@@ -405,14 +479,14 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.url -
+   * @param {BulkActionPayload} arg.body
    * @summary: emits uuid to kafka topic.
    * @description: Use this API to start processing Xlsx file.
    */
-  bulkActionProcessXlsxFile({ url } = {}) {
+  bulkActionProcessXlsxFile({ body } = {}) {
     const { error } = OrderValidator.bulkActionProcessXlsxFile().validate(
       {
-        url,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -421,7 +495,6 @@ class Order {
     }
 
     const query_params = {};
-    query_params["url"] = url;
 
     const xHeaders = {};
 
@@ -430,7 +503,7 @@ class Order {
       "post",
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/`,
       query_params,
-      undefined,
+      body,
       xHeaders
     );
   }
@@ -462,6 +535,468 @@ class Order {
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/${batchId}`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  createOrder({ body } = {}) {
+    const { error } = OrderValidator.createOrder().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {InvalidateShipmentCachePayload} arg.body
+   * @summary:
+   * @description: Invalidate shipment Cache
+   */
+  invalidateShipmentCache({ body } = {}) {
+    const { error } = OrderValidator.invalidateShipmentCache().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-cache`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {StoreReassign} arg.body
+   * @summary:
+   * @description: Reassign Location
+   */
+  reassignLocation({ body } = {}) {
+    const { error } = OrderValidator.reassignLocation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/store/reassign-internal`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {UpdateShipmentLockPayload} arg.body
+   * @summary:
+   * @description: update shipment lock
+   */
+  updateShipmentLock({ body } = {}) {
+    const { error } = OrderValidator.updateShipmentLock().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/entity/lock-manager`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.date] -
+   * @summary:
+   * @description:
+   */
+  getAnnouncements({ date } = {}) {
+    const { error } = OrderValidator.getAnnouncements().validate(
+      {
+        date,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["date"] = date;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/announcements`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId -
+   * @param {string} [arg.name] -
+   * @param {string} [arg.address] -
+   * @param {string} [arg.addressType] -
+   * @param {string} [arg.pincode] -
+   * @param {string} [arg.phone] -
+   * @param {string} [arg.email] -
+   * @param {string} [arg.landmark] -
+   * @param {string} arg.addressCategory -
+   * @param {string} [arg.city] -
+   * @param {string} [arg.state] -
+   * @param {string} [arg.country] -
+   * @summary:
+   * @description:
+   */
+  updateAddress({
+    shipmentId,
+    addressCategory,
+    name,
+    address,
+    addressType,
+    pincode,
+    phone,
+    email,
+    landmark,
+    city,
+    state,
+    country,
+  } = {}) {
+    const { error } = OrderValidator.updateAddress().validate(
+      {
+        shipmentId,
+        addressCategory,
+        name,
+        address,
+        addressType,
+        pincode,
+        phone,
+        email,
+        landmark,
+        city,
+        state,
+        country,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["shipment_id"] = shipmentId;
+    query_params["name"] = name;
+    query_params["address"] = address;
+    query_params["address_type"] = addressType;
+    query_params["pincode"] = pincode;
+    query_params["phone"] = phone;
+    query_params["email"] = email;
+    query_params["landmark"] = landmark;
+    query_params["address_category"] = addressCategory;
+    query_params["city"] = city;
+    query_params["state"] = state;
+    query_params["country"] = country;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/delight/update-address`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.caller -
+   * @param {string} arg.receiver -
+   * @param {string} arg.bagId -
+   * @param {string} [arg.callingTo] -
+   * @param {string} [arg.callerId] -
+   * @summary:
+   * @description:
+   */
+  click2Call({ caller, receiver, bagId, callingTo, callerId } = {}) {
+    const { error } = OrderValidator.click2Call().validate(
+      {
+        caller,
+        receiver,
+        bagId,
+        callingTo,
+        callerId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["caller"] = caller;
+    query_params["receiver"] = receiver;
+    query_params["bag_id"] = bagId;
+    query_params["calling_to"] = callingTo;
+    query_params["caller_id"] = callerId;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/click2call`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {StatusUpdateInternalRequest} arg.body
+   * @summary:
+   * @description: Reassign Location
+   */
+  statusUpdateInternalV4({ body } = {}) {
+    const { error } = OrderValidator.statusUpdateInternalV4().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/status-internal`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  processManifest({ body } = {}) {
+    const { error } = OrderValidator.processManifest().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary:
+   * @description:
+   */
+  getRoleBasedActions({} = {}) {
+    const { error } = OrderValidator.getRoleBasedActions().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/roles`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.bagId -
+   * @summary:
+   * @description:
+   */
+  getShipmentHistory({ bagId } = {}) {
+    const { error } = OrderValidator.getShipmentHistory().validate(
+      {
+        bagId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["bag_id"] = bagId;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {SendSmsPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  sendSmsNinja({ body } = {}) {
+    const { error } = OrderValidator.sendSmsNinja().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {OrderStatus} arg.body
+   * @summary:
+   * @description:
+   */
+  checkOrderStatus({ body } = {}) {
+    const { error } = OrderValidator.checkOrderStatus().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/debug/order_status`,
+      query_params,
+      body,
       xHeaders
     );
   }

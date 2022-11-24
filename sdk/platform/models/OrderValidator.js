@@ -49,6 +49,22 @@ class OrderValidator {
     }).required();
   }
 
+  static getOrders() {
+    return Joi.object({
+      lane: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      isPrioritySort: Joi.boolean(),
+    }).required();
+  }
+
   static getMetricCount() {
     return Joi.object({
       fromDate: Joi.string().allow(""),
@@ -85,13 +101,104 @@ class OrderValidator {
 
   static bulkActionProcessXlsxFile() {
     return Joi.object({
-      url: Joi.string().allow("").required(),
+      body: Validator.BulkActionPayload().required(),
     }).required();
   }
 
   static bulkActionDetails() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static createOrder() {
+    return Joi.object({
+      body: Validator.CreateOrderPayload().required(),
+    }).required();
+  }
+
+  static invalidateShipmentCache() {
+    return Joi.object({
+      body: Validator.InvalidateShipmentCachePayload().required(),
+    }).required();
+  }
+
+  static reassignLocation() {
+    return Joi.object({
+      body: Validator.StoreReassign().required(),
+    }).required();
+  }
+
+  static updateShipmentLock() {
+    return Joi.object({
+      body: Validator.UpdateShipmentLockPayload().required(),
+    }).required();
+  }
+
+  static getAnnouncements() {
+    return Joi.object({
+      date: Joi.string().allow(""),
+    }).required();
+  }
+
+  static updateAddress() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      name: Joi.string().allow(""),
+      address: Joi.string().allow(""),
+      addressType: Joi.string().allow(""),
+      pincode: Joi.string().allow(""),
+      phone: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      landmark: Joi.string().allow(""),
+      addressCategory: Joi.string().allow("").required(),
+      city: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      country: Joi.string().allow(""),
+    }).required();
+  }
+
+  static click2Call() {
+    return Joi.object({
+      caller: Joi.string().allow("").required(),
+      receiver: Joi.string().allow("").required(),
+      bagId: Joi.string().allow("").required(),
+      callingTo: Joi.string().allow(""),
+      callerId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static statusUpdateInternalV4() {
+    return Joi.object({
+      body: Validator.StatusUpdateInternalRequest().required(),
+    }).required();
+  }
+
+  static processManifest() {
+    return Joi.object({
+      body: Validator.CreateOrderPayload().required(),
+    }).required();
+  }
+
+  static getRoleBasedActions() {
+    return Joi.object({}).required();
+  }
+
+  static getShipmentHistory() {
+    return Joi.object({
+      bagId: Joi.number().required(),
+    }).required();
+  }
+
+  static sendSmsNinja() {
+    return Joi.object({
+      body: Validator.SendSmsPayload().required(),
+    }).required();
+  }
+
+  static checkOrderStatus() {
+    return Joi.object({
+      body: Validator.OrderStatus().required(),
     }).required();
   }
 }

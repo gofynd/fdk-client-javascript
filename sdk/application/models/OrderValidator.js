@@ -52,14 +52,15 @@ class OrderValidator {
   static verifyOtpShipmentCustomer() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-      shipmentId: Joi.number().required(),
+      shipmentId: Joi.string().allow("").required(),
       body: Validator.VerifyOtp().required(),
     }).required();
   }
 
-  static getPlatformShipmentReasons() {
+  static getShipmentBagReasons() {
     return Joi.object({
-      bagId: Joi.string().allow("").required(),
+      shipmentId: Joi.string().allow("").required(),
+      bagId: Joi.number().required(),
     }).required();
   }
 

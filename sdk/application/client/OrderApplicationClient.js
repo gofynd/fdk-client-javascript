@@ -22,8 +22,8 @@ class Order {
         "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       verifyOtpShipmentCustomer:
         "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
-      getPlatformShipmentReasons:
-        "/service/application/orders/v1.0/orders/bags/{bag_id}/reasons",
+      getShipmentBagReasons:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
     };
@@ -298,7 +298,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @param {number} arg.shipmentId - ID of the shipment. An order may contain
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
    * @param {VerifyOtp} arg.body
@@ -333,15 +333,18 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.bagId - ID of the bag. An order may contain multiple
+   * @param {string} arg.shipmentId - ID of the bag. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @param {number} arg.bagId - ID of the bag. An order may contain multiple
    *   items and may get divided into one or more shipment, each having its own ID.
    * @returns {Promise<ShipmentReasonsResponse>} - Success response
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
-  getPlatformShipmentReasons({ bagId } = {}) {
-    const { error } = OrderValidator.getPlatformShipmentReasons().validate(
-      { bagId },
+  getShipmentBagReasons({ shipmentId, bagId } = {}) {
+    const { error } = OrderValidator.getShipmentBagReasons().validate(
+      { shipmentId, bagId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -355,8 +358,8 @@ class Order {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getPlatformShipmentReasons"],
-        params: { bagId },
+        url: this._urls["getShipmentBagReasons"],
+        params: { shipmentId, bagId },
       }),
       query_params,
       undefined,
