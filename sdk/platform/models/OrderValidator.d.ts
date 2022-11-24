@@ -10,6 +10,7 @@ declare class OrderValidator {
     static createShipmentReport(): any;
     static getReportsShipmentListing(): any;
     static upsertJioCode(): any;
+    static getBulkInvoice(): any;
     static bulkActionProcessXlsxFile(): any;
     static bulkActionDetails(): any;
     static createOrder(): any;

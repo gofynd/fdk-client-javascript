@@ -479,6 +479,38 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId -
+   * @summary:
+   * @description:
+   */
+  getBulkInvoice({ batchId } = {}) {
+    const { error } = OrderValidator.getBulkInvoice().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["batch_id"] = batchId;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/invoice`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {BulkActionPayload} arg.body
    * @summary: emits uuid to kafka topic.
    * @description: Use this API to start processing Xlsx file.

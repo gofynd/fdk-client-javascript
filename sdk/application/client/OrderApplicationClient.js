@@ -58,13 +58,15 @@ class Order {
    * @param {string} [arg.fromDate] - The date from which the orders should be
    *   retrieved.
    * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+   * @param {string} [arg.customMeta] - A filter and retrieve data using
+   *   special fields included for special use-cases
    * @returns {Promise<OrderList>} - Success response
    * @summary: Get all orders
    * @description: Use this API to retrieve all the orders.
    */
-  getOrders({ status, pageNo, pageSize, fromDate, toDate } = {}) {
+  getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta } = {}) {
     const { error } = OrderValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate },
+      { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -76,6 +78,7 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
+    query_params["custom_meta"] = customMeta;
 
     const xHeaders = {};
 
@@ -96,7 +99,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @returns {Promise<OrderList>} - Success response
+   * @returns {Promise<OrderById>} - Success response
    * @summary: Get details of an order
    * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
    */
@@ -340,9 +343,9 @@ class Order {
    * @param {string} arg.shipmentId - ID of the bag. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @param {number} arg.bagId - ID of the bag. An order may contain multiple
+   * @param {string} arg.bagId - ID of the bag. An order may contain multiple
    *   items and may get divided into one or more shipment, each having its own ID.
-   * @returns {Promise<ShipmentReasonsResponse>} - Success response
+   * @returns {Promise<ShipmentBagReasons>} - Success response
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */

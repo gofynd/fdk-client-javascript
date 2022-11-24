@@ -170,6 +170,15 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId -
+     * @summary:
+     * @description:
+     */
+    getBulkInvoice({ batchId }?: {
+        batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {BulkActionPayload} arg.body
      * @summary: emits uuid to kafka topic.
      * @description: Use this API to start processing Xlsx file.

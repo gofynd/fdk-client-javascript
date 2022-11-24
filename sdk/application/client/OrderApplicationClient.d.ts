@@ -29,22 +29,25 @@ declare class Order {
      * @param {string} [arg.fromDate] - The date from which the orders should be
      *   retrieved.
      * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+     * @param {string} [arg.customMeta] - A filter and retrieve data using
+     *   special fields included for special use-cases
      * @returns {Promise<OrderList>} - Success response
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders.
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate }?: {
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta }?: {
         status?: number;
         pageNo?: number;
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
-     * @returns {Promise<OrderList>} - Success response
+     * @returns {Promise<OrderById>} - Success response
      * @summary: Get details of an order
      * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
      */
@@ -138,15 +141,15 @@ declare class Order {
      * @param {string} arg.shipmentId - ID of the bag. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
-     * @param {number} arg.bagId - ID of the bag. An order may contain multiple
+     * @param {string} arg.bagId - ID of the bag. An order may contain multiple
      *   items and may get divided into one or more shipment, each having its own ID.
-     * @returns {Promise<ShipmentReasonsResponse>} - Success response
+     * @returns {Promise<ShipmentBagReasons>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
     getShipmentBagReasons({ shipmentId, bagId }?: {
         shipmentId: string;
-        bagId: number;
+        bagId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

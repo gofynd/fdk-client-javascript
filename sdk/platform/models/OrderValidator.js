@@ -99,6 +99,12 @@ class OrderValidator {
     }).required();
   }
 
+  static getBulkInvoice() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static bulkActionProcessXlsxFile() {
     return Joi.object({
       body: Validator.BulkActionPayload().required(),
