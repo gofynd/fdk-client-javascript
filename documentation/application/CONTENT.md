@@ -2557,6 +2557,17 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
+ #### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CategorySchema](#CategorySchema)
 
  | Properties | Type | Nullable | Description |

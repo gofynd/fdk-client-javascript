@@ -70,5 +70,9 @@ class LeadValidator {
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
+
+  static getGeneralConfig() {
+    return Joi.object({}).required();
+  }
 }
 module.exports = LeadValidator;

@@ -8,7 +8,6 @@ declare class Catalog {
         getProductComparisonBySlugs: string;
         getSimilarComparisonProductBySlug: string;
         getComparedFrequentlyProductBySlug: string;
-        getProductSimilarByIdentifier: string;
         getProductVariantsBySlug: string;
         getProductStockByIds: string;
         getProductStockForTimeByIds: string;
@@ -24,8 +23,8 @@ declare class Catalog {
         getCollectionItemsBySlug: string;
         getCollectionDetailBySlug: string;
         getFollowedListing: string;
-        followById: string;
         unfollowById: string;
+        followById: string;
         getFollowerCountById: string;
         getFollowIds: string;
         getStores: string;
@@ -99,25 +98,6 @@ declare class Catalog {
      */
     getComparedFrequentlyProductBySlug({ slug }?: {
         slug: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - A short, human-readable, URL-friendly
-     *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
-     * @param {string} arg.similarType - Similarity criteria such as basic,
-     *   visual, price, seller, category and spec. Visual - Products having
-     *   similar patterns, Price - Products in similar price range, Seller -
-     *   Products sold by the same seller, Category - Products belonging to the
-     *   same category, e.g. sports shoes, Spec - Products having similar
-     *   specifications, e.g. phones with same memory.
-     * @returns {Promise<SimilarProductByTypeResponse>} - Success response
-     * @summary: Get similar products
-     * @description: Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
-     */
-    getProductSimilarByIdentifier({ slug, similarType }?: {
-        slug: string;
-        similarType: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -476,10 +456,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Follow an entity (product/brand/collection)
-     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+     * @summary: Unfollow an entity (product/brand/collection)
+     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
      */
-    followById({ collectionType, collectionId }?: {
+    unfollowById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
@@ -489,10 +469,10 @@ declare class Catalog {
      *   products, brands, or collections.
      * @param {string} arg.collectionId - The ID of the collection type.
      * @returns {Promise<FollowPostResponse>} - Success response
-     * @summary: Unfollow an entity (product/brand/collection)
-     * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+     * @summary: Follow an entity (product/brand/collection)
+     * @description: Follow a particular entity such as product, brand, collection specified by its ID.
      */
-    unfollowById({ collectionType, collectionId }?: {
+    followById({ collectionType, collectionId }?: {
         collectionType: string;
         collectionId: string;
     }): Promise<any>;
