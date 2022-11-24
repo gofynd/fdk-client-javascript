@@ -32,13 +32,6 @@ class CatalogValidator {
     }).required();
   }
 
-  static getProductSimilarByIdentifier() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      similarType: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getProductVariantsBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -223,6 +216,7 @@ class CatalogValidator {
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
       pincode: Joi.string().allow(""),
+      moq: Joi.number(),
     }).required();
   }
 

@@ -4,6 +4,43 @@ declare class Orders {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.lane] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchId] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.dpIds] -
+     * @param {string} [arg.orderingCompanyId] -
+     * @param {string} [arg.stores] -
+     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.requestByExt] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.customerId] -
+     * @param {boolean} [arg.isPrioritySort] -
+     * @param {boolean} [arg.excludeLockedShipments] -
+     * @summary:
+     * @description:
+     */
+    getShipmentList({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, }?: {
+        lane?: string;
+        searchType?: string;
+        searchId?: string;
+        fromDate?: string;
+        toDate?: string;
+        dpIds?: string;
+        orderingCompanyId?: string;
+        stores?: string;
+        salesChannel?: string;
+        requestByExt?: string;
+        pageNo?: number;
+        pageSize?: number;
+        customerId?: string;
+        isPrioritySort?: boolean;
+        excludeLockedShipments?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
@@ -14,6 +51,15 @@ declare class Orders {
         shipmentId: string;
         orderingCompanyId?: string;
         requestByExt?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @summary:
+     * @description:
+     */
+    getOrderShipmentDetails({ orderId }?: {
+        orderId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -39,63 +85,6 @@ declare class Orders {
         salesChannel?: string;
         paymentMode?: string;
         bagStatus?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @summary:
-     * @description:
-     */
-    getOrderShipmentDetails({ orderId }?: {
-        orderId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.lane] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchId] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {string} [arg.dpIds] -
-     * @param {string} [arg.orderingCompanyId] -
-     * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.requestByExt] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
-     * @param {boolean} [arg.isPrioritySort] -
-     * @summary:
-     * @description:
-     */
-    getShipmentList({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
-        lane?: string;
-        searchType?: string;
-        searchId?: string;
-        fromDate?: string;
-        toDate?: string;
-        dpIds?: string;
-        orderingCompanyId?: string;
-        stores?: string;
-        salesChannel?: string;
-        requestByExt?: string;
-        pageNo?: number;
-        pageSize?: number;
-        customerId?: string;
-        isPrioritySort?: boolean;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.groupEntity -
-     * @param {string} [arg.salesChannel] -
-     * @param {string} [arg.dpIds] -
-     * @summary:
-     * @description:
-     */
-    getShipmentToManifest({ groupEntity, salesChannel, dpIds }?: {
-        groupEntity: string;
-        salesChannel?: string;
-        dpIds?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -140,11 +129,13 @@ declare class Orders {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.view -
+     * @param {string} [arg.groupEntity] -
      * @summary:
      * @description:
      */
-    getfilters({ view }?: {
+    getfilters({ view, groupEntity }?: {
         view: string;
+        groupEntity?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -176,5 +167,48 @@ declare class Orders {
      */
     upsertJioCode({ body }?: {
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId -
+     * @summary:
+     * @description:
+     */
+    getBulkInvoice({ batchId }?: {
+        batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {string} arg.bagId - ID of the bag. An order may contain multiple
+     *   items and may get divided into one or more shipment, each having its own ID.
+     * @param {string} arg.state - State for which reasons are required.
+     * @summary: Get reasons behind full or partial cancellation of a shipment
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     */
+    getPlatformShipmentReasons({ shipmentId, bagId, state }?: {
+        shipmentId: string;
+        bagId: string;
+        state: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkActionPayload} arg.body
+     * @summary: emits uuid to kafka topic.
+     * @description: Use this API to start processing Xlsx file.
+     */
+    bulkActionProcessXlsxFile({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId -
+     * @summary: Returns failed, processing and successfully processed shipments.
+     * @description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
+     */
+    bulkActionDetails({ batchId }?: {
+        batchId: string;
     }): Promise<any>;
 }

@@ -18,8 +18,6 @@ class Catalog {
         "/service/application/catalog/v1.0/products/{slug}/similar/compare/",
       getComparedFrequentlyProductBySlug:
         "/service/application/catalog/v1.0/products/{slug}/similar/compared-frequently/",
-      getProductSimilarByIdentifier:
-        "/service/application/catalog/v1.0/products/{slug}/similar/{similar_type}/",
       getProductVariantsBySlug:
         "/service/application/catalog/v1.0/products/{slug}/variants/",
       getProductStockByIds:
@@ -234,43 +232,6 @@ class Catalog {
       constructUrl({
         url: this._urls["getComparedFrequentlyProductBySlug"],
         params: { slug },
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @param {string} arg.similarType - Similarity criteria such as basic,
-   *   visual, price, seller, category and spec. Visual - Products having
-   *   similar patterns, Price - Products in similar price range, Seller -
-   *   Products sold by the same seller, Category - Products belonging to the
-   *   same category, e.g. sports shoes, Spec - Products having similar
-   *   specifications, e.g. phones with same memory.
-   * @returns {Promise<SimilarProductByTypeResponse>} - Success response
-   * @summary: Get similar products
-   * @description: Use this API to retrieve products similar to the one specified by its slug. You can search not only similar looking products, but also those that are sold by same seller, or those that belong to the same category, price, specifications, etc.
-   */
-  getProductSimilarByIdentifier({ slug, similarType } = {}) {
-    const { error } = CatalogValidator.getProductSimilarByIdentifier().validate(
-      { slug, similarType },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getProductSimilarByIdentifier"],
-        params: { slug, similarType },
       }),
       query_params,
       undefined
@@ -1448,13 +1409,15 @@ class Catalog {
    *   product, e.g. 1,2,3.
    * @param {string} [arg.pincode] - The PIN Code of the area near which the
    *   selling locations should be searched, e.g. 400059.
+   * @param {number} [arg.moq] - An Integer indication the Minimum Order
+   *   Quantity of a product, e.g. 100.
    * @returns {Promise<ProductSizePriceResponseV2>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
-  getProductPriceBySlug({ slug, size, storeId, pincode } = {}) {
+  getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, pincode },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1463,6 +1426,7 @@ class Catalog {
     const query_params = {};
     query_params["store_id"] = storeId;
     query_params["pincode"] = pincode;
+    query_params["moq"] = moq;
 
     return APIClient.execute(
       this._conf,

@@ -3,95 +3,21 @@ declare class Order {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getShipmentById: string;
-        getCustomerDetailsByShipmentId: string;
-        sendOtpToShipmentCustomer: string;
-        getShipmentReasons: string;
-        verifyOtpShipmentCustomer: string;
         getOrders: string;
         getOrderById: string;
         getPosOrderById: string;
+        getShipmentById: string;
         trackShipment: string;
+        getCustomerDetailsByShipmentId: string;
+        sendOtpToShipmentCustomer: string;
+        verifyOtpShipmentCustomer: string;
+        getShipmentBagReasons: string;
         updateShipmentStatus: string;
         getInvoiceByShipmentId: string;
         getCreditNoteByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ShipmentById>} - Success response
-     * @summary: Get details of a shipment
-     * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
-     */
-    getShipmentById({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {string} arg.shipmentId - A unique number used for identifying and
-     *   tracking your orders.
-     * @returns {Promise<CustomerDetailsResponse>} - Success response
-     * @summary: Get Customer Details by Shipment Id
-     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
-     */
-    getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
-        orderId: string;
-        shipmentId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<SendOtpToCustomerResponse>} - Success response
-     * @summary: Send and Resend Otp code to Order-Shipment customer
-     * @description: Use this API to send OTP to the customer of the mapped Shipment.
-     */
-    sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
-        orderId: string;
-        shipmentId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {string} arg.bagId - Bag Id of a specefic bags which will help to
-     *   categorize the reasons
-     * @returns {Promise<ShipmentReasonsResponse>} - Success response
-     * @summary: Get reasons behind full or partial cancellation of a shipment
-     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-     */
-    getShipmentReasons({ shipmentId, bagId }?: {
-        shipmentId: string;
-        bagId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {number} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {VerifyOtp} arg.body
-     * @returns {Promise<VerifyOtpResponse>} - Success response
-     * @summary: Verify Otp code
-     * @description: Use this API to verify OTP and create a session token with custom payload.
-     */
-    verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
-        orderId: string;
-        shipmentId: number;
-        body: any;
-    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.status] - A filter to retrieve orders by their
@@ -141,6 +67,18 @@ declare class Order {
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
+     * @returns {Promise<ShipmentById>} - Success response
+     * @summary: Get details of a shipment
+     * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+     */
+    getShipmentById({ shipmentId }?: {
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
      * @returns {Promise<TrackShipmentResponse>} - Success response
      * @summary: Track shipment
      * @description: Track Shipment by shipment id, for application based on application Id
@@ -150,13 +88,73 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {string} arg.shipmentId - A unique number used for identifying and
+     *   tracking your orders.
+     * @returns {Promise<CustomerDetailsResponse>} - Success response
+     * @summary: Get Customer Details by Shipment Id
+     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+     */
+    getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
+        orderId: string;
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
-     * @param {ShipmentStatusUpdateBody} arg.body
-     * @returns {Promise<ShipmentStatusUpdate>} - Success response
-     * @summary: Update the shipment status
-     * @description: Use this API to update the status of a shipment using its shipment ID.
+     * @returns {Promise<SendOtpToCustomerResponse>} - Success response
+     * @summary: Send and Resend Otp code to Order-Shipment customer
+     * @description: Use this API to send OTP to the customer of the mapped Shipment.
+     */
+    sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
+        orderId: string;
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId - A unique number used for identifying and
+     *   tracking your orders.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {VerifyOtp} arg.body
+     * @returns {Promise<VerifyOtpResponse>} - Success response
+     * @summary: Verify Otp code
+     * @description: Use this API to verify OTP and create a session token with custom payload.
+     */
+    verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
+        orderId: string;
+        shipmentId: string;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the bag. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {number} arg.bagId - ID of the bag. An order may contain multiple
+     *   items and may get divided into one or more shipment, each having its own ID.
+     * @returns {Promise<ShipmentReasonsResponse>} - Success response
+     * @summary: Get reasons behind full or partial cancellation of a shipment
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     */
+    getShipmentBagReasons({ shipmentId, bagId }?: {
+        shipmentId: string;
+        bagId: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId -
+     * @param {StatusUpdateInternalRequest} arg.body
+     * @returns {Promise<StatusUpdateInternalResponse>} - Success response
+     * @summary:
+     * @description: updateShipmentStatus
      */
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;

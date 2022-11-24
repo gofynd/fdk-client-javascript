@@ -48,7 +48,6 @@ class OrderValidator {
       deploymentStores: Joi.string().allow(""),
       status: Joi.string().allow(""),
       dp: Joi.string().allow(""),
-      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }
@@ -73,7 +72,6 @@ class OrderValidator {
       orderId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
       status: Joi.string().allow(""),
-      shortenUrls: Joi.boolean(),
       filterType: Joi.string().allow(""),
     }).required();
   }

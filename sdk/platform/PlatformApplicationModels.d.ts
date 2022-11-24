@@ -45,6 +45,7 @@ export class UserValidator {
     static createUser(): any;
     static blockOrUnblockUsers(): any;
     static archiveUser(): any;
+    static unDeleteUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
     static getActiveSessions(): any;
@@ -68,7 +69,6 @@ export class ContentValidator {
     static getDataLoaders(): any;
     static deleteDataLoader(): any;
     static editDataLoader(): any;
-    static getDataLoadersByService(): any;
     static selectDataLoader(): any;
     static resetDataLoader(): any;
     static getFaqCategories(): any;
@@ -184,17 +184,18 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
+    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;
+    static getAppProduct(): any;
     static getConfigurationMetadata(): any;
     static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
@@ -319,5 +320,11 @@ export class PartnerValidator {
     static removeProxyPath(): any;
 }
 export class OrdersValidator {
+    static getLaneConfigCrossSellingData(): any;
     static getApplicationShipments(): any;
+    static getAppOrderShipmentDetails(): any;
+}
+export class ServiceabilityValidator {
+    static getApplicationServiceability(): any;
+    static upsertZoneControllerView(): any;
 }
