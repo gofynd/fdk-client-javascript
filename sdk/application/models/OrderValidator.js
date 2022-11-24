@@ -70,5 +70,19 @@ class OrderValidator {
       body: Validator.StatusUpdateInternalRequest().required(),
     }).required();
   }
+
+  static getInvoiceByShipmentId() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      parameters: Validator.invoiceParameter(),
+    }).required();
+  }
+
+  static getCreditNoteByShipmentId() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      parameters: Validator.creditNoteParameter(),
+    }).required();
+  }
 }
 module.exports = OrderValidator;

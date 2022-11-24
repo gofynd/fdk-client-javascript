@@ -26,6 +26,10 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
+      getInvoiceByShipmentId:
+        "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
+      getCreditNoteByShipmentId:
+        "/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -396,6 +400,74 @@ class Order {
       }),
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - Shiment ID
+   * @param {invoiceParameter} [arg.parameters] -
+   * @returns {Promise<getInvoiceByShipmentId200Response>} - Success response
+   * @summary: Get Presigned URL to download Invoice
+   * @description: Use this API to generate Presigned URLs for downloading Invoice
+   */
+  getInvoiceByShipmentId({ shipmentId, parameters } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+      { shipmentId, parameters },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["parameters"] = parameters;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getInvoiceByShipmentId"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - Shiment ID
+   * @param {creditNoteParameter} [arg.parameters] -
+   * @returns {Promise<getInvoiceByShipmentId200Response>} - Success response
+   * @summary: Get Presigned URL to download Invoice
+   * @description: Use this API to generate Presigned URLs for downloading Invoice
+   */
+  getCreditNoteByShipmentId({ shipmentId, parameters } = {}) {
+    const { error } = OrderValidator.getCreditNoteByShipmentId().validate(
+      { shipmentId, parameters },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["parameters"] = parameters;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCreditNoteByShipmentId"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined,
       xHeaders
     );
   }
