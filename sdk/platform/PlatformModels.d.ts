@@ -928,11 +928,11 @@ declare class Validator {
     static ApplicationBrandJson(): any;
     static ApplicationCategoryJson(): any;
     static ApplicationStoreJson(): any;
-    static ContactDetails(): any;
+    static CompanyTaxesSerializer(): any;
     static BusinessCountryInfo(): any;
+    static ContactDetails(): any;
     static Website(): any;
     static BusinessDetails(): any;
-    static CompanyTaxesSerializer(): any;
     static GetCompanyProfileSerializerResponse(): any;
     static CreateUpdateAddressSerializer(): any;
     static CompanyTaxesSerializer1(): any;
