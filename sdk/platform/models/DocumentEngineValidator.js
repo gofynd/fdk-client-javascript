@@ -54,11 +54,5 @@ class DocumentEngineValidator {
       uid: Joi.string().allow("").required(),
     }).required();
   }
-
-  static getBulkShipmentStatus() {
-    return Joi.object({
-      batchId: Joi.string().allow("").required(),
-    }).required();
-  }
 }
 module.exports = DocumentEngineValidator;

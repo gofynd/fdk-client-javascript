@@ -200,7 +200,7 @@ class Order {
    * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @returns {Promise<TrackShipmentResponse>} - Success response
+   * @returns {Promise<ShipmentTrack>} - Success response
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id
    */
@@ -377,8 +377,8 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
-   * @param {StatusUpdateInternalRequest} arg.body
-   * @returns {Promise<StatusUpdateInternalResponse>} - Success response
+   * @param {ShipmentStatusUpdateBody} arg.body
+   * @returns {Promise<ShipmentStatusUpdate>} - Success response
    * @summary:
    * @description: updateShipmentStatus
    */
@@ -411,7 +411,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {invoiceParameter} [arg.parameters] -
-   * @returns {Promise<getInvoiceByShipmentId200Response>} - Success response
+   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */
@@ -445,7 +445,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {creditNoteParameter} [arg.parameters] -
-   * @returns {Promise<getInvoiceByShipmentId200Response>} - Success response
+   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */

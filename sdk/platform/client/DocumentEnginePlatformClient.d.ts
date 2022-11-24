@@ -83,13 +83,4 @@ declare class DocumentEngine {
     getNocPresignedURL({ uid }?: {
         uid: string;
     }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId - Batch_id given at time of generate request
-     * @summary: Get Status of Bulk Invoice and Label generation
-     * @description: Use this API to fetch status of PDF generation of Bulk Invoice and Label
-     */
-    getBulkShipmentStatus({ batchId }?: {
-        batchId: string;
-    }): Promise<any>;
 }

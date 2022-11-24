@@ -293,38 +293,6 @@ class DocumentEngine {
       xHeaders
     );
   }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch_id given at time of generate request
-   * @summary: Get Status of Bulk Invoice and Label generation
-   * @description: Use this API to fetch status of PDF generation of Bulk Invoice and Label
-   */
-  getBulkShipmentStatus({ batchId } = {}) {
-    const { error } = DocumentEngineValidator.getBulkShipmentStatus().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["batch_id"] = batchId;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/document/v2.0/company/${this.config.companyId}/bulk-shipment-status`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
 }
 
 module.exports = DocumentEngine;

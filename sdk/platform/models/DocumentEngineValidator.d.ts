@@ -9,5 +9,4 @@ declare class DocumentEngineValidator {
     static getPresignedURL(): any;
     static getLabelPresignedURL(): any;
     static getNocPresignedURL(): any;
-    static getBulkShipmentStatus(): any;
 }

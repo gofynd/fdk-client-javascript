@@ -15,7 +15,6 @@ Handles financial pdf generation of Fulfilment
 * [getPresignedURL](#getpresignedurl)
 * [getLabelPresignedURL](#getlabelpresignedurl)
 * [getNocPresignedURL](#getnocpresignedurl)
-* [getBulkShipmentStatus](#getbulkshipmentstatus)
 
 
 
@@ -541,62 +540,6 @@ Sucess Response, Presigned URL of NOC Pdf
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkShipmentStatus
-Get Status of Bulk Invoice and Label generation
-
-
-
-```javascript
-// Promise
-const promise = client.documentEngine.getBulkShipmentStatus({  batchId : value });
-
-// Async/Await
-const data = await client.documentEngine.getBulkShipmentStatus({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes | batch_id given at time of generate request |  
-
-
-
-Use this API to fetch status of PDF generation of Bulk Invoice and Label
-
-*Returned Response:*
-
-
-
-
-[SuccessResponseBulkStatus](#SuccessResponseBulkStatus)
-
-Sucess Response, Lists of Bulk Invoice and label generation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
 </details>
 
 
