@@ -65,6 +65,12 @@ class OrderValidator {
     }).required();
   }
 
+  static getShipmentReasons() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),

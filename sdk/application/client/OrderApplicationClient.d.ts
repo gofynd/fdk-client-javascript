@@ -12,6 +12,7 @@ declare class Order {
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
         getShipmentBagReasons: string;
+        getShipmentReasons: string;
         updateShipmentStatus: string;
         getInvoiceByShipmentId: string;
         getCreditNoteByShipmentId: string;
@@ -150,6 +151,18 @@ declare class Order {
     getShipmentBagReasons({ shipmentId, bagId }?: {
         shipmentId: string;
         bagId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ShipmentReasons>} - Success response
+     * @summary: Get reasons behind full or partial cancellation of a shipment
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     */
+    getShipmentReasons({ shipmentId }?: {
+        shipmentId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

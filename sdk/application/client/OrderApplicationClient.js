@@ -24,6 +24,8 @@ class Order {
         "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
       getShipmentBagReasons:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
+      getShipmentReasons:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
       getInvoiceByShipmentId:
@@ -367,6 +369,40 @@ class Order {
       constructUrl({
         url: this._urls["getShipmentBagReasons"],
         params: { shipmentId, bagId },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @returns {Promise<ShipmentReasons>} - Success response
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   */
+  getShipmentReasons({ shipmentId } = {}) {
+    const { error } = OrderValidator.getShipmentReasons().validate(
+      { shipmentId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getShipmentReasons"],
+        params: { shipmentId },
       }),
       query_params,
       undefined,
