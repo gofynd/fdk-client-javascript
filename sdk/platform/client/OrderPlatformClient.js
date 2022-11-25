@@ -941,13 +941,15 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.bagId -
+   * @param {number} [arg.shipmentId] -
+   * @param {number} [arg.bagId] -
    * @summary:
    * @description:
    */
-  getShipmentHistory({ bagId } = {}) {
+  getShipmentHistory({ shipmentId, bagId } = {}) {
     const { error } = OrderValidator.getShipmentHistory().validate(
       {
+        shipmentId,
         bagId,
       },
       { abortEarly: false, allowUnknown: true }
@@ -957,6 +959,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["shipment_id"] = shipmentId;
     query_params["bag_id"] = bagId;
 
     const xHeaders = {};

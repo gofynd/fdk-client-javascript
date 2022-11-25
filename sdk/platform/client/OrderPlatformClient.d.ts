@@ -314,12 +314,14 @@ declare class Order {
     getRoleBasedActions({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.bagId -
+     * @param {number} [arg.shipmentId] -
+     * @param {number} [arg.bagId] -
      * @summary:
      * @description:
      */
-    getShipmentHistory({ bagId }?: {
-        bagId: number;
+    getShipmentHistory({ shipmentId, bagId }?: {
+        shipmentId?: number;
+        bagId?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
