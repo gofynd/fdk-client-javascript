@@ -18,5 +18,9 @@ class AuditTrailValidator {
       id: Joi.string().allow("").required(),
     }).required();
   }
+
+  static getEntityTypes() {
+    return Joi.object({}).required();
+  }
 }
 module.exports = AuditTrailValidator;

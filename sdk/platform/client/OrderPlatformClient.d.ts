@@ -64,12 +64,11 @@ declare class Order {
      * @param {string} [arg.deploymentStores] - Selected Deployment Stores
      * @param {string} [arg.status] - Status of order
      * @param {string} [arg.dp] - Delivery Partners
-     * @param {boolean} [arg.shortenUrls] - Shorten URL option
      * @param {string} [arg.filterType] - Filters
      * @summary: Get Orders for company based on Company Id
      * @description: Get Orders
      */
-    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, isPrioritySort, lockStatus, userId, q, stage, salesChannels, orderId, stores, deploymentStores, status, dp, shortenUrls, filterType, }?: {
+    getOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, isPrioritySort, lockStatus, userId, q, stage, salesChannels, orderId, stores, deploymentStores, status, dp, filterType, }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
@@ -85,7 +84,6 @@ declare class Order {
         deploymentStores?: string;
         status?: string;
         dp?: string;
-        shortenUrls?: boolean;
         filterType?: string;
     }): Promise<any>;
     /**
@@ -113,12 +111,11 @@ declare class Order {
      * @param {string} [arg.orderId] - Order Id
      * @param {string} [arg.stores] - Selected Stores
      * @param {string} [arg.status] - Status of order
-     * @param {boolean} [arg.shortenUrls] - Shorten URL option
      * @param {string} [arg.filterType] - Filters
      * @summary: Get Orders for company based on Company Id
      * @description: Get Orders
      */
-    getPicklistOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, q, stage, salesChannels, orderId, stores, status, shortenUrls, filterType, }?: {
+    getPicklistOrdersByCompanyId({ pageNo, pageSize, fromDate, toDate, q, stage, salesChannels, orderId, stores, status, filterType, }?: {
         pageNo?: string;
         pageSize?: string;
         fromDate?: string;
@@ -129,7 +126,6 @@ declare class Order {
         orderId?: string;
         stores?: string;
         status?: string;
-        shortenUrls?: boolean;
         filterType?: string;
     }): Promise<any>;
     /**

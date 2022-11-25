@@ -3,4 +3,5 @@ declare class AuditTrailValidator {
     static getAuditLogs(): any;
     static createAuditLog(): any;
     static getAuditLog(): any;
+    static getEntityTypes(): any;
 }

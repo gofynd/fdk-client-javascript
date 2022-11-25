@@ -7756,7 +7756,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
- | sub_navigation | [any] |  no  |  |
+ | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
 
@@ -8750,6 +8750,8 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | cartReview | cart-review | Symbolic link for Cart Order Review: /cart/order-review |
  | login | login | Symbolic link for Login: /auth/login |
  | register | register | Symbolic link for Register: /auth/register |
+ | shippingPolicy | shipping-policy | Symbolic link for Shipping policy: /shipping-policy |
+ | returnPolicy | return-policy | Symbolic link for Return policy: /return-policy |
 
 ---
 

@@ -11,16 +11,13 @@ Authentication Service
 * [createUser](#createuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [archiveUser](#archiveuser)
+* [unDeleteUser](#undeleteuser)
 * [updateUser](#updateuser)
 * [createUserSession](#createusersession)
 * [getActiveSessions](#getactivesessions)
 * [deleteActiveSessions](#deleteactivesessions)
 * [getPlatformConfig](#getplatformconfig)
 * [updatePlatformConfig](#updateplatformconfig)
-* [createUserGroup](#createusergroup)
-* [getUserGroups](#getusergroups)
-* [updateUserGroup](#updateusergroup)
-* [getUserGroupById](#getusergroupbyid)
 
 
 
@@ -453,6 +450,63 @@ Success
 ---
 
 
+### unDeleteUser
+undelete user who deleted from application and have not elapsed the platform configured delete days
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.unDeleteUser({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema) | yes | Request body |
+
+
+undelete user who deleted from application and have not elapsed the platform configured delete days
+
+*Returned Response:*
+
+
+
+
+[UnDeleteUserSuccess](#UnDeleteUserSuccess)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateUser
 Update user
 
@@ -851,6 +905,17 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "token_123"
     }
   },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -971,315 +1036,20 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
       "appId": "token_123"
     }
   },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createUserGroup
-Create an User Group
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUserGroupSchema](#CreateUserGroupSchema) | yes | Request body |
-
-
-Use this API to create new user Group
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns created User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserGroups
-Get User Groups mathcing criteria
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
- pageSize : value,
- name : value,
- status : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
- pageSize : value,
- name : value,
- status : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | string | no | page number for pagination result |    
-| pageSize | string | no | page size for pagination result |    
-| name | string | no | to seartch for User Groups which contains given string in their name |    
-| status | string | no | to get User Groups with given status |  
-
-
-
-Use this API to get User Groups mathing criteria passed in query
-
-*Returned Response:*
-
-
-
-
-[UserGroupListResponseSchema](#UserGroupListResponseSchema)
-
-Success. User Group details. `UserGroupListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "is_active": true,
-      "_id": "6345677535474fbb6944b7ce",
-      "name": "Group 1",
-      "description": "description",
-      "file_url": "url",
-      "status": "pending",
-      "uid": 1,
-      "application_id": "000000000000000000000001",
-      "created_at": "2022-10-11T12:54:13.539Z",
-      "modified_at": "2022-10-11T12:54:13.539Z",
-      "__v": 0
-    },
-    {
-      "is_active": true,
-      "_id": "6345677535474fbb6944b7ced",
-      "name": "Group 2",
-      "description": "description",
-      "file_url": "url2",
-      "status": "pending",
-      "uid": 1,
-      "application_id": "000000000000000000000001",
-      "created_at": "2022-10-11T12:54:13.539Z",
-      "modified_at": "2022-10-11T12:54:13.539Z",
-      "__v": 0
-    }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 10,
-    "item_total": 0,
-    "has_next": false
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUserGroup
-Update an User Group
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-| body | [UpdateUserGroupSchema](#UpdateUserGroupSchema) | yes | Request body |
-
-
-Use this API to update an existing user Group
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. returns updated User Group. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserGroupById
-Get an User Group by Id
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| groupId | string | yes | Numeric ID allotted to a User Group |  
-
-
-
-Use this API to get details of an existing user Group
-
-*Returned Response:*
-
-
-
-
-[UserGroupResponseSchema](#UserGroupResponseSchema)
-
-Success. User Group details. `UserGroupResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
   "__v": 0
 }
 ```
@@ -1319,6 +1089,34 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | request_id | string |  no  |  |
+ | otp | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
 
 ---
 
@@ -1781,6 +1579,28 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
 
  
  
+ #### [DeleteUserSuccess](#DeleteUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
  #### [OtpSuccess](#OtpSuccess)
 
  | Properties | Type | Nullable | Description |
@@ -2230,6 +2050,9 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
  | register | boolean |  no  |  |
  | mobile_image | string |  no  |  |
  | desktop_image | string |  no  |  |
+ | delete_account_day | number |  no  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
+ | delete_account_consent | string |  no  |  |
 
 ---
 
@@ -2377,6 +2200,30 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
  | facebook | [Facebook](#Facebook) |  no  |  |
  | account_kit | [Accountkit](#Accountkit) |  no  |  |
  | google | [Google](#Google) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountReasons](#DeleteAccountReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | show_text_area | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consent_text | string |  no  |  |
 
 ---
 
