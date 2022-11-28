@@ -67,7 +67,7 @@ class OrderValidator {
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      body: Validator.StatusUpdateInternalRequest().required(),
+      body: Validator.ShipmentStatusUpdateBody().required(),
     }).required();
   }
 

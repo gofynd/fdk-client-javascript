@@ -347,8 +347,8 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
-   * @param {StatusUpdateInternalRequest} arg.body
-   * @returns {Promise<StatusUpdateInternalResponse>} - Success response
+   * @param {ShipmentStatusUpdateBody} arg.body
+   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
    * @summary:
    * @description: updateShipmentStatus
    */
