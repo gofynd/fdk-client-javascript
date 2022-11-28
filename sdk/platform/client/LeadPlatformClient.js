@@ -406,6 +406,34 @@ class Lead {
       xHeaders
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Get general support configuration.
+   * @description: Get general support configuration.
+   */
+  getGeneralConfig({} = {}) {
+    const { error } = LeadValidator.getGeneralConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/general-config`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
 }
 
 module.exports = Lead;
