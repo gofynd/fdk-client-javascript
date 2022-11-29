@@ -712,8 +712,8 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | serviceability_type | string |  yes  |  |
- | channel_type | string |  yes  |  |
  | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
 
 ---
 
@@ -725,8 +725,8 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  yes  |  |
- | type | string |  yes  |  |
  | value | string |  yes  |  |
+ | type | string |  yes  |  |
 
 ---
 
@@ -737,8 +737,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse) |  no  |  |
+ | success | boolean |  yes  |  |
  | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse) |  no  |  |
 
 ---
@@ -769,13 +769,26 @@ Zone List of application in descending order of their last modified date.
 
  
  
+ #### [EntityRegionViewError](#EntityRegionViewError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | value | string |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [EntityRegionViewItems](#EntityRegionViewItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
  | sub_type | string |  yes  |  |
  | uid | string |  yes  |  |
- | name | string |  yes  |  |
 
 ---
 
@@ -786,24 +799,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | type | string |  yes  |  |
  | item_total | number |  yes  |  |
  | current | number |  yes  |  |
- | type | string |  yes  |  |
- | size | number |  yes  |  |
  | has_next | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionViewError](#EntityRegionViewError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | type | string |  no  |  |
- | value | string |  no  |  |
 
 ---
 
@@ -814,10 +814,25 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | error | [EntityRegionViewError](#EntityRegionViewError) |  yes  |  |
  | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  yes  |  |
  | page | [EntityRegionViewPage](#EntityRegionViewPage) |  yes  |  |
- | error | [EntityRegionViewError](#EntityRegionViewError) |  yes  |  |
+ | success | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDataItem](#ZoneDataItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | item_total | number |  yes  |  |
+ | type | string |  yes  |  |
+ | current | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
 
 ---
 
@@ -828,21 +843,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total_zones | number |  yes  |  |
  | total_pincodes_served | number |  yes  |  |
+ | total_zones | number |  yes  |  |
  | total_active_zones | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ListViewChannels](#ListViewChannels)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
- | channel_id | string |  yes  |  |
 
 ---
 
@@ -861,34 +864,31 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [ListViewItems](#ListViewItems)
+ #### [ListViewChannels](#ListViewChannels)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  |  |
- | slug | string |  yes  |  |
- | stores_count | number |  yes  |  |
- | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
- | company_id | number |  yes  |  |
- | name | string |  yes  |  |
- | pincodes_count | number |  yes  |  |
- | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
- | zone_id | string |  yes  |  |
+ | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
 
 ---
 
 
  
  
- #### [ZoneDataItem](#ZoneDataItem)
+ #### [ListViewItems](#ListViewItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_total | number |  yes  |  |
- | current | number |  yes  |  |
- | type | string |  yes  |  |
- | size | number |  yes  |  |
- | has_next | boolean |  yes  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | name | string |  yes  |  |
+ | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
+ | slug | string |  yes  |  |
+ | zone_id | string |  yes  |  |
+ | pincodes_count | number |  yes  |  |
+ | stores_count | number |  yes  |  |
+ | company_id | number |  yes  |  |
 
 ---
 
@@ -899,9 +899,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
  | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
  | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
 
 ---
 
@@ -912,10 +912,10 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | type | string |  yes  |  |
  | item_total | number |  yes  |  |
  | current | number |  yes  |  |
- | type | string |  yes  |  |
- | size | number |  yes  |  |
  | has_next | boolean |  yes  |  |
 
 ---
@@ -927,8 +927,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
  | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  yes  |  |
+ | items | [string] |  no  |  |
 
 ---
 
@@ -939,8 +939,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
  | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
 
 ---
 
@@ -963,8 +963,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | [string] |  no  |  |
  | state | [string] |  no  |  |
+ | pincode | [string] |  no  |  |
  | country | string |  yes  |  |
 
 ---
@@ -1031,8 +1031,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
  | identifier | string |  yes  |  |
+ | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
 
 ---
 
@@ -1043,8 +1043,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -1075,8 +1075,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
  | identifier | string |  yes  |  |
+ | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
 
 ---
 
@@ -1087,9 +1087,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | zone_id | string |  yes  |  |
  | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -1100,8 +1100,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
+ | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
 
 ---
 
