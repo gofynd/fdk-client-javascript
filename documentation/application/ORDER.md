@@ -10,6 +10,7 @@ Handles Platform websites OMS
 * [getOrderById](#getorderbyid)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentReasons](#getshipmentreasons)
+* [getShipmentBagReasons](#getshipmentbagreasons)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [trackShipment](#trackshipment)
 * [getPosOrderById](#getposorderbyid)
@@ -35,14 +36,16 @@ const promise = order.getOrders({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
- status : value });
+ status : value,
+ customMeta : value });
 
 // Async/Await
 const data = await order.getOrders({  pageNo : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
- status : value });
+ status : value,
+ customMeta : value });
 ```
 
 
@@ -55,7 +58,8 @@ const data = await order.getOrders({  pageNo : value,
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | fromDate | string | no | The date from which the orders should be retrieved. |    
 | toDate | string | no | The date till which the orders should be retrieved. |    
-| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |  
+| status | number | no | A filter to retrieve orders by their current status such as _placed_, _delivered_, etc. |    
+| customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
 
 
 
@@ -237,6 +241,65 @@ Use this API to retrieve the issues that led to the cancellation of bags within 
 [ShipmentReasons](#ShipmentReasons)
 
 Success. Check the example shown below or refer `ShipmentReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getShipmentBagReasons
+Get reasons at l1,l2 and l3 for cancellation and return based on department
+
+
+
+```javascript
+// Promise
+const promise = order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+
+// Async/Await
+const data = await order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| bagId | string | yes | ID of the bag. |  
+
+
+
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+*Returned Response:*
+
+
+
+
+[ShipmentBagReasons](#ShipmentBagReasons)
+
+Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
 
 
 
@@ -854,6 +917,17 @@ Success, the code is valid and returns a SignedUrl
 
  
  
+ #### [ShipmentBagReasons](#ShipmentBagReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasons | [[BagReasons](#BagReasons)] |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ShipmentById](#ShipmentById)
 
  | Properties | Type | Nullable | Description |
@@ -995,6 +1069,18 @@ Success, the code is valid and returns a SignedUrl
 
  
  
+ #### [BagReasons](#BagReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Bags](#Bags)
 
  | Properties | Type | Nullable | Description |
@@ -1006,6 +1092,9 @@ Success, the code is valid and returns a SignedUrl
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | can_cancel | boolean |  no  |  |
  | can_return | boolean |  no  |  |
+ | delivery_date | string |  no  |  |
+ | returnable_date | string |  no  |  |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
 
 ---
 
@@ -1081,7 +1170,7 @@ Success, the code is valid and returns a SignedUrl
  | brand_calculated_amount | number |  no  |  |
  | coupon_value | number |  no  |  |
  | amount_paid_roundoff | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | refund_credit | number |  no  |  |
  | cashback | number |  no  |  |
  | refund_amount | number |  no  |  |
@@ -1129,6 +1218,88 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
  | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromos](#AppliedPromos)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | promo_id | string |  no  |  |
+ | promotion_name | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ | article_quantity | number |  no  |  |
+ | mrp_promotion | boolean |  no  |  |
+ | applied_free_articles | [AppliedFreeArticles](#AppliedFreeArticles) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | article_id | string |  no  |  |
+ | parent_item_identifier | string |  no  |  |
+ | free_gift_item_details | [[FreeGiftItemDetails](#FreeGiftItemDetails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItemDetails](#FreeGiftItemDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_id | string |  no  |  |
+ | item_name | string |  no  |  |
+ | item_brand_name | string |  no  |  |
+ | item_price_details | [ItemPriceDetails](#ItemPriceDetails) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemPriceDetails](#ItemPriceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | marked | [MarkedValues](#MarkedValues) |  no  |  |
+ | effective | [EffectiveValues](#EffectiveValues) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarkedValues](#MarkedValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EffectiveValues](#EffectiveValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
 
 ---
 
@@ -1298,6 +1469,7 @@ Success, the code is valid and returns a SignedUrl
  | invoice | [Invoice](#Invoice) |  no  |  |
  | comment | string |  no  |  |
  | order_type | string |  no  |  |
+ | custom_meta | [any] |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
  | bags | [[Bags](#Bags)] |  no  |  |
@@ -1360,6 +1532,21 @@ Success, the code is valid and returns a SignedUrl
  
  
  #### [TrackingDetails](#TrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_current | boolean |  no  |  |
+ | status | string |  no  |  |
+ | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+ | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NestedTrackingDetails](#NestedTrackingDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

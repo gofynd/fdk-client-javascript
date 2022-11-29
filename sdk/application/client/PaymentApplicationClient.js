@@ -54,6 +54,10 @@ class Payment {
         "/service/application/payment/v1.0/payment/redirect-to-aggregator/",
       checkCredit: "/service/application/payment/v1.0/check-credits/",
       customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
+      outstandingOrderDetails:
+        "/service/application/payment/v1.0/payment/outstanding-orders/",
+      paidOrderDetails:
+        "/service/application/payment/v1.0/payment/paid-orders/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -1058,6 +1062,72 @@ class Payment {
       }),
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
+   * @summary: API to fetch the outstanding order details
+   * @description: Use this API to fetch the outstanding order details.
+   */
+  outstandingOrderDetails({ aggregator } = {}) {
+    const { error } = PaymentValidator.outstandingOrderDetails().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["outstandingOrderDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @returns {Promise<PaidOrderDetailsResponse>} - Success response
+   * @summary: API to fetch the paid order details
+   * @description: Use this API to fetch the paid order details.
+   */
+  paidOrderDetails({ aggregator } = {}) {
+    const { error } = PaymentValidator.paidOrderDetails().validate(
+      { aggregator },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["aggregator"] = aggregator;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["paidOrderDetails"],
+        params: {},
+      }),
+      query_params,
+      undefined,
       xHeaders
     );
   }

@@ -177,5 +177,17 @@ class PaymentValidator {
       body: Validator.CustomerOnboardingRequest().required(),
     }).required();
   }
+
+  static outstandingOrderDetails() {
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+    });
+  }
+
+  static paidOrderDetails() {
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+    });
+  }
 }
 module.exports = PaymentValidator;

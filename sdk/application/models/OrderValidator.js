@@ -8,6 +8,7 @@ class OrderValidator {
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
       status: Joi.number(),
+      customMeta: Joi.string().allow(""),
     });
   }
 
@@ -26,6 +27,13 @@ class OrderValidator {
   static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getShipmentBagReasons() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      bagId: Joi.string().allow("").required(),
     }).required();
   }
 

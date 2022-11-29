@@ -330,7 +330,6 @@ const promise = client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -349,7 +348,6 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
  deploymentStores : value,
  status : value,
  dp : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -374,7 +372,6 @@ const data = await client.order.getOrdersByCompanyId({  pageNo : value,
 | deploymentStores | string | no | Selected Deployment Stores |    
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -553,7 +550,6 @@ const promise = client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -567,7 +563,6 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
  orderId : value,
  stores : value,
  status : value,
- shortenUrls : value,
  filterType : value });
 ```
 
@@ -587,7 +582,6 @@ const data = await client.order.getPicklistOrdersByCompanyId({  pageNo : value,
 | orderId | string | no | Order Id |    
 | stores | string | no | Selected Stores |    
 | status | string | no | Status of order |    
-| shortenUrls | boolean | no | Shorten URL option |    
 | filterType | string | no | Filters |  
 
 
@@ -1194,7 +1188,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
 | userId | string | no | User Id |    
-| shortenUrls | boolean | no | Shorten URL option |    
+| shortenUrls | string | no | User Id |    
 | filterType | string | no | Filters |  
 
 
@@ -2595,7 +2589,7 @@ Success
  | hsn_code | string |  no  |  |
  | price_effective | number |  no  |  |
  | cod_charges | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | fynd_credits | number |  no  |  |
  | refund_amount | number |  no  |  |
  | cashback_applied | number |  no  |  |
@@ -2735,7 +2729,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | gst_tag | string |  no  |  |
  | hsn_code | string |  no  |  |
  | value_of_good | number |  no  |  |

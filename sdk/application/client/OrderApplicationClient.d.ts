@@ -7,6 +7,7 @@ declare class Order {
         getOrderById: string;
         getShipmentById: string;
         getShipmentReasons: string;
+        getShipmentBagReasons: string;
         updateShipmentStatus: string;
         trackShipment: string;
         getPosOrderById: string;
@@ -29,16 +30,19 @@ declare class Order {
      * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
      * @param {number} [arg.status] - A filter to retrieve orders by their
      *   current status such as *placed*, *delivered*, etc.
+     * @param {string} [arg.customMeta] - A filter and retrieve data using
+     *   special fields included for special use-cases
      * @returns {Promise<OrderList>} - Success response
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders.
      */
-    getOrders({ pageNo, pageSize, fromDate, toDate, status }?: {
+    getOrders({ pageNo, pageSize, fromDate, toDate, status, customMeta }?: {
         pageNo?: number;
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
         status?: number;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -74,6 +78,20 @@ declare class Order {
      */
     getShipmentReasons({ shipmentId }?: {
         shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @param {string} arg.bagId - ID of the bag.
+     * @returns {Promise<ShipmentBagReasons>} - Success response
+     * @summary: Get reasons at l1,l2 and l3 for cancellation and return based on department
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     */
+    getShipmentBagReasons({ shipmentId, bagId }?: {
+        shipmentId: string;
+        bagId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
