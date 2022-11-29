@@ -3709,34 +3709,34 @@ class PlatformApplicationClient {
 /**
  * @typedef PaymentGatewayConfigResponse
  * @property {boolean} success
- * @property {boolean} created
- * @property {string} app_id
- * @property {Object[]} [aggregators]
- * @property {string[]} display_fields
  * @property {string[]} excluded_fields
+ * @property {string} app_id
+ * @property {boolean} created
+ * @property {string[]} display_fields
+ * @property {Object[]} [aggregators]
  */
 
 /**
  * @typedef ErrorCodeDescription
  * @property {boolean} success
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
  * @typedef PaymentGatewayConfig
  * @property {string} key
  * @property {string} secret
+ * @property {string} config_type
  * @property {boolean} [is_active]
  * @property {string} merchant_salt
- * @property {string} config_type
  */
 
 /**
  * @typedef PaymentGatewayConfigRequest
- * @property {string} app_id
  * @property {PaymentGatewayConfig} [aggregator_name]
  * @property {boolean} [is_active]
+ * @property {string} app_id
  */
 
 /**
@@ -3759,16 +3759,16 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PaymentModeLogo
- * @property {string} small
  * @property {string} large
+ * @property {string} small
  */
 
 /**
  * @typedef IntentApp
  * @property {string} [code]
- * @property {string} [package_name]
- * @property {string} [display_name]
  * @property {PaymentModeLogo} [logos]
+ * @property {string} [display_name]
+ * @property {string} [package_name]
  */
 
 /**
@@ -3779,49 +3779,49 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PaymentModeList
- * @property {string} [card_type]
- * @property {boolean} [intent_flow]
- * @property {number} [display_priority]
- * @property {boolean} [expired]
- * @property {PaymentModeLogo} [logo_url]
- * @property {string} [name]
+ * @property {number} [retry_count]
+ * @property {string} [display_name]
+ * @property {string} [card_token]
+ * @property {number} [timeout]
+ * @property {number} [remaining_limit]
+ * @property {string} [nickname]
  * @property {string} [card_id]
  * @property {number} [exp_month]
- * @property {string} [card_reference]
- * @property {string[]} [intent_app_error_list]
- * @property {string} [card_brand]
- * @property {number} [cod_limit]
- * @property {number} [remaining_limit]
  * @property {string} [card_issuer]
- * @property {string} [card_number]
- * @property {string} [card_brand_image]
- * @property {string} [code]
- * @property {number} [exp_year]
- * @property {number} [timeout]
- * @property {string} [fynd_vpa]
- * @property {string} [display_name]
- * @property {string} [card_fingerprint]
- * @property {string} [card_token]
+ * @property {boolean} [expired]
+ * @property {string} [name]
+ * @property {number} [cod_limit]
  * @property {string} aggregator_name
- * @property {number} [retry_count]
- * @property {string} [card_isin]
- * @property {number} [cod_limit_per_order]
- * @property {string} [nickname]
+ * @property {string} [fynd_vpa]
+ * @property {string} [card_brand_image]
+ * @property {string[]} [intent_app_error_list]
  * @property {string} [merchant_code]
- * @property {IntentApp[]} [intent_app]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {string} [card_brand]
+ * @property {string} [card_reference]
+ * @property {string} [card_fingerprint]
  * @property {string} [card_name]
+ * @property {number} [cod_limit_per_order]
+ * @property {string} [code]
+ * @property {IntentApp[]} [intent_app]
+ * @property {number} [exp_year]
+ * @property {string} [card_isin]
+ * @property {boolean} [intent_flow]
+ * @property {number} [display_priority]
+ * @property {string} [card_type]
+ * @property {string} [card_number]
  * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {PaymentModeList[]} [list]
- * @property {string} [aggregator_name]
- * @property {string} display_name
- * @property {number} display_priority
- * @property {boolean} [anonymous_enable]
  * @property {string} name
+ * @property {number} display_priority
  * @property {boolean} [add_card_enabled]
+ * @property {PaymentModeList[]} [list]
+ * @property {string} display_name
+ * @property {boolean} [anonymous_enable]
+ * @property {string} [aggregator_name]
  */
 
 /**
@@ -3837,65 +3837,65 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PayoutsResponse
+ * @property {Object} more_attributes
+ * @property {string} transfer_type
  * @property {boolean} is_default
+ * @property {boolean} is_active
  * @property {Object[]} payouts_aggregators
  * @property {Object} unique_transfer_no
- * @property {boolean} is_active
- * @property {Object} more_attributes
  * @property {Object} customers
- * @property {string} transfer_type
  */
 
 /**
  * @typedef PayoutBankDetails
- * @property {string} [state]
  * @property {string} ifsc_code
+ * @property {string} [state]
+ * @property {number} [pincode]
  * @property {string} account_type
- * @property {string} [city]
- * @property {string} [branch_name]
  * @property {string} [country]
+ * @property {string} [account_holder]
  * @property {string} [bank_name]
  * @property {string} [account_no]
- * @property {string} [account_holder]
- * @property {number} [pincode]
+ * @property {string} [city]
+ * @property {string} [branch_name]
  */
 
 /**
  * @typedef PayoutRequest
- * @property {Object} users
- * @property {boolean} is_active
- * @property {PayoutBankDetails} bank_details
- * @property {string} transfer_type
- * @property {string} aggregator
  * @property {string} unique_external_id
+ * @property {string} transfer_type
+ * @property {Object} users
+ * @property {PayoutBankDetails} bank_details
+ * @property {string} aggregator
+ * @property {boolean} is_active
  */
 
 /**
  * @typedef PayoutResponse
  * @property {boolean} success
- * @property {boolean} created
- * @property {string} unique_transfer_no
- * @property {Object} payouts
- * @property {boolean} is_active
  * @property {Object} users
- * @property {Object} bank_details
  * @property {string} transfer_type
+ * @property {boolean} created
+ * @property {Object} bank_details
+ * @property {Object} payouts
  * @property {string} aggregator
+ * @property {boolean} is_active
  * @property {string} payment_status
+ * @property {string} unique_transfer_no
  */
 
 /**
  * @typedef UpdatePayoutResponse
  * @property {boolean} success
- * @property {boolean} is_default
  * @property {boolean} is_active
+ * @property {boolean} is_default
  */
 
 /**
  * @typedef UpdatePayoutRequest
  * @property {boolean} is_default
- * @property {boolean} is_active
  * @property {string} unique_external_id
+ * @property {boolean} is_active
  */
 
 /**
@@ -3934,28 +3934,28 @@ class PlatformApplicationClient {
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} [wallet]
- * @property {string} [address]
- * @property {string} mobile
  * @property {string} ifsc_code
- * @property {string} [comment]
- * @property {string} branch_name
+ * @property {string} [address]
+ * @property {string} account_holder
+ * @property {string} mobile
  * @property {string} bank_name
+ * @property {string} [wallet]
  * @property {string} email
  * @property {string} account_no
- * @property {string} account_holder
+ * @property {string} [comment]
+ * @property {string} branch_name
  * @property {string} [vpa]
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {boolean} delights
+ * @property {string} [request_id]
  * @property {string} transfer_mode
  * @property {string} shipment_id
- * @property {string} order_id
- * @property {string} [request_id]
- * @property {BeneficiaryModeDetails} details
+ * @property {boolean} delights
  * @property {string} [otp]
+ * @property {BeneficiaryModeDetails} details
+ * @property {string} order_id
  */
 
 /**
@@ -3969,38 +3969,38 @@ class PlatformApplicationClient {
 /**
  * @typedef NotFoundResourceError
  * @property {boolean} success
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
  * @typedef IfscCodeResponse
  * @property {boolean} [success]
- * @property {string} branch_name
  * @property {string} bank_name
+ * @property {string} branch_name
  */
 
 /**
  * @typedef OrderBeneficiaryDetails
- * @property {string} [mobile]
- * @property {string} [comment]
- * @property {string} [branch_name]
- * @property {string} account_holder
- * @property {string} account_no
- * @property {string} address
- * @property {string} email
- * @property {string} created_on
- * @property {string} transfer_mode
- * @property {string} display_name
- * @property {string} bank_name
- * @property {string} title
- * @property {number} id
- * @property {string} beneficiary_id
- * @property {string} subtitle
- * @property {string} [delights_user_name]
  * @property {string} ifsc_code
- * @property {string} modified_on
+ * @property {string} subtitle
+ * @property {string} beneficiary_id
+ * @property {string} display_name
+ * @property {string} [comment]
  * @property {boolean} is_active
+ * @property {string} [branch_name]
+ * @property {string} transfer_mode
+ * @property {string} bank_name
+ * @property {string} email
+ * @property {string} account_no
+ * @property {string} modified_on
+ * @property {string} address
+ * @property {string} [delights_user_name]
+ * @property {string} account_holder
+ * @property {string} [mobile]
+ * @property {number} id
+ * @property {string} title
+ * @property {string} created_on
  */
 
 /**
@@ -4011,16 +4011,16 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PaymentConfirmationMode
- * @property {number} amount
  * @property {string} mode
- * @property {string} [name]
  * @property {Object} [meta]
+ * @property {number} amount
+ * @property {string} [name]
  */
 
 /**
  * @typedef PaymentConfirmationRequest
- * @property {PaymentConfirmationMode[]} payment_methods
  * @property {string} order_id
+ * @property {PaymentConfirmationMode[]} payment_methods
  */
 
 /**
@@ -4032,11 +4032,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CODdata
- * @property {number} usages
  * @property {number} limit
- * @property {boolean} is_active
- * @property {number} remaining_limit
  * @property {string} user_id
+ * @property {number} usages
+ * @property {number} remaining_limit
+ * @property {boolean} is_active
  */
 
 /**
@@ -4047,8 +4047,8 @@ class PlatformApplicationClient {
 
 /**
  * @typedef SetCODForUserRequest
- * @property {string} merchant_user_id
  * @property {string} mobileno
+ * @property {string} merchant_user_id
  * @property {boolean} is_active
  */
 
@@ -4060,16 +4060,16 @@ class PlatformApplicationClient {
 
 /**
  * @typedef RepaymentRequestDetails
- * @property {number} amount
- * @property {string} aggregator_order_id
- * @property {string} payment_mode
- * @property {string} payment_mode_identifier
- * @property {string} current_status
- * @property {string} merchant_order_id
  * @property {number} outstanding_details_id
+ * @property {string} merchant_order_id
+ * @property {number} amount
+ * @property {string} payment_mode_identifier
  * @property {string} aggregator
+ * @property {string} aggregator_order_id
  * @property {string} aggregator_transaction_id
+ * @property {string} current_status
  * @property {string} fwd_shipment_id
+ * @property {string} payment_mode
  */
 
 /**
@@ -4081,10 +4081,10 @@ class PlatformApplicationClient {
 /**
  * @typedef MerchantOnBoardingRequest
  * @property {string} user_id
- * @property {string} aggregator
  * @property {string} app_id
  * @property {string} credit_line_id
  * @property {string} status
+ * @property {string} aggregator
  */
 
 /**
