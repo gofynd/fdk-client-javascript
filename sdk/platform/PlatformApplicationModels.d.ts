@@ -188,13 +188,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
@@ -320,4 +320,10 @@ export class AnalyticsValidator {
 export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
+}
+export class ServiceabilityValidator {
+    static postApplicationServiceability(): any;
+    static getApplicationServiceability(): any;
+    static getZoneFromPincodeView(): any;
+    static getZonesFromApplicationIdView(): any;
 }
