@@ -65,15 +65,17 @@ declare class Cart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
+     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode }?: {
+    addItems({ body, i, b, areaCode, id }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
+        id?: string;
         body: any;
     }): Promise<any>;
     /**

@@ -22,6 +22,7 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
+      id: Joi.string().allow(""),
       body: Validator.AddCartRequest().required(),
     }).required();
   }

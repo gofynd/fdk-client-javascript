@@ -135,14 +135,15 @@ class PosCart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
+   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  addItems({ body, i, b, areaCode } = {}) {
+  addItems({ body, i, b, areaCode, id } = {}) {
     const { error } = PosCartValidator.addItems().validate(
-      { body, i, b, areaCode },
+      { body, i, b, areaCode, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -152,6 +153,7 @@ class PosCart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
+    query_params["id"] = id;
 
     const xHeaders = {};
 
