@@ -7,6 +7,7 @@ declare class Order {
         getOrderById: string;
         getPosOrderById: string;
         getShipmentById: string;
+        getInvoiceByShipmentId: string;
         trackShipment: string;
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
@@ -14,7 +15,7 @@ declare class Order {
         getShipmentBagReasons: string;
         getShipmentReasons: string;
         updateShipmentStatus: string;
-        getInvoiceByShipmentId: string;
+        getInvoiceByShipmentId1: string;
         getCreditNoteByShipmentId: string;
     };
     _urls: {};
@@ -76,6 +77,16 @@ declare class Order {
      * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
      */
     getShipmentById({ shipmentId }?: {
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment.
+     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @summary: Get Invoice of a shipment
+     * @description: Use this API to retrieve shipment invoice.
+     */
+    getInvoiceByShipmentId({ shipmentId }?: {
         shipmentId: string;
     }): Promise<any>;
     /**
@@ -168,7 +179,7 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
      * @param {ShipmentStatusUpdateBody} arg.body
-     * @returns {Promise<ShipmentStatusUpdate>} - Success response
+     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
      * @summary:
      * @description: updateShipmentStatus
      */
@@ -180,11 +191,11 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - Shiment ID
      * @param {invoiceParameter} [arg.parameters] -
-     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
      * @summary: Get Presigned URL to download Invoice
      * @description: Use this API to generate Presigned URLs for downloading Invoice
      */
-    getInvoiceByShipmentId({ shipmentId, parameters }?: {
+    getInvoiceByShipmentId1({ shipmentId, parameters }?: {
         shipmentId: string;
         parameters?: any;
     }): Promise<any>;
@@ -192,7 +203,7 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - Shiment ID
      * @param {creditNoteParameter} [arg.parameters] -
-     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
      * @summary: Get Presigned URL to download Invoice
      * @description: Use this API to generate Presigned URLs for downloading Invoice
      */

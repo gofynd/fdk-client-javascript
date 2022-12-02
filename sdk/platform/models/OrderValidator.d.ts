@@ -11,6 +11,13 @@ declare class OrderValidator {
     static getReportsShipmentListing(): any;
     static upsertJioCode(): any;
     static getBulkInvoice(): any;
+    static getBulkInvoiceLabel(): any;
+    static getBulkShipmentExcelFile(): any;
+    static getBulkList(): any;
+    static getManifestList(): any;
+    static getManifestDetailsWithShipments(): any;
+    static getBulkActionFailedReport(): any;
+    static getPlatformShipmentReasons(): any;
     static bulkActionProcessXlsxFile(): any;
     static bulkActionDetails(): any;
     static createOrder(): any;
@@ -25,5 +32,7 @@ declare class OrderValidator {
     static getRoleBasedActions(): any;
     static getShipmentHistory(): any;
     static sendSmsNinja(): any;
+    static manualAssignDPToShipment(): any;
+    static updatePackagingDimensions(): any;
     static checkOrderStatus(): any;
 }

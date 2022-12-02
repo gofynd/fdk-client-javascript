@@ -14,6 +14,8 @@ class Order {
         "/service/application/orders/v1.0/orders/pos-order/{order_id}",
       getShipmentById:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
+      getInvoiceByShipmentId:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
       trackShipment:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
       getCustomerDetailsByShipmentId:
@@ -28,7 +30,7 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
-      getInvoiceByShipmentId:
+      getInvoiceByShipmentId1:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
       getCreditNoteByShipmentId:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note",
@@ -189,6 +191,38 @@ class Order {
       "get",
       constructUrl({
         url: this._urls["getShipmentById"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment.
+   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @summary: Get Invoice of a shipment
+   * @description: Use this API to retrieve shipment invoice.
+   */
+  getInvoiceByShipmentId({ shipmentId } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+      { shipmentId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getInvoiceByShipmentId"],
         params: { shipmentId },
       }),
       query_params,
@@ -414,7 +448,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
    * @param {ShipmentStatusUpdateBody} arg.body
-   * @returns {Promise<ShipmentStatusUpdate>} - Success response
+   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
    * @summary:
    * @description: updateShipmentStatus
    */
@@ -447,12 +481,12 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {invoiceParameter} [arg.parameters] -
-   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */
-  getInvoiceByShipmentId({ shipmentId, parameters } = {}) {
-    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+  getInvoiceByShipmentId1({ shipmentId, parameters } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId1().validate(
       { shipmentId, parameters },
       { abortEarly: false, allowUnknown: true }
     );
@@ -468,7 +502,7 @@ class Order {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getInvoiceByShipmentId"],
+        url: this._urls["getInvoiceByShipmentId1"],
         params: { shipmentId },
       }),
       query_params,
@@ -481,7 +515,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {creditNoteParameter} [arg.parameters] -
-   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */

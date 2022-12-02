@@ -11,6 +11,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.lane] -
    * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
    * @param {string} [arg.searchId] -
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
@@ -30,6 +31,7 @@ class Order {
   getShipmentList({
     lane,
     searchType,
+    searchValue,
     searchId,
     fromDate,
     toDate,
@@ -48,6 +50,7 @@ class Order {
       {
         lane,
         searchType,
+        searchValue,
         searchId,
         fromDate,
         toDate,
@@ -71,6 +74,7 @@ class Order {
     const query_params = {};
     query_params["lane"] = lane;
     query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
     query_params["search_id"] = searchId;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
@@ -480,11 +484,46 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.batchId -
+   * @param {string} arg.docType -
    * @summary:
    * @description:
    */
-  getBulkInvoice({ batchId } = {}) {
+  getBulkInvoice({ batchId, docType } = {}) {
     const { error } = OrderValidator.getBulkInvoice().validate(
+      {
+        batchId,
+        docType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["batch_id"] = batchId;
+    query_params["doc_type"] = docType;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/invoice`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId -
+   * @summary:
+   * @description:
+   */
+  getBulkInvoiceLabel({ batchId } = {}) {
+    const { error } = OrderValidator.getBulkInvoiceLabel().validate(
       {
         batchId,
       },
@@ -502,7 +541,380 @@ class Order {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/invoice`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/invoice-label-external`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchId] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.dpIds] -
+   * @param {string} [arg.orderingCompanyId] -
+   * @param {string} [arg.stores] -
+   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.requestByExt] -
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.customerId] -
+   * @param {boolean} [arg.isPrioritySort] -
+   * @summary:
+   * @description:
+   */
+  getBulkShipmentExcelFile({
+    lane,
+    searchType,
+    searchId,
+    fromDate,
+    toDate,
+    dpIds,
+    orderingCompanyId,
+    stores,
+    salesChannel,
+    requestByExt,
+    pageNo,
+    pageSize,
+    customerId,
+    isPrioritySort,
+  } = {}) {
+    const { error } = OrderValidator.getBulkShipmentExcelFile().validate(
+      {
+        lane,
+        searchType,
+        searchId,
+        fromDate,
+        toDate,
+        dpIds,
+        orderingCompanyId,
+        stores,
+        salesChannel,
+        requestByExt,
+        pageNo,
+        pageSize,
+        customerId,
+        isPrioritySort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["lane"] = lane;
+    query_params["search_type"] = searchType;
+    query_params["search_id"] = searchId;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["dp_ids"] = dpIds;
+    query_params["ordering_company_id"] = orderingCompanyId;
+    query_params["stores"] = stores;
+    query_params["sales_channel"] = salesChannel;
+    query_params["request_by_ext"] = requestByExt;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["customer_id"] = customerId;
+    query_params["is_priority_sort"] = isPrioritySort;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/generate/file`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchId] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.dpIds] -
+   * @param {string} [arg.orderingCompanyId] -
+   * @param {string} [arg.stores] -
+   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.requestByExt] -
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.customerId] -
+   * @param {boolean} [arg.isPrioritySort] -
+   * @summary:
+   * @description:
+   */
+  getBulkList({
+    lane,
+    searchType,
+    searchId,
+    fromDate,
+    toDate,
+    dpIds,
+    orderingCompanyId,
+    stores,
+    salesChannel,
+    requestByExt,
+    pageNo,
+    pageSize,
+    customerId,
+    isPrioritySort,
+  } = {}) {
+    const { error } = OrderValidator.getBulkList().validate(
+      {
+        lane,
+        searchType,
+        searchId,
+        fromDate,
+        toDate,
+        dpIds,
+        orderingCompanyId,
+        stores,
+        salesChannel,
+        requestByExt,
+        pageNo,
+        pageSize,
+        customerId,
+        isPrioritySort,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["lane"] = lane;
+    query_params["search_type"] = searchType;
+    query_params["search_id"] = searchId;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["dp_ids"] = dpIds;
+    query_params["ordering_company_id"] = orderingCompanyId;
+    query_params["stores"] = stores;
+    query_params["sales_channel"] = salesChannel;
+    query_params["request_by_ext"] = requestByExt;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["customer_id"] = customerId;
+    query_params["is_priority_sort"] = isPrioritySort;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/listing`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.status] -
+   * @param {number} [arg.storeId] -
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.searchValue] -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @summary:
+   * @description:
+   */
+  getManifestList({
+    status,
+    storeId,
+    pageNo,
+    pageSize,
+    searchValue,
+    fromDate,
+    toDate,
+  } = {}) {
+    const { error } = OrderValidator.getManifestList().validate(
+      {
+        status,
+        storeId,
+        pageNo,
+        pageSize,
+        searchValue,
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["status"] = status;
+    query_params["store_id"] = storeId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["search_value"] = searchValue;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/generated-manifests`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.manifestId -
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {number} arg.storeId -
+   * @param {number} [arg.page] -
+   * @param {number} [arg.pageSize] -
+   * @param {string} [arg.lane] -
+   * @param {number} [arg.dpIds] -
+   * @param {string} [arg.searchType] -
+   * @param {string} [arg.searchValue] -
+   * @summary:
+   * @description:
+   */
+  getManifestDetailsWithShipments({
+    manifestId,
+    storeId,
+    fromDate,
+    toDate,
+    page,
+    pageSize,
+    lane,
+    dpIds,
+    searchType,
+    searchValue,
+  } = {}) {
+    const { error } = OrderValidator.getManifestDetailsWithShipments().validate(
+      {
+        manifestId,
+        storeId,
+        fromDate,
+        toDate,
+        page,
+        pageSize,
+        lane,
+        dpIds,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["manifest_id"] = manifestId;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["store_id"] = storeId;
+    query_params["page"] = page;
+    query_params["page_size"] = pageSize;
+    query_params["lane"] = lane;
+    query_params["dp_ids"] = dpIds;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/manifest-details`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId -
+   * @param {string} [arg.reportType] -
+   * @summary:
+   * @description:
+   */
+  getBulkActionFailedReport({ batchId, reportType } = {}) {
+    const { error } = OrderValidator.getBulkActionFailedReport().validate(
+      {
+        batchId,
+        reportType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["batch_id"] = batchId;
+    query_params["report_type"] = reportType;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action-failed-report/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @param {string} arg.bagId - ID of the bag. An order may contain multiple
+   *   items and may get divided into one or more shipment, each having its own ID.
+   * @param {string} arg.state - State for which reasons are required.
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   */
+  getPlatformShipmentReasons({ shipmentId, bagId, state } = {}) {
+    const { error } = OrderValidator.getPlatformShipmentReasons().validate(
+      {
+        shipmentId,
+        bagId,
+        state,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments/${shipmentId}/bags/${bagId}/state/${state}/reasons`,
       query_params,
       undefined,
       xHeaders
@@ -999,6 +1411,68 @@ class Order {
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ManualAssignDPToShipment} arg.body
+   * @summary:
+   * @description:
+   */
+  manualAssignDPToShipment({ body } = {}) {
+    const { error } = OrderValidator.manualAssignDPToShipment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/oms/manual-place-shipment`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  updatePackagingDimensions({ body } = {}) {
+    const { error } = OrderValidator.updatePackagingDimensions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-packaging-dimension`,
       query_params,
       body,
       xHeaders
