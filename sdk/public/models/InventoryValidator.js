@@ -1,6 +1,19 @@
 const Validator = require("../PublicModels");
 const Joi = require("joi");
 class InventoryValidator {
+  static getJobCodesMetrics() {
+    return Joi.object({
+      dailyJob: Joi.boolean(),
+      jobCode: Joi.string().allow(""),
+    });
+  }
+
+  static saveJobCodesMetrics() {
+    return Joi.object({
+      body: Validator.EmailJobMetrics().required(),
+    }).required();
+  }
+
   static getConfigByApiKey() {
     return Joi.object({
       apikey: Joi.string().allow("").required(),
@@ -24,19 +37,6 @@ class InventoryValidator {
     return Joi.object({
       integrationType: Joi.string().allow("").required(),
       disable: Joi.boolean(),
-    }).required();
-  }
-
-  static getJobCodesMetrics() {
-    return Joi.object({
-      dailyJob: Joi.boolean(),
-      jobCode: Joi.string().allow(""),
-    });
-  }
-
-  static saveJobCodesMetrics() {
-    return Joi.object({
-      body: Validator.EmailJobMetrics().required(),
     }).required();
   }
 }

@@ -5,7 +5,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## AuditTrail Methods
-
+Audit Logging Service that logs the crucial updates on the Platform
 * [getAuditLogs](#getauditlogs)
 * [createAuditLog](#createauditlog)
 * [getAuditLog](#getauditlog)
@@ -39,7 +39,7 @@ const data = await client.auditTrail.getAuditLogs({  qs : value });
 
 
 
-Get audit logs
+Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
 
 *Returned Response:*
 
@@ -66,38 +66,25 @@ Success
     "docs": [
       {
         "entity": {
-          "type": "sales-channel-configuration",
-          "id": "5dcbf6065862c28d81beb025",
+          "type": "update-shipment-status",
+          "id": "16660872182851894278",
           "action": "update"
         },
         "modifier": {
+          "user_id": "a8d7a69b4cd980acc5d2455c",
           "as_administrator": true,
-          "user_id": "5d8391fa7f6b58553d02eb63",
           "user_details": {
-            "firstName": "Hitesh",
-            "email": "hiteshjha@gofynd.com"
+            "first_name": "Paul",
+            "last_name": "Lobo",
+            "full_name": "Paul Lobo",
+            "email": "paullobo@gofynd.com"
           }
         },
-        "device_info": {
-          "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-        },
-        "location": {
-          "IP": "103.226.87.213"
-        },
-        "_id": "602a1366a7486d63f1e915b2",
-        "company": 61,
-        "application": "5d63686df2a4f7806b76bb32",
-        "sessions": "",
-        "date": "2021-02-15T06:23:32.098Z",
-        "logs": {
-          "modified_by": "5d8391fa7f6b58553d02eb63"
-        },
-        "created_at": "2021-02-15T06:23:34.497Z",
-        "modified_at": "2021-02-15T06:23:34.497Z",
-        "meta": {
-          "browser": "Linux - Chrome",
-          "device": ""
-        }
+        "_id": "634eef735e84e7e1b09aa07c",
+        "application": null,
+        "date": "2022-10-18T18:24:51.329Z",
+        "created_at": "2022-10-18T18:24:51.400Z",
+        "modified_at": "2022-10-18T18:24:51.400Z"
       }
     ]
   }
@@ -140,7 +127,7 @@ const data = await client.auditTrail.createAuditLog({  body : value });
 | body | [RequestBodyAuditLog](#RequestBodyAuditLog) | yes | Request body |
 
 
-Create a Audit log
+Create a log instance that stores all the relevant info to be logged
 
 *Returned Response:*
 
@@ -207,7 +194,7 @@ const data = await client.auditTrail.getAuditLog({  id : value });
 
 
 
-Get audit logs by logs uuid
+Get detailed log information by their id
 
 *Returned Response:*
 
@@ -231,43 +218,75 @@ Success
 ```json
 {
   "value": {
-    "docs": [
-      {
-        "entity": {
-          "type": "sales-channel-configuration",
-          "id": "5dcbf6065862c28d81beb025",
-          "action": "update"
-        },
-        "modifier": {
-          "as_administrator": true,
-          "user_id": "5d8391fa7f6b58553d02eb63",
-          "user_details": {
-            "firstName": "Hitesh",
-            "email": "hiteshjha@gofynd.com"
+    "entity": {
+      "type": "update-shipment-status",
+      "id": "16660872182851894278",
+      "action": "update"
+    },
+    "modifier": {
+      "user_id": "a8d7a69b4cd980acc5d2455c",
+      "as_administrator": true,
+      "user_details": {
+        "first_name": "Paul",
+        "last_name": "Lobo",
+        "full_name": "Paul Lobo",
+        "email": "paullobo@gofynd.com"
+      }
+    },
+    "device_info": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+    },
+    "location": {
+      "IP": "103.173.241.155"
+    },
+    "_id": "634eef735e84e7e1b09aa07c",
+    "company": 1,
+    "application": null,
+    "sessions": "",
+    "date": "2022-10-18T18:24:51.329Z",
+    "logs": {
+      "request": {
+        "status_update": {
+          "bags": [
+            403501,
+            403502,
+            403503
+          ],
+          "status": "bag_confirmed"
+        }
+      },
+      "response": {
+        "shipments": {
+          "16660872182851894278": {
+            "status": true,
+            "error": "",
+            "message": [
+              "Requested change is being performed"
+            ]
           }
         },
-        "device_info": {
-          "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-        },
-        "location": {
-          "IP": "103.226.87.213"
-        },
-        "_id": "602a1366a7486d63f1e915b2",
-        "company": 61,
-        "application": "5d63686df2a4f7806b76bb32",
-        "sessions": "",
-        "date": "2021-02-15T06:23:32.098Z",
-        "logs": {
-          "modified_by": "5d8391fa7f6b58553d02eb63"
-        },
-        "created_at": "2021-02-15T06:23:34.497Z",
-        "modified_at": "2021-02-15T06:23:34.497Z",
-        "meta": {
-          "browser": "Linux - Chrome",
-          "device": ""
-        }
+        "error_shipments": []
       }
-    ]
+    },
+    "created_at": "2022-10-18T18:24:51.400Z",
+    "modified_at": "2022-10-18T18:24:51.400Z",
+    "meta": {
+      "browser": {
+        "name": "Chrome",
+        "version": "106.0.0.0",
+        "major": "106"
+      },
+      "device": {},
+      "cpu": {},
+      "os": {
+        "name": "Mac OS",
+        "version": "10.15.7"
+      },
+      "engine": {
+        "name": "Blink",
+        "version": "106.0.0.0"
+      }
+    }
   }
 }
 ```
@@ -304,7 +323,7 @@ const data = await client.auditTrail.getEntityTypes();
 
 
 
-Get entity types
+Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better
 
 *Returned Response:*
 

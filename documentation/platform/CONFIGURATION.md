@@ -2633,6 +2633,18 @@ Success
 
 ```json
 {
+  "deployment_meta": {
+    "deployed_stores": [
+      1,
+      10
+    ],
+    "all_stores": false,
+    "enabled": true,
+    "type": "hard",
+    "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+    "app": "000000000000000000000004",
+    "__v": 6
+  },
   "deployed_stores": [
     1,
     10

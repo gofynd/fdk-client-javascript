@@ -29,6 +29,13 @@ class OrderValidator {
     }).required();
   }
 
+  static getShipmentBagReasons() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      bagId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),

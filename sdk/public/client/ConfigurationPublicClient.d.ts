@@ -19,7 +19,7 @@ declare class Configuration {
     searchApplication({ authorization, query }?: {
         authorization?: string;
         query?: string;
-    }): Promise<any>;
+    }): Promise<ApplicationResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.locationType] - Provide location type to query on.
@@ -34,5 +34,5 @@ declare class Configuration {
     getLocations({ locationType, id }?: {
         locationType?: string;
         id?: string;
-    }): Promise<any>;
+    }): Promise<Locations>;
 }

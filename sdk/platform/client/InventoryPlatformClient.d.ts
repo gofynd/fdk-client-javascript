@@ -4,21 +4,6 @@ declare class Inventory {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @summary: Get Slingshot Configuration Of  A Company
-     * @description: REST Endpoint that returns all configuration detail of a company
-     */
-    getConfigByCompany({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SuppressStorePayload} arg.body
-     * @summary: Get Slingshot Configuration Of  A Company
-     * @description: REST Endpoint that returns all configuration detail of a company
-     */
-    suppressStores({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
      * @summary: Get Job Configs For A Company
@@ -35,7 +20,7 @@ declare class Inventory {
      * @description: REST Endpoint that updates a job config
      */
     updateJob({ body }?: {
-        body: any;
+        body: JobConfigDTO;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -44,8 +29,23 @@ declare class Inventory {
      * @description: REST Endpoint that creates a new job config
      */
     createJob({ body }?: {
-        body: any;
+        body: JobConfigDTO;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SuppressStorePayload} arg.body
+     * @summary: Get Slingshot Configuration Of  A Company
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    suppressStores({ body }?: {
+        body: SuppressStorePayload;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary: Get Slingshot Configuration Of  A Company
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    getConfigByCompany({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.jobId - Job Id
@@ -97,8 +97,8 @@ declare class Inventory {
      * @param {string} arg.code - Code
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
-     * @param {string} [arg.status] -
-     * @param {string} [arg.date] -
+     * @param {string} [arg.status] - Status
+     * @param {string} [arg.date] - From Date
      * @summary: Get Job Metrics
      * @description: REST Endpoint that returns Inventory Run History For A Job Code
      */

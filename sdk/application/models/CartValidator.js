@@ -7,7 +7,6 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       assignCardId: Joi.number(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
     });
   }
@@ -22,7 +21,6 @@ class CartValidator {
     return Joi.object({
       i: Joi.boolean(),
       b: Joi.boolean(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: Validator.AddCartRequest().required(),
     }).required();
@@ -33,7 +31,6 @@ class CartValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
-      areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       body: Validator.UpdateCartRequest().required(),
     }).required();
