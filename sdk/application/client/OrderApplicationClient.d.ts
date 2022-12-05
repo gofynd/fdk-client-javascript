@@ -7,7 +7,7 @@ declare class Order {
         getOrderById: string;
         getPosOrderById: string;
         getShipmentById: string;
-        getInvoiceByShipmentId: string;
+        getInvoiceByShipmentIds: string;
         trackShipment: string;
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
@@ -15,7 +15,7 @@ declare class Order {
         getShipmentBagReasons: string;
         getShipmentReasons: string;
         updateShipmentStatus: string;
-        getInvoiceByShipmentId1: string;
+        getInvoiceByShipmentId: string;
         getCreditNoteByShipmentId: string;
     };
     _urls: {};
@@ -86,7 +86,7 @@ declare class Order {
      * @summary: Get Invoice of a shipment
      * @description: Use this API to retrieve shipment invoice.
      */
-    getInvoiceByShipmentId({ shipmentId }?: {
+    getInvoiceByShipmentIds({ shipmentId }?: {
         shipmentId: string;
     }): Promise<any>;
     /**
@@ -195,7 +195,7 @@ declare class Order {
      * @summary: Get Presigned URL to download Invoice
      * @description: Use this API to generate Presigned URLs for downloading Invoice
      */
-    getInvoiceByShipmentId1({ shipmentId, parameters }?: {
+    getInvoiceByShipmentId({ shipmentId, parameters }?: {
         shipmentId: string;
         parameters?: any;
     }): Promise<any>;

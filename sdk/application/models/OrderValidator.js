@@ -30,7 +30,7 @@ class OrderValidator {
     }).required();
   }
 
-  static getInvoiceByShipmentId() {
+  static getInvoiceByShipmentIds() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
@@ -84,7 +84,7 @@ class OrderValidator {
     }).required();
   }
 
-  static getInvoiceByShipmentId1() {
+  static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       parameters: Validator.invoiceParameter(),
