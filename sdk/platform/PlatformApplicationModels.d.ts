@@ -198,8 +198,8 @@ export class CatalogValidator {
     static deleteAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
-    static getAppProduct(): any;
     static updateAppProduct(): any;
+    static getAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
@@ -293,6 +293,7 @@ export class CartValidator {
     static getPromotionById(): any;
     static updatePromotion(): any;
     static updatePromotionPartially(): any;
+    static getPromosCouponConfig(): any;
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
