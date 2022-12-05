@@ -17,6 +17,7 @@ declare class UserValidator {
     static verifyMobile(): any;
     static hasPassword(): any;
     static updatePassword(): any;
+    static deleteUser(): any;
     static logout(): any;
     static sendOTPOnMobile(): any;
     static verifyMobileOTP(): any;
