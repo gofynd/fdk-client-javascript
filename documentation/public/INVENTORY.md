@@ -6,16 +6,130 @@
 
 ## Inventory Methods
 
+* [getJobCodesMetrics](#getjobcodesmetrics)
+* [saveJobCodesMetrics](#savejobcodesmetrics)
 * [getConfigByApiKey](#getconfigbyapikey)
 * [getApiKey](#getapikey)
 * [getJobByCode](#getjobbycode)
 * [getJobConfigByIntegrationType](#getjobconfigbyintegrationtype)
-* [getJobCodesMetrics](#getjobcodesmetrics)
-* [saveJobCodesMetrics](#savejobcodesmetrics)
 
 
 
 ## Methods with example and description
+
+
+### getJobCodesMetrics
+Find all the JobCodes from Metrics Collection based on the field Values
+
+
+
+```javascript
+// Promise
+const promise = inventory.getJobCodesMetrics({  dailyJob : value,
+ jobCode : value });
+
+// Async/Await
+const data = await inventory.getJobCodesMetrics({  dailyJob : value,
+ jobCode : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| dailyJob | boolean | no | Daily Job Flag |    
+| jobCode | string | no | Email Job Code |  
+
+
+
+Endpoint to return all JobCodes present in Metrics Collection
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeObject](#ResponseEnvelopeObject)
+
+Successful operation
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### saveJobCodesMetrics
+Save JobCode Metrics
+
+
+
+```javascript
+// Promise
+const promise = inventory.saveJobCodesMetrics({  body : value });
+
+// Async/Await
+const data = await inventory.saveJobCodesMetrics({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EmailJobMetrics](#EmailJobMetrics) | yes | Request body |
+
+
+Endpoint to save JobCode Metrics
+
+*Returned Response:*
+
+
+
+
+[ResponseEnvelopeEmailJobMetrics](#ResponseEnvelopeEmailJobMetrics)
+
+JobCode Metrics entry Created Successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getConfigByApiKey
@@ -248,122 +362,61 @@ Successful operation
 ---
 
 
-### getJobCodesMetrics
-Find all the JobCodes from Metrics Collection based on the field Values
-
-
-
-```javascript
-// Promise
-const promise = inventory.getJobCodesMetrics({  dailyJob : value,
- jobCode : value });
-
-// Async/Await
-const data = await inventory.getJobCodesMetrics({  dailyJob : value,
- jobCode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| dailyJob | boolean | no | Daily Job Flag |    
-| jobCode | string | no | Email Job Code |  
-
-
-
-Endpoint to return all JobCodes present in Metrics Collection
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeObject](#ResponseEnvelopeObject)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### saveJobCodesMetrics
-Save JobCode Metrics
-
-
-
-```javascript
-// Promise
-const promise = inventory.saveJobCodesMetrics({  body : value });
-
-// Async/Await
-const data = await inventory.saveJobCodesMetrics({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [EmailJobMetrics](#EmailJobMetrics) | yes | Request body |
-
-
-Endpoint to save JobCode Metrics
-
-*Returned Response:*
-
-
-
-
-[ResponseEnvelopeEmailJobMetrics](#ResponseEnvelopeEmailJobMetrics)
-
-JobCode Metrics entry Created Successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
+
+ 
+ 
+ #### [EmailJobMetrics](#EmailJobMetrics)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | executed | boolean |  no  |  |
+ | id | string |  no  |  |
+ | job_code | string |  no  |  |
+ | daily_job | boolean |  no  |  |
+ | last_executed_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | has_previous | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ResponseEnvelopeEmailJobMetrics](#ResponseEnvelopeEmailJobMetrics)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timestamp | string |  no  |  |
+ | status | number |  no  |  |
+ | error | string |  no  |  |
+ | exception | string |  no  |  |
+ | message | string |  no  |  |
+ | total_time_taken_in_millis | number |  no  |  |
+ | http_status | string |  no  |  |
+ | items | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
+ | payload | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
+ | trace_id | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+
+---
+
 
  
  
@@ -380,7 +433,6 @@ JobCode Metrics entry Created Successfully
  | token | string |  no  |  |
  | name | string |  no  |  |
  | stores | [[GStore](#GStore)] |  no  |  |
- | gstores | [[GStore](#GStore)] |  no  |  |
 
 ---
 
@@ -414,23 +466,6 @@ JobCode Metrics entry Created Successfully
  | _id | string |  no  |  |
  | name | string |  no  |  |
  | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
 
 ---
 
@@ -560,9 +595,9 @@ JobCode Metrics entry Created Successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | integration | string |  yes  |  |
  | integration_data | string |  no  |  |
  | company_name | string |  no  |  |
+ | integration | string |  yes  |  |
  | company_id | number |  yes  |  |
  | task_details | [TaskDTO](#TaskDTO) |  no  |  |
  | threshold_details | [DataTresholdDTO](#DataTresholdDTO) |  no  |  |
@@ -620,42 +655,6 @@ JobCode Metrics entry Created Successfully
  | http_status | string |  no  |  |
  | items | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
  | payload | [[JobConfigDTO](#JobConfigDTO)] |  no  |  |
- | trace_id | string |  no  |  |
- | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [EmailJobMetrics](#EmailJobMetrics)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | executed | boolean |  no  |  |
- | id | string |  no  |  |
- | job_code | string |  no  |  |
- | daily_job | boolean |  no  |  |
- | last_executed_on | string |  no  |  |
-
----
-
-
- 
- 
- #### [ResponseEnvelopeEmailJobMetrics](#ResponseEnvelopeEmailJobMetrics)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | string |  no  |  |
- | status | number |  no  |  |
- | error | string |  no  |  |
- | exception | string |  no  |  |
- | message | string |  no  |  |
- | total_time_taken_in_millis | number |  no  |  |
- | http_status | string |  no  |  |
- | items | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
- | payload | [EmailJobMetrics](#EmailJobMetrics) |  no  |  |
  | trace_id | string |  no  |  |
  | page | [Page](#Page) |  no  |  |
 

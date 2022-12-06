@@ -29,6 +29,8 @@ declare class Validator {
     static AuthMeta(): any;
     static Association(): any;
     static EventConfigBase(): any;
+    static EmailJobMetrics(): any;
+    static ResponseEnvelopeEmailJobMetrics(): any;
     static GCompany(): any;
     static GStore(): any;
     static Metum(): any;
@@ -44,7 +46,5 @@ declare class Validator {
     static ResponseEnvelopeJobConfigDTO(): any;
     static TaskDTO(): any;
     static ResponseEnvelopeListJobConfigDTO(): any;
-    static EmailJobMetrics(): any;
-    static ResponseEnvelopeEmailJobMetrics(): any;
     static ResponseEnvelopeObject(): any;
 }

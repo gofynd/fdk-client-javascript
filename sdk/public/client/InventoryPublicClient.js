@@ -6,15 +6,15 @@ class Inventory {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      getJobCodesMetrics:
+        "/service/common/inventory/v1.0/company/email/jobCode",
+      saveJobCodesMetrics:
+        "/service/common/inventory/v1.0/company/email/jobCode",
       getConfigByApiKey: "/service/common/inventory/v1.0/company/slingshot",
       getApiKey: "/service/common/inventory/v1.0/company/slingshot/apikey",
       getJobByCode: "/service/common/inventory/v1.0/company/jobs/code/{code}",
       getJobConfigByIntegrationType:
         "/service/common/inventory/v1.0/company/job/config",
-      getJobCodesMetrics:
-        "/service/common/inventory/v1.0/company/email/jobCode",
-      saveJobCodesMetrics:
-        "/service/common/inventory/v1.0/company/email/jobCode",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -30,6 +30,73 @@ class Inventory {
       ...this._urls,
       ...urls,
     };
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.dailyJob] - Daily Job Flag
+   * @param {string} [arg.jobCode] - Email Job Code
+   * @returns {Promise<ResponseEnvelopeObject>} - Success response
+   * @summary: Find all the JobCodes from Metrics Collection based on the field Values
+   * @description: Endpoint to return all JobCodes present in Metrics Collection
+   */
+  getJobCodesMetrics({ dailyJob, jobCode } = {}) {
+    const { error } = InventoryValidator.getJobCodesMetrics().validate(
+      { dailyJob, jobCode },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["daily_job"] = dailyJob;
+    query_params["job_code"] = jobCode;
+
+    const xHeaders = {};
+
+    return PublicAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getJobCodesMetrics"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {EmailJobMetrics} arg.body
+   * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
+   * @summary: Save JobCode Metrics
+   * @description: Endpoint to save JobCode Metrics
+   */
+  saveJobCodesMetrics({ body } = {}) {
+    const { error } = InventoryValidator.saveJobCodesMetrics().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PublicAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["saveJobCodesMetrics"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
   }
 
   /**
@@ -165,73 +232,6 @@ class Inventory {
       }),
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.dailyJob] - Daily Job Flag
-   * @param {string} [arg.jobCode] - Email Job Code
-   * @returns {Promise<ResponseEnvelopeObject>} - Success response
-   * @summary: Find all the JobCodes from Metrics Collection based on the field Values
-   * @description: Endpoint to return all JobCodes present in Metrics Collection
-   */
-  getJobCodesMetrics({ dailyJob, jobCode } = {}) {
-    const { error } = InventoryValidator.getJobCodesMetrics().validate(
-      { dailyJob, jobCode },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-    query_params["daily_job"] = dailyJob;
-    query_params["job_code"] = jobCode;
-
-    const xHeaders = {};
-
-    return PublicAPIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getJobCodesMetrics"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailJobMetrics} arg.body
-   * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
-   * @summary: Save JobCode Metrics
-   * @description: Endpoint to save JobCode Metrics
-   */
-  saveJobCodesMetrics({ body } = {}) {
-    const { error } = InventoryValidator.saveJobCodesMetrics().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PublicAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["saveJobCodesMetrics"],
-        params: {},
-      }),
-      query_params,
-      body,
       xHeaders
     );
   }

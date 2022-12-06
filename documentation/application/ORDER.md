@@ -10,6 +10,7 @@ Handles Platform websites OMS
 * [getOrderById](#getorderbyid)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentReasons](#getshipmentreasons)
+* [getShipmentBagReasons](#getshipmentbagreasons)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [trackShipment](#trackshipment)
 * [getPosOrderById](#getposorderbyid)
@@ -236,6 +237,65 @@ Use this API to retrieve the issues that led to the cancellation of bags within 
 [ShipmentReasons](#ShipmentReasons)
 
 Success. Check the example shown below or refer `ShipmentReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getShipmentBagReasons
+Get reasons at l1,l2 and l3 for cancellation and return based on department
+
+
+
+```javascript
+// Promise
+const promise = order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+
+// Async/Await
+const data = await order.getShipmentBagReasons({  shipmentId : value,
+ bagId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| bagId | string | yes | ID of the bag. |  
+
+
+
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+*Returned Response:*
+
+
+
+
+[ShipmentBagReasons](#ShipmentBagReasons)
+
+Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
 
 
 
@@ -783,6 +843,17 @@ Success, the code is valid and returns a SignedUrl
 
  
  
+ #### [ShipmentBagReasons](#ShipmentBagReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasons | [[BagReasons](#BagReasons)] |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ShipmentById](#ShipmentById)
 
  | Properties | Type | Nullable | Description |
@@ -924,6 +995,18 @@ Success, the code is valid and returns a SignedUrl
 
  
  
+ #### [BagReasons](#BagReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | display_name | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Bags](#Bags)
 
  | Properties | Type | Nullable | Description |
@@ -933,6 +1016,7 @@ Success, the code is valid and returns a SignedUrl
  | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
  | id | number |  no  |  |
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
 
 ---
 
@@ -1007,7 +1091,7 @@ Success, the code is valid and returns a SignedUrl
  | brand_calculated_amount | number |  no  |  |
  | coupon_value | number |  no  |  |
  | amount_paid_roundoff | number |  no  |  |
- | gst_fee | string |  no  |  |
+ | gst_fee | number |  no  |  |
  | refund_credit | number |  no  |  |
  | cashback | number |  no  |  |
  | refund_amount | number |  no  |  |
@@ -1055,6 +1139,88 @@ Success, the code is valid and returns a SignedUrl
  | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
  | logo | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromos](#AppliedPromos)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | promo_id | string |  no  |  |
+ | promotion_name | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ | article_quantity | number |  no  |  |
+ | mrp_promotion | boolean |  no  |  |
+ | applied_free_articles | [AppliedFreeArticles](#AppliedFreeArticles) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | article_id | string |  no  |  |
+ | parent_item_identifier | string |  no  |  |
+ | free_gift_item_details | [[FreeGiftItemDetails](#FreeGiftItemDetails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItemDetails](#FreeGiftItemDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_id | string |  no  |  |
+ | item_name | string |  no  |  |
+ | item_brand_name | string |  no  |  |
+ | item_price_details | [ItemPriceDetails](#ItemPriceDetails) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemPriceDetails](#ItemPriceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | marked | [MarkedValues](#MarkedValues) |  no  |  |
+ | effective | [EffectiveValues](#EffectiveValues) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [MarkedValues](#MarkedValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EffectiveValues](#EffectiveValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
 
 ---
 

@@ -1,10 +1,10 @@
 export = InventoryValidator;
 declare class InventoryValidator {
-    static getConfigByCompany(): any;
-    static suppressStores(): any;
     static getJobsByCompany(): any;
     static updateJob(): any;
     static createJob(): any;
+    static suppressStores(): any;
+    static getConfigByCompany(): any;
     static getJobSteps(): any;
     static getJobByCompanyAndIntegration(): any;
     static disable(): any;

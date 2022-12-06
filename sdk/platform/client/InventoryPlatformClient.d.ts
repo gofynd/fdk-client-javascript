@@ -4,21 +4,6 @@ declare class Inventory {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @summary: Get Slingshot Configuration Of  A Company
-     * @description: REST Endpoint that returns all configuration detail of a company
-     */
-    getConfigByCompany({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SuppressStorePayload} arg.body
-     * @summary: Get Slingshot Configuration Of  A Company
-     * @description: REST Endpoint that returns all configuration detail of a company
-     */
-    suppressStores({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
      * @summary: Get Job Configs For A Company
@@ -46,6 +31,21 @@ declare class Inventory {
     createJob({ body }?: {
         body: any;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SuppressStorePayload} arg.body
+     * @summary: Get Slingshot Configuration Of  A Company
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    suppressStores({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary: Get Slingshot Configuration Of  A Company
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    getConfigByCompany({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.jobId - Job Id
