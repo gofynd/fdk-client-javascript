@@ -248,17 +248,17 @@ class CatalogValidator {
     }).required();
   }
 
+  static deleteProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+    }).required();
+  }
+
   static getProduct() {
     return Joi.object({
       itemCode: Joi.string().allow(""),
       itemId: Joi.number().required(),
       brandUid: Joi.number(),
-    }).required();
-  }
-
-  static deleteProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -472,6 +472,12 @@ class CatalogValidator {
   static getSingleProductHSNCode() {
     return Joi.object({
       reportingHsn: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getOptimalLocations() {
+    return Joi.object({
+      body: Validator.AssignStore().required(),
     }).required();
   }
 }
