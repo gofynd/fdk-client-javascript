@@ -20,7 +20,6 @@ declare class OrderValidator {
     static getPlatformShipmentReasons(): any;
     static bulkActionProcessXlsxFile(): any;
     static bulkActionDetails(): any;
-    static createOrder(): any;
     static invalidateShipmentCache(): any;
     static reassignLocation(): any;
     static updateShipmentLock(): any;
@@ -32,7 +31,8 @@ declare class OrderValidator {
     static getRoleBasedActions(): any;
     static getShipmentHistory(): any;
     static sendSmsNinja(): any;
-    static manualAssignDPToShipment(): any;
+    static platformManualAssignDPToShipment(): any;
     static updatePackagingDimensions(): any;
+    static createOrder(): any;
     static checkOrderStatus(): any;
 }

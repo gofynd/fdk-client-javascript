@@ -355,15 +355,6 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
-     * @summary:
-     * @description:
-     */
-    createOrder({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {InvalidateShipmentCachePayload} arg.body
      * @summary:
      * @description: Invalidate shipment Cache
@@ -496,7 +487,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    manualAssignDPToShipment({ body }?: {
+    platformManualAssignDPToShipment({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -506,6 +497,15 @@ declare class Order {
      * @description:
      */
     updatePackagingDimensions({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateOrderPayload} arg.body
+     * @summary:
+     * @description:
+     */
+    createOrder({ body }?: {
         body: any;
     }): Promise<any>;
     /**

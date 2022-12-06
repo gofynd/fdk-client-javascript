@@ -205,12 +205,6 @@ class OrderValidator {
     }).required();
   }
 
-  static createOrder() {
-    return Joi.object({
-      body: Validator.CreateOrderPayload().required(),
-    }).required();
-  }
-
   static invalidateShipmentCache() {
     return Joi.object({
       body: Validator.InvalidateShipmentCachePayload().required(),
@@ -291,13 +285,19 @@ class OrderValidator {
     }).required();
   }
 
-  static manualAssignDPToShipment() {
+  static platformManualAssignDPToShipment() {
     return Joi.object({
       body: Validator.ManualAssignDPToShipment().required(),
     }).required();
   }
 
   static updatePackagingDimensions() {
+    return Joi.object({
+      body: Validator.CreateOrderPayload().required(),
+    }).required();
+  }
+
+  static createOrder() {
     return Joi.object({
       body: Validator.CreateOrderPayload().required(),
     }).required();

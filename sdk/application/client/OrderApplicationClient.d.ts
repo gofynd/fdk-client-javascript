@@ -7,7 +7,7 @@ declare class Order {
         getOrderById: string;
         getPosOrderById: string;
         getShipmentById: string;
-        getInvoiceByShipmentIds: string;
+        getInvoiceByShipmentId: string;
         trackShipment: string;
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
@@ -15,7 +15,9 @@ declare class Order {
         getShipmentBagReasons: string;
         getShipmentReasons: string;
         updateShipmentStatus: string;
-        getInvoiceByShipmentId: string;
+        createOrderConfig: string;
+        getCreateOrderConfig: string;
+        getInvoiceByShipmentId1: string;
         getCreditNoteByShipmentId: string;
     };
     _urls: {};
@@ -86,7 +88,7 @@ declare class Order {
      * @summary: Get Invoice of a shipment
      * @description: Use this API to retrieve shipment invoice.
      */
-    getInvoiceByShipmentIds({ shipmentId }?: {
+    getInvoiceByShipmentId({ shipmentId }?: {
         shipmentId: string;
     }): Promise<any>;
     /**
@@ -189,13 +191,30 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CreateOrderConfigData} arg.body
+     * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
+     * @summary:
+     * @description: createOrderConfig
+     */
+    createOrderConfig({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<CreateOrderConfigData>} - Success response
+     * @summary:
+     * @description: getCreateOrderConfig
+     */
+    getCreateOrderConfig({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - Shiment ID
      * @param {invoiceParameter} [arg.parameters] -
      * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
      * @summary: Get Presigned URL to download Invoice
      * @description: Use this API to generate Presigned URLs for downloading Invoice
      */
-    getInvoiceByShipmentId({ shipmentId, parameters }?: {
+    getInvoiceByShipmentId1({ shipmentId, parameters }?: {
         shipmentId: string;
         parameters?: any;
     }): Promise<any>;

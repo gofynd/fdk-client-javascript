@@ -14,7 +14,7 @@ class Order {
         "/service/application/orders/v1.0/orders/pos-order/{order_id}",
       getShipmentById:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
-      getInvoiceByShipmentIds:
+      getInvoiceByShipmentId:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
       trackShipment:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
@@ -30,7 +30,11 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
-      getInvoiceByShipmentId:
+      createOrderConfig:
+        "/service/application/order-manage/v1.0/orders/co-config",
+      getCreateOrderConfig:
+        "/service/application/order-manage/v1.0/orders/co-config",
+      getInvoiceByShipmentId1:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
       getCreditNoteByShipmentId:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note",
@@ -206,8 +210,8 @@ class Order {
    * @summary: Get Invoice of a shipment
    * @description: Use this API to retrieve shipment invoice.
    */
-  getInvoiceByShipmentIds({ shipmentId } = {}) {
-    const { error } = OrderValidator.getInvoiceByShipmentIds().validate(
+  getInvoiceByShipmentId({ shipmentId } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -222,7 +226,7 @@ class Order {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getInvoiceByShipmentIds"],
+        url: this._urls["getInvoiceByShipmentId"],
         params: { shipmentId },
       }),
       query_params,
@@ -479,14 +483,77 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CreateOrderConfigData} arg.body
+   * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
+   * @summary:
+   * @description: createOrderConfig
+   */
+  createOrderConfig({ body } = {}) {
+    const { error } = OrderValidator.createOrderConfig().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["createOrderConfig"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<CreateOrderConfigData>} - Success response
+   * @summary:
+   * @description: getCreateOrderConfig
+   */
+  getCreateOrderConfig({} = {}) {
+    const { error } = OrderValidator.getCreateOrderConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCreateOrderConfig"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {invoiceParameter} [arg.parameters] -
    * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */
-  getInvoiceByShipmentId({ shipmentId, parameters } = {}) {
-    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+  getInvoiceByShipmentId1({ shipmentId, parameters } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId1().validate(
       { shipmentId, parameters },
       { abortEarly: false, allowUnknown: true }
     );
@@ -502,7 +569,7 @@ class Order {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getInvoiceByShipmentId"],
+        url: this._urls["getInvoiceByShipmentId1"],
         params: { shipmentId },
       }),
       query_params,

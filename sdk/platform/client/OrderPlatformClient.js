@@ -985,37 +985,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateOrderPayload} arg.body
-   * @summary:
-   * @description:
-   */
-  createOrder({ body } = {}) {
-    const { error } = OrderValidator.createOrder().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {InvalidateShipmentCachePayload} arg.body
    * @summary:
    * @description: Invalidate shipment Cache
@@ -1423,8 +1392,10 @@ class Order {
    * @summary:
    * @description:
    */
-  manualAssignDPToShipment({ body } = {}) {
-    const { error } = OrderValidator.manualAssignDPToShipment().validate(
+  platformManualAssignDPToShipment({ body } = {}) {
+    const {
+      error,
+    } = OrderValidator.platformManualAssignDPToShipment().validate(
       {
         body,
       },
@@ -1473,6 +1444,37 @@ class Order {
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-packaging-dimension`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  createOrder({ body } = {}) {
+    const { error } = OrderValidator.createOrder().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
       query_params,
       body,
       xHeaders

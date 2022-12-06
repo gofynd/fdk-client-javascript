@@ -30,7 +30,7 @@ class OrderValidator {
     }).required();
   }
 
-  static getInvoiceByShipmentIds() {
+  static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
@@ -84,7 +84,17 @@ class OrderValidator {
     }).required();
   }
 
-  static getInvoiceByShipmentId() {
+  static createOrderConfig() {
+    return Joi.object({
+      body: Validator.CreateOrderConfigData().required(),
+    }).required();
+  }
+
+  static getCreateOrderConfig() {
+    return Joi.object({});
+  }
+
+  static getInvoiceByShipmentId1() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       parameters: Validator.invoiceParameter(),
