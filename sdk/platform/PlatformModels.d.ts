@@ -500,6 +500,7 @@ declare class Validator {
     static SetCODForUserRequest(): any;
     static SetCODOptionResponse(): any;
     static RepaymentRequestDetails(): any;
+    static RepaymentDetailsSerialiserPayAll(): any;
     static RepaymentResponse(): any;
     static MerchantOnBoardingRequest(): any;
     static MerchantOnBoardingResponse(): any;
@@ -932,14 +933,14 @@ declare class Validator {
     static ApplicationBrandJson(): any;
     static ApplicationCategoryJson(): any;
     static ApplicationStoreJson(): any;
-    static Website(): any;
-    static BusinessDetails(): any;
     static ContactDetails(): any;
     static BusinessCountryInfo(): any;
     static CompanyTaxesSerializer(): any;
+    static Website(): any;
+    static BusinessDetails(): any;
     static GetCompanyProfileSerializerResponse(): any;
-    static CreateUpdateAddressSerializer(): any;
     static CompanyTaxesSerializer1(): any;
+    static CreateUpdateAddressSerializer(): any;
     static UpdateCompany(): any;
     static ProfileSuccessResponse(): any;
     static DocumentsObj(): any;

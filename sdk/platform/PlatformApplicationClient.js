@@ -3742,35 +3742,35 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PaymentGatewayConfigResponse
- * @property {boolean} success
+ * @property {Object[]} [aggregators]
  * @property {boolean} created
  * @property {string[]} display_fields
- * @property {string} app_id
- * @property {Object[]} [aggregators]
+ * @property {boolean} success
  * @property {string[]} excluded_fields
+ * @property {string} app_id
  */
 
 /**
  * @typedef ErrorCodeDescription
+ * @property {string} code
  * @property {boolean} success
  * @property {string} description
- * @property {string} code
  */
 
 /**
  * @typedef PaymentGatewayConfig
- * @property {string} config_type
- * @property {string} key
  * @property {boolean} [is_active]
- * @property {string} merchant_salt
+ * @property {string} key
+ * @property {string} config_type
  * @property {string} secret
+ * @property {string} merchant_salt
  */
 
 /**
  * @typedef PaymentGatewayConfigRequest
  * @property {boolean} [is_active]
- * @property {PaymentGatewayConfig} [aggregator_name]
  * @property {string} app_id
+ * @property {PaymentGatewayConfig} [aggregator_name]
  */
 
 /**
@@ -3781,14 +3781,14 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
  * @typedef HttpErrorCodeAndResponse
- * @property {ErrorCodeAndDescription} error
  * @property {boolean} success
+ * @property {ErrorCodeAndDescription} error
  */
 
 /**
@@ -3799,63 +3799,63 @@ class PlatformApplicationClient {
 
 /**
  * @typedef IntentApp
- * @property {string} [display_name]
- * @property {string} [package_name]
  * @property {PaymentModeLogo} [logos]
  * @property {string} [code]
+ * @property {string} [display_name]
+ * @property {string} [package_name]
  */
 
 /**
  * @typedef IntentAppErrorList
- * @property {string} [package_name]
  * @property {string} [code]
+ * @property {string} [package_name]
  */
 
 /**
  * @typedef PaymentModeList
- * @property {string} [card_brand]
- * @property {number} [exp_year]
- * @property {string} [fynd_vpa]
- * @property {number} [display_priority]
- * @property {string} [card_isin]
- * @property {string} [card_type]
- * @property {string} [card_brand_image]
- * @property {string} [name]
- * @property {number} [retry_count]
- * @property {string} [nickname]
  * @property {string} [card_fingerprint]
+ * @property {string} [nickname]
  * @property {string} [card_number]
- * @property {IntentApp[]} [intent_app]
- * @property {string} aggregator_name
- * @property {boolean} [intent_flow]
+ * @property {string} [card_isin]
  * @property {string} [card_token]
- * @property {string} [display_name]
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
- * @property {string} [card_id]
- * @property {string} [merchant_code]
- * @property {PaymentModeLogo} [logo_url]
- * @property {string[]} [intent_app_error_list]
- * @property {string} [card_issuer]
- * @property {string} [card_reference]
+ * @property {IntentApp[]} [intent_app]
+ * @property {string} [card_type]
  * @property {number} [timeout]
- * @property {number} [cod_limit]
- * @property {number} [remaining_limit]
- * @property {string} [code]
- * @property {boolean} [expired]
- * @property {number} [cod_limit_per_order]
- * @property {string} [card_name]
+ * @property {string} [merchant_code]
  * @property {number} [exp_month]
+ * @property {string} [card_name]
+ * @property {string} aggregator_name
+ * @property {string} [card_id]
+ * @property {string} [display_name]
+ * @property {string} [card_issuer]
+ * @property {number} [remaining_limit]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {boolean} [expired]
+ * @property {string[]} [intent_app_error_list]
+ * @property {string} [fynd_vpa]
+ * @property {number} [exp_year]
+ * @property {string} [code]
+ * @property {string} [card_reference]
+ * @property {number} [cod_limit]
+ * @property {string} [name]
+ * @property {boolean} [intent_flow]
+ * @property {number} [cod_limit_per_order]
+ * @property {string} [card_brand]
+ * @property {number} [display_priority]
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
+ * @property {number} [retry_count]
+ * @property {string} [card_brand_image]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {string} display_name
- * @property {PaymentModeList[]} [list]
  * @property {number} display_priority
+ * @property {boolean} [add_card_enabled]
+ * @property {PaymentModeList[]} [list]
  * @property {string} [aggregator_name]
  * @property {string} name
+ * @property {string} display_name
  * @property {boolean} [anonymous_enable]
- * @property {boolean} [add_card_enabled]
  */
 
 /**
@@ -3871,65 +3871,65 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PayoutsResponse
- * @property {string} transfer_type
- * @property {Object} unique_transfer_no
- * @property {Object[]} payouts_aggregators
  * @property {boolean} is_active
- * @property {Object} customers
  * @property {Object} more_attributes
+ * @property {Object} unique_transfer_no
  * @property {boolean} is_default
+ * @property {Object[]} payouts_aggregators
+ * @property {Object} customers
+ * @property {string} transfer_type
  */
 
 /**
  * @typedef PayoutBankDetails
- * @property {string} [account_holder]
- * @property {string} [account_no]
- * @property {string} [bank_name]
- * @property {string} ifsc_code
- * @property {string} [city]
- * @property {number} [pincode]
- * @property {string} [country]
  * @property {string} [state]
+ * @property {number} [pincode]
+ * @property {string} [city]
  * @property {string} [branch_name]
+ * @property {string} [account_holder]
+ * @property {string} ifsc_code
+ * @property {string} [bank_name]
+ * @property {string} [account_no]
  * @property {string} account_type
+ * @property {string} [country]
  */
 
 /**
  * @typedef PayoutRequest
- * @property {string} transfer_type
- * @property {string} unique_external_id
- * @property {PayoutBankDetails} bank_details
+ * @property {boolean} is_active
  * @property {string} aggregator
  * @property {Object} users
- * @property {boolean} is_active
+ * @property {string} unique_external_id
+ * @property {PayoutBankDetails} bank_details
+ * @property {string} transfer_type
  */
 
 /**
  * @typedef PayoutResponse
- * @property {string} transfer_type
- * @property {boolean} success
- * @property {boolean} created
- * @property {string} unique_transfer_no
- * @property {Object} payouts
- * @property {Object} bank_details
- * @property {string} aggregator
- * @property {Object} users
  * @property {boolean} is_active
  * @property {string} payment_status
+ * @property {string} aggregator
+ * @property {string} unique_transfer_no
+ * @property {boolean} created
+ * @property {Object} users
+ * @property {Object} payouts
+ * @property {boolean} success
+ * @property {Object} bank_details
+ * @property {string} transfer_type
  */
 
 /**
  * @typedef UpdatePayoutResponse
- * @property {boolean} success
  * @property {boolean} is_active
+ * @property {boolean} success
  * @property {boolean} is_default
  */
 
 /**
  * @typedef UpdatePayoutRequest
  * @property {boolean} is_active
- * @property {string} unique_external_id
  * @property {boolean} is_default
+ * @property {string} unique_external_id
  */
 
 /**
@@ -3951,8 +3951,8 @@ class PlatformApplicationClient {
 /**
  * @typedef SubscriptionConfigResponse
  * @property {boolean} success
- * @property {Object} config
  * @property {string} aggregator
+ * @property {Object} config
  */
 
 /**
@@ -3968,28 +3968,28 @@ class PlatformApplicationClient {
 
 /**
  * @typedef BeneficiaryModeDetails
- * @property {string} account_holder
- * @property {string} account_no
- * @property {string} bank_name
- * @property {string} [wallet]
- * @property {string} ifsc_code
- * @property {string} mobile
- * @property {string} branch_name
- * @property {string} [comment]
- * @property {string} [vpa]
  * @property {string} [address]
+ * @property {string} [vpa]
+ * @property {string} [wallet]
+ * @property {string} [comment]
+ * @property {string} branch_name
  * @property {string} email
+ * @property {string} account_holder
+ * @property {string} ifsc_code
+ * @property {string} bank_name
+ * @property {string} account_no
+ * @property {string} mobile
  */
 
 /**
  * @typedef AddBeneficiaryDetailsRequest
+ * @property {BeneficiaryModeDetails} details
+ * @property {boolean} delights
  * @property {string} shipment_id
+ * @property {string} transfer_mode
  * @property {string} [request_id]
  * @property {string} order_id
- * @property {BeneficiaryModeDetails} details
  * @property {string} [otp]
- * @property {boolean} delights
- * @property {string} transfer_mode
  */
 
 /**
@@ -4002,59 +4002,59 @@ class PlatformApplicationClient {
 
 /**
  * @typedef NotFoundResourceError
+ * @property {string} code
  * @property {boolean} success
  * @property {string} description
- * @property {string} code
  */
 
 /**
  * @typedef IfscCodeResponse
- * @property {string} branch_name
  * @property {string} bank_name
  * @property {boolean} [success]
+ * @property {string} branch_name
  */
 
 /**
  * @typedef OrderBeneficiaryDetails
- * @property {string} account_holder
- * @property {string} [branch_name]
- * @property {string} [comment]
- * @property {string} beneficiary_id
- * @property {string} account_no
- * @property {string} bank_name
- * @property {string} title
- * @property {string} created_on
- * @property {string} subtitle
  * @property {string} address
- * @property {string} modified_on
- * @property {string} transfer_mode
+ * @property {string} [branch_name]
  * @property {string} email
+ * @property {string} account_holder
+ * @property {string} subtitle
+ * @property {string} account_no
  * @property {string} display_name
- * @property {number} id
- * @property {string} ifsc_code
  * @property {boolean} is_active
  * @property {string} [delights_user_name]
+ * @property {number} id
+ * @property {string} ifsc_code
+ * @property {string} transfer_mode
+ * @property {string} modified_on
+ * @property {string} beneficiary_id
+ * @property {string} title
+ * @property {string} created_on
+ * @property {string} [comment]
+ * @property {string} bank_name
  * @property {string} [mobile]
  */
 
 /**
  * @typedef OrderBeneficiaryResponse
- * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  * @property {boolean} [show_beneficiary_details]
+ * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  */
 
 /**
  * @typedef PaymentConfirmationMode
  * @property {string} [name]
- * @property {number} amount
  * @property {string} mode
  * @property {Object} [meta]
+ * @property {number} amount
  */
 
 /**
  * @typedef PaymentConfirmationRequest
- * @property {PaymentConfirmationMode[]} payment_methods
  * @property {string} order_id
+ * @property {PaymentConfirmationMode[]} payment_methods
  */
 
 /**
@@ -4066,24 +4066,24 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CODdata
+ * @property {boolean} is_active
  * @property {number} limit
  * @property {number} remaining_limit
  * @property {string} user_id
  * @property {number} usages
- * @property {boolean} is_active
  */
 
 /**
  * @typedef GetUserCODLimitResponse
- * @property {boolean} success
  * @property {CODdata} user_cod_data
+ * @property {boolean} success
  */
 
 /**
  * @typedef SetCODForUserRequest
- * @property {string} merchant_user_id
  * @property {boolean} is_active
  * @property {string} mobileno
+ * @property {string} merchant_user_id
  */
 
 /**
@@ -4094,16 +4094,25 @@ class PlatformApplicationClient {
 
 /**
  * @typedef RepaymentRequestDetails
- * @property {number} amount
- * @property {string} fwd_shipment_id
- * @property {string} payment_mode_identifier
- * @property {number} outstanding_details_id
- * @property {string} aggregator_transaction_id
- * @property {string} aggregator_order_id
- * @property {string} merchant_order_id
- * @property {string} aggregator
- * @property {string} current_status
  * @property {string} payment_mode
+ * @property {string} aggregator
+ * @property {string} fwd_shipment_id
+ * @property {string} aggregator_order_id
+ * @property {string} current_status
+ * @property {string} merchant_order_id
+ * @property {string} payment_mode_identifier
+ * @property {number} amount
+ * @property {string} aggregator_transaction_id
+ * @property {number} outstanding_details_id
+ */
+
+/**
+ * @typedef RepaymentDetailsSerialiserPayAll
+ * @property {RepaymentRequestDetails[]} [shipment_details]
+ * @property {string} extension_order_id
+ * @property {string} aggregator_order_id
+ * @property {number} total_amount
+ * @property {string} aggregator_transaction_id
  */
 
 /**
@@ -4114,11 +4123,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef MerchantOnBoardingRequest
- * @property {string} status
- * @property {string} credit_line_id
- * @property {string} user_id
  * @property {string} aggregator
+ * @property {string} status
+ * @property {string} user_id
  * @property {string} app_id
+ * @property {string} credit_line_id
  */
 
 /**
@@ -8188,6 +8197,25 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef ContactDetails
+ * @property {SellerPhoneNumber[]} [phone]
+ * @property {string[]} [emails]
+ */
+
+/**
+ * @typedef BusinessCountryInfo
+ * @property {string} [country_code]
+ * @property {string} [country]
+ */
+
+/**
+ * @typedef CompanyTaxesSerializer
+ * @property {string} [effective_date]
+ * @property {number} [rate]
+ * @property {boolean} [enable]
+ */
+
+/**
  * @typedef Website
  * @property {string} [url]
  */
@@ -8198,111 +8226,92 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ContactDetails
- * @property {string[]} [emails]
- * @property {SellerPhoneNumber[]} [phone]
- */
-
-/**
- * @typedef BusinessCountryInfo
- * @property {string} [country]
- * @property {string} [country_code]
- */
-
-/**
- * @typedef CompanyTaxesSerializer
- * @property {boolean} [enable]
- * @property {string} [effective_date]
- * @property {number} [rate]
- */
-
-/**
  * @typedef GetCompanyProfileSerializerResponse
- * @property {string} [created_on]
- * @property {number} uid
- * @property {Document[]} [documents]
- * @property {BusinessDetails} [business_details]
- * @property {string} [mode]
- * @property {string} [verified_on]
  * @property {string[]} [notification_emails]
- * @property {string} [name]
- * @property {string} [business_info]
- * @property {UserSerializer} [verified_by]
+ * @property {string} [mode]
+ * @property {number} uid
+ * @property {UserSerializer} [created_by]
+ * @property {GetAddressSerializer[]} [addresses]
  * @property {UserSerializer} [modified_by]
+ * @property {string} [verified_on]
+ * @property {UserSerializer} [verified_by]
  * @property {ContactDetails} [contact_details]
- * @property {string} company_type
+ * @property {Object} [warnings]
  * @property {BusinessCountryInfo} [business_country_info]
+ * @property {string} [name]
+ * @property {string} [created_on]
  * @property {string} [stage]
  * @property {string} [modified_on]
- * @property {UserSerializer} [created_by]
- * @property {Object} [warnings]
- * @property {GetAddressSerializer[]} [addresses]
- * @property {boolean} [franchise_enabled]
- * @property {CompanyTaxesSerializer[]} [taxes]
  * @property {string} business_type
- */
-
-/**
- * @typedef CreateUpdateAddressSerializer
- * @property {string} [landmark]
- * @property {string} country
- * @property {string} state
- * @property {string} [country_code]
- * @property {number} latitude
- * @property {string} [address2]
- * @property {number} pincode
- * @property {string} address_type
- * @property {string} city
- * @property {string} address1
- * @property {number} longitude
+ * @property {string} company_type
+ * @property {boolean} [franchise_enabled]
+ * @property {Document[]} [documents]
+ * @property {string} [business_info]
+ * @property {CompanyTaxesSerializer[]} [taxes]
+ * @property {BusinessDetails} [business_details]
  */
 
 /**
  * @typedef CompanyTaxesSerializer1
- * @property {boolean} [enable]
  * @property {string} [effective_date]
  * @property {number} [rate]
+ * @property {boolean} [enable]
+ */
+
+/**
+ * @typedef CreateUpdateAddressSerializer
+ * @property {string} state
+ * @property {string} [address2]
+ * @property {number} latitude
+ * @property {string} [country_code]
+ * @property {number} pincode
+ * @property {string} address_type
+ * @property {string} address1
+ * @property {string} country
+ * @property {string} city
+ * @property {number} longitude
+ * @property {string} [landmark]
  */
 
 /**
  * @typedef UpdateCompany
- * @property {string[]} [notification_emails]
- * @property {string} [business_info]
- * @property {Object} [warnings]
  * @property {Document[]} [documents]
- * @property {CreateUpdateAddressSerializer[]} [addresses]
+ * @property {string} [business_info]
  * @property {ContactDetails} [contact_details]
- * @property {string} [company_type]
- * @property {BusinessDetails} [business_details]
- * @property {Object} [_custom_json]
- * @property {boolean} [franchise_enabled]
- * @property {string} [name]
- * @property {CompanyTaxesSerializer1[]} [taxes]
+ * @property {Object} [warnings]
  * @property {string} [business_type]
+ * @property {string[]} [notification_emails]
+ * @property {Object} [_custom_json]
+ * @property {string} [company_type]
  * @property {string} [reject_reason]
+ * @property {boolean} [franchise_enabled]
+ * @property {CompanyTaxesSerializer1[]} [taxes]
+ * @property {string} [name]
+ * @property {CreateUpdateAddressSerializer[]} [addresses]
+ * @property {BusinessDetails} [business_details]
  */
 
 /**
  * @typedef ProfileSuccessResponse
- * @property {boolean} [success]
  * @property {number} [uid]
+ * @property {boolean} [success]
  */
 
 /**
  * @typedef DocumentsObj
- * @property {number} [pending]
  * @property {number} [verified]
+ * @property {number} [pending]
  */
 
 /**
  * @typedef MetricsSerializer
+ * @property {string} [stage]
+ * @property {DocumentsObj} [store]
+ * @property {DocumentsObj} [company_documents]
  * @property {number} [uid]
  * @property {DocumentsObj} [brand]
- * @property {DocumentsObj} [product]
- * @property {DocumentsObj} [store]
  * @property {DocumentsObj} [store_documents]
- * @property {string} [stage]
- * @property {DocumentsObj} [company_documents]
+ * @property {DocumentsObj} [product]
  */
 
 /**
@@ -8313,39 +8322,39 @@ class PlatformApplicationClient {
 
 /**
  * @typedef GetBrandResponseSerializer
- * @property {string} [created_on]
- * @property {number} [uid]
- * @property {BrandBannerSerializer} [banner]
- * @property {string} [slug_key]
  * @property {string} [mode]
+ * @property {number} [uid]
+ * @property {Object} [_custom_json]
+ * @property {UserSerializer} [created_by]
+ * @property {UserSerializer} [modified_by]
  * @property {string} [verified_on]
- * @property {string[]} [synonyms]
+ * @property {UserSerializer} [verified_by]
+ * @property {Object} [warnings]
  * @property {string} [description]
  * @property {string} name
- * @property {string} [logo]
- * @property {UserSerializer} [verified_by]
- * @property {UserSerializer} [modified_by]
- * @property {Object} [_custom_json]
- * @property {Object} [_locale_language]
+ * @property {string} [created_on]
  * @property {string} [stage]
  * @property {string} [modified_on]
+ * @property {string[]} [synonyms]
  * @property {string} [reject_reason]
- * @property {UserSerializer} [created_by]
- * @property {Object} [warnings]
+ * @property {string} [slug_key]
+ * @property {string} [logo]
+ * @property {BrandBannerSerializer} [banner]
+ * @property {Object} [_locale_language]
  */
 
 /**
  * @typedef CreateUpdateBrandRequestSerializer
- * @property {string} logo
- * @property {number} [uid]
- * @property {BrandBannerSerializer} [banner]
- * @property {Object} [_custom_json]
- * @property {Object} [_locale_language]
  * @property {string[]} [synonyms]
+ * @property {Object} [_custom_json]
+ * @property {BrandBannerSerializer} [banner]
+ * @property {Object} [_locale_language]
+ * @property {number} [uid]
  * @property {string} [description]
  * @property {string} [brand_tier]
- * @property {number} [company_id]
+ * @property {string} logo
  * @property {string} name
+ * @property {number} [company_id]
  */
 
 /**
@@ -8356,80 +8365,80 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CompanyDetails
- * @property {CompanySocialAccounts[]} [socials]
  * @property {string} [website_url]
+ * @property {CompanySocialAccounts[]} [socials]
  */
 
 /**
  * @typedef CompanySerializer
- * @property {string[]} [notification_emails]
- * @property {string} [created_on]
  * @property {string} [verified_on]
- * @property {number} [uid]
- * @property {UserSerializer} [created_by]
+ * @property {string} [stage]
+ * @property {string} [modified_on]
  * @property {UserSerializer} [verified_by]
- * @property {GetAddressSerializer[]} [addresses]
- * @property {UserSerializer} [modified_by]
+ * @property {string[]} [market_channels]
+ * @property {string} business_type
+ * @property {string[]} [notification_emails]
  * @property {Object} [_custom_json]
  * @property {string} company_type
+ * @property {string} [reject_reason]
+ * @property {number} [uid]
+ * @property {string} [name]
  * @property {CompanyDetails} [details]
  * @property {BusinessCountryInfo} [business_country_info]
- * @property {string} [name]
- * @property {string} business_type
- * @property {string} [stage]
- * @property {string[]} [market_channels]
- * @property {string} [modified_on]
- * @property {string} [reject_reason]
+ * @property {string} [created_on]
+ * @property {UserSerializer} [created_by]
+ * @property {GetAddressSerializer[]} [addresses]
+ * @property {UserSerializer} [modified_by]
  */
 
 /**
  * @typedef CompanyBrandSerializer
- * @property {string} [created_on]
  * @property {string} [verified_on]
- * @property {number} [uid]
- * @property {UserSerializer} [created_by]
- * @property {Object} [warnings]
- * @property {UserSerializer} [verified_by]
- * @property {GetBrandResponseSerializer} [brand]
- * @property {UserSerializer} [modified_by]
- * @property {CompanySerializer} [company]
  * @property {string} [stage]
  * @property {string} [modified_on]
+ * @property {UserSerializer} [verified_by]
+ * @property {Object} [warnings]
  * @property {string} [reject_reason]
+ * @property {number} [uid]
+ * @property {GetBrandResponseSerializer} [brand]
+ * @property {string} [created_on]
+ * @property {UserSerializer} [created_by]
+ * @property {CompanySerializer} [company]
+ * @property {UserSerializer} [modified_by]
  */
 
 /**
  * @typedef CompanyBrandListSerializer
- * @property {CompanyBrandSerializer[]} [items]
  * @property {Page} [page]
+ * @property {CompanyBrandSerializer[]} [items]
  */
 
 /**
  * @typedef CompanyBrandPostRequestSerializer
  * @property {number} [uid]
- * @property {number[]} brands
  * @property {number} company
+ * @property {number[]} brands
  */
 
 /**
  * @typedef LocationSerializer
- * @property {string[]} [notification_emails]
- * @property {InvoiceDetailsSerializer} [gst_credentials]
- * @property {number} [uid]
+ * @property {string} [stage]
  * @property {Document[]} [documents]
- * @property {Object} [warnings]
  * @property {ProductReturnConfigSerializer} [product_return_config]
- * @property {string} display_name
- * @property {GetAddressSerializer} address
- * @property {number} company
+ * @property {Object} [warnings]
  * @property {string} code
+ * @property {string[]} [notification_emails]
  * @property {Object} [_custom_json]
  * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
+ * @property {number} [uid]
+ * @property {string} display_name
  * @property {LocationManagerSerializer} [manager]
- * @property {string} name
  * @property {LocationDayWiseSerializer[]} [timing]
+ * @property {GetAddressSerializer} address
+ * @property {string} name
+ * @property {number} company
  * @property {string} [store_type]
- * @property {string} [stage]
  */
 
 /**
@@ -13795,6 +13804,134 @@ class User {
       body
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserGroupSchema} arg.body
+   * @summary: Create an User Group
+   * @description: Use this API to create new user Group
+   */
+  createUserGroup({ body } = {}) {
+    const { error } = UserValidator.createUserGroup().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.pageNo] - Page number for pagination result
+   * @param {string} [arg.pageSize] - Page size for pagination result
+   * @param {string} [arg.name] - To seartch for User Groups which contains
+   *   given string in their name
+   * @param {string} [arg.status] - To get User Groups with given status
+   * @param {number} [arg.groupUid] - To get User Groups with given uid
+   * @summary: Get User Groups mathcing criteria
+   * @description: Use this API to get User Groups mathing criteria passed in query
+   */
+  getUserGroups({ pageNo, pageSize, name, status, groupUid } = {}) {
+    const { error } = UserValidator.getUserGroups().validate(
+      {
+        pageNo,
+        pageSize,
+        name,
+        status,
+        groupUid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["name"] = name;
+    query_params["status"] = status;
+    query_params["group_uid"] = groupUid;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.groupId - Numeric ID allotted to a User Group
+   * @param {UpdateUserGroupSchema} arg.body
+   * @summary: Update an User Group
+   * @description: Use this API to update an existing user Group
+   */
+  updateUserGroup({ groupId, body } = {}) {
+    const { error } = UserValidator.updateUserGroup().validate(
+      {
+        groupId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.groupId - Numeric ID allotted to a User Group
+   * @summary: Get an User Group by Id
+   * @description: Use this API to get details of an existing user Group
+   */
+  getUserGroupById({ groupId } = {}) {
+    const { error } = UserValidator.getUserGroupById().validate(
+      {
+        groupId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
+      query_params,
+      undefined
+    );
+  }
 }
 
 class Content {
@@ -17853,7 +17990,7 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {RepaymentRequestDetails} arg.body
+   * @param {RepaymentDetailsSerialiserPayAll} arg.body
    * @summary: API to register repayment details
    * @description: Use this API to register any repayment record in the db and notify the aggrgator
    */
