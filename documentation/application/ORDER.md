@@ -18,8 +18,8 @@ Handles all Application order and shipment api(s)
 * [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipmentReasons](#getshipmentreasons)
 * [updateShipmentStatus](#updateshipmentstatus)
-* [createOrderConfig](#createorderconfig)
-* [getCreateOrderConfig](#getcreateorderconfig)
+* [createChannelConfig](#createchannelconfig)
+* [getChannelConfig](#getchannelconfig)
 * [getInvoiceByShipmentId1](#getinvoicebyshipmentid1)
 * [getCreditNoteByShipmentId](#getcreditnotebyshipmentid)
 
@@ -2426,7 +2426,7 @@ const data = await order.updateShipmentStatus({  shipmentId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | shipmentId | string | yes |  |  
-| body | [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody) | yes | Request body |
+| body | [StatusUpdateInternalRequest](#StatusUpdateInternalRequest) | yes | Request body |
 
 
 updateShipmentStatus
@@ -2475,17 +2475,17 @@ Successfully updateShipmentStatus!
 ---
 
 
-### createOrderConfig
+### createChannelConfig
 
 
 
 
 ```javascript
 // Promise
-const promise = order.createOrderConfig({  body : value });
+const promise = order.createChannelConfig({  body : value });
 
 // Async/Await
-const data = await order.createOrderConfig({  body : value });
+const data = await order.createChannelConfig({  body : value });
 ```
 
 
@@ -2497,7 +2497,7 @@ const data = await order.createOrderConfig({  body : value });
 | body | [CreateOrderConfigData](#CreateOrderConfigData) | yes | Request body |
 
 
-createOrderConfig
+createChannelConfig
 
 *Returned Response:*
 
@@ -2536,17 +2536,17 @@ Successfully updateShipmentStatus!
 ---
 
 
-### getCreateOrderConfig
+### getChannelConfig
 
 
 
 
 ```javascript
 // Promise
-const promise = order.getCreateOrderConfig();
+const promise = order.getChannelConfig();
 
 // Async/Await
-const data = await order.getCreateOrderConfig();
+const data = await order.getChannelConfig();
 ```
 
 
@@ -2554,7 +2554,7 @@ const data = await order.getCreateOrderConfig();
 
 
 
-getCreateOrderConfig
+getChannelConfig
 
 *Returned Response:*
 
@@ -3450,28 +3450,127 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [StatusesBody](#StatusesBody)
+ #### [EntitiesReasons](#EntitiesReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exclude_bags_next_state | string |  no  |  |
- | shipments | [string] |  no  |  |
- | status | string |  no  |  |
+ | filters | [string] |  no  |  |
+ | data | string |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusUpdateBody](#ShipmentStatusUpdateBody)
+ #### [ProductsReasons](#ProductsReasons)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[StatusesBody](#StatusesBody)] |  no  |  |
- | unlock_before_transition | boolean |  no  |  |
+ | filters | [string] |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReasonsData](#ReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesReasons](#EntitiesReasons)] |  no  |  |
+ | products | [[ProductsReasons](#ProductsReasons)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntitiesDataUpdates](#EntitiesDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [string] |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductsDataUpdates](#ProductsDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [string] |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DataUpdates](#DataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)] |  no  |  |
+ | products | [[ProductsDataUpdates](#ProductsDataUpdates)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Products](#Products)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | identifier | string |  no  |  |
+ | line_number | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentsRequest](#ShipmentsRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasons | [ReasonsData](#ReasonsData) |  no  |  |
+ | identifier | string |  yes  |  |
+ | data_updates | [DataUpdates](#DataUpdates) |  no  |  |
+ | products | [[Products](#Products)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StatuesRequest](#StatuesRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+ | exclude_bags_next_state | string |  no  |  |
+ | shipments | [[ShipmentsRequest](#ShipmentsRequest)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StatusUpdateInternalRequest](#StatusUpdateInternalRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | task | boolean |  no  |  |
+ | statues | [[StatuesRequest](#StatuesRequest)] |  no  |  |
  | lock_after_transition | boolean |  no  |  |
  | force_transition | boolean |  no  |  |
- | task | boolean |  no  |  |
+ | unlock_before_transition | boolean |  no  |  |
 
 ---
 
@@ -3500,24 +3599,13 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [DpConfiguration](#DpConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipping_by | string |  no  |  |
-
----
-
-
- 
- 
  #### [PaymentMethods](#PaymentMethods)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | refund_by | string |  no  |  |
  | collect_by | string |  no  |  |
  | mode | string |  no  |  |
+ | refund_by | string |  no  |  |
 
 ---
 
@@ -3537,16 +3625,27 @@ Success Response, Presigned URL of Invoice
 
  
  
+ #### [DpConfiguration](#DpConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipping_by | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CreateOrderConfig](#CreateOrderConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo_url | string |  no  |  |
- | dp_configuration | [DpConfiguration](#DpConfiguration) |  no  |  |
- | lock_states | string |  no  |  |
+ | shipment_assignment | string |  no  |  |
  | location_reassignment | boolean |  no  |  |
  | payment_info | [PaymentInfo](#PaymentInfo) |  no  |  |
- | shipment_assignment | string |  no  |  |
+ | logo_url | string |  no  |  |
+ | lock_states | string |  no  |  |
+ | dp_configuration | [DpConfiguration](#DpConfiguration) |  no  |  |
 
 ---
 
@@ -3568,9 +3667,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_inserted | boolean |  no  |  |
  | acknowledged | boolean |  no  |  |
  | is_upserted | boolean |  no  |  |
- | is_inserted | boolean |  no  |  |
 
 ---
 

@@ -30,9 +30,9 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
-      createOrderConfig:
+      createChannelConfig:
         "/service/application/order-manage/v1.0/orders/co-config",
-      getCreateOrderConfig:
+      getChannelConfig:
         "/service/application/order-manage/v1.0/orders/co-config",
       getInvoiceByShipmentId1:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
@@ -451,7 +451,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
-   * @param {ShipmentStatusUpdateBody} arg.body
+   * @param {StatusUpdateInternalRequest} arg.body
    * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
    * @summary:
    * @description: updateShipmentStatus
@@ -486,10 +486,10 @@ class Order {
    * @param {CreateOrderConfigData} arg.body
    * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
    * @summary:
-   * @description: createOrderConfig
+   * @description: createChannelConfig
    */
-  createOrderConfig({ body } = {}) {
-    const { error } = OrderValidator.createOrderConfig().validate(
+  createChannelConfig({ body } = {}) {
+    const { error } = OrderValidator.createChannelConfig().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -504,7 +504,7 @@ class Order {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["createOrderConfig"],
+        url: this._urls["createChannelConfig"],
         params: {},
       }),
       query_params,
@@ -517,10 +517,10 @@ class Order {
    * @param {Object} arg - Arg object.
    * @returns {Promise<CreateOrderConfigData>} - Success response
    * @summary:
-   * @description: getCreateOrderConfig
+   * @description: getChannelConfig
    */
-  getCreateOrderConfig({} = {}) {
-    const { error } = OrderValidator.getCreateOrderConfig().validate(
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -535,7 +535,7 @@ class Order {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getCreateOrderConfig"],
+        url: this._urls["getChannelConfig"],
         params: {},
       }),
       query_params,

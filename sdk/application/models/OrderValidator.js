@@ -80,17 +80,17 @@ class OrderValidator {
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      body: Validator.ShipmentStatusUpdateBody().required(),
+      body: Validator.StatusUpdateInternalRequest().required(),
     }).required();
   }
 
-  static createOrderConfig() {
+  static createChannelConfig() {
     return Joi.object({
       body: Validator.CreateOrderConfigData().required(),
     }).required();
   }
 
-  static getCreateOrderConfig() {
+  static getChannelConfig() {
     return Joi.object({});
   }
 
