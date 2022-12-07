@@ -299,7 +299,7 @@ class OrderValidator {
 
   static createOrder() {
     return Joi.object({
-      body: Validator.CreateOrderPayload().required(),
+      body: Validator.CreateOrderAPI().required(),
     }).required();
   }
 

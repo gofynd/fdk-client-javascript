@@ -1452,7 +1452,7 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateOrderPayload} arg.body
+   * @param {CreateOrderAPI} arg.body
    * @summary:
    * @description:
    */
