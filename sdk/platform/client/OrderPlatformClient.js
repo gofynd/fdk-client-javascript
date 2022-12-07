@@ -180,7 +180,6 @@ class Order {
    * @param {string} [arg.deploymentStores] - Selected Deployment Stores
    * @param {string} [arg.status] - Status of order
    * @param {string} [arg.dp] - Delivery Partners
-   * @param {boolean} [arg.shortenUrls] - Shorten URL option
    * @param {string} [arg.filterType] - Filters
    * @summary: Get Orders for company based on Company Id
    * @description: Get Orders
@@ -201,7 +200,6 @@ class Order {
     deploymentStores,
     status,
     dp,
-    shortenUrls,
     filterType,
   } = {}) {
     const { error } = OrderValidator.getOrdersByCompanyId().validate(
@@ -221,7 +219,6 @@ class Order {
         deploymentStores,
         status,
         dp,
-        shortenUrls,
         filterType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -246,7 +243,6 @@ class Order {
     query_params["deployment_stores"] = deploymentStores;
     query_params["status"] = status;
     query_params["dp"] = dp;
-    query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
 
     const xHeaders = {};
@@ -311,7 +307,6 @@ class Order {
    * @param {string} [arg.orderId] - Order Id
    * @param {string} [arg.stores] - Selected Stores
    * @param {string} [arg.status] - Status of order
-   * @param {boolean} [arg.shortenUrls] - Shorten URL option
    * @param {string} [arg.filterType] - Filters
    * @summary: Get Orders for company based on Company Id
    * @description: Get Orders
@@ -327,7 +322,6 @@ class Order {
     orderId,
     stores,
     status,
-    shortenUrls,
     filterType,
   } = {}) {
     const { error } = OrderValidator.getPicklistOrdersByCompanyId().validate(
@@ -342,7 +336,6 @@ class Order {
         orderId,
         stores,
         status,
-        shortenUrls,
         filterType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -362,7 +355,6 @@ class Order {
     query_params["order_id"] = orderId;
     query_params["stores"] = stores;
     query_params["status"] = status;
-    query_params["shorten_urls"] = shortenUrls;
     query_params["filter_type"] = filterType;
 
     const xHeaders = {};

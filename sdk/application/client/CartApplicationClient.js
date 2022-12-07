@@ -61,13 +61,14 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {number} [arg.assignCardId] -
    * @param {string} [arg.areaCode] -
+   * @param {string} [arg.emptyCart] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  getCart({ id, i, b, assignCardId, areaCode } = {}) {
+  getCart({ id, i, b, assignCardId, areaCode, emptyCart } = {}) {
     const { error } = CartValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode },
+      { id, i, b, assignCardId, areaCode, emptyCart },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -79,6 +80,7 @@ class Cart {
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
+    query_params["empty_cart"] = emptyCart;
 
     const xHeaders = {};
 

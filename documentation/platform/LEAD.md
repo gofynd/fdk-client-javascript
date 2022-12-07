@@ -4353,6 +4353,7 @@ Success
  | priority | [PriorityEnum](#PriorityEnum) |  no  | Priority of the ticket |
  | category | string |  yes  | Category of the ticket |
  | content | [TicketContent](#TicketContent) |  yes  | Content for the ticket |
+ | _custom_json | string |  no  | optional custom data that needs to be sent |
 
 ---
 

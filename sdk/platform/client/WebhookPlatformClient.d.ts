@@ -57,7 +57,7 @@ declare class Webhook {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @summary: Get All Webhook Events
+     * @summary:
      * @description: Get All Webhook Events
      */
     fetchAllEventConfigurations({}?: any): Promise<any>;

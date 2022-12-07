@@ -8,6 +8,7 @@ class CartValidator {
       b: Joi.boolean(),
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
+      emptyCart: Joi.string().allow(""),
     });
   }
 
