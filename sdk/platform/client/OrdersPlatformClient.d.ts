@@ -6,6 +6,7 @@ declare class Orders {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
      * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
      * @param {string} [arg.searchId] -
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
@@ -22,9 +23,10 @@ declare class Orders {
      * @summary:
      * @description:
      */
-    getShipmentList({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, }?: {
+    getShipmentList({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, }?: {
         lane?: string;
         searchType?: string;
+        searchValue?: string;
         searchId?: string;
         fromDate?: string;
         toDate?: string;
@@ -171,11 +173,151 @@ declare class Orders {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
+     * @param {string} arg.docType -
      * @summary:
      * @description:
      */
-    getBulkInvoice({ batchId }?: {
+    getBulkInvoice({ batchId, docType }?: {
         batchId: string;
+        docType: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId -
+     * @summary:
+     * @description:
+     */
+    getBulkInvoiceLabel({ batchId }?: {
+        batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.lane] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchId] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.dpIds] -
+     * @param {string} [arg.orderingCompanyId] -
+     * @param {string} [arg.stores] -
+     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.requestByExt] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.customerId] -
+     * @param {boolean} [arg.isPrioritySort] -
+     * @summary:
+     * @description:
+     */
+    getBulkShipmentExcelFile({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
+        lane?: string;
+        searchType?: string;
+        searchId?: string;
+        fromDate?: string;
+        toDate?: string;
+        dpIds?: string;
+        orderingCompanyId?: string;
+        stores?: string;
+        salesChannel?: string;
+        requestByExt?: string;
+        pageNo?: number;
+        pageSize?: number;
+        customerId?: string;
+        isPrioritySort?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.lane] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchId] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.dpIds] -
+     * @param {string} [arg.orderingCompanyId] -
+     * @param {string} [arg.stores] -
+     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.requestByExt] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.customerId] -
+     * @param {boolean} [arg.isPrioritySort] -
+     * @summary:
+     * @description:
+     */
+    getBulkList({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, }?: {
+        lane?: string;
+        searchType?: string;
+        searchId?: string;
+        fromDate?: string;
+        toDate?: string;
+        dpIds?: string;
+        orderingCompanyId?: string;
+        stores?: string;
+        salesChannel?: string;
+        requestByExt?: string;
+        pageNo?: number;
+        pageSize?: number;
+        customerId?: string;
+        isPrioritySort?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] -
+     * @param {number} [arg.storeId] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @summary:
+     * @description:
+     */
+    getManifestList({ status, storeId, pageNo, pageSize, searchValue, fromDate, toDate, }?: {
+        status?: string;
+        storeId?: number;
+        pageNo?: number;
+        pageSize?: number;
+        searchValue?: string;
+        fromDate?: string;
+        toDate?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.manifestId -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {number} arg.storeId -
+     * @param {number} [arg.page] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.lane] -
+     * @param {number} [arg.dpIds] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @summary:
+     * @description:
+     */
+    getManifestDetailsWithShipments({ manifestId, storeId, fromDate, toDate, page, pageSize, lane, dpIds, searchType, searchValue, }?: {
+        manifestId: string;
+        fromDate?: string;
+        toDate?: string;
+        storeId: number;
+        page?: number;
+        pageSize?: number;
+        lane?: string;
+        dpIds?: number;
+        searchType?: string;
+        searchValue?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId -
+     * @param {string} [arg.reportType] -
+     * @summary:
+     * @description:
+     */
+    getBulkActionFailedReport({ batchId, reportType }?: {
+        batchId: string;
+        reportType?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -210,5 +352,43 @@ declare class Orders {
      */
     bulkActionDetails({ batchId }?: {
         batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.bagId] -
+     * @param {string} [arg.channelBagId] -
+     * @param {string} [arg.channelId] -
+     * @summary:
+     * @description:
+     */
+    getBagById({ bagId, channelBagId, channelId }?: {
+        bagId?: string;
+        channelBagId?: string;
+        channelId?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.bagIds] -
+     * @param {string} [arg.shipmentIds] -
+     * @param {string} [arg.orderIds] -
+     * @param {string} [arg.channelBagIds] -
+     * @param {string} [arg.channelShipmentIds] -
+     * @param {string} [arg.channelOrderIds] -
+     * @param {string} [arg.channelId] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @summary:
+     * @description:
+     */
+    getBags({ bagIds, shipmentIds, orderIds, channelBagIds, channelShipmentIds, channelOrderIds, channelId, pageNo, pageSize, }?: {
+        bagIds?: string;
+        shipmentIds?: string;
+        orderIds?: string;
+        channelBagIds?: string;
+        channelShipmentIds?: string;
+        channelOrderIds?: string;
+        channelId?: string;
+        pageNo?: number;
+        pageSize?: number;
     }): Promise<any>;
 }

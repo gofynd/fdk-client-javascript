@@ -1,6 +1,5 @@
 export = OrderManageValidator;
 declare class OrderManageValidator {
-    static createOrder(): any;
     static invalidateShipmentCache(): any;
     static reassignLocation(): any;
     static updateShipmentLock(): any;
@@ -12,5 +11,8 @@ declare class OrderManageValidator {
     static getRoleBasedActions(): any;
     static getShipmentHistory(): any;
     static sendSmsNinja(): any;
+    static platformManualAssignDPToShipment(): any;
+    static updatePackagingDimensions(): any;
+    static createOrder(): any;
     static checkOrderStatus(): any;
 }

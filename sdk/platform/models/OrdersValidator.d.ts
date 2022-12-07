@@ -11,7 +11,15 @@ declare class OrdersValidator {
     static getReportsShipmentListing(): any;
     static upsertJioCode(): any;
     static getBulkInvoice(): any;
+    static getBulkInvoiceLabel(): any;
+    static getBulkShipmentExcelFile(): any;
+    static getBulkList(): any;
+    static getManifestList(): any;
+    static getManifestDetailsWithShipments(): any;
+    static getBulkActionFailedReport(): any;
     static getPlatformShipmentReasons(): any;
     static bulkActionProcessXlsxFile(): any;
     static bulkActionDetails(): any;
+    static getBagById(): any;
+    static getBags(): any;
 }

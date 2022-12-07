@@ -5,6 +5,7 @@ class OrdersValidator {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
       searchId: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
@@ -102,6 +103,85 @@ class OrdersValidator {
   static getBulkInvoice() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
+      docType: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getBulkInvoiceLabel() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getBulkShipmentExcelFile() {
+    return Joi.object({
+      lane: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchId: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      orderingCompanyId: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
+      requestByExt: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      customerId: Joi.string().allow(""),
+      isPrioritySort: Joi.boolean(),
+    }).required();
+  }
+
+  static getBulkList() {
+    return Joi.object({
+      lane: Joi.string().allow(""),
+      searchType: Joi.string().allow(""),
+      searchId: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      dpIds: Joi.string().allow(""),
+      orderingCompanyId: Joi.string().allow(""),
+      stores: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
+      requestByExt: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      customerId: Joi.string().allow(""),
+      isPrioritySort: Joi.boolean(),
+    }).required();
+  }
+
+  static getManifestList() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      storeId: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      searchValue: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getManifestDetailsWithShipments() {
+    return Joi.object({
+      manifestId: Joi.string().allow("").required(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      storeId: Joi.number().required(),
+      page: Joi.number(),
+      pageSize: Joi.number(),
+      lane: Joi.string().allow(""),
+      dpIds: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getBulkActionFailedReport() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+      reportType: Joi.string().allow(""),
     }).required();
   }
 
@@ -122,6 +202,28 @@ class OrdersValidator {
   static bulkActionDetails() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getBagById() {
+    return Joi.object({
+      bagId: Joi.string().allow(""),
+      channelBagId: Joi.string().allow(""),
+      channelId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getBags() {
+    return Joi.object({
+      bagIds: Joi.string().allow(""),
+      shipmentIds: Joi.string().allow(""),
+      orderIds: Joi.string().allow(""),
+      channelBagIds: Joi.string().allow(""),
+      channelShipmentIds: Joi.string().allow(""),
+      channelOrderIds: Joi.string().allow(""),
+      channelId: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 }

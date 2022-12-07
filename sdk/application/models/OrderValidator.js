@@ -8,6 +8,7 @@ class OrderValidator {
       pageSize: Joi.number(),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
+      customMeta: Joi.string().allow(""),
     });
   }
 
@@ -24,6 +25,12 @@ class OrderValidator {
   }
 
   static getShipmentById() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
     }).required();
@@ -60,18 +67,34 @@ class OrderValidator {
   static getShipmentBagReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      bagId: Joi.number().required(),
+      bagId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getShipmentReasons() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
     }).required();
   }
 
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      body: Validator.ShipmentStatusUpdateBody().required(),
+      body: Validator.StatusUpdateInternalRequest().required(),
     }).required();
   }
 
-  static getInvoiceByShipmentId() {
+  static getChannelConfig() {
+    return Joi.object({});
+  }
+
+  static createChannelConfig() {
+    return Joi.object({
+      body: Validator.CreateOrderConfigData().required(),
+    }).required();
+  }
+
+  static getInvoiceByShipmentId1() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       parameters: Validator.invoiceParameter(),

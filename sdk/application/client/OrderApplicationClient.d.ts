@@ -7,13 +7,17 @@ declare class Order {
         getOrderById: string;
         getPosOrderById: string;
         getShipmentById: string;
+        getInvoiceByShipmentId: string;
         trackShipment: string;
         getCustomerDetailsByShipmentId: string;
         sendOtpToShipmentCustomer: string;
         verifyOtpShipmentCustomer: string;
         getShipmentBagReasons: string;
+        getShipmentReasons: string;
         updateShipmentStatus: string;
-        getInvoiceByShipmentId: string;
+        getChannelConfig: string;
+        createChannelConfig: string;
+        getInvoiceByShipmentId1: string;
         getCreditNoteByShipmentId: string;
     };
     _urls: {};
@@ -29,22 +33,25 @@ declare class Order {
      * @param {string} [arg.fromDate] - The date from which the orders should be
      *   retrieved.
      * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+     * @param {string} [arg.customMeta] - A filter and retrieve data using
+     *   special fields included for special use-cases
      * @returns {Promise<OrderList>} - Success response
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders.
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate }?: {
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta }?: {
         status?: number;
         pageNo?: number;
         pageSize?: number;
         fromDate?: string;
         toDate?: string;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
      *   tracking your orders.
-     * @returns {Promise<OrderList>} - Success response
+     * @returns {Promise<OrderById>} - Success response
      * @summary: Get details of an order
      * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
      */
@@ -76,10 +83,20 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment.
+     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @summary: Get Invoice of a shipment
+     * @description: Use this API to retrieve shipment invoice.
+     */
+    getInvoiceByShipmentId({ shipmentId }?: {
+        shipmentId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
-     * @returns {Promise<TrackShipmentResponse>} - Success response
+     * @returns {Promise<ShipmentTrack>} - Success response
      * @summary: Track shipment
      * @description: Track Shipment by shipment id, for application based on application Id
      */
@@ -138,20 +155,32 @@ declare class Order {
      * @param {string} arg.shipmentId - ID of the bag. An order may contain
      *   multiple items and may get divided into one or more shipment, each
      *   having its own ID.
-     * @param {number} arg.bagId - ID of the bag. An order may contain multiple
+     * @param {string} arg.bagId - ID of the bag. An order may contain multiple
      *   items and may get divided into one or more shipment, each having its own ID.
-     * @returns {Promise<ShipmentReasonsResponse>} - Success response
+     * @returns {Promise<ShipmentBagReasons>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
     getShipmentBagReasons({ shipmentId, bagId }?: {
         shipmentId: string;
-        bagId: number;
+        bagId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+     *   multiple items and may get divided into one or more shipment, each
+     *   having its own ID.
+     * @returns {Promise<ShipmentReasons>} - Success response
+     * @summary: Get reasons behind full or partial cancellation of a shipment
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     */
+    getShipmentReasons({ shipmentId }?: {
+        shipmentId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
-     * @param {ShipmentStatusUpdateBody} arg.body
+     * @param {StatusUpdateInternalRequest} arg.body
      * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
      * @summary:
      * @description: updateShipmentStatus
@@ -162,13 +191,30 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<CreateOrderConfigData>} - Success response
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateOrderConfigData} arg.body
+     * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
+     * @summary:
+     * @description: createChannelConfig
+     */
+    createChannelConfig({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - Shiment ID
      * @param {invoiceParameter} [arg.parameters] -
-     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
      * @summary: Get Presigned URL to download Invoice
      * @description: Use this API to generate Presigned URLs for downloading Invoice
      */
-    getInvoiceByShipmentId({ shipmentId, parameters }?: {
+    getInvoiceByShipmentId1({ shipmentId, parameters }?: {
         shipmentId: string;
         parameters?: any;
     }): Promise<any>;
@@ -176,7 +222,7 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - Shiment ID
      * @param {creditNoteParameter} [arg.parameters] -
-     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
      * @summary: Get Presigned URL to download Invoice
      * @description: Use this API to generate Presigned URLs for downloading Invoice
      */

@@ -1127,17 +1127,5 @@ Sucess Response, Presigned URL of NOC Pdf
 ---
 
 
- 
- 
- #### [OrderInvoiceEngineError](#OrderInvoiceEngineError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
 
 

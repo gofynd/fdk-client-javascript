@@ -14,6 +14,8 @@ class Order {
         "/service/application/orders/v1.0/orders/pos-order/{order_id}",
       getShipmentById:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
+      getInvoiceByShipmentId:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
       trackShipment:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
       getCustomerDetailsByShipmentId:
@@ -24,9 +26,15 @@ class Order {
         "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
       getShipmentBagReasons:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
+      getShipmentReasons:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
-      getInvoiceByShipmentId:
+      getChannelConfig:
+        "/service/application/order-manage/v1.0/orders/co-config",
+      createChannelConfig:
+        "/service/application/order-manage/v1.0/orders/co-config",
+      getInvoiceByShipmentId1:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
       getCreditNoteByShipmentId:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note",
@@ -58,13 +66,15 @@ class Order {
    * @param {string} [arg.fromDate] - The date from which the orders should be
    *   retrieved.
    * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
+   * @param {string} [arg.customMeta] - A filter and retrieve data using
+   *   special fields included for special use-cases
    * @returns {Promise<OrderList>} - Success response
    * @summary: Get all orders
    * @description: Use this API to retrieve all the orders.
    */
-  getOrders({ status, pageNo, pageSize, fromDate, toDate } = {}) {
+  getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta } = {}) {
     const { error } = OrderValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate },
+      { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -76,6 +86,7 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
+    query_params["custom_meta"] = customMeta;
 
     return APIClient.execute(
       this._conf,
@@ -93,7 +104,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId - A unique number used for identifying and
    *   tracking your orders.
-   * @returns {Promise<OrderList>} - Success response
+   * @returns {Promise<OrderById>} - Success response
    * @summary: Get details of an order
    * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
    */
@@ -182,10 +193,39 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment.
+   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @summary: Get Invoice of a shipment
+   * @description: Use this API to retrieve shipment invoice.
+   */
+  getInvoiceByShipmentId({ shipmentId } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+      { shipmentId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getInvoiceByShipmentId"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - ID of the shipment. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @returns {Promise<TrackShipmentResponse>} - Success response
+   * @returns {Promise<ShipmentTrack>} - Success response
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id
    */
@@ -316,9 +356,9 @@ class Order {
    * @param {string} arg.shipmentId - ID of the bag. An order may contain
    *   multiple items and may get divided into one or more shipment, each
    *   having its own ID.
-   * @param {number} arg.bagId - ID of the bag. An order may contain multiple
+   * @param {string} arg.bagId - ID of the bag. An order may contain multiple
    *   items and may get divided into one or more shipment, each having its own ID.
-   * @returns {Promise<ShipmentReasonsResponse>} - Success response
+   * @returns {Promise<ShipmentBagReasons>} - Success response
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
@@ -346,8 +386,39 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
+   *   multiple items and may get divided into one or more shipment, each
+   *   having its own ID.
+   * @returns {Promise<ShipmentReasons>} - Success response
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   */
+  getShipmentReasons({ shipmentId } = {}) {
+    const { error } = OrderValidator.getShipmentReasons().validate(
+      { shipmentId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getShipmentReasons"],
+        params: { shipmentId },
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
-   * @param {ShipmentStatusUpdateBody} arg.body
+   * @param {StatusUpdateInternalRequest} arg.body
    * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
    * @summary:
    * @description: updateShipmentStatus
@@ -376,14 +447,71 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<CreateOrderConfigData>} - Success response
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getChannelConfig"],
+        params: {},
+      }),
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderConfigData} arg.body
+   * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
+   * @summary:
+   * @description: createChannelConfig
+   */
+  createChannelConfig({ body } = {}) {
+    const { error } = OrderValidator.createChannelConfig().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["createChannelConfig"],
+        params: {},
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {invoiceParameter} [arg.parameters] -
-   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */
-  getInvoiceByShipmentId({ shipmentId, parameters } = {}) {
-    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+  getInvoiceByShipmentId1({ shipmentId, parameters } = {}) {
+    const { error } = OrderValidator.getInvoiceByShipmentId1().validate(
       { shipmentId, parameters },
       { abortEarly: false, allowUnknown: true }
     );
@@ -397,7 +525,7 @@ class Order {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getInvoiceByShipmentId"],
+        url: this._urls["getInvoiceByShipmentId1"],
         params: { shipmentId },
       }),
       query_params,
@@ -409,7 +537,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - Shiment ID
    * @param {creditNoteParameter} [arg.parameters] -
-   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
    * @summary: Get Presigned URL to download Invoice
    * @description: Use this API to generate Presigned URLs for downloading Invoice
    */

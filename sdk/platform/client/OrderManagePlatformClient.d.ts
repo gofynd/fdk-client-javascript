@@ -4,15 +4,6 @@ declare class OrderManage {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateOrderPayload} arg.body
-     * @summary:
-     * @description:
-     */
-    createOrder({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {InvalidateShipmentCachePayload} arg.body
      * @summary:
      * @description: Invalidate shipment Cache
@@ -137,6 +128,33 @@ declare class OrderManage {
      * @description:
      */
     sendSmsNinja({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ManualAssignDPToShipment} arg.body
+     * @summary:
+     * @description:
+     */
+    platformManualAssignDPToShipment({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateOrderPayload} arg.body
+     * @summary:
+     * @description:
+     */
+    updatePackagingDimensions({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateOrderAPI} arg.body
+     * @summary:
+     * @description:
+     */
+    createOrder({ body }?: {
         body: any;
     }): Promise<any>;
     /**

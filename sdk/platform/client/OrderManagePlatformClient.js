@@ -9,34 +9,6 @@ class OrderManage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CreateOrderPayload} arg.body
-   * @summary:
-   * @description:
-   */
-  createOrder({ body } = {}) {
-    const { error } = OrderManageValidator.createOrder().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {InvalidateShipmentCachePayload} arg.body
    * @summary:
    * @description: Invalidate shipment Cache
@@ -400,6 +372,92 @@ class OrderManage {
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ManualAssignDPToShipment} arg.body
+   * @summary:
+   * @description:
+   */
+  platformManualAssignDPToShipment({ body } = {}) {
+    const {
+      error,
+    } = OrderManageValidator.platformManualAssignDPToShipment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/oms/manual-place-shipment`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderPayload} arg.body
+   * @summary:
+   * @description:
+   */
+  updatePackagingDimensions({ body } = {}) {
+    const { error } = OrderManageValidator.updatePackagingDimensions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-packaging-dimension`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderAPI} arg.body
+   * @summary:
+   * @description:
+   */
+  createOrder({ body } = {}) {
+    const { error } = OrderManageValidator.createOrder().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
       query_params,
       body
     );

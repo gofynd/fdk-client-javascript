@@ -1,12 +1,6 @@
 const Joi = require("joi");
 const Validator = require("../PlatformModels");
 class OrderManageValidator {
-  static createOrder() {
-    return Joi.object({
-      body: Validator.CreateOrderPayload().required(),
-    }).required();
-  }
-
   static invalidateShipmentCache() {
     return Joi.object({
       body: Validator.InvalidateShipmentCachePayload().required(),
@@ -84,6 +78,24 @@ class OrderManageValidator {
   static sendSmsNinja() {
     return Joi.object({
       body: Validator.SendSmsPayload().required(),
+    }).required();
+  }
+
+  static platformManualAssignDPToShipment() {
+    return Joi.object({
+      body: Validator.ManualAssignDPToShipment().required(),
+    }).required();
+  }
+
+  static updatePackagingDimensions() {
+    return Joi.object({
+      body: Validator.CreateOrderPayload().required(),
+    }).required();
+  }
+
+  static createOrder() {
+    return Joi.object({
+      body: Validator.CreateOrderAPI().required(),
     }).required();
   }
 
