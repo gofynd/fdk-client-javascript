@@ -20,10 +20,13 @@ declare class Order {
      * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {boolean} [arg.excludeLockedShipments] -
+     * @param {string} [arg.paymentMethods] -
+     * @param {string} [arg.channelShipmentId] -
+     * @param {string} [arg.channelOrderId] -
      * @summary:
      * @description:
      */
-    getShipmentList({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, }?: {
+    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -40,17 +43,20 @@ declare class Order {
         customerId?: string;
         isPrioritySort?: boolean;
         excludeLockedShipments?: boolean;
+        paymentMethods?: string;
+        channelShipmentId?: string;
+        channelOrderId?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId -
+     * @param {string} arg.channelShipmentId -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
      * @summary:
      * @description:
      */
-    getShipmentDetails({ shipmentId, orderingCompanyId, requestByExt }?: {
-        shipmentId: string;
+    getShipmentById({ channelShipmentId, orderingCompanyId, requestByExt }?: {
+        channelShipmentId: string;
         orderingCompanyId?: string;
         requestByExt?: string;
     }): Promise<any>;
@@ -60,7 +66,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrderShipmentDetails({ orderId }?: {
+    getOrderById({ orderId }?: {
         orderId: string;
     }): Promise<any>;
     /**
@@ -477,11 +483,11 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {StatusUpdateInternalRequest} arg.body
+     * @param {UpdateShipmentStatusRequest} arg.body
      * @summary:
-     * @description: Reassign Location
+     * @description: Update shipment status
      */
-    statusUpdateInternalV4({ body }?: {
+    updateShipmentStatus({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -491,6 +497,15 @@ declare class Order {
      * @description:
      */
     processManifest({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {DispatchManifest} arg.body
+     * @summary:
+     * @description:
+     */
+    dispatchManifest({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -544,6 +559,30 @@ declare class Order {
      * @description:
      */
     createOrder({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateChannelConfigData} arg.body
+     * @summary:
+     * @description: createChannelConfig
+     */
+    createChannelConfig({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {UploadConsent} arg.body
+     * @summary:
+     * @description:
+     */
+    uploadConsent({ body }?: {
         body: any;
     }): Promise<any>;
     /**

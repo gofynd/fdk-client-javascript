@@ -1,8 +1,8 @@
 export = OrderValidator;
 declare class OrderValidator {
-    static getShipmentList(): any;
-    static getShipmentDetails(): any;
-    static getOrderShipmentDetails(): any;
+    static getShipments(): any;
+    static getShipmentById(): any;
+    static getOrderById(): any;
     static getLaneConfig(): any;
     static getOrders(): any;
     static getMetricCount(): any;
@@ -28,13 +28,17 @@ declare class OrderValidator {
     static getAnnouncements(): any;
     static updateAddress(): any;
     static click2Call(): any;
-    static statusUpdateInternalV4(): any;
+    static updateShipmentStatus(): any;
     static processManifest(): any;
+    static dispatchManifest(): any;
     static getRoleBasedActions(): any;
     static getShipmentHistory(): any;
     static sendSmsNinja(): any;
     static platformManualAssignDPToShipment(): any;
     static updatePackagingDimensions(): any;
     static createOrder(): any;
+    static getChannelConfig(): any;
+    static createChannelConfig(): any;
+    static uploadConsent(): any;
     static checkOrderStatus(): any;
 }

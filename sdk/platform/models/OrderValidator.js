@@ -1,7 +1,7 @@
 const Joi = require("joi");
 const Validator = require("../PlatformModels");
 class OrderValidator {
-  static getShipmentList() {
+  static getShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
@@ -19,18 +19,21 @@ class OrderValidator {
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
+      paymentMethods: Joi.string().allow(""),
+      channelShipmentId: Joi.string().allow(""),
+      channelOrderId: Joi.string().allow(""),
     }).required();
   }
 
-  static getShipmentDetails() {
+  static getShipmentById() {
     return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
+      channelShipmentId: Joi.string().allow("").required(),
       orderingCompanyId: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
     }).required();
   }
 
-  static getOrderShipmentDetails() {
+  static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
@@ -278,15 +281,21 @@ class OrderValidator {
     }).required();
   }
 
-  static statusUpdateInternalV4() {
+  static updateShipmentStatus() {
     return Joi.object({
-      body: Validator.StatusUpdateInternalRequest().required(),
+      body: Validator.UpdateShipmentStatusRequest().required(),
     }).required();
   }
 
   static processManifest() {
     return Joi.object({
       body: Validator.CreateOrderPayload().required(),
+    }).required();
+  }
+
+  static dispatchManifest() {
+    return Joi.object({
+      body: Validator.DispatchManifest().required(),
     }).required();
   }
 
@@ -322,6 +331,22 @@ class OrderValidator {
   static createOrder() {
     return Joi.object({
       body: Validator.CreateOrderAPI().required(),
+    }).required();
+  }
+
+  static getChannelConfig() {
+    return Joi.object({}).required();
+  }
+
+  static createChannelConfig() {
+    return Joi.object({
+      body: Validator.CreateChannelConfigData().required(),
+    }).required();
+  }
+
+  static uploadConsent() {
+    return Joi.object({
+      body: Validator.UploadConsent().required(),
     }).required();
   }
 
