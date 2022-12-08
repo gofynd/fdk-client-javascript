@@ -17,9 +17,11 @@ declare class OrderValidator {
     static getManifestList(): any;
     static getManifestDetailsWithShipments(): any;
     static getBulkActionFailedReport(): any;
-    static getPlatformShipmentReasons(): any;
+    static getShipmentReasons(): any;
     static bulkActionProcessXlsxFile(): any;
     static bulkActionDetails(): any;
+    static getBagById(): any;
+    static getBags(): any;
     static invalidateShipmentCache(): any;
     static reassignLocation(): any;
     static updateShipmentLock(): any;

@@ -330,7 +330,7 @@ declare class Order {
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
-    getPlatformShipmentReasons({ shipmentId, bagId, state }?: {
+    getShipmentReasons({ shipmentId, bagId, state }?: {
         shipmentId: string;
         bagId: string;
         state: string;
@@ -352,6 +352,44 @@ declare class Order {
      */
     bulkActionDetails({ batchId }?: {
         batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.bagId] -
+     * @param {string} [arg.channelBagId] -
+     * @param {string} [arg.channelId] -
+     * @summary:
+     * @description:
+     */
+    getBagById({ bagId, channelBagId, channelId }?: {
+        bagId?: string;
+        channelBagId?: string;
+        channelId?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.bagIds] -
+     * @param {string} [arg.shipmentIds] -
+     * @param {string} [arg.orderIds] -
+     * @param {string} [arg.channelBagIds] -
+     * @param {string} [arg.channelShipmentIds] -
+     * @param {string} [arg.channelOrderIds] -
+     * @param {string} [arg.channelId] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @summary:
+     * @description:
+     */
+    getBags({ bagIds, shipmentIds, orderIds, channelBagIds, channelShipmentIds, channelOrderIds, channelId, pageNo, pageSize, }?: {
+        bagIds?: string;
+        shipmentIds?: string;
+        orderIds?: string;
+        channelBagIds?: string;
+        channelShipmentIds?: string;
+        channelOrderIds?: string;
+        channelId?: string;
+        pageNo?: number;
+        pageSize?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

@@ -894,8 +894,8 @@ class Order {
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
-  getPlatformShipmentReasons({ shipmentId, bagId, state } = {}) {
-    const { error } = OrderValidator.getPlatformShipmentReasons().validate(
+  getShipmentReasons({ shipmentId, bagId, state } = {}) {
+    const { error } = OrderValidator.getShipmentReasons().validate(
       {
         shipmentId,
         bagId,
@@ -977,6 +977,110 @@ class Order {
       this.config,
       "get",
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/${batchId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.bagId] -
+   * @param {string} [arg.channelBagId] -
+   * @param {string} [arg.channelId] -
+   * @summary:
+   * @description:
+   */
+  getBagById({ bagId, channelBagId, channelId } = {}) {
+    const { error } = OrderValidator.getBagById().validate(
+      {
+        bagId,
+        channelBagId,
+        channelId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["bag_id"] = bagId;
+    query_params["channel_bag_id"] = channelBagId;
+    query_params["channel_id"] = channelId;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bag-details`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.bagIds] -
+   * @param {string} [arg.shipmentIds] -
+   * @param {string} [arg.orderIds] -
+   * @param {string} [arg.channelBagIds] -
+   * @param {string} [arg.channelShipmentIds] -
+   * @param {string} [arg.channelOrderIds] -
+   * @param {string} [arg.channelId] -
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @summary:
+   * @description:
+   */
+  getBags({
+    bagIds,
+    shipmentIds,
+    orderIds,
+    channelBagIds,
+    channelShipmentIds,
+    channelOrderIds,
+    channelId,
+    pageNo,
+    pageSize,
+  } = {}) {
+    const { error } = OrderValidator.getBags().validate(
+      {
+        bagIds,
+        shipmentIds,
+        orderIds,
+        channelBagIds,
+        channelShipmentIds,
+        channelOrderIds,
+        channelId,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["bag_ids"] = bagIds;
+    query_params["shipment_ids"] = shipmentIds;
+    query_params["order_ids"] = orderIds;
+    query_params["channel_bag_ids"] = channelBagIds;
+    query_params["channel_shipment_ids"] = channelShipmentIds;
+    query_params["channel_order_ids"] = channelOrderIds;
+    query_params["channel_id"] = channelId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bags`,
       query_params,
       undefined,
       xHeaders

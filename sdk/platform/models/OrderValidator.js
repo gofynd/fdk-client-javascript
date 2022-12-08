@@ -185,7 +185,7 @@ class OrderValidator {
     }).required();
   }
 
-  static getPlatformShipmentReasons() {
+  static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       bagId: Joi.string().allow("").required(),
@@ -202,6 +202,28 @@ class OrderValidator {
   static bulkActionDetails() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getBagById() {
+    return Joi.object({
+      bagId: Joi.string().allow(""),
+      channelBagId: Joi.string().allow(""),
+      channelId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getBags() {
+    return Joi.object({
+      bagIds: Joi.string().allow(""),
+      shipmentIds: Joi.string().allow(""),
+      orderIds: Joi.string().allow(""),
+      channelBagIds: Joi.string().allow(""),
+      channelShipmentIds: Joi.string().allow(""),
+      channelOrderIds: Joi.string().allow(""),
+      channelId: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
