@@ -18,8 +18,6 @@ Handles all Application order and shipment api(s)
 * [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipmentReasons](#getshipmentreasons)
 * [updateShipmentStatus](#updateshipmentstatus)
-* [createChannelConfig](#createchannelconfig)
-* [getChannelConfig](#getchannelconfig)
 * [getInvoiceByShipmentId1](#getinvoicebyshipmentid1)
 * [getCreditNoteByShipmentId](#getcreditnotebyshipmentid)
 
@@ -2426,7 +2424,7 @@ const data = await order.updateShipmentStatus({  shipmentId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | shipmentId | string | yes |  |  
-| body | [StatusUpdateInternalRequest](#StatusUpdateInternalRequest) | yes | Request body |
+| body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
 updateShipmentStatus
@@ -2461,141 +2459,6 @@ Successfully updateShipmentStatus!
       ]
     }
   ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createChannelConfig
-
-
-
-
-```javascript
-// Promise
-const promise = order.createChannelConfig({  body : value });
-
-// Async/Await
-const data = await order.createChannelConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateOrderConfigData](#CreateOrderConfigData) | yes | Request body |
-
-
-createChannelConfig
-
-*Returned Response:*
-
-
-
-
-[CreateOrderConfigDataResponse](#CreateOrderConfigDataResponse)
-
-Successfully updateShipmentStatus!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "acknowledged": true,
-    "is_upserted": false,
-    "is_inserted": false
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getChannelConfig
-
-
-
-
-```javascript
-// Promise
-const promise = order.getChannelConfig();
-
-// Async/Await
-const data = await order.getChannelConfig();
-```
-
-
-
-
-
-
-getChannelConfig
-
-*Returned Response:*
-
-
-
-
-[CreateOrderConfigData](#CreateOrderConfigData)
-
-Successfully created the config data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "config_data": {
-    "payment_info": {
-      "payment_methods": [
-        {
-          "mode": "COD",
-          "collect_by": "gringotts",
-          "refund_by": "gringotts"
-        }
-      ],
-      "source": "fynd",
-      "mode_of_payment": "COD"
-    },
-    "dp_configuration": {
-      "shipping_by": "fynd"
-    },
-    "logo_url": {},
-    "location_reassignment": false,
-    "lock_states": [
-      "bag_packed"
-    ],
-    "shipment_assignment": "16703096324891701814"
-  }
 }
 ```
 </details>
@@ -2734,88 +2597,55 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [OrderStatuses](#OrderStatuses)
+ #### [OrderPage](#OrderPage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
- | is_selected | boolean |  no  |  |
- | value | number |  no  |  |
+ | type | string |  no  |  |
+ | current | number |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | has_next | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [OrderFilters](#OrderFilters)
+ #### [UserInfo](#UserInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statuses | [[OrderStatuses](#OrderStatuses)] |  no  |  |
-
----
-
-
- 
- 
- #### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
- | strategy | string |  no  |  |
-
----
-
-
- 
- 
- #### [BagsForReorder](#BagsForReorder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_size | string |  no  |  |
- | quantity | number |  no  |  |
- | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment) |  no  |  |
- | item_id | number |  no  |  |
- | seller_id | number |  no  |  |
- | store_id | number |  no  |  |
-
----
-
-
- 
- 
- #### [TimeStampData](#TimeStampData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | string |  no  |  |
- | max | string |  no  |  |
-
----
-
-
- 
- 
- #### [Promise](#Promise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | [TimeStampData](#TimeStampData) |  no  |  |
- | show_promise | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [FulfillingCompany](#FulfillingCompany)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | gender | string |  no  |  |
+ | mobile | string |  no  |  |
  | name | string |  no  |  |
- | id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatus](#ShipmentStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | string |  no  |  |
+ | hex_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentUserInfo](#ShipmentUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gender | string |  no  |  |
+ | mobile | string |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
 
 ---
 
@@ -2826,9 +2656,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_passed | boolean |  no  |  |
  | time | string |  no  |  |
  | status | string |  no  |  |
+ | is_passed | boolean |  no  |  |
  | is_current | boolean |  no  |  |
 
 ---
@@ -2840,23 +2670,36 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
- | is_current | boolean |  no  |  |
- | is_passed | boolean |  no  |  |
  | time | string |  no  |  |
+ | is_passed | boolean |  no  |  |
+ | is_current | boolean |  no  |  |
+ | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)] |  no  |  |
+ | status | string |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatus](#ShipmentStatus)
+ #### [ShipmentTotalDetails](#ShipmentTotalDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | hex_code | string |  no  |  |
- | title | string |  no  |  |
+ | total_price | number |  no  |  |
+ | sizes | number |  no  |  |
+ | pieces | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FulfillingCompany](#FulfillingCompany)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -2867,26 +2710,26 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | transfer_price | number |  no  |  |
- | cod_charges | number |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | coupon_value | number |  no  |  |
- | refund_credit | number |  no  |  |
- | price_marked | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | amount_paid | number |  no  |  |
- | cashback | number |  no  |  |
  | value_of_good | number |  no  |  |
- | refund_amount | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | discount | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
- | price_effective | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
  | cashback_applied | number |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | discount | number |  no  |  |
  | fynd_credits | number |  no  |  |
+ | refund_amount | number |  no  |  |
+ | cashback | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
  | added_to_fynd_cash | boolean |  no  |  |
+ | cod_charges | number |  no  |  |
+ | transfer_price | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | brand_calculated_amount | number |  no  |  |
 
 ---
 
@@ -2899,22 +2742,76 @@ Success Response, Presigned URL of Invoice
  | ---------- | ---- | -------- | ----------- |
  | company_name | string |  no  |  |
  | company_id | number |  no  |  |
- | name | string |  no  |  |
  | code | string |  no  |  |
  | id | number |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
 
  
  
- #### [BreakupValues](#BreakupValues)
+ #### [Invoice](#Invoice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
+ | invoice_url | string |  no  |  |
+ | label_url | string |  no  |  |
+ | updated_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TimeStampData](#TimeStampData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string |  no  |  |
+ | min | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Promise](#Promise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | show_promise | boolean |  no  |  |
+ | timestamp | [TimeStampData](#TimeStampData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryAddress](#DeliveryAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address_type | string |  no  |  |
+ | city | string |  no  |  |
+ | address2 | string |  no  |  |
+ | landmark | string |  no  |  |
+ | latitude | number |  no  |  |
+ | contact_person | string |  no  |  |
+ | state | string |  no  |  |
+ | email | string |  no  |  |
+ | created_at | string |  no  |  |
+ | phone | string |  no  |  |
+ | area | string |  no  |  |
+ | country | string |  no  |  |
  | name | string |  no  |  |
- | value | number |  no  |  |
+ | longitude | number |  no  |  |
+ | pincode | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | address1 | string |  no  |  |
+ | version | string |  no  |  |
+ | address | string |  no  |  |
+ | address_category | string |  no  |  |
 
 ---
 
@@ -2926,35 +2823,23 @@ Success Response, Presigned URL of Invoice
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | mode | string |  no  |  |
- | mop | string |  no  |  |
  | logo | string |  no  |  |
  | status | string |  no  |  |
+ | mop | string |  no  |  |
 
 ---
 
 
  
  
- #### [ShipmentTotalDetails](#ShipmentTotalDetails)
+ #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizes | number |  no  |  |
- | total_price | number |  no  |  |
- | pieces | number |  no  |  |
-
----
-
-
- 
- 
- #### [Invoice](#Invoice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | updated_date | string |  no  |  |
- | label_url | string |  no  |  |
- | invoice_url | string |  no  |  |
+ | journey_type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | status | string |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -2977,33 +2862,64 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | transfer_price | number |  no  |  |
- | cod_charges | number |  no  |  |
- | gst_fee | number |  no  |  |
- | hsn_code | string |  no  |  |
- | gst_tax_percentage | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | coupon_value | number |  no  |  |
- | gst_tag | string |  no  |  |
- | refund_credit | number |  no  |  |
- | price_marked | number |  no  |  |
- | total_units | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | amount_paid | number |  no  |  |
- | size | string |  no  |  |
- | cashback | number |  no  |  |
  | value_of_good | number |  no  |  |
- | refund_amount | number |  no  |  |
- | brand_calculated_amount | number |  no  |  |
- | discount | number |  no  |  |
- | coupon_effective_discount | number |  no  |  |
- | amount_paid_roundoff | number |  no  |  |
- | price_effective | number |  no  |  |
- | item_name | string |  no  |  |
+ | hsn_code | string |  no  |  |
+ | amount_paid | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
  | cashback_applied | number |  no  |  |
+ | coupon_effective_discount | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | discount | number |  no  |  |
  | identifiers | [Identifiers](#Identifiers) |  no  |  |
  | fynd_credits | number |  no  |  |
+ | refund_amount | number |  no  |  |
+ | cashback | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | total_units | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | gst_tag | string |  no  |  |
  | added_to_fynd_cash | boolean |  no  |  |
+ | item_name | string |  no  |  |
+ | cod_charges | number |  no  |  |
+ | transfer_price | number |  no  |  |
+ | gst_fee | number |  no  |  |
+ | size | string |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | brand_calculated_amount | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | free_gift_item_details | string |  no  |  |
+ | quantity | number |  no  |  |
+ | parent_item_identifier | string |  no  |  |
+ | article_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromos](#AppliedPromos)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | promo_id | string |  no  |  |
+ | amount | number |  no  |  |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  |  |
+ | promotion_type | string |  no  |  |
+ | article_quantity | number |  no  |  |
+ | mrp_promotion | boolean |  no  |  |
+ | promotion_name | string |  no  |  |
 
 ---
 
@@ -3026,59 +2942,14 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | slug_key | string |  no  |  |
  | image | [string] |  no  |  |
  | brand | [ItemBrand](#ItemBrand) |  no  |  |
+ | seller_identifier | string |  no  |  |
  | name | string |  no  |  |
  | code | string |  no  |  |
- | slug_key | string |  no  |  |
  | id | number |  no  |  |
  | size | string |  no  |  |
- | seller_identifier | string |  no  |  |
-
----
-
-
- 
- 
- #### [AppliedFreeArticles](#AppliedFreeArticles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_item_identifier | string |  no  |  |
- | article_id | string |  no  |  |
- | quantity | number |  no  |  |
- | free_gift_item_details | string |  no  |  |
-
----
-
-
- 
- 
- #### [AppliedPromos](#AppliedPromos)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  |  |
- | amount | number |  no  |  |
- | promotion_type | string |  no  |  |
- | mrp_promotion | boolean |  no  |  |
- | promotion_name | string |  no  |  |
- | article_quantity | number |  no  |  |
- | promo_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [CurrentStatus](#CurrentStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | journey_type | string |  no  |  |
- | updated_at | string |  no  |  |
- | name | string |  no  |  |
- | status | string |  no  |  |
 
 ---
 
@@ -3089,64 +2960,33 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | can_cancel | boolean |  no  |  |
- | item | [Item](#Item) |  no  |  |
- | parent_promo_bags | string |  no  |  |
- | quantity | number |  no  |  |
  | returnable_date | string |  no  |  |
+ | quantity | number |  no  |  |
+ | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | parent_promo_bags | string |  no  |  |
+ | id | number |  no  |  |
+ | line_number | number |  no  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | can_cancel | boolean |  no  |  |
  | can_return | boolean |  no  |  |
  | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
- | line_number | number |  no  |  |
- | id | number |  no  |  |
- | current_status | [CurrentStatus](#CurrentStatus) |  no  |  |
  | delivery_date | string |  no  |  |
- | seller_identifier | string |  no  |  |
+ | item | [Item](#Item) |  no  |  |
+ | prices | [Prices](#Prices) |  no  |  |
 
 ---
 
 
  
  
- #### [DeliveryAddress](#DeliveryAddress)
+ #### [BreakupValues](#BreakupValues)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | string |  no  |  |
- | address2 | string |  no  |  |
- | version | string |  no  |  |
- | address | string |  no  |  |
- | landmark | string |  no  |  |
- | country | string |  no  |  |
- | phone | string |  no  |  |
- | address1 | string |  no  |  |
- | state | string |  no  |  |
- | email | string |  no  |  |
- | address_category | string |  no  |  |
- | latitude | number |  no  |  |
- | contact_person | string |  no  |  |
- | address_type | string |  no  |  |
- | longitude | number |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
+ | value | number |  no  |  |
+ | display | string |  no  |  |
  | name | string |  no  |  |
- | area | string |  no  |  |
- | city | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentUserInfo](#ShipmentUserInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | mobile | string |  no  |  |
- | gender | string |  no  |  |
 
 ---
 
@@ -3157,55 +2997,69 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiary_details | boolean |  no  |  |
- | promise | [Promise](#Promise) |  no  |  |
- | fulfilling_company | [FulfillingCompany](#FulfillingCompany) |  no  |  |
- | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
+ | show_track_link | boolean |  no  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus) |  no  |  |
- | traking_no | string |  no  |  |
- | refund_details | string |  no  |  |
- | shipment_id | string |  no  |  |
- | track_url | string |  no  |  |
- | prices | [Prices](#Prices) |  no  |  |
- | can_cancel | boolean |  no  |  |
- | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | shipment_created_at | string |  no  |  |
- | dp_name | string |  no  |  |
- | returnable_date | string |  no  |  |
- | can_return | boolean |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
- | show_download_invoice | boolean |  no  |  |
- | order_type | string |  no  |  |
- | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
  | comment | string |  no  |  |
  | custom_meta | [string] |  no  |  |
- | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
- | delivery_date | string |  no  |  |
- | awb_no | string |  no  |  |
- | invoice | [Invoice](#Invoice) |  no  |  |
- | order_id | string |  no  |  |
- | bags | [[Bags](#Bags)] |  no  |  |
- | delivery_address | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | refund_details | string |  no  |  |
+ | track_url | string |  no  |  |
+ | order_type | string |  no  |  |
  | user_info | [ShipmentUserInfo](#ShipmentUserInfo) |  no  |  |
+ | tracking_details | [[TrackingDetails](#TrackingDetails)] |  no  |  |
+ | awb_no | string |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | total_details | [ShipmentTotalDetails](#ShipmentTotalDetails) |  no  |  |
+ | fulfilling_company | [FulfillingCompany](#FulfillingCompany) |  no  |  |
+ | prices | [Prices](#Prices) |  no  |  |
+ | traking_no | string |  no  |  |
+ | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
+ | invoice | [Invoice](#Invoice) |  no  |  |
+ | can_return | boolean |  no  |  |
+ | beneficiary_details | boolean |  no  |  |
+ | returnable_date | string |  no  |  |
+ | promise | [Promise](#Promise) |  no  |  |
+ | delivery_address | [DeliveryAddress](#DeliveryAddress) |  no  |  |
+ | show_download_invoice | boolean |  no  |  |
+ | shipment_id | string |  no  |  |
+ | shipment_created_at | string |  no  |  |
+ | delivery_date | string |  no  |  |
  | total_bags | number |  no  |  |
+ | order_id | string |  no  |  |
+ | need_help_url | string |  no  |  |
+ | payment | [ShipmentPayment](#ShipmentPayment) |  no  |  |
+ | bags | [[Bags](#Bags)] |  no  |  |
+ | dp_name | string |  no  |  |
  | size_info | string |  no  |  |
  | can_break | string |  no  |  |
- | show_track_link | boolean |  no  |  |
- | need_help_url | string |  no  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
 
 ---
 
 
  
  
- #### [UserInfo](#UserInfo)
+ #### [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | mobile | string |  no  |  |
- | gender | string |  no  |  |
- | email | string |  no  |  |
+ | level | string |  no  |  |
+ | strategy | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagsForReorder](#BagsForReorder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_id | number |  no  |  |
+ | seller_id | number |  no  |  |
+ | quantity | number |  no  |  |
+ | item_size | string |  no  |  |
+ | article_assignment | [BagsForReorderArticleAssignment](#BagsForReorderArticleAssignment) |  no  |  |
+ | item_id | number |  no  |  |
 
 ---
 
@@ -3217,27 +3071,36 @@ Success Response, Presigned URL of Invoice
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | order_id | string |  no  |  |
- | bags_for_reorder | [[BagsForReorder](#BagsForReorder)] |  no  |  |
- | shipments | [[Shipments](#Shipments)] |  no  |  |
- | user_info | [UserInfo](#UserInfo) |  no  |  |
- | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
  | order_created_time | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
+ | user_info | [UserInfo](#UserInfo) |  no  |  |
+ | shipments | [[Shipments](#Shipments)] |  no  |  |
+ | bags_for_reorder | [[BagsForReorder](#BagsForReorder)] |  no  |  |
+ | breakup_values | [[BreakupValues](#BreakupValues)] |  no  |  |
 
 ---
 
 
  
  
- #### [OrderPage](#OrderPage)
+ #### [OrderStatuses](#OrderStatuses)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | has_next | boolean |  no  |  |
- | type | string |  no  |  |
- | current | number |  no  |  |
- | size | number |  no  |  |
+ | value | number |  no  |  |
+ | display | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderFilters](#OrderFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | statuses | [[OrderStatuses](#OrderStatuses)] |  no  |  |
 
 ---
 
@@ -3248,9 +3111,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [OrderFilters](#OrderFilters) |  no  |  |
- | items | [[OrderSchema](#OrderSchema)] |  no  |  |
  | page | [OrderPage](#OrderPage) |  no  |  |
+ | items | [[OrderSchema](#OrderSchema)] |  no  |  |
+ | filters | [OrderFilters](#OrderFilters) |  no  |  |
 
 ---
 
@@ -3309,14 +3172,14 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reason | string |  no  |  |
- | shipment_type | string |  no  |  |
- | awb | string |  no  |  |
- | status | string |  no  |  |
- | updated_at | string |  no  |  |
- | account_name | string |  no  |  |
  | updated_time | string |  no  |  |
  | last_location_recieved_at | string |  no  |  |
+ | account_name | string |  no  |  |
+ | reason | string |  no  |  |
+ | awb | string |  no  |  |
+ | shipment_type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | status | string |  no  |  |
 
 ---
 
@@ -3339,9 +3202,9 @@ Success Response, Presigned URL of Invoice
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | order_id | string |  no  |  |
- | name | string |  no  |  |
- | country | string |  no  |  |
  | phone | string |  no  |  |
+ | country | string |  no  |  |
+ | name | string |  no  |  |
  | shipment_id | string |  no  |  |
 
 ---
@@ -3355,8 +3218,8 @@ Success Response, Presigned URL of Invoice
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  |  |
  | success | boolean |  no  |  |
- | resend_timer | number |  no  |  |
  | request_id | string |  no  |  |
+ | resend_timer | number |  no  |  |
 
 ---
 
@@ -3402,9 +3265,9 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
  | qc_type | [string] |  no  |  |
  | question_set | [[QuestionSet](#QuestionSet)] |  no  |  |
- | id | number |  no  |  |
  | display_name | string |  no  |  |
 
 ---
@@ -3416,8 +3279,8 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reasons | [[BagReasons](#BagReasons)] |  no  |  |
  | success | boolean |  no  |  |
+ | reasons | [[BagReasons](#BagReasons)] |  no  |  |
 
 ---
 
@@ -3429,11 +3292,11 @@ Success Response, Presigned URL of Invoice
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | priority | number |  no  |  |
+ | feedback_type | string |  no  |  |
  | flow | string |  no  |  |
+ | show_text_area | boolean |  no  |  |
  | reason_text | string |  no  |  |
  | reason_id | number |  no  |  |
- | feedback_type | string |  no  |  |
- | show_text_area | boolean |  no  |  |
 
 ---
 
@@ -3451,36 +3314,13 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [EntitiesReasons](#EntitiesReasons)
+ #### [Products](#Products)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [string] |  no  |  |
- | data | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductsReasons](#ProductsReasons)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filters | [string] |  no  |  |
- | data | string |  no  |  |
-
----
-
-
- 
- 
- #### [ReasonsData](#ReasonsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | entities | [[EntitiesReasons](#EntitiesReasons)] |  no  |  |
- | products | [[ProductsReasons](#ProductsReasons)] |  no  |  |
+ | quantity | number |  no  |  |
+ | identifier | string |  no  |  |
+ | line_number | number |  no  |  |
 
 ---
 
@@ -3499,11 +3339,23 @@ Success Response, Presigned URL of Invoice
 
  
  
+ #### [ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  |  |
+ | line_number | number |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductsDataUpdates](#ProductsDataUpdates)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [string] |  no  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)] |  no  |  |
  | data | string |  no  |  |
 
 ---
@@ -3523,13 +3375,73 @@ Success Response, Presigned URL of Invoice
 
  
  
- #### [Products](#Products)
+ #### [EntityReasonData](#EntityReasonData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | reason_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntitiesReasons](#EntitiesReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [string] |  no  |  |
+ | data | [EntityReasonData](#EntityReasonData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductsReasonsFilters](#ProductsReasonsFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
  | identifier | string |  no  |  |
  | line_number | number |  no  |  |
- | quantity | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductsReasonsData](#ProductsReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_text | string |  no  |  |
+ | reason_id | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductsReasons](#ProductsReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [[ProductsReasonsFilters](#ProductsReasonsFilters)] |  no  |  |
+ | data | [ProductsReasonsData](#ProductsReasonsData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReasonsData](#ReasonsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entities | [[EntitiesReasons](#EntitiesReasons)] |  no  |  |
+ | products | [[ProductsReasons](#ProductsReasons)] |  no  |  |
 
 ---
 
@@ -3540,10 +3452,10 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  yes  |  |
- | reasons | [ReasonsData](#ReasonsData) |  no  |  |
- | data_updates | [DataUpdates](#DataUpdates) |  no  |  |
  | products | [[Products](#Products)] |  no  |  |
+ | identifier | string |  yes  |  |
+ | data_updates | [DataUpdates](#DataUpdates) |  no  |  |
+ | reasons | [ReasonsData](#ReasonsData) |  no  |  |
 
 ---
 
@@ -3554,24 +3466,24 @@ Success Response, Presigned URL of Invoice
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)] |  no  |  |
  | exclude_bags_next_state | string |  no  |  |
+ | status | string |  no  |  |
 
 ---
 
 
  
  
- #### [StatusUpdateInternalRequest](#StatusUpdateInternalRequest)
+ #### [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | lock_after_transition | boolean |  no  |  |
- | statues | [[StatuesRequest](#StatuesRequest)] |  no  |  |
- | task | boolean |  no  |  |
- | force_transition | boolean |  no  |  |
  | unlock_before_transition | boolean |  no  |  |
+ | task | boolean |  no  |  |
+ | statuses | [[StatuesRequest](#StatuesRequest)] |  no  |  |
+ | lock_after_transition | boolean |  no  |  |
+ | force_transition | boolean |  no  |  |
 
 ---
 
@@ -3594,105 +3506,6 @@ Success Response, Presigned URL of Invoice
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | statuses | [[StatusesBodyResponse](#StatusesBodyResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentMethods](#PaymentMethods)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | refund_by | string |  no  |  |
- | collect_by | string |  no  |  |
- | mode | string |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentInfo](#PaymentInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | mode_of_payment | string |  no  |  |
- | payment_methods | [[PaymentMethods](#PaymentMethods)] |  no  |  |
-
----
-
-
- 
- 
- #### [DpConfiguration](#DpConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipping_by | string |  no  |  |
-
----
-
-
- 
- 
- #### [CreateOrderConfig](#CreateOrderConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipment_assignment | string |  no  |  |
- | lock_states | string |  no  |  |
- | payment_info | [PaymentInfo](#PaymentInfo) |  no  |  |
- | logo_url | string |  no  |  |
- | dp_configuration | [DpConfiguration](#DpConfiguration) |  no  |  |
- | location_reassignment | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CreateOrderConfigData](#CreateOrderConfigData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | config_data | [CreateOrderConfig](#CreateOrderConfig) |  no  |  |
-
----
-
-
- 
- 
- #### [createOrderConfigResponse](#createOrderConfigResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_upserted | boolean |  no  |  |
- | acknowledged | boolean |  no  |  |
- | is_inserted | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CreateOrderConfigDataResponse](#CreateOrderConfigDataResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[createOrderConfigResponse](#createOrderConfigResponse)] |  no  |  |
-
----
-
-
- 
- 
- #### [CreateOrderConifgErrorResponse](#CreateOrderConifgErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
 
 ---
 
