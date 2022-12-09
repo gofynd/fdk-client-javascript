@@ -52,15 +52,21 @@ class OrderManageValidator {
     }).required();
   }
 
-  static statusUpdateInternalV4() {
+  static updateShipmentStatus() {
     return Joi.object({
-      body: Validator.StatusUpdateInternalRequest().required(),
+      body: Validator.UpdateShipmentStatusRequest().required(),
     }).required();
   }
 
   static processManifest() {
     return Joi.object({
       body: Validator.CreateOrderPayload().required(),
+    }).required();
+  }
+
+  static dispatchManifest() {
+    return Joi.object({
+      body: Validator.DispatchManifest().required(),
     }).required();
   }
 
@@ -96,6 +102,22 @@ class OrderManageValidator {
   static createOrder() {
     return Joi.object({
       body: Validator.CreateOrderAPI().required(),
+    }).required();
+  }
+
+  static createChannelConfig() {
+    return Joi.object({
+      body: Validator.CreateChannelConfigData().required(),
+    }).required();
+  }
+
+  static getChannelConfig() {
+    return Joi.object({}).required();
+  }
+
+  static uploadConsent() {
+    return Joi.object({
+      body: Validator.UploadConsent().required(),
     }).required();
   }
 

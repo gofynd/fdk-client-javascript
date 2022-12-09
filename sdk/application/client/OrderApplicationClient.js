@@ -30,10 +30,6 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
-      getChannelConfig:
-        "/service/application/order-manage/v1.0/orders/co-config",
-      createChannelConfig:
-        "/service/application/order-manage/v1.0/orders/co-config",
       getInvoiceByShipmentId1:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
       getCreditNoteByShipmentId:
@@ -418,7 +414,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId -
-   * @param {StatusUpdateInternalRequest} arg.body
+   * @param {UpdateShipmentStatusRequest} arg.body
    * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
    * @summary:
    * @description: updateShipmentStatus
@@ -439,63 +435,6 @@ class Order {
       constructUrl({
         url: this._urls["updateShipmentStatus"],
         params: { shipmentId },
-      }),
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<CreateOrderConfigData>} - Success response
-   * @summary:
-   * @description: getChannelConfig
-   */
-  getChannelConfig({} = {}) {
-    const { error } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getChannelConfig"],
-        params: {},
-      }),
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateOrderConfigData} arg.body
-   * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
-   * @summary:
-   * @description: createChannelConfig
-   */
-  createChannelConfig({ body } = {}) {
-    const { error } = OrderValidator.createChannelConfig().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["createChannelConfig"],
-        params: {},
       }),
       query_params,
       body

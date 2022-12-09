@@ -88,11 +88,11 @@ declare class OrderManage {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {StatusUpdateInternalRequest} arg.body
+     * @param {UpdateShipmentStatusRequest} arg.body
      * @summary:
-     * @description: Reassign Location
+     * @description: Update shipment status
      */
-    statusUpdateInternalV4({ body }?: {
+    updateShipmentStatus({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -102,6 +102,15 @@ declare class OrderManage {
      * @description:
      */
     processManifest({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {DispatchManifest} arg.body
+     * @summary:
+     * @description:
+     */
+    dispatchManifest({ body }?: {
         body: any;
     }): Promise<any>;
     /**
@@ -155,6 +164,30 @@ declare class OrderManage {
      * @description:
      */
     createOrder({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateChannelConfigData} arg.body
+     * @summary:
+     * @description: createChannelConfig
+     */
+    createChannelConfig({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {UploadConsent} arg.body
+     * @summary:
+     * @description:
+     */
+    uploadConsent({ body }?: {
         body: any;
     }): Promise<any>;
     /**

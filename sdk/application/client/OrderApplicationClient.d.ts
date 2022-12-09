@@ -15,8 +15,6 @@ declare class Order {
         getShipmentBagReasons: string;
         getShipmentReasons: string;
         updateShipmentStatus: string;
-        getChannelConfig: string;
-        createChannelConfig: string;
         getInvoiceByShipmentId1: string;
         getCreditNoteByShipmentId: string;
     };
@@ -180,30 +178,13 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
-     * @param {StatusUpdateInternalRequest} arg.body
+     * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
      * @summary:
      * @description: updateShipmentStatus
      */
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CreateOrderConfigData>} - Success response
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateOrderConfigData} arg.body
-     * @returns {Promise<CreateOrderConfigDataResponse>} - Success response
-     * @summary:
-     * @description: createChannelConfig
-     */
-    createChannelConfig({ body }?: {
         body: any;
     }): Promise<any>;
     /**

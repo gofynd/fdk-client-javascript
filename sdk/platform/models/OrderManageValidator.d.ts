@@ -6,13 +6,17 @@ declare class OrderManageValidator {
     static getAnnouncements(): any;
     static updateAddress(): any;
     static click2Call(): any;
-    static statusUpdateInternalV4(): any;
+    static updateShipmentStatus(): any;
     static processManifest(): any;
+    static dispatchManifest(): any;
     static getRoleBasedActions(): any;
     static getShipmentHistory(): any;
     static sendSmsNinja(): any;
     static platformManualAssignDPToShipment(): any;
     static updatePackagingDimensions(): any;
     static createOrder(): any;
+    static createChannelConfig(): any;
+    static getChannelConfig(): any;
+    static uploadConsent(): any;
     static checkOrderStatus(): any;
 }

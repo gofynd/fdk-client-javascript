@@ -238,12 +238,12 @@ class OrderManage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {StatusUpdateInternalRequest} arg.body
+   * @param {UpdateShipmentStatusRequest} arg.body
    * @summary:
-   * @description: Reassign Location
+   * @description: Update shipment status
    */
-  statusUpdateInternalV4({ body } = {}) {
-    const { error } = OrderManageValidator.statusUpdateInternalV4().validate(
+  updateShipmentStatus({ body } = {}) {
+    const { error } = OrderManageValidator.updateShipmentStatus().validate(
       {
         body,
       },
@@ -287,6 +287,34 @@ class OrderManage {
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {DispatchManifest} arg.body
+   * @summary:
+   * @description:
+   */
+  dispatchManifest({ body } = {}) {
+    const { error } = OrderManageValidator.dispatchManifest().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/dispatch`,
       query_params,
       body
     );
@@ -458,6 +486,87 @@ class OrderManage {
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateChannelConfigData} arg.body
+   * @summary:
+   * @description: createChannelConfig
+   */
+  createChannelConfig({ body } = {}) {
+    const { error } = OrderManageValidator.createChannelConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/co-config`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderManageValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/co-config`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {UploadConsent} arg.body
+   * @summary:
+   * @description:
+   */
+  uploadConsent({ body } = {}) {
+    const { error } = OrderManageValidator.uploadConsent().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/uploadConsent`,
       query_params,
       body
     );
