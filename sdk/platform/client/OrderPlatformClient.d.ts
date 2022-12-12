@@ -17,16 +17,16 @@ declare class Order {
      * @param {string} [arg.requestByExt] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {boolean} [arg.excludeLockedShipments] -
      * @param {string} [arg.paymentMethods] -
      * @param {string} [arg.channelShipmentId] -
      * @param {string} [arg.channelOrderId] -
+     * @param {string} [arg.customMeta] -
      * @summary:
      * @description:
      */
-    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, }?: {
+    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -40,12 +40,12 @@ declare class Order {
         requestByExt?: string;
         pageNo?: number;
         pageSize?: number;
-        customerId?: string;
         isPrioritySort?: boolean;
         excludeLockedShipments?: boolean;
         paymentMethods?: string;
         channelShipmentId?: string;
         channelOrderId?: string;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -107,10 +107,11 @@ declare class Order {
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @param {string} [arg.customMeta] -
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, }?: {
+    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -122,6 +123,7 @@ declare class Order {
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -563,12 +565,6 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CreateChannelConfigData} arg.body
      * @summary:
      * @description: createChannelConfig
@@ -576,6 +572,12 @@ declare class Order {
     createChannelConfig({ body }?: {
         body: any;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UploadConsent} arg.body

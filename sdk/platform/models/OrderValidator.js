@@ -16,12 +16,12 @@ class OrderValidator {
       requestByExt: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
       paymentMethods: Joi.string().allow(""),
       channelShipmentId: Joi.string().allow(""),
       channelOrderId: Joi.string().allow(""),
+      customMeta: Joi.string().allow(""),
     }).required();
   }
 
@@ -66,6 +66,7 @@ class OrderValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
+      customMeta: Joi.string().allow(""),
     }).required();
   }
 
@@ -334,14 +335,14 @@ class OrderValidator {
     }).required();
   }
 
-  static getChannelConfig() {
-    return Joi.object({}).required();
-  }
-
   static createChannelConfig() {
     return Joi.object({
       body: Validator.CreateChannelConfigData().required(),
     }).required();
+  }
+
+  static getChannelConfig() {
+    return Joi.object({}).required();
   }
 
   static uploadConsent() {

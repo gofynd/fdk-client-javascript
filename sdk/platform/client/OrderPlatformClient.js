@@ -22,12 +22,12 @@ class Order {
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
-   * @param {string} [arg.customerId] -
    * @param {boolean} [arg.isPrioritySort] -
    * @param {boolean} [arg.excludeLockedShipments] -
    * @param {string} [arg.paymentMethods] -
    * @param {string} [arg.channelShipmentId] -
    * @param {string} [arg.channelOrderId] -
+   * @param {string} [arg.customMeta] -
    * @summary:
    * @description:
    */
@@ -45,12 +45,12 @@ class Order {
     requestByExt,
     pageNo,
     pageSize,
-    customerId,
     isPrioritySort,
     excludeLockedShipments,
     paymentMethods,
     channelShipmentId,
     channelOrderId,
+    customMeta,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -67,12 +67,12 @@ class Order {
         requestByExt,
         pageNo,
         pageSize,
-        customerId,
         isPrioritySort,
         excludeLockedShipments,
         paymentMethods,
         channelShipmentId,
         channelOrderId,
+        customMeta,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -94,12 +94,12 @@ class Order {
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["customer_id"] = customerId;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["exclude_locked_shipments"] = excludeLockedShipments;
     query_params["payment_methods"] = paymentMethods;
     query_params["channel_shipment_id"] = channelShipmentId;
     query_params["channel_order_id"] = channelOrderId;
+    query_params["custom_meta"] = customMeta;
 
     const xHeaders = {};
 
@@ -261,6 +261,7 @@ class Order {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
+   * @param {string} [arg.customMeta] -
    * @summary:
    * @description:
    */
@@ -276,6 +277,7 @@ class Order {
     pageNo,
     pageSize,
     isPrioritySort,
+    customMeta,
   } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       {
@@ -290,6 +292,7 @@ class Order {
         pageNo,
         pageSize,
         isPrioritySort,
+        customMeta,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -309,6 +312,7 @@ class Order {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
+    query_params["custom_meta"] = customMeta;
 
     const xHeaders = {};
 
@@ -1630,34 +1634,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @summary:
-   * @description: getChannelConfig
-   */
-  getChannelConfig({} = {}) {
-    const { error } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/co-config`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {CreateChannelConfigData} arg.body
    * @summary:
    * @description: createChannelConfig
@@ -1683,6 +1659,34 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/co-config`,
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/co-config`,
+      query_params,
+      undefined,
       xHeaders
     );
   }
