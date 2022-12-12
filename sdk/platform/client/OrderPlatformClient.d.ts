@@ -49,14 +49,16 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.channelShipmentId -
+     * @param {string} [arg.channelShipmentId] -
+     * @param {string} [arg.shipmentId] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
      * @summary:
      * @description:
      */
-    getShipmentById({ channelShipmentId, orderingCompanyId, requestByExt }?: {
-        channelShipmentId: string;
+    getShipmentById({ channelShipmentId, shipmentId, orderingCompanyId, requestByExt, }?: {
+        channelShipmentId?: string;
+        shipmentId?: string;
         orderingCompanyId?: string;
         requestByExt?: string;
     }): Promise<any>;
