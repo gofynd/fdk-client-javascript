@@ -17,13 +17,16 @@ declare class Orders {
      * @param {string} [arg.requestByExt] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {boolean} [arg.excludeLockedShipments] -
+     * @param {string} [arg.paymentMethods] -
+     * @param {string} [arg.channelShipmentId] -
+     * @param {string} [arg.channelOrderId] -
+     * @param {string} [arg.customMeta] -
      * @summary:
      * @description:
      */
-    getShipmentList({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, }?: {
+    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -37,20 +40,25 @@ declare class Orders {
         requestByExt?: string;
         pageNo?: number;
         pageSize?: number;
-        customerId?: string;
         isPrioritySort?: boolean;
         excludeLockedShipments?: boolean;
+        paymentMethods?: string;
+        channelShipmentId?: string;
+        channelOrderId?: string;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId -
+     * @param {string} [arg.channelShipmentId] -
+     * @param {string} [arg.shipmentId] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
      * @summary:
      * @description:
      */
-    getShipmentDetails({ shipmentId, orderingCompanyId, requestByExt }?: {
-        shipmentId: string;
+    getShipmentById({ channelShipmentId, shipmentId, orderingCompanyId, requestByExt, }?: {
+        channelShipmentId?: string;
+        shipmentId?: string;
         orderingCompanyId?: string;
         requestByExt?: string;
     }): Promise<any>;
@@ -60,7 +68,7 @@ declare class Orders {
      * @summary:
      * @description:
      */
-    getOrderShipmentDetails({ orderId }?: {
+    getOrderById({ orderId }?: {
         orderId: string;
     }): Promise<any>;
     /**
@@ -101,10 +109,11 @@ declare class Orders {
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @param {string} [arg.customMeta] -
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, }?: {
+    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -116,6 +125,7 @@ declare class Orders {
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
+        customMeta?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -330,7 +340,7 @@ declare class Orders {
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
-    getPlatformShipmentReasons({ shipmentId, bagId, state }?: {
+    getShipmentReasons({ shipmentId, bagId, state }?: {
         shipmentId: string;
         bagId: string;
         state: string;

@@ -1,7 +1,7 @@
 const Joi = require("joi");
 const Validator = require("../PlatformModels");
 class OrdersValidator {
-  static getShipmentList() {
+  static getShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
@@ -16,21 +16,25 @@ class OrdersValidator {
       requestByExt: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
+      paymentMethods: Joi.string().allow(""),
+      channelShipmentId: Joi.string().allow(""),
+      channelOrderId: Joi.string().allow(""),
+      customMeta: Joi.string().allow(""),
     }).required();
   }
 
-  static getShipmentDetails() {
+  static getShipmentById() {
     return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
+      channelShipmentId: Joi.string().allow(""),
+      shipmentId: Joi.string().allow(""),
       orderingCompanyId: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
     }).required();
   }
 
-  static getOrderShipmentDetails() {
+  static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
@@ -63,6 +67,7 @@ class OrdersValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
+      customMeta: Joi.string().allow(""),
     }).required();
   }
 
@@ -185,7 +190,7 @@ class OrdersValidator {
     }).required();
   }
 
-  static getPlatformShipmentReasons() {
+  static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       bagId: Joi.string().allow("").required(),

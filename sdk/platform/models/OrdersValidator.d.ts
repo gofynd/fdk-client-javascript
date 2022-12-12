@@ -1,8 +1,8 @@
 export = OrdersValidator;
 declare class OrdersValidator {
-    static getShipmentList(): any;
-    static getShipmentDetails(): any;
-    static getOrderShipmentDetails(): any;
+    static getShipments(): any;
+    static getShipmentById(): any;
+    static getOrderById(): any;
     static getLaneConfig(): any;
     static getOrders(): any;
     static getMetricCount(): any;
@@ -17,7 +17,7 @@ declare class OrdersValidator {
     static getManifestList(): any;
     static getManifestDetailsWithShipments(): any;
     static getBulkActionFailedReport(): any;
-    static getPlatformShipmentReasons(): any;
+    static getShipmentReasons(): any;
     static bulkActionProcessXlsxFile(): any;
     static bulkActionDetails(): any;
     static getBagById(): any;

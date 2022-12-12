@@ -22,13 +22,16 @@ class Orders {
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
-   * @param {string} [arg.customerId] -
    * @param {boolean} [arg.isPrioritySort] -
    * @param {boolean} [arg.excludeLockedShipments] -
+   * @param {string} [arg.paymentMethods] -
+   * @param {string} [arg.channelShipmentId] -
+   * @param {string} [arg.channelOrderId] -
+   * @param {string} [arg.customMeta] -
    * @summary:
    * @description:
    */
-  getShipmentList({
+  getShipments({
     lane,
     searchType,
     searchValue,
@@ -42,11 +45,14 @@ class Orders {
     requestByExt,
     pageNo,
     pageSize,
-    customerId,
     isPrioritySort,
     excludeLockedShipments,
+    paymentMethods,
+    channelShipmentId,
+    channelOrderId,
+    customMeta,
   } = {}) {
-    const { error } = OrdersValidator.getShipmentList().validate(
+    const { error } = OrdersValidator.getShipments().validate(
       {
         lane,
         searchType,
@@ -61,9 +67,12 @@ class Orders {
         requestByExt,
         pageNo,
         pageSize,
-        customerId,
         isPrioritySort,
         excludeLockedShipments,
+        paymentMethods,
+        channelShipmentId,
+        channelOrderId,
+        customMeta,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -85,9 +94,12 @@ class Orders {
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["customer_id"] = customerId;
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["exclude_locked_shipments"] = excludeLockedShipments;
+    query_params["payment_methods"] = paymentMethods;
+    query_params["channel_shipment_id"] = channelShipmentId;
+    query_params["channel_order_id"] = channelOrderId;
+    query_params["custom_meta"] = customMeta;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -100,15 +112,22 @@ class Orders {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
+   * @param {string} [arg.channelShipmentId] -
+   * @param {string} [arg.shipmentId] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.requestByExt] -
    * @summary:
    * @description:
    */
-  getShipmentDetails({ shipmentId, orderingCompanyId, requestByExt } = {}) {
-    const { error } = OrdersValidator.getShipmentDetails().validate(
+  getShipmentById({
+    channelShipmentId,
+    shipmentId,
+    orderingCompanyId,
+    requestByExt,
+  } = {}) {
+    const { error } = OrdersValidator.getShipmentById().validate(
       {
+        channelShipmentId,
         shipmentId,
         orderingCompanyId,
         requestByExt,
@@ -120,13 +139,15 @@ class Orders {
     }
 
     const query_params = {};
+    query_params["channel_shipment_id"] = channelShipmentId;
+    query_params["shipment_id"] = shipmentId;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["request_by_ext"] = requestByExt;
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details/${shipmentId}`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details`,
       query_params,
       undefined
     );
@@ -138,8 +159,8 @@ class Orders {
    * @summary:
    * @description:
    */
-  getOrderShipmentDetails({ orderId } = {}) {
-    const { error } = OrdersValidator.getOrderShipmentDetails().validate(
+  getOrderById({ orderId } = {}) {
+    const { error } = OrdersValidator.getOrderById().validate(
       {
         orderId,
       },
@@ -237,6 +258,7 @@ class Orders {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
+   * @param {string} [arg.customMeta] -
    * @summary:
    * @description:
    */
@@ -252,6 +274,7 @@ class Orders {
     pageNo,
     pageSize,
     isPrioritySort,
+    customMeta,
   } = {}) {
     const { error } = OrdersValidator.getOrders().validate(
       {
@@ -266,6 +289,7 @@ class Orders {
         pageNo,
         pageSize,
         isPrioritySort,
+        customMeta,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -285,6 +309,7 @@ class Orders {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
+    query_params["custom_meta"] = customMeta;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -845,8 +870,8 @@ class Orders {
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
-  getPlatformShipmentReasons({ shipmentId, bagId, state } = {}) {
-    const { error } = OrdersValidator.getPlatformShipmentReasons().validate(
+  getShipmentReasons({ shipmentId, bagId, state } = {}) {
+    const { error } = OrdersValidator.getShipmentReasons().validate(
       {
         shipmentId,
         bagId,
@@ -954,7 +979,7 @@ class Orders {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/bag-details`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/bag-details/`,
       query_params,
       undefined
     );
