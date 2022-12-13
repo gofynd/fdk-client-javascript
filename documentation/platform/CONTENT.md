@@ -7756,6 +7756,26 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
+ | sub_navigation | [[SubNavigationReference](#SubNavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubNavigationReference](#SubNavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acl | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
+ | image | string |  no  |  |
+ | type | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | active | boolean |  no  |  |
+ | display | string |  no  |  |
+ | sort_order | number |  no  |  |
  | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
