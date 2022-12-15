@@ -246,7 +246,7 @@ class WebhookRegistry {
         }
         try {
 
-            const subscriberConfig = await this.getSubscriberConfig(platformClient);
+            let subscriberConfig = await this.getSubscriberConfig(platformClient);
             if (!subscriberConfig) {
                 throw new FdkWebhookRegistrationError(`Subscriber config not found`);
             }
