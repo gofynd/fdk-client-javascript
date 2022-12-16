@@ -26,16 +26,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
-     *   detail. Pass the `id` of the keywords which you want to retrieve.
-     * @summary: Get a particular Product Bundle details
-     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-     */
-    getProductBundleDetail({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
      * @param {ProductBundleUpdateRequest} arg.body
      * @summary: Update a Product Bundle
@@ -44,6 +34,16 @@ declare class Catalog {
     updateProductBundle({ id, body }?: {
         id: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @summary: Get a particular Product Bundle details
+     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+     */
+    getProductBundleDetail({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -75,15 +75,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id of the size guide to be viewed.
-     * @summary: Get a single size guide.
-     * @description: This API helps to get data associated to a size guide.
-     */
-    getSizeGuide({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Mongo id of the size guide to be edited
      * @param {ValidateSizeGuide} arg.body
      * @summary: Edit a size guide.
@@ -92,6 +83,15 @@ declare class Catalog {
     updateSizeGuide({ id, body }?: {
         id: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Id of the size guide to be viewed.
+     * @summary: Get a single size guide.
+     * @description: This API helps to get data associated to a size guide.
+     */
+    getSizeGuide({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -222,15 +222,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-     * @summary: Get specific departments details by passing in unique id of the department.
-     * @description: Allows you to get department data, by uid.
-     */
-    getDepartmentData({ uid }?: {
-        uid: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
      * @param {DepartmentCreateUpdate} arg.body
      * @summary: Update the department by their uid.
      * @description: Update the department by their uid using this API.
@@ -238,6 +229,15 @@ declare class Catalog {
     updateDepartment({ uid, body }?: {
         uid: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
+     * @summary: Get specific departments details by passing in unique id of the department.
+     * @description: Allows you to get department data, by uid.
+     */
+    getDepartmentData({ uid }?: {
+        uid: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -341,15 +341,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - Category unique id
-     * @summary: Get product category by uid
-     * @description: This API gets meta associated to product categories.
-     */
-    getCategoryData({ uid }?: {
-        uid: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - Category unique id
      * @param {CategoryRequestBody} arg.body
      * @summary: Update product categories
      * @description: Update a product category using this apu
@@ -357,6 +348,15 @@ declare class Catalog {
     updateCategory({ uid, body }?: {
         uid: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - Category unique id
+     * @summary: Get product category by uid
+     * @description: This API gets meta associated to product categories.
+     */
+    getCategoryData({ uid }?: {
+        uid: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -410,19 +410,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.itemCode] - Item code of the product.
-     * @param {number} arg.itemId - Item Id of the product.
-     * @param {number} [arg.brandUid] - Brand Id of the product.
-     * @summary: Get a single product.
-     * @description: This API helps to get data associated to a particular product.
-     */
-    getProduct({ itemId, itemCode, brandUid }?: {
-        itemCode?: string;
-        itemId: number;
-        brandUid?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
      * @summary: Delete a product.
      * @description: This API allows to delete product.
@@ -440,6 +427,19 @@ declare class Catalog {
     editProduct({ itemId, body }?: {
         itemId: number;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.itemCode] - Item code of the product.
+     * @param {number} arg.itemId - Item Id of the product.
+     * @param {number} [arg.brandUid] - Brand Id of the product.
+     * @summary: Get a single product.
+     * @description: This API helps to get data associated to a particular product.
+     */
+    getProduct({ itemId, itemCode, brandUid }?: {
+        itemCode?: string;
+        itemId: number;
+        brandUid?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -486,6 +486,15 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
+     * @summary: Delete Bulk product job.
+     * @description: This API allows to delete bulk product job associated with company.
+     */
+    deleteProductBulkJob({ batchId }?: {
+        batchId: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.batchId - Batch Id in which assets to be uploaded.
      * @param {BulkProductRequest} arg.body
      * @summary: Create products in bulk associated with given batch Id.
@@ -494,15 +503,6 @@ declare class Catalog {
     createProductsInBulk({ batchId, body }?: {
         batchId: string;
         body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
-     * @summary: Delete Bulk product job.
-     * @description: This API allows to delete bulk product job associated with company.
-     */
-    deleteProductBulkJob({ batchId }?: {
-        batchId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -639,6 +639,15 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId - Batch Id of the bulk delete job.
+     * @summary: Delete Bulk Inventory job.
+     * @description: This API allows to delete bulk Inventory job associated with company.
+     */
+    deleteBulkInventoryJob({ batchId }?: {
+        batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.batchId - Batch Id of the bulk create job.
      * @param {InventoryBulkRequest} arg.body
      * @summary: Create products in bulk associated with given batch Id.
@@ -647,15 +656,6 @@ declare class Catalog {
     createBulkInventory({ batchId, body }?: {
         batchId: string;
         body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId - Batch Id of the bulk delete job.
-     * @summary: Delete Bulk Inventory job.
-     * @description: This API allows to delete bulk Inventory job associated with company.
-     */
-    deleteBulkInventoryJob({ batchId }?: {
-        batchId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -691,7 +691,7 @@ declare class Catalog {
      * @summary: Add Inventory for particular size and store.
      * @description: This API allows add Inventory for particular size and store.
      */
-    updateRealtimeInventory({ itemId, sellerIdentifier, body }?: {
+    deleteRealtimeInventory({ itemId, sellerIdentifier, body }?: {
         itemId: number;
         sellerIdentifier: string;
         body: any;
@@ -705,7 +705,7 @@ declare class Catalog {
      * @summary: Add Inventory for particular size and store.
      * @description: This API allows add Inventory for particular size and store.
      */
-    deleteRealtimeInventory({ itemId, sellerIdentifier, body }?: {
+    updateRealtimeInventory({ itemId, sellerIdentifier, body }?: {
         itemId: number;
         sellerIdentifier: string;
         body: any;
@@ -744,15 +744,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Unique id
-     * @summary: Fetch Hsn Code.
-     * @description: Fetch Hsn Code.
-     */
-    getHsnCode({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Unique id
      * @param {HsnUpsert} arg.body
      * @summary: Update Hsn Code.
      * @description: Update Hsn Code.
@@ -760,6 +751,15 @@ declare class Catalog {
     updateHsnCode({ id, body }?: {
         id: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Unique id
+     * @summary: Fetch Hsn Code.
+     * @description: Fetch Hsn Code.
+     */
+    getHsnCode({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
