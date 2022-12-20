@@ -397,46 +397,6 @@ class Validator {
     });
   }
 
-  static EmailJobMetrics() {
-    return Joi.object({
-      executed: Joi.boolean(),
-
-      id: Joi.string().allow(""),
-
-      job_code: Joi.string().allow(""),
-
-      daily_job: Joi.boolean(),
-
-      last_executed_on: Joi.string().allow(""),
-    });
-  }
-
-  static ResponseEnvelopeEmailJobMetrics() {
-    return Joi.object({
-      timestamp: Joi.string().allow(""),
-
-      status: Joi.number(),
-
-      error: Joi.string().allow(""),
-
-      exception: Joi.string().allow(""),
-
-      message: Joi.string().allow(""),
-
-      total_time_taken_in_millis: Joi.number(),
-
-      http_status: Joi.string().allow(""),
-
-      items: this.EmailJobMetrics(),
-
-      payload: this.EmailJobMetrics(),
-
-      trace_id: Joi.string().allow(""),
-
-      page: this.Page(),
-    });
-  }
-
   static GCompany() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -456,6 +416,8 @@ class Validator {
       name: Joi.string().allow(""),
 
       stores: Joi.array().items(this.GStore()),
+
+      gstores: Joi.array().items(this.GStore()),
     });
   }
 
@@ -605,11 +567,11 @@ class Validator {
 
   static JobConfigDTO() {
     return Joi.object({
+      integration: Joi.string().allow("").required(),
+
       integration_data: Joi.object().pattern(/\S/, Joi.any()),
 
       company_name: Joi.string().allow(""),
-
-      integration: Joi.string().allow("").required(),
 
       company_id: Joi.number().required(),
 
@@ -676,6 +638,46 @@ class Validator {
       items: Joi.array().items(this.JobConfigDTO()),
 
       payload: Joi.array().items(this.JobConfigDTO()),
+
+      trace_id: Joi.string().allow(""),
+
+      page: this.Page(),
+    });
+  }
+
+  static EmailJobMetrics() {
+    return Joi.object({
+      executed: Joi.boolean(),
+
+      id: Joi.string().allow(""),
+
+      job_code: Joi.string().allow(""),
+
+      daily_job: Joi.boolean(),
+
+      last_executed_on: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeEmailJobMetrics() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: this.EmailJobMetrics(),
+
+      payload: this.EmailJobMetrics(),
 
       trace_id: Joi.string().allow(""),
 
