@@ -336,19 +336,25 @@ class OrderValidator {
     }).required();
   }
 
+  static getChannelConfig() {
+    return Joi.object({}).required();
+  }
+
   static createChannelConfig() {
     return Joi.object({
       body: Validator.CreateChannelConfigData().required(),
     }).required();
   }
 
-  static getChannelConfig() {
-    return Joi.object({}).required();
-  }
-
   static uploadConsent() {
     return Joi.object({
       body: Validator.UploadConsent().required(),
+    }).required();
+  }
+
+  static orderUpdate() {
+    return Joi.object({
+      body: Validator.PlatformOrderUpdate().required(),
     }).required();
   }
 
