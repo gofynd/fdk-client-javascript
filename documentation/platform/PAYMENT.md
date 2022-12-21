@@ -27,6 +27,8 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [confirmPayment](#confirmpayment)
 * [getPlatformPaymentConfig](#getplatformpaymentconfig)
 * [updatePlatformPaymentConfig](#updateplatformpaymentconfig)
+* [getUserCODlimitRoutes](#getusercodlimitroutes)
+* [setUserCODlimitRoutes](#setusercodlimitroutes)
 
 
 
@@ -2990,6 +2992,133 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 ---
 
 
+### getUserCODlimitRoutes
+Get COD limit for user
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
+ mobileNo : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
+ mobileNo : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| merchantUserId | string | yes |  |   
+| mobileNo | string | yes |  |  
+
+
+
+Use this API to get user cod limit and reamining limit for the payment
+
+*Returned Response:*
+
+
+
+
+[GetUserCODLimitResponse](#GetUserCODLimitResponse)
+
+Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "user_cod_data": {
+    "is_active": true,
+    "user_id": 5,
+    "usages": 1000,
+    "limit": 10000,
+    "remaining_limit": 9000,
+    "merchant_user_id": "5e199e6998cfe1776f1385dc"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### setUserCODlimitRoutes
+Set COD option for user for payment
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SetCODForUserRequest](#SetCODForUserRequest) | yes | Request body |
+
+
+Use this API to set cod option as true or false for the payment
+
+*Returned Response:*
+
+
+
+
+[SetCODOptionResponse](#SetCODOptionResponse)
+
+Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "COD option for user {} is set to {}"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -2999,11 +3128,11 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_fields | [string] |  yes  | List of all included  options with their Details. |
- | app_id | string |  yes  | Application Id to which Payment config Mapped |
  | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
+ | display_fields | [string] |  yes  | List of all included  options with their Details. |
  | aggregators | [string] |  no  | List of all speceific Payment options with their Details. |
  | success | boolean |  yes  | Response is successful or not |
+ | app_id | string |  yes  | Application Id to which Payment config Mapped |
  | created | boolean |  yes  | Response is created or not |
 
 ---
@@ -3015,8 +3144,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Error descrption code. |
  | description | string |  yes  | Error human understandable description. |
+ | code | string |  yes  | Error descrption code. |
  | success | boolean |  yes  | Response is successful or not |
 
 ---
@@ -3028,11 +3157,11 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  | Api key of the payment aggregator |
  | config_type | string |  yes  | Config Type of the aggregator |
  | secret | string |  yes  | Secret Key of the payment aggregator |
  | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
  | is_active | boolean |  no  | Enable/ Disable Flag |
+ | key | string |  yes  | Api key of the payment aggregator |
 
 ---
 
@@ -3068,8 +3197,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Error descrption code. |
  | description | string |  yes  | Error human understandable description. |
+ | code | string |  yes  | Error descrption code. |
 
 ---
 
@@ -3080,20 +3209,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
  | success | boolean |  yes  | Response is successful or not |
-
----
-
-
- 
- 
- #### [IntentAppErrorList](#IntentAppErrorList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | code |
- | package_name | string |  no  | package_name |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
 
 ---
 
@@ -3112,14 +3229,26 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  
  
- #### [IntentApp](#IntentApp)
+ #### [IntentAppErrorList](#IntentAppErrorList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string |  no  | code |
  | package_name | string |  no  | package_name |
- | display_name | string |  no  | display_name |
+
+---
+
+
+ 
+ 
+ #### [IntentApp](#IntentApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  | code |
  | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  | logos |
+ | package_name | string |  no  | package_name |
+ | display_name | string |  no  | display_name |
 
 ---
 
@@ -3130,36 +3259,39 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+ | fynd_vpa | string |  no  | fynd_vpa |
+ | card_isin | string |  no  | card_isin |
+ | card_type | string |  no  | card_type |
+ | aggregator_name | string |  yes  | aggregator_name |
+ | card_issuer | string |  no  | card_issuer |
  | expired | boolean |  no  | expired |
  | compliant_with_tokenisation_guidelines | boolean |  no  | If card is tokenised or not |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
- | timeout | number |  no  | timeout |
- | card_type | string |  no  | card_type |
- | card_id | string |  no  | card_id |
- | card_token | string |  no  | card_token |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
- | card_reference | string |  no  | card_reference |
+ | code | string |  no  | code |
  | intent_flow | boolean |  no  | intent_flow |
+ | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | nickname | string |  no  | nickname |
+ | card_brand | string |  no  | card_brand |
+ | card_id | string |  no  | card_id |
+ | cod_limit | number |  no  | cod limit |
  | card_fingerprint | string |  no  | card_fingerprint |
- | exp_year | number |  no  | exp_year |
- | merchant_code | string |  no  | merchant code |
- | name | string |  no  | name |
+ | card_reference | string |  no  | card_reference |
  | retry_count | number |  no  | retry_count |
  | exp_month | number |  no  | exp_month |
- | aggregator_name | string |  yes  | aggregator_name |
- | display_priority | number |  no  | Dispaly Priority |
- | display_name | string |  no  | display name |
- | card_name | string |  no  | card_name |
- | code | string |  no  | code |
- | card_brand | string |  no  | card_brand |
- | nickname | string |  no  | nickname |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | timeout | number |  no  | timeout |
  | card_number | string |  no  | card_number |
- | fynd_vpa | string |  no  | fynd_vpa |
- | card_issuer | string |  no  | card_issuer |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
+ | remaining_limit | number |  no  | Remaining limit |
+ | merchant_code | string |  no  | merchant code |
+ | name | string |  no  | name |
  | card_brand_image | string |  no  | card_brand_image |
- | card_isin | string |  no  | card_isin |
+ | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
+ | display_name | string |  no  | display name |
+ | cod_limit_per_order | number |  no  | Cod limit per order |
+ | display_priority | number |  no  | Dispaly Priority |
+ | card_name | string |  no  | card_name |
+ | card_token | string |  no  | card_token |
+ | exp_year | number |  no  | exp_year |
 
 ---
 
@@ -3170,15 +3302,15 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | save_card | boolean |  no  | Card save or not |
- | display_name | string |  yes  | Payment mode display name |
- | add_card_enabled | boolean |  no  | Annonymous card flag |
  | name | string |  yes  | Payment mode name |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+ | anonymous_enable | boolean |  no  | Annonymous card flag |
+ | save_card | boolean |  no  | Card save or not |
+ | add_card_enabled | boolean |  no  | Annonymous card flag |
  | aggregator_name | string |  no  | Dispaly Priority |
  | display_priority | number |  yes  | Dispaly Priority |
- | anonymous_enable | boolean |  no  | Annonymous card flag |
  | is_pay_by_card_pl | boolean |  no  | This flag will be true in case of Payment link payment through card |
+ | display_name | string |  yes  | Payment mode display name |
 
 ---
 
@@ -3212,13 +3344,13 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_transfer_no | string |  yes  | display priority of the payment mode |
  | more_attributes | string |  yes  | bank details object |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
  | payouts_aggregators | [string] |  yes  | payout aggregator object |
+ | unique_transfer_no | string |  yes  | display priority of the payment mode |
+ | transfer_type | string |  yes  | transafer type |
  | customers | string |  yes  | customers details object |
  | is_default | boolean |  yes  | default or not  |
- | transfer_type | string |  yes  | transafer type |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
 
 ---
 
@@ -3229,16 +3361,16 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | number |  no  |  |
- | bank_name | string |  no  |  |
  | city | string |  no  |  |
- | account_type | string |  yes  |  |
- | country | string |  no  |  |
- | branch_name | string |  no  |  |
- | account_no | string |  no  |  |
+ | account_holder | string |  no  |  |
  | ifsc_code | string |  yes  |  |
  | state | string |  no  |  |
- | account_holder | string |  no  |  |
+ | account_type | string |  yes  |  |
+ | pincode | number |  no  |  |
+ | bank_name | string |  no  |  |
+ | country | string |  no  |  |
+ | account_no | string |  no  |  |
+ | branch_name | string |  no  |  |
 
 ---
 
@@ -3249,12 +3381,12 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Aggregator Name |
  | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
+ | users | string |  yes  | payout users object |
+ | is_active | boolean |  yes  | Enable/Disable Flag Payout |
  | unique_external_id | string |  yes  | Unique Id of Payout |
  | transfer_type | string |  yes  | transafer type |
- | is_active | boolean |  yes  | Enable/Disable Flag Payout |
- | users | string |  yes  | payout users object |
+ | aggregator | string |  yes  | Aggregator Name |
 
 ---
 
@@ -3265,16 +3397,16 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_transfer_no | string |  yes  | unique transfer no |
- | aggregator | string |  yes  | Aggregator Name |
- | bank_details | string |  yes  | payout bank_details object |
- | payment_status | string |  yes  | status of payment |
- | transfer_type | string |  yes  | transfer type |
- | payouts | string |  yes  | payout  object |
  | success | boolean |  yes  | Response is successful or not |
+ | payment_status | string |  yes  | status of payment |
+ | bank_details | string |  yes  | payout bank_details object |
+ | users | string |  yes  | users details object |
  | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
  | created | boolean |  yes  | created flag |
- | users | string |  yes  | users details object |
+ | unique_transfer_no | string |  yes  | unique transfer no |
+ | transfer_type | string |  yes  | transfer type |
+ | payouts | string |  yes  | payout  object |
+ | aggregator | string |  yes  | Aggregator Name |
 
 ---
 
@@ -3285,9 +3417,9 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
  | is_default | boolean |  yes  | Enable/Disable Default Payout |
  | success | boolean |  yes  | Response is successful or not |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
 
 ---
 
@@ -3298,8 +3430,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_external_id | string |  yes  | Unique Id of Payout |
  | is_active | boolean |  yes  | Enable/Disable Flag Payout |
+ | unique_external_id | string |  yes  | Unique Id of Payout |
  | is_default | boolean |  yes  | Enable/Disable Default Payout |
 
 ---
@@ -3381,10 +3513,10 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Response message |
+ | is_verified_flag | boolean |  no  |  |
  | data | string |  no  | Refund account data. |
  | success | boolean |  yes  | Success or failure flag. |
- | is_verified_flag | boolean |  no  |  |
- | message | string |  yes  | Response message |
 
 ---
 
@@ -3395,8 +3527,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Bad Request Data |
  | description | string |  yes  | Not Found |
+ | code | string |  yes  | Bad Request Data |
  | success | boolean |  yes  | Response is successful or not |
 
 ---
@@ -3408,11 +3540,11 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bank_name | string |  yes  |  |
- | branch_name | string |  yes  |  |
- | account_no | string |  yes  |  |
- | ifsc_code | string |  yes  |  |
  | account_holder | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | bank_name | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | branch_name | string |  yes  |  |
 
 ---
 
@@ -3435,9 +3567,9 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branch_name | string |  yes  | Branch Name Of Account |
  | bank_name | string |  yes  | Bank Name Of Account |
  | success | boolean |  no  | Response is successful or not |
+ | branch_name | string |  yes  | Branch Name Of Account |
 
 ---
 
@@ -3448,25 +3580,25 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  | Account Holder Name |
  | email | string |  yes  | EMail of User |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | ifsc_code | string |  yes  | Ifsc Code Of Account |
- | address | string |  yes  | Address of User |
+ | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
  | transfer_mode | string |  yes  | Transfer Mode Of Account |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | modified_on | string |  yes  | MOdification Date of Beneficiary |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
+ | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
  | comment | string |  no  | Remarks |
  | branch_name | string |  no  | Branch Name Of Account |
- | mobile | string |  no  | MObile no of User |
+ | address | string |  yes  | Address of User |
  | subtitle | string |  yes  | SHort Title Of Account |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | account_no | string |  yes  | Account Number |
- | created_on | string |  yes  | Creation Date of Beneficiary |
- | account_holder | string |  yes  | Account Holder Name |
- | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
- | bank_name | string |  yes  | Bank Name Of Account |
+ | ifsc_code | string |  yes  | Ifsc Code Of Account |
  | title | string |  yes  | Title Of Account |
- | display_name | string |  yes  | Display Name Of Account |
+ | mobile | string |  no  | MObile no of User |
+ | account_no | string |  yes  | Account Number |
  | id | number |  yes  |   |
- | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
+ | bank_name | string |  yes  | Bank Name Of Account |
+ | display_name | string |  yes  | Display Name Of Account |
 
 ---
 
@@ -3477,8 +3609,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
  | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
 
 ---
 
@@ -3489,11 +3621,11 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
  | payment_gateway | string |  no  |  |
  | payment_id | string |  no  |  |
  | extra_meta | string |  no  |  |
  | current_status | string |  no  |  |
+ | order_id | string |  no  |  |
 
 ---
 
@@ -3504,10 +3636,10 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  | Payment amount |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
  | name | string |  no  | Payment mode name |
+ | amount | number |  yes  | Payment amount |
  | mode | string |  yes  |  |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
 
 ---
 
@@ -3518,8 +3650,8 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  yes  | Unique order id |
  | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | order_id | string |  yes  | Unique order id |
 
 ---
 
@@ -3530,9 +3662,9 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Message |
  | order_id | string |  yes  | Unique order id |
  | success | boolean |  yes  | Payment confirmation updated or not. |
- | message | string |  yes  | Message |
 
 ---
 
@@ -3543,14 +3675,14 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cod_charges | number |  no  |  |
  | payment_selection_lock | string |  no  |  |
- | cod_amount_limit | number |  no  |  |
- | mode_of_payment | string |  yes  |  |
- | enabled | boolean |  yes  |  |
- | methods | string |  yes  |  |
  | anonymous_cod | boolean |  no  |  |
+ | enabled | boolean |  yes  |  |
+ | mode_of_payment | string |  yes  |  |
+ | cod_charges | number |  no  |  |
+ | cod_amount_limit | number |  no  |  |
  | callback_url | string |  no  |  |
+ | methods | string |  yes  |  |
  | source | string |  yes  |  |
 
 ---
@@ -3562,9 +3694,9 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Human readable message. |
  | data | [PlatformPaymentOptions](#PlatformPaymentOptions) |  yes  |  |
  | success | boolean |  yes  |  |
- | message | string |  yes  | Human readable message. |
 
 ---
 
@@ -3575,11 +3707,63 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | payment_selection_lock | string |  no  |  |
+ | anonymous_cod | boolean |  no  |  |
  | cod_charges | number |  no  |  |
  | cod_amount_limit | number |  no  |  |
  | methods | string |  yes  |  |
- | anonymous_cod | boolean |  no  |  |
- | payment_selection_lock | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CODdata](#CODdata)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | limit | number |  yes  | Total Limit of user |
+ | remaining_limit | number |  yes  | Remaining Limit for COD of User |
+ | usages | number |  yes  | Used COD limit from the user Limit |
+ | is_active | boolean |  yes  | COD option is active or not |
+ | user_id | string |  yes  | Payment mode name |
+
+---
+
+
+ 
+ 
+ #### [GetUserCODLimitResponse](#GetUserCODLimitResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_cod_data | [CODdata](#CODdata) |  yes  | User COD Data |
+ | success | boolean |  yes  | Response is successful or not |
+
+---
+
+
+ 
+ 
+ #### [SetCODForUserRequest](#SetCODForUserRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchant_user_id | string |  yes  | Merchant User id |
+ | is_active | boolean |  yes  | either true or false |
+ | mobileno | string |  yes  | Mobile No. of User |
+
+---
+
+
+ 
+ 
+ #### [SetCODOptionResponse](#SetCODOptionResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  | Message |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 

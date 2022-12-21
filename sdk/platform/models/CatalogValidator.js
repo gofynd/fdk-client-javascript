@@ -241,7 +241,15 @@ class CatalogValidator {
     }).required();
   }
 
-  static editProduct() {
+  static getProduct() {
+    return Joi.object({
+      itemCode: Joi.string().allow(""),
+      itemId: Joi.number().required(),
+      brandUid: Joi.number(),
+    }).required();
+  }
+
+  static patchProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
       body: Validator.ProductCreateUpdate().required(),
@@ -254,11 +262,10 @@ class CatalogValidator {
     }).required();
   }
 
-  static getProduct() {
+  static editProduct() {
     return Joi.object({
-      itemCode: Joi.string().allow(""),
       itemId: Joi.number().required(),
-      brandUid: Joi.number(),
+      body: Validator.ProductCreateUpdate().required(),
     }).required();
   }
 

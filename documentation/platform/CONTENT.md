@@ -7963,6 +7963,26 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
+ | sub_navigation | [[SubNavigationReference](#SubNavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubNavigationReference](#SubNavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acl | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
+ | image | string |  no  |  |
+ | type | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | active | boolean |  no  |  |
+ | display | string |  no  |  |
+ | sort_order | number |  no  |  |
  | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
@@ -8098,7 +8118,6 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | position | string |  no  |  |
  | attributes | string |  no  |  |
- | pages | [string] |  no  |  |
  | content | string |  no  |  |
 
 ---
@@ -8884,7 +8903,6 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | position | string |  no  |  |
  | attributes | string |  no  |  |
  | content | string |  no  |  |
- | pages | [string] |  no  |  |
  | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
 
 ---
