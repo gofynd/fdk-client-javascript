@@ -83,5 +83,11 @@ class CompanyProfileValidator {
       body: Validator.BulkLocationSerializer().required(),
     }).required();
   }
+
+  static getOptimalLocations() {
+    return Joi.object({
+      body: Validator.AssignStoreRequestValidator().required(),
+    }).required();
+  }
 }
 module.exports = CompanyProfileValidator;
