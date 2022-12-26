@@ -37,9 +37,10 @@ declare class OrderValidator {
     static platformManualAssignDPToShipment(): any;
     static updatePackagingDimensions(): any;
     static createOrder(): any;
-    static getChannelConfig(): any;
     static createChannelConfig(): any;
+    static getChannelConfig(): any;
     static uploadConsent(): any;
     static orderUpdate(): any;
     static checkOrderStatus(): any;
+    static sendSmsNinjaPlatform(): any;
 }
