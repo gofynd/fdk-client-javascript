@@ -49,16 +49,14 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.channelShipmentId] -
-     * @param {string} [arg.shipmentId] -
+     * @param {string} arg.channelShipmentId -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
      * @summary:
      * @description:
      */
-    getShipmentById({ channelShipmentId, shipmentId, orderingCompanyId, requestByExt, }?: {
-        channelShipmentId?: string;
-        shipmentId?: string;
+    getShipmentById({ channelShipmentId, orderingCompanyId, requestByExt }?: {
+        channelShipmentId: string;
         orderingCompanyId?: string;
         requestByExt?: string;
     }): Promise<any>;
@@ -591,11 +589,29 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PlatformOrderUpdate} arg.body
+     * @summary:
+     * @description:
+     */
+    orderUpdate({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @summary:
      * @description:
      */
     checkOrderStatus({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SendSmsPayload} arg.body
+     * @summary:
+     * @description:
+     */
+    sendSmsNinjaPlatform({ body }?: {
         body: any;
     }): Promise<any>;
 }

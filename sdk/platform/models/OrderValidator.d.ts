@@ -40,5 +40,7 @@ declare class OrderValidator {
     static createChannelConfig(): any;
     static getChannelConfig(): any;
     static uploadConsent(): any;
+    static orderUpdate(): any;
     static checkOrderStatus(): any;
+    static sendSmsNinjaPlatform(): any;
 }

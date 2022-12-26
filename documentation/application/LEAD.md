@@ -1541,33 +1541,6 @@ Success
 
  
  
- #### [TicketCategory](#TicketCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  | Key for category |
- | display | string |  yes  | Display text for category |
- | form | [CustomForm](#CustomForm) |  no  | Form related to the category |
- | sub_categories | [[TicketSubCategory](#TicketSubCategory)] |  no  | Sub-category related to the category |
- | feedback_form | [TicketFeedbackForm](#TicketFeedbackForm) |  no  | Feedback form of category used to submit ticket feedback |
-
----
-
-
- 
- 
- #### [TicketSubCategory](#TicketSubCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  | Key for sub-category |
- | display | string |  yes  | Display text for sub-category |
-
----
-
-
- 
- 
  #### [TicketFeedbackForm](#TicketFeedbackForm)
 
  | Properties | Type | Nullable | Description |
@@ -1657,6 +1630,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  | Enum type for the communication method |
+ | title | string |  no  | Title for the communication method |
  | value | string |  no  | Value for the communication method |
  | description | string |  no  | Short description for the communication method |
  | enabled | boolean |  no  | Denotes if this communication method has to be shown |
@@ -1675,8 +1650,82 @@ Success
  | support_phone | [CommunicationDetails](#CommunicationDetails) |  no  | Support Phone number details |
  | support_faq | [CommunicationDetails](#CommunicationDetails) |  no  | Support FAQ details |
  | show_communication_info | boolean |  no  | Denotes if support communication info should be shown |
+ | support_communication | [CommunicationDetails](#CommunicationDetails) |  no  | Support communication array list details |
  | show_support_dris | boolean |  no  | Denotes if support DRIS info should be shown |
  | integration | string |  no  | Contains integrations basic information |
+
+---
+
+
+ 
+ 
+ #### [FeedbackForm](#FeedbackForm)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | inputs | string |  no  | Input details for the feed back form |
+ | title | string |  no  | Title for the feed back form |
+ | timestamps | string |  no  | Gives details of category releted data |
+
+---
+
+
+ 
+ 
+ #### [TicketSubCategory](#TicketSubCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  yes  | Key for sub-category |
+ | display | string |  yes  | Display text for sub-category |
+ | sub_categories | [TicketSubCategory](#TicketSubCategory) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TicketCategory](#TicketCategory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  | Category display value identifier |
+ | key | string |  yes  | Category key value identifier |
+ | sub_categories | [TicketCategory](#TicketCategory) |  no  | Support category array list details |
+ | group_id | number |  no  | Group id of category releted data |
+ | feedback_form | [FeedbackForm](#FeedbackForm) |  no  | Support category array list details |
+
+---
+
+
+ 
+ 
+ #### [CategoryData](#CategoryData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | list | [TicketCategory](#TicketCategory) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [IntegrationConfig](#IntegrationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | Unique id |
+ | integration_type | string |  yes  | Enum string values for integration |
+ | base_url | string |  no  | Integration base url for validate and create ticket |
+ | create_ticket_apikey | string |  no  | Integration apikey to validate and create ticket |
+ | update_ticket_apikey | string |  no  | Integration apikey to update ticket |
+ | category_sync_apikey | string |  no  | Integration apikey to sync category of selected type |
+ | category_data | [CategoryData](#CategoryData) |  no  | Support category array list details |
+ | webhook_apikey | string |  no  | Integration webhook apikey to got callbacks from integration type dashboard like freshdesk, etc |
+ | config_completed | boolean |  no  | Denotes the current intergration is completed or partially done |
+ | allow_ticket_creation | boolean |  yes  | Denotes ticket creation enable or disable on platform |
+ | show_listing | boolean |  yes  | Denotes ticket listing enable or disable on platform |
 
 ---
 
@@ -1741,8 +1790,8 @@ Success
  | response_id | string |  no  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
  | ticket_id | string |  yes  | Readable ticket number |
- | category | [TicketCategory](#TicketCategory) |  yes  | Category assigned to the ticket |
- | sub_category | [TicketSubCategory](#TicketSubCategory) |  no  | Sub-category assigned to the ticket |
+ | category | string |  yes  | Category assigned to the ticket |
+ | sub_category | string |  no  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  yes  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  yes  | Denotes in what state is the ticket |
  | priority | [Priority](#Priority) |  yes  | Denotes the priority of ticket |
@@ -1751,6 +1800,7 @@ Success
  | tags | [string] |  no  | Tags relevant to ticket |
  | _custom_json | string |  no  | custom json relevant to the ticket |
  | is_feedback_pending | boolean |  no  | Denotes if feedback submission is pending for the ticket |
+ | integration | string |  no  | Integration type and its details of the ticket |
  | _id | string |  yes  | Unique identifier for the ticket |
  | updated_at | string |  no  | Time when the ticket was last updated |
  | created_at | string |  no  | Time when the ticket was created |
@@ -1819,6 +1869,19 @@ Success
  | ---- | ----- | ----------- |
  | platformPanel | platform_panel | This means it is company level ticket |
  | salesChannel | sales_channel | This means it is a application/sales channel level ticket |
+
+---
+
+
+
+ #### [TicketIntegrationDetails](#TicketIntegrationDetails)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | defaultCase | default | This means it is default level ticket integration |
+ | freshdesk | freshdesk | This means it is default level freshdesk integration |
+ | kapture | kapture | This means it is default level kapture integration |
 
 ---
 

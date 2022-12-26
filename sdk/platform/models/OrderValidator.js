@@ -27,8 +27,7 @@ class OrderValidator {
 
   static getShipmentById() {
     return Joi.object({
-      channelShipmentId: Joi.string().allow(""),
-      shipmentId: Joi.string().allow(""),
+      channelShipmentId: Joi.string().allow("").required(),
       orderingCompanyId: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
     }).required();
@@ -352,9 +351,21 @@ class OrderValidator {
     }).required();
   }
 
+  static orderUpdate() {
+    return Joi.object({
+      body: Validator.PlatformOrderUpdate().required(),
+    }).required();
+  }
+
   static checkOrderStatus() {
     return Joi.object({
       body: Validator.OrderStatus().required(),
+    }).required();
+  }
+
+  static sendSmsNinjaPlatform() {
+    return Joi.object({
+      body: Validator.SendSmsPayload().required(),
     }).required();
   }
 }
