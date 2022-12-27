@@ -177,7 +177,7 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
+    static getApplicationOrderDetails(): any;
     static trackShipmentPlatform(): any;
     static trackOrder(): any;
     static failedOrders(): any;
@@ -189,13 +189,13 @@ export class OrderValidator {
 }
 export class CatalogValidator {
     static updateSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
     static updateAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;

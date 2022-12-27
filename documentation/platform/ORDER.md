@@ -14,7 +14,7 @@ Handles Platform websites OMS
 * [getOrdersByCompanyId](#getordersbycompanyid)
 * [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
-* [getOrderDetails](#getorderdetails)
+* [getApplicationOrderDetails](#getapplicationorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [trackOrder](#trackorder)
@@ -558,19 +558,19 @@ Success
 ---
 
 
-### getOrderDetails
+### getApplicationOrderDetails
 Get Order Details for company based on Company Id and Order Id
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+const promise = client.application("<APPLICATION_ID>").order.getApplicationOrderDetails({  orderId : value,
  next : value,
  previous : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").order.getOrderDetails({  orderId : value,
+const data = await client.application("<APPLICATION_ID>").order.getApplicationOrderDetails({  orderId : value,
  next : value,
  previous : value });
 ```
@@ -2540,7 +2540,7 @@ Success
  | channel | [Channel](#Channel) |  no  |  |
  | fyndstore_emp | string |  no  |  |
  | ordering_store | string |  no  |  |
- | breakup_values | [PlatformBreakupValues](#PlatformBreakupValues) |  no  |  |
+ | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)] |  no  |  |
  | id | string |  no  |  |
  | application | [PlatformApplication](#PlatformApplication) |  no  |  |
  | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails) |  no  |  |
@@ -2584,9 +2584,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | [PlatformShipmentDetailsStatus](#PlatformShipmentDetailsStatus) |  no  |  |
- | bags | [BagsDetails](#BagsDetails) |  no  |  |
+ | bags | [[BagsDetails](#BagsDetails)] |  no  |  |
  | prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
- | breakup_values | [ShipmentBreakupValues](#ShipmentBreakupValues) |  no  |  |
+ | breakup_values | [[ShipmentBreakupValues](#ShipmentBreakupValues)] |  no  |  |
  | id | string |  no  |  |
  | dp_details | [DpDetails](#DpDetails) |  no  |  |
  | payment_methods | string |  no  |  |
@@ -2602,7 +2602,7 @@ Success
  | can_break | string |  no  |  |
  | comment | string |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
- | tracking_details | [ShipmentTrackingDetails](#ShipmentTrackingDetails) |  no  |  |
+ | tracking_details | [[ShipmentTrackingDetails](#ShipmentTrackingDetails)] |  no  |  |
  | is_fynd_coupon | boolean |  no  |  |
  | order_type | string |  no  |  |
  | total_shipment_bags | number |  no  |  |
@@ -2651,7 +2651,7 @@ Success
  | id | number |  no  |  |
  | prices | [BagPrices](#BagPrices) |  no  |  |
  | gst_details | [GstDetails](#GstDetails) |  no  |  |
- | breakup_values | [BagBreakupValues](#BagBreakupValues) |  no  |  |
+ | breakup_values | [[BagBreakupValues](#BagBreakupValues)] |  no  |  |
  | update_time | number |  no  |  |
  | current_status | [BagCurrentStatus](#BagCurrentStatus) |  no  |  |
  | bag_status | [BagStatus](#BagStatus) |  no  |  |
@@ -3348,11 +3348,11 @@ Success
  | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
  | channel | [Channel](#Channel) |  no  |  |
  | fyndstore_emp | string |  no  |  |
- | ordering_store | string |  no  |  |
- | breakup_values | [PlatformBreakupValues](#PlatformBreakupValues) |  no  |  |
+ | ordering_store | [PlatformFulfillingStore](#PlatformFulfillingStore) |  no  |  |
+ | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)] |  no  |  |
  | id | string |  no  |  |
  | application | [PlatformApplication](#PlatformApplication) |  no  |  |
- | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails) |  no  |  |
+ | shipments | [[PlatformShipmentDetails](#PlatformShipmentDetails)] |  no  |  |
  | created_at | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
  | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
