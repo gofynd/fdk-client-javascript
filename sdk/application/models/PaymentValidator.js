@@ -101,6 +101,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static validateVPA() {
+    return Joi.object({
+      body: Validator.ValidateVPARequest().required(),
+    }).required();
+  }
+
   static getActiveRefundTransferModes() {
     return Joi.object({});
   }
