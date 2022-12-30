@@ -42,4 +42,5 @@ declare class OrderValidator {
     static uploadConsent(): any;
     static orderUpdate(): any;
     static checkOrderStatus(): any;
+    static sendSmsNinjaPlatform(): any;
 }
