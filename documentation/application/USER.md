@@ -3381,6 +3381,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | country_code | string |  no  |  |
  | captcha_code | string |  no  |  |
  | mobile | string |  no  |  |
+ | android_hash | string |  no  |  |
 
 ---
 
