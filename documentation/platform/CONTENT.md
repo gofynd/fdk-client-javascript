@@ -4818,22 +4818,14 @@ Get page meta
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
- cartPages : value });
+const promise = client.application("<APPLICATION_ID>").content.getPageMeta();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
- cartPages : value });
+const data = await client.application("<APPLICATION_ID>").content.getPageMeta();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageType | string | no | Fetch meta by page type. Acceptable values are: system, custom and all |    
-| cartPages | boolean | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
