@@ -25,6 +25,7 @@ const AVAILABLE_PAGE_TYPE = {
   PRODUCT_REQUEST: "product-request",
   PRODUCTS: "products",
   PROFILE: "profile",
+  PROFILE_ORDER_SHIPMENT: "profile-order-shipment",
   PROFILE_BASIC: "profile-basic",
   PROFILE_COMPANY: "profile-company",
   PROFILE_EMAILS: "profile-emails",
@@ -219,6 +220,16 @@ const NAVIGATORS = {
   profile: {
     name: "Profile",
     link: "/profile",
+  },
+  "profile-order-shipment": {
+    name: "profile orders shipment",
+    link: "/profile/orders/shipment/:shipmentid",
+    params: [
+      {
+        key: "shipmentid",
+        required: true,
+      },
+    ],
   },
   "profile-basic": {
     name: "Basic Profile",
