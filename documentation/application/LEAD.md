@@ -1789,7 +1789,6 @@ Success
  | created_on | [CreatedOn](#CreatedOn) |  no  | Details of company and application realated to the ticket |
  | response_id | string |  no  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent) |  no  | Ticket conetent details |
- | ticket_id | string |  yes  | Readable ticket number |
  | category | string |  yes  | Category assigned to the ticket |
  | sub_category | string |  no  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  yes  | Denotes if the ticket was created at company or application level |

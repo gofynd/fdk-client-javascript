@@ -98,8 +98,11 @@ export class ContentValidator {
     static createPagePreview(): any;
     static updatePagePreview(): any;
     static deletePage(): any;
-    static updatePathRedirectionRules(): any;
+    static addPathRedirectionRules(): any;
     static getPathRedirectionRules(): any;
+    static getPathRedirectionRule(): any;
+    static updatePathRedirectionRules(): any;
+    static deletePathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -174,9 +177,15 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getApplicationShipments(): any;
-    static getAppOrderShipmentDetails(): any;
-    static trackPlatformShipment(): any;
+    static getOrderDetails(): any;
+    static trackShipmentPlatform(): any;
+    static trackOrder(): any;
+    static failedOrders(): any;
+    static reprocessOrder(): any;
+    static updateShipment(): any;
+    static getPlatformShipmentReasons(): any;
+    static getShipmentTrackDetails(): any;
+    static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
     static getSearchKeywords(): any;
@@ -189,8 +198,8 @@ export class CatalogValidator {
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
-    static getAppProduct(): any;
     static updateAppProduct(): any;
+    static getAppProduct(): any;
     static getConfigurationMetadata(): any;
     static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
@@ -229,6 +238,8 @@ export class CatalogValidator {
     static updateAppBrand(): any;
     static getApplicationCategoryListing(): any;
     static updateAppCategory(): any;
+    static getApplicationDepartmentListing(): any;
+    static updateAppDepartment(): any;
     static updateAppLocation(): any;
 }
 export class FileStorageValidator {
