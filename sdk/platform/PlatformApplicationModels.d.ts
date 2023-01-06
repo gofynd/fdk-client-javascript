@@ -177,25 +177,19 @@ export class PaymentValidator {
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
-    static trackShipmentPlatform(): any;
-    static trackOrder(): any;
-    static failedOrders(): any;
-    static reprocessOrder(): any;
-    static updateShipment(): any;
-    static getPlatformShipmentReasons(): any;
-    static getShipmentTrackDetails(): any;
-    static getOrdersByApplicationId(): any;
+    static getApplicationShipments(): any;
+    static getAppOrderShipmentDetails(): any;
+    static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
     static updateAppProduct(): any;
