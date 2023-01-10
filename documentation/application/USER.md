@@ -14,6 +14,7 @@ Authentication Service
 * [loginWithOTP](#loginwithotp)
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
 * [sendResetPasswordEmail](#sendresetpasswordemail)
+* [sendResetPasswordMobile](#sendresetpasswordmobile)
 * [forgotPassword](#forgotpassword)
 * [sendResetToken](#sendresettoken)
 * [loginWithToken](#loginwithtoken)
@@ -686,6 +687,66 @@ const data = await user.sendResetPasswordEmail({  body : value,
 
 
 Use this API to reset a password using the link sent on email.
+
+*Returned Response:*
+
+
+
+
+[ResetPasswordSuccess](#ResetPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "sent"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendResetPasswordMobile
+Reset Password
+
+
+
+```javascript
+// Promise
+const promise = user.sendResetPasswordMobile({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await user.sendResetPasswordMobile({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema) | yes | Request body |
+
+
+Use this API to reset a password using the link sent on mobile.
 
 *Returned Response:*
 
@@ -3287,6 +3348,19 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ | captcha_code | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3307,7 +3381,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | country_code | string |  no  |  |
  | captcha_code | string |  no  |  |
  | mobile | string |  no  |  |
- | android_hash | string |  no  |  |
 
 ---
 
@@ -3744,7 +3817,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  |  |
- | is_deleted | boolean |  no  |  |
 
 ---
 
