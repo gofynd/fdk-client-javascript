@@ -169,5 +169,14 @@ declare class CompanyProfile {
     createLocationBulk({ body }?: {
         body: any;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {AssignStoreRequestValidator} arg.body
+     * @summary: Location Reassignment
+     * @description:
+     */
+    getOptimalLocations({ body }?: {
+        body: any;
+    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");
