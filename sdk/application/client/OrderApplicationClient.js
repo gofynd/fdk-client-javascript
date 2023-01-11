@@ -28,6 +28,8 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentReasons:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
+      updateShipmentExternal:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/status",
       updateShipmentStatus:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
       getInvoiceByShipmentId1:
@@ -408,6 +410,36 @@ class Order {
       }),
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.shipmentId -
+   * @param {UpdateShipmentExternalRequest} arg.body
+   * @returns {Promise<UpdateShipmentResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  updateShipmentExternal({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentExternal().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["updateShipmentExternal"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body
     );
   }
 

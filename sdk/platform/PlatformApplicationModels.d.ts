@@ -95,11 +95,13 @@ export class ContentValidator {
     static deleteNavigation(): any;
     static getPageMeta(): any;
     static getPageSpec(): any;
-    static createPagePreview(): any;
     static updatePagePreview(): any;
     static deletePage(): any;
-    static updatePathRedirectionRules(): any;
+    static addPathRedirectionRules(): any;
     static getPathRedirectionRules(): any;
+    static getPathRedirectionRule(): any;
+    static updatePathRedirectionRules(): any;
+    static deletePathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -167,44 +169,39 @@ export class PaymentValidator {
     static saveBrandPaymentGatewayConfig(): any;
     static updateBrandPaymentGatewayConfig(): any;
     static getPaymentModeRoutes(): any;
-    static addBeneficiaryDetails(): any;
+    static getBankAccountDetailsOpenAPI(): any;
+    static addRefundBankAccountUsingOTP(): any;
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getApplicationOrderDetails(): any;
-    static trackShipmentPlatform(): any;
-    static trackOrder(): any;
-    static failedOrders(): any;
-    static reprocessOrder(): any;
-    static updateShipment(): any;
-    static getPlatformShipmentReasons(): any;
-    static getShipmentTrackDetails(): any;
-    static getOrdersByApplicationId(): any;
+    static getApplicationShipments(): any;
+    static getAppOrderShipmentDetails(): any;
+    static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
-    static updateAppProduct(): any;
     static getAppProduct(): any;
+    static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
-    static updateGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
+    static updateGroupConfiguration(): any;
     static createListingConfiguration(): any;
     static getListingConfigurations(): any;
-    static updateListingConfiguration(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -216,8 +213,8 @@ export class CatalogValidator {
     static createCollection(): any;
     static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
     static getCollectionItems(): any;
     static getCatalogInsights(): any;
@@ -289,9 +286,13 @@ export class CartValidator {
     static getPromotionById(): any;
     static updatePromotion(): any;
     static updatePromotionPartially(): any;
+    static getPromosCouponConfig(): any;
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static getAbandonedCart(): any;
+    static addItems(): any;
+    static updateCart(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;
@@ -319,13 +320,7 @@ export class PartnerValidator {
     static addProxyPath(): any;
     static removeProxyPath(): any;
 }
-export class OrdersValidator {
-    static getApplicationShipments(): any;
-    static getAppOrderShipmentDetails(): any;
-    static trackPlatformShipment(): any;
-}
 export class ServiceabilityValidator {
-    static postApplicationServiceability(): any;
     static getApplicationServiceability(): any;
     static upsertZoneControllerView(): any;
 }

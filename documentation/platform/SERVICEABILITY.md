@@ -6,7 +6,6 @@
 
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
-* [postApplicationServiceability](#postapplicationserviceability)
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
@@ -21,73 +20,6 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 
 ## Methods with example and description
-
-
-### postApplicationServiceability
-Zone configuration of application.
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) | yes | Request body |
-
-
-This API returns serviceability config of the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "error": {
-    "type": null,
-    "value": null,
-    "message": null
-  },
-  "success": true,
-  "data": {
-    "channel_id": "5d656121a81320c2e6ee2a72",
-    "channel_type": "application",
-    "serviceability_type": "all"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### getApplicationServiceability
@@ -283,31 +215,14 @@ Company Store View of application.
 
 ```javascript
 // Promise
-const promise = client.serviceability.getCompanyStoreView({  pageNumber : value,
- pageSize : value,
- zoneId : value,
- enabled : value,
- q : value });
+const promise = client.serviceability.getCompanyStoreView();
 
 // Async/Await
-const data = await client.serviceability.getCompanyStoreView({  pageNumber : value,
- pageSize : value,
- zoneId : value,
- enabled : value,
- q : value });
+const data = await client.serviceability.getCompanyStoreView();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNumber | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |    
-| zoneId | string | no | A `zone_id` is a unique identifier for a particular zone. |    
-| enabled | string | no | select enabled/all stores. |    
-| q | string | no | search with name as a free text |  
 
 
 
@@ -905,17 +820,6 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | serviceability_type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceability_type | string |  yes  |  |
  | channel_id | string |  yes  |  |
  | channel_type | string |  yes  |  |
 
@@ -924,13 +828,13 @@ Response status_code
 
  
  
- #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
+ #### [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  yes  |  |
  | type | string |  yes  |  |
  | message | string |  yes  |  |
+ | value | string |  yes  |  |
 
 ---
 
@@ -941,9 +845,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse) |  no  |  |
+ | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) |  no  |  |
+ | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse) |  no  |  |
  | success | boolean |  yes  |  |
- | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse) |  no  |  |
 
 ---
 
@@ -954,34 +858,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sub_type | [string] |  yes  |  |
  | parent_id | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [EntityRegionView_Items](#EntityRegionView_Items)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sub_type | string |  yes  |  |
- | name | string |  yes  |  |
- | uid | string |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionView_Error](#EntityRegionView_Error)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | type | string |  no  |  |
- | message | string |  no  |  |
+ | sub_type | [string] |  yes  |  |
 
 ---
 
@@ -992,11 +870,37 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
  | item_total | number |  yes  |  |
  | current | number |  yes  |  |
- | type | string |  yes  |  |
- | size | number |  yes  |  |
  | has_next | boolean |  yes  |  |
+ | size | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Error](#EntityRegionView_Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | message | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_Items](#EntityRegionView_Items)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | uid | string |  yes  |  |
+ | sub_type | string |  yes  |  |
 
 ---
 
@@ -1007,22 +911,10 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [EntityRegionView_page](#EntityRegionView_page) |  yes  |  |
+ | error | [EntityRegionView_Error](#EntityRegionView_Error) |  yes  |  |
  | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  yes  |  |
  | success | boolean |  yes  |  |
- | error | [EntityRegionView_Error](#EntityRegionView_Error) |  yes  |  |
- | page | [EntityRegionView_page](#EntityRegionView_page) |  yes  |  |
-
----
-
-
- 
- 
- #### [ListViewChannels](#ListViewChannels)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
- | channel_id | string |  yes  |  |
 
 ---
 
@@ -1041,19 +933,31 @@ Response status_code
 
  
  
+ #### [ListViewChannels](#ListViewChannels)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ListViewItems](#ListViewItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | slug | string |  yes  |  |
- | name | string |  yes  |  |
+ | stores_count | number |  yes  |  |
  | is_active | boolean |  yes  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
  | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
  | zone_id | string |  yes  |  |
  | company_id | number |  yes  |  |
- | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
+ | name | string |  yes  |  |
+ | slug | string |  yes  |  |
  | pincodes_count | number |  yes  |  |
- | stores_count | number |  yes  |  |
 
 ---
 
@@ -1078,10 +982,10 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | item_total | number |  yes  |  |
- | type | string |  yes  |  |
  | current | number |  yes  |  |
- | size | number |  yes  |  |
  | has_next | boolean |  yes  |  |
+ | size | number |  yes  |  |
+ | type | string |  yes  |  |
 
 ---
 
@@ -1105,11 +1009,11 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
  | item_total | number |  yes  |  |
  | current | number |  yes  |  |
- | type | string |  yes  |  |
- | size | number |  yes  |  |
  | has_next | boolean |  yes  |  |
+ | size | number |  yes  |  |
 
 ---
 
@@ -1132,8 +1036,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_type | string |  yes  |  |
  | channel_id | string |  yes  |  |
+ | channel_type | string |  yes  |  |
 
 ---
 
@@ -1144,8 +1048,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [string] |  yes  |  |
  | type | string |  yes  |  |
+ | tags | [string] |  yes  |  |
 
 ---
 
@@ -1156,9 +1060,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | [string] |  no  |  |
  | state | [string] |  no  |  |
  | country | string |  yes  |  |
+ | pincode | [string] |  no  |  |
 
 ---
 
@@ -1224,8 +1128,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
  | identifier | string |  yes  |  |
+ | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
 
 ---
 
@@ -1236,8 +1140,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -1268,8 +1172,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
  | identifier | string |  yes  |  |
+ | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
 
 ---
 
@@ -1280,9 +1184,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
  | zone_id | string |  yes  |  |
  | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
 
 ---
 
@@ -1293,8 +1197,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | string |  yes  |  |
  | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
 
 ---
 
@@ -1313,43 +1217,24 @@ Response status_code
 
  
  
- #### [WarningsResponse](#WarningsResponse)
+ #### [ModifiedByResponse](#ModifiedByResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store_address | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
 
 ---
 
 
  
  
- #### [Dp](#Dp)
+ #### [ContactNumberResponse](#ContactNumberResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_mode | string |  no  |  |
- | transport_mode | string |  no  |  |
- | lm_priority | number |  no  |  |
- | operations | [string] |  no  |  |
- | fm_priority | number |  no  |  |
- | rvp_priority | number |  no  |  |
- | assign_dp_from_sb | boolean |  no  |  |
- | area_code | number |  no  |  |
- | external_account_id | string |  no  |  |
- | internal_account_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [LogisticsResponse](#LogisticsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp | [Dp](#Dp) |  no  |  |
- | override | boolean |  no  |  |
+ | country_code | number |  no  |  |
+ | number | string |  no  |  |
 
 ---
 
@@ -1360,8 +1245,59 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | string |  no  |  |
  | inventory | string |  no  |  |
+ | order | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Dp](#Dp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rvp_priority | number |  no  |  |
+ | internal_account_id | string |  no  |  |
+ | transport_mode | string |  no  |  |
+ | area_code | number |  no  |  |
+ | payment_mode | string |  no  |  |
+ | external_account_id | string |  no  |  |
+ | lm_priority | number |  no  |  |
+ | assign_dp_from_sb | boolean |  no  |  |
+ | fm_priority | number |  no  |  |
+ | operations | [string] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LogisticsResponse](#LogisticsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | override | boolean |  no  |  |
+ | dp | [Dp](#Dp) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AddressResponse](#AddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | landmark | string |  no  |  |
+ | state | string |  no  |  |
+ | latitude | number |  no  |  |
+ | address2 | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | longitude | number |  no  |  |
+ | city | string |  no  |  |
 
 ---
 
@@ -1379,57 +1315,11 @@ Response status_code
 
  
  
- #### [ContactNumberResponse](#ContactNumberResponse)
+ #### [EinvoiceResponse](#EinvoiceResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | string |  no  |  |
- | country_code | number |  no  |  |
-
----
-
-
- 
- 
- #### [OpeningClosing](#OpeningClosing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | minute | number |  no  |  |
- | hour | number |  no  |  |
-
----
-
-
- 
- 
- #### [TimmingResponse](#TimmingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | open | boolean |  no  |  |
- | weekday | string |  no  |  |
- | opening | [OpeningClosing](#OpeningClosing) |  no  |  |
- | closing | [OpeningClosing](#OpeningClosing) |  no  |  |
-
----
-
-
- 
- 
- #### [AddressResponse](#AddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landmark | string |  no  |  |
- | city | string |  no  |  |
- | pincode | number |  no  |  |
- | state | string |  no  |  |
- | address1 | string |  no  |  |
- | country | string |  no  |  |
- | address2 | string |  no  |  |
- | longitude | number |  no  |  |
- | latitude | number |  no  |  |
+ | enabled | boolean |  no  |  |
 
 ---
 
@@ -1447,61 +1337,38 @@ Response status_code
 
  
  
- #### [EinvoiceResponse](#EinvoiceResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
-
----
-
-
- 
- 
  #### [GstCredentialsResponse](#GstCredentialsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | e_waybill | [EwayBillResponse](#EwayBillResponse) |  no  |  |
  | e_invoice | [EinvoiceResponse](#EinvoiceResponse) |  no  |  |
+ | e_waybill | [EwayBillResponse](#EwayBillResponse) |  no  |  |
 
 ---
 
 
  
  
- #### [DocumentsResponse](#DocumentsResponse)
+ #### [OpeningClosing](#OpeningClosing)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | type | string |  no  |  |
- | legal_name | string |  no  |  |
- | verified | boolean |  no  |  |
+ | hour | number |  no  |  |
+ | minute | number |  no  |  |
 
 ---
 
 
  
  
- #### [ModifiedByResponse](#ModifiedByResponse)
+ #### [TimmingResponse](#TimmingResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
- | user_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [CreatedByResponse](#CreatedByResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | username | string |  no  |  |
- | user_id | string |  no  |  |
+ | opening | [OpeningClosing](#OpeningClosing) |  no  |  |
+ | open | boolean |  no  |  |
+ | closing | [OpeningClosing](#OpeningClosing) |  no  |  |
+ | weekday | string |  no  |  |
 
 ---
 
@@ -1512,8 +1379,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | number | string |  no  |  |
  | country_code | number |  no  |  |
+ | number | string |  no  |  |
 
 ---
 
@@ -1533,38 +1400,75 @@ Response status_code
 
  
  
+ #### [WarningsResponse](#WarningsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | store_address | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DocumentsResponse](#DocumentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | verified | boolean |  no  |  |
+ | legal_name | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedByResponse](#CreatedByResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ItemResponse](#ItemResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | warnings | [WarningsResponse](#WarningsResponse) |  no  |  |
- | logistics | [LogisticsResponse](#LogisticsResponse) |  no  |  |
- | _cls | string |  no  |  |
- | integration_type | [IntegrationTypeResponse](#IntegrationTypeResponse) |  no  |  |
- | product_return_config | [ProductReturnConfigResponse](#ProductReturnConfigResponse) |  no  |  |
- | verified_on | string |  no  |  |
- | contact_numbers | [[ContactNumberResponse](#ContactNumberResponse)] |  no  |  |
- | display_name | string |  no  |  |
- | timing | [[TimmingResponse](#TimmingResponse)] |  no  |  |
- | address | [AddressResponse](#AddressResponse) |  no  |  |
- | gst_credentials | [GstCredentialsResponse](#GstCredentialsResponse) |  no  |  |
- | notification_emails | [string] |  no  |  |
- | name | string |  no  |  |
- | store_type | string |  no  |  |
- | sub_type | string |  no  |  |
- | code | string |  no  |  |
- | documents | [[DocumentsResponse](#DocumentsResponse)] |  no  |  |
- | modified_by | [ModifiedByResponse](#ModifiedByResponse) |  no  |  |
- | company_id | number |  no  |  |
- | uid | number |  no  |  |
- | created_by | [CreatedByResponse](#CreatedByResponse) |  no  |  |
  | stage | string |  no  |  |
- | created_on | string |  no  |  |
+ | modified_by | [ModifiedByResponse](#ModifiedByResponse) |  no  |  |
+ | contact_numbers | [[ContactNumberResponse](#ContactNumberResponse)] |  no  |  |
+ | store_type | string |  no  |  |
+ | display_name | string |  no  |  |
+ | integration_type | [IntegrationTypeResponse](#IntegrationTypeResponse) |  no  |  |
+ | logistics | [LogisticsResponse](#LogisticsResponse) |  no  |  |
  | company | number |  no  |  |
- | _custom_json | string |  no  |  |
- | modified_on | string |  no  |  |
- | manager | [ManagerResponse](#ManagerResponse) |  no  |  |
  | verified_by | [ModifiedByResponse](#ModifiedByResponse) |  no  |  |
+ | address | [AddressResponse](#AddressResponse) |  no  |  |
+ | code | string |  no  |  |
+ | uid | number |  no  |  |
+ | created_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | _cls | string |  no  |  |
+ | product_return_config | [ProductReturnConfigResponse](#ProductReturnConfigResponse) |  no  |  |
+ | gst_credentials | [GstCredentialsResponse](#GstCredentialsResponse) |  no  |  |
+ | timing | [[TimmingResponse](#TimmingResponse)] |  no  |  |
+ | _custom_json | string |  no  |  |
+ | manager | [ManagerResponse](#ManagerResponse) |  no  |  |
+ | verified_on | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | warnings | [WarningsResponse](#WarningsResponse) |  no  |  |
+ | documents | [[DocumentsResponse](#DocumentsResponse)] |  no  |  |
+ | created_by | [CreatedByResponse](#CreatedByResponse) |  no  |  |
+ | name | string |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -1575,11 +1479,11 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
  | item_total | number |  no  |  |
  | current | number |  no  |  |
- | type | string |  no  |  |
- | size | number |  no  |  |
  | has_next | boolean |  no  |  |
+ | size | number |  no  |  |
 
 ---
 

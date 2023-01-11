@@ -78,24 +78,12 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.zoneId] - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @param {string} [arg.enabled] - Select enabled/all stores.
-   * @param {string} [arg.q] - Search with name as a free text
    * @summary: Company Store View of application.
    * @description: This API returns Company Store View of the application.
    */
-  getCompanyStoreView({ pageNumber, pageSize, zoneId, enabled, q } = {}) {
+  getCompanyStoreView({} = {}) {
     const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
-      {
-        pageNumber,
-        pageSize,
-        zoneId,
-        enabled,
-        q,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -103,11 +91,6 @@ class Serviceability {
     }
 
     const query_params = {};
-    query_params["page_number"] = pageNumber;
-    query_params["page_size"] = pageSize;
-    query_params["zone_id"] = zoneId;
-    query_params["enabled"] = enabled;
-    query_params["q"] = q;
 
     return PlatformAPIClient.execute(
       this.config,

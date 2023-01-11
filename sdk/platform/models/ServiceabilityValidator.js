@@ -18,13 +18,7 @@ class ServiceabilityValidator {
   }
 
   static getCompanyStoreView() {
-    return Joi.object({
-      pageNumber: Joi.number(),
-      pageSize: Joi.number(),
-      zoneId: Joi.string().allow(""),
-      enabled: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-    }).required();
+    return Joi.object({}).required();
   }
 
   static getZoneDataView() {
