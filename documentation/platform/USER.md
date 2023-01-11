@@ -1360,6 +1360,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | country_code | string |  no  |  |
  | captcha_code | string |  no  |  |
  | mobile | string |  no  |  |
+ | android_hash | string |  no  |  |
 
 ---
 
@@ -2008,6 +2009,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | delete_account_day | number |  no  |  |
  | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
  | delete_account_consent | string |  no  |  |
+ | session_config | string |  no  |  |
 
 ---
 
@@ -2212,6 +2214,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionExpiry](#SessionExpiry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number |  no  |  |
+ | type | string |  no  |  |
+ | is_rolling | boolean |  no  |  |
 
 ---
 
