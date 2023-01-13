@@ -14,7 +14,7 @@ declare class Order {
         verifyOtpShipmentCustomer: string;
         getShipmentBagReasons: string;
         getShipmentReasons: string;
-        updateShipmentExternal: string;
+        updateShipmentStatus: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -176,13 +176,13 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.shipmentId -
-     * @param {UpdateShipmentExternalRequest} arg.body
-     * @returns {Promise<UpdateShipmentResponse>} - Success response
+     * @param {ShipmentStatusUpdateBody} arg.body
+     * @returns {Promise<ShipmentStatusUpdate>} - Success response
      * @summary:
      * @description:
      */
-    updateShipmentExternal({ shipmentId, body }?: {
+    updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: number;
-        body: UpdateShipmentExternalRequest;
-    }): Promise<UpdateShipmentResponse>;
+        body: ShipmentStatusUpdateBody;
+    }): Promise<ShipmentStatusUpdate>;
 }

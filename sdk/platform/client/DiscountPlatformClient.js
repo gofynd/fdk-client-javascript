@@ -171,39 +171,6 @@ class Discount {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Job ID of the discount.
-   * @param {BulkDiscount} arg.body
-   * @summary: Create custom discount from bulk.
-   * @description: Create custom discounts through API.
-   */
-  upsertDiscountItems({ id, body } = {}) {
-    const { error } = DiscountValidator.upsertDiscountItems().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/items/`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} [arg.discount] - Discount
    * @param {DiscountJob} arg.body
    * @summary: Validate File.

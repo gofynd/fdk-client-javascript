@@ -10,7 +10,6 @@ Discount
 * [createDiscount](#creatediscount)
 * [getDiscount](#getdiscount)
 * [updateDiscount](#updatediscount)
-* [upsertDiscountItems](#upsertdiscountitems)
 * [validateDiscountFile](#validatediscountfile)
 * [downloadDiscountFile](#downloaddiscountfile)
 * [getValidationJob](#getvalidationjob)
@@ -247,64 +246,6 @@ Create Discount.
 
 
 [DiscountJob](#DiscountJob)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### upsertDiscountItems
-Create custom discount from bulk.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.upsertDiscountItems({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.discount.upsertDiscountItems({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Job ID of the discount. |  
-| body | [BulkDiscount](#BulkDiscount) | yes | Request body |
-
-
-Create custom discounts through API.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
 
 Success
 
@@ -744,33 +685,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[DiscountJob](#DiscountJob)] |  yes  |  |
  | page | [Page](#Page) |  yes  |  |
-
----
-
-
- 
- 
- #### [DiscountItems](#DiscountItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_code | string |  no  |  |
- | brand_uid | number |  no  |  |
- | seller_identifier | string |  no  |  |
- | discount_type | string |  yes  |  |
- | value | number |  yes  |  |
-
----
-
-
- 
- 
- #### [BulkDiscount](#BulkDiscount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | items | [[DiscountItems](#DiscountItems)] |  yes  |  |
 
 ---
 

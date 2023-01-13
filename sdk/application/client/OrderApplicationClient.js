@@ -28,7 +28,7 @@ class Order {
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentReasons:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
-      updateShipmentExternal:
+      updateShipmentStatus:
         "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -443,13 +443,13 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.shipmentId -
-   * @param {UpdateShipmentExternalRequest} arg.body
-   * @returns {Promise<UpdateShipmentResponse>} - Success response
+   * @param {ShipmentStatusUpdateBody} arg.body
+   * @returns {Promise<ShipmentStatusUpdate>} - Success response
    * @summary:
    * @description:
    */
-  updateShipmentExternal({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentExternal().validate(
+  updateShipmentStatus({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentStatus().validate(
       { shipmentId, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -464,7 +464,7 @@ class Order {
       this._conf,
       "put",
       constructUrl({
-        url: this._urls["updateShipmentExternal"],
+        url: this._urls["updateShipmentStatus"],
         params: { shipmentId },
       }),
       query_params,

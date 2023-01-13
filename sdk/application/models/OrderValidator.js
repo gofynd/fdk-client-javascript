@@ -77,10 +77,10 @@ class OrderValidator {
     }).required();
   }
 
-  static updateShipmentExternal() {
+  static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.number().required(),
-      body: Validator.UpdateShipmentExternalRequest().required(),
+      body: Validator.ShipmentStatusUpdateBody().required(),
     }).required();
   }
 }
