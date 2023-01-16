@@ -21,7 +21,7 @@ declare class PlatformClient {
     setExtraHeaders(header: any): void;
 }
 declare namespace PlatformClient {
-    export { ApplicationResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequest, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackForm, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, CommunicationDetails, SupportGeneralConfig, FeedbackForm, TicketSubCategory, TicketCategory, CategoryData, IntegrationConfig, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePredicate, AllAvailablePageSchema, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, availableSectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, Sections, Config, Preset, GlobalSchema, ListSchemaItem, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, GlobalSchemaProps, BlocksProps, BlockUserRequestSchema, ArchiveUserRequestSchema, DeleteApplicationUserRequestSchema, UnDeleteUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, SendOtpResponse, ProfileEditSuccess, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, BlockUserSuccess, ArchiveUserSuccess, DeleteUserSuccess, UnDeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, SessionListResponseSchema, SessionDeleteResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationInternalServerErrorSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, UpdateUserRequestSchema, UserSchema, PhoneNumber, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, Navigation, LocaleLanguage, Language, Action, ActionPage, NavigationReference, SubNavigationReference, LandingPage, ConfigurationSchema, SlideshowMedia, Slideshow, AnnouncementsResponseSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, FeatureImage, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageContent, PageMeta, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, UnauthenticatedUser, UnauthenticatedApplication, ResourceNotFound, InternalServerError, CheckValidityResponse, PlanRecurring, Plan, DetailedPlanComponents, DetailedPlan, SubscriptionTrialPeriod, EntityChargePrice, EntityChargeRecurring, ChargeLineItem, CreateSubscriptionCharge, CurrentPeriod, SubscriptionCharge, EntitySubscription, CreateSubscriptionResponse, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethods, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, SubscriptionBillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, BigqueryHeadersReq, BigqueryHeadersResHeaders, BigqueryHeadersRes, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, AudienceReq, Audience, Audiences, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateDeleteSuccessRes, EmailTemplateDeleteFailureRes, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplateRes, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EngineRequest, EngineResponse, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, PushtokenReq, PushtokenRes, SmsProviderReq, SmsProvider, SmsProviders, SmsTemplateDeleteSuccessRes, SmsTemplateDeleteFailureRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplate, SystemSmsTemplate, SmsTemplates, SystemSmsTemplates, Notification, SystemNotificationUser, SystemNotificationSettings, SystemNotification, SystemNotificationsPage, SystemNotifications, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, IntentApp, IntentAppErrorList, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutBankDetails, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, RefundAccountResponse, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, IfscCodeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationRequest, PaymentConfirmationResponse, GetActivityStatus, ActivityHistory, CanBreakRequestBody, CanBreakResponse, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, BillingAddress, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, OrderShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformApplication, PlatformShipment, PlatformShipmentStatus, Bags, BagItem, BagItemAttributes, ShipmentPrices, Payments, Filters, Stage, StagesFilters, Options, PlatformOrderPage, AppliedFilters, OrderDetails, OrderDetailsItem, PlatformBreakupValues, ArticleAssignment, PlatformShipmentDetails, PlatformShipmentDetailsStatus, BagsDetails, BagFinancialBreakup, Identifiers, BagCurrStatus, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, ShipmentGst, PlatformShipmentDetailsBrand, Promise, Timestamp, ShipmentTrackingDetails, ItemsPayments, PlatformOrderDetailsPage, ShipmentDates, OrderLanesCount, StageItem, UpdateOrderReprocessResponse, PlatformOrderTrack, OrderPicklistListing, Stages, ItemTotal, GetPingResponse, GetShipmentAddressResponse, DataShipmentAddress, UpdateShipmentAddressRequest, UpdateShipmentAddressResponse, ShipmentTrackResponse, ShipmentTrackResponseBagListItem, ShipmentTrackResponseBagListItemBreakValues, ShipmentTrackResponseBagListItemStatuses, ShipmentTrackResponseBagListItemStatusesProgress, ShipmentTrackResponseBagListItemStatusesTrack, ShipmentTrackResponseBagListItemDpDetails, ShipmentTrackResponseBagListItemsProductImage, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, ShipmentReasonsResponse, ShipmentResponseReasons, PlatformShipmentTrack, Results, ShipmentUpdateRequest, ShipmentUpdateResponse, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, GetSearchWordsData, GetSearchWordsDetailResponse, ErrorResponse, SearchKeywordResult, CreateSearchKeyword, DeleteResponse, GetSearchWordsResponse, GetAutocompleteWordsData, GetAutocompleteWordsResponse, AutocompletePageAction, AutocompleteAction, Media, AutocompleteResult, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, ProductBundleItem, GetProductBundleCreateResponse, GetProductBundleListingResponse, ProductBundleRequest, Price, LimitedProductData, Size, GetProducts, GetProductBundleResponse, ProductBundleUpdateRequest, ListSizeGuide, Meta, Guide, ValidateSizeGuide, SuccessResponse, SizeGuideResponse, MOQ, ApplicationItemResponse, MetaFields, ApplicationItemMeta, SuccessResponse1, GetConfigMetadataResponse, PageResponseType, GetConfigResponse, ConfigErrorResponse, AttributeDetailsGroup, AppConfigurationDetail, ConfigSuccessResponse, AppConfigurationsSort, AllowSingleRequest, DefaultKeyRequest, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationMetaData, ConfigurationListingSortConfig, ConfigurationListingSort, ConfigurationBucketPoints, ConfigurationListingFilterValue, ConfigurationListingFilterConfig, ConfigurationListingFilter, ConfigurationListing, ProductSize, ConfigurationProductVariantConfig, ConfigurationProductVariant, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProduct, AppCatalogConfiguration, GetAppCatalogConfiguration, AppConfiguration, GetCatalogConfigurationDetailsSchemaListing, EntityConfiguration, GetAppCatalogEntityConfiguration, ProductSortOn, ProductFiltersKey, ProductFiltersValue, ProductFilters, GetCollectionQueryOptionResponse, Media1, CollectionQuery, BannerImage, ImageUrls, GetCollectionDetailNest, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, GetCollectionListingResponse, CollectionSchedule, CollectionBadge, CollectionImage, UserInfo, SeoDetail, CollectionBanner, CreateCollection, CollectionCreateResponse, CollectionDetailResponse, UpdateCollection, ProductDetailAttribute, ProductDetailGroupedAttribute, Price1, ProductListingPrice, ProductBrand, ProductListingDetail, GetCollectionItemsResponse, ItemQueryForUserCollection, CollectionItemRequest, UpdatedResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CrossSellingData, CrossSellingResponse, OptInPostRequest, CompanyOptIn, GetOptInPlatform, OptinCompanyDetail, CompanyBrandDetail, OptinCompanyBrandDetailsView, OptinCompanyMetrics, StoreDetail, OptinStoreDetails, AttributeSchemaRange, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, GenderDetail, ProdcutTemplateCategoriesResponse, PTErrorResponse, UserSerializer, GetDepartment, DepartmentsResponse, DepartmentErrorResponse, DepartmentCreateUpdate, DepartmentCreateResponse, DepartmentCreateErrorResponse, UserDetail, DepartmentModel, ProductTemplate, TemplatesResponse, TemplateDetails, Properties, GlobalValidation, TemplateValidationData, TemplatesValidationResponse, InventoryValidationResponse, HSNData, HSNCodesResponse, VerifiedBy, ProductDownloadItemsData, ProductDownloadsItems, ProductDownloadsResponse, ProductConfigurationDownloads, Hierarchy, Media2, CategoryMappingValues, CategoryMapping, Category, CategoryResponse, CategoryRequestBody, CategoryCreateResponse, SingleCategoryResponse, CategoryUpdateResponse, Logo, Brand, Image, ProductPublished, Product, ProductListingResponse, CustomOrder, NetQuantity, ReturnConfig, TeaserTag, TaxIdentifier, Trader, ProductPublish, ProductCreateUpdate, AttributeMasterSerializer, ProductAttributesResponse, ValidateProduct, UserDetail1, ProductBulkRequest, ProductBulkRequestList, UserInfo1, BulkJob, BulkResponse, BulkProductRequest, NestedTags, ProductTagsViewResponse, UserCommon, Items, BulkAssetResponse, ProductBulkAssets, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, InventoryResponse, InventoryResponsePaginated, ItemQuery, SetSize, SizeDistribution, InventorySet, GTIN, InvSize, InventoryRequest, StoreMeta, PriceMeta, ReturnConfig1, BrandMeta, ManufacturerResponse, WeightResponse, QuantityBase, DimensionResponse, Trader1, CompanyMeta, InventorySellerResponse, InventorySellerIdentifierResponsePaginated, BulkInventoryGetItems, BulkInventoryGet, InventoryJobPayload, InventoryBulkRequest, InventoryExportJob, InventoryExportRequest, InventoryExportResponse, FilerList, InventoryConfig, InventoryPayload, InventoryRequestSchemaV2, InventoryFailedReason, InventoryResponseItem, InventoryUpdateResponse, HsnCodesObject, PageResponse, HsnCodesListingResponse, HsnUpsert, HsnCode, BulkHsnUpsert, BulkHsnResponse, TaxSlab, HSNDataInsertV2, HsnCodesListingResponseSchemaV2, BrandItem, BrandListingResponse, Department, DepartmentResponse, DepartmentIdentifier, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, CategoryListingResponse, ApplicationProductListingResponse, ProductDetail, InventoryPage, InventoryStockResponse, ArticleQuery, AssignStoreArticle, AssignStore, ArticleAssignment1, StoreAssignResponse, Document, InvoiceCredSerializer, InvoiceDetailsSerializer, SellerPhoneNumber, LocationManagerSerializer, ProductReturnConfigSerializer, LocationTimingSerializer, LocationDayWiseSerializer, GetAddressSerializer, UserSerializer1, LocationIntegrationType, UserSerializer2, GetCompanySerializer, GetLocationSerializer, LocationListSerializer, ApplicationBrandJson, ApplicationCategoryJson, ApplicationStoreJson, BusinessCountryInfo, Website, BusinessDetails, ContactDetails, CompanyTaxesSerializer, GetCompanyProfileSerializerResponse, CreateUpdateAddressSerializer, CompanyTaxesSerializer1, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateUpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, LocationSerializer, BulkLocationSerializer, _ArticleQuery, _ArticleAssignment, _AssignStoreArticle, AssignStoreRequestValidator, AssignStoreResponseSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkUploadResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, ErrorRes, DataTresholdDTO, GenericDTO, JobConfigDTO, TaskDTO, ResponseEnvelopeString, KafkaMetaModel, SuppressStoreModel, SuppressStorePayload, KafkaResponse, ResponseEnvelopeKafkaResponse, GCompany, GStore, Metum, ResponseEnvelopeListSlingshotConfigurationDetail, SlingshotConfigurationDetail, SlingshotIntegration, StoreData, AWSS3config, ArchiveConfig, Audit, CatalogMasterConfig, CompanyConfig, DBConfig, DBConnectionProfile, DBParamConfig, DefaultHeadersDTO, DocMappingConfig, EmailConfig, FTPConfig, FileConfig, GoogleSpreadSheetConfig, HttpConfig, JobConfig, JobConfigRawDTO, JsonDocConfig, LocalFileConfig, MongoDocConfig, OAuthConfig, ProcessConfig, PropBeanConfig, PropBeanDTO, ResponseEnvelopeListJobConfigRawDTO, SFTPConfig, Send, StoreConfig, StoreFilter, TaskConfig, TaskParam, TaskStepConfig, JobStepsDTO, ResponseEnvelopeListJobStepsDTO, ResponseEnvelopeListJobConfigDTO, ResponseEnvelopeJobConfigDTO, JobHistoryDto, JobMetricsDto, ResponseEnvelopeJobMetricsDto, JobConfigListDTO, ResponseEnvelopeListJobConfigListDTO, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, UpdateIntegrationLevelRequest, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponse, Rule, RuleDefinition, CouponDateMeta, DisplayMetaDict, DisplayMeta, Validity, CouponAuthor, CouponSchedule, PaymentAllowValue, PaymentModes, PriceRange, BulkBundleRestriction, PostOrder, UsesRemaining, UsesRestriction, Restrictions, Identifier, Ownership, Validation, CouponAction, State, CouponAdd, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, Ownership1, CompareObject, ItemCriteria, DiscountOffer, DiscountRule, PromotionDateMeta, Visibility, PromotionAction, PromotionSchedule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, DisplayMeta1, PromotionAuthor, PromotionListItem, PromotionsResponse, PromotionAdd, PromotionUpdate, PromotionPartialUpdate, CartItem, OpenapiCartDetailsRequest, ProductPrice, ProductPriceInfo, BaseInfo, BasePrice, ArticlePriceInfo, ProductArticle, PromoMeta, AppliedPromotion, ProductAvailability, CategoryInfo, ActionQuery, ProductAction, ProductImage, CartProduct, CartProductIdentifer, CartProductInfo, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, OpenapiCartDetailsResponse, OpenApiErrorResponse, ShippingAddress, OpenApiCartServiceabilityRequest, PromiseTimestamp, PromiseFormatted, ShipmentPromise, OpenApiCartServiceabilityResponse, OpenApiFiles, CartItemMeta, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResponse, AbandonedCart, AbandonedCartResponse, CartCurrency, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, AppUser, E, Giveaway, GiveawayResponse, HistoryPretty, HistoryRes, Offer, Points, Referral, RewardUser, RewardsAudience, RewardsRule, Schedule, ShareMessages, UserRes, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes, ValidityObject, CreateUpdateDiscount, DiscountJob, ListOrCalender, FileJobResponse, DownloadFileJob, CancelJobResponse, UserDetails, BadRequestObject, AddProxyReq, AddProxyResponse, APIError, RemoveProxyResponse, EventConfig, EventConfigList, EventConfigResponse, SubscriberConfigList, EventProcessedStatus, EventPayload, SubscriberConfig, SubscriberResponse, SubscriberEvent, AuthMeta, Association, EventConfigBase, RequestBodyAuditLog, CreateLogResponse, LogMetaObj, EntityObject, LogSchemaResponse, LogDocs, EntityObj, Modifier, DeviceInfo, Location, EntityTypesResponse, EntityTypeObj };
+    export { ApplicationResponse, Currency, Domain, ApplicationWebsite, ApplicationCors, ApplicationAuth, ApplicationRedirections, ApplicationMeta, SecureUrl, Application, NotFound, BadRequest, LocationDefaultLanguage, LocationDefaultCurrency, LocationCountry, Locations, TicketList, Page, TicketHistoryList, CustomFormList, CreateCustomFormPayload, EditCustomFormPayload, EditTicketPayload, AgentChangePayload, CreateVideoRoomResponse, CloseVideoRoomResponse, CreateVideoRoomPayload, NotifyUser, Filter, TicketHistoryPayload, CustomFormSubmissionPayload, GetTokenForVideoRoomResponse, GetParticipantsInsideVideoRoomResponse, Participant, Email, Debug, SubmitCustomFormResponse, TicketContext, CreatedOn, TicketAsset, TicketContent, AddTicketPayload, Priority, Status, TicketFeedbackForm, TicketFeedbackList, TicketFeedbackPayload, SubmitButton, PollForAssignment, CustomForm, CommunicationDetails, SupportGeneralConfig, FeedbackForm, TicketSubCategory, TicketCategory, CategoryData, IntegrationConfig, FeedbackResponseItem, TicketFeedback, TicketHistory, Ticket, AvailablePageSchema, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageUserPredicate, AvailablePageRoutePredicate, AvailablePagePredicate, AllAvailablePageSchema, PaginationSchema, ThemesListingResponseSchema, AddThemeRequestSchema, UpgradableThemeSchema, FontsSchema, BlitzkriegApiErrorSchema, BlitzkriegNotFoundSchema, BlitzkriegInternalServerErrorSchema, FontsSchemaItems, FontsSchemaItemsFiles, ThemesSchema, availableSectionSchema, Information, Images, Src, AssetsSchema, UmdJs, CommonJs, Css, Sections, Config, Preset, GlobalSchema, ListSchemaItem, Colors, Custom, ConfigPage, Font, Variants, Medium, SemiBold, Bold, Light, Regular, Blocks, GlobalSchemaProps, BlocksProps, BlockUserRequestSchema, ArchiveUserRequestSchema, DeleteApplicationUserRequestSchema, UnDeleteUserRequestSchema, EditEmailRequestSchema, SendVerificationLinkMobileRequestSchema, EditMobileRequestSchema, EditProfileRequestSchema, EditProfileMobileSchema, SendEmailOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyOtpRequestSchema, SendMobileOtpRequestSchema, UpdatePasswordRequestSchema, FormRegisterRequestSchema, TokenRequestBodySchema, ForgotPasswordRequestSchema, CodeRequestBodySchema, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, PasswordLoginRequestSchema, SendOtpRequestSchema, OAuthRequestSchema, OAuthRequestAppleSchema, UserObjectSchema, AuthSuccess, SendOtpResponse, ProfileEditSuccess, LoginSuccess, VerifyOtpSuccess, ResetPasswordSuccess, RegisterFormSuccess, VerifyEmailSuccess, HasPasswordSuccess, LogoutSuccess, BlockUserSuccess, ArchiveUserSuccess, DeleteUserSuccess, UnDeleteUserSuccess, OtpSuccess, EmailOtpSuccess, SessionListSuccess, VerifyMobileOTPSuccess, VerifyEmailOTPSuccess, SendMobileVerifyLinkSuccess, SendEmailVerifyLinkSuccess, UserSearchResponseSchema, CustomerListResponseSchema, SessionListResponseSchema, SessionDeleteResponseSchema, UnauthorizedSchema, UnauthenticatedSchema, NotFoundSchema, AuthenticationInternalServerErrorSchema, AuthenticationApiErrorSchema, ProfileEditSuccessSchema, FormRegisterRequestSchemaPhone, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, UpdateUserRequestSchema, UserSchema, PhoneNumber, ApplicationLegal, ApplicationLegalFAQ, PathMappingSchema, SeoComponent, SeoSchema, CustomMetaTag, Detail, AnnouncementPageSchema, EditorMeta, AnnouncementAuthorSchema, AdminAnnouncementSchema, ScheduleSchema, NextSchedule, AnnouncementSchema, ScheduleStartSchema, BlogGetResponse, ResourceContent, Asset, Author, BlogSchema, SEO, SEOImage, DateMeta, BlogRequest, GetAnnouncementListSchema, CreateAnnouncementSchema, DataLoaderResponseSchema, DataLoaderResetResponseSchema, Navigation, LocaleLanguage, Language, Action, ActionPage, NavigationReference, SubNavigationReference, LandingPage, ConfigurationSchema, SlideshowMedia, Slideshow, AnnouncementsResponseSchema, FaqResponseSchema, UpdateHandpickedSchema, HandpickedTagSchema, RemoveHandpickedSchema, CreateTagSchema, CreateTagRequestSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, TagDeleteSuccessResponse, ContentAPIError, CommonError, CategorySchema, ChildrenSchema, CategoryRequestSchema, FAQCategorySchema, FaqSchema, FAQ, CreateFaqResponseSchema, CreateFaqSchema, GetFaqSchema, UpdateFaqCategoryRequestSchema, CreateFaqCategoryRequestSchema, CreateFaqCategorySchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, LandingPageGetResponse, LandingPageSchema, DefaultNavigationResponse, NavigationGetResponse, Orientation, NavigationSchema, NavigationRequest, CustomPageSchema, ContentSchema, CustomPage, FeatureImage, PageGetResponse, PageSpec, PageSpecParam, PageSpecItem, PageSchema, CreatedBySchema, PageContent, PageMeta, PageRequest, CronSchedule, PagePublishRequest, PageMetaSchema, SlideshowGetResponse, SlideshowSchema, SlideshowRequest, Support, PhoneProperties, PhoneSchema, EmailProperties, EmailSchema, ContactSchema, TagsSchema, TagSchema, TagSourceSchema, UnauthenticatedUser, UnauthenticatedApplication, ResourceNotFound, InternalServerError, CheckValidityResponse, PlanRecurring, Plan, DetailedPlanComponents, DetailedPlan, SubscriptionTrialPeriod, EntityChargePrice, EntityChargeRecurring, ChargeLineItem, CreateSubscriptionCharge, CurrentPeriod, SubscriptionCharge, EntitySubscription, CreateSubscriptionResponse, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethods, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, SubscriptionBillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, StatsImported, StatsProcessedEmail, StatsProcessedSms, StatsProcessed, Stats, GetStats, CampaignReq, RecipientHeaders, CampaignEmailTemplate, CampignEmailProvider, CampaignEmail, Campaign, Campaigns, BadRequestSchema, BigqueryHeadersReq, BigqueryHeadersResHeaders, BigqueryHeadersRes, GetNRecordsCsvReq, GetNRecordsCsvResItems, GetNRecordsCsvRes, AudienceReq, Audience, Audiences, EmailProviderReqFrom, EmailProviderReq, EmailProvider, EmailProviders, EmailTemplateDeleteSuccessRes, EmailTemplateDeleteFailureRes, EmailTemplateKeys, EmailTemplateHeaders, EmailTemplateReq, TemplateAndType, EmailTemplateRes, EmailTemplate, SystemEmailTemplate, EmailTemplates, SystemEmailTemplates, PayloadEmailTemplateStructure, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadSmsTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadStructure, MetaStructure, EngineRequest, EngineResponse, EventSubscriptionTemplateSms, EventSubscriptionTemplateEmail, EventSubscriptionTemplate, EventSubscription, EventSubscriptions, TriggerJobResponse, TriggerJobRequest, Job, Jobs, JobLog, JobLogs, LogEmail, LogPushnotification, LogMeta, Log, Logs, SendOtpSmsCommsTemplate, SendOtpSmsCommsProvider, SendOtpEmailCommsTemplate, SendOtpCommsReqData, SendOtpCommsReqSms, SendOtpCommsReqEmail, SendOtpCommsResSms, SendOtpCommsResEmail, SendOtpCommsReq, SendOtpCommsRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VerifyOtpCommsErrorRes, PushtokenReq, PushtokenRes, SmsProviderReq, SmsProvider, SmsProviders, SmsTemplateDeleteSuccessRes, SmsTemplateDeleteFailureRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplate, SystemSmsTemplate, SmsTemplates, SystemSmsTemplates, Notification, SystemNotificationUser, SystemNotificationSettings, SystemNotification, SystemNotificationsPage, SystemNotifications, PaymentGatewayConfigResponse, ErrorCodeDescription, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayToBeReviewed, ErrorCodeAndDescription, HttpErrorCodeAndResponse, PaymentModeLogo, IntentApp, IntentAppErrorList, PaymentModeList, RootPaymentMode, PaymentOptions, PaymentOptionsResponse, PayoutsResponse, PayoutBankDetails, PayoutRequest, PayoutResponse, UpdatePayoutResponse, UpdatePayoutRequest, DeletePayoutResponse, SubscriptionPaymentMethodResponse, DeleteSubscriptionPaymentMethodResponse, SubscriptionConfigResponse, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, RefundAccountResponse, NotFoundResourceError, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, IfscCodeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, PaymentConfirmationRequest, PaymentConfirmationResponse, CODdata, GetUserCODLimitResponse, SetCODForUserRequest, SetCODOptionResponse, GetActivityStatus, ActivityHistory, CanBreakRequestBody, CanBreakResponse, FailedOrders, FailOrder, MarketplaceOrder, TotalDiscountsSet, PresentmentMoney, ShopMoney, TotalPriceSet, TotalPriceSetShopMoney, TotalPriceSetPresentmentMoney, TotalTaxSet, TotalTaxSetShopMoney, TotalTaxSetPresentmentMoney, SubtotalPriceSet, SubtotalPriceSetShopMoney, SubtotalPriceSetPresentmentMoney, LineItems, LineItemsArticle, Quantities, NotAvailable, Sellable, OrderCommitted, Damaged, Manufacturer, ArticlePrice, Company, FailOrderDateMeta, MarketplaceIdentifiers, TatacliqLuxury, Dimension, Weight, Store, ArticleMeta, ArticleBrand, LineItemsArticleIdentifier, PriceSet, PriceSetShopMoney, PriceSetPresentmentMoney, TaxLines, TaxLinesPriceSet, TaxLinesPriceSetShopMoney, TaxLinesPriceSetPresentmentMoney, TotalDiscountSet, TotalDiscountSetPresentmentMoney, TotalDiscountSetShopMoney, BillingAddress, TotalShippingPriceSet, TotalShippingPriceSetShopMoney, TotalShippingPriceSetPresentmentMoney, Customer, DefaultAddress, TotalLineItemsPriceSet, TotalLineItemsPriceSetShopMoney, TotalLineItemsPriceSetPresentmentMoney, OrderShippingAddress, OrderListing, OrderItems, PlatformOrderUserInfo, PlatformDeliveryAddress, Channel, PlatformApplication, PlatformShipment, PlatformShipmentStatus, Bags, BagItem, BagItemAttributes, ShipmentPrices, Payments, Filters, Stage, StagesFilters, Options, PlatformOrderPage, AppliedFilters, OrderDetails, OrderDetailsItem, PlatformBreakupValues, ArticleAssignment, PlatformShipmentDetails, PlatformShipmentDetailsStatus, BagsDetails, BagFinancialBreakup, Identifiers, BagCurrStatus, BagArticle, ArticleIdentifiers, Set, SetSizeDistribution, Sizes, BagArticleReturnConfig, GstDetails, BagBreakupValues, BagCurrentStatus, BagStateMapper, BagStatus, BagStatusBagStateMapper, BagPrices, ShipmentBreakupValues, DpDetails, ShipmentInvoice, RtoAddress, StoreAddressJson, PlatformFulfillingStore, FulfillingStoreMeta, AdditionalContactDetails, Documents, Gst, ProductReturnConfig, Timing, Opening, Closing, FulfillingStoreStoreAddressJson, ShipmentGst, PlatformShipmentDetailsBrand, Promise, Timestamp, ShipmentTrackingDetails, ItemsPayments, PlatformOrderDetailsPage, ShipmentDates, OrderLanesCount, StageItem, UpdateOrderReprocessResponse, PlatformOrderTrack, OrderPicklistListing, Stages, ItemTotal, GetPingResponse, GetShipmentAddressResponse, DataShipmentAddress, UpdateShipmentAddressRequest, UpdateShipmentAddressResponse, ShipmentTrackResponse, ShipmentTrackResponseBagListItem, ShipmentTrackResponseBagListItemBreakValues, ShipmentTrackResponseBagListItemStatuses, ShipmentTrackResponseBagListItemStatusesProgress, ShipmentTrackResponseBagListItemStatusesTrack, ShipmentTrackResponseBagListItemDpDetails, ShipmentTrackResponseBagListItemsProductImage, UpdateShipmentStatusResponse, UpdateShipmentStatusBody, ShipmentReasonsResponse, ShipmentResponseReasons, PlatformShipmentTrack, Results, ShipmentUpdateRequest, ShipmentUpdateResponse, UpdateProcessShipmenstRequestBody, UpdateProcessShipmenstRequestResponse, GetVoiceCallbackResponse, GetClickToCallResponse, ApefaceApiError, SearchKeywordResult, CreateSearchKeyword, GetSearchWordsData, ErrorResponse, DeleteResponse, GetSearchWordsDetailResponse, GetSearchWordsResponse, Media, AutocompletePageAction, AutocompleteAction, AutocompleteResult, CreateAutocompleteKeyword, GetAutocompleteWordsData, GetAutocompleteWordsResponse, CreateAutocompleteWordsResponse, ProductBundleItem, ProductBundleRequest, GetProductBundleCreateResponse, GetProductBundleListingResponse, ProductBundleUpdateRequest, LimitedProductData, Size, Price, GetProducts, GetProductBundleResponse, Meta, Guide, ValidateSizeGuide, SuccessResponse, ListSizeGuide, SizeGuideResponse, MetaFields, ApplicationItemSEO, ApplicationItemMOQ, ApplicationItemMeta, SuccessResponse1, SEOData, MOQData, OwnerAppItemResponse, GetConfigMetadataResponse, AttributeDetailsGroup, AppConfigurationDetail, ConfigErrorResponse, PageResponseType, GetConfigResponse, ConfigSuccessResponse, AppConfigurationsSort, AllowSingleRequest, DefaultKeyRequest, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationMetaData, ConfigurationListingSortConfig, ConfigurationListingSort, ConfigurationBucketPoints, ConfigurationListingFilterValue, ConfigurationListingFilterConfig, ConfigurationListingFilter, ConfigurationListing, ProductSize, ConfigurationProductVariantConfig, ConfigurationProductVariant, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProduct, AppConfiguration, AppCatalogConfiguration, GetAppCatalogConfiguration, GetCatalogConfigurationDetailsSchemaListing, EntityConfiguration, GetAppCatalogEntityConfiguration, ProductSortOn, ProductFiltersValue, ProductFiltersKey, ProductFilters, GetCollectionQueryOptionResponse, CollectionImage, CollectionBanner, CollectionSchedule, CollectionBadge, SeoDetail, UserInfo, CollectionQuery, CreateCollection, BannerImage, ImageUrls, CollectionCreateResponse, CollectionListingFilterTag, CollectionListingFilterType, CollectionListingFilter, Media1, GetCollectionDetailNest, GetCollectionListingResponse, CollectionDetailResponse, UpdateCollection, ItemQueryForUserCollection, CollectionItemRequest, UpdatedResponse, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductBrand, Price1, ProductListingPrice, ProductListingDetail, GetCollectionItemsResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CrossSellingData, CrossSellingResponse, OptInPostRequest, CompanyOptIn, GetOptInPlatform, OptinCompanyDetail, CompanyBrandDetail, OptinCompanyBrandDetailsView, OptinCompanyMetrics, StoreDetail, OptinStoreDetails, AttributeSchemaRange, AttributeMaster, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterFilter, AttributeMasterDetails, GenderDetail, ProdcutTemplateCategoriesResponse, PTErrorResponse, DepartmentCreateUpdate, DepartmentCreateResponse, DepartmentCreateErrorResponse, UserSerializer, GetDepartment, DepartmentsResponse, DepartmentErrorResponse, UserDetail, DepartmentModel, ProductTemplate, TemplatesResponse, Properties, GlobalValidation, TemplateValidationData, TemplateDetails, TemplatesValidationResponse, InventoryValidationResponse, HSNData, HSNCodesResponse, ProductDownloadItemsData, VerifiedBy, ProductDownloadsItems, ProductDownloadsResponse, ProductConfigurationDownloads, Media2, CategoryMappingValues, CategoryMapping, Hierarchy, CategoryRequestBody, CategoryCreateResponse, Category, CategoryResponse, CategoryUpdateResponse, SingleCategoryResponse, TaxIdentifier, Trader, ProductPublish, NetQuantity, ReturnConfig, TeaserTag, CustomOrder, ProductCreateUpdate, Logo, Brand, ProductPublished, Image, Product, ProductListingResponse, AttributeMasterSerializer, ProductAttributesResponse, ValidateProduct, UserInfo1, BulkJob, BulkResponse, UserDetail1, ProductBulkRequest, ProductBulkRequestList, BulkProductRequest, NestedTags, ProductTagsViewResponse, ProductBulkAssets, UserCommon, Items, BulkAssetResponse, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ItemQuery, GTIN, SetSize, SizeDistribution, InventorySet, InvSize, InventoryRequest, InventoryResponse, InventoryResponsePaginated, WeightResponse, BrandMeta, ManufacturerResponse, CompanyMeta, StoreMeta, Trader1, QuantityBase, ReturnConfig1, PriceMeta, DimensionResponse, InventorySellerResponse, InventorySellerIdentifierResponsePaginated, BulkInventoryGetItems, BulkInventoryGet, InventoryJobPayload, InventoryBulkRequest, InventoryExportRequest, InventoryExportResponse, InventoryExportJob, FilerList, InventoryConfig, InventoryPayload, InventoryRequestSchemaV2, InventoryFailedReason, InventoryResponseItem, InventoryUpdateResponse, HsnUpsert, HsnCodesObject, HsnCode, PageResponse, HsnCodesListingResponse, BulkHsnUpsert, BulkHsnResponse, TaxSlab, HSNDataInsertV2, HsnCodesListingResponseSchemaV2, BrandItem, BrandListingResponse, Department, DepartmentResponse, DepartmentIdentifier, ThirdLevelChild, SecondLevelChild, Child, CategoryItems, DepartmentCategoryTree, CategoryListingResponse, ApplicationProductListingResponse, ProductDetail, InventoryPage, InventoryStockResponse, ArticleQuery, AssignStoreArticle, AssignStore, ArticleAssignment1, StoreAssignResponse, LocationIntegrationType, ProductReturnConfigSerializer, SellerPhoneNumber, LocationTimingSerializer, LocationDayWiseSerializer, GetAddressSerializer, UserSerializer1, GetCompanySerializer, UserSerializer2, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationManagerSerializer, Document, GetLocationSerializer, LocationListSerializer, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentListingResponse, ApplicationDepartmentJson, ApplicationStoreJson, CompanyTaxesSerializer, ContactDetails, BusinessCountryInfo, Website, BusinessDetails, GetCompanyProfileSerializerResponse, CreateUpdateAddressSerializer, CompanyTaxesSerializer1, UpdateCompany, ProfileSuccessResponse, DocumentsObj, MetricsSerializer, BrandBannerSerializer, GetBrandResponseSerializer, CreateUpdateBrandRequestSerializer, CompanySocialAccounts, CompanyDetails, CompanySerializer, CompanyBrandSerializer, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, LocationSerializer, BulkLocationSerializer, _ArticleQuery, _ArticleAssignment, _AssignStoreArticle, AssignStoreRequestValidator, AssignStoreResponseSerializer, FailedResponse, CDN, Upload, StartResponse, StartRequest, CompleteResponse, Opts, CopyFileTask, BulkUploadResponse, ReqConfiguration, Destination, BulkRequest, Urls, SignUrlResponse, SignUrlRequest, DbRecord, BrowseResponse, RedirectDevice, WebRedirect, Redirects, CampaignShortLink, Attribution, SocialMediaTags, ShortLinkReq, UrlInfo, ShortLinkRes, ShortLinkList, ErrorRes, DataTresholdDTO, GenericDTO, JobConfigDTO, TaskDTO, ResponseEnvelopeString, KafkaMetaModel, SuppressStoreModel, SuppressStorePayload, KafkaResponse, ResponseEnvelopeKafkaResponse, GCompany, GStore, Metum, ResponseEnvelopeListSlingshotConfigurationDetail, SlingshotConfigurationDetail, SlingshotIntegration, StoreData, AWSS3config, ArchiveConfig, Audit, CatalogMasterConfig, CompanyConfig, DBConfig, DBConnectionProfile, DBParamConfig, DefaultHeadersDTO, DocMappingConfig, EmailConfig, FTPConfig, FileConfig, GoogleSpreadSheetConfig, HttpConfig, JobConfig, JobConfigRawDTO, JsonDocConfig, LocalFileConfig, MongoDocConfig, OAuthConfig, ProcessConfig, PropBeanConfig, PropBeanDTO, ResponseEnvelopeListJobConfigRawDTO, SFTPConfig, Send, StoreConfig, StoreFilter, TaskConfig, TaskParam, TaskStepConfig, JobStepsDTO, ResponseEnvelopeListJobStepsDTO, ResponseEnvelopeListJobConfigDTO, ResponseEnvelopeJobConfigDTO, JobHistoryDto, JobMetricsDto, ResponseEnvelopeJobMetricsDto, JobConfigListDTO, ResponseEnvelopeListJobConfigListDTO, ApplicationInventory, AppInventoryConfig, InventoryBrand, InventoryStore, AppStoreRules, InventoryCategory, InventoryPrice, InventoryDiscount, AuthenticationConfig, ArticleAssignmentConfig, ArticleAssignmentRules, StorePriority, AppCartConfig, DeliveryCharges, Charges, AppPaymentConfig, CallbackUrl, Methods, PaymentModeConfig, PaymentSelectionLock, AppOrderConfig, AppLogisticsConfig, LoyaltyPointsConfig, AppInventoryPartialUpdate, BrandCompanyInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, StoreByBrandsRequest, StoreByBrandsResponse, BrandStoreInfo, CompanyBrandInfo, BrandsByCompanyResponse, CreateApplicationRequest, CreateAppResponse, ApplicationsResponse, MobileAppConfiguration, LandingImage, SplashImage, MobileAppConfigRequest, BuildVersionHistory, BuildVersion, AppSupportedCurrency, DefaultCurrency, CurrencyConfig, DomainAdd, DomainAddRequest, DomainsResponse, UpdateDomain, UpdateDomainTypeRequest, DomainStatusRequest, DomainStatus, DomainStatusResponse, DomainSuggestionsRequest, DomainSuggestion, DomainSuggestionsResponse, GetIntegrationsOptInsResponse, IntegrationOptIn, Validators, CompanyValidator, JsonSchema, StoreValidator, InventoryValidator, OrderValidator, IntegrationMeta, Integration, IntegrationConfigResponse, IntegrationLevel, UpdateIntegrationLevelRequest, OptedStoreIntegration, OtherEntity, LastPatch, OtherEntityData, App, AppInventory, AppDomain, CompaniesResponse, AppInventoryCompanies, StoresResponse, AppInventoryStores, FilterOrderingStoreRequest, DeploymentMeta, OrderingStoreConfig, OtherSellerCompany, OtherSellerApplication, OtherSellerApplications, OptedApplicationResponse, OptedCompany, OptedInventory, OptType, OptedStore, OptOutInventory, TokenResponse, Tokens, Firebase, Credentials, Ios, Android, Moengage, MoengageCredentials, Segment, SegmentCredentials, Gtm, GtmCredentials, Freshchat, FreshchatCredentials, Safetynet, SafetynetCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, RewardPointsConfig, Credit, Debit, ProductDetailFeature, LaunchPage, LandingPageFeature, RegistrationPageFeature, AppFeature, HomePageFeature, CommonFeature, CommunicationOptinDialogFeature, DeploymentStoreSelectionFeature, ListingPriceFeature, CurrencyFeature, RevenueEngineFeature, FeedbackFeature, CompareProductsFeature, CartFeature, QrFeature, PcrFeature, OrderFeature, AppFeatureRequest, AppFeatureResponse, UnhandledError, InvalidPayloadRequest, SuccessMessageResponse, InventoryBrandRule, StoreCriteriaRule, InventoryStoreRule, InventoryPaymentConfig, StorePriorityRule, ArticleAssignmentRule, InventoryArticleAssignment, CompanyAboutAddress, UserEmail, UserPhoneNumber, ApplicationInformation, InformationAddress, InformationPhone, InformationSupport, SocialLinks, FacebookLink, InstagramLink, TwitterLink, PinterestLink, GooglePlusLink, YoutubeLink, LinkedInLink, VimeoLink, BlogLink, Links, BusinessHighlights, ApplicationDetail, CurrenciesResponse, AppCurrencyResponse, StoreLatLong, OptedStoreAddress, OrderingStore, OrderingStores, OrderingStoresResponse, Identifier, CouponAction, CouponSchedule, PostOrder, PaymentAllowValue, PaymentModes, PriceRange, UsesRemaining, UsesRestriction, BulkBundleRestriction, Restrictions, RuleDefinition, Rule, DisplayMetaDict, DisplayMeta, Ownership, CouponAuthor, CouponDateMeta, State, Validity, Validation, CouponAdd, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, PromotionSchedule, PromotionAuthor, PostOrder1, UsesRemaining1, UsesRestriction1, UserRegistered, PaymentAllowValue1, PromotionPaymentModes, Restrictions1, PromotionAction, Ownership1, CompareObject, ItemCriteria, DiscountOffer, DiscountRule, Visibility, DisplayMeta1, PromotionDateMeta, PromotionListItem, PromotionsResponse, PromotionAdd, PromotionUpdate, PromotionPartialUpdate, CartItem, OpenapiCartDetailsRequest, CartProductIdentifer, ProductPrice, ProductPriceInfo, BaseInfo, BasePrice, ArticlePriceInfo, ProductArticle, PromoMeta, ProductImage, ActionQuery, ProductAction, CategoryInfo, CartProduct, AppliedPromotion, ProductAvailability, CartProductInfo, DisplayBreakup, RawBreakup, LoyaltyPoints, CouponBreakup, CartBreakup, OpenapiCartDetailsResponse, OpenApiErrorResponse, ShippingAddress, OpenApiCartServiceabilityRequest, PromiseTimestamp, PromiseFormatted, ShipmentPromise, OpenApiCartServiceabilityResponse, OpenApiFiles, CartItemMeta, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResponse, AbandonedCart, AbandonedCartResponse, CartCurrency, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, AppUser, E, Giveaway, GiveawayResponse, HistoryPretty, HistoryRes, Offer, Points, Referral, RewardUser, RewardsAudience, RewardsRule, Schedule, ShareMessages, UserRes, StatGroup, StatsGroups, StatsGroupComponent, StatsGroupComponents, StatsRes, ReceivedAt, AbandonCartsDetail, AbandonCartsList, AbandonCartDetail, ExportJobReq, ExportJobRes, ExportJobStatusRes, GetLogsListReq, MkpLogsResp, GetLogsListRes, SearchLogReq, LogInfo, SearchLogRes, ValidityObject, CreateUpdateDiscount, DiscountJob, ListOrCalender, FileJobResponse, DownloadFileJob, CancelJobResponse, UserDetails, BadRequestObject, AddProxyReq, AddProxyResponse, APIError, RemoveProxyResponse, EventConfig, EventConfigList, EventConfigResponse, SubscriberConfigList, EventProcessedStatus, EventPayload, SubscriberConfig, SubscriberResponse, SubscriberEvent, AuthMeta, Association, EventConfigBase, RequestBodyAuditLog, CreateLogResponse, LogMetaObj, EntityObject, LogSchemaResponse, LogDocs, EntityObj, Modifier, DeviceInfo, Location, EntityTypesResponse, EntityTypeObj };
 }
 import Common = require("./client/CommonPlatformClient");
 import Lead = require("./client/LeadPlatformClient");
@@ -404,7 +404,6 @@ type Ticket = {
     created_on?: CreatedOn;
     response_id?: string;
     content?: TicketContent;
-    ticket_id: string;
     category: string;
     sub_category?: string;
     source: any;
@@ -777,6 +776,7 @@ type SendOtpRequestSchema = {
     country_code?: string;
     captcha_code?: string;
     mobile?: string;
+    android_hash?: string;
 };
 type OAuthRequestSchema = {
     is_signed_in?: boolean;
@@ -2834,24 +2834,24 @@ type SystemNotifications = {
     page?: Page;
 };
 type PaymentGatewayConfigResponse = {
-    aggregators?: any[];
-    excluded_fields: string[];
-    success: boolean;
     display_fields: string[];
-    created: boolean;
+    excluded_fields: string[];
     app_id: string;
+    aggregators?: any[];
+    success: boolean;
+    created: boolean;
 };
 type ErrorCodeDescription = {
+    success: boolean;
     code: string;
     description: string;
-    success: boolean;
 };
 type PaymentGatewayConfig = {
     key: string;
+    secret: string;
+    is_active?: boolean;
     config_type: string;
     merchant_salt: string;
-    is_active?: boolean;
-    secret: string;
 };
 type PaymentGatewayConfigRequest = {
     aggregator_name?: PaymentGatewayConfig;
@@ -2871,61 +2871,64 @@ type HttpErrorCodeAndResponse = {
     error: ErrorCodeAndDescription;
 };
 type PaymentModeLogo = {
-    small: string;
     large: string;
+    small: string;
 };
 type IntentApp = {
-    code?: string;
-    package_name?: string;
     logos?: PaymentModeLogo;
+    package_name?: string;
     display_name?: string;
+    code?: string;
 };
 type IntentAppErrorList = {
-    code?: string;
     package_name?: string;
+    code?: string;
 };
 type PaymentModeList = {
+    card_type?: string;
+    card_number?: string;
+    remaining_limit?: number;
+    display_name?: string;
+    fynd_vpa?: string;
+    name?: string;
+    display_priority?: number;
     intent_app?: IntentApp[];
     timeout?: number;
-    card_token?: string;
-    card_id?: string;
-    retry_count?: number;
-    intent_app_error_list?: string[];
-    exp_year?: number;
-    card_type?: string;
-    display_priority?: number;
-    card_fingerprint?: string;
-    card_name?: string;
-    card_brand?: string;
-    logo_url?: PaymentModeLogo;
-    card_brand_image?: string;
-    name?: string;
-    card_issuer?: string;
     aggregator_name: string;
-    fynd_vpa?: string;
-    expired?: boolean;
-    card_reference?: string;
-    compliant_with_tokenisation_guidelines?: boolean;
-    display_name?: string;
-    code?: string;
-    intent_flow?: boolean;
-    merchant_code?: string;
-    card_number?: string;
-    card_isin?: string;
     nickname?: string;
-    exp_month?: number;
+    card_brand_image?: string;
+    expired?: boolean;
+    card_brand?: string;
     intent_app_error_dict_list?: IntentAppErrorList[];
+    cod_limit_per_order?: number;
+    merchant_code?: string;
+    card_issuer?: string;
+    intent_app_error_list?: string[];
+    card_isin?: string;
+    exp_month?: number;
+    card_token?: string;
+    compliant_with_tokenisation_guidelines?: boolean;
+    exp_year?: number;
+    card_fingerprint?: string;
+    intent_flow?: boolean;
+    card_reference?: string;
+    code?: string;
+    cod_limit?: number;
+    retry_count?: number;
+    card_id?: string;
+    logo_url?: PaymentModeLogo;
+    card_name?: string;
 };
 type RootPaymentMode = {
+    aggregator_name?: string;
+    is_pay_by_card_pl?: boolean;
+    display_name: string;
     name: string;
     display_priority: number;
-    aggregator_name?: string;
-    anonymous_enable?: boolean;
-    save_card?: boolean;
-    display_name: string;
-    list?: PaymentModeList[];
     add_card_enabled?: boolean;
-    is_pay_by_card_pl?: boolean;
+    list?: PaymentModeList[];
+    save_card?: boolean;
+    anonymous_enable?: boolean;
 };
 type PaymentOptions = {
     payment_option: RootPaymentMode[];
@@ -2935,55 +2938,55 @@ type PaymentOptionsResponse = {
     payment_options: PaymentOptions;
 };
 type PayoutsResponse = {
-    more_attributes: any;
     unique_transfer_no: any;
     is_default: boolean;
+    payouts_aggregators: any[];
+    more_attributes: any;
+    is_active: boolean;
     transfer_type: string;
     customers: any;
-    is_active: boolean;
-    payouts_aggregators: any[];
 };
 type PayoutBankDetails = {
-    bank_name?: string;
-    pincode?: number;
+    account_type: string;
     ifsc_code: string;
-    country?: string;
     account_no?: string;
     branch_name?: string;
-    account_holder?: string;
-    city?: string;
-    account_type: string;
+    country?: string;
     state?: string;
+    account_holder?: string;
+    bank_name?: string;
+    pincode?: number;
+    city?: string;
 };
 type PayoutRequest = {
     users: any;
-    aggregator: string;
+    is_active: boolean;
     bank_details: PayoutBankDetails;
     transfer_type: string;
-    is_active: boolean;
+    aggregator: string;
     unique_external_id: string;
 };
 type PayoutResponse = {
-    payouts: any;
-    success: boolean;
-    users: any;
-    payment_status: string;
-    aggregator: string;
     unique_transfer_no: string;
+    users: any;
     bank_details: any;
-    transfer_type: string;
-    created: boolean;
     is_active: boolean;
+    payouts: any;
+    transfer_type: string;
+    aggregator: string;
+    success: boolean;
+    payment_status: string;
+    created: boolean;
 };
 type UpdatePayoutResponse = {
-    is_active: boolean;
-    is_default: boolean;
     success: boolean;
+    is_default: boolean;
+    is_active: boolean;
 };
 type UpdatePayoutRequest = {
-    is_active: boolean;
-    is_default: boolean;
     unique_external_id: string;
+    is_default: boolean;
+    is_active: boolean;
 };
 type DeletePayoutResponse = {
     success: boolean;
@@ -2996,8 +2999,8 @@ type DeleteSubscriptionPaymentMethodResponse = {
     success: boolean;
 };
 type SubscriptionConfigResponse = {
-    config: any;
     success: boolean;
+    config: any;
     aggregator: string;
 };
 type SaveSubscriptionSetupIntentRequest = {
@@ -3008,26 +3011,26 @@ type SaveSubscriptionSetupIntentResponse = {
     data: any;
 };
 type RefundAccountResponse = {
-    message: string;
     success: boolean;
     is_verified_flag?: boolean;
     data?: any;
+    message: string;
 };
 type NotFoundResourceError = {
+    success: boolean;
     code: string;
     description: string;
-    success: boolean;
 };
 type BankDetailsForOTP = {
-    bank_name: string;
     ifsc_code: string;
-    branch_name: string;
     account_no: string;
+    branch_name: string;
     account_holder: string;
+    bank_name: string;
 };
 type AddBeneficiaryDetailsOTPRequest = {
-    order_id: string;
     details: BankDetailsForOTP;
+    order_id: string;
 };
 type IfscCodeResponse = {
     branch_name: string;
@@ -3035,41 +3038,41 @@ type IfscCodeResponse = {
     success?: boolean;
 };
 type OrderBeneficiaryDetails = {
-    bank_name: string;
-    subtitle: string;
-    email: string;
-    address: string;
+    is_active: boolean;
+    display_name: string;
+    title: string;
     delights_user_name?: string;
-    branch_name?: boolean;
+    transfer_mode: string;
+    comment?: string;
+    email: string;
     account_holder: string;
     beneficiary_id: string;
-    mobile?: boolean;
-    display_name: string;
-    transfer_mode: string;
-    account_no: string;
-    id: number;
-    comment?: boolean;
     created_on: string;
+    account_no: string;
+    bank_name: string;
+    address: string;
+    id: number;
     ifsc_code: string;
     modified_on: string;
-    title: string;
-    is_active: boolean;
+    mobile?: string;
+    branch_name?: string;
+    subtitle: string;
 };
 type OrderBeneficiaryResponse = {
-    beneficiaries?: OrderBeneficiaryDetails[];
     show_beneficiary_details?: boolean;
+    beneficiaries?: OrderBeneficiaryDetails[];
 };
 type MultiTenderPaymentMeta = {
-    payment_id?: string;
+    order_id?: string;
     current_status?: string;
     extra_meta?: any;
     payment_gateway?: string;
-    order_id?: string;
+    payment_id?: string;
 };
 type MultiTenderPaymentMethod = {
-    name?: string;
     meta?: MultiTenderPaymentMeta;
     amount: number;
+    name?: string;
     mode: string;
 };
 type PaymentConfirmationRequest = {
@@ -3077,9 +3080,29 @@ type PaymentConfirmationRequest = {
     order_id: string;
 };
 type PaymentConfirmationResponse = {
-    message: string;
     success: boolean;
     order_id: string;
+    message: string;
+};
+type CODdata = {
+    limit: number;
+    remaining_limit: number;
+    is_active: boolean;
+    user_id: string;
+    usages: number;
+};
+type GetUserCODLimitResponse = {
+    success: boolean;
+    user_cod_data: CODdata;
+};
+type SetCODForUserRequest = {
+    merchant_user_id: string;
+    is_active: boolean;
+    mobileno: string;
+};
+type SetCODOptionResponse = {
+    success: boolean;
+    message: string;
 };
 type GetActivityStatus = {
     activity_history: ActivityHistory;
@@ -4280,270 +4303,314 @@ type GetClickToCallResponse = {
 type ApefaceApiError = {
     message?: string;
 };
-type GetSearchWordsData = {
-    app_id?: string;
+type SearchKeywordResult = {
+    sort_on: string;
+    query: any;
+};
+type CreateSearchKeyword = {
     _custom_json?: any;
-    uid?: string;
     is_active?: boolean;
+    app_id?: string;
+    result: SearchKeywordResult;
     words?: string[];
+};
+type GetSearchWordsData = {
+    _custom_json?: any;
+    is_active?: boolean;
+    app_id?: string;
     result?: any;
+    uid?: string;
+    words?: string[];
+};
+type ErrorResponse = {
+    error?: string;
+    meta?: any;
+    status?: number;
+    code?: string;
+    message?: string;
+};
+type DeleteResponse = {
+    message?: string;
 };
 type GetSearchWordsDetailResponse = {
     items?: GetSearchWordsData;
     page?: Page;
 };
-type ErrorResponse = {
-    code?: string;
-    error?: string;
-    message?: string;
-    status?: number;
-    meta?: any;
-};
-type SearchKeywordResult = {
-    query: any;
-    sort_on: string;
-};
-type CreateSearchKeyword = {
-    app_id?: string;
-    _custom_json?: any;
-    is_active?: boolean;
-    words?: string[];
-    result: SearchKeywordResult;
-};
-type DeleteResponse = {
-    message?: string;
-};
 type GetSearchWordsResponse = {
     items?: GetSearchWordsData[];
     page?: Page;
 };
-type GetAutocompleteWordsData = {
-    app_id?: string;
-    _custom_json?: any;
-    uid?: string;
-    words?: string[];
-    results?: any[];
-};
-type GetAutocompleteWordsResponse = {
-    items?: GetAutocompleteWordsData[];
-    page?: Page;
+type Media = {
+    aspect_ratio?: string;
+    type?: string;
+    url?: string;
 };
 type AutocompletePageAction = {
+    params?: any;
     query?: any;
     url?: string;
-    params?: any;
     type?: string;
 };
 type AutocompleteAction = {
     type?: string;
     page?: AutocompletePageAction;
 };
-type Media = {
-    url?: string;
-    aspect_ratio?: string;
-    type?: string;
-};
 type AutocompleteResult = {
-    action?: AutocompleteAction;
     _custom_json?: any;
-    display?: string;
     logo?: Media;
+    action?: AutocompleteAction;
+    display?: string;
 };
 type CreateAutocompleteKeyword = {
-    app_id?: string;
     _custom_json?: any;
     is_active?: boolean;
-    words?: string[];
+    app_id?: string;
     results?: AutocompleteResult[];
-};
-type CreateAutocompleteWordsResponse = {
     words?: string[];
+};
+type GetAutocompleteWordsData = {
     _custom_json?: any;
     app_id?: string;
+    uid?: string;
     results?: any[];
+    words?: string[];
+};
+type GetAutocompleteWordsResponse = {
+    items?: GetAutocompleteWordsData[];
+    page?: Page;
+};
+type CreateAutocompleteWordsResponse = {
+    _custom_json?: any;
+    results?: any[];
+    words?: string[];
+    app_id?: string;
 };
 type ProductBundleItem = {
-    product_uid: number;
-    auto_add_to_cart?: boolean;
-    min_quantity: number;
-    max_quantity: number;
-    auto_select?: boolean;
     allow_remove?: boolean;
+    max_quantity: number;
+    product_uid: number;
+    min_quantity: number;
+    auto_select?: boolean;
+    auto_add_to_cart?: boolean;
 };
-type GetProductBundleCreateResponse = {
-    modified_by?: any;
-    company_id?: number;
+type ProductBundleRequest = {
     choice: string;
     same_store_assignment?: boolean;
-    modified_on?: string;
-    page_visibility?: string[];
-    id?: string;
-    is_active: boolean;
     name: string;
     products: ProductBundleItem[];
-    logo?: string;
-    created_on?: string;
-    slug: string;
+    is_active: boolean;
+    modified_on?: string;
     created_by?: any;
     meta?: any;
+    slug: string;
+    page_visibility?: string[];
+    modified_by?: any;
+    logo?: string;
+    company_id?: number;
+    created_on?: string;
+};
+type GetProductBundleCreateResponse = {
+    choice: string;
+    same_store_assignment?: boolean;
+    name: string;
+    products: ProductBundleItem[];
+    is_active: boolean;
+    modified_on?: string;
+    created_by?: any;
+    id?: string;
+    meta?: any;
+    slug: string;
+    page_visibility?: string[];
+    modified_by?: any;
+    logo?: string;
+    company_id?: number;
+    created_on?: string;
 };
 type GetProductBundleListingResponse = {
     items?: GetProductBundleCreateResponse[];
     page?: Page;
 };
-type ProductBundleRequest = {
-    modified_by?: any;
-    company_id?: number;
+type ProductBundleUpdateRequest = {
     choice: string;
     same_store_assignment?: boolean;
-    modified_on?: string;
-    page_visibility?: string[];
-    is_active: boolean;
     name: string;
     products: ProductBundleItem[];
-    logo?: string;
-    created_on?: string;
-    slug: string;
-    created_by?: any;
+    is_active: boolean;
+    modified_on?: string;
     meta?: any;
-};
-type Price = {
-    max_effective?: number;
-    currency?: string;
-    max_marked?: number;
-    min_marked?: number;
-    min_effective?: number;
+    slug: string;
+    page_visibility?: string[];
+    modified_by?: any;
+    logo?: string;
+    company_id?: number;
 };
 type LimitedProductData = {
-    price?: any;
-    short_description?: string;
+    attributes?: any;
+    name?: string;
+    sizes?: string[];
     item_code?: string;
-    identifier?: any;
-    uid?: number;
+    price?: any;
     country_of_origin?: string;
     quantity?: number;
     slug?: string;
-    attributes?: any;
-    sizes?: string[];
+    uid?: number;
+    short_description?: string;
     images?: string[];
-    name?: string;
+    identifier?: any;
 };
 type Size = {
     quantity?: number;
-    value?: string;
     is_available?: boolean;
     display?: string;
+    value?: string;
+};
+type Price = {
+    min_marked?: number;
+    min_effective?: number;
+    currency?: string;
+    max_marked?: number;
+    max_effective?: number;
 };
 type GetProducts = {
-    product_uid?: number;
-    auto_add_to_cart?: boolean;
-    min_quantity?: number;
-    price?: Price;
-    max_quantity?: number;
-    auto_select?: boolean;
     allow_remove?: boolean;
     product_details?: LimitedProductData;
+    max_quantity?: number;
     sizes?: Size[];
+    product_uid?: number;
+    min_quantity?: number;
+    price?: Price;
+    auto_select?: boolean;
+    auto_add_to_cart?: boolean;
 };
 type GetProductBundleResponse = {
-    company_id?: number;
     choice?: string;
     same_store_assignment?: boolean;
-    page_visibility?: string[];
-    is_active?: boolean;
-    products?: GetProducts[];
-    meta?: any;
-    logo?: string;
-    slug?: string;
     name?: string;
-};
-type ProductBundleUpdateRequest = {
-    modified_by?: any;
-    company_id?: number;
-    choice: string;
-    same_store_assignment?: boolean;
-    modified_on?: string;
-    page_visibility?: string[];
-    is_active: boolean;
-    name: string;
-    products: ProductBundleItem[];
+    is_active?: boolean;
     logo?: string;
-    slug: string;
     meta?: any;
-};
-type ListSizeGuide = {
-    items?: any[];
-    page?: any;
+    slug?: string;
+    page_visibility?: string[];
+    products?: GetProducts[];
+    company_id?: number;
 };
 type Meta = {
-    headers?: any;
     unit?: string;
+    headers?: any;
     values?: any[];
 };
 type Guide = {
     meta?: Meta;
 };
 type ValidateSizeGuide = {
-    modified_by?: any;
-    company_id?: number;
-    active?: boolean;
+    name: string;
     created_by?: any;
-    modified_on?: string;
-    id?: string;
     image?: string;
+    tag?: string;
+    modified_on?: string;
+    active?: boolean;
+    id?: string;
+    title: string;
+    description?: string;
     subtitle?: string;
     guide?: Guide;
-    created_on?: string;
-    description?: string;
-    title: string;
-    tag?: string;
+    modified_by?: any;
+    company_id?: number;
     brand_id?: number;
-    name: string;
+    created_on?: string;
 };
 type SuccessResponse = {
     success?: boolean;
 };
+type ListSizeGuide = {
+    items?: any[];
+    page?: any;
+};
 type SizeGuideResponse = {
-    modified_by?: any;
+    name?: string;
+    modified_on?: string;
+    tag?: string;
+    active?: boolean;
+    id?: string;
     company_id?: number;
     title?: string;
-    active?: boolean;
-    modified_on?: string;
-    id?: string;
     subtitle?: string;
     guide?: any;
-    created_on?: string;
+    modified_by?: any;
     created_by?: any;
-    tag?: string;
     brand_id?: number;
-    name?: string;
-};
-type MOQ = {
-    increment_unit?: number;
-    maximum?: number;
-    minimum?: number;
-};
-type ApplicationItemResponse = {
-    moq?: MOQ;
-    alt_text?: any;
-    seo?: SEO;
+    created_on?: string;
 };
 type MetaFields = {
-    value: string;
-    key: string;
+    value: any;
+    key: any;
+};
+type ApplicationItemSEO = {
+    description?: any;
+    title?: any;
+};
+type ApplicationItemMOQ = {
+    minimum?: number;
+    maximum?: number;
+    increment_unit?: number;
 };
 type ApplicationItemMeta = {
-    _custom_meta?: MetaFields[];
     _custom_json?: any;
+    _custom_meta?: MetaFields[];
+    is_cod?: boolean;
+    is_gift?: boolean;
+    seo?: ApplicationItemSEO;
+    moq?: ApplicationItemMOQ;
+    alt_text?: any;
 };
 type SuccessResponse1 = {
-    success?: boolean;
     uid?: number;
+    success?: boolean;
+};
+type SEOData = {
+    description?: any;
+    title?: any;
+};
+type MOQData = {
+    minimum?: number;
+    maximum?: number;
+    increment_unit?: number;
+};
+type OwnerAppItemResponse = {
+    is_cod?: boolean;
+    is_gift?: boolean;
+    seo?: SEOData;
+    moq?: MOQData;
+    alt_text?: any;
 };
 type GetConfigMetadataResponse = {
-    condition?: any[];
     data: any[];
     values?: any[];
+    condition?: any[];
+};
+type AttributeDetailsGroup = {
+    priority: number;
+    name: string;
+    is_active: boolean;
+    display_type: string;
+    key?: string;
+    unit?: string;
+    slug?: string;
+    logo?: string;
+};
+type AppConfigurationDetail = {
+    attributes?: AttributeDetailsGroup[];
+    priority: number;
+    name?: string;
+    is_active: boolean;
+    app_id: string;
+    template_slugs?: string[];
+    is_default: boolean;
+    slug: string;
+    logo?: string;
+};
+type ConfigErrorResponse = {
+    message: string;
 };
 type PageResponseType = {
     total_count: number;
@@ -4555,40 +4622,16 @@ type GetConfigResponse = {
     data: any[];
     page: PageResponseType;
 };
-type ConfigErrorResponse = {
-    message: string;
-};
-type AttributeDetailsGroup = {
-    display_type: string;
-    key?: string;
-    is_active: boolean;
-    name: string;
-    slug?: string;
-    priority: number;
-    unit?: string;
-    logo?: string;
-};
-type AppConfigurationDetail = {
-    template_slugs?: string[];
-    app_id: string;
-    is_active: boolean;
-    attributes?: AttributeDetailsGroup[];
-    logo?: string;
-    slug: string;
-    priority: number;
-    is_default: boolean;
-    name?: string;
-};
 type ConfigSuccessResponse = {
     message: string;
 };
 type AppConfigurationsSort = {
+    priority: number;
+    name?: string;
+    is_active: boolean;
+    key: string;
     app_id: string;
     default_key: string;
-    key: string;
-    is_active: boolean;
-    name?: string;
-    priority: number;
     is_default: boolean;
     logo?: string;
 };
@@ -4599,17 +4642,17 @@ type DefaultKeyRequest = {
     default_key: string;
 };
 type MetaDataListingSortMetaResponse = {
-    key?: string;
     display?: string;
+    key?: string;
 };
 type MetaDataListingSortResponse = {
     data?: MetaDataListingSortMetaResponse[];
 };
 type MetaDataListingFilterMetaResponse = {
-    units?: any[];
-    key?: string;
     filter_types?: string[];
+    units?: any[];
     display?: string;
+    key?: string;
 };
 type MetaDataListingFilterResponse = {
     data?: MetaDataListingFilterMetaResponse[];
@@ -4629,38 +4672,38 @@ type GetCatalogConfigurationMetaData = {
     product?: GetCatalogConfigurationDetailsProduct;
 };
 type ConfigurationListingSortConfig = {
-    key: string;
-    is_active: boolean;
-    logo?: string;
     priority: number;
     name?: string;
+    is_active: boolean;
+    key: string;
+    logo?: string;
 };
 type ConfigurationListingSort = {
-    default_key: string;
     config?: ConfigurationListingSortConfig[];
+    default_key: string;
 };
 type ConfigurationBucketPoints = {
     display?: string;
-    start?: number;
     end?: number;
+    start?: number;
 };
 type ConfigurationListingFilterValue = {
-    sort?: string;
     value?: string;
+    map_values?: any[];
     bucket_points?: ConfigurationBucketPoints[];
     map?: any;
+    sort?: string;
     condition?: string;
-    map_values?: any[];
 };
 type ConfigurationListingFilterConfig = {
-    display_name?: string;
-    key: string;
-    is_active: boolean;
-    logo?: string;
-    value_config?: ConfigurationListingFilterValue;
-    type: string;
     priority: number;
     name?: string;
+    is_active: boolean;
+    type: string;
+    key: string;
+    value_config?: ConfigurationListingFilterValue;
+    logo?: string;
+    display_name?: string;
 };
 type ConfigurationListingFilter = {
     allow_single: boolean;
@@ -4675,24 +4718,24 @@ type ProductSize = {
     min: number;
 };
 type ConfigurationProductVariantConfig = {
-    display_type: string;
-    key: string;
-    is_active: boolean;
-    logo?: string;
-    size: ProductSize;
     priority: number;
     name: string;
+    is_active: boolean;
+    display_type: string;
+    key: string;
+    size: ProductSize;
+    logo?: string;
 };
 type ConfigurationProductVariant = {
     config?: ConfigurationProductVariantConfig[];
 };
 type ConfigurationProductConfig = {
-    title?: string;
-    key: string;
-    is_active: boolean;
-    subtitle?: string;
-    size?: ProductSize;
     priority: number;
+    is_active: boolean;
+    key: string;
+    title?: string;
+    size?: ProductSize;
+    subtitle?: string;
     logo?: string;
 };
 type ConfigurationProductSimilar = {
@@ -4702,326 +4745,267 @@ type ConfigurationProduct = {
     variant: ConfigurationProductVariant;
     similar: ConfigurationProductSimilar;
 };
-type AppCatalogConfiguration = {
-    modified_by?: any;
-    app_id: string;
-    modified_on?: string;
-    id?: string;
+type AppConfiguration = {
     listing?: ConfigurationListing;
-    product?: ConfigurationProduct;
-    config_type: string;
     type?: string;
-    created_on?: string;
-    created_by?: any;
+    modified_on?: string;
+    app_id: string;
+    config_type: string;
+    product?: ConfigurationProduct;
     config_id?: string;
+    modified_by?: any;
+    created_by?: any;
+    created_on?: string;
+};
+type AppCatalogConfiguration = {
+    listing?: ConfigurationListing;
+    type?: string;
+    modified_on?: string;
+    app_id: string;
+    id?: string;
+    config_type: string;
+    product?: ConfigurationProduct;
+    config_id?: string;
+    modified_by?: any;
+    created_by?: any;
+    created_on?: string;
 };
 type GetAppCatalogConfiguration = {
-    is_default?: boolean;
     data?: AppCatalogConfiguration;
-};
-type AppConfiguration = {
-    modified_by?: any;
-    app_id: string;
-    modified_on?: string;
-    listing?: ConfigurationListing;
-    product?: ConfigurationProduct;
-    config_type: string;
-    type?: string;
-    created_on?: string;
-    created_by?: any;
-    config_id?: string;
+    is_default?: boolean;
 };
 type GetCatalogConfigurationDetailsSchemaListing = {
     sort?: any;
     filter?: any;
 };
 type EntityConfiguration = {
+    listing?: GetCatalogConfigurationDetailsSchemaListing;
     app_id: string;
     id?: string;
-    listing?: GetCatalogConfigurationDetailsSchemaListing;
-    product?: GetCatalogConfigurationDetailsProduct;
     config_type: string;
+    product?: GetCatalogConfigurationDetailsProduct;
     config_id?: string;
 };
 type GetAppCatalogEntityConfiguration = {
-    is_default?: boolean;
     data?: EntityConfiguration;
+    is_default?: boolean;
 };
 type ProductSortOn = {
     is_selected?: boolean;
-    value?: string;
     name?: string;
+    value?: string;
+};
+type ProductFiltersValue = {
+    query_format?: string;
+    selected_min?: number;
+    min?: number;
+    is_selected: boolean;
+    selected_max?: number;
+    display_format?: string;
+    value: any;
+    display: string;
+    currency_code?: string;
+    max?: number;
+    currency_symbol?: string;
+    count?: number;
 };
 type ProductFiltersKey = {
     name: string;
-    kind?: string;
     logo?: string;
     display: string;
     operators?: string[];
-};
-type ProductFiltersValue = {
-    currency_symbol?: string;
-    value: any;
-    display_format?: string;
-    is_selected: boolean;
-    currency_code?: string;
-    min?: number;
-    selected_min?: number;
-    query_format?: string;
-    display: string;
-    max?: number;
-    selected_max?: number;
-    count?: number;
+    kind?: string;
 };
 type ProductFilters = {
-    key: ProductFiltersKey;
     values: ProductFiltersValue[];
+    key: ProductFiltersKey;
 };
 type GetCollectionQueryOptionResponse = {
     sort_on?: ProductSortOn[];
     filters?: ProductFilters[];
     operators: any;
 };
-type Media1 = {
+type CollectionImage = {
+    aspect_ratio: string;
     url: string;
-    type?: string;
-    meta?: any;
+};
+type CollectionBanner = {
+    portrait: CollectionImage;
+    landscape: CollectionImage;
+};
+type CollectionSchedule = {
+    next_schedule?: NextSchedule[];
+    duration?: number;
+    cron?: string;
+    start?: string;
+    end?: string;
+};
+type CollectionBadge = {
+    text?: string;
+    color?: string;
+};
+type SeoDetail = {
+    description?: string;
+    title?: string;
+};
+type UserInfo = {
+    uid?: string;
+    username?: string;
+    email?: string;
+    user_id?: string;
 };
 type CollectionQuery = {
     attribute: string;
     op: string;
     value: any[];
 };
+type CreateCollection = {
+    _custom_json?: any;
+    allow_facets?: boolean;
+    is_active?: boolean;
+    app_id: string;
+    tags?: string[];
+    banners: CollectionBanner;
+    _schedule?: CollectionSchedule;
+    published?: boolean;
+    priority?: number;
+    is_visible?: boolean;
+    _locale_language?: any;
+    badge?: CollectionBadge;
+    sort_on?: string;
+    seo?: SeoDetail;
+    created_by?: UserInfo;
+    visible_facets_keys?: string[];
+    name: string;
+    type: string;
+    allow_sort?: boolean;
+    query?: CollectionQuery[];
+    meta?: any;
+    slug: string;
+    description?: string;
+    modified_by?: UserInfo;
+    logo: CollectionImage;
+};
 type BannerImage = {
-    url?: string;
     aspect_ratio?: string;
     type?: string;
+    url?: string;
 };
 type ImageUrls = {
     portrait?: BannerImage;
     landscape?: BannerImage;
 };
-type GetCollectionDetailNest = {
-    visible_facets_keys?: string[];
+type CollectionCreateResponse = {
     allow_facets?: boolean;
-    description?: string;
-    slug?: string;
-    priority?: number;
-    _schedule?: any;
-    badge?: any;
-    cron?: any;
-    tag?: string[];
-    action?: Action;
-    type?: string;
-    logo?: Media1;
-    allow_sort?: boolean;
-    meta?: any;
-    query?: CollectionQuery[];
-    app_id?: string;
-    uid?: string;
     is_active?: boolean;
+    app_id?: string;
     banners?: ImageUrls;
+    _schedule?: any;
+    priority?: number;
+    tag?: string[];
+    badge?: any;
+    sort_on?: string;
+    visible_facets_keys?: string[];
     name?: string;
+    type?: string;
+    cron?: any;
+    allow_sort?: boolean;
+    query?: CollectionQuery[];
+    meta?: any;
+    slug?: string;
+    description?: string;
+    logo?: BannerImage;
 };
 type CollectionListingFilterTag = {
-    is_selected?: boolean;
-    display?: string;
     name?: string;
+    display?: string;
+    is_selected?: boolean;
 };
 type CollectionListingFilterType = {
-    is_selected?: boolean;
-    display?: string;
     name?: string;
+    display?: string;
+    is_selected?: boolean;
 };
 type CollectionListingFilter = {
     tags?: CollectionListingFilterTag[];
     type?: CollectionListingFilterType[];
 };
-type GetCollectionListingResponse = {
-    items?: GetCollectionDetailNest[];
-    filters?: CollectionListingFilter;
-    page?: Page;
-};
-type CollectionSchedule = {
-    end?: string;
-    duration?: number;
-    next_schedule?: NextSchedule[];
-    cron?: string;
-    start?: string;
-};
-type CollectionBadge = {
-    text?: string;
-    color?: string;
-};
-type CollectionImage = {
-    url: string;
-    aspect_ratio: string;
-};
-type UserInfo = {
-    email?: string;
-    username?: string;
-    user_id?: string;
-    uid?: string;
-};
-type SeoDetail = {
-    title?: string;
-    description?: string;
-};
-type CollectionBanner = {
-    portrait: CollectionImage;
-    landscape: CollectionImage;
-};
-type CreateCollection = {
-    visible_facets_keys?: string[];
-    sort_on?: string;
-    allow_facets?: boolean;
-    description?: string;
-    slug: string;
-    priority?: number;
-    _schedule?: CollectionSchedule;
-    badge?: CollectionBadge;
-    tags?: string[];
-    _custom_json?: any;
-    published?: boolean;
-    type: string;
-    is_visible?: boolean;
-    logo: CollectionImage;
-    allow_sort?: boolean;
+type Media1 = {
+    type?: string;
     meta?: any;
-    query?: CollectionQuery[];
-    _locale_language?: any;
-    modified_by?: UserInfo;
-    app_id: string;
-    is_active?: boolean;
-    seo?: SeoDetail;
-    created_by?: UserInfo;
-    banners: CollectionBanner;
-    name: string;
+    url: string;
 };
-type CollectionCreateResponse = {
-    visible_facets_keys?: string[];
-    sort_on?: string;
+type GetCollectionDetailNest = {
     allow_facets?: boolean;
-    description?: string;
-    slug?: string;
-    priority?: number;
+    is_active?: boolean;
+    app_id?: string;
+    banners?: ImageUrls;
     _schedule?: any;
-    cron?: any;
+    priority?: number;
     tag?: string[];
     badge?: any;
-    type?: string;
-    logo?: BannerImage;
-    allow_sort?: boolean;
-    meta?: any;
-    query?: CollectionQuery[];
-    app_id?: string;
-    is_active?: boolean;
-    banners?: ImageUrls;
+    action?: Action;
+    uid?: string;
+    visible_facets_keys?: string[];
     name?: string;
+    type?: string;
+    cron?: any;
+    allow_sort?: boolean;
+    query?: CollectionQuery[];
+    meta?: any;
+    slug?: string;
+    description?: string;
+    logo?: Media1;
+};
+type GetCollectionListingResponse = {
+    filters?: CollectionListingFilter;
+    items?: GetCollectionDetailNest[];
+    page?: Page;
 };
 type CollectionDetailResponse = {
-    _schedule?: any;
-    app_id?: string;
-    allow_sort?: boolean;
-    visible_facets_keys?: string[];
-    is_active?: boolean;
-    name?: string;
-    meta?: any;
-    badge?: any;
-    slug?: string;
-    description?: string;
-    type?: string;
-    query?: CollectionQuery[];
     priority?: number;
-    cron?: any;
-    banners?: ImageUrls;
-    tag?: string[];
     allow_facets?: boolean;
+    name?: string;
+    is_active?: boolean;
+    type?: string;
+    app_id?: string;
+    tag?: string[];
+    cron?: any;
+    allow_sort?: boolean;
+    query?: CollectionQuery[];
+    meta?: any;
+    banners?: ImageUrls;
+    badge?: any;
+    description?: string;
+    slug?: string;
+    _schedule?: any;
     logo?: Media1;
+    visible_facets_keys?: string[];
 };
 type UpdateCollection = {
-    visible_facets_keys?: string[];
-    sort_on?: string;
-    allow_facets?: boolean;
-    description?: string;
-    slug?: string;
-    priority?: number;
-    _schedule?: CollectionSchedule;
-    badge?: CollectionBadge;
-    tags?: string[];
     _custom_json?: any;
-    published?: boolean;
-    type?: string;
-    is_visible?: boolean;
-    logo?: CollectionImage;
-    allow_sort?: boolean;
-    meta?: any;
-    query?: CollectionQuery[];
-    _locale_language?: any;
-    modified_by?: UserInfo;
+    allow_facets?: boolean;
     is_active?: boolean;
-    seo?: SeoDetail;
+    tags?: string[];
     banners?: CollectionBanner;
+    _schedule?: CollectionSchedule;
+    published?: boolean;
+    priority?: number;
+    is_visible?: boolean;
+    _locale_language?: any;
+    badge?: CollectionBadge;
+    sort_on?: string;
+    seo?: SeoDetail;
+    visible_facets_keys?: string[];
     name?: string;
-};
-type ProductDetailAttribute = {
-    value?: string;
-    key?: string;
     type?: string;
-};
-type ProductDetailGroupedAttribute = {
-    title?: string;
-    details?: ProductDetailAttribute[];
-};
-type Price1 = {
-    max?: number;
-    currency_symbol?: string;
-    min?: number;
-    currency_code?: string;
-};
-type ProductListingPrice = {
-    effective?: Price1;
-    marked?: Price1;
-};
-type ProductBrand = {
-    action?: Action;
-    uid?: number;
-    logo?: Media1;
-    name?: string;
-};
-type ProductListingDetail = {
-    similars?: string[];
-    has_variant?: boolean;
-    promo_meta?: any;
-    grouped_attributes?: ProductDetailGroupedAttribute[];
+    allow_sort?: boolean;
+    query?: CollectionQuery[];
+    meta?: any;
+    slug?: string;
     description?: string;
-    slug: string;
-    color?: string;
-    price?: ProductListingPrice;
-    short_description?: string;
-    brand?: ProductBrand;
-    product_online_date?: string;
-    tryouts?: string[];
-    type?: string;
-    teaser_tag?: any;
-    sellable?: boolean;
-    medias?: Media1[];
-    image_nature?: string;
-    item_type?: string;
-    rating?: number;
-    highlights?: string[];
-    discount?: string;
-    item_code?: string;
-    uid?: number;
-    rating_count?: number;
-    attributes?: any;
-    name?: string;
-};
-type GetCollectionItemsResponse = {
-    items?: ProductListingDetail[];
-    sort_on?: ProductSortOn[];
-    filters?: ProductFilters[];
-    page?: Page;
+    modified_by?: UserInfo;
+    logo?: CollectionImage;
 };
 type ItemQueryForUserCollection = {
     action?: string;
@@ -5036,49 +5020,108 @@ type UpdatedResponse = {
     message?: string;
     items_not_updated?: number[];
 };
-type CatalogInsightBrand = {
-    available_articles?: number;
-    total_articles?: number;
-    available_sizes?: number;
-    article_freshness?: number;
-    total_sizes?: number;
+type ProductDetailAttribute = {
+    value?: string;
+    type?: string;
+    key?: string;
+};
+type ProductDetailGroupedAttribute = {
+    details?: ProductDetailAttribute[];
+    title?: string;
+};
+type ProductBrand = {
+    uid?: number;
+    logo?: Media1;
     name?: string;
+    action?: Action;
+};
+type Price1 = {
+    currency_symbol?: string;
+    currency_code?: string;
+    max?: number;
+    min?: number;
+};
+type ProductListingPrice = {
+    effective?: Price1;
+    marked?: Price1;
+};
+type ProductListingDetail = {
+    rating?: number;
+    product_online_date?: string;
+    color?: string;
+    grouped_attributes?: ProductDetailGroupedAttribute[];
+    rating_count?: number;
+    brand?: ProductBrand;
+    attributes?: any;
+    item_code?: string;
+    has_variant?: boolean;
+    item_type?: string;
+    uid?: number;
+    image_nature?: string;
+    sellable?: boolean;
+    name?: string;
+    type?: string;
+    discount?: string;
+    similars?: string[];
+    slug: string;
+    tryouts?: string[];
+    promo_meta?: any;
+    teaser_tag?: any;
+    price?: ProductListingPrice;
+    description?: string;
+    short_description?: string;
+    medias?: Media1[];
+    highlights?: string[];
+};
+type GetCollectionItemsResponse = {
+    sort_on?: ProductSortOn[];
+    filters?: ProductFilters[];
+    items?: ProductListingDetail[];
+    page?: Page;
+};
+type CatalogInsightBrand = {
+    name?: string;
+    available_articles?: number;
+    article_freshness?: number;
+    available_sizes?: number;
+    total_articles?: number;
+    total_sizes?: number;
 };
 type CatalogInsightItem = {
-    sellable_count?: number;
-    count?: number;
     out_of_stock_count?: number;
+    count?: number;
+    sellable_count?: number;
 };
 type CatalogInsightResponse = {
     brand_distribution?: CatalogInsightBrand;
     item?: CatalogInsightItem;
 };
 type CrossSellingData = {
-    articles?: number;
     products?: number;
+    articles?: number;
 };
 type CrossSellingResponse = {
-    brand_distribution?: CatalogInsightBrand;
     data?: CrossSellingData;
+    brand_distribution?: CatalogInsightBrand;
 };
 type OptInPostRequest = {
+    enabled?: boolean;
     brand_ids?: number[];
     platform?: string;
-    company_id?: number;
     store_ids?: number[];
-    enabled?: boolean;
     opt_level: string;
+    company_id?: number;
 };
 type CompanyOptIn = {
+    enabled: boolean;
+    modified_on: number;
+    modified_by?: any;
     brand_ids: number[];
     platform: string;
-    company_id: number;
-    modified_by?: any;
-    modified_on: number;
     store_ids: number[];
-    enabled: boolean;
     created_by?: any;
     opt_level: string;
+    company_id: number;
     created_on: number;
 };
 type GetOptInPlatform = {
@@ -5086,15 +5129,15 @@ type GetOptInPlatform = {
     page: Page;
 };
 type OptinCompanyDetail = {
-    company_type?: string;
     business_type?: string;
+    company_type?: string;
     uid?: number;
     name?: string;
 };
 type CompanyBrandDetail = {
     company_id?: number;
-    brand_name?: string;
     total_article?: number;
+    brand_name?: string;
     brand_id?: number;
 };
 type OptinCompanyBrandDetailsView = {
@@ -5102,24 +5145,24 @@ type OptinCompanyBrandDetailsView = {
     page?: Page;
 };
 type OptinCompanyMetrics = {
+    brand?: number;
     company?: string;
     store?: number;
-    brand?: number;
 };
 type StoreDetail = {
-    company_id?: number;
-    display_name?: string;
     timing?: any;
+    name?: string;
     modified_on?: string;
     manager?: any;
+    store_type?: string;
+    address?: any;
     documents?: any[];
     uid?: number;
-    additional_contacts?: any[];
-    created_on?: string;
     store_code?: string;
-    address?: any;
-    store_type?: string;
-    name?: string;
+    additional_contacts?: any[];
+    company_id?: number;
+    display_name?: string;
+    created_on?: string;
 };
 type OptinStoreDetails = {
     items?: StoreDetail[];
@@ -5130,41 +5173,41 @@ type AttributeSchemaRange = {
     min?: number;
 };
 type AttributeMaster = {
+    type: string;
+    allowed_values?: string[];
     multi?: boolean;
     mandatory?: boolean;
-    type: string;
     format?: string;
     range?: AttributeSchemaRange;
-    allowed_values?: string[];
-};
-type AttributeMasterDetails = {
-    display_type: string;
-};
-type AttributeMasterFilter = {
-    priority?: number;
-    indexing: boolean;
-    depends_on?: string[];
 };
 type AttributeMasterMandatoryDetails = {
     l3_keys?: string[];
 };
 type AttributeMasterMeta = {
-    mandatory_details: AttributeMasterMandatoryDetails;
     enriched?: boolean;
+    mandatory_details: AttributeMasterMandatoryDetails;
+};
+type AttributeMasterFilter = {
+    indexing: boolean;
+    priority?: number;
+    depends_on?: string[];
+};
+type AttributeMasterDetails = {
+    display_type: string;
 };
 type GenderDetail = {
-    schema?: AttributeMaster;
-    details?: AttributeMasterDetails;
-    filters?: AttributeMasterFilter;
-    id?: string;
     name?: string;
-    enabled_for_end_consumer?: boolean;
     is_nested?: boolean;
-    logo?: string;
-    description?: string;
-    slug?: string;
     departments?: string[];
+    id?: string;
+    schema?: AttributeMaster;
     meta?: AttributeMasterMeta;
+    description?: string;
+    filters?: AttributeMasterFilter;
+    slug?: string;
+    logo?: string;
+    details?: AttributeMasterDetails;
+    enabled_for_end_consumer?: boolean;
 };
 type ProdcutTemplateCategoriesResponse = {
     items?: any[];
@@ -5172,57 +5215,22 @@ type ProdcutTemplateCategoriesResponse = {
 };
 type PTErrorResponse = {
     errors?: any;
+    meta?: any;
+    status?: number;
     code?: string;
     message?: string;
-    status?: number;
-    meta?: any;
-};
-type UserSerializer = {
-    contact?: string;
-    user_id?: string;
-    uid?: string;
-    _id?: string;
-    username?: string;
-};
-type GetDepartment = {
-    synonyms?: string[];
-    modified_by?: UserSerializer;
-    modified_on?: string;
-    uid?: number;
-    is_active?: boolean;
-    name?: string;
-    page_no?: number;
-    item_type?: string;
-    search?: string;
-    created_on?: string;
-    page_size?: number;
-    slug?: string;
-    created_by?: UserSerializer;
-    priority_order?: number;
-    logo?: string;
-};
-type DepartmentsResponse = {
-    items?: GetDepartment[];
-    page?: Page;
-};
-type DepartmentErrorResponse = {
-    errors?: any;
-    code?: string;
-    message?: string;
-    status?: number;
-    meta?: any;
 };
 type DepartmentCreateUpdate = {
-    synonyms?: string[];
-    tags?: string[];
     _custom_json?: any;
-    uid?: number;
-    is_active?: boolean;
-    name: string;
-    slug?: string;
     platforms?: any;
-    priority_order: number;
+    name: string;
+    is_active?: boolean;
     _cls?: string;
+    priority_order: number;
+    tags?: string[];
+    synonyms?: string[];
+    slug?: string;
+    uid?: number;
     logo: string;
 };
 type DepartmentCreateResponse = {
@@ -5232,380 +5240,417 @@ type DepartmentCreateResponse = {
 type DepartmentCreateErrorResponse = {
     error?: string;
 };
-type UserDetail = {
-    username: string;
+type UserSerializer = {
+    user_id?: string;
+    username?: string;
+    uid?: string;
+    _id?: string;
     contact?: string;
+};
+type GetDepartment = {
+    name?: string;
+    is_active?: boolean;
+    created_by?: UserSerializer;
+    modified_on?: string;
+    priority_order?: number;
+    search?: string;
+    item_type?: string;
+    synonyms?: string[];
+    slug?: string;
+    uid?: number;
+    page_size?: number;
+    modified_by?: UserSerializer;
+    page_no?: number;
+    logo?: string;
+    created_on?: string;
+};
+type DepartmentsResponse = {
+    items?: GetDepartment[];
+    page?: Page;
+};
+type DepartmentErrorResponse = {
+    errors?: any;
+    meta?: any;
+    status?: number;
+    code?: string;
+    message?: string;
+};
+type UserDetail = {
+    contact?: string;
+    username: string;
     user_id: string;
     super_user?: boolean;
 };
 type DepartmentModel = {
-    synonyms?: any[];
-    modified_by?: UserDetail;
+    _custom_json?: any;
     verified_on?: string;
+    name: any;
     verified_by?: UserDetail;
     modified_on: string;
-    _custom_json?: any;
-    uid?: number;
     is_active?: boolean;
-    _id?: any;
-    logo: string;
-    created_on: string;
-    slug?: any;
-    created_by?: UserDetail;
     priority_order: number;
     _cls?: any;
-    name: any;
+    logo: string;
+    synonyms?: any[];
+    slug?: any;
+    uid?: number;
+    modified_by?: UserDetail;
+    _id?: any;
+    created_by?: UserDetail;
+    created_on: string;
 };
 type ProductTemplate = {
-    modified_by?: any;
-    modified_on?: string;
-    categories?: string[];
-    is_physical: boolean;
-    is_active?: boolean;
-    is_expirable: boolean;
     attributes?: string[];
-    is_archived?: boolean;
-    logo?: string;
-    description?: string;
-    created_on?: string;
-    slug: string;
-    created_by?: any;
-    departments?: string[];
-    tag?: string;
+    is_expirable: boolean;
     name?: string;
+    is_active?: boolean;
+    is_archived?: boolean;
+    created_by?: any;
+    tag?: string;
+    modified_on?: string;
+    departments?: string[];
+    categories?: string[];
+    description?: string;
+    slug: string;
+    modified_by?: any;
+    logo?: string;
+    created_on?: string;
+    is_physical: boolean;
 };
 type TemplatesResponse = {
     items?: ProductTemplate;
     page?: Page;
 };
-type TemplateDetails = {
-    id?: string;
-    categories?: string[];
-    is_physical: boolean;
-    is_active?: boolean;
-    is_expirable: boolean;
-    attributes?: string[];
-    is_archived?: boolean;
-    logo?: string;
-    description?: string;
-    slug: string;
-    departments?: string[];
-    tag?: string;
-    name?: string;
-};
 type Properties = {
-    custom_order?: any;
-    multi_size?: any;
-    hsn_code?: any;
-    country_of_origin?: any;
-    media?: any;
-    description?: any;
-    slug?: any;
-    sizes?: any;
-    tags?: any;
-    return_config?: any;
-    short_description?: any;
     command?: any;
-    trader_type?: any;
-    teaser_tag?: any;
-    currency?: any;
-    brand_uid?: any;
-    no_of_boxes?: any;
-    product_group_tag?: any;
-    category_slug?: any;
-    item_type?: any;
-    size_guide?: any;
-    highlights?: any;
-    item_code?: any;
     is_active?: any;
     is_dependent?: any;
-    trader?: any;
+    sizes?: any;
+    tags?: any;
+    brand_uid?: any;
+    no_of_boxes?: any;
+    country_of_origin?: any;
+    item_code?: any;
+    item_type?: any;
+    multi_size?: any;
     variants?: any;
-    product_publish?: any;
+    product_group_tag?: any;
+    size_guide?: any;
     name?: any;
+    trader_type?: any;
+    trader?: any;
+    category_slug?: any;
+    product_publish?: any;
+    hsn_code?: any;
+    slug?: any;
+    return_config?: any;
+    currency?: any;
+    teaser_tag?: any;
+    media?: any;
+    custom_order?: any;
+    description?: any;
+    short_description?: any;
+    highlights?: any;
 };
 type GlobalValidation = {
-    required?: string[];
-    definitions?: any;
     type?: string;
-    description?: string;
+    required?: string[];
     title?: string;
     properties?: Properties;
+    description?: string;
+    definitions?: any;
 };
 type TemplateValidationData = {
     template_validation?: any;
     global_validation?: GlobalValidation;
 };
+type TemplateDetails = {
+    attributes?: string[];
+    is_expirable: boolean;
+    name?: string;
+    is_active?: boolean;
+    is_archived?: boolean;
+    tag?: string;
+    departments?: string[];
+    id?: string;
+    categories?: string[];
+    description?: string;
+    slug: string;
+    logo?: string;
+    is_physical: boolean;
+};
 type TemplatesValidationResponse = {
-    template_details?: TemplateDetails;
     data?: TemplateValidationData;
+    template_details?: TemplateDetails;
 };
 type InventoryValidationResponse = {
     message?: string;
     data?: any;
 };
 type HSNData = {
-    country_of_origin?: string[];
     hsn_code?: string[];
+    country_of_origin?: string[];
 };
 type HSNCodesResponse = {
     message?: string;
     data?: HSNData;
 };
+type ProductDownloadItemsData = {
+    brand?: string[];
+    templates?: string[];
+    type?: string;
+};
 type VerifiedBy = {
     username?: string;
     user_id?: string;
 };
-type ProductDownloadItemsData = {
-    templates?: string[];
-    brand?: string[];
-    type?: string;
-};
 type ProductDownloadsItems = {
-    task_id?: string;
-    template_tags?: any;
-    id?: string;
-    trigger_on?: string;
-    completed_on?: string;
     seller_id?: number;
+    id?: string;
     url?: string;
-    status?: string;
-    created_by?: VerifiedBy;
     data?: ProductDownloadItemsData;
+    status?: string;
+    task_id?: string;
+    completed_on?: string;
+    created_by?: VerifiedBy;
+    trigger_on?: string;
+    template_tags?: any;
 };
 type ProductDownloadsResponse = {
     items?: ProductDownloadsItems;
     page?: Page;
 };
 type ProductConfigurationDownloads = {
-    multivalue?: boolean;
     data?: any[];
-};
-type Hierarchy = {
-    department: number;
-    l2: number;
-    l1: number;
+    multivalue?: boolean;
 };
 type Media2 = {
+    logo: string;
     portrait: string;
     landscape: string;
-    logo: string;
 };
 type CategoryMappingValues = {
-    catalog_id?: number;
     name: string;
+    catalog_id?: number;
 };
 type CategoryMapping = {
+    ajio?: CategoryMappingValues;
     google?: CategoryMappingValues;
     facebook?: CategoryMappingValues;
-    ajio?: CategoryMappingValues;
 };
-type Category = {
-    synonyms?: string[];
-    modified_by?: any;
-    created_by?: any;
-    modified_on?: string;
-    id?: string;
-    uid?: number;
-    is_active: boolean;
-    hierarchy?: Hierarchy[];
-    created_on?: string;
-    tryouts?: string[];
-    level: number;
-    media?: Media2;
-    slug?: string;
-    priority?: number;
-    marketplaces?: CategoryMapping;
-    departments: number[];
-    name: string;
-};
-type CategoryResponse = {
-    items?: Category[];
-    page?: Page;
+type Hierarchy = {
+    l1: number;
+    department: number;
+    l2: number;
 };
 type CategoryRequestBody = {
-    synonyms?: string[];
-    is_active: boolean;
-    hierarchy?: Hierarchy[];
-    tryouts?: string[];
-    media?: Media2;
-    level: number;
-    slug?: string;
     priority?: number;
-    marketplaces?: CategoryMapping;
-    departments: number[];
     name: string;
+    is_active: boolean;
+    level: number;
+    departments: number[];
+    synonyms?: string[];
+    media?: Media2;
+    slug?: string;
+    tryouts?: string[];
+    marketplaces?: CategoryMapping;
+    hierarchy?: Hierarchy[];
 };
 type CategoryCreateResponse = {
     message?: string;
     uid?: number;
 };
-type SingleCategoryResponse = {
-    data?: Category;
+type Category = {
+    priority?: number;
+    name: string;
+    is_active: boolean;
+    modified_on?: string;
+    level: number;
+    departments: number[];
+    created_on?: string;
+    synonyms?: string[];
+    id?: string;
+    media?: Media2;
+    slug?: string;
+    uid?: number;
+    tryouts?: string[];
+    modified_by?: any;
+    created_by?: any;
+    marketplaces?: CategoryMapping;
+    hierarchy?: Hierarchy[];
+};
+type CategoryResponse = {
+    items?: Category[];
+    page?: Page;
 };
 type CategoryUpdateResponse = {
     message?: string;
     success?: boolean;
 };
-type Logo = {
-    secure_url?: string;
+type SingleCategoryResponse = {
+    data?: Category;
+};
+type TaxIdentifier = {
+    hsn_code?: string;
+    hsn_code_id?: string;
+    reporting_hsn?: string;
+};
+type Trader = {
+    name: any;
+    type?: string;
+    address?: string[];
+};
+type ProductPublish = {
+    product_online_date?: string;
+    is_set?: boolean;
+};
+type NetQuantity = {
+    unit?: any;
+    value?: number;
+};
+type ReturnConfig = {
+    unit: string;
+    returnable: boolean;
+    time: number;
+};
+type TeaserTag = {
     url?: string;
+    tag?: string;
+};
+type CustomOrder = {
+    manufacturing_time?: number;
+    is_custom_order?: boolean;
+    manufacturing_time_unit?: string;
+};
+type ProductCreateUpdate = {
+    _custom_json?: any;
+    tax_identifier: TaxIdentifier;
+    is_active?: boolean;
+    is_dependent?: boolean;
+    tags?: string[];
+    departments: number[];
+    brand_uid: number;
+    variants_group?: any;
+    no_of_boxes?: number;
+    country_of_origin: string;
+    bulk_job_id?: string;
+    item_code: any;
+    item_type: string;
+    change_request_id?: any;
+    multi_size?: boolean;
+    uid?: number;
+    action?: string;
+    variants?: any;
+    is_image_less_product?: boolean;
+    company_id: number;
+    product_group_tag?: string[];
+    size_guide?: string;
+    name: any;
+    trader: Trader[];
+    category_slug: string;
+    variant_media?: any;
+    product_publish?: ProductPublish;
+    is_set?: boolean;
+    net_quantity?: NetQuantity;
+    slug: string;
+    template_tag: string;
+    requester?: string;
+    return_config: ReturnConfig;
+    currency: string;
+    teaser_tag?: TeaserTag;
+    media?: Media1[];
+    custom_order?: CustomOrder;
+    description?: string;
+    short_description?: string;
+    highlights?: string[];
+};
+type Logo = {
     aspect_ratio?: string;
     aspect_ratio_f?: number;
+    url?: string;
+    secure_url?: string;
 };
 type Brand = {
     uid?: number;
     logo?: Logo;
     name?: string;
 };
+type ProductPublished = {
+    product_online_date?: number;
+    is_set?: boolean;
+};
 type Image = {
-    secure_url?: string;
-    url?: string;
     aspect_ratio?: string;
     aspect_ratio_f?: number;
-};
-type ProductPublished = {
-    is_set?: boolean;
-    product_online_date?: number;
+    url?: string;
+    secure_url?: string;
 };
 type Product = {
-    custom_order?: any;
-    all_sizes?: any[];
-    multi_size?: boolean;
-    country_of_origin?: string;
-    hsn_code?: string;
-    media?: Media1[];
-    description?: string;
-    slug?: string;
-    departments?: number[];
-    sizes?: any[];
-    color?: string;
-    short_description?: string;
-    id?: string;
     _custom_json?: any;
-    brand?: Brand;
-    currency?: string;
-    images?: Image[];
+    tax_identifier?: any;
+    is_active?: boolean;
+    sizes?: any[];
+    is_dependent?: boolean;
+    l3_mapping?: string[];
+    departments?: number[];
+    id?: string;
     brand_uid?: number;
     category_uid?: number;
-    category_slug?: string;
-    is_physical?: boolean;
-    is_expirable?: boolean;
-    image_nature?: string;
-    item_type?: string;
-    size_guide?: string;
-    tax_identifier?: any;
-    highlights?: string[];
-    is_set?: boolean;
+    country_of_origin?: string;
+    color?: string;
+    variant_group?: any;
+    brand?: Brand;
     item_code?: string;
-    template_tag?: string;
+    item_type?: string;
+    multi_size?: boolean;
     uid?: number;
-    l3_mapping?: string[];
-    is_active?: boolean;
-    is_dependent?: boolean;
-    primary_color?: string;
+    image_nature?: string;
     variants?: any;
-    product_publish?: ProductPublished;
+    size_guide?: string;
+    is_physical?: boolean;
     name?: string;
+    category_slug?: string;
+    product_publish?: ProductPublished;
+    is_set?: boolean;
+    hsn_code?: string;
+    slug?: string;
+    template_tag?: string;
+    images?: Image[];
+    is_expirable?: boolean;
+    all_sizes?: any[];
+    currency?: string;
+    media?: Media1[];
+    custom_order?: any;
+    description?: string;
+    primary_color?: string;
+    short_description?: string;
+    highlights?: string[];
 };
 type ProductListingResponse = {
     items?: Product[];
     page?: Page;
 };
-type CustomOrder = {
-    manufacturing_time_unit?: string;
-    is_custom_order?: boolean;
-    manufacturing_time?: number;
-};
-type NetQuantity = {
-    value?: number;
-    unit?: any;
-};
-type ReturnConfig = {
-    time: number;
-    returnable: boolean;
-    unit: string;
-};
-type TeaserTag = {
-    url?: string;
-    tag?: string;
-};
-type TaxIdentifier = {
-    reporting_hsn?: string;
-    hsn_code?: string;
-    hsn_code_id?: string;
-};
-type Trader = {
-    address?: string[];
-    type?: string;
-    name?: string;
-};
-type ProductPublish = {
-    is_set?: boolean;
-    product_online_date?: string;
-};
-type ProductCreateUpdate = {
-    custom_order?: CustomOrder;
-    requester?: string;
-    change_request_id?: any;
-    multi_size?: boolean;
-    country_of_origin: string;
-    media?: Media1[];
-    description?: string;
-    slug: string;
-    departments: number[];
-    net_quantity?: NetQuantity;
-    company_id: number;
-    tags?: string[];
-    is_image_less_product?: boolean;
-    short_description?: string;
-    return_config: ReturnConfig;
-    _custom_json?: any;
-    action?: string;
-    teaser_tag?: TeaserTag;
-    currency: string;
-    brand_uid: number;
-    no_of_boxes?: number;
-    bulk_job_id?: string;
-    product_group_tag?: string[];
-    category_slug: string;
-    item_type: string;
-    size_guide?: string;
-    tax_identifier: TaxIdentifier;
-    highlights?: string[];
-    is_set?: boolean;
-    item_code: any;
-    template_tag: string;
-    uid?: number;
-    is_active?: boolean;
-    variant_media?: any;
-    is_dependent?: boolean;
-    trader: Trader[];
-    variants?: any;
-    product_publish?: ProductPublish;
-    name: string;
-};
 type AttributeMasterSerializer = {
     modified_on?: string;
-    enabled_for_end_consumer?: boolean;
+    departments: string[];
+    tags?: string[];
+    raw_key?: string;
+    synonyms?: any;
+    schema: AttributeMaster;
+    created_by?: any;
+    suggestion?: string;
+    name?: string;
+    unit?: string;
+    slug: string;
+    filters: AttributeMasterFilter;
+    details: AttributeMasterDetails;
+    created_on?: string;
     is_nested?: boolean;
     description?: string;
-    slug: string;
-    unit?: string;
-    departments: string[];
-    synonyms?: any;
-    tags?: string[];
-    suggestion?: string;
-    logo?: string;
-    variant?: boolean;
-    details: AttributeMasterDetails;
-    schema: AttributeMaster;
     modified_by?: any;
-    filters: AttributeMasterFilter;
-    created_on?: string;
-    created_by?: any;
-    raw_key?: string;
-    name?: string;
+    variant?: boolean;
+    logo?: string;
+    enabled_for_end_consumer?: boolean;
 };
 type ProductAttributesResponse = {
     items: AttributeMasterSerializer[];
@@ -5613,71 +5658,71 @@ type ProductAttributesResponse = {
 type ValidateProduct = {
     valid?: boolean;
 };
+type UserInfo1 = {
+    uid?: string;
+    username?: string;
+    email?: string;
+    user_id?: string;
+};
+type BulkJob = {
+    is_active?: boolean;
+    failed?: number;
+    modified_on?: string;
+    cancelled_records?: any[];
+    custom_template_tag?: string;
+    tracking_url?: string;
+    total: number;
+    failed_records?: any[];
+    stage?: string;
+    template_tag?: string;
+    modified_by?: UserInfo1;
+    created_by?: UserInfo1;
+    file_path?: string;
+    company_id: number;
+    created_on: string;
+    cancelled?: number;
+    succeed?: number;
+};
+type BulkResponse = {
+    is_active?: boolean;
+    modified_on?: string;
+    modified_by?: UserInfo1;
+    created_by?: UserInfo1;
+    created_on: string;
+    batch_id: string;
+};
 type UserDetail1 = {
+    full_name?: string;
     username?: string;
     user_id?: string;
-    full_name?: string;
 };
 type ProductBulkRequest = {
+    is_active?: boolean;
+    failed?: number;
+    modified_on?: string;
+    cancelled_records?: string[];
+    failed_records?: string[];
+    total?: number;
+    stage?: string;
+    template_tag?: string;
+    template?: ProductTemplate;
+    modified_by?: UserDetail1;
+    created_by?: UserDetail1;
     file_path?: string;
     company_id?: number;
-    modified_by?: UserDetail1;
-    total?: number;
-    failed_records?: string[];
-    modified_on?: string;
-    template_tag?: string;
-    succeed?: number;
-    cancelled_records?: string[];
-    is_active?: boolean;
-    cancelled?: number;
-    stage?: string;
     created_on?: string;
-    created_by?: UserDetail1;
-    template?: ProductTemplate;
-    failed?: number;
+    cancelled?: number;
+    succeed?: number;
 };
 type ProductBulkRequestList = {
     items?: ProductBulkRequest;
     page?: Page;
 };
-type UserInfo1 = {
-    email?: string;
-    username?: string;
-    user_id?: string;
-    uid?: string;
-};
-type BulkJob = {
-    modified_by?: UserInfo1;
-    company_id: number;
-    file_path?: string;
-    total: number;
-    custom_template_tag?: string;
-    failed_records?: any[];
-    modified_on?: string;
-    succeed?: number;
-    template_tag?: string;
-    cancelled_records?: any[];
-    is_active?: boolean;
-    cancelled?: number;
-    stage?: string;
-    tracking_url?: string;
-    created_on: string;
-    created_by?: UserInfo1;
-    failed?: number;
-};
-type BulkResponse = {
-    modified_by?: UserInfo1;
-    modified_on?: string;
-    batch_id: string;
-    is_active?: boolean;
-    created_on: string;
-    created_by?: UserInfo1;
-};
 type BulkProductRequest = {
-    batch_id: string;
-    template_tag: string;
-    company_id: number;
     data: any[];
+    company_id: number;
+    template_tag: string;
+    batch_id: string;
 };
 type NestedTags = {
     tags?: string[];
@@ -5685,71 +5730,57 @@ type NestedTags = {
 type ProductTagsViewResponse = {
     items?: NestedTags;
 };
+type ProductBulkAssets = {
+    user: any;
+    company_id?: number;
+    url: string;
+};
 type UserCommon = {
     username?: string;
-    company_id?: number;
     user_id?: string;
+    company_id?: number;
 };
 type Items = {
-    modified_by?: UserCommon;
-    file_path?: string;
+    is_active?: boolean;
+    failed?: number;
+    modified_on?: string;
+    cancelled_records?: string[];
     retry?: number;
-    total?: number;
+    tracking_url?: string;
+    id?: string;
     company_id?: number;
     failed_records?: string[];
-    modified_on?: string;
-    succeed?: number;
-    id?: string;
-    cancelled_records?: string[];
-    is_active?: boolean;
-    cancelled?: number;
+    total?: number;
     stage?: string;
-    tracking_url?: string;
-    created_on?: string;
+    modified_by?: UserCommon;
     created_by?: UserCommon;
-    failed?: number;
+    file_path?: string;
+    succeed?: number;
+    created_on?: string;
+    cancelled?: number;
 };
 type BulkAssetResponse = {
     items?: Items[];
     page?: Page;
 };
-type ProductBulkAssets = {
-    company_id?: number;
-    url: string;
-    user: any;
-};
 type ProductSizeDeleteDataResponse = {
-    company_id?: number;
     size?: string;
+    company_id?: number;
     item_id?: number;
 };
 type ProductSizeDeleteResponse = {
-    success?: boolean;
     data?: ProductSizeDeleteDataResponse;
-};
-type InventoryResponse = {
-    store?: any;
-    price?: number;
-    inventory_updated_on?: string;
-    price_effective?: number;
-    price_transfer?: number;
-    item_id?: number;
-    uid?: string;
-    sellable_quantity?: number;
-    identifiers?: any;
-    size?: string;
-    quantity?: number;
-    currency?: string;
-    seller_identifier?: string;
-};
-type InventoryResponsePaginated = {
-    items?: InventoryResponse[];
-    page?: Page;
+    success?: boolean;
 };
 type ItemQuery = {
-    item_code?: string;
     uid?: number;
     brand_uid?: number;
+    item_code?: string;
+};
+type GTIN = {
+    primary?: boolean;
+    gtin_value: any;
+    gtin_type: string;
 };
 type SetSize = {
     pieces: number;
@@ -5763,142 +5794,156 @@ type InventorySet = {
     size_distribution: SizeDistribution;
     name?: string;
 };
-type GTIN = {
-    gtin_type: string;
-    gtin_value: string;
-    primary?: boolean;
-};
 type InvSize = {
+    item_dimensions_unit_of_measure?: string;
+    expiration_date?: string;
     item_length?: number;
+    currency: string;
+    item_height?: number;
     is_set?: boolean;
     price?: number;
-    item_dimensions_unit_of_measure?: string;
-    item_weight?: number;
-    store_code: string;
+    size: any;
+    identifiers: GTIN[];
+    quantity: number;
     price_effective: number;
     price_transfer?: number;
-    item_weight_unit_of_measure?: string;
-    set?: InventorySet;
     item_width?: number;
-    expiration_date?: string;
-    size: string;
-    identifiers: GTIN[];
-    item_height?: number;
-    quantity: number;
-    currency: string;
+    item_weight_unit_of_measure?: string;
+    store_code: string;
+    set?: InventorySet;
+    item_weight?: number;
 };
 type InventoryRequest = {
-    company_id: number;
     item: ItemQuery;
+    company_id: number;
     sizes: InvSize[];
+};
+type InventoryResponse = {
+    store?: any;
+    sellable_quantity?: number;
+    currency?: string;
+    inventory_updated_on?: string;
+    price?: number;
+    item_id?: number;
+    identifiers?: any;
+    quantity?: number;
+    price_effective?: number;
+    price_transfer?: number;
+    seller_identifier?: string;
+    size?: string;
+    uid?: string;
+};
+type InventoryResponsePaginated = {
+    items?: InventoryResponse[];
+    page?: Page;
+};
+type WeightResponse = {
+    unit: string;
+    is_default: boolean;
+    shipping: number;
+};
+type BrandMeta = {
+    name: string;
+    id: number;
+};
+type ManufacturerResponse = {
+    is_default: boolean;
+    name: string;
+    address: string;
+};
+type CompanyMeta = {
+    id: number;
 };
 type StoreMeta = {
     id: number;
 };
-type PriceMeta = {
-    transfer: number;
-    marked: number;
-    effective: number;
-    updated_at?: string;
-    currency: string;
-    tp_notes?: any;
-};
-type ReturnConfig1 = {
-    time?: number;
-    returnable?: boolean;
-    unit?: string;
-};
-type BrandMeta = {
-    id: number;
+type Trader1 = {
     name: string;
-};
-type ManufacturerResponse = {
-    address: string;
-    is_default: boolean;
-    name: string;
-};
-type WeightResponse = {
-    shipping: number;
-    unit: string;
-    is_default: boolean;
+    type: string;
+    address: string[];
 };
 type QuantityBase = {
     updated_at?: string;
     count?: number;
 };
+type ReturnConfig1 = {
+    unit?: string;
+    returnable?: boolean;
+    time?: number;
+};
+type PriceMeta = {
+    updated_at?: string;
+    currency: string;
+    transfer: number;
+    tp_notes?: any;
+    effective: number;
+    marked: number;
+};
 type DimensionResponse = {
     length: number;
-    height: number;
     width: number;
     unit: string;
     is_default: boolean;
-};
-type Trader1 = {
-    address: string[];
-    type: string;
-    name: string;
-};
-type CompanyMeta = {
-    id: number;
+    height: number;
 };
 type InventorySellerResponse = {
-    store: StoreMeta;
-    item_id: number;
-    expiration_date?: string;
-    country_of_origin: string;
-    fragile: boolean;
-    fynd_meta?: any;
-    trace_id?: string;
-    tags?: string[];
-    price: PriceMeta;
-    return_config?: ReturnConfig1;
-    identifier: any;
     _custom_json?: any;
-    raw_meta?: any;
-    brand: BrandMeta;
-    added_on_store?: string;
-    total_quantity: number;
-    size: string;
     fynd_article_code: string;
-    manufacturer: ManufacturerResponse;
-    seller_identifier: string;
-    track_inventory?: boolean;
-    weight: WeightResponse;
-    fynd_item_code: string;
-    set?: InventorySet;
-    quantities?: Quantities;
     tax_identifier?: any;
-    modified_by?: UserSerializer;
-    is_set?: boolean;
-    dimension: DimensionResponse;
-    uid: string;
     is_active?: boolean;
+    expiration_date?: string;
+    tags?: string[];
+    fynd_meta?: any;
+    item_id: number;
+    seller_identifier: string;
+    weight: WeightResponse;
     stage?: string;
-    trader?: Trader1[];
-    created_by?: UserSerializer;
+    country_of_origin: string;
+    total_quantity: number;
+    brand: BrandMeta;
+    uid: string;
+    fragile: boolean;
+    manufacturer: ManufacturerResponse;
     company: CompanyMeta;
+    created_by?: UserSerializer;
+    store: StoreMeta;
+    trader?: Trader1[];
+    is_set?: boolean;
     meta?: any;
+    quantities?: Quantities;
+    return_config?: ReturnConfig1;
+    added_on_store?: string;
+    raw_meta?: any;
+    trace_id?: string;
+    size: string;
+    price: PriceMeta;
+    track_inventory?: boolean;
+    fynd_item_code: string;
+    identifier: any;
+    modified_by?: UserSerializer;
+    set?: InventorySet;
+    dimension: DimensionResponse;
 };
 type InventorySellerIdentifierResponsePaginated = {
     items?: InventorySellerResponse[];
     page?: Page;
 };
 type BulkInventoryGetItems = {
+    is_active?: boolean;
+    failed?: number;
+    modified_on?: string;
+    cancelled_records?: string[];
+    id?: string;
+    failed_records?: string[];
+    total?: number;
+    stage?: string;
+    modified_by?: any;
+    created_by?: any;
     file_path?: string;
     company_id?: number;
-    modified_by?: any;
-    total?: number;
-    failed_records?: string[];
-    modified_on?: string;
-    id?: string;
-    succeed?: number;
-    cancelled_records?: string[];
-    is_active?: boolean;
-    cancelled?: number;
-    stage?: string;
     created_on?: string;
-    created_by?: any;
-    failed?: number;
+    cancelled?: number;
+    succeed?: number;
 };
 type BulkInventoryGet = {
     items?: BulkInventoryGetItems[];
@@ -5906,63 +5951,63 @@ type BulkInventoryGet = {
 };
 type InventoryJobPayload = {
     item_dimensions_unit_of_measure?: string;
-    price?: number;
-    tags?: string[];
-    price_effective?: number;
-    item_weight_unit_of_measure?: string;
     expiration_date?: string;
-    total_quantity?: number;
-    price_marked?: number;
+    trace_id?: string;
+    currency?: string;
+    tags?: string[];
+    price?: number;
+    seller_identifier: string;
     quantity?: number;
     store_code: string;
-    currency?: string;
-    seller_identifier: string;
-    trace_id?: string;
+    price_effective?: number;
+    item_weight_unit_of_measure?: string;
+    total_quantity?: number;
+    price_marked?: number;
 };
 type InventoryBulkRequest = {
-    batch_id: string;
+    user?: any;
     company_id: number;
     sizes: InventoryJobPayload[];
-    user?: any;
-};
-type InventoryExportJob = {
-    request_params?: any;
-    task_id: string;
-    trigger_on?: string;
-    completed_on?: string;
-    seller_id: number;
-    status?: string;
-    url?: string;
+    batch_id: string;
 };
 type InventoryExportRequest = {
-    store?: number[];
     brand?: number[];
     type?: string;
+    store?: number[];
 };
 type InventoryExportResponse = {
-    request_params?: any;
-    task_id: string;
-    trigger_on?: string;
     seller_id: number;
     status?: string;
+    task_id: string;
+    request_params?: any;
+    trigger_on?: string;
+};
+type InventoryExportJob = {
+    seller_id: number;
+    completed_on?: string;
+    url?: string;
+    status?: string;
+    task_id: string;
+    request_params?: any;
+    trigger_on?: string;
 };
 type FilerList = {
-    value?: string;
     display?: string;
+    value?: string;
 };
 type InventoryConfig = {
     data?: FilerList[];
     multivalues?: boolean;
 };
 type InventoryPayload = {
-    store_id: number;
-    tags?: string[];
-    price_effective?: number;
     expiration_date?: string;
-    price_marked?: number;
-    total_quantity?: number;
-    seller_identifier: string;
     trace_id?: string;
+    tags?: string[];
+    seller_identifier: string;
+    price_effective?: number;
+    total_quantity?: number;
+    price_marked?: number;
+    store_id: number;
 };
 type InventoryRequestSchemaV2 = {
     payload?: InventoryPayload[];
@@ -5974,52 +6019,52 @@ type InventoryFailedReason = {
     errors?: string;
 };
 type InventoryResponseItem = {
-    data?: InventoryPayload;
     reason?: InventoryFailedReason;
+    data?: InventoryPayload;
 };
 type InventoryUpdateResponse = {
-    items?: InventoryResponseItem[];
     message: string;
+    items?: InventoryResponseItem[];
+};
+type HsnUpsert = {
+    is_active?: boolean;
+    tax2?: number;
+    hs2_code: string;
+    threshold1: number;
+    hsn_code: string;
+    threshold2?: number;
+    uid?: number;
+    tax1: number;
+    tax_on_esp?: boolean;
+    company_id: number;
+    tax_on_mrp: boolean;
 };
 type HsnCodesObject = {
-    company_id?: number;
-    threshold1?: number;
     modified_on?: string;
-    id?: string;
     tax2?: number;
-    tax_on_esp?: boolean;
-    tax_on_mrp?: boolean;
-    hsn_code?: string;
     hs2_code?: string;
-    tax1?: number;
+    id?: string;
+    threshold1?: number;
+    hsn_code?: string;
     threshold2?: number;
+    tax1?: number;
+    tax_on_esp?: boolean;
+    company_id?: number;
+    tax_on_mrp?: boolean;
+};
+type HsnCode = {
+    data?: HsnCodesObject;
 };
 type PageResponse = {
     has_previous?: boolean;
+    has_next?: boolean;
     item_total?: number;
     size?: number;
-    has_next?: boolean;
     current?: string;
 };
 type HsnCodesListingResponse = {
     items?: HsnCodesObject[];
     page?: PageResponse;
-};
-type HsnUpsert = {
-    company_id: number;
-    threshold1: number;
-    tax2?: number;
-    uid?: number;
-    is_active?: boolean;
-    tax_on_esp?: boolean;
-    tax_on_mrp: boolean;
-    hsn_code: string;
-    hs2_code: string;
-    tax1: number;
-    threshold2?: number;
-};
-type HsnCode = {
-    data?: HsnCodesObject;
 };
 type BulkHsnUpsert = {
     data: HsnUpsert[];
@@ -6028,20 +6073,20 @@ type BulkHsnResponse = {
     success?: boolean;
 };
 type TaxSlab = {
-    rate: number;
-    cess?: number;
-    effective_date: string;
     threshold: number;
+    rate: number;
+    effective_date: string;
+    cess?: number;
 };
 type HSNDataInsertV2 = {
-    modified_by?: any;
+    type: string;
     modified_on?: string;
-    hsn_code: string;
     taxes: TaxSlab[];
     description: string;
-    type: string;
+    hsn_code: string;
     country_code: string;
     reporting_hsn: string;
+    modified_by?: any;
     created_by?: any;
     created_on?: string;
 };
@@ -6050,13 +6095,13 @@ type HsnCodesListingResponseSchemaV2 = {
     page?: PageResponse;
 };
 type BrandItem = {
-    discount?: string;
-    uid?: number;
     name?: string;
-    action?: Action;
+    discount?: string;
     departments?: string[];
-    slug?: string;
     banners?: ImageUrls;
+    slug?: string;
+    uid?: number;
+    action?: Action;
     logo?: Media;
 };
 type BrandListingResponse = {
@@ -6064,10 +6109,10 @@ type BrandListingResponse = {
     page: Page;
 };
 type Department = {
-    uid?: number;
     name?: string;
-    slug?: string;
     priority_order?: number;
+    slug?: string;
+    uid?: number;
     logo?: Media;
 };
 type DepartmentResponse = {
@@ -6079,85 +6124,85 @@ type DepartmentIdentifier = {
 };
 type ThirdLevelChild = {
     _custom_json?: any;
+    name?: string;
+    banners?: ImageUrls;
+    childs?: any[];
+    slug?: string;
     uid?: number;
     action?: Action;
-    slug?: string;
-    childs?: any[];
-    banners?: ImageUrls;
-    name?: string;
 };
 type SecondLevelChild = {
     _custom_json?: any;
+    name?: string;
+    banners?: ImageUrls;
+    childs?: ThirdLevelChild[];
+    slug?: string;
     uid?: number;
     action?: Action;
-    slug?: string;
-    childs?: ThirdLevelChild[];
-    banners?: ImageUrls;
-    name?: string;
 };
 type Child = {
     _custom_json?: any;
+    name?: string;
+    banners?: ImageUrls;
+    childs?: SecondLevelChild[];
+    slug?: string;
     uid?: number;
     action?: Action;
-    slug?: string;
-    childs?: SecondLevelChild[];
-    banners?: ImageUrls;
-    name?: string;
 };
 type CategoryItems = {
+    name?: string;
+    banners?: ImageUrls;
+    childs?: Child[];
+    slug?: string;
     uid?: number;
     action?: Action;
-    slug?: string;
-    childs?: Child[];
-    banners?: ImageUrls;
-    name?: string;
 };
 type DepartmentCategoryTree = {
-    items?: CategoryItems[];
     department?: string;
+    items?: CategoryItems[];
 };
 type CategoryListingResponse = {
     departments?: DepartmentIdentifier[];
     data?: DepartmentCategoryTree[];
 };
 type ApplicationProductListingResponse = {
-    filters?: ProductFilters[];
-    sort_on?: ProductSortOn[];
-    page: Page;
     items?: ProductListingDetail[];
+    sort_on?: ProductSortOn[];
+    filters?: ProductFilters[];
+    page: Page;
     operators?: any;
 };
 type ProductDetail = {
-    similars?: string[];
-    has_variant?: boolean;
-    promo_meta?: any;
-    grouped_attributes?: ProductDetailGroupedAttribute[];
-    description?: string;
-    slug: string;
-    color?: string;
-    short_description?: string;
-    brand?: ProductBrand;
-    product_online_date?: string;
-    tryouts?: string[];
-    type?: string;
-    teaser_tag?: any;
-    medias?: Media1[];
-    image_nature?: string;
-    item_type?: string;
     rating?: number;
-    highlights?: string[];
-    item_code?: string;
-    uid?: number;
+    product_online_date?: string;
+    color?: string;
+    grouped_attributes?: ProductDetailGroupedAttribute[];
     rating_count?: number;
+    brand?: ProductBrand;
     attributes?: any;
+    item_code?: string;
+    has_variant?: boolean;
+    item_type?: string;
+    uid?: number;
+    image_nature?: string;
     name?: string;
+    type?: string;
+    similars?: string[];
+    slug: string;
+    tryouts?: string[];
+    promo_meta?: any;
+    teaser_tag?: any;
+    description?: string;
+    short_description?: string;
+    medias?: Media1[];
+    highlights?: string[];
 };
 type InventoryPage = {
-    has_previous?: boolean;
-    item_total: number;
-    next_id?: string;
     type: string;
+    has_previous?: boolean;
+    next_id?: string;
     has_next?: boolean;
+    item_total: number;
 };
 type InventoryStockResponse = {
     items?: any[];
@@ -6170,150 +6215,150 @@ type ArticleQuery = {
 };
 type AssignStoreArticle = {
     group_id?: string;
-    quantity?: number;
-    query?: ArticleQuery;
     article_assignment?: ArticleAssignment;
+    query?: ArticleQuery;
     meta?: any;
+    quantity?: number;
 };
 type AssignStore = {
-    company_id?: number;
-    app_id: string;
     articles: AssignStoreArticle[];
-    store_ids?: number[];
-    pincode: string;
+    app_id: string;
     channel_type?: string;
+    pincode: string;
     channel_identifier?: string;
+    store_ids?: number[];
+    company_id?: number;
 };
 type ArticleAssignment1 = {
-    strategy?: string;
     level?: string;
+    strategy?: string;
 };
 type StoreAssignResponse = {
-    company_id?: number;
-    store_id?: number;
     group_id?: string;
-    price_effective?: number;
-    uid?: string;
-    item_id: number;
-    store_pincode?: number;
-    price_marked?: number;
     strategy_wise_listing?: any[];
-    _id?: string;
-    size: string;
-    status: boolean;
-    s_city?: string;
-    quantity: number;
-    article_assignment: ArticleAssignment1;
     index?: number;
+    article_assignment: ArticleAssignment1;
+    store_pincode?: number;
     meta?: any;
-};
-type Document = {
-    value: string;
-    verified?: boolean;
-    legal_name?: string;
-    type: string;
-    url?: string;
-};
-type InvoiceCredSerializer = {
-    username?: string;
-    password?: string;
-    enabled?: boolean;
-};
-type InvoiceDetailsSerializer = {
-    e_invoice?: InvoiceCredSerializer;
-    e_waybill?: InvoiceCredSerializer;
-};
-type SellerPhoneNumber = {
-    country_code: number;
-    number: string;
-};
-type LocationManagerSerializer = {
-    email?: string;
-    mobile_no: SellerPhoneNumber;
-    name?: string;
-};
-type ProductReturnConfigSerializer = {
-    on_same_store?: boolean;
-    store_uid?: number;
-};
-type LocationTimingSerializer = {
-    minute?: number;
-    hour?: number;
-};
-type LocationDayWiseSerializer = {
-    open: boolean;
-    closing?: LocationTimingSerializer;
-    weekday: string;
-    opening?: LocationTimingSerializer;
-};
-type GetAddressSerializer = {
-    address2?: string;
-    state?: string;
-    address1?: string;
-    longitude?: number;
-    pincode?: number;
-    country?: string;
-    address_type?: string;
-    landmark?: string;
-    country_code?: string;
-    latitude?: number;
-    city?: string;
-};
-type UserSerializer1 = {
-    username?: string;
-    contact?: string;
-    user_id?: string;
+    size: string;
+    item_id: number;
+    quantity: number;
+    status: boolean;
+    uid?: string;
+    price_effective?: number;
+    s_city?: string;
+    _id?: string;
+    company_id?: number;
+    price_marked?: number;
+    store_id?: number;
 };
 type LocationIntegrationType = {
     order?: string;
     inventory?: string;
 };
-type UserSerializer2 = {
-    username?: string;
+type ProductReturnConfigSerializer = {
+    store_uid?: number;
+    on_same_store?: boolean;
+};
+type SellerPhoneNumber = {
+    country_code: number;
+    number: string;
+};
+type LocationTimingSerializer = {
+    hour?: number;
+    minute?: number;
+};
+type LocationDayWiseSerializer = {
+    closing?: LocationTimingSerializer;
+    opening?: LocationTimingSerializer;
+    open: boolean;
+    weekday: string;
+};
+type GetAddressSerializer = {
+    state?: string;
+    city?: string;
+    address1?: string;
+    landmark?: string;
+    pincode?: number;
+    country?: string;
+    country_code?: string;
+    address2?: string;
+    latitude?: number;
+    address_type?: string;
+    longitude?: number;
+};
+type UserSerializer1 = {
     contact?: string;
+    username?: string;
     user_id?: string;
 };
 type GetCompanySerializer = {
-    modified_by?: UserSerializer2;
-    verified_on?: string;
-    verified_by?: UserSerializer2;
-    modified_on?: string;
     business_type?: string;
+    verified_on?: string;
+    name?: string;
+    verified_by?: UserSerializer1;
+    modified_on?: string;
     company_type?: string;
     uid?: number;
-    addresses?: GetAddressSerializer[];
     stage?: string;
-    created_on?: string;
-    created_by?: UserSerializer2;
     reject_reason?: string;
+    addresses?: GetAddressSerializer[];
+    modified_by?: UserSerializer1;
+    created_by?: UserSerializer1;
+    created_on?: string;
+};
+type UserSerializer2 = {
+    contact?: string;
+    username?: string;
+    user_id?: string;
+};
+type InvoiceCredSerializer = {
+    enabled?: boolean;
+    username?: string;
+    password?: string;
+};
+type InvoiceDetailsSerializer = {
+    e_waybill?: InvoiceCredSerializer;
+    e_invoice?: InvoiceCredSerializer;
+};
+type LocationManagerSerializer = {
+    email?: string;
     name?: string;
+    mobile_no: SellerPhoneNumber;
+};
+type Document = {
+    type: string;
+    value: string;
+    url?: string;
+    verified?: boolean;
+    legal_name?: string;
 };
 type GetLocationSerializer = {
-    modified_on?: string;
-    documents?: Document[];
-    gst_credentials?: InvoiceDetailsSerializer;
-    display_name: string;
-    manager?: LocationManagerSerializer;
     _custom_json?: any;
-    code: string;
+    modified_on?: string;
+    integration_type?: LocationIntegrationType;
+    product_return_config?: ProductReturnConfigSerializer;
+    stage?: string;
     notification_emails?: string[];
+    contact_numbers?: SellerPhoneNumber[];
+    timing?: LocationDayWiseSerializer[];
+    phone_number: string;
+    address: GetAddressSerializer;
+    uid?: number;
+    company?: GetCompanySerializer;
+    created_by?: UserSerializer2;
+    display_name: string;
+    gst_credentials?: InvoiceDetailsSerializer;
+    name: string;
+    warnings?: any;
+    store_type?: string;
+    code: string;
     created_on?: string;
     verified_on?: string;
-    product_return_config?: ProductReturnConfigSerializer;
-    timing?: LocationDayWiseSerializer[];
-    address: GetAddressSerializer;
-    store_type?: string;
-    modified_by?: UserSerializer1;
-    warnings?: any;
-    verified_by?: UserSerializer1;
-    integration_type?: LocationIntegrationType;
-    uid?: number;
-    stage?: string;
-    contact_numbers?: SellerPhoneNumber[];
-    phone_number: string;
-    created_by?: UserSerializer1;
-    company?: GetCompanySerializer;
-    name: string;
+    verified_by?: UserSerializer2;
+    manager?: LocationManagerSerializer;
+    documents?: Document[];
+    modified_by?: UserSerializer2;
 };
 type LocationListSerializer = {
     items?: GetLocationSerializer[];
@@ -6325,12 +6370,36 @@ type ApplicationBrandJson = {
 type ApplicationCategoryJson = {
     _custom_json: any;
 };
+type ApplicationDepartment = {
+    _custom_json?: any;
+    name?: string;
+    is_active?: boolean;
+    app_id: string;
+    uid: number;
+    logo?: string;
+};
+type ApplicationDepartmentListingResponse = {
+    items?: ApplicationDepartment[];
+    page: Page;
+};
+type ApplicationDepartmentJson = {
+    _custom_json: any;
+};
 type ApplicationStoreJson = {
     _custom_json: any;
 };
+type CompanyTaxesSerializer = {
+    enable?: boolean;
+    effective_date?: string;
+    rate?: number;
+};
+type ContactDetails = {
+    phone?: SellerPhoneNumber[];
+    emails?: string[];
+};
 type BusinessCountryInfo = {
-    country?: string;
     country_code?: string;
+    country?: string;
 };
 type Website = {
     url?: string;
@@ -6338,242 +6407,233 @@ type Website = {
 type BusinessDetails = {
     website?: Website;
 };
-type ContactDetails = {
-    emails?: string[];
-    phone?: SellerPhoneNumber[];
-};
-type CompanyTaxesSerializer = {
-    enable?: boolean;
-    rate?: number;
-    effective_date?: string;
-};
 type GetCompanyProfileSerializerResponse = {
-    business_country_info?: BusinessCountryInfo;
-    created_by?: UserSerializer;
-    business_details?: BusinessDetails;
-    company_type: string;
+    addresses?: GetAddressSerializer[];
+    taxes?: CompanyTaxesSerializer[];
     created_on?: string;
+    warnings?: any;
+    uid: number;
+    franchise_enabled?: boolean;
+    notification_emails?: string[];
+    modified_by?: UserSerializer;
+    _custom_json?: any;
+    verified_by?: UserSerializer;
+    created_by?: UserSerializer;
     contact_details?: ContactDetails;
     verified_on?: string;
-    uid: number;
-    _custom_json?: any;
-    mode?: string;
-    verified_by?: UserSerializer;
-    stage?: string;
+    business_country_info?: BusinessCountryInfo;
     documents?: Document[];
-    notification_emails?: string[];
-    business_type: string;
-    franchise_enabled?: boolean;
-    taxes?: CompanyTaxesSerializer[];
-    name?: string;
-    modified_by?: UserSerializer;
-    business_info?: string;
-    addresses?: GetAddressSerializer[];
-    warnings?: any;
+    business_details?: BusinessDetails;
     modified_on?: string;
+    company_type: string;
+    stage?: string;
+    mode?: string;
+    name?: string;
+    business_type: string;
+    business_info?: string;
 };
 type CreateUpdateAddressSerializer = {
     address2?: string;
-    landmark?: string;
-    address_type: string;
-    address1: string;
-    pincode: number;
-    state: string;
-    longitude: number;
-    latitude: number;
     country: string;
-    city: string;
+    state: string;
     country_code?: string;
+    latitude: number;
+    pincode: number;
+    address1: string;
+    longitude: number;
+    landmark?: string;
+    city: string;
+    address_type: string;
 };
 type CompanyTaxesSerializer1 = {
     enable?: boolean;
-    rate?: number;
     effective_date?: string;
+    rate?: number;
 };
 type UpdateCompany = {
-    name?: string;
-    business_details?: BusinessDetails;
-    _custom_json?: any;
-    business_info?: string;
     addresses?: CreateUpdateAddressSerializer[];
-    company_type?: string;
-    contact_details?: ContactDetails;
-    reject_reason?: string;
+    taxes?: CompanyTaxesSerializer1[];
+    _custom_json?: any;
+    name?: string;
     warnings?: any;
     documents?: Document[];
-    notification_emails?: string[];
-    taxes?: CompanyTaxesSerializer1[];
     business_type?: string;
+    reject_reason?: string;
+    business_details?: BusinessDetails;
+    contact_details?: ContactDetails;
+    business_info?: string;
+    company_type?: string;
     franchise_enabled?: boolean;
+    notification_emails?: string[];
 };
 type ProfileSuccessResponse = {
-    uid?: number;
     success?: boolean;
+    uid?: number;
 };
 type DocumentsObj = {
-    verified?: number;
     pending?: number;
+    verified?: number;
 };
 type MetricsSerializer = {
+    product?: DocumentsObj;
     uid?: number;
-    store_documents?: DocumentsObj;
     store?: DocumentsObj;
     brand?: DocumentsObj;
+    store_documents?: DocumentsObj;
     company_documents?: DocumentsObj;
     stage?: string;
-    product?: DocumentsObj;
 };
 type BrandBannerSerializer = {
     portrait?: string;
     landscape?: string;
 };
 type GetBrandResponseSerializer = {
-    created_by?: UserSerializer;
-    description?: string;
     created_on?: string;
-    verified_on?: string;
-    uid?: number;
-    slug_key?: string;
-    banner?: BrandBannerSerializer;
-    _custom_json?: any;
-    _locale_language?: any;
-    mode?: string;
-    verified_by?: UserSerializer;
-    stage?: string;
-    name: string;
-    modified_by?: UserSerializer;
-    synonyms?: string[];
     warnings?: any;
+    uid?: number;
+    description?: string;
+    _locale_language?: any;
+    modified_by?: UserSerializer;
+    _custom_json?: any;
+    verified_by?: UserSerializer;
+    created_by?: UserSerializer;
+    verified_on?: string;
+    banner?: BrandBannerSerializer;
     modified_on?: string;
-    logo?: string;
     reject_reason?: string;
+    stage?: string;
+    logo?: string;
+    mode?: string;
+    slug_key?: string;
+    name: string;
+    synonyms?: string[];
 };
 type CreateUpdateBrandRequestSerializer = {
+    logo: string;
+    _custom_json?: any;
+    banner?: BrandBannerSerializer;
+    name: string;
+    synonyms?: string[];
     company_id?: number;
     uid?: number;
-    name: string;
     description?: string;
-    banner?: BrandBannerSerializer;
-    _custom_json?: any;
-    _locale_language?: any;
-    synonyms?: string[];
     brand_tier?: string;
-    logo: string;
+    _locale_language?: any;
 };
 type CompanySocialAccounts = {
-    name: string;
     url: string;
+    name: string;
 };
 type CompanyDetails = {
     socials?: CompanySocialAccounts[];
     website_url?: string;
 };
 type CompanySerializer = {
-    verified_on?: string;
-    uid?: number;
-    name?: string;
-    business_country_info?: BusinessCountryInfo;
     modified_by?: UserSerializer;
     details?: CompanyDetails;
-    modified_on?: string;
-    stage?: string;
-    _custom_json?: any;
-    market_channels?: string[];
-    created_by?: UserSerializer;
     addresses?: GetAddressSerializer[];
-    company_type: string;
-    reject_reason?: string;
-    verified_by?: UserSerializer;
+    market_channels?: string[];
     created_on?: string;
-    notification_emails?: string[];
+    _custom_json?: any;
+    verified_by?: UserSerializer;
+    name?: string;
+    business_country_info?: BusinessCountryInfo;
+    created_by?: UserSerializer;
+    uid?: number;
     business_type: string;
+    stage?: string;
+    reject_reason?: string;
+    modified_on?: string;
+    company_type: string;
+    verified_on?: string;
+    notification_emails?: string[];
 };
 type CompanyBrandSerializer = {
-    verified_on?: string;
-    uid?: number;
     modified_by?: UserSerializer;
-    stage?: string;
-    modified_on?: string;
-    company?: CompanySerializer;
-    brand?: GetBrandResponseSerializer;
-    created_by?: UserSerializer;
-    warnings?: any;
-    verified_by?: UserSerializer;
     created_on?: string;
+    verified_by?: UserSerializer;
+    company?: CompanySerializer;
+    warnings?: any;
+    created_by?: UserSerializer;
+    uid?: number;
+    brand?: GetBrandResponseSerializer;
+    modified_on?: string;
     reject_reason?: string;
+    verified_on?: string;
+    stage?: string;
 };
 type CompanyBrandListSerializer = {
     page?: Page;
     items?: CompanyBrandSerializer[];
 };
 type CompanyBrandPostRequestSerializer = {
+    brands: number[];
     company: number;
     uid?: number;
-    brands: number[];
 };
 type LocationSerializer = {
-    manager?: LocationManagerSerializer;
-    uid?: number;
-    name: string;
-    address: GetAddressSerializer;
-    contact_numbers?: SellerPhoneNumber[];
-    product_return_config?: ProductReturnConfigSerializer;
-    stage?: string;
-    company: number;
-    _custom_json?: any;
-    store_type?: string;
-    warnings?: any;
-    display_name: string;
-    documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
     notification_emails?: string[];
+    _custom_json?: any;
+    company: number;
+    name: string;
+    display_name: string;
+    warnings?: any;
+    documents?: Document[];
+    uid?: number;
+    manager?: LocationManagerSerializer;
+    address: GetAddressSerializer;
+    store_type?: string;
     timing?: LocationDayWiseSerializer[];
+    contact_numbers?: SellerPhoneNumber[];
+    product_return_config?: ProductReturnConfigSerializer;
     code: string;
+    stage?: string;
 };
 type BulkLocationSerializer = {
     data?: LocationSerializer[];
 };
 type _ArticleQuery = {
-    ignored_stores?: number[];
     item_id?: number;
     size?: string;
+    ignored_stores?: number[];
 };
 type _ArticleAssignment = {
     strategy?: string;
     level?: string;
 };
 type _AssignStoreArticle = {
-    quantity?: number;
     query?: _ArticleQuery;
-    group_id?: string;
-    article_assignment?: _ArticleAssignment;
     meta?: any;
+    article_assignment?: _ArticleAssignment;
+    quantity?: number;
+    group_id?: string;
 };
 type AssignStoreRequestValidator = {
-    company_id?: number;
-    app_id?: string;
-    store_ids?: number[];
-    pincode?: string;
     articles?: _AssignStoreArticle[];
-    channel_identifier?: string;
+    store_ids?: number[];
+    company_id?: number;
     channel_type?: string;
+    pincode?: string;
+    channel_identifier?: string;
+    app_id?: string;
 };
 type AssignStoreResponseSerializer = {
-    company_id?: number;
-    item_id?: number;
     size?: string;
     index?: number;
-    uid?: string;
-    price_marked?: number;
-    preice_effective?: number;
-    store_id?: number;
     _id?: string;
+    company_id?: number;
+    preice_effective?: number;
+    uid?: string;
+    meta?: any;
+    item_id?: number;
+    store_id?: number;
+    price_marked?: number;
+    s_city?: string;
+    article_assignment?: _ArticleAssignment;
     quantity?: number;
     store_pincode?: string;
     status?: boolean;
-    article_assignment?: _ArticleAssignment;
-    s_city?: string;
-    meta?: any;
 };
 type FailedResponse = {
     message: string;
@@ -8289,72 +8349,44 @@ type OrderingStoresResponse = {
     page?: Page;
     items?: OrderingStore[];
 };
-type Rule = {
-    value?: number;
-    discount_qty?: number;
-    min?: number;
-    key?: number;
-    max?: number;
+type Identifier = {
+    company_id?: number[];
+    category_id?: number[];
+    exclude_brand_id?: number[];
+    item_id?: number[];
+    article_id?: string[];
+    store_id?: number[];
+    brand_id?: number[];
+    collection_id?: string[];
+    user_id?: string[];
 };
-type RuleDefinition = {
-    currency_code?: string;
-    is_exact?: boolean;
-    calculate_on: string;
-    auto_apply?: boolean;
-    value_type: string;
-    scope?: string[];
-    applicable_on: string;
-    type: string;
-};
-type CouponDateMeta = {
-    modified_on?: string;
-    created_on?: string;
-};
-type DisplayMetaDict = {
-    title?: string;
-    subtitle?: string;
-};
-type DisplayMeta = {
-    description?: string;
-    title?: string;
-    subtitle?: string;
-    apply?: DisplayMetaDict;
-    auto?: DisplayMetaDict;
-    remove?: DisplayMetaDict;
-};
-type Validity = {
-    priority?: number;
-};
-type CouponAuthor = {
-    modified_by?: string;
-    created_by?: string;
+type CouponAction = {
+    txn_mode?: string;
+    action_date?: string;
 };
 type CouponSchedule = {
-    next_schedule?: any[];
     cron?: string;
     end?: string;
     start?: string;
+    next_schedule?: any[];
     duration?: number;
+};
+type PostOrder = {
+    return_allowed?: boolean;
+    cancellation_allowed?: boolean;
 };
 type PaymentAllowValue = {
     max?: number;
 };
 type PaymentModes = {
-    codes?: string[];
-    uses?: PaymentAllowValue;
-    networks?: string[];
     types?: string[];
+    codes?: string[];
+    networks?: string[];
+    uses?: PaymentAllowValue;
 };
 type PriceRange = {
-    min?: number;
     max?: number;
-};
-type BulkBundleRestriction = {
-    multi_store_allowed: boolean;
-};
-type PostOrder = {
-    return_allowed?: boolean;
-    cancellation_allowed?: boolean;
+    min?: number;
 };
 type UsesRemaining = {
     app?: number;
@@ -8365,173 +8397,137 @@ type UsesRestriction = {
     maximum?: UsesRemaining;
     remaining?: UsesRemaining;
 };
-type Restrictions = {
-    platforms?: string[];
-    payments?: any;
-    ordering_stores?: number[];
-    user_groups?: number[];
-    coupon_allowed?: boolean;
-    price_range?: PriceRange;
-    bulk_bundle?: BulkBundleRestriction;
-    post_order?: PostOrder;
-    uses?: UsesRestriction;
+type BulkBundleRestriction = {
+    multi_store_allowed: boolean;
 };
-type Identifier = {
-    company_id?: number[];
-    article_id?: string[];
-    exclude_brand_id?: number[];
-    user_id?: string[];
-    brand_id?: number[];
-    category_id?: number[];
-    store_id?: number[];
-    collection_id?: string[];
-    item_id?: number[];
+type Restrictions = {
+    post_order?: PostOrder;
+    payments?: any;
+    price_range?: PriceRange;
+    platforms?: string[];
+    uses?: UsesRestriction;
+    ordering_stores?: number[];
+    bulk_bundle?: BulkBundleRestriction;
+    coupon_allowed?: boolean;
+    user_groups?: number[];
+};
+type RuleDefinition = {
+    value_type: string;
+    auto_apply?: boolean;
+    calculate_on: string;
+    is_exact?: boolean;
+    currency_code?: string;
+    applicable_on: string;
+    type: string;
+    scope?: string[];
+};
+type Rule = {
+    discount_qty?: number;
+    max?: number;
+    min?: number;
+    value?: number;
+    key?: number;
+};
+type DisplayMetaDict = {
+    title?: string;
+    subtitle?: string;
+};
+type DisplayMeta = {
+    title?: string;
+    subtitle?: string;
+    auto?: DisplayMetaDict;
+    description?: string;
+    remove?: DisplayMetaDict;
+    apply?: DisplayMetaDict;
 };
 type Ownership = {
     payable_by: string;
     payable_category: string;
 };
-type Validation = {
-    app_id?: string[];
-    user_registered_after?: string;
-    anonymous?: boolean;
+type CouponAuthor = {
+    modified_by?: string;
+    created_by?: string;
 };
-type CouponAction = {
-    txn_mode?: string;
-    action_date?: string;
+type CouponDateMeta = {
+    created_on?: string;
+    modified_on?: string;
 };
 type State = {
     is_display?: boolean;
-    is_public?: boolean;
     is_archived?: boolean;
+    is_public?: boolean;
+};
+type Validity = {
+    priority?: number;
+};
+type Validation = {
+    app_id?: string[];
+    anonymous?: boolean;
+    user_registered_after?: string;
 };
 type CouponAdd = {
-    rule: Rule[];
-    code: string;
-    rule_definition: RuleDefinition;
-    date_meta?: CouponDateMeta;
-    display_meta: DisplayMeta;
-    type_slug: string;
-    validity: Validity;
-    author?: CouponAuthor;
+    identifiers: Identifier;
+    action?: CouponAction;
     _schedule?: CouponSchedule;
     restrictions?: Restrictions;
-    identifiers: Identifier;
+    type_slug: string;
+    code: string;
+    rule_definition: RuleDefinition;
+    rule: Rule[];
+    display_meta: DisplayMeta;
     ownership: Ownership;
-    validation?: Validation;
-    action?: CouponAction;
+    author?: CouponAuthor;
+    date_meta?: CouponDateMeta;
     state?: State;
+    validity: Validity;
     tags?: string[];
+    validation?: Validation;
 };
 type CouponsResponse = {
-    page?: Page;
     items?: CouponAdd;
+    page?: Page;
 };
 type SuccessMessage = {
-    message?: string;
     success?: boolean;
+    message?: string;
 };
 type OperationErrorResponse = {
-    message?: string;
     success?: boolean;
+    message?: string;
 };
 type CouponUpdate = {
-    rule: Rule[];
-    code: string;
-    rule_definition: RuleDefinition;
-    date_meta?: CouponDateMeta;
-    display_meta: DisplayMeta;
-    type_slug: string;
-    validity: Validity;
-    author?: CouponAuthor;
+    identifiers: Identifier;
+    action?: CouponAction;
     _schedule?: CouponSchedule;
     restrictions?: Restrictions;
-    identifiers: Identifier;
+    type_slug: string;
+    code: string;
+    rule_definition: RuleDefinition;
+    rule: Rule[];
+    display_meta: DisplayMeta;
     ownership: Ownership;
-    validation?: Validation;
-    action?: CouponAction;
+    author?: CouponAuthor;
+    date_meta?: CouponDateMeta;
     state?: State;
+    validity: Validity;
     tags?: string[];
+    validation?: Validation;
 };
 type CouponPartialUpdate = {
     schedule?: CouponSchedule;
     archive?: boolean;
 };
-type Ownership1 = {
-    payable_by: string;
-    payable_category: string;
-};
-type CompareObject = {
-    less_than_equals?: number;
-    less_than?: number;
-    equals?: number;
-    greater_than?: number;
-    greater_than_equals?: number;
-};
-type ItemCriteria = {
-    item_category?: number[];
-    item_company?: number[];
-    item_exclude_company?: number[];
-    item_brand?: number[];
-    item_exclude_brand?: number[];
-    item_exclude_sku?: string[];
-    item_exclude_category?: number[];
-    all_items?: boolean;
-    item_store?: number[];
-    cart_total?: CompareObject;
-    item_size?: string[];
-    cart_quantity?: CompareObject;
-    item_sku?: string[];
-    item_id?: number[];
-    item_exclude_store?: number[];
-    buy_rules?: string[];
-};
-type DiscountOffer = {
-    code?: string;
-    max_offer_quantity?: number;
-    discount_price?: number;
-    discount_percentage?: number;
-    max_discount_amount?: number;
-    discount_amount?: number;
-    min_offer_quantity?: number;
-};
-type DiscountRule = {
-    item_criteria: ItemCriteria;
-    discount_type: string;
-    offer: DiscountOffer;
-    buy_condition: string;
-};
-type PromotionDateMeta = {
-    modified_on?: string;
-    created_on?: string;
-};
-type Visibility = {
-    coupon_list: boolean;
-    pdp: boolean;
-};
-type PromotionAction = {
-    action_date: string;
-    action_type: string;
-};
 type PromotionSchedule = {
-    next_schedule?: any[];
     cron?: string;
     end?: string;
     start: string;
+    next_schedule?: any[];
     duration?: number;
     published: boolean;
 };
-type PaymentAllowValue1 = {
-    max?: number;
-};
-type PromotionPaymentModes = {
-    codes?: string[];
-    uses?: PaymentAllowValue1;
-    type: string;
-};
-type UserRegistered = {
-    start?: string;
-    end?: string;
+type PromotionAuthor = {
+    modified_by?: string;
+    created_by?: string;
 };
 type PostOrder1 = {
     return_allowed?: boolean;
@@ -8545,170 +8541,223 @@ type UsesRestriction1 = {
     maximum?: UsesRemaining1;
     remaining?: UsesRemaining1;
 };
+type UserRegistered = {
+    end?: string;
+    start?: string;
+};
+type PaymentAllowValue1 = {
+    max?: number;
+};
+type PromotionPaymentModes = {
+    codes?: string[];
+    uses?: PaymentAllowValue1;
+    type: string;
+};
 type Restrictions1 = {
-    platforms?: string[];
-    payments?: PromotionPaymentModes[];
-    order_quantity?: number;
-    user_groups?: number[];
-    user_registered?: UserRegistered;
-    user_id?: string[];
     post_order?: PostOrder1;
     anonymous_users?: boolean;
+    order_quantity?: number;
+    platforms?: string[];
     uses: UsesRestriction1;
+    user_registered?: UserRegistered;
+    payments?: PromotionPaymentModes[];
+    user_groups?: number[];
+    user_id?: string[];
+};
+type PromotionAction = {
+    action_date: string;
+    action_type: string;
+};
+type Ownership1 = {
+    payable_by: string;
+    payable_category: string;
+};
+type CompareObject = {
+    less_than?: number;
+    greater_than?: number;
+    less_than_equals?: number;
+    greater_than_equals?: number;
+    equals?: number;
+};
+type ItemCriteria = {
+    item_exclude_store?: number[];
+    item_exclude_brand?: number[];
+    item_category?: number[];
+    item_id?: number[];
+    cart_total?: CompareObject;
+    item_exclude_category?: number[];
+    item_brand?: number[];
+    cart_quantity?: CompareObject;
+    item_size?: string[];
+    item_exclude_sku?: string[];
+    item_company?: number[];
+    item_exclude_company?: number[];
+    item_store?: number[];
+    all_items?: boolean;
+    buy_rules?: string[];
+    item_sku?: string[];
+};
+type DiscountOffer = {
+    discount_amount?: number;
+    discount_price?: number;
+    max_discount_amount?: number;
+    code?: string;
+    max_offer_quantity?: number;
+    min_offer_quantity?: number;
+    discount_percentage?: number;
+};
+type DiscountRule = {
+    item_criteria: ItemCriteria;
+    buy_condition: string;
+    discount_type: string;
+    offer: DiscountOffer;
+};
+type Visibility = {
+    coupon_list: boolean;
+    pdp: boolean;
 };
 type DisplayMeta1 = {
-    name?: string;
     offer_text?: string;
     description?: string;
+    name?: string;
 };
-type PromotionAuthor = {
-    modified_by?: string;
-    created_by?: string;
+type PromotionDateMeta = {
+    created_on?: string;
+    modified_on?: string;
 };
 type PromotionListItem = {
-    code?: string;
-    ownership: Ownership1;
-    stackable?: boolean;
-    promotion_type: string;
-    discount_rules: DiscountRule[];
-    date_meta?: PromotionDateMeta;
-    promo_group: string;
     currency?: string;
-    visiblility?: Visibility;
-    apply_priority?: number;
+    _schedule?: PromotionSchedule;
+    author?: PromotionAuthor;
+    promotion_type: string;
+    restrictions?: Restrictions1;
+    application_id: string;
+    apply_all_discount?: boolean;
     post_order_action?: PromotionAction;
     _custom_json?: any;
-    _schedule?: PromotionSchedule;
-    restrictions?: Restrictions1;
-    mode: string;
-    apply_all_discount?: boolean;
+    code?: string;
     apply_exclusive?: string;
-    display_meta: DisplayMeta1;
-    author?: PromotionAuthor;
+    ownership: Ownership1;
+    discount_rules: DiscountRule[];
     buy_rules: any;
-    application_id: string;
+    stackable?: boolean;
+    apply_priority?: number;
+    visiblility?: Visibility;
+    display_meta: DisplayMeta1;
+    date_meta?: PromotionDateMeta;
+    promo_group: string;
+    mode: string;
 };
 type PromotionsResponse = {
-    page?: Page;
     items?: PromotionListItem;
+    page?: Page;
 };
 type PromotionAdd = {
-    code?: string;
-    ownership: Ownership1;
-    stackable?: boolean;
-    promotion_type: string;
-    discount_rules: DiscountRule[];
-    date_meta?: PromotionDateMeta;
-    promo_group: string;
     currency?: string;
-    visiblility?: Visibility;
-    apply_priority?: number;
+    _schedule?: PromotionSchedule;
+    author?: PromotionAuthor;
+    promotion_type: string;
+    restrictions?: Restrictions1;
+    application_id: string;
+    apply_all_discount?: boolean;
     post_order_action?: PromotionAction;
     _custom_json?: any;
-    _schedule?: PromotionSchedule;
-    restrictions?: Restrictions1;
-    mode: string;
-    apply_all_discount?: boolean;
+    code?: string;
     apply_exclusive?: string;
-    display_meta: DisplayMeta1;
-    author?: PromotionAuthor;
+    ownership: Ownership1;
+    discount_rules: DiscountRule[];
     buy_rules: any;
-    application_id: string;
+    stackable?: boolean;
+    apply_priority?: number;
+    visiblility?: Visibility;
+    display_meta: DisplayMeta1;
+    date_meta?: PromotionDateMeta;
+    promo_group: string;
+    mode: string;
 };
 type PromotionUpdate = {
-    code?: string;
-    ownership: Ownership1;
-    stackable?: boolean;
-    promotion_type: string;
-    discount_rules: DiscountRule[];
-    date_meta?: PromotionDateMeta;
-    promo_group: string;
     currency?: string;
-    visiblility?: Visibility;
-    apply_priority?: number;
+    _schedule?: PromotionSchedule;
+    author?: PromotionAuthor;
+    promotion_type: string;
+    restrictions?: Restrictions1;
+    application_id: string;
+    apply_all_discount?: boolean;
     post_order_action?: PromotionAction;
     _custom_json?: any;
-    _schedule?: PromotionSchedule;
-    restrictions?: Restrictions1;
-    mode: string;
-    apply_all_discount?: boolean;
+    code?: string;
     apply_exclusive?: string;
-    display_meta: DisplayMeta1;
-    author?: PromotionAuthor;
+    ownership: Ownership1;
+    discount_rules: DiscountRule[];
     buy_rules: any;
-    application_id: string;
+    stackable?: boolean;
+    apply_priority?: number;
+    visiblility?: Visibility;
+    display_meta: DisplayMeta1;
+    date_meta?: PromotionDateMeta;
+    promo_group: string;
+    mode: string;
 };
 type PromotionPartialUpdate = {
     schedule?: PromotionSchedule;
     archive?: boolean;
 };
 type CartItem = {
-    product_id: string;
-    size: string;
     quantity?: number;
+    size: string;
+    product_id: string;
 };
 type OpenapiCartDetailsRequest = {
     cart_items?: CartItem;
 };
+type CartProductIdentifer = {
+    identifier?: string;
+};
 type ProductPrice = {
+    marked?: number;
+    effective?: number;
+    currency_symbol?: string;
+    selling?: number;
     currency_code?: string;
     add_on?: number;
-    effective?: number;
-    marked?: number;
-    selling?: number;
-    currency_symbol?: string;
 };
 type ProductPriceInfo = {
     converted?: ProductPrice;
     base?: ProductPrice;
 };
 type BaseInfo = {
-    name?: string;
     uid?: number;
+    name?: string;
 };
 type BasePrice = {
-    marked?: number;
     currency_symbol?: string;
-    effective?: number;
+    marked?: number;
     currency_code?: string;
+    effective?: number;
 };
 type ArticlePriceInfo = {
     converted?: BasePrice;
     base?: BasePrice;
 };
 type ProductArticle = {
-    parent_item_identifiers?: any;
-    seller?: BaseInfo;
-    store?: BaseInfo;
-    product_group_tags?: string[];
-    uid?: string;
-    price?: ArticlePriceInfo;
     quantity?: number;
+    parent_item_identifiers?: any;
+    product_group_tags?: string[];
+    store?: BaseInfo;
     size?: string;
     extra_meta?: any;
+    seller?: BaseInfo;
     type?: string;
+    uid?: string;
+    price?: ArticlePriceInfo;
 };
 type PromoMeta = {
     message?: string;
 };
-type AppliedPromotion = {
-    promotion_type?: string;
-    amount?: number;
-    article_quantity?: number;
-    mrp_promotion?: boolean;
-    promo_id?: string;
-    offer_text?: string;
-};
-type ProductAvailability = {
-    is_valid?: boolean;
-    deliverable?: boolean;
-    sizes?: string[];
-    other_store_quantity?: number;
-    out_of_stock?: boolean;
-};
-type CategoryInfo = {
-    name?: string;
-    uid?: number;
+type ProductImage = {
+    aspect_ratio?: string;
+    secure_url?: string;
+    url?: string;
 };
 type ActionQuery = {
     product_slug?: string[];
@@ -8718,123 +8767,134 @@ type ProductAction = {
     url?: string;
     type?: string;
 };
-type ProductImage = {
-    secure_url?: string;
-    url?: string;
-    aspect_ratio?: string;
+type CategoryInfo = {
+    uid?: number;
+    name?: string;
 };
 type CartProduct = {
-    name?: string;
-    slug?: string;
-    categories?: CategoryInfo[];
-    brand?: BaseInfo;
-    uid?: number;
-    action?: ProductAction;
     images?: ProductImage[];
+    action?: ProductAction;
+    name?: string;
+    brand?: BaseInfo;
+    categories?: CategoryInfo[];
     type?: string;
+    uid?: number;
+    slug?: string;
 };
-type CartProductIdentifer = {
-    identifier?: string;
+type AppliedPromotion = {
+    promo_id?: string;
+    mrp_promotion?: boolean;
+    amount?: number;
+    promotion_type?: string;
+    offer_text?: string;
+    article_quantity?: number;
+};
+type ProductAvailability = {
+    is_valid?: boolean;
+    sizes?: string[];
+    out_of_stock?: boolean;
+    other_store_quantity?: number;
+    deliverable?: boolean;
 };
 type CartProductInfo = {
+    quantity?: number;
+    identifiers: CartProductIdentifer;
+    bulk_offer?: any;
     price_per_unit?: ProductPriceInfo;
-    discount?: string;
-    parent_item_identifiers?: any;
+    coupon_message?: string;
     article?: ProductArticle;
     promo_meta?: PromoMeta;
-    promotions_applied?: AppliedPromotion[];
-    bulk_offer?: any;
-    availability?: ProductAvailability;
+    discount?: string;
     product?: CartProduct;
-    key?: string;
-    identifiers: CartProductIdentifer;
-    price?: ProductPriceInfo;
-    quantity?: number;
-    coupon_message?: string;
+    promotions_applied?: AppliedPromotion[];
+    availability?: ProductAvailability;
     is_set?: boolean;
+    key?: string;
+    parent_item_identifiers?: any;
+    price?: ProductPriceInfo;
     message?: string;
-};
-type CouponBreakup = {
-    code?: string;
-    value?: number;
-    is_applied?: boolean;
-    uid?: string;
-    message?: string;
-    type?: string;
 };
 type DisplayBreakup = {
+    currency_symbol?: string;
     currency_code?: string;
+    display?: string;
     value?: number;
     key?: string;
-    display?: string;
-    currency_symbol?: string;
     message?: string[];
-};
-type LoyaltyPoints = {
-    description?: string;
-    is_applied?: boolean;
-    applicable?: number;
-    total?: number;
 };
 type RawBreakup = {
     convenience_fee?: number;
-    coupon?: number;
-    you_saved?: number;
-    discount?: number;
-    subtotal?: number;
-    total?: number;
     mrp_total?: number;
-    fynd_cash?: number;
-    delivery_charge?: number;
-    cod_charge?: number;
     gst_charges?: number;
+    cod_charge?: number;
+    coupon?: number;
+    delivery_charge?: number;
+    fynd_cash?: number;
+    discount?: number;
+    total?: number;
+    you_saved?: number;
     vog?: number;
+    subtotal?: number;
+};
+type LoyaltyPoints = {
+    total?: number;
+    applicable?: number;
+    description?: string;
+    is_applied?: boolean;
+};
+type CouponBreakup = {
+    code?: string;
+    type?: string;
+    is_applied?: boolean;
+    value?: number;
+    uid?: string;
+    message?: string;
 };
 type CartBreakup = {
-    coupon?: CouponBreakup;
     display?: DisplayBreakup[];
-    loyalty_points?: LoyaltyPoints;
     raw?: RawBreakup;
+    loyalty_points?: LoyaltyPoints;
+    coupon?: CouponBreakup;
 };
 type OpenapiCartDetailsResponse = {
-    is_valid?: boolean;
     items?: CartProductInfo[];
-    message?: string;
     breakup_values?: CartBreakup;
+    is_valid?: boolean;
+    message?: string;
 };
 type OpenApiErrorResponse = {
+    success?: boolean;
     message?: string;
     errors?: any;
-    success?: boolean;
 };
 type ShippingAddress = {
-    name?: string;
-    country_code?: string;
-    area_code: string;
-    area?: string;
-    email?: string;
-    meta?: any;
     landmark?: string;
-    area_code_slug?: string;
-    city?: string;
-    address?: string;
+    name?: string;
+    area_code: string;
     pincode?: number;
+    country_code?: string;
+    address?: string;
+    meta?: any;
     phone?: number;
-    country?: string;
+    email?: string;
     state?: string;
+    country?: string;
+    area_code_slug?: string;
+    area?: string;
     address_type?: string;
+    city?: string;
 };
 type OpenApiCartServiceabilityRequest = {
-    cart_items?: CartItem;
     shipping_address: ShippingAddress;
+    cart_items?: CartItem;
 };
 type PromiseTimestamp = {
-    min?: number;
     max?: number;
+    min?: number;
 };
 type PromiseFormatted = {
-    min?: string;
     max?: string;
+    min?: string;
 };
 type ShipmentPromise = {
     timestamp?: PromiseTimestamp;
@@ -8852,161 +8912,161 @@ type OpenApiFiles = {
     values: string[];
 };
 type CartItemMeta = {
-    group_id?: string;
     primary_item?: boolean;
+    group_id?: string;
 };
 type OpenApiOrderItem = {
-    payment_methods: MultiTenderPaymentMethod[];
-    employee_discount?: number;
-    discount: number;
-    amount_paid: number;
-    delivery_charges: number;
-    meta?: CartItemMeta;
-    price_effective: number;
-    coupon_effective_discount: number;
-    files?: OpenApiFiles[];
-    size: string;
-    loyalty_discount?: number;
-    product_id: number;
     quantity?: number;
-    cod_charges: number;
-    extra_meta?: any;
     cashback_applied: number;
+    amount_paid: number;
+    price_effective: number;
+    files?: OpenApiFiles[];
+    product_id: number;
+    cod_charges: number;
+    employee_discount?: number;
+    meta?: CartItemMeta;
+    size: string;
+    extra_meta?: any;
+    discount: number;
+    coupon_effective_discount: number;
+    loyalty_discount?: number;
+    payment_methods: MultiTenderPaymentMethod[];
     price_marked: number;
+    delivery_charges: number;
 };
 type OpenApiPlatformCheckoutReq = {
-    currency_code?: string;
-    employee_discount?: any;
-    payment_mode?: string;
-    coupon?: string;
-    delivery_charges: number;
-    files?: OpenApiFiles[];
-    loyalty_discount?: number;
-    order_id?: string;
-    cod_charges: number;
-    coupon_code: string;
     comment?: string;
+    payment_mode?: string;
+    employee_discount?: any;
+    coupon?: string;
     payment_methods: MultiTenderPaymentMethod[];
-    cashback_applied: number;
-    shipping_address?: ShippingAddress;
-    affiliate_order_id?: string;
-    cart_items: OpenApiOrderItem[];
-    cart_value: number;
-    billing_address: ShippingAddress;
     gstin?: string;
+    coupon_code: string;
+    cart_items: OpenApiOrderItem[];
+    cashback_applied: number;
+    files?: OpenApiFiles[];
+    shipping_address?: ShippingAddress;
+    cod_charges: number;
+    affiliate_order_id?: string;
+    currency_code?: string;
+    billing_address: ShippingAddress;
     coupon_value: number;
+    order_id?: string;
+    loyalty_discount?: number;
+    cart_value: number;
+    delivery_charges: number;
 };
 type OpenApiCheckoutResponse = {
-    message?: string;
+    order_ref_id?: string;
     order_id: string;
     success?: boolean;
-    order_ref_id?: string;
+    message?: string;
 };
 type AbandonedCart = {
-    app_id?: string;
-    fynd_credits?: any;
-    meta?: any;
-    buy_now?: boolean;
-    pick_up_customer_details?: any;
-    order_id?: string;
-    last_modified: string;
-    comment?: string;
-    payments?: any;
-    payment_methods?: any[];
-    is_default: boolean;
-    expire_at: string;
-    promotion?: any;
-    coupon?: any;
-    cod_charges?: any;
-    gstin?: string;
-    is_active?: boolean;
-    is_archive?: boolean;
-    payment_mode?: string;
-    checkout_mode?: string;
-    discount?: number;
-    delivery_charges?: any;
-    merge_qty?: boolean;
-    uid: number;
-    _id: string;
-    fc_index_map?: number[];
-    articles: any[];
-    bulk_coupon_discount?: number;
-    shipments?: any[];
-    user_id: string;
     cashback: any;
-    cart_value?: number;
+    is_active?: boolean;
+    payment_methods?: any[];
+    gstin?: string;
+    articles: any[];
+    cod_charges?: any;
+    checkout_mode?: string;
+    shipments?: any[];
+    expire_at: string;
     created_on: string;
+    cart_value?: number;
+    uid: number;
+    is_default: boolean;
+    delivery_charges?: any;
+    comment?: string;
+    is_archive?: boolean;
+    promotion?: any;
+    payment_mode?: string;
+    last_modified: string;
+    merge_qty?: boolean;
+    coupon?: any;
+    pick_up_customer_details?: any;
+    fynd_credits?: any;
+    bulk_coupon_discount?: number;
+    app_id?: string;
+    user_id: string;
+    _id: string;
+    buy_now?: boolean;
+    meta?: any;
+    discount?: number;
+    order_id?: string;
+    fc_index_map?: number[];
+    payments?: any;
 };
 type AbandonedCartResponse = {
     items?: AbandonedCart[];
-    message?: string;
-    page?: Page;
-    result?: any;
     success?: boolean;
+    result?: any;
+    page?: Page;
+    message?: string;
 };
 type CartCurrency = {
     symbol?: string;
     code?: string;
 };
 type CartDetailResponse = {
+    items?: CartProductInfo[];
+    buy_now?: boolean;
+    comment?: string;
+    last_modified?: string;
+    is_valid?: boolean;
+    coupon_text?: string;
+    currency?: CartCurrency;
+    payment_selection_lock?: PaymentSelectionLock;
+    id?: string;
     checkout_mode?: string;
     delivery_charge_info?: string;
-    items?: CartProductInfo[];
-    currency?: CartCurrency;
-    id?: string;
-    comment?: string;
-    is_valid?: boolean;
     delivery_promise?: ShipmentPromise;
-    buy_now?: boolean;
-    breakup_values?: CartBreakup;
-    payment_selection_lock?: PaymentSelectionLock;
-    coupon_text?: string;
-    gstin?: string;
     restrict_checkout?: boolean;
+    breakup_values?: CartBreakup;
+    gstin?: string;
     message?: string;
-    last_modified?: string;
 };
 type AddProductCart = {
-    parent_item_identifiers?: any;
-    article_id?: string;
-    pos?: boolean;
-    seller_id?: number;
-    item_size?: string;
-    product_group_tags?: string[];
-    store_id?: number;
-    item_id?: number;
     quantity?: number;
-    display?: string;
     article_assignment?: any;
+    product_group_tags?: string[];
+    pos?: boolean;
+    item_id?: number;
+    item_size?: string;
+    article_id?: string;
     extra_meta?: any;
+    display?: string;
+    store_id?: number;
+    seller_id?: number;
+    parent_item_identifiers?: any;
 };
 type AddCartRequest = {
     items?: AddProductCart[];
 };
 type AddCartDetailResponse = {
-    message?: string;
-    success?: boolean;
     partial?: boolean;
+    success?: boolean;
     cart?: CartDetailResponse;
+    message?: string;
 };
 type UpdateProductCart = {
-    parent_item_identifiers?: any;
-    article_id?: string;
-    item_size?: string;
+    quantity?: number;
     identifiers: CartProductIdentifer;
     item_id?: number;
-    quantity?: number;
     item_index?: number;
+    item_size?: string;
+    article_id?: string;
     extra_meta?: any;
+    parent_item_identifiers?: any;
 };
 type UpdateCartRequest = {
-    operation: string;
     items?: UpdateProductCart[];
+    operation: string;
 };
 type UpdateCartDetailResponse = {
-    message?: string;
     success?: boolean;
     cart?: CartDetailResponse;
+    message?: string;
 };
 type AppUser = {
     _id?: string;
