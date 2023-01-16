@@ -23,12 +23,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -51,12 +54,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -76,12 +82,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -104,12 +113,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -134,12 +146,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -162,12 +177,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -199,12 +217,15 @@ class CompanyProfile {
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -258,12 +279,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -278,10 +302,11 @@ class CompanyProfile {
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
-  getLocations({ storeType, q, stage, pageNo, pageSize } = {}) {
+  getLocations({ storeType, q, stage, pageNo, pageSize, locationIds } = {}) {
     const { error } = CompanyProfileValidator.getLocations().validate(
       {
         storeType,
@@ -289,6 +314,7 @@ class CompanyProfile {
         stage,
         pageNo,
         pageSize,
+        locationIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -302,13 +328,17 @@ class CompanyProfile {
     query_params["stage"] = stage;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["location_ids"] = locationIds;
+
+    const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -321,10 +351,11 @@ class CompanyProfile {
    *   unverified companies.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
-  getLocationsPaginator({ storeType, q, stage, pageSize } = {}) {
+  getLocationsPaginator({ storeType, q, stage, pageSize, locationIds } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -336,6 +367,7 @@ class CompanyProfile {
         stage: stage,
         pageNo: pageNo,
         pageSize: pageSize,
+        locationIds: locationIds,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -366,12 +398,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -394,12 +429,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -424,12 +462,15 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -452,12 +493,46 @@ class CompanyProfile {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/bulk`,
       query_params,
-      body
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {AssignStoreRequestValidator} arg.body
+   * @summary: Location Reassignment
+   * @description:
+   */
+  getOptimalLocations({ body } = {}) {
+    const { error } = CompanyProfileValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/reassign`,
+      query_params,
+      body,
+      xHeaders
     );
   }
 }

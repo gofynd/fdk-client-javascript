@@ -30,12 +30,15 @@ class Communication {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/notification/system-notifications/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 

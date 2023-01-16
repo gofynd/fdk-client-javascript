@@ -55,6 +55,7 @@ class CompanyProfileValidator {
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      locationIds: Joi.array().items(Joi.number()),
     }).required();
   }
 
@@ -80,6 +81,12 @@ class CompanyProfileValidator {
   static createLocationBulk() {
     return Joi.object({
       body: Validator.BulkLocationSerializer().required(),
+    }).required();
+  }
+
+  static getOptimalLocations() {
+    return Joi.object({
+      body: Validator.AssignStoreRequestValidator().required(),
     }).required();
   }
 }

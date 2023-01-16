@@ -43,6 +43,8 @@ export namespace AVAILABLE_PAGE_TYPE {
     const CART_REVIEW: string;
     const LOGIN: string;
     const REGISTER: string;
+    const SHIPPING_POLICY: string;
+    const RETURN_POLICY: string;
 }
 export const NAVIGATORS: {
     "about-us": {
@@ -128,10 +130,6 @@ export const NAVIGATORS: {
     faq: {
         name: string;
         link: string;
-        params: {
-            key: string;
-            required: boolean;
-        }[];
     };
     freshchat: {
         name: string;
@@ -282,6 +280,14 @@ export const NAVIGATORS: {
         link: string;
     };
     register: {
+        name: string;
+        link: string;
+    };
+    "shipping-policy": {
+        name: string;
+        link: string;
+    };
+    "return-policy": {
         name: string;
         link: string;
     };

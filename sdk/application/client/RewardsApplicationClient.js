@@ -54,6 +54,8 @@ class Rewards {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -62,7 +64,8 @@ class Rewards {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -83,6 +86,8 @@ class Rewards {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -91,7 +96,8 @@ class Rewards {
         params: { name },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -112,6 +118,8 @@ class Rewards {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -120,7 +128,8 @@ class Rewards {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -140,6 +149,8 @@ class Rewards {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -148,7 +159,8 @@ class Rewards {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -173,6 +185,8 @@ class Rewards {
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -181,7 +195,8 @@ class Rewards {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -227,6 +242,8 @@ class Rewards {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -235,7 +252,8 @@ class Rewards {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -256,6 +274,8 @@ class Rewards {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -264,7 +284,8 @@ class Rewards {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

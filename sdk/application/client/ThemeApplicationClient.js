@@ -46,6 +46,8 @@ class Theme {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -54,7 +56,8 @@ class Theme {
         params: { themeId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -76,6 +79,8 @@ class Theme {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -84,7 +89,8 @@ class Theme {
         params: { themeId, pageValue },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -104,6 +110,8 @@ class Theme {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -112,7 +120,8 @@ class Theme {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -133,6 +142,8 @@ class Theme {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -141,7 +152,8 @@ class Theme {
         params: { themeId },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

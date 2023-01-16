@@ -5,7 +5,6 @@ declare class CatalogValidator {
     static getProductComparisonBySlugs(): any;
     static getSimilarComparisonProductBySlug(): any;
     static getComparedFrequentlyProductBySlug(): any;
-    static getProductSimilarByIdentifier(): any;
     static getProductVariantsBySlug(): any;
     static getProductStockByIds(): any;
     static getProductStockForTimeByIds(): any;

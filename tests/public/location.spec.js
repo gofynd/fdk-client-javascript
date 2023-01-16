@@ -27,3 +27,13 @@ describe("Get All Locations", () => {
     expect(locations.items.length).toBeGreaterThan(0);
   });
 });
+
+describe("Search Application", () => {
+  it("search application by name", async () => {
+    let locations = await publicClient.configuration.searchApplication({
+      authorization: `Basic ${process.env.AUTH_HEADER}`,
+      query: "pc.fyndstore.co",
+    });
+    expect(locations && typeof locations === "object").toBe(true);
+  });
+});

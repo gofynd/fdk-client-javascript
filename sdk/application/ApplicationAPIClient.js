@@ -9,7 +9,7 @@ class APIClient {
    * @param {object} body
    */
 
-  static execute(conf, method, url, query, body) {
+  static execute(conf, method, url, query, body, xHeaders) {
     const token = Buffer.from(
       `${conf.applicationID}:${conf.applicationToken}`,
       "utf8"
@@ -35,7 +35,7 @@ class APIClient {
       url: url,
       params: query,
       data: body,
-      headers: { ...headers, ...extraHeaders },
+      headers: { ...headers, ...extraHeaders, ...xHeaders },
     };
     return fdkAxios.request(rawRequest);
   }

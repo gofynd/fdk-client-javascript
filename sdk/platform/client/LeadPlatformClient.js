@@ -61,12 +61,15 @@ class Lead {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -138,12 +141,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -166,12 +172,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -196,12 +205,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -226,12 +238,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -254,12 +269,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -282,12 +300,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -312,12 +333,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -340,12 +364,15 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/token`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -368,12 +395,43 @@ class Lead {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/participants`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Get general support configuration.
+   * @description: Get general support configuration.
+   */
+  getGeneralConfig({} = {}) {
+    const { error } = LeadValidator.getGeneralConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/lead/v1.0/company/${this.config.companyId}/general-config`,
+      query_params,
+      undefined,
+      xHeaders
     );
   }
 }

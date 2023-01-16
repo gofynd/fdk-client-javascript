@@ -2633,6 +2633,18 @@ Success
 
 ```json
 {
+  "deployment_meta": {
+    "deployed_stores": [
+      1,
+      10
+    ],
+    "all_stores": false,
+    "enabled": true,
+    "type": "hard",
+    "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+    "app": "000000000000000000000004",
+    "__v": 6
+  },
   "deployed_stores": [
     1,
     10
@@ -2763,21 +2775,24 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_shortlink": false
+      "is_shortlink": false,
+      "is_predefined": true
     },
     {
       "verified": true,
       "is_primary": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
+      "name": "jd.hostx0.de",
+      "is_predefined": true
     },
     {
       "verified": true,
       "is_primary": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
-      "name": "testdm.hostx0.de"
+      "name": "testdm.hostx0.de",
+      "is_predefined": true
     }
   ]
 }
@@ -6669,6 +6684,7 @@ Success
  | is_shortlink | boolean |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
+ | is_predefined | boolean |  no  | Domain is hosting domain or not. |
 
 ---
 

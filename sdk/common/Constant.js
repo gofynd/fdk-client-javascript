@@ -43,6 +43,8 @@ const AVAILABLE_PAGE_TYPE = {
   CART_REVIEW: "cart-review",
   LOGIN: "login",
   REGISTER: "register",
+  SHIPPING_POLICY: "shipping-policy",
+  RETURN_POLICY: "return-policy",
 };
 
 Object.freeze(AVAILABLE_PAGE_TYPE);
@@ -144,13 +146,7 @@ const NAVIGATORS = {
   },
   faq: {
     name: "FAQ",
-    link: "/faq/:category",
-    params: [
-      {
-        key: "category",
-        required: false,
-      },
-    ],
+    link: "/faq",
   },
   freshchat: {
     name: "Chat by Freshchat",
@@ -319,6 +315,14 @@ const NAVIGATORS = {
   register: {
     name: "Register",
     link: "/auth/register",
+  },
+  "shipping-policy": {
+    name: "Shipping policy",
+    link: "/shipping-policy",
+  },
+  "return-policy": {
+    name: "Return policy",
+    link: "/return-policy",
   },
 };
 
