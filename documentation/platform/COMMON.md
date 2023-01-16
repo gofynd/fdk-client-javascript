@@ -236,6 +236,7 @@ Success
  | is_shortlink | boolean |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
+ | is_predefined | boolean |  no  | Domain is hosting domain or not. |
 
 ---
 

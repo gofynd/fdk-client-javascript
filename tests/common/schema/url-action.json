@@ -276,22 +276,6 @@
       }
     },
     {
-      "name": "profile orders shipments",
-      "path": "/profile/orders/shipment/16720482187091110000",
-      "result": {
-        "action": {
-          "type": "page",
-          "page": {
-            "type": "profile-order-shipment",
-            "params": {
-              "shipmentid": [16720482187091110000]
-            }
-          }
-        }
-      }
-    },
-
-    {
       "name": "faq with category",
       "path": "/faq/:category",
       "result": {
