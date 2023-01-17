@@ -50,11 +50,8 @@ Content System
 * [createPagePreview](#createpagepreview)
 * [updatePagePreview](#updatepagepreview)
 * [deletePage](#deletepage)
-* [addPathRedirectionRules](#addpathredirectionrules)
-* [getPathRedirectionRules](#getpathredirectionrules)
-* [getPathRedirectionRule](#getpathredirectionrule)
 * [updatePathRedirectionRules](#updatepathredirectionrules)
-* [deletePathRedirectionRules](#deletepathredirectionrules)
+* [getPathRedirectionRules](#getpathredirectionrules)
 * [getSEOConfiguration](#getseoconfiguration)
 * [updateSEOConfiguration](#updateseoconfiguration)
 * [getSlideshows](#getslideshows)
@@ -5365,17 +5362,17 @@ Success.
 ---
 
 
-### addPathRedirectionRules
+### updatePathRedirectionRules
 Save path based redirection rules
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
+const promise = client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
+const data = await client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  body : value });
 ```
 
 
@@ -5387,7 +5384,7 @@ const data = await client.application("<APPLICATION_ID>").content.addPathRedirec
 | body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
 
 
-Use this API to add redirection rules
+Use this API to add, update or delete path-based redirection rules
 
 *Returned Response:*
 
@@ -5402,26 +5399,18 @@ Success. Refer `PathMappingSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "615188e9db1e444cb0f40837",
-    "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
-    "createdAt": "2021-09-27T09:03:37.053Z",
-    "updatedAt": "2021-09-27T09:09:25.587Z"
-  }
+  "redirections": [
+    {
+      "redirect_from": "test.hostfynd.dev/redirect_from",
+      "redirect_to": "/redirect_to"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -5442,22 +5431,14 @@ Get path based redirection rules
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
- pageNo : value });
+const promise = client.application("<APPLICATION_ID>").content.getPathRedirectionRules();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
- pageNo : value });
+const data = await client.application("<APPLICATION_ID>").content.getPathRedirectionRules();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 5.  |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |  
 
 
 
@@ -5487,8 +5468,12 @@ Success. Refer `PathMappingSchema` for more details.
   "value": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
+    "redirections": [
+      {
+        "redirect_from": "/from",
+        "redirect_to": "/to"
+      }
+    ],
     "createdAt": "2021-09-27T09:03:37.053Z",
     "updatedAt": "2021-09-27T09:09:25.587Z"
   }
@@ -5496,208 +5481,6 @@ Success. Refer `PathMappingSchema` for more details.
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPathRedirectionRule
-Get path based redirection rule
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pathId | string | yes | ID allotted to the path redirection rule. |  
-
-
-
-Use this API to get path based redirection rule.
-
-*Returned Response:*
-
-
-
-
-[PathMappingSchema](#PathMappingSchema)
-
-Success. Refer `PathMappingSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "615188e9db1e444cb0f40837",
-    "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
-    "createdAt": "2021-09-27T09:03:37.053Z",
-    "updatedAt": "2021-09-27T09:09:25.587Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePathRedirectionRules
-Update path based redirection rules
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pathId | string | yes | ID allotted to the path redirection rule. |  
-| body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
-
-
-Use this API to update redirection rules
-
-*Returned Response:*
-
-
-
-
-[PathMappingSchema](#PathMappingSchema)
-
-Success. Refer `PathMappingSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "615188e9db1e444cb0f40837",
-    "application": "000000000000000000000002",
-    "redirect_from": "/from",
-    "redirect_to": "/to",
-    "createdAt": "2021-09-27T09:03:37.053Z",
-    "updatedAt": "2021-09-27T09:09:25.587Z"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deletePathRedirectionRules
-Delete path based redirection rules
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pathId | string | yes | ID allotted to the path redirection rule. |  
-
-
-
-Use this API to delete redirection rules
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Redirection deleted successfully"
-}
-```
 </details>
 
 
@@ -7515,12 +7298,22 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | string |  no  |  |
+ | redirections | [[RedirectionSchema](#RedirectionSchema)] |  no  |  |
  | _id | string |  no  |  |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
  | updated_at | string |  no  |  |
  | created_at | string |  no  |  |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [RedirectionSchema](#RedirectionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | redirect_from | string |  no  |  |
+ | redirect_to | string |  no  |  |
 
 ---
 
@@ -8291,7 +8084,6 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | _id | string |  no  |  |
  | question | string |  no  |  |
  | answer | string |  no  |  |
- | tags | [string] |  no  |  |
 
 ---
 

@@ -62,14 +62,14 @@ class PosCart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {number} [arg.assignCardId] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.areaCode] -
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  getCart({ id, i, b, assignCardId, buyNow } = {}) {
+  getCart({ id, i, b, assignCardId, areaCode } = {}) {
     const { error } = PosCartValidator.getCart().validate(
-      { id, i, b, assignCardId, buyNow },
+      { id, i, b, assignCardId, areaCode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -80,7 +80,7 @@ class PosCart {
     query_params["i"] = i;
     query_params["b"] = b;
     query_params["assign_card_id"] = assignCardId;
-    query_params["buy_now"] = buyNow;
+    query_params["area_code"] = areaCode;
 
     const xHeaders = {};
 
@@ -134,15 +134,15 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.areaCode] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  addItems({ body, i, b, buyNow } = {}) {
+  addItems({ body, i, b, areaCode } = {}) {
     const { error } = PosCartValidator.addItems().validate(
-      { body, i, b, buyNow },
+      { body, i, b, areaCode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -151,7 +151,7 @@ class PosCart {
     const query_params = {};
     query_params["i"] = i;
     query_params["b"] = b;
-    query_params["buy_now"] = buyNow;
+    query_params["area_code"] = areaCode;
 
     const xHeaders = {};
 
@@ -173,15 +173,15 @@ class PosCart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.areaCode] -
    * @param {UpdateCartRequest} arg.body
    * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  updateCart({ body, id, i, b, buyNow } = {}) {
+  updateCart({ body, id, i, b, areaCode } = {}) {
     const { error } = PosCartValidator.updateCart().validate(
-      { body, id, i, b, buyNow },
+      { body, id, i, b, areaCode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -191,7 +191,7 @@ class PosCart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
-    query_params["buy_now"] = buyNow;
+    query_params["area_code"] = areaCode;
 
     const xHeaders = {};
 
@@ -211,14 +211,13 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] - The unique identifier of the cart.
-   * @param {boolean} [arg.buyNow] -
    * @returns {Promise<CartItemCountResponse>} - Success response
    * @summary: Count items in the cart
    * @description: Use this API to get the total number of items present in cart.
    */
-  getItemCount({ id, buyNow } = {}) {
+  getItemCount({ id } = {}) {
     const { error } = PosCartValidator.getItemCount().validate(
-      { id, buyNow },
+      { id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -226,7 +225,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 
@@ -246,14 +244,13 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
    * @returns {Promise<GetCouponResponse>} - Success response
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details.
    */
-  getCoupons({ id, buyNow } = {}) {
+  getCoupons({ id } = {}) {
     const { error } = PosCartValidator.getCoupons().validate(
-      { id, buyNow },
+      { id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -261,7 +258,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 
@@ -284,15 +280,14 @@ class PosCart {
    * @param {boolean} [arg.b] -
    * @param {boolean} [arg.p] -
    * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
    * @param {ApplyCouponRequest} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply Coupon
    * @description: Use this API to apply coupons on items in the cart.
    */
-  applyCoupon({ body, i, b, p, id, buyNow } = {}) {
+  applyCoupon({ body, i, b, p, id } = {}) {
     const { error } = PosCartValidator.applyCoupon().validate(
-      { body, i, b, p, id, buyNow },
+      { body, i, b, p, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -303,7 +298,6 @@ class PosCart {
     query_params["b"] = b;
     query_params["p"] = p;
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 
@@ -322,15 +316,14 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] - The unique identifier of the cart
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Remove Coupon Applied
    * @description: Remove Coupon applied on the cart by passing uid in request body.
    */
-  removeCoupon({ id, buyNow } = {}) {
+  removeCoupon({ id } = {}) {
     const { error } = PosCartValidator.removeCoupon().validate(
-      { id, buyNow },
+      { id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -338,7 +331,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 
@@ -401,15 +393,14 @@ class PosCart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.buyNow] -
    * @param {RewardPointRequest} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply reward points at cart
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
    */
-  applyRewardPoints({ body, id, i, b, buyNow } = {}) {
+  applyRewardPoints({ body, id, i, b } = {}) {
     const { error } = PosCartValidator.applyRewardPoints().validate(
-      { body, id, i, b, buyNow },
+      { body, id, i, b },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -419,7 +410,6 @@ class PosCart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 
@@ -439,7 +429,6 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
    * @param {string} [arg.mobileNo] -
    * @param {string} [arg.checkoutMode] -
    * @param {string} [arg.tags] -
@@ -448,16 +437,9 @@ class PosCart {
    * @summary: Fetch address
    * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
-  getAddresses({
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-  } = {}) {
+  getAddresses({ cartId, mobileNo, checkoutMode, tags, isDefault } = {}) {
     const { error } = PosCartValidator.getAddresses().validate(
-      { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
+      { cartId, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -465,7 +447,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["cart_id"] = cartId;
-    query_params["buy_now"] = buyNow;
     query_params["mobile_no"] = mobileNo;
     query_params["checkout_mode"] = checkoutMode;
     query_params["tags"] = tags;
@@ -522,7 +503,6 @@ class PosCart {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
    * @param {string} [arg.mobileNo] -
    * @param {string} [arg.checkoutMode] -
    * @param {string} [arg.tags] -
@@ -531,17 +511,9 @@ class PosCart {
    * @summary: Fetch a single address by its ID
    * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
-  getAddressById({
-    id,
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-  } = {}) {
+  getAddressById({ id, cartId, mobileNo, checkoutMode, tags, isDefault } = {}) {
     const { error } = PosCartValidator.getAddressById().validate(
-      { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
+      { id, cartId, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -549,7 +521,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["cart_id"] = cartId;
-    query_params["buy_now"] = buyNow;
     query_params["mobile_no"] = mobileNo;
     query_params["checkout_mode"] = checkoutMode;
     query_params["tags"] = tags;
@@ -638,7 +609,6 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {SelectCartAddressRequest} arg.body
@@ -646,9 +616,9 @@ class PosCart {
    * @summary: Select an address from available addresses
    * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
    */
-  selectAddress({ body, cartId, buyNow, i, b } = {}) {
+  selectAddress({ body, cartId, i, b } = {}) {
     const { error } = PosCartValidator.selectAddress().validate(
-      { body, cartId, buyNow, i, b },
+      { body, cartId, i, b },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -656,7 +626,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["cart_id"] = cartId;
-    query_params["buy_now"] = buyNow;
     query_params["i"] = i;
     query_params["b"] = b;
 
@@ -678,15 +647,14 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
    * @param {UpdateCartPaymentRequest} arg.body
    * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  selectPaymentMode({ body, id, buyNow } = {}) {
+  selectPaymentMode({ body, id } = {}) {
     const { error } = PosCartValidator.selectPaymentMode().validate(
-      { body, id, buyNow },
+      { body, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -694,7 +662,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 
@@ -714,7 +681,6 @@ class PosCart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
    * @param {string} [arg.addressId] -
    * @param {string} [arg.paymentMode] -
    * @param {string} [arg.paymentIdentifier] -
@@ -726,7 +692,6 @@ class PosCart {
    */
   validateCouponForPayment({
     id,
-    buyNow,
     addressId,
     paymentMode,
     paymentIdentifier,
@@ -736,7 +701,6 @@ class PosCart {
     const { error } = PosCartValidator.validateCouponForPayment().validate(
       {
         id,
-        buyNow,
         addressId,
         paymentMode,
         paymentIdentifier,
@@ -750,7 +714,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
     query_params["address_id"] = addressId;
     query_params["payment_mode"] = paymentMode;
     query_params["payment_identifier"] = paymentIdentifier;
@@ -919,16 +882,15 @@ class PosCart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] - The unique identifier of the cart
    * @param {CartMetaRequest} arg.body
    * @returns {Promise<CartMetaResponse>} - Success response
    * @summary: Update the cart meta
    * @description: Use this API to update cart meta like checkout_mode and gstin.
    */
-  updateCartMeta({ body, id, buyNow } = {}) {
+  updateCartMeta({ body, id } = {}) {
     const { error } = PosCartValidator.updateCartMeta().validate(
-      { body, id, buyNow },
+      { body, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -936,7 +898,6 @@ class PosCart {
     }
     const query_params = {};
     query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
 
     const xHeaders = {};
 

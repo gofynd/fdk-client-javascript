@@ -3,22 +3,15 @@ const { Validator } = require("../ApplicationModels");
 class OrderValidator {
   static getOrders() {
     return Joi.object({
-      status: Joi.number(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      customMeta: Joi.string().allow(""),
+      status: Joi.number(),
     });
   }
 
   static getOrderById() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getPosOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
@@ -30,15 +23,35 @@ class OrderValidator {
     }).required();
   }
 
-  static getInvoiceByShipmentId() {
+  static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getShipmentBagReasons() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      bagId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static updateShipmentStatus() {
+    return Joi.object({
+      shipmentId: Joi.string().allow("").required(),
+      body: Validator.ShipmentStatusUpdateBody().required(),
     }).required();
   }
 
   static trackShipment() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPosOrderById() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -60,27 +73,13 @@ class OrderValidator {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow("").required(),
-      body: Validator.VerifyOtp().required(),
+      body: Validator.ReqBodyVerifyOTPShipment().required(),
     }).required();
   }
 
-  static getShipmentBagReasons() {
+  static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      bagId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getShipmentReasons() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateShipmentStatus() {
-    return Joi.object({
-      shipmentId: Joi.number().required(),
-      body: Validator.ShipmentStatusUpdateBody().required(),
     }).required();
   }
 }

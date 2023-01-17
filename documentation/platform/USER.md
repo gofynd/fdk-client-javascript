@@ -1360,7 +1360,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | country_code | string |  no  |  |
  | captcha_code | string |  no  |  |
  | mobile | string |  no  |  |
- | android_hash | string |  no  |  |
 
 ---
 

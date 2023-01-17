@@ -4445,29 +4445,6 @@ Success
 
  
  
- #### [BadRequestSchema](#BadRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string |  no  | Response status. |
- | message | string |  no  | Failure message. |
-
----
-
-
- 
- 
- #### [NotFound](#NotFound)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Failure message. |
-
----
-
-
- 
- 
  #### [BigqueryHeadersReq](#BigqueryHeadersReq)
 
  | Properties | Type | Nullable | Description |

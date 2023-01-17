@@ -27,15 +27,6 @@ declare class Payment {
         addRefundBankAccountUsingOTP: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
         updateDefaultBeneficiary: string;
-        getPaymentLink: string;
-        createPaymentLink: string;
-        resendPaymentLink: string;
-        cancelPaymentLink: string;
-        getPaymentModeRoutesPaymentLink: string;
-        pollingPaymentLink: string;
-        createOrderHandlerPaymentLink: string;
-        initialisePaymentPaymentLink: string;
-        checkAndUpdatePaymentStatusPaymentLink: string;
         customerCreditSummary: string;
         redirectToAggregator: string;
         checkCredit: string;
@@ -315,96 +306,6 @@ declare class Payment {
      * @description: Use this API to set a default beneficiary for getting a refund.
      */
     updateDefaultBeneficiary({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<GetPaymentLinkResponse>} - Success response
-     * @summary: Get payment link
-     * @description: Use this API to get a payment link
-     */
-    getPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreatePaymentLinkRequest} arg.body
-     * @returns {Promise<CreatePaymentLinkResponse>} - Success response
-     * @summary: Create payment link
-     * @description: Use this API to create a payment link for the customer
-     */
-    createPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<ResendPaymentLinkResponse>} - Success response
-     * @summary: Resend payment link
-     * @description: Use this API to resend a payment link for the customer
-     */
-    resendPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelOrResendPaymentLinkRequest} arg.body
-     * @returns {Promise<CancelPaymentLinkResponse>} - Success response
-     * @summary: Cancel payment link
-     * @description: Use this API to cancel a payment link for the customer
-     */
-    cancelPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.paymentLinkId - Payment link id
-     * @returns {Promise<PaymentModeRouteResponse>} - Success response
-     * @summary: Get applicable payment options for payment link
-     * @description: Use this API to get all valid payment options for doing a payment through payment link
-     */
-    getPaymentModeRoutesPaymentLink({ paymentLinkId }?: {
-        paymentLinkId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.paymentLinkId] -
-     * @returns {Promise<PollingPaymentLinkResponse>} - Success response
-     * @summary: Used for polling if payment successful or not
-     * @description: Use this API to poll if payment through payment was successful or not
-     */
-    pollingPaymentLink({ paymentLinkId }?: {
-        paymentLinkId?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateOrderUserRequest} arg.body
-     * @returns {Promise<CreateOrderUserResponse>} - Success response
-     * @summary: Create Order user
-     * @description: Use this API to create a order and payment on aggregator side
-     */
-    createOrderHandlerPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentInitializationRequest} arg.body
-     * @returns {Promise<PaymentInitializationResponse>} - Success response
-     * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-     * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
-     */
-    initialisePaymentPaymentLink({ body }?: {
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentStatusUpdateRequest} arg.body
-     * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
-     * @summary: Performs continuous polling to check status of payment on the server
-     * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-     */
-    checkAndUpdatePaymentStatusPaymentLink({ body }?: {
         body: any;
     }): Promise<any>;
     /**
