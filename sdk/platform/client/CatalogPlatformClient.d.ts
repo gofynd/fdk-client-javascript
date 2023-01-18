@@ -398,6 +398,15 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ProductCreateUpdateSchemaV2} arg.body
+     * @summary: Create a product.
+     * @description: This API allows to create product.
+     */
+    createProductV2({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.category - It is the name of the l3 cateogry
      * @param {boolean} [arg.filter] - If true, returns filtered values, else
      *   returns all the attributes
@@ -407,15 +416,6 @@ declare class Catalog {
     getProductAttributes({ category, filter }?: {
         category: string;
         filter?: boolean;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
-     */
-    deleteProduct({ itemId }?: {
-        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -430,6 +430,15 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
+     */
+    deleteProduct({ itemId }?: {
+        itemId: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.itemCode] - Item code of the product.
      * @param {number} arg.itemId - Item Id of the product.
      * @param {number} [arg.brandUid] - Brand Id of the product.
@@ -440,6 +449,39 @@ declare class Catalog {
         itemCode?: string;
         itemId: number;
         brandUid?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @param {ProductCreateUpdateSchemaV2} arg.body
+     * @summary: Edit a product.
+     * @description: This API allows to edit product.
+     */
+    editProductV2({ itemId, body }?: {
+        itemId: number;
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.itemCode] - Item code of the product.
+     * @param {number} arg.itemId - Item Id of the product.
+     * @param {number} [arg.brandUid] - Brand Id of the product.
+     * @summary: Get a single product.
+     * @description: This API helps to get data associated to a particular product.
+     */
+    getProductV2({ itemId, itemCode, brandUid }?: {
+        itemCode?: string;
+        itemId: number;
+        brandUid?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: All Sizes for a given Product
+     * @description: This API allows to get  All Sizes for a given Product.
+     */
+    allSizes({ itemId }?: {
+        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

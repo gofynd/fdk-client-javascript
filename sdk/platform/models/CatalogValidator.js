@@ -234,16 +234,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static createProductV2() {
+    return Joi.object({
+      body: Validator.ProductCreateUpdateSchemaV2().required(),
+    }).required();
+  }
+
   static getProductAttributes() {
     return Joi.object({
       category: Joi.string().allow("").required(),
       filter: Joi.boolean(),
-    }).required();
-  }
-
-  static deleteProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -254,11 +254,38 @@ class CatalogValidator {
     }).required();
   }
 
+  static deleteProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+    }).required();
+  }
+
   static getProduct() {
     return Joi.object({
       itemCode: Joi.string().allow(""),
       itemId: Joi.number().required(),
       brandUid: Joi.number(),
+    }).required();
+  }
+
+  static editProductV2() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      body: Validator.ProductCreateUpdateSchemaV2().required(),
+    }).required();
+  }
+
+  static getProductV2() {
+    return Joi.object({
+      itemCode: Joi.string().allow(""),
+      itemId: Joi.number().required(),
+      brandUid: Joi.number(),
+    }).required();
+  }
+
+  static allSizes() {
+    return Joi.object({
+      itemId: Joi.number().required(),
     }).required();
   }
 
