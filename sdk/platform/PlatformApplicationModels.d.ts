@@ -190,13 +190,13 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
