@@ -2191,6 +2191,34 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AssignStore} arg.body
+   * @summary: Location Reassignment
+   * @description:
+   */
+  getOptimalLocations({ body } = {}) {
+    const { error } = CatalogValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/location/reassign/`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.reportingHsn - Reporting_hsn
    * @summary: Hsn Code List.
    * @description: Hsn Code List.

@@ -27,8 +27,7 @@ class OrderValidator {
 
   static getShipmentById() {
     return Joi.object({
-      channelShipmentId: Joi.string().allow(""),
-      shipmentId: Joi.string().allow(""),
+      channelShipmentId: Joi.string().allow("").required(),
       orderingCompanyId: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
     }).required();
@@ -365,9 +364,7 @@ class OrderValidator {
   }
 
   static sendSmsNinjaPlatform() {
-    return Joi.object({
-      body: Validator.SendSmsPayload().required(),
-    }).required();
+    return Joi.object({}).required();
   }
 }
 module.exports = OrderValidator;

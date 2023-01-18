@@ -28,9 +28,9 @@ class Order {
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentReasons:
         "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
-      updateShipmentExternal:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/status",
       updateShipmentStatus:
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/status",
+      updateShipmentStatus1:
         "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
       getInvoiceByShipmentId1:
         "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
@@ -416,40 +416,10 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.shipmentId -
-   * @param {UpdateShipmentExternalRequest} arg.body
-   * @returns {Promise<UpdateShipmentResponse>} - Success response
+   * @param {ShipmentStatusUpdateBody} arg.body
+   * @returns {Promise<ShipmentStatusUpdate>} - Success response
    * @summary:
    * @description:
-   */
-  updateShipmentExternal({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentExternal().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      constructUrl({
-        url: this._urls["updateShipmentExternal"],
-        params: { shipmentId },
-      }),
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
-   * @param {UpdateShipmentStatusRequest} arg.body
-   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-   * @summary:
-   * @description: updateShipmentStatus
    */
   updateShipmentStatus({ shipmentId, body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
@@ -466,6 +436,36 @@ class Order {
       "put",
       constructUrl({
         url: this._urls["updateShipmentStatus"],
+        params: { shipmentId },
+      }),
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.shipmentId -
+   * @param {UpdateShipmentStatusRequest} arg.body
+   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+   * @summary:
+   * @description: updateShipmentStatus
+   */
+  updateShipmentStatus1({ shipmentId, body } = {}) {
+    const { error } = OrderValidator.updateShipmentStatus1().validate(
+      { shipmentId, body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["updateShipmentStatus1"],
         params: { shipmentId },
       }),
       query_params,

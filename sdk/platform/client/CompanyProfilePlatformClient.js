@@ -465,6 +465,34 @@ class CompanyProfile {
       body
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {AssignStoreRequestValidator} arg.body
+   * @summary: Location Reassignment
+   * @description:
+   */
+  getOptimalLocations({ body } = {}) {
+    const { error } = CompanyProfileValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/reassign`,
+      query_params,
+      body
+    );
+  }
 }
 
 module.exports = CompanyProfile;

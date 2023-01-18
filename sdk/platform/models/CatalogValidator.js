@@ -469,6 +469,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static getOptimalLocations() {
+    return Joi.object({
+      body: Validator.AssignStore().required(),
+    }).required();
+  }
+
   static getSingleProductHSNCode() {
     return Joi.object({
       reportingHsn: Joi.string().allow("").required(),

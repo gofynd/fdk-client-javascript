@@ -69,5 +69,6 @@ declare class CatalogValidator {
     static updateHsnCode(): any;
     static bulkHsnCode(): any;
     static getAllProductHsnCodes(): any;
+    static getOptimalLocations(): any;
     static getSingleProductHSNCode(): any;
 }

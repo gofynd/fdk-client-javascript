@@ -787,6 +787,15 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AssignStore} arg.body
+     * @summary: Location Reassignment
+     * @description:
+     */
+    getOptimalLocations({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.reportingHsn - Reporting_hsn
      * @summary: Hsn Code List.
      * @description: Hsn Code List.
