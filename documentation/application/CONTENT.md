@@ -2479,6 +2479,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | url | string |  no  |  |
  | position | string |  no  |  |
  | attributes | string |  no  |  |
+ | pages | [string] |  no  |  |
  | content | string |  no  |  |
 
 ---
@@ -3264,6 +3265,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | position | string |  no  |  |
  | attributes | string |  no  |  |
  | content | string |  no  |  |
+ | pages | [string] |  no  |  |
  | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
 
 ---

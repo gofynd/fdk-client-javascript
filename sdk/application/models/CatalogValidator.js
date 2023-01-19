@@ -146,14 +146,14 @@ class CatalogValidator {
     }).required();
   }
 
-  static unfollowById() {
+  static followById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
       collectionId: Joi.string().allow("").required(),
     }).required();
   }
 
-  static followById() {
+  static unfollowById() {
     return Joi.object({
       collectionType: Joi.string().allow("").required(),
       collectionId: Joi.string().allow("").required(),
@@ -216,6 +216,7 @@ class CatalogValidator {
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
       pincode: Joi.string().allow(""),
+      moq: Joi.number(),
     }).required();
   }
 

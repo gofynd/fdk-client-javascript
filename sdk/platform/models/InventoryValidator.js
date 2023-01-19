@@ -1,6 +1,16 @@
 const Joi = require("joi");
 const Validator = require("../PlatformModels");
 class InventoryValidator {
+  static getConfigByCompany() {
+    return Joi.object({}).required();
+  }
+
+  static suppressStores() {
+    return Joi.object({
+      body: Validator.SuppressStorePayload().required(),
+    }).required();
+  }
+
   static getJobsByCompany() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -18,16 +28,6 @@ class InventoryValidator {
     return Joi.object({
       body: Validator.JobConfigDTO().required(),
     }).required();
-  }
-
-  static suppressStores() {
-    return Joi.object({
-      body: Validator.SuppressStorePayload().required(),
-    }).required();
-  }
-
-  static getConfigByCompany() {
-    return Joi.object({}).required();
   }
 
   static getJobSteps() {

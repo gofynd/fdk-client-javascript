@@ -95,7 +95,6 @@ export class ContentValidator {
     static deleteNavigation(): any;
     static getPageMeta(): any;
     static getPageSpec(): any;
-    static createPagePreview(): any;
     static updatePagePreview(): any;
     static deletePage(): any;
     static addPathRedirectionRules(): any;
@@ -175,8 +174,6 @@ export class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
-    static getUserCODlimitRoutes(): any;
-    static setUserCODlimitRoutes(): any;
 }
 export class OrderValidator {
     static getApplicationOrderDetails(): any;
@@ -190,27 +187,27 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
+    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
-    static updateAppProduct(): any;
     static getAppProduct(): any;
+    static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static updateGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
+    static updateGroupConfiguration(): any;
     static getListingConfigurations(): any;
     static createListingConfiguration(): any;
-    static updateListingConfiguration(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -222,8 +219,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
+    static updateCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
@@ -297,11 +294,11 @@ export class CartValidator {
     static getPromotionById(): any;
     static updatePromotion(): any;
     static updatePromotionPartially(): any;
+    static getPromosCouponConfig(): any;
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
     static getAbandonedCart(): any;
-    static getAbandonedCartDetails(): any;
     static addItems(): any;
     static updateCart(): any;
 }

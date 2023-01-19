@@ -12,7 +12,6 @@ Handles Platform websites OMS
 * [checkRefund](#checkrefund)
 * [shipmentBagsCanBreak](#shipmentbagscanbreak)
 * [getOrdersByCompanyId](#getordersbycompanyid)
-* [getOrderLanesCountByCompanyId](#getorderlanescountbycompanyid)
 * [getOrderDetails](#getorderdetails)
 * [getApplicationOrderDetails](#getapplicationorderdetails)
 * [getPicklistOrdersByCompanyId](#getpicklistordersbycompanyid)
@@ -385,92 +384,6 @@ Get Orders
 
 
 [OrderListing](#OrderListing)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderLanesCountByCompanyId
-Get Order Lanes Count for company based on Company Id
-
-
-
-```javascript
-// Promise
-const promise = client.order.getOrderLanesCountByCompanyId({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- q : value,
- stage : value,
- salesChannels : value,
- orderId : value,
- stores : value,
- status : value,
- filterType : value });
-
-// Async/Await
-const data = await client.order.getOrderLanesCountByCompanyId({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- q : value,
- stage : value,
- salesChannels : value,
- orderId : value,
- stores : value,
- status : value,
- filterType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | string | no | Current page number |    
-| pageSize | string | no | Page limit |    
-| fromDate | string | no | From Date |    
-| toDate | string | no | To Date |    
-| q | string | no | Keyword for Search |    
-| stage | string | no | Specefic Order Stage |    
-| salesChannels | string | no | Selected Sales Channel |    
-| orderId | string | no | Order Id |    
-| stores | string | no | Selected Stores |    
-| status | string | no | Status of order |    
-| filterType | string | no | Filters |  
-
-
-
-Get Orders Seperate Lane Count
-
-*Returned Response:*
-
-
-
-
-[OrderLanesCount](#OrderLanesCount)
 
 Success
 
@@ -1237,6 +1150,7 @@ const promise = client.application("<APPLICATION_ID>").order.getOrdersByApplicat
  status : value,
  dp : value,
  userId : value,
+ shortenUrls : value,
  filterType : value });
 
 // Async/Await
@@ -1252,6 +1166,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
  status : value,
  dp : value,
  userId : value,
+ shortenUrls : value,
  filterType : value });
 ```
 
@@ -1273,6 +1188,7 @@ const data = await client.application("<APPLICATION_ID>").order.getOrdersByAppli
 | status | string | no | Status of order |    
 | dp | string | no | Delivery Partners |    
 | userId | string | no | User Id |    
+| shortenUrls | string | no | User Id |    
 | filterType | string | no | Filters |  
 
 
@@ -2362,6 +2278,7 @@ Success
  | image | [string] |  no  |  |
  | brand | string |  no  |  |
  | last_updated_at | string |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
@@ -2540,7 +2457,7 @@ Success
  | channel | [Channel](#Channel) |  no  |  |
  | fyndstore_emp | string |  no  |  |
  | ordering_store | string |  no  |  |
- | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)] |  no  |  |
+ | breakup_values | [PlatformBreakupValues](#PlatformBreakupValues) |  no  |  |
  | id | string |  no  |  |
  | application | [PlatformApplication](#PlatformApplication) |  no  |  |
  | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails) |  no  |  |
@@ -2584,9 +2501,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | [PlatformShipmentDetailsStatus](#PlatformShipmentDetailsStatus) |  no  |  |
- | bags | [[BagsDetails](#BagsDetails)] |  no  |  |
+ | bags | [BagsDetails](#BagsDetails) |  no  |  |
  | prices | [ShipmentPrices](#ShipmentPrices) |  no  |  |
- | breakup_values | [[ShipmentBreakupValues](#ShipmentBreakupValues)] |  no  |  |
+ | breakup_values | [ShipmentBreakupValues](#ShipmentBreakupValues) |  no  |  |
  | id | string |  no  |  |
  | dp_details | [DpDetails](#DpDetails) |  no  |  |
  | payment_methods | string |  no  |  |
@@ -2602,7 +2519,7 @@ Success
  | can_break | string |  no  |  |
  | comment | string |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
- | tracking_details | [[ShipmentTrackingDetails](#ShipmentTrackingDetails)] |  no  |  |
+ | tracking_details | [ShipmentTrackingDetails](#ShipmentTrackingDetails) |  no  |  |
  | is_fynd_coupon | boolean |  no  |  |
  | order_type | string |  no  |  |
  | total_shipment_bags | number |  no  |  |
@@ -2651,7 +2568,7 @@ Success
  | id | number |  no  |  |
  | prices | [BagPrices](#BagPrices) |  no  |  |
  | gst_details | [GstDetails](#GstDetails) |  no  |  |
- | breakup_values | [[BagBreakupValues](#BagBreakupValues)] |  no  |  |
+ | breakup_values | [BagBreakupValues](#BagBreakupValues) |  no  |  |
  | update_time | number |  no  |  |
  | current_status | [BagCurrentStatus](#BagCurrentStatus) |  no  |  |
  | bag_status | [BagStatus](#BagStatus) |  no  |  |
@@ -3348,11 +3265,11 @@ Success
  | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
  | channel | [Channel](#Channel) |  no  |  |
  | fyndstore_emp | string |  no  |  |
- | ordering_store | [PlatformFulfillingStore](#PlatformFulfillingStore) |  no  |  |
- | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)] |  no  |  |
+ | ordering_store | string |  no  |  |
+ | breakup_values | [PlatformBreakupValues](#PlatformBreakupValues) |  no  |  |
  | id | string |  no  |  |
  | application | [PlatformApplication](#PlatformApplication) |  no  |  |
- | shipments | [[PlatformShipmentDetails](#PlatformShipmentDetails)] |  no  |  |
+ | shipments | [PlatformShipmentDetails](#PlatformShipmentDetails) |  no  |  |
  | created_at | string |  no  |  |
  | total_shipments_in_order | number |  no  |  |
  | payments | [ItemsPayments](#ItemsPayments) |  no  |  |
@@ -3617,6 +3534,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | shipments | string |  yes  |  |
+ | statuses | [any] |  no  |  |
  | force_transition | boolean |  yes  |  |
  | task | boolean |  yes  |  |
 

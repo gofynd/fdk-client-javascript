@@ -52,22 +52,6 @@ class OrderValidator {
     }).required();
   }
 
-  static getOrderLanesCountByCompanyId() {
-    return Joi.object({
-      pageNo: Joi.string().allow(""),
-      pageSize: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-      stage: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
-      orderId: Joi.string().allow(""),
-      stores: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      filterType: Joi.string().allow(""),
-    }).required();
-  }
-
   static getOrderDetails() {
     return Joi.object({
       orderId: Joi.string().allow(""),
