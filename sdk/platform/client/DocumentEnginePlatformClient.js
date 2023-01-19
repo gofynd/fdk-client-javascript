@@ -28,12 +28,15 @@ class DocumentEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/document/v1.0/company/${this.config.companyId}/generate-bulk-package-label`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -56,12 +59,15 @@ class DocumentEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/document/v1.0/company/${this.config.companyId}/generate-bulk-box-label`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -86,12 +92,15 @@ class DocumentEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/document/v1.0/company/${this.config.companyId}/generate-bulk-shipment-label`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -114,12 +123,15 @@ class DocumentEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/document/v1.0/company/${this.config.companyId}/generate-noc`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -143,12 +155,15 @@ class DocumentEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/document/v1.0/company/${this.config.companyId}/get-label-list`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -172,12 +187,15 @@ class DocumentEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/document/v1.0/company/${this.config.companyId}/get-noc-status`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -200,12 +218,15 @@ class DocumentEngine {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/document/v1.0/company/${this.config.companyId}/get-single-presigned-url`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -229,12 +250,15 @@ class DocumentEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/document/v1.0/company/${this.config.companyId}/get-label-presigned-url`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -258,12 +282,15 @@ class DocumentEngine {
     const query_params = {};
     query_params["uid"] = uid;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/document/v1.0/company/${this.config.companyId}/get-noc-presigned-url`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

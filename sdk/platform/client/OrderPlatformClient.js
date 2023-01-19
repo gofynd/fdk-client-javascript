@@ -101,12 +101,15 @@ class Order {
     query_params["channel_order_id"] = channelOrderId;
     query_params["custom_meta"] = customMeta;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -135,12 +138,15 @@ class Order {
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["request_by_ext"] = requestByExt;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details/${channelShipmentId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -164,12 +170,15 @@ class Order {
     const query_params = {};
     query_params["order_id"] = orderId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/order-details`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -227,12 +236,15 @@ class Order {
     query_params["payment_mode"] = paymentMode;
     query_params["bag_status"] = bagStatus;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/lane-config/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -302,12 +314,15 @@ class Order {
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["custom_meta"] = customMeta;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/orders-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -334,12 +349,15 @@ class Order {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment/metrics-count/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -366,12 +384,15 @@ class Order {
     query_params["view"] = view;
     query_params["group_entity"] = groupEntity;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/filter-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -398,12 +419,15 @@ class Order {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -430,12 +454,15 @@ class Order {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -458,12 +485,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -490,12 +520,15 @@ class Order {
     query_params["batch_id"] = batchId;
     query_params["doc_type"] = docType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/invoice`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -519,12 +552,15 @@ class Order {
     const query_params = {};
     query_params["batch_id"] = batchId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/invoice-label-external`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -602,12 +638,15 @@ class Order {
     query_params["customer_id"] = customerId;
     query_params["is_priority_sort"] = isPrioritySort;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/generate/file`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -685,12 +724,15 @@ class Order {
     query_params["customer_id"] = customerId;
     query_params["is_priority_sort"] = isPrioritySort;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/listing`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -740,12 +782,15 @@ class Order {
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/generated-manifests`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -807,12 +852,15 @@ class Order {
     query_params["search_type"] = searchType;
     query_params["search_value"] = searchValue;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/manifest-details`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -839,12 +887,15 @@ class Order {
     query_params["batch_id"] = batchId;
     query_params["report_type"] = reportType;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action-failed-report/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -874,12 +925,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments/${shipmentId}/bags/${bagId}/state/${state}/reasons`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -902,12 +956,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -930,12 +987,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/${batchId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -965,12 +1025,15 @@ class Order {
     query_params["channel_bag_id"] = channelBagId;
     query_params["channel_id"] = channelId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bag-details/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1028,12 +1091,15 @@ class Order {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bags`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1056,12 +1122,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-cache`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1084,12 +1153,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/store/reassign-internal`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1112,12 +1184,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/entity/lock-manager`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1141,12 +1216,15 @@ class Order {
     const query_params = {};
     query_params["date"] = date;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/announcements`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1216,12 +1294,15 @@ class Order {
     query_params["state"] = state;
     query_params["country"] = country;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/delight/update-address`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1257,12 +1338,15 @@ class Order {
     query_params["calling_to"] = callingTo;
     query_params["caller_id"] = callerId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/click2call`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1285,12 +1369,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/status-internal`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1313,12 +1400,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1341,12 +1431,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/dispatch`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1366,12 +1459,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/roles`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1398,12 +1494,15 @@ class Order {
     query_params["shipment_id"] = shipmentId;
     query_params["bag_id"] = bagId;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1426,12 +1525,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1456,12 +1558,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/oms/manual-place-shipment`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1484,12 +1589,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-packaging-dimension`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1512,12 +1620,43 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
       query_params,
-      body
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
+      query_params,
+      undefined,
+      xHeaders
     );
   }
 
@@ -1540,37 +1679,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
       query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary:
-   * @description: getChannelConfig
-   */
-  getChannelConfig({} = {}) {
-    const { error } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      undefined
+      body,
+      xHeaders
     );
   }
 
@@ -1593,12 +1710,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/uploadConsent`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1621,12 +1741,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order/validation`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1649,12 +1772,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/debug/order_status`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1674,12 +1800,15 @@ class Order {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

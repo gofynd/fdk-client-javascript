@@ -26,12 +26,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/regions`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -67,12 +70,15 @@ class Serviceability {
     query_params["is_active"] = isActive;
     query_params["channel_ids"] = channelIds;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zones`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -92,12 +98,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/all-stores`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -121,12 +130,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -154,12 +166,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -184,12 +199,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -212,12 +230,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/stores/${storeUid}`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -237,12 +258,15 @@ class Serviceability {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics/stores`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

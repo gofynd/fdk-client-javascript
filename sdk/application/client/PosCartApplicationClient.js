@@ -84,6 +84,8 @@ class PosCart {
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -92,7 +94,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -114,6 +117,8 @@ class PosCart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "head",
@@ -122,7 +127,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -151,6 +157,8 @@ class PosCart {
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -159,7 +167,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -190,6 +199,8 @@ class PosCart {
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -198,7 +209,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -222,6 +234,8 @@ class PosCart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -230,7 +244,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -254,6 +269,8 @@ class PosCart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -262,7 +279,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -293,6 +311,8 @@ class PosCart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -301,7 +321,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -325,6 +346,8 @@ class PosCart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -333,7 +356,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -363,6 +387,8 @@ class PosCart {
     query_params["uid"] = uid;
     query_params["slug"] = slug;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -371,7 +397,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -400,6 +427,8 @@ class PosCart {
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -408,7 +437,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -447,6 +477,8 @@ class PosCart {
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -455,7 +487,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -476,6 +509,8 @@ class PosCart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -484,7 +519,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -525,6 +561,8 @@ class PosCart {
     query_params["tags"] = tags;
     query_params["is_default"] = isDefault;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -533,7 +571,8 @@ class PosCart {
         params: { id },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -555,6 +594,8 @@ class PosCart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -563,7 +604,8 @@ class PosCart {
         params: { id },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -584,6 +626,8 @@ class PosCart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "delete",
@@ -592,7 +636,8 @@ class PosCart {
         params: { id },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -621,6 +666,8 @@ class PosCart {
     query_params["i"] = i;
     query_params["b"] = b;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -629,7 +676,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -654,6 +702,8 @@ class PosCart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -662,7 +712,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -712,6 +763,8 @@ class PosCart {
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -720,7 +773,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -774,6 +828,8 @@ class PosCart {
     query_params["area_code"] = areaCode;
     query_params["order_type"] = orderType;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -782,7 +838,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -817,6 +874,8 @@ class PosCart {
     query_params["address_id"] = addressId;
     query_params["order_type"] = orderType;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -825,7 +884,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -848,6 +908,8 @@ class PosCart {
     const query_params = {};
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -856,7 +918,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -881,6 +944,8 @@ class PosCart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "put",
@@ -889,7 +954,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -913,6 +979,8 @@ class PosCart {
     query_params["area_code"] = areaCode;
     query_params["id"] = id;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -921,7 +989,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -943,6 +1012,8 @@ class PosCart {
     const query_params = {};
     query_params["store_uid"] = storeUid;
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -951,7 +1022,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -972,6 +1044,8 @@ class PosCart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -980,7 +1054,8 @@ class PosCart {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -1001,6 +1076,8 @@ class PosCart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "get",
@@ -1009,7 +1086,8 @@ class PosCart {
         params: { token },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -1032,6 +1110,8 @@ class PosCart {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -1040,7 +1120,8 @@ class PosCart {
         params: { token, action },
       }),
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }

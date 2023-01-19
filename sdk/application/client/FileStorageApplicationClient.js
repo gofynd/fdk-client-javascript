@@ -66,6 +66,8 @@ class FileStorage {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -74,7 +76,8 @@ class FileStorage {
         params: { namespace },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -113,6 +116,8 @@ class FileStorage {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -121,7 +126,8 @@ class FileStorage {
         params: { namespace },
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -142,6 +148,8 @@ class FileStorage {
     }
     const query_params = {};
 
+    const xHeaders = {};
+
     return APIClient.execute(
       this._conf,
       "post",
@@ -150,7 +158,8 @@ class FileStorage {
         params: {},
       }),
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 }

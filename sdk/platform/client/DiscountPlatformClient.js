@@ -62,12 +62,15 @@ class Discount {
     query_params["type"] = type;
     query_params["app_ids"] = appIds;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -90,12 +93,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -118,12 +124,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -148,12 +157,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -178,12 +190,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/items/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -209,12 +224,15 @@ class Discount {
     const query_params = {};
     query_params["discount"] = discount;
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -239,12 +257,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/${type}/download/`,
       query_params,
-      body
+      body,
+      xHeaders
     );
   }
 
@@ -267,12 +288,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -295,12 +319,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -323,12 +350,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 
@@ -351,12 +381,15 @@ class Discount {
 
     const query_params = {};
 
+    const xHeaders = {};
+
     return PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
       query_params,
-      undefined
+      undefined,
+      xHeaders
     );
   }
 }
