@@ -21,7 +21,6 @@ Content System
 * [getDataLoaders](#getdataloaders)
 * [deleteDataLoader](#deletedataloader)
 * [editDataLoader](#editdataloader)
-* [getDataLoadersByService](#getdataloadersbyservice)
 * [selectDataLoader](#selectdataloader)
 * [resetDataLoader](#resetdataloader)
 * [getFaqCategories](#getfaqcategories)
@@ -48,11 +47,13 @@ Content System
 * [deleteNavigation](#deletenavigation)
 * [getPageMeta](#getpagemeta)
 * [getPageSpec](#getpagespec)
-* [createPagePreview](#createpagepreview)
 * [updatePagePreview](#updatepagepreview)
 * [deletePage](#deletepage)
-* [updatePathRedirectionRules](#updatepathredirectionrules)
+* [addPathRedirectionRules](#addpathredirectionrules)
 * [getPathRedirectionRules](#getpathredirectionrules)
+* [getPathRedirectionRule](#getpathredirectionrule)
+* [updatePathRedirectionRules](#updatepathredirectionrules)
+* [deletePathRedirectionRules](#deletepathredirectionrules)
 * [getSEOConfiguration](#getseoconfiguration)
 * [updateSEOConfiguration](#updateseoconfiguration)
 * [getSlideshows](#getslideshows)
@@ -1536,95 +1537,6 @@ Success.
 ---
 
 
-### getDataLoadersByService
-Get all the data loaders in an application by service name
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| serviceName | string | yes | Service name of the data loader. |  
-
-
-
-Use this to get all data loaders of an application by service name
-
-*Returned Response:*
-
-
-
-
-[DataLoadersSchema](#DataLoadersSchema)
-
-Success. Refer `DataLoaderResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "name": "Algolia",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc4523a7ffc7504f4de4a5",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url",
-      "__source": {
-        "type": "extension",
-        "id": "000000000000000000000003"
-      },
-      "application": "100000000000000000000001",
-      "__v": 0
-    },
-    {
-      "name": "Algolia v3",
-      "is_selected": false,
-      "type": "url",
-      "_id": "61bc452da7ffc7504f4de4a7",
-      "service": "catalog",
-      "operation_id": "fetchSuggestions",
-      "url": "/ext/example/url",
-      "__source": {
-        "type": "extension",
-        "id": "000000000000000000000003"
-      },
-      "application": "100000000000000000000001",
-      "__v": 0
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### selectDataLoader
 Select a data loader by id
 
@@ -2819,7 +2731,7 @@ Success. Refer `ApplicationLegal` for more details.
 ```json
 {
   "value": {
-    "tnc": "TERMS AND CONDITIONS FOR RECURRING PAYMENTS ON FYND PLATFORM\n\nUpdated On: July 11, 2020\n\nWhen you purchase (“**Services**”) from Fynd Platform (“**Fynd Platform**”, “**We**” or “**Us**”), you have the option to make payments on a recurring basis (“**Recurring Payments**”) on the (“**Terms and Conditions**”) below for your monthly usage charges towards the services provided to you under the account you operate with Fynd Platform (“**Account**”). We may, at our sole discretion, refuse Recurring Payments to anyone without notice for any reason at any time. \n\n\n1. **Recurring Payments** - You are not required to make Recurring Payments, and you may cancel Recurring Payments for your Account at your discretion. We will make Recurring Payments available to you only if you have designated an eligible payment method for your Account that is current, valid and otherwise acceptable to us. Such a method is hereinafter referred to as \"Payment Method\". We reserve the right to decide the payment methods eligible for Recurring Payments and we will automatically charge your Payment Method. You are solely responsible for the accuracy of the information you provide us regarding your Payment Method. We may limit the amount that you can pay using Recurring Payments every month.\n\n2. **Enabling Recurring Payments**- You agree that Recurring Payments will be enabled automatically for your Account if you chose an eligible Payment Method. Once Recurring Payments have been enabled for your Account, you authorize us to use your Payment Method to pay for your monthly invoices automatically until you cancel Recurring Payments for your Account. In Addition, once Recurring Payments has been enabled, you authorize us to charge the fees for the Services, unless you cancel or disable Recurring Payment, by means specified by us and applicable at such time, in which case you will be required to take action and pay for the Services.\n\n3. **Verification and Authentication**- Before Recurring Payments are enabled for your Fynd Platform Account, verification and authentication of your Payment Method will be performed. Once the verification and authentication are successful, you will be registered for Recurring Payments. This verification and authentication may also be repeated if (a) there are changes to your Account or Payment Method; (b) you cancel or disable Recurring Payments; (c) one of your Recurring Payments is declined for any reason whatsoever, including without limitation, expiry of your card.\n\n4. **Third Party Payment Processors** - You agree, understand and acknowledge that Fynd Platform may engage third party payment processors or gateway service providers to process Recurring Payments. Therefore, you may be required to agree to the terms and conditions of the third party payment processors or gateway service providers as communicated to you from time to time.\n\n5. **Cancelling Recurring Payments** - You have the right to cancel Recurring Payments for your Fynd Platform Account by contacting our customer support.\n\n6. **Notifications** - You authorize us to communicate with you by email regarding Recurring Payments. You acknowledge that we may also communicate with you through our affiliates that provide Services to you.\n\n7. **Disclaimer of Liability** - You agree that we will not be liable for any losses or damages suffered by you because of your use of Recurring Payments for your Fynd Platform Account, including any fraud in connection with any payment using your Payment Method. You realize that neither Fynd Platform nor Shopsense Retail Technologies Pvt. Ltd. which fully owns and controls the Fynd Platform, will be held responsible for any damages, whether partial or full.\n\n\n8. **Agreement Changes** - We may in our discretion change these Terms and Conditions at any time. If any change is found to be invalid, void, or for any reason unenforceable, that change is severable and does not affect the validity and enforceability of any other changes or the remainder of these Terms and Conditions.\n\nYOUR CONTINUED USE OF RECURRING PAYMENTS FOR YOUR FYND PLATFORM ACCOUNT AFTER WE CHANGE THESE TERMS AND CONDITIONS CONSTITUTES YOUR ACCEPTANCE OF THESE CHANGES.",
+    "tnc": "**Terms and Conditions test**",
     "policy": "**Privacy policy test**",
     "shipping": "**Shipping term and conditions**",
     "returns": "**Terms & conditions for returns **",
@@ -4906,14 +4818,22 @@ Get page meta
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPageMeta();
+const promise = client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
+ cartPages : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPageMeta();
+const data = await client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
+ cartPages : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageType | string | no | Fetch meta by page type. Acceptable values are: system, custom and all |    
+| cartPages | boolean | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
@@ -5079,123 +4999,6 @@ Success. Refer `PageSpec` for more details.
         "query": []
       }
     ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPagePreview
-Create a page preview
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").content.createPagePreview({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PageRequest](#PageRequest) | yes | Request body |
-
-
-Use this API to create a page preview to check the appearance of a custom page.
-
-*Returned Response:*
-
-
-
-
-[PageSchema](#PageSchema)
-
-Success. Refer `PageSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "date_meta": {
-      "created_on": "2021-03-16T08:24:19.197Z",
-      "modified_on": "2021-03-16T08:24:19.197Z"
-    },
-    "tags": [
-      "my first page"
-    ],
-    "published": true,
-    "component_ids": [],
-    "archived": false,
-    "_id": "60506dcad18cb33946026862",
-    "title": "my first page",
-    "slug": "1st_page",
-    "feature_image": {
-      "secure_url": "https://google.com/some-image"
-    },
-    "content": [
-      {
-        "type": "html",
-        "value": "<div id=\"icfm\">Emtpy Page. Create Page here.</div><div id=\"izu5\" class=\"aa\">hello there!<div id=\"izzl\">how are you doing</div><div><br/></div></div><img id=\"ibgj\" src=\"https://hdn-1.addsale.com/x0/company/52/applications/614957b7e7a0ccc371e96094/pages/pictures/free-content/original/-zLi_CuyM-apple.jpeg\"/>"
-      },
-      {
-        "type": "css",
-        "value": "* { box-sizing: border-box; } body {margin: 0;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}*{box-sizing:border-box;}body{margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;}#icfm{text-align:center;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}#izu5{padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}#ibgj{color:black;}#izzl{float:none;display:flex;}.aa{float:right;}"
-      },
-      {
-        "type": "js",
-        "value": ""
-      }
-    ],
-    "content_path": "https://hdn-1.fynd.com/company/1526/applications/61012f6a9250ccd1b9ef8a1d/pages/content/page_slug.html",
-    "platform": "web",
-    "description": "hey this is my first page",
-    "visibility": {
-      "test": true
-    },
-    "_schedule": {
-      "start": "2021-04-23T23:50:00.000Z",
-      "next_schedule": [
-        {}
-      ]
-    },
-    "seo": {
-      "title": "my first page",
-      "description": "hey this is my first page",
-      "image": {
-        "url": ""
-      }
-    },
-    "type": "rawhtml",
-    "application": "000000000000000000000001",
-    "orientation": "portrait",
-    "page_meta": []
   }
 }
 ```
@@ -5452,17 +5255,17 @@ Success.
 ---
 
 
-### updatePathRedirectionRules
+### addPathRedirectionRules
 Save path based redirection rules
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  body : value });
+const promise = client.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  body : value });
+const data = await client.application("<APPLICATION_ID>").content.addPathRedirectionRules({  body : value });
 ```
 
 
@@ -5474,7 +5277,7 @@ const data = await client.application("<APPLICATION_ID>").content.updatePathRedi
 | body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
 
 
-Use this API to add, update or delete path-based redirection rules
+Use this API to add redirection rules
 
 *Returned Response:*
 
@@ -5489,18 +5292,26 @@ Success. Refer `PathMappingSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
 
 ```json
 {
-  "redirections": [
-    {
-      "redirect_from": "test.hostfynd.dev/redirect_from",
-      "redirect_to": "/redirect_to"
-    }
-  ]
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -5521,14 +5332,22 @@ Get path based redirection rules
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPathRedirectionRules();
+const promise = client.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
+ pageNo : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPathRedirectionRules();
+const data = await client.application("<APPLICATION_ID>").content.getPathRedirectionRules({  pageSize : value,
+ pageNo : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 5.  |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |  
 
 
 
@@ -5558,12 +5377,8 @@ Success. Refer `PathMappingSchema` for more details.
   "value": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
-    "redirections": [
-      {
-        "redirect_from": "/from",
-        "redirect_to": "/to"
-      }
-    ],
+    "redirect_from": "/from",
+    "redirect_to": "/to",
     "createdAt": "2021-09-27T09:03:37.053Z",
     "updatedAt": "2021-09-27T09:09:25.587Z"
   }
@@ -5571,6 +5386,208 @@ Success. Refer `PathMappingSchema` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPathRedirectionRule
+Get path based redirection rule
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.getPathRedirectionRule({  pathId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pathId | string | yes | ID allotted to the path redirection rule. |  
+
+
+
+Use this API to get path based redirection rule.
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePathRedirectionRules
+Update path based redirection rules
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.updatePathRedirectionRules({  pathId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pathId | string | yes | ID allotted to the path redirection rule. |  
+| body | [PathMappingSchema](#PathMappingSchema) | yes | Request body |
+
+
+Use this API to update redirection rules
+
+*Returned Response:*
+
+
+
+
+[PathMappingSchema](#PathMappingSchema)
+
+Success. Refer `PathMappingSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "615188e9db1e444cb0f40837",
+    "application": "000000000000000000000002",
+    "redirect_from": "/from",
+    "redirect_to": "/to",
+    "createdAt": "2021-09-27T09:03:37.053Z",
+    "updatedAt": "2021-09-27T09:09:25.587Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deletePathRedirectionRules
+Delete path based redirection rules
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").content.deletePathRedirectionRules({  pathId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pathId | string | yes | ID allotted to the path redirection rule. |  
+
+
+
+Use this API to delete redirection rules
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Redirection deleted successfully"
+}
+```
 </details>
 
 
@@ -7360,6 +7377,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | tnc | string |  no  |  |
  | policy | string |  no  |  |
  | shipping | string |  no  |  |
+ | returns | string |  no  |  |
  | faq | [[ApplicationLegalFAQ](#ApplicationLegalFAQ)] |  no  |  |
  | _id | string |  no  |  |
  | updated_at | string |  no  |  |
@@ -7387,22 +7405,12 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | string |  no  |  |
- | redirections | [[RedirectionSchema](#RedirectionSchema)] |  no  |  |
  | _id | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
-
----
-
-
- 
- 
- #### [RedirectionSchema](#RedirectionSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | redirect_from | string |  no  |  |
  | redirect_to | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | created_at | string |  no  |  |
+ | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
 
 ---
 
@@ -7845,6 +7853,26 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | active | boolean |  no  |  |
  | display | string |  no  |  |
  | sort_order | number |  no  |  |
+ | sub_navigation | [[SubNavigationReference](#SubNavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubNavigationReference](#SubNavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acl | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
+ | image | string |  no  |  |
+ | type | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | active | boolean |  no  |  |
+ | display | string |  no  |  |
+ | sort_order | number |  no  |  |
  | sub_navigation | [[NavigationReference](#NavigationReference)] |  no  |  |
 
 ---
@@ -7980,6 +8008,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | position | string |  no  |  |
  | attributes | string |  no  |  |
+ | pages | [string] |  no  |  |
  | content | string |  no  |  |
 
 ---
@@ -8009,6 +8038,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | content | string |  no  |  |
  | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema) |  no  |  |
+ | _id | string |  no  |  |
 
 ---
 
@@ -8061,6 +8091,17 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | request_id | string |  no  |  |
  | stack_trace | string |  no  |  |
  | meta | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonError](#CommonError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
 
 ---
 
@@ -8141,6 +8182,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | _id | string |  no  |  |
  | question | string |  no  |  |
  | answer | string |  no  |  |
+ | tags | [string] |  no  |  |
 
 ---
 
@@ -8752,6 +8794,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | position | string |  no  |  |
  | attributes | string |  no  |  |
  | content | string |  no  |  |
+ | pages | [string] |  no  |  |
  | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
 
 ---
@@ -8825,6 +8868,9 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | cartPayment | cart-payment | Symbolic link for Cart Payment Information: /cart/payment-info |
  | cartReview | cart-review | Symbolic link for Cart Order Review: /cart/order-review |
  | login | login | Symbolic link for Login: /auth/login |
+ | register | register | Symbolic link for Register: /auth/register |
+ | shippingPolicy | shipping-policy | Symbolic link for Shipping policy: /shipping-policy |
+ | returnPolicy | return-policy | Symbolic link for Return policy: /return-policy |
 
 ---
 

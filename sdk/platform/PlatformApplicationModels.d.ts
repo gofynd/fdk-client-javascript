@@ -13,17 +13,6 @@ export class LeadValidator {
     static openVideoRoom(): any;
     static closeVideoRoom(): any;
 }
-export class FeedbackValidator {
-    static getAttributes(): any;
-    static getCustomerReviews(): any;
-    static updateApprove(): any;
-    static getHistory(): any;
-    static getApplicationTemplates(): any;
-    static createTemplate(): any;
-    static getTemplateById(): any;
-    static updateTemplate(): any;
-    static updateTemplateStatus(): any;
-}
 export class ThemeValidator {
     static getAllPages(): any;
     static createPage(): any;
@@ -56,6 +45,7 @@ export class UserValidator {
     static createUser(): any;
     static blockOrUnblockUsers(): any;
     static archiveUser(): any;
+    static unDeleteUser(): any;
     static updateUser(): any;
     static createUserSession(): any;
     static getActiveSessions(): any;
@@ -79,7 +69,6 @@ export class ContentValidator {
     static getDataLoaders(): any;
     static deleteDataLoader(): any;
     static editDataLoader(): any;
-    static getDataLoadersByService(): any;
     static selectDataLoader(): any;
     static resetDataLoader(): any;
     static getFaqCategories(): any;
@@ -106,11 +95,13 @@ export class ContentValidator {
     static deleteNavigation(): any;
     static getPageMeta(): any;
     static getPageSpec(): any;
-    static createPagePreview(): any;
     static updatePagePreview(): any;
     static deletePage(): any;
-    static updatePathRedirectionRules(): any;
+    static addPathRedirectionRules(): any;
     static getPathRedirectionRules(): any;
+    static getPathRedirectionRule(): any;
+    static updatePathRedirectionRules(): any;
+    static deletePathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -195,42 +186,42 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
+    static getSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
-    static updateAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
+    static getAllSearchKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
+    static getAutocompleteKeywordDetail(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
-    static getAppProduct(): any;
+    static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
+    static getAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static updateGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
     static deleteGroupConfiguration(): any;
-    static getListingConfigurations(): any;
+    static updateGroupConfiguration(): any;
     static createListingConfiguration(): any;
-    static updateListingConfiguration(): any;
+    static getListingConfigurations(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static getCollectionItems(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
@@ -245,6 +236,8 @@ export class CatalogValidator {
     static updateAppBrand(): any;
     static getApplicationCategoryListing(): any;
     static updateAppCategory(): any;
+    static getApplicationDepartmentListing(): any;
+    static updateAppDepartment(): any;
     static updateAppLocation(): any;
 }
 export class FileStorageValidator {
@@ -303,6 +296,10 @@ export class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static getAbandonedCart(): any;
+    static getAbandonedCartDetails(): any;
+    static addItems(): any;
+    static updateCart(): any;
 }
 export class RewardsValidator {
     static getGiveaways(): any;

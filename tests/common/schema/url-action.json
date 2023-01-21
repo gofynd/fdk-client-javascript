@@ -422,6 +422,34 @@
       }
     },
     {
+      "name": "Shipping policy",
+      "path": "/shipping-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "shipping-policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Return policy",
+      "path": "/return-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "return-policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
       "name": "product request",
       "path": "/product-request/",
       "result": {
@@ -601,6 +629,34 @@
           "type": "page",
           "page": {
             "type": "home",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "login",
+      "path": "/auth/login",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "login",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "register",
+      "path": "/auth/register",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "register",
             "query": {},
             "params": {}
           }
