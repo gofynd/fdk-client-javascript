@@ -1,10 +1,10 @@
 export = RewardsValidator;
 declare class RewardsValidator {
-    static getPointsOnProduct(): any;
     static getOfferByName(): any;
-    static getOrderDiscount(): any;
-    static getUserPoints(): any;
-    static getUserPointsHistory(): any;
-    static getUserReferralDetails(): any;
+    static catalogueOrder(): any;
+    static getPointsHistory(): any;
+    static getPoints(): any;
+    static referral(): any;
+    static orderDiscount(): any;
     static redeemReferralCode(): any;
 }
