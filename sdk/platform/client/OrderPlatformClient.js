@@ -115,16 +115,23 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.channelShipmentId -
+   * @param {string} [arg.channelShipmentId] -
+   * @param {string} [arg.shipmentId] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.requestByExt] -
    * @summary:
    * @description:
    */
-  getShipmentById({ channelShipmentId, orderingCompanyId, requestByExt } = {}) {
+  getShipmentById({
+    channelShipmentId,
+    shipmentId,
+    orderingCompanyId,
+    requestByExt,
+  } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
       {
         channelShipmentId,
+        shipmentId,
         orderingCompanyId,
         requestByExt,
       },
@@ -135,6 +142,8 @@ class Order {
     }
 
     const query_params = {};
+    query_params["channel_shipment_id"] = channelShipmentId;
+    query_params["shipment_id"] = shipmentId;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["request_by_ext"] = requestByExt;
 
@@ -143,7 +152,7 @@ class Order {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details/${channelShipmentId}`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details`,
       query_params,
       undefined,
       xHeaders

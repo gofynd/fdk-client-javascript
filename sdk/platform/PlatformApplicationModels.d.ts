@@ -193,8 +193,8 @@ export class CatalogValidator {
     static deleteAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
-    static updateAppProduct(): any;
     static getAppProduct(): any;
+    static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
