@@ -191,38 +191,32 @@ export class PaymentValidator {
     static setUserCODlimitRoutes(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
-    static trackShipmentPlatform(): any;
-    static trackOrder(): any;
-    static failedOrders(): any;
-    static reprocessOrder(): any;
-    static updateShipment(): any;
-    static getPlatformShipmentReasons(): any;
-    static getShipmentTrackDetails(): any;
-    static getOrdersByApplicationId(): any;
+    static getApplicationShipments(): any;
+    static getAppOrderShipmentDetails(): any;
+    static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
-    static updateAppProduct(): any;
     static getAppProduct(): any;
+    static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static updateGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
+    static updateGroupConfiguration(): any;
     static getListingConfigurations(): any;
     static createListingConfiguration(): any;
-    static updateListingConfiguration(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -234,8 +228,8 @@ export class CatalogValidator {
     static getAllCollections(): any;
     static createCollection(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
+    static updateCollection(): any;
     static getCollectionItems(): any;
     static addCollectionItems(): any;
     static getCatalogInsights(): any;
