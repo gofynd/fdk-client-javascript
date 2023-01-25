@@ -682,7 +682,7 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {cardDetails} arg.body
+   * @param {cardDetailsRequest} arg.body
    * @returns {Promise<cardDetailsResponse>} - Success response
    * @summary: API to get Card info from PG
    * @description: API to get Card info from PG

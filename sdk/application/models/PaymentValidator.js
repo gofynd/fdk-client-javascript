@@ -109,7 +109,7 @@ class PaymentValidator {
 
   static cardDetails() {
     return Joi.object({
-      body: Validator.cardDetails().required(),
+      body: Validator.cardDetailsRequest().required(),
     }).required();
   }
 
