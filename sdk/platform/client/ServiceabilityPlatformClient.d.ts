@@ -9,7 +9,7 @@ declare class Serviceability {
      * @description: This API returns response for Entity Region View.
      */
     getEntityRegionView({ body }?: {
-        body: any;
+        body: EntityRegionViewRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -60,7 +60,7 @@ declare class Serviceability {
      */
     updateZoneControllerView({ zoneId, body }?: {
         zoneId: string;
-        body: any;
+        body: ZoneUpdateRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -69,7 +69,7 @@ declare class Serviceability {
      * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
      */
     upsertZoneControllerView({ body }?: {
-        body: any;
+        body: ZoneRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

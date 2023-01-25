@@ -9,7 +9,7 @@ declare class Order {
      * @description: Update Shipment Status
      */
     shipmentStatusUpdate({ body }?: {
-        body: any;
+        body: UpdateShipmentStatusBody;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -27,7 +27,7 @@ declare class Order {
      * @description: Update Store Process-Shipment
      */
     storeProcessShipmentUpdate({ body }?: {
-        body: any;
+        body: UpdateProcessShipmenstRequestBody;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -45,7 +45,7 @@ declare class Order {
      * @description: Decides if Shipment bags can break
      */
     shipmentBagsCanBreak({ body }?: {
-        body: any;
+        body: CanBreakRequestBody;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -156,6 +156,6 @@ declare class Order {
     updateShipmentAddress({ shipmentId, addressCategory, body }?: {
         shipmentId: string;
         addressCategory: string;
-        body: any;
+        body: UpdateShipmentAddressRequest;
     }): Promise<any>;
 }

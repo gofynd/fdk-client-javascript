@@ -9,7 +9,7 @@ declare class Catalog {
      * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
      */
     createProductBundle({ body }?: {
-        body: any;
+        body: ProductBundleRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -43,7 +43,7 @@ declare class Catalog {
      */
     updateProductBundle({ id, body }?: {
         id: string;
-        body: any;
+        body: ProductBundleUpdateRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -52,7 +52,7 @@ declare class Catalog {
      * @description: This API allows to create a size guide associated to a brand.
      */
     createSizeGuide({ body }?: {
-        body: any;
+        body: ValidateSizeGuide;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -91,7 +91,7 @@ declare class Catalog {
      */
     updateSizeGuide({ id, body }?: {
         id: string;
-        body: any;
+        body: ValidateSizeGuide;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -113,7 +113,7 @@ declare class Catalog {
      */
     createMarketplaceOptin({ marketplace, body }?: {
         marketplace: string;
-        body: any;
+        body: OptInPostRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -196,7 +196,7 @@ declare class Catalog {
      * @description: Create departments using the API.
      */
     createDepartments({ body }?: {
-        body: any;
+        body: DepartmentCreateUpdate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -237,7 +237,7 @@ declare class Catalog {
      */
     updateDepartment({ uid, body }?: {
         uid: string;
-        body: any;
+        body: DepartmentCreateUpdate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -317,7 +317,7 @@ declare class Catalog {
      * @description: This API lets user create product categories
      */
     createCategories({ body }?: {
-        body: any;
+        body: CategoryRequestBody;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -356,7 +356,7 @@ declare class Catalog {
      */
     updateCategory({ uid, body }?: {
         uid: string;
-        body: any;
+        body: CategoryRequestBody;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -365,7 +365,7 @@ declare class Catalog {
      * @description: This API allows to create product.
      */
     createProduct({ body }?: {
-        body: any;
+        body: ProductCreateUpdate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -410,15 +410,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
-     */
-    deleteProduct({ itemId }?: {
-        itemId: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.itemCode] - Item code of the product.
      * @param {number} arg.itemId - Item Id of the product.
      * @param {number} [arg.brandUid] - Brand Id of the product.
@@ -439,7 +430,16 @@ declare class Catalog {
      */
     editProduct({ itemId, body }?: {
         itemId: number;
-        body: any;
+        body: ProductCreateUpdate;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
+     */
+    deleteProduct({ itemId }?: {
+        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -469,7 +469,7 @@ declare class Catalog {
      * @description: This API helps to create a bulk products upload job.
      */
     createBulkProductUploadJob({ body }?: {
-        body: any;
+        body: BulkJob;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -493,7 +493,7 @@ declare class Catalog {
      */
     createProductsInBulk({ batchId, body }?: {
         batchId: string;
-        body: any;
+        body: BulkProductRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -517,7 +517,7 @@ declare class Catalog {
      * @description: This API helps to create a bulk asset upload job.
      */
     createProductAssetsInBulk({ body }?: {
-        body: any;
+        body: ProductBulkAssets;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -555,7 +555,7 @@ declare class Catalog {
     addInventory({ itemId, size, body }?: {
         itemId: number;
         size: string;
-        body: any;
+        body: InventoryRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -622,7 +622,7 @@ declare class Catalog {
      * @description: This API helps to create a bulk Inventory upload job.
      */
     createBulkInventoryJob({ body }?: {
-        body: any;
+        body: BulkJob;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -646,7 +646,7 @@ declare class Catalog {
      */
     createBulkInventory({ batchId, body }?: {
         batchId: string;
-        body: any;
+        body: InventoryBulkRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -664,7 +664,7 @@ declare class Catalog {
      * @description: This API helps to create a Inventory export job.
      */
     createInventoryExportJob({ body }?: {
-        body: any;
+        body: InventoryExportRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -694,7 +694,7 @@ declare class Catalog {
     updateRealtimeInventory({ itemId, sellerIdentifier, body }?: {
         itemId: number;
         sellerIdentifier: string;
-        body: any;
+        body: InventoryRequestSchemaV2;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -708,7 +708,7 @@ declare class Catalog {
     deleteRealtimeInventory({ itemId, sellerIdentifier, body }?: {
         itemId: number;
         sellerIdentifier: string;
-        body: any;
+        body: InventoryRequestSchemaV2;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -717,7 +717,7 @@ declare class Catalog {
      * @description: This API allows add Inventory for particular size and store.
      */
     updateInventories({ body }?: {
-        body: any;
+        body: InventoryRequestSchemaV2;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -726,7 +726,7 @@ declare class Catalog {
      * @description: Create Hsn Code.
      */
     createHsnCode({ body }?: {
-        body: any;
+        body: HsnUpsert;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -759,7 +759,7 @@ declare class Catalog {
      */
     updateHsnCode({ id, body }?: {
         id: string;
-        body: any;
+        body: HsnUpsert;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -768,7 +768,7 @@ declare class Catalog {
      * @description: Bulk Create or Update Hsn Code.
      */
     bulkHsnCode({ body }?: {
-        body: any;
+        body: BulkHsnUpsert;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

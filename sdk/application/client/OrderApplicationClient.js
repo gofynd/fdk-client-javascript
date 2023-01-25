@@ -59,7 +59,7 @@ class Order {
    *   retrieved.
    * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
    * @param {number} [arg.status] - A filter to retrieve orders by their
-   *   current status such as *placed*, *delivered*, etc.
+   *   current status such as _placed_, _delivered_, etc.
    * @param {string} [arg.customMeta] - A filter and retrieve data using
    *   special fields included for special use-cases
    * @returns {Promise<OrderList>} - Success response
