@@ -190,42 +190,42 @@ export class OrderValidator {
     static getOrdersByApplicationId(): any;
 }
 export class CatalogValidator {
+    static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
-    static deleteSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
     static createCustomKeyword(): any;
+    static getAllSearchKeyword(): any;
+    static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
-    static deleteAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
     static createCustomAutocompleteRule(): any;
-    static updateAppProduct(): any;
+    static getAutocompleteConfig(): any;
     static getAppProduct(): any;
+    static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
-    static updateGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
     static deleteGroupConfiguration(): any;
-    static getListingConfigurations(): any;
+    static updateGroupConfiguration(): any;
     static createListingConfiguration(): any;
-    static updateListingConfiguration(): any;
+    static getListingConfigurations(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
-    static getCollectionItems(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
@@ -306,16 +306,17 @@ export class CartValidator {
     static updateCart(): any;
 }
 export class RewardsValidator {
-    static getGiveaways(): any;
-    static createGiveaway(): any;
-    static getGiveawayByID(): any;
-    static updateGiveaway(): any;
-    static getOffers(): any;
+    static showGiveaways(): any;
+    static saveGiveAway(): any;
+    static getGiveawayById(): any;
+    static updateGiveAway(): any;
+    static getGiveawayAudienceStatus(): any;
+    static showOffers(): any;
     static getOfferByName(): any;
     static updateOfferByName(): any;
-    static getUserAvailablePoints(): any;
     static updateUserStatus(): any;
-    static getUserPointsHistory(): any;
+    static user(): any;
+    static getPointsHistory(): any;
 }
 export class AnalyticsValidator {
     static getStatiscticsGroups(): any;
