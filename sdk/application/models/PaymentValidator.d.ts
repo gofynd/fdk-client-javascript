@@ -16,6 +16,7 @@ declare class PaymentValidator {
     static resendOrCancelPayment(): any;
     static renderHTML(): any;
     static validateVPA(): any;
+    static cardDetails(): any;
     static getActiveRefundTransferModes(): any;
     static enableOrDisableRefundTransferMode(): any;
     static getUserBeneficiariesDetail(): any;

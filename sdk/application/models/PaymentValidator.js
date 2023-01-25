@@ -107,6 +107,12 @@ class PaymentValidator {
     }).required();
   }
 
+  static cardDetails() {
+    return Joi.object({
+      body: Validator.cardDetails().required(),
+    }).required();
+  }
+
   static getActiveRefundTransferModes() {
     return Joi.object({});
   }

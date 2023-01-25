@@ -32,6 +32,7 @@ class Payment {
         "/service/application/payment/v1.0/payment/resend_or_cancel",
       renderHTML: "/service/application/payment/v1.0/payment/html/render/",
       validateVPA: "/service/application/payment/v1.0/validate-vpa",
+      cardDetails: "/service/application/payment/v1.0/cards/info",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -671,6 +672,38 @@ class Payment {
       "post",
       constructUrl({
         url: this._urls["validateVPA"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {cardDetails} arg.body
+   * @returns {Promise<cardDetailsResponse>} - Success response
+   * @summary: API to get Card info from PG
+   * @description: API to get Card info from PG
+   */
+  cardDetails({ body } = {}) {
+    const { error } = PaymentValidator.cardDetails().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["cardDetails"],
         params: {},
       }),
       query_params,

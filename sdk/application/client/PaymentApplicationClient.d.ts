@@ -19,6 +19,7 @@ declare class Payment {
         resendOrCancelPayment: string;
         renderHTML: string;
         validateVPA: string;
+        cardDetails: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -237,6 +238,16 @@ declare class Payment {
      * @description: API to Validate UPI ID
      */
     validateVPA({ body }?: {
+        body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {cardDetails} arg.body
+     * @returns {Promise<cardDetailsResponse>} - Success response
+     * @summary: API to get Card info from PG
+     * @description: API to get Card info from PG
+     */
+    cardDetails({ body }?: {
         body: any;
     }): Promise<any>;
     /**
