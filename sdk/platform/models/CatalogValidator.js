@@ -216,7 +216,7 @@ class CatalogValidator {
 
   static createProduct() {
     return Joi.object({
-      body: Validator.ProductCreateUpdate().required(),
+      body: Validator.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
@@ -250,16 +250,23 @@ class CatalogValidator {
     }).required();
   }
 
-  static editProduct() {
+  static deleteProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+    }).required();
+  }
+
+  static patchProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
       body: Validator.ProductCreateUpdate().required(),
     }).required();
   }
 
-  static deleteProduct() {
+  static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
+      body: Validator.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
@@ -268,6 +275,12 @@ class CatalogValidator {
       itemCode: Joi.string().allow(""),
       itemId: Joi.number().required(),
       brandUid: Joi.number(),
+    }).required();
+  }
+
+  static allSizes() {
+    return Joi.object({
+      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -417,6 +430,19 @@ class CatalogValidator {
     return Joi.object({}).required();
   }
 
+  static getInventories() {
+    return Joi.object({
+      itemId: Joi.string().allow(""),
+      size: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
+      sellable: Joi.boolean(),
+      storeIds: Joi.array().items(Joi.number()),
+      sizeIdentifier: Joi.string().allow(""),
+    }).required();
+  }
+
   static exportInventoryConfig() {
     return Joi.object({
       filterType: Joi.string().allow(""),
@@ -490,12 +516,6 @@ class CatalogValidator {
   static getSingleProductHSNCode() {
     return Joi.object({
       reportingHsn: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getOptimalLocations() {
-    return Joi.object({
-      body: Validator.AssignStore().required(),
     }).required();
   }
 }

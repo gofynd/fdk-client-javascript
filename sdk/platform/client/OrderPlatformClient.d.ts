@@ -565,6 +565,12 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CreateChannelConfigData} arg.body
      * @summary:
      * @description: createChannelConfig
@@ -572,12 +578,6 @@ declare class Order {
     createChannelConfig({ body }?: {
         body: CreateChannelConfigData;
     }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UploadConsent} arg.body

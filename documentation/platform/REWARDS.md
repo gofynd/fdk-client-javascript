@@ -611,10 +611,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getPointsHisto
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |    
 | pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |   
-| userId | string | yes | user id |  
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 
