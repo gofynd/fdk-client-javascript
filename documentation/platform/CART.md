@@ -3828,51 +3828,25 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [Identifier](#Identifier)
+ #### [CouponAction](#CouponAction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | [string] |  no  |  |
- | collection_id | [string] |  no  |  |
- | email_domain | [string] |  no  |  |
- | exclude_brand_id | [number] |  no  |  |
- | item_id | [number] |  no  |  |
- | brand_id | [number] |  no  |  |
- | user_id | [string] |  no  |  |
- | store_id | [number] |  no  |  |
- | company_id | [number] |  no  |  |
- | category_id | [number] |  no  |  |
+ | txn_mode | string |  no  |  |
+ | action_date | string |  no  |  |
 
 ---
 
 
  
  
- #### [State](#State)
+ #### [Validation](#Validation)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_archived | boolean |  no  |  |
- | is_public | boolean |  no  |  |
- | is_display | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [RuleDefinition](#RuleDefinition)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | calculate_on | string |  yes  |  |
- | type | string |  yes  |  |
- | scope | [string] |  no  |  |
- | auto_apply | boolean |  no  |  |
- | currency_code | string |  no  |  |
- | is_exact | boolean |  no  |  |
- | applicable_on | string |  yes  |  |
- | value_type | string |  yes  |  |
+ | user_registered_after | string |  no  |  |
+ | anonymous | boolean |  no  |  |
+ | app_id | [string] |  no  |  |
 
 ---
 
@@ -3883,8 +3857,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
  | subtitle | string |  no  |  |
+ | title | string |  no  |  |
 
 ---
 
@@ -3896,10 +3870,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | subtitle | string |  no  |  |
+ | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
  | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
  | description | string |  no  |  |
  | title | string |  no  |  |
- | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
  | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
 
 ---
@@ -3907,12 +3881,25 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CouponAction](#CouponAction)
+ #### [UsesRemaining](#UsesRemaining)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | txn_mode | string |  no  |  |
- | action_date | string |  no  |  |
+ | app | number |  no  |  |
+ | total | number |  no  |  |
+ | user | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UsesRestriction](#UsesRestriction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
 
 ---
 
@@ -3946,33 +3933,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancellation_allowed | boolean |  no  |  |
  | return_allowed | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [UsesRemaining](#UsesRemaining)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | number |  no  |  |
- | total | number |  no  |  |
- | app | number |  no  |  |
-
----
-
-
- 
- 
- #### [UsesRestriction](#UsesRestriction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
- | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | cancellation_allowed | boolean |  no  |  |
 
 ---
 
@@ -3994,10 +3956,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | types | [string] |  no  |  |
- | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
  | codes | [string] |  no  |  |
+ | types | [string] |  no  |  |
  | networks | [string] |  no  |  |
+ | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
 
 ---
 
@@ -4008,16 +3970,48 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | platforms | [string] |  no  |  |
+ | user_type | string |  no  |  |
+ | user_groups | [number] |  no  |  |
+ | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
  | price_range | [PriceRange](#PriceRange) |  no  |  |
  | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
- | ordering_stores | [number] |  no  |  |
- | user_type | string |  no  |  |
- | post_order | [PostOrder](#PostOrder) |  no  |  |
- | platforms | [string] |  no  |  |
- | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
- | user_groups | [number] |  no  |  |
- | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
  | coupon_allowed | boolean |  no  |  |
+ | ordering_stores | [number] |  no  |  |
+ | post_order | [PostOrder](#PostOrder) |  no  |  |
+ | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponAuthor](#CouponAuthor)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modified_by | string |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifier](#Identifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_id | [number] |  no  |  |
+ | collection_id | [string] |  no  |  |
+ | exclude_brand_id | [number] |  no  |  |
+ | brand_id | [number] |  no  |  |
+ | article_id | [string] |  no  |  |
+ | company_id | [number] |  no  |  |
+ | email_domain | [string] |  no  |  |
+ | category_id | [number] |  no  |  |
+ | user_id | [string] |  no  |  |
+ | store_id | [number] |  no  |  |
 
 ---
 
@@ -4028,8 +4022,36 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
  | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponSchedule](#CouponSchedule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | end | string |  no  |  |
+ | next_schedule | [string] |  no  |  |
+ | duration | number |  no  |  |
+ | start | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [State](#State)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_archived | boolean |  no  |  |
+ | is_display | boolean |  no  |  |
+ | is_public | boolean |  no  |  |
 
 ---
 
@@ -4041,6 +4063,21 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | priority | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Rule](#Rule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | key | number |  no  |  |
+ | discount_qty | number |  no  |  |
+ | min | number |  no  |  |
+ | value | number |  no  |  |
 
 ---
 
@@ -4059,55 +4096,18 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CouponSchedule](#CouponSchedule)
+ #### [RuleDefinition](#RuleDefinition)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
- | duration | number |  no  |  |
- | next_schedule | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [Rule](#Rule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | number |  no  |  |
- | value | number |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
- | discount_qty | number |  no  |  |
-
----
-
-
- 
- 
- #### [Validation](#Validation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_id | [string] |  no  |  |
- | user_registered_after | string |  no  |  |
- | anonymous | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [CouponAuthor](#CouponAuthor)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
+ | calculate_on | string |  yes  |  |
+ | is_exact | boolean |  no  |  |
+ | applicable_on | string |  yes  |  |
+ | scope | [string] |  no  |  |
+ | value_type | string |  yes  |  |
+ | auto_apply | boolean |  no  |  |
+ | type | string |  yes  |  |
+ | currency_code | string |  no  |  |
 
 ---
 
@@ -4118,22 +4118,22 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
  | action | [CouponAction](#CouponAction) |  no  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | code | string |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | type_slug | string |  yes  |  |
- | tags | [string] |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
- | rule | [[Rule](#Rule)] |  yes  |  |
  | validation | [Validation](#Validation) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
  | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ | tags | [string] |  no  |  |
+ | code | string |  yes  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
+ | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | type_slug | string |  yes  |  |
 
 ---
 
@@ -4144,15 +4144,15 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
+ | last_id | string |  no  | Last objects id |
  | size | number |  no  | Current request page size |
  | item_total | number |  no  | Total coupon count in system |
- | has_next | boolean |  no  | True if more records are present for next pages |
- | page | number |  no  | Page requested |
- | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
- | last_id | string |  no  | Last objects id |
- | current | number |  no  | Current page no |
  | next_id | string |  no  | Cursor id for next set of records. |
+ | page | number |  no  | Page requested |
+ | current | number |  no  | Current page no |
+ | type | string |  yes  |  |
+ | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
+ | has_next | boolean |  no  | True if more records are present for next pages |
 
 ---
 
@@ -4199,22 +4199,22 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
  | action | [CouponAction](#CouponAction) |  no  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | code | string |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | type_slug | string |  yes  |  |
- | tags | [string] |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
- | rule | [[Rule](#Rule)] |  yes  |  |
  | validation | [Validation](#Validation) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
  | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | state | [State](#State) |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ | tags | [string] |  no  |  |
+ | code | string |  yes  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
+ | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | type_slug | string |  yes  |  |
 
 ---
 
@@ -4233,45 +4233,91 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CompareObject](#CompareObject)
+ #### [UsesRemaining1](#UsesRemaining1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | equals | number |  no  |  |
- | greater_than | number |  no  |  |
- | greater_than_equals | number |  no  |  |
- | less_than | number |  no  |  |
- | less_than_equals | number |  no  |  |
+ | total | number |  no  |  |
+ | user | number |  no  |  |
 
 ---
 
 
  
  
- #### [ItemCriteria](#ItemCriteria)
+ #### [UsesRestriction1](#UsesRestriction1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_rules | [string] |  no  |  |
- | item_category | [number] |  no  |  |
- | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
- | item_id | [number] |  no  |  |
- | item_company | [number] |  no  |  |
- | item_exclude_id | [number] |  no  |  |
- | item_exclude_category | [number] |  no  |  |
- | all_items | boolean |  no  |  |
- | cart_unique_item_amount | [CompareObject](#CompareObject) |  no  |  |
- | item_exclude_company | [number] |  no  |  |
- | item_exclude_brand | [number] |  no  |  |
- | item_store | [number] |  no  |  |
- | item_brand | [number] |  no  |  |
- | available_zones | [string] |  no  |  |
- | cart_unique_item_quantity | [CompareObject](#CompareObject) |  no  |  |
- | item_exclude_store | [number] |  no  |  |
- | item_sku | [string] |  no  |  |
- | item_size | [string] |  no  |  |
- | item_exclude_sku | [string] |  no  |  |
- | cart_total | [CompareObject](#CompareObject) |  no  |  |
+ | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserRegistered](#UserRegistered)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PostOrder1](#PostOrder1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | return_allowed | boolean |  no  |  |
+ | cancellation_allowed | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PaymentAllowValue1](#PaymentAllowValue1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromotionPaymentModes](#PromotionPaymentModes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | codes | [string] |  no  |  |
+ | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
+ | type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Restrictions1](#Restrictions1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_quantity | number |  no  |  |
+ | platforms | [string] |  no  |  |
+ | anonymous_users | boolean |  no  |  |
+ | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
+ | user_groups | [number] |  no  |  |
+ | user_id | [string] |  no  |  |
+ | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
+ | post_order | [PostOrder1](#PostOrder1) |  no  |  |
+ | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
 
 ---
 
@@ -4282,8 +4328,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
  | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
 
 ---
 
@@ -4306,8 +4352,20 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
  | modified_by | string |  no  |  |
+ | created_by | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Visibility](#Visibility)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_list | boolean |  yes  |  |
+ | pdp | boolean |  yes  |  |
 
 ---
 
@@ -4318,8 +4376,66 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action_type | string |  yes  |  |
  | action_date | string |  yes  |  |
+ | action_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMeta1](#DisplayMeta1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offer_text | string |  no  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompareObject](#CompareObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | less_than_equals | number |  no  |  |
+ | greater_than | number |  no  |  |
+ | greater_than_equals | number |  no  |  |
+ | less_than | number |  no  |  |
+ | equals | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemCriteria](#ItemCriteria)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_category | [number] |  no  |  |
+ | available_zones | [string] |  no  |  |
+ | item_exclude_id | [number] |  no  |  |
+ | all_items | boolean |  no  |  |
+ | item_size | [string] |  no  |  |
+ | cart_unique_item_amount | [CompareObject](#CompareObject) |  no  |  |
+ | item_brand | [number] |  no  |  |
+ | cart_unique_item_quantity | [CompareObject](#CompareObject) |  no  |  |
+ | item_exclude_sku | [string] |  no  |  |
+ | item_company | [number] |  no  |  |
+ | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
+ | item_id | [number] |  no  |  |
+ | item_exclude_company | [number] |  no  |  |
+ | item_store | [number] |  no  |  |
+ | cart_total | [CompareObject](#CompareObject) |  no  |  |
+ | item_exclude_store | [number] |  no  |  |
+ | item_exclude_brand | [number] |  no  |  |
+ | item_sku | [string] |  no  |  |
+ | buy_rules | [string] |  no  |  |
+ | item_exclude_category | [number] |  no  |  |
 
 ---
 
@@ -4330,16 +4446,16 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount_percentage | number |  no  |  |
  | discount_price | number |  no  |  |
- | apportion_discount | boolean |  no  |  |
- | max_offer_quantity | number |  no  |  |
- | code | string |  no  |  |
+ | discount_amount | number |  no  |  |
+ | partial_can_ret | boolean |  no  |  |
  | min_offer_quantity | number |  no  |  |
+ | discount_percentage | number |  no  |  |
+ | apportion_discount | boolean |  no  |  |
+ | code | string |  no  |  |
  | max_usage_per_transaction | number |  no  |  |
  | max_discount_amount | number |  no  |  |
- | partial_can_ret | boolean |  no  |  |
- | discount_amount | number |  no  |  |
+ | max_offer_quantity | number |  no  |  |
 
 ---
 
@@ -4351,21 +4467,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
- | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
- | discount_type | string |  yes  |  |
  | buy_condition | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Visibility](#Visibility)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pdp | boolean |  yes  |  |
- | coupon_list | boolean |  yes  |  |
+ | discount_type | string |  yes  |  |
+ | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
 
 ---
 
@@ -4379,113 +4483,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | cron | string |  no  |  |
  | end | string |  no  |  |
  | published | boolean |  yes  |  |
- | start | string |  yes  |  |
- | duration | number |  no  |  |
  | next_schedule | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [DisplayMeta1](#DisplayMeta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | offer_text | string |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [PostOrder1](#PostOrder1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cancellation_allowed | boolean |  no  |  |
- | return_allowed | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [UsesRemaining1](#UsesRemaining1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | number |  no  |  |
- | total | number |  no  |  |
-
----
-
-
- 
- 
- #### [UsesRestriction1](#UsesRestriction1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
- | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentAllowValue1](#PaymentAllowValue1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
-
----
-
-
- 
- 
- #### [PromotionPaymentModes](#PromotionPaymentModes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
- | type | string |  yes  |  |
- | codes | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [UserRegistered](#UserRegistered)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | string |  no  |  |
- | end | string |  no  |  |
-
----
-
-
- 
- 
- #### [Restrictions1](#Restrictions1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_quantity | number |  no  |  |
- | anonymous_users | boolean |  no  |  |
- | post_order | [PostOrder1](#PostOrder1) |  no  |  |
- | user_id | [string] |  no  |  |
- | platforms | [string] |  no  |  |
- | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
- | user_groups | [number] |  no  |  |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
- | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
+ | duration | number |  no  |  |
+ | start | string |  yes  |  |
 
 ---
 
@@ -4496,28 +4496,28 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | currency | string |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | calculate_on | string |  no  | Only available for Contract pricing and Ladder pricing promotion type |
  | apply_all_discount | boolean |  no  |  |
- | application_id | string |  yes  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | code | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | stackable | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | apply_exclusive | string |  no  |  |
+ | promo_group | string |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | apply_priority | number |  no  |  |
  | mode | string |  yes  |  |
  | visiblility | [Visibility](#Visibility) |  no  |  |
- | promotion_type | string |  yes  |  |
- | calculate_on | string |  no  | Only available for Contract pricing and Ladder pricing promotion type |
- | apply_priority | number |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | code | string |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | _custom_json | string |  no  |  |
- | apply_exclusive | string |  no  |  |
+ | application_id | string |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
  | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | promotion_type | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
 
 ---
 
@@ -4540,28 +4540,28 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | currency | string |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | calculate_on | string |  no  | Only available for Contract pricing and Ladder pricing promotion type |
  | apply_all_discount | boolean |  no  |  |
- | application_id | string |  yes  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | code | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | stackable | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | apply_exclusive | string |  no  |  |
+ | promo_group | string |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | apply_priority | number |  no  |  |
  | mode | string |  yes  |  |
  | visiblility | [Visibility](#Visibility) |  no  |  |
- | promotion_type | string |  yes  |  |
- | calculate_on | string |  no  | Only available for Contract pricing and Ladder pricing promotion type |
- | apply_priority | number |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | code | string |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | _custom_json | string |  no  |  |
- | apply_exclusive | string |  no  |  |
+ | application_id | string |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
  | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | promotion_type | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
 
 ---
 
@@ -4572,28 +4572,28 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | currency | string |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | calculate_on | string |  no  | Only available for Contract pricing and Ladder pricing promotion type |
  | apply_all_discount | boolean |  no  |  |
- | application_id | string |  yes  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | _custom_json | string |  no  |  |
+ | code | string |  no  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | stackable | boolean |  no  |  |
+ | currency | string |  no  |  |
+ | apply_exclusive | string |  no  |  |
+ | promo_group | string |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | apply_priority | number |  no  |  |
  | mode | string |  yes  |  |
  | visiblility | [Visibility](#Visibility) |  no  |  |
- | promotion_type | string |  yes  |  |
- | calculate_on | string |  no  | Only available for Contract pricing and Ladder pricing promotion type |
- | apply_priority | number |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | code | string |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | _custom_json | string |  no  |  |
- | apply_exclusive | string |  no  |  |
+ | application_id | string |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
  | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | promotion_type | string |  yes  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
 
 ---
 
@@ -4617,15 +4617,15 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | subtitle | string |  no  | Small description of the current offer |
- | is_hidden | boolean |  no  | If the promo is active or not |
- | type | string |  no  | Coupon type |
- | entity_slug | string |  no  |  |
- | example | string |  no  | Discount offers examples |
  | description | string |  no  | The description of the offer in the form of an HTML |
  | title | string |  no  | Name of the promotion |
+ | is_hidden | boolean |  no  | If the promo is active or not |
+ | example | string |  no  | Discount offers examples |
  | created_on | string |  no  | Coupon creation date |
  | modified_on | string |  no  | Coupon modification date |
+ | type | string |  no  | Coupon type |
  | entity_type | string |  no  | Type of entity to be selected from : ['coupon', 'promotion'] |
+ | entity_slug | string |  no  |  |
 
 ---
 
@@ -4656,22 +4656,36 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_applied | boolean |  no  |  |
+ | applicable | number |  no  |  |
+ | total | number |  no  |  |
+ | description | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [RawBreakup](#RawBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mrp_total | number |  no  |  |
- | discount | number |  no  |  |
  | subtotal | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | cod_charge | number |  no  |  |
- | you_saved | number |  no  |  |
+ | gst_charges | number |  no  |  |
  | vog | number |  no  |  |
  | convenience_fee | number |  no  |  |
  | delivery_charge | number |  no  |  |
- | coupon | number |  no  |  |
- | gst_charges | number |  no  |  |
+ | cod_charge | number |  no  |  |
+ | you_saved | number |  no  |  |
+ | fynd_cash | number |  no  |  |
  | total | number |  no  |  |
+ | mrp_total | number |  no  |  |
+ | coupon | number |  no  |  |
+ | discount | number |  no  |  |
 
 ---
 
@@ -4682,19 +4696,19 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | uid | string |  no  |  |
- | message | string |  no  |  |
- | sub_title | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | code | string |  no  |  |
- | description | string |  no  |  |
- | value | number |  no  |  |
- | title | string |  no  |  |
- | coupon_value | number |  no  |  |
- | coupon_type | string |  no  |  |
  | minimum_cart_value | number |  no  |  |
+ | coupon_type | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | uid | string |  no  |  |
  | max_discount_value | number |  no  |  |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
+ | sub_title | string |  no  |  |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | code | string |  no  |  |
+ | coupon_value | number |  no  |  |
+ | value | number |  no  |  |
 
 ---
 
@@ -4705,26 +4719,12 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | [string] |  no  |  |
  | display | string |  no  |  |
  | key | string |  no  |  |
- | currency_code | string |  no  |  |
- | value | number |  no  |  |
  | currency_symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | total | number |  no  |  |
- | applicable | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | message | [string] |  no  |  |
+ | value | number |  no  |  |
 
 ---
 
@@ -4735,10 +4735,38 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
  | raw | [RawBreakup](#RawBreakup) |  no  |  |
  | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
  | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | add_on | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | selling | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
 
 ---
 
@@ -4756,56 +4784,16 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | add_on | number |  no  |  |
- | currency_code | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
- | selling | number |  no  |  |
- | currency_symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
-
----
-
-
- 
- 
- #### [BuyRules](#BuyRules)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_conditions | string |  no  | Cart conditions details for promotion |
- | item_criteria | string |  no  | Item criteria of promotion |
-
----
-
-
- 
- 
  #### [FreeGiftItem](#FreeGiftItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_price_details | string |  no  | item price details |
  | item_id | number |  no  | Item id |
- | item_brand_name | string |  no  | item brand name |
- | item_slug | string |  no  | item slug |
- | item_images_url | [string] |  no  | item images URL |
+ | item_price_details | string |  no  | item price details |
  | item_name | string |  no  | Item name |
+ | item_images_url | [string] |  no  | item images URL |
+ | item_slug | string |  no  | item slug |
+ | item_brand_name | string |  no  | item brand name |
 
 ---
 
@@ -4816,10 +4804,22 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  | free article id |
  | parent_item_identifier | string |  no  | Parent item identifier for free article |
- | free_gift_item_details | [FreeGiftItem](#FreeGiftItem) |  no  | Free gift items details |
+ | article_id | string |  no  | free article id |
  | quantity | number |  no  | Free article quantity |
+ | free_gift_item_details | [FreeGiftItem](#FreeGiftItem) |  no  | Free gift items details |
+
+---
+
+
+ 
+ 
+ #### [BuyRules](#BuyRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_criteria | string |  no  | Item criteria of promotion |
+ | cart_conditions | string |  no  | Cart conditions details for promotion |
 
 ---
 
@@ -4830,10 +4830,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | matched_buy_rules | [string] |  no  | Matched buy rules for promotion |
+ | raw_offer | string |  no  | raw offer details for promotion |
  | offer | string |  no  | offer for promotion |
  | item_criteria | string |  no  | Item criteria of promotion |
- | raw_offer | string |  no  | raw offer details for promotion |
- | matched_buy_rules | [string] |  no  | Matched buy rules for promotion |
 
 ---
 
@@ -4844,91 +4844,17 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buy_rules | [[BuyRules](#BuyRules)] |  no  | Buy rules for promotions |
- | offer_text | string |  no  | Offer text of current promotion |
- | promo_id | string |  no  | Promotion id |
  | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  | Applied free article for free gift item promotions |
- | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)] |  no  | Discount rules for promotions |
- | promotion_group | string |  no  | Promotion group for the promotion |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
- | promotion_name | string |  no  | Promotion name of current promotion |
+ | promo_id | string |  no  | Promotion id |
  | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
+ | buy_rules | [[BuyRules](#BuyRules)] |  no  | Buy rules for promotions |
+ | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
+ | offer_text | string |  no  | Offer text of current promotion |
  | promotion_type | string |  no  | Promotion type of current promotion |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marked | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
- | currency_code | string |  no  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
- | base | [BasePrice](#BasePrice) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | is_gift_visible | boolean |  no  |  |
- | type | string |  no  |  |
- | size | string |  no  |  |
- | uid | string |  no  |  |
- | extra_meta | string |  no  |  |
- | is_gift | boolean |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | seller_identifier | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | gift_card | string |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | quantity | number |  no  |  |
- | identifier | string |  no  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | promotion_name | string |  no  | Promotion name of current promotion |
+ | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)] |  no  | Discount rules for promotions |
+ | amount | number |  no  | Per unit discount amount applied with current promotion |
+ | promotion_group | string |  no  | Promotion group for the promotion |
 
 ---
 
@@ -4950,9 +4876,20 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
  | url | string |  no  |  |
  | type | string |  no  |  |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Tags](#Tags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | string |  no  |  |
 
 ---
 
@@ -4963,9 +4900,21 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
  | url | string |  no  |  |
  | secure_url | string |  no  |  |
- | aspect_ratio | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
 
 ---
 
@@ -4984,47 +4933,21 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [Tags](#Tags)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | string |  no  |  |
-
----
-
-
- 
- 
  #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | type | string |  no  |  |
- | uid | number |  no  |  |
  | action | [ProductAction](#ProductAction) |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | teaser_tag | [Tags](#Tags) |  no  |  |
+ | slug | string |  no  | Unique product url name generated via product name and other meta data |
+ | _custom_json | string |  no  |  |
  | images | [[ProductImage](#ProductImage)] |  no  |  |
+ | type | string |  no  |  |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
  | tags | [string] |  no  |  |
  | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | _custom_json | string |  no  |  |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | teaser_tag | [Tags](#Tags) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | other_store_quantity | number |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | deliverable | boolean |  no  |  |
- | is_valid | boolean |  no  |  |
 
 ---
 
@@ -5035,9 +4958,86 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount_total_quantity | number |  no  |  |
  | code | string |  no  |  |
  | discount_single_quantity | number |  no  |  |
+ | discount_total_quantity | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [string] |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | deliverable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | marked | number |  no  |  |
+ | effective | number |  no  |  |
+ | currency_symbol | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | is_gift_visible | boolean |  no  |  |
+ | size | string |  no  |  |
+ | identifier | string |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | extra_meta | string |  no  |  |
+ | gift_card | string |  no  |  |
+ | quantity | number |  no  |  |
+ | product_group_tags | [string] |  no  |  |
+ | type | string |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | is_gift | boolean |  no  |  |
 
 ---
 
@@ -5048,23 +5048,23 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | discount | string |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
  | is_set | boolean |  no  |  |
- | message | string |  no  |  |
+ | discount | string |  no  |  |
  | bulk_offer | string |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | key | string |  no  |  |
- | coupon_message | string |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | parent_item_identifiers | string |  no  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | coupon | [CouponDetails](#CouponDetails) |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | key | string |  no  |  |
+ | product | [CartProduct](#CartProduct) |  no  |  |
  | quantity | number |  no  |  |
+ | message | string |  no  |  |
+ | coupon_message | string |  no  |  |
+ | coupon | [CouponDetails](#CouponDetails) |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
 
 ---
 
@@ -5077,8 +5077,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | ---------- | ---- | -------- | ----------- |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
  | is_valid | boolean |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -5089,8 +5089,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | errors | string |  no  | Contains field name which has error as key and error message as value |
+ | message | string |  no  |  |
  | success | boolean |  no  |  |
 
 ---
@@ -5102,21 +5102,21 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | number |  no  |  |
- | meta | string |  no  |  |
- | state | string |  no  |  |
- | name | string |  no  |  |
- | area_code_slug | string |  no  |  |
- | country | string |  no  |  |
- | address_type | string |  no  |  |
- | pincode | number |  no  |  |
- | landmark | string |  no  |  |
  | city | string |  no  |  |
- | email | string |  no  |  |
+ | landmark | string |  no  |  |
+ | area_code_slug | string |  no  |  |
+ | name | string |  no  |  |
+ | area_code | string |  yes  |  |
+ | phone | number |  no  |  |
+ | country | string |  no  |  |
  | country_code | string |  no  |  |
  | address | string |  no  |  |
- | area_code | string |  yes  |  |
  | area | string |  no  |  |
+ | email | string |  no  |  |
+ | state | string |  no  |  |
+ | address_type | string |  no  |  |
+ | meta | string |  no  |  |
+ | pincode | number |  no  |  |
 
 ---
 
@@ -5127,8 +5127,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
  | cart_items | [CartItem](#CartItem) |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
 
 ---
 
@@ -5175,11 +5175,11 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | message | string |  no  |  |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
  | is_valid | boolean |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -5190,11 +5190,11 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | extra_meta | string |  no  |  |
  | payment_id | string |  no  |  |
  | current_status | string |  no  |  |
+ | extra_meta | string |  no  |  |
  | payment_gateway | string |  no  |  |
+ | order_id | string |  no  |  |
 
 ---
 
@@ -5205,10 +5205,22 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  | Payment amount |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
  | mode | string |  yes  |  |
+ | amount | number |  yes  | Payment amount |
  | name | string |  no  | Payment mode name |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartItemMeta](#CartItemMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | group_id | string |  no  |  |
+ | primary_item | boolean |  no  |  |
 
 ---
 
@@ -5227,39 +5239,27 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CartItemMeta](#CartItemMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | primary_item | boolean |  no  |  |
- | group_id | string |  no  |  |
-
----
-
-
- 
- 
  #### [OpenApiOrderItem](#OpenApiOrderItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | price_effective | number |  yes  |  |
- | discount | number |  yes  |  |
- | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
- | size | string |  yes  |  |
- | extra_meta | string |  no  |  |
  | product_id | number |  yes  |  |
- | employee_discount | number |  no  |  |
  | cashback_applied | number |  yes  |  |
+ | employee_discount | number |  no  |  |
  | delivery_charges | number |  yes  |  |
- | coupon_effective_discount | number |  yes  |  |
- | amount_paid | number |  yes  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | cod_charges | number |  yes  |  |
  | price_marked | number |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | coupon_effective_discount | number |  yes  |  |
+ | extra_meta | string |  no  |  |
+ | cod_charges | number |  yes  |  |
+ | price_effective | number |  yes  |  |
  | quantity | number |  no  |  |
+ | size | string |  yes  |  |
+ | amount_paid | number |  yes  |  |
  | loyalty_discount | number |  no  |  |
+ | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
+ | discount | number |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
 
 ---
 
@@ -5270,26 +5270,26 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | gstin | string |  no  |  |
- | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
- | cashback_applied | number |  yes  |  |
- | delivery_charges | number |  yes  |  |
- | cart_value | number |  yes  |  |
- | comment | string |  no  |  |
- | cod_charges | number |  yes  |  |
  | employee_discount | string |  no  |  |
- | coupon | string |  no  |  |
+ | cashback_applied | number |  yes  |  |
+ | comment | string |  no  |  |
+ | gstin | string |  no  |  |
+ | delivery_charges | number |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
  | order_id | string |  no  |  |
+ | coupon_value | number |  yes  |  |
+ | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | cart_value | number |  yes  |  |
+ | cod_charges | number |  yes  |  |
+ | coupon | string |  no  |  |
+ | coupon_code | string |  yes  |  |
+ | loyalty_discount | number |  no  |  |
  | payment_mode | string |  no  |  |
  | currency_code | string |  no  |  |
- | coupon_value | number |  yes  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
  | affiliate_order_id | string |  no  |  |
- | loyalty_discount | number |  no  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
- | coupon_code | string |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
 
 ---
 
@@ -5300,10 +5300,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | order_ref_id | string |  no  | Order id sent in request |
  | order_id | string |  yes  | Fynd order id |
  | message | string |  no  |  |
  | success | boolean |  no  |  |
- | order_ref_id | string |  no  | Order id sent in request |
 
 ---
 
@@ -5314,39 +5314,39 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_methods | [string] |  no  |  |
- | discount | number |  no  |  |
- | gstin | string |  no  |  |
- | uid | number |  yes  |  |
- | fc_index_map | [number] |  no  |  |
- | cashback | string |  yes  |  |
- | expire_at | string |  yes  |  |
- | payments | string |  no  |  |
- | coupon | string |  no  |  |
- | is_archive | boolean |  no  |  |
- | fynd_credits | string |  no  |  |
- | meta | string |  no  |  |
- | last_modified | string |  yes  |  |
- | shipments | [string] |  no  |  |
- | articles | [string] |  yes  |  |
- | promotion | string |  no  |  |
- | user_id | string |  yes  |  |
- | created_on | string |  yes  |  |
- | merge_qty | boolean |  no  |  |
  | _id | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | app_id | string |  no  |  |
- | delivery_charges | string |  no  |  |
- | cart_value | number |  no  |  |
- | is_default | boolean |  yes  |  |
- | bulk_coupon_discount | number |  no  |  |
- | comment | string |  no  |  |
- | cod_charges | string |  no  |  |
+ | promotion | string |  no  |  |
  | order_id | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | payment_mode | string |  no  |  |
- | pick_up_customer_details | string |  no  |  |
+ | shipments | [string] |  no  |  |
  | buy_now | boolean |  no  |  |
+ | last_modified | string |  yes  |  |
+ | pick_up_customer_details | string |  no  |  |
+ | fynd_credits | string |  no  |  |
+ | cart_value | number |  no  |  |
+ | expire_at | string |  yes  |  |
+ | articles | [string] |  yes  |  |
+ | meta | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | bulk_coupon_discount | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | coupon | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | cashback | string |  yes  |  |
+ | discount | number |  no  |  |
+ | app_id | string |  no  |  |
+ | is_archive | boolean |  no  |  |
+ | uid | number |  yes  |  |
+ | comment | string |  no  |  |
+ | delivery_charges | string |  no  |  |
+ | payment_methods | [string] |  no  |  |
+ | is_default | boolean |  yes  |  |
+ | payments | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | fc_index_map | [number] |  no  |  |
+ | merge_qty | boolean |  no  |  |
+ | cod_charges | string |  no  |  |
+ | user_id | string |  yes  |  |
+ | gstin | string |  no  |  |
 
 ---
 
@@ -5358,10 +5358,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | result | string |  no  |  |
- | items | [[AbandonedCart](#AbandonedCart)] |  no  |  |
- | message | string |  no  | message of the response |
- | page | [Page](#Page) |  no  |  |
  | success | boolean |  no  | the request success is defined |
+ | items | [[AbandonedCart](#AbandonedCart)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | message | string |  no  | message of the response |
 
 ---
 
@@ -5372,20 +5372,20 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | item_size | string |  no  |  |
- | extra_meta | string |  no  |  |
- | gift_message | string |  no  |  |
  | item_id | number |  no  |  |
- | display | string |  no  |  |
- | is_gift | boolean |  no  |  |
- | article_assignment | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | parent_item_identifiers | string |  no  |  |
+ | article_id | string |  no  |  |
+ | gift_message | string |  no  |  |
  | pos | boolean |  no  |  |
- | store_id | number |  no  |  |
  | seller_id | number |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | article_assignment | string |  no  |  |
+ | display | string |  no  |  |
+ | extra_meta | string |  no  |  |
  | quantity | number |  no  |  |
+ | product_group_tags | [string] |  no  |  |
+ | item_size | string |  no  |  |
+ | store_id | number |  no  |  |
+ | is_gift | boolean |  no  |  |
 
 ---
 
@@ -5403,25 +5403,25 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  
  
- #### [CartCurrency](#CartCurrency)
+ #### [PaymentSelectionLock](#PaymentSelectionLock)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | symbol | string |  no  |  |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
+ | default_options | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | enabled | boolean |  no  |  |
 
 ---
 
 
  
  
- #### [PaymentSelectionLock](#PaymentSelectionLock)
+ #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | payment_identifier | string |  no  |  |
- | default_options | string |  no  |  |
+ | code | string |  no  | Currency code defined by ISO 4217:2015 |
+ | symbol | string |  no  |  |
 
 ---
 
@@ -5432,21 +5432,21 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | last_modified | string |  no  |  |
- | message | string |  no  |  |
- | is_valid | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
  | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | coupon_text | string |  no  |  |
- | comment | string |  no  |  |
+ | checkout_mode | string |  no  |  |
  | buy_now | boolean |  no  |  |
- | id | string |  no  |  |
+ | gstin | string |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | last_modified | string |  no  |  |
+ | comment | string |  no  |  |
+ | coupon_text | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
  | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | message | string |  no  |  |
+ | id | string |  no  |  |
  | delivery_charge_info | string |  no  |  |
 
 ---
@@ -5458,10 +5458,10 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
  | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | message | string |  no  |  |
+ | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
 
 ---
 
@@ -5472,16 +5472,16 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | item_size | string |  no  |  |
- | extra_meta | string |  no  |  |
- | gift_message | string |  no  |  |
  | item_id | number |  no  |  |
- | is_gift | boolean |  no  |  |
+ | article_id | string |  no  |  |
  | item_index | number |  no  |  |
+ | gift_message | string |  no  |  |
  | parent_item_identifiers | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | extra_meta | string |  no  |  |
  | quantity | number |  no  |  |
+ | item_size | string |  no  |  |
+ | is_gift | boolean |  no  |  |
 
 ---
 
@@ -5492,8 +5492,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
  | operation | string |  yes  |  |
+ | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
 
 ---
 
@@ -5504,8 +5504,8 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | message | string |  no  |  |
  | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
 
 ---

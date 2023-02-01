@@ -30,19 +30,14 @@ declare class Serviceability {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNumber] - Index of the item to start returning with
+     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
      * @summary: Company Store View of application.
      * @description: This API returns Company Store View of the application.
      */
-    getCompanyStoreView({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
-     * @summary: Zone Data View of application.
-     * @description: This API returns Zone Data View of the application.
-     */
-    getZoneDataView({ zoneId }?: {
-        zoneId: string;
+    getCompanyStoreView({ pageNumber, pageSize }?: {
+        pageNumber?: number;
+        pageSize?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -55,6 +50,16 @@ declare class Serviceability {
     updateZoneControllerView({ zoneId, body }?: {
         zoneId: string;
         body: any;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+     *   particular zone.
+     * @summary: Zone Data View of application.
+     * @description: This API returns Zone Data View of the application.
+     */
+    getZoneDataView({ zoneId }?: {
+        zoneId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

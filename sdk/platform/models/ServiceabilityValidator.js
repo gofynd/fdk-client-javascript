@@ -18,12 +18,9 @@ class ServiceabilityValidator {
   }
 
   static getCompanyStoreView() {
-    return Joi.object({}).required();
-  }
-
-  static getZoneDataView() {
     return Joi.object({
-      zoneId: Joi.string().allow("").required(),
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -31,6 +28,12 @@ class ServiceabilityValidator {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
       body: Validator.ZoneUpdateRequest().required(),
+    }).required();
+  }
+
+  static getZoneDataView() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
     }).required();
   }
 
