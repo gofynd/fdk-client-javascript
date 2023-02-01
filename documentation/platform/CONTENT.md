@@ -8118,6 +8118,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | url | string |  no  |  |
  | position | string |  no  |  |
  | attributes | string |  no  |  |
+ | pages | [string] |  no  |  |
  | content | string |  no  |  |
 
 ---
@@ -8903,6 +8904,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | position | string |  no  |  |
  | attributes | string |  no  |  |
  | content | string |  no  |  |
+ | pages | [string] |  no  |  |
  | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
 
 ---
