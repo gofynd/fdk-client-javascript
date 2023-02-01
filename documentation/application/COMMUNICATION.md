@@ -385,6 +385,29 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
 
  
  
+ #### [BadRequestSchema](#BadRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  | Response status. |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
  #### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |
