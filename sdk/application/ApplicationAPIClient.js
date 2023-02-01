@@ -25,6 +25,9 @@ class APIClient {
         "x-location-detail": JSON.stringify(conf.locationDetails),
       };
     }
+    if (conf.currencyCode) {
+      headers = { ...headers, "x-currency-code": conf.currencyCode };
+    }
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
       acc = { ...acc, ...curr };
       return acc;

@@ -18,6 +18,7 @@ class ApplicationConfig {
     this.setLogLevel(this.logLevel);
     this.extraHeaders = [];
     this.locationDetails = _conf.locationDetails;
+    this.currencyCode = _conf.currencyCode || "INR";
     this.validate();
   }
 
