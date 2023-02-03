@@ -905,6 +905,11 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "token_123"
     }
   },
+  "session_config": {
+    "duration": 30,
+    "type": "Days",
+    "is_rolling": false
+  },
   "delete_account_reasons": [
     {
       "reason_text": "test",
@@ -1035,6 +1040,11 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
     "account_kit": {
       "appId": "token_123"
     }
+  },
+  "session_config": {
+    "duration": 30,
+    "type": "Days",
+    "is_rolling": false
   },
   "delete_account_reasons": [
     {
@@ -2009,6 +2019,7 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | delete_account_day | number |  no  |  |
  | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
  | delete_account_consent | string |  no  |  |
+ | session_config | string |  no  |  |
 
 ---
 
@@ -2213,6 +2224,19 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionExpiry](#SessionExpiry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number |  no  |  |
+ | type | string |  no  |  |
+ | is_rolling | boolean |  no  |  |
 
 ---
 

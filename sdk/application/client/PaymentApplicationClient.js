@@ -682,32 +682,35 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {cardDetailsRequest} arg.body
+   * @param {string} arg.cardBin - Card first 6 digit IIN(prefix) number.
+   * @param {string} [arg.aggregator] - This is a string value decribing the
+   *   aggregator name.
    * @returns {Promise<cardDetailsResponse>} - Success response
    * @summary: API to get Card info from PG
    * @description: API to get Card info from PG
    */
-  cardDetails({ body } = {}) {
+  cardDetails({ cardBin, aggregator } = {}) {
     const { error } = PaymentValidator.cardDetails().validate(
-      { body },
+      { cardBin, aggregator },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
+    query_params["aggregator"] = aggregator;
 
     const xHeaders = {};
 
     return APIClient.execute(
       this._conf,
-      "post",
+      "get",
       constructUrl({
         url: this._urls["cardDetails"],
-        params: {},
+        params: { cardBin },
       }),
       query_params,
-      body,
+      undefined,
       xHeaders
     );
   }

@@ -242,13 +242,16 @@ declare class Payment {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {cardDetailsRequest} arg.body
+     * @param {string} arg.cardBin - Card first 6 digit IIN(prefix) number.
+     * @param {string} [arg.aggregator] - This is a string value decribing the
+     *   aggregator name.
      * @returns {Promise<cardDetailsResponse>} - Success response
      * @summary: API to get Card info from PG
      * @description: API to get Card info from PG
      */
-    cardDetails({ body }?: {
-        body: any;
+    cardDetails({ cardBin, aggregator }?: {
+        cardBin: string;
+        aggregator?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
