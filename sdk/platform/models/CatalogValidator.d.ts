@@ -37,9 +37,9 @@ declare class CatalogValidator {
     static getProducts(): any;
     static getVariantsOfProducts(): any;
     static getProductAttributes(): any;
-    static deleteProduct(): any;
-    static getProduct(): any;
     static patchProduct(): any;
+    static getProduct(): any;
+    static deleteProduct(): any;
     static editProduct(): any;
     static allSizes(): any;
     static getProductValidation(): any;
@@ -47,8 +47,8 @@ declare class CatalogValidator {
     static createBulkProductUploadJob(): any;
     static getProductBulkUploadHistory(): any;
     static uploadBulkProducts(): any;
-    static deleteProductBulkJob(): any;
     static createProductsInBulk(): any;
+    static deleteProductBulkJob(): any;
     static getProductTags(): any;
     static createProductAssetsInBulk(): any;
     static getProductAssetsInBulk(): any;
@@ -59,14 +59,14 @@ declare class CatalogValidator {
     static deleteInventory(): any;
     static createBulkInventoryJob(): any;
     static getInventoryBulkUploadHistory(): any;
-    static deleteBulkInventoryJob(): any;
     static createBulkInventory(): any;
+    static deleteBulkInventoryJob(): any;
     static createInventoryExportJob(): any;
     static getInventoryExport(): any;
     static getInventories(): any;
     static exportInventoryConfig(): any;
-    static deleteRealtimeInventory(): any;
     static updateRealtimeInventory(): any;
+    static deleteRealtimeInventory(): any;
     static updateInventories(): any;
     static createHsnCode(): any;
     static getAllHsnCodes(): any;
