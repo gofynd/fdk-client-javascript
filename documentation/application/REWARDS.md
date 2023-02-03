@@ -8,7 +8,7 @@
 Earn and redeem reward points
 * [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
-* [getPointsHistory](#getpointshistory)
+* [getUserPointsHistory](#getuserpointshistory)
 * [getUserPoints](#getuserpoints)
 * [getUserReferralDetails](#getuserreferraldetails)
 * [getOrderDiscount](#getorderdiscount)
@@ -130,18 +130,18 @@ Success. Check example below or refer `CatalogueOrderResponse` for more details.
 ---
 
 
-### getPointsHistory
+### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getPointsHistory({  pageId : value,
+const promise = rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getPointsHistory({  pageId : value,
+const data = await rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 ```
 

@@ -11,7 +11,7 @@ class Rewards {
       getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
       catalogueOrder:
         "/service/application/rewards/v1.0/catalogue/offer/order/",
-      getPointsHistory:
+      getUserPointsHistory:
         "/service/application/rewards/v1.0/user/points/history/",
       getUserPoints: "/service/application/rewards/v1.0/user/points/",
       getUserReferralDetails:
@@ -110,8 +110,8 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  getPointsHistory({ pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getPointsHistory().validate(
+  getUserPointsHistory({ pageId, pageSize } = {}) {
+    const { error } = RewardsValidator.getUserPointsHistory().validate(
       { pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -128,7 +128,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getPointsHistory"],
+        url: this._urls["getUserPointsHistory"],
         params: {},
       }),
       query_params,
@@ -143,13 +143,13 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  getPointsHistoryPaginator({ pageSize } = {}) {
+  getUserPointsHistoryPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "cursor";
-      const data = await this.getPointsHistory({
+      const data = await this.getUserPointsHistory({
         pageId: pageId,
         pageSize: pageSize,
       });

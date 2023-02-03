@@ -13,7 +13,7 @@ class RewardsValidator {
     }).required();
   }
 
-  static getPointsHistory() {
+  static getUserPointsHistory() {
     return Joi.object({
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),

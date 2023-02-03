@@ -5,7 +5,7 @@ declare class Rewards {
     _relativeUrls: {
         getOfferByName: string;
         catalogueOrder: string;
-        getPointsHistory: string;
+        getUserPointsHistory: string;
         getUserPoints: string;
         getUserReferralDetails: string;
         getOrderDiscount: string;
@@ -42,7 +42,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistory({ pageId, pageSize }?: {
+    getUserPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
     }): Promise<PointsHistoryResponse>;
@@ -52,7 +52,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistoryPaginator({ pageSize }?: {
+    getUserPointsHistoryPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
     /**

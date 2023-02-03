@@ -16,7 +16,7 @@ Earn and redeem reward points
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
-* [getPointsHistory](#getpointshistory)
+* [getUserPointsHistory](#getuserpointshistory)
 
 
 
@@ -589,19 +589,19 @@ Success. Check example below or refer `UserRes` for more details.
 ---
 
 
-### getPointsHistory
+### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 ```
