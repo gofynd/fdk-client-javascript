@@ -3,8 +3,8 @@ declare class RewardsValidator {
     static getOfferByName(): any;
     static catalogueOrder(): any;
     static getPointsHistory(): any;
-    static getPoints(): any;
-    static referral(): any;
-    static orderDiscount(): any;
+    static getUserPoints(): any;
+    static getUserReferralDetails(): any;
+    static getOrderDiscount(): any;
     static redeemReferralCode(): any;
 }

@@ -3161,7 +3161,7 @@ const data = await client.configuration.getApplications({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
-| q | string | no | Url encoded object used as mongodb query |  
+| q | string | no | Search string to search saleschannel by name |  
 
 
 

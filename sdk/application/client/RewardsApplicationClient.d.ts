@@ -6,9 +6,9 @@ declare class Rewards {
         getOfferByName: string;
         catalogueOrder: string;
         getPointsHistory: string;
-        getPoints: string;
-        referral: string;
-        orderDiscount: string;
+        getUserPoints: string;
+        getUserReferralDetails: string;
+        getOrderDiscount: string;
         redeemReferralCode: string;
     };
     _urls: {};
@@ -61,14 +61,14 @@ declare class Rewards {
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve total available points of a user for current application
      */
-    getPoints({}?: any): Promise<PointsResponse>;
+    getUserPoints({}?: any): Promise<PointsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ReferralDetailsResponse>} - Success response
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve the referral details a user has configured in the application.
      */
-    referral({}?: any): Promise<ReferralDetailsResponse>;
+    getUserReferralDetails({}?: any): Promise<ReferralDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {OrderDiscountRequest} arg.body
@@ -76,7 +76,7 @@ declare class Rewards {
      * @summary: Calculates the discount on order-amount
      * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
      */
-    orderDiscount({ body }?: {
+    getOrderDiscount({ body }?: {
         body: OrderDiscountRequest;
     }): Promise<OrderDiscountResponse>;
     /**

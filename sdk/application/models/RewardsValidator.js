@@ -20,15 +20,15 @@ class RewardsValidator {
     });
   }
 
-  static getPoints() {
+  static getUserPoints() {
     return Joi.object({});
   }
 
-  static referral() {
+  static getUserReferralDetails() {
     return Joi.object({});
   }
 
-  static orderDiscount() {
+  static getOrderDiscount() {
     return Joi.object({
       body: Validator.OrderDiscountRequest().required(),
     }).required();

@@ -13,9 +13,10 @@ class Rewards {
         "/service/application/rewards/v1.0/catalogue/offer/order/",
       getPointsHistory:
         "/service/application/rewards/v1.0/user/points/history/",
-      getPoints: "/service/application/rewards/v1.0/user/points/",
-      referral: "/service/application/rewards/v1.0/user/referral/",
-      orderDiscount:
+      getUserPoints: "/service/application/rewards/v1.0/user/points/",
+      getUserReferralDetails:
+        "/service/application/rewards/v1.0/user/referral/",
+      getOrderDiscount:
         "/service/application/rewards/v1.0/user/offer/order-discount/",
       redeemReferralCode:
         "/service/application/rewards/v1.0/user/referral/redeem/",
@@ -168,8 +169,8 @@ class Rewards {
    * @summary: Get referral details of a user
    * @description: Use this API to retrieve total available points of a user for current application
    */
-  getPoints({} = {}) {
-    const { error } = RewardsValidator.getPoints().validate(
+  getUserPoints({} = {}) {
+    const { error } = RewardsValidator.getUserPoints().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -184,7 +185,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getPoints"],
+        url: this._urls["getUserPoints"],
         params: {},
       }),
       query_params,
@@ -199,8 +200,8 @@ class Rewards {
    * @summary: Get referral details of a user
    * @description: Use this API to retrieve the referral details a user has configured in the application.
    */
-  referral({} = {}) {
-    const { error } = RewardsValidator.referral().validate(
+  getUserReferralDetails({} = {}) {
+    const { error } = RewardsValidator.getUserReferralDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -215,7 +216,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["referral"],
+        url: this._urls["getUserReferralDetails"],
         params: {},
       }),
       query_params,
@@ -231,8 +232,8 @@ class Rewards {
    * @summary: Calculates the discount on order-amount
    * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
    */
-  orderDiscount({ body } = {}) {
-    const { error } = RewardsValidator.orderDiscount().validate(
+  getOrderDiscount({ body } = {}) {
+    const { error } = RewardsValidator.getOrderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -247,7 +248,7 @@ class Rewards {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["orderDiscount"],
+        url: this._urls["getOrderDiscount"],
         params: {},
       }),
       query_params,
