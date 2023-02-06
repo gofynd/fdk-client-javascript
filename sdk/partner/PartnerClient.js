@@ -1,0 +1,22 @@
+const axios = require("axios");
+
+const {} = require("./PartnerModels");
+const Paginator = require("../common/Paginator");
+const PartnerAPIClient = require("./PartnerAPIClient");
+const { FDKClientValidationError } = require("../common/FDKError");
+
+class PartnerClient {
+  constructor(config) {
+    this.config = config;
+  }
+
+  setExtraHeaders(header) {
+    if (typeof header === "object") {
+      this.config.extraHeaders.push(header);
+    } else {
+      throw new FDKClientValidationError("Context value should be an object");
+    }
+  }
+}
+
+module.exports = PartnerClient;

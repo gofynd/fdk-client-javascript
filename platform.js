@@ -1,6 +1,7 @@
-const {PlatformConfig, PlatformClient} = require('./sdk/platform');
+const {PlatformConfig, PlatformClient, PlatformModel } = require('./sdk/platform');
 
 module.exports = {
     PlatformConfig: PlatformConfig,
-    PlatformClient: PlatformClient
+    PlatformClient: PlatformClient,
+    PlatformModel: PlatformModel
 };
