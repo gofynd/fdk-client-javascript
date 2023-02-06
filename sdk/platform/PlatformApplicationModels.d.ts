@@ -98,8 +98,11 @@ export class ContentValidator {
     static createPagePreview(): any;
     static updatePagePreview(): any;
     static deletePage(): any;
-    static updatePathRedirectionRules(): any;
+    static addPathRedirectionRules(): any;
     static getPathRedirectionRules(): any;
+    static getPathRedirectionRule(): any;
+    static updatePathRedirectionRules(): any;
+    static deletePathRedirectionRules(): any;
     static getSEOConfiguration(): any;
     static updateSEOConfiguration(): any;
     static getSlideshows(): any;
@@ -198,8 +201,8 @@ export class CatalogValidator {
     static deleteAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
-    static updateAppProduct(): any;
     static getAppProduct(): any;
+    static updateAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
@@ -238,6 +241,8 @@ export class CatalogValidator {
     static updateAppBrand(): any;
     static getApplicationCategoryListing(): any;
     static updateAppCategory(): any;
+    static getApplicationDepartmentListing(): any;
+    static updateAppDepartment(): any;
     static updateAppLocation(): any;
 }
 export class FileStorageValidator {
@@ -325,8 +330,8 @@ export class PartnerValidator {
     static removeProxyPath(): any;
 }
 export class ServiceabilityValidator {
-    static getApplicationServiceability(): any;
     static postApplicationServiceability(): any;
-    static getZonesFromApplicationIdView(): any;
+    static getApplicationServiceability(): any;
     static getZoneFromPincodeView(): any;
+    static getZonesFromApplicationIdView(): any;
 }

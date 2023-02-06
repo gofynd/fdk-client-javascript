@@ -6,16 +6,16 @@
 
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
-* [getApplicationServiceability](#getapplicationserviceability)
 * [postApplicationServiceability](#postapplicationserviceability)
+* [getApplicationServiceability](#getapplicationserviceability)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getCompanyStoreView](#getcompanystoreview)
 * [getZoneDataView](#getzonedataview)
 * [updateZoneControllerView](#updatezonecontrollerview)
 * [upsertZoneControllerView](#upsertzonecontrollerview)
-* [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
+* [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [getZoneListView](#getzonelistview)
 
 
@@ -23,22 +23,26 @@ Logistics Configuration API's allows you to configure zone, application logistic
 ## Methods with example and description
 
 
-### getApplicationServiceability
+### postApplicationServiceability
 Zone configuration of application.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
+const promise = client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
+const data = await client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability({  body : value });
 ```
 
 
 
 
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) | yes | Request body |
 
 
 This API returns serviceability config of the application.
@@ -86,26 +90,22 @@ Response Data
 ---
 
 
-### postApplicationServiceability
+### getApplicationServiceability
 Zone configuration of application.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability({  body : value });
+const promise = client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").serviceability.postApplicationServiceability({  body : value });
+const data = await client.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
 ```
 
 
 
 
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig) | yes | Request body |
 
 
 This API returns serviceability config of the application.
@@ -505,6 +505,61 @@ Response status_code
 ---
 
 
+### getZoneFromPincodeView
+GET zone from the Pincode.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest) | yes | Request body |
+
+
+This API returns zone from the Pincode View.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getZonesFromApplicationIdView
 GET zones from the application_id.
 
@@ -547,61 +602,6 @@ This API returns zones from the application_id View.
 [GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
 
 List of zones for the given application_id
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getZoneFromPincodeView
-GET zone from the Pincode.
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest) | yes | Request body |
-
-
-This API returns zone from the Pincode View.
-
-*Returned Response:*
-
-
-
-
-[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
-
-Response status_code
 
 
 
@@ -707,13 +707,11 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)
+ #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | serviceability_type | string |  yes  |  |
- | channel_id | string |  yes  |  |
- | channel_type | string |  yes  |  |
 
 ---
 
@@ -724,9 +722,22 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
  | value | string |  yes  |  |
  | type | string |  yes  |  |
+ | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channel_type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
+ | serviceability_type | string |  yes  |  |
 
 ---
 
@@ -737,20 +748,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse) |  no  |  |
- | success | boolean |  yes  |  |
  | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse) |  no  |  |
-
----
-
-
- 
- 
- #### [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceability_type | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse) |  no  |  |
 
 ---
 
@@ -773,9 +773,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | value | string |  no  |  |
  | type | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -786,8 +786,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
  | sub_type | string |  yes  |  |
+ | name | string |  yes  |  |
  | uid | string |  yes  |  |
 
 ---
@@ -799,11 +799,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | number |  yes  |  |
- | type | string |  yes  |  |
  | item_total | number |  yes  |  |
- | current | number |  yes  |  |
+ | type | string |  yes  |  |
  | has_next | boolean |  yes  |  |
+ | current | number |  yes  |  |
+ | size | number |  yes  |  |
 
 ---
 
@@ -815,9 +815,9 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | [EntityRegionViewError](#EntityRegionViewError) |  yes  |  |
+ | success | boolean |  yes  |  |
  | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  yes  |  |
  | page | [EntityRegionViewPage](#EntityRegionViewPage) |  yes  |  |
- | success | boolean |  yes  |  |
 
 ---
 
@@ -828,36 +828,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | number |  yes  |  |
+ | type | string |  yes  |  |
  | item_total | number |  yes  |  |
- | type | string |  yes  |  |
- | current | number |  yes  |  |
  | has_next | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total_pincodes_served | number |  yes  |  |
- | total_zones | number |  yes  |  |
- | total_active_zones | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ListViewProduct](#ListViewProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  yes  |  |
- | type | string |  yes  |  |
+ | current | number |  yes  |  |
+ | size | number |  yes  |  |
 
 ---
 
@@ -868,8 +843,20 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_id | string |  yes  |  |
  | channel_type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewProduct](#ListViewProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | count | number |  yes  |  |
 
 ---
 
@@ -880,15 +867,28 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
  | is_active | boolean |  yes  |  |
+ | pincodes_count | number |  yes  |  |
+ | zone_id | string |  yes  |  |
  | name | string |  yes  |  |
  | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
  | slug | string |  yes  |  |
- | zone_id | string |  yes  |  |
- | pincodes_count | number |  yes  |  |
- | stores_count | number |  yes  |  |
  | company_id | number |  yes  |  |
+ | stores_count | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_active_zones | number |  yes  |  |
+ | total_pincodes_served | number |  yes  |  |
+ | total_zones | number |  yes  |  |
 
 ---
 
@@ -900,8 +900,8 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
- | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
  | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
 
 ---
 
@@ -912,11 +912,11 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | number |  yes  |  |
- | type | string |  yes  |  |
  | item_total | number |  yes  |  |
- | current | number |  yes  |  |
+ | type | string |  yes  |  |
  | has_next | boolean |  yes  |  |
+ | current | number |  yes  |  |
+ | size | number |  yes  |  |
 
 ---
 
@@ -939,8 +939,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_id | string |  yes  |  |
  | channel_type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
 
 ---
 
@@ -964,8 +964,8 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | state | [string] |  no  |  |
- | pincode | [string] |  no  |  |
  | country | string |  yes  |  |
+ | pincode | [string] |  no  |  |
 
 ---
 
@@ -1031,8 +1031,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  yes  |  |
  | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
+ | identifier | string |  yes  |  |
 
 ---
 
@@ -1075,8 +1075,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  yes  |  |
  | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
+ | identifier | string |  yes  |  |
 
 ---
 
@@ -1087,9 +1087,48 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zone_id | string |  yes  |  |
  | status_code | number |  yes  |  |
+ | zone_id | string |  yes  |  |
  | success | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetZonesForZoneFromPincode](#GetZonesForZoneFromPincode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | assignment_preference | string |  yes  |  |
+ | zone_id | string |  yes  |  |
+ | store_ids | [number] |  yes  |  |
+ | tags | [string] |  yes  |  |
+ | type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zones | [[GetZonesForZoneFromPincode](#GetZonesForZoneFromPincode)] |  yes  |  |
+ | serviceability_type | string |  yes  |  |
 
 ---
 
@@ -1102,30 +1141,6 @@ Zone List of application in descending order of their last modified date.
  | ---------- | ---- | -------- | ----------- |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
  | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
-
----
-
-
- 
- 
- #### [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pincode | string |  yes  |  |
- | country | string |  yes  |  |
-
----
-
-
- 
- 
- #### [GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | zones | [string] |  yes  |  |
- | serviceability_type | string |  yes  |  |
 
 ---
 
