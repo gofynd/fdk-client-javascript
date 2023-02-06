@@ -25,6 +25,6 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
-* [OrderManage](ORDERMANAGE.md) - Update Status all platform shipment api(s) 
+* [OrderManage](ORDERMANAGE.md) - Handles all platform order and shipment api(s) 
 * [DocumentEngine](DOCUMENTENGINE.md) - Handles financial pdf generation of Fulfilment 
 * [Orders](ORDERS.md) - Handles all platform order and shipment api(s) 

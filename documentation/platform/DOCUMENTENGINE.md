@@ -628,6 +628,20 @@ Sucess Response, Presigned URL of NOC Pdf
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  yes  |  |
  | job_id | number |  yes  |  |
+ | trace_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SuccessResponseBulkStatus](#SuccessResponseBulkStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | status | string |  yes  |  |
+ | trace_id | string |  no  |  |
 
 ---
 
@@ -666,6 +680,10 @@ Sucess Response, Presigned URL of NOC Pdf
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  yes  |  |
  | message | string |  yes  |  |
+ | request_id | string |  no  |  |
+ | exception | string |  no  |  |
+ | stack_trace | string |  no  |  |
+ | meta | string |  no  |  |
 
 ---
 
@@ -678,6 +696,44 @@ Sucess Response, Presigned URL of NOC Pdf
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  yes  |  |
  | message | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateBulkShipment](#GenerateBulkShipment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  yes  |  |
+ | store_code | string |  yes  |  |
+ | batch_id | string |  yes  |  |
+ | document_type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateBulkUrl](#GenerateBulkUrl)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | expires_in | number |  no  |  |
+ | document_type | string |  yes  |  |
+ | batch_id | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetBulkStatusRequest](#GetBulkStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  yes  |  |
 
 ---
 
@@ -920,6 +976,21 @@ Sucess Response, Presigned URL of NOC Pdf
 
  
  
+ #### [BulkPresignedSuccessResponse](#BulkPresignedSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | string |  yes  |  |
+ | batch_id | string |  no  |  |
+ | presigned_type | string |  no  |  |
+ | presigned_url | string |  yes  |  |
+ | expires_in | number |  no  |  |
+
+---
+
+
+ 
+ 
  #### [SignedBadRequestResponse](#SignedBadRequestResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1052,18 +1123,6 @@ Sucess Response, Presigned URL of NOC Pdf
  | document_type | string |  yes  |  |
  | entity_id | string |  yes  |  |
  | expires_in | number |  no  |  |
-
----
-
-
- 
- 
- #### [OrderInvoiceEngineError](#OrderInvoiceEngineError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
 
 ---
 
