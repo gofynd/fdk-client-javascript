@@ -167,21 +167,16 @@ export class PaymentValidator {
     static saveBrandPaymentGatewayConfig(): any;
     static updateBrandPaymentGatewayConfig(): any;
     static getPaymentModeRoutes(): any;
-    static addBeneficiaryDetails(): any;
+    static getBankAccountDetailsOpenAPI(): any;
+    static addRefundBankAccountUsingOTP(): any;
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
 }
 export class OrderValidator {
-    static getOrderDetails(): any;
-    static trackShipmentPlatform(): any;
-    static trackOrder(): any;
-    static failedOrders(): any;
-    static reprocessOrder(): any;
-    static updateShipment(): any;
-    static getPlatformShipmentReasons(): any;
-    static getShipmentTrackDetails(): any;
-    static getOrdersByApplicationId(): any;
+    static getApplicationShipments(): any;
+    static getAppOrderShipmentDetails(): any;
+    static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
     static deleteSearchKeywords(): any;
@@ -289,20 +284,25 @@ export class CartValidator {
     static getPromotionById(): any;
     static updatePromotion(): any;
     static updatePromotionPartially(): any;
+    static getPromosCouponConfig(): any;
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static getAbandonedCart(): any;
+    static addItems(): any;
+    static updateCart(): any;
 }
 export class RewardsValidator {
-    static getGiveaways(): any;
-    static createGiveaway(): any;
-    static getGiveawayByID(): any;
-    static updateGiveaway(): any;
-    static getOffers(): any;
+    static showGiveaways(): any;
+    static saveGiveAway(): any;
+    static getGiveawayById(): any;
+    static updateGiveAway(): any;
+    static getGiveawayAudienceStatus(): any;
+    static showOffers(): any;
     static getOfferByName(): any;
     static updateOfferByName(): any;
-    static getUserAvailablePoints(): any;
     static updateUserStatus(): any;
+    static user(): any;
     static getUserPointsHistory(): any;
 }
 export class AnalyticsValidator {
