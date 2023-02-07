@@ -2,11 +2,9 @@
 
 
 
-
 ##### [Back to Public docs](./README.md)
 
 ## Inventory Methods
-
 
 * [getJobCodesMetrics](#getjobcodesmetrics)
 * [saveJobCodesMetrics](#savejobcodesmetrics)
@@ -18,8 +16,6 @@
 
 
 ## Methods with example and description
-
-
 
 
 ### getJobCodesMetrics

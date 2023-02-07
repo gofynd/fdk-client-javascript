@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
-
 * [getApplication](#getapplication)
 * [getOwnerInfo](#getownerinfo)
 * [getBasicDetails](#getbasicdetails)
@@ -28,8 +26,6 @@ Application configuration apis
 
 
 ## Methods with example and description
-
-
 
 
 ### getApplication
@@ -254,19 +250,19 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@gofynd.com"
         },
         {
           "active": true,
           "primary": false,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@fynd.com"
         },
         {
           "active": true,
           "primary": false,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@uniket.store"
         }
       ],
       "phone_numbers": [
@@ -2243,7 +2239,6 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | is_shortlink | boolean |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
- | is_predefined | boolean |  no  | Domain is hosting domain or not. |
 
 ---
 

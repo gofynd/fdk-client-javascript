@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
-
 * [getCampaigns](#getcampaigns)
 * [createCampaign](#createcampaign)
 * [getCampaignById](#getcampaignbyid)
@@ -53,8 +51,6 @@ Manages email, sms, push notifications sent to users
 
 
 ## Methods with example and description
-
-
 
 
 ### getCampaigns

@@ -2,20 +2,16 @@
 
 
 
-
 ##### [Back to Public docs](./README.md)
 
 ## Webhook Methods
 Webhook dispatcher with retry and one event to many subscriber vice versa
-
 * [fetchAllWebhookEvents](#fetchallwebhookevents)
 * [queryWebhookEventDetails](#querywebhookeventdetails)
 
 
 
 ## Methods with example and description
-
-
 
 
 ### fetchAllWebhookEvents

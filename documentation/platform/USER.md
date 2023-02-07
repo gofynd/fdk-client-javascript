@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## User Methods
 Authentication Service
-
 * [getCustomers](#getcustomers)
 * [searchUsers](#searchusers)
 * [createUser](#createuser)
@@ -24,8 +22,6 @@ Authentication Service
 
 
 ## Methods with example and description
-
-
 
 
 ### getCustomers

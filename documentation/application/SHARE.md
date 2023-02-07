@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Share Methods
 Short link and QR Code
-
 * [getApplicationQRCode](#getapplicationqrcode)
 * [getProductQRCodeBySlug](#getproductqrcodebyslug)
 * [getCollectionQRCodeBySlug](#getcollectionqrcodebyslug)
@@ -19,8 +17,6 @@ Short link and QR Code
 
 
 ## Methods with example and description
-
-
 
 
 ### getApplicationQRCode

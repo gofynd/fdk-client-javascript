@@ -2,20 +2,16 @@
 
 
 
-
 ##### [Back to Public docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
-
 * [searchApplication](#searchapplication)
 * [getLocations](#getlocations)
 
 
 
 ## Methods with example and description
-
-
 
 
 ### searchApplication
@@ -240,7 +236,6 @@ Success
  | is_shortlink | boolean |  no  |  |
  | _id | string |  no  |  |
  | name | string |  no  |  |
- | is_predefined | boolean |  no  | Domain is hosting domain or not. |
 
 ---
 

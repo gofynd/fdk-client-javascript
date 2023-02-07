@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Rewards Methods
 Earn and redeem reward points
-
 * [showGiveaways](#showgiveaways)
 * [saveGiveAway](#savegiveaway)
 * [getGiveawayById](#getgiveawaybyid)
@@ -18,13 +16,11 @@ Earn and redeem reward points
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
-* [getPointsHistory](#getpointshistory)
+* [getUserPointsHistory](#getuserpointshistory)
 
 
 
 ## Methods with example and description
-
-
 
 
 ### showGiveaways
@@ -593,19 +589,19 @@ Success. Check example below or refer `UserRes` for more details.
 ---
 
 
-### getPointsHistory
+### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 ```
@@ -615,10 +611,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getPointsHisto
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |    
 | pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |   
-| userId | string | yes | user id |  
+| pageSize | number | no | The number of items to retrieve in each page. |  
 
 
 

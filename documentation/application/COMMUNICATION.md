@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
-
 * [getCommunicationConsent](#getcommunicationconsent)
 * [upsertCommunicationConsent](#upsertcommunicationconsent)
 * [upsertAppPushtoken](#upsertapppushtoken)
@@ -15,8 +13,6 @@ Manages email, sms, push notifications sent to users
 
 
 ## Methods with example and description
-
-
 
 
 ### getCommunicationConsent

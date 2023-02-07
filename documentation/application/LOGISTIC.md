@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Logistic Methods
 Handles Platform websites OMS
-
 * [getTatProduct](#gettatproduct)
 * [getPincodeZones](#getpincodezones)
 * [getPincodeCity](#getpincodecity)
@@ -15,8 +13,6 @@ Handles Platform websites OMS
 
 
 ## Methods with example and description
-
-
 
 
 ### getTatProduct

@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Content Methods
 Content System
-
 * [getAnnouncementsList](#getannouncementslist)
 * [createAnnouncement](#createannouncement)
 * [getAnnouncementById](#getannouncementbyid)
@@ -80,8 +78,6 @@ Content System
 
 
 ## Methods with example and description
-
-
 
 
 ### getAnnouncementsList
@@ -1355,7 +1351,7 @@ Use this to get all data loaders of an application
 
 [DataLoadersSchema](#DataLoadersSchema)
 
-Success. Refer `DataLoadersSchema` for more details.
+Success. Refer `DataLoaderResponseSchema` for more details.
 
 
 

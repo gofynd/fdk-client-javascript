@@ -2,25 +2,21 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Rewards Methods
 Earn and redeem reward points
-
 * [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
-* [getPointsHistory](#getpointshistory)
-* [getPoints](#getpoints)
-* [referral](#referral)
-* [orderDiscount](#orderdiscount)
+* [getUserPointsHistory](#getuserpointshistory)
+* [getUserPoints](#getuserpoints)
+* [getUserReferralDetails](#getuserreferraldetails)
+* [getOrderDiscount](#getorderdiscount)
 * [redeemReferralCode](#redeemreferralcode)
 
 
 
 ## Methods with example and description
-
-
 
 
 ### getOfferByName
@@ -134,18 +130,18 @@ Success. Check example below or refer `CatalogueOrderResponse` for more details.
 ---
 
 
-### getPointsHistory
+### getUserPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getPointsHistory({  pageId : value,
+const promise = rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getPointsHistory({  pageId : value,
+const data = await rewards.getUserPointsHistory({  pageId : value,
  pageSize : value });
 ```
 
@@ -193,17 +189,17 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 ---
 
 
-### getPoints
+### getUserPoints
 Get referral details of a user
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getPoints();
+const promise = rewards.getUserPoints();
 
 // Async/Await
-const data = await rewards.getPoints();
+const data = await rewards.getUserPoints();
 ```
 
 
@@ -244,17 +240,17 @@ Success. Check example below or refer `PointsResponse` for more details.
 ---
 
 
-### referral
+### getUserReferralDetails
 Get referral details of a user
 
 
 
 ```javascript
 // Promise
-const promise = rewards.referral();
+const promise = rewards.getUserReferralDetails();
 
 // Async/Await
-const data = await rewards.referral();
+const data = await rewards.getUserReferralDetails();
 ```
 
 
@@ -295,17 +291,17 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 ---
 
 
-### orderDiscount
+### getOrderDiscount
 Calculates the discount on order-amount
 
 
 
 ```javascript
 // Promise
-const promise = rewards.orderDiscount({  body : value });
+const promise = rewards.getOrderDiscount({  body : value });
 
 // Async/Await
-const data = await rewards.orderDiscount({  body : value });
+const data = await rewards.getOrderDiscount({  body : value });
 ```
 
 

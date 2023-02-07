@@ -14,7 +14,7 @@ Get started with the Javascript Development SDK for Fynd Platform
 ### Usage
 
 ```
-npm install @gofynd/fdk-client-javascript
+npm install fdk-client-javascript --save
 ```
 
 Using this method, you can `require` fdk-client-javascript like so:

@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Partner Methods
 Partner configuration apis
-
 * [addProxyPath](#addproxypath)
 * [removeProxyPath](#removeproxypath)
 
@@ -16,10 +14,8 @@ Partner configuration apis
 ## Methods with example and description
 
 
-
-
 ### addProxyPath
-Create proxy URL for the external URL
+Add proxy path for external url
 
 
 
@@ -39,11 +35,11 @@ const data = await client.application("<APPLICATION_ID>").partner.addProxyPath({
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Extension id for which proxy URL will be generated |  
+| extensionId | string | yes | Extension id |  
 | body | [AddProxyReq](#AddProxyReq) | yes | Request body |
 
 
-Use this API to generate proxy URL for the external URL
+Add proxy path for external url
 
 *Returned Response:*
 
@@ -52,7 +48,7 @@ Use this API to generate proxy URL for the external URL
 
 [AddProxyResponse](#AddProxyResponse)
 
-Proxy created successfully
+Success
 
 
 
@@ -86,7 +82,7 @@ Proxy created successfully
 
 
 ### removeProxyPath
-Remove proxy URL for the external URL
+Remove proxy path for external url
 
 
 
@@ -106,12 +102,12 @@ const data = await client.application("<APPLICATION_ID>").partner.removeProxyPat
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Extension id for which proxy URL needs to be removed |   
+| extensionId | string | yes | Extension id |   
 | attachedPath | string | yes | Attachaed path slug |  
 
 
 
-Use this API to remove the proxy URL which is already generated for the external URL
+Remove proxy path for external url
 
 *Returned Response:*
 
@@ -166,7 +162,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | attached_path | string |  no  | Proxy path slug |
- | proxy_url | string |  no  | The external URL for which the proxy URL will be generated |
+ | proxy_url | string |  no  | Proxied url |
 
 ---
 

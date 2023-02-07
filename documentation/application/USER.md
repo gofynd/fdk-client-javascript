@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## User Methods
 Authentication Service
-
 * [loginWithFacebook](#loginwithfacebook)
 * [loginWithGoogle](#loginwithgoogle)
 * [loginWithGoogleAndroid](#loginwithgoogleandroid)
@@ -47,8 +45,6 @@ Authentication Service
 
 
 ## Methods with example and description
-
-
 
 
 ### loginWithFacebook

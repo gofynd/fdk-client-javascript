@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Content Methods
 Content System
-
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
@@ -31,8 +29,6 @@ Content System
 
 
 ## Methods with example and description
-
-
 
 
 ### getAnnouncements

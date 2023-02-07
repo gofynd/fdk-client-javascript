@@ -2,14 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## FileStorage Methods
 File Storage
-
-* [upload](#upload)
-
 * [startUpload](#startupload)
 * [completeUpload](#completeupload)
 * [appStartUpload](#appstartupload)
@@ -24,87 +20,6 @@ File Storage
 
 
 ## Methods with example and description
-
-
-
-
-### upload
-method which internally calls `startUpload` and `completeUpload` method to handle the whole file upload flow.
-
-
-```javascript
-// Promise
-const promise = fileStorage.upload({
-    data,
-    file_name,
-    content_type,
-    namespace,
-    size,
-    tags,
-});
-
-// Async/Await
-const data = await fileStorage.upload({
-    data,
-    file_name,
-    content_type,
-    namespace,
-    size,
-    tags,
-});
-```
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| data | file | yes | File which needs to be uploaded |
-| file_name | string | yes | Name of the file |
-| content_type | string | yes | type of file |
-| namespace | string | yes | Name of the bucket created for storing objects |
-| size | number | yes | File size |
-| tags | [string] | yes |  |
-
-
-Use this API to perform the upload of an arbitrarily sized buffer or blob.
-
-
-
-*Returned Response:*
-
-[CompleteResponse](#CompleteResponse)
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-    "file_name":"logo.png",
-    "file_path":"/path/to/file/logo.png",
-    "success":true,
-    "namespace":"namespace",
-    "content_type":"image/png",
-    "size":1024,
-    "operation":"putObject",
-    "tags":[],
-    "cdn":{
-        "url":"https://cdn.pixelbin.io/v2/logo.png",
-        "absolute_url":"https://cdn.pixelbin.io/v2/logo.png",
-        "relative_url":"logo.png"
-    },
-    "_id":"63dbbxxxxxxxxxxxxdecc69f",
-    "created_by":{
-        "username":"username_gofynd_com"
-    },
-    "created_on":"2023-01-01T12:00:00.000Z",
-    "modified_on":"2023-01-01T00:00:00.000Z"
-}
-```
-</details>
-
----
-
-
-
 
 
 ### startUpload
