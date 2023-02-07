@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Rewards Methods
 Earn and redeem reward points
+
 * [showGiveaways](#showgiveaways)
 * [saveGiveAway](#savegiveaway)
 * [getGiveawayById](#getgiveawaybyid)
@@ -21,6 +23,8 @@ Earn and redeem reward points
 
 
 ## Methods with example and description
+
+
 
 
 ### showGiveaways

@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Rewards Methods
 Earn and redeem reward points
+
 * [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
 * [getPointsHistory](#getpointshistory)
@@ -17,6 +19,8 @@ Earn and redeem reward points
 
 
 ## Methods with example and description
+
+
 
 
 ### getOfferByName

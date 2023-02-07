@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Analytics Methods
 Perceptor analytics
+
 * [getStatiscticsGroups](#getstatiscticsgroups)
 * [getStatiscticsGroupComponents](#getstatiscticsgroupcomponents)
 * [getComponentStatsCSV](#getcomponentstatscsv)
@@ -22,6 +24,8 @@ Perceptor analytics
 
 
 ## Methods with example and description
+
+
 
 
 ### getStatiscticsGroups

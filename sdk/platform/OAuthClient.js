@@ -3,12 +3,65 @@ const { fdkAxios } = require("../common/AxiosHelper");
 const { sign } = require("../common/RequestSigner");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
-const BaseOAuthClient = require("../common/BaseOAuthClient");
 
 const refreshTokenRequestCache = {};
-class OAuthClient extends BaseOAuthClient {
+class OAuthClient {
   constructor(config) {
-    super(config);
+    this.config = config;
+    this.token = null;
+    this.refreshToken = null;
+    this.retryOAuthTokenTimer = null;
+    this.raw_token = null;
+    this.token_expires_in = null;
+    this.token_expires_at = 0;
+    this.useAutoRenewTimer =
+      config.useAutoRenewTimer !== undefined ? config.useAutoRenewTimer : true;
+  }
+
+  async getAccessToken() {
+    if (
+      !this.useAutoRenewTimer &&
+      this.refreshToken &&
+      this.isTokenExpired(120)
+    ) {
+      // Check if token is about to expire in less than 2 mins.
+      // Renew if to be expired and auto renew timer is not enabled.
+      await this.renewAccessToken();
+    }
+    return this.token;
+  }
+
+  // default TTL checked 0 seconds
+  isTokenExpired(ttl = 0) {
+    const currentTimestamp = new Date().getTime();
+    // Check if token is about to expire in less than 2 mins
+    if ((this.token_expires_at - currentTimestamp) / 1000 < ttl) {
+      return true;
+    }
+    return false;
+  }
+
+  setToken(token) {
+    this.raw_token = token;
+    this.token_expires_in = token.expires_in;
+    this.token = token.access_token;
+    this.refreshToken = token.refresh_token ? token.refresh_token : null;
+    if (this.refreshToken && this.useAutoRenewTimer) {
+      this.retryOAuthToken(token.expires_in);
+    }
+    Logger({ type: "INFO", message: "Token set." });
+  }
+
+  retryOAuthToken(expires_in) {
+    Logger({ type: "INFO", message: "Retrying OAuth Token..." });
+    if (this.retryOAuthTokenTimer) {
+      clearTimeout(this.retryOAuthTokenTimer);
+    }
+    if (expires_in > 60) {
+      this.retryOAuthTokenTimer = setTimeout(() => {
+        this.renewAccessToken();
+      }, (expires_in - 60) * 1000);
+    }
   }
 
   startAuthorization(options) {
@@ -50,9 +103,9 @@ class OAuthClient extends BaseOAuthClient {
         grant_type: "authorization_code",
         code: query.code,
       });
-      res.expires_at =
-        res.expires_at || new Date().getTime() + res.expires_in * 1000;
       this.setToken(res);
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
     } catch (error) {
       if (error.isAxiosError) {
         throw new FDKTokenIssueError(error.message);
@@ -82,9 +135,9 @@ class OAuthClient extends BaseOAuthClient {
           refresh_token: this.refreshToken,
         });
       }
-      res.expires_at =
-        res.expires_at || new Date().getTime() + res.expires_in * 1000;
       this.setToken(res);
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
       Logger({ type: "INFO", message: "Done." });
       return res;
     } catch (error) {
@@ -125,52 +178,11 @@ class OAuthClient extends BaseOAuthClient {
   }
 
   async getOfflineAccessToken(scopes, code) {
-    Logger({ type: "INFO", message: "Getting new offline access token" });
     try {
       let res = await this.getOfflineAccessTokenObj(scopes, code);
-      Logger({ type: "INFO", message: "Offline access token fetched" });
       this.setToken(res);
-      this.token_expires_at = new Date().getTime() + this.token_expires_in;
-      return res;
-    } catch (error) {
-      if (error.isAxiosError) {
-        throw new FDKTokenIssueError(error.message);
-      }
-      throw error;
-    }
-  }
-
-  async getOfflineAccessTokenObj(scopes, code) {
-    let url = `${this.config.domain}/service/panel/authentication/v1.0/company/${this.config.companyId}/oauth/offline-token`;
-    let data = {
-      client_id: this.config.apiKey,
-      client_secret: this.config.apiSecret,
-      grant_type: "authorization_code",
-      scope: scopes,
-      code: code,
-    };
-    const token = Buffer.from(
-      `${this.config.apiKey}:${this.config.apiSecret}`,
-      "utf8"
-    ).toString("base64");
-    const rawRequest = {
-      method: "post",
-      url: url,
-      data: data,
-      headers: {
-        Authorization: `Basic ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    return fdkAxios.request(rawRequest);
-  }
-
-  async getOfflineAccessToken(scopes, code) {
-    try {
-      let res = await this.getOfflineAccessTokenObj(scopes, code);
-      res.expires_at =
-        res.expires_at || new Date().getTime() + res.expires_in * 1000;
-      this.setToken(res);
+      this.token_expires_at =
+        new Date().getTime() + this.token_expires_in * 1000;
       return res;
     } catch (error) {
       if (error.isAxiosError) {
