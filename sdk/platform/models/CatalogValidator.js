@@ -1,6 +1,12 @@
 const Joi = require("joi");
 const Validator = require("../PlatformModels");
 class CatalogValidator {
+  static createProductBundle() {
+    return Joi.object({
+      body: Validator.ProductBundleRequest().required(),
+    }).required();
+  }
+
   static getProductBundle() {
     return Joi.object({
       q: Joi.string().allow(""),
@@ -8,9 +14,10 @@ class CatalogValidator {
     }).required();
   }
 
-  static createProductBundle() {
+  static updateProductBundle() {
     return Joi.object({
-      body: Validator.ProductBundleRequest().required(),
+      id: Joi.string().allow("").required(),
+      body: Validator.ProductBundleUpdateRequest().required(),
     }).required();
   }
 
@@ -20,10 +27,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static updateProductBundle() {
+  static createSizeGuide() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: Validator.ProductBundleUpdateRequest().required(),
+      body: Validator.ValidateSizeGuide().required(),
     }).required();
   }
 
@@ -37,8 +43,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static createSizeGuide() {
+  static updateSizeGuide() {
     return Joi.object({
+      id: Joi.string().allow("").required(),
       body: Validator.ValidateSizeGuide().required(),
     }).required();
   }
@@ -46,13 +53,6 @@ class CatalogValidator {
   static getSizeGuide() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateSizeGuide() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: Validator.ValidateSizeGuide().required(),
     }).required();
   }
 
@@ -112,6 +112,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createDepartments() {
+    return Joi.object({
+      body: Validator.DepartmentCreateUpdate().required(),
+    }).required();
+  }
+
   static listDepartmentsData() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -122,8 +128,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static createDepartments() {
+  static updateDepartment() {
     return Joi.object({
+      uid: Joi.string().allow("").required(),
       body: Validator.DepartmentCreateUpdate().required(),
     }).required();
   }
@@ -131,13 +138,6 @@ class CatalogValidator {
   static getDepartmentData() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateDepartment() {
-    return Joi.object({
-      uid: Joi.string().allow("").required(),
-      body: Validator.DepartmentCreateUpdate().required(),
     }).required();
   }
 
@@ -185,6 +185,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createCategories() {
+    return Joi.object({
+      body: Validator.CategoryRequestBody().required(),
+    }).required();
+  }
+
   static listCategories() {
     return Joi.object({
       level: Joi.string().allow(""),
@@ -195,8 +201,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static createCategories() {
+  static updateCategory() {
     return Joi.object({
+      uid: Joi.string().allow("").required(),
       body: Validator.CategoryRequestBody().required(),
     }).required();
   }
@@ -207,10 +214,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static updateCategory() {
+  static createProduct() {
     return Joi.object({
-      uid: Joi.string().allow("").required(),
-      body: Validator.CategoryRequestBody().required(),
+      body: Validator.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
@@ -228,12 +234,6 @@ class CatalogValidator {
     }).required();
   }
 
-  static createProduct() {
-    return Joi.object({
-      body: Validator.ProductCreateUpdateSchemaV2().required(),
-    }).required();
-  }
-
   static getVariantsOfProducts() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -247,14 +247,6 @@ class CatalogValidator {
     return Joi.object({
       category: Joi.string().allow("").required(),
       filter: Joi.boolean(),
-    }).required();
-  }
-
-  static getProduct() {
-    return Joi.object({
-      itemCode: Joi.string().allow(""),
-      itemId: Joi.number().required(),
-      brandUid: Joi.number(),
     }).required();
   }
 
@@ -278,6 +270,14 @@ class CatalogValidator {
     }).required();
   }
 
+  static getProduct() {
+    return Joi.object({
+      itemCode: Joi.string().allow(""),
+      itemId: Joi.number().required(),
+      brandUid: Joi.number(),
+    }).required();
+  }
+
   static allSizes() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -297,17 +297,17 @@ class CatalogValidator {
     }).required();
   }
 
+  static createBulkProductUploadJob() {
+    return Joi.object({
+      body: Validator.BulkJob().required(),
+    }).required();
+  }
+
   static getProductBulkUploadHistory() {
     return Joi.object({
       search: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-    }).required();
-  }
-
-  static createBulkProductUploadJob() {
-    return Joi.object({
-      body: Validator.BulkJob().required(),
     }).required();
   }
 
@@ -319,12 +319,6 @@ class CatalogValidator {
     }).required();
   }
 
-  static deleteProductBulkJob() {
-    return Joi.object({
-      batchId: Joi.number().required(),
-    }).required();
-  }
-
   static createProductsInBulk() {
     return Joi.object({
       batchId: Joi.string().allow("").required(),
@@ -332,8 +326,20 @@ class CatalogValidator {
     }).required();
   }
 
+  static deleteProductBulkJob() {
+    return Joi.object({
+      batchId: Joi.number().required(),
+    }).required();
+  }
+
   static getProductTags() {
     return Joi.object({}).required();
+  }
+
+  static createProductAssetsInBulk() {
+    return Joi.object({
+      body: Validator.ProductBulkAssets().required(),
+    }).required();
   }
 
   static getProductAssetsInBulk() {
@@ -343,16 +349,18 @@ class CatalogValidator {
     }).required();
   }
 
-  static createProductAssetsInBulk() {
-    return Joi.object({
-      body: Validator.ProductBulkAssets().required(),
-    }).required();
-  }
-
   static deleteSize() {
     return Joi.object({
       itemId: Joi.number().required(),
       size: Joi.number().required(),
+    }).required();
+  }
+
+  static addInventory() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      size: Joi.string().allow("").required(),
+      body: Validator.InventoryRequest().required(),
     }).required();
   }
 
@@ -364,14 +372,6 @@ class CatalogValidator {
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
       sellable: Joi.boolean(),
-    }).required();
-  }
-
-  static addInventory() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-      size: Joi.string().allow("").required(),
-      body: Validator.InventoryRequest().required(),
     }).required();
   }
 
@@ -394,22 +394,16 @@ class CatalogValidator {
     }).required();
   }
 
-  static getInventoryBulkUploadHistory() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
   static createBulkInventoryJob() {
     return Joi.object({
       body: Validator.BulkJob().required(),
     }).required();
   }
 
-  static deleteBulkInventoryJob() {
+  static getInventoryBulkUploadHistory() {
     return Joi.object({
-      batchId: Joi.string().allow("").required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -420,14 +414,20 @@ class CatalogValidator {
     }).required();
   }
 
-  static getInventoryExport() {
-    return Joi.object({}).required();
+  static deleteBulkInventoryJob() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
+    }).required();
   }
 
   static createInventoryExportJob() {
     return Joi.object({
       body: Validator.InventoryExportRequest().required(),
     }).required();
+  }
+
+  static getInventoryExport() {
+    return Joi.object({}).required();
   }
 
   static getInventories() {
@@ -449,7 +449,7 @@ class CatalogValidator {
     }).required();
   }
 
-  static deleteRealtimeInventory() {
+  static updateRealtimeInventory() {
     return Joi.object({
       itemId: Joi.number().required(),
       sellerIdentifier: Joi.string().allow("").required(),
@@ -457,7 +457,7 @@ class CatalogValidator {
     }).required();
   }
 
-  static updateRealtimeInventory() {
+  static deleteRealtimeInventory() {
     return Joi.object({
       itemId: Joi.number().required(),
       sellerIdentifier: Joi.string().allow("").required(),
@@ -471,6 +471,12 @@ class CatalogValidator {
     }).required();
   }
 
+  static createHsnCode() {
+    return Joi.object({
+      body: Validator.HsnUpsert().required(),
+    }).required();
+  }
+
   static getAllHsnCodes() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -479,8 +485,9 @@ class CatalogValidator {
     }).required();
   }
 
-  static createHsnCode() {
+  static updateHsnCode() {
     return Joi.object({
+      id: Joi.string().allow("").required(),
       body: Validator.HsnUpsert().required(),
     }).required();
   }
@@ -488,13 +495,6 @@ class CatalogValidator {
   static getHsnCode() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateHsnCode() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: Validator.HsnUpsert().required(),
     }).required();
   }
 
