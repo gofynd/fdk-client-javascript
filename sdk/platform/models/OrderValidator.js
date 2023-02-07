@@ -12,7 +12,7 @@ class OrderValidator {
       dpIds: Joi.string().allow(""),
       orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -63,7 +63,7 @@ class OrderValidator {
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannel: Joi.string().allow(""),
+      salesChannels: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
@@ -153,33 +153,6 @@ class OrderValidator {
       pageSize: Joi.number(),
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
-    }).required();
-  }
-
-  static getManifestList() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-      storeId: Joi.number(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      searchValue: Joi.string().allow(""),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getManifestDetailsWithShipments() {
-    return Joi.object({
-      manifestId: Joi.string().allow("").required(),
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      storeId: Joi.number().required(),
-      page: Joi.number(),
-      pageSize: Joi.number(),
-      lane: Joi.string().allow(""),
-      dpIds: Joi.number(),
-      searchType: Joi.string().allow(""),
-      searchValue: Joi.string().allow(""),
     }).required();
   }
 

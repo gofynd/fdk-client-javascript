@@ -17,6 +17,8 @@ declare class Payment {
         getRupifiBannerDetails: string;
         getEpaylaterBannerDetails: string;
         resendOrCancelPayment: string;
+        renderHTML: string;
+        validateVPA: string;
         getActiveRefundTransferModes: string;
         enableOrDisableRefundTransferMode: string;
         getUserBeneficiariesDetail: string;
@@ -217,6 +219,26 @@ declare class Payment {
     resendOrCancelPayment({ body }?: {
         body: ResendOrCancelPaymentRequest;
     }): Promise<ResendOrCancelPaymentResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {renderHTMLRequest} arg.body
+     * @returns {Promise<renderHTMLResponse>} - Success response
+     * @summary: Convert base64 string to HTML form
+     * @description: Use this API to decode base64 html form to plain HTML string.
+     */
+    renderHTML({ body }?: {
+        body: renderHTMLRequest;
+    }): Promise<renderHTMLResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ValidateVPARequest} arg.body
+     * @returns {Promise<ValidateVPAResponse>} - Success response
+     * @summary: API to Validate UPI ID
+     * @description: API to Validate UPI ID
+     */
+    validateVPA({ body }?: {
+        body: ValidateVPARequest;
+    }): Promise<ValidateVPAResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TransferModeResponse>} - Success response
