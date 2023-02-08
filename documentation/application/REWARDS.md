@@ -8,10 +8,10 @@
 Earn and redeem reward points
 * [getOfferByName](#getofferbyname)
 * [catalogueOrder](#catalogueorder)
-* [getUserPointsHistory](#getuserpointshistory)
-* [getUserPoints](#getuserpoints)
-* [getUserReferralDetails](#getuserreferraldetails)
-* [getOrderDiscount](#getorderdiscount)
+* [getPointsHistory](#getpointshistory)
+* [getPoints](#getpoints)
+* [referral](#referral)
+* [orderDiscount](#orderdiscount)
 * [redeemReferralCode](#redeemreferralcode)
 
 
@@ -130,18 +130,18 @@ Success. Check example below or refer `CatalogueOrderResponse` for more details.
 ---
 
 
-### getUserPointsHistory
+### getPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getUserPointsHistory({  pageId : value,
+const promise = rewards.getPointsHistory({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await rewards.getUserPointsHistory({  pageId : value,
+const data = await rewards.getPointsHistory({  pageId : value,
  pageSize : value });
 ```
 
@@ -189,17 +189,17 @@ Success. Check example below or refer `PointsHistoryResponse` for more details.
 ---
 
 
-### getUserPoints
+### getPoints
 Get referral details of a user
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getUserPoints();
+const promise = rewards.getPoints();
 
 // Async/Await
-const data = await rewards.getUserPoints();
+const data = await rewards.getPoints();
 ```
 
 
@@ -240,17 +240,17 @@ Success. Check example below or refer `PointsResponse` for more details.
 ---
 
 
-### getUserReferralDetails
+### referral
 Get referral details of a user
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getUserReferralDetails();
+const promise = rewards.referral();
 
 // Async/Await
-const data = await rewards.getUserReferralDetails();
+const data = await rewards.referral();
 ```
 
 
@@ -291,17 +291,17 @@ Success. Check example below or refer `ReferralDetailsResponse` for more details
 ---
 
 
-### getOrderDiscount
+### orderDiscount
 Calculates the discount on order-amount
 
 
 
 ```javascript
 // Promise
-const promise = rewards.getOrderDiscount({  body : value });
+const promise = rewards.orderDiscount({  body : value });
 
 // Async/Await
-const data = await rewards.getOrderDiscount({  body : value });
+const data = await rewards.orderDiscount({  body : value });
 ```
 
 

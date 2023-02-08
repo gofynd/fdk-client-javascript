@@ -16,7 +16,7 @@ Earn and redeem reward points
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
-* [getUserPointsHistory](#getuserpointshistory)
+* [getPointsHistory](#getpointshistory)
 
 
 
@@ -589,19 +589,19 @@ Success. Check example below or refer `UserRes` for more details.
 ---
 
 
-### getUserPointsHistory
+### getPointsHistory
 Get all transactions of reward points
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getPointsHistory({  userId : value,
  pageId : value,
  pageSize : value });
 ```
@@ -611,10 +611,10 @@ const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsH
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |    
+| --------- | -----  | -------- | ----------- |  
 | pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
+| pageSize | number | no | The number of items to retrieve in each page. |   
+| userId | string | yes | user id |  
 
 
 

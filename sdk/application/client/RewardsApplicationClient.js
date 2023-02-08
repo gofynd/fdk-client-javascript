@@ -11,12 +11,11 @@ class Rewards {
       getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
       catalogueOrder:
         "/service/application/rewards/v1.0/catalogue/offer/order/",
-      getUserPointsHistory:
+      getPointsHistory:
         "/service/application/rewards/v1.0/user/points/history/",
-      getUserPoints: "/service/application/rewards/v1.0/user/points/",
-      getUserReferralDetails:
-        "/service/application/rewards/v1.0/user/referral/",
-      getOrderDiscount:
+      getPoints: "/service/application/rewards/v1.0/user/points/",
+      referral: "/service/application/rewards/v1.0/user/referral/",
+      orderDiscount:
         "/service/application/rewards/v1.0/user/offer/order-discount/",
       redeemReferralCode:
         "/service/application/rewards/v1.0/user/referral/redeem/",
@@ -110,8 +109,8 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  getUserPointsHistory({ pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getUserPointsHistory().validate(
+  getPointsHistory({ pageId, pageSize } = {}) {
+    const { error } = RewardsValidator.getPointsHistory().validate(
       { pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -128,7 +127,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getUserPointsHistory"],
+        url: this._urls["getPointsHistory"],
         params: {},
       }),
       query_params,
@@ -143,13 +142,13 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to get a list of points transactions.
    */
-  getUserPointsHistoryPaginator({ pageSize } = {}) {
+  getPointsHistoryPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "cursor";
-      const data = await this.getUserPointsHistory({
+      const data = await this.getPointsHistory({
         pageId: pageId,
         pageSize: pageSize,
       });
@@ -169,8 +168,8 @@ class Rewards {
    * @summary: Get referral details of a user
    * @description: Use this API to retrieve total available points of a user for current application
    */
-  getUserPoints({} = {}) {
-    const { error } = RewardsValidator.getUserPoints().validate(
+  getPoints({} = {}) {
+    const { error } = RewardsValidator.getPoints().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -185,7 +184,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getUserPoints"],
+        url: this._urls["getPoints"],
         params: {},
       }),
       query_params,
@@ -200,8 +199,8 @@ class Rewards {
    * @summary: Get referral details of a user
    * @description: Use this API to retrieve the referral details a user has configured in the application.
    */
-  getUserReferralDetails({} = {}) {
-    const { error } = RewardsValidator.getUserReferralDetails().validate(
+  referral({} = {}) {
+    const { error } = RewardsValidator.referral().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -216,7 +215,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getUserReferralDetails"],
+        url: this._urls["referral"],
         params: {},
       }),
       query_params,
@@ -232,8 +231,8 @@ class Rewards {
    * @summary: Calculates the discount on order-amount
    * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
    */
-  getOrderDiscount({ body } = {}) {
-    const { error } = RewardsValidator.getOrderDiscount().validate(
+  orderDiscount({ body } = {}) {
+    const { error } = RewardsValidator.orderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -248,7 +247,7 @@ class Rewards {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["getOrderDiscount"],
+        url: this._urls["orderDiscount"],
         params: {},
       }),
       query_params,
