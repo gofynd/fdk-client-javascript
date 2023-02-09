@@ -10,6 +10,7 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
+      getEntityList: "/service/application/logistics/v1.0/entity-list",
       getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -32,19 +33,21 @@ class Logistic {
    * @param {Object} arg - Arg object.
    * @param {string} arg.pincode - A `pincode` contains a specific address of
    *   a location.
+   * @param {string} [arg.countryCode] - A 3 alphabetic country code
    * @returns {Promise<PincodeApiResponse>} - Success response
    * @summary: Get Pincode API
    * @description: Get pincode data
    */
-  getPincodeCity({ pincode } = {}) {
+  getPincodeCity({ pincode, countryCode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
-      { pincode },
+      { pincode, countryCode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
+    query_params["country_code"] = countryCode;
 
     const xHeaders = {};
 
@@ -85,6 +88,42 @@ class Logistic {
       "post",
       constructUrl({
         url: this._urls["getTatProduct"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.page] - Page Number.
+   * @param {string} [arg.limit] - Limit of entity in page
+   * @param {EntityListRequest} arg.body
+   * @returns {Promise<EntityListResponse>} - Success response
+   * @summary: Get Entity List
+   * @description: Get Entity List
+   */
+  getEntityList({ body, page, limit } = {}) {
+    const { error } = LogisticValidator.getEntityList().validate(
+      { body, page, limit },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["page"] = page;
+    query_params["limit"] = limit;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["getEntityList"],
         params: {},
       }),
       query_params,

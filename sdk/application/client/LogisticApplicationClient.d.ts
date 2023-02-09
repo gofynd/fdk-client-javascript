@@ -5,6 +5,7 @@ declare class Logistic {
     _relativeUrls: {
         getPincodeCity: string;
         getTatProduct: string;
+        getEntityList: string;
         getPincodeZones: string;
     };
     _urls: {};
@@ -13,12 +14,14 @@ declare class Logistic {
      * @param {Object} arg - Arg object.
      * @param {string} arg.pincode - A `pincode` contains a specific address of
      *   a location.
+     * @param {string} [arg.countryCode] - A 3 alphabetic country code
      * @returns {Promise<PincodeApiResponse>} - Success response
      * @summary: Get Pincode API
      * @description: Get pincode data
      */
-    getPincodeCity({ pincode }?: {
+    getPincodeCity({ pincode, countryCode }?: {
         pincode: string;
+        countryCode?: string;
     }): Promise<PincodeApiResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -30,6 +33,20 @@ declare class Logistic {
     getTatProduct({ body }?: {
         body: TATViewRequest;
     }): Promise<TATViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.page] - Page Number.
+     * @param {string} [arg.limit] - Limit of entity in page
+     * @param {EntityListRequest} arg.body
+     * @returns {Promise<EntityListResponse>} - Success response
+     * @summary: Get Entity List
+     * @description: Get Entity List
+     */
+    getEntityList({ body, page, limit }?: {
+        page?: string;
+        limit?: string;
+        body: EntityListRequest;
+    }): Promise<EntityListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body
