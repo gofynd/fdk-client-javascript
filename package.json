@@ -1,5 +1,5 @@
 {
-  "name": "fdk-client-javascript",
+  "name": "@gofynd/fdk-client-javascript",
   "version": "0.1.30",
   "description": "",
   "main": "index.js",
