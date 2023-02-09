@@ -10,7 +10,7 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
-      getEntityList: "/service/application/logistics/v1.0/entity-list",
+      getAllCountries: "/service/application/logistics/v1.0/country-list",
       getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -98,36 +98,31 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.page] - Page Number.
-   * @param {string} [arg.limit] - Limit of entity in page
-   * @param {EntityListRequest} arg.body
-   * @returns {Promise<EntityListResponse>} - Success response
-   * @summary: Get Entity List
-   * @description: Get Entity List
+   * @returns {Promise<CountryListResponse>} - Success response
+   * @summary: Get Country List
+   * @description: Get all countries
    */
-  getEntityList({ body, page, limit } = {}) {
-    const { error } = LogisticValidator.getEntityList().validate(
-      { body, page, limit },
+  getAllCountries({} = {}) {
+    const { error } = LogisticValidator.getAllCountries().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
     const query_params = {};
-    query_params["page"] = page;
-    query_params["limit"] = limit;
 
     const xHeaders = {};
 
     return APIClient.execute(
       this._conf,
-      "post",
+      "get",
       constructUrl({
-        url: this._urls["getEntityList"],
+        url: this._urls["getAllCountries"],
         params: {},
       }),
       query_params,
-      body,
+      undefined,
       xHeaders
     );
   }

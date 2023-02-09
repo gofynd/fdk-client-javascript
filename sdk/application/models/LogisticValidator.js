@@ -14,12 +14,8 @@ class LogisticValidator {
     }).required();
   }
 
-  static getEntityList() {
-    return Joi.object({
-      page: Joi.string().allow(""),
-      limit: Joi.string().allow(""),
-      body: Validator.EntityListRequest().required(),
-    }).required();
+  static getAllCountries() {
+    return Joi.object({});
   }
 
   static getPincodeZones() {
