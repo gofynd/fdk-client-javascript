@@ -10580,7 +10580,7 @@ declare namespace PlatformApplicationClient {
  * @typedef InformationAddress
  * @property {string} [loc]
  * @property {string[]} [address_line]
- * @property {InformationPhone} [phone]
+ * @property {InformationPhone[]} [phone]
  * @property {string} [city]
  * @property {string} [country]
  * @property {number} [pincode]
@@ -10685,6 +10685,7 @@ declare namespace PlatformApplicationClient {
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
  * @property {string} [_id]
+ * @property {string} [slug]
  */
 /**
  * @typedef CurrenciesResponse
@@ -25542,7 +25543,7 @@ type ApplicationInformation = {
 type InformationAddress = {
     loc?: string;
     address_line?: string[];
-    phone?: InformationPhone;
+    phone?: InformationPhone[];
     city?: string;
     country?: string;
     pincode?: number;
@@ -25632,6 +25633,7 @@ type ApplicationDetail = {
     domain?: Domain;
     domains?: Domain[];
     _id?: string;
+    slug?: string;
 };
 type CurrenciesResponse = {
     items?: Currency[];

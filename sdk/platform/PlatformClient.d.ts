@@ -9269,7 +9269,7 @@ type ApplicationInformation = {
 type InformationAddress = {
     loc?: string;
     address_line?: string[];
-    phone?: InformationPhone;
+    phone?: InformationPhone[];
     city?: string;
     country?: string;
     pincode?: number;
@@ -9359,6 +9359,7 @@ type ApplicationDetail = {
     domain?: Domain;
     domains?: Domain[];
     _id?: string;
+    slug?: string;
 };
 type CurrenciesResponse = {
     items?: Currency[];

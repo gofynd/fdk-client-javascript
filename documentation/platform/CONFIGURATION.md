@@ -6795,6 +6795,7 @@ Success
  | app_type | string |  no  |  |
  | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
  | domain | [Domain](#Domain) |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 
@@ -7019,7 +7020,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | loc | string |  no  |  |
  | address_line | [string] |  no  |  |
- | phone | [InformationPhone](#InformationPhone) |  no  |  |
+ | phone | [[InformationPhone](#InformationPhone)] |  no  |  |
  | city | string |  no  |  |
  | country | string |  no  |  |
  | pincode | number |  no  |  |
@@ -7229,6 +7230,7 @@ Success
  | domain | [Domain](#Domain) |  no  |  |
  | domains | [[Domain](#Domain)] |  no  |  |
  | _id | string |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 

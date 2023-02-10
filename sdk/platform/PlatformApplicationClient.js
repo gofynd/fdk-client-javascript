@@ -11932,7 +11932,7 @@ class PlatformApplicationClient {
  * @typedef InformationAddress
  * @property {string} [loc]
  * @property {string[]} [address_line]
- * @property {InformationPhone} [phone]
+ * @property {InformationPhone[]} [phone]
  * @property {string} [city]
  * @property {string} [country]
  * @property {number} [pincode]
@@ -12052,6 +12052,7 @@ class PlatformApplicationClient {
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
  * @property {string} [_id]
+ * @property {string} [slug]
  */
 
 /**

@@ -18668,7 +18668,7 @@ class Validator {
 
       address_line: Joi.array().items(Joi.string().allow("")),
 
-      phone: this.InformationPhone(),
+      phone: Joi.array().items(this.InformationPhone()),
 
       city: Joi.string().allow(""),
 
@@ -18847,6 +18847,8 @@ class Validator {
       domains: Joi.array().items(this.Domain()),
 
       _id: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
     });
   }
 
