@@ -9569,19 +9569,6 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ContactDetails
- * @property {string[]} [emails]
- * @property {SellerPhoneNumber[]} [phone]
- */
-
-/**
- * @typedef CompanyTaxesSerializer
- * @property {number} [rate]
- * @property {string} [effective_date]
- * @property {boolean} [enable]
- */
-
-/**
  * @typedef Website
  * @property {string} [url]
  */
@@ -9592,51 +9579,64 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef ContactDetails
+ * @property {string[]} [emails]
+ * @property {SellerPhoneNumber[]} [phone]
+ */
+
+/**
  * @typedef BusinessCountryInfo
- * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [country]
+ */
+
+/**
+ * @typedef CompanyTaxesSerializer
+ * @property {number} [rate]
+ * @property {string} [effective_date]
+ * @property {boolean} [enable]
  */
 
 /**
  * @typedef GetCompanyProfileSerializerResponse
+ * @property {BusinessDetails} [business_details]
+ * @property {Document[]} [documents]
+ * @property {string[]} [notification_emails]
+ * @property {string} [verified_on]
+ * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
- * @property {number} uid
  * @property {string} [modified_on]
  * @property {string} business_type
- * @property {string} [mode]
- * @property {string} [name]
- * @property {ContactDetails} [contact_details]
- * @property {string} [stage]
  * @property {Object} [warnings]
  * @property {Object} [_custom_json]
- * @property {CompanyTaxesSerializer[]} [taxes]
- * @property {UserSerializer} [created_by]
- * @property {string} company_type
- * @property {UserSerializer} [verified_by]
- * @property {string[]} [notification_emails]
- * @property {BusinessDetails} [business_details]
- * @property {string} [verified_on]
- * @property {Document[]} [documents]
- * @property {UserSerializer} [modified_by]
- * @property {string} [business_info]
- * @property {GetAddressSerializer[]} [addresses]
- * @property {boolean} [franchise_enabled]
+ * @property {ContactDetails} [contact_details]
+ * @property {string} [stage]
  * @property {BusinessCountryInfo} [business_country_info]
+ * @property {string} [mode]
+ * @property {string} [business_info]
+ * @property {UserSerializer} [modified_by]
+ * @property {number} uid
+ * @property {boolean} [franchise_enabled]
+ * @property {UserSerializer} [verified_by]
+ * @property {GetAddressSerializer[]} [addresses]
+ * @property {CompanyTaxesSerializer[]} [taxes]
+ * @property {string} [name]
+ * @property {string} company_type
  */
 
 /**
  * @typedef CreateUpdateAddressSerializer
- * @property {string} country
- * @property {string} state
- * @property {string} city
- * @property {number} latitude
- * @property {string} [country_code]
- * @property {string} address1
  * @property {string} [address2]
  * @property {string} [landmark]
  * @property {number} pincode
+ * @property {number} latitude
+ * @property {string} country
  * @property {number} longitude
+ * @property {string} city
+ * @property {string} state
+ * @property {string} [country_code]
  * @property {string} address_type
+ * @property {string} address1
  */
 
 /**
@@ -9648,136 +9648,136 @@ class PlatformApplicationClient {
 
 /**
  * @typedef UpdateCompany
- * @property {ContactDetails} [contact_details]
- * @property {string} [business_info]
- * @property {BusinessDetails} [business_details]
  * @property {Object} [warnings]
- * @property {Object} [_custom_json]
- * @property {CreateUpdateAddressSerializer[]} [addresses]
- * @property {CompanyTaxesSerializer1[]} [taxes]
- * @property {string} [business_type]
  * @property {string} [reject_reason]
+ * @property {Object} [_custom_json]
  * @property {boolean} [franchise_enabled]
- * @property {string} [company_type]
- * @property {string[]} [notification_emails]
+ * @property {CreateUpdateAddressSerializer[]} [addresses]
+ * @property {BusinessDetails} [business_details]
+ * @property {CompanyTaxesSerializer1[]} [taxes]
+ * @property {ContactDetails} [contact_details]
  * @property {Document[]} [documents]
+ * @property {string} [business_type]
+ * @property {string[]} [notification_emails]
  * @property {string} [name]
+ * @property {string} [company_type]
+ * @property {string} [business_info]
  */
 
 /**
  * @typedef ProfileSuccessResponse
- * @property {boolean} [success]
  * @property {number} [uid]
+ * @property {boolean} [success]
  */
 
 /**
  * @typedef DocumentsObj
- * @property {number} [verified]
  * @property {number} [pending]
+ * @property {number} [verified]
  */
 
 /**
  * @typedef MetricsSerializer
- * @property {string} [stage]
  * @property {number} [uid]
- * @property {DocumentsObj} [brand]
- * @property {DocumentsObj} [company_documents]
  * @property {DocumentsObj} [store]
  * @property {DocumentsObj} [store_documents]
+ * @property {DocumentsObj} [brand]
+ * @property {string} [stage]
+ * @property {DocumentsObj} [company_documents]
  * @property {DocumentsObj} [product]
  */
 
 /**
  * @typedef BrandBannerSerializer
- * @property {string} [portrait]
  * @property {string} [landscape]
+ * @property {string} [portrait]
  */
 
 /**
  * @typedef GetBrandResponseSerializer
+ * @property {string} [verified_on]
+ * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
+ * @property {string} [modified_on]
+ * @property {Object} [_custom_json]
+ * @property {string} [reject_reason]
+ * @property {Object} [warnings]
+ * @property {string} [stage]
+ * @property {string[]} [synonyms]
+ * @property {string} [mode]
+ * @property {BrandBannerSerializer} [banner]
+ * @property {UserSerializer} [modified_by]
  * @property {string} [logo]
  * @property {number} [uid]
- * @property {string} [modified_on]
- * @property {string} [mode]
- * @property {string} name
- * @property {string} [stage]
- * @property {Object} [warnings]
- * @property {Object} [_custom_json]
- * @property {string} [description]
- * @property {UserSerializer} [created_by]
  * @property {UserSerializer} [verified_by]
- * @property {string[]} [synonyms]
- * @property {Object} [_locale_language]
- * @property {string} [verified_on]
  * @property {string} [slug_key]
- * @property {UserSerializer} [modified_by]
- * @property {BrandBannerSerializer} [banner]
- * @property {string} [reject_reason]
+ * @property {string} name
+ * @property {string} [description]
+ * @property {Object} [_locale_language]
  */
 
 /**
  * @typedef CreateUpdateBrandRequestSerializer
- * @property {number} [company_id]
- * @property {Object} [_locale_language]
- * @property {string} logo
  * @property {number} [uid]
- * @property {BrandBannerSerializer} [banner]
  * @property {Object} [_custom_json]
  * @property {string} [description]
- * @property {string} [brand_tier]
+ * @property {number} [company_id]
  * @property {string[]} [synonyms]
+ * @property {string} [brand_tier]
  * @property {string} name
+ * @property {BrandBannerSerializer} [banner]
+ * @property {string} logo
+ * @property {Object} [_locale_language]
  */
 
 /**
  * @typedef CompanySocialAccounts
- * @property {string} url
  * @property {string} name
+ * @property {string} url
  */
 
 /**
  * @typedef CompanyDetails
- * @property {CompanySocialAccounts[]} [socials]
  * @property {string} [website_url]
+ * @property {CompanySocialAccounts[]} [socials]
  */
 
 /**
  * @typedef CompanySerializer
- * @property {string} [stage]
- * @property {string} [created_on]
- * @property {BusinessCountryInfo} [business_country_info]
  * @property {number} [uid]
+ * @property {string} [reject_reason]
+ * @property {string} [created_on]
  * @property {Object} [_custom_json]
- * @property {string} company_type
+ * @property {UserSerializer} [verified_by]
  * @property {GetAddressSerializer[]} [addresses]
+ * @property {string[]} [market_channels]
+ * @property {CompanyDetails} [details]
  * @property {string} [modified_on]
  * @property {string} business_type
- * @property {UserSerializer} [created_by]
- * @property {string[]} [market_channels]
- * @property {string} [verified_on]
- * @property {UserSerializer} [verified_by]
- * @property {string} [reject_reason]
  * @property {string[]} [notification_emails]
- * @property {CompanyDetails} [details]
- * @property {UserSerializer} [modified_by]
+ * @property {string} [stage]
+ * @property {BusinessCountryInfo} [business_country_info]
+ * @property {string} company_type
  * @property {string} [name]
+ * @property {UserSerializer} [modified_by]
+ * @property {string} [verified_on]
+ * @property {UserSerializer} [created_by]
  */
 
 /**
  * @typedef CompanyBrandSerializer
- * @property {string} [stage]
- * @property {string} [created_on]
  * @property {number} [uid]
- * @property {GetBrandResponseSerializer} [brand]
- * @property {Object} [warnings]
- * @property {CompanySerializer} [company]
- * @property {string} [modified_on]
- * @property {UserSerializer} [created_by]
- * @property {string} [verified_on]
- * @property {UserSerializer} [verified_by]
- * @property {UserSerializer} [modified_by]
  * @property {string} [reject_reason]
+ * @property {string} [created_on]
+ * @property {Object} [warnings]
+ * @property {UserSerializer} [verified_by]
+ * @property {GetBrandResponseSerializer} [brand]
+ * @property {string} [modified_on]
+ * @property {CompanySerializer} [company]
+ * @property {string} [stage]
+ * @property {UserSerializer} [modified_by]
+ * @property {string} [verified_on]
+ * @property {UserSerializer} [created_by]
  */
 
 /**
@@ -9788,9 +9788,9 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CompanyBrandPostRequestSerializer
- * @property {number} company
- * @property {number[]} brands
  * @property {number} [uid]
+ * @property {number[]} brands
+ * @property {number} company
  */
 
 /**
@@ -9808,24 +9808,24 @@ class PlatformApplicationClient {
 
 /**
  * @typedef LocationSerializer
- * @property {string} [stage]
  * @property {number} [uid]
- * @property {string[]} [notification_emails]
- * @property {GetAddressSerializer} address
- * @property {Object} [warnings]
  * @property {Object} [_custom_json]
- * @property {string} display_name
- * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {Object} [warnings]
+ * @property {LocationManagerSerializer} [manager]
+ * @property {Document[]} [documents]
+ * @property {string} code
  * @property {number} company
+ * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {string} [stage]
+ * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [timing]
+ * @property {GetAddressSerializer} address
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [store_type]
- * @property {LocationManagerSerializer} [manager]
- * @property {InvoiceDetailsSerializer} [gst_credentials]
- * @property {string} code
- * @property {HolidaySchemaSerializer[]} [holiday]
- * @property {Document[]} [documents]
- * @property {LocationDayWiseSerializer[]} [timing]
  * @property {string} name
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
+ * @property {string} display_name
+ * @property {HolidaySchemaSerializer[]} [holiday]
  */
 
 /**
@@ -9835,54 +9835,54 @@ class PlatformApplicationClient {
 
 /**
  * @typedef _ArticleQuery
+ * @property {number[]} [ignored_stores]
  * @property {string} [size]
  * @property {number} [item_id]
- * @property {number[]} [ignored_stores]
  */
 
 /**
  * @typedef _ArticleAssignment
- * @property {string} [level]
  * @property {string} [strategy]
+ * @property {string} [level]
  */
 
 /**
  * @typedef _AssignStoreArticle
  * @property {_ArticleQuery} [query]
+ * @property {_ArticleAssignment} [article_assignment]
+ * @property {number} [quantity]
  * @property {string} [group_id]
  * @property {Object} [meta]
- * @property {number} [quantity]
- * @property {_ArticleAssignment} [article_assignment]
  */
 
 /**
  * @typedef AssignStoreRequestValidator
  * @property {_AssignStoreArticle[]} [articles]
- * @property {number} [company_id]
- * @property {string} [channel_type]
  * @property {string} [pincode]
- * @property {string} [app_id]
  * @property {string} [channel_identifier]
  * @property {number[]} [store_ids]
+ * @property {string} [app_id]
+ * @property {string} [channel_type]
+ * @property {number} [company_id]
  */
 
 /**
  * @typedef AssignStoreResponseSerializer
- * @property {string} [size]
- * @property {string} [s_city]
- * @property {number} [company_id]
  * @property {string} [uid]
- * @property {string} [store_pincode]
+ * @property {string} [size]
  * @property {number} [price_effective]
- * @property {string} [_id]
- * @property {number} [store_id]
- * @property {boolean} [status]
- * @property {number} [item_id]
- * @property {Object} [meta]
+ * @property {string} [store_pincode]
  * @property {number} [index]
- * @property {number} [price_marked]
- * @property {number} [quantity]
  * @property {_ArticleAssignment} [article_assignment]
+ * @property {boolean} [status]
+ * @property {number} [price_marked]
+ * @property {string} [s_city]
+ * @property {number} [item_id]
+ * @property {number} [quantity]
+ * @property {number} [store_id]
+ * @property {number} [company_id]
+ * @property {Object} [meta]
+ * @property {string} [_id]
  */
 
 /**
@@ -24973,10 +24973,11 @@ class Partner {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
+   * @param {string} arg.extensionId - Extension id for which proxy URL will
+   *   be generated
    * @param {AddProxyReq} arg.body
-   * @summary: Add proxy path for external url
-   * @description: Add proxy path for external url
+   * @summary: Create proxy URL for the external URL
+   * @description: Use this API to generate proxy URL for the external URL
    */
   addProxyPath({ extensionId, body } = {}) {
     const { error } = PartnerValidator.addProxyPath().validate(
@@ -25003,10 +25004,11 @@ class Partner {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
+   * @param {string} arg.extensionId - Extension id for which proxy URL needs
+   *   to be removed
    * @param {string} arg.attachedPath - Attachaed path slug
-   * @summary: Remove proxy path for external url
-   * @description: Remove proxy path for external url
+   * @summary: Remove proxy URL for the external URL
+   * @description: Use this API to remove the proxy URL which is already generated for the external URL
    */
   removeProxyPath({ extensionId, attachedPath } = {}) {
     const { error } = PartnerValidator.removeProxyPath().validate(

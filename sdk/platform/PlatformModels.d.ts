@@ -1066,11 +1066,11 @@ declare class Validator {
     static ApplicationDepartmentListingResponse(): any;
     static ApplicationDepartmentJson(): any;
     static ApplicationStoreJson(): any;
-    static ContactDetails(): any;
-    static CompanyTaxesSerializer(): any;
     static Website(): any;
     static BusinessDetails(): any;
+    static ContactDetails(): any;
     static BusinessCountryInfo(): any;
+    static CompanyTaxesSerializer(): any;
     static GetCompanyProfileSerializerResponse(): any;
     static CreateUpdateAddressSerializer(): any;
     static CompanyTaxesSerializer1(): any;
