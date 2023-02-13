@@ -8,16 +8,15 @@ class Rewards {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getPointsOnProduct:
-        "/service/application/rewards/v1.0/catalogue/offer/order/",
       getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
-      getOrderDiscount:
-        "/service/application/rewards/v1.0/user/offers/order-discount/",
-      getUserPoints: "/service/application/rewards/v1.0/user/points/",
-      getUserPointsHistory:
+      catalogueOrder:
+        "/service/application/rewards/v1.0/catalogue/offer/order/",
+      getPointsHistory:
         "/service/application/rewards/v1.0/user/points/history/",
-      getUserReferralDetails:
-        "/service/application/rewards/v1.0/user/referral/",
+      getPoints: "/service/application/rewards/v1.0/user/points/",
+      referral: "/service/application/rewards/v1.0/user/referral/",
+      orderDiscount:
+        "/service/application/rewards/v1.0/user/offer/order-discount/",
       redeemReferralCode:
         "/service/application/rewards/v1.0/user/referral/redeem/",
     };
@@ -35,38 +34,6 @@ class Rewards {
       ...this._urls,
       ...urls,
     };
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CatalogueOrderRequest} arg.body
-   * @returns {Promise<CatalogueOrderResponse>} - Success response
-   * @summary: Get the eligibility of reward points on a product
-   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-   */
-  getPointsOnProduct({ body } = {}) {
-    const { error } = RewardsValidator.getPointsOnProduct().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getPointsOnProduct"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
   }
 
   /**
@@ -103,13 +70,13 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {OrderDiscountRequest} arg.body
-   * @returns {Promise<OrderDiscountResponse>} - Success response
-   * @summary: Calculates the discount on order-amount
-   * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+   * @param {CatalogueOrderRequest} arg.body
+   * @returns {Promise<CatalogueOrderResponse>} - Success response
+   * @summary: Get all transactions of reward points
+   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
    */
-  getOrderDiscount({ body } = {}) {
-    const { error } = RewardsValidator.getOrderDiscount().validate(
+  catalogueOrder({ body } = {}) {
+    const { error } = RewardsValidator.catalogueOrder().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -124,42 +91,11 @@ class Rewards {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["getOrderDiscount"],
+        url: this._urls["catalogueOrder"],
         params: {},
       }),
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<PointsResponse>} - Success response
-   * @summary: Get reward points available with a user
-   * @description: Use this API to retrieve total available points of a user for current application
-   */
-  getUserPoints({} = {}) {
-    const { error } = RewardsValidator.getUserPoints().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getUserPoints"],
-        params: {},
-      }),
-      query_params,
-      undefined,
       xHeaders
     );
   }
@@ -171,10 +107,10 @@ class Rewards {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Promise<PointsHistoryResponse>} - Success response
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions. The list of points history is paginated.
+   * @description: Use this API to get a list of points transactions.
    */
-  getUserPointsHistory({ pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getUserPointsHistory().validate(
+  getPointsHistory({ pageId, pageSize } = {}) {
+    const { error } = RewardsValidator.getPointsHistory().validate(
       { pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -191,7 +127,7 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getUserPointsHistory"],
+        url: this._urls["getPointsHistory"],
         params: {},
       }),
       query_params,
@@ -204,15 +140,15 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions. The list of points history is paginated.
+   * @description: Use this API to get a list of points transactions.
    */
-  getUserPointsHistoryPaginator({ pageSize } = {}) {
+  getPointsHistoryPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "cursor";
-      const data = await this.getUserPointsHistory({
+      const data = await this.getPointsHistory({
         pageId: pageId,
         pageSize: pageSize,
       });
@@ -228,12 +164,12 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<ReferralDetailsResponse>} - Success response
+   * @returns {Promise<PointsResponse>} - Success response
    * @summary: Get referral details of a user
-   * @description: Use this API to retrieve the referral details a user has configured in the application.
+   * @description: Use this API to retrieve total available points of a user for current application
    */
-  getUserReferralDetails({} = {}) {
-    const { error } = RewardsValidator.getUserReferralDetails().validate(
+  getPoints({} = {}) {
+    const { error } = RewardsValidator.getPoints().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -248,11 +184,74 @@ class Rewards {
       this._conf,
       "get",
       constructUrl({
-        url: this._urls["getUserReferralDetails"],
+        url: this._urls["getPoints"],
         params: {},
       }),
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<ReferralDetailsResponse>} - Success response
+   * @summary: Get referral details of a user
+   * @description: Use this API to retrieve the referral details a user has configured in the application.
+   */
+  referral({} = {}) {
+    const { error } = RewardsValidator.referral().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["referral"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {OrderDiscountRequest} arg.body
+   * @returns {Promise<OrderDiscountResponse>} - Success response
+   * @summary: Calculates the discount on order-amount
+   * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+   */
+  orderDiscount({ body } = {}) {
+    const { error } = RewardsValidator.orderDiscount().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["orderDiscount"],
+        params: {},
+      }),
+      query_params,
+      body,
       xHeaders
     );
   }

@@ -3,26 +3,16 @@ declare class Rewards {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getPointsOnProduct: string;
         getOfferByName: string;
-        getOrderDiscount: string;
-        getUserPoints: string;
-        getUserPointsHistory: string;
-        getUserReferralDetails: string;
+        catalogueOrder: string;
+        getPointsHistory: string;
+        getPoints: string;
+        referral: string;
+        orderDiscount: string;
         redeemReferralCode: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CatalogueOrderRequest} arg.body
-     * @returns {Promise<CatalogueOrderResponse>} - Success response
-     * @summary: Get the eligibility of reward points on a product
-     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-     */
-    getPointsOnProduct({ body }?: {
-        body: any;
-    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
@@ -35,21 +25,14 @@ declare class Rewards {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {OrderDiscountRequest} arg.body
-     * @returns {Promise<OrderDiscountResponse>} - Success response
-     * @summary: Calculates the discount on order-amount
-     * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+     * @param {CatalogueOrderRequest} arg.body
+     * @returns {Promise<CatalogueOrderResponse>} - Success response
+     * @summary: Get all transactions of reward points
+     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
      */
-    getOrderDiscount({ body }?: {
+    catalogueOrder({ body }?: {
         body: any;
     }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<PointsResponse>} - Success response
-     * @summary: Get reward points available with a user
-     * @description: Use this API to retrieve total available points of a user for current application
-     */
-    getUserPoints({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
@@ -57,9 +40,9 @@ declare class Rewards {
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<PointsHistoryResponse>} - Success response
      * @summary: Get all transactions of reward points
-     * @description: Use this API to get a list of points transactions. The list of points history is paginated.
+     * @description: Use this API to get a list of points transactions.
      */
-    getUserPointsHistory({ pageId, pageSize }?: {
+    getPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
     }): Promise<any>;
@@ -67,18 +50,35 @@ declare class Rewards {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get all transactions of reward points
-     * @description: Use this API to get a list of points transactions. The list of points history is paginated.
+     * @description: Use this API to get a list of points transactions.
      */
-    getUserPointsHistoryPaginator({ pageSize }?: {
+    getPointsHistoryPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<PointsResponse>} - Success response
+     * @summary: Get referral details of a user
+     * @description: Use this API to retrieve total available points of a user for current application
+     */
+    getPoints({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ReferralDetailsResponse>} - Success response
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve the referral details a user has configured in the application.
      */
-    getUserReferralDetails({}?: any): Promise<any>;
+    referral({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {OrderDiscountRequest} arg.body
+     * @returns {Promise<OrderDiscountResponse>} - Success response
+     * @summary: Calculates the discount on order-amount
+     * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+     */
+    orderDiscount({ body }?: {
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {RedeemReferralCodeRequest} arg.body

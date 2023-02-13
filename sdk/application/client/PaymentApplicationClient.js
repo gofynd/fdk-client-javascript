@@ -32,7 +32,7 @@ class Payment {
         "/service/application/payment/v1.0/payment/resend_or_cancel",
       renderHTML: "/service/application/payment/v1.0/payment/html/render/",
       validateVPA: "/service/application/payment/v1.0/validate-vpa",
-      cardDetails: "/service/application/payment/v1.0/cards/info",
+      cardDetails: "/service/application/payment/v1.0/cards/info/{card_bin}",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
