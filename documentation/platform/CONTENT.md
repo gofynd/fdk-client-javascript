@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Content Methods
 Content System
+
 * [getAnnouncementsList](#getannouncementslist)
 * [createAnnouncement](#createannouncement)
 * [getAnnouncementById](#getannouncementbyid)
@@ -77,6 +79,8 @@ Content System
 
 
 ## Methods with example and description
+
+
 
 
 ### getAnnouncementsList

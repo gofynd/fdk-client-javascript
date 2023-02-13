@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Discount Methods
 Discount
+
 * [getDiscounts](#getdiscounts)
 * [createDiscount](#creatediscount)
 * [getDiscount](#getdiscount)
@@ -21,6 +23,8 @@ Discount
 
 
 ## Methods with example and description
+
+
 
 
 ### getDiscounts
