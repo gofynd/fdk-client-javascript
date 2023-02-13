@@ -27,8 +27,7 @@ class OrdersValidator {
 
   static getShipmentById() {
     return Joi.object({
-      channelShipmentId: Joi.string().allow(""),
-      shipmentId: Joi.string().allow(""),
+      channelShipmentId: Joi.string().allow("").required(),
       orderingCompanyId: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
     }).required();
@@ -153,6 +152,33 @@ class OrdersValidator {
       pageSize: Joi.number(),
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
+    }).required();
+  }
+
+  static getManifestList() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      storeId: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      searchValue: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getManifestDetailsWithShipments() {
+    return Joi.object({
+      manifestId: Joi.string().allow("").required(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      storeId: Joi.number().required(),
+      page: Joi.number(),
+      pageSize: Joi.number(),
+      lane: Joi.string().allow(""),
+      dpIds: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
     }).required();
   }
 

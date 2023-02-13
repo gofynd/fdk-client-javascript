@@ -14,6 +14,8 @@ declare class OrdersValidator {
     static getBulkInvoiceLabel(): any;
     static getBulkShipmentExcelFile(): any;
     static getBulkList(): any;
+    static getManifestList(): any;
+    static getManifestDetailsWithShipments(): any;
     static getBulkActionFailedReport(): any;
     static getShipmentReasons(): any;
     static bulkActionProcessXlsxFile(): any;
