@@ -2,16 +2,20 @@
 
 
 
+
 ##### [Back to Public docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
+
 * [searchApplication](#searchapplication)
 * [getLocations](#getlocations)
 
 
 
 ## Methods with example and description
+
+
 
 
 ### searchApplication

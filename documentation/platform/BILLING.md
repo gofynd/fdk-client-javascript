@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Billing Methods
 Handle platform subscription
+
 * [checkCouponValidity](#checkcouponvalidity)
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
@@ -24,6 +26,8 @@ Handle platform subscription
 
 
 ## Methods with example and description
+
+
 
 
 ### checkCouponValidity
@@ -1022,7 +1026,8 @@ Success
     "data": {
       "pg_user_exists": true,
       "id": 2
-    }
+    },
+    "credit_balance": 500
   }
 }
 ```
@@ -1109,7 +1114,8 @@ Success
     "data": {
       "pg_user_exists": true,
       "id": 2
-    }
+    },
+    "credit_balance": 500
   }
 }
 ```
@@ -2318,6 +2324,7 @@ Success
  | email | string |  no  |  |
  | created_at | string |  no  |  |
  | modified_at | string |  no  |  |
+ | credit_balance | number |  no  |  |
  | data | string |  no  |  |
 
 ---

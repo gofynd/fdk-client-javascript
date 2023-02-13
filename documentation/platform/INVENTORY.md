@@ -2,9 +2,11 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Inventory Methods
+
 
 * [getJobsByCompany](#getjobsbycompany)
 * [updateJob](#updatejob)
@@ -22,6 +24,8 @@
 
 
 ## Methods with example and description
+
+
 
 
 ### getJobsByCompany

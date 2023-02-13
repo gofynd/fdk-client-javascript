@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Order Methods
 Handles all Application order and shipment api(s)
+
 * [getOrders](#getorders)
 * [getOrderById](#getorderbyid)
 * [getPosOrderById](#getposorderbyid)
@@ -22,6 +24,8 @@ Handles all Application order and shipment api(s)
 
 
 ## Methods with example and description
+
+
 
 
 ### getOrders

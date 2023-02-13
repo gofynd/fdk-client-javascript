@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Feedback Methods
 User Reviews and Rating System
+
 * [getAttributes](#getattributes)
 * [getCustomerReviews](#getcustomerreviews)
 * [updateApprove](#updateapprove)
@@ -19,6 +21,8 @@ User Reviews and Rating System
 
 
 ## Methods with example and description
+
+
 
 
 ### getAttributes

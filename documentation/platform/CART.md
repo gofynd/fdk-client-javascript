@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Cart Methods
 Cart APIs
+
 * [getCoupons](#getcoupons)
 * [createCoupon](#createcoupon)
 * [getCouponById](#getcouponbyid)
@@ -28,6 +30,8 @@ Cart APIs
 
 
 ## Methods with example and description
+
+
 
 
 ### getCoupons
