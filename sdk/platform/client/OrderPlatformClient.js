@@ -18,7 +18,7 @@ class Order {
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
@@ -41,7 +41,7 @@ class Order {
     dpIds,
     orderingCompanyId,
     stores,
-    salesChannel,
+    salesChannels,
     requestByExt,
     pageNo,
     pageSize,
@@ -63,7 +63,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -90,7 +90,7 @@ class Order {
     query_params["dp_ids"] = dpIds;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -115,16 +115,23 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.channelShipmentId -
+   * @param {string} [arg.channelShipmentId] -
+   * @param {string} [arg.shipmentId] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.requestByExt] -
    * @summary:
    * @description:
    */
-  getShipmentById({ channelShipmentId, orderingCompanyId, requestByExt } = {}) {
+  getShipmentById({
+    channelShipmentId,
+    shipmentId,
+    orderingCompanyId,
+    requestByExt,
+  } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
       {
         channelShipmentId,
+        shipmentId,
         orderingCompanyId,
         requestByExt,
       },
@@ -135,6 +142,8 @@ class Order {
     }
 
     const query_params = {};
+    query_params["channel_shipment_id"] = channelShipmentId;
+    query_params["shipment_id"] = shipmentId;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["request_by_ext"] = requestByExt;
 
@@ -143,7 +152,7 @@ class Order {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details/${channelShipmentId}`,
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details`,
       query_params,
       undefined,
       xHeaders
@@ -257,7 +266,7 @@ class Order {
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
@@ -273,7 +282,7 @@ class Order {
     toDate,
     dpIds,
     stores,
-    salesChannel,
+    salesChannels,
     pageNo,
     pageSize,
     isPrioritySort,
@@ -288,7 +297,7 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -308,7 +317,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
@@ -730,134 +739,6 @@ class Order {
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/listing`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.status] -
-   * @param {number} [arg.storeId] -
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.searchValue] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @summary:
-   * @description:
-   */
-  getManifestList({
-    status,
-    storeId,
-    pageNo,
-    pageSize,
-    searchValue,
-    fromDate,
-    toDate,
-  } = {}) {
-    const { error } = OrderValidator.getManifestList().validate(
-      {
-        status,
-        storeId,
-        pageNo,
-        pageSize,
-        searchValue,
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["store_id"] = storeId;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["search_value"] = searchValue;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/generated-manifests`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.manifestId -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {number} arg.storeId -
-   * @param {number} [arg.page] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.lane] -
-   * @param {number} [arg.dpIds] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchValue] -
-   * @summary:
-   * @description:
-   */
-  getManifestDetailsWithShipments({
-    manifestId,
-    storeId,
-    fromDate,
-    toDate,
-    page,
-    pageSize,
-    lane,
-    dpIds,
-    searchType,
-    searchValue,
-  } = {}) {
-    const { error } = OrderValidator.getManifestDetailsWithShipments().validate(
-      {
-        manifestId,
-        storeId,
-        fromDate,
-        toDate,
-        page,
-        pageSize,
-        lane,
-        dpIds,
-        searchType,
-        searchValue,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["manifest_id"] = manifestId;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["store_id"] = storeId;
-    query_params["page"] = page;
-    query_params["page_size"] = pageSize;
-    query_params["lane"] = lane;
-    query_params["dp_ids"] = dpIds;
-    query_params["search_type"] = searchType;
-    query_params["search_value"] = searchValue;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/manifest-details`,
       query_params,
       undefined,
       xHeaders

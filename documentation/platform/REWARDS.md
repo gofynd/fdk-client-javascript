@@ -6,18 +6,17 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Rewards Methods
-Earn and redeem reward points
+Rewards
 
-* [showGiveaways](#showgiveaways)
-* [saveGiveAway](#savegiveaway)
-* [getGiveawayById](#getgiveawaybyid)
-* [updateGiveAway](#updategiveaway)
-* [getGiveawayAudienceStatus](#getgiveawayaudiencestatus)
-* [showOffers](#showoffers)
+* [getGiveaways](#getgiveaways)
+* [createGiveaway](#creategiveaway)
+* [getGiveawayByID](#getgiveawaybyid)
+* [updateGiveaway](#updategiveaway)
+* [getOffers](#getoffers)
 * [getOfferByName](#getofferbyname)
 * [updateOfferByName](#updateofferbyname)
+* [getUserAvailablePoints](#getuseravailablepoints)
 * [updateUserStatus](#updateuserstatus)
-* [user](#user)
 * [getUserPointsHistory](#getuserpointshistory)
 
 
@@ -27,18 +26,18 @@ Earn and redeem reward points
 
 
 
-### showGiveaways
+### getGiveaways
 List of giveaways of the current application.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
+const promise = client.application("<APPLICATION_ID>").rewards.getGiveaways({  pageId : value,
  pageSize : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.showGiveaways({  pageId : value,
+const data = await client.application("<APPLICATION_ID>").rewards.getGiveaways({  pageId : value,
  pageSize : value });
 ```
 
@@ -47,9 +46,9 @@ const data = await client.application("<APPLICATION_ID>").rewards.showGiveaways(
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pageId | string | yes | pagination page id |   
-| pageSize | number | yes | pagination page size |  
+| --------- | -----  | -------- | ----------- |  
+| pageId | string | no | pagination page id |    
+| pageSize | number | no | pagination page size |  
 
 
 
@@ -86,17 +85,17 @@ ok
 ---
 
 
-### saveGiveAway
-List of giveaways of the current application.
+### createGiveaway
+Adds a new giveaway.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
+const promise = client.application("<APPLICATION_ID>").rewards.createGiveaway({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.saveGiveAway({  body : value });
+const data = await client.application("<APPLICATION_ID>").rewards.createGiveaway({  body : value });
 ```
 
 
@@ -141,17 +140,17 @@ ok
 ---
 
 
-### getGiveawayById
+### getGiveawayByID
 Get giveaway by ID.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getGiveawayById({  id : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getGiveawayByID({  id : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayById({  id : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayByID({  id : value });
 ```
 
 
@@ -197,18 +196,18 @@ ok
 ---
 
 
-### updateGiveAway
+### updateGiveaway
 Updates the giveaway by it's ID.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+const promise = client.application("<APPLICATION_ID>").rewards.updateGiveaway({  id : value,
  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.updateGiveAway({  id : value,
+const data = await client.application("<APPLICATION_ID>").rewards.updateGiveaway({  id : value,
  body : value });
 ```
 
@@ -255,73 +254,17 @@ ok
 ---
 
 
-### getGiveawayAudienceStatus
-Get the Giveaway audience status
+### getOffers
+List of offer of the current application.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getOffers();
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus({  audienceId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| audienceId | string | yes | audience id |  
-
-
-
-Get giveaway audience status
-
-*Returned Response:*
-
-
-
-
-[GiveawayAudience](#GiveawayAudience)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### showOffers
-List of offers of the current application.
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.showOffers();
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.showOffers();
+const data = await client.application("<APPLICATION_ID>").rewards.getOffers();
 ```
 
 
@@ -329,7 +272,7 @@ const data = await client.application("<APPLICATION_ID>").rewards.showOffers();
 
 
 
-List of offers of the current application.
+List of offer of the current application.
 
 *Returned Response:*
 
@@ -363,18 +306,18 @@ ok
 
 
 ### getOfferByName
-Get offer by name
+Get offer by name.
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
- cookie : value });
+const promise = client.application("<APPLICATION_ID>").rewards.getOfferByName({  cookie : value,
+ name : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName({  name : value,
- cookie : value });
+const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName({  cookie : value,
+ name : value });
 ```
 
 
@@ -383,12 +326,12 @@ const data = await client.application("<APPLICATION_ID>").rewards.getOfferByName
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |   
-| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |  
+| cookie | string | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |   
+| name | string | yes | Offer name |  
 
 
 
-Use this API to get the offer details and configuration by entering the name of the offer.
+Get offer by name.
 
 *Returned Response:*
 
@@ -397,7 +340,7 @@ Use this API to get the offer details and configuration by entering the name of 
 
 [Offer](#Offer)
 
-Success. Check example below or refer `Offer` for more details.
+ok
 
 
 
@@ -422,7 +365,7 @@ Success. Check example below or refer `Offer` for more details.
 
 
 ### updateOfferByName
-Update offer by name
+Updates the offer by name.
 
 
 
@@ -442,11 +385,11 @@ const data = await client.application("<APPLICATION_ID>").rewards.updateOfferByN
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| name | string | yes | The name given to the offer. |  
+| name | string | yes | Offer name |  
 | body | [Offer](#Offer) | yes | Request body |
 
 
-Use this API to update the offer details
+Updates the offer by name.
 
 *Returned Response:*
 
@@ -455,7 +398,63 @@ Use this API to update the offer details
 
 [Offer](#Offer)
 
-Success. Check example below or refer `Offer` for more details.
+ok
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserAvailablePoints
+User's reward details.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").rewards.getUserAvailablePoints({  userId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").rewards.getUserAvailablePoints({  userId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| userId | string | yes | user id |  
+
+
+
+User's reward details.
+
+*Returned Response:*
+
+
+
+
+[UserRes](#UserRes)
+
+ok
 
 
 
@@ -480,7 +479,7 @@ Success. Check example below or refer `Offer` for more details.
 
 
 ### updateUserStatus
-Update user status
+Update User status
 
 
 
@@ -504,7 +503,7 @@ const data = await client.application("<APPLICATION_ID>").rewards.updateUserStat
 | body | [AppUser](#AppUser) | yes | Request body |
 
 
-Use this API to update the user status active/archive
+Update user status, active/archive
 
 *Returned Response:*
 
@@ -537,64 +536,8 @@ Success
 ---
 
 
-### user
-Get user reward details
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.user({  userId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.user({  userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | user id |  
-
-
-
-Use this API to get the user reward details
-
-*Returned Response:*
-
-
-
-
-[UserRes](#UserRes)
-
-Success. Check example below or refer `UserRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getUserPointsHistory
-Get all transactions of reward points
+Get list of points transactions.
 
 
 
@@ -602,11 +545,13 @@ Get all transactions of reward points
 // Promise
 const promise = client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
+ pageLimit : value,
  pageSize : value });
 
 // Async/Await
 const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsHistory({  userId : value,
  pageId : value,
+ pageLimit : value,
  pageSize : value });
 ```
 
@@ -618,11 +563,13 @@ const data = await client.application("<APPLICATION_ID>").rewards.getUserPointsH
 | --------- | -----  | -------- | ----------- | 
 | userId | string | yes | user id |    
 | pageId | string | no | PageID is the ID of the requested page. For first request it should be kept empty. |    
-| pageSize | number | no | The number of items to retrieve in each page. |  
+| pageLimit | number | no | PageLimit is the number of requested items in response. |    
+| pageSize | number | no | PageSize is the number of requested items in response. |  
 
 
 
-Use this API to get a list of points transactions.
+Get list of points transactions.
+The list of points history is paginated.
 
 *Returned Response:*
 
@@ -631,7 +578,7 @@ Use this API to get a list of points transactions.
 
 [HistoryRes](#HistoryRes)
 
-Success. Check example below or refer `HistoryRes` for more details.
+ok
 
 
 
@@ -660,26 +607,47 @@ Success. Check example below or refer `HistoryRes` for more details.
 
  
  
- #### [E](#E)
+ #### [AppUser](#AppUser)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | number |  no  |  |
- | exception | string |  no  |  |
- | info | string |  no  |  |
- | message | string |  no  |  |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | block_reason | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | user_id | string |  no  |  |
 
 ---
 
 
  
  
- #### [GiveawayResponse](#GiveawayResponse)
+ #### [Asset](#Asset)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Giveaway](#Giveaway)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | aspect_ratio | string |  no  |  |
+ | id | string |  no  |  |
+ | secure_url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [E](#E)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | message | string |  no  |  |
+ | request_id | string |  no  |  |
+ | stack_trace | string |  no  |  |
+ | status | number |  no  |  |
 
 ---
 
@@ -708,67 +676,48 @@ Success. Check example below or refer `HistoryRes` for more details.
 
  
  
- #### [Schedule](#Schedule)
+ #### [GiveawayResponse](#GiveawayResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | end | string |  no  |  |
- | start | string |  no  |  |
- | cron | string |  no  |  |
+ | items | [[Giveaway](#Giveaway)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
 
 ---
 
 
  
  
- #### [RewardsAudience](#RewardsAudience)
+ #### [HistoryPretty](#HistoryPretty)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | header_user_id | string |  no  |  |
- | id | string |  no  |  |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | claimed | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | points | number |  no  |  |
+ | remaining_points | number |  no  |  |
+ | text_1 | string |  no  |  |
+ | text_2 | string |  no  |  |
+ | text_3 | string |  no  |  |
+ | txn_name | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
 
 ---
 
 
  
  
- #### [Asset](#Asset)
+ #### [HistoryRes](#HistoryRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspect_ratio | string |  no  |  |
- | id | string |  no  |  |
- | secure_url | string |  no  |  |
-
----
-
-
- 
- 
- #### [RewardsRule](#RewardsRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | size | number |  no  |  |
- | type | string |  yes  |  |
+ | items | [[HistoryPretty](#HistoryPretty)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | points | number |  no  |  |
 
 ---
 
@@ -799,31 +748,17 @@ Success. Check example below or refer `HistoryRes` for more details.
 
  
  
- #### [ShareMessages](#ShareMessages)
+ #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | number |  no  |  |
- | facebook | string |  no  |  |
- | fallback | string |  no  |  |
- | message | string |  no  |  |
- | messenger | string |  no  |  |
- | sms | string |  no  |  |
- | text | string |  no  |  |
- | twitter | string |  no  |  |
- | whatsapp | string |  no  |  |
-
----
-
-
- 
- 
- #### [UserRes](#UserRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | points | [Points](#Points) |  no  |  |
- | user | [RewardUser](#RewardUser) |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
 
 ---
 
@@ -835,6 +770,17 @@ Success. Check example below or refer `HistoryRes` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | available | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Referral](#Referral)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
 
 ---
 
@@ -859,77 +805,68 @@ Success. Check example below or refer `HistoryRes` for more details.
 
  
  
- #### [Referral](#Referral)
+ #### [RewardsAudience](#RewardsAudience)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
+ | header_user_id | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
 
  
  
- #### [AppUser](#AppUser)
+ #### [RewardsRule](#RewardsRule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | active | boolean |  no  |  |
- | application_id | string |  no  |  |
- | block_reason | string |  no  |  |
- | updated_at | string |  no  |  |
- | updated_by | string |  no  |  |
- | user_id | string |  no  |  |
+ | amount | number |  no  |  |
 
 ---
 
 
  
  
- #### [GiveawayAudience](#GiveawayAudience)
+ #### [Schedule](#Schedule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | audience_id | string |  no  |  |
- | current_count | number |  no  |  |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
 
 ---
 
 
  
  
- #### [HistoryRes](#HistoryRes)
+ #### [ShareMessages](#ShareMessages)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[PointsHistory](#PointsHistory)] |  no  | History is the list of points transaction. |
- | page | [Page](#Page) |  no  |  |
- | points | number |  no  |  |
+ | email | string |  no  |  |
+ | facebook | string |  no  |  |
+ | fallback | string |  no  |  |
+ | message | string |  no  |  |
+ | messenger | string |  no  |  |
+ | sms | string |  no  |  |
+ | text | string |  no  |  |
+ | twitter | string |  no  |  |
+ | whatsapp | string |  no  |  |
 
 ---
 
 
  
  
- #### [PointsHistory](#PointsHistory)
+ #### [UserRes](#UserRes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | application_id | string |  no  |  |
- | claimed | boolean |  no  |  |
- | created_at | string |  no  |  |
- | expires_on | string |  no  |  |
- | meta | string |  no  |  |
- | points | number |  no  |  |
- | remaining_points | number |  no  |  |
- | text_1 | string |  no  |  |
- | text_2 | string |  no  |  |
- | text_3 | string |  no  |  |
- | txn_name | string |  no  |  |
- | updated_at | string |  no  |  |
- | user_id | string |  no  |  |
+ | points | [Points](#Points) |  no  |  |
+ | user | [RewardUser](#RewardUser) |  no  |  |
 
 ---
 

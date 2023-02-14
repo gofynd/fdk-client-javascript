@@ -19,7 +19,7 @@
 * [Inventory](INVENTORY.md) -  
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 
-* [Rewards](REWARDS.md) - Earn and redeem reward points 
+* [Rewards](REWARDS.md) - Rewards 
 * [Analytics](ANALYTICS.md) - Perceptor analytics 
 * [Discount](DISCOUNT.md) - Discount 
 * [Partner](PARTNER.md) - Partner configuration apis 

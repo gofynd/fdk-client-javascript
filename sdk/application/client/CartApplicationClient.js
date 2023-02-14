@@ -12,6 +12,7 @@ class Cart {
       getCartLastModified: "/service/application/cart/v1.0/detail",
       addItems: "/service/application/cart/v1.0/detail",
       updateCart: "/service/application/cart/v1.0/detail",
+      deleteCart: "/service/application/cart/v1.0/cart_archive",
       getItemCount: "/service/application/cart/v1.0/basic",
       getCoupons: "/service/application/cart/v1.0/coupon",
       applyCoupon: "/service/application/cart/v1.0/coupon",
@@ -201,6 +202,39 @@ class Cart {
       }),
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.id] - The unique identifier of the cart.
+   * @returns {Promise<DeleteCartDetailResponse>} - Success response
+   * @summary: Delete cart once user made successful checkout
+   * @description: Use this API to delete the cart.
+   */
+  deleteCart({ id } = {}) {
+    const { error } = CartValidator.deleteCart().validate(
+      { id },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+    query_params["id"] = id;
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "put",
+      constructUrl({
+        url: this._urls["deleteCart"],
+        params: {},
+      }),
+      query_params,
+      undefined,
       xHeaders
     );
   }

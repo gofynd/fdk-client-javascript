@@ -13,7 +13,7 @@ declare class Order {
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {string} [arg.requestByExt] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
@@ -26,7 +26,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
+    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -36,7 +36,7 @@ declare class Order {
         dpIds?: string;
         orderingCompanyId?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         requestByExt?: string;
         pageNo?: number;
         pageSize?: number;
@@ -49,14 +49,16 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.channelShipmentId -
+     * @param {string} [arg.channelShipmentId] -
+     * @param {string} [arg.shipmentId] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
      * @summary:
      * @description:
      */
-    getShipmentById({ channelShipmentId, orderingCompanyId, requestByExt }?: {
-        channelShipmentId: string;
+    getShipmentById({ channelShipmentId, shipmentId, orderingCompanyId, requestByExt, }?: {
+        channelShipmentId?: string;
+        shipmentId?: string;
         orderingCompanyId?: string;
         requestByExt?: string;
     }): Promise<any>;
@@ -103,7 +105,7 @@ declare class Order {
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -111,7 +113,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -119,7 +121,7 @@ declare class Order {
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
@@ -267,54 +269,6 @@ declare class Order {
         pageSize?: number;
         customerId?: string;
         isPrioritySort?: boolean;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.status] -
-     * @param {number} [arg.storeId] -
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.searchValue] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @summary:
-     * @description:
-     */
-    getManifestList({ status, storeId, pageNo, pageSize, searchValue, fromDate, toDate, }?: {
-        status?: string;
-        storeId?: number;
-        pageNo?: number;
-        pageSize?: number;
-        searchValue?: string;
-        fromDate?: string;
-        toDate?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.manifestId -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {number} arg.storeId -
-     * @param {number} [arg.page] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.lane] -
-     * @param {number} [arg.dpIds] -
-     * @param {string} [arg.searchType] -
-     * @param {string} [arg.searchValue] -
-     * @summary:
-     * @description:
-     */
-    getManifestDetailsWithShipments({ manifestId, storeId, fromDate, toDate, page, pageSize, lane, dpIds, searchType, searchValue, }?: {
-        manifestId: string;
-        fromDate?: string;
-        toDate?: string;
-        storeId: number;
-        page?: number;
-        pageSize?: number;
-        lane?: string;
-        dpIds?: number;
-        searchType?: string;
-        searchValue?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

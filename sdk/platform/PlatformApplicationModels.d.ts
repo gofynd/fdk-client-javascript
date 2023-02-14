@@ -170,13 +170,10 @@ export class PaymentValidator {
     static saveBrandPaymentGatewayConfig(): any;
     static updateBrandPaymentGatewayConfig(): any;
     static getPaymentModeRoutes(): any;
-    static getBankAccountDetailsOpenAPI(): any;
-    static addRefundBankAccountUsingOTP(): any;
+    static addBeneficiaryDetails(): any;
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
-    static getUserCODlimitRoutes(): any;
-    static setUserCODlimitRoutes(): any;
 }
 export class OrderValidator {
     static getApplicationShipments(): any;
@@ -184,42 +181,42 @@ export class OrderValidator {
     static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
-    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
-    static getAllSearchKeyword(): any;
+    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
+    static getAllSearchKeyword(): any;
     static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteConfig(): any;
+    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
-    static getAppProduct(): any;
+    static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
+    static getAppProduct(): any;
     static getConfigurationMetadata(): any;
-    static getGroupConfigurations(): any;
     static createGroupConfiguration(): any;
+    static getGroupConfigurations(): any;
     static updateGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
-    static getListingConfigurations(): any;
     static createListingConfiguration(): any;
+    static getListingConfigurations(): any;
     static updateListingConfiguration(): any;
     static deleteListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
-    static getConfigurations(): any;
     static createConfigurationProductListing(): any;
-    static getConfigurationByType(): any;
+    static getConfigurations(): any;
     static createConfigurationByType(): any;
+    static getConfigurationByType(): any;
     static getQueryFilters(): any;
-    static getAllCollections(): any;
     static createCollection(): any;
+    static getAllCollections(): any;
     static getCollectionDetail(): any;
     static updateCollection(): any;
     static deleteCollection(): any;
-    static getCollectionItems(): any;
     static addCollectionItems(): any;
+    static getCollectionItems(): any;
     static getCatalogInsights(): any;
     static getDiscountedInventoryBySizeIdentifier(): any;
     static getApplicationBrands(): any;
@@ -294,22 +291,17 @@ export class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
-    static getAbandonedCart(): any;
-    static getAbandonedCartDetails(): any;
-    static addItems(): any;
-    static updateCart(): any;
 }
 export class RewardsValidator {
-    static showGiveaways(): any;
-    static saveGiveAway(): any;
-    static getGiveawayById(): any;
-    static updateGiveAway(): any;
-    static getGiveawayAudienceStatus(): any;
-    static showOffers(): any;
+    static getGiveaways(): any;
+    static createGiveaway(): any;
+    static getGiveawayByID(): any;
+    static updateGiveaway(): any;
+    static getOffers(): any;
     static getOfferByName(): any;
     static updateOfferByName(): any;
+    static getUserAvailablePoints(): any;
     static updateUserStatus(): any;
-    static user(): any;
     static getUserPointsHistory(): any;
 }
 export class AnalyticsValidator {
