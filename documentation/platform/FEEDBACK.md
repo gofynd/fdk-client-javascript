@@ -135,11 +135,11 @@ const data = await client.application("<APPLICATION_ID>").feedback.getCustomerRe
 | entityId | string | no | entity id |    
 | entityType | string | no | entity type |    
 | userId | string | no | user id |    
-| media | string | no | media type e.g. image | video | video_file | video_link |    
+| media | string | no | media type e.g. image \| video \| video_file \| video_link |    
 | rating | Array<number> | no | rating filter, 1-5 |    
 | attributeRating | Array<string> | no | attribute rating filter with ma,e of attribute |    
-| facets | boolean | no | facets (true|false) |    
-| sort | string | no | sort by : default | top | recent |    
+| facets | boolean | no | facets (true\|false) |    
+| sort | string | no | sort by : default \| top \| recent |    
 | next | string | no | pagination next |    
 | start | string | no | pagination start |    
 | limit | string | no | pagination limit |    
@@ -1101,7 +1101,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | active | boolean |  yes  |  |
- | enable_media_type | string |  no  | image | video | any |
+ | enable_media_type | string |  no  | image \| video \| any |
  | enable_qna | boolean |  no  |  |
  | enable_rating | boolean |  yes  |  |
  | enable_review | boolean |  yes  |  |
@@ -1132,7 +1132,7 @@ Success
  | feedback_question | [string] |  no  |  |
  | icon | [UIIcon](#UIIcon) |  no  |  |
  | text | [string] |  no  |  |
- | type | string |  no  | star | images | gifs | smileys |
+ | type | string |  no  | star \| images \| gifs \| smileys |
 
 ---
 
@@ -1205,7 +1205,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | active | boolean |  yes  |  |
- | enable_media_type | string |  no  | image | video | any |
+ | enable_media_type | string |  no  | image \| video \| any |
  | enable_qna | boolean |  no  |  |
  | enable_rating | boolean |  yes  |  |
  | enable_review | boolean |  yes  |  |
