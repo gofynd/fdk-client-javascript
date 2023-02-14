@@ -11,7 +11,7 @@
 * [Billing](BILLING.md) - Handle platform subscription 
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
-* [Order](ORDER.md) - Handles Platform websites OMS 
+* [Order](ORDER.md) - Handles all platform order and shipment api(s) 
 * [Catalog](CATALOG.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [CompanyProfile](COMPANYPROFILE.md) -  
 * [FileStorage](FILESTORAGE.md) - File Storage 
@@ -25,6 +25,4 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
-* [OrderManage](ORDERMANAGE.md) - Handles all platform order and shipment api(s) 
 * [DocumentEngine](DOCUMENTENGINE.md) - Handles financial pdf generation of Fulfilment 
-* [Orders](ORDERS.md) - Handles all platform order and shipment api(s) 
