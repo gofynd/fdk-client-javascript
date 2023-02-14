@@ -14,16 +14,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static getProductBundleDetail() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateProductBundle() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: Validator.ProductBundleUpdateRequest().required(),
-    }).required();
-  }
-
-  static getProductBundleDetail() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -43,16 +43,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static getSizeGuide() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateSizeGuide() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: Validator.ValidateSizeGuide().required(),
-    }).required();
-  }
-
-  static getSizeGuide() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -128,16 +128,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static getDepartmentData() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateDepartment() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
       body: Validator.DepartmentCreateUpdate().required(),
-    }).required();
-  }
-
-  static getDepartmentData() {
-    return Joi.object({
-      uid: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -159,7 +159,7 @@ class CatalogValidator {
     }).required();
   }
 
-  static downloadProductTemplateView() {
+  static downloadInventoryTemplateView() {
     return Joi.object({
       itemType: Joi.string().allow("").required(),
     }).required();
@@ -201,16 +201,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static getCategoryData() {
+    return Joi.object({
+      uid: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateCategory() {
     return Joi.object({
       uid: Joi.string().allow("").required(),
       body: Validator.CategoryRequestBody().required(),
-    }).required();
-  }
-
-  static getCategoryData() {
-    return Joi.object({
-      uid: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -234,17 +234,19 @@ class CatalogValidator {
     }).required();
   }
 
+  static getVariantsOfProducts() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      variantType: Joi.string().allow("").required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   static getProductAttributes() {
     return Joi.object({
       category: Joi.string().allow("").required(),
       filter: Joi.boolean(),
-    }).required();
-  }
-
-  static editProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-      body: Validator.ProductCreateUpdate().required(),
     }).required();
   }
 
@@ -259,6 +261,13 @@ class CatalogValidator {
   static deleteProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
+    }).required();
+  }
+
+  static editProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      body: Validator.ProductCreateUpdate().required(),
     }).required();
   }
 
@@ -283,8 +292,17 @@ class CatalogValidator {
 
   static getProductBulkUploadHistory() {
     return Joi.object({
+      search: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+    }).required();
+  }
+
+  static uploadBulkProducts() {
+    return Joi.object({
+      department: Joi.string().allow("").required(),
+      productType: Joi.string().allow("").required(),
+      body: Validator.BulkJob().required(),
     }).required();
   }
 
@@ -441,16 +459,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static getHsnCode() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateHsnCode() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: Validator.HsnUpsert().required(),
-    }).required();
-  }
-
-  static getHsnCode() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 

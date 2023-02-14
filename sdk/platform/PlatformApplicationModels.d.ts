@@ -183,14 +183,14 @@ export class OrderValidator {
     static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
-    static updateSearchKeywords(): any;
     static getSearchKeywords(): any;
     static deleteSearchKeywords(): any;
+    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
-    static updateAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
     static deleteAutocompleteKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static getAppProduct(): any;
@@ -198,12 +198,12 @@ export class CatalogValidator {
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
-    static updateGroupConfiguration(): any;
     static deleteGroupConfiguration(): any;
+    static updateGroupConfiguration(): any;
     static createListingConfiguration(): any;
     static getListingConfigurations(): any;
-    static updateListingConfiguration(): any;
     static deleteListingConfiguration(): any;
+    static updateListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -215,8 +215,8 @@ export class CatalogValidator {
     static createCollection(): any;
     static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static updateCollection(): any;
     static deleteCollection(): any;
+    static updateCollection(): any;
     static addCollectionItems(): any;
     static getCollectionItems(): any;
     static getCatalogInsights(): any;
@@ -299,15 +299,16 @@ export class CartValidator {
     static updateCart(): any;
 }
 export class RewardsValidator {
-    static getGiveaways(): any;
-    static createGiveaway(): any;
-    static getGiveawayByID(): any;
-    static updateGiveaway(): any;
-    static getOffers(): any;
+    static showGiveaways(): any;
+    static saveGiveAway(): any;
+    static getGiveawayById(): any;
+    static updateGiveAway(): any;
+    static getGiveawayAudienceStatus(): any;
+    static showOffers(): any;
     static getOfferByName(): any;
     static updateOfferByName(): any;
-    static getUserAvailablePoints(): any;
     static updateUserStatus(): any;
+    static user(): any;
     static getUserPointsHistory(): any;
 }
 export class AnalyticsValidator {
