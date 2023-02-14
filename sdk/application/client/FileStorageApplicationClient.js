@@ -200,10 +200,12 @@ FileStorage.prototype.upload = function ({
         reject({ message: "Failed to upload file" });
       }
       delete dataObj.tags;
+
       const completeRes = await this.completeUpload({
         namespace,
         body: dataObj,
       });
+
       resolve(completeRes);
     } catch (err) {
       reject(err);

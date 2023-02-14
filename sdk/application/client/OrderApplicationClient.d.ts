@@ -15,9 +15,6 @@ declare class Order {
         getShipmentBagReasons: string;
         getShipmentReasons: string;
         updateShipmentStatus: string;
-        updateShipmentStatus1: string;
-        getInvoiceByShipmentId1: string;
-        getCreditNoteByShipmentId: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -189,41 +186,5 @@ declare class Order {
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
         body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId -
-     * @param {UpdateShipmentStatusRequest} arg.body
-     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-     * @summary:
-     * @description: updateShipmentStatus
-     */
-    updateShipmentStatus1({ shipmentId, body }?: {
-        shipmentId: string;
-        body: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - Shiment ID
-     * @param {invoiceParameter} [arg.parameters] -
-     * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
-     * @summary: Get Presigned URL to download Invoice
-     * @description: Use this API to generate Presigned URLs for downloading Invoice
-     */
-    getInvoiceByShipmentId1({ shipmentId, parameters }?: {
-        shipmentId: string;
-        parameters?: any;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - Shiment ID
-     * @param {creditNoteParameter} [arg.parameters] -
-     * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
-     * @summary: Get Presigned URL to download Invoice
-     * @description: Use this API to generate Presigned URLs for downloading Invoice
-     */
-    getCreditNoteByShipmentId({ shipmentId, parameters }?: {
-        shipmentId: string;
-        parameters?: any;
     }): Promise<any>;
 }

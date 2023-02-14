@@ -83,26 +83,5 @@ class OrderValidator {
       body: Validator.UpdateShipmentStatusRequest().required(),
     }).required();
   }
-
-  static updateShipmentStatus1() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      body: Validator.UpdateShipmentStatusRequest().required(),
-    }).required();
-  }
-
-  static getInvoiceByShipmentId1() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      parameters: Validator.invoiceParameter(),
-    }).required();
-  }
-
-  static getCreditNoteByShipmentId() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      parameters: Validator.creditNoteParameter(),
-    }).required();
-  }
 }
 module.exports = OrderValidator;

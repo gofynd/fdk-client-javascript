@@ -8,34 +8,28 @@ class Order {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getOrders: "/service/application/orders/v1.0/orders",
-      getOrderById: "/service/application/orders/v1.0/orders/{order_id}",
+      getOrders: "/service/application/order/v1.0/orders",
+      getOrderById: "/service/application/order/v1.0/orders/{order_id}",
       getPosOrderById:
-        "/service/application/orders/v1.0/orders/pos-order/{order_id}",
+        "/service/application/order/v1.0/orders/pos-order/{order_id}",
       getShipmentById:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}",
       getInvoiceByShipmentId:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
       trackShipment:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
       getCustomerDetailsByShipmentId:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
       sendOtpToShipmentCustomer:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       verifyOtpShipmentCustomer:
-        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
+        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
       getShipmentBagReasons:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentReasons:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
-        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/status",
-      updateShipmentStatus1:
-        "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
-      getInvoiceByShipmentId1:
-        "/service/application/document/v1.0/orders/shipments/{shipment_id}/invoice",
-      getCreditNoteByShipmentId:
-        "/service/application/document/v1.0/orders/shipments/{shipment_id}/credit-note",
+        "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -477,107 +471,6 @@ class Order {
       }),
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
-   * @param {UpdateShipmentStatusRequest} arg.body
-   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-   * @summary:
-   * @description: updateShipmentStatus
-   */
-  updateShipmentStatus1({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentStatus1().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "put",
-      constructUrl({
-        url: this._urls["updateShipmentStatus1"],
-        params: { shipmentId },
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shiment ID
-   * @param {invoiceParameter} [arg.parameters] -
-   * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
-   * @summary: Get Presigned URL to download Invoice
-   * @description: Use this API to generate Presigned URLs for downloading Invoice
-   */
-  getInvoiceByShipmentId1({ shipmentId, parameters } = {}) {
-    const { error } = OrderValidator.getInvoiceByShipmentId1().validate(
-      { shipmentId, parameters },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-    query_params["parameters"] = parameters;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getInvoiceByShipmentId1"],
-        params: { shipmentId },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - Shiment ID
-   * @param {creditNoteParameter} [arg.parameters] -
-   * @returns {Promise<ResponseGetInvoiceShipment1>} - Success response
-   * @summary: Get Presigned URL to download Invoice
-   * @description: Use this API to generate Presigned URLs for downloading Invoice
-   */
-  getCreditNoteByShipmentId({ shipmentId, parameters } = {}) {
-    const { error } = OrderValidator.getCreditNoteByShipmentId().validate(
-      { shipmentId, parameters },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-    const query_params = {};
-    query_params["parameters"] = parameters;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getCreditNoteByShipmentId"],
-        params: { shipmentId },
-      }),
-      query_params,
-      undefined,
       xHeaders
     );
   }
