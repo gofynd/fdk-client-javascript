@@ -176,7 +176,7 @@ declare class Order {
      * @description:
      */
     upsertJioCode({ body }?: {
-        body: any;
+        body: JioCodeUpsertPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -350,7 +350,7 @@ declare class Order {
      * @description: Use this API to start processing Xlsx file.
      */
     bulkActionProcessXlsxFile({ body }?: {
-        body: any;
+        body: BulkActionPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -406,7 +406,7 @@ declare class Order {
      * @description: Invalidate shipment Cache
      */
     invalidateShipmentCache({ body }?: {
-        body: any;
+        body: InvalidateShipmentCachePayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -415,7 +415,7 @@ declare class Order {
      * @description: Reassign Location
      */
     reassignLocation({ body }?: {
-        body: any;
+        body: StoreReassign;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -424,7 +424,7 @@ declare class Order {
      * @description: update shipment lock
      */
     updateShipmentLock({ body }?: {
-        body: any;
+        body: UpdateShipmentLockPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -490,7 +490,7 @@ declare class Order {
      * @description: Update shipment status
      */
     updateShipmentStatus({ body }?: {
-        body: any;
+        body: UpdateShipmentStatusRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -499,7 +499,7 @@ declare class Order {
      * @description:
      */
     processManifest({ body }?: {
-        body: any;
+        body: CreateOrderPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -508,7 +508,7 @@ declare class Order {
      * @description:
      */
     dispatchManifest({ body }?: {
-        body: any;
+        body: DispatchManifest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -534,7 +534,7 @@ declare class Order {
      * @description:
      */
     sendSmsNinja({ body }?: {
-        body: any;
+        body: SendSmsPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -543,7 +543,7 @@ declare class Order {
      * @description:
      */
     platformManualAssignDPToShipment({ body }?: {
-        body: any;
+        body: ManualAssignDPToShipment;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -552,7 +552,7 @@ declare class Order {
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: any;
+        body: CreateOrderPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -561,7 +561,7 @@ declare class Order {
      * @description:
      */
     createOrder({ body }?: {
-        body: any;
+        body: CreateOrderAPI;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -570,7 +570,7 @@ declare class Order {
      * @description: createChannelConfig
      */
     createChannelConfig({ body }?: {
-        body: any;
+        body: CreateChannelConfigData;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -585,7 +585,7 @@ declare class Order {
      * @description:
      */
     uploadConsent({ body }?: {
-        body: any;
+        body: UploadConsent;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -594,7 +594,7 @@ declare class Order {
      * @description:
      */
     orderUpdate({ body }?: {
-        body: any;
+        body: PlatformOrderUpdate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -603,7 +603,7 @@ declare class Order {
      * @description:
      */
     checkOrderStatus({ body }?: {
-        body: any;
+        body: OrderStatus;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

@@ -50,7 +50,7 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.status] - A filter to retrieve orders by their
-   *   current status such as *placed*, *delivered*, etc.
+   *   current status such as _placed_, _delivered_, etc.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each

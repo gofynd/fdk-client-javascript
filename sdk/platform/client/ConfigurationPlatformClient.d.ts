@@ -9,7 +9,7 @@ declare class Configuration {
      * @description: Create new application
      */
     createApplication({ body }?: {
-        body: any;
+        body: CreateApplicationRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -48,7 +48,7 @@ declare class Configuration {
      * @description: Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
      */
     getDomainAvailibility({ body }?: {
-        body: any;
+        body: DomainSuggestionsRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -133,7 +133,7 @@ declare class Configuration {
     updateLevelIntegration({ id, level, body }?: {
         id: string;
         level: string;
-        body: any;
+        body: UpdateIntegrationLevelRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -161,7 +161,7 @@ declare class Configuration {
         id: string;
         level: string;
         uid: number;
-        body: any;
+        body: IntegrationLevel;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -196,7 +196,7 @@ declare class Configuration {
     getCompanyByBrands({ body, pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-        body: any;
+        body: CompanyByBrandsRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -207,7 +207,7 @@ declare class Configuration {
      */
     getCompanyByBrandsPaginator({ pageSize, body }?: {
         pageSize?: number;
-        body: any;
+        body: CompanyByBrandsRequest;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -220,7 +220,7 @@ declare class Configuration {
     getStoreByBrands({ body, pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-        body: any;
+        body: StoreByBrandsRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -231,7 +231,7 @@ declare class Configuration {
      */
     getStoreByBrandsPaginator({ pageSize, body }?: {
         pageSize?: number;
-        body: any;
+        body: StoreByBrandsRequest;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
@@ -271,7 +271,7 @@ declare class Configuration {
      */
     optOutFromApplication({ id, body }?: {
         id: string;
-        body: any;
+        body: OptOutInventory;
     }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

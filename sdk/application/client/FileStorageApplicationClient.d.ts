@@ -36,8 +36,8 @@ declare class FileStorage {
      */
     startUpload({ namespace, body }?: {
         namespace: string;
-        body: any;
-    }): Promise<any>;
+        body: StartRequest;
+    }): Promise<StartResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Name of the bucket created for storing objects.
@@ -65,8 +65,8 @@ declare class FileStorage {
      */
     completeUpload({ namespace, body }?: {
         namespace: string;
-        body: any;
-    }): Promise<any>;
+        body: StartResponse;
+    }): Promise<CompleteResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SignUrlRequest} arg.body
@@ -75,8 +75,16 @@ declare class FileStorage {
      * @description: Describe here
      */
     signUrls({ body }?: {
-        body: any;
-    }): Promise<any>;
+        body: SignUrlRequest;
+    }): Promise<SignUrlResponse>;
+    /**
+     * @param data
+     * @param {string} file_name
+     * @param {string} content_type
+     * @param {string} namespace
+     * @param {number} size
+     * @param {number} tags
+     */
     upload({ data, file_name, content_type, namespace, size, tags, }?: {
         data: any;
         file_name: any;

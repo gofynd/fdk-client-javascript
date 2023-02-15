@@ -23,7 +23,7 @@ declare class Inventory {
     getJobCodesMetrics({ dailyJob, jobCode }?: {
         dailyJob?: boolean;
         jobCode?: string;
-    }): Promise<any>;
+    }): Promise<ResponseEnvelopeObject>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EmailJobMetrics} arg.body
@@ -32,8 +32,8 @@ declare class Inventory {
      * @description: Endpoint to save JobCode Metrics
      */
     saveJobCodesMetrics({ body }?: {
-        body: any;
-    }): Promise<any>;
+        body: EmailJobMetrics;
+    }): Promise<ResponseEnvelopeEmailJobMetrics>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.apikey - Api key
@@ -43,7 +43,7 @@ declare class Inventory {
      */
     getConfigByApiKey({ apikey }?: {
         apikey: string;
-    }): Promise<any>;
+    }): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userName - Integration id
@@ -55,7 +55,7 @@ declare class Inventory {
     getApiKey({ userName, password }?: {
         userName: string;
         password: string;
-    }): Promise<any>;
+    }): Promise<ResponseEnvelopeApikeyModel>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.code - Job Code
@@ -65,7 +65,7 @@ declare class Inventory {
      */
     getJobByCode({ code }?: {
         code: string;
-    }): Promise<any>;
+    }): Promise<ResponseEnvelopeJobConfigDTO>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.integrationType - Integration Type
@@ -77,5 +77,5 @@ declare class Inventory {
     getJobConfigByIntegrationType({ integrationType, disable }?: {
         integrationType: string;
         disable?: boolean;
-    }): Promise<any>;
+    }): Promise<ResponseEnvelopeListJobConfigDTO>;
 }
