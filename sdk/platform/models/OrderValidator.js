@@ -27,7 +27,8 @@ class OrderValidator {
 
   static getShipmentById() {
     return Joi.object({
-      channelShipmentId: Joi.string().allow("").required(),
+      channelShipmentId: Joi.string().allow(""),
+      shipmentId: Joi.string().allow(""),
       orderingCompanyId: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
     }).required();
