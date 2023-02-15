@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
+
 * [getCampaigns](#getcampaigns)
 * [createCampaign](#createcampaign)
 * [getCampaignById](#getcampaignbyid)
@@ -51,6 +53,8 @@ Manages email, sms, push notifications sent to users
 
 
 ## Methods with example and description
+
+
 
 
 ### getCampaigns
@@ -4439,6 +4443,29 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[Campaign](#Campaign)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BadRequestSchema](#BadRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  | Response status. |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
 
 ---
 
