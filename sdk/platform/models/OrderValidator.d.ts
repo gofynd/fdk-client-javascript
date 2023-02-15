@@ -30,6 +30,7 @@ declare class OrderValidator {
     static processManifest(): any;
     static dispatchManifest(): any;
     static getRoleBasedActions(): any;
+    static postShipmentHistory(): any;
     static getShipmentHistory(): any;
     static sendSmsNinja(): any;
     static platformManualAssignDPToShipment(): any;

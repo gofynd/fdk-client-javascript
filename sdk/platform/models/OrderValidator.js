@@ -278,6 +278,12 @@ class OrderValidator {
     return Joi.object({}).required();
   }
 
+  static postShipmentHistory() {
+    return Joi.object({
+      body: Validator.PostShipmentHistory().required(),
+    }).required();
+  }
+
   static getShipmentHistory() {
     return Joi.object({
       shipmentId: Joi.number(),

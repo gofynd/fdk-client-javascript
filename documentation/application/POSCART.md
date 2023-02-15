@@ -7634,23 +7634,332 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [CouponBreakup](#CouponBreakup)
+ #### [PromoMeta](#PromoMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
  | message | string |  no  |  |
- | is_applied | boolean |  no  |  |
- | coupon_value | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FreeGiftItem](#FreeGiftItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_brand_name | string |  no  | item brand name |
+ | item_id | number |  no  | Item id |
+ | item_price_details | string |  no  | item price details |
+ | item_name | string |  no  | Item name |
+ | item_images_url | [string] |  no  | item images URL |
+ | item_slug | string |  no  | item slug |
+
+---
+
+
+ 
+ 
+ #### [AppliedFreeArticles](#AppliedFreeArticles)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | parent_item_identifier | string |  no  | Parent item identifier for free article |
+ | free_gift_item_details | [FreeGiftItem](#FreeGiftItem) |  no  | Free gift items details |
+ | article_id | string |  no  | free article id |
+ | quantity | number |  no  | Free article quantity |
+
+---
+
+
+ 
+ 
+ #### [DiscountRulesApp](#DiscountRulesApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_criteria | string |  no  | Item criteria of promotion |
+ | raw_offer | string |  no  | raw offer details for promotion |
+ | offer | string |  no  | offer for promotion |
+ | matched_buy_rules | [string] |  no  | Matched buy rules for promotion |
+
+---
+
+
+ 
+ 
+ #### [BuyRules](#BuyRules)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | item_criteria | string |  no  | Item criteria of promotion |
+ | cart_conditions | string |  no  | Cart conditions details for promotion |
+
+---
+
+
+ 
+ 
+ #### [Ownership](#Ownership)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_by | string |  no  | promo amount bearable party |
+ | payable_category | string |  no  | promo amount payable category |
+
+---
+
+
+ 
+ 
+ #### [AppliedPromotion](#AppliedPromotion)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  | Applied free article for free gift item promotions |
+ | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
+ | promotion_name | string |  no  | Promotion name of current promotion |
+ | promotion_group | string |  no  | Promotion group for the promotion |
+ | offer_text | string |  no  | Offer text of current promotion |
+ | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)] |  no  | Discount rules for promotions |
+ | amount | number |  no  | Per unit discount amount applied with current promotion |
+ | promo_id | string |  no  | Promotion id |
+ | buy_rules | [[BuyRules](#BuyRules)] |  no  | Buy rules for promotions |
+ | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
+ | ownership | [Ownership](#Ownership) |  no  | Ownership of promotion |
+ | promotion_type | string |  no  | Promotion type of current promotion |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_symbol | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | string |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | product_group_tags | [string] |  no  |  |
+ | quantity | number |  no  |  |
  | uid | string |  no  |  |
+ | extra_meta | string |  no  |  |
  | type | string |  no  |  |
- | max_discount_value | number |  no  |  |
- | sub_title | string |  no  |  |
- | coupon_type | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | value | number |  no  |  |
- | title | string |  no  |  |
- | description | string |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | _custom_json | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [ActionQuery](#ActionQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | product_slug | [string] |  no  | Contains list of product slug |
+
+---
+
+
+ 
+ 
+ #### [ProductAction](#ProductAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  | Product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | secure_url | string |  no  |  |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [NetQuantity](#NetQuantity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | string |  no  |  |
+ | value | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProduct](#CartProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+ | name | string |  no  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
+ | images | [[ProductImage](#ProductImage)] |  no  |  |
+ | slug | string |  no  | Unique product url name generated via product name and other meta data |
+ | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
+ | uid | number |  no  |  |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | type | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPrice](#ProductPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_symbol | string |  no  |  |
+ | marked | number |  no  |  |
+ | effective | number |  no  |  |
+ | add_on | number |  no  |  |
+ | selling | number |  no  |  |
+ | currency_code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [string] |  no  |  |
+ | deliverable | boolean |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | is_valid | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductInfo](#CartProductInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | message | string |  no  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | coupon_message | string |  no  |  |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | is_set | boolean |  no  |  |
+ | bulk_offer | string |  no  |  |
+ | quantity | number |  no  |  |
+ | discount | string |  no  |  |
+ | product | [CartProduct](#CartProduct) |  no  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | key | string |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCurrency](#CartCurrency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | symbol | string |  no  |  |
+ | code | string |  no  | Currency code defined by ISO 4217:2015 |
 
 ---
 
@@ -7661,26 +7970,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
+ | currency_symbol | string |  no  |  |
  | message | [string] |  no  |  |
  | display | string |  no  |  |
  | currency_code | string |  no  |  |
  | value | number |  no  |  |
- | currency_symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | is_applied | boolean |  no  |  |
- | applicable | number |  no  |  |
- | description | string |  no  |  |
+ | key | string |  no  |  |
 
 ---
 
@@ -7691,18 +7986,55 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | you_saved | number |  no  |  |
- | convenience_fee | number |  no  |  |
  | mrp_total | number |  no  |  |
- | cod_charge | number |  no  |  |
- | discount | number |  no  |  |
  | subtotal | number |  no  |  |
- | coupon | number |  no  |  |
- | gst_charges | number |  no  |  |
+ | total | number |  no  |  |
  | delivery_charge | number |  no  |  |
- | vog | number |  no  |  |
+ | discount | number |  no  |  |
+ | convenience_fee | number |  no  |  |
+ | cod_charge | number |  no  |  |
+ | coupon | number |  no  |  |
  | fynd_cash | number |  no  |  |
+ | vog | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | you_saved | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_applied | boolean |  no  |  |
+ | message | string |  no  |  |
+ | title | string |  no  |  |
+ | uid | string |  no  |  |
+ | minimum_cart_value | number |  no  |  |
+ | max_discount_value | number |  no  |  |
+ | type | string |  no  |  |
+ | value | number |  no  |  |
+ | code | string |  no  |  |
+ | coupon_value | number |  no  |  |
+ | description | string |  no  |  |
+ | coupon_type | string |  no  |  |
+ | sub_title | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_applied | boolean |  no  |  |
+ | description | string |  no  |  |
+ | applicable | number |  no  |  |
+ | total | number |  no  |  |
 
 ---
 
@@ -7713,10 +8045,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
  | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
  | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
 
 ---
 
@@ -7759,344 +8091,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
- | symbol | string |  no  |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | effective | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | marked | number |  no  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
- | base | [BasePrice](#BasePrice) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_item_identifiers | string |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | size | string |  no  |  |
- | uid | string |  no  |  |
- | type | string |  no  |  |
- | _custom_json | string |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | quantity | number |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | extra_meta | string |  no  |  |
-
----
-
-
- 
- 
- #### [Ownership](#Ownership)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_category | string |  no  | promo amount payable category |
- | payable_by | string |  no  | promo amount bearable party |
-
----
-
-
- 
- 
- #### [DiscountRulesApp](#DiscountRulesApp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | matched_buy_rules | [string] |  no  | Matched buy rules for promotion |
- | offer | string |  no  | offer for promotion |
- | raw_offer | string |  no  | raw offer details for promotion |
- | item_criteria | string |  no  | Item criteria of promotion |
-
----
-
-
- 
- 
- #### [BuyRules](#BuyRules)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_conditions | string |  no  | Cart conditions details for promotion |
- | item_criteria | string |  no  | Item criteria of promotion |
-
----
-
-
- 
- 
- #### [FreeGiftItem](#FreeGiftItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_slug | string |  no  | item slug |
- | item_brand_name | string |  no  | item brand name |
- | item_id | number |  no  | Item id |
- | item_images_url | [string] |  no  | item images URL |
- | item_price_details | string |  no  | item price details |
- | item_name | string |  no  | Item name |
-
----
-
-
- 
- 
- #### [AppliedFreeArticles](#AppliedFreeArticles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  | Free article quantity |
- | article_id | string |  no  | free article id |
- | parent_item_identifier | string |  no  | Parent item identifier for free article |
- | free_gift_item_details | [FreeGiftItem](#FreeGiftItem) |  no  | Free gift items details |
-
----
-
-
- 
- 
- #### [AppliedPromotion](#AppliedPromotion)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ownership | [Ownership](#Ownership) |  no  | Ownership of promotion |
- | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)] |  no  | Discount rules for promotions |
- | promo_id | string |  no  | Promotion id |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | promotion_type | string |  no  | Promotion type of current promotion |
- | promotion_name | string |  no  | Promotion name of current promotion |
- | buy_rules | [[BuyRules](#BuyRules)] |  no  | Buy rules for promotions |
- | promotion_group | string |  no  | Promotion group for the promotion |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
- | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
- | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)] |  no  | Applied free article for free gift item promotions |
- | offer_text | string |  no  | Offer text of current promotion |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | selling | number |  no  |  |
- | add_on | number |  no  |  |
- | currency_code | string |  no  |  |
- | marked | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | effective | number |  no  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | deliverable | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | is_valid | boolean |  no  |  |
- | sizes | [string] |  no  |  |
- | other_store_quantity | number |  no  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
- | url | string |  no  |  |
- | aspect_ratio | string |  no  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | number |  no  | Product Category Id |
-
----
-
-
- 
- 
- #### [NetQuantity](#NetQuantity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | unit | string |  no  |  |
-
----
-
-
- 
- 
- #### [ActionQuery](#ActionQuery)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  | Contains list of product slug |
-
----
-
-
- 
- 
- #### [ProductAction](#ProductAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
- | url | string |  no  |  |
- | type | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartProduct](#CartProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
- | uid | number |  no  |  |
- | type | string |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | name | string |  no  |  |
-
----
-
-
- 
- 
- #### [CartProductInfo](#CartProductInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | key | string |  no  |  |
- | message | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | is_set | boolean |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | discount | string |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | quantity | number |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | bulk_offer | string |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | coupon_message | string |  no  |  |
-
----
-
-
- 
- 
  #### [PaymentSelectionLock](#PaymentSelectionLock)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | default_options | string |  no  |  |
  | enabled | boolean |  no  |  |
+ | default_options | string |  no  |  |
  | payment_identifier | string |  no  |  |
 
 ---
@@ -8108,22 +8108,22 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | checkout_mode | string |  no  |  |
+ | last_modified | string |  no  |  |
  | message | string |  no  |  |
- | gstin | string |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
  | buy_now | boolean |  no  |  |
  | delivery_charge_info | string |  no  |  |
- | last_modified | string |  no  |  |
- | comment | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | is_valid | boolean |  no  |  |
  | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | id | string |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
  | restrict_checkout | boolean |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | comment | string |  no  |  |
+ | id | string |  no  |  |
+ | checkout_mode | string |  no  |  |
  | coupon_text | string |  no  |  |
+ | gstin | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | is_valid | boolean |  no  |  |
 
 ---
 
@@ -8134,19 +8134,19 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_assignment | string |  no  |  |
- | item_id | number |  no  |  |
- | article_id | string |  no  |  |
  | parent_item_identifiers | string |  no  |  |
  | store_id | number |  no  |  |
- | seller_id | number |  no  |  |
- | item_size | string |  no  |  |
- | _custom_json | string |  no  |  |
- | quantity | number |  no  |  |
- | extra_meta | string |  no  |  |
+ | item_id | number |  no  |  |
  | product_group_tags | [string] |  no  |  |
+ | article_assignment | string |  no  |  |
  | display | string |  no  |  |
+ | quantity | number |  no  |  |
+ | seller_id | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | _custom_json | string |  no  |  |
  | pos | boolean |  no  |  |
+ | item_size | string |  no  |  |
+ | article_id | string |  no  |  |
 
 ---
 
@@ -8168,10 +8168,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
  | message | string |  no  |  |
  | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
  | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
 
 ---
 
@@ -8182,15 +8182,15 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
  | item_id | number |  no  |  |
- | article_id | string |  no  |  |
+ | item_index | number |  no  |  |
+ | quantity | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | _custom_json | string |  no  |  |
  | parent_item_identifiers | string |  no  |  |
  | item_size | string |  no  |  |
- | _custom_json | string |  no  |  |
- | quantity | number |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
- | extra_meta | string |  no  |  |
- | item_index | number |  no  |  |
+ | article_id | string |  no  |  |
 
 ---
 
@@ -8237,11 +8237,11 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
  | total | number |  no  |  |
  | total_item_count | number |  no  |  |
- | has_previous | boolean |  no  |  |
  | has_next | boolean |  no  |  |
- | current | number |  no  |  |
+ | has_previous | boolean |  no  |  |
 
 ---
 
@@ -8252,18 +8252,18 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | is_applied | boolean |  no  |  |
  | message | string |  no  |  |
- | expires_on | string |  no  |  |
- | coupon_value | number |  no  |  |
- | max_discount_value | number |  no  |  |
+ | coupon_code | string |  no  |  |
+ | title | string |  no  |  |
  | is_applicable | boolean |  no  |  |
+ | expires_on | string |  no  |  |
+ | minimum_cart_value | number |  no  |  |
+ | max_discount_value | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | description | string |  no  |  |
  | coupon_type | string |  no  |  |
  | sub_title | string |  no  |  |
- | minimum_cart_value | number |  no  |  |
- | is_applied | boolean |  no  |  |
- | title | string |  no  |  |
- | coupon_code | string |  no  |  |
- | description | string |  no  |  |
 
 ---
 
@@ -8293,38 +8293,6 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [OfferPrice](#OfferPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bulk_effective | number |  no  | Discounted per unit price for current offer object |
- | currency_code | string |  no  | Currency code for all amounts |
- | marked | number |  no  | Original price of product |
- | currency_symbol | string |  no  | Currency symbol for currency |
- | effective | number |  no  | Current per unit price of product after existing deductions |
-
----
-
-
- 
- 
- #### [OfferItem](#OfferItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | number |  no  | Total price of offer quantity with discount |
- | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
- | margin | number |  no  | Percentage value of discount |
- | auto_applied | boolean |  no  | Whether offer discount is auto applied in cart |
- | type | string |  no  | Offer type |
- | quantity | number |  no  | Quantity on which offer is applicable |
- | price | [OfferPrice](#OfferPrice) |  no  |  |
-
----
-
-
- 
- 
  #### [OfferSeller](#OfferSeller)
 
  | Properties | Type | Nullable | Description |
@@ -8337,12 +8305,44 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
+ #### [OfferPrice](#OfferPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_symbol | string |  no  | Currency symbol for currency |
+ | marked | number |  no  | Original price of product |
+ | effective | number |  no  | Current per unit price of product after existing deductions |
+ | currency_code | string |  no  | Currency code for all amounts |
+ | bulk_effective | number |  no  | Discounted per unit price for current offer object |
+
+---
+
+
+ 
+ 
+ #### [OfferItem](#OfferItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | auto_applied | boolean |  no  | Whether offer discount is auto applied in cart |
+ | margin | number |  no  | Percentage value of discount |
+ | total | number |  no  | Total price of offer quantity with discount |
+ | quantity | number |  no  | Quantity on which offer is applicable |
+ | best | boolean |  no  | Is true for best offer from all offers present for all sellers |
+ | type | string |  no  | Offer type |
+ | price | [OfferPrice](#OfferPrice) |  no  |  |
+
+---
+
+
+ 
+ 
  #### [BulkPriceOffer](#BulkPriceOffer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | offers | [[OfferItem](#OfferItem)] |  no  |  |
  | seller | [OfferSeller](#OfferSeller) |  no  |  |
+ | offers | [[OfferItem](#OfferItem)] |  no  |  |
 
 ---
 
@@ -8375,8 +8375,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | latitude | number |  no  |  |
  | longitude | number |  no  |  |
+ | latitude | number |  no  |  |
 
 ---
 
@@ -8387,29 +8387,29 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | email | string |  no  |  |
- | landmark | string |  no  |  |
- | tags | [string] |  no  |  |
- | is_active | boolean |  no  |  |
  | area_code | string |  no  |  |
- | meta | string |  no  |  |
- | country | string |  no  |  |
- | address | string |  no  |  |
- | id | string |  no  |  |
- | city | string |  no  |  |
+ | landmark | string |  no  |  |
  | state | string |  no  |  |
- | country_code | string |  no  |  |
- | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
- | area_code_slug | string |  no  |  |
- | area | string |  no  |  |
- | is_default_address | boolean |  no  |  |
- | name | string |  no  |  |
- | address_type | string |  no  |  |
+ | country | string |  no  |  |
  | phone | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | country_phone_code | string |  no  |  |
+ | area_code_slug | string |  no  |  |
  | google_map_point | string |  no  |  |
+ | geo_location | [GeoLocation](#GeoLocation) |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | address | string |  no  |  |
+ | city | string |  no  |  |
+ | meta | string |  no  |  |
+ | area | string |  no  |  |
+ | name | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | email | string |  no  |  |
+ | is_default_address | boolean |  no  |  |
+ | tags | [string] |  no  |  |
+ | user_id | string |  no  |  |
+ | address_type | string |  no  |  |
+ | country_code | string |  no  |  |
+ | id | string |  no  |  |
+ | country_phone_code | string |  no  |  |
 
 ---
 
@@ -8431,9 +8431,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
  | is_default_address | boolean |  no  |  |
  | id | string |  no  |  |
- | success | boolean |  no  |  |
 
 ---
 
@@ -8444,10 +8444,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_default_address | boolean |  no  |  |
- | id | string |  no  |  |
  | success | boolean |  no  |  |
+ | is_default_address | boolean |  no  |  |
  | is_updated | boolean |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -8470,9 +8470,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cart_id | string |  no  |  |
  | id | string |  no  |  |
  | billing_address_id | string |  no  |  |
- | cart_id | string |  no  |  |
 
 ---
 
@@ -8483,12 +8483,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  no  |  |
  | address_id | string |  no  |  |
- | merchant_code | string |  no  |  |
- | payment_mode | string |  no  |  |
+ | aggregator_name | string |  no  |  |
  | id | string |  no  |  |
  | payment_identifier | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | merchant_code | string |  no  |  |
 
 ---
 
@@ -8499,11 +8499,11 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
  | valid | boolean |  no  |  |
- | discount | number |  no  |  |
  | display_message_en | string |  no  |  |
+ | discount | number |  no  |  |
  | title | string |  no  |  |
+ | code | string |  no  |  |
 
 ---
 
@@ -8514,9 +8514,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
  | message | string |  no  |  |
  | success | boolean |  yes  |  |
+ | coupon_validity | [CouponValidity](#CouponValidity) |  no  |  |
 
 ---
 
@@ -8527,16 +8527,16 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dp_options | string |  no  |  |
- | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | order_type | string |  no  |  |
- | fulfillment_type | string |  no  |  |
- | dp_id | string |  no  |  |
- | fulfillment_id | number |  no  |  |
- | box_type | string |  no  |  |
  | shipments | number |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | dp_id | string |  no  |  |
+ | box_type | string |  no  |  |
  | shipment_type | string |  no  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | fulfillment_type | string |  no  |  |
+ | fulfillment_id | number |  no  |  |
+ | order_type | string |  no  |  |
+ | dp_options | string |  no  |  |
 
 ---
 
@@ -8547,25 +8547,25 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | boolean |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | message | string |  no  |  |
- | comment | string |  no  |  |
- | buy_now | boolean |  no  |  |
  | last_modified | string |  no  |  |
+ | message | string |  no  |  |
+ | buy_now | boolean |  no  |  |
  | delivery_charge_info | string |  no  |  |
- | cart_id | number |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | id | string |  no  |  |
- | coupon_text | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | uid | string |  no  |  |
  | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | is_valid | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | restrict_checkout | boolean |  no  |  |
+ | error | boolean |  no  |  |
+ | coupon_text | string |  no  |  |
+ | gstin | string |  no  |  |
+ | cart_id | number |  no  |  |
  | shipments | [[ShipmentResponse](#ShipmentResponse)] |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | uid | string |  no  |  |
+ | comment | string |  no  |  |
+ | id | string |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | is_valid | boolean |  no  |  |
 
 ---
 
@@ -8576,9 +8576,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  | Quantity of product in shipment |
- | shipment_type | string |  yes  | Shipment delivery type |
  | article_uid | string |  yes  | Article mongo id |
+ | shipment_type | string |  yes  | Shipment delivery type |
+ | quantity | number |  no  | Quantity of product in shipment |
 
 ---
 
@@ -8600,8 +8600,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  yes  |  |
  | key | string |  yes  |  |
+ | value | string |  yes  |  |
 
 ---
 
@@ -8612,10 +8612,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | last_name | string |  yes  |  |
- | user | string |  yes  |  |
  | first_name | string |  yes  |  |
  | _id | string |  yes  |  |
+ | last_name | string |  yes  |  |
+ | user | string |  yes  |  |
 
 ---
 
@@ -8626,8 +8626,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | values | [string] |  yes  |  |
  | key | string |  yes  |  |
+ | values | [string] |  yes  |  |
 
 ---
 
@@ -8638,25 +8638,25 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ordering_store | number |  no  |  |
- | address_id | string |  no  |  |
- | payment_mode | string |  yes  |  |
- | payment_identifier | string |  no  |  |
- | meta | string |  no  |  |
- | pos | boolean |  no  |  |
- | payment_auto_confirm | boolean |  no  |  |
- | billing_address_id | string |  no  |  |
- | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)] |  no  |  |
- | extra_meta | string |  no  |  |
- | payment_params | string |  no  |  |
- | pick_at_store_uid | number |  no  |  |
- | delivery_address | string |  no  |  |
- | aggregator | string |  no  |  |
- | billing_address | string |  no  |  |
- | merchant_code | string |  no  |  |
- | order_type | string |  yes  |  |
  | callback_url | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | payment_identifier | string |  no  |  |
+ | pos | boolean |  no  |  |
+ | order_type | string |  yes  |  |
+ | billing_address_id | string |  no  |  |
+ | ordering_store | number |  no  |  |
+ | pick_at_store_uid | number |  no  |  |
+ | merchant_code | string |  no  |  |
+ | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)] |  no  |  |
+ | meta | string |  no  |  |
+ | payment_params | string |  no  |  |
  | staff | [StaffCheckout](#StaffCheckout) |  no  |  |
+ | aggregator | string |  no  |  |
+ | payment_auto_confirm | boolean |  no  |  |
+ | payment_mode | string |  yes  |  |
+ | billing_address | string |  no  |  |
+ | address_id | string |  no  |  |
+ | delivery_address | string |  no  |  |
  | files | [[Files](#Files)] |  no  | List of file url |
 
 ---
@@ -8668,35 +8668,35 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cod_available | boolean |  no  |  |
- | cod_charges | number |  no  |  |
- | message | string |  no  |  |
- | comment | string |  no  |  |
- | buy_now | boolean |  no  |  |
- | user_type | string |  no  |  |
- | error_message | string |  no  |  |
- | cart_id | number |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | id | string |  no  |  |
- | uid | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | is_valid | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | cod_message | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | delivery_charges | number |  no  |  |
  | last_modified | string |  no  |  |
+ | message | string |  no  |  |
+ | buy_now | boolean |  no  |  |
  | delivery_charge_info | string |  no  |  |
- | store_code | string |  no  |  |
- | delivery_charge_order_value | number |  no  |  |
- | success | boolean |  no  |  |
+ | delivery_charges | number |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | user_type | string |  no  |  |
  | coupon_text | string |  no  |  |
+ | delivery_charge_order_value | number |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | uid | string |  no  |  |
+ | cod_available | boolean |  no  |  |
+ | comment | string |  no  |  |
  | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
- | order_id | string |  no  |  |
- | store_emps | [string] |  no  |  |
+ | cod_message | string |  no  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | success | boolean |  no  |  |
+ | error_message | string |  no  |  |
+ | order_id | string |  no  |  |
+ | cod_charges | number |  no  |  |
+ | gstin | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | store_emps | [string] |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | store_code | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
@@ -8707,14 +8707,14 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | string |  no  |  |
  | message | string |  no  |  |
- | payment_confirm_url | string |  no  |  |
- | app_intercept_url | string |  no  |  |
- | cart | [CheckCart](#CheckCart) |  no  |  |
- | order_id | string |  no  |  |
  | success | boolean |  no  |  |
+ | payment_confirm_url | string |  no  |  |
+ | order_id | string |  no  |  |
  | callback_url | string |  no  |  |
+ | cart | [CheckCart](#CheckCart) |  no  |  |
+ | data | string |  no  |  |
+ | app_intercept_url | string |  no  |  |
 
 ---
 
@@ -8725,10 +8725,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | checkout_mode | string |  no  |  |
  | pick_up_customer_details | string |  no  | Customer contact details for customer pickup at store |
  | gstin | string |  no  |  |
  | comment | string |  no  |  |
+ | checkout_mode | string |  no  |  |
 
 ---
 
@@ -8773,22 +8773,22 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
+ | phone | string |  no  |  |
+ | area_code | string |  no  |  |
+ | area_code_slug | string |  no  |  |
+ | area | string |  no  |  |
+ | name | string |  no  |  |
  | landmark | string |  no  |  |
+ | email | string |  no  |  |
+ | address_type | string |  no  |  |
  | state | string |  no  |  |
  | store_code | string |  no  |  |
- | address | string |  no  |  |
- | address_type | string |  no  |  |
- | uid | number |  no  |  |
- | area_code_slug | string |  no  |  |
- | area_code | string |  no  |  |
- | pincode | number |  no  |  |
  | city | string |  no  |  |
- | area | string |  no  |  |
+ | uid | number |  no  |  |
  | id | number |  no  |  |
+ | address | string |  no  |  |
+ | pincode | number |  no  |  |
  | country | string |  no  |  |
- | name | string |  no  |  |
- | phone | string |  no  |  |
 
 ---
 
@@ -8822,8 +8822,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | share_url | string |  no  | Short shareable final url |
  | token | string |  no  | Short url unique id |
+ | share_url | string |  no  | Short shareable final url |
 
 ---
 
@@ -8834,11 +8834,11 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | string |  no  | Short link id |
  | meta | string |  no  | Meta data sent while generating share cart link |
+ | source | string |  no  | Share link device and other source information |
  | user | string |  no  | User details of who generated share link |
  | created_on | string |  no  |  |
- | source | string |  no  | Share link device and other source information |
+ | token | string |  no  | Short link id |
 
 ---
 
@@ -8849,25 +8849,25 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | comment | string |  no  |  |
- | buy_now | boolean |  no  |  |
- | cart_id | number |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
- | id | string |  no  |  |
- | uid | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | is_valid | boolean |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | restrict_checkout | boolean |  no  |  |
  | last_modified | string |  no  |  |
+ | message | string |  no  |  |
+ | buy_now | boolean |  no  |  |
  | delivery_charge_info | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
  | coupon_text | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ | uid | string |  no  |  |
+ | comment | string |  no  |  |
  | checkout_mode | string |  no  |  |
- | gstin | string |  no  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | shared_cart_details | [SharedCartDetails](#SharedCartDetails) |  no  |  |
+ | gstin | string |  no  |  |
+ | cart_id | number |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
