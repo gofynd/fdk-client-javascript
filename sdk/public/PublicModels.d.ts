@@ -9,7 +9,7 @@ declare class Validator {
     static ApplicationRedirections(): any;
     static ApplicationMeta(): any;
     static SecureUrl(): any;
-    static Application(): any;
+    static ApplicationData(): any;
     static NotFound(): any;
     static BadRequest(): any;
     static Page(): any;

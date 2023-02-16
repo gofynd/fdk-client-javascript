@@ -39,8 +39,8 @@ declare class CatalogValidator {
     static getProductAttributes(): any;
     static deleteProduct(): any;
     static getProduct(): any;
-    static editProduct(): any;
     static patchProduct(): any;
+    static editProduct(): any;
     static allSizes(): any;
     static getProductValidation(): any;
     static getProductSize(): any;

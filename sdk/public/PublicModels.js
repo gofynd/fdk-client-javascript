@@ -3,7 +3,7 @@ const Joi = require("joi");
 class Validator {
   static ApplicationResponse() {
     return Joi.object({
-      application: this.Application(),
+      application: this.ApplicationData(),
     });
   }
 
@@ -87,7 +87,7 @@ class Validator {
     });
   }
 
-  static Application() {
+  static ApplicationData() {
     return Joi.object({
       website: this.ApplicationWebsite(),
 
@@ -138,6 +138,8 @@ class Validator {
       mobile_logo: this.SecureUrl(),
 
       domain: this.Domain(),
+
+      slug: Joi.string().allow(""),
     });
   }
 

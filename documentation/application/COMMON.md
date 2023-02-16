@@ -206,7 +206,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [Application](#Application) |  no  |  |
+ | application | [ApplicationData](#ApplicationData) |  no  |  |
 
 ---
 
@@ -317,7 +317,7 @@ Success
 
  
  
- #### [Application](#Application)
+ #### [ApplicationData](#ApplicationData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -346,6 +346,7 @@ Success
  | app_type | string |  no  |  |
  | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
  | domain | [Domain](#Domain) |  no  |  |
+ | slug | string |  no  |  |
 
 ---
 

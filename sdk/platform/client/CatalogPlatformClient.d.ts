@@ -449,17 +449,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @param {ProductCreateUpdateSchemaV2} arg.body
-     * @summary: Edit a product.
-     * @description: This API allows to edit product.
-     */
-    editProduct({ itemId, body }?: {
-        itemId: number;
-        body: ProductCreateUpdateSchemaV2;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be patch.
      * @param {ProductCreateUpdate} arg.body
      * @summary: Patch a product.
@@ -468,6 +457,17 @@ declare class Catalog {
     patchProduct({ itemId, body }?: {
         itemId: number;
         body: ProductCreateUpdate;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @param {ProductCreateUpdateSchemaV2} arg.body
+     * @summary: Edit a product.
+     * @description: This API allows to edit product.
+     */
+    editProduct({ itemId, body }?: {
+        itemId: number;
+        body: ProductCreateUpdateSchemaV2;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

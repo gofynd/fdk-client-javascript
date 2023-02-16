@@ -264,17 +264,17 @@ class CatalogValidator {
     }).required();
   }
 
-  static editProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-      body: Validator.ProductCreateUpdateSchemaV2().required(),
-    }).required();
-  }
-
   static patchProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
       body: Validator.ProductCreateUpdate().required(),
+    }).required();
+  }
+
+  static editProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+      body: Validator.ProductCreateUpdateSchemaV2().required(),
     }).required();
   }
 
