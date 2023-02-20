@@ -69,7 +69,10 @@ class ApplicationClient {
     if (error) {
       throw new FDKClientValidationError(error);
     }
-    this.config.locationDetails = locationDetails;
+    this.config.locationDetails = {
+      ...this.config.locationDetails,
+      ...locationDetails,
+    };
   }
 
   setCurrencyCode(currencyCode) {
