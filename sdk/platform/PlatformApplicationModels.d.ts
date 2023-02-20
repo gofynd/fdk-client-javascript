@@ -321,11 +321,13 @@ export class CartValidator {
     static updateCart(): any;
     static getCartShareLink(): any;
     static getCartSharedItems(): any;
+    static updateCartWithSharedItems(): any;
     static getCartList(): any;
     static updateCartUser(): any;
     static getCart(): any;
     static getItemCount(): any;
     static applyCoupon(): any;
+    static removeCoupon(): any;
     static getAddresses(): any;
     static addAddress(): any;
     static getAddressById(): any;
@@ -333,6 +335,8 @@ export class CartValidator {
     static removeAddress(): any;
     static selectAddress(): any;
     static getShipments(): any;
+    static getShipmentDelivery(): any;
+    static updateShipments(): any;
     static updateCartMeta(): any;
     static getAvailableDeliveryModes(): any;
     static getStoreAddressByUid(): any;
