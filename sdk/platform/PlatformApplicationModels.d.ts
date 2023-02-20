@@ -298,6 +298,7 @@ export class ConfigurationValidator {
 }
 export class CartValidator {
     static getCoupons(): any;
+    static getCoupons(): any;
     static createCoupon(): any;
     static getCouponById(): any;
     static updateCoupon(): any;
@@ -311,10 +312,32 @@ export class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static checkoutCart(): any;
     static getAbandonedCart(): any;
     static getAbandonedCartDetails(): any;
     static addItems(): any;
+    static addItems(): any;
     static updateCart(): any;
+    static updateCart(): any;
+    static getCartShareLink(): any;
+    static getCartSharedItems(): any;
+    static getCartList(): any;
+    static updateCartUser(): any;
+    static getCart(): any;
+    static getItemCount(): any;
+    static applyCoupon(): any;
+    static getAddresses(): any;
+    static addAddress(): any;
+    static getAddressById(): any;
+    static updateAddress(): any;
+    static removeAddress(): any;
+    static selectAddress(): any;
+    static getShipments(): any;
+    static updateCartMeta(): any;
+    static getAvailableDeliveryModes(): any;
+    static getStoreAddressByUid(): any;
+    static selectPaymentMode(): any;
+    static validateCouponForPayment(): any;
 }
 export class RewardsValidator {
     static showGiveaways(): any;
@@ -328,6 +351,8 @@ export class RewardsValidator {
     static updateUserStatus(): any;
     static user(): any;
     static getUserPointsHistory(): any;
+    static getRewardsConfiguration(): any;
+    static setRewardsConfiguration(): any;
 }
 export class AnalyticsValidator {
     static getStatiscticsGroups(): any;
