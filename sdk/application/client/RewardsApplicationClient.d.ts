@@ -5,10 +5,10 @@ declare class Rewards {
     _relativeUrls: {
         getOfferByName: string;
         catalogueOrder: string;
-        getPointsHistory: string;
-        getPoints: string;
-        referral: string;
-        orderDiscount: string;
+        getUserPointsHistory: string;
+        getUserPoints: string;
+        getUserReferralDetails: string;
+        getOrderDiscount: string;
         redeemReferralCode: string;
     };
     _urls: {};
@@ -42,7 +42,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistory({ pageId, pageSize }?: {
+    getUserPointsHistory({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
     }): Promise<any>;
@@ -52,7 +52,7 @@ declare class Rewards {
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
-    getPointsHistoryPaginator({ pageSize }?: {
+    getUserPointsHistoryPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator;
     /**
@@ -61,14 +61,14 @@ declare class Rewards {
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve total available points of a user for current application
      */
-    getPoints({}?: any): Promise<any>;
+    getUserPoints({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ReferralDetailsResponse>} - Success response
      * @summary: Get referral details of a user
      * @description: Use this API to retrieve the referral details a user has configured in the application.
      */
-    referral({}?: any): Promise<any>;
+    getUserReferralDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {OrderDiscountRequest} arg.body
@@ -76,7 +76,7 @@ declare class Rewards {
      * @summary: Calculates the discount on order-amount
      * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
      */
-    orderDiscount({ body }?: {
+    getOrderDiscount({ body }?: {
         body: any;
     }): Promise<any>;
     /**

@@ -723,6 +723,9 @@ class Cart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
+   * @param {string} [arg.iin] -
+   * @param {string} [arg.network] -
+   * @param {string} [arg.type] -
    * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
@@ -735,6 +738,9 @@ class Cart {
     paymentIdentifier,
     aggregatorName,
     merchantCode,
+    iin,
+    network,
+    type,
   } = {}) {
     const { error } = CartValidator.validateCouponForPayment().validate(
       {
@@ -745,6 +751,9 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
+        iin,
+        network,
+        type,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -759,6 +768,9 @@ class Cart {
     query_params["payment_identifier"] = paymentIdentifier;
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
+    query_params["iin"] = iin;
+    query_params["network"] = network;
+    query_params["type"] = type;
 
     const xHeaders = {};
 
