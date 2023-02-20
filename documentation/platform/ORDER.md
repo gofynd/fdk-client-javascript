@@ -5088,8 +5088,8 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  no  |  |
- | text | string |  yes  |  |
  | name | string |  no  |  |
+ | text | string |  yes  |  |
 
 ---
 
@@ -5110,38 +5110,38 @@ Sms Sent successfully
 
  
  
- #### [PaymentModeInfo](#PaymentModeInfo)
+ #### [Prices](#Prices)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | logo | string |  yes  |  |
+ | refund_amount | number |  no  |  |
+ | tax_collected_at_source | number |  no  |  |
+ | promotion_effective_discount | number |  no  |  |
+ | price_effective | number |  no  |  |
+ | coupon_value | number |  no  |  |
+ | discount | number |  no  |  |
+ | cashback | number |  no  |  |
+ | value_of_good | number |  no  |  |
+ | price_marked | number |  no  |  |
+ | refund_credit | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | fynd_credits | number |  no  |  |
+ | amount_paid | number |  no  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | cashback_applied | number |  no  |  |
+ | cod_charges | number |  no  |  |
 
 ---
 
 
  
  
- #### [Prices](#Prices)
+ #### [PaymentModeInfo](#PaymentModeInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid_roundoff | number |  no  |  |
- | coupon_value | number |  no  |  |
- | promotion_effective_discount | number |  no  |  |
- | tax_collected_at_source | number |  no  |  |
- | refund_credit | number |  no  |  |
- | discount | number |  no  |  |
- | price_effective | number |  no  |  |
- | cashback_applied | number |  no  |  |
- | value_of_good | number |  no  |  |
- | refund_amount | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | cod_charges | number |  no  |  |
- | price_marked | number |  no  |  |
- | fynd_credits | number |  no  |  |
- | cashback | number |  no  |  |
- | amount_paid | number |  no  |  |
+ | logo | string |  yes  |  |
+ | type | string |  yes  |  |
 
 ---
 
@@ -5153,10 +5153,10 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | hex_code | string |  yes  |  |
- | status | string |  yes  |  |
- | actual_status | string |  yes  |  |
  | ops_status | string |  yes  |  |
+ | status | string |  yes  |  |
  | title | string |  yes  |  |
+ | actual_status | string |  yes  |  |
 
 ---
 
@@ -5180,10 +5180,10 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tax_collected_at_source | number |  yes  |  |
- | value_of_good | number |  yes  |  |
- | gst_fee | number |  yes  |  |
- | gstin_code | string |  yes  |  |
  | brand_calculated_amount | number |  yes  |  |
+ | value_of_good | number |  yes  |  |
+ | gstin_code | string |  yes  |  |
+ | gst_fee | number |  yes  |  |
 
 ---
 
@@ -5194,19 +5194,19 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | can_cancel | boolean |  no  |  |
  | l3_category | number |  no  |  |
  | size | string |  no  |  |
+ | l3_category_name | string |  no  |  |
+ | department_id | number |  no  |  |
  | can_return | boolean |  no  |  |
  | id | number |  no  |  |
- | l1_category | [string] |  no  |  |
- | code | string |  no  |  |
- | department_id | number |  no  |  |
- | image | [string] |  no  |  |
- | l3_category_name | string |  no  |  |
+ | name | string |  no  |  |
  | color | string |  no  |  |
  | images | [string] |  no  |  |
+ | can_cancel | boolean |  no  |  |
+ | l1_category | [string] |  no  |  |
+ | image | [string] |  no  |  |
+ | code | string |  no  |  |
 
 ---
 
@@ -5217,22 +5217,22 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | line_number | number |  yes  |  |
- | identifier | string |  yes  |  |
- | group_id | string |  no  |  |
- | status | string |  yes  |  |
- | can_cancel | boolean |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
- | bag_id | number |  yes  |  |
- | can_return | boolean |  no  |  |
- | total_shipment_bags | number |  yes  |  |
- | parent_promo_bags | string |  no  |  |
  | applied_promos | string |  no  |  |
- | quantity | number |  yes  |  |
+ | group_id | string |  no  |  |
+ | parent_promo_bags | string |  no  |  |
  | shipment_id | string |  yes  |  |
+ | can_return | boolean |  no  |  |
+ | line_number | number |  yes  |  |
+ | status | string |  yes  |  |
  | gst | [GSTDetailsData](#GSTDetailsData) |  no  |  |
- | ordering_channel | string |  yes  |  |
  | item | [PlatformItem](#PlatformItem) |  no  |  |
+ | total_shipment_bags | number |  yes  |  |
+ | ordering_channel | string |  yes  |  |
+ | bag_id | number |  yes  |  |
+ | quantity | number |  yes  |  |
+ | identifier | string |  yes  |  |
+ | can_cancel | boolean |  no  |  |
 
 ---
 
@@ -5243,15 +5243,15 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobile | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
- | avis_user_id | string |  no  |  |
- | email | string |  no  |  |
  | last_name | string |  no  |  |
- | is_anonymous_user | boolean |  no  |  |
+ | avis_user_id | string |  no  |  |
+ | uid | number |  no  |  |
  | first_name | string |  no  |  |
+ | email | string |  no  |  |
+ | name | string |  no  |  |
  | gender | string |  no  |  |
+ | mobile | string |  no  |  |
+ | is_anonymous_user | boolean |  no  |  |
 
 ---
 
@@ -5262,22 +5262,22 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfilling_centre | string |  yes  |  |
- | shipment_created_at | number |  yes  |  |
- | payment_mode_info | [PaymentModeInfo](#PaymentModeInfo) |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
- | created_at | string |  yes  |  |
- | application | string |  no  |  |
  | channel | string |  no  |  |
+ | total_shipments_in_order | number |  yes  |  |
+ | total_bags_count | number |  yes  |  |
+ | shipment_created_at | number |  yes  |  |
  | id | string |  yes  |  |
+ | payment_mode_info | [PaymentModeInfo](#PaymentModeInfo) |  no  |  |
+ | application | string |  no  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus) |  no  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore) |  no  |  |
- | total_shipments_in_order | number |  yes  |  |
- | bags | [[BagUnit](#BagUnit)] |  no  |  |
  | payment_methods | string |  no  |  |
- | total_bags_count | number |  yes  |  |
- | sla | string |  no  |  |
+ | created_at | string |  yes  |  |
+ | bags | [[BagUnit](#BagUnit)] |  no  |  |
  | user | [UserDataInfo](#UserDataInfo) |  no  |  |
+ | fulfilling_centre | string |  yes  |  |
+ | sla | string |  no  |  |
 
 ---
 
@@ -5288,10 +5288,10 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_filters | string |  no  |  |
- | page | string |  no  |  |
  | filters | [[FiltersInfo](#FiltersInfo)] |  no  |  |
+ | page | string |  no  |  |
  | items | [[ShipmentItem](#ShipmentItem)] |  no  |  |
+ | applied_filters | string |  no  |  |
 
 ---
 
@@ -5310,84 +5310,18 @@ Sms Sent successfully
 
  
  
- #### [BagStateMapper](#BagStateMapper)
+ #### [UserDetailsData](#UserDetailsData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app_facing | boolean |  no  |  |
- | name | string |  yes  |  |
- | notify_customer | boolean |  no  |  |
- | bs_id | number |  yes  |  |
- | app_state_name | string |  no  |  |
- | journey_type | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | state_type | string |  yes  |  |
- | app_display_name | string |  no  |  |
- | display_name | string |  yes  |  |
-
----
-
-
- 
- 
- #### [BagStatusHistory](#BagStatusHistory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | delivery_partner_id | number |  no  |  |
- | status | string |  yes  |  |
- | state_id | number |  yes  |  |
- | store_id | number |  yes  |  |
- | updated_at | string |  no  |  |
- | bsh_id | number |  yes  |  |
- | bag_id | number |  yes  |  |
- | delivery_awb_number | string |  no  |  |
- | created_at | string |  yes  |  |
- | forward | boolean |  no  |  |
- | reasons | [string] |  no  |  |
- | bag_state_mapper | [BagStateMapper](#BagStateMapper) |  yes  |  |
- | display_name | boolean |  no  |  |
- | kafka_sync | boolean |  no  |  |
- | shipment_id | string |  yes  |  |
- | app_display_name | boolean |  no  |  |
- | state_type | string |  no  |  |
-
----
-
-
- 
- 
- #### [TrackingList](#TrackingList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | time | string |  no  |  |
- | status | string |  yes  |  |
- | is_current | boolean |  no  |  |
- | text | string |  yes  |  |
- | is_passed | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [FulfillingStore](#FulfillingStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | city | string |  yes  |  |
- | fulfillment_channel | string |  yes  |  |
- | state | string |  yes  |  |
  | address | string |  yes  |  |
+ | city | string |  yes  |  |
  | country | string |  yes  |  |
  | phone | string |  yes  |  |
- | id | string |  yes  |  |
- | code | string |  yes  |  |
- | meta | string |  yes  |  |
+ | email | string |  yes  |  |
+ | name | string |  yes  |  |
+ | state | string |  yes  |  |
  | pincode | string |  yes  |  |
- | contact_person | string |  yes  |  |
- | store_name | string |  yes  |  |
 
 ---
 
@@ -5398,14 +5332,29 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | awb_no | string |  no  |  |
+ | gst_tag | string |  no  |  |
+ | country | string |  no  |  |
+ | id | string |  no  |  |
  | name | string |  no  |  |
  | eway_bill_id | string |  no  |  |
- | country | string |  no  |  |
  | track_url | string |  no  |  |
- | id | string |  no  |  |
- | gst_tag | string |  no  |  |
  | pincode | string |  no  |  |
- | awb_no | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentStatusData](#ShipmentStatusData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_id | string |  no  |  |
+ | id | number |  no  |  |
+ | status | string |  no  |  |
+ | created_at | string |  no  |  |
+ | bag_list | [number] |  no  |  |
 
 ---
 
@@ -5417,73 +5366,92 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | source | string |  no  |  |
- | mode | string |  yes  |  |
  | logo | string |  no  |  |
+ | mode | string |  yes  |  |
 
 ---
 
 
  
  
- #### [ShipmentStatusData](#ShipmentStatusData)
+ #### [FulfillingStore](#FulfillingStore)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  no  |  |
- | bag_list | [number] |  no  |  |
- | created_at | string |  no  |  |
- | id | number |  no  |  |
- | shipment_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [OrderDetailsData](#OrderDetailsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | order_date | string |  no  |  |
- | ordering_channel_logo | string |  no  |  |
- | ordering_channel | string |  no  |  |
- | cod_charges | string |  no  |  |
- | affiliate_id | string |  no  |  |
- | tax_details | string |  no  |  |
- | fynd_order_id | string |  yes  |  |
- | order_value | string |  no  |  |
-
----
-
-
- 
- 
- #### [UserDetailsData](#UserDetailsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | city | string |  yes  |  |
- | state | string |  yes  |  |
- | name | string |  yes  |  |
  | address | string |  yes  |  |
+ | city | string |  yes  |  |
  | country | string |  yes  |  |
  | phone | string |  yes  |  |
- | email | string |  yes  |  |
+ | meta | string |  yes  |  |
+ | contact_person | string |  yes  |  |
+ | id | string |  yes  |  |
+ | state | string |  yes  |  |
+ | store_name | string |  yes  |  |
+ | fulfillment_channel | string |  yes  |  |
  | pincode | string |  yes  |  |
+ | code | string |  yes  |  |
 
 ---
 
 
  
  
- #### [OrderBagArticle](#OrderBagArticle)
+ #### [BagStateMapper](#BagStateMapper)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | string |  no  |  |
- | return_config | string |  no  |  |
- | identifiers | string |  no  |  |
+ | app_display_name | string |  no  |  |
+ | bs_id | number |  yes  |  |
+ | app_facing | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | app_state_name | string |  no  |  |
+ | display_name | string |  yes  |  |
+ | name | string |  yes  |  |
+ | journey_type | string |  yes  |  |
+ | state_type | string |  yes  |  |
+ | notify_customer | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagStatusHistory](#BagStatusHistory)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | kafka_sync | boolean |  no  |  |
+ | app_display_name | boolean |  no  |  |
+ | updated_at | string |  no  |  |
+ | store_id | number |  yes  |  |
+ | shipment_id | string |  yes  |  |
+ | forward | boolean |  no  |  |
+ | status | string |  yes  |  |
+ | display_name | boolean |  no  |  |
+ | delivery_partner_id | number |  no  |  |
+ | bsh_id | number |  yes  |  |
+ | state_id | number |  yes  |  |
+ | created_at | string |  yes  |  |
+ | state_type | string |  no  |  |
+ | bag_id | number |  yes  |  |
+ | reasons | [string] |  no  |  |
+ | delivery_awb_number | string |  no  |  |
+ | bag_state_mapper | [BagStateMapper](#BagStateMapper) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TrackingList](#TrackingList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | text | string |  yes  |  |
+ | is_passed | boolean |  no  |  |
+ | status | string |  yes  |  |
+ | is_current | boolean |  no  |  |
+ | time | string |  no  |  |
 
 ---
 
@@ -5494,123 +5462,26 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | gst_tag | string |  no  |  |
  | gst_tax_percentage | number |  no  |  |
  | hsn_code | string |  no  |  |
- | gst_tag | string |  no  |  |
  | is_default_hsn_code | boolean |  no  |  |
  | value_of_good | number |  no  |  |
- | gst_fee | number |  no  |  |
- | gstin_code | string |  no  |  |
  | brand_calculated_amount | number |  no  |  |
+ | gstin_code | string |  no  |  |
+ | gst_fee | number |  no  |  |
 
 ---
 
 
  
  
- #### [OrderBrandName](#OrderBrandName)
+ #### [DiscountRules](#DiscountRules)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modified_on | number |  no  |  |
- | created_on | number |  yes  |  |
- | logo | string |  yes  |  |
- | id | number |  yes  |  |
- | brand_name | string |  yes  |  |
- | company | string |  yes  |  |
-
----
-
-
- 
- 
- #### [BagConfigs](#BagConfigs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_customer_return_allowed | boolean |  yes  |  |
- | allow_force_return | boolean |  yes  |  |
- | is_returnable | boolean |  yes  |  |
- | can_be_cancelled | boolean |  yes  |  |
- | is_active | boolean |  yes  |  |
- | enable_tracking | boolean |  yes  |  |
-
----
-
-
- 
- 
- #### [PlatformDeliveryAddress](#PlatformDeliveryAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | area | string |  no  |  |
- | city | string |  no  |  |
- | address2 | string |  no  |  |
- | state | string |  no  |  |
- | address_type | string |  no  |  |
- | country | string |  no  |  |
- | phone | string |  no  |  |
- | updated_at | string |  no  |  |
- | created_at | string |  no  |  |
- | email | string |  no  |  |
- | pincode | string |  no  |  |
- | version | string |  no  |  |
- | landmark | string |  no  |  |
- | latitude | number |  no  |  |
- | longitude | number |  no  |  |
- | address1 | string |  no  |  |
- | contact_person | string |  no  |  |
- | address_category | string |  no  |  |
-
----
-
-
- 
- 
- #### [Identifier](#Identifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ean | string |  no  |  |
-
----
-
-
- 
- 
- #### [FinancialBreakup](#FinancialBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gst_tax_percentage | number |  yes  |  |
- | item_name | string |  yes  |  |
- | added_to_fynd_cash | boolean |  yes  |  |
- | value_of_good | number |  yes  |  |
- | coupon_value | number |  yes  |  |
- | tax_collected_at_source | number |  no  |  |
- | gst_tag | string |  yes  |  |
- | delivery_charge | number |  yes  |  |
- | fynd_credits | number |  yes  |  |
- | cashback | number |  yes  |  |
- | gst_fee | string |  yes  |  |
- | brand_calculated_amount | number |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
- | coupon_effective_discount | number |  yes  |  |
- | amount_paid_roundoff | number |  no  |  |
- | discount | number |  yes  |  |
- | hsn_code | string |  yes  |  |
- | cashback_applied | number |  yes  |  |
- | cod_charges | number |  yes  |  |
- | amount_paid | number |  yes  |  |
- | promotion_effective_discount | number |  yes  |  |
- | refund_credit | number |  yes  |  |
- | size | string |  yes  |  |
- | price_effective | number |  yes  |  |
- | transfer_price | number |  yes  |  |
- | price_marked | number |  yes  |  |
- | pm_price_split | string |  yes  |  |
- | total_units | number |  yes  |  |
+ | value | number |  no  |  |
+ | type | string |  no  |  |
 
 ---
 
@@ -5640,30 +5511,140 @@ Sms Sent successfully
 
  
  
- #### [DiscountRules](#DiscountRules)
+ #### [AppliedPromos](#AppliedPromos)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | type | string |  no  |  |
+ | promotion_name | string |  no  |  |
+ | discount_rules | [[DiscountRules](#DiscountRules)] |  no  |  |
+ | buy_rules | [[BuyRules](#BuyRules)] |  no  |  |
+ | promotion_type | string |  no  |  |
+ | article_quantity | number |  no  |  |
+ | amount | number |  no  |  |
+ | mrp_promotion | boolean |  no  |  |
+ | promo_id | string |  no  |  |
 
 ---
 
 
  
  
- #### [AppliedPromos](#AppliedPromos)
+ #### [OrderBrandName](#OrderBrandName)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  |  |
- | promo_id | string |  no  |  |
- | buy_rules | [[BuyRules](#BuyRules)] |  no  |  |
- | promotion_type | string |  no  |  |
- | mrp_promotion | boolean |  no  |  |
- | discount_rules | [[DiscountRules](#DiscountRules)] |  no  |  |
- | promotion_name | string |  no  |  |
- | article_quantity | number |  no  |  |
+ | logo | string |  yes  |  |
+ | id | number |  yes  |  |
+ | company | string |  yes  |  |
+ | brand_name | string |  yes  |  |
+ | modified_on | number |  no  |  |
+ | created_on | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BagConfigs](#BagConfigs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_force_return | boolean |  yes  |  |
+ | can_be_cancelled | boolean |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | is_customer_return_allowed | boolean |  yes  |  |
+ | enable_tracking | boolean |  yes  |  |
+ | is_returnable | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderBagArticle](#OrderBagArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  no  |  |
+ | return_config | string |  no  |  |
+ | identifiers | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PlatformDeliveryAddress](#PlatformDeliveryAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | version | string |  no  |  |
+ | city | string |  no  |  |
+ | longitude | number |  no  |  |
+ | country | string |  no  |  |
+ | address2 | string |  no  |  |
+ | phone | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | contact_person | string |  no  |  |
+ | state | string |  no  |  |
+ | email | string |  no  |  |
+ | address1 | string |  no  |  |
+ | latitude | number |  no  |  |
+ | created_at | string |  no  |  |
+ | address_category | string |  no  |  |
+ | landmark | string |  no  |  |
+ | address_type | string |  no  |  |
+ | area | string |  no  |  |
+ | pincode | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifier](#Identifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ean | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FinancialBreakup](#FinancialBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | price_effective | number |  yes  |  |
+ | discount | number |  yes  |  |
+ | value_of_good | number |  yes  |  |
+ | transfer_price | number |  yes  |  |
+ | item_name | string |  yes  |  |
+ | gst_fee | string |  yes  |  |
+ | cod_charges | number |  yes  |  |
+ | added_to_fynd_cash | boolean |  yes  |  |
+ | tax_collected_at_source | number |  no  |  |
+ | gst_tax_percentage | number |  yes  |  |
+ | brand_calculated_amount | number |  yes  |  |
+ | fynd_credits | number |  yes  |  |
+ | coupon_effective_discount | number |  yes  |  |
+ | gst_tag | string |  yes  |  |
+ | pm_price_split | string |  yes  |  |
+ | size | string |  yes  |  |
+ | cashback | number |  yes  |  |
+ | price_marked | number |  yes  |  |
+ | promotion_effective_discount | number |  yes  |  |
+ | coupon_value | number |  yes  |  |
+ | hsn_code | string |  yes  |  |
+ | delivery_charge | number |  yes  |  |
+ | amount_paid_roundoff | number |  no  |  |
+ | amount_paid | number |  yes  |  |
+ | total_units | number |  yes  |  |
+ | cashback_applied | number |  yes  |  |
+ | refund_credit | number |  yes  |  |
 
 ---
 
@@ -5674,26 +5655,45 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | bag_id | number |  yes  |  |
- | article | [OrderBagArticle](#OrderBagArticle) |  no  |  |
- | item | [PlatformItem](#PlatformItem) |  no  |  |
- | gst_details | [BagGST](#BagGST) |  no  |  |
- | brand | [OrderBrandName](#OrderBrandName) |  no  |  |
- | can_return | boolean |  no  |  |
- | quantity | number |  no  |  |
- | seller_identifier | string |  no  |  |
- | entity_type | string |  no  |  |
- | line_number | number |  no  |  |
- | bag_configs | [BagConfigs](#BagConfigs) |  no  |  |
- | can_cancel | boolean |  no  |  |
- | parent_promo_bags | string |  no  |  |
- | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
- | current_status | string |  no  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
+ | current_status | string |  no  |  |
+ | gst_details | [BagGST](#BagGST) |  no  |  |
+ | identifier | string |  no  |  |
  | applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  |
+ | brand | [OrderBrandName](#OrderBrandName) |  no  |  |
+ | item | [PlatformItem](#PlatformItem) |  no  |  |
  | display_name | string |  no  |  |
+ | bag_configs | [BagConfigs](#BagConfigs) |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | article | [OrderBagArticle](#OrderBagArticle) |  no  |  |
+ | parent_promo_bags | string |  no  |  |
+ | line_number | number |  no  |  |
+ | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress) |  no  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
+ | entity_type | string |  no  |  |
+ | can_return | boolean |  no  |  |
+ | bag_id | number |  yes  |  |
+ | quantity | number |  no  |  |
+ | can_cancel | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [OrderDetailsData](#OrderDetailsData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_date | string |  no  |  |
+ | ordering_channel_logo | string |  no  |  |
+ | source | string |  no  |  |
+ | affiliate_id | string |  no  |  |
+ | tax_details | string |  no  |  |
+ | fynd_order_id | string |  yes  |  |
+ | order_value | string |  no  |  |
+ | ordering_channel | string |  no  |  |
+ | cod_charges | string |  no  |  |
 
 ---
 
@@ -5704,81 +5704,81 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | credit_note_id | string |  yes  |  |
- | is_invoiced | boolean |  yes  |  |
- | enable_dp_tracking | string |  no  |  |
- | payment_mode | string |  no  |  |
- | escalation | string |  no  |  |
- | forward_order_status | [string] |  no  |  |
  | go_green | boolean |  no  |  |
- | vertical | string |  no  |  |
- | is_fynd_store | string |  no  |  |
- | shipment_images | [string] |  no  |  |
- | bag_status_history | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | due_date | string |  no  |  |
- | journey_type | string |  no  |  |
- | tracking_list | [[TrackingList](#TrackingList)] |  no  |  |
- | custom_meta | [string] |  no  |  |
- | child_nodes | [string] |  no  |  |
- | gst_details | [GSTDetailsData](#GSTDetailsData) |  no  |  |
- | current_shipment_status | string |  yes  |  |
- | is_not_fynd_source | boolean |  yes  |  |
- | delivery_status | [string] |  yes  |  |
- | user_info | string |  no  |  |
- | is_fynd_coupon | boolean |  yes  |  |
- | mid | string |  no  |  |
- | beneficiary_details | boolean |  no  |  |
- | secured_delivery_flag | string |  no  |  |
- | kirana_store_id | string |  no  |  |
- | total_items | number |  no  |  |
- | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | lock_status | string |  yes  |  |
- | user_agent | string |  no  |  |
- | order_type | string |  yes  |  |
- | can_return | boolean |  no  |  |
- | shipment_id | string |  yes  |  |
- | dp_details | [DPDetailsData](#DPDetailsData) |  no  |  |
- | refund_text | string |  no  |  |
- | total_bags | number |  no  |  |
- | order_created_time | string |  no  |  |
- | company | string |  yes  |  |
- | is_packaging_order | boolean |  yes  |  |
- | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
- | can_cancel | boolean |  no  |  |
- | items | [string] |  yes  |  |
- | fyndstore_emp | string |  yes  |  |
- | user_id | string |  yes  |  |
- | is_pdsr | string |  no  |  |
- | invoice | string |  yes  |  |
- | forward_tracking_list | [string] |  no  |  |
- | priority_text | string |  no  |  |
- | coupon | string |  no  |  |
- | ordering_store | string |  yes  |  |
- | enable_tracking | boolean |  no  |  |
- | replacement_details | string |  no  |  |
- | status | [ShipmentStatusData](#ShipmentStatusData) |  no  |  |
- | forward_shipment_status | [string] |  no  |  |
- | order | [OrderDetailsData](#OrderDetailsData) |  no  |  |
- | shipment_quantity | number |  no  |  |
- | order_status | string |  yes  |  |
- | billing_details | [UserDetailsData](#UserDetailsData) |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
- | tracking_url | string |  yes  |  |
- | can_break | string |  yes  |  |
- | platform_logo | boolean |  yes  |  |
- | shipment_status | string |  no  |  |
- | email_id | string |  yes  |  |
- | affiliate_shipment_id | string |  yes  |  |
- | refund_details | string |  no  |  |
- | bags | [[OrderBags](#OrderBags)] |  no  |  |
+ | refund_text | string |  no  |  |
+ | forward_tracking_list | [string] |  no  |  |
+ | fyndstore_emp | string |  yes  |  |
+ | order_created_time | string |  no  |  |
+ | total_items | number |  no  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData) |  no  |  |
- | delivery_slot | string |  no  |  |
- | bank_data | string |  no  |  |
- | status_progress | number |  yes  |  |
- | packaging_type | string |  no  |  |
- | pay_button | string |  no  |  |
+ | company | string |  yes  |  |
+ | ordering_store | string |  yes  |  |
+ | shipment_status | string |  no  |  |
+ | dp_details | [DPDetailsData](#DPDetailsData) |  no  |  |
+ | status | [ShipmentStatusData](#ShipmentStatusData) |  no  |  |
  | operational_status | string |  no  |  |
+ | invoice | string |  yes  |  |
+ | replacement_details | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | gst_details | [GSTDetailsData](#GSTDetailsData) |  no  |  |
+ | is_pdsr | string |  no  |  |
+ | total_bags | number |  no  |  |
+ | bank_data | string |  no  |  |
+ | kirana_store_id | string |  no  |  |
+ | custom_meta | [string] |  no  |  |
+ | refund_details | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | is_fynd_coupon | boolean |  yes  |  |
+ | tracking_url | string |  yes  |  |
+ | secured_delivery_flag | string |  no  |  |
+ | delivery_status | [string] |  yes  |  |
+ | coupon | string |  no  |  |
+ | affiliate_shipment_id | string |  yes  |  |
+ | items | [string] |  yes  |  |
+ | lock_status | string |  yes  |  |
+ | journey_type | string |  no  |  |
+ | delivery_slot | string |  no  |  |
+ | mid | string |  no  |  |
+ | forward_order_status | [string] |  no  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
+ | order_status | string |  yes  |  |
+ | user_agent | string |  no  |  |
+ | beneficiary_details | boolean |  no  |  |
+ | billing_details | [UserDetailsData](#UserDetailsData) |  no  |  |
+ | platform_logo | boolean |  yes  |  |
+ | escalation | string |  no  |  |
+ | vertical | string |  no  |  |
+ | shipment_id | string |  yes  |  |
+ | current_shipment_status | string |  yes  |  |
+ | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
+ | is_not_fynd_source | boolean |  yes  |  |
+ | credit_note_id | string |  yes  |  |
+ | user_info | string |  no  |  |
+ | bag_status_history | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | tracking_list | [[TrackingList](#TrackingList)] |  no  |  |
+ | bags | [[OrderBags](#OrderBags)] |  no  |  |
+ | user_id | string |  yes  |  |
+ | due_date | string |  no  |  |
+ | pay_button | string |  no  |  |
+ | forward_shipment_status | [string] |  no  |  |
+ | shipment_images | [string] |  no  |  |
+ | packaging_type | string |  no  |  |
  | picked_date | string |  no  |  |
+ | is_invoiced | boolean |  yes  |  |
+ | can_cancel | boolean |  no  |  |
+ | priority_text | string |  no  |  |
+ | can_return | boolean |  no  |  |
+ | is_packaging_order | boolean |  yes  |  |
+ | shipment_quantity | number |  no  |  |
+ | is_fynd_store | string |  no  |  |
+ | can_break | string |  yes  |  |
+ | status_progress | number |  yes  |  |
+ | order | [OrderDetailsData](#OrderDetailsData) |  no  |  |
+ | email_id | string |  yes  |  |
+ | order_type | string |  yes  |  |
+ | enable_dp_tracking | string |  no  |  |
+ | child_nodes | [string] |  no  |  |
 
 ---
 
@@ -5789,36 +5789,36 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enable_dp_tracking | string |  no  |  |
- | payment_mode | string |  no  |  |
- | vertical | string |  no  |  |
- | shipment_images | [string] |  no  |  |
- | bag_status_history | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
- | journey_type | string |  no  |  |
- | tracking_list | [[TrackingList](#TrackingList)] |  no  |  |
- | custom_meta | [string] |  no  |  |
- | gst_details | [GSTDetailsData](#GSTDetailsData) |  no  |  |
- | total_items | number |  no  |  |
- | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
- | user_agent | string |  no  |  |
- | shipment_id | string |  yes  |  |
- | dp_details | [DPDetailsData](#DPDetailsData) |  no  |  |
- | total_bags | number |  no  |  |
- | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
- | priority_text | string |  no  |  |
- | status | [ShipmentStatusData](#ShipmentStatusData) |  no  |  |
- | order | [OrderDetailsData](#OrderDetailsData) |  no  |  |
- | shipment_quantity | number |  no  |  |
- | billing_details | [UserDetailsData](#UserDetailsData) |  no  |  |
  | prices | [Prices](#Prices) |  no  |  |
- | platform_logo | string |  no  |  |
- | shipment_status | string |  no  |  |
- | bags | [[OrderBags](#OrderBags)] |  no  |  |
+ | total_items | number |  no  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData) |  no  |  |
- | delivery_slot | string |  no  |  |
- | packaging_type | string |  no  |  |
+ | shipment_status | string |  no  |  |
+ | dp_details | [DPDetailsData](#DPDetailsData) |  no  |  |
+ | status | [ShipmentStatusData](#ShipmentStatusData) |  no  |  |
  | operational_status | string |  no  |  |
+ | gst_details | [GSTDetailsData](#GSTDetailsData) |  no  |  |
+ | total_bags | number |  no  |  |
+ | custom_meta | [string] |  no  |  |
+ | payment_mode | string |  no  |  |
+ | journey_type | string |  no  |  |
+ | delivery_slot | string |  no  |  |
+ | payments | [ShipmentPayments](#ShipmentPayments) |  no  |  |
+ | user_agent | string |  no  |  |
+ | billing_details | [UserDetailsData](#UserDetailsData) |  no  |  |
+ | platform_logo | string |  no  |  |
+ | vertical | string |  no  |  |
+ | shipment_id | string |  yes  |  |
+ | fulfilling_store | [FulfillingStore](#FulfillingStore) |  no  |  |
+ | bag_status_history | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | tracking_list | [[TrackingList](#TrackingList)] |  no  |  |
+ | bags | [[OrderBags](#OrderBags)] |  no  |  |
+ | shipment_images | [string] |  no  |  |
+ | packaging_type | string |  no  |  |
  | picked_date | string |  no  |  |
+ | priority_text | string |  no  |  |
+ | shipment_quantity | number |  no  |  |
+ | order | [OrderDetailsData](#OrderDetailsData) |  no  |  |
+ | enable_dp_tracking | string |  no  |  |
 
 ---
 
@@ -5829,9 +5829,9 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | order_date | string |  yes  |  |
  | shipment_count | number |  yes  |  |
  | fynd_order_id | string |  yes  |  |
- | order_date | string |  yes  |  |
 
 ---
 
@@ -5842,10 +5842,10 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | custom_meta | [string] |  no  |  |
  | shipments | [[PlatformShipment](#PlatformShipment)] |  no  |  |
- | success | boolean |  yes  |  |
  | order | [OrderDict](#OrderDict) |  no  |  |
+ | success | boolean |  yes  |  |
+ | custom_meta | [string] |  no  |  |
 
 ---
 
@@ -5856,10 +5856,10 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text | string |  no  |  |
- | total_items | number |  no  |  |
- | index | number |  no  |  |
  | actions | [string] |  no  |  |
+ | total_items | number |  no  |  |
+ | text | string |  no  |  |
+ | index | number |  no  |  |
  | value | string |  no  |  |
 
 ---
@@ -5872,8 +5872,8 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  yes  |  |
- | text | string |  yes  |  |
  | total_items | number |  no  |  |
+ | text | string |  yes  |  |
  | options | [[SubLane](#SubLane)] |  no  |  |
 
 ---
@@ -5896,25 +5896,12 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | type | string |  no  |  |
  | size | number |  no  |  |
- | has_next | boolean |  no  |  |
  | total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | type | string |  no  |  |
+ | current | number |  no  |  |
  | has_previous | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [PlatformBreakupValues](#PlatformBreakupValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
- | display | string |  no  |  |
- | name | string |  no  |  |
 
 ---
 
@@ -5933,20 +5920,33 @@ Sms Sent successfully
 
  
  
+ #### [PlatformBreakupValues](#PlatformBreakupValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [PlatformOrderItems](#PlatformOrderItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)] |  no  |  |
- | user_info | [UserDataInfo](#UserDataInfo) |  no  |  |
- | order_value | number |  no  |  |
- | shipments | [[PlatformShipment](#PlatformShipment)] |  no  |  |
- | order_id | string |  no  |  |
  | payment_mode | string |  no  |  |
  | channel | [PlatformChannel](#PlatformChannel) |  no  |  |
- | meta | string |  no  |  |
- | total_order_value | number |  no  |  |
+ | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)] |  no  |  |
  | order_created_time | string |  no  |  |
+ | user_info | [UserDataInfo](#UserDataInfo) |  no  |  |
+ | order_value | number |  no  |  |
+ | order_id | string |  no  |  |
+ | shipments | [[PlatformShipment](#PlatformShipment)] |  no  |  |
+ | total_order_value | number |  no  |  |
+ | meta | string |  no  |  |
 
 ---
 
@@ -5957,12 +5957,12 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [[PlatformOrderItems](#PlatformOrderItems)] |  no  |  |
  | total_count | number |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | success | boolean |  no  |  |
+ | items | [[PlatformOrderItems](#PlatformOrderItems)] |  no  |  |
  | lane | string |  no  |  |
  | message | string |  no  |  |
- | success | boolean |  no  |  |
 
 ---
 
@@ -5985,10 +5985,10 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | options | [[Options](#Options)] |  no  |  |
  | value | number |  yes  |  |
  | text | string |  yes  |  |
  | key | string |  yes  |  |
- | options | [[Options](#Options)] |  no  |  |
 
 ---
 
@@ -6010,16 +6010,16 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | shipment_type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | reason | string |  no  |  |
+ | meta | string |  no  |  |
  | status | string |  no  |  |
  | updated_time | string |  no  |  |
- | updated_at | string |  no  |  |
+ | account_name | string |  no  |  |
+ | raw_status | string |  no  |  |
  | last_location_recieved_at | string |  no  |  |
  | awb | string |  no  |  |
- | raw_status | string |  no  |  |
- | meta | string |  no  |  |
- | reason | string |  no  |  |
- | shipment_type | string |  no  |  |
- | account_name | string |  no  |  |
 
 ---
 
@@ -6030,8 +6030,8 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | string |  no  |  |
  | results | [[PlatformTrack](#PlatformTrack)] |  no  |  |
+ | meta | string |  no  |  |
 
 ---
 
@@ -6065,15 +6065,15 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | report_id | string |  no  |  |
+ | report_created_at | string |  no  |  |
+ | report_name | string |  no  |  |
+ | report_requested_at | string |  no  |  |
+ | request_details | string |  no  |  |
+ | status | string |  no  |  |
+ | display_name | string |  no  |  |
  | s3_key | string |  no  |  |
  | report_type | string |  no  |  |
- | status | string |  no  |  |
- | report_created_at | string |  no  |  |
- | report_requested_at | string |  no  |  |
- | report_id | string |  no  |  |
- | report_name | string |  no  |  |
- | display_name | string |  no  |  |
- | request_details | string |  no  |  |
 
 ---
 
@@ -6085,9 +6085,9 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | company_id | string |  no  |  |
- | jio_code | string |  no  |  |
  | article_id | string |  no  |  |
  | item_id | string |  no  |  |
+ | jio_code | string |  no  |  |
 
 ---
 
@@ -6122,11 +6122,11 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | error | [[NestedErrorSchemaDataSet](#NestedErrorSchemaDataSet)] |  no  |  |
  | trace_id | string |  no  |  |
+ | error | [[NestedErrorSchemaDataSet](#NestedErrorSchemaDataSet)] |  no  |  |
  | data | [string] |  no  |  |
  | success | boolean |  no  |  |
+ | identifier | string |  no  |  |
 
 ---
 
@@ -6149,27 +6149,16 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | do_invoice_label_generated | boolean |  yes  |  |
- | label | string |  no  |  |
+ | data | string |  no  |  |
  | store_id | string |  no  |  |
  | company_id | string |  no  |  |
- | batch_id | string |  yes  |  |
- | store_code | string |  no  |  |
- | invoice | string |  no  |  |
- | data | string |  no  |  |
- | invoice_status | string |  no  |  |
+ | label | string |  no  |  |
  | store_name | string |  no  |  |
-
----
-
-
- 
- 
- #### [URL](#URL)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
+ | invoice | string |  no  |  |
+ | batch_id | string |  yes  |  |
+ | do_invoice_label_generated | boolean |  yes  |  |
+ | store_code | string |  no  |  |
+ | invoice_status | string |  no  |  |
 
 ---
 
@@ -6188,20 +6177,31 @@ Sms Sent successfully
 
  
  
+ #### [URL](#URL)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | url | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [FileResponse](#FileResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | file_path | string |  no  |  |
- | cdn | [URL](#URL) |  no  |  |
- | file_name | string |  no  |  |
- | content_type | string |  no  |  |
- | method | string |  no  |  |
  | size | number |  no  |  |
  | namespace | string |  no  |  |
- | tags | [string] |  no  |  |
- | operation | string |  no  |  |
  | upload | [FileUploadResponse](#FileUploadResponse) |  no  |  |
+ | file_name | string |  no  |  |
+ | method | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | cdn | [URL](#URL) |  no  |  |
+ | operation | string |  no  |  |
+ | file_path | string |  no  |  |
+ | content_type | string |  no  |  |
 
 ---
 
@@ -6212,11 +6212,11 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | type | string |  no  |  |
  | size | number |  no  |  |
- | has_next | boolean |  no  |  |
  | total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | type | string |  no  |  |
+ | current | number |  no  |  |
  | has_previous | boolean |  no  |  |
 
 ---
@@ -6228,25 +6228,25 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | processing | number |  no  |  |
- | user_name | string |  no  |  |
- | file_name | string |  no  |  |
- | id | string |  no  |  |
- | excel_url | string |  no  |  |
- | total | number |  no  |  |
- | successful_shipments | [string] |  no  |  |
- | batch_id | string |  no  |  |
- | processing_shipments | [string] |  no  |  |
- | store_code | string |  no  |  |
- | user_id | string |  no  |  |
- | uploaded_on | string |  no  |  |
- | successful | number |  no  |  |
- | failed | number |  no  |  |
- | status | string |  no  |  |
- | company_id | number |  no  |  |
- | store_id | number |  no  |  |
  | failed_shipments | [string] |  no  |  |
+ | store_id | number |  no  |  |
+ | user_name | string |  no  |  |
+ | status | string |  no  |  |
  | store_name | string |  no  |  |
+ | batch_id | string |  no  |  |
+ | store_code | string |  no  |  |
+ | successful | number |  no  |  |
+ | total | number |  no  |  |
+ | id | string |  no  |  |
+ | processing_shipments | [string] |  no  |  |
+ | failed | number |  no  |  |
+ | file_name | string |  no  |  |
+ | user_id | string |  no  |  |
+ | processing | number |  no  |  |
+ | company_id | number |  no  |  |
+ | excel_url | string |  no  |  |
+ | uploaded_on | string |  no  |  |
+ | successful_shipments | [string] |  no  |  |
 
 ---
 
@@ -6258,9 +6258,9 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [BulkListingPage](#BulkListingPage) |  no  |  |
- | data | [[bulkListingData](#bulkListingData)] |  no  |  |
  | success | boolean |  no  |  |
  | error | string |  no  |  |
+ | data | [[bulkListingData](#bulkListingData)] |  no  |  |
 
 ---
 
@@ -6271,11 +6271,11 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | string |  no  |  |
- | type | string |  no  |  |
  | size | string |  no  |  |
- | has_next | boolean |  no  |  |
  | total | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | type | string |  no  |  |
+ | current | string |  no  |  |
  | has_previous | boolean |  no  |  |
 
 ---
@@ -6299,14 +6299,14 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dp_ids | string |  no  |  |
- | lane | string |  no  |  |
  | dp_name | string |  no  |  |
- | stores | string |  no  |  |
  | sales_channels | string |  no  |  |
  | sales_channel_name | string |  no  |  |
  | date_range | [DateRange](#DateRange) |  no  |  |
  | store_name | string |  no  |  |
+ | dp_ids | string |  no  |  |
+ | stores | string |  no  |  |
+ | lane | string |  no  |  |
 
 ---
 
@@ -6318,12 +6318,12 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | filters | [ManifestFilter](#ManifestFilter) |  no  |  |
- | status | string |  no  |  |
  | company_id | number |  no  |  |
  | manifest_id | string |  no  |  |
- | created_at | string |  no  |  |
  | created_by | string |  no  |  |
  | is_active | boolean |  no  |  |
+ | status | string |  no  |  |
+ | created_at | string |  no  |  |
 
 ---
 
@@ -6358,8 +6358,8 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | total_shipment_prices_count | [ManifestDetailTotalShipmentPricesCount](#ManifestDetailTotalShipmentPricesCount) |  no  |  |
  | filters | [ManifestFilter](#ManifestFilter) |  no  |  |
+ | total_shipment_prices_count | [ManifestDetailTotalShipmentPricesCount](#ManifestDetailTotalShipmentPricesCount) |  no  |  |
 
 ---
 
@@ -6371,16 +6371,16 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | filters | [ManifestFilter](#ManifestFilter) |  no  |  |
- | status | string |  no  |  |
  | company_id | number |  no  |  |
  | manifest_id | string |  no  |  |
  | uid | number |  no  |  |
- | created_at | string |  no  |  |
- | id | number |  no  |  |
- | meta | [ManifestDetailMeta](#ManifestDetailMeta) |  no  |  |
- | user_id | number |  no  |  |
  | created_by | string |  no  |  |
+ | id | number |  no  |  |
  | is_active | boolean |  no  |  |
+ | status | string |  no  |  |
+ | created_at | string |  no  |  |
+ | user_id | number |  no  |  |
+ | meta | [ManifestDetailMeta](#ManifestDetailMeta) |  no  |  |
 
 ---
 
@@ -6391,11 +6391,11 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_qty | number |  no  |  |
- | order_id | string |  no  |  |
- | awb | string |  no  |  |
  | invoice_id | string |  no  |  |
  | shipment_id | string |  no  |  |
+ | order_id | string |  no  |  |
+ | item_qty | number |  no  |  |
+ | awb | string |  no  |  |
 
 ---
 
@@ -6406,10 +6406,10 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [ManifestPage](#ManifestPage) |  no  |  |
- | additional_shipment_count | number |  no  |  |
  | manifest_details | [[ManifestDetail](#ManifestDetail)] |  no  |  |
+ | page | [ManifestPage](#ManifestPage) |  no  |  |
  | items | [[ManifestDetailItem](#ManifestDetailItem)] |  no  |  |
+ | additional_shipment_count | number |  no  |  |
 
 ---
 
@@ -6432,8 +6432,8 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | qc_type | [string] |  no  |  |
  | display_name | string |  no  |  |
+ | qc_type | [string] |  no  |  |
  | id | number |  no  |  |
  | question_set | [[QuestionSet](#QuestionSet)] |  no  |  |
 
@@ -6483,11 +6483,11 @@ Sms Sent successfully
  | ---------- | ---- | -------- | ----------- |
  | processing_shipments_count | number |  no  |  |
  | company_id | string |  no  |  |
- | successful_shipments_count | number |  no  |  |
- | failed_shipments_count | number |  no  |  |
- | total_shipments_count | number |  no  |  |
  | successful_shipment_ids | [string] |  no  |  |
+ | successful_shipments_count | number |  no  |  |
+ | total_shipments_count | number |  no  |  |
  | batch_id | string |  no  |  |
+ | failed_shipments_count | number |  no  |  |
 
 ---
 
@@ -6499,244 +6499,14 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | [string] |  no  |  |
- | failed_records | [string] |  no  |  |
- | status | boolean |  no  |  |
- | uploaded_by | string |  no  |  |
- | user_id | string |  no  |  |
- | uploaded_on | string |  no  |  |
- | message | string |  no  |  |
  | data | [[BulkActionDetailsDataField](#BulkActionDetailsDataField)] |  no  |  |
  | success | string |  no  |  |
-
----
-
-
- 
- 
- #### [AffiliateMeta](#AffiliateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_priority | boolean |  no  |  |
- | box_type | string |  no  |  |
- | channel_shipment_id | string |  no  |  |
- | channel_order_id | string |  no  |  |
- | order_item_id | string |  no  |  |
- | coupon_code | string |  no  |  |
- | quantity | number |  no  |  |
- | due_date | string |  no  |  |
- | employee_discount | number |  no  |  |
- | loyalty_discount | number |  no  |  |
- | size_level_total_qty | number |  no  |  |
-
----
-
-
- 
- 
- #### [AffiliateBagDetails](#AffiliateBagDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | affiliate_meta | [AffiliateMeta](#AffiliateMeta) |  yes  |  |
- | affiliate_order_id | string |  yes  |  |
- | employee_discount | number |  no  |  |
- | loyalty_discount | number |  no  |  |
- | affiliate_bag_id | string |  yes  |  |
-
----
-
-
- 
- 
- #### [Weight](#Weight)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_default | boolean |  no  |  |
- | unit | string |  no  |  |
- | shipping | number |  no  |  |
-
----
-
-
- 
- 
- #### [ReturnConfig](#ReturnConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | time | number |  no  |  |
- | unit | string |  no  |  |
- | returnable | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Dimensions](#Dimensions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | string |  no  |  |
- | length | number |  no  |  |
- | height | number |  no  |  |
- | width | number |  no  |  |
- | is_default | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Article](#Article)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | weight | [Weight](#Weight) |  no  |  |
- | seller_identifier | string |  yes  |  |
- | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
- | esp_modified | any |  no  |  |
- | uid | string |  yes  |  |
- | size | string |  yes  |  |
- | a_set | string |  no  |  |
- | code | string |  no  |  |
- | is_set | boolean |  no  |  |
- | dimensions | [Dimensions](#Dimensions) |  no  |  |
- | raw_meta | any |  no  |  |
- | child_details | string |  no  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
-
----
-
-
- 
- 
- #### [Attributes](#Attributes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | essential | string |  no  |  |
- | primary_material | string |  no  |  |
- | marketer_address | string |  no  |  |
- | primary_color | string |  no  |  |
- | brand_name | string |  no  |  |
- | primary_color_hex | string |  no  |  |
- | marketer_name | string |  no  |  |
- | gender | [string] |  no  |  |
-
----
-
-
- 
- 
- #### [Item](#Item)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | image | [string] |  yes  |  |
- | brand | string |  yes  |  |
- | last_updated_at | string |  no  |  |
- | l3_category | number |  no  |  |
- | can_return | boolean |  no  |  |
- | l2_category | [string] |  no  |  |
- | l1_category | [string] |  no  |  |
- | meta | string |  no  |  |
- | l3_category_name | string |  no  |  |
- | brand_id | number |  yes  |  |
- | can_cancel | boolean |  no  |  |
- | department_id | number |  no  |  |
- | code | string |  no  |  |
- | l2_category_id | number |  no  |  |
- | color | string |  no  |  |
- | slug_key | string |  yes  |  |
- | name | string |  yes  |  |
- | item_id | number |  yes  |  |
- | size | string |  yes  |  |
- | branch_url | string |  no  |  |
- | l1_category_id | number |  no  |  |
- | webstore_product_url | string |  no  |  |
- | attributes | [Attributes](#Attributes) |  yes  |  |
- | gender | string |  no  |  |
-
----
-
-
- 
- 
- #### [BagGSTDetails](#BagGSTDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gst_tax_percentage | number |  yes  |  |
- | sgst_gst_fee | string |  yes  |  |
- | tax_collected_at_source | number |  yes  |  |
- | cgst_gst_fee | string |  yes  |  |
- | igst_gst_fee | string |  yes  |  |
- | sgst_tax_percentage | number |  yes  |  |
- | hsn_code | string |  yes  |  |
- | gst_tag | string |  yes  |  |
- | is_default_hsn_code | boolean |  no  |  |
- | value_of_good | number |  yes  |  |
- | hsn_code_id | string |  yes  |  |
- | gst_fee | number |  yes  |  |
- | igst_tax_percentage | number |  yes  |  |
- | cgst_tax_percentage | number |  yes  |  |
- | gstin_code | string |  no  |  |
- | brand_calculated_amount | number |  yes  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_on | number |  no  |  |
- | start_date | string |  no  |  |
- | credit_note_expiry_days | number |  no  |  |
- | brand_id | number |  yes  |  |
- | created_on | number |  no  |  |
- | logo | string |  no  |  |
- | invoice_prefix | string |  no  |  |
- | is_virtual_invoice | boolean |  no  |  |
- | pickup_location | string |  no  |  |
- | brand_name | string |  yes  |  |
- | credit_note_allowed | boolean |  no  |  |
- | company | string |  yes  |  |
- | script_last_ran | string |  no  |  |
-
----
-
-
- 
- 
- #### [B2BPODetails](#B2BPODetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | po_tax_amount | number |  no  |  |
- | po_line_amount | number |  no  |  |
- | partial_can_ret | boolean |  no  |  |
- | total_gst_percentage | number |  no  |  |
- | item_base_price | number |  no  |  |
- | docker_number | string |  no  |  |
-
----
-
-
- 
- 
- #### [BagMeta](#BagMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | b2b_po_details | [B2BPODetails](#B2BPODetails) |  no  |  |
+ | status | boolean |  no  |  |
+ | failed_records | [string] |  no  |  |
+ | uploaded_by | string |  no  |  |
+ | uploaded_on | string |  no  |  |
+ | user_id | string |  no  |  |
+ | message | string |  no  |  |
 
 ---
 
@@ -6748,214 +6518,6 @@ Sms Sent successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | string |  no  |  |
-
----
-
-
- 
- 
- #### [Dates](#Dates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_created | string |  no  |  |
- | delivery_date | any |  no  |  |
-
----
-
-
- 
- 
- #### [PDFLinks](#PDFLinks)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | po_invoice | string |  no  |  |
- | label | string |  no  |  |
- | label_type | string |  yes  |  |
- | invoice_pos | string |  no  |  |
- | label_a4 | string |  no  |  |
- | label_pos | string |  no  |  |
- | invoice_type | string |  yes  |  |
- | label_a6 | string |  no  |  |
- | b2b | string |  no  |  |
- | credit_note_url | string |  no  |  |
- | invoice_a4 | string |  no  |  |
- | invoice | string |  no  |  |
- | invoice_a6 | string |  no  |  |
-
----
-
-
- 
- 
- #### [EInvoice](#EInvoice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_code | string |  no  |  |
- | acknowledge_date | string |  no  |  |
- | irn | string |  no  |  |
- | signed_invoice | string |  no  |  |
- | acknowledge_no | number |  no  |  |
- | signed_qr_code | string |  no  |  |
- | error_message | string |  no  |  |
-
----
-
-
- 
- 
- #### [EinvoiceInfo](#EinvoiceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credit_note | [EInvoice](#EInvoice) |  no  |  |
- | invoice | [EInvoice](#EInvoice) |  no  |  |
-
----
-
-
- 
- 
- #### [BuyerDetails](#BuyerDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | city | string |  yes  |  |
- | state | string |  yes  |  |
- | name | string |  yes  |  |
- | address | string |  yes  |  |
- | ajio_site_id | string |  no  |  |
- | gstin | string |  yes  |  |
- | pincode | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentTimeStamp](#ShipmentTimeStamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | t_min | string |  no  |  |
- | t_max | string |  no  |  |
-
----
-
-
- 
- 
- #### [LockData](#LockData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mto | boolean |  no  |  |
- | lock_message | string |  no  |  |
- | locked | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [DebugInfo](#DebugInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | stormbreaker_uuid | string |  no  |  |
-
----
-
-
- 
- 
- #### [Formatted](#Formatted)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | f_min | string |  no  |  |
- | f_max | string |  no  |  |
-
----
-
-
- 
- 
- #### [ShipmentMeta](#ShipmentMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | weight | number |  yes  |  |
- | awb_number | string |  no  |  |
- | dp_id | string |  no  |  |
- | forward_affiliate_shipment_id | string |  no  |  |
- | dp_name | string |  no  |  |
- | shipment_weight | number |  no  |  |
- | po_number | string |  no  |  |
- | due_date | string |  no  |  |
- | return_affiliate_shipment_id | string |  no  |  |
- | dp_options | string |  no  |  |
- | assign_dp_from_sb | boolean |  no  |  |
- | return_awb_number | string |  no  |  |
- | store_invoice_updated_date | string |  no  |  |
- | order_type | string |  no  |  |
- | return_store_node | number |  no  |  |
- | return_affiliate_order_id | string |  no  |  |
- | auto_trigger_dp_assignment_acf | boolean |  yes  |  |
- | box_type | string |  no  |  |
- | einvoice_info | [EinvoiceInfo](#EinvoiceInfo) |  no  |  |
- | b2b_buyer_details | [BuyerDetails](#BuyerDetails) |  no  |  |
- | same_store_available | boolean |  yes  |  |
- | fulfilment_priority_text | string |  no  |  |
- | timestamp | [ShipmentTimeStamp](#ShipmentTimeStamp) |  no  |  |
- | external | string |  no  |  |
- | b2c_buyer_details | string |  no  |  |
- | lock_data | [LockData](#LockData) |  no  |  |
- | forward_affiliate_order_id | string |  no  |  |
- | debug_info | [DebugInfo](#DebugInfo) |  no  |  |
- | ewaybill_info | string |  no  |  |
- | marketplace_store_id | string |  no  |  |
- | dp_sort_key | string |  no  |  |
- | return_details | string |  no  |  |
- | formatted | [Formatted](#Formatted) |  no  |  |
- | packaging_name | string |  no  |  |
- | bag_weight | string |  no  |  |
- | shipment_volumetric_weight | number |  no  |  |
-
----
-
-
- 
- 
- #### [AffiliateDetails](#AffiliateDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ad_id | string |  no  |  |
- | affiliate_meta | [AffiliateMeta](#AffiliateMeta) |  yes  |  |
- | pdf_links | [PDFLinks](#PDFLinks) |  no  |  |
- | company_affiliate_tag | string |  no  |  |
- | affiliate_order_id | string |  yes  |  |
- | affiliate_shipment_id | string |  yes  |  |
- | affiliate_store_id | string |  yes  |  |
- | affiliate_id | string |  no  |  |
- | affiliate_bag_id | string |  yes  |  |
- | shipment_meta | [ShipmentMeta](#ShipmentMeta) |  yes  |  |
-
----
-
-
- 
- 
- #### [EInvoicePortalDetails](#EInvoicePortalDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | string |  no  |  |
- | password | string |  no  |  |
- | username | string |  no  |  |
 
 ---
 
@@ -6977,10 +6539,10 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  yes  |  |
  | user | string |  no  |  |
  | password | string |  no  |  |
  | username | string |  no  |  |
+ | enabled | boolean |  yes  |  |
 
 ---
 
@@ -7003,11 +6565,11 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- | legal_name | string |  yes  |  |
  | ds_type | string |  yes  |  |
- | value | string |  yes  |  |
  | verified | boolean |  yes  |  |
+ | value | string |  yes  |  |
+ | legal_name | string |  yes  |  |
+ | url | string |  no  |  |
 
 ---
 
@@ -7025,21 +6587,34 @@ Sms Sent successfully
 
  
  
+ #### [EInvoicePortalDetails](#EInvoicePortalDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user | string |  no  |  |
+ | password | string |  no  |  |
+ | username | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [StoreMeta](#StoreMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | additional_contact_details | string |  no  |  |
- | einvoice_portal_details | [EInvoicePortalDetails](#EInvoicePortalDetails) |  no  |  |
- | product_return_config | string |  no  |  |
- | timing | [string] |  no  |  |
- | stage | string |  yes  |  |
- | gst_number | string |  no  |  |
- | gst_credentials | [StoreGstCredentials](#StoreGstCredentials) |  yes  |  |
  | notification_emails | [string] |  no  |  |
+ | gst_credentials | [StoreGstCredentials](#StoreGstCredentials) |  yes  |  |
  | documents | [StoreDocuments](#StoreDocuments) |  no  |  |
  | ewaybill_portal_details | string |  no  |  |
+ | additional_contact_details | string |  no  |  |
+ | product_return_config | string |  no  |  |
  | display_name | string |  yes  |  |
+ | einvoice_portal_details | [EInvoicePortalDetails](#EInvoicePortalDetails) |  no  |  |
+ | stage | string |  yes  |  |
+ | timing | [string] |  no  |  |
+ | gst_number | string |  no  |  |
 
 ---
 
@@ -7050,25 +6625,25 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address2 | string |  no  |  |
- | address_type | string |  yes  |  |
- | country | string |  yes  |  |
- | created_at | string |  yes  |  |
- | latitude | number |  yes  |  |
- | landmark | string |  no  |  |
- | phone | string |  yes  |  |
- | updated_at | string |  yes  |  |
- | email | string |  no  |  |
- | address1 | string |  yes  |  |
- | contact_person | string |  yes  |  |
- | city | string |  yes  |  |
- | area | string |  no  |  |
- | state | string |  yes  |  |
- | country_code | string |  yes  |  |
- | pincode | number |  yes  |  |
- | version | string |  no  |  |
  | longitude | number |  yes  |  |
+ | country | string |  yes  |  |
+ | address2 | string |  no  |  |
+ | phone | string |  yes  |  |
+ | country_code | string |  yes  |  |
  | address_category | string |  yes  |  |
+ | address_type | string |  yes  |  |
+ | pincode | number |  yes  |  |
+ | city | string |  yes  |  |
+ | state | string |  yes  |  |
+ | area | string |  no  |  |
+ | version | string |  no  |  |
+ | updated_at | string |  yes  |  |
+ | contact_person | string |  yes  |  |
+ | address1 | string |  yes  |  |
+ | email | string |  no  |  |
+ | landmark | string |  no  |  |
+ | latitude | number |  yes  |  |
+ | created_at | string |  yes  |  |
 
 ---
 
@@ -7079,41 +6654,41 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address2 | string |  no  |  |
- | is_enabled_for_recon | boolean |  no  |  |
+ | longitude | number |  yes  |  |
  | country | string |  yes  |  |
- | alohomora_user_id | number |  no  |  |
- | created_at | string |  yes  |  |
+ | address2 | string |  no  |  |
+ | phone | number |  yes  |  |
+ | parent_store_id | number |  no  |  |
+ | s_id | string |  yes  |  |
+ | name | string |  yes  |  |
  | store_active_from | string |  no  |  |
- | packaging_material_count | number |  no  |  |
- | latitude | number |  yes  |  |
- | is_active | boolean |  no  |  |
- | mall_name | string |  no  |  |
- | fulfillment_channel | string |  yes  |  |
- | meta | [StoreMeta](#StoreMeta) |  yes  |  |
+ | vat_no | string |  no  |  |
+ | pincode | string |  yes  |  |
+ | city | string |  yes  |  |
  | mall_area | string |  no  |  |
- | is_archived | boolean |  no  |  |
+ | meta | [StoreMeta](#StoreMeta) |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | location_type | string |  yes  |  |
+ | state | string |  yes  |  |
  | brand_id | any |  no  |  |
  | store_email | string |  yes  |  |
- | phone | number |  yes  |  |
- | updated_at | string |  no  |  |
+ | is_archived | boolean |  no  |  |
+ | fulfillment_channel | string |  yes  |  |
+ | packaging_material_count | number |  no  |  |
  | code | string |  no  |  |
- | store_address_json | [StoreAddress](#StoreAddress) |  no  |  |
- | vat_no | string |  no  |  |
- | address1 | string |  yes  |  |
- | contact_person | string |  yes  |  |
- | login_username | string |  yes  |  |
- | city | string |  yes  |  |
  | brand_store_tags | [string] |  no  |  |
- | state | string |  yes  |  |
- | name | string |  yes  |  |
- | s_id | string |  yes  |  |
- | company_id | number |  yes  |  |
- | location_type | string |  yes  |  |
- | pincode | string |  yes  |  |
- | parent_store_id | number |  no  |  |
- | longitude | number |  yes  |  |
+ | alohomora_user_id | number |  no  |  |
  | order_integration_id | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | contact_person | string |  yes  |  |
+ | address1 | string |  yes  |  |
+ | mall_name | string |  no  |  |
+ | latitude | number |  yes  |  |
+ | store_address_json | [StoreAddress](#StoreAddress) |  no  |  |
+ | company_id | number |  yes  |  |
+ | is_enabled_for_recon | boolean |  no  |  |
+ | created_at | string |  yes  |  |
+ | login_username | string |  yes  |  |
 
 ---
 
@@ -7124,11 +6699,436 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_customer_return_allowed | boolean |  yes  |  |
- | is_returnable | boolean |  yes  |  |
  | can_be_cancelled | boolean |  yes  |  |
  | is_active | boolean |  yes  |  |
+ | is_customer_return_allowed | boolean |  yes  |  |
  | enable_tracking | boolean |  yes  |  |
+ | is_returnable | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateMeta](#AffiliateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | employee_discount | number |  no  |  |
+ | is_priority | boolean |  no  |  |
+ | order_item_id | string |  no  |  |
+ | channel_shipment_id | string |  no  |  |
+ | channel_order_id | string |  no  |  |
+ | due_date | string |  no  |  |
+ | loyalty_discount | number |  no  |  |
+ | coupon_code | string |  no  |  |
+ | box_type | string |  no  |  |
+ | quantity | number |  no  |  |
+ | size_level_total_qty | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateBagDetails](#AffiliateBagDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | employee_discount | number |  no  |  |
+ | affiliate_bag_id | string |  yes  |  |
+ | affiliate_order_id | string |  yes  |  |
+ | loyalty_discount | number |  no  |  |
+ | affiliate_meta | [AffiliateMeta](#AffiliateMeta) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PDFLinks](#PDFLinks)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | label | string |  no  |  |
+ | label_pos | string |  no  |  |
+ | label_type | string |  yes  |  |
+ | label_a6 | string |  no  |  |
+ | invoice | string |  no  |  |
+ | credit_note_url | string |  no  |  |
+ | invoice_pos | string |  no  |  |
+ | b2b | string |  no  |  |
+ | invoice_type | string |  yes  |  |
+ | label_a4 | string |  no  |  |
+ | invoice_a4 | string |  no  |  |
+ | invoice_a6 | string |  no  |  |
+ | po_invoice | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentTimeStamp](#ShipmentTimeStamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | t_min | string |  no  |  |
+ | t_max | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Formatted](#Formatted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | f_min | string |  no  |  |
+ | f_max | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EInvoice](#EInvoice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | irn | string |  no  |  |
+ | signed_invoice | string |  no  |  |
+ | signed_qr_code | string |  no  |  |
+ | acknowledge_no | number |  no  |  |
+ | error_message | string |  no  |  |
+ | error_code | string |  no  |  |
+ | acknowledge_date | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EinvoiceInfo](#EinvoiceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | invoice | [EInvoice](#EInvoice) |  no  |  |
+ | credit_note | [EInvoice](#EInvoice) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DebugInfo](#DebugInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | stormbreaker_uuid | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BuyerDetails](#BuyerDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string |  yes  |  |
+ | gstin | string |  yes  |  |
+ | city | string |  yes  |  |
+ | ajio_site_id | string |  no  |  |
+ | state | string |  yes  |  |
+ | name | string |  yes  |  |
+ | pincode | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LockData](#LockData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mto | boolean |  no  |  |
+ | lock_message | string |  no  |  |
+ | locked | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentMeta](#ShipmentMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | bag_weight | string |  no  |  |
+ | awb_number | string |  no  |  |
+ | dp_options | string |  no  |  |
+ | fulfilment_priority_text | string |  no  |  |
+ | return_awb_number | string |  no  |  |
+ | dp_sort_key | string |  no  |  |
+ | forward_affiliate_shipment_id | string |  no  |  |
+ | same_store_available | boolean |  yes  |  |
+ | timestamp | [ShipmentTimeStamp](#ShipmentTimeStamp) |  no  |  |
+ | return_store_node | number |  no  |  |
+ | formatted | [Formatted](#Formatted) |  no  |  |
+ | box_type | string |  no  |  |
+ | einvoice_info | [EinvoiceInfo](#EinvoiceInfo) |  no  |  |
+ | ewaybill_info | string |  no  |  |
+ | return_affiliate_shipment_id | string |  no  |  |
+ | store_invoice_updated_date | string |  no  |  |
+ | marketplace_store_id | string |  no  |  |
+ | shipment_volumetric_weight | number |  no  |  |
+ | auto_trigger_dp_assignment_acf | boolean |  yes  |  |
+ | shipment_weight | number |  no  |  |
+ | debug_info | [DebugInfo](#DebugInfo) |  no  |  |
+ | b2b_buyer_details | [BuyerDetails](#BuyerDetails) |  no  |  |
+ | b2c_buyer_details | string |  no  |  |
+ | dp_name | string |  no  |  |
+ | packaging_name | string |  no  |  |
+ | return_affiliate_order_id | string |  no  |  |
+ | due_date | string |  no  |  |
+ | po_number | string |  no  |  |
+ | return_details | string |  no  |  |
+ | dp_id | string |  no  |  |
+ | assign_dp_from_sb | boolean |  no  |  |
+ | external | string |  no  |  |
+ | forward_affiliate_order_id | string |  no  |  |
+ | order_type | string |  no  |  |
+ | weight | number |  yes  |  |
+ | lock_data | [LockData](#LockData) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AffiliateDetails](#AffiliateDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_store_id | string |  yes  |  |
+ | pdf_links | [PDFLinks](#PDFLinks) |  no  |  |
+ | affiliate_bag_id | string |  yes  |  |
+ | shipment_meta | [ShipmentMeta](#ShipmentMeta) |  yes  |  |
+ | company_affiliate_tag | string |  no  |  |
+ | affiliate_id | string |  no  |  |
+ | affiliate_order_id | string |  yes  |  |
+ | affiliate_shipment_id | string |  yes  |  |
+ | affiliate_meta | [AffiliateMeta](#AffiliateMeta) |  yes  |  |
+ | ad_id | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagGSTDetails](#BagGSTDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gst_tag | string |  yes  |  |
+ | cgst_gst_fee | string |  yes  |  |
+ | tax_collected_at_source | number |  yes  |  |
+ | hsn_code_id | string |  yes  |  |
+ | igst_tax_percentage | number |  yes  |  |
+ | gst_tax_percentage | number |  yes  |  |
+ | sgst_gst_fee | string |  yes  |  |
+ | sgst_tax_percentage | number |  yes  |  |
+ | hsn_code | string |  yes  |  |
+ | is_default_hsn_code | boolean |  no  |  |
+ | value_of_good | number |  yes  |  |
+ | brand_calculated_amount | number |  yes  |  |
+ | igst_gst_fee | string |  yes  |  |
+ | gstin_code | string |  no  |  |
+ | cgst_tax_percentage | number |  yes  |  |
+ | gst_fee | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Brand](#Brand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | string |  no  |  |
+ | start_date | string |  no  |  |
+ | script_last_ran | string |  no  |  |
+ | invoice_prefix | string |  no  |  |
+ | credit_note_allowed | boolean |  no  |  |
+ | company | string |  yes  |  |
+ | is_virtual_invoice | boolean |  no  |  |
+ | pickup_location | string |  no  |  |
+ | brand_id | number |  yes  |  |
+ | modified_on | number |  no  |  |
+ | credit_note_expiry_days | number |  no  |  |
+ | brand_name | string |  yes  |  |
+ | created_on | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Attributes](#Attributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | primary_material | string |  no  |  |
+ | essential | string |  no  |  |
+ | primary_color_hex | string |  no  |  |
+ | marketer_name | string |  no  |  |
+ | marketer_address | string |  no  |  |
+ | gender | [string] |  no  |  |
+ | name | string |  no  |  |
+ | brand_name | string |  no  |  |
+ | primary_color | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Item](#Item)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | [Attributes](#Attributes) |  yes  |  |
+ | webstore_product_url | string |  no  |  |
+ | branch_url | string |  no  |  |
+ | name | string |  yes  |  |
+ | color | string |  no  |  |
+ | l2_category | [string] |  no  |  |
+ | l1_category | [string] |  no  |  |
+ | last_updated_at | string |  no  |  |
+ | brand | string |  yes  |  |
+ | brand_id | number |  yes  |  |
+ | code | string |  no  |  |
+ | size | string |  yes  |  |
+ | l1_category_id | number |  no  |  |
+ | l2_category_id | number |  no  |  |
+ | slug_key | string |  yes  |  |
+ | gender | string |  no  |  |
+ | item_id | number |  yes  |  |
+ | l3_category | number |  no  |  |
+ | l3_category_name | string |  no  |  |
+ | department_id | number |  no  |  |
+ | can_return | boolean |  no  |  |
+ | meta | string |  no  |  |
+ | image | [string] |  yes  |  |
+ | can_cancel | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Dates](#Dates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | order_created | string |  no  |  |
+ | delivery_date | any |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Weight](#Weight)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | string |  no  |  |
+ | shipping | number |  no  |  |
+ | is_default | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfig](#ReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | string |  no  |  |
+ | time | number |  no  |  |
+ | returnable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Dimensions](#Dimensions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | height | number |  no  |  |
+ | unit | string |  no  |  |
+ | width | number |  no  |  |
+ | is_default | boolean |  no  |  |
+ | length | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | weight | [Weight](#Weight) |  no  |  |
+ | a_set | string |  no  |  |
+ | size | string |  yes  |  |
+ | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | uid | string |  yes  |  |
+ | _id | string |  yes  |  |
+ | esp_modified | any |  no  |  |
+ | is_set | boolean |  no  |  |
+ | child_details | string |  no  |  |
+ | dimensions | [Dimensions](#Dimensions) |  no  |  |
+ | seller_identifier | string |  yes  |  |
+ | raw_meta | any |  no  |  |
+ | code | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [B2BPODetails](#B2BPODetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | po_line_amount | number |  no  |  |
+ | partial_can_ret | boolean |  no  |  |
+ | po_tax_amount | number |  no  |  |
+ | total_gst_percentage | number |  no  |  |
+ | item_base_price | number |  no  |  |
+ | docker_number | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BagMeta](#BagMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | b2b_po_details | [B2BPODetails](#B2BPODetails) |  no  |  |
 
 ---
 
@@ -7139,45 +7139,45 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
+ | prices | [Prices](#Prices) |  yes  |  |
+ | qc_required | any |  no  |  |
+ | current_status | [BagStatusHistory](#BagStatusHistory) |  yes  |  |
+ | article_details | [ArticleDetails](#ArticleDetails) |  no  |  |
+ | tags | [string] |  no  |  |
+ | ordering_store | [Store](#Store) |  no  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  yes  |  |
  | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails) |  yes  |  |
- | restore_promos | string |  no  |  |
- | article | [Article](#Article) |  yes  |  |
- | bag_status_history | [BagStatusHistory](#BagStatusHistory) |  no  |  |
- | journey_type | string |  yes  |  |
- | item | [Item](#Item) |  yes  |  |
+ | operational_status | string |  no  |  |
+ | affiliate_details | [AffiliateDetails](#AffiliateDetails) |  no  |  |
  | gst_details | [BagGSTDetails](#BagGSTDetails) |  yes  |  |
- | brand | [Brand](#Brand) |  yes  |  |
  | restore_coupon | boolean |  no  |  |
- | original_bag_list | [number] |  no  |  |
+ | identifier | string |  no  |  |
+ | applied_promos | [string] |  no  |  |
+ | brand | [Brand](#Brand) |  yes  |  |
+ | display_name | string |  no  |  |
+ | item | [Item](#Item) |  yes  |  |
+ | seller_identifier | string |  no  |  |
+ | journey_type | string |  yes  |  |
  | b_type | string |  no  |  |
- | meta | [BagMeta](#BagMeta) |  no  |  |
+ | dates | [Dates](#Dates) |  no  |  |
+ | reasons | [string] |  no  |  |
+ | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  yes  |  |
+ | article | [Article](#Article) |  yes  |  |
+ | parent_promo_bags | string |  no  |  |
+ | order_integration_id | string |  no  |  |
  | quantity | number |  no  |  |
  | shipment_id | string |  no  |  |
- | no_of_bags_order | number |  no  |  |
- | seller_identifier | string |  no  |  |
- | entity_type | string |  no  |  |
  | line_number | number |  no  |  |
- | article_details | [ArticleDetails](#ArticleDetails) |  no  |  |
- | parent_promo_bags | string |  no  |  |
- | dates | [Dates](#Dates) |  no  |  |
- | affiliate_details | [AffiliateDetails](#AffiliateDetails) |  no  |  |
- | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  yes  |  |
- | current_status | [BagStatusHistory](#BagStatusHistory) |  yes  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  yes  |  |
- | ordering_store | [Store](#Store) |  no  |  |
- | bag_update_time | number |  no  |  |
- | qc_required | any |  no  |  |
- | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  yes  |  |
- | prices | [Prices](#Prices) |  yes  |  |
- | bag_status | [[BagStatusHistory](#BagStatusHistory)] |  yes  |  |
  | b_id | number |  yes  |  |
- | applied_promos | [string] |  no  |  |
- | reasons | [string] |  no  |  |
- | tags | [string] |  no  |  |
- | order_integration_id | string |  no  |  |
- | operational_status | string |  no  |  |
- | display_name | string |  no  |  |
+ | bag_status_history | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  yes  |  |
+ | restore_promos | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | bag_status | [[BagStatusHistory](#BagStatusHistory)] |  yes  |  |
+ | original_bag_list | [number] |  no  |  |
+ | no_of_bags_order | number |  no  |  |
+ | bag_update_time | number |  no  |  |
+ | meta | [BagMeta](#BagMeta) |  no  |  |
 
 ---
 
@@ -7200,11 +7200,11 @@ Sms Sent successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | item_total | number |  yes  |  |
  | page_type | string |  yes  |  |
- | current | number |  yes  |  |
  | size | number |  yes  |  |
  | has_next | boolean |  yes  |  |
+ | item_total | number |  yes  |  |
+ | current | number |  yes  |  |
 
 ---
 
