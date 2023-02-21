@@ -23,7 +23,8 @@ class ApplicationConfig {
   }
 
   setLogLevel(level) {
-    setLoggerLevel(level);
+    setLoggerLevel(level.toUpperCase());
+    this.logLevel = level.toUpperCase();
   }
 
   setCookie(cookie) {
