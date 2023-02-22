@@ -337,7 +337,6 @@ export class CartValidator {
     static removeAddress(): any;
     static selectAddress(): any;
     static getShipments(): any;
-    static getShipmentDelivery(): any;
     static updateShipments(): any;
     static updateCartMeta(): any;
     static getAvailableDeliveryModes(): any;
