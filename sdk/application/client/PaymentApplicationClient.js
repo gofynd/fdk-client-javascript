@@ -92,7 +92,6 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.xApiToken] - Used for basic authentication.
    * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
    *   to remove temporary cache files on payment gateway and replace with the
    *   latest one.
@@ -100,9 +99,9 @@ class Payment {
    * @summary: Get payment gateway keys
    * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
    */
-  getAggregatorsConfig({ xApiToken, refresh } = {}) {
+  getAggregatorsConfig({ refresh } = {}) {
     const { error } = PaymentValidator.getAggregatorsConfig().validate(
-      { xApiToken, refresh },
+      { refresh },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -112,7 +111,6 @@ class Payment {
     query_params["refresh"] = refresh;
 
     const xHeaders = {};
-    xHeaders["x-api-token"] = xApiToken;
 
     return APIClient.execute(
       this._conf,

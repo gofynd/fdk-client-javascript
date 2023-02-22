@@ -47,7 +47,6 @@ declare class Payment {
     updateUrls(urls: any): void;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.xApiToken] - Used for basic authentication.
      * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
      *   to remove temporary cache files on payment gateway and replace with the
      *   latest one.
@@ -55,8 +54,7 @@ declare class Payment {
      * @summary: Get payment gateway keys
      * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
      */
-    getAggregatorsConfig({ xApiToken, refresh }?: {
-        xApiToken?: string;
+    getAggregatorsConfig({ refresh }?: {
         refresh?: boolean;
     }): Promise<any>;
     /**

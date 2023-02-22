@@ -3,7 +3,6 @@ const { Validator } = require("../ApplicationModels");
 class PaymentValidator {
   static getAggregatorsConfig() {
     return Joi.object({
-      xApiToken: Joi.string().allow(""),
       refresh: Joi.boolean(),
     });
   }
