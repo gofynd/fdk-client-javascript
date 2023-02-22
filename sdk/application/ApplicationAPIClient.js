@@ -33,13 +33,15 @@ class APIClient {
       return acc;
     }, {});
 
-    const rawRequest = {
+    let rawRequest = {
       method: method,
       url: url,
       params: query,
       data: body,
       headers: { ...headers, ...extraHeaders, ...xHeaders },
     };
+    rawRequest = JSON.parse(JSON.stringify(rawRequest));
+
     return fdkAxios.request(rawRequest);
   }
 }
