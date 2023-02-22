@@ -275,7 +275,7 @@ declare class Catalog {
      * @summary: Download Product Template View
      * @description: Allows you to download product template data
      */
-    downloadProductTemplateView({ itemType }?: {
+    downloadInventoryTemplateView({ itemType }?: {
         itemType: string;
     }): Promise<any>;
     /**
@@ -398,6 +398,23 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Get list of variants of item Id
+     * @param {string} arg.variantType - Get multiple products filtered by variant type
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @summary: Get product list
+     * @description: This API gets meta associated to products.
+     */
+    getVariantsOfProducts({ itemId, variantType, pageNo, pageSize }?: {
+        itemId: number;
+        variantType: string;
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.category - It is the name of the l3 cateogry
      * @param {boolean} [arg.filter] - If true, returns filtered values, else
      *   returns all the attributes
@@ -407,6 +424,15 @@ declare class Catalog {
     getProductAttributes({ category, filter }?: {
         category: string;
         filter?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
+     */
+    deleteProduct({ itemId }?: {
+        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -431,15 +457,6 @@ declare class Catalog {
     editProduct({ itemId, body }?: {
         itemId: number;
         body: ProductCreateUpdate;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
-     */
-    deleteProduct({ itemId }?: {
-        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -473,6 +490,7 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.search] - Search string to filter the results by batch id
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -480,9 +498,33 @@ declare class Catalog {
      * @summary: Get a list of all bulk product upload jobs.
      * @description: This API helps to get bulk product upload jobs data.
      */
-    getProductBulkUploadHistory({ pageNo, pageSize }?: {
+    getProductBulkUploadHistory({ search, pageNo, pageSize }?: {
+        search?: string;
         pageNo?: number;
         pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.department - Department of the product to be uploaded.
+     * @param {string} arg.productType - Product type of the product to be
+     *   uploaded i.e. set, standard , digital.
+     * @param {BulkJob} arg.body
+     * @summary: Create a Bulk product to upload job.
+     * @description: This API helps to create a bulk products upload job.
+     */
+    uploadBulkProducts({ department, productType, body }?: {
+        department: string;
+        productType: string;
+        body: BulkJob;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
+     * @summary: Delete Bulk product job.
+     * @description: This API allows to delete bulk product job associated with company.
+     */
+    deleteProductBulkJob({ batchId }?: {
+        batchId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -494,15 +536,6 @@ declare class Catalog {
     createProductsInBulk({ batchId, body }?: {
         batchId: string;
         body: BulkProductRequest;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
-     * @summary: Delete Bulk product job.
-     * @description: This API allows to delete bulk product job associated with company.
-     */
-    deleteProductBulkJob({ batchId }?: {
-        batchId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -602,6 +635,32 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.itemId] - Item code of the product of which size is to be get.
+     * @param {string} [arg.size] - Size of which inventory is to get.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search with help of store code.
+     * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
+     * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
+     * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
+     *   or Primary Identifier) of which inventory is to get.
+     * @summary: Get Inventory for company
+     * @description: This API allows get Inventories data for particular company.
+     */
+    getInventories({ itemId, size, pageNo, pageSize, q, sellable, storeIds, sizeIdentifier, }?: {
+        itemId?: string;
+        size?: string;
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        sellable?: boolean;
+        storeIds?: number[];
+        sizeIdentifier?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.size - Size that is to be deleted.
      * @param {number} arg.itemId - Id of the product associated with Inventory
      *   to be deleted.
@@ -639,6 +698,15 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.batchId - Batch Id of the bulk delete job.
+     * @summary: Delete Bulk Inventory job.
+     * @description: This API allows to delete bulk Inventory job associated with company.
+     */
+    deleteBulkInventoryJob({ batchId }?: {
+        batchId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.batchId - Batch Id of the bulk create job.
      * @param {InventoryBulkRequest} arg.body
      * @summary: Create products in bulk associated with given batch Id.
@@ -647,15 +715,6 @@ declare class Catalog {
     createBulkInventory({ batchId, body }?: {
         batchId: string;
         body: InventoryBulkRequest;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.batchId - Batch Id of the bulk delete job.
-     * @summary: Delete Bulk Inventory job.
-     * @description: This API allows to delete bulk Inventory job associated with company.
-     */
-    deleteBulkInventoryJob({ batchId }?: {
-        batchId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -691,7 +750,7 @@ declare class Catalog {
      * @summary: Add Inventory for particular size and store.
      * @description: This API allows add Inventory for particular size and store.
      */
-    updateRealtimeInventory({ itemId, sellerIdentifier, body }?: {
+    deleteRealtimeInventory({ itemId, sellerIdentifier, body }?: {
         itemId: number;
         sellerIdentifier: string;
         body: InventoryRequestSchemaV2;
@@ -705,7 +764,7 @@ declare class Catalog {
      * @summary: Add Inventory for particular size and store.
      * @description: This API allows add Inventory for particular size and store.
      */
-    deleteRealtimeInventory({ itemId, sellerIdentifier, body }?: {
+    updateRealtimeInventory({ itemId, sellerIdentifier, body }?: {
         itemId: number;
         sellerIdentifier: string;
         body: InventoryRequestSchemaV2;
