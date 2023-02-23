@@ -7225,12 +7225,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | description | string |  yes  |  |
- | logo | [SecureUrl](#SecureUrl) |  yes  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl) |  yes  |  |
- | banner | [SecureUrl](#SecureUrl) |  yes  |  |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
  | domain | [Domain](#Domain) |  no  |  |
  | domains | [[Domain](#Domain)] |  no  |  |
  | _id | string |  no  |  |
