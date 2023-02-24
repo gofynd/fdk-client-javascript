@@ -130,6 +130,10 @@ export const NAVIGATORS: {
     faq: {
         name: string;
         link: string;
+        params: {
+            key: string;
+            required: boolean;
+        }[];
     };
     freshchat: {
         name: string;

@@ -107,13 +107,5 @@ declare class FileStorage {
     proxy({ url }?: {
         url: string;
     }): Promise<any>;
-    upload({ data, file_name, content_type, namespace, size, tags, }?: {
-        data: any;
-        file_name: any;
-        content_type: any;
-        namespace: any;
-        size: any;
-        tags: any;
-    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

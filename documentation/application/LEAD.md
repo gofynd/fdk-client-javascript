@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Lead Methods
 Handles communication between Staff and Users
-
 * [getTicket](#getticket)
 * [createHistory](#createhistory)
 * [createTicket](#createticket)
@@ -19,8 +17,6 @@ Handles communication between Staff and Users
 
 
 ## Methods with example and description
-
-
 
 
 ### getTicket

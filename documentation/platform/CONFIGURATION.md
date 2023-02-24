@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
-
 * [getBuildConfig](#getbuildconfig)
 * [updateBuildConfig](#updatebuildconfig)
 * [getPreviousVersions](#getpreviousversions)
@@ -58,8 +56,6 @@ Application configuration apis
 
 
 ## Methods with example and description
-
-
 
 
 ### getBuildConfig
@@ -3165,7 +3161,7 @@ const data = await client.configuration.getApplications({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
-| q | string | no | Url encoded object used as mongodb query |  
+| q | string | no | Search string to search saleschannel by name |  
 
 
 

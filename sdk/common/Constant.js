@@ -146,7 +146,13 @@ const NAVIGATORS = {
   },
   faq: {
     name: "FAQ",
-    link: "/faq",
+    link: "/faq/:category",
+    params: [
+      {
+        key: "category",
+        required: false,
+      },
+    ],
   },
   freshchat: {
     name: "Chat by Freshchat",

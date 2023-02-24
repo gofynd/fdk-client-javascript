@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Content Methods
 Content System
-
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
@@ -31,8 +29,6 @@ Content System
 
 
 ## Methods with example and description
-
-
 
 
 ### getAnnouncements
@@ -3313,7 +3309,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | collections | collections | Symbolic link for Collections: /collections/ |
  | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
  | external | external | Symbolic link for External Link: /external/ |
- | faq | faq | Symbolic link for FAQ: /faq |
+ | faq | faq | Symbolic link for FAQ: /faq/:category |
  | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
  | home | home | Symbolic link for Home: / |
  | notificationSettings | notification-settings | Symbolic link for Notification Settings: /notification-settings |

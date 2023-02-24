@@ -12,4 +12,7 @@ declare class OrderValidator {
     static getShipmentBagReasons(): any;
     static getShipmentReasons(): any;
     static updateShipmentStatus(): any;
+    static updateShipmentStatus1(): any;
+    static getInvoiceByShipmentId1(): any;
+    static getCreditNoteByShipmentId(): any;
 }
