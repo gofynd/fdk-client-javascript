@@ -32,7 +32,7 @@ class Payment {
         "/service/application/payment/v1.0/payment/resend_or_cancel",
       renderHTML: "/service/application/payment/v1.0/payment/html/render/",
       validateVPA: "/service/application/payment/v1.0/validate-vpa",
-      cardDetails: "/service/application/payment/v1.0/cards/info/{card_bin}",
+      cardDetails: "/service/application/payment/v1.0/cards/info/{card_info}",
       getActiveRefundTransferModes:
         "/service/application/payment/v1.0/refund/transfer-mode",
       enableOrDisableRefundTransferMode:
@@ -682,16 +682,16 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.cardBin - Card first 6 digit IIN(prefix) number.
+   * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
    * @param {string} [arg.aggregator] - This is a string value decribing the
    *   aggregator name.
    * @returns {Promise<cardDetailsResponse>} - Success response
    * @summary: API to get Card info from PG
    * @description: API to get Card info from PG
    */
-  cardDetails({ cardBin, aggregator } = {}) {
+  cardDetails({ cardInfo, aggregator } = {}) {
     const { error } = PaymentValidator.cardDetails().validate(
-      { cardBin, aggregator },
+      { cardInfo, aggregator },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -707,7 +707,7 @@ class Payment {
       "get",
       constructUrl({
         url: this._urls["cardDetails"],
-        params: { cardBin },
+        params: { cardInfo },
       }),
       query_params,
       undefined,

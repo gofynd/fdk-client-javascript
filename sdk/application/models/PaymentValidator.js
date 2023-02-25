@@ -109,7 +109,7 @@ class PaymentValidator {
 
   static cardDetails() {
     return Joi.object({
-      cardBin: Joi.string().allow("").required(),
+      cardInfo: Joi.string().allow("").required(),
       aggregator: Joi.string().allow(""),
     }).required();
   }
