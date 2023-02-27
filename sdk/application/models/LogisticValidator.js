@@ -13,7 +13,7 @@ class LogisticValidator {
     }).required();
   }
 
-  static upsertZoneControllerView() {
+  static getPincodeZones() {
     return Joi.object({
       body: Validator.GetZoneFromPincodeViewRequest().required(),
     }).required();

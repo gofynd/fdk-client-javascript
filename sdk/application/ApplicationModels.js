@@ -10044,47 +10044,47 @@ class Validator {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
 
-      type: Joi.string().allow("").allow(null),
-
       value: Joi.string().allow("").allow(null),
-    });
-  }
 
-  static PincodeParentsResponse() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-
-      uid: Joi.string().allow(""),
-
-      sub_type: Joi.string().allow(""),
-
-      display_name: Joi.string().allow(""),
+      type: Joi.string().allow("").allow(null),
     });
   }
 
   static PincodeMetaResponse() {
     return Joi.object({
-      internal_zone_id: Joi.number(),
-
       zone: Joi.string().allow(""),
+
+      internal_zone_id: Joi.number(),
     });
   }
 
-  static PincodeDataResponse() {
+  static PincodeParentsResponse() {
     return Joi.object({
+      display_name: Joi.string().allow(""),
+
       name: Joi.string().allow(""),
 
       uid: Joi.string().allow(""),
 
       sub_type: Joi.string().allow(""),
+    });
+  }
+
+  static PincodeDataResponse() {
+    return Joi.object({
+      error: this.PincodeErrorSchemaResponse().required(),
+
+      name: Joi.string().allow(""),
+
+      meta: this.PincodeMetaResponse(),
 
       parents: Joi.array().items(this.PincodeParentsResponse()),
 
-      error: this.PincodeErrorSchemaResponse().required(),
+      uid: Joi.string().allow(""),
 
       display_name: Joi.string().allow(""),
 
-      meta: this.PincodeMetaResponse(),
+      sub_type: Joi.string().allow(""),
     });
   }
 
@@ -10100,19 +10100,19 @@ class Validator {
 
   static TATCategoryRequest() {
     return Joi.object({
-      level: Joi.string().allow(""),
-
       id: Joi.number(),
+
+      level: Joi.string().allow(""),
     });
   }
 
   static TATArticlesRequest() {
     return Joi.object({
-      category: this.TATCategoryRequest(),
-
       manufacturing_time_unit: Joi.string().allow(""),
 
       manufacturing_time: Joi.number(),
+
+      category: this.TATCategoryRequest(),
     });
   }
 
@@ -10128,17 +10128,17 @@ class Validator {
 
   static TATViewRequest() {
     return Joi.object({
-      action: Joi.string().allow(""),
-
-      source: Joi.string().allow(""),
-
-      location_details: Joi.array().items(this.TATLocationDetailsRequest()),
-
-      journey: Joi.string().allow(""),
-
       to_pincode: Joi.string().allow(""),
 
       identifier: Joi.string().allow(""),
+
+      action: Joi.string().allow(""),
+
+      location_details: Joi.array().items(this.TATLocationDetailsRequest()),
+
+      source: Joi.string().allow(""),
+
+      journey: Joi.string().allow(""),
     });
   }
 
@@ -10146,25 +10146,25 @@ class Validator {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
 
-      type: Joi.string().allow("").allow(null),
-
       value: Joi.string().allow("").allow(null),
+
+      type: Joi.string().allow("").allow(null),
     });
   }
 
   static TATTimestampResponse() {
     return Joi.object({
-      min: Joi.number(),
-
       max: Joi.number(),
+
+      min: Joi.number(),
     });
   }
 
   static TATFormattedResponse() {
     return Joi.object({
-      min: Joi.string().allow(""),
-
       max: Joi.string().allow(""),
+
+      min: Joi.string().allow(""),
     });
   }
 
@@ -10178,19 +10178,19 @@ class Validator {
 
   static TATArticlesResponse() {
     return Joi.object({
-      is_cod_available: Joi.boolean(),
-
       error: this.TATErrorSchemaResponse(),
+
+      manufacturing_time_unit: Joi.string().allow(""),
+
+      is_cod_available: Joi.boolean(),
 
       _manufacturing_time_seconds: Joi.number(),
 
-      category: this.TATCategoryRequest(),
+      promise: this.TATPromiseResponse(),
 
       manufacturing_time: Joi.number(),
 
-      promise: this.TATPromiseResponse(),
-
-      manufacturing_time_unit: Joi.string().allow(""),
+      category: this.TATCategoryRequest(),
     });
   }
 
@@ -10206,31 +10206,31 @@ class Validator {
 
   static TATViewResponse() {
     return Joi.object({
-      action: Joi.string().allow(""),
-
-      stormbreaker_uuid: Joi.string().allow(""),
-
-      payment_mode: Joi.string().allow(""),
-
-      source: Joi.string().allow(""),
-
-      location_details: Joi.array().items(this.TATLocationDetailsResponse()),
-
-      journey: Joi.string().allow(""),
-
       to_pincode: Joi.string().allow(""),
-
-      error: this.TATErrorSchemaResponse(),
-
-      request_uuid: Joi.string().allow(""),
-
-      to_city: Joi.string().allow(""),
-
-      success: Joi.boolean(),
 
       identifier: Joi.string().allow(""),
 
+      error: this.TATErrorSchemaResponse(),
+
       is_cod_available: Joi.boolean(),
+
+      stormbreaker_uuid: Joi.string().allow(""),
+
+      to_city: Joi.string().allow(""),
+
+      payment_mode: Joi.string().allow(""),
+
+      action: Joi.string().allow(""),
+
+      request_uuid: Joi.string().allow(""),
+
+      location_details: Joi.array().items(this.TATLocationDetailsResponse()),
+
+      source: Joi.string().allow(""),
+
+      journey: Joi.string().allow(""),
+
+      success: Joi.boolean(),
     });
   }
 

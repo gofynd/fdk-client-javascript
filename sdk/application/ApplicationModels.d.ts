@@ -789,8 +789,8 @@ export class Validator {
     static PickupStoreDetail(): any;
     static StoreDetailsResponse(): any;
     static PincodeErrorSchemaResponse(): any;
-    static PincodeParentsResponse(): any;
     static PincodeMetaResponse(): any;
+    static PincodeParentsResponse(): any;
     static PincodeDataResponse(): any;
     static PincodeApiResponse(): any;
     static TATCategoryRequest(): any;

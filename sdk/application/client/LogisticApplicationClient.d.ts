@@ -5,7 +5,7 @@ declare class Logistic {
     _relativeUrls: {
         getPincodeCity: string;
         getTatProduct: string;
-        upsertZoneControllerView: string;
+        getPincodeZones: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -37,7 +37,7 @@ declare class Logistic {
      * @summary: GET zone from the Pincode.
      * @description: This API returns zone from the Pincode View.
      */
-    upsertZoneControllerView({ body }?: {
+    getPincodeZones({ body }?: {
         body: GetZoneFromPincodeViewRequest;
     }): Promise<GetZoneFromPincodeViewResponse>;
 }

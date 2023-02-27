@@ -10,8 +10,7 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
-      upsertZoneControllerView:
-        "/service/application/logistics/v1.0/pincode/zones",
+      getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -101,8 +100,8 @@ class Logistic {
    * @summary: GET zone from the Pincode.
    * @description: This API returns zone from the Pincode View.
    */
-  upsertZoneControllerView({ body } = {}) {
-    const { error } = LogisticValidator.upsertZoneControllerView().validate(
+  getPincodeZones({ body } = {}) {
+    const { error } = LogisticValidator.getPincodeZones().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -117,7 +116,7 @@ class Logistic {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["upsertZoneControllerView"],
+        url: this._urls["getPincodeZones"],
         params: {},
       }),
       query_params,
