@@ -39,6 +39,12 @@ class CartValidator {
     }).required();
   }
 
+  static deleteCart() {
+    return Joi.object({
+      id: Joi.number(),
+    });
+  }
+
   static getItemCount() {
     return Joi.object({
       id: Joi.string().allow(""),

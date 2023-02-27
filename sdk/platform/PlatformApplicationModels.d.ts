@@ -189,7 +189,7 @@ export class PaymentValidator {
     static updatePlatformPaymentConfig(): any;
     static getUserCODlimitRoutes(): any;
     static setUserCODlimitRoutes(): any;
-    static edcAggregatorsList(): any;
+    static edcAggregatorsAndModelList(): any;
     static edcDeviceStats(): any;
     static edcDevice(): any;
     static edcDeviceList(): any;
@@ -329,6 +329,7 @@ export class CartValidator {
     static getCartList(): any;
     static updateCartUser(): any;
     static getCart(): any;
+    static deleteCart(): any;
     static getItemCount(): any;
     static applyCoupon(): any;
     static removeCoupon(): any;

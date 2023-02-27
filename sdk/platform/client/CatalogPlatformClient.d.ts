@@ -54,15 +54,17 @@ declare class Catalog {
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
+     * @param {number} [arg.brandId] - To filter size guide on basis of brand_id.
      * @summary: Get list of size guides
      * @description: This API allows to view all the size guides associated to the seller.
      */
-    getSizeGuides({ active, q, tag, pageNo, pageSize }?: {
+    getSizeGuides({ active, q, tag, pageNo, pageSize, brandId }?: {
         active?: boolean;
         q?: string;
         tag?: string;
         pageNo?: number;
         pageSize?: number;
+        brandId?: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -200,15 +202,18 @@ declare class Catalog {
      *   the department in search parameter.
      * @param {boolean} [arg.isActive] - Can query for departments based on
      *   whether they are active or inactive.
+     * @param {string} [arg.itemType] - Can query for departments based on their
+     *   item_type.
      * @summary: List all Departments.
      * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
      */
-    listDepartmentsData({ pageNo, pageSize, name, search, isActive }?: {
+    listDepartmentsData({ pageNo, pageSize, name, search, isActive, itemType, }?: {
         pageNo?: number;
         pageSize?: number;
         name?: string;
         search?: string;
         isActive?: boolean;
+        itemType?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -296,19 +301,38 @@ declare class Catalog {
     listHSNCodes({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] - This is a parameter used to find all the
+     *   jobs with the specified status.
+     * @param {string} [arg.fromDate] - This is a parameter used to find the job
+     *   from the date specified to the current date.
+     * @param {string} [arg.toDate] - This is a parameter used to find the job
+     *   from the from_date specified to the to_date.
+     * @param {string} [arg.q] - It is a query parameter to search the export
+     *   job with the task ID.
      * @summary: Allows you to list all product templates export list details
      * @description: Can view details including trigger data, task id , etc.
      */
-    listProductTemplateExportDetails({}?: any): Promise<any>;
+    listProductTemplateExportDetails({ status, fromDate, toDate, q }?: {
+        status?: string;
+        fromDate?: string;
+        toDate?: string;
+        q?: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.filter - A `filter` is the unique identifier of the
      *   type of value required.
+     * @param {string} [arg.templateTag] - A `template_tag` is the identifier of
+     *   the type of template required.
+     * @param {string} [arg.itemType] - A `item_type` is the identifier of the
+     *   type of template required.
      * @summary: Allows you to list all values for Templates, Brands or Type
      * @description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
      */
-    listTemplateBrandTypeValues({ filter }?: {
+    listTemplateBrandTypeValues({ filter, templateTag, itemType }?: {
         filter: string;
+        templateTag?: string;
+        itemType?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -712,10 +736,21 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] - Status of the export job.
+     * @param {string} [arg.fromDate] - Inventory export history filtered
+     *   according to from_date.
+     * @param {string} [arg.toDate] - Inventory export history filtered
+     *   according to from_date.
+     * @param {string} [arg.q] - Inventory export history filtered according to task ID.
      * @summary: Get Inventory export history.
      * @description: This API helps to get Inventory export history.
      */
-    getInventoryExport({}?: any): Promise<any>;
+    getInventoryExport({ status, fromDate, toDate, q }?: {
+        status?: string;
+        fromDate?: string;
+        toDate?: string;
+        q?: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {InventoryExportRequest} arg.body

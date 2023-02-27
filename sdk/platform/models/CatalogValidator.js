@@ -34,6 +34,7 @@ class CatalogValidator {
       tag: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      brandId: Joi.number(),
     }).required();
   }
 
@@ -119,6 +120,7 @@ class CatalogValidator {
       name: Joi.string().allow(""),
       search: Joi.string().allow(""),
       isActive: Joi.boolean(),
+      itemType: Joi.string().allow(""),
     }).required();
   }
 
@@ -176,12 +178,19 @@ class CatalogValidator {
   }
 
   static listProductTemplateExportDetails() {
-    return Joi.object({}).required();
+    return Joi.object({
+      status: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+    }).required();
   }
 
   static listTemplateBrandTypeValues() {
     return Joi.object({
       filter: Joi.string().allow("").required(),
+      templateTag: Joi.string().allow(""),
+      itemType: Joi.string().allow(""),
     }).required();
   }
 
@@ -421,7 +430,12 @@ class CatalogValidator {
   }
 
   static getInventoryExport() {
-    return Joi.object({}).required();
+    return Joi.object({
+      status: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      q: Joi.string().allow(""),
+    }).required();
   }
 
   static createInventoryExportJob() {
