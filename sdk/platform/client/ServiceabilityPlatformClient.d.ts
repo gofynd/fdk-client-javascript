@@ -38,16 +38,6 @@ declare class Serviceability {
      * @param {Object} arg - Arg object.
      * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
      *   particular zone.
-     * @summary: Zone Data View of application.
-     * @description: This API returns Zone Data View of the application.
-     */
-    getZoneDataView({ zoneId }?: {
-        zoneId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
      * @param {ZoneUpdateRequest} arg.body
      * @summary: Updation of zone collections in database.
      * @description: This API returns response of updation of zone in mongo database.
@@ -58,11 +48,21 @@ declare class Serviceability {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
+     *   particular zone.
+     * @summary: Zone Data View of application.
+     * @description: This API returns Zone Data View of the application.
+     */
+    getZoneDataView({ zoneId }?: {
+        zoneId: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {ZoneRequest} arg.body
      * @summary: Insertion of zone in database.
      * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
      */
-    insertZoneControllerView({ body }?: {
+    createZone({ body }?: {
         body: ZoneRequest;
     }): Promise<any>;
     /**
