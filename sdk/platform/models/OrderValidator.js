@@ -278,16 +278,16 @@ class OrderValidator {
     return Joi.object({}).required();
   }
 
+  static postShipmentHistory() {
+    return Joi.object({
+      body: Validator.PostShipmentHistory().required(),
+    }).required();
+  }
+
   static getShipmentHistory() {
     return Joi.object({
       shipmentId: Joi.number(),
       bagId: Joi.number(),
-    }).required();
-  }
-
-  static postShipmentHistory() {
-    return Joi.object({
-      body: Validator.PostShipmentHistory().required(),
     }).required();
   }
 
@@ -315,14 +315,14 @@ class OrderValidator {
     }).required();
   }
 
-  static getChannelConfig() {
-    return Joi.object({}).required();
-  }
-
   static createChannelConfig() {
     return Joi.object({
       body: Validator.CreateChannelConfigData().required(),
     }).required();
+  }
+
+  static getChannelConfig() {
+    return Joi.object({}).required();
   }
 
   static uploadConsent() {
