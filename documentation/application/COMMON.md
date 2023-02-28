@@ -417,7 +417,7 @@ Success
 
  
  
- #### [LocationCountry](#LocationCountry)
+ #### [LocationDetails](#LocationDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -434,6 +434,10 @@ Success
  | _id | string |  no  |  |
  | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency) |  no  |  |
  | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage) |  no  |  |
+ | state_code | string |  no  |  |
+ | country_code | string |  no  |  |
+ | latitude | string |  no  |  |
+ | longitude | string |  no  |  |
 
 ---
 
@@ -444,7 +448,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | items | [[LocationDetails](#LocationDetails)] |  no  |  |
 
 ---
 

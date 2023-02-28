@@ -191,7 +191,7 @@ class Validator {
     });
   }
 
-  static LocationCountry() {
+  static LocationDetails() {
     return Joi.object({
       capital: Joi.string().allow(""),
 
@@ -218,12 +218,20 @@ class Validator {
       default_currency: this.LocationDefaultCurrency(),
 
       default_language: this.LocationDefaultLanguage(),
+
+      state_code: Joi.string().allow(""),
+
+      country_code: Joi.string().allow(""),
+
+      latitude: Joi.string().allow(""),
+
+      longitude: Joi.string().allow(""),
     });
   }
 
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
+      items: Joi.array().items(this.LocationDetails()),
     });
   }
 

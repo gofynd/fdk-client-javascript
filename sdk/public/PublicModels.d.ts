@@ -15,7 +15,7 @@ declare class Validator {
     static Page(): any;
     static LocationDefaultLanguage(): any;
     static LocationDefaultCurrency(): any;
-    static LocationCountry(): any;
+    static LocationDetails(): any;
     static Locations(): any;
     static EventConfig(): any;
     static EventConfigList(): any;
