@@ -13,22 +13,22 @@ class RewardsValidator {
     }).required();
   }
 
-  static getPointsHistory() {
+  static getUserPointsHistory() {
     return Joi.object({
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
     });
   }
 
-  static getPoints() {
+  static getUserPoints() {
     return Joi.object({});
   }
 
-  static referral() {
+  static getUserReferralDetails() {
     return Joi.object({});
   }
 
-  static orderDiscount() {
+  static getOrderDiscount() {
     return Joi.object({
       body: Validator.OrderDiscountRequest().required(),
     }).required();

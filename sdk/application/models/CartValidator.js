@@ -162,6 +162,7 @@ class CartValidator {
       iin: Joi.string().allow(""),
       network: Joi.string().allow(""),
       type: Joi.string().allow(""),
+      cardId: Joi.string().allow(""),
     });
   }
 
