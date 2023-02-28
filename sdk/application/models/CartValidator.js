@@ -41,7 +41,7 @@ class CartValidator {
 
   static deleteCart() {
     return Joi.object({
-      id: Joi.number(),
+      id: Joi.string().allow(""),
     });
   }
 
