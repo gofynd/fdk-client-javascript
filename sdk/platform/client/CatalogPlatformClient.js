@@ -1341,14 +1341,18 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @summary: Delete a product.
-   * @description: This API allows to delete product.
+   * @param {number} arg.itemId - Item Id of the product.
+   * @param {number} [arg.brandUid] - Brand Id of the product.
+   * @param {string} [arg.itemCode] - Item code of the product.
+   * @summary: Get a single product.
+   * @description: This API helps to get data associated to a particular product.
    */
-  deleteProduct({ itemId } = {}) {
-    const { error } = CatalogValidator.deleteProduct().validate(
+  getProduct({ itemId, brandUid, itemCode } = {}) {
+    const { error } = CatalogValidator.getProduct().validate(
       {
         itemId,
+        brandUid,
+        itemCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1357,12 +1361,14 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["brand_uid"] = brandUid;
+    query_params["item_code"] = itemCode;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
-      "delete",
+      "get",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       undefined,
@@ -1405,43 +1411,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item Id of the product.
-   * @param {number} [arg.brandUid] - Brand Id of the product.
-   * @param {string} [arg.itemCode] - Item code of the product.
-   * @summary: Get a single product.
-   * @description: This API helps to get data associated to a particular product.
-   */
-  getProduct({ itemId, brandUid, itemCode } = {}) {
-    const { error } = CatalogValidator.getProduct().validate(
-      {
-        itemId,
-        brandUid,
-        itemCode,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["brand_uid"] = brandUid;
-    query_params["item_code"] = itemCode;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} arg.itemId - Id of the product to be updated.
    * @param {ProductCreateUpdateSchemaV2} arg.body
    * @summary: Edit a product.
@@ -1469,6 +1438,37 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.itemId - Id of the product to be updated.
+   * @summary: Delete a product.
+   * @description: This API allows to delete product.
+   */
+  deleteProduct({ itemId } = {}) {
+    const { error } = CatalogValidator.deleteProduct().validate(
+      {
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
+      query_params,
+      undefined,
       xHeaders
     );
   }

@@ -261,6 +261,10 @@ class Order {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.lane] -
    * @param {string} [arg.searchType] -
+   * @param {string} [arg.bagStatus] -
+   * @param {string} [arg.timeToDispatch] -
+   * @param {string} [arg.paymentMethods] -
+   * @param {string} [arg.tags] -
    * @param {string} [arg.searchValue] -
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
@@ -277,6 +281,10 @@ class Order {
   getOrders({
     lane,
     searchType,
+    bagStatus,
+    timeToDispatch,
+    paymentMethods,
+    tags,
     searchValue,
     fromDate,
     toDate,
@@ -292,6 +300,10 @@ class Order {
       {
         lane,
         searchType,
+        bagStatus,
+        timeToDispatch,
+        paymentMethods,
+        tags,
         searchValue,
         fromDate,
         toDate,
@@ -312,6 +324,10 @@ class Order {
     const query_params = {};
     query_params["lane"] = lane;
     query_params["search_type"] = searchType;
+    query_params["bag_status"] = bagStatus;
+    query_params["time_to_dispatch"] = timeToDispatch;
+    query_params["payment_methods"] = paymentMethods;
+    query_params["tags"] = tags;
     query_params["search_value"] = searchValue;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;

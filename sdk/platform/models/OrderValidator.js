@@ -58,6 +58,10 @@ class OrderValidator {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
+      bagStatus: Joi.string().allow(""),
+      timeToDispatch: Joi.string().allow(""),
+      paymentMethods: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),

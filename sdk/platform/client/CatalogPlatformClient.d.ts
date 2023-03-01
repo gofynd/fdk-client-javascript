@@ -451,12 +451,16 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
+     * @param {number} arg.itemId - Item Id of the product.
+     * @param {number} [arg.brandUid] - Brand Id of the product.
+     * @param {string} [arg.itemCode] - Item code of the product.
+     * @summary: Get a single product.
+     * @description: This API helps to get data associated to a particular product.
      */
-    deleteProduct({ itemId }?: {
+    getProduct({ itemId, brandUid, itemCode }?: {
         itemId: number;
+        brandUid?: number;
+        itemCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -471,19 +475,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Item Id of the product.
-     * @param {number} [arg.brandUid] - Brand Id of the product.
-     * @param {string} [arg.itemCode] - Item code of the product.
-     * @summary: Get a single product.
-     * @description: This API helps to get data associated to a particular product.
-     */
-    getProduct({ itemId, brandUid, itemCode }?: {
-        itemId: number;
-        brandUid?: number;
-        itemCode?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
      * @param {ProductCreateUpdateSchemaV2} arg.body
      * @summary: Edit a product.
@@ -492,6 +483,15 @@ declare class Catalog {
     editProduct({ itemId, body }?: {
         itemId: number;
         body: ProductCreateUpdateSchemaV2;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
+     */
+    deleteProduct({ itemId }?: {
+        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

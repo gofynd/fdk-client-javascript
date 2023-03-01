@@ -100,6 +100,10 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
      * @param {string} [arg.searchType] -
+     * @param {string} [arg.bagStatus] -
+     * @param {string} [arg.timeToDispatch] -
+     * @param {string} [arg.paymentMethods] -
+     * @param {string} [arg.tags] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
@@ -113,9 +117,13 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
+        bagStatus?: string;
+        timeToDispatch?: string;
+        paymentMethods?: string;
+        tags?: string;
         searchValue?: string;
         fromDate?: string;
         toDate?: string;
