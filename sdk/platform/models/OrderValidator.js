@@ -365,9 +365,7 @@ class OrderValidator {
   }
 
   static sendSmsNinjaPlatform() {
-    return Joi.object({
-      body: Validator.SendSmsPayload().required(),
-    }).required();
+    return Joi.object({}).required();
   }
 }
 module.exports = OrderValidator;

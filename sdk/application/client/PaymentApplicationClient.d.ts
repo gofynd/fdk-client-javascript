@@ -245,7 +245,7 @@ declare class Payment {
      * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
      * @param {string} [arg.aggregator] - This is a string value decribing the
      *   aggregator name.
-     * @returns {Promise<cardDetailsResponse>} - Success response
+     * @returns {Promise<CardDetailsResponse>} - Success response
      * @summary: API to get Card info from PG
      * @description: API to get Card info from PG
      */

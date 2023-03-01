@@ -1795,15 +1795,12 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {SendSmsPayload} arg.body
    * @summary:
    * @description:
    */
-  sendSmsNinjaPlatform({ body } = {}) {
+  sendSmsNinjaPlatform({} = {}) {
     const { error } = OrderValidator.sendSmsNinjaPlatform().validate(
-      {
-        body,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1819,7 +1816,7 @@ class Order {
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
       query_params,
-      body,
+      undefined,
       xHeaders
     );
   }

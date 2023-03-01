@@ -609,11 +609,8 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {SendSmsPayload} arg.body
      * @summary:
      * @description:
      */
-    sendSmsNinjaPlatform({ body }?: {
-        body: any;
-    }): Promise<any>;
+    sendSmsNinjaPlatform({}?: any): Promise<any>;
 }
