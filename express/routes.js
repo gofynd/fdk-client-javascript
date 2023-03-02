@@ -138,7 +138,7 @@ function setupRoutes(ext) {
             });
             res.header['x-company-id'] = companyId;
             req.extension = ext;
-            if (ext.webhookRegistry.isInitialized) {
+            if (ext.webhookRegistry.isInitialized && ext.webhookRegistry.isSubscribeOnInstall) {
                 const client = await ext.getPlatformClient(companyId, req.fdkSession);
                 await ext.webhookRegistry.syncEvents(client, null, true).catch((err) => {
                     logger.error(err);
@@ -188,7 +188,7 @@ function setupRoutes(ext) {
                 await SessionStorage.saveSession(session);  
             }
             
-            if (ext.webhookRegistry.isInitialized) {
+            if (ext.webhookRegistry.isInitialized && ext.webhookRegistry.isSubscribeOnInstall) {
                 const client = await ext.getPlatformClient(company_id, session);
                 await ext.webhookRegistry.syncEvents(client, null, true).catch((err) => {
                     logger.error(err);
