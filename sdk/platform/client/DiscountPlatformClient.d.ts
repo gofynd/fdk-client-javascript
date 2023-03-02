@@ -35,7 +35,7 @@ declare class Discount {
      * @description: Create Discount.
      */
     createDiscount({ body }?: {
-        body: any;
+        body: CreateUpdateDiscount;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -55,7 +55,7 @@ declare class Discount {
      */
     updateDiscount({ id, body }?: {
         id: string;
-        body: any;
+        body: CreateUpdateDiscount;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -66,7 +66,7 @@ declare class Discount {
      */
     upsertDiscountItems({ id, body }?: {
         id: string;
-        body: any;
+        body: BulkDiscount;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -77,7 +77,7 @@ declare class Discount {
      */
     validateDiscountFile({ body, discount }?: {
         discount?: string;
-        body: any;
+        body: DiscountJob;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -88,7 +88,7 @@ declare class Discount {
      */
     downloadDiscountFile({ type, body }?: {
         type: string;
-        body: any;
+        body: DownloadFileJob;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

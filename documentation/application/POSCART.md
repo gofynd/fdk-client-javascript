@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## PosCart Methods
 Cart APIs
+
 * [getCart](#getcart)
 * [getCartLastModified](#getcartlastmodified)
 * [addItems](#additems)
@@ -37,6 +39,8 @@ Cart APIs
 
 
 ## Methods with example and description
+
+
 
 
 ### getCart

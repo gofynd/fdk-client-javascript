@@ -2,9 +2,11 @@
 
 
 
+
 ##### [Back to Public docs](./README.md)
 
 ## Inventory Methods
+
 
 * [getConfigByApiKey](#getconfigbyapikey)
 * [getApiKey](#getapikey)
@@ -16,6 +18,8 @@
 
 
 ## Methods with example and description
+
+
 
 
 ### getConfigByApiKey
