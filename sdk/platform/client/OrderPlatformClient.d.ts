@@ -480,6 +480,15 @@ declare class Order {
     getRoleBasedActions({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PostShipmentHistory} arg.body
+     * @summary:
+     * @description:
+     */
+    postShipmentHistory({ body }?: {
+        body: PostShipmentHistory;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.shipmentId] -
      * @param {number} [arg.bagId] -
      * @summary:
@@ -488,15 +497,6 @@ declare class Order {
     getShipmentHistory({ shipmentId, bagId }?: {
         shipmentId?: number;
         bagId?: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PostShipmentHistory} arg.body
-     * @summary:
-     * @description:
-     */
-    postShipmentHistory({ body }?: {
-        body: PostShipmentHistory;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -536,12 +536,6 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CreateChannelConfigData} arg.body
      * @summary:
      * @description: createChannelConfig
@@ -549,6 +543,12 @@ declare class Order {
     createChannelConfig({ body }?: {
         body: CreateChannelConfigData;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UploadConsent} arg.body
