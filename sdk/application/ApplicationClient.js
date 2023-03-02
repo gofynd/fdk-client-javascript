@@ -69,7 +69,17 @@ class ApplicationClient {
     if (error) {
       throw new FDKClientValidationError(error);
     }
-    this.config.locationDetails = locationDetails;
+    this.config.locationDetails = {
+      ...this.config.locationDetails,
+      ...locationDetails,
+    };
+  }
+
+  setCurrencyCode(currencyCode) {
+    if (typeof currencyCode !== "string") {
+      throw new FDKClientValidationError("Currency code should be string only");
+    }
+    this.config.currencyCode = currencyCode;
   }
 
   setExtraHeaders(header) {

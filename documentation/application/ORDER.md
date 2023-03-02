@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Order Methods
 Handles Platform websites OMS
+
 * [getOrders](#getorders)
 * [getOrderById](#getorderbyid)
 * [getShipmentById](#getshipmentbyid)
@@ -23,6 +25,8 @@ Handles Platform websites OMS
 
 
 ## Methods with example and description
+
+
 
 
 ### getOrders

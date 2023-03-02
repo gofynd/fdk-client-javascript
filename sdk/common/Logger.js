@@ -71,6 +71,10 @@ function setLoggerLevel(level) {
   log.setLevel(level);
 }
 
+function getLoggerLevel() {
+  return log.getLevel();
+}
+
 function getDateTime() {
   return new Date().toString();
 }
@@ -80,6 +84,8 @@ function getPackageVersion() {
 }
 
 module.exports = {
+  log,
   Logger,
   setLoggerLevel,
+  getLoggerLevel,
 };

@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
+
 * [getBuildConfig](#getbuildconfig)
 * [updateBuildConfig](#updatebuildconfig)
 * [getPreviousVersions](#getpreviousversions)
@@ -56,6 +58,8 @@ Application configuration apis
 
 
 ## Methods with example and description
+
+
 
 
 ### getBuildConfig
