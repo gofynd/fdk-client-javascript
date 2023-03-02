@@ -22,7 +22,7 @@ declare class Billing {
      */
     createSubscriptionCharge({ extensionId, body }?: {
         extensionId: string;
-        body: any;
+        body: CreateSubscriptionCharge;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -74,7 +74,7 @@ declare class Billing {
      * @description: Upsert subscription customer detail.
      */
     upsertCustomerDetail({ body }?: {
-        body: any;
+        body: SubscriptionCustomerCreate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -95,7 +95,7 @@ declare class Billing {
      * @description: It will activate subscription plan for customer
      */
     activateSubscriptionPlan({ body }?: {
-        body: any;
+        body: SubscriptionActivateReq;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -104,6 +104,6 @@ declare class Billing {
      * @description: It will cancel current active subscription.
      */
     cancelSubscriptionPlan({ body }?: {
-        body: any;
+        body: CancelSubscriptionReq;
     }): Promise<any>;
 }

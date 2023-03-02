@@ -22,7 +22,7 @@ declare class Lead {
      */
     getTicket({ id }?: {
         id: string;
-    }): Promise<any>;
+    }): Promise<Ticket>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Ticket ID for which history is created
@@ -33,8 +33,8 @@ declare class Lead {
      */
     createHistory({ id, body }?: {
         id: string;
-        body: any;
-    }): Promise<any>;
+        body: TicketHistoryPayload;
+    }): Promise<TicketHistory>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddTicketPayload} arg.body
@@ -43,8 +43,8 @@ declare class Lead {
      * @description: This is used to Create Ticket.
      */
     createTicket({ body }?: {
-        body: any;
-    }): Promise<any>;
+        body: AddTicketPayload;
+    }): Promise<Ticket>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - Slug of form whose response is getting submitted
@@ -54,7 +54,7 @@ declare class Lead {
      */
     getCustomForm({ slug }?: {
         slug: string;
-    }): Promise<any>;
+    }): Promise<CustomForm>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - Slug of form whose response is getting submitted
@@ -65,8 +65,8 @@ declare class Lead {
      */
     submitCustomForm({ slug, body }?: {
         slug: string;
-        body: any;
-    }): Promise<any>;
+        body: CustomFormSubmissionPayload;
+    }): Promise<SubmitCustomFormResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueName - Unique name of Video Room
@@ -76,7 +76,7 @@ declare class Lead {
      */
     getParticipantsInsideVideoRoom({ uniqueName }?: {
         uniqueName: string;
-    }): Promise<any>;
+    }): Promise<GetParticipantsInsideVideoRoomResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueName - Unique name of Video Room
@@ -86,5 +86,5 @@ declare class Lead {
      */
     getTokenForVideoRoom({ uniqueName }?: {
         uniqueName: string;
-    }): Promise<any>;
+    }): Promise<GetTokenForVideoRoomResponse>;
 }
