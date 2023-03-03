@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+---
+## [v0.5.4] - 2023-03-03
+### Changed
+- Fixed `syncEvents` for webhooks not working as expected in case of `subscribe_on_install` is set as `true` in config passed to `setupFdk` function.
 ---
 ## [v0.5.3] - 2023-01-02
 ### Changed
@@ -84,6 +89,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial draft of extension creation library
 ---
+[v0.5.4]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.5.4
+[v0.5.3]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.5.3
 [v0.5.2]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.5.2
 [v0.5.1]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.5.1
 [v0.5.0]: https://github.com/gofynd/fdk-extension-javascript/releases/tag/v0.5.0
