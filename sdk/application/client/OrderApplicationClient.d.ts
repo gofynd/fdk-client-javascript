@@ -21,7 +21,7 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.status] - A filter to retrieve orders by their
-     *   current status such as *placed*, *delivered*, etc.
+     *   current status such as _placed_, _delivered_, etc.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results. Default value is 1.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -42,7 +42,7 @@ declare class Order {
         fromDate?: string;
         toDate?: string;
         customMeta?: string;
-    }): Promise<any>;
+    }): Promise<OrderList>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
@@ -53,7 +53,7 @@ declare class Order {
      */
     getOrderById({ orderId }?: {
         orderId: string;
-    }): Promise<any>;
+    }): Promise<OrderById>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
@@ -64,7 +64,7 @@ declare class Order {
      */
     getPosOrderById({ orderId }?: {
         orderId: string;
-    }): Promise<any>;
+    }): Promise<OrderList>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
@@ -76,7 +76,7 @@ declare class Order {
      */
     getShipmentById({ shipmentId }?: {
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<ShipmentById>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment.
@@ -86,7 +86,7 @@ declare class Order {
      */
     getInvoiceByShipmentId({ shipmentId }?: {
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<ResponseGetInvoiceShipment>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
@@ -98,7 +98,7 @@ declare class Order {
      */
     trackShipment({ shipmentId }?: {
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<ShipmentTrack>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - ID of the shipment. An order may contain
@@ -113,7 +113,7 @@ declare class Order {
     getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
         orderId: string;
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<CustomerDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
@@ -128,7 +128,7 @@ declare class Order {
     sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
         orderId: string;
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<SendOtpToCustomerResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId - A unique number used for identifying and
@@ -144,8 +144,8 @@ declare class Order {
     verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
         orderId: string;
         shipmentId: string;
-        body: any;
-    }): Promise<any>;
+        body: VerifyOtp;
+    }): Promise<VerifyOtpResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the bag. An order may contain
@@ -160,7 +160,7 @@ declare class Order {
     getShipmentBagReasons({ shipmentId, bagId }?: {
         shipmentId: string;
         bagId: string;
-    }): Promise<any>;
+    }): Promise<ShipmentBagReasons>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
@@ -172,7 +172,7 @@ declare class Order {
      */
     getShipmentReasons({ shipmentId }?: {
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<ShipmentReasons>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
@@ -185,6 +185,6 @@ declare class Order {
      */
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;
-        body: any;
-    }): Promise<any>;
+        body: UpdateShipmentStatusRequest;
+    }): Promise<ShipmentApplicationStatusResponse>;
 }

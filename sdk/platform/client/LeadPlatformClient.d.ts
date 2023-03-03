@@ -24,7 +24,7 @@ declare class Lead {
         filters?: boolean;
         q?: string;
         status?: string;
-        priority?: any;
+        priority?: PriorityEnum;
         category?: string;
         pageNo?: number;
         pageSize?: number;
@@ -49,7 +49,7 @@ declare class Lead {
         filters?: boolean;
         q?: string;
         status?: string;
-        priority?: any;
+        priority?: PriorityEnum;
         category?: string;
         pageSize?: number;
     }): Paginator;
@@ -60,7 +60,7 @@ declare class Lead {
      * @description: Creates a company level ticket
      */
     createTicket({ body }?: {
-        body: any;
+        body: AddTicketPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -80,7 +80,7 @@ declare class Lead {
      */
     editTicket({ id, body }?: {
         id: string;
-        body: any;
+        body: EditTicketPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -91,7 +91,7 @@ declare class Lead {
      */
     createHistory({ id, body }?: {
         id: string;
-        body: any;
+        body: TicketHistoryPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -120,7 +120,7 @@ declare class Lead {
      */
     submitFeedback({ id, body }?: {
         id: string;
-        body: any;
+        body: TicketFeedbackPayload;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
