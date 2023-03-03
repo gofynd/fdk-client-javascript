@@ -52,7 +52,11 @@ class WebhookRegistry {
     }
 
     get isInitialized() {
-        return !!this._handlerMap && this._config.subscribe_on_install;
+        return !!this._handlerMap;
+    }
+
+    get isSubscribeOnInstall(){
+        return this._config.subscribe_on_install
     }
 
     _validateEventsMap(handlerConfig) {
@@ -110,13 +114,14 @@ class WebhookRegistry {
     }
 
     async syncEvents(platformClient, config = null, enableWebhooks) {
+        if (config) {
+            await this.initialize(config, this._fdkConfig);
+        }
         if (!this.isInitialized){
             throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
         }
         logger.debug('Webhook sync events started');
-        if (config) {
-            await this.initialize(config, this._fdkConfig);
-        }
+        
         let subscriberConfig = await this.getSubscriberConfig(platformClient);
 
         let registerNew = false;
