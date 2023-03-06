@@ -1,6 +1,6 @@
 {
   "name": "@gofynd/fdk-client-javascript",
-  "version": "0.1.38",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,17 +19,17 @@
   "author": "Jigar Dafda<jigar.dafda@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
-    "crypto-js": "^4.0.0",
-    "joi": "17.4.0",
+    "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
+    "joi": "^17.7.0",
     "query-string": "^6.14.1",
-    "loglevel": "^1.8.0",
-    "camelcase": "^6.2.0"
+    "loglevel": "^1.8.1",
+    "camelcase": "^6.3.0"
   },
   "devDependencies": {
-    "axios-mock-adapter": "^1.19.0",
-    "coveralls": "^3.1.0",
-    "dotenv": "^10.0.0",
+    "axios-mock-adapter": "^1.21.2",
+    "coveralls": "^3.1.1",
+    "dotenv": "^16.0.3",
     "jest": "^26.6.3"
   }
 }
