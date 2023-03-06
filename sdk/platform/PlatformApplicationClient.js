@@ -1,23 +1,35 @@
-const {
-  LeadValidator,
-  FeedbackValidator,
-  ThemeValidator,
-  UserValidator,
-  ContentValidator,
-  CommunicationValidator,
-  PaymentValidator,
-  OrderValidator,
-  CatalogValidator,
-  FileStorageValidator,
-  ShareValidator,
-  ConfigurationValidator,
-  CartValidator,
-  RewardsValidator,
-  AnalyticsValidator,
-  PartnerValidator,
-} = require("./PlatformApplicationModels");
-const PlatformAPIClient = require("./PlatformAPIClient");
-const Paginator = require("../common/Paginator");
+const Lead = require("./Lead/LeadPlatformApplicationClient");
+
+const Feedback = require("./Feedback/FeedbackPlatformApplicationClient");
+
+const Theme = require("./Theme/ThemePlatformApplicationClient");
+
+const User = require("./User/UserPlatformApplicationClient");
+
+const Content = require("./Content/ContentPlatformApplicationClient");
+
+const Communication = require("./Communication/CommunicationPlatformApplicationClient");
+
+const Payment = require("./Payment/PaymentPlatformApplicationClient");
+
+const Order = require("./Order/OrderPlatformApplicationClient");
+
+const Catalog = require("./Catalog/CatalogPlatformApplicationClient");
+
+const FileStorage = require("./FileStorage/FileStoragePlatformApplicationClient");
+
+const Share = require("./Share/SharePlatformApplicationClient");
+
+const Configuration = require("./Configuration/ConfigurationPlatformApplicationClient");
+
+const Cart = require("./Cart/CartPlatformApplicationClient");
+
+const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
+
+const Analytics = require("./Analytics/AnalyticsPlatformApplicationClient");
+
+const Partner = require("./Partner/PartnerPlatformApplicationClient");
+
 const { FDKClientValidationError } = require("../common/FDKError");
 
 class PlatformApplicationClient {
@@ -27,20 +39,35 @@ class PlatformApplicationClient {
     this.applicationId = applicationId;
 
     this.lead = new Lead(config, applicationId);
+
     this.feedback = new Feedback(config, applicationId);
+
     this.theme = new Theme(config, applicationId);
+
     this.user = new User(config, applicationId);
+
     this.content = new Content(config, applicationId);
+
     this.communication = new Communication(config, applicationId);
+
     this.payment = new Payment(config, applicationId);
+
     this.order = new Order(config, applicationId);
+
     this.catalog = new Catalog(config, applicationId);
+
     this.fileStorage = new FileStorage(config, applicationId);
+
     this.share = new Share(config, applicationId);
+
     this.configuration = new Configuration(config, applicationId);
+
     this.cart = new Cart(config, applicationId);
+
     this.rewards = new Rewards(config, applicationId);
+
     this.analytics = new Analytics(config, applicationId);
+
     this.partner = new Partner(config, applicationId);
   }
 
@@ -152,6 +179,17 @@ class PlatformApplicationClient {
 /**
  * @typedef BadRequest
  * @property {string} [message]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -323,6 +361,37 @@ class PlatformApplicationClient {
  * @property {UserSchema} [user]
  * @property {string} [identity]
  * @property {string} [status]
+ */
+
+/**
+ * @typedef UserSchema
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [first_name]
+ * @property {Object} [meta]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ * @property {Email[]} [emails]
+ * @property {string} [gender]
+ * @property {string} [dob]
+ * @property {boolean} [active]
+ * @property {string} [profile_pic_url]
+ * @property {string} [username]
+ * @property {string} [account_type]
+ * @property {Debug} [debug]
+ * @property {boolean} [has_old_password_hash]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ */
+
+/**
+ * @typedef PhoneNumber
+ * @property {boolean} [active]
+ * @property {boolean} [primary]
+ * @property {boolean} [verified]
+ * @property {string} [phone]
+ * @property {number} [country_code]
  */
 
 /**
@@ -729,6 +798,17 @@ class PlatformApplicationClient {
  * @typedef NumberGetResponse
  * @property {Object[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -1603,6 +1683,15 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef PaginationSchema
+ * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {boolean} [has_next]
+ * @property {string} [type]
+ * @property {number} [current]
+ */
+
+/**
  * @typedef SessionListResponseSchema
  * @property {string[]} [items]
  */
@@ -1916,6 +2005,20 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Email
+ * @property {boolean} [primary]
+ * @property {boolean} [verified]
+ * @property {string} [email]
+ * @property {boolean} [active]
+ */
+
+/**
+ * @typedef Debug
+ * @property {string} [source]
+ * @property {string} [platform]
+ */
+
+/**
  * @typedef ApplicationLegal
  * @property {string} [application]
  * @property {string} [tnc]
@@ -2092,6 +2195,12 @@ class PlatformApplicationClient {
 /**
  * @typedef SEOImage
  * @property {string} [url]
+ */
+
+/**
+ * @typedef DateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
  */
 
 /**
@@ -2421,6 +2530,17 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef LandingPageGetResponse
  * @property {LandingPageSchema[]} [items]
  * @property {Page} [page]
@@ -2718,12 +2838,28 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef UnauthenticatedUser
  * @property {string} [message]
  */
 
 /**
  * @typedef UnauthenticatedApplication
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef BadRequest
  * @property {string} [message]
  */
 
@@ -3421,6 +3557,11 @@ class PlatformApplicationClient {
 /**
  * @typedef BadRequestSchema
  * @property {string} [status]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef NotFound
  * @property {string} [message]
  */
 
@@ -4154,35 +4295,46 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef PaymentGatewayConfigResponse
- * @property {boolean} created
- * @property {string[]} excluded_fields
- * @property {boolean} success
- * @property {Object[]} [aggregators]
- * @property {string[]} display_fields
  * @property {string} app_id
+ * @property {boolean} created
+ * @property {boolean} success
+ * @property {string[]} display_fields
+ * @property {string[]} excluded_fields
+ * @property {Object[]} [aggregators]
  */
 
 /**
  * @typedef ErrorCodeDescription
  * @property {string} description
- * @property {boolean} success
  * @property {string} code
+ * @property {boolean} success
  */
 
 /**
  * @typedef PaymentGatewayConfig
- * @property {boolean} [is_active]
+ * @property {string} merchant_salt
  * @property {string} key
  * @property {string} secret
+ * @property {boolean} [is_active]
  * @property {string} config_type
- * @property {string} merchant_salt
  */
 
 /**
  * @typedef PaymentGatewayConfigRequest
- * @property {string} app_id
  * @property {PaymentGatewayConfig} [aggregator_name]
+ * @property {string} app_id
  * @property {boolean} [is_active]
  */
 
@@ -4194,8 +4346,8 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ErrorCodeAndDescription
- * @property {string} description
  * @property {string} code
+ * @property {string} description
  */
 
 /**
@@ -4205,73 +4357,73 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef PaymentModeLogo
- * @property {string} small
- * @property {string} large
- */
-
-/**
- * @typedef IntentApp
- * @property {string} [package_name]
- * @property {PaymentModeLogo} [logos]
- * @property {string} [display_name]
- * @property {string} [code]
- */
-
-/**
  * @typedef IntentAppErrorList
  * @property {string} [code]
  * @property {string} [package_name]
  */
 
 /**
- * @typedef PaymentModeList
- * @property {string} [card_reference]
- * @property {string} [fynd_vpa]
- * @property {string} [name]
- * @property {number} [cod_limit]
- * @property {string} [card_id]
- * @property {boolean} [compliant_with_tokenisation_guidelines]
- * @property {string} [card_name]
- * @property {IntentApp[]} [intent_app]
+ * @typedef PaymentModeLogo
+ * @property {string} large
+ * @property {string} small
+ */
+
+/**
+ * @typedef IntentApp
+ * @property {PaymentModeLogo} [logos]
  * @property {string} [display_name]
- * @property {string} [nickname]
- * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
- * @property {number} [timeout]
- * @property {string} [card_number]
- * @property {string} [card_fingerprint]
- * @property {string} [card_token]
- * @property {number} [cod_limit_per_order]
- * @property {string} [merchant_code]
- * @property {string} [card_brand]
- * @property {string} [card_type]
  * @property {string} [code]
- * @property {string} [card_issuer]
- * @property {string[]} [intent_app_error_list]
- * @property {number} [retry_count]
- * @property {boolean} [intent_flow]
- * @property {string} aggregator_name
- * @property {number} [display_priority]
- * @property {PaymentModeLogo} [logo_url]
- * @property {number} [exp_month]
- * @property {string} [card_isin]
- * @property {string} [card_brand_image]
- * @property {boolean} [expired]
+ * @property {string} [package_name]
+ */
+
+/**
+ * @typedef PaymentModeList
  * @property {number} [remaining_limit]
  * @property {number} [exp_year]
+ * @property {string} [merchant_code]
+ * @property {string} [nickname]
+ * @property {string} [card_isin]
+ * @property {string} [card_type]
+ * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
+ * @property {string} [card_number]
+ * @property {string} [card_brand]
+ * @property {string} [card_issuer]
+ * @property {IntentApp[]} [intent_app]
+ * @property {string} [card_reference]
+ * @property {number} [retry_count]
+ * @property {number} [cod_limit_per_order]
+ * @property {number} [timeout]
+ * @property {string} aggregator_name
+ * @property {string} [card_brand_image]
+ * @property {string} [card_fingerprint]
+ * @property {boolean} [expired]
+ * @property {number} [cod_limit]
+ * @property {number} [display_priority]
+ * @property {string} [card_name]
+ * @property {string} [name]
+ * @property {number} [exp_month]
+ * @property {string} [card_id]
+ * @property {boolean} [compliant_with_tokenisation_guidelines]
+ * @property {string} [code]
+ * @property {boolean} [intent_flow]
+ * @property {string} [card_token]
+ * @property {PaymentModeLogo} [logo_url]
+ * @property {string} [display_name]
+ * @property {string} [fynd_vpa]
+ * @property {string[]} [intent_app_error_list]
  */
 
 /**
  * @typedef RootPaymentMode
- * @property {PaymentModeList[]} [list]
- * @property {string} [aggregator_name]
- * @property {string} name
- * @property {boolean} [anonymous_enable]
- * @property {number} display_priority
- * @property {boolean} [add_card_enabled]
- * @property {boolean} [is_pay_by_card_pl]
  * @property {string} display_name
+ * @property {boolean} [is_pay_by_card_pl]
+ * @property {PaymentModeList[]} [list]
+ * @property {number} display_priority
+ * @property {string} name
  * @property {boolean} [save_card]
+ * @property {boolean} [add_card_enabled]
+ * @property {string} [aggregator_name]
+ * @property {boolean} [anonymous_enable]
  */
 
 /**
@@ -4281,77 +4433,77 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PaymentOptionsResponse
- * @property {boolean} success
  * @property {PaymentOptions} payment_options
+ * @property {boolean} success
  */
 
 /**
  * @typedef Payout
+ * @property {Object} unique_transfer_no
  * @property {Object} more_attributes
- * @property {boolean} is_active
- * @property {string} transfer_type
+ * @property {Object} customers
  * @property {boolean} is_default
  * @property {Object[]} payouts_aggregators
- * @property {Object} customers
- * @property {Object} unique_transfer_no
+ * @property {boolean} is_active
+ * @property {string} transfer_type
  */
 
 /**
  * @typedef PayoutsResponse
- * @property {boolean} success
  * @property {Payout[]} items
+ * @property {boolean} success
  */
 
 /**
  * @typedef PayoutBankDetails
- * @property {string} [state]
- * @property {string} [bank_name]
  * @property {number} [pincode]
- * @property {string} [branch_name]
  * @property {string} [account_holder]
- * @property {string} account_type
- * @property {string} [country]
  * @property {string} [account_no]
+ * @property {string} [bank_name]
+ * @property {string} account_type
  * @property {string} ifsc_code
  * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [branch_name]
  */
 
 /**
  * @typedef PayoutRequest
- * @property {PayoutBankDetails} bank_details
  * @property {string} aggregator
- * @property {boolean} is_active
+ * @property {PayoutBankDetails} bank_details
  * @property {Object} users
- * @property {string} transfer_type
  * @property {string} unique_external_id
+ * @property {boolean} is_active
+ * @property {string} transfer_type
  */
 
 /**
  * @typedef PayoutResponse
- * @property {Object} bank_details
  * @property {string} aggregator
- * @property {boolean} created
  * @property {boolean} success
- * @property {boolean} is_active
+ * @property {boolean} created
+ * @property {Object} bank_details
  * @property {Object} users
- * @property {string} transfer_type
- * @property {Object} payouts
- * @property {string} payment_status
  * @property {string} unique_transfer_no
+ * @property {string} payment_status
+ * @property {Object} payouts
+ * @property {boolean} is_active
+ * @property {string} transfer_type
  */
 
 /**
  * @typedef UpdatePayoutResponse
  * @property {boolean} is_default
- * @property {boolean} is_active
  * @property {boolean} success
+ * @property {boolean} is_active
  */
 
 /**
  * @typedef UpdatePayoutRequest
  * @property {boolean} is_default
- * @property {boolean} is_active
  * @property {string} unique_external_id
+ * @property {boolean} is_active
  */
 
 /**
@@ -4372,8 +4524,8 @@ class PlatformApplicationClient {
 
 /**
  * @typedef SubscriptionConfigResponse
- * @property {string} aggregator
  * @property {Object} config
+ * @property {string} aggregator
  * @property {boolean} success
  */
 
@@ -4391,31 +4543,31 @@ class PlatformApplicationClient {
 /**
  * @typedef RefundAccountResponse
  * @property {Object} [data]
+ * @property {boolean} success
  * @property {boolean} [is_verified_flag]
  * @property {string} message
- * @property {boolean} success
  */
 
 /**
  * @typedef NotFoundResourceError
  * @property {string} description
- * @property {boolean} success
  * @property {string} code
+ * @property {boolean} success
  */
 
 /**
  * @typedef BankDetailsForOTP
- * @property {string} bank_name
- * @property {string} branch_name
  * @property {string} account_holder
+ * @property {string} bank_name
  * @property {string} account_no
  * @property {string} ifsc_code
+ * @property {string} branch_name
  */
 
 /**
  * @typedef AddBeneficiaryDetailsOTPRequest
- * @property {BankDetailsForOTP} details
  * @property {string} order_id
+ * @property {BankDetailsForOTP} details
  */
 
 /**
@@ -4427,25 +4579,25 @@ class PlatformApplicationClient {
 
 /**
  * @typedef OrderBeneficiaryDetails
+ * @property {string} subtitle
+ * @property {string} bank_name
+ * @property {string} title
+ * @property {string} transfer_mode
+ * @property {boolean} is_active
  * @property {string} account_holder
+ * @property {string} ifsc_code
  * @property {string} [comment]
  * @property {string} [delights_user_name]
- * @property {string} subtitle
- * @property {string} account_no
- * @property {string} beneficiary_id
- * @property {string} display_name
- * @property {string} bank_name
- * @property {string} email
- * @property {boolean} is_active
- * @property {string} address
- * @property {string} ifsc_code
  * @property {number} id
- * @property {string} created_on
- * @property {string} [branch_name]
- * @property {string} transfer_mode
- * @property {string} title
- * @property {string} modified_on
+ * @property {string} email
  * @property {string} [mobile]
+ * @property {string} beneficiary_id
+ * @property {string} modified_on
+ * @property {string} [branch_name]
+ * @property {string} display_name
+ * @property {string} account_no
+ * @property {string} address
+ * @property {string} created_on
  */
 
 /**
@@ -4456,19 +4608,19 @@ class PlatformApplicationClient {
 
 /**
  * @typedef MultiTenderPaymentMeta
- * @property {string} [payment_gateway]
- * @property {string} [payment_id]
  * @property {Object} [extra_meta]
+ * @property {string} [payment_id]
  * @property {string} [order_id]
  * @property {string} [current_status]
+ * @property {string} [payment_gateway]
  */
 
 /**
  * @typedef MultiTenderPaymentMethod
- * @property {MultiTenderPaymentMeta} [meta]
- * @property {string} [name]
- * @property {string} mode
  * @property {number} amount
+ * @property {MultiTenderPaymentMeta} [meta]
+ * @property {string} mode
+ * @property {string} [name]
  */
 
 /**
@@ -4480,46 +4632,46 @@ class PlatformApplicationClient {
 /**
  * @typedef PaymentConfirmationResponse
  * @property {string} order_id
- * @property {string} message
  * @property {boolean} success
+ * @property {string} message
  */
 
 /**
  * @typedef PlatformPaymentOptions
- * @property {string} mode_of_payment
  * @property {number} [cod_charges]
- * @property {Object} [callback_url]
- * @property {Object} methods
  * @property {boolean} [anonymous_cod]
- * @property {Object} [payment_selection_lock]
- * @property {boolean} enabled
- * @property {number} [cod_amount_limit]
  * @property {string} source
+ * @property {number} [cod_amount_limit]
+ * @property {string} mode_of_payment
+ * @property {Object} [callback_url]
+ * @property {boolean} enabled
+ * @property {Object} methods
+ * @property {Object} [payment_selection_lock]
  */
 
 /**
  * @typedef PlatfromPaymentConfig
  * @property {PlatformPaymentOptions} data
- * @property {string} message
  * @property {boolean} success
+ * @property {string} message
  */
 
 /**
  * @typedef UpdatePlatformPaymentConfig
  * @property {number} [cod_charges]
- * @property {Object} methods
  * @property {boolean} [anonymous_cod]
- * @property {Object} [payment_selection_lock]
  * @property {number} [cod_amount_limit]
+ * @property {Object} methods
+ * @property {Object} [payment_selection_lock]
  */
 
 /**
  * @typedef CODdata
  * @property {string} user_id
- * @property {boolean} is_active
  * @property {number} usages
- * @property {number} limit
  * @property {number} remaining_limit
+ * @property {number} limit
+ * @property {boolean} is_active
  */
 
 /**
@@ -4530,21 +4682,21 @@ class PlatformApplicationClient {
 
 /**
  * @typedef SetCODForUserRequest
- * @property {string} merchant_user_id
- * @property {boolean} is_active
  * @property {string} mobileno
+ * @property {boolean} is_active
+ * @property {string} merchant_user_id
  */
 
 /**
  * @typedef SetCODOptionResponse
- * @property {string} message
  * @property {boolean} success
+ * @property {string} message
  */
 
 /**
  * @typedef EdcModelData
- * @property {string} aggregator
  * @property {string[]} models
+ * @property {string} aggregator
  * @property {number} aggregator_id
  */
 
@@ -4556,8 +4708,8 @@ class PlatformApplicationClient {
 
 /**
  * @typedef StatisticsData
- * @property {number} inactive_device_count
  * @property {number} active_device_count
+ * @property {number} inactive_device_count
  */
 
 /**
@@ -4568,27 +4720,27 @@ class PlatformApplicationClient {
 
 /**
  * @typedef EdcAddRequest
+ * @property {string} terminal_serial_no
  * @property {string} [device_tag]
  * @property {number} store_id
- * @property {string} terminal_serial_no
- * @property {string} edc_device_serial_no
- * @property {string} edc_model
  * @property {number} aggregator_id
+ * @property {string} edc_model
+ * @property {string} edc_device_serial_no
  */
 
 /**
  * @typedef EdcDevice
- * @property {string} [aggregator_name]
- * @property {string} device_tag
- * @property {number} store_id
- * @property {boolean} is_active
  * @property {string} terminal_serial_no
- * @property {string} edc_device_serial_no
- * @property {string} terminal_unique_identifier
- * @property {string} [edc_model]
- * @property {string} [merchant_store_pos_code]
- * @property {number} aggregator_id
  * @property {string} application_id
+ * @property {string} device_tag
+ * @property {boolean} is_active
+ * @property {string} terminal_unique_identifier
+ * @property {number} store_id
+ * @property {number} aggregator_id
+ * @property {string} [aggregator_name]
+ * @property {string} [merchant_store_pos_code]
+ * @property {string} [edc_model]
+ * @property {string} edc_device_serial_no
  */
 
 /**
@@ -4606,12 +4758,12 @@ class PlatformApplicationClient {
 /**
  * @typedef EdcUpdateRequest
  * @property {string} [device_tag]
+ * @property {number} [aggregator_id]
  * @property {number} [store_id]
  * @property {string} [is_active]
- * @property {string} [edc_device_serial_no]
- * @property {string} [edc_model]
  * @property {string} [merchant_store_pos_code]
- * @property {number} [aggregator_id]
+ * @property {string} [edc_model]
+ * @property {string} [edc_device_serial_no]
  */
 
 /**
@@ -4620,80 +4772,91 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef EdcDeviceListResponse
+ * @property {EdcDevice[]} items
  * @property {Page} page
  * @property {boolean} success
- * @property {EdcDevice[]} items
  */
 
 /**
  * @typedef PaymentInitializationRequest
- * @property {string} aggregator
- * @property {string} contact
- * @property {string} email
- * @property {string} [device_id]
- * @property {number} [timeout]
- * @property {string} [vpa]
+ * @property {string} customer_id
  * @property {string} [razorpay_payment_id]
+ * @property {string} aggregator
+ * @property {string} [vpa]
+ * @property {string} method
  * @property {number} amount
  * @property {string} currency
- * @property {string} customer_id
  * @property {string} order_id
+ * @property {string} email
+ * @property {number} [timeout]
+ * @property {string} contact
  * @property {string} merchant_order_id
- * @property {string} method
+ * @property {string} [device_id]
  */
 
 /**
  * @typedef PaymentInitializationResponse
+ * @property {string} [customer_id]
  * @property {string} aggregator
- * @property {string} [bqr_image]
- * @property {string} [status]
- * @property {string} [upi_poll_url]
- * @property {boolean} success
+ * @property {string} [razorpay_payment_id]
  * @property {string} [vpa]
+ * @property {boolean} success
+ * @property {string} method
  * @property {string} [virtual_id]
+ * @property {number} [amount]
+ * @property {string} [currency]
+ * @property {string} [bqr_image]
+ * @property {string} [aggregator_order_id]
  * @property {number} [timeout]
  * @property {string} [device_id]
- * @property {string} [razorpay_payment_id]
- * @property {string} polling_url
- * @property {number} [amount]
- * @property {string} [aggregator_order_id]
- * @property {string} [currency]
- * @property {string} [customer_id]
  * @property {string} merchant_order_id
- * @property {string} method
+ * @property {string} polling_url
+ * @property {string} [status]
+ * @property {string} [upi_poll_url]
  */
 
 /**
  * @typedef PaymentStatusUpdateRequest
+ * @property {string} customer_id
  * @property {string} aggregator
- * @property {string} contact
- * @property {string} status
- * @property {string} email
- * @property {string} [device_id]
  * @property {string} [vpa]
+ * @property {string} method
  * @property {number} amount
  * @property {string} currency
- * @property {string} customer_id
  * @property {string} order_id
+ * @property {string} email
+ * @property {string} contact
  * @property {string} merchant_order_id
- * @property {string} method
+ * @property {string} [device_id]
+ * @property {string} status
  */
 
 /**
  * @typedef PaymentStatusUpdateResponse
- * @property {string} status
- * @property {string} aggregator_name
  * @property {boolean} [success]
  * @property {boolean} retry
  * @property {string} [redirect_url]
+ * @property {string} aggregator_name
+ * @property {string} status
  */
 
 /**
  * @typedef ResendOrCancelPaymentRequest
  * @property {string} order_id
- * @property {string} request_type
  * @property {string} [device_id]
+ * @property {string} request_type
  */
 
 /**
@@ -4711,22 +4874,25 @@ class PlatformApplicationClient {
 /**
  * @typedef FilterInfoOption
  * @property {string} [name]
- * @property {string} text
  * @property {string} [value]
+ * @property {string} text
  */
 
 /**
  * @typedef FiltersInfo
+ * @property {string} value
  * @property {FilterInfoOption[]} [options]
  * @property {string} text
  * @property {string} type
- * @property {string} value
  */
 
 /**
- * @typedef PaymentModeInfo
- * @property {string} logo
- * @property {string} type
+ * @typedef ShipmentStatus
+ * @property {string} title
+ * @property {string} hex_code
+ * @property {string} status
+ * @property {string} actual_status
+ * @property {string} ops_status
  */
 
 /**
@@ -4736,121 +4902,328 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef Prices
- * @property {number} [delivery_charge]
- * @property {number} [fynd_credits]
- * @property {number} [refund_credit]
- * @property {number} [price_effective]
- * @property {number} [cashback]
- * @property {number} [promotion_effective_discount]
- * @property {number} [amount_paid_roundoff]
- * @property {number} [coupon_value]
- * @property {number} [cod_charges]
- * @property {number} [value_of_good]
- * @property {number} [cashback_applied]
- * @property {number} [discount]
- * @property {number} [tax_collected_at_source]
- * @property {number} [amount_paid]
- * @property {number} [price_marked]
- * @property {number} [refund_amount]
- */
-
-/**
  * @typedef GSTDetailsData
- * @property {string} gstin_code
- * @property {number} brand_calculated_amount
  * @property {number} value_of_good
+ * @property {number} brand_calculated_amount
+ * @property {string} gstin_code
  * @property {number} gst_fee
  * @property {number} tax_collected_at_source
  */
 
 /**
  * @typedef PlatformItem
- * @property {string} [color]
- * @property {string} [name]
- * @property {string[]} [image]
- * @property {boolean} [can_return]
- * @property {number} [department_id]
+ * @property {string[]} [images]
+ * @property {string} [l3_category_name]
+ * @property {string} [code]
  * @property {boolean} [can_cancel]
  * @property {number} [l3_category]
- * @property {string[]} [l1_category]
- * @property {string} [code]
- * @property {string[]} [images]
+ * @property {string[]} [image]
  * @property {number} [id]
- * @property {string} [l3_category_name]
+ * @property {string[]} [l1_category]
+ * @property {number} [department_id]
  * @property {string} [size]
+ * @property {boolean} [can_return]
+ * @property {string} [color]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef Prices
+ * @property {number} [value_of_good]
+ * @property {number} [price_marked]
+ * @property {number} [price_effective]
+ * @property {number} [discount]
+ * @property {number} [refund_amount]
+ * @property {number} [amount_paid_roundoff]
+ * @property {number} [amount_paid]
+ * @property {number} [cashback_applied]
+ * @property {number} [refund_credit]
+ * @property {number} [delivery_charge]
+ * @property {number} [tax_collected_at_source]
+ * @property {number} [cashback]
+ * @property {number} [coupon_value]
+ * @property {number} [cod_charges]
+ * @property {number} [promotion_effective_discount]
+ * @property {number} [fynd_credits]
  */
 
 /**
  * @typedef BagUnit
  * @property {string} shipment_id
- * @property {string} ordering_channel
- * @property {number} bag_id
- * @property {number} total_shipment_bags
  * @property {GSTDetailsData} [gst]
+ * @property {number} total_shipment_bags
+ * @property {string} ordering_channel
+ * @property {boolean} [can_cancel]
+ * @property {PlatformItem} [item]
+ * @property {Object} status
+ * @property {number} item_quantity
  * @property {boolean} [can_return]
  * @property {Prices} [prices]
- * @property {Object} status
- * @property {boolean} [can_cancel]
- * @property {number} item_quantity
- * @property {PlatformItem} [item]
- */
-
-/**
- * @typedef ShipmentStatus
- * @property {string} title
- * @property {string} hex_code
- * @property {string} actual_status
- * @property {string} status
- * @property {string} ops_status
+ * @property {number} bag_id
  */
 
 /**
  * @typedef UserDataInfo
- * @property {string} [first_name]
- * @property {boolean} [is_anonymous_user]
+ * @property {string} [avis_user_id]
  * @property {string} [last_name]
- * @property {string} [name]
+ * @property {boolean} [is_anonymous_user]
+ * @property {string} [first_name]
+ * @property {string} [gender]
  * @property {number} [uid]
  * @property {string} [mobile]
- * @property {string} [avis_user_id]
  * @property {string} [email]
- * @property {string} [gender]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef PaymentModeInfo
+ * @property {string} logo
+ * @property {string} type
  */
 
 /**
  * @typedef ShipmentItem
- * @property {Object} [sla]
- * @property {PaymentModeInfo} [payment_mode_info]
+ * @property {ShipmentStatus} [shipment_status]
  * @property {number} total_bags_count
  * @property {Object} [payment_methods]
- * @property {string} created_at
  * @property {Object} [application]
- * @property {ShipmentItemFulFillingStore} [fulfilling_store]
- * @property {number} total_shipments_in_order
- * @property {Prices} [prices]
- * @property {BagUnit[]} [bags]
- * @property {Object} [channel]
- * @property {ShipmentStatus} [shipment_status]
- * @property {Object} [company]
- * @property {number} shipment_created_at
- * @property {string} id
- * @property {UserDataInfo} [user]
+ * @property {string} created_at
  * @property {string} fulfilling_centre
+ * @property {Object} [sla]
+ * @property {ShipmentItemFulFillingStore} [fulfilling_store]
+ * @property {string} id
+ * @property {BagUnit[]} [bags]
+ * @property {UserDataInfo} [user]
+ * @property {Prices} [prices]
+ * @property {Object} [channel]
+ * @property {number} shipment_created_at
+ * @property {Object} [company]
+ * @property {PaymentModeInfo} [payment_mode_info]
+ * @property {number} total_shipments_in_order
  */
 
 /**
  * @typedef ShipmentInternalPlatformViewResponse
- * @property {FiltersInfo[]} [filters]
  * @property {Object} [page]
- * @property {ShipmentItem[]} [items]
  * @property {Object} [applied_filters]
+ * @property {FiltersInfo[]} [filters]
+ * @property {ShipmentItem[]} [items]
  */
 
 /**
  * @typedef Error
- * @property {boolean} [success]
  * @property {string} [message]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef UserDetailsData
+ * @property {string} city
+ * @property {string} phone
+ * @property {string} address
+ * @property {string} country
+ * @property {string} state
+ * @property {string} [email]
+ * @property {string} pincode
+ * @property {string} name
+ */
+
+/**
+ * @typedef DPDetailsData
+ * @property {string} [awb_no]
+ * @property {number} [id]
+ * @property {string} [track_url]
+ * @property {string} [country]
+ * @property {string} [eway_bill_id]
+ * @property {string} [pincode]
+ * @property {string} [gst_tag]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef OrderingStoreDetails
+ * @property {Object} meta
+ * @property {string} store_name
+ * @property {string} code
+ * @property {string} city
+ * @property {string} phone
+ * @property {string} contact_person
+ * @property {number} id
+ * @property {string} address
+ * @property {string} country
+ * @property {string} state
+ * @property {string} pincode
+ */
+
+/**
+ * @typedef BagStateMapper
+ * @property {string} [app_display_name]
+ * @property {boolean} [notify_customer]
+ * @property {number} bs_id
+ * @property {string} state_type
+ * @property {string} display_name
+ * @property {boolean} [is_active]
+ * @property {boolean} [app_facing]
+ * @property {string} journey_type
+ * @property {string} [app_state_name]
+ * @property {string} name
+ */
+
+/**
+ * @typedef BagStatusHistory
+ * @property {string} [app_display_name]
+ * @property {string} [updated_at]
+ * @property {number} [delivery_partner_id]
+ * @property {string} [shipment_id]
+ * @property {string} [created_at]
+ * @property {string} [state_type]
+ * @property {boolean} [forward]
+ * @property {number} [bsh_id]
+ * @property {boolean} [kafka_sync]
+ * @property {string} [display_name]
+ * @property {number} [store_id]
+ * @property {string} status
+ * @property {string} [delivery_awb_number]
+ * @property {Object[]} [reasons]
+ * @property {BagStateMapper} [bag_state_mapper]
+ * @property {number} [state_id]
+ * @property {number} [bag_id]
+ */
+
+/**
+ * @typedef OrderDetailsData
+ * @property {string} [order_date]
+ * @property {string} [ordering_channel]
+ * @property {string} [order_value]
+ * @property {string} fynd_order_id
+ * @property {string} [source]
+ * @property {Object} [tax_details]
+ * @property {Object} [ordering_channel_logo]
+ * @property {string} [cod_charges]
+ * @property {string} [affiliate_id]
+ */
+
+/**
+ * @typedef ShipmentStatusData
+ * @property {string} [shipment_id]
+ * @property {string} [created_at]
+ * @property {string[]} [bag_list]
+ * @property {number} [id]
+ * @property {string} [status]
+ */
+
+/**
+ * @typedef ShipmentPayments
+ * @property {string} [logo]
+ * @property {string} [source]
+ * @property {string} [mode]
+ */
+
+/**
+ * @typedef OrderBrandName
+ * @property {string} created_on
+ * @property {string} logo
+ * @property {string} [modified_on]
+ * @property {number} id
+ * @property {string} brand_name
+ * @property {string} company
+ */
+
+/**
+ * @typedef PlatformDeliveryAddress
+ * @property {string} [updated_at]
+ * @property {number} [longitude]
+ * @property {string} [created_at]
+ * @property {string} [address2]
+ * @property {string} [city]
+ * @property {string} [address_category]
+ * @property {string} [area]
+ * @property {string} [address1]
+ * @property {number} [latitude]
+ * @property {string} [phone]
+ * @property {string} [address_type]
+ * @property {string} [contact_person]
+ * @property {string} [landmark]
+ * @property {string} [version]
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [email]
+ * @property {string} [pincode]
+ */
+
+/**
+ * @typedef BagGST
+ * @property {number} [value_of_good]
+ * @property {number} [brand_calculated_amount]
+ * @property {boolean} [is_default_hsn_code]
+ * @property {number} [gst_tax_percentage]
+ * @property {string} [gstin_code]
+ * @property {string} [hsn_code]
+ * @property {number} [gst_fee]
+ * @property {string} [gst_tag]
+ */
+
+/**
+ * @typedef Identifier
+ * @property {string} [ean]
+ */
+
+/**
+ * @typedef FinancialBreakup
+ * @property {number} value_of_good
+ * @property {number} brand_calculated_amount
+ * @property {number} refund_credit
+ * @property {number} delivery_charge
+ * @property {number} transfer_price
+ * @property {number} cod_charges
+ * @property {string} gst_tag
+ * @property {number} fynd_credits
+ * @property {boolean} added_to_fynd_cash
+ * @property {number} discount
+ * @property {number} gst_tax_percentage
+ * @property {number} amount_paid
+ * @property {number} cashback_applied
+ * @property {string} hsn_code
+ * @property {number} [tax_collected_at_source]
+ * @property {string} item_name
+ * @property {number} [amount_paid_roundoff]
+ * @property {number} gst_fee
+ * @property {Identifier} identifiers
+ * @property {string} size
+ * @property {number} coupon_value
+ * @property {number} cashback
+ * @property {number} total_units
+ * @property {number} price_effective
+ * @property {number} price_marked
+ * @property {number} coupon_effective_discount
+ * @property {number} promotion_effective_discount
+ */
+
+/**
+ * @typedef BagConfigs
+ * @property {boolean} is_returnable
+ * @property {boolean} allow_force_return
+ * @property {boolean} is_active
+ * @property {boolean} can_be_cancelled
+ * @property {boolean} is_customer_return_allowed
+ * @property {boolean} enable_tracking
+ */
+
+/**
+ * @typedef CurrentStatus
+ * @property {number} [delivery_partner_id]
+ * @property {string} [shipment_id]
+ * @property {string} [created_at]
+ * @property {number} [updated_at]
+ * @property {number} current_status_id
+ * @property {string} [state_type]
+ * @property {boolean} [kafka_sync]
+ * @property {number} [store_id]
+ * @property {string} [status]
+ * @property {string} [delivery_awb_number]
+ * @property {BagStateMapper} [bag_state_mapper]
+ * @property {number} [state_id]
+ * @property {number} [bag_id]
  */
 
 /**
@@ -4860,57 +5233,26 @@ class PlatformApplicationClient {
 
 /**
  * @typedef BuyRules
- * @property {ItemCriterias} [item_criteria]
  * @property {Object} [cart_conditions]
+ * @property {ItemCriterias} [item_criteria]
  */
 
 /**
  * @typedef DiscountRules
- * @property {string} [type]
  * @property {number} [value]
+ * @property {string} [type]
  */
 
 /**
  * @typedef AppliedPromos
  * @property {BuyRules[]} [buy_rules]
- * @property {number} [article_quantity]
- * @property {number} [amount]
  * @property {boolean} [mrp_promotion]
- * @property {string} [promo_id]
- * @property {string} [promotion_name]
- * @property {string} [promotion_type]
  * @property {DiscountRules[]} [discount_rules]
- */
-
-/**
- * @typedef BagStateMapper
- * @property {boolean} [is_active]
- * @property {string} journey_type
- * @property {string} name
- * @property {boolean} [notify_customer]
- * @property {string} state_type
- * @property {string} [app_display_name]
- * @property {number} bs_id
- * @property {string} [app_state_name]
- * @property {string} display_name
- * @property {boolean} [app_facing]
- */
-
-/**
- * @typedef CurrentStatus
- * @property {number} [state_id]
- * @property {number} [updated_at]
- * @property {string} [delivery_awb_number]
- * @property {number} current_status_id
- * @property {string} [created_at]
- * @property {number} [bag_id]
- * @property {string} [shipment_id]
- * @property {number} [delivery_partner_id]
- * @property {string} [state_type]
- * @property {string} [status]
- * @property {BagStateMapper} [bag_state_mapper]
- * @property {number} [store_id]
- * @property {boolean} [kafka_sync]
+ * @property {number} [amount]
+ * @property {string} [promotion_type]
+ * @property {number} [article_quantity]
+ * @property {string} [promotion_name]
+ * @property {string} [promo_id]
  */
 
 /**
@@ -4921,303 +5263,124 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef PlatformDeliveryAddress
- * @property {string} [pincode]
- * @property {string} [updated_at]
- * @property {string} [phone]
- * @property {string} [contact_person]
- * @property {string} [created_at]
- * @property {string} [address_type]
- * @property {string} [city]
- * @property {string} [address2]
- * @property {string} [landmark]
- * @property {string} [address1]
- * @property {string} [address_category]
- * @property {string} [version]
- * @property {number} [longitude]
- * @property {string} [email]
- * @property {string} [country]
- * @property {string} [area]
- * @property {number} [latitude]
- * @property {string} [state]
- */
-
-/**
- * @typedef Identifier
- * @property {string} [ean]
- */
-
-/**
- * @typedef FinancialBreakup
- * @property {number} gst_tax_percentage
- * @property {Identifier} identifiers
- * @property {number} cashback
- * @property {number} coupon_value
- * @property {number} cashback_applied
- * @property {number} promotion_effective_discount
- * @property {number} amount_paid
- * @property {number} price_marked
- * @property {string} item_name
- * @property {number} brand_calculated_amount
- * @property {number} price_effective
- * @property {number} cod_charges
- * @property {number} transfer_price
- * @property {boolean} added_to_fynd_cash
- * @property {number} gst_fee
- * @property {string} gst_tag
- * @property {number} discount
- * @property {number} [tax_collected_at_source]
- * @property {number} delivery_charge
- * @property {string} size
- * @property {number} total_units
- * @property {number} fynd_credits
- * @property {number} refund_credit
- * @property {number} coupon_effective_discount
- * @property {number} value_of_good
- * @property {string} hsn_code
- * @property {number} [amount_paid_roundoff]
- */
-
-/**
- * @typedef BagConfigs
- * @property {boolean} is_active
- * @property {boolean} is_customer_return_allowed
- * @property {boolean} enable_tracking
- * @property {boolean} is_returnable
- * @property {boolean} allow_force_return
- * @property {boolean} can_be_cancelled
- */
-
-/**
- * @typedef BagGST
- * @property {string} [gstin_code]
- * @property {number} [gst_tax_percentage]
- * @property {number} [brand_calculated_amount]
- * @property {boolean} [is_default_hsn_code]
- * @property {number} [value_of_good]
- * @property {string} [gst_tag]
- * @property {number} [gst_fee]
- * @property {string} [hsn_code]
- */
-
-/**
- * @typedef OrderBrandName
- * @property {string} brand_name
- * @property {string} logo
- * @property {number} id
- * @property {string} created_on
- * @property {string} company
- * @property {string} [modified_on]
- */
-
-/**
  * @typedef OrderBags
- * @property {AppliedPromos[]} [applied_promos]
- * @property {boolean} [can_return]
- * @property {CurrentStatus} [current_status]
- * @property {PlatformItem} [item]
- * @property {string} [display_name]
- * @property {number} [quantity]
- * @property {OrderBagArticle} [article]
- * @property {PlatformDeliveryAddress} [delivery_address]
- * @property {FinancialBreakup} [financial_breakup]
- * @property {string} [seller_identifier]
- * @property {BagConfigs} [bag_configs]
- * @property {Prices} [prices]
- * @property {BagGST} [gst_details]
- * @property {string} [entity_type]
- * @property {boolean} [can_cancel]
- * @property {Object} [parent_promo_bags]
  * @property {number} [line_number]
  * @property {OrderBrandName} [brand]
- * @property {number} bag_id
+ * @property {Object} [parent_promo_bags]
+ * @property {string} [entity_type]
+ * @property {PlatformDeliveryAddress} [delivery_address]
+ * @property {BagGST} [gst_details]
+ * @property {PlatformItem} [item]
+ * @property {FinancialBreakup} [financial_breakup]
+ * @property {boolean} [can_return]
+ * @property {number} [quantity]
+ * @property {BagConfigs} [bag_configs]
+ * @property {string} [display_name]
+ * @property {CurrentStatus} [current_status]
+ * @property {Prices} [prices]
  * @property {string} [identifier]
- */
-
-/**
- * @typedef OrderingStoreDetails
- * @property {string} pincode
- * @property {string} phone
- * @property {string} store_name
- * @property {string} city
- * @property {string} country
- * @property {string} address
- * @property {string} code
- * @property {string} contact_person
- * @property {number} id
- * @property {Object} meta
- * @property {string} state
- */
-
-/**
- * @typedef OrderDetailsData
- * @property {string} fynd_order_id
- * @property {string} [ordering_channel]
- * @property {string} [cod_charges]
- * @property {string} [source]
- * @property {string} [order_value]
- * @property {Object} [ordering_channel_logo]
- * @property {Object} [tax_details]
- * @property {string} [affiliate_id]
- * @property {string} [order_date]
- */
-
-/**
- * @typedef UserDetailsData
- * @property {string} pincode
- * @property {string} phone
- * @property {string} city
- * @property {string} name
- * @property {string} address
- * @property {string} [email]
- * @property {string} country
- * @property {string} state
- */
-
-/**
- * @typedef DPDetailsData
- * @property {string} [awb_no]
- * @property {string} [eway_bill_id]
- * @property {string} [pincode]
- * @property {string} [name]
- * @property {string} [gst_tag]
- * @property {string} [track_url]
- * @property {string} [country]
- * @property {number} [id]
- */
-
-/**
- * @typedef FulfillingStore
- * @property {string} pincode
- * @property {string} phone
- * @property {string} store_name
- * @property {string} city
- * @property {string} code
- * @property {string} country
- * @property {string} address
- * @property {string} fulfillment_channel
- * @property {string} contact_person
- * @property {number} id
- * @property {Object} meta
- * @property {string} state
+ * @property {AppliedPromos[]} [applied_promos]
+ * @property {string} [seller_identifier]
+ * @property {boolean} [can_cancel]
+ * @property {OrderBagArticle} [article]
+ * @property {number} bag_id
  */
 
 /**
  * @typedef TrackingList
- * @property {string} [time]
- * @property {string} status
- * @property {string} text
- * @property {boolean} [is_current]
  * @property {boolean} [is_passed]
- */
-
-/**
- * @typedef ShipmentPayments
- * @property {string} [mode]
- * @property {string} [logo]
- * @property {string} [source]
- */
-
-/**
- * @typedef BagStatusHistory
- * @property {number} [state_id]
- * @property {string} [updated_at]
- * @property {string} [delivery_awb_number]
- * @property {string} [shipment_id]
- * @property {string} [created_at]
- * @property {number} [bag_id]
- * @property {number} [delivery_partner_id]
- * @property {string} [state_type]
- * @property {string} [app_display_name]
+ * @property {string} [time]
+ * @property {boolean} [is_current]
+ * @property {string} text
  * @property {string} status
- * @property {BagStateMapper} [bag_state_mapper]
- * @property {number} [store_id]
- * @property {number} [bsh_id]
- * @property {string} [display_name]
- * @property {boolean} [kafka_sync]
- * @property {boolean} [forward]
- * @property {Object[]} [reasons]
  */
 
 /**
- * @typedef ShipmentStatusData
- * @property {string} [shipment_id]
- * @property {string} [created_at]
- * @property {string} [status]
- * @property {string[]} [bag_list]
- * @property {number} [id]
+ * @typedef FulfillingStore
+ * @property {Object} meta
+ * @property {string} store_name
+ * @property {string} code
+ * @property {string} city
+ * @property {string} phone
+ * @property {string} fulfillment_channel
+ * @property {number} id
+ * @property {string} contact_person
+ * @property {string} address
+ * @property {string} country
+ * @property {string} state
+ * @property {string} pincode
  */
 
 /**
  * @typedef PlatformShipment
- * @property {string} [platform_logo]
- * @property {OrderBags[]} [bags]
- * @property {string} [vertical]
- * @property {string} [shipment_status]
- * @property {string} [user_agent]
- * @property {string} shipment_id
- * @property {OrderingStoreDetails} [ordering_store]
- * @property {OrderDetailsData} [order]
- * @property {Prices} [prices]
- * @property {string} [payment_mode]
- * @property {UserDetailsData} [delivery_details]
- * @property {number} [total_bags]
- * @property {Object} [coupon]
- * @property {GSTDetailsData} [gst_details]
- * @property {string} [priority_text]
- * @property {number} [shipment_quantity]
- * @property {number} [total_items]
  * @property {UserDetailsData} [billing_details]
- * @property {boolean} [enable_dp_tracking]
- * @property {string[]} [shipment_images]
  * @property {DPDetailsData} [dp_details]
- * @property {string} [operational_status]
- * @property {FulfillingStore} [fulfilling_store]
- * @property {string} [packaging_type]
- * @property {TrackingList[]} [tracking_list]
+ * @property {string[]} [shipment_images]
+ * @property {OrderingStoreDetails} [ordering_store]
+ * @property {string} [user_agent]
+ * @property {BagStatusHistory[]} [bag_status_history]
+ * @property {string} [shipment_status]
+ * @property {string} shipment_id
+ * @property {number} [shipment_quantity]
+ * @property {OrderDetailsData} [order]
+ * @property {GSTDetailsData} [gst_details]
+ * @property {string} [platform_logo]
+ * @property {ShipmentStatusData} [status]
+ * @property {string} [journey_type]
  * @property {ShipmentPayments} [payments]
+ * @property {Object} [coupon]
+ * @property {number} [total_bags]
+ * @property {Object} [delivery_slot]
+ * @property {number} [total_items]
+ * @property {string} [payment_mode]
+ * @property {OrderBags[]} [bags]
+ * @property {UserDetailsData} [delivery_details]
+ * @property {Prices} [prices]
+ * @property {TrackingList[]} [tracking_list]
+ * @property {string} [priority_text]
  * @property {string} [picked_date]
  * @property {Object[]} [custom_meta]
- * @property {string} [journey_type]
- * @property {BagStatusHistory[]} [bag_status_history]
- * @property {ShipmentStatusData} [status]
- * @property {Object} [delivery_slot]
+ * @property {FulfillingStore} [fulfilling_store]
+ * @property {string} [vertical]
+ * @property {string} [packaging_type]
+ * @property {string} [operational_status]
+ * @property {boolean} [enable_dp_tracking]
  */
 
 /**
  * @typedef ShipmentInfoResponse
- * @property {boolean} success
  * @property {string} [message]
+ * @property {boolean} success
  * @property {PlatformShipment[]} [shipments]
  */
 
 /**
  * @typedef OrderMeta
- * @property {number} [mongo_cart_id]
- * @property {string} [currency_symbol]
- * @property {Object[]} [order_tags]
- * @property {Object[]} [files]
+ * @property {Object} [staff]
  * @property {number} [cart_id]
- * @property {string} [order_type]
+ * @property {string} [comment]
+ * @property {string} [currency_symbol]
  * @property {number} [employee_id]
+ * @property {number} [mongo_cart_id]
+ * @property {Object[]} [files]
+ * @property {string} [customer_note]
+ * @property {Object} [extra_meta]
+ * @property {string} [order_type]
+ * @property {string} [order_platform]
  * @property {number} [ordering_store]
  * @property {string} [payment_type]
- * @property {string} [customer_note]
- * @property {string} [comment]
- * @property {Object} [extra_meta]
- * @property {Object} [staff]
- * @property {string} [order_platform]
+ * @property {Object[]} [order_tags]
  * @property {string[]} [order_child_entities]
  */
 
 /**
  * @typedef OrderDict
- * @property {string} fynd_order_id
- * @property {Object} [payment_methods]
- * @property {Prices} [prices]
- * @property {Object} [tax_details]
  * @property {string} order_date
+ * @property {Object} [payment_methods]
  * @property {OrderMeta} [meta]
+ * @property {string} fynd_order_id
+ * @property {Object} [tax_details]
+ * @property {Prices} [prices]
  */
 
 /**
@@ -5232,16 +5395,16 @@ class PlatformApplicationClient {
  * @property {number} [index]
  * @property {string} [value]
  * @property {string} [text]
- * @property {Object[]} [actions]
  * @property {number} [total_items]
+ * @property {Object[]} [actions]
  */
 
 /**
  * @typedef SuperLane
- * @property {SubLane[]} [options]
- * @property {string} text
  * @property {number} [total_items]
  * @property {string} value
+ * @property {SubLane[]} [options]
+ * @property {string} text
  */
 
 /**
@@ -5251,53 +5414,64 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PlatformBreakupValues
- * @property {string} [name]
  * @property {string} [display]
  * @property {string} [value]
+ * @property {string} [name]
  */
 
 /**
  * @typedef PlatformChannel
- * @property {string} [name]
  * @property {string} [logo]
+ * @property {string} [name]
  */
 
 /**
  * @typedef PlatformOrderItems
- * @property {PlatformBreakupValues[]} [breakup_values]
  * @property {UserDataInfo} [user_info]
+ * @property {Object} [meta]
+ * @property {PlatformBreakupValues[]} [breakup_values]
  * @property {number} [order_value]
+ * @property {string} [order_id]
  * @property {PlatformShipment[]} [shipments]
- * @property {PlatformChannel} [channel]
  * @property {string} [payment_mode]
  * @property {string} [order_created_time]
+ * @property {PlatformChannel} [channel]
  * @property {number} [total_order_value]
- * @property {Object} [meta]
- * @property {string} [order_id]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
  * @typedef OrderListingResponse
- * @property {number} [total_count]
  * @property {boolean} [success]
- * @property {Page} [page]
- * @property {string} [lane]
- * @property {string} [message]
  * @property {PlatformOrderItems[]} [items]
+ * @property {Page} [page]
+ * @property {number} [total_count]
+ * @property {string} [message]
+ * @property {string} [lane]
  */
 
 /**
  * @typedef Options
- * @property {string} [text]
  * @property {number} [value]
+ * @property {string} [text]
  */
 
 /**
  * @typedef MetricsCount
- * @property {Options[]} [options]
  * @property {string} key
- * @property {string} text
  * @property {number} value
+ * @property {Options[]} [options]
+ * @property {string} text
  */
 
 /**
@@ -5307,16 +5481,16 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PlatformTrack
+ * @property {string} [reason]
  * @property {string} [updated_at]
- * @property {string} [shipment_type]
+ * @property {Object} [meta]
  * @property {string} [awb]
  * @property {string} [raw_status]
- * @property {string} [account_name]
- * @property {string} [last_location_recieved_at]
+ * @property {string} [shipment_type]
  * @property {string} [status]
- * @property {Object} [meta]
+ * @property {string} [last_location_recieved_at]
  * @property {string} [updated_time]
- * @property {string} [reason]
+ * @property {string} [account_name]
  */
 
 /**
@@ -5327,44 +5501,44 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AdvanceFilterInfo
- * @property {FiltersInfo[]} [returned]
  * @property {FiltersInfo[]} [action_centre]
+ * @property {FiltersInfo[]} [unfulfilled]
+ * @property {FiltersInfo[]} [returned]
  * @property {FiltersInfo[]} [processed]
  * @property {FiltersInfo[]} [filters]
- * @property {FiltersInfo[]} [unfulfilled]
  */
 
 /**
  * @typedef FiltersResponse
- * @property {FiltersInfo[]} [global_filter]
  * @property {AdvanceFilterInfo} [advance_filter]
+ * @property {FiltersInfo[]} [global_filter]
  */
 
 /**
  * @typedef Success
- * @property {boolean} [success]
  * @property {string} [message]
+ * @property {boolean} [success]
  */
 
 /**
  * @typedef OmsReports
- * @property {string} [report_requested_at]
- * @property {Object} [request_details]
- * @property {string} [report_id]
- * @property {string} [report_type]
- * @property {string} [status]
- * @property {string} [report_name]
  * @property {string} [report_created_at]
+ * @property {string} [report_name]
  * @property {string} [display_name]
+ * @property {string} [report_type]
+ * @property {Object} [request_details]
+ * @property {string} [status]
+ * @property {string} [report_id]
  * @property {string} [s3_key]
+ * @property {string} [report_requested_at]
  */
 
 /**
  * @typedef JioCodeUpsertDataSet
- * @property {string} [item_id]
  * @property {string} [company_id]
- * @property {string} [article_id]
  * @property {string} [jio_code]
+ * @property {string} [item_id]
+ * @property {string} [article_id]
  */
 
 /**
@@ -5375,42 +5549,37 @@ class PlatformApplicationClient {
 /**
  * @typedef NestedErrorSchemaDataSet
  * @property {string} [message]
- * @property {string} [type]
  * @property {string} [value]
+ * @property {string} [type]
  */
 
 /**
  * @typedef JioCodeUpsertResponse
+ * @property {boolean} [success]
  * @property {Object[]} [data]
  * @property {string} [trace_id]
- * @property {boolean} [success]
  * @property {NestedErrorSchemaDataSet[]} [error]
  * @property {string} [identifier]
  */
 
 /**
  * @typedef BulkInvoicingResponse
- * @property {boolean} success
  * @property {string} [message]
+ * @property {boolean} success
  */
 
 /**
  * @typedef BulkInvoiceLabelResponse
  * @property {Object} [label]
+ * @property {boolean} do_invoice_label_generated
+ * @property {string} [invoice_status]
  * @property {Object} [data]
  * @property {string} [store_name]
- * @property {string} batch_id
- * @property {string} [invoice_status]
+ * @property {Object} [invoice]
+ * @property {string} [store_id]
  * @property {string} [company_id]
  * @property {string} [store_code]
- * @property {string} [store_id]
- * @property {boolean} do_invoice_label_generated
- * @property {Object} [invoice]
- */
-
-/**
- * @typedef URL
- * @property {string} [url]
+ * @property {string} batch_id
  */
 
 /**
@@ -5420,72 +5589,77 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef URL
+ * @property {string} [url]
+ */
+
+/**
  * @typedef FileResponse
- * @property {URL} [cdn]
- * @property {string} [namespace]
- * @property {string[]} [tags]
- * @property {string} [content_type]
  * @property {FileUploadResponse} [upload]
+ * @property {URL} [cdn]
+ * @property {string} [content_type]
  * @property {string} [file_path]
+ * @property {string[]} [tags]
  * @property {string} [file_name]
  * @property {string} [method]
  * @property {number} [size]
+ * @property {string} [namespace]
  * @property {string} [operation]
  */
 
 /**
  * @typedef BulkListingPage
  * @property {number} [total]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {number} [size]
  * @property {boolean} [has_previous]
  * @property {string} [type]
- * @property {boolean} [has_next]
- * @property {number} [size]
- * @property {number} [current]
  */
 
 /**
  * @typedef bulkListingData
- * @property {string} [store_code]
- * @property {Object[]} [successful_shipments]
- * @property {string} [user_name]
+ * @property {string} [store_name]
  * @property {string} [user_id]
- * @property {string} [excel_url]
- * @property {string[]} [processing_shipments]
- * @property {string} [file_name]
- * @property {number} [failed]
+ * @property {number} [store_id]
  * @property {number} [successful]
+ * @property {string} [status]
+ * @property {string} [store_code]
+ * @property {number} [failed]
  * @property {string} [uploaded_on]
  * @property {Object[]} [failed_shipments]
- * @property {number} [processing]
- * @property {number} [total]
- * @property {string} [store_name]
- * @property {string} [batch_id]
- * @property {number} [company_id]
- * @property {string} [status]
- * @property {number} [store_id]
+ * @property {string} [file_name]
  * @property {string} [id]
+ * @property {string[]} [processing_shipments]
+ * @property {number} [processing]
+ * @property {Object[]} [successful_shipments]
+ * @property {string} [batch_id]
+ * @property {number} [total]
+ * @property {string} [user_name]
+ * @property {number} [company_id]
+ * @property {string} [excel_url]
  */
 
 /**
  * @typedef BulkListingResponse
+ * @property {BulkListingPage} [page]
  * @property {boolean} [success]
  * @property {string} [error]
- * @property {BulkListingPage} [page]
  * @property {bulkListingData[]} [data]
  */
 
 /**
  * @typedef QuestionSet
- * @property {number} [id]
  * @property {string} [display_name]
+ * @property {number} [id]
  */
 
 /**
  * @typedef Reason
- * @property {string[]} [qc_type]
- * @property {number} [id]
- * @property {QuestionSet[]} [question_set]
  * @property {string} [display_name]
+ * @property {number} [id]
+ * @property {string[]} [qc_type]
+ * @property {QuestionSet[]} [question_set]
  */
 
 /**
@@ -5501,151 +5675,63 @@ class PlatformApplicationClient {
 
 /**
  * @typedef BulkActionResponse
- * @property {boolean} [status]
  * @property {string} [message]
+ * @property {boolean} [status]
  */
 
 /**
  * @typedef BulkActionDetailsDataField
- * @property {string} [batch_id]
  * @property {string[]} [successful_shipment_ids]
- * @property {string} [company_id]
- * @property {number} [successful_shipments_count]
  * @property {number} [total_shipments_count]
+ * @property {number} [successful_shipments_count]
  * @property {number} [failed_shipments_count]
+ * @property {string} [company_id]
  * @property {number} [processing_shipments_count]
+ * @property {string} [batch_id]
  */
 
 /**
  * @typedef BulkActionDetailsResponse
- * @property {string} [uploaded_on]
- * @property {BulkActionDetailsDataField[]} [data]
  * @property {string} [success]
- * @property {string} [user_id]
- * @property {boolean} [status]
- * @property {string[]} [error]
- * @property {string[]} [failed_records]
- * @property {string} [message]
  * @property {string} [uploaded_by]
+ * @property {string[]} [failed_records]
+ * @property {BulkActionDetailsDataField[]} [data]
+ * @property {string} [user_id]
+ * @property {string} [message]
+ * @property {boolean} [status]
+ * @property {string} [uploaded_on]
+ * @property {string[]} [error]
  */
 
 /**
- * @typedef ArticleDetails
- * @property {Object} [status]
- */
-
-/**
- * @typedef AffiliateMeta
- * @property {string} [coupon_code]
- * @property {number} [employee_discount]
- * @property {string} [channel_order_id]
- * @property {boolean} [is_priority]
- * @property {string} [box_type]
- * @property {string} [order_item_id]
- * @property {number} [size_level_total_qty]
- * @property {number} [quantity]
- * @property {string} [channel_shipment_id]
- * @property {string} [due_date]
- * @property {number} [loyalty_discount]
- */
-
-/**
- * @typedef AffiliateBagDetails
- * @property {number} [employee_discount]
- * @property {string} affiliate_order_id
- * @property {string} affiliate_bag_id
- * @property {number} [loyalty_discount]
- * @property {AffiliateMeta} affiliate_meta
- */
-
-/**
- * @typedef Attributes
- * @property {string} [brand_name]
- * @property {string} [marketer_address]
- * @property {string} [name]
- * @property {string} [primary_color]
- * @property {string} [primary_color_hex]
- * @property {string} [essential]
- * @property {string} [primary_material]
- * @property {string} [marketer_name]
- * @property {string[]} [gender]
- */
-
-/**
- * @typedef Item
- * @property {Attributes} attributes
- * @property {string[]} image
- * @property {boolean} [can_return]
- * @property {number} brand_id
- * @property {number} [department_id]
- * @property {string} [branch_url]
- * @property {string} [code]
- * @property {number} [l1_category_id]
- * @property {string} [last_updated_at]
- * @property {string} slug_key
- * @property {Object} [meta]
- * @property {string} [gender]
- * @property {string} [webstore_product_url]
- * @property {boolean} [can_cancel]
- * @property {string[]} [l1_category]
- * @property {number} [l2_category_id]
- * @property {string} size
- * @property {string} [color]
- * @property {string[]} [l2_category]
- * @property {string} brand
- * @property {string} name
- * @property {number} [l3_category]
- * @property {number} item_id
- * @property {string} [l3_category_name]
- */
-
-/**
- * @typedef ReturnConfig
- * @property {string} [unit]
- * @property {boolean} [returnable]
- * @property {number} [time]
- */
-
-/**
- * @typedef Dimensions
- * @property {number} [height]
- * @property {string} [unit]
- * @property {boolean} [is_default]
- * @property {number} [length]
- * @property {number} [width]
- */
-
-/**
- * @typedef Weight
- * @property {boolean} [is_default]
- * @property {string} [unit]
- * @property {number} [shipping]
- */
-
-/**
- * @typedef Article
- * @property {Object} [child_details]
- * @property {Identifier} identifiers
- * @property {string} seller_identifier
- * @property {string} _id
- * @property {Object} [esp_modified]
- * @property {ReturnConfig} [return_config]
- * @property {string} uid
- * @property {string} [code]
- * @property {Dimensions} [dimensions]
- * @property {Weight} [weight]
- * @property {Object} [raw_meta]
- * @property {boolean} [is_set]
- * @property {Object} [a_set]
- * @property {string} size
+ * @typedef StoreAddress
+ * @property {string} [area]
+ * @property {number} latitude
+ * @property {string} updated_at
+ * @property {number} longitude
+ * @property {string} address_type
+ * @property {string} address1
+ * @property {string} state
+ * @property {string} created_at
+ * @property {string} city
+ * @property {string} phone
+ * @property {string} [version]
+ * @property {number} pincode
+ * @property {string} country_code
+ * @property {string} [address2]
+ * @property {string} address_category
+ * @property {string} contact_person
+ * @property {string} [landmark]
+ * @property {string} country
+ * @property {string} [email]
  */
 
 /**
  * @typedef Document
  * @property {string} value
  * @property {boolean} verified
- * @property {string} legal_name
  * @property {string} [url]
+ * @property {string} legal_name
  * @property {string} ds_type
  */
 
@@ -5661,10 +5747,10 @@ class PlatformApplicationClient {
 
 /**
  * @typedef StoreEinvoice
- * @property {string} [user]
- * @property {string} [password]
  * @property {boolean} enabled
  * @property {string} [username]
+ * @property {string} [user]
+ * @property {string} [password]
  */
 
 /**
@@ -5682,170 +5768,192 @@ class PlatformApplicationClient {
 
 /**
  * @typedef StoreMeta
- * @property {string} stage
- * @property {Object} [additional_contact_details]
  * @property {StoreDocuments} [documents]
- * @property {Object} [product_return_config]
- * @property {StoreGstCredentials} gst_credentials
- * @property {Object} [ewaybill_portal_details]
- * @property {string[]} [notification_emails]
- * @property {string} display_name
- * @property {EInvoicePortalDetails} [einvoice_portal_details]
- * @property {Object[]} [timing]
  * @property {string} [gst_number]
- */
-
-/**
- * @typedef StoreAddress
- * @property {string} country_code
- * @property {string} contact_person
- * @property {string} country
- * @property {string} [area]
- * @property {number} latitude
- * @property {number} pincode
- * @property {string} [address2]
- * @property {string} updated_at
- * @property {string} phone
- * @property {string} created_at
- * @property {string} address_type
- * @property {string} address_category
- * @property {string} [email]
- * @property {string} [version]
- * @property {number} longitude
- * @property {string} address1
- * @property {string} city
- * @property {string} [landmark]
- * @property {string} state
+ * @property {StoreGstCredentials} gst_credentials
+ * @property {string[]} [notification_emails]
+ * @property {Object} [product_return_config]
+ * @property {string} display_name
+ * @property {string} stage
+ * @property {Object} [ewaybill_portal_details]
+ * @property {EInvoicePortalDetails} [einvoice_portal_details]
+ * @property {Object} [additional_contact_details]
+ * @property {Object[]} [timing]
  */
 
 /**
  * @typedef Store
- * @property {string} [order_integration_id]
- * @property {string} s_id
- * @property {string} contact_person
- * @property {string} country
- * @property {string} store_email
  * @property {number} latitude
- * @property {string} pincode
  * @property {string} location_type
- * @property {string} login_username
- * @property {string} [vat_no]
  * @property {Object} [brand_id]
- * @property {string} [address2]
- * @property {string} [code]
- * @property {string} fulfillment_channel
- * @property {StoreMeta} meta
- * @property {boolean} [is_active]
  * @property {string[]} [brand_store_tags]
- * @property {string} [mall_area]
- * @property {number} phone
- * @property {string} [updated_at]
- * @property {string} created_at
  * @property {number} [packaging_material_count]
- * @property {string} [store_active_from]
- * @property {string} [mall_name]
- * @property {number} [parent_store_id]
+ * @property {string} [updated_at]
  * @property {number} longitude
+ * @property {string} [code]
  * @property {string} address1
- * @property {boolean} [is_archived]
- * @property {StoreAddress} [store_address_json]
- * @property {string} city
- * @property {string} name
- * @property {number} company_id
- * @property {boolean} [is_enabled_for_recon]
  * @property {number} [alohomora_user_id]
+ * @property {boolean} [is_archived]
+ * @property {number} [parent_store_id]
  * @property {string} state
- */
-
-/**
- * @typedef BagGSTDetails
- * @property {string} [gstin_code]
- * @property {number} gst_tax_percentage
- * @property {number} brand_calculated_amount
- * @property {boolean} [is_default_hsn_code]
- * @property {number} value_of_good
- * @property {string} gst_tag
- * @property {number} gst_fee
- * @property {number} sgst_tax_percentage
- * @property {string} cgst_gst_fee
- * @property {string} igst_gst_fee
- * @property {number} cgst_tax_percentage
- * @property {number} tax_collected_at_source
- * @property {string} hsn_code
- * @property {string} hsn_code_id
- * @property {number} igst_tax_percentage
- * @property {string} sgst_gst_fee
- */
-
-/**
- * @typedef B2BPODetails
- * @property {boolean} [partial_can_ret]
- * @property {number} [po_line_amount]
- * @property {number} [item_base_price]
- * @property {number} [po_tax_amount]
- * @property {string} [docker_number]
- * @property {number} [total_gst_percentage]
- */
-
-/**
- * @typedef BagMeta
- * @property {B2BPODetails} [b2b_po_details]
+ * @property {string} store_email
+ * @property {string} [order_integration_id]
+ * @property {string} created_at
+ * @property {StoreAddress} [store_address_json]
+ * @property {string} [mall_name]
+ * @property {string} city
+ * @property {boolean} [is_active]
+ * @property {number} phone
+ * @property {string} fulfillment_channel
+ * @property {string} [mall_area]
+ * @property {string} name
+ * @property {string} pincode
+ * @property {StoreMeta} meta
+ * @property {boolean} [is_enabled_for_recon]
+ * @property {string} [address2]
+ * @property {string} [store_active_from]
+ * @property {string} contact_person
+ * @property {number} company_id
+ * @property {string} [vat_no]
+ * @property {string} login_username
+ * @property {string} country
+ * @property {string} s_id
  */
 
 /**
  * @typedef Brand
- * @property {string} brand_name
- * @property {string} [start_date]
- * @property {string} [script_last_ran]
- * @property {string} [logo]
- * @property {number} brand_id
- * @property {number} [created_on]
- * @property {string} company
- * @property {boolean} [is_virtual_invoice]
- * @property {number} [credit_note_expiry_days]
  * @property {boolean} [credit_note_allowed]
+ * @property {string} [invoice_prefix]
+ * @property {string} [script_last_ran]
+ * @property {number} [created_on]
+ * @property {boolean} [is_virtual_invoice]
+ * @property {string} [logo]
  * @property {number} [modified_on]
  * @property {string} [pickup_location]
- * @property {string} [invoice_prefix]
+ * @property {string} [start_date]
+ * @property {number} [credit_note_expiry_days]
+ * @property {string} brand_name
+ * @property {number} brand_id
+ * @property {string} company
  */
 
 /**
- * @typedef EInvoice
- * @property {string} [irn]
- * @property {string} [error_message]
- * @property {string} [signed_invoice]
- * @property {string} [signed_qr_code]
- * @property {string} [acknowledge_date]
- * @property {number} [acknowledge_no]
- * @property {string} [error_code]
+ * @typedef BagGSTDetails
+ * @property {number} value_of_good
+ * @property {number} brand_calculated_amount
+ * @property {number} igst_tax_percentage
+ * @property {number} sgst_tax_percentage
+ * @property {string} sgst_gst_fee
+ * @property {boolean} [is_default_hsn_code]
+ * @property {number} gst_tax_percentage
+ * @property {string} [gstin_code]
+ * @property {string} hsn_code
+ * @property {number} gst_fee
+ * @property {number} cgst_tax_percentage
+ * @property {string} hsn_code_id
+ * @property {number} tax_collected_at_source
+ * @property {string} igst_gst_fee
+ * @property {string} cgst_gst_fee
+ * @property {string} gst_tag
  */
 
 /**
- * @typedef EinvoiceInfo
- * @property {EInvoice} [credit_note]
- * @property {EInvoice} [invoice]
+ * @typedef Attributes
+ * @property {string[]} [gender]
+ * @property {string} [primary_material]
+ * @property {string} [marketer_address]
+ * @property {string} [brand_name]
+ * @property {string} [marketer_name]
+ * @property {string} [primary_color]
+ * @property {string} [primary_color_hex]
+ * @property {string} [essential]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef Item
+ * @property {string} [webstore_product_url]
+ * @property {string} [last_updated_at]
+ * @property {string} slug_key
+ * @property {Attributes} attributes
+ * @property {string} [branch_url]
+ * @property {string} brand
+ * @property {string} [l3_category_name]
+ * @property {string} [code]
+ * @property {string[]} [l1_category]
+ * @property {number} item_id
+ * @property {number} [l1_category_id]
+ * @property {boolean} [can_return]
+ * @property {string} [color]
+ * @property {string} [gender]
+ * @property {string[]} image
+ * @property {number} [department_id]
+ * @property {string} size
+ * @property {string} name
+ * @property {Object} [meta]
+ * @property {number} [l2_category_id]
+ * @property {string[]} [l2_category]
+ * @property {boolean} [can_cancel]
+ * @property {number} [l3_category]
+ * @property {number} brand_id
+ */
+
+/**
+ * @typedef BagReturnableCancelableStatus
+ * @property {boolean} is_returnable
+ * @property {boolean} is_active
+ * @property {boolean} can_be_cancelled
+ * @property {boolean} is_customer_return_allowed
+ * @property {boolean} enable_tracking
+ */
+
+/**
+ * @typedef Dates
+ * @property {Object} [delivery_date]
+ * @property {string} [order_created]
+ */
+
+/**
+ * @typedef PDFLinks
+ * @property {string} [label]
+ * @property {string} [invoice_a6]
+ * @property {string} [label_pos]
+ * @property {string} invoice_type
+ * @property {string} [invoice]
+ * @property {string} [label_a4]
+ * @property {string} label_type
+ * @property {string} [po_invoice]
+ * @property {string} [b2b]
+ * @property {string} [invoice_pos]
+ * @property {string} [label_a6]
+ * @property {string} [credit_note_url]
+ * @property {string} [invoice_a4]
+ */
+
+/**
+ * @typedef AffiliateMeta
+ * @property {string} [coupon_code]
+ * @property {number} [employee_discount]
+ * @property {number} [quantity]
+ * @property {number} [loyalty_discount]
+ * @property {string} [due_date]
+ * @property {string} [channel_order_id]
+ * @property {number} [size_level_total_qty]
+ * @property {boolean} [is_priority]
+ * @property {string} [box_type]
+ * @property {string} [channel_shipment_id]
+ * @property {string} [order_item_id]
  */
 
 /**
  * @typedef BuyerDetails
- * @property {number} pincode
  * @property {string} city
- * @property {string} name
  * @property {string} address
  * @property {string} gstin
- * @property {string} [ajio_site_id]
  * @property {string} state
- */
-
-/**
- * @typedef ShipmentTimeStamp
- * @property {string} [t_min]
- * @property {string} [t_max]
- */
-
-/**
- * @typedef DebugInfo
- * @property {string} [stormbreaker_uuid]
+ * @property {string} [ajio_site_id]
+ * @property {number} pincode
+ * @property {string} name
  */
 
 /**
@@ -5856,138 +5964,204 @@ class PlatformApplicationClient {
 
 /**
  * @typedef LockData
+ * @property {boolean} [locked]
  * @property {boolean} [mto]
  * @property {string} [lock_message]
- * @property {boolean} [locked]
+ */
+
+/**
+ * @typedef EInvoice
+ * @property {string} [signed_invoice]
+ * @property {string} [error_code]
+ * @property {string} [acknowledge_date]
+ * @property {number} [acknowledge_no]
+ * @property {string} [irn]
+ * @property {string} [signed_qr_code]
+ * @property {string} [error_message]
+ */
+
+/**
+ * @typedef EinvoiceInfo
+ * @property {EInvoice} [invoice]
+ * @property {EInvoice} [credit_note]
+ */
+
+/**
+ * @typedef DebugInfo
+ * @property {string} [stormbreaker_uuid]
+ */
+
+/**
+ * @typedef ShipmentTimeStamp
+ * @property {string} [t_min]
+ * @property {string} [t_max]
  */
 
 /**
  * @typedef ShipmentMeta
- * @property {Object} [bag_weight]
- * @property {EinvoiceInfo} [einvoice_info]
- * @property {string} [box_type]
- * @property {boolean} auto_trigger_dp_assignment_acf
- * @property {string} [return_affiliate_shipment_id]
+ * @property {string} [dp_name]
+ * @property {Object} [b2c_buyer_details]
+ * @property {string} [awb_number]
+ * @property {string} [store_invoice_updated_date]
+ * @property {Object} [external]
+ * @property {number} weight
  * @property {Object} [dp_options]
- * @property {string} [dp_sort_key]
  * @property {BuyerDetails} [b2b_buyer_details]
- * @property {string} [return_affiliate_order_id]
+ * @property {string} [packaging_name]
+ * @property {string} [dp_id]
+ * @property {number} [shipment_weight]
+ * @property {boolean} same_store_available
+ * @property {string} [forward_affiliate_order_id]
+ * @property {Object} [return_details]
+ * @property {string} [return_affiliate_shipment_id]
  * @property {boolean} [assign_dp_from_sb]
+ * @property {Object} [ewaybill_info]
+ * @property {Formatted} [formatted]
  * @property {string} [po_number]
+ * @property {LockData} [lock_data]
+ * @property {string} [dp_sort_key]
+ * @property {string} [marketplace_store_id]
+ * @property {boolean} auto_trigger_dp_assignment_acf
+ * @property {string} [return_affiliate_order_id]
+ * @property {EinvoiceInfo} [einvoice_info]
+ * @property {string} [return_awb_number]
+ * @property {number} [return_store_node]
+ * @property {string} [due_date]
  * @property {string} [order_type]
  * @property {number} [shipment_volumetric_weight]
- * @property {number} [shipment_weight]
- * @property {Object} [external]
- * @property {string} [fulfilment_priority_text]
- * @property {string} [packaging_name]
- * @property {string} [return_awb_number]
- * @property {string} [marketplace_store_id]
- * @property {ShipmentTimeStamp} [timestamp]
- * @property {Object} [return_details]
- * @property {DebugInfo} [debug_info]
- * @property {string} [awb_number]
- * @property {Formatted} [formatted]
- * @property {number} weight
- * @property {boolean} same_store_available
- * @property {string} [dp_name]
- * @property {string} [due_date]
+ * @property {string} [box_type]
  * @property {string} [forward_affiliate_shipment_id]
- * @property {string} [store_invoice_updated_date]
- * @property {number} [return_store_node]
- * @property {string} [forward_affiliate_order_id]
- * @property {Object} [ewaybill_info]
- * @property {string} [dp_id]
- * @property {LockData} [lock_data]
- * @property {Object} [b2c_buyer_details]
- */
-
-/**
- * @typedef PDFLinks
- * @property {string} [label]
- * @property {string} [po_invoice]
- * @property {string} [b2b]
- * @property {string} [label_a4]
- * @property {string} [credit_note_url]
- * @property {string} [label_pos]
- * @property {string} [invoice]
- * @property {string} label_type
- * @property {string} [label_a6]
- * @property {string} invoice_type
- * @property {string} [invoice_a4]
- * @property {string} [invoice_pos]
- * @property {string} [invoice_a6]
+ * @property {Object} [bag_weight]
+ * @property {string} [fulfilment_priority_text]
+ * @property {DebugInfo} [debug_info]
+ * @property {ShipmentTimeStamp} [timestamp]
  */
 
 /**
  * @typedef AffiliateDetails
- * @property {ShipmentMeta} shipment_meta
- * @property {string} affiliate_order_id
  * @property {string} affiliate_bag_id
- * @property {string} affiliate_store_id
- * @property {string} affiliate_shipment_id
- * @property {string} [affiliate_id]
  * @property {PDFLinks} [pdf_links]
+ * @property {string} affiliate_shipment_id
  * @property {string} [ad_id]
  * @property {string} [company_affiliate_tag]
  * @property {AffiliateMeta} affiliate_meta
+ * @property {ShipmentMeta} shipment_meta
+ * @property {string} affiliate_store_id
+ * @property {string} [affiliate_id]
+ * @property {string} affiliate_order_id
  */
 
 /**
- * @typedef Dates
- * @property {Object} [delivery_date]
- * @property {string} [order_created]
+ * @typedef B2BPODetails
+ * @property {boolean} [partial_can_ret]
+ * @property {number} [po_tax_amount]
+ * @property {number} [po_line_amount]
+ * @property {number} [item_base_price]
+ * @property {string} [docker_number]
+ * @property {number} [total_gst_percentage]
  */
 
 /**
- * @typedef BagReturnableCancelableStatus
- * @property {boolean} is_active
- * @property {boolean} is_customer_return_allowed
- * @property {boolean} enable_tracking
- * @property {boolean} is_returnable
- * @property {boolean} can_be_cancelled
+ * @typedef BagMeta
+ * @property {B2BPODetails} [b2b_po_details]
+ */
+
+/**
+ * @typedef AffiliateBagDetails
+ * @property {string} affiliate_bag_id
+ * @property {number} [loyalty_discount]
+ * @property {AffiliateMeta} affiliate_meta
+ * @property {number} [employee_discount]
+ * @property {string} affiliate_order_id
+ */
+
+/**
+ * @typedef ReturnConfig
+ * @property {boolean} [returnable]
+ * @property {string} [unit]
+ * @property {number} [time]
+ */
+
+/**
+ * @typedef Weight
+ * @property {boolean} [is_default]
+ * @property {number} [shipping]
+ * @property {string} [unit]
+ */
+
+/**
+ * @typedef Dimensions
+ * @property {boolean} [is_default]
+ * @property {number} [width]
+ * @property {string} [unit]
+ * @property {number} [height]
+ * @property {number} [length]
+ */
+
+/**
+ * @typedef Article
+ * @property {string} seller_identifier
+ * @property {string} _id
+ * @property {Object} [child_details]
+ * @property {string} [code]
+ * @property {Object} [raw_meta]
+ * @property {boolean} [is_set]
+ * @property {ReturnConfig} [return_config]
+ * @property {string} uid
+ * @property {Identifier} identifiers
+ * @property {string} size
+ * @property {Weight} [weight]
+ * @property {Object} [a_set]
+ * @property {Dimensions} [dimensions]
+ * @property {Object} [esp_modified]
+ */
+
+/**
+ * @typedef ArticleDetails
+ * @property {Object} [status]
  */
 
 /**
  * @typedef BagDetailsPlatformResponse
- * @property {Object[]} [applied_promos]
- * @property {string[]} [tags]
- * @property {number} [no_of_bags_order]
- * @property {ArticleDetails} [article_details]
- * @property {string} [order_integration_id]
- * @property {BagStatusHistory} current_status
- * @property {string} [b_type]
- * @property {AffiliateBagDetails} affiliate_bag_details
- * @property {string} [display_name]
- * @property {Item} item
- * @property {number} [quantity]
- * @property {Article} article
- * @property {FinancialBreakup[]} financial_breakup
- * @property {boolean} [restore_coupon]
- * @property {string} [seller_identifier]
- * @property {Store} [ordering_store]
- * @property {string} [shipment_id]
- * @property {Prices} prices
- * @property {BagGSTDetails} gst_details
  * @property {BagStatusHistory} current_operational_status
- * @property {BagMeta} [meta]
- * @property {BagStatusHistory[]} bag_status
- * @property {Object} [qc_required]
- * @property {string} [operational_status]
- * @property {number} b_id
- * @property {string} [entity_type]
- * @property {Object} [parent_promo_bags]
  * @property {number} [line_number]
- * @property {Object[]} [reasons]
- * @property {number} [bag_update_time]
- * @property {Brand} brand
- * @property {AffiliateDetails} [affiliate_details]
- * @property {string} journey_type
- * @property {BagStatusHistory} [bag_status_history]
- * @property {Object} [restore_promos]
- * @property {Dates} [dates]
- * @property {BagReturnableCancelableStatus} status
+ * @property {number} b_id
+ * @property {Store} [ordering_store]
  * @property {number[]} [original_bag_list]
+ * @property {Object} [qc_required]
+ * @property {Brand} brand
+ * @property {BagStatusHistory} [bag_status_history]
+ * @property {string} [shipment_id]
+ * @property {Object} [parent_promo_bags]
+ * @property {string} [entity_type]
+ * @property {BagGSTDetails} gst_details
+ * @property {FinancialBreakup[]} financial_breakup
+ * @property {Item} item
+ * @property {BagReturnableCancelableStatus} status
+ * @property {string} journey_type
+ * @property {number} [no_of_bags_order]
+ * @property {BagStatusHistory[]} bag_status
+ * @property {number} [quantity]
+ * @property {string} [order_integration_id]
+ * @property {boolean} [restore_coupon]
+ * @property {Dates} [dates]
+ * @property {Object} [restore_promos]
+ * @property {string} [display_name]
+ * @property {BagStatusHistory} current_status
+ * @property {Prices} prices
+ * @property {AffiliateDetails} [affiliate_details]
+ * @property {Object[]} [applied_promos]
  * @property {string} [identifier]
+ * @property {string} [seller_identifier]
+ * @property {BagMeta} [meta]
+ * @property {AffiliateBagDetails} affiliate_bag_details
+ * @property {Article} article
+ * @property {number} [bag_update_time]
+ * @property {ArticleDetails} [article_details]
+ * @property {string[]} [tags]
+ * @property {string} [operational_status]
+ * @property {string} [b_type]
+ * @property {Object[]} [reasons]
  */
 
 /**
@@ -5998,11 +6172,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Page1
- * @property {number} item_total
  * @property {boolean} has_next
+ * @property {number} item_total
+ * @property {number} current
  * @property {string} page_type
  * @property {number} size
- * @property {number} current
  */
 
 /**
@@ -6018,10 +6192,10 @@ class PlatformApplicationClient {
 
 /**
  * @typedef InvalidateShipmentCacheNestedResponse
- * @property {string} [message]
  * @property {string} [shipment_id]
  * @property {number} [status]
  * @property {string} [error]
+ * @property {string} [message]
  */
 
 /**
@@ -6031,47 +6205,55 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ErrorResponse1
- * @property {string} message
  * @property {number} status
  * @property {string} [error_trace]
+ * @property {string} message
  */
 
 /**
  * @typedef StoreReassign
- * @property {string} [mongo_article_id]
- * @property {string} [affiliate_id]
- * @property {number} [bag_id]
- * @property {string} [set_id]
- * @property {number[]} [reason_ids]
- * @property {string} [fynd_order_id]
- * @property {number} store_id
- * @property {string} [affiliate_bag_id]
- * @property {string} [item_id]
  * @property {string} [affiliate_order_id]
+ * @property {string} [set_id]
+ * @property {string} [item_id]
+ * @property {number} store_id
+ * @property {string} [mongo_article_id]
+ * @property {string} [affiliate_bag_id]
+ * @property {number[]} [reason_ids]
+ * @property {number} [bag_id]
+ * @property {string} [fynd_order_id]
+ * @property {string} [affiliate_id]
  */
 
 /**
  * @typedef StoreReassignResponse
- * @property {string} [message]
  * @property {boolean} [success]
+ * @property {string} [message]
  */
 
 /**
  * @typedef Entities
- * @property {string} [affiliate_shipment_id]
- * @property {string} [affiliate_id]
  * @property {string} [affiliate_order_id]
- * @property {string} [affiliate_bag_id]
+ * @property {string} [affiliate_shipment_id]
  * @property {string} reason_text
+ * @property {string} [affiliate_bag_id]
  * @property {string} [id]
+ * @property {string} [affiliate_id]
  */
 
 /**
  * @typedef UpdateShipmentLockPayload
- * @property {string} entity_type
+ * @property {string} action_type
  * @property {Entities[]} entities
  * @property {string} action
- * @property {string} action_type
+ * @property {string} entity_type
+ */
+
+/**
+ * @typedef Bags
+ * @property {boolean} [is_locked]
+ * @property {string} [affiliate_order_id]
+ * @property {number} [bag_id]
+ * @property {string} [affiliate_bag_id]
  */
 
 /**
@@ -6081,45 +6263,37 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef Bags
- * @property {boolean} [is_locked]
- * @property {number} [bag_id]
- * @property {string} [affiliate_bag_id]
- * @property {string} [affiliate_order_id]
- */
-
-/**
  * @typedef CheckResponse
- * @property {OriginalFilter} [original_filter]
- * @property {boolean} [lock_status]
- * @property {Bags[]} [bags]
- * @property {string} [shipment_id]
- * @property {string} [affiliate_id]
- * @property {boolean} [is_bag_locked]
- * @property {string} [status]
- * @property {boolean} [is_shipment_locked]
  * @property {string} [affiliate_shipment_id]
+ * @property {string} [shipment_id]
+ * @property {string} [status]
+ * @property {boolean} [is_bag_locked]
+ * @property {boolean} [lock_status]
+ * @property {boolean} [is_shipment_locked]
+ * @property {Bags[]} [bags]
+ * @property {string} [affiliate_id]
+ * @property {OriginalFilter} [original_filter]
  */
 
 /**
  * @typedef UpdateShipmentLockResponse
+ * @property {boolean} [success]
  * @property {CheckResponse[]} [check_response]
  * @property {string} [message]
- * @property {boolean} [success]
  */
 
 /**
  * @typedef AnnouncementResponse
- * @property {number} [company_id]
- * @property {string} [to_datetime]
  * @property {string} [from_datetime]
- * @property {string} [description]
- * @property {string} [platform_id]
+ * @property {number} [company_id]
  * @property {string} [title]
+ * @property {string} [description]
  * @property {string} [logo_url]
+ * @property {string} [to_datetime]
+ * @property {string} [platform_id]
+ * @property {number} id
  * @property {string} [created_at]
  * @property {string} [platform_name]
- * @property {number} id
  */
 
 /**
@@ -6129,45 +6303,14 @@ class PlatformApplicationClient {
 
 /**
  * @typedef BaseResponse
- * @property {string} message
  * @property {boolean} success
+ * @property {string} message
  */
 
 /**
  * @typedef Click2CallResponse
- * @property {boolean} status
  * @property {string} call_id
- */
-
-/**
- * @typedef Products
- * @property {number} [line_number]
- * @property {number} [quantity]
- * @property {string} [identifier]
- */
-
-/**
- * @typedef EntitiesDataUpdates
- * @property {Object} [data]
- * @property {Object[]} [filters]
- */
-
-/**
- * @typedef ProductsDataUpdatesFilters
- * @property {number} [line_number]
- * @property {string} [identifier]
- */
-
-/**
- * @typedef ProductsDataUpdates
- * @property {Object} [data]
- * @property {ProductsDataUpdatesFilters[]} [filters]
- */
-
-/**
- * @typedef DataUpdates
- * @property {EntitiesDataUpdates[]} [entities]
- * @property {ProductsDataUpdates[]} [products]
+ * @property {boolean} status
  */
 
 /**
@@ -6178,8 +6321,15 @@ class PlatformApplicationClient {
 
 /**
  * @typedef EntitiesReasons
- * @property {EntityReasonData} [data]
  * @property {Object[]} [filters]
+ * @property {EntityReasonData} [data]
+ */
+
+/**
+ * @typedef ProductsReasonsFilters
+ * @property {string} [identifier]
+ * @property {number} [quantity]
+ * @property {number} [line_number]
  */
 
 /**
@@ -6189,16 +6339,9 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ProductsReasonsFilters
- * @property {number} [line_number]
- * @property {number} [quantity]
- * @property {string} [identifier]
- */
-
-/**
  * @typedef ProductsReasons
- * @property {ProductsReasonsData} [data]
  * @property {ProductsReasonsFilters[]} [filters]
+ * @property {ProductsReasonsData} [data]
  */
 
 /**
@@ -6208,11 +6351,42 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef EntitiesDataUpdates
+ * @property {Object[]} [filters]
+ * @property {Object} [data]
+ */
+
+/**
+ * @typedef ProductsDataUpdatesFilters
+ * @property {string} [identifier]
+ * @property {number} [line_number]
+ */
+
+/**
+ * @typedef ProductsDataUpdates
+ * @property {ProductsDataUpdatesFilters[]} [filters]
+ * @property {Object} [data]
+ */
+
+/**
+ * @typedef DataUpdates
+ * @property {EntitiesDataUpdates[]} [entities]
+ * @property {ProductsDataUpdates[]} [products]
+ */
+
+/**
+ * @typedef Products
+ * @property {string} [identifier]
+ * @property {number} [quantity]
+ * @property {number} [line_number]
+ */
+
+/**
  * @typedef ShipmentsRequest
- * @property {string} identifier
- * @property {Products[]} [products]
- * @property {DataUpdates} [data_updates]
  * @property {ReasonsData} [reasons]
+ * @property {string} identifier
+ * @property {DataUpdates} [data_updates]
+ * @property {Products[]} [products]
  */
 
 /**
@@ -6224,23 +6398,23 @@ class PlatformApplicationClient {
 
 /**
  * @typedef UpdateShipmentStatusRequest
- * @property {boolean} [lock_after_transition]
- * @property {StatuesRequest[]} [statuses]
  * @property {boolean} [task]
  * @property {boolean} [force_transition]
  * @property {boolean} [unlock_before_transition]
+ * @property {StatuesRequest[]} [statuses]
+ * @property {boolean} [lock_after_transition]
  */
 
 /**
  * @typedef ShipmentsResponse
- * @property {string} [identifier]
+ * @property {Object} [final_state]
+ * @property {string} [stack_trace]
+ * @property {string} [exception]
+ * @property {number} [status]
  * @property {string} [message]
  * @property {string} [code]
- * @property {string} [stack_trace]
- * @property {Object} [final_state]
- * @property {number} [status]
+ * @property {string} [identifier]
  * @property {Object} [meta]
- * @property {string} [exception]
  */
 
 /**
@@ -6254,24 +6428,141 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef OrderUser
+ * @property {string} [address2]
+ * @property {string} pincode
+ * @property {number} mobile
+ * @property {string} last_name
+ * @property {string} country
+ * @property {string} [address1]
+ * @property {string} state
+ * @property {string} city
+ * @property {string} email
+ * @property {number} phone
+ * @property {string} first_name
+ */
+
+/**
+ * @typedef UserData
+ * @property {OrderUser} [billing_user]
+ * @property {OrderUser} [shipping_user]
+ */
+
+/**
+ * @typedef MarketPlacePdf
+ * @property {string} [invoice]
+ * @property {string} [label]
+ */
+
+/**
+ * @typedef AffiliateBag
+ * @property {string} _id
+ * @property {number} delivery_charge
+ * @property {number} store_id
+ * @property {Object} affiliate_meta
+ * @property {number} unit_price
+ * @property {string} modified_on
+ * @property {Object} identifier
+ * @property {number} amount_paid
+ * @property {number} transfer_price
+ * @property {number} item_id
+ * @property {number} price_effective
+ * @property {number} price_marked
+ * @property {string} affiliate_store_id
+ * @property {string} item_size
+ * @property {number} quantity
+ * @property {string} seller_identifier
+ * @property {MarketPlacePdf} [pdf_links]
+ * @property {string} hsn_code_id
+ * @property {number} company_id
+ * @property {string} sku
+ * @property {number} avl_qty
+ * @property {number} discount
+ * @property {string} fynd_store_id
+ */
+
+/**
+ * @typedef ArticleDetails1
+ * @property {Object} category
+ * @property {number} brand_id
+ * @property {string} _id
+ * @property {number} quantity
+ * @property {Object} attributes
+ * @property {Object} dimension
+ * @property {Object} weight
+ */
+
+/**
+ * @typedef LocationDetails
+ * @property {ArticleDetails1[]} articles
+ * @property {string} fulfillment_type
+ * @property {number} fulfillment_id
+ */
+
+/**
+ * @typedef ShipmentDetails
+ * @property {ArticleDetails1[]} articles
+ * @property {string} affiliate_shipment_id
+ * @property {number} [dp_id]
+ * @property {number} fulfillment_id
+ * @property {number} shipments
+ * @property {Object} [meta]
+ * @property {string} [box_type]
+ */
+
+/**
+ * @typedef ShipmentConfig
+ * @property {string} payment_mode
+ * @property {LocationDetails} [location_details]
+ * @property {string} source
+ * @property {string} to_pincode
+ * @property {ShipmentDetails[]} shipment
+ * @property {string} identifier
+ * @property {string} action
+ * @property {string} journey
+ */
+
+/**
+ * @typedef ShipmentData
+ * @property {ShipmentConfig} shipment_data
+ */
+
+/**
+ * @typedef OrderPriority
+ * @property {string} [fulfilment_priority_text]
+ * @property {string} [affiliate_priority_code]
+ * @property {number} [fulfilment_priority]
+ */
+
+/**
+ * @typedef OrderInfo
+ * @property {OrderUser} shipping_address
+ * @property {string} [affiliate_order_id]
+ * @property {Object} [payment]
+ * @property {Object} items
+ * @property {UserData} user
+ * @property {OrderUser} billing_address
+ * @property {number} delivery_charges
+ * @property {string} [coupon]
+ * @property {number} discount
+ * @property {AffiliateBag[]} bags
+ * @property {ShipmentData} [shipment]
+ * @property {string} payment_mode
+ * @property {number} cod_charges
+ * @property {OrderPriority} [order_priority]
+ * @property {number} order_value
+ */
+
+/**
+ * @typedef AffiliateStoreIdMapping
+ * @property {number} store_id
+ * @property {string} marketplace_store_id
+ */
+
+/**
  * @typedef AffiliateInventoryPaymentConfig
  * @property {string} [source]
  * @property {string} [mode_of_payment]
- */
-
-/**
- * @typedef AffiliateInventoryStoreConfig
- * @property {Object} [store]
- */
-
-/**
- * @typedef AffiliateInventoryOrderConfig
- * @property {boolean} [force_reassignment]
- */
-
-/**
- * @typedef AffiliateInventoryLogisticsConfig
- * @property {boolean} [dp_assignment]
  */
 
 /**
@@ -6280,12 +6571,27 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef AffiliateInventoryStoreConfig
+ * @property {Object} [store]
+ */
+
+/**
+ * @typedef AffiliateInventoryLogisticsConfig
+ * @property {boolean} [dp_assignment]
+ */
+
+/**
+ * @typedef AffiliateInventoryOrderConfig
+ * @property {boolean} [force_reassignment]
+ */
+
+/**
  * @typedef AffiliateInventoryConfig
  * @property {AffiliateInventoryPaymentConfig} [payment]
- * @property {AffiliateInventoryStoreConfig} [inventory]
- * @property {AffiliateInventoryOrderConfig} [order]
- * @property {AffiliateInventoryLogisticsConfig} [logistics]
  * @property {AffiliateInventoryArticleAssignmentConfig} [article_assignment]
+ * @property {AffiliateInventoryStoreConfig} [inventory]
+ * @property {AffiliateInventoryLogisticsConfig} [logistics]
+ * @property {AffiliateInventoryOrderConfig} [order]
  */
 
 /**
@@ -6296,15 +6602,15 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AffiliateAppConfig
- * @property {string} name
- * @property {string} owner
- * @property {string} token
- * @property {string} secret
- * @property {string} updated_at
- * @property {AffiliateAppConfigMeta[]} [meta]
  * @property {string} [description]
- * @property {string} created_at
+ * @property {string} secret
  * @property {string} id
+ * @property {string} owner
+ * @property {string} created_at
+ * @property {string} token
+ * @property {string} name
+ * @property {AffiliateAppConfigMeta[]} [meta]
+ * @property {string} updated_at
  */
 
 /**
@@ -6321,145 +6627,20 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef AffiliateStoreIdMapping
- * @property {number} store_id
- * @property {string} marketplace_store_id
- */
-
-/**
  * @typedef OrderConfig
+ * @property {string} [bag_end_state]
  * @property {string} [store_lookup]
+ * @property {AffiliateStoreIdMapping[]} affiliate_store_id_mapping
+ * @property {Affiliate} affiliate
  * @property {boolean} [create_user]
  * @property {string} [article_lookup]
- * @property {Affiliate} affiliate
- * @property {AffiliateStoreIdMapping[]} affiliate_store_id_mapping
- * @property {string} [bag_end_state]
- */
-
-/**
- * @typedef MarketPlacePdf
- * @property {string} [label]
- * @property {string} [invoice]
- */
-
-/**
- * @typedef AffiliateBag
- * @property {Object} identifier
- * @property {number} avl_qty
- * @property {number} amount_paid
- * @property {Object} affiliate_meta
- * @property {string} affiliate_store_id
- * @property {string} hsn_code_id
- * @property {string} sku
- * @property {number} item_id
- * @property {string} modified_on
- * @property {MarketPlacePdf} [pdf_links]
- * @property {number} price_effective
- * @property {string} fynd_store_id
- * @property {string} item_size
- * @property {number} store_id
- * @property {number} unit_price
- * @property {number} quantity
- * @property {string} seller_identifier
- * @property {number} company_id
- * @property {number} discount
- * @property {number} delivery_charge
- * @property {number} price_marked
- * @property {string} _id
- * @property {number} transfer_price
- */
-
-/**
- * @typedef OrderUser
- * @property {string} first_name
- * @property {string} pincode
- * @property {string} [address2]
- * @property {number} mobile
- * @property {string} state
- * @property {string} last_name
- * @property {string} country
- * @property {string} [address1]
- * @property {number} phone
- * @property {string} city
- * @property {string} email
- */
-
-/**
- * @typedef UserData
- * @property {OrderUser} [shipping_user]
- * @property {OrderUser} [billing_user]
- */
-
-/**
- * @typedef OrderPriority
- * @property {string} [fulfilment_priority_text]
- * @property {string} [affiliate_priority_code]
- * @property {number} [fulfilment_priority]
- */
-
-/**
- * @typedef ArticleDetails1
- * @property {number} quantity
- * @property {number} brand_id
- * @property {Object} category
- * @property {Object} attributes
- * @property {Object} weight
- * @property {Object} dimension
- * @property {string} _id
- */
-
-/**
- * @typedef ShipmentDetails
- * @property {number} shipments
- * @property {number} [dp_id]
- * @property {number} fulfillment_id
- * @property {ArticleDetails1[]} articles
- * @property {Object} [meta]
- * @property {string} affiliate_shipment_id
- * @property {string} [box_type]
- */
-
-/**
- * @typedef ShipmentConfig
- * @property {string} identifier
- * @property {LocationDetails} [location_details]
- * @property {string} action
- * @property {ShipmentDetails[]} shipment
- * @property {string} source
- * @property {string} payment_mode
- * @property {string} to_pincode
- * @property {string} journey
- */
-
-/**
- * @typedef ShipmentData
- * @property {ShipmentConfig} shipment_data
- */
-
-/**
- * @typedef OrderInfo
- * @property {AffiliateBag[]} bags
- * @property {string} [coupon]
- * @property {Object} items
- * @property {number} discount
- * @property {Object} [payment]
- * @property {number} delivery_charges
- * @property {UserData} user
- * @property {OrderUser} billing_address
- * @property {OrderPriority} [order_priority]
- * @property {number} cod_charges
- * @property {ShipmentData} [shipment]
- * @property {string} payment_mode
- * @property {OrderUser} shipping_address
- * @property {string} [affiliate_order_id]
- * @property {number} order_value
  */
 
 /**
  * @typedef CreateOrderPayload
+ * @property {OrderInfo} order_info
  * @property {OrderConfig} order_config
  * @property {string} affiliate_id
- * @property {OrderInfo} order_info
  */
 
 /**
@@ -6474,16 +6655,16 @@ class PlatformApplicationClient {
 
 /**
  * @typedef SuccessResponse
- * @property {string} [message]
  * @property {boolean} [success]
+ * @property {string} [message]
  */
 
 /**
  * @typedef ActionInfo
- * @property {string} slug
- * @property {string} description
  * @property {string} display_text
  * @property {number} id
+ * @property {string} slug
+ * @property {string} description
  */
 
 /**
@@ -6492,22 +6673,22 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef PostHistoryData
- * @property {string} message
- * @property {string} user_name
+ * @typedef PostHistoryFilters
+ * @property {string} [identifier]
+ * @property {string} [line_number]
+ * @property {string} shipment_id
  */
 
 /**
- * @typedef PostHistoryFilters
- * @property {string} [line_number]
- * @property {string} shipment_id
- * @property {string} [identifier]
+ * @typedef PostHistoryData
+ * @property {string} user_name
+ * @property {string} message
  */
 
 /**
  * @typedef PostActivityHistory
- * @property {PostHistoryData} data
  * @property {PostHistoryFilters[]} filters
+ * @property {PostHistoryData} data
  */
 
 /**
@@ -6522,16 +6703,16 @@ class PlatformApplicationClient {
 
 /**
  * @typedef HistoryDict
- * @property {string} message
  * @property {string} [l1_detail]
- * @property {string} type
- * @property {string} [ticket_url]
  * @property {string} user
- * @property {number} [bag_id]
- * @property {string} [ticket_id]
  * @property {string} [l3_detail]
+ * @property {string} [ticket_id]
+ * @property {string} message
  * @property {string} createdat
  * @property {string} [l2_detail]
+ * @property {number} [bag_id]
+ * @property {string} [ticket_url]
+ * @property {string} type
  */
 
 /**
@@ -6541,34 +6722,34 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ErrorDetail
- * @property {string} [message]
  * @property {boolean} [success]
+ * @property {string} [message]
  */
 
 /**
  * @typedef SmsDataPayload
+ * @property {number} phone_number
+ * @property {number} shipment_id
+ * @property {string} brand_name
  * @property {string} message
+ * @property {string} customer_name
+ * @property {string} order_id
  * @property {string} country_code
  * @property {number} amount_paid
- * @property {string} order_id
- * @property {string} customer_name
- * @property {string} brand_name
- * @property {number} shipment_id
- * @property {number} phone_number
  * @property {string} payment_mode
  */
 
 /**
  * @typedef SendSmsPayload
  * @property {string} slug
- * @property {number} bag_id
  * @property {SmsDataPayload} [data]
+ * @property {number} bag_id
  */
 
 /**
  * @typedef OrderDetails
- * @property {string} [created_at]
  * @property {string} [fynd_order_id]
+ * @property {string} [created_at]
  */
 
 /**
@@ -6580,17 +6761,17 @@ class PlatformApplicationClient {
 /**
  * @typedef ShipmentDetail
  * @property {string} [shipment_id]
- * @property {number[]} [bag_list]
- * @property {number} id
  * @property {string} [status]
- * @property {Meta} meta
  * @property {string} [remarks]
+ * @property {number} id
+ * @property {Meta} meta
+ * @property {number[]} [bag_list]
  */
 
 /**
  * @typedef OrderStatusData
- * @property {OrderDetails} order_details
  * @property {string[]} [errors]
+ * @property {OrderDetails} order_details
  * @property {ShipmentDetail[]} [shipment_details]
  */
 
@@ -6602,58 +6783,51 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ManualAssignDPToShipment
- * @property {number} dp_id
  * @property {string} qc_required
  * @property {string[]} [shipment_ids]
+ * @property {number} dp_id
  * @property {string} order_type
  */
 
 /**
  * @typedef ManualAssignDPToShipmentResponse
- * @property {string} success
  * @property {string[]} [errors]
- */
-
-/**
- * @typedef PaymentMethod
- * @property {string} name
- * @property {string} refund_by
- * @property {string} mode
- * @property {string} collect_by
- * @property {number} amount
- * @property {Object} [meta]
- * @property {Object} [transaction_data]
- */
-
-/**
- * @typedef PaymentInfo
- * @property {string} primary_mode
- * @property {PaymentMethod[]} [payment_methods]
+ * @property {string} success
  */
 
 /**
  * @typedef BillingInfo
- * @property {string} first_name
  * @property {string} [external_customer_code]
- * @property {string} [middle_name]
- * @property {string} [address2]
- * @property {string} [country_code]
- * @property {string} [state_code]
- * @property {string} pincode
- * @property {string} [last_name]
- * @property {string} [house_no]
- * @property {string} state
- * @property {string} primary_mobile_number
  * @property {string} [alternate_mobile_number]
- * @property {string} country
- * @property {string} [alternate_email]
- * @property {string} [floor_no]
- * @property {string} [title]
- * @property {string} [customer_code]
+ * @property {string} [state_code]
  * @property {string} [gender]
  * @property {string} address1
- * @property {string} primary_email
+ * @property {string} [customer_code]
+ * @property {string} [country_code]
+ * @property {string} primary_mobile_number
+ * @property {string} first_name
+ * @property {string} [house_no]
+ * @property {string} state
  * @property {string} city
+ * @property {string} pincode
+ * @property {string} [floor_no]
+ * @property {string} [alternate_email]
+ * @property {string} [address2]
+ * @property {string} [last_name]
+ * @property {string} country
+ * @property {string} [title]
+ * @property {string} primary_email
+ * @property {string} [middle_name]
+ */
+
+/**
+ * @typedef ProcessingDates
+ * @property {string} [dispatch_after_date]
+ * @property {string} [dispatch_by_date]
+ * @property {Object} [customer_pickup_slot]
+ * @property {Object} [dp_pickup_slot]
+ * @property {string} [pack_by_date]
+ * @property {string} [confirm_by_date]
  */
 
 /**
@@ -6666,110 +6840,117 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Charge
+ * @property {Object} amount
+ * @property {Tax} [tax]
  * @property {string} [code]
  * @property {string} name
  * @property {string} type
- * @property {Object} amount
- * @property {Tax} [tax]
  */
 
 /**
  * @typedef LineItem
- * @property {number} [quantity]
- * @property {string} seller_identifier
- * @property {string} [custom_messasge]
- * @property {Object} [meta]
- * @property {Charge[]} [charges]
  * @property {string} [external_line_id]
- */
-
-/**
- * @typedef ProcessingDates
- * @property {string} [confirm_by_date]
- * @property {Object} [customer_pickup_slot]
- * @property {string} [pack_by_date]
- * @property {string} [dispatch_after_date]
- * @property {Object} [dp_pickup_slot]
- * @property {string} [dispatch_by_date]
+ * @property {string} [custom_messasge]
+ * @property {number} [quantity]
+ * @property {Charge[]} [charges]
+ * @property {Object} [meta]
+ * @property {string} seller_identifier
  */
 
 /**
  * @typedef Shipment
  * @property {string} [external_shipment_id]
- * @property {LineItem[]} line_items
- * @property {Object} [meta]
+ * @property {number} location_id
  * @property {ProcessingDates} [processing_dates]
  * @property {number} [priority]
- * @property {number} location_id
- */
-
-/**
- * @typedef ShippingInfo
- * @property {string} first_name
- * @property {string} [external_customer_code]
- * @property {string} [middle_name]
- * @property {string} [address2]
- * @property {string} [country_code]
- * @property {string} [state_code]
- * @property {string} pincode
- * @property {string} [landmark]
- * @property {string} [last_name]
- * @property {string} [house_no]
- * @property {Object[]} [slot]
- * @property {string} state
- * @property {string} primary_mobile_number
- * @property {string} [alternate_mobile_number]
- * @property {string} country
- * @property {string} [address_type]
- * @property {Object} [geo_location]
- * @property {string} [alternate_email]
- * @property {string} [floor_no]
- * @property {string} [shipping_type]
- * @property {string} [title]
- * @property {string} [customer_code]
- * @property {string} [gender]
- * @property {string} address1
- * @property {string} primary_email
- * @property {string} city
+ * @property {LineItem[]} line_items
+ * @property {Object} [meta]
  */
 
 /**
  * @typedef TaxInfo
- * @property {string} [gstin]
  * @property {string} [b2b_gstin_number]
+ * @property {string} [gstin]
+ */
+
+/**
+ * @typedef PaymentMethod
+ * @property {string} mode
+ * @property {number} amount
+ * @property {string} refund_by
+ * @property {Object} [transaction_data]
+ * @property {string} collect_by
+ * @property {string} name
+ * @property {Object} [meta]
+ */
+
+/**
+ * @typedef PaymentInfo
+ * @property {string} primary_mode
+ * @property {PaymentMethod[]} [payment_methods]
+ */
+
+/**
+ * @typedef ShippingInfo
+ * @property {string} [external_customer_code]
+ * @property {string} [alternate_mobile_number]
+ * @property {string} [state_code]
+ * @property {string} [shipping_type]
+ * @property {string} [gender]
+ * @property {string} address1
+ * @property {string} [customer_code]
+ * @property {string} [country_code]
+ * @property {string} [address_type]
+ * @property {string} first_name
+ * @property {string} primary_mobile_number
+ * @property {string} [house_no]
+ * @property {string} state
+ * @property {string} city
+ * @property {Object} [geo_location]
+ * @property {string} pincode
+ * @property {string} [floor_no]
+ * @property {Object[]} [slot]
+ * @property {string} [alternate_email]
+ * @property {string} [address2]
+ * @property {string} [last_name]
+ * @property {string} country
+ * @property {string} [title]
+ * @property {string} primary_email
+ * @property {string} [landmark]
+ * @property {string} [middle_name]
  */
 
 /**
  * @typedef CreateOrderAPI
- * @property {PaymentInfo} payment_info
  * @property {BillingInfo} billing_info
- * @property {string} [external_creation_date]
- * @property {Shipment[]} shipments
  * @property {string} [external_order_id]
- * @property {ShippingInfo} shipping_info
- * @property {Object} [meta]
- * @property {Charge[]} [charges]
+ * @property {Shipment[]} shipments
  * @property {Object} [currency_info]
+ * @property {Charge[]} [charges]
  * @property {TaxInfo} [tax_info]
+ * @property {PaymentInfo} payment_info
+ * @property {string} [external_creation_date]
+ * @property {Object} [meta]
+ * @property {ShippingInfo} shipping_info
  */
 
 /**
  * @typedef CreateOrderErrorReponse
- * @property {string} [code]
- * @property {string} message
- * @property {string} [stack_trace]
  * @property {Object} [info]
- * @property {number} status
+ * @property {string} [stack_trace]
  * @property {string} [meta]
- * @property {string} [request_id]
  * @property {string} [exception]
+ * @property {number} status
+ * @property {string} message
+ * @property {string} [code]
+ * @property {string} [request_id]
  */
 
 /**
  * @typedef PaymentMethods
+ * @property {string} [refund_by]
  * @property {string} [mode]
  * @property {string} [collect_by]
- * @property {string} [refund_by]
  */
 
 /**
@@ -6786,12 +6967,12 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CreateChannelConfig
- * @property {CreateChannelPaymentInfo} [payment_info]
  * @property {string[]} [lock_states]
  * @property {string} [shipment_assignment]
  * @property {Object} [logo_url]
- * @property {DpConfiguration} [dp_configuration]
+ * @property {CreateChannelPaymentInfo} [payment_info]
  * @property {boolean} [location_reassignment]
+ * @property {DpConfiguration} [dp_configuration]
  */
 
 /**
@@ -6801,9 +6982,9 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CreateChannelConfigResponse
- * @property {boolean} [is_inserted]
  * @property {boolean} [is_upserted]
  * @property {boolean} [acknowledged]
+ * @property {boolean} [is_inserted]
  */
 
 /**
@@ -6824,8 +7005,8 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ResponseDetail
- * @property {string[]} [message]
  * @property {boolean} [success]
+ * @property {string[]} [message]
  */
 
 /**
@@ -6835,40 +7016,31 @@ class PlatformApplicationClient {
 
 /**
  * @typedef OrderStatus
- * @property {number} mobile
  * @property {string} start_date
+ * @property {number} mobile
  * @property {FyndOrderIdList[]} [order_details]
  * @property {string} end_date
  */
 
 /**
- * @typedef SearchKeywordResult
- * @property {string} sort_on
- * @property {Object} query
- */
-
-/**
- * @typedef CreateSearchKeyword
- * @property {string[]} [words]
- * @property {string} [app_id]
- * @property {SearchKeywordResult} result
- * @property {Object} [_custom_json]
- * @property {boolean} [is_active]
- */
-
-/**
  * @typedef GetSearchWordsData
- * @property {string[]} [words]
  * @property {string} [uid]
+ * @property {string[]} [words]
  * @property {string} [app_id]
- * @property {Object} [result]
  * @property {Object} [_custom_json]
+ * @property {Object} [result]
  * @property {boolean} [is_active]
  */
 
 /**
- * @typedef DeleteResponse
- * @property {string} [message]
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -6878,23 +7050,67 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef ErrorResponse
+ * @property {string} [code]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {number} [status]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef DeleteResponse
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef SearchKeywordResult
+ * @property {Object} query
+ * @property {string} sort_on
+ */
+
+/**
+ * @typedef CreateSearchKeyword
+ * @property {string[]} [words]
+ * @property {string} [app_id]
+ * @property {Object} [_custom_json]
+ * @property {SearchKeywordResult} result
+ * @property {boolean} [is_active]
+ */
+
+/**
  * @typedef GetSearchWordsResponse
  * @property {GetSearchWordsData[]} [items]
  * @property {Page} [page]
  */
 
 /**
+ * @typedef GetAutocompleteWordsData
+ * @property {string} [uid]
+ * @property {string[]} [words]
+ * @property {string} [app_id]
+ * @property {Object} [_custom_json]
+ * @property {Object[]} [results]
+ */
+
+/**
+ * @typedef GetAutocompleteWordsResponse
+ * @property {GetAutocompleteWordsData[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
  * @typedef AutocompletePageAction
- * @property {Object} [params]
  * @property {Object} [query]
  * @property {string} [url]
  * @property {string} [type]
+ * @property {Object} [params]
  */
 
 /**
  * @typedef AutocompleteAction
- * @property {AutocompletePageAction} [page]
  * @property {string} [type]
+ * @property {AutocompletePageAction} [page]
  */
 
 /**
@@ -6906,89 +7122,74 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AutocompleteResult
- * @property {Object} [_custom_json]
  * @property {AutocompleteAction} [action]
- * @property {Media} [logo]
  * @property {string} [display]
+ * @property {Media} [logo]
+ * @property {Object} [_custom_json]
  */
 
 /**
  * @typedef CreateAutocompleteKeyword
  * @property {string[]} [words]
- * @property {AutocompleteResult[]} [results]
  * @property {string} [app_id]
  * @property {Object} [_custom_json]
+ * @property {AutocompleteResult[]} [results]
  * @property {boolean} [is_active]
  */
 
 /**
- * @typedef GetAutocompleteWordsData
- * @property {string[]} [words]
- * @property {Object[]} [results]
- * @property {string} [uid]
- * @property {string} [app_id]
- * @property {Object} [_custom_json]
- */
-
-/**
- * @typedef GetAutocompleteWordsResponse
- * @property {GetAutocompleteWordsData[]} [items]
- * @property {Page} [page]
- */
-
-/**
  * @typedef CreateAutocompleteWordsResponse
- * @property {Object[]} [results]
  * @property {Object} [_custom_json]
- * @property {string} [app_id]
  * @property {string[]} [words]
+ * @property {Object[]} [results]
+ * @property {string} [app_id]
  */
 
 /**
  * @typedef ProductBundleItem
- * @property {number} min_quantity
- * @property {number} max_quantity
  * @property {boolean} [allow_remove]
- * @property {number} product_uid
- * @property {boolean} [auto_add_to_cart]
  * @property {boolean} [auto_select]
+ * @property {number} product_uid
+ * @property {number} min_quantity
+ * @property {boolean} [auto_add_to_cart]
+ * @property {number} max_quantity
  */
 
 /**
  * @typedef ProductBundleRequest
  * @property {string} slug
- * @property {Object} [modified_by]
- * @property {string[]} [page_visibility]
- * @property {string} [created_on]
- * @property {string} name
  * @property {ProductBundleItem[]} products
- * @property {boolean} [same_store_assignment]
- * @property {Object} [created_by]
+ * @property {string} [created_on]
+ * @property {string[]} [page_visibility]
  * @property {string} choice
- * @property {string} [modified_on]
- * @property {number} [company_id]
+ * @property {Object} [created_by]
  * @property {Object} [meta]
  * @property {string} [logo]
+ * @property {string} name
+ * @property {boolean} [same_store_assignment]
+ * @property {string} [modified_on]
  * @property {boolean} is_active
+ * @property {number} [company_id]
+ * @property {Object} [modified_by]
  */
 
 /**
  * @typedef GetProductBundleCreateResponse
- * @property {string} [id]
  * @property {string} slug
- * @property {Object} [modified_by]
- * @property {string[]} [page_visibility]
- * @property {string} [created_on]
- * @property {string} name
  * @property {ProductBundleItem[]} products
- * @property {boolean} [same_store_assignment]
- * @property {Object} [created_by]
+ * @property {string} [created_on]
+ * @property {string[]} [page_visibility]
  * @property {string} choice
- * @property {string} [modified_on]
- * @property {number} [company_id]
+ * @property {Object} [created_by]
  * @property {Object} [meta]
  * @property {string} [logo]
+ * @property {string} name
+ * @property {boolean} [same_store_assignment]
+ * @property {string} [modified_on]
  * @property {boolean} is_active
+ * @property {string} [id]
+ * @property {number} [company_id]
+ * @property {Object} [modified_by]
  */
 
 /**
@@ -6998,79 +7199,86 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ProductBundleUpdateRequest
- * @property {string} slug
- * @property {Object} [modified_by]
- * @property {string[]} [page_visibility]
- * @property {string} name
- * @property {ProductBundleItem[]} products
- * @property {boolean} [same_store_assignment]
- * @property {string} choice
- * @property {string} [modified_on]
- * @property {number} [company_id]
- * @property {Object} [meta]
- * @property {string} [logo]
- * @property {boolean} is_active
- */
-
-/**
  * @typedef LimitedProductData
+ * @property {string} [slug]
+ * @property {number} [uid]
  * @property {number} [quantity]
  * @property {string} [short_description]
- * @property {string} [slug]
- * @property {string} [country_of_origin]
- * @property {string} [name]
  * @property {Object} [identifier]
- * @property {number} [uid]
+ * @property {string} [country_of_origin]
  * @property {string} [item_code]
- * @property {Object} [price]
- * @property {string[]} [images]
+ * @property {string} [name]
  * @property {string[]} [sizes]
+ * @property {string[]} [images]
  * @property {Object} [attributes]
- */
-
-/**
- * @typedef Price
- * @property {string} [currency]
- * @property {number} [max_marked]
- * @property {number} [min_effective]
- * @property {number} [min_marked]
- * @property {number} [max_effective]
+ * @property {Object} [price]
  */
 
 /**
  * @typedef Size
  * @property {number} [quantity]
- * @property {boolean} [is_available]
- * @property {string} [value]
  * @property {string} [display]
+ * @property {string} [value]
+ * @property {boolean} [is_available]
+ */
+
+/**
+ * @typedef Price
+ * @property {number} [min_effective]
+ * @property {number} [max_effective]
+ * @property {string} [currency]
+ * @property {number} [max_marked]
+ * @property {number} [min_marked]
  */
 
 /**
  * @typedef GetProducts
- * @property {number} [min_quantity]
- * @property {number} [max_quantity]
- * @property {boolean} [allow_remove]
  * @property {LimitedProductData} [product_details]
- * @property {number} [product_uid]
- * @property {boolean} [auto_add_to_cart]
+ * @property {boolean} [allow_remove]
  * @property {boolean} [auto_select]
- * @property {Price} [price]
+ * @property {number} [product_uid]
+ * @property {number} [min_quantity]
  * @property {Size[]} [sizes]
+ * @property {boolean} [auto_add_to_cart]
+ * @property {Price} [price]
+ * @property {number} [max_quantity]
  */
 
 /**
  * @typedef GetProductBundleResponse
  * @property {string} [slug]
- * @property {string[]} [page_visibility]
- * @property {string} [name]
  * @property {GetProducts[]} [products]
- * @property {boolean} [same_store_assignment]
+ * @property {string[]} [page_visibility]
  * @property {string} [choice]
- * @property {number} [company_id]
  * @property {Object} [meta]
  * @property {string} [logo]
+ * @property {string} [name]
+ * @property {boolean} [same_store_assignment]
  * @property {boolean} [is_active]
+ * @property {number} [company_id]
+ */
+
+/**
+ * @typedef ProductBundleUpdateRequest
+ * @property {string} slug
+ * @property {ProductBundleItem[]} products
+ * @property {string[]} [page_visibility]
+ * @property {string} choice
+ * @property {Object} [meta]
+ * @property {string} [logo]
+ * @property {string} name
+ * @property {boolean} [same_store_assignment]
+ * @property {string} [modified_on]
+ * @property {boolean} is_active
+ * @property {number} [company_id]
+ * @property {Object} [modified_by]
+ */
+
+/**
+ * @typedef Meta
+ * @property {Object} [headers]
+ * @property {string} [unit]
+ * @property {Object[]} [values]
  */
 
 /**
@@ -7080,40 +7288,45 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ValidateSizeGuide
- * @property {number} [brand_id]
- * @property {string} [id]
- * @property {boolean} [active]
  * @property {string} title
- * @property {string} [image]
  * @property {string} [created_on]
- * @property {string} name
- * @property {Object} [created_by]
- * @property {string} [description]
- * @property {string} [modified_on]
- * @property {string} [subtitle]
- * @property {Guide} [guide]
- * @property {number} [company_id]
  * @property {string} [tag]
+ * @property {Guide} [guide]
+ * @property {string} [subtitle]
+ * @property {Object} [created_by]
+ * @property {string} [image]
+ * @property {string} name
+ * @property {number} [brand_id]
+ * @property {string} [modified_on]
+ * @property {boolean} [active]
+ * @property {string} [id]
+ * @property {number} [company_id]
  * @property {Object} [modified_by]
+ * @property {string} [description]
+ */
+
+/**
+ * @typedef SuccessResponse
+ * @property {boolean} [success]
  */
 
 /**
  * @typedef GetMultiSizeGuide
- * @property {number} [brand_id]
- * @property {boolean} [active]
  * @property {string} [title]
- * @property {string} [image]
  * @property {string} [created_on]
- * @property {string} [name]
- * @property {string} [_id]
- * @property {Object} [created_by]
- * @property {string} [description]
- * @property {string} [modified_on]
- * @property {string} [subtitle]
- * @property {Object} [guide]
- * @property {number} [company_id]
  * @property {string} [tag]
+ * @property {Object} [guide]
+ * @property {string} [_id]
+ * @property {string} [subtitle]
+ * @property {Object} [created_by]
+ * @property {string} [image]
+ * @property {string} [name]
+ * @property {number} [brand_id]
+ * @property {string} [modified_on]
+ * @property {boolean} [active]
+ * @property {number} [company_id]
  * @property {Object} [modified_by]
+ * @property {string} [description]
  */
 
 /**
@@ -7124,49 +7337,71 @@ class PlatformApplicationClient {
 
 /**
  * @typedef SizeGuideResponse
- * @property {number} [brand_id]
- * @property {string} [id]
- * @property {boolean} [active]
  * @property {string} [title]
- * @property {string} [subtitle]
- * @property {string} [name]
- * @property {Object} [created_by]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {number} [company_id]
- * @property {Object} [guide]
- * @property {string} [tag]
  * @property {string} [created_on]
+ * @property {string} [tag]
+ * @property {Object} [guide]
+ * @property {string} [subtitle]
+ * @property {Object} [created_by]
+ * @property {number} [brand_id]
+ * @property {string} [modified_on]
+ * @property {string} [name]
+ * @property {boolean} [active]
+ * @property {string} [id]
+ * @property {number} [company_id]
+ * @property {Object} [modified_by]
  */
 
 /**
- * @typedef ApplicationItemMOQ
+ * @typedef SEOData
+ * @property {Object} [title]
+ * @property {Object} [description]
+ */
+
+/**
+ * @typedef MOQData
+ * @property {number} [maximum]
  * @property {number} [minimum]
  * @property {number} [increment_unit]
- * @property {number} [maximum]
  */
 
 /**
- * @typedef MetaFields
- * @property {Object} value
- * @property {Object} key
+ * @typedef OwnerAppItemResponse
+ * @property {boolean} [is_cod]
+ * @property {boolean} [is_gift]
+ * @property {SEOData} [seo]
+ * @property {MOQData} [moq]
+ * @property {Object} [alt_text]
  */
 
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [description]
  * @property {Object} [title]
+ * @property {Object} [description]
+ */
+
+/**
+ * @typedef ApplicationItemMOQ
+ * @property {number} [maximum]
+ * @property {number} [minimum]
+ * @property {number} [increment_unit]
+ */
+
+/**
+ * @typedef MetaFields
+ * @property {Object} key
+ * @property {Object} value
  */
 
 /**
  * @typedef ApplicationItemMeta
- * @property {Object} [alt_text]
- * @property {ApplicationItemMOQ} [moq]
- * @property {MetaFields[]} [_custom_meta]
- * @property {boolean} [is_gift]
- * @property {ApplicationItemSEO} [seo]
  * @property {boolean} [is_cod]
  * @property {Object} [_custom_json]
+ * @property {boolean} [is_gift]
+ * @property {ApplicationItemSEO} [seo]
+ * @property {ApplicationItemMOQ} [moq]
+ * @property {MetaFields[]} [_custom_meta]
+ * @property {Object} [alt_text]
  */
 
 /**
@@ -7176,31 +7411,9 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef MOQData
- * @property {number} [minimum]
- * @property {number} [increment_unit]
- * @property {number} [maximum]
- */
-
-/**
- * @typedef SEOData
- * @property {Object} [description]
- * @property {Object} [title]
- */
-
-/**
- * @typedef OwnerAppItemResponse
- * @property {Object} [alt_text]
- * @property {MOQData} [moq]
- * @property {boolean} [is_gift]
- * @property {SEOData} [seo]
- * @property {boolean} [is_cod]
- */
-
-/**
  * @typedef GetConfigMetadataResponse
- * @property {Object[]} [values]
  * @property {Object[]} [condition]
+ * @property {Object[]} [values]
  * @property {Object[]} data
  */
 
@@ -7209,24 +7422,24 @@ class PlatformApplicationClient {
  * @property {string} [key]
  * @property {string} [slug]
  * @property {string} [unit]
- * @property {string} name
- * @property {number} priority
- * @property {string} [logo]
  * @property {string} display_type
+ * @property {string} [logo]
+ * @property {string} name
  * @property {boolean} is_active
+ * @property {number} priority
  */
 
 /**
  * @typedef AppConfigurationDetail
- * @property {string} slug
- * @property {string} [name]
- * @property {AttributeDetailsGroup[]} [attributes]
- * @property {string[]} [template_slugs]
  * @property {boolean} is_default
+ * @property {string} slug
  * @property {string} app_id
- * @property {number} priority
+ * @property {string[]} [template_slugs]
  * @property {string} [logo]
+ * @property {string} [name]
  * @property {boolean} is_active
+ * @property {AttributeDetailsGroup[]} [attributes]
+ * @property {number} priority
  */
 
 /**
@@ -7237,9 +7450,9 @@ class PlatformApplicationClient {
 /**
  * @typedef PageResponseType
  * @property {number} total_count
- * @property {number} current
- * @property {boolean} has_next
  * @property {number} next
+ * @property {boolean} has_next
+ * @property {number} current
  */
 
 /**
@@ -7255,14 +7468,14 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AppConfigurationsSort
- * @property {string} key
- * @property {string} [name]
  * @property {boolean} is_default
+ * @property {string} key
  * @property {string} app_id
- * @property {string} default_key
- * @property {number} priority
  * @property {string} [logo]
+ * @property {string} [name]
  * @property {boolean} is_active
+ * @property {number} priority
+ * @property {string} default_key
  */
 
 /**
@@ -7276,22 +7489,17 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef MetaDataListingFilterMetaResponse
- * @property {string[]} [filter_types]
- * @property {Object[]} [units]
- * @property {string} [display]
- * @property {string} [key]
- */
-
-/**
- * @typedef MetaDataListingFilterResponse
- * @property {MetaDataListingFilterMetaResponse[]} [data]
+ * @typedef GetCatalogConfigurationDetailsProduct
+ * @property {Object} [similar]
+ * @property {Object} [compare]
+ * @property {Object} [detail]
+ * @property {Object} [variant]
  */
 
 /**
  * @typedef MetaDataListingSortMetaResponse
- * @property {string} [display]
  * @property {string} [key]
+ * @property {string} [display]
  */
 
 /**
@@ -7300,79 +7508,28 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef MetaDataListingResponse
- * @property {MetaDataListingFilterResponse} filter
- * @property {MetaDataListingSortResponse} sort
+ * @typedef MetaDataListingFilterMetaResponse
+ * @property {string} [key]
+ * @property {string} [display]
+ * @property {string[]} [filter_types]
+ * @property {Object[]} [units]
  */
 
 /**
- * @typedef GetCatalogConfigurationDetailsProduct
- * @property {Object} [detail]
- * @property {Object} [variant]
- * @property {Object} [similar]
- * @property {Object} [compare]
+ * @typedef MetaDataListingFilterResponse
+ * @property {MetaDataListingFilterMetaResponse[]} [data]
+ */
+
+/**
+ * @typedef MetaDataListingResponse
+ * @property {MetaDataListingSortResponse} sort
+ * @property {MetaDataListingFilterResponse} filter
  */
 
 /**
  * @typedef GetCatalogConfigurationMetaData
- * @property {MetaDataListingResponse} [listing]
  * @property {GetCatalogConfigurationDetailsProduct} [product]
- */
-
-/**
- * @typedef ConfigurationBucketPoints
- * @property {number} [end]
- * @property {number} [start]
- * @property {string} [display]
- */
-
-/**
- * @typedef ConfigurationListingFilterValue
- * @property {Object[]} [map_values]
- * @property {string} [condition]
- * @property {Object} [map]
- * @property {string} [value]
- * @property {string} [sort]
- * @property {ConfigurationBucketPoints[]} [bucket_points]
- */
-
-/**
- * @typedef ConfigurationListingFilterConfig
- * @property {string} key
- * @property {string} type
- * @property {string} [name]
- * @property {ConfigurationListingFilterValue} [value_config]
- * @property {string} [display_name]
- * @property {number} priority
- * @property {string} [logo]
- * @property {boolean} is_active
- */
-
-/**
- * @typedef ConfigurationListingFilter
- * @property {ConfigurationListingFilterConfig[]} [attribute_config]
- * @property {boolean} allow_single
- */
-
-/**
- * @typedef ConfigurationListingSortConfig
- * @property {string} key
- * @property {string} [name]
- * @property {number} priority
- * @property {string} [logo]
- * @property {boolean} is_active
- */
-
-/**
- * @typedef ConfigurationListingSort
- * @property {ConfigurationListingSortConfig[]} [config]
- * @property {string} default_key
- */
-
-/**
- * @typedef ConfigurationListing
- * @property {ConfigurationListingFilter} filter
- * @property {ConfigurationListingSort} sort
+ * @property {MetaDataListingResponse} [listing]
  */
 
 /**
@@ -7382,30 +7539,14 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ConfigurationProductVariantConfig
- * @property {string} key
- * @property {ProductSize} size
- * @property {string} name
- * @property {number} priority
- * @property {string} [logo]
- * @property {string} display_type
- * @property {boolean} is_active
- */
-
-/**
- * @typedef ConfigurationProductVariant
- * @property {ConfigurationProductVariantConfig[]} [config]
- */
-
-/**
  * @typedef ConfigurationProductConfig
- * @property {string} [title]
  * @property {string} key
+ * @property {string} [title]
  * @property {ProductSize} [size]
  * @property {string} [subtitle]
- * @property {number} priority
  * @property {string} [logo]
  * @property {boolean} is_active
+ * @property {number} priority
  */
 
 /**
@@ -7414,38 +7555,110 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef ConfigurationProductVariantConfig
+ * @property {string} key
+ * @property {ProductSize} size
+ * @property {string} display_type
+ * @property {string} [logo]
+ * @property {string} name
+ * @property {boolean} is_active
+ * @property {number} priority
+ */
+
+/**
+ * @typedef ConfigurationProductVariant
+ * @property {ConfigurationProductVariantConfig[]} [config]
+ */
+
+/**
  * @typedef ConfigurationProduct
- * @property {ConfigurationProductVariant} variant
  * @property {ConfigurationProductSimilar} similar
+ * @property {ConfigurationProductVariant} variant
+ */
+
+/**
+ * @typedef ConfigurationListingSortConfig
+ * @property {string} key
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {boolean} is_active
+ * @property {number} priority
+ */
+
+/**
+ * @typedef ConfigurationListingSort
+ * @property {ConfigurationListingSortConfig[]} [config]
+ * @property {string} default_key
+ */
+
+/**
+ * @typedef ConfigurationBucketPoints
+ * @property {number} [start]
+ * @property {number} [end]
+ * @property {string} [display]
+ */
+
+/**
+ * @typedef ConfigurationListingFilterValue
+ * @property {Object} [map]
+ * @property {ConfigurationBucketPoints[]} [bucket_points]
+ * @property {string} [condition]
+ * @property {Object[]} [map_values]
+ * @property {string} [sort]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef ConfigurationListingFilterConfig
+ * @property {string} key
+ * @property {ConfigurationListingFilterValue} [value_config]
+ * @property {string} type
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {string} [display_name]
+ * @property {boolean} is_active
+ * @property {number} priority
+ */
+
+/**
+ * @typedef ConfigurationListingFilter
+ * @property {boolean} allow_single
+ * @property {ConfigurationListingFilterConfig[]} [attribute_config]
+ */
+
+/**
+ * @typedef ConfigurationListing
+ * @property {ConfigurationListingSort} sort
+ * @property {ConfigurationListingFilter} filter
  */
 
 /**
  * @typedef AppConfiguration
- * @property {string} [type]
- * @property {string} config_type
- * @property {ConfigurationListing} [listing]
- * @property {ConfigurationProduct} [product]
- * @property {Object} [created_by]
  * @property {string} [config_id]
  * @property {string} app_id
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
  * @property {string} [created_on]
+ * @property {ConfigurationProduct} [product]
+ * @property {string} [type]
+ * @property {Object} [created_by]
+ * @property {ConfigurationListing} [listing]
+ * @property {string} [modified_on]
+ * @property {string} config_type
+ * @property {Object} [modified_by]
  */
 
 /**
  * @typedef AppCatalogConfiguration
- * @property {string} [id]
- * @property {string} [type]
- * @property {string} config_type
- * @property {ConfigurationListing} [listing]
- * @property {ConfigurationProduct} [product]
- * @property {Object} [created_by]
  * @property {string} [config_id]
  * @property {string} app_id
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
  * @property {string} [created_on]
+ * @property {ConfigurationProduct} [product]
+ * @property {string} [type]
+ * @property {Object} [created_by]
+ * @property {ConfigurationListing} [listing]
+ * @property {string} [modified_on]
+ * @property {string} [id]
+ * @property {string} config_type
+ * @property {Object} [modified_by]
  */
 
 /**
@@ -7456,18 +7669,18 @@ class PlatformApplicationClient {
 
 /**
  * @typedef GetCatalogConfigurationDetailsSchemaListing
- * @property {Object} [filter]
  * @property {Object} [sort]
+ * @property {Object} [filter]
  */
 
 /**
  * @typedef EntityConfiguration
- * @property {string} [id]
- * @property {string} config_type
- * @property {GetCatalogConfigurationDetailsSchemaListing} [listing]
- * @property {GetCatalogConfigurationDetailsProduct} [product]
  * @property {string} [config_id]
  * @property {string} app_id
+ * @property {GetCatalogConfigurationDetailsProduct} [product]
+ * @property {GetCatalogConfigurationDetailsSchemaListing} [listing]
+ * @property {string} [id]
+ * @property {string} config_type
  */
 
 /**
@@ -7478,40 +7691,40 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ProductSortOn
- * @property {string} [value]
  * @property {boolean} [is_selected]
  * @property {string} [name]
- */
-
-/**
- * @typedef ProductFiltersValue
- * @property {string} [display_format]
- * @property {number} [selected_min]
- * @property {string} display
- * @property {number} [min]
- * @property {number} [selected_max]
- * @property {string} [currency_symbol]
- * @property {string} [query_format]
- * @property {Object} value
- * @property {number} [count]
- * @property {string} [currency_code]
- * @property {number} [max]
- * @property {boolean} is_selected
+ * @property {string} [value]
  */
 
 /**
  * @typedef ProductFiltersKey
- * @property {string[]} [operators]
  * @property {string} [kind]
- * @property {string} name
  * @property {string} display
  * @property {string} [logo]
+ * @property {string} name
+ * @property {string[]} [operators]
+ */
+
+/**
+ * @typedef ProductFiltersValue
+ * @property {number} [selected_max]
+ * @property {number} [min]
+ * @property {string} display
+ * @property {string} [query_format]
+ * @property {boolean} is_selected
+ * @property {number} [selected_min]
+ * @property {string} [currency_symbol]
+ * @property {string} [currency_code]
+ * @property {number} [count]
+ * @property {string} [display_format]
+ * @property {Object} value
+ * @property {number} [max]
  */
 
 /**
  * @typedef ProductFilters
- * @property {ProductFiltersValue[]} values
  * @property {ProductFiltersKey} key
+ * @property {ProductFiltersValue[]} values
  */
 
 /**
@@ -7522,44 +7735,23 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef SeoDetail
- * @property {string} [description]
- * @property {string} [title]
- */
-
-/**
- * @typedef CollectionBadge
- * @property {string} [color]
- * @property {string} [text]
- */
-
-/**
- * @typedef CollectionSchedule
- * @property {NextSchedule[]} [next_schedule]
- * @property {string} [end]
- * @property {string} [cron]
- * @property {number} [duration]
- * @property {string} [start]
- */
-
-/**
  * @typedef CollectionImage
  * @property {string} aspect_ratio
  * @property {string} url
  */
 
 /**
- * @typedef CollectionBanner
- * @property {CollectionImage} landscape
- * @property {CollectionImage} portrait
+ * @typedef SeoDetail
+ * @property {string} [title]
+ * @property {string} [description]
  */
 
 /**
  * @typedef UserInfo
- * @property {string} [email]
  * @property {string} [uid]
- * @property {string} [username]
  * @property {string} [user_id]
+ * @property {string} [username]
+ * @property {string} [email]
  */
 
 /**
@@ -7570,32 +7762,59 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef NextSchedule
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+
+/**
+ * @typedef CollectionSchedule
+ * @property {number} [duration]
+ * @property {string} [start]
+ * @property {string} [cron]
+ * @property {NextSchedule[]} [next_schedule]
+ * @property {string} [end]
+ */
+
+/**
+ * @typedef CollectionBanner
+ * @property {CollectionImage} portrait
+ * @property {CollectionImage} landscape
+ */
+
+/**
+ * @typedef CollectionBadge
+ * @property {string} [color]
+ * @property {string} [text]
+ */
+
+/**
  * @typedef CreateCollection
- * @property {string} type
- * @property {string} slug
- * @property {string} [sort_on]
- * @property {SeoDetail} [seo]
- * @property {string} app_id
- * @property {CollectionBadge} [badge]
- * @property {Object} [_locale_language]
- * @property {string[]} [tags]
- * @property {string[]} [visible_facets_keys]
- * @property {number} [priority]
  * @property {boolean} [published]
- * @property {boolean} [is_active]
- * @property {CollectionSchedule} [_schedule]
- * @property {CollectionBanner} banners
- * @property {boolean} [allow_sort]
- * @property {string} name
- * @property {UserInfo} [created_by]
- * @property {Object} [_custom_json]
- * @property {CollectionImage} logo
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
- * @property {boolean} [is_visible]
  * @property {Object} [meta]
- * @property {boolean} [allow_facets]
+ * @property {CollectionImage} logo
+ * @property {string} name
+ * @property {boolean} [is_active]
+ * @property {SeoDetail} [seo]
+ * @property {string} [sort_on]
  * @property {UserInfo} [modified_by]
+ * @property {string} [description]
+ * @property {string} slug
+ * @property {CollectionQuery[]} [query]
+ * @property {string} app_id
+ * @property {Object} [_custom_json]
+ * @property {UserInfo} [created_by]
+ * @property {Object} [_locale_language]
+ * @property {boolean} [is_visible]
+ * @property {string[]} [tags]
+ * @property {string} type
+ * @property {CollectionSchedule} [_schedule]
+ * @property {boolean} [allow_sort]
+ * @property {number} [priority]
+ * @property {string[]} [visible_facets_keys]
+ * @property {CollectionBanner} banners
+ * @property {CollectionBadge} [badge]
+ * @property {boolean} [allow_facets]
  */
 
 /**
@@ -7607,51 +7826,51 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ImageUrls
- * @property {BannerImage} [landscape]
  * @property {BannerImage} [portrait]
+ * @property {BannerImage} [landscape]
  */
 
 /**
  * @typedef CollectionCreateResponse
- * @property {string} [type]
- * @property {string} [slug]
- * @property {string} [sort_on]
- * @property {string} [app_id]
- * @property {Object} [badge]
- * @property {string[]} [visible_facets_keys]
- * @property {number} [priority]
  * @property {string[]} [tag]
- * @property {boolean} [is_active]
- * @property {Object} [_schedule]
- * @property {ImageUrls} [banners]
- * @property {boolean} [allow_sort]
- * @property {string} [name]
- * @property {Object} [cron]
- * @property {BannerImage} [logo]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
  * @property {Object} [meta]
+ * @property {BannerImage} [logo]
+ * @property {string} [name]
+ * @property {boolean} [is_active]
+ * @property {string} [sort_on]
+ * @property {string} [description]
+ * @property {string} [slug]
+ * @property {CollectionQuery[]} [query]
+ * @property {string} [app_id]
+ * @property {string} [type]
+ * @property {Object} [_schedule]
+ * @property {boolean} [allow_sort]
+ * @property {number} [priority]
+ * @property {string[]} [visible_facets_keys]
+ * @property {ImageUrls} [banners]
+ * @property {Object} [cron]
+ * @property {Object} [badge]
  * @property {boolean} [allow_facets]
  */
 
 /**
- * @typedef CollectionListingFilterTag
- * @property {boolean} [is_selected]
- * @property {string} [name]
+ * @typedef CollectionListingFilterType
  * @property {string} [display]
+ * @property {string} [name]
+ * @property {boolean} [is_selected]
  */
 
 /**
- * @typedef CollectionListingFilterType
- * @property {boolean} [is_selected]
- * @property {string} [name]
+ * @typedef CollectionListingFilterTag
  * @property {string} [display]
+ * @property {string} [name]
+ * @property {boolean} [is_selected]
  */
 
 /**
  * @typedef CollectionListingFilter
- * @property {CollectionListingFilterTag[]} [tags]
  * @property {CollectionListingFilterType[]} [type]
+ * @property {CollectionListingFilterTag[]} [tags]
  */
 
 /**
@@ -7662,27 +7881,42 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef GetCollectionDetailNest
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [url]
+ * @property {PageType} type
+ */
+
+/**
+ * @typedef Action
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
  * @property {string} [type]
- * @property {string} [slug]
- * @property {Action} [action]
- * @property {string} [app_id]
- * @property {Object} [badge]
- * @property {string} [uid]
- * @property {string[]} [visible_facets_keys]
- * @property {number} [priority]
+ */
+
+/**
+ * @typedef GetCollectionDetailNest
  * @property {string[]} [tag]
- * @property {boolean} [is_active]
- * @property {Object} [_schedule]
- * @property {ImageUrls} [banners]
- * @property {boolean} [allow_sort]
- * @property {string} [name]
- * @property {Object} [cron]
- * @property {Media1} [logo]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
  * @property {Object} [meta]
+ * @property {Media1} [logo]
+ * @property {string} [name]
+ * @property {boolean} [is_active]
+ * @property {string} [description]
+ * @property {string} [slug]
+ * @property {CollectionQuery[]} [query]
+ * @property {string} [app_id]
+ * @property {string} [uid]
+ * @property {string} [type]
+ * @property {Object} [_schedule]
+ * @property {boolean} [allow_sort]
+ * @property {number} [priority]
+ * @property {string[]} [visible_facets_keys]
+ * @property {ImageUrls} [banners]
+ * @property {Object} [cron]
+ * @property {Object} [badge]
  * @property {boolean} [allow_facets]
+ * @property {Action} [action]
  */
 
 /**
@@ -7694,65 +7928,65 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CollectionDetailResponse
- * @property {string} [type]
- * @property {string} [slug]
- * @property {string} [app_id]
- * @property {Object} [badge]
- * @property {string} [uid]
- * @property {string[]} [visible_facets_keys]
- * @property {number} [priority]
  * @property {string[]} [tag]
- * @property {boolean} [is_active]
- * @property {Object} [_schedule]
- * @property {ImageUrls} [banners]
- * @property {boolean} [allow_sort]
- * @property {string} [name]
- * @property {Object} [cron]
- * @property {Media1} [logo]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
  * @property {Object} [meta]
+ * @property {Media1} [logo]
+ * @property {string} [name]
+ * @property {boolean} [is_active]
+ * @property {string} [description]
+ * @property {string} [slug]
+ * @property {CollectionQuery[]} [query]
+ * @property {string} [app_id]
+ * @property {string} [uid]
+ * @property {string} [type]
+ * @property {Object} [_schedule]
+ * @property {boolean} [allow_sort]
+ * @property {number} [priority]
+ * @property {string[]} [visible_facets_keys]
+ * @property {ImageUrls} [banners]
+ * @property {Object} [cron]
+ * @property {Object} [badge]
  * @property {boolean} [allow_facets]
  */
 
 /**
  * @typedef UpdateCollection
- * @property {string} [type]
- * @property {string} [slug]
- * @property {string} [sort_on]
- * @property {SeoDetail} [seo]
- * @property {CollectionBadge} [badge]
- * @property {Object} [_locale_language]
- * @property {string[]} [tags]
- * @property {string[]} [visible_facets_keys]
- * @property {number} [priority]
  * @property {boolean} [published]
- * @property {boolean} [is_active]
- * @property {CollectionSchedule} [_schedule]
- * @property {CollectionBanner} [banners]
- * @property {boolean} [allow_sort]
- * @property {string} [name]
- * @property {boolean} [allow_facets]
- * @property {CollectionImage} [logo]
- * @property {CollectionQuery[]} [query]
- * @property {string} [description]
- * @property {boolean} [is_visible]
  * @property {Object} [meta]
- * @property {Object} [_custom_json]
+ * @property {CollectionImage} [logo]
+ * @property {string} [name]
+ * @property {boolean} [is_active]
+ * @property {SeoDetail} [seo]
+ * @property {string} [sort_on]
  * @property {UserInfo} [modified_by]
+ * @property {string} [description]
+ * @property {string} [slug]
+ * @property {CollectionQuery[]} [query]
+ * @property {Object} [_custom_json]
+ * @property {Object} [_locale_language]
+ * @property {boolean} [is_visible]
+ * @property {string[]} [tags]
+ * @property {string} [type]
+ * @property {CollectionSchedule} [_schedule]
+ * @property {boolean} [allow_sort]
+ * @property {number} [priority]
+ * @property {string[]} [visible_facets_keys]
+ * @property {CollectionBanner} [banners]
+ * @property {CollectionBadge} [badge]
+ * @property {boolean} [allow_facets]
  */
 
 /**
  * @typedef ItemQueryForUserCollection
- * @property {number} [item_id]
  * @property {string} [action]
+ * @property {number} [item_id]
  */
 
 /**
  * @typedef CollectionItemRequest
- * @property {ItemQueryForUserCollection[]} [item]
  * @property {CollectionQuery[]} [query]
  * @property {string} [type]
+ * @property {ItemQueryForUserCollection[]} [item]
  */
 
 /**
@@ -7763,31 +7997,17 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ProductBrand
- * @property {number} [uid]
  * @property {Action} [action]
+ * @property {number} [uid]
  * @property {Media1} [logo]
  * @property {string} [name]
  */
 
 /**
- * @typedef Price1
- * @property {number} [min]
- * @property {string} [currency_symbol]
- * @property {string} [currency_code]
- * @property {number} [max]
- */
-
-/**
- * @typedef ProductListingPrice
- * @property {Price1} [marked]
- * @property {Price1} [effective]
- */
-
-/**
  * @typedef ProductDetailAttribute
+ * @property {string} [key]
  * @property {string} [type]
  * @property {string} [value]
- * @property {string} [key]
  */
 
 /**
@@ -7797,33 +8017,47 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Price1
+ * @property {string} [currency_code]
+ * @property {number} [min]
+ * @property {string} [currency_symbol]
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef ProductListingPrice
+ * @property {Price1} [effective]
+ * @property {Price1} [marked]
+ */
+
+/**
  * @typedef ProductListingDetail
- * @property {string} [type]
- * @property {string} slug
- * @property {boolean} [has_variant]
- * @property {ProductBrand} [brand]
- * @property {number} [rating]
- * @property {Object} [teaser_tag]
- * @property {boolean} [sellable]
- * @property {string[]} [tryouts]
- * @property {string} [item_type]
- * @property {number} [rating_count]
- * @property {number} [uid]
- * @property {string} [item_code]
- * @property {Object} [attributes]
- * @property {string[]} [similars]
- * @property {string} [short_description]
- * @property {string} [image_nature]
- * @property {string} [name]
- * @property {string} [color]
- * @property {Media1[]} [medias]
  * @property {string} [discount]
- * @property {ProductListingPrice} [price]
- * @property {string[]} [highlights]
+ * @property {string[]} [tryouts]
+ * @property {ProductBrand} [brand]
  * @property {string} [product_online_date]
- * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
+ * @property {string} [item_code]
+ * @property {string} [name]
+ * @property {Object} [teaser_tag]
  * @property {string} [description]
+ * @property {string} slug
+ * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
  * @property {Object} [promo_meta]
+ * @property {string[]} [highlights]
+ * @property {string} [item_type]
+ * @property {Object} [attributes]
+ * @property {string} [color]
+ * @property {string} [image_nature]
+ * @property {ProductListingPrice} [price]
+ * @property {number} [uid]
+ * @property {boolean} [has_variant]
+ * @property {string} [short_description]
+ * @property {string} [type]
+ * @property {number} [rating_count]
+ * @property {boolean} [sellable]
+ * @property {Media1[]} [medias]
+ * @property {number} [rating]
+ * @property {string[]} [similars]
  */
 
 /**
@@ -7835,26 +8069,26 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef CatalogInsightItem
- * @property {number} [out_of_stock_count]
- * @property {number} [count]
- * @property {number} [sellable_count]
+ * @typedef CatalogInsightBrand
+ * @property {number} [available_sizes]
+ * @property {number} [article_freshness]
+ * @property {number} [available_articles]
+ * @property {number} [total_articles]
+ * @property {number} [total_sizes]
+ * @property {string} [name]
  */
 
 /**
- * @typedef CatalogInsightBrand
- * @property {number} [total_articles]
- * @property {number} [article_freshness]
- * @property {string} [name]
- * @property {number} [available_sizes]
- * @property {number} [total_sizes]
- * @property {number} [available_articles]
+ * @typedef CatalogInsightItem
+ * @property {number} [sellable_count]
+ * @property {number} [count]
+ * @property {number} [out_of_stock_count]
  */
 
 /**
  * @typedef CatalogInsightResponse
- * @property {CatalogInsightItem} [item]
  * @property {CatalogInsightBrand} [brand_distribution]
+ * @property {CatalogInsightItem} [item]
  */
 
 /**
@@ -7872,25 +8106,25 @@ class PlatformApplicationClient {
 /**
  * @typedef OptInPostRequest
  * @property {string} opt_level
+ * @property {boolean} [enabled]
+ * @property {string} [platform]
  * @property {number[]} [store_ids]
  * @property {number[]} [brand_ids]
- * @property {string} [platform]
- * @property {boolean} [enabled]
  * @property {number} [company_id]
  */
 
 /**
  * @typedef CompanyOptIn
  * @property {string} opt_level
- * @property {Object} [modified_by]
- * @property {number[]} store_ids
- * @property {Object} [created_by]
- * @property {number[]} brand_ids
- * @property {string} platform
+ * @property {number} created_on
  * @property {boolean} enabled
+ * @property {Object} [created_by]
+ * @property {string} platform
+ * @property {number[]} store_ids
+ * @property {number[]} brand_ids
  * @property {number} modified_on
  * @property {number} company_id
- * @property {number} created_on
+ * @property {Object} [modified_by]
  */
 
 /**
@@ -7901,18 +8135,18 @@ class PlatformApplicationClient {
 
 /**
  * @typedef OptinCompanyDetail
- * @property {string} [business_type]
- * @property {string} [company_type]
  * @property {number} [uid]
+ * @property {string} [business_type]
  * @property {string} [name]
+ * @property {string} [company_type]
  */
 
 /**
  * @typedef CompanyBrandDetail
  * @property {number} [company_id]
  * @property {number} [brand_id]
- * @property {number} [total_article]
  * @property {string} [brand_name]
+ * @property {number} [total_article]
  */
 
 /**
@@ -7923,32 +8157,43 @@ class PlatformApplicationClient {
 
 /**
  * @typedef OptinCompanyMetrics
+ * @property {string} [company]
  * @property {number} [store]
  * @property {number} [brand]
- * @property {string} [company]
  */
 
 /**
  * @typedef StoreDetail
+ * @property {number} [uid]
+ * @property {string} [created_on]
+ * @property {Object} [address]
+ * @property {string} [store_code]
  * @property {Object} [timing]
  * @property {string} [store_type]
- * @property {string} [store_code]
- * @property {Object[]} [additional_contacts]
- * @property {Object} [address]
- * @property {Object} [manager]
- * @property {string} [name]
- * @property {number} [uid]
  * @property {string} [display_name]
- * @property {string} [modified_on]
+ * @property {string} [name]
  * @property {Object[]} [documents]
+ * @property {string} [modified_on]
+ * @property {Object[]} [additional_contacts]
  * @property {number} [company_id]
- * @property {string} [created_on]
+ * @property {Object} [manager]
  */
 
 /**
  * @typedef OptinStoreDetails
  * @property {StoreDetail[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef AttributeMasterMandatoryDetails
+ * @property {string[]} [l3_keys]
+ */
+
+/**
+ * @typedef AttributeMasterMeta
+ * @property {AttributeMasterMandatoryDetails} mandatory_details
+ * @property {boolean} [enriched]
  */
 
 /**
@@ -7964,17 +8209,6 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef AttributeMasterMandatoryDetails
- * @property {string[]} [l3_keys]
- */
-
-/**
- * @typedef AttributeMasterMeta
- * @property {AttributeMasterMandatoryDetails} mandatory_details
- * @property {boolean} [enriched]
- */
-
-/**
  * @typedef AttributeSchemaRange
  * @property {number} [min]
  * @property {number} [max]
@@ -7982,34 +8216,34 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AttributeMaster
- * @property {string} type
- * @property {AttributeSchemaRange} [range]
  * @property {string[]} [allowed_values]
- * @property {string} [format]
  * @property {boolean} [mandatory]
+ * @property {string} type
+ * @property {string} [format]
  * @property {boolean} [multi]
+ * @property {AttributeSchemaRange} [range]
  */
 
 /**
  * @typedef GenderDetail
- * @property {AttributeMasterDetails} [details]
- * @property {string} [id]
- * @property {boolean} [is_nested]
  * @property {string} [slug]
- * @property {string} [name]
- * @property {string} [description]
- * @property {AttributeMasterFilter} [filters]
- * @property {string} [logo]
+ * @property {boolean} [is_nested]
  * @property {string[]} [departments]
  * @property {AttributeMasterMeta} [meta]
- * @property {AttributeMaster} [schema]
+ * @property {AttributeMasterDetails} [details]
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {AttributeMasterFilter} [filters]
+ * @property {string} [id]
  * @property {boolean} [enabled_for_end_consumer]
+ * @property {string} [description]
+ * @property {AttributeMaster} [schema]
  */
 
 /**
  * @typedef CategoriesResponse
- * @property {string} [slug_key]
  * @property {number} [uid]
+ * @property {string} [slug_key]
  * @property {string} [name]
  * @property {string} [template_slug]
  */
@@ -8022,26 +8256,26 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PTErrorResponse
- * @property {Object} [errors]
- * @property {number} [status]
  * @property {string} [code]
- * @property {string} [message]
+ * @property {Object} [errors]
  * @property {Object} [meta]
+ * @property {number} [status]
+ * @property {string} [message]
  */
 
 /**
  * @typedef DepartmentCreateUpdate
- * @property {number} priority_order
  * @property {string} [slug]
- * @property {string} name
- * @property {string} [_cls]
- * @property {string[]} [tags]
  * @property {number} [uid]
- * @property {Object} [platforms]
  * @property {string[]} [synonyms]
+ * @property {string} [_cls]
  * @property {Object} [_custom_json]
  * @property {string} logo
+ * @property {string} name
+ * @property {number} priority_order
  * @property {boolean} [is_active]
+ * @property {string[]} [tags]
+ * @property {Object} [platforms]
  */
 
 /**
@@ -8057,30 +8291,30 @@ class PlatformApplicationClient {
 
 /**
  * @typedef UserSerializer
- * @property {string} [contact]
- * @property {string} [user_id]
- * @property {string} [_id]
  * @property {string} [uid]
+ * @property {string} [_id]
+ * @property {string} [user_id]
  * @property {string} [username]
+ * @property {string} [contact]
  */
 
 /**
  * @typedef GetDepartment
- * @property {string} [search]
- * @property {number} [priority_order]
- * @property {number} [page_size]
  * @property {string} [slug]
- * @property {number} [page_no]
- * @property {string} [created_on]
- * @property {string} [name]
- * @property {UserSerializer} [created_by]
  * @property {number} [uid]
- * @property {string[]} [synonyms]
  * @property {UserSerializer} [modified_by]
+ * @property {string} [created_on]
+ * @property {string} [search]
+ * @property {string[]} [synonyms]
+ * @property {UserSerializer} [created_by]
+ * @property {number} [page_size]
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {number} [priority_order]
  * @property {string} [modified_on]
  * @property {string} [item_type]
- * @property {string} [logo]
  * @property {boolean} [is_active]
+ * @property {number} [page_no]
  */
 
 /**
@@ -8091,60 +8325,60 @@ class PlatformApplicationClient {
 
 /**
  * @typedef DepartmentErrorResponse
- * @property {Object} [errors]
- * @property {number} [status]
  * @property {string} [code]
- * @property {string} [message]
+ * @property {Object} [errors]
  * @property {Object} [meta]
+ * @property {number} [status]
+ * @property {string} [message]
  */
 
 /**
  * @typedef UserDetail
- * @property {string} [contact]
+ * @property {boolean} [super_user]
  * @property {string} username
  * @property {string} user_id
- * @property {boolean} [super_user]
+ * @property {string} [contact]
  */
 
 /**
  * @typedef DepartmentModel
- * @property {number} priority_order
  * @property {Object} [slug]
- * @property {boolean} [is_active]
  * @property {UserDetail} [verified_by]
- * @property {Object} name
- * @property {Object} [_id]
- * @property {UserDetail} [created_by]
- * @property {Object} logo
  * @property {number} [uid]
- * @property {Object} [_cls]
- * @property {Object[]} [synonyms]
- * @property {UserDetail} [modified_by]
- * @property {string} modified_on
- * @property {Object} [_custom_json]
- * @property {string} [verified_on]
+ * @property {Object} [_id]
  * @property {string} created_on
+ * @property {Object[]} [synonyms]
+ * @property {UserDetail} [created_by]
+ * @property {Object} [_cls]
+ * @property {Object} [_custom_json]
+ * @property {Object} logo
+ * @property {Object} name
+ * @property {string} modified_on
+ * @property {number} priority_order
+ * @property {boolean} [is_active]
+ * @property {string} [verified_on]
+ * @property {UserDetail} [modified_by]
  */
 
 /**
  * @typedef ProductTemplate
- * @property {boolean} [is_expirable]
+ * @property {string} slug
  * @property {string[]} [categories]
+ * @property {string[]} [departments]
+ * @property {boolean} [is_archived]
+ * @property {boolean} [is_expirable]
+ * @property {string} [created_on]
+ * @property {string} [tag]
+ * @property {Object} [created_by]
+ * @property {string} [logo]
+ * @property {string} [name]
  * @property {Object[]} [attributes_schema]
  * @property {string} [modified_on]
- * @property {string} slug
  * @property {boolean} is_physical
- * @property {string} [created_on]
- * @property {string} [name]
- * @property {boolean} [is_archived]
- * @property {Object} [created_by]
- * @property {string} [description]
+ * @property {boolean} [is_active]
  * @property {string[]} [attributes]
  * @property {Object} [modified_by]
- * @property {string} [logo]
- * @property {string[]} [departments]
- * @property {string} [tag]
- * @property {boolean} [is_active]
+ * @property {string} [description]
  */
 
 /**
@@ -8155,69 +8389,69 @@ class PlatformApplicationClient {
 
 /**
  * @typedef TemplateDetails
- * @property {boolean} [is_expirable]
- * @property {string[]} [categories]
- * @property {string} [id]
- * @property {Object[]} [attributes_schema]
  * @property {string} slug
- * @property {boolean} is_physical
- * @property {string} [name]
- * @property {boolean} [is_archived]
- * @property {string} [description]
- * @property {string[]} [attributes]
- * @property {string} [logo]
+ * @property {string[]} [categories]
  * @property {string[]} [departments]
+ * @property {boolean} [is_archived]
+ * @property {boolean} [is_expirable]
  * @property {string} [tag]
+ * @property {string} [logo]
+ * @property {string} [name]
+ * @property {Object[]} [attributes_schema]
+ * @property {boolean} is_physical
  * @property {boolean} [is_active]
+ * @property {string[]} [attributes]
+ * @property {string} [id]
+ * @property {string} [description]
  */
 
 /**
  * @typedef Properties
- * @property {Object} [slug]
- * @property {Object} [product_group_tag]
- * @property {Object} [teaser_tag]
- * @property {Object} [no_of_boxes]
- * @property {Object} [sizes]
- * @property {Object} [item_type]
- * @property {Object} [product_publish]
- * @property {Object} [custom_order]
- * @property {Object} [country_of_origin]
- * @property {Object} [hsn_code]
- * @property {Object} [variants]
- * @property {Object} [is_dependent]
- * @property {Object} [command]
- * @property {Object} [tags]
- * @property {Object} [item_code]
- * @property {Object} [media]
- * @property {Object} [multi_size]
- * @property {Object} [is_active]
- * @property {Object} [short_description]
- * @property {Object} [currency]
- * @property {Object} [size_guide]
- * @property {Object} [name]
  * @property {Object} [trader_type]
- * @property {Object} [highlights]
+ * @property {Object} [no_of_boxes]
  * @property {Object} [return_config]
+ * @property {Object} [item_code]
+ * @property {Object} [name]
+ * @property {Object} [teaser_tag]
+ * @property {Object} [sizes]
+ * @property {Object} [is_active]
  * @property {Object} [description]
- * @property {Object} [brand_uid]
+ * @property {Object} [slug]
  * @property {Object} [trader]
+ * @property {Object} [country_of_origin]
+ * @property {Object} [size_guide]
+ * @property {Object} [highlights]
+ * @property {Object} [item_type]
+ * @property {Object} [multi_size]
+ * @property {Object} [tags]
+ * @property {Object} [command]
+ * @property {Object} [product_group_tag]
+ * @property {Object} [custom_order]
+ * @property {Object} [short_description]
+ * @property {Object} [variants]
  * @property {Object} [category_slug]
+ * @property {Object} [currency]
+ * @property {Object} [brand_uid]
+ * @property {Object} [product_publish]
+ * @property {Object} [is_dependent]
+ * @property {Object} [hsn_code]
+ * @property {Object} [media]
  */
 
 /**
  * @typedef GlobalValidation
- * @property {string} [type]
  * @property {string} [title]
+ * @property {string} [type]
  * @property {Object} [definitions]
- * @property {string} [description]
  * @property {string[]} [required]
  * @property {Properties} [properties]
+ * @property {string} [description]
  */
 
 /**
  * @typedef TemplateValidationData
- * @property {Object} [template_validation]
  * @property {GlobalValidation} [global_validation]
+ * @property {Object} [template_validation]
  */
 
 /**
@@ -8245,29 +8479,29 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ProductDownloadItemsData
- * @property {string[]} [templates]
- * @property {string[]} [brand]
- * @property {string} [type]
- */
-
-/**
  * @typedef VerifiedBy
  * @property {string} [username]
  * @property {string} [user_id]
  */
 
 /**
+ * @typedef ProductDownloadItemsData
+ * @property {string[]} [templates]
+ * @property {string} [type]
+ * @property {string[]} [brand]
+ */
+
+/**
  * @typedef ProductDownloadsItems
- * @property {string} [id]
- * @property {string} [task_id]
  * @property {string} [url]
- * @property {string} [status]
- * @property {ProductDownloadItemsData} [data]
- * @property {VerifiedBy} [created_by]
  * @property {string} [completed_on]
- * @property {Object} [template_tags]
+ * @property {string} [id]
+ * @property {VerifiedBy} [created_by]
+ * @property {ProductDownloadItemsData} [data]
  * @property {number} [seller_id]
+ * @property {string} [task_id]
+ * @property {Object} [template_tags]
+ * @property {string} [status]
  * @property {string} [trigger_on]
  */
 
@@ -8284,6 +8518,13 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Hierarchy
+ * @property {number} l1
+ * @property {number} l2
+ * @property {number} department
+ */
+
+/**
  * @typedef CategoryMappingValues
  * @property {number} [catalog_id]
  * @property {string} name
@@ -8291,38 +8532,31 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CategoryMapping
- * @property {CategoryMappingValues} [facebook]
  * @property {CategoryMappingValues} [google]
  * @property {CategoryMappingValues} [ajio]
- */
-
-/**
- * @typedef Hierarchy
- * @property {number} l2
- * @property {number} department
- * @property {number} l1
+ * @property {CategoryMappingValues} [facebook]
  */
 
 /**
  * @typedef Media2
- * @property {string} landscape
  * @property {string} portrait
  * @property {string} logo
+ * @property {string} landscape
  */
 
 /**
  * @typedef CategoryRequestBody
  * @property {string} [slug]
- * @property {CategoryMapping} [marketplaces]
  * @property {Hierarchy[]} [hierarchy]
- * @property {number} level
- * @property {string} name
- * @property {string[]} [synonyms]
- * @property {Media2} [media]
- * @property {string[]} [tryouts]
- * @property {number} [priority]
  * @property {number[]} departments
+ * @property {number} [priority]
+ * @property {string[]} [synonyms]
+ * @property {string[]} [tryouts]
+ * @property {CategoryMapping} [marketplaces]
+ * @property {string} name
  * @property {boolean} is_active
+ * @property {number} level
+ * @property {Media2} [media]
  */
 
 /**
@@ -8333,23 +8567,23 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Category
- * @property {string} [id]
  * @property {string} [slug]
- * @property {CategoryMapping} [marketplaces]
- * @property {string} [created_on]
- * @property {Hierarchy[]} [hierarchy]
- * @property {number} level
- * @property {string} name
- * @property {Object} [created_by]
  * @property {number} [uid]
- * @property {string[]} [synonyms]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {Media2} [media]
- * @property {string[]} [tryouts]
- * @property {number} [priority]
+ * @property {Hierarchy[]} [hierarchy]
  * @property {number[]} departments
+ * @property {number} [priority]
+ * @property {string} [created_on]
+ * @property {string} [id]
+ * @property {string[]} [synonyms]
+ * @property {string[]} [tryouts]
+ * @property {Object} [created_by]
+ * @property {CategoryMapping} [marketplaces]
+ * @property {string} name
+ * @property {string} [modified_on]
  * @property {boolean} is_active
+ * @property {number} level
+ * @property {Media2} [media]
+ * @property {Object} [modified_by]
  */
 
 /**
@@ -8359,14 +8593,34 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef CategoryUpdateResponse
- * @property {string} [message]
- * @property {boolean} [success]
+ * @typedef SingleCategoryResponse
+ * @property {Category} [data]
  */
 
 /**
- * @typedef SingleCategoryResponse
- * @property {Category} [data]
+ * @typedef CategoryUpdateResponse
+ * @property {boolean} [success]
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef TaxIdentifier
+ * @property {string} [reporting_hsn]
+ * @property {string} [hsn_code_id]
+ * @property {string} [hsn_code]
+ */
+
+/**
+ * @typedef ReturnConfig
+ * @property {string} unit
+ * @property {boolean} returnable
+ * @property {number} time
+ */
+
+/**
+ * @typedef TeaserTag
+ * @property {string} [tag]
+ * @property {string} [url]
  */
 
 /**
@@ -8376,15 +8630,10 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef TeaserTag
- * @property {string} [url]
- * @property {string} [tag]
- */
-
-/**
- * @typedef ProductPublish
- * @property {boolean} [is_set]
- * @property {string} [product_online_date]
+ * @typedef Trader
+ * @property {string[]} [address]
+ * @property {string} [type]
+ * @property {Object} name
  */
 
 /**
@@ -8395,63 +8644,77 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef TaxIdentifier
- * @property {string} [hsn_code]
- * @property {string} [hsn_code_id]
- * @property {string} [reporting_hsn]
- */
-
-/**
- * @typedef Trader
- * @property {string[]} [address]
- * @property {Object} name
- * @property {string} [type]
+ * @typedef ProductPublish
+ * @property {string} [product_online_date]
+ * @property {boolean} [is_set]
  */
 
 /**
  * @typedef ProductCreateUpdateSchemaV2
- * @property {Object} [variant_media]
- * @property {string} slug
- * @property {string[]} [product_group_tag]
- * @property {NetQuantity} [net_quantity]
- * @property {boolean} [is_set]
- * @property {string} [action]
- * @property {TeaserTag} [teaser_tag]
- * @property {number} [no_of_boxes]
- * @property {Object[]} sizes
- * @property {string} item_type
- * @property {ProductPublish} [product_publish]
- * @property {number[]} departments
- * @property {CustomOrder} [custom_order]
- * @property {Object} [variants]
- * @property {string} country_of_origin
- * @property {boolean} [is_dependent]
- * @property {string} [requester]
- * @property {string[]} [tags]
- * @property {string} item_code
- * @property {number} [uid]
- * @property {Media1[]} [media]
- * @property {boolean} [multi_size]
- * @property {Object} [attributes]
- * @property {Object} [change_request_id]
- * @property {boolean} [is_active]
- * @property {string} [short_description]
- * @property {string} currency
- * @property {Object} [variant_group]
  * @property {TaxIdentifier} tax_identifier
- * @property {string} [size_guide]
- * @property {string} name
- * @property {string} [bulk_job_id]
- * @property {number} company_id
- * @property {string[]} [highlights]
+ * @property {boolean} [is_set]
+ * @property {number} [no_of_boxes]
+ * @property {Object} [change_request_id]
  * @property {ReturnConfig} return_config
- * @property {boolean} [is_image_less_product]
+ * @property {string} item_code
+ * @property {string} name
+ * @property {TeaserTag} [teaser_tag]
+ * @property {Object[]} sizes
+ * @property {NetQuantity} [net_quantity]
+ * @property {boolean} [is_active]
  * @property {string} [description]
+ * @property {string} slug
+ * @property {boolean} [is_image_less_product]
  * @property {string} template_tag
- * @property {number} brand_uid
  * @property {Trader[]} trader
  * @property {Object} [_custom_json]
+ * @property {string} country_of_origin
+ * @property {string} [size_guide]
+ * @property {string[]} [highlights]
+ * @property {string} item_type
+ * @property {boolean} [multi_size]
+ * @property {Object} [attributes]
+ * @property {string[]} [tags]
+ * @property {number} [uid]
+ * @property {number[]} departments
+ * @property {string[]} [product_group_tag]
+ * @property {CustomOrder} [custom_order]
+ * @property {Object} [variant_media]
+ * @property {string} [short_description]
+ * @property {Object} [variants]
  * @property {string} category_slug
+ * @property {string} currency
+ * @property {number} brand_uid
+ * @property {number} company_id
+ * @property {string} [requester]
+ * @property {string} [bulk_job_id]
+ * @property {ProductPublish} [product_publish]
+ * @property {boolean} [is_dependent]
+ * @property {Object} [variant_group]
+ * @property {string} [action]
+ * @property {Media1[]} [media]
+ */
+
+/**
+ * @typedef Logo
+ * @property {string} [aspect_ratio]
+ * @property {string} [secure_url]
+ * @property {string} [url]
+ * @property {number} [aspect_ratio_f]
+ */
+
+/**
+ * @typedef Brand
+ * @property {number} [uid]
+ * @property {Logo} [logo]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef ReturnConfigResponse
+ * @property {string} [unit]
+ * @property {boolean} [returnable]
+ * @property {number} [time]
  */
 
 /**
@@ -8461,98 +8724,83 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef Logo
- * @property {string} [aspect_ratio]
- * @property {number} [aspect_ratio_f]
- * @property {string} [secure_url]
- * @property {string} [url]
+ * @typedef ProductPublished
+ * @property {number} [product_online_date]
+ * @property {boolean} [is_set]
  */
 
 /**
  * @typedef Image
  * @property {string} [aspect_ratio]
- * @property {number} [aspect_ratio_f]
- * @property {string} [secure_url]
  * @property {string} [url]
- */
-
-/**
- * @typedef ProductPublished
- * @property {boolean} [is_set]
- * @property {number} [product_online_date]
- */
-
-/**
- * @typedef ReturnConfigResponse
- * @property {number} [time]
- * @property {string} [unit]
- * @property {boolean} [returnable]
+ * @property {string} [secure_url]
+ * @property {number} [aspect_ratio_f]
  */
 
 /**
  * @typedef Product
- * @property {Object} [moq]
- * @property {Object} [variant_media]
- * @property {string} [slug]
- * @property {string[]} [product_group_tag]
- * @property {string} [created_on]
- * @property {NetQuantityResponse} [net_quantity]
- * @property {Brand} [brand]
- * @property {boolean} [is_set]
- * @property {Object} [category]
- * @property {Object} [teaser_tag]
- * @property {Image[]} [images]
- * @property {Object[]} [sizes]
- * @property {number} [no_of_boxes]
- * @property {number[]} [departments]
- * @property {ProductPublished} [product_publish]
- * @property {boolean} [is_physical]
- * @property {string} [item_type]
- * @property {number} [category_uid]
- * @property {string[]} [all_identifiers]
- * @property {string} [verified_on]
- * @property {Object} [custom_order]
- * @property {number[]} [all_company_ids]
- * @property {string} [country_of_origin]
- * @property {Object} [variants]
- * @property {boolean} [is_dependent]
- * @property {string} [hsn_code]
- * @property {string[]} [tags]
- * @property {string} [item_code]
- * @property {number} [uid]
- * @property {string[]} [l3_mapping]
- * @property {string} [primary_color]
- * @property {Media1[]} [media]
- * @property {boolean} [multi_size]
- * @property {Object} [attributes]
- * @property {boolean} [is_active]
- * @property {boolean} [is_expirable]
- * @property {string} [id]
- * @property {string} [short_description]
- * @property {string} [currency]
  * @property {Object} [tax_identifier]
- * @property {Object} [variant_group]
- * @property {string} [size_guide]
- * @property {string} [image_nature]
- * @property {string} [name]
- * @property {string} [color]
- * @property {Object} [created_by]
- * @property {string} [modified_on]
- * @property {number} [company_id]
- * @property {string[]} [highlights]
- * @property {string} [pending]
- * @property {ReturnConfigResponse} [return_config]
- * @property {Object[]} [all_sizes]
  * @property {VerifiedBy} [verified_by]
- * @property {string} [stage]
- * @property {boolean} [is_image_less_product]
+ * @property {boolean} [is_set]
+ * @property {Object[]} [all_sizes]
+ * @property {number} [no_of_boxes]
+ * @property {Brand} [brand]
+ * @property {ReturnConfigResponse} [return_config]
+ * @property {string} [item_code]
+ * @property {string} [name]
+ * @property {Object} [category]
+ * @property {Object[]} [sizes]
+ * @property {NetQuantityResponse} [net_quantity]
+ * @property {number} [category_uid]
+ * @property {boolean} [is_active]
+ * @property {string} [id]
+ * @property {Object} [teaser_tag]
+ * @property {Object} [moq]
+ * @property {Object} [modified_by]
  * @property {string} [description]
+ * @property {string} [slug]
+ * @property {boolean} [is_image_less_product]
  * @property {string} [template_tag]
- * @property {number} [brand_uid]
  * @property {Trader[]} [trader]
  * @property {Object} [_custom_json]
+ * @property {Object} [created_by]
+ * @property {string[]} [l3_mapping]
+ * @property {string} [country_of_origin]
+ * @property {string} [size_guide]
+ * @property {string[]} [highlights]
+ * @property {string} [item_type]
+ * @property {string[]} [all_identifiers]
+ * @property {boolean} [multi_size]
+ * @property {string} [color]
+ * @property {string} [image_nature]
+ * @property {Object} [attributes]
+ * @property {string} [verified_on]
+ * @property {string[]} [tags]
+ * @property {number} [uid]
+ * @property {number[]} [departments]
+ * @property {string[]} [product_group_tag]
+ * @property {Object} [custom_order]
+ * @property {boolean} [is_expirable]
+ * @property {string} [short_description]
+ * @property {Object} [variant_media]
+ * @property {string} [pending]
+ * @property {Object} [variants]
  * @property {string} [category_slug]
- * @property {Object} [modified_by]
+ * @property {string} [currency]
+ * @property {number} [brand_uid]
+ * @property {string} [primary_color]
+ * @property {number[]} [all_company_ids]
+ * @property {number} [company_id]
+ * @property {string} [stage]
+ * @property {ProductPublished} [product_publish]
+ * @property {boolean} [is_dependent]
+ * @property {string} [created_on]
+ * @property {Object} [variant_group]
+ * @property {string} [modified_on]
+ * @property {string} [hsn_code]
+ * @property {boolean} [is_physical]
+ * @property {Image[]} [images]
+ * @property {Media1[]} [media]
  */
 
 /**
@@ -8563,12 +8811,12 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ProductVariants
- * @property {Media1[]} [media]
- * @property {string} [name]
- * @property {string} [item_code]
  * @property {number} [uid]
  * @property {number} [brand_uid]
+ * @property {string} [item_code]
+ * @property {string} [name]
  * @property {number} [category_uid]
+ * @property {Media1[]} [media]
  */
 
 /**
@@ -8579,26 +8827,26 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AttributeMasterSerializer
- * @property {boolean} [variant]
- * @property {string} slug
- * @property {string} [suggestion]
- * @property {AttributeMasterFilter} filters
- * @property {AttributeMaster} schema
- * @property {string[]} departments
- * @property {AttributeMasterDetails} details
- * @property {string[]} [tags]
- * @property {string} [raw_key]
  * @property {boolean} [is_nested]
  * @property {string} [unit]
- * @property {string} [name]
- * @property {Object} [created_by]
- * @property {string} [modified_on]
  * @property {string} [logo]
- * @property {string} [description]
- * @property {Object} [synonyms]
+ * @property {string} [name]
  * @property {Object} [modified_by]
- * @property {boolean} [enabled_for_end_consumer]
+ * @property {string} [description]
+ * @property {string} slug
+ * @property {Object} [created_by]
+ * @property {string} [suggestion]
+ * @property {string[]} [tags]
+ * @property {string[]} departments
+ * @property {string} [raw_key]
+ * @property {boolean} [variant]
+ * @property {AttributeMasterDetails} details
+ * @property {AttributeMasterFilter} filters
  * @property {string} [created_on]
+ * @property {Object} [synonyms]
+ * @property {string} [modified_on]
+ * @property {boolean} [enabled_for_end_consumer]
+ * @property {AttributeMaster} schema
  */
 
 /**
@@ -8607,71 +8855,71 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef ProductCreateUpdate
- * @property {Object} [variant_media]
- * @property {string} slug
- * @property {string[]} [product_group_tag]
- * @property {NetQuantity} [net_quantity]
- * @property {boolean} [is_set]
- * @property {string} [action]
- * @property {TeaserTag} [teaser_tag]
- * @property {number} [no_of_boxes]
- * @property {string} item_type
- * @property {ProductPublish} [product_publish]
- * @property {number[]} departments
- * @property {CustomOrder} [custom_order]
- * @property {Object} [variants]
- * @property {string} country_of_origin
- * @property {boolean} [is_dependent]
- * @property {string} [requester]
- * @property {string[]} [tags]
- * @property {Object} item_code
- * @property {number} [uid]
- * @property {Media1[]} [media]
- * @property {boolean} [multi_size]
- * @property {Object} [change_request_id]
- * @property {boolean} [is_active]
- * @property {string} [short_description]
- * @property {string} currency
- * @property {Object} [variant_group]
- * @property {TaxIdentifier} tax_identifier
- * @property {string} [size_guide]
- * @property {Object} name
- * @property {string} [bulk_job_id]
- * @property {number} company_id
- * @property {string[]} [highlights]
- * @property {ReturnConfig} return_config
- * @property {boolean} [is_image_less_product]
- * @property {string} [description]
- * @property {string} template_tag
- * @property {number} brand_uid
- * @property {Trader[]} trader
- * @property {Object} [_custom_json]
- * @property {string} category_slug
- */
-
-/**
  * @typedef SingleProductResponse
  * @property {Product} [data]
  */
 
 /**
+ * @typedef ProductCreateUpdate
+ * @property {TaxIdentifier} tax_identifier
+ * @property {boolean} [is_set]
+ * @property {number} [no_of_boxes]
+ * @property {Object} [change_request_id]
+ * @property {ReturnConfig} return_config
+ * @property {Object} item_code
+ * @property {Object} name
+ * @property {TeaserTag} [teaser_tag]
+ * @property {NetQuantity} [net_quantity]
+ * @property {boolean} [is_active]
+ * @property {string} [description]
+ * @property {string} slug
+ * @property {boolean} [is_image_less_product]
+ * @property {string} template_tag
+ * @property {Trader[]} trader
+ * @property {Object} [_custom_json]
+ * @property {string} country_of_origin
+ * @property {string} [size_guide]
+ * @property {string[]} [highlights]
+ * @property {string} item_type
+ * @property {boolean} [multi_size]
+ * @property {string[]} [tags]
+ * @property {number} [uid]
+ * @property {number[]} departments
+ * @property {string[]} [product_group_tag]
+ * @property {CustomOrder} [custom_order]
+ * @property {Object} [variant_media]
+ * @property {string} [short_description]
+ * @property {Object} [variants]
+ * @property {string} category_slug
+ * @property {string} currency
+ * @property {number} brand_uid
+ * @property {number} company_id
+ * @property {string} [requester]
+ * @property {string} [bulk_job_id]
+ * @property {ProductPublish} [product_publish]
+ * @property {boolean} [is_dependent]
+ * @property {Object} [variant_group]
+ * @property {string} [action]
+ * @property {Media1[]} [media]
+ */
+
+/**
  * @typedef ValidateIdentifier
- * @property {string} gtin_value
  * @property {boolean} [primary]
+ * @property {string} gtin_value
  * @property {string} gtin_type
  */
 
 /**
  * @typedef AllSizes
- * @property {ValidateIdentifier[]} [identifiers]
+ * @property {number} item_width
+ * @property {Object} item_weight_unit_of_measure
+ * @property {number} item_length
  * @property {number} item_weight
  * @property {Object} size
- * @property {number} item_width
  * @property {string} item_dimensions_unit_of_measure
- * @property {number} item_length
  * @property {number} item_height
- * @property {Object} item_weight_unit_of_measure
+ * @property {ValidateIdentifier[]} [identifiers]
  */
 
 /**
@@ -8686,41 +8934,41 @@ class PlatformApplicationClient {
 
 /**
  * @typedef UserInfo1
- * @property {string} [email]
  * @property {string} [uid]
- * @property {string} [username]
  * @property {string} [user_id]
+ * @property {string} [username]
+ * @property {string} [email]
  */
 
 /**
  * @typedef BulkJob
- * @property {number} [cancelled]
- * @property {boolean} [is_active]
- * @property {string} [file_path]
  * @property {string} [tracking_url]
- * @property {number} [succeed]
- * @property {string} [stage]
- * @property {Object[]} [cancelled_records]
- * @property {UserInfo1} [created_by]
- * @property {number} [failed]
  * @property {string} [template_tag]
+ * @property {number} [failed]
  * @property {number} [total]
- * @property {string} [custom_template_tag]
- * @property {UserInfo1} [modified_by]
- * @property {string} [modified_on]
- * @property {number} company_id
- * @property {Object[]} [failed_records]
  * @property {string} created_on
+ * @property {string} [custom_template_tag]
+ * @property {UserInfo1} [created_by]
+ * @property {Object[]} [cancelled_records]
+ * @property {Object[]} [failed_records]
+ * @property {number} [succeed]
+ * @property {string} [file_path]
+ * @property {string} [modified_on]
+ * @property {boolean} [is_active]
+ * @property {number} [cancelled]
+ * @property {number} company_id
+ * @property {UserInfo1} [modified_by]
+ * @property {string} [stage]
  */
 
 /**
  * @typedef BulkResponse
  * @property {string} batch_id
- * @property {boolean} [is_active]
- * @property {UserInfo1} [created_by]
- * @property {UserInfo1} [modified_by]
- * @property {string} [modified_on]
  * @property {string} created_on
+ * @property {UserInfo1} [created_by]
+ * @property {string} [modified_on]
+ * @property {boolean} [is_active]
+ * @property {UserInfo1} [modified_by]
  */
 
 /**
@@ -8732,22 +8980,22 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ProductBulkRequest
- * @property {number} [cancelled]
- * @property {string} [file_path]
- * @property {string} [created_on]
- * @property {UserDetail1} [modified_by]
- * @property {number} [succeed]
  * @property {ProductTemplate} [template]
- * @property {string} [stage]
- * @property {string[]} [cancelled_records]
- * @property {number} [failed]
- * @property {UserDetail1} [created_by]
  * @property {string} [template_tag]
  * @property {number} [total]
- * @property {string} [modified_on]
- * @property {number} [company_id]
+ * @property {string} [created_on]
+ * @property {UserDetail1} [created_by]
+ * @property {string[]} [cancelled_records]
  * @property {string[]} [failed_records]
+ * @property {number} [succeed]
+ * @property {string} [file_path]
+ * @property {string} [modified_on]
  * @property {boolean} [is_active]
+ * @property {number} [failed]
+ * @property {number} [company_id]
+ * @property {number} [cancelled]
+ * @property {UserDetail1} [modified_by]
+ * @property {string} [stage]
  */
 
 /**
@@ -8772,8 +9020,8 @@ class PlatformApplicationClient {
 /**
  * @typedef ProductBulkAssets
  * @property {number} [company_id]
- * @property {Object} user
  * @property {string} url
+ * @property {Object} user
  */
 
 /**
@@ -8785,22 +9033,22 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Items
- * @property {string} [id]
- * @property {number} [cancelled]
- * @property {string} [file_path]
- * @property {boolean} [is_active]
- * @property {string} [created_on]
  * @property {string} [tracking_url]
- * @property {number} [succeed]
- * @property {string} [stage]
- * @property {string[]} [cancelled_records]
- * @property {UserCommon} [created_by]
- * @property {number} [failed]
- * @property {number} [retry]
  * @property {number} [total]
- * @property {string} [modified_on]
+ * @property {string} [created_on]
  * @property {number} [company_id]
+ * @property {string} [id]
+ * @property {UserCommon} [created_by]
+ * @property {string[]} [cancelled_records]
  * @property {string[]} [failed_records]
+ * @property {number} [succeed]
+ * @property {string} [file_path]
+ * @property {string} [modified_on]
+ * @property {number} [retry]
+ * @property {boolean} [is_active]
+ * @property {number} [failed]
+ * @property {string} [stage]
+ * @property {number} [cancelled]
  * @property {UserCommon} [modified_by]
  */
 
@@ -8813,28 +9061,14 @@ class PlatformApplicationClient {
 /**
  * @typedef ProductSizeDeleteDataResponse
  * @property {number} [company_id]
- * @property {number} [item_id]
  * @property {string} [size]
+ * @property {number} [item_id]
  */
 
 /**
  * @typedef ProductSizeDeleteResponse
- * @property {ProductSizeDeleteDataResponse} [data]
  * @property {boolean} [success]
- */
-
-/**
- * @typedef ItemQuery
- * @property {number} [brand_uid]
- * @property {number} [uid]
- * @property {string} [item_code]
- */
-
-/**
- * @typedef GTIN
- * @property {Object} gtin_value
- * @property {boolean} [primary]
- * @property {string} gtin_type
+ * @property {ProductSizeDeleteDataResponse} [data]
  */
 
 /**
@@ -8850,54 +9084,68 @@ class PlatformApplicationClient {
 
 /**
  * @typedef InventorySet
- * @property {SizeDistribution} size_distribution
  * @property {number} [quantity]
+ * @property {SizeDistribution} size_distribution
  * @property {string} [name]
  */
 
 /**
+ * @typedef GTIN
+ * @property {boolean} [primary]
+ * @property {Object} gtin_value
+ * @property {string} gtin_type
+ */
+
+/**
  * @typedef InvSize
- * @property {GTIN[]} identifiers
+ * @property {number} [price_transfer]
+ * @property {string} [expiration_date]
+ * @property {number} [item_width]
+ * @property {string} [item_weight_unit_of_measure]
+ * @property {boolean} [is_set]
+ * @property {InventorySet} [set]
+ * @property {Object} size
+ * @property {number} [item_length]
  * @property {number} [item_weight]
  * @property {number} quantity
- * @property {string} currency
  * @property {string} store_code
- * @property {Object} size
- * @property {number} [item_width]
- * @property {number} [price_transfer]
- * @property {number} [item_length]
- * @property {boolean} [is_set]
- * @property {number} [item_height]
  * @property {string} [item_dimensions_unit_of_measure]
- * @property {number} price_effective
- * @property {string} [item_weight_unit_of_measure]
- * @property {string} [expiration_date]
+ * @property {string} currency
  * @property {number} [price]
- * @property {InventorySet} [set]
+ * @property {number} price_effective
+ * @property {number} [item_height]
+ * @property {GTIN[]} identifiers
+ */
+
+/**
+ * @typedef ItemQuery
+ * @property {number} [uid]
+ * @property {number} [brand_uid]
+ * @property {string} [item_code]
  */
 
 /**
  * @typedef InventoryRequest
  * @property {number} company_id
- * @property {ItemQuery} item
  * @property {InvSize[]} sizes
+ * @property {ItemQuery} item
  */
 
 /**
  * @typedef InventoryResponse
- * @property {Object} [identifiers]
+ * @property {number} [price_transfer]
+ * @property {string} [uid]
+ * @property {Object} [store]
  * @property {number} [quantity]
- * @property {string} [currency]
  * @property {string} [size]
  * @property {string} [inventory_updated_on]
- * @property {number} [price_transfer]
- * @property {Object} [store]
- * @property {number} [item_id]
- * @property {string} [uid]
  * @property {number} [sellable_quantity]
- * @property {number} [price_effective]
+ * @property {string} [currency]
  * @property {string} [seller_identifier]
+ * @property {number} [item_id]
  * @property {number} [price]
+ * @property {number} [price_effective]
+ * @property {Object} [identifiers]
  */
 
 /**
@@ -8907,9 +9155,10 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef BrandMeta
- * @property {number} id
- * @property {string} name
+ * @typedef WeightResponse
+ * @property {boolean} is_default
+ * @property {string} unit
+ * @property {number} shipping
  */
 
 /**
@@ -8919,103 +9168,107 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ManufacturerResponse
- * @property {string} address
  * @property {boolean} is_default
+ * @property {string} address
  * @property {string} name
  */
 
 /**
+ * @typedef BrandMeta
+ * @property {number} id
+ * @property {string} name
+ */
+
+/**
+ * @typedef ReturnConfig1
+ * @property {string} [unit]
+ * @property {boolean} [returnable]
+ * @property {number} [time]
+ */
+
+/**
  * @typedef QuantityBase
- * @property {string} [updated_at]
  * @property {number} [count]
+ * @property {string} [updated_at]
  */
 
 /**
  * @typedef Quantities
  * @property {QuantityBase} [sellable]
- * @property {QuantityBase} [order_committed]
  * @property {QuantityBase} [not_available]
  * @property {QuantityBase} [damaged]
+ * @property {QuantityBase} [order_committed]
  */
 
 /**
- * @typedef WeightResponse
- * @property {number} shipping
- * @property {string} unit
- * @property {boolean} is_default
- */
-
-/**
- * @typedef PriceMeta
- * @property {Object} [tp_notes]
- * @property {string} currency
- * @property {string} [updated_at]
- * @property {number} marked
- * @property {number} transfer
- * @property {number} effective
- */
-
-/**
- * @typedef DimensionResponse
- * @property {number} height
- * @property {string} unit
- * @property {number} width
- * @property {boolean} is_default
- * @property {number} length
- */
-
-/**
- * @typedef ReturnConfig1
- * @property {number} [time]
- * @property {string} [unit]
- * @property {boolean} [returnable]
+ * @typedef StoreMeta
+ * @property {number} id
  */
 
 /**
  * @typedef Trader1
  * @property {string[]} address
- * @property {string} name
  * @property {string} type
+ * @property {string} name
+ */
+
+/**
+ * @typedef PriceMeta
+ * @property {string} [updated_at]
+ * @property {number} transfer
+ * @property {string} currency
+ * @property {number} effective
+ * @property {Object} [tp_notes]
+ * @property {number} marked
+ */
+
+/**
+ * @typedef DimensionResponse
+ * @property {boolean} is_default
+ * @property {number} width
+ * @property {string} unit
+ * @property {number} length
+ * @property {number} height
  */
 
 /**
  * @typedef InventorySellerResponse
- * @property {Object} [fynd_meta]
- * @property {BrandMeta} brand
- * @property {StoreMeta} store
- * @property {boolean} [is_set]
- * @property {number} item_id
- * @property {Object} identifier
+ * @property {Object} [tax_identifier]
+ * @property {WeightResponse} weight
  * @property {CompanyMeta} company
- * @property {number} total_quantity
+ * @property {boolean} [track_inventory]
+ * @property {boolean} [is_set]
+ * @property {boolean} fragile
  * @property {ManufacturerResponse} manufacturer
+ * @property {BrandMeta} brand
+ * @property {Object} [meta]
+ * @property {ReturnConfig1} [return_config]
+ * @property {boolean} [is_active]
+ * @property {string} fynd_article_code
+ * @property {UserSerializer} [modified_by]
+ * @property {Quantities} [quantities]
+ * @property {StoreMeta} store
+ * @property {Trader1[]} [trader]
+ * @property {Object} identifier
+ * @property {Object} [_custom_json]
+ * @property {UserSerializer} [created_by]
  * @property {string} country_of_origin
+ * @property {number} total_quantity
+ * @property {string} seller_identifier
+ * @property {string} fynd_item_code
+ * @property {PriceMeta} price
+ * @property {DimensionResponse} dimension
  * @property {string[]} [tags]
  * @property {string} uid
- * @property {string} [added_on_store]
- * @property {string} fynd_item_code
- * @property {Quantities} [quantities]
- * @property {InventorySet} [set]
- * @property {boolean} [is_active]
- * @property {WeightResponse} weight
- * @property {string} fynd_article_code
- * @property {Object} [tax_identifier]
- * @property {string} size
- * @property {boolean} [track_inventory]
- * @property {UserSerializer} [created_by]
- * @property {string} seller_identifier
- * @property {PriceMeta} price
- * @property {boolean} fragile
- * @property {DimensionResponse} dimension
- * @property {Object} [meta]
  * @property {Object} [raw_meta]
- * @property {ReturnConfig1} [return_config]
  * @property {string} [trace_id]
  * @property {string} [stage]
  * @property {string} [expiration_date]
- * @property {Trader1[]} [trader]
- * @property {Object} [_custom_json]
- * @property {UserSerializer} [modified_by]
+ * @property {string} [added_on_store]
+ * @property {InventorySet} [set]
+ * @property {string} size
+ * @property {number} item_id
+ * @property {Object} [fynd_meta]
  */
 
 /**
@@ -9026,21 +9279,21 @@ class PlatformApplicationClient {
 
 /**
  * @typedef BulkInventoryGetItems
- * @property {string} [id]
- * @property {number} [cancelled]
- * @property {string} [file_path]
- * @property {boolean} [is_active]
- * @property {number} [succeed]
- * @property {string} [stage]
- * @property {string[]} [cancelled_records]
- * @property {Object} [created_by]
  * @property {number} [failed]
  * @property {number} [total]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {number} [company_id]
- * @property {string[]} [failed_records]
  * @property {string} [created_on]
+ * @property {string} [id]
+ * @property {Object} [created_by]
+ * @property {string[]} [cancelled_records]
+ * @property {string[]} [failed_records]
+ * @property {number} [succeed]
+ * @property {string} [file_path]
+ * @property {string} [modified_on]
+ * @property {boolean} [is_active]
+ * @property {number} [cancelled]
+ * @property {number} [company_id]
+ * @property {Object} [modified_by]
+ * @property {string} [stage]
  */
 
 /**
@@ -9051,19 +9304,19 @@ class PlatformApplicationClient {
 
 /**
  * @typedef InventoryJobPayload
- * @property {number} [quantity]
- * @property {number} [total_quantity]
- * @property {string} [currency]
- * @property {string} store_code
- * @property {string} [trace_id]
- * @property {number} [price_marked]
- * @property {string} [item_dimensions_unit_of_measure]
- * @property {string[]} [tags]
- * @property {string} [item_weight_unit_of_measure]
- * @property {number} [price_effective]
- * @property {string} seller_identifier
  * @property {string} [expiration_date]
+ * @property {number} [price_marked]
+ * @property {string} [item_weight_unit_of_measure]
+ * @property {number} [quantity]
+ * @property {string} [trace_id]
+ * @property {string} store_code
+ * @property {string} [currency]
+ * @property {number} [total_quantity]
+ * @property {string} [item_dimensions_unit_of_measure]
+ * @property {string} seller_identifier
  * @property {number} [price]
+ * @property {number} [price_effective]
+ * @property {string[]} [tags]
  */
 
 /**
@@ -9083,66 +9336,58 @@ class PlatformApplicationClient {
 
 /**
  * @typedef InventoryExportFilter
- * @property {string} [from_date]
  * @property {string} [to_date]
+ * @property {InventoryExportQuantityFilter} [quantity]
+ * @property {string} [from_date]
  * @property {number[]} [store_ids]
  * @property {number[]} [brand_ids]
- * @property {InventoryExportQuantityFilter} [quantity]
  */
 
 /**
  * @typedef InventoryExportRequest
  * @property {string[]} [notification_emails]
  * @property {InventoryExportFilter} filters
- * @property {string[]} [data]
  * @property {string} [type]
+ * @property {string[]} [data]
  */
 
 /**
  * @typedef InventoryExportResponse
- * @property {string} task_id
- * @property {string} [status]
+ * @property {Object} [request_params]
  * @property {string} [created_on]
  * @property {string} [_id]
  * @property {number} seller_id
+ * @property {string} task_id
+ * @property {string} [status]
  * @property {string} [trigger_on]
- * @property {Object} [request_params]
  */
 
 /**
  * @typedef InventoryExportAdvanceOption
- * @property {boolean} [notification]
- * @property {string} [from_date]
  * @property {string} [to_date]
+ * @property {InventoryExportQuantityFilter} [quantity]
+ * @property {string} [from_date]
  * @property {number[]} [store_ids]
  * @property {number[]} [brand_ids]
- * @property {InventoryExportQuantityFilter} [quantity]
+ * @property {boolean} [notification]
  */
 
 /**
  * @typedef InventoryExportJob
- * @property {string} task_id
  * @property {string} [url]
- * @property {string} type
- * @property {string} [status]
- * @property {string[]} [notification_emails]
  * @property {string} [completed_on]
- * @property {InventoryExportAdvanceOption} [filters]
+ * @property {string} type
  * @property {number} seller_id
+ * @property {InventoryExportAdvanceOption} [filters]
+ * @property {string} task_id
+ * @property {string[]} [notification_emails]
+ * @property {string} [status]
  */
 
 /**
- * @typedef BrandMeta1
- * @property {number} [id]
- * @property {string} [name]
- */
-
-/**
- * @typedef ArticleStoreResponse
- * @property {string} [store_code]
- * @property {string} [store_type]
- * @property {number} [uid]
- * @property {string} [name]
+ * @typedef WeightResponse1
+ * @property {string} [unit]
+ * @property {number} [shipping]
  */
 
 /**
@@ -9152,9 +9397,22 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ManufacturerResponse1
- * @property {string} [address]
  * @property {boolean} [is_default]
+ * @property {string} [address]
  * @property {string} [name]
+ */
+
+/**
+ * @typedef BrandMeta1
+ * @property {number} [id]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef ReturnConfig2
+ * @property {string} [unit]
+ * @property {boolean} [returnable]
+ * @property {number} [time]
  */
 
 /**
@@ -9165,80 +9423,83 @@ class PlatformApplicationClient {
 /**
  * @typedef QuantitiesArticle
  * @property {Quantity} [sellable]
- * @property {Quantity} [order_committed]
  * @property {Quantity} [not_available]
  * @property {Quantity} [damaged]
+ * @property {Quantity} [order_committed]
  */
 
 /**
- * @typedef WeightResponse1
- * @property {number} [shipping]
- * @property {string} [unit]
- */
-
-/**
- * @typedef PriceArticle
- * @property {Object} [tp_notes]
- * @property {string} [currency]
- * @property {number} [marked]
- * @property {number} [transfer]
- * @property {number} [effective]
- */
-
-/**
- * @typedef DimensionResponse1
- * @property {number} [length]
- * @property {number} [width]
- * @property {string} [unit]
- * @property {number} [height]
- */
-
-/**
- * @typedef ReturnConfig2
- * @property {number} [time]
- * @property {string} [unit]
- * @property {boolean} [returnable]
+ * @typedef ArticleStoreResponse
+ * @property {number} [uid]
+ * @property {string} [store_code]
+ * @property {string} [name]
+ * @property {string} [store_type]
  */
 
 /**
  * @typedef Trader2
  * @property {string[]} [address]
- * @property {string} [name]
  * @property {string} [type]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef PriceArticle
+ * @property {number} [transfer]
+ * @property {string} [currency]
+ * @property {number} [effective]
+ * @property {Object} [tp_notes]
+ * @property {number} [marked]
+ */
+
+/**
+ * @typedef DimensionResponse1
+ * @property {number} [width]
+ * @property {number} [length]
+ * @property {string} [unit]
+ * @property {number} [height]
+ */
+
+/**
+ * @typedef DateMeta
+ * @property {string} [created_on]
+ * @property {string} [added_on_store]
+ * @property {string} [modified_on]
+ * @property {string} [inventory_updated_on]
  */
 
 /**
  * @typedef GetInventories
- * @property {DateMeta} [date_meta]
- * @property {BrandMeta1} [brand]
- * @property {ArticleStoreResponse} [store]
- * @property {boolean} [is_set]
- * @property {number} [item_id]
- * @property {Object} [identifier]
- * @property {CompanyMeta1} [company]
- * @property {number} [total_quantity]
- * @property {ManufacturerResponse1} [manufacturer]
- * @property {string} [country_of_origin]
- * @property {string} [inventory_updated_on]
- * @property {string[]} [tags]
- * @property {string} [uid]
- * @property {QuantitiesArticle} [quantities]
- * @property {WeightResponse1} [weight]
- * @property {string} [id]
  * @property {Object} [tax_identifier]
- * @property {string} [size]
+ * @property {WeightResponse1} [weight]
+ * @property {CompanyMeta1} [company]
  * @property {boolean} [track_inventory]
+ * @property {boolean} [is_set]
+ * @property {ManufacturerResponse1} [manufacturer]
+ * @property {BrandMeta1} [brand]
+ * @property {ReturnConfig2} [return_config]
+ * @property {string} [id]
+ * @property {QuantitiesArticle} [quantities]
+ * @property {UserSerializer} [modified_by]
+ * @property {ArticleStoreResponse} [store]
+ * @property {Trader2[]} [trader]
+ * @property {Object} [identifier]
  * @property {UserSerializer} [created_by]
- * @property {Object} [platforms]
+ * @property {string} [inventory_updated_on]
+ * @property {string} [country_of_origin]
+ * @property {number} [total_quantity]
  * @property {string} [seller_identifier]
  * @property {PriceArticle} [price]
  * @property {DimensionResponse1} [dimension]
+ * @property {string[]} [tags]
+ * @property {string} [uid]
  * @property {string} [trace_id]
- * @property {ReturnConfig2} [return_config]
+ * @property {DateMeta} [date_meta]
  * @property {string} [stage]
+ * @property {Object} [platforms]
  * @property {string} [expiration_date]
- * @property {Trader2[]} [trader]
- * @property {UserSerializer} [modified_by]
+ * @property {string} [size]
+ * @property {number} [item_id]
  */
 
 /**
@@ -9249,8 +9510,8 @@ class PlatformApplicationClient {
 
 /**
  * @typedef FilerList
- * @property {string} [value]
  * @property {string} [display]
+ * @property {string} [value]
  */
 
 /**
@@ -9261,21 +9522,21 @@ class PlatformApplicationClient {
 
 /**
  * @typedef InventoryPayload
- * @property {number} [total_quantity]
- * @property {string} [trace_id]
- * @property {number} store_id
- * @property {number} [price_marked]
- * @property {string[]} [tags]
- * @property {number} [price_effective]
- * @property {string} seller_identifier
  * @property {string} [expiration_date]
+ * @property {number} [price_marked]
+ * @property {string} [trace_id]
+ * @property {number} [total_quantity]
+ * @property {string} seller_identifier
+ * @property {number} [price_effective]
+ * @property {string[]} [tags]
+ * @property {number} store_id
  */
 
 /**
  * @typedef InventoryRequestSchemaV2
+ * @property {Object} [meta]
  * @property {number} company_id
  * @property {InventoryPayload[]} [payload]
- * @property {Object} [meta]
  */
 
 /**
@@ -9297,38 +9558,38 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef HsnUpsert
- * @property {number} threshold1
- * @property {number} [tax2]
- * @property {number} [threshold2]
- * @property {string} hsn_code
- * @property {string} hs2_code
- * @property {number} tax1
- * @property {boolean} [tax_on_esp]
- * @property {number} [uid]
- * @property {number} company_id
- * @property {boolean} tax_on_mrp
- * @property {boolean} [is_active]
- */
-
-/**
  * @typedef HsnCodesObject
- * @property {number} [threshold1]
- * @property {string} [id]
  * @property {number} [tax2]
- * @property {number} [threshold2]
- * @property {string} [hsn_code]
- * @property {string} [hs2_code]
- * @property {number} [tax1]
- * @property {boolean} [tax_on_esp]
- * @property {string} [modified_on]
- * @property {number} [company_id]
  * @property {boolean} [tax_on_mrp]
+ * @property {boolean} [tax_on_esp]
+ * @property {number} [tax1]
+ * @property {number} [threshold1]
+ * @property {number} [threshold2]
+ * @property {string} [modified_on]
+ * @property {string} [hsn_code]
+ * @property {string} [id]
+ * @property {number} [company_id]
+ * @property {string} [hs2_code]
  */
 
 /**
  * @typedef HsnCode
  * @property {HsnCodesObject} [data]
+ */
+
+/**
+ * @typedef HsnUpsert
+ * @property {number} [tax2]
+ * @property {number} [uid]
+ * @property {boolean} tax_on_mrp
+ * @property {boolean} [tax_on_esp]
+ * @property {number} tax1
+ * @property {number} threshold1
+ * @property {number} [threshold2]
+ * @property {string} hsn_code
+ * @property {boolean} [is_active]
+ * @property {number} company_id
+ * @property {string} hs2_code
  */
 
 /**
@@ -9343,33 +9604,33 @@ class PlatformApplicationClient {
 
 /**
  * @typedef TaxSlab
+ * @property {number} rate
  * @property {number} [cess]
  * @property {string} effective_date
  * @property {number} threshold
- * @property {number} rate
  */
 
 /**
  * @typedef HSNDataInsertV2
- * @property {string} country_code
- * @property {string} type
- * @property {string} [created_on]
- * @property {TaxSlab[]} taxes
- * @property {string} hsn_code
- * @property {Object} [created_by]
- * @property {string} description
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {string} [hsn_code_id]
  * @property {string} reporting_hsn
+ * @property {TaxSlab[]} taxes
+ * @property {string} [created_on]
+ * @property {string} type
+ * @property {Object} [created_by]
+ * @property {string} [hsn_code_id]
+ * @property {string} country_code
+ * @property {string} [modified_on]
+ * @property {string} hsn_code
+ * @property {Object} [modified_by]
+ * @property {string} description
  */
 
 /**
  * @typedef PageResponse
- * @property {boolean} [has_previous]
- * @property {string} [current]
- * @property {number} [item_total]
  * @property {number} [size]
+ * @property {number} [item_total]
+ * @property {string} [current]
+ * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
  */
 
@@ -9382,13 +9643,13 @@ class PlatformApplicationClient {
 /**
  * @typedef BrandItem
  * @property {string} [slug]
- * @property {ImageUrls} [banners]
- * @property {string} [name]
  * @property {number} [uid]
- * @property {Action} [action]
  * @property {string} [discount]
  * @property {string[]} [departments]
+ * @property {ImageUrls} [banners]
+ * @property {Action} [action]
  * @property {Media} [logo]
+ * @property {string} [name]
  */
 
 /**
@@ -9399,11 +9660,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Department
- * @property {number} [priority_order]
  * @property {string} [slug]
- * @property {string} [name]
  * @property {number} [uid]
  * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {number} [priority_order]
  */
 
 /**
@@ -9420,44 +9681,44 @@ class PlatformApplicationClient {
 /**
  * @typedef ThirdLevelChild
  * @property {string} [slug]
- * @property {ImageUrls} [banners]
- * @property {string} [name]
  * @property {number} [uid]
- * @property {Action} [action]
- * @property {Object[]} [childs]
+ * @property {ImageUrls} [banners]
  * @property {Object} [_custom_json]
+ * @property {Object[]} [childs]
+ * @property {Action} [action]
+ * @property {string} [name]
  */
 
 /**
  * @typedef SecondLevelChild
  * @property {string} [slug]
- * @property {ImageUrls} [banners]
- * @property {string} [name]
  * @property {number} [uid]
- * @property {Action} [action]
- * @property {ThirdLevelChild[]} [childs]
+ * @property {ImageUrls} [banners]
  * @property {Object} [_custom_json]
+ * @property {ThirdLevelChild[]} [childs]
+ * @property {Action} [action]
+ * @property {string} [name]
  */
 
 /**
  * @typedef Child
  * @property {string} [slug]
- * @property {ImageUrls} [banners]
- * @property {string} [name]
  * @property {number} [uid]
- * @property {Action} [action]
- * @property {SecondLevelChild[]} [childs]
+ * @property {ImageUrls} [banners]
  * @property {Object} [_custom_json]
+ * @property {SecondLevelChild[]} [childs]
+ * @property {Action} [action]
+ * @property {string} [name]
  */
 
 /**
  * @typedef CategoryItems
  * @property {string} [slug]
- * @property {ImageUrls} [banners]
- * @property {string} [name]
  * @property {number} [uid]
- * @property {Action} [action]
+ * @property {ImageUrls} [banners]
  * @property {Child[]} [childs]
+ * @property {Action} [action]
+ * @property {string} [name]
  */
 
 /**
@@ -9476,44 +9737,44 @@ class PlatformApplicationClient {
  * @typedef ApplicationProductListingResponse
  * @property {ProductListingDetail[]} [items]
  * @property {Object} [operators]
- * @property {Page} page
- * @property {ProductSortOn[]} [sort_on]
  * @property {ProductFilters[]} [filters]
+ * @property {ProductSortOn[]} [sort_on]
+ * @property {Page} page
  */
 
 /**
  * @typedef ProductDetail
- * @property {string} [type]
- * @property {string} slug
- * @property {boolean} [has_variant]
- * @property {ProductBrand} [brand]
- * @property {number} [rating]
- * @property {Object} [teaser_tag]
  * @property {string[]} [tryouts]
- * @property {string} [item_type]
- * @property {number} [rating_count]
- * @property {number} [uid]
- * @property {string} [item_code]
- * @property {Object} [attributes]
- * @property {string[]} [similars]
- * @property {string} [short_description]
- * @property {string} [image_nature]
- * @property {string} [name]
- * @property {string} [color]
- * @property {Media1[]} [medias]
- * @property {string[]} [highlights]
+ * @property {ProductBrand} [brand]
  * @property {string} [product_online_date]
- * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
+ * @property {string} [item_code]
+ * @property {string} [name]
+ * @property {Object} [teaser_tag]
  * @property {string} [description]
+ * @property {string} slug
+ * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
  * @property {Object} [promo_meta]
+ * @property {string[]} [highlights]
+ * @property {string} [item_type]
+ * @property {Object} [attributes]
+ * @property {string} [color]
+ * @property {string} [image_nature]
+ * @property {number} [uid]
+ * @property {boolean} [has_variant]
+ * @property {string} [short_description]
+ * @property {string} [type]
+ * @property {number} [rating_count]
+ * @property {Media1[]} [medias]
+ * @property {number} [rating]
+ * @property {string[]} [similars]
  */
 
 /**
  * @typedef InventoryPage
- * @property {boolean} [has_previous]
  * @property {string} [next_id]
  * @property {string} type
  * @property {number} item_total
+ * @property {boolean} [has_previous]
  * @property {boolean} [has_next]
  */
 
@@ -9524,131 +9785,140 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef GetAddressSerializer
- * @property {string} [country_code]
- * @property {string} [state]
- * @property {string} [landmark]
- * @property {number} [pincode]
- * @property {string} [country]
- * @property {string} [city]
- * @property {number} [longitude]
- * @property {number} [latitude]
- * @property {string} [address2]
- * @property {string} [address_type]
- * @property {string} [address1]
- */
-
-/**
  * @typedef UserSerializer1
- * @property {string} [contact]
  * @property {string} [username]
  * @property {string} [user_id]
- */
-
-/**
- * @typedef GetCompanySerializer
- * @property {string} [reject_reason]
- * @property {string} [company_type]
- * @property {string} [business_type]
- * @property {UserSerializer1} [verified_by]
- * @property {string} [name]
- * @property {string} [stage]
- * @property {GetAddressSerializer[]} [addresses]
- * @property {UserSerializer1} [created_by]
- * @property {number} [uid]
- * @property {UserSerializer1} [modified_by]
- * @property {string} [modified_on]
- * @property {string} [verified_on]
- * @property {string} [created_on]
- */
-
-/**
- * @typedef SellerPhoneNumber
- * @property {number} country_code
- * @property {string} number
- */
-
-/**
- * @typedef LocationManagerSerializer
- * @property {string} [email]
- * @property {SellerPhoneNumber} mobile_no
- * @property {string} [name]
- */
-
-/**
- * @typedef LocationTimingSerializer
- * @property {number} [minute]
- * @property {number} [hour]
- */
-
-/**
- * @typedef LocationDayWiseSerializer
- * @property {string} weekday
- * @property {boolean} open
- * @property {LocationTimingSerializer} [opening]
- * @property {LocationTimingSerializer} [closing]
- */
-
-/**
- * @typedef InvoiceCredSerializer
- * @property {string} [password]
- * @property {string} [username]
- * @property {boolean} [enabled]
- */
-
-/**
- * @typedef InvoiceDetailsSerializer
- * @property {InvoiceCredSerializer} [e_waybill]
- * @property {InvoiceCredSerializer} [e_invoice]
- */
-
-/**
- * @typedef LocationIntegrationType
- * @property {string} [inventory]
- * @property {string} [order]
+ * @property {string} [contact]
  */
 
 /**
  * @typedef UserSerializer2
- * @property {string} [contact]
  * @property {string} [username]
  * @property {string} [user_id]
+ * @property {string} [contact]
+ */
+
+/**
+ * @typedef GetAddressSerializer
+ * @property {string} [landmark]
+ * @property {string} [address2]
+ * @property {number} [pincode]
+ * @property {number} [latitude]
+ * @property {string} [address_type]
+ * @property {number} [longitude]
+ * @property {string} [country_code]
+ * @property {string} [state]
+ * @property {string} [address1]
+ * @property {string} [country]
+ * @property {string} [city]
+ */
+
+/**
+ * @typedef GetCompanySerializer
+ * @property {number} [uid]
+ * @property {UserSerializer2} [verified_by]
+ * @property {string} [reject_reason]
+ * @property {string} [company_type]
+ * @property {string} [created_on]
+ * @property {GetAddressSerializer[]} [addresses]
+ * @property {UserSerializer2} [created_by]
+ * @property {string} [business_type]
+ * @property {string} [name]
+ * @property {string} [modified_on]
+ * @property {string} [verified_on]
+ * @property {string} [stage]
+ * @property {UserSerializer2} [modified_by]
  */
 
 /**
  * @typedef ProductReturnConfigSerializer
- * @property {number} [store_uid]
  * @property {boolean} [on_same_store]
+ * @property {number} [store_uid]
+ */
+
+/**
+ * @typedef LocationTimingSerializer
+ * @property {number} [hour]
+ * @property {number} [minute]
+ */
+
+/**
+ * @typedef LocationDayWiseSerializer
+ * @property {boolean} open
+ * @property {LocationTimingSerializer} [closing]
+ * @property {string} weekday
+ * @property {LocationTimingSerializer} [opening]
+ */
+
+/**
+ * @typedef InvoiceCredSerializer
+ * @property {boolean} [enabled]
+ * @property {string} [username]
+ * @property {string} [password]
+ */
+
+/**
+ * @typedef InvoiceDetailsSerializer
+ * @property {InvoiceCredSerializer} [e_invoice]
+ * @property {InvoiceCredSerializer} [e_waybill]
+ */
+
+/**
+ * @typedef SellerPhoneNumber
+ * @property {string} number
+ * @property {number} country_code
+ */
+
+/**
+ * @typedef LocationManagerSerializer
+ * @property {string} [name]
+ * @property {SellerPhoneNumber} mobile_no
+ * @property {string} [email]
+ */
+
+/**
+ * @typedef LocationIntegrationType
+ * @property {string} [order]
+ * @property {string} [inventory]
+ */
+
+/**
+ * @typedef Document
+ * @property {string} [url]
+ * @property {string} [legal_name]
+ * @property {string} type
+ * @property {string} value
+ * @property {boolean} [verified]
  */
 
 /**
  * @typedef GetLocationSerializer
- * @property {string} [store_type]
- * @property {GetAddressSerializer} address
- * @property {string} [created_on]
- * @property {string} [verified_on]
+ * @property {UserSerializer1} [verified_by]
  * @property {GetCompanySerializer} [company]
- * @property {string} [phone_number]
  * @property {string} [store_code]
- * @property {string} code
- * @property {number} [uid]
- * @property {LocationManagerSerializer} [manager]
- * @property {Document[]} [documents]
- * @property {LocationDayWiseSerializer[]} [timing]
- * @property {InvoiceDetailsSerializer} [gst_credentials]
- * @property {LocationIntegrationType} [integration_type]
+ * @property {string} [store_type]
  * @property {string} name
- * @property {UserSerializer2} [created_by]
- * @property {Object} [warnings]
- * @property {string} [modified_on]
  * @property {string[]} [notification_emails]
- * @property {UserSerializer2} [verified_by]
- * @property {string} [stage]
  * @property {ProductReturnConfigSerializer} [product_return_config]
- * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [modified_by]
+ * @property {Object} [warnings]
+ * @property {UserSerializer1} [modified_by]
  * @property {Object} [_custom_json]
+ * @property {UserSerializer1} [created_by]
+ * @property {LocationDayWiseSerializer[]} [timing]
  * @property {string} display_name
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
+ * @property {string} [verified_on]
+ * @property {LocationManagerSerializer} [manager]
+ * @property {number} [uid]
+ * @property {LocationIntegrationType} [integration_type]
+ * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {string} [phone_number]
+ * @property {Document[]} [documents]
+ * @property {string} [stage]
+ * @property {string} code
+ * @property {string} [created_on]
+ * @property {GetAddressSerializer} address
+ * @property {string} [modified_on]
  */
 
 /**
@@ -9669,11 +9939,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ApplicationDepartment
- * @property {string} [name]
  * @property {number} uid
  * @property {string} app_id
  * @property {Object} [_custom_json]
  * @property {string} [logo]
+ * @property {string} [name]
  * @property {boolean} [is_active]
  */
 
@@ -9691,6 +9961,19 @@ class PlatformApplicationClient {
 /**
  * @typedef ApplicationStoreJson
  * @property {Object} _custom_json
+ */
+
+/**
+ * @typedef UserSerializer
+ * @property {string} [user_id]
+ * @property {string} [username]
+ * @property {string} [contact]
+ */
+
+/**
+ * @typedef SellerPhoneNumber
+ * @property {number} country_code
+ * @property {string} number
  */
 
 /**
@@ -9713,6 +9996,15 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Document
+ * @property {string} value
+ * @property {string} [legal_name]
+ * @property {string} type
+ * @property {string} [url]
+ * @property {boolean} [verified]
+ */
+
+/**
  * @typedef Website
  * @property {string} [url]
  */
@@ -9720,6 +10012,21 @@ class PlatformApplicationClient {
 /**
  * @typedef BusinessDetails
  * @property {Website} [website]
+ */
+
+/**
+ * @typedef GetAddressSerializer
+ * @property {string} [country]
+ * @property {string} [city]
+ * @property {number} latitude
+ * @property {string} [address1]
+ * @property {number} longitude
+ * @property {number} [pincode]
+ * @property {string} [country_code]
+ * @property {string} [address_type]
+ * @property {string} [state]
+ * @property {string} [address2]
+ * @property {string} [landmark]
  */
 
 /**
@@ -9747,6 +10054,14 @@ class PlatformApplicationClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
+ */
+
+/**
+ * @typedef ErrorResponse
+ * @property {number} [status]
+ * @property {Object} [meta]
+ * @property {string} [code]
+ * @property {string} [message]
  */
 
 /**
@@ -9906,6 +10221,17 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef CompanyBrandListSerializer
  * @property {CompanyBrandSerializer[]} [items]
  * @property {Page} [page]
@@ -9919,6 +10245,63 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef LocationTimingSerializer
+ * @property {number} hour
+ * @property {number} minute
+ */
+
+/**
+ * @typedef LocationDayWiseSerializer
+ * @property {LocationTimingSerializer} [opening]
+ * @property {boolean} open
+ * @property {LocationTimingSerializer} [closing]
+ * @property {string} weekday
+ */
+
+/**
+ * @typedef ProductReturnConfigSerializer
+ * @property {boolean} [on_same_store]
+ * @property {number} [store_uid]
+ */
+
+/**
+ * @typedef LocationManagerSerializer
+ * @property {SellerPhoneNumber} mobile_no
+ * @property {string} [name]
+ * @property {string} [email]
+ */
+
+/**
+ * @typedef GetCompanySerializer
+ * @property {number} [uid]
+ * @property {string} [created_on]
+ * @property {string} [business_type]
+ * @property {string} [reject_reason]
+ * @property {GetAddressSerializer[]} [addresses]
+ * @property {string} [verified_on]
+ * @property {string} [company_type]
+ * @property {string} [modified_on]
+ * @property {UserSerializer} [verified_by]
+ * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer} [created_by]
+ * @property {string} [stage]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef InvoiceCredSerializer
+ * @property {boolean} [enabled]
+ * @property {string} [username]
+ * @property {string} [password]
+ */
+
+/**
+ * @typedef InvoiceDetailsSerializer
+ * @property {InvoiceCredSerializer} [e_invoice]
+ * @property {InvoiceCredSerializer} [e_waybill]
+ */
+
+/**
  * @typedef HolidayDateSerializer
  * @property {string} end_date
  * @property {string} start_date
@@ -9929,6 +10312,41 @@ class PlatformApplicationClient {
  * @property {string} holiday_type
  * @property {string} title
  * @property {HolidayDateSerializer} date
+ */
+
+/**
+ * @typedef GetLocationSerializer
+ * @property {LocationDayWiseSerializer[]} [timing]
+ * @property {ProductReturnConfigSerializer} [product_return_config]
+ * @property {string} [stage]
+ * @property {SellerPhoneNumber[]} [contact_numbers]
+ * @property {string} name
+ * @property {LocationManagerSerializer} [manager]
+ * @property {string} display_name
+ * @property {string} [modified_on]
+ * @property {UserSerializer} [verified_by]
+ * @property {UserSerializer} [modified_by]
+ * @property {string[]} [notification_emails]
+ * @property {string} [phone_number]
+ * @property {GetCompanySerializer} [company]
+ * @property {string} code
+ * @property {InvoiceDetailsSerializer} [gst_credentials]
+ * @property {HolidaySchemaSerializer[]} [holiday]
+ * @property {UserSerializer} [created_by]
+ * @property {Document[]} [documents]
+ * @property {number} [uid]
+ * @property {string} [created_on]
+ * @property {Object} [_custom_json]
+ * @property {string} [verified_on]
+ * @property {Object} [warnings]
+ * @property {string} [store_type]
+ * @property {GetAddressSerializer} address
+ */
+
+/**
+ * @typedef LocationListSerializer
+ * @property {GetLocationSerializer[]} [items]
+ * @property {Page} [page]
  */
 
 /**
@@ -10149,6 +10567,17 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef DbRecord
  * @property {boolean} success
  * @property {string[]} tags
@@ -10256,6 +10685,17 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef ShortLinkList
  * @property {ShortLinkRes[]} [items]
  * @property {Page} [page]
@@ -10297,6 +10737,17 @@ class PlatformApplicationClient {
  * @typedef TaskDTO
  * @property {number} [type]
  * @property {GenericDTO[]} [group_list]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -11971,6 +12422,62 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Currency
+ * @property {string} [_id]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {string} [code]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {number} [decimal_digits]
+ * @property {string} [symbol]
+ */
+
+/**
+ * @typedef Domain
+ * @property {boolean} [verified]
+ * @property {boolean} [is_primary]
+ * @property {boolean} [is_shortlink]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {boolean} [is_predefined]
+ */
+
+/**
+ * @typedef ApplicationWebsite
+ * @property {boolean} [enabled]
+ * @property {string} [basepath]
+ */
+
+/**
+ * @typedef ApplicationCors
+ * @property {string[]} [domains]
+ */
+
+/**
+ * @typedef ApplicationAuth
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef ApplicationRedirections
+ * @property {string} [redirect_from]
+ * @property {string} [redirect_to]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ApplicationMeta
+ * @property {string} [name]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef SecureUrl
+ * @property {string} [secure_url]
+ */
+
+/**
  * @typedef Application
  * @property {ApplicationWebsite} [website]
  * @property {ApplicationCors} [cors]
@@ -11998,6 +12505,11 @@ class PlatformApplicationClient {
  * @property {SecureUrl} [mobile_logo]
  * @property {Domain} [domain]
  * @property {string} [slug]
+ */
+
+/**
+ * @typedef NotFound
+ * @property {string} [message]
  */
 
 /**
@@ -12083,6 +12595,17 @@ class PlatformApplicationClient {
  * @property {boolean} [verified]
  * @property {number} [country_code]
  * @property {string} [phone]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -12289,72 +12812,26 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef Validation
- * @property {string} [user_registered_after]
- * @property {boolean} [anonymous]
- * @property {string[]} [app_id]
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
- * @typedef CouponDateMeta
- * @property {string} [modified_on]
- * @property {string} [created_on]
- */
-
-/**
- * @typedef Rule
- * @property {number} [min]
- * @property {number} [discount_qty]
- * @property {number} [max]
- * @property {number} [value]
- * @property {number} [key]
- */
-
-/**
- * @typedef CouponAction
- * @property {string} [action_date]
- * @property {string} [txn_mode]
- */
-
-/**
- * @typedef CouponSchedule
- * @property {string} [start]
- * @property {string} [end]
- * @property {number} [duration]
- * @property {Object[]} [next_schedule]
- * @property {string} [cron]
- */
-
-/**
- * @typedef Ownership
- * @property {string} payable_category
- * @property {string} payable_by
- */
-
-/**
- * @typedef PaymentAllowValue
- * @property {number} [max]
- */
-
-/**
- * @typedef PaymentModes
- * @property {string[]} [networks]
- * @property {PaymentAllowValue} [uses]
- * @property {string[]} [codes]
- * @property {string[]} [types]
- */
-
-/**
- * @typedef PriceRange
- * @property {number} [max]
- * @property {number} [min]
+ * @typedef BulkBundleRestriction
+ * @property {boolean} multi_store_allowed
  */
 
 /**
  * @typedef UsesRemaining
  * @property {number} [app]
- * @property {number} [user]
  * @property {number} [total]
+ * @property {number} [user]
  */
 
 /**
@@ -12364,58 +12841,42 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef BulkBundleRestriction
- * @property {boolean} multi_store_allowed
+ * @typedef PriceRange
+ * @property {number} [min]
+ * @property {number} [max]
  */
 
 /**
  * @typedef PostOrder
- * @property {boolean} [return_allowed]
  * @property {boolean} [cancellation_allowed]
+ * @property {boolean} [return_allowed]
+ */
+
+/**
+ * @typedef PaymentAllowValue
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef PaymentModes
+ * @property {string[]} [types]
+ * @property {string[]} [codes]
+ * @property {string[]} [networks]
+ * @property {PaymentAllowValue} [uses]
  */
 
 /**
  * @typedef Restrictions
- * @property {Object} [payments]
- * @property {boolean} [coupon_allowed]
- * @property {PriceRange} [price_range]
- * @property {UsesRestriction} [uses]
- * @property {number[]} [ordering_stores]
  * @property {BulkBundleRestriction} [bulk_bundle]
  * @property {number[]} [user_groups]
+ * @property {UsesRestriction} [uses]
+ * @property {PriceRange} [price_range]
+ * @property {number[]} [ordering_stores]
  * @property {string} [user_type]
  * @property {PostOrder} [post_order]
  * @property {string[]} [platforms]
- */
-
-/**
- * @typedef State
- * @property {boolean} [is_display]
- * @property {boolean} [is_public]
- * @property {boolean} [is_archived]
- */
-
-/**
- * @typedef RuleDefinition
- * @property {boolean} [is_exact]
- * @property {string} type
- * @property {boolean} [auto_apply]
- * @property {string} calculate_on
- * @property {string[]} [scope]
- * @property {string} [currency_code]
- * @property {string} applicable_on
- * @property {string} value_type
- */
-
-/**
- * @typedef Validity
- * @property {number} [priority]
- */
-
-/**
- * @typedef CouponAuthor
- * @property {string} [modified_by]
- * @property {string} [created_by]
+ * @property {boolean} [coupon_allowed]
+ * @property {Object} [payments]
  */
 
 /**
@@ -12426,31 +12887,117 @@ class PlatformApplicationClient {
 
 /**
  * @typedef DisplayMeta
- * @property {DisplayMetaDict} [remove]
- * @property {DisplayMetaDict} [apply]
- * @property {string} [subtitle]
  * @property {string} [title]
  * @property {DisplayMetaDict} [auto]
  * @property {string} [description]
+ * @property {DisplayMetaDict} [apply]
+ * @property {string} [subtitle]
+ * @property {DisplayMetaDict} [remove]
+ */
+
+/**
+ * @typedef CouponAuthor
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+
+/**
+ * @typedef Validity
+ * @property {number} [priority]
+ */
+
+/**
+ * @typedef CouponAction
+ * @property {string} [txn_mode]
+ * @property {string} [action_date]
+ */
+
+/**
+ * @typedef RuleDefinition
+ * @property {string} [currency_code]
+ * @property {boolean} [auto_apply]
+ * @property {string} applicable_on
+ * @property {string} value_type
+ * @property {string} calculate_on
+ * @property {string} type
+ * @property {string[]} [scope]
+ * @property {boolean} [is_exact]
+ */
+
+/**
+ * @typedef State
+ * @property {boolean} [is_archived]
+ * @property {boolean} [is_display]
+ * @property {boolean} [is_public]
+ */
+
+/**
+ * @typedef Validation
+ * @property {boolean} [anonymous]
+ * @property {string[]} [app_id]
+ * @property {string} [user_registered_after]
+ */
+
+/**
+ * @typedef CouponSchedule
+ * @property {string} [end]
+ * @property {string} [start]
+ * @property {Object[]} [next_schedule]
+ * @property {string} [cron]
+ * @property {number} [duration]
+ */
+
+/**
+ * @typedef CouponDateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
+ */
+
+/**
+ * @typedef Rule
+ * @property {number} [value]
+ * @property {number} [max]
+ * @property {number} [key]
+ * @property {number} [min]
+ * @property {number} [discount_qty]
+ */
+
+/**
+ * @typedef Ownership
+ * @property {string} payable_category
+ * @property {string} payable_by
+ */
+
+/**
+ * @typedef Identifier
+ * @property {string[]} [user_id]
+ * @property {number[]} [company_id]
+ * @property {string[]} [collection_id]
+ * @property {number[]} [store_id]
+ * @property {number[]} [exclude_brand_id]
+ * @property {number[]} [item_id]
+ * @property {number[]} [brand_id]
+ * @property {string[]} [article_id]
+ * @property {number[]} [category_id]
  */
 
 /**
  * @typedef CouponAdd
- * @property {Identifier} identifiers
- * @property {Validation} [validation]
- * @property {CouponDateMeta} [date_meta]
- * @property {Rule[]} rule
- * @property {CouponAction} [action]
- * @property {CouponSchedule} [_schedule]
- * @property {Ownership} ownership
  * @property {Restrictions} [restrictions]
- * @property {State} [state]
- * @property {RuleDefinition} rule_definition
  * @property {string[]} [tags]
+ * @property {DisplayMeta} display_meta
+ * @property {CouponAuthor} [author]
  * @property {Validity} validity
  * @property {string} type_slug
- * @property {CouponAuthor} [author]
- * @property {DisplayMeta} display_meta
+ * @property {CouponAction} [action]
+ * @property {RuleDefinition} rule_definition
+ * @property {State} [state]
+ * @property {Validation} [validation]
+ * @property {CouponSchedule} [_schedule]
+ * @property {CouponDateMeta} [date_meta]
+ * @property {Rule[]} rule
+ * @property {Ownership} ownership
+ * @property {Identifier} identifiers
  * @property {string} code
  */
 
@@ -12474,28 +13021,169 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CouponUpdate
- * @property {Identifier} identifiers
- * @property {Validation} [validation]
- * @property {CouponDateMeta} [date_meta]
- * @property {Rule[]} rule
- * @property {CouponAction} [action]
- * @property {CouponSchedule} [_schedule]
- * @property {Ownership} ownership
  * @property {Restrictions} [restrictions]
- * @property {State} [state]
- * @property {RuleDefinition} rule_definition
  * @property {string[]} [tags]
+ * @property {DisplayMeta} display_meta
+ * @property {CouponAuthor} [author]
  * @property {Validity} validity
  * @property {string} type_slug
- * @property {CouponAuthor} [author]
- * @property {DisplayMeta} display_meta
+ * @property {CouponAction} [action]
+ * @property {RuleDefinition} rule_definition
+ * @property {State} [state]
+ * @property {Validation} [validation]
+ * @property {CouponSchedule} [_schedule]
+ * @property {CouponDateMeta} [date_meta]
+ * @property {Rule[]} rule
+ * @property {Ownership} ownership
+ * @property {Identifier} identifiers
  * @property {string} code
  */
 
 /**
  * @typedef CouponPartialUpdate
- * @property {CouponSchedule} [schedule]
  * @property {boolean} [archive]
+ * @property {CouponSchedule} [schedule]
+ */
+
+/**
+ * @typedef UsesRemaining1
+ * @property {number} [total]
+ * @property {number} [user]
+ */
+
+/**
+ * @typedef UsesRestriction1
+ * @property {UsesRemaining1} [remaining]
+ * @property {UsesRemaining1} [maximum]
+ */
+
+/**
+ * @typedef PostOrder1
+ * @property {boolean} [cancellation_allowed]
+ * @property {boolean} [return_allowed]
+ */
+
+/**
+ * @typedef UserRegistered
+ * @property {string} [end]
+ * @property {string} [start]
+ */
+
+/**
+ * @typedef PaymentAllowValue1
+ * @property {number} [max]
+ */
+
+/**
+ * @typedef PromotionPaymentModes
+ * @property {string} type
+ * @property {string[]} [codes]
+ * @property {PaymentAllowValue1} [uses]
+ */
+
+/**
+ * @typedef Restrictions1
+ * @property {string[]} [user_id]
+ * @property {number[]} [user_groups]
+ * @property {number} [order_quantity]
+ * @property {UsesRestriction1} uses
+ * @property {PostOrder1} [post_order]
+ * @property {boolean} [anonymous_users]
+ * @property {UserRegistered} [user_registered]
+ * @property {string[]} [platforms]
+ * @property {PromotionPaymentModes[]} [payments]
+ */
+
+/**
+ * @typedef DisplayMeta1
+ * @property {string} [offer_label]
+ * @property {string} [description]
+ * @property {string} [offer_text]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef PromotionSchedule
+ * @property {string} [end]
+ * @property {string} start
+ * @property {Object[]} [next_schedule]
+ * @property {boolean} published
+ * @property {string} [cron]
+ * @property {number} [duration]
+ */
+
+/**
+ * @typedef Visibility
+ * @property {boolean} pdp
+ * @property {boolean} coupon_list
+ */
+
+/**
+ * @typedef PromotionAuthor
+ * @property {string} [created_by]
+ * @property {string} [modified_by]
+ */
+
+/**
+ * @typedef CompareObject
+ * @property {number} [less_than]
+ * @property {number} [equals]
+ * @property {number} [less_than_equals]
+ * @property {number} [greater_than_equals]
+ * @property {number} [greater_than]
+ */
+
+/**
+ * @typedef ItemCriteria
+ * @property {CompareObject} [cart_unique_item_amount]
+ * @property {number[]} [item_exclude_category]
+ * @property {number[]} [item_brand]
+ * @property {CompareObject} [cart_quantity]
+ * @property {string[]} [available_zones]
+ * @property {number[]} [item_store]
+ * @property {string[]} [buy_rules]
+ * @property {string[]} [item_exclude_sku]
+ * @property {string[]} [item_sku]
+ * @property {CompareObject} [cart_total]
+ * @property {number[]} [item_exclude_company]
+ * @property {number[]} [item_exclude_id]
+ * @property {number[]} [item_exclude_brand]
+ * @property {number[]} [item_id]
+ * @property {number[]} [item_company]
+ * @property {boolean} [all_items]
+ * @property {string[]} [product_tags]
+ * @property {string[]} [item_size]
+ * @property {number[]} [item_category]
+ * @property {CompareObject} [cart_unique_item_quantity]
+ * @property {number[]} [item_exclude_store]
+ */
+
+/**
+ * @typedef DiscountOffer
+ * @property {number} [max_discount_amount]
+ * @property {boolean} [partial_can_ret]
+ * @property {number} [max_offer_quantity]
+ * @property {number} [discount_percentage]
+ * @property {boolean} [apportion_discount]
+ * @property {number} [max_usage_per_transaction]
+ * @property {number} [min_offer_quantity]
+ * @property {number} [discount_price]
+ * @property {number} [discount_amount]
+ * @property {string} [code]
+ */
+
+/**
+ * @typedef DiscountRule
+ * @property {string} buy_condition
+ * @property {ItemCriteria} item_criteria
+ * @property {DiscountOffer} offer
+ * @property {string} discount_type
+ */
+
+/**
+ * @typedef PromotionDateMeta
+ * @property {string} [created_on]
+ * @property {string} [modified_on]
  */
 
 /**
@@ -12511,170 +13199,29 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef DisplayMeta1
- * @property {string} [offer_text]
- * @property {string} [offer_label]
- * @property {string} [description]
- * @property {string} [name]
- */
-
-/**
- * @typedef PromotionDateMeta
- * @property {string} [modified_on]
- * @property {string} [created_on]
- */
-
-/**
- * @typedef PromotionSchedule
- * @property {string} start
- * @property {string} [end]
- * @property {number} [duration]
- * @property {Object[]} [next_schedule]
- * @property {string} [cron]
- * @property {boolean} published
- */
-
-/**
- * @typedef PromotionAuthor
- * @property {string} [modified_by]
- * @property {string} [created_by]
- */
-
-/**
- * @typedef CompareObject
- * @property {number} [less_than]
- * @property {number} [greater_than_equals]
- * @property {number} [equals]
- * @property {number} [greater_than]
- * @property {number} [less_than_equals]
- */
-
-/**
- * @typedef ItemCriteria
- * @property {number[]} [item_exclude_brand]
- * @property {string[]} [item_size]
- * @property {string[]} [item_sku]
- * @property {number[]} [item_id]
- * @property {number[]} [item_brand]
- * @property {string[]} [available_zones]
- * @property {number[]} [item_company]
- * @property {number[]} [item_store]
- * @property {CompareObject} [cart_quantity]
- * @property {number[]} [item_exclude_company]
- * @property {CompareObject} [cart_total]
- * @property {string[]} [buy_rules]
- * @property {CompareObject} [cart_unique_item_amount]
- * @property {number[]} [item_category]
- * @property {number[]} [item_exclude_store]
- * @property {CompareObject} [cart_unique_item_quantity]
- * @property {string[]} [product_tags]
- * @property {string[]} [item_exclude_sku]
- * @property {boolean} [all_items]
- * @property {number[]} [item_exclude_category]
- * @property {number[]} [item_exclude_id]
- */
-
-/**
- * @typedef Visibility
- * @property {boolean} coupon_list
- * @property {boolean} pdp
- */
-
-/**
- * @typedef PaymentAllowValue1
- * @property {number} [max]
- */
-
-/**
- * @typedef PromotionPaymentModes
- * @property {PaymentAllowValue1} [uses]
- * @property {string} type
- * @property {string[]} [codes]
- */
-
-/**
- * @typedef UsesRemaining1
- * @property {number} [user]
- * @property {number} [total]
- */
-
-/**
- * @typedef UsesRestriction1
- * @property {UsesRemaining1} [remaining]
- * @property {UsesRemaining1} [maximum]
- */
-
-/**
- * @typedef PostOrder1
- * @property {boolean} [return_allowed]
- * @property {boolean} [cancellation_allowed]
- */
-
-/**
- * @typedef UserRegistered
- * @property {string} [start]
- * @property {string} [end]
- */
-
-/**
- * @typedef Restrictions1
- * @property {PromotionPaymentModes[]} [payments]
- * @property {number} [order_quantity]
- * @property {string[]} [user_id]
- * @property {UsesRestriction1} uses
- * @property {boolean} [anonymous_users]
- * @property {number[]} [user_groups]
- * @property {PostOrder1} [post_order]
- * @property {string[]} [platforms]
- * @property {UserRegistered} [user_registered]
- */
-
-/**
- * @typedef DiscountOffer
- * @property {number} [discount_amount]
- * @property {boolean} [partial_can_ret]
- * @property {number} [max_usage_per_transaction]
- * @property {boolean} [apportion_discount]
- * @property {number} [discount_price]
- * @property {number} [discount_percentage]
- * @property {number} [min_offer_quantity]
- * @property {string} [code]
- * @property {number} [max_discount_amount]
- * @property {number} [max_offer_quantity]
- */
-
-/**
- * @typedef DiscountRule
- * @property {string} buy_condition
- * @property {string} discount_type
- * @property {ItemCriteria} item_criteria
- * @property {DiscountOffer} offer
- */
-
-/**
  * @typedef PromotionListItem
- * @property {boolean} [apply_all_discount]
- * @property {Ownership1} ownership
- * @property {PromotionAction} [post_order_action]
- * @property {number} [apply_priority]
+ * @property {Restrictions1} [restrictions]
  * @property {DisplayMeta1} display_meta
- * @property {PromotionDateMeta} [date_meta]
- * @property {string} [currency]
+ * @property {boolean} [apply_all_discount]
  * @property {PromotionSchedule} [_schedule]
- * @property {Object} [_custom_json]
- * @property {string} [apply_exclusive]
+ * @property {string} promo_group
+ * @property {Visibility} [visiblility]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} mode
+ * @property {DiscountRule[]} discount_rules
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {string} [calculate_on]
+ * @property {Ownership1} ownership
  * @property {string} promotion_type
  * @property {string} application_id
- * @property {Visibility} [visiblility]
+ * @property {string} [currency]
+ * @property {number} [apply_priority]
  * @property {boolean} [stackable]
- * @property {string} mode
- * @property {Restrictions1} [restrictions]
  * @property {string} [code]
- * @property {DiscountRule[]} discount_rules
- * @property {string} promo_group
- * @property {string} [calculate_on]
+ * @property {PromotionAction} [post_order_action]
+ * @property {Object} [_custom_json]
+ * @property {string} [apply_exclusive]
  */
 
 /**
@@ -12685,81 +13232,81 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PromotionAdd
- * @property {boolean} [apply_all_discount]
- * @property {Ownership1} ownership
- * @property {PromotionAction} [post_order_action]
- * @property {number} [apply_priority]
+ * @property {Restrictions1} [restrictions]
  * @property {DisplayMeta1} display_meta
- * @property {PromotionDateMeta} [date_meta]
- * @property {string} [currency]
+ * @property {boolean} [apply_all_discount]
  * @property {PromotionSchedule} [_schedule]
- * @property {Object} [_custom_json]
- * @property {string} [apply_exclusive]
+ * @property {string} promo_group
+ * @property {Visibility} [visiblility]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} mode
+ * @property {DiscountRule[]} discount_rules
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {string} [calculate_on]
+ * @property {Ownership1} ownership
  * @property {string} promotion_type
  * @property {string} application_id
- * @property {Visibility} [visiblility]
+ * @property {string} [currency]
+ * @property {number} [apply_priority]
  * @property {boolean} [stackable]
- * @property {string} mode
- * @property {Restrictions1} [restrictions]
  * @property {string} [code]
- * @property {DiscountRule[]} discount_rules
- * @property {string} promo_group
- * @property {string} [calculate_on]
+ * @property {PromotionAction} [post_order_action]
+ * @property {Object} [_custom_json]
+ * @property {string} [apply_exclusive]
  */
 
 /**
  * @typedef PromotionUpdate
- * @property {boolean} [apply_all_discount]
- * @property {Ownership1} ownership
- * @property {PromotionAction} [post_order_action]
- * @property {number} [apply_priority]
+ * @property {Restrictions1} [restrictions]
  * @property {DisplayMeta1} display_meta
- * @property {PromotionDateMeta} [date_meta]
- * @property {string} [currency]
+ * @property {boolean} [apply_all_discount]
  * @property {PromotionSchedule} [_schedule]
- * @property {Object} [_custom_json]
- * @property {string} [apply_exclusive]
+ * @property {string} promo_group
+ * @property {Visibility} [visiblility]
  * @property {PromotionAuthor} [author]
  * @property {Object} buy_rules
+ * @property {string} mode
+ * @property {DiscountRule[]} discount_rules
+ * @property {PromotionDateMeta} [date_meta]
+ * @property {string} [calculate_on]
+ * @property {Ownership1} ownership
  * @property {string} promotion_type
  * @property {string} application_id
- * @property {Visibility} [visiblility]
+ * @property {string} [currency]
+ * @property {number} [apply_priority]
  * @property {boolean} [stackable]
- * @property {string} mode
- * @property {Restrictions1} [restrictions]
  * @property {string} [code]
- * @property {DiscountRule[]} discount_rules
- * @property {string} promo_group
- * @property {string} [calculate_on]
+ * @property {PromotionAction} [post_order_action]
+ * @property {Object} [_custom_json]
+ * @property {string} [apply_exclusive]
  */
 
 /**
  * @typedef PromotionPartialUpdate
- * @property {PromotionSchedule} [schedule]
  * @property {boolean} [archive]
+ * @property {PromotionSchedule} [schedule]
  */
 
 /**
  * @typedef ActivePromosResponse
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string} [type]
+ * @property {string} [entity_slug]
+ * @property {boolean} [is_hidden]
+ * @property {string} [subtitle]
  * @property {string} [modified_on]
  * @property {string} [example]
- * @property {string} [subtitle]
- * @property {string} [title]
- * @property {string} [entity_slug]
- * @property {string} [type]
- * @property {boolean} [is_hidden]
- * @property {string} [created_on]
- * @property {string} [description]
  * @property {string} [entity_type]
+ * @property {string} [created_on]
  */
 
 /**
  * @typedef CartItem
- * @property {string} product_id
  * @property {number} [quantity]
  * @property {string} size
+ * @property {string} product_id
  */
 
 /**
@@ -12768,126 +13315,84 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef CartProductIdentifer
- * @property {string} [identifier]
+ * @typedef DisplayBreakup
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {number} [value]
+ * @property {string[]} [message]
+ * @property {string} [key]
+ * @property {string} [display]
+ */
+
+/**
+ * @typedef LoyaltyPoints
+ * @property {number} [applicable]
+ * @property {number} [total]
+ * @property {string} [description]
+ * @property {boolean} [is_applied]
+ */
+
+/**
+ * @typedef CouponBreakup
+ * @property {string} [sub_title]
+ * @property {string} [title]
+ * @property {number} [value]
+ * @property {string} [uid]
+ * @property {string} [message]
+ * @property {number} [minimum_cart_value]
+ * @property {string} [description]
+ * @property {string} [coupon_type]
+ * @property {boolean} [is_applied]
+ * @property {number} [coupon_value]
+ * @property {string} [type]
+ * @property {number} [max_discount_value]
+ * @property {string} [code]
+ */
+
+/**
+ * @typedef RawBreakup
+ * @property {number} [convenience_fee]
+ * @property {number} [discount]
+ * @property {number} [you_saved]
+ * @property {number} [cod_charge]
+ * @property {number} [vog]
+ * @property {number} [mrp_total]
+ * @property {number} [delivery_charge]
+ * @property {number} [coupon]
+ * @property {number} [total]
+ * @property {number} [fynd_cash]
+ * @property {number} [gst_charges]
+ * @property {number} [subtotal]
+ */
+
+/**
+ * @typedef CartBreakup
+ * @property {DisplayBreakup[]} [display]
+ * @property {LoyaltyPoints} [loyalty_points]
+ * @property {CouponBreakup} [coupon]
+ * @property {RawBreakup} [raw]
  */
 
 /**
  * @typedef ProductPrice
- * @property {number} [selling]
- * @property {number} [add_on]
  * @property {string} [currency_code]
  * @property {string} [currency_symbol]
  * @property {number} [effective]
  * @property {number} [marked]
+ * @property {number} [add_on]
+ * @property {number} [selling]
  */
 
 /**
  * @typedef ProductPriceInfo
- * @property {ProductPrice} [converted]
  * @property {ProductPrice} [base]
+ * @property {ProductPrice} [converted]
  */
 
 /**
- * @typedef DiscountRulesApp
- * @property {string[]} [matched_buy_rules]
- * @property {Object} [raw_offer]
- * @property {Object} [offer]
- * @property {Object} [item_criteria]
- */
-
-/**
- * @typedef Ownership2
- * @property {string} [payable_category]
- * @property {string} [payable_by]
- */
-
-/**
- * @typedef FreeGiftItem
- * @property {string} [item_name]
- * @property {string} [item_slug]
- * @property {string[]} [item_images_url]
- * @property {Object} [item_price_details]
- * @property {number} [item_id]
- * @property {string} [item_brand_name]
- */
-
-/**
- * @typedef AppliedFreeArticles
- * @property {string} [parent_item_identifier]
- * @property {FreeGiftItem} [free_gift_item_details]
- * @property {string} [article_id]
- * @property {number} [quantity]
- */
-
-/**
- * @typedef AppliedPromotion
- * @property {string} [offer_text]
- * @property {string} [promotion_type]
- * @property {DiscountRulesApp[]} [discount_rules]
- * @property {string} [promotion_group]
- * @property {string} [promotion_name]
- * @property {boolean} [mrp_promotion]
- * @property {number} [amount]
- * @property {Ownership2} [ownership]
- * @property {AppliedFreeArticles[]} [applied_free_articles]
- * @property {number} [article_quantity]
- * @property {string} [promo_id]
- * @property {BuyRules[]} [buy_rules]
- */
-
-/**
- * @typedef BasePrice
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
- * @property {number} [effective]
- * @property {number} [marked]
- */
-
-/**
- * @typedef ArticlePriceInfo
- * @property {BasePrice} [converted]
- * @property {BasePrice} [base]
- */
-
-/**
- * @typedef BaseInfo
- * @property {number} [uid]
- * @property {string} [name]
- */
-
-/**
- * @typedef ProductArticle
- * @property {string} [uid]
- * @property {ArticlePriceInfo} [price]
- * @property {string[]} [product_group_tags]
- * @property {string} [size]
- * @property {BaseInfo} [seller]
- * @property {Object} [parent_item_identifiers]
- * @property {number} [quantity]
- * @property {string} [type]
- * @property {Object} [_custom_json]
- * @property {BaseInfo} [store]
- * @property {Object} [extra_meta]
- */
-
-/**
- * @typedef ProductImage
- * @property {string} [secure_url]
- * @property {string} [url]
- * @property {string} [aspect_ratio]
- */
-
-/**
- * @typedef ActionQuery
- * @property {string[]} [product_slug]
- */
-
-/**
- * @typedef ProductAction
- * @property {ActionQuery} [query]
- * @property {string} [url]
- * @property {string} [type]
+ * @typedef NetQuantity
+ * @property {string} [value]
+ * @property {string} [unit]
  */
 
 /**
@@ -12897,16 +13402,41 @@ class PlatformApplicationClient {
  */
 
 /**
- * @typedef CartProduct
- * @property {ProductImage[]} [images]
- * @property {number} [uid]
- * @property {string} [slug]
- * @property {BaseInfo} [brand]
- * @property {ProductAction} [action]
+ * @typedef ProductImage
+ * @property {string} [url]
+ * @property {string} [aspect_ratio]
+ * @property {string} [secure_url]
+ */
+
+/**
+ * @typedef ActionQuery
+ * @property {string[]} [product_slug]
+ */
+
+/**
+ * @typedef ProductAction
  * @property {string} [type]
+ * @property {string} [url]
+ * @property {ActionQuery} [query]
+ */
+
+/**
+ * @typedef BaseInfo
+ * @property {number} [uid]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef CartProduct
+ * @property {string} [slug]
+ * @property {number} [uid]
  * @property {NetQuantity} [net_quantity]
  * @property {CategoryInfo[]} [categories]
  * @property {string} [name]
+ * @property {ProductImage[]} [images]
+ * @property {string} [type]
+ * @property {ProductAction} [action]
+ * @property {BaseInfo} [brand]
  */
 
 /**
@@ -12915,99 +13445,128 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef BuyRules
+ * @property {Object} [item_criteria]
+ * @property {Object} [cart_conditions]
+ */
+
+/**
+ * @typedef FreeGiftItem
+ * @property {string} [item_slug]
+ * @property {string[]} [item_images_url]
+ * @property {string} [item_name]
+ * @property {number} [item_id]
+ * @property {string} [item_brand_name]
+ * @property {Object} [item_price_details]
+ */
+
+/**
+ * @typedef AppliedFreeArticles
+ * @property {string} [parent_item_identifier]
+ * @property {number} [quantity]
+ * @property {string} [article_id]
+ * @property {FreeGiftItem} [free_gift_item_details]
+ */
+
+/**
+ * @typedef Ownership2
+ * @property {string} [payable_category]
+ * @property {string} [payable_by]
+ */
+
+/**
+ * @typedef DiscountRulesApp
+ * @property {string[]} [matched_buy_rules]
+ * @property {Object} [item_criteria]
+ * @property {Object} [offer]
+ * @property {Object} [raw_offer]
+ */
+
+/**
+ * @typedef AppliedPromotion
+ * @property {BuyRules[]} [buy_rules]
+ * @property {string} [promotion_name]
+ * @property {number} [article_quantity]
+ * @property {string} [promo_id]
+ * @property {string} [promotion_group]
+ * @property {number} [amount]
+ * @property {AppliedFreeArticles[]} [applied_free_articles]
+ * @property {Ownership2} [ownership]
+ * @property {DiscountRulesApp[]} [discount_rules]
+ * @property {string} [offer_text]
+ * @property {boolean} [mrp_promotion]
+ * @property {string} [promotion_type]
+ */
+
+/**
  * @typedef ProductAvailability
- * @property {boolean} [out_of_stock]
- * @property {boolean} [is_valid]
- * @property {number} [other_store_quantity]
  * @property {boolean} [deliverable]
  * @property {string[]} [sizes]
+ * @property {boolean} [is_valid]
+ * @property {number} [other_store_quantity]
+ * @property {boolean} [out_of_stock]
+ */
+
+/**
+ * @typedef BasePrice
+ * @property {string} [currency_symbol]
+ * @property {string} [currency_code]
+ * @property {number} [marked]
+ * @property {number} [effective]
+ */
+
+/**
+ * @typedef ArticlePriceInfo
+ * @property {BasePrice} [base]
+ * @property {BasePrice} [converted]
+ */
+
+/**
+ * @typedef ProductArticle
+ * @property {BaseInfo} [store]
+ * @property {string} [uid]
+ * @property {Object} [extra_meta]
+ * @property {Object} [parent_item_identifiers]
+ * @property {string[]} [product_group_tags]
+ * @property {Object} [_custom_json]
+ * @property {string} [size]
+ * @property {number} [quantity]
+ * @property {string} [type]
+ * @property {ArticlePriceInfo} [price]
+ * @property {BaseInfo} [seller]
+ */
+
+/**
+ * @typedef CartProductIdentifer
+ * @property {string} [identifier]
  */
 
 /**
  * @typedef CartProductInfo
- * @property {CartProductIdentifer} identifiers
- * @property {Object} [bulk_offer]
- * @property {ProductPriceInfo} [price]
- * @property {AppliedPromotion[]} [promotions_applied]
- * @property {ProductArticle} [article]
- * @property {CartProduct} [product]
- * @property {boolean} [is_set]
- * @property {string} [discount]
- * @property {Object} [parent_item_identifiers]
- * @property {number} [quantity]
- * @property {string} [message]
- * @property {PromoMeta} [promo_meta]
  * @property {ProductPriceInfo} [price_per_unit]
- * @property {string} [coupon_message]
- * @property {ProductAvailability} [availability]
- * @property {string} [key]
- */
-
-/**
- * @typedef LoyaltyPoints
- * @property {number} [applicable]
- * @property {string} [description]
- * @property {boolean} [is_applied]
- * @property {number} [total]
- */
-
-/**
- * @typedef RawBreakup
- * @property {number} [vog]
- * @property {number} [you_saved]
- * @property {number} [convenience_fee]
- * @property {number} [mrp_total]
- * @property {number} [total]
- * @property {number} [fynd_cash]
- * @property {number} [discount]
- * @property {number} [delivery_charge]
- * @property {number} [gst_charges]
- * @property {number} [subtotal]
- * @property {number} [cod_charge]
- * @property {number} [coupon]
- */
-
-/**
- * @typedef CouponBreakup
- * @property {number} [max_discount_value]
- * @property {string} [uid]
- * @property {string} [coupon_type]
- * @property {number} [value]
- * @property {string} [title]
  * @property {string} [message]
- * @property {string} [type]
- * @property {string} [sub_title]
- * @property {boolean} [is_applied]
- * @property {number} [minimum_cart_value]
- * @property {number} [coupon_value]
- * @property {string} [description]
- * @property {string} [code]
- */
-
-/**
- * @typedef DisplayBreakup
- * @property {string} [display]
- * @property {number} [value]
- * @property {string[]} [message]
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
+ * @property {string} [discount]
  * @property {string} [key]
- */
-
-/**
- * @typedef CartBreakup
- * @property {LoyaltyPoints} [loyalty_points]
- * @property {RawBreakup} [raw]
- * @property {CouponBreakup} [coupon]
- * @property {DisplayBreakup[]} [display]
+ * @property {CartProduct} [product]
+ * @property {PromoMeta} [promo_meta]
+ * @property {AppliedPromotion[]} [promotions_applied]
+ * @property {Object} [parent_item_identifiers]
+ * @property {Object} [bulk_offer]
+ * @property {number} [quantity]
+ * @property {boolean} [is_set]
+ * @property {ProductAvailability} [availability]
+ * @property {ProductArticle} [article]
+ * @property {ProductPriceInfo} [price]
+ * @property {string} [coupon_message]
+ * @property {CartProductIdentifer} identifiers
  */
 
 /**
  * @typedef OpenapiCartDetailsResponse
+ * @property {CartBreakup} [breakup_values]
  * @property {string} [message]
  * @property {boolean} [is_valid]
  * @property {CartProductInfo[]} [items]
- * @property {CartBreakup} [breakup_values]
  */
 
 /**
@@ -13019,167 +13578,191 @@ class PlatformApplicationClient {
 
 /**
  * @typedef ShippingAddress
- * @property {string} [address_type]
- * @property {Object} [meta]
- * @property {string} [country_iso_code]
- * @property {string} [country_phone_code]
- * @property {string} area_code
- * @property {string} [area_code_slug]
- * @property {string} [landmark]
- * @property {string} [country]
- * @property {string} [city]
- * @property {string} [email]
- * @property {string} [state]
  * @property {number} [phone]
- * @property {number} [pincode]
- * @property {string} [country_code]
- * @property {string} [address]
+ * @property {Object} [meta]
  * @property {string} [area]
+ * @property {string} [address]
+ * @property {string} [landmark]
+ * @property {string} [address_type]
  * @property {string} [name]
+ * @property {string} [city]
+ * @property {string} [state]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [country_iso_code]
+ * @property {number} [pincode]
+ * @property {string} [area_code_slug]
+ * @property {string} [email]
+ * @property {string} area_code
+ * @property {string} [country_phone_code]
  */
 
 /**
  * @typedef OpenApiCartServiceabilityRequest
- * @property {CartItem} [cart_items]
  * @property {ShippingAddress} shipping_address
- */
-
-/**
- * @typedef PromiseTimestamp
- * @property {number} [max]
- * @property {number} [min]
+ * @property {CartItem} [cart_items]
  */
 
 /**
  * @typedef PromiseFormatted
- * @property {string} [max]
  * @property {string} [min]
+ * @property {string} [max]
+ */
+
+/**
+ * @typedef PromiseTimestamp
+ * @property {number} [min]
+ * @property {number} [max]
  */
 
 /**
  * @typedef ShipmentPromise
- * @property {PromiseTimestamp} [timestamp]
  * @property {PromiseFormatted} [formatted]
+ * @property {PromiseTimestamp} [timestamp]
  */
 
 /**
  * @typedef OpenApiCartServiceabilityResponse
- * @property {boolean} [is_valid]
- * @property {CartProductInfo[]} [items]
- * @property {ShipmentPromise} [delivery_promise]
- * @property {CartBreakup} [breakup_values]
  * @property {string} [message]
- */
-
-/**
- * @typedef CartItemMeta
- * @property {string} [group_id]
- * @property {boolean} [primary_item]
+ * @property {CartProductInfo[]} [items]
+ * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_valid]
+ * @property {ShipmentPromise} [delivery_promise]
  */
 
 /**
  * @typedef OpenApiFiles
- * @property {string} key
  * @property {string[]} values
+ * @property {string} key
+ */
+
+/**
+ * @typedef CartItemMeta
+ * @property {boolean} [primary_item]
+ * @property {string} [group_id]
+ */
+
+/**
+ * @typedef MultiTenderPaymentMeta
+ * @property {string} [payment_id]
+ * @property {Object} [extra_meta]
+ * @property {string} [order_id]
+ * @property {string} [current_status]
+ * @property {string} [payment_gateway]
+ */
+
+/**
+ * @typedef MultiTenderPaymentMethod
+ * @property {MultiTenderPaymentMeta} [meta]
+ * @property {number} amount
+ * @property {string} [name]
+ * @property {string} mode
  */
 
 /**
  * @typedef OpenApiOrderItem
- * @property {number} price_marked
  * @property {CartItemMeta} [meta]
- * @property {number} [employee_discount]
- * @property {Object} [extra_meta]
- * @property {number} coupon_effective_discount
- * @property {number} cod_charges
+ * @property {number} [loyalty_discount]
  * @property {number} discount
+ * @property {number} cashback_applied
+ * @property {Object} [extra_meta]
+ * @property {string} size
+ * @property {number} cod_charges
+ * @property {number} [employee_discount]
+ * @property {number} delivery_charges
+ * @property {number} coupon_effective_discount
+ * @property {number} price_effective
  * @property {number} [quantity]
  * @property {OpenApiFiles[]} [files]
- * @property {MultiTenderPaymentMethod[]} payment_methods
- * @property {number} price_effective
- * @property {number} amount_paid
- * @property {string} size
- * @property {number} [loyalty_discount]
- * @property {number} delivery_charges
- * @property {number} cashback_applied
  * @property {number} product_id
+ * @property {number} price_marked
+ * @property {number} amount_paid
+ * @property {MultiTenderPaymentMethod[]} payment_methods
  */
 
 /**
  * @typedef OpenApiPlatformCheckoutReq
- * @property {string} coupon_code
+ * @property {number} [loyalty_discount]
+ * @property {number} cashback_applied
  * @property {number} cart_value
- * @property {ShippingAddress} billing_address
- * @property {string} [currency_code]
- * @property {number} coupon_value
- * @property {string} [gstin]
- * @property {ShippingAddress} [shipping_address]
- * @property {OpenApiOrderItem[]} cart_items
- * @property {string} [order_id]
- * @property {string} [affiliate_order_id]
  * @property {string} [comment]
  * @property {Object} [employee_discount]
- * @property {string} [payment_mode]
- * @property {number} cod_charges
  * @property {OpenApiFiles[]} [files]
- * @property {MultiTenderPaymentMethod[]} payment_methods
- * @property {number} [loyalty_discount]
- * @property {number} delivery_charges
+ * @property {string} [gstin]
+ * @property {OpenApiOrderItem[]} cart_items
+ * @property {string} [affiliate_order_id]
  * @property {string} [coupon]
- * @property {number} cashback_applied
+ * @property {MultiTenderPaymentMethod[]} payment_methods
+ * @property {string} [currency_code]
+ * @property {ShippingAddress} [shipping_address]
+ * @property {string} [order_id]
+ * @property {number} cod_charges
+ * @property {ShippingAddress} billing_address
+ * @property {number} delivery_charges
+ * @property {string} coupon_code
+ * @property {number} coupon_value
+ * @property {string} [payment_mode]
  */
 
 /**
  * @typedef OpenApiCheckoutResponse
- * @property {string} order_id
  * @property {string} [message]
- * @property {boolean} [success]
  * @property {string} [order_ref_id]
+ * @property {boolean} [success]
+ * @property {string} order_id
  */
 
 /**
  * @typedef AbandonedCart
- * @property {Object[]} articles
- * @property {boolean} [merge_qty]
- * @property {number[]} [fc_index_map]
- * @property {number} [discount]
- * @property {string} [checkout_mode]
- * @property {Object[]} [shipments]
- * @property {Object} [meta]
- * @property {number} uid
- * @property {boolean} is_default
- * @property {Object} [cod_charges]
- * @property {Object} cashback
- * @property {Object[]} [payment_methods]
- * @property {boolean} [buy_now]
- * @property {Object} [delivery_charges]
- * @property {boolean} [is_archive]
- * @property {number} [cart_value]
- * @property {string} user_id
- * @property {boolean} [is_active]
- * @property {string} expire_at
- * @property {string} created_on
- * @property {Object} [promotion]
- * @property {string} [app_id]
  * @property {Object} [pick_up_customer_details]
- * @property {string} last_modified
- * @property {string} [gstin]
- * @property {string} _id
- * @property {string} [order_id]
- * @property {Object} [payments]
+ * @property {Object} cashback
  * @property {string} [comment]
+ * @property {number[]} [fc_index_map]
+ * @property {string} last_modified
  * @property {number} [bulk_coupon_discount]
+ * @property {string} created_on
+ * @property {Object} [meta]
+ * @property {number} [discount]
+ * @property {boolean} [is_archive]
+ * @property {Object} [cod_charges]
+ * @property {string} _id
+ * @property {string} [app_id]
  * @property {string} [payment_mode]
- * @property {Object} [fynd_credits]
+ * @property {string} expire_at
+ * @property {number} uid
+ * @property {boolean} [merge_qty]
+ * @property {number} [cart_value]
+ * @property {string} [gstin]
+ * @property {Object[]} articles
  * @property {Object} [coupon]
+ * @property {Object[]} [shipments]
+ * @property {Object[]} [payment_methods]
+ * @property {string} user_id
+ * @property {string} [order_id]
+ * @property {boolean} is_default
+ * @property {Object} [fynd_credits]
+ * @property {Object} [delivery_charges]
+ * @property {boolean} [is_active]
+ * @property {boolean} [buy_now]
+ * @property {string} [checkout_mode]
+ * @property {Object} [promotion]
+ * @property {Object} [payments]
  */
 
 /**
  * @typedef AbandonedCartResponse
- * @property {AbandonedCart[]} [items]
  * @property {boolean} [success]
- * @property {Object} [result]
  * @property {string} [message]
+ * @property {AbandonedCart[]} [items]
+ * @property {Object} [result]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef PaymentSelectionLock
+ * @property {string} [default_options]
+ * @property {boolean} [enabled]
+ * @property {string} [payment_identifier]
  */
 
 /**
@@ -13190,40 +13773,40 @@ class PlatformApplicationClient {
 
 /**
  * @typedef CartDetailResponse
- * @property {string} [pan_no]
- * @property {boolean} [is_valid]
- * @property {CartProductInfo[]} [items]
- * @property {string} [coupon_text]
- * @property {boolean} [restrict_checkout]
- * @property {string} [comment]
- * @property {ShipmentPromise} [delivery_promise]
  * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {CartBreakup} [breakup_values]
- * @property {CartCurrency} [currency]
- * @property {string} [delivery_charge_info]
  * @property {string} [message]
- * @property {string} [id]
+ * @property {CartProductInfo[]} [items]
+ * @property {boolean} [restrict_checkout]
+ * @property {CartBreakup} [breakup_values]
+ * @property {string} [comment]
+ * @property {boolean} [is_valid]
  * @property {boolean} [buy_now]
+ * @property {string} [delivery_charge_info]
+ * @property {string} [gstin]
+ * @property {string} [id]
+ * @property {string} [pan_no]
  * @property {string} [checkout_mode]
  * @property {string} [last_modified]
- * @property {string} [gstin]
+ * @property {CartCurrency} [currency]
+ * @property {string} [coupon_text]
+ * @property {ShipmentPromise} [delivery_promise]
  */
 
 /**
  * @typedef AddProductCart
- * @property {string} [article_id]
- * @property {string[]} [product_group_tags]
- * @property {number} [store_id]
- * @property {string} [display]
- * @property {Object} [extra_meta]
- * @property {boolean} [pos]
- * @property {Object} [parent_item_identifiers]
- * @property {number} [quantity]
- * @property {Object} [_custom_json]
- * @property {string} [item_size]
  * @property {Object} [article_assignment]
+ * @property {boolean} [pos]
+ * @property {Object} [extra_meta]
+ * @property {string} [item_size]
  * @property {number} [seller_id]
+ * @property {string[]} [product_group_tags]
+ * @property {Object} [parent_item_identifiers]
+ * @property {Object} [_custom_json]
+ * @property {number} [quantity]
  * @property {number} [item_id]
+ * @property {string} [display]
+ * @property {number} [store_id]
+ * @property {string} [article_id]
  */
 
 /**
@@ -13234,23 +13817,23 @@ class PlatformApplicationClient {
 
 /**
  * @typedef AddCartDetailResponse
- * @property {string} [message]
- * @property {boolean} [partial]
- * @property {boolean} [success]
  * @property {CartDetailResponse} [cart]
+ * @property {string} [message]
+ * @property {boolean} [success]
+ * @property {boolean} [partial]
  */
 
 /**
  * @typedef UpdateProductCart
- * @property {number} [item_index]
- * @property {CartProductIdentifer} identifiers
- * @property {string} [article_id]
- * @property {Object} [parent_item_identifiers]
- * @property {number} [quantity]
- * @property {Object} [_custom_json]
- * @property {string} [item_size]
  * @property {Object} [extra_meta]
+ * @property {number} [item_index]
+ * @property {string} [item_size]
+ * @property {Object} [parent_item_identifiers]
+ * @property {Object} [_custom_json]
+ * @property {number} [quantity]
  * @property {number} [item_id]
+ * @property {string} [article_id]
+ * @property {CartProductIdentifer} identifiers
  */
 
 /**
@@ -13261,9 +13844,9 @@ class PlatformApplicationClient {
 
 /**
  * @typedef UpdateCartDetailResponse
+ * @property {CartDetailResponse} [cart]
  * @property {string} [message]
  * @property {boolean} [success]
- * @property {CartDetailResponse} [cart]
  */
 
 /**
@@ -13274,61 +13857,61 @@ class PlatformApplicationClient {
 
 /**
  * @typedef GetShareCartLinkResponse
- * @property {string} [share_url]
  * @property {string} [token]
+ * @property {string} [share_url]
  */
 
 /**
  * @typedef SharedCartDetails
  * @property {Object} [meta]
  * @property {string} [token]
- * @property {Object} [source]
- * @property {string} [created_on]
  * @property {Object} [user]
+ * @property {string} [created_on]
+ * @property {Object} [source]
  */
 
 /**
  * @typedef SharedCart
- * @property {string} [coupon_text]
- * @property {ShipmentPromise} [delivery_promise]
- * @property {number} [cart_id]
- * @property {string} [checkout_mode]
- * @property {SharedCartDetails} [shared_cart_details]
- * @property {string} [uid]
- * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {CartCurrency} [currency]
- * @property {string} [id]
- * @property {boolean} [buy_now]
- * @property {boolean} [restrict_checkout]
- * @property {CartBreakup} [breakup_values]
- * @property {string} [last_modified]
- * @property {string} [gstin]
- * @property {boolean} [is_valid]
  * @property {CartProductInfo[]} [items]
  * @property {string} [comment]
- * @property {string} [delivery_charge_info]
+ * @property {string} [last_modified]
+ * @property {string} [coupon_text]
  * @property {string} [message]
+ * @property {CartBreakup} [breakup_values]
+ * @property {number} [cart_id]
+ * @property {SharedCartDetails} [shared_cart_details]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
+ * @property {string} [uid]
+ * @property {boolean} [restrict_checkout]
+ * @property {string} [gstin]
+ * @property {CartCurrency} [currency]
+ * @property {ShipmentPromise} [delivery_promise]
+ * @property {boolean} [is_valid]
+ * @property {boolean} [buy_now]
+ * @property {string} [delivery_charge_info]
+ * @property {string} [id]
+ * @property {string} [checkout_mode]
  */
 
 /**
  * @typedef SharedCartResponse
- * @property {string} [error]
  * @property {SharedCart} [cart]
+ * @property {string} [error]
  */
 
 /**
  * @typedef CartList
- * @property {string} [cart_value]
  * @property {string} [user_id]
+ * @property {string} [cart_value]
+ * @property {string} [item_counts]
  * @property {string} [cart_id]
  * @property {string} [created_on]
- * @property {string} [item_counts]
  */
 
 /**
  * @typedef MultiCartResponse
- * @property {boolean} [success]
  * @property {CartList[]} [data]
+ * @property {boolean} [success]
  */
 
 /**
@@ -13337,25 +13920,38 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef UserInfo
+ * @property {string} [uid]
+ * @property {string} [last_name]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_on]
+ * @property {string} [external_id]
+ * @property {string} [gender]
+ * @property {string} [mobile]
+ * @property {string} [first_name]
+ */
+
+/**
  * @typedef UserCartMappingResponse
- * @property {string} [pan_no]
- * @property {boolean} [is_valid]
- * @property {CartProductInfo[]} [items]
- * @property {string} [coupon_text]
- * @property {boolean} [restrict_checkout]
- * @property {string} [comment]
- * @property {ShipmentPromise} [delivery_promise]
  * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {CartBreakup} [breakup_values]
- * @property {CartCurrency} [currency]
- * @property {string} [delivery_charge_info]
  * @property {string} [message]
- * @property {string} [id]
+ * @property {CartProductInfo[]} [items]
+ * @property {boolean} [restrict_checkout]
+ * @property {CartBreakup} [breakup_values]
+ * @property {string} [comment]
+ * @property {boolean} [is_valid]
  * @property {boolean} [buy_now]
- * @property {UserInfo} [user]
+ * @property {string} [delivery_charge_info]
+ * @property {string} [gstin]
+ * @property {string} [id]
+ * @property {string} [pan_no]
  * @property {string} [checkout_mode]
  * @property {string} [last_modified]
- * @property {string} [gstin]
+ * @property {UserInfo} [user]
+ * @property {CartCurrency} [currency]
+ * @property {string} [coupon_text]
+ * @property {ShipmentPromise} [delivery_promise]
  */
 
 /**
@@ -13371,27 +13967,27 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PageCoupon
- * @property {boolean} [has_next]
- * @property {number} [total]
- * @property {boolean} [has_previous]
- * @property {number} [total_item_count]
  * @property {number} [current]
+ * @property {number} [total_item_count]
+ * @property {boolean} [has_previous]
+ * @property {number} [total]
+ * @property {boolean} [has_next]
  */
 
 /**
  * @typedef Coupon
- * @property {string} [coupon_code]
- * @property {number} [max_discount_value]
- * @property {string} [coupon_type]
+ * @property {string} [sub_title]
  * @property {string} [title]
  * @property {string} [message]
- * @property {string} [sub_title]
  * @property {number} [minimum_cart_value]
- * @property {boolean} [is_applied]
- * @property {string} [expires_on]
- * @property {number} [coupon_value]
  * @property {string} [description]
+ * @property {string} [coupon_type]
+ * @property {boolean} [is_applied]
+ * @property {string} [coupon_code]
  * @property {boolean} [is_applicable]
+ * @property {number} [coupon_value]
+ * @property {string} [expires_on]
+ * @property {number} [max_discount_value]
  */
 
 /**
@@ -13413,30 +14009,30 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PlatformAddress
- * @property {string} [cart_id]
- * @property {string} [email]
- * @property {string} [checkout_mode]
- * @property {string} [state]
- * @property {Object} [meta]
- * @property {string} [country]
- * @property {string} [landmark]
- * @property {GeoLocation} [geo_location]
  * @property {string} [phone]
- * @property {string} [id]
- * @property {Object} [google_map_point]
- * @property {string} [country_code]
- * @property {string} [area]
- * @property {string} [name]
- * @property {string} [user_id]
- * @property {string} [area_code]
- * @property {boolean} [is_active]
- * @property {string} [address]
- * @property {boolean} [is_default_address]
  * @property {string} [address_type]
- * @property {string} [created_by_user_id]
- * @property {string} [city]
- * @property {string[]} [tags]
+ * @property {string} [country]
  * @property {string} [area_code_slug]
+ * @property {string} [email]
+ * @property {string} [area_code]
+ * @property {string[]} [tags]
+ * @property {Object} [meta]
+ * @property {string} [address]
+ * @property {string} [state]
+ * @property {string} [cart_id]
+ * @property {string} [created_by_user_id]
+ * @property {string} [area]
+ * @property {string} [landmark]
+ * @property {boolean} [is_default_address]
+ * @property {string} [city]
+ * @property {string} [country_code]
+ * @property {string} [user_id]
+ * @property {string} [name]
+ * @property {boolean} [is_active]
+ * @property {string} [id]
+ * @property {string} [checkout_mode]
+ * @property {GeoLocation} [geo_location]
+ * @property {Object} [google_map_point]
  */
 
 /**
@@ -13446,75 +14042,75 @@ class PlatformApplicationClient {
 
 /**
  * @typedef SaveAddressResponse
+ * @property {boolean} [is_default_address]
  * @property {string} [id]
  * @property {boolean} [success]
- * @property {boolean} [is_default_address]
  */
 
 /**
  * @typedef UpdateAddressResponse
  * @property {boolean} [is_default_address]
- * @property {boolean} [is_updated]
- * @property {boolean} [success]
  * @property {string} [id]
+ * @property {boolean} [success]
+ * @property {boolean} [is_updated]
  */
 
 /**
  * @typedef DeleteAddressResponse
- * @property {boolean} [is_deleted]
  * @property {string} [id]
+ * @property {boolean} [is_deleted]
  */
 
 /**
  * @typedef PlatformSelectCartAddressRequest
- * @property {string} [billing_address_id]
- * @property {string} [checkout_mode]
  * @property {string} [cart_id]
  * @property {string} [id]
+ * @property {string} [checkout_mode]
+ * @property {string} [billing_address_id]
  */
 
 /**
  * @typedef ShipmentResponse
- * @property {string} [shipment_type]
- * @property {CartProductInfo[]} [items]
  * @property {number} [fulfillment_id]
- * @property {string} [order_type]
- * @property {string} [box_type]
- * @property {string} [fulfillment_type]
  * @property {string} [dp_id]
+ * @property {CartProductInfo[]} [items]
  * @property {Object} [dp_options]
+ * @property {string} [order_type]
+ * @property {string} [fulfillment_type]
+ * @property {string} [shipment_type]
  * @property {ShipmentPromise} [promise]
+ * @property {string} [box_type]
  * @property {number} [shipments]
  */
 
 /**
  * @typedef CartShipmentsResponse
+ * @property {PaymentSelectionLock} [payment_selection_lock]
+ * @property {string} [uid]
+ * @property {boolean} [restrict_checkout]
+ * @property {string} [comment]
+ * @property {string} [gstin]
+ * @property {string} [last_modified]
+ * @property {CartCurrency} [currency]
  * @property {string} [coupon_text]
  * @property {ShipmentPromise} [delivery_promise]
- * @property {boolean} [restrict_checkout]
- * @property {number} [cart_id]
- * @property {CartBreakup} [breakup_values]
- * @property {string} [checkout_mode]
- * @property {string} [last_modified]
- * @property {string} [gstin]
  * @property {ShipmentResponse[]} [shipments]
- * @property {string} [uid]
- * @property {boolean} [is_valid]
- * @property {boolean} [error]
- * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {string} [comment]
- * @property {CartCurrency} [currency]
- * @property {string} [delivery_charge_info]
  * @property {string} [message]
- * @property {string} [id]
+ * @property {CartBreakup} [breakup_values]
+ * @property {boolean} [is_valid]
  * @property {boolean} [buy_now]
+ * @property {number} [cart_id]
+ * @property {boolean} [error]
+ * @property {string} [delivery_charge_info]
+ * @property {string} [id]
+ * @property {string} [checkout_mode]
  */
 
 /**
  * @typedef UpdateCartShipmentItem
  * @property {string} shipment_type
- * @property {string} article_uid
  * @property {number} [quantity]
+ * @property {string} article_uid
  */
 
 /**
@@ -13524,11 +14120,11 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PlatformCartMetaRequest
- * @property {string} [pan_no]
- * @property {string} [comment]
- * @property {string} [checkout_mode]
- * @property {string} [gstin]
  * @property {Object} [pick_up_customer_details]
+ * @property {string} [comment]
+ * @property {string} [gstin]
+ * @property {string} [pan_no]
+ * @property {string} [checkout_mode]
  */
 
 /**
@@ -13543,113 +14139,113 @@ class PlatformApplicationClient {
 
 /**
  * @typedef Files
- * @property {string} key
  * @property {string[]} values
+ * @property {string} key
  */
 
 /**
  * @typedef StaffCheckout
- * @property {string} _id
- * @property {string} first_name
- * @property {string} [employee_code]
  * @property {string} user
  * @property {string} last_name
+ * @property {string} _id
+ * @property {string} [employee_code]
+ * @property {string} first_name
  */
 
 /**
  * @typedef PlatformCartCheckoutDetailRequest
- * @property {Object} [billing_address]
- * @property {number} [ordering_store]
- * @property {Object} [payment_params]
+ * @property {string} [address_id]
  * @property {string} [payment_identifier]
+ * @property {number} [pick_at_store_uid]
  * @property {string} [merchant_code]
  * @property {Object} [meta]
- * @property {Object} [delivery_address]
  * @property {boolean} [pos]
- * @property {string} id
- * @property {string} [aggregator]
- * @property {string} user_id
- * @property {string} [address_id]
- * @property {number} [pick_at_store_uid]
+ * @property {Object} [payment_params]
  * @property {string} [callback_url]
- * @property {string} [billing_address_id]
- * @property {Object} [extra_meta]
- * @property {boolean} [payment_auto_confirm]
- * @property {string} order_type
  * @property {string} payment_mode
+ * @property {string} [aggregator]
+ * @property {Object} [extra_meta]
  * @property {Files[]} [files]
+ * @property {string} order_type
+ * @property {string} [billing_address_id]
+ * @property {string} user_id
+ * @property {boolean} [payment_auto_confirm]
+ * @property {number} [ordering_store]
+ * @property {Object} [delivery_address]
+ * @property {string} id
  * @property {StaffCheckout} [staff]
+ * @property {Object} [billing_address]
  */
 
 /**
  * @typedef CheckCart
- * @property {string} [error_message]
- * @property {string} [coupon_text]
- * @property {ShipmentPromise} [delivery_promise]
- * @property {number} [cart_id]
- * @property {string} [store_code]
- * @property {Object[]} [store_emps]
- * @property {string} [checkout_mode]
- * @property {string} [uid]
- * @property {boolean} [success]
- * @property {PaymentSelectionLock} [payment_selection_lock]
- * @property {number} [cod_charges]
- * @property {CartCurrency} [currency]
- * @property {string} [id]
- * @property {boolean} [buy_now]
- * @property {number} [delivery_charges]
- * @property {boolean} [restrict_checkout]
- * @property {CartBreakup} [breakup_values]
- * @property {string} [user_type]
- * @property {string} [last_modified]
- * @property {string} [gstin]
- * @property {string} [order_id]
- * @property {boolean} [is_valid]
  * @property {CartProductInfo[]} [items]
  * @property {string} [comment]
- * @property {boolean} [cod_available]
- * @property {string} [cod_message]
- * @property {string} [delivery_charge_info]
+ * @property {string} [last_modified]
+ * @property {string} [coupon_text]
  * @property {string} [message]
+ * @property {boolean} [success]
+ * @property {CartBreakup} [breakup_values]
+ * @property {number} [cod_charges]
+ * @property {number} [cart_id]
+ * @property {Object[]} [store_emps]
  * @property {number} [delivery_charge_order_value]
+ * @property {string} [error_message]
+ * @property {PaymentSelectionLock} [payment_selection_lock]
+ * @property {string} [uid]
+ * @property {boolean} [restrict_checkout]
+ * @property {string} [gstin]
+ * @property {CartCurrency} [currency]
+ * @property {ShipmentPromise} [delivery_promise]
+ * @property {boolean} [cod_available]
+ * @property {boolean} [is_valid]
+ * @property {string} [order_id]
+ * @property {boolean} [buy_now]
+ * @property {number} [delivery_charges]
+ * @property {string} [delivery_charge_info]
+ * @property {string} [user_type]
+ * @property {string} [id]
+ * @property {string} [checkout_mode]
+ * @property {string} [store_code]
+ * @property {string} [cod_message]
  */
 
 /**
  * @typedef CartCheckoutResponse
- * @property {string} [order_id]
  * @property {boolean} [success]
- * @property {string} [payment_confirm_url]
+ * @property {string} [message]
+ * @property {CheckCart} [cart]
+ * @property {string} [order_id]
  * @property {string} [app_intercept_url]
  * @property {Object} [data]
- * @property {string} [message]
  * @property {string} [callback_url]
- * @property {CheckCart} [cart]
+ * @property {string} [payment_confirm_url]
  */
 
 /**
  * @typedef CartDeliveryModesResponse
- * @property {number[]} [pickup_stores]
  * @property {string[]} [available_modes]
+ * @property {number[]} [pickup_stores]
  */
 
 /**
  * @typedef PickupStoreDetail
- * @property {string} [address_type]
- * @property {string} [store_code]
- * @property {number} [uid]
- * @property {string} [area_code]
- * @property {string} [area_code_slug]
- * @property {string} [landmark]
- * @property {string} [country]
- * @property {string} [city]
- * @property {string} [email]
- * @property {string} [state]
  * @property {string} [phone]
- * @property {number} [pincode]
- * @property {number} [id]
- * @property {string} [address]
+ * @property {number} [uid]
  * @property {string} [area]
+ * @property {string} [address]
+ * @property {string} [landmark]
+ * @property {string} [address_type]
  * @property {string} [name]
+ * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [store_code]
+ * @property {number} [id]
+ * @property {string} [city]
+ * @property {number} [pincode]
+ * @property {string} [area_code_slug]
+ * @property {string} [email]
+ * @property {string} [area_code]
  */
 
 /**
@@ -13659,18 +14255,18 @@ class PlatformApplicationClient {
 
 /**
  * @typedef UpdateCartPaymentRequest
- * @property {string} [payment_mode]
- * @property {string} [aggregator_name]
- * @property {string} [address_id]
- * @property {string} [id]
- * @property {string} [payment_identifier]
  * @property {string} [merchant_code]
+ * @property {string} [address_id]
+ * @property {string} [payment_identifier]
+ * @property {string} [id]
+ * @property {string} [aggregator_name]
+ * @property {string} [payment_mode]
  */
 
 /**
  * @typedef CouponValidity
- * @property {number} [discount]
  * @property {string} [title]
+ * @property {number} [discount]
  * @property {boolean} [valid]
  * @property {string} [display_message_en]
  * @property {string} [code]
@@ -13678,9 +14274,9 @@ class PlatformApplicationClient {
 
 /**
  * @typedef PaymentCouponValidate
- * @property {CouponValidity} [coupon_validity]
  * @property {string} [message]
  * @property {boolean} success
+ * @property {CouponValidity} [coupon_validity]
  */
 
 /**
@@ -13728,8 +14324,26 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Asset
+ * @property {string} [aspect_ratio]
+ * @property {string} [id]
+ * @property {string} [secure_url]
+ */
+
+/**
  * @typedef RewardsRule
  * @property {number} [amount]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -13860,6 +14474,11 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef ErrorRes
+ * @property {string} [message]
+ */
+
+/**
  * @typedef StatsGroups
  * @property {StatGroup[]} [groups]
  */
@@ -13902,6 +14521,17 @@ class PlatformApplicationClient {
  * @property {string} [context_app_application_id]
  * @property {string} [properties_breakup_values_raw_total]
  * @property {ReceivedAt} [received_at]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -14089,6 +14719,17 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
+ */
+
+/**
  * @typedef UserDetails
  * @property {string} username
  * @property {string} user_id
@@ -14159,6 +14800,17 @@ class PlatformApplicationClient {
  * @typedef SubscriberConfigList
  * @property {SubscriberResponse[]} [items]
  * @property {Page} [page]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {boolean} [has_previous]
+ * @property {boolean} [has_next]
+ * @property {number} [current]
+ * @property {string} type
+ * @property {number} [size]
  */
 
 /**
@@ -14316,6 +14968,22 @@ class PlatformApplicationClient {
  */
 
 /**
+ * @typedef BadRequest
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef ResourceNotFound
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef InternalServerError
+ * @property {string} [message]
+ * @property {string} [code]
+ */
+
+/**
  * @typedef EntityTypesResponse
  * @property {EntityTypeObj[]} [items]
  */
@@ -14325,12682 +14993,5 @@ class PlatformApplicationClient {
  * @property {string} [entity_value]
  * @property {string} [display_name]
  */
-
-class Lead {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.items] - Decides that the reponse will contain the
-   *   list of tickets
-   * @param {boolean} [arg.filters] - Decides that the reponse will contain
-   *   the ticket filters
-   * @param {string} [arg.q] - Search through ticket titles and description
-   * @param {string} [arg.status] - Filter tickets on status
-   * @param {PriorityEnum} [arg.priority] - Filter tickets on priority
-   * @param {string} [arg.category] - Filter tickets on category
-   * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
-   * @description: Gets the list of Application level Tickets and/or ticket filters
-   */
-  getTickets({ items, filters, q, status, priority, category } = {}) {
-    const { error } = LeadValidator.getTickets().validate(
-      {
-        items,
-        filters,
-        q,
-        status,
-        priority,
-        category,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["items"] = items;
-    query_params["filters"] = filters;
-    query_params["q"] = q;
-    query_params["status"] = status;
-    query_params["priority"] = priority;
-    query_params["category"] = category;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Tiket ID of the ticket to be fetched
-   * @summary: Retreives ticket details of a application level ticket
-   * @description: Retreives ticket details of a application level ticket with ticket ID
-   */
-  getTicket({ id } = {}) {
-    const { error } = LeadValidator.getTicket().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID of ticket to be edited
-   * @param {EditTicketPayload} arg.body
-   * @summary: Edits ticket details of a application level ticket
-   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
-   */
-  editTicket({ id, body } = {}) {
-    const { error } = LeadValidator.editTicket().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which history is created
-   * @param {TicketHistoryPayload} arg.body
-   * @summary: Create history for specific application level ticket
-   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   */
-  createHistory({ id, body } = {}) {
-    const { error } = LeadValidator.createHistory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${id}/history`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Ticket ID for which history is to be fetched
-   * @summary: Gets history list for specific application level ticket
-   * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-   */
-  getTicketHistory({ id } = {}) {
-    const { error } = LeadValidator.getTicketHistory().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ticket/${id}/history`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @summary: Get specific custom form using it's slug
-   * @description: Get specific custom form using it's slug, this is used to view the form.
-   */
-  getCustomForm({ slug } = {}) {
-    const { error } = LeadValidator.getCustomForm().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - Slug of form whose response is getting submitted
-   * @param {EditCustomFormPayload} arg.body
-   * @summary: Edit the given custom form
-   * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
-   */
-  editCustomForm({ slug, body } = {}) {
-    const { error } = LeadValidator.editCustomForm().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get list of custom form
-   * @description: Get list of custom form for given application
-   */
-  getCustomForms({} = {}) {
-    const { error } = LeadValidator.getCustomForms().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateCustomFormPayload} arg.body
-   * @summary: Creates a new custom form
-   * @description: Creates a new custom form for given application
-   */
-  createCustomForm({ body } = {}) {
-    const { error } = LeadValidator.createCustomForm().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uniqueName - Unique name of video room
-   * @summary: Get Token to join a specific Video Room using it's unqiue name
-   * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-   */
-  getTokenForVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.getTokenForVideoRoom().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/token`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uniqueName - Unique name of Video Room
-   * @summary: Get participants of a specific Video Room using it's unique name
-   * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-   */
-  getVideoParticipants({ uniqueName } = {}) {
-    const { error } = LeadValidator.getVideoParticipants().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}/participants`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateVideoRoomPayload} arg.body
-   * @summary: Open a video room.
-   * @description: Open a video room.
-   */
-  openVideoRoom({ body } = {}) {
-    const { error } = LeadValidator.openVideoRoom().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uniqueName - Unique name of Video Room
-   * @summary: Close the video room and force all participants to leave.
-   * @description: Close the video room and force all participants to leave.
-   */
-  closeVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.closeVideoRoom().validate(
-      {
-        uniqueName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/video/room/${uniqueName}`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Feedback {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Pagination page no
-   * @param {number} [arg.pageSize] - Pagination page size
-   * @summary: Get list of attribute data
-   * @description: Provides a list of all attribute data.
-   */
-  getAttributes({ pageNo, pageSize } = {}) {
-    const { error } = FeedbackValidator.getAttributes().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/attributes/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Pagination page size
-   * @summary: Get list of attribute data
-   * @description: Provides a list of all attribute data.
-   */
-  getAttributesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAttributes({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - Review id
-   * @param {string} [arg.entityId] - Entity id
-   * @param {string} [arg.entityType] - Entity type
-   * @param {string} [arg.userId] - User id
-   * @param {string} [arg.media] - Media type e.g. image | video | video_file
-   *   | video_link
-   * @param {number[]} [arg.rating] - Rating filter, 1-5
-   * @param {string[]} [arg.attributeRating] - Attribute rating filter with
-   *   ma,e of attribute
-   * @param {boolean} [arg.facets] - Facets (true|false)
-   * @param {string} [arg.sort] - Sort by : default | top | recent
-   * @param {string} [arg.next] - Pagination next
-   * @param {string} [arg.start] - Pagination start
-   * @param {string} [arg.limit] - Pagination limit
-   * @param {string} [arg.count] - Pagination count
-   * @param {string} [arg.pageId] - Pagination page id
-   * @param {number} [arg.pageSize] - Pagination page size
-   * @summary: Get list of customer reviews [admin]
-   * @description: The endpoint provides a list of customer reviews based on entity and provided filters
-   */
-  getCustomerReviews({
-    id,
-    entityId,
-    entityType,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    next,
-    start,
-    limit,
-    count,
-    pageId,
-    pageSize,
-  } = {}) {
-    const { error } = FeedbackValidator.getCustomerReviews().validate(
-      {
-        id,
-        entityId,
-        entityType,
-        userId,
-        media,
-        rating,
-        attributeRating,
-        facets,
-        sort,
-        next,
-        start,
-        limit,
-        count,
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["entity_id"] = entityId;
-    query_params["entity_type"] = entityType;
-    query_params["user_id"] = userId;
-    query_params["media"] = media;
-    query_params["rating"] = rating;
-    query_params["attribute_rating"] = attributeRating;
-    query_params["facets"] = facets;
-    query_params["sort"] = sort;
-    query_params["next"] = next;
-    query_params["start"] = start;
-    query_params["limit"] = limit;
-    query_params["count"] = count;
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {string} [arg.id] - Review id
-   * @param {string} [arg.entityId] - Entity id
-   * @param {string} [arg.entityType] - Entity type
-   * @param {string} [arg.userId] - User id
-   * @param {string} [arg.media] - Media type e.g. image | video | video_file
-   *   | video_link
-   * @param {number[]} [arg.rating] - Rating filter, 1-5
-   * @param {string[]} [arg.attributeRating] - Attribute rating filter with
-   *   ma,e of attribute
-   * @param {boolean} [arg.facets] - Facets (true|false)
-   * @param {string} [arg.sort] - Sort by : default | top | recent
-   * @param {string} [arg.next] - Pagination next
-   * @param {string} [arg.start] - Pagination start
-   * @param {string} [arg.limit] - Pagination limit
-   * @param {string} [arg.count] - Pagination count
-   * @param {number} [arg.pageSize] - Pagination page size
-   * @summary: Get list of customer reviews [admin]
-   * @description: The endpoint provides a list of customer reviews based on entity and provided filters
-   */
-  getCustomerReviewsPaginator({
-    companyId,
-    applicationId,
-    id,
-    entityId,
-    entityType,
-    userId,
-    media,
-    rating,
-    attributeRating,
-    facets,
-    sort,
-    next,
-    start,
-    limit,
-    count,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCustomerReviews({
-        companyId: companyId,
-        applicationId: applicationId,
-        id: id,
-        entityId: entityId,
-        entityType: entityType,
-        userId: userId,
-        media: media,
-        rating: rating,
-        attributeRating: attributeRating,
-        facets: facets,
-        sort: sort,
-        next: next,
-        start: start,
-        limit: limit,
-        count: count,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.reviewId - Review id
-   * @param {ApproveRequest} arg.body
-   * @summary: update approve details
-   * @description: The is used to update approve details like status and description text
-   */
-  updateApprove({ reviewId, body } = {}) {
-    const { error } = FeedbackValidator.updateApprove().validate(
-      {
-        reviewId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/approve/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.reviewId - Review id
-   * @summary: get history details
-   * @description: The is used to get the history details like status and description text
-   */
-  getHistory({ reviewId } = {}) {
-    const { error } = FeedbackValidator.getHistory().validate(
-      {
-        reviewId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/reviews/${reviewId}/history/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.pageId] - Pagination page id
-   * @param {number} [arg.pageSize] - Pagination page size
-   * @summary: Get list of templates
-   * @description: Get all templates of application
-   */
-  getApplicationTemplates({ pageId, pageSize } = {}) {
-    const { error } = FeedbackValidator.getApplicationTemplates().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Pagination page size
-   * @summary: Get list of templates
-   * @description: Get all templates of application
-   */
-  getApplicationTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getApplicationTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {TemplateRequestList} arg.body
-   * @summary: Create a new template
-   * @description: Create a new template for review with following data:
-   * - Enable media, rating and review
-   * - Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
-   * - Review - header, title, description, image and video meta, enable votes
-   */
-  createTemplate({ body } = {}) {
-    const { error } = FeedbackValidator.createTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Template id
-   * @summary: Get a template by ID
-   * @description: Get the template for product or l3 type by ID
-   */
-  getTemplateById({ id } = {}) {
-    const { error } = FeedbackValidator.getTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Template id
-   * @param {UpdateTemplateRequest} arg.body
-   * @summary: Update a template's status
-   * @description: Update existing template status, active/archive
-   */
-  updateTemplate({ id, body } = {}) {
-    const { error } = FeedbackValidator.updateTemplate().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Template id
-   * @param {UpdateTemplateStatusRequest} arg.body
-   * @summary: Update a template's status
-   * @description: Update existing template status, active/archive
-   */
-  updateTemplateStatus({ id, body } = {}) {
-    const { error } = FeedbackValidator.updateTemplateStatus().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/feedback/v1.0/company/${this.config.companyId}/application/${this.applicationId}/templates/${id}/status/`,
-      query_params,
-      body
-    );
-  }
-}
-
-class Theme {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @summary: Get all pages of a theme
-   * @description: Use this API to retrieve all the available pages of a theme by its ID.
-   */
-  getAllPages({ themeId } = {}) {
-    const { error } = ThemeValidator.getAllPages().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/page`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme
-   * @param {AvailablePageSchema} arg.body
-   * @summary: Create a page
-   * @description: Use this API to create a page for a theme by its ID.
-   */
-  createPage({ themeId, body } = {}) {
-    const { error } = ThemeValidator.createPage().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/page`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @param {AllAvailablePageSchema} arg.body
-   * @summary: Update multiple pages of a theme
-   * @description: Use this API to update multiple pages of a theme by its ID.
-   */
-  updateMultiplePages({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateMultiplePages().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/page`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme to be retrieved
-   * @param {string} arg.pageValue - Value of the page to be retrieved
-   * @summary: Get page of a theme
-   * @description: Use this API to retrieve a page of a theme.
-   */
-  getPage({ themeId, pageValue } = {}) {
-    const { error } = ThemeValidator.getPage().validate(
-      {
-        themeId,
-        pageValue,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme
-   * @param {string} arg.pageValue - Value of the page to be updated
-   * @param {AvailablePageSchema} arg.body
-   * @summary: Updates a page
-   * @description: Use this API to update a page for a theme by its ID.
-   */
-  updatePage({ themeId, pageValue, body } = {}) {
-    const { error } = ThemeValidator.updatePage().validate(
-      {
-        themeId,
-        pageValue,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID of the theme
-   * @param {string} arg.pageValue - Value of the page to be updated
-   * @summary: Deletes a page
-   * @description: Use this API to delete a page for a theme by its ID and page_value.
-   */
-  deletePage({ themeId, pageValue } = {}) {
-    const { error } = ThemeValidator.deletePage().validate(
-      {
-        themeId,
-        pageValue,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/${pageValue}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @summary: Get a list of themes from the theme library
-   * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details.
-   */
-  getThemeLibrary({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getThemeLibrary().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   * @summary: Add a theme to the theme library
-   * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
-   */
-  addToThemeLibrary({ body } = {}) {
-    const { error } = ThemeValidator.addToThemeLibrary().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/library`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AddThemeRequestSchema} arg.body
-   * @summary: Apply a theme
-   * @description: Use this API to apply a theme to the website.
-   */
-  applyTheme({ body } = {}) {
-    const { error } = ThemeValidator.applyTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/apply`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - Theme ID
-   * @summary: Checks if theme is upgradable
-   * @description: There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available.
-   */
-  isUpgradable({ themeId } = {}) {
-    const { error } = ThemeValidator.isUpgradable().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Upgrade a theme
-   * @description: Use this API to upgrade the current theme to its latest version.
-   */
-  upgradeTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.upgradeTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @summary: Get all public themes
-   * @description: Use this API to get a list of free themes that you can apply to your website.
-   */
-  getPublicThemes({ pageSize, pageNo } = {}) {
-    const { error } = ThemeValidator.getPublicThemes().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/list/public`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ThemesSchema} arg.body
-   * @summary: Create a new theme
-   * @description: Themes improve the look and appearance of a website. Use this API to create a theme.
-   */
-  createTheme({ body } = {}) {
-    const { error } = ThemeValidator.createTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get the applied theme
-   * @description: Use this API to retrieve the theme that is currently applied to the website along with its details.
-   */
-  getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get all the supported fonts in a theme
-   * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
-   */
-  getFonts({} = {}) {
-    const { error } = ThemeValidator.getFonts().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/fonts`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Gets theme by id
-   * @description: Use this API to retrieve the details of a specific theme by using its ID.
-   */
-  getThemeById({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeById().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @param {ThemesSchema} arg.body
-   * @summary: Update a theme
-   * @description: Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more.
-   */
-  updateTheme({ themeId, body } = {}) {
-    const { error } = ThemeValidator.updateTheme().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Delete a theme
-   * @description: Use this API to delete a theme from the theme library.
-   */
-  deleteTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.deleteTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Get a theme preview
-   * @description: A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID.
-   */
-  getThemeForPreview({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeForPreview().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Publish a theme
-   * @description: Use this API to publish a theme that is either newly created or edited.
-   */
-  publishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.publishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/publish`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Unpublish a theme
-   * @description: Use this API to remove an existing theme from the list of available themes.
-   */
-  unpublishTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unpublishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unpublish`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Archive a theme
-   * @description: Use this API to store an existing theme but not delete it so that it can be used in future if required.
-   */
-  archiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.archiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/archive`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Unarchive a theme
-   * @description: Use this API to restore an archived theme and bring it back for editing or publishing.
-   */
-  unarchiveTheme({ themeId } = {}) {
-    const { error } = ThemeValidator.unarchiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/unarchive`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.themeId - ID allotted to the theme.
-   * @summary: Fetch last modified timestamp
-   * @description: Use this API to fetch Last-Modified timestamp in header metadata.
-   */
-  getThemeLastModified({ themeId } = {}) {
-    const { error } = ThemeValidator.getThemeLastModified().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "head",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/polling`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class User {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {Object} [arg.q] - The search query. Mobile number or email ID of
-   *   a customer.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @summary: Get a list of customers
-   * @description: Use this API to retrieve a list of customers who have registered in the application.
-   */
-  getCustomers({ q, pageSize, pageNo } = {}) {
-    const { error } = UserValidator.getCustomers().validate(
-      {
-        q,
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The search query. Mobile number or email ID of
-   *   a customer.
-   * @summary: Search an existing user.
-   * @description: Use this API to retrieve an existing user from a list.
-   */
-  searchUsers({ q } = {}) {
-    const { error } = UserValidator.searchUsers().validate(
-      {
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateUserRequestSchema} arg.body
-   * @summary: Create user
-   * @description: Create user
-   */
-  createUser({ body } = {}) {
-    const { error } = UserValidator.createUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {BlockUserRequestSchema} arg.body
-   * @summary: Block/Unblock user
-   * @description: Block/Unblock user
-   */
-  blockOrUnblockUsers({ body } = {}) {
-    const { error } = UserValidator.blockOrUnblockUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ArchiveUserRequestSchema} arg.body
-   * @summary: archive user
-   * @description: archive user
-   */
-  archiveUser({ body } = {}) {
-    const { error } = UserValidator.archiveUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {UnDeleteUserRequestSchema} arg.body
-   * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
-   * @description: undelete user who deleted from application and have not elapsed the platform configured delete days
-   */
-  unDeleteUser({ body } = {}) {
-    const { error } = UserValidator.unDeleteUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/undelete`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User ID
-   * @param {UpdateUserRequestSchema} arg.body
-   * @summary: Update user
-   * @description: Update user
-   */
-  updateUser({ userId, body } = {}) {
-    const { error } = UserValidator.updateUser().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateUserSessionRequestSchema} arg.body
-   * @summary: Create user session
-   * @description: Create user session
-   */
-  createUserSession({ body } = {}) {
-    const { error } = UserValidator.createUserSession().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID of a customer.
-   * @summary: Get a list of all session for a user
-   * @description: Use this API to retrieve a list of session of customers who have registered in the application.
-   */
-  getActiveSessions({ id } = {}) {
-    const { error } = UserValidator.getActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID of a customer.
-   * @summary: Delete a list of all session for a user
-   * @description: Use this API to Delete a list of session of customers who have registered in the application.
-   */
-  deleteActiveSessions({ id } = {}) {
-    const { error } = UserValidator.deleteActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get platform configurations
-   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
-   */
-  getPlatformConfig({} = {}) {
-    const { error } = UserValidator.getPlatformConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PlatformSchema} arg.body
-   * @summary: Update platform configurations
-   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
-   */
-  updatePlatformConfig({ body } = {}) {
-    const { error } = UserValidator.updatePlatformConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
-      query_params,
-      body
-    );
-  }
-}
-
-class Content {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get a list of announcements
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.
-   */
-  getAnnouncementsList({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getAnnouncementsList().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get a list of announcements
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.
-   */
-  getAnnouncementsListPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAnnouncementsList({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AdminAnnouncementSchema} arg.body
-   * @summary: Create an announcement
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
-   */
-  createAnnouncement({ body } = {}) {
-    const { error } = ContentValidator.createAnnouncement().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.announcementId - ID allotted to the announcement.
-   * @summary: Get announcement by ID
-   * @description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
-   */
-  getAnnouncementById({ announcementId } = {}) {
-    const { error } = ContentValidator.getAnnouncementById().validate(
-      {
-        announcementId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.announcementId - ID allotted to the announcement.
-   * @param {AdminAnnouncementSchema} arg.body
-   * @summary: Update an announcement
-   * @description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
-   */
-  updateAnnouncement({ announcementId, body } = {}) {
-    const { error } = ContentValidator.updateAnnouncement().validate(
-      {
-        announcementId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.announcementId - ID allotted to the announcement.
-   * @param {ScheduleSchema} arg.body
-   * @summary: Update the schedule and the publish status of an announcement
-   * @description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
-   */
-  updateAnnouncementSchedule({ announcementId, body } = {}) {
-    const { error } = ContentValidator.updateAnnouncementSchedule().validate(
-      {
-        announcementId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.announcementId - ID allotted to the announcement.
-   * @summary: Delete announcement by id
-   * @description: Use this API to delete an existing announcement.
-   */
-  deleteAnnouncement({ announcementId } = {}) {
-    const { error } = ContentValidator.deleteAnnouncement().validate(
-      {
-        announcementId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {BlogRequest} arg.body
-   * @summary: Create a blog
-   * @description: Use this API to create a blog.
-   */
-  createBlog({ body } = {}) {
-    const { error } = ContentValidator.createBlog().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get blogs
-   * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
-   */
-  getBlogs({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getBlogs().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get blogs
-   * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
-   */
-  getBlogsPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getBlogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the blog.
-   * @param {BlogRequest} arg.body
-   * @summary: Update a blog
-   * @description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
-   */
-  updateBlog({ id, body } = {}) {
-    const { error } = ContentValidator.updateBlog().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the blog.
-   * @summary: Delete blogs
-   * @description: Use this API to delete a blog.
-   */
-  deleteBlog({ id } = {}) {
-    const { error } = ContentValidator.deleteBlog().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
-   * @summary: Get components of a blog
-   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
-   */
-  getComponentById({ slug } = {}) {
-    const { error } = ContentValidator.getComponentById().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DataLoaderSchema} arg.body
-   * @summary: Adds a data loader
-   * @description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
-   */
-  addDataLoader({ body } = {}) {
-    const { error } = ContentValidator.addDataLoader().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get all the data loaders in an application
-   * @description: Use this to get all data loaders of an application
-   */
-  getDataLoaders({} = {}) {
-    const { error } = ContentValidator.getDataLoaders().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.dataLoaderId - ID allotted to the data loader.
-   * @summary: Delete data loader in application
-   * @description: Use this API to delete data loader.
-   */
-  deleteDataLoader({ dataLoaderId } = {}) {
-    const { error } = ContentValidator.deleteDataLoader().validate(
-      {
-        dataLoaderId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.dataLoaderId - ID allotted to the data loader.
-   * @param {DataLoaderSchema} arg.body
-   * @summary: Edit a data loader by id
-   * @description: Use this API to edit the details of an existing data loader by its ID.
-   */
-  editDataLoader({ dataLoaderId, body } = {}) {
-    const { error } = ContentValidator.editDataLoader().validate(
-      {
-        dataLoaderId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.dataLoaderId - ID allotted to the data loader.
-   * @summary: Select a data loader by id
-   * @description: Use this API to select a data loader to be used in applications.
-   */
-  selectDataLoader({ dataLoaderId } = {}) {
-    const { error } = ContentValidator.selectDataLoader().validate(
-      {
-        dataLoaderId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}/select`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.service - Name of service.
-   * @param {string} arg.operationId - Name of operation id of the service.
-   * @summary: Reset a data loader by serive name and operation Id
-   * @description: Use this API to reselect a data loader.
-   */
-  resetDataLoader({ service, operationId } = {}) {
-    const { error } = ContentValidator.resetDataLoader().validate(
-      {
-        service,
-        operationId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${service}/${operationId}/reset`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get a list of FAQ categories
-   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
-   */
-  getFaqCategories({} = {}) {
-    const { error } = ContentValidator.getFaqCategories().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.idOrSlug - ID or the slug allotted to an FAQ
-   *   category. Slug is a short, human-readable, URL-friendly identifier of
-   *   an object. You can get slug value of an FAQ category from
-   *   `getFaqCategories` API.
-   * @summary: Get an FAQ category by slug or id
-   * @description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
-   */
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateFaqCategoryRequestSchema} arg.body
-   * @summary: Create an FAQ category
-   * @description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
-   */
-  createFaqCategory({ body } = {}) {
-    const { error } = ContentValidator.createFaqCategory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to an FAQ category.
-   * @param {UpdateFaqCategoryRequestSchema} arg.body
-   * @summary: Update an FAQ category
-   * @description: Use this API to edit an existing FAQ category.
-   */
-  updateFaqCategory({ id, body } = {}) {
-    const { error } = ContentValidator.updateFaqCategory().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to an FAQ category.
-   * @summary: Delete an FAQ category
-   * @description: Use this API to delete an FAQ category.
-   */
-  deleteFaqCategory({ id } = {}) {
-    const { error } = ContentValidator.deleteFaqCategory().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.idOrSlug - ID or the slug allotted to an FAQ
-   *   category. Slug is a short, human-readable, URL-friendly identifier of
-   *   an object. You can get slug value of an FAQ category from
-   *   `getFaqCategories` API.
-   * @summary: Get question and answers within an FAQ category
-   * @description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
-   */
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.categoryId - ID allotted to an FAQ category.
-   * @param {CreateFaqSchema} arg.body
-   * @summary: Create an FAQ
-   * @description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
-   */
-  addFaq({ categoryId, body } = {}) {
-    const { error } = ContentValidator.addFaq().validate(
-      {
-        categoryId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.categoryId - ID allotted to an FAQ category.
-   * @param {string} arg.faqId - ID allotted to an FAQ.
-   * @param {CreateFaqSchema} arg.body
-   * @summary: Update an FAQ
-   * @description: Use this API to edit an existing FAQ.
-   */
-  updateFaq({ categoryId, faqId, body } = {}) {
-    const { error } = ContentValidator.updateFaq().validate(
-      {
-        categoryId,
-        faqId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.categoryId - ID allotted to an FAQ category.
-   * @param {string} arg.faqId - ID allotted to an FAQ.
-   * @summary: Delete an FAQ
-   * @description: Use this API to delete an existing FAQ.
-   */
-  deleteFaq({ categoryId, faqId } = {}) {
-    const { error } = ContentValidator.deleteFaq().validate(
-      {
-        categoryId,
-        faqId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.idOrSlug - ID or the slug allotted to an FAQ
-   *   category. Slug is a short, human-readable, URL-friendly identifier of
-   *   an object. You can get slug value of an FAQ category from
-   *   `getFaqCategories` API.
-   * @summary: Get an FAQ
-   * @description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
-   */
-  getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const { error } = ContentValidator.getFaqByIdOrSlug().validate(
-      {
-        idOrSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get landing pages
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
-   */
-  getLandingPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getLandingPages().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get landing pages
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
-   */
-  getLandingPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getLandingPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {LandingPageSchema} arg.body
-   * @summary: Create a landing page
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
-   */
-  createLandingPage({ body } = {}) {
-    const { error } = ContentValidator.createLandingPage().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to a landing page.
-   * @param {LandingPageSchema} arg.body
-   * @summary: Update a landing page
-   * @description: Use this API to edit the details of an existing landing page.
-   */
-  updateLandingPage({ id, body } = {}) {
-    const { error } = ContentValidator.updateLandingPage().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to a landing page.
-   * @summary: Delete a landing page
-   * @description: Use this API to delete an existing landing page.
-   */
-  deleteLandingPage({ id } = {}) {
-    const { error } = ContentValidator.deleteLandingPage().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get legal information
-   * @description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
-   */
-  getLegalInformation({} = {}) {
-    const { error } = ContentValidator.getLegalInformation().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationLegal} arg.body
-   * @summary: Save legal information
-   * @description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
-   */
-  updateLegalInformation({ body } = {}) {
-    const { error } = ContentValidator.updateLegalInformation().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.devicePlatform - Filter navigations by platform.
-   *   Acceptable values are: web, android, ios, all
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get navigations
-   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
-   */
-  getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getNavigations().validate(
-      {
-        devicePlatform,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["device_platform"] = devicePlatform;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {string} arg.devicePlatform - Filter navigations by platform.
-   *   Acceptable values are: web, android, ios, all
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get navigations
-   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
-   */
-  getNavigationsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getNavigations({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {NavigationRequest} arg.body
-   * @summary: Create a navigation
-   * @description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
-   */
-  createNavigation({ body } = {}) {
-    const { error } = ContentValidator.createNavigation().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get default navigations
-   * @description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
-   */
-  getDefaultNavigations({} = {}) {
-    const { error } = ContentValidator.getDefaultNavigations().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a navigation. You can get slug value of a navigation from
-   *   `getNavigations` API.
-   * @param {string} arg.devicePlatform - Filter navigations by platform.
-   *   Acceptable values are: web, android, ios, all
-   * @summary: Get a navigation by slug
-   * @description: Use this API to retrieve a navigation by its slug.
-   */
-  getNavigationBySlug({ slug, devicePlatform } = {}) {
-    const { error } = ContentValidator.getNavigationBySlug().validate(
-      {
-        slug,
-        devicePlatform,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["device_platform"] = devicePlatform;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the navigation.
-   * @param {NavigationRequest} arg.body
-   * @summary: Update a navigation
-   * @description: Use this API to edit the details of an existing navigation.
-   */
-  updateNavigation({ id, body } = {}) {
-    const { error } = ContentValidator.updateNavigation().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the navigation.
-   * @summary: Delete a navigation
-   * @description: Use this API to delete an existing navigation.
-   */
-  deleteNavigation({ id } = {}) {
-    const { error } = ContentValidator.deleteNavigation().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get page meta
-   * @description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
-   */
-  getPageMeta({} = {}) {
-    const { error } = ContentValidator.getPageMeta().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get page spec
-   * @description: Use this API to get the specifications of a page, such as page type, display name, params and query.
-   */
-  getPageSpec({} = {}) {
-    const { error } = ContentValidator.getPageSpec().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PageRequest} arg.body
-   * @summary: Create a page preview
-   * @description: Use this API to create a page preview to check the appearance of a custom page.
-   */
-  createPagePreview({ body } = {}) {
-    const { error } = ContentValidator.createPagePreview().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a page. You can get slug value of a page from `getPages` API.
-   * @param {PagePublishRequest} arg.body
-   * @summary: Change the publish status of a page
-   * @description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
-   */
-  updatePagePreview({ slug, body } = {}) {
-    const { error } = ContentValidator.updatePagePreview().validate(
-      {
-        slug,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the page.
-   * @summary: Delete a page
-   * @description: Use this API to delete an existing page.
-   */
-  deletePage({ id } = {}) {
-    const { error } = ContentValidator.deletePage().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PathMappingSchema} arg.body
-   * @summary: Save path based redirection rules
-   * @description: Use this API to add redirection rules
-   */
-  addPathRedirectionRules({ body } = {}) {
-    const { error } = ContentValidator.addPathRedirectionRules().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 5.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @summary: Get path based redirection rules
-   * @description: Use this API to get path based redirection rules.
-   */
-  getPathRedirectionRules({ pageSize, pageNo } = {}) {
-    const { error } = ContentValidator.getPathRedirectionRules().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.pathId - ID allotted to the path redirection rule.
-   * @summary: Get path based redirection rule
-   * @description: Use this API to get path based redirection rule.
-   */
-  getPathRedirectionRule({ pathId } = {}) {
-    const { error } = ContentValidator.getPathRedirectionRule().validate(
-      {
-        pathId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.pathId - ID allotted to the path redirection rule.
-   * @param {PathMappingSchema} arg.body
-   * @summary: Update path based redirection rules
-   * @description: Use this API to update redirection rules
-   */
-  updatePathRedirectionRules({ pathId, body } = {}) {
-    const { error } = ContentValidator.updatePathRedirectionRules().validate(
-      {
-        pathId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.pathId - ID allotted to the path redirection rule.
-   * @summary: Delete path based redirection rules
-   * @description: Use this API to delete redirection rules
-   */
-  deletePathRedirectionRules({ pathId } = {}) {
-    const { error } = ContentValidator.deletePathRedirectionRules().validate(
-      {
-        pathId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get SEO configuration of an application
-   * @description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
-   */
-  getSEOConfiguration({} = {}) {
-    const { error } = ContentValidator.getSEOConfiguration().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SeoComponent} arg.body
-   * @summary: Update SEO of application
-   * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
-   */
-  updateSEOConfiguration({ body } = {}) {
-    const { error } = ContentValidator.updateSEOConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.devicePlatform - Filter slideshows by platform.
-   *   Acceptable values are: web, android, ios and all
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get slideshows
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
-   */
-  getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getSlideshows().validate(
-      {
-        devicePlatform,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["device_platform"] = devicePlatform;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {string} arg.devicePlatform - Filter slideshows by platform.
-   *   Acceptable values are: web, android, ios and all
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get slideshows
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
-   */
-  getSlideshowsPaginator({
-    companyId,
-    applicationId,
-    devicePlatform,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSlideshows({
-        companyId: companyId,
-        applicationId: applicationId,
-        devicePlatform: devicePlatform,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SlideshowRequest} arg.body
-   * @summary: Create a slideshow
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
-   */
-  createSlideshow({ body } = {}) {
-    const { error } = ContentValidator.createSlideshow().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a slideshow. You can get slug value of a page from
-   *   `getSlideshows` API.
-   * @param {string} arg.devicePlatform - Filter slideshows by platform.
-   *   Acceptable values are: web, android, ios and all
-   * @summary: Get slideshow by slug
-   * @description: Use this API to retrieve the details of a slideshow by its slug.
-   */
-  getSlideshowBySlug({ slug, devicePlatform } = {}) {
-    const { error } = ContentValidator.getSlideshowBySlug().validate(
-      {
-        slug,
-        devicePlatform,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["device_platform"] = devicePlatform;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the slideshow.
-   * @param {SlideshowRequest} arg.body
-   * @summary: Update a slideshow
-   * @description: Use this API to edit the details of an existing slideshow.
-   */
-  updateSlideshow({ id, body } = {}) {
-    const { error } = ContentValidator.updateSlideshow().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the slideshow.
-   * @summary: Delete a slideshow
-   * @description: Use this API to delete an existing slideshow.
-   */
-  deleteSlideshow({ id } = {}) {
-    const { error } = ContentValidator.deleteSlideshow().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get support information
-   * @description: Use this API to get the contact details for customer support, including emails and phone numbers.
-   */
-  getSupportInformation({} = {}) {
-    const { error } = ContentValidator.getSupportInformation().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {Support} arg.body
-   * @summary: Update the support data of an application
-   * @description: Use this API to edit the existing contact details for customer support, including emails and phone numbers.
-   */
-  updateSupportInformation({ body } = {}) {
-    const { error } = ContentValidator.updateSupportInformation().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   * @summary: Update a tag
-   * @description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
-   */
-  updateInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.updateInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Delete tags in application
-   * @description: Use this API to delete all the existing tags at once.
-   */
-  deleteAllInjectableTags({} = {}) {
-    const { error } = ContentValidator.deleteAllInjectableTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get all the tags in an application
-   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
-   */
-  getInjectableTags({} = {}) {
-    const { error } = ContentValidator.getInjectableTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateTagRequestSchema} arg.body
-   * @summary: Add a tag
-   * @description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
-   */
-  addInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.addInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {RemoveHandpickedSchema} arg.body
-   * @summary: Remove a tag
-   * @description: Use this API to delete an existing tag.
-   */
-  removeInjectableTag({ body } = {}) {
-    const { error } = ContentValidator.removeInjectableTag().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.tagId - ID allotted to the tag.
-   * @param {UpdateHandpickedSchema} arg.body
-   * @summary: Edit a tag by id
-   * @description: Use this API to edit the details of an existing tag by its ID.
-   */
-  editInjectableTag({ tagId, body } = {}) {
-    const { error } = ContentValidator.editInjectableTag().validate(
-      {
-        tagId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PageRequest} arg.body
-   * @summary: Create a page
-   * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
-   */
-  createPage({ body } = {}) {
-    const { error } = ContentValidator.createPage().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get a list of pages
-   * @description: Use this API to retrieve a list of pages.
-   */
-  getPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getPages().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Numeric ID allotted to a business account
-   *   on Fynd Platform
-   * @param {string} arg.applicationId - Numeric ID allotted to an application
-   *   created within a business account.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @summary: Get a list of pages
-   * @description: Use this API to retrieve a list of pages.
-   */
-  getPagesPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPages({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the page.
-   * @param {PageSchema} arg.body
-   * @summary: Update a page
-   * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
-   */
-  updatePage({ id, body } = {}) {
-    const { error } = ContentValidator.updatePage().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a page. You can get slug value of a page from `getPages` API.
-   * @summary: Get pages by component Id
-   * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
-   */
-  getPageBySlug({ slug } = {}) {
-    const { error } = ContentValidator.getPageBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Communication {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get campaigns
-   * @description: Get campaigns
-   */
-  getCampaigns({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getCampaigns().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get campaigns
-   * @description: Get campaigns
-   */
-  getCampaignsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCampaigns({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CampaignReq} arg.body
-   * @summary: Create campaign
-   * @description: Create campaign
-   */
-  createCampaign({ body } = {}) {
-    const { error } = CommunicationValidator.createCampaign().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @summary: Get campaign by id
-   * @description: Get campaign by id
-   */
-  getCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @param {CampaignReq} arg.body
-   * @summary: Update campaign by id
-   * @description: Update campaign by id
-   */
-  updateCampaignById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateCampaignById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Campaign id
-   * @summary: Get stats of campaign by id
-   * @description: Get stats of campaign by id
-   */
-  getStatsOfCampaignById({ id } = {}) {
-    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get audiences
-   * @description: Get audiences
-   */
-  getAudiences({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getAudiences().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get audiences
-   * @description: Get audiences
-   */
-  getAudiencesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAudiences({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AudienceReq} arg.body
-   * @summary: Create audience
-   * @description: Create audience
-   */
-  createAudience({ body } = {}) {
-    const { error } = CommunicationValidator.createAudience().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {BigqueryHeadersReq} arg.body
-   * @summary: Get bigquery headers
-   * @description: Get bigquery headers
-   */
-  getBigqueryHeaders({ body } = {}) {
-    const { error } = CommunicationValidator.getBigqueryHeaders().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Audience id
-   * @summary: Get audience by id
-   * @description: Get audience by id
-   */
-  getAudienceById({ id } = {}) {
-    const { error } = CommunicationValidator.getAudienceById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Audience id
-   * @param {AudienceReq} arg.body
-   * @summary: Update audience by id
-   * @description: Update audience by id
-   */
-  updateAudienceById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateAudienceById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {GetNRecordsCsvReq} arg.body
-   * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv
-   */
-  getNSampleRecordsFromCsv({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email providers
-   * @description: Get email providers
-   */
-  getEmailProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailProviders().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email providers
-   * @description: Get email providers
-   */
-  getEmailProvidersPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailProviderReq} arg.body
-   * @summary: Create email provider
-   * @description: Create email provider
-   */
-  createEmailProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @summary: Get email provider by id
-   * @description: Get email provider by id
-   */
-  getEmailProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email provider id
-   * @param {EmailProviderReq} arg.body
-   * @summary: Update email provider by id
-   * @description: Update email provider by id
-   */
-  updateEmailProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email templates
-   * @description: Get email templates
-   */
-  getEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get email templates
-   * @description: Get email templates
-   */
-  getEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailTemplateReq} arg.body
-   * @summary: Create email template
-   * @description: Create email template
-   */
-  createEmailTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createEmailTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get system email templates
-   * @description: Get system email templates
-   */
-  getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get system email templates
-   * @description: Get system email templates
-   */
-  getSystemEmailTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemEmailTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @summary: Get email template by id
-   * @description: Get email template by id
-   */
-  getEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @param {EmailTemplateReq} arg.body
-   * @summary: Update email template by id
-   * @description: Update email template by id
-   */
-  updateEmailTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Email template id
-   * @summary: Delete email template by id
-   * @description: Delete email template by id
-   */
-  deleteEmailTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EngineRequest} arg.body
-   * @summary: Send email or sms synchronously
-   * @description: Send email or sms synchronously
-   */
-  sendCommunicationSynchronously({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.sendCommunicationSynchronously().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-instant`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {EngineRequest} arg.body
-   * @summary: Send email or sms asynchronously
-   * @description: Send email or sms asynchronously
-   */
-  sendCommunicationAsynchronously({ body } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-async`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.populate] - Populate fields
-   * @summary: Get event subscriptions
-   * @description: Get event subscriptions
-   */
-  getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
-    const { error } = CommunicationValidator.getEventSubscriptions().validate(
-      {
-        pageNo,
-        pageSize,
-        populate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["populate"] = populate;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.populate] - Populate fields
-   * @summary: Get event subscriptions
-   * @description: Get event subscriptions
-   */
-  getEventSubscriptionsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    populate,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEventSubscriptions({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        populate: populate,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get jobs
-   * @description: Get jobs
-   */
-  getJobs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get jobs
-   * @description: Get jobs
-   */
-  getJobsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {TriggerJobRequest} arg.body
-   * @summary: Trigger campaign job
-   * @description: Trigger campaign job
-   */
-  triggerCampaignJob({ body } = {}) {
-    const { error } = CommunicationValidator.triggerCampaignJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get job logs
-   * @description: Get job logs
-   */
-  getJobLogs({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getJobLogs().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get job logs
-   * @description: Get job logs
-   */
-  getJobLogsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.pageId] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on _id
-   * @param {Object} [arg.query] -
-   * @summary: Get communication logs
-   * @description: Get communication logs
-   */
-  getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
-    const { error } = CommunicationValidator.getCommunicationLogs().validate(
-      {
-        pageId,
-        pageSize,
-        sort,
-        query,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-    query_params["query"] = query;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on _id
-   * @param {Object} [arg.query] -
-   * @summary: Get communication logs
-   * @description: Get communication logs
-   */
-  getCommunicationLogsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-    query,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCommunicationLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-        sort: sort,
-        query: query,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SendOtpCommsReq} arg.body
-   * @summary: Send OTP using email and sms
-   * @description: Send OTP Comms via email and sms
-   */
-  sendOtp({ body } = {}) {
-    const { error } = CommunicationValidator.sendOtp().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/send-otp-comms`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {VerifyOtpCommsReq} arg.body
-   * @summary: Verify OTP sent via email and sms
-   * @description: Verify OTP sent via email and sms
-   */
-  verfiyOtp({ body } = {}) {
-    const { error } = CommunicationValidator.verfiyOtp().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/verify-otp-comms`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get sms providers
-   * @description: Get sms providers
-   */
-  getSmsProviders({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsProviders().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get sms providers
-   * @description: Get sms providers
-   */
-  getSmsProvidersPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SmsProviderReq} arg.body
-   * @summary: Create sms provider
-   * @description: Create sms provider
-   */
-  createSmsProvider({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsProvider().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @summary: Get sms provider by id
-   * @description: Get sms provider by id
-   */
-  getSmsProviderById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsProviderById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms provider id
-   * @param {SmsProviderReq} arg.body
-   * @summary: Update sms provider by id
-   * @description: Update sms provider by id
-   */
-  updateSmsProviderById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsProviderById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get sms templates
-   * @description: Get sms templates
-   */
-  getSmsTemplates({ pageNo, pageSize, sort } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get sms templates
-   * @description: Get sms templates
-   */
-  getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SmsTemplateReq} arg.body
-   * @summary: Create sms template
-   * @description: Create sms template
-   */
-  createSmsTemplate({ body } = {}) {
-    const { error } = CommunicationValidator.createSmsTemplate().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @summary: Get sms template by id
-   * @description: Get sms template by id
-   */
-  getSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.getSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @param {SmsTemplateReq} arg.body
-   * @summary: Update sms template by id
-   * @description: Update sms template by id
-   */
-  updateSmsTemplateById({ id, body } = {}) {
-    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Sms template id
-   * @summary: Delete sms template by id
-   * @description: Delete sms template by id
-   */
-  deleteSmsTemplateById({ id } = {}) {
-    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get system sms templates
-   * @description: Get system sms templates
-   */
-  getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @summary: Get system sms templates
-   * @description: Get system sms templates
-   */
-  getSystemSystemTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemSystemTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-}
-
-class Payment {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get All Brand Payment Gateway Config Secret
-   * @description: Get All Brand Payment Gateway Config Secret
-   */
-  getBrandPaymentGatewayConfig({} = {}) {
-    const { error } = PaymentValidator.getBrandPaymentGatewayConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentGatewayConfigRequest} arg.body
-   * @summary: Save Config Secret For Brand Payment Gateway
-   * @description: Save Config Secret For Brand Payment Gateway
-   */
-  saveBrandPaymentGatewayConfig({ body } = {}) {
-    const { error } = PaymentValidator.saveBrandPaymentGatewayConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentGatewayConfigRequest} arg.body
-   * @summary: Save Config Secret For Brand Payment Gateway
-   * @description: Save Config Secret For Brand Payment Gateway
-   */
-  updateBrandPaymentGatewayConfig({ body } = {}) {
-    const {
-      error,
-    } = PaymentValidator.updateBrandPaymentGatewayConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} arg.refresh -
-   * @param {string} arg.requestType -
-   * @summary: Get All Valid Payment Options
-   * @description: Use this API to get Get All Valid Payment Options for making payment
-   */
-  getPaymentModeRoutes({ refresh, requestType } = {}) {
-    const { error } = PaymentValidator.getPaymentModeRoutes().validate(
-      {
-        refresh,
-        requestType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["refresh"] = refresh;
-    query_params["request_type"] = requestType;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @param {string} [arg.requestHash] -
-   * @summary: Get bank details
-   * @description: Use this API to get saved bank details for returned/cancelled order using order id.
-   */
-  getBankAccountDetailsOpenAPI({ orderId, requestHash } = {}) {
-    const { error } = PaymentValidator.getBankAccountDetailsOpenAPI().validate(
-      {
-        orderId,
-        requestHash,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-    query_params["request_hash"] = requestHash;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AddBeneficiaryDetailsOTPRequest} arg.body
-   * @summary: Save bank details for cancelled/returned order
-   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
-   */
-  addRefundBankAccountUsingOTP({ body } = {}) {
-    const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @summary: List Order Beneficiary
-   * @description: Get all active  beneficiary details added by the user for refund
-   */
-  getUserOrderBeneficiaries({ orderId } = {}) {
-    const { error } = PaymentValidator.getUserOrderBeneficiaries().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/accounts/order`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @summary: List User Beneficiary
-   * @description: Get all active  beneficiary details added by the user for refund
-   */
-  getUserBeneficiaries({ orderId } = {}) {
-    const { error } = PaymentValidator.getUserBeneficiaries().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/accounts/user`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentConfirmationRequest} arg.body
-   * @summary: Confirm payment after successful payment from payment gateway
-   * @description: Use this API to confirm payment after payment gateway accepted payment.
-   */
-  confirmPayment({ body } = {}) {
-    const { error } = PaymentValidator.confirmPayment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/confirm`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: API to fetch the payment options of the merchant for paltform
-   * @description: Use this API to fetch the payment options.
-   */
-  getPlatformPaymentConfig({} = {}) {
-    const { error } = PaymentValidator.getPlatformPaymentConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {UpdatePlatformPaymentConfig} arg.body
-   * @summary: API to update the payment options of the merchant for paltform
-   * @description: Use this API to update the payment options.
-   */
-  updatePlatformPaymentConfig({ body } = {}) {
-    const { error } = PaymentValidator.updatePlatformPaymentConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.merchantUserId -
-   * @param {string} arg.mobileNo -
-   * @summary: Get COD limit for user
-   * @description: Use this API to get user cod limit and reamining limit for the payment
-   */
-  getUserCODlimitRoutes({ merchantUserId, mobileNo } = {}) {
-    const { error } = PaymentValidator.getUserCODlimitRoutes().validate(
-      {
-        merchantUserId,
-        mobileNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["merchant_user_id"] = merchantUserId;
-    query_params["mobile_no"] = mobileNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SetCODForUserRequest} arg.body
-   * @summary: Set COD option for user for payment
-   * @description: Use this API to set cod option as true or false for the payment
-   */
-  setUserCODlimitRoutes({ body } = {}) {
-    const { error } = PaymentValidator.setUserCODlimitRoutes().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: get some information about the store and edc device
-   * @description: Use this API to get info of devices linked to a particular app.
-   */
-  edcAggregatorsAndModelList({} = {}) {
-    const { error } = PaymentValidator.edcAggregatorsAndModelList().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-aggregator-list`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: get some information about the store and edc device
-   * @description: Use this API to get info of devices linked to a particular app.
-   */
-  edcDeviceStats({} = {}) {
-    const { error } = PaymentValidator.edcDeviceStats().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device-stats`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-   * @param {EdcAddRequest} arg.body
-   * @summary: map new edc device to the terminal
-   * @description: Use this API to map new edc device to the terminal
-   */
-  edcDevice({ terminalUniqueIdentifier, body } = {}) {
-    const { error } = PaymentValidator.edcDevice().validate(
-      {
-        terminalUniqueIdentifier,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-   * @summary: get details of a single edc device
-   * @description: Use this API to get details of a single edc device
-   */
-  edcDevice({ terminalUniqueIdentifier } = {}) {
-    const { error } = PaymentValidator.edcDevice().validate(
-      {
-        terminalUniqueIdentifier,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device/${terminalUniqueIdentifier}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-   * @param {EdcUpdateRequest} arg.body
-   * @summary: Update store id and device tag of edc device
-   * @description: Use this API to Update store id and device tag of edc device
-   */
-  edcDevice({ terminalUniqueIdentifier, body } = {}) {
-    const { error } = PaymentValidator.edcDevice().validate(
-      {
-        terminalUniqueIdentifier,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device/${terminalUniqueIdentifier}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {boolean} [arg.isActive] -
-   * @param {number} [arg.storeId] -
-   * @param {string} [arg.deviceTag] -
-   * @summary: get all the device list of an app
-   * @description: Use this API to get all devices linked to a particular app.
-   */
-  edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag } = {}) {
-    const { error } = PaymentValidator.edcDeviceList().validate(
-      {
-        pageNo,
-        pageSize,
-        isActive,
-        storeId,
-        deviceTag,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["is_active"] = isActive;
-    query_params["store_id"] = storeId;
-    query_params["device_tag"] = deviceTag;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device-list`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.amount - Payable amount.
-   * @param {string} arg.cartId - Identifier of the cart.
-   * @param {string} arg.pincode - The PIN Code of the destination address, e.g. 400059
-   * @param {string} arg.checkoutMode - Option to checkout for self or for others.
-   * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
-   *   to remove temporary cache files on payment gateway and replace with the
-   *   latest one.
-   * @param {string} [arg.cardReference] - Card reference id of user's debit
-   *   or credit card.
-   * @param {string} arg.orderType - The order type of shipment * HomeDelivery
-   *   - If the customer wants the order home-delivered * PickAtStore - If the
-   *   customer wants the handover of an order at the store itself.
-   * @param {string} [arg.userDetails] - URIencoded JSON containing details of
-   *   an anonymous user.
-   * @summary: Get All Valid Payment Options
-   * @description: Use this API to get Get All Valid Payment Options for making payment
-   */
-  getPosPaymentModeRoutes({
-    amount,
-    cartId,
-    pincode,
-    checkoutMode,
-    orderType,
-    refresh,
-    cardReference,
-    userDetails,
-  } = {}) {
-    const { error } = PaymentValidator.getPosPaymentModeRoutes().validate(
-      {
-        amount,
-        cartId,
-        pincode,
-        checkoutMode,
-        orderType,
-        refresh,
-        cardReference,
-        userDetails,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["amount"] = amount;
-    query_params["cart_id"] = cartId;
-    query_params["pincode"] = pincode;
-    query_params["checkout_mode"] = checkoutMode;
-    query_params["refresh"] = refresh;
-    query_params["card_reference"] = cardReference;
-    query_params["order_type"] = orderType;
-    query_params["user_details"] = userDetails;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/pos`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentInitializationRequest} arg.body
-   * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-   * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
-   */
-  initialisePayment({ body } = {}) {
-    const { error } = PaymentValidator.initialisePayment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/request`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PaymentStatusUpdateRequest} arg.body
-   * @summary: Performs continuous polling to check status of payment on the server
-   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-   */
-  checkAndUpdatePaymentStatus({ body } = {}) {
-    const { error } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/confirm/polling`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ResendOrCancelPaymentRequest} arg.body
-   * @summary: API to resend and cancel a payment link which was already generated.
-   * @description: Use this API to perform resend or cancel a payment link based on request payload.
-   */
-  resendOrCancelPayment({ body } = {}) {
-    const { error } = PaymentValidator.resendOrCancelPayment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/cancel`,
-      query_params,
-      body
-    );
-  }
-}
-
-class Order {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.lane] -
-   * @param {string} [arg.searchType] -
-   * @param {string} [arg.searchId] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {string} [arg.dpIds] -
-   * @param {string} [arg.orderingCompanyId] -
-   * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
-   * @param {string} [arg.requestByExt] -
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.customerId] -
-   * @param {boolean} [arg.isPrioritySort] -
-   * @summary:
-   * @description:
-   */
-  getApplicationShipments({
-    lane,
-    searchType,
-    searchId,
-    fromDate,
-    toDate,
-    dpIds,
-    orderingCompanyId,
-    stores,
-    salesChannel,
-    requestByExt,
-    pageNo,
-    pageSize,
-    customerId,
-    isPrioritySort,
-  } = {}) {
-    const { error } = OrderValidator.getApplicationShipments().validate(
-      {
-        lane,
-        searchType,
-        searchId,
-        fromDate,
-        toDate,
-        dpIds,
-        orderingCompanyId,
-        stores,
-        salesChannel,
-        requestByExt,
-        pageNo,
-        pageSize,
-        customerId,
-        isPrioritySort,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["lane"] = lane;
-    query_params["search_type"] = searchType;
-    query_params["search_id"] = searchId;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["dp_ids"] = dpIds;
-    query_params["ordering_company_id"] = orderingCompanyId;
-    query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
-    query_params["request_by_ext"] = requestByExt;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["customer_id"] = customerId;
-    query_params["is_priority_sort"] = isPrioritySort;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipments/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @summary:
-   * @description:
-   */
-  getAppOrderShipmentDetails({ orderId } = {}) {
-    const { error } = OrderValidator.getAppOrderShipmentDetails().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/application/${this.applicationId}/order-details`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId -
-   * @summary: Track shipment
-   * @description: Track Shipment by shipment id, for application based on application Id
-   */
-  trackPlatformShipment({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackPlatformShipment().validate(
-      {
-        shipmentId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Catalog {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateSearchKeyword} arg.body
-   * @summary: Update Search Keyword
-   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
-   */
-  updateSearchKeywords({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSearchKeywords().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @summary: Delete a Search Keywords
-   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-   */
-  deleteSearchKeywords({ id } = {}) {
-    const { error } = CatalogValidator.deleteSearchKeywords().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @summary: Get a Search Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-   */
-  getSearchKeywords({ id } = {}) {
-    const { error } = CatalogValidator.getSearchKeywords().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateSearchKeyword} arg.body
-   * @summary: Add a Custom Search Keywords
-   * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
-   */
-  createCustomKeyword({ body } = {}) {
-    const { error } = CatalogValidator.createCustomKeyword().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: List all Search Custom Keyword Listing
-   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
-   */
-  getAllSearchKeyword({} = {}) {
-    const { error } = CatalogValidator.getAllSearchKeyword().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateAutocompleteKeyword} arg.body
-   * @summary: Create & Update Autocomplete Keyword
-   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
-   */
-  updateAutocompleteKeyword({ id, body } = {}) {
-    const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @summary: Delete a Autocomplete Keywords
-   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
-   */
-  deleteAutocompleteKeyword({ id } = {}) {
-    const { error } = CatalogValidator.deleteAutocompleteKeyword().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @summary: Get a Autocomplete Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-   */
-  getAutocompleteKeywordDetail({ id } = {}) {
-    const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateAutocompleteKeyword} arg.body
-   * @summary: Add a Custom Autocomplete Keywords
-   * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
-   */
-  createCustomAutocompleteRule({ body } = {}) {
-    const { error } = CatalogValidator.createCustomAutocompleteRule().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: List all Autocomplete Keyword Listing
-   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
-   */
-  getAutocompleteConfig({} = {}) {
-    const { error } = CatalogValidator.getAutocompleteConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Product id for which the custom_meta is associated.
-   * @param {ApplicationItemMeta} arg.body
-   * @summary: Update a single custom meta.
-   * @description: This API helps to update data associated to a item custom meta.
-   */
-  updateAppProduct({ itemId, body } = {}) {
-    const { error } = CatalogValidator.updateAppProduct().validate(
-      {
-        itemId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Product id for a particular product.
-   * @summary: Get company application product data.
-   * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
-   */
-  getAppProduct({ itemId } = {}) {
-    const { error } = CatalogValidator.getAppProduct().validate(
-      {
-        itemId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is an identifier that
-   *   defines a specific type of configuration.
-   * @param {string} [arg.templateSlug] - Get configuration list filtered by
-   *   `template_slug` string. This is for the details and comparision groups.
-   * @summary: Get configuration metadata details for catalog for admin panel
-   * @description: Get the configuraion metadata details for catalog.
-   */
-  getConfigurationMetadata({ configType, templateSlug } = {}) {
-    const { error } = CatalogValidator.getConfigurationMetadata().validate(
-      {
-        configType,
-        templateSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["template_slug"] = templateSlug;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/metadata/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular group configuration type.
-   * @param {AppConfigurationDetail} arg.body
-   * @summary: Create configuration for Group config types.
-   * @description: Create configuration for Group config types.
-   */
-  createGroupConfiguration({ configType, body } = {}) {
-    const { error } = CatalogValidator.createGroupConfiguration().validate(
-      {
-        configType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is an identifier that
-   *   defines a specific type of configuration.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.search] - Get configuration list filtered by `search` string.
-   * @param {string} [arg.templateSlug] - Get configuration list filtered by
-   *   `template_slug` string. This is for the details and comparision groups.
-   * @summary: Get the details of the application configured configurations of group config types.
-   * @description: Get the details of the application configured configurations of group config types.
-   */
-  getGroupConfigurations({
-    configType,
-    pageNo,
-    pageSize,
-    search,
-    templateSlug,
-  } = {}) {
-    const { error } = CatalogValidator.getGroupConfigurations().validate(
-      {
-        configType,
-        pageNo,
-        pageSize,
-        search,
-        templateSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["search"] = search;
-    query_params["template_slug"] = templateSlug;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular group configuration type.
-   * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
-   *   a particular configuration.
-   * @param {AppConfigurationDetail} arg.body
-   * @summary: Update the group configurations for the application.
-   * @description: Update the group configurations for the application.
-   */
-  updateGroupConfiguration({ configType, groupSlug, body } = {}) {
-    const { error } = CatalogValidator.updateGroupConfiguration().validate(
-      {
-        configType,
-        groupSlug,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups/${groupSlug}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular group configuration type.
-   * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
-   *   a particular configuration.
-   * @summary: Delete configuration of the product config type of the application.
-   * @description: Delete configuration of the product config type of the application.
-   */
-  deleteGroupConfiguration({ configType, groupSlug } = {}) {
-    const { error } = CatalogValidator.deleteGroupConfiguration().validate(
-      {
-        configType,
-        groupSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups/${groupSlug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular listing configuration type.
-   * @param {AppConfigurationsSort} arg.body
-   * @summary: Add configuration for listings
-   * @description: Add configuration for listing.
-   */
-  createListingConfiguration({ configType, body } = {}) {
-    const { error } = CatalogValidator.createListingConfiguration().validate(
-      {
-        configType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is an identifier that
-   *   defines a specific type of configuration.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.search] - Get configuration list filtered by `search` string.
-   * @summary: Get the details of the application configured configurations of listing config types.
-   * @description: Get the details of the application configured configurations of listing config types.
-   */
-  getListingConfigurations({ configType, pageNo, pageSize, search } = {}) {
-    const { error } = CatalogValidator.getListingConfigurations().validate(
-      {
-        configType,
-        pageNo,
-        pageSize,
-        search,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["search"] = search;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular listing configuration type.
-   * @param {string} arg.configId - A `config_id` is a unique identifier of a
-   *   particular configuration.
-   * @param {AppConfigurationsSort} arg.body
-   * @summary: Update configuration for listings
-   * @description: Update configuration for listing.
-   */
-  updateListingConfiguration({ configType, configId, body } = {}) {
-    const { error } = CatalogValidator.updateListingConfiguration().validate(
-      {
-        configType,
-        configId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular listing configuration type.
-   * @param {string} arg.configId - A `config_id` is a unique identifier of a
-   *   particular configuration.
-   * @summary: Delete configuration for listings
-   * @description: Delete configuration for listing.
-   */
-  deleteListingConfiguration({ configType, configId } = {}) {
-    const { error } = CatalogValidator.deleteListingConfiguration().validate(
-      {
-        configType,
-        configId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AllowSingleRequest} arg.body
-   * @summary: Update allow single flag for filters of the application.
-   * @description: Update allow single flag for filters of the application.
-   */
-  updateAllowSingle({ body } = {}) {
-    const { error } = CatalogValidator.updateAllowSingle().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/filter/allow_single`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DefaultKeyRequest} arg.body
-   * @summary: Update the default sort key configuration for the application.
-   * @description: Update the default sort key configuration for the application.
-   */
-  updateDefaultSort({ body } = {}) {
-    const { error } = CatalogValidator.updateDefaultSort().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/sort/default_key`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get configuration meta  details for catalog for admin panel
-   * @description: configuration meta  details for catalog.
-   */
-  getCatalogConfiguration({} = {}) {
-    const { error } = CatalogValidator.getCatalogConfiguration().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/metadata/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppConfiguration} arg.body
-   * @summary: Add configuration for products & listings
-   * @description: Add configuration for products & listing.
-   */
-  createConfigurationProductListing({ body } = {}) {
-    const {
-      error,
-    } = CatalogValidator.createConfigurationProductListing().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get configured details for catalog
-   * @description: configured details for catalog.
-   */
-  getConfigurations({} = {}) {
-    const { error } = CatalogValidator.getConfigurations().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.type - Type can be brands, categories etc.
-   * @param {AppConfiguration} arg.body
-   * @summary: Add configuration for categories and brands
-   * @description: Add configuration for categories & brands.
-   */
-  createConfigurationByType({ type, body } = {}) {
-    const { error } = CatalogValidator.createConfigurationByType().validate(
-      {
-        type,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.type - Type can be brands, categories etc.
-   * @summary: Get configured details for catalog
-   * @description: configured details for catalog.
-   */
-  getConfigurationByType({ type } = {}) {
-    const { error } = CatalogValidator.getConfigurationByType().validate(
-      {
-        type,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get query filters to configure a collection
-   * @description: Get query filters to configure a collection
-   */
-  getQueryFilters({} = {}) {
-    const { error } = CatalogValidator.getQueryFilters().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateCollection} arg.body
-   * @summary: Add a Collection
-   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-   */
-  createCollection({ body } = {}) {
-    const { error } = CatalogValidator.createCollection().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - Get collection list filtered by q string,
-   * @param {string} [arg.scheduleStatus] - Get collection list filtered by
-   *   scheduled status,
-   * @param {string} [arg.type] - Type of the collections
-   * @param {string[]} [arg.tags] - Each response will contain next_id param,
-   *   which should be sent back to make pagination work.
-   * @param {boolean} [arg.isActive] - Get collections filtered by active status.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @summary: List all the collections
-   * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
-   */
-  getAllCollections({
-    q,
-    scheduleStatus,
-    type,
-    tags,
-    isActive,
-    pageNo,
-    pageSize,
-  } = {}) {
-    const { error } = CatalogValidator.getAllCollections().validate(
-      {
-        q,
-        scheduleStatus,
-        type,
-        tags,
-        isActive,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-    query_params["schedule_status"] = scheduleStatus;
-    query_params["type"] = type;
-    query_params["tags"] = tags;
-    query_params["is_active"] = isActive;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A `slug` is a human readable, URL friendly
-   *   unique identifier of an object. Pass the `slug` of the collection which
-   *   you want to retrieve.
-   * @summary: Get a particular collection
-   * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
-   */
-  getCollectionDetail({ slug } = {}) {
-    const { error } = CatalogValidator.getCollectionDetail().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${slug}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {UpdateCollection} arg.body
-   * @summary: Update a collection
-   * @description: Update a collection by it's id. On successful request, returns the updated collection
-   */
-  updateCollection({ id, body } = {}) {
-    const { error } = CatalogValidator.updateCollection().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @summary: Delete a Collection
-   * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-   */
-  deleteCollection({ id } = {}) {
-    const { error } = CatalogValidator.deleteCollection().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {CollectionItemRequest} arg.body
-   * @summary: Add items to a collection
-   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-   */
-  addCollectionItems({ id, body } = {}) {
-    const { error } = CatalogValidator.addCollectionItems().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {string} [arg.sortOn] - Each response will contain sort_on param,
-   *   which should be sent back to make pagination work.
-   * @param {string} [arg.pageId] - Each response will contain next_id param,
-   *   which should be sent back to make pagination work.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @summary: Get the items for a collection
-   * @description: Get items from a collection specified by its `id`.
-   */
-  getCollectionItems({ id, sortOn, pageId, pageSize } = {}) {
-    const { error } = CatalogValidator.getCollectionItems().validate(
-      {
-        id,
-        sortOn,
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["sort_on"] = sortOn;
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.brand] - Brand slug
-   * @summary: Analytics data of catalog and inventory.
-   * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
-   */
-  getCatalogInsights({ brand } = {}) {
-    const { error } = CatalogValidator.getCatalogInsights().validate(
-      {
-        brand,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["brand"] = brand;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/analytics/insights/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search with help of store code.
-   * @param {number[]} [arg.locationIds] - Search by store ids.
-   * @summary: Get Inventory for company
-   * @description: This API allows get Inventory data for particular company grouped by size and store.
-   */
-  getDiscountedInventoryBySizeIdentifier({
-    itemId,
-    sizeIdentifier,
-    pageNo,
-    pageSize,
-    q,
-    locationIds,
-  } = {}) {
-    const {
-      error,
-    } = CatalogValidator.getDiscountedInventoryBySizeIdentifier().validate(
-      {
-        itemId,
-        sizeIdentifier,
-        pageNo,
-        pageSize,
-        q,
-        locationIds,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-    query_params["location_ids"] = locationIds;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products/${itemId}/inventory/${sizeIdentifier}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.department] - The name of the department. Use this
-   *   parameter to filter products by a particular department. See below the
-   *   list of available departments. You can retrieve available departments
-   *   from the **v1.0/departments/** API
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
-   * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
-   *   basis of uid list.
-   * @summary: List all the brands
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-   */
-  getApplicationBrands({ department, pageNo, pageSize, q, brandId } = {}) {
-    const { error } = CatalogValidator.getApplicationBrands().validate(
-      {
-        department,
-        pageNo,
-        pageSize,
-        q,
-        brandId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["department"] = department;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-    query_params["brand_id"] = brandId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/brands`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
-   * @param {string} [arg.department] - The name of the department. Use this
-   *   parameter to filter products by a particular department. See below the
-   *   list of available departments. You can retrieve available departments
-   *   from the **v1.0/departments/** API
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
-   * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
-   *   basis of uid list.
-   * @summary: List all the brands
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-   */
-  getApplicationBrandsPaginator({
-    companyId,
-    applicationId,
-    department,
-    pageSize,
-    q,
-    brandId,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getApplicationBrands({
-        companyId: companyId,
-        applicationId: applicationId,
-        department: department,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
-        brandId: brandId,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: List all the departments
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
-   */
-  getDepartments({} = {}) {
-    const { error } = CatalogValidator.getDepartments().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/departments`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.department] - The name of the department. Use this
-   *   parameter to filter products by a particular department. See below the
-   *   list of available departments. You can retrieve available departments
-   *   from the **v1.0/departments/** API
-   * @summary: List all the categories
-   * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
-   */
-  getCategories({ department } = {}) {
-    const { error } = CatalogValidator.getCategories().validate(
-      {
-        department,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["department"] = department;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/categories`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The search query. This can be a partial or
-   *   complete name of a either a product, brand or category
-   * @param {string} [arg.f] - The search filter parameters. All the parameter
-   *   filtered from filter parameters will be passed in **f** parameter in
-   *   this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
-   * @param {string} [arg.c] - The search filter parameters for collection
-   *   items. All the parameter filtered from filter parameters will be passed
-   *   in **c** parameter in this format.
-   *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-   * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
-   *   filter details. This flag is used to fetch all filters
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
-   * @param {string} [arg.sortOn] - The order to sort the list of products on.
-   *   The supported sort parameters are popularity, price, redemption and
-   *   discount in either ascending or descending order. See the supported
-   *   values below.
-   * @param {string} [arg.pageId] - Each response will contain **page_id**
-   *   param, which should be sent back to make pagination work.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {number} [arg.pageNo] - If page_type is number then pass it to
-   *   fetch page items. Default is 1.
-   * @param {string} [arg.pageType] - For pagination type should be cursor or
-   *   number. Default is cursor.
-   * @param {number[]} [arg.itemIds] - Item Ids of product
-   * @summary: List the products
-   * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
-   */
-  getAppicationProducts({
-    q,
-    f,
-    c,
-    filters,
-    isDependent,
-    sortOn,
-    pageId,
-    pageSize,
-    pageNo,
-    pageType,
-    itemIds,
-  } = {}) {
-    const { error } = CatalogValidator.getAppicationProducts().validate(
-      {
-        q,
-        f,
-        c,
-        filters,
-        isDependent,
-        sortOn,
-        pageId,
-        pageSize,
-        pageNo,
-        pageType,
-        itemIds,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-    query_params["f"] = f;
-    query_params["c"] = c;
-    query_params["filters"] = filters;
-    query_params["is_dependent"] = isDependent;
-    query_params["sort_on"] = sortOn;
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-    query_params["page_type"] = pageType;
-    query_params["item_ids"] = itemIds;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
-   * @param {string} [arg.q] - The search query. This can be a partial or
-   *   complete name of a either a product, brand or category
-   * @param {string} [arg.f] - The search filter parameters. All the parameter
-   *   filtered from filter parameters will be passed in **f** parameter in
-   *   this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
-   * @param {string} [arg.c] - The search filter parameters for collection
-   *   items. All the parameter filtered from filter parameters will be passed
-   *   in **c** parameter in this format.
-   *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
-   * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
-   *   filter details. This flag is used to fetch all filters
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
-   * @param {string} [arg.sortOn] - The order to sort the list of products on.
-   *   The supported sort parameters are popularity, price, redemption and
-   *   discount in either ascending or descending order. See the supported
-   *   values below.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {number[]} [arg.itemIds] - Item Ids of product
-   * @summary: List the products
-   * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
-   */
-  getAppicationProductsPaginator({
-    companyId,
-    applicationId,
-    q,
-    f,
-    c,
-    filters,
-    isDependent,
-    sortOn,
-    pageSize,
-    itemIds,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getAppicationProducts({
-        companyId: companyId,
-        applicationId: applicationId,
-        q: q,
-        f: f,
-        c: c,
-        filters: filters,
-        isDependent: isDependent,
-        sortOn: sortOn,
-        pageId: pageId,
-        pageSize: pageSize,
-        pageNo: pageNo,
-        pageType: pageType,
-        itemIds: itemIds,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - The unique identifier of a product. i.e;
-   *   `slug` of a product. You can retrieve these from the APIs that list
-   *   products like **v1.0/products/**
-   * @summary: Get a product
-   * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
-   */
-  getProductDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getProductDetailBySlug().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/products/${slug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
-   * @param {number[]} [arg.categoryIds] - Get multiple products filtered by
-   *   Category Ids
-   * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
-   *   Department Ids
-   * @param {string[]} [arg.tags] - Get multiple products filtered by tags
-   * @param {boolean} [arg.isDependent] - This query parameter is used to get
-   *   the dependent products in the listing.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @param {string} [arg.q] - Search with Item Code, Name, Slug or Identifier.
-   * @summary: Get applicationwise products
-   * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
-   */
-  getAppProducts({
-    brandIds,
-    categoryIds,
-    departmentIds,
-    tags,
-    isDependent,
-    pageNo,
-    pageSize,
-    q,
-  } = {}) {
-    const { error } = CatalogValidator.getAppProducts().validate(
-      {
-        brandIds,
-        categoryIds,
-        departmentIds,
-        tags,
-        isDependent,
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["brand_ids"] = brandIds;
-    query_params["category_ids"] = categoryIds;
-    query_params["department_ids"] = departmentIds;
-    query_params["tags"] = tags;
-    query_params["is_dependent"] = isDependent;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/raw-products/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number[]} [arg.itemIds] - The Item Id of the product.
-   * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
-   * @param {number[]} [arg.brandIds] - The Brand Id of products to fetch inventory.
-   * @param {string[]} [arg.sellerIdentifiers] - Unique seller_identifier of
-   *   the product.
-   * @param {string} [arg.timestamp] - Timestamp in UTC format (2020-07-23T10:27:50Z)
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-   * @summary: Get the stock of a product
-   * @description: Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination
-   */
-  getAppInventory({
-    itemIds,
-    storeIds,
-    brandIds,
-    sellerIdentifiers,
-    timestamp,
-    pageSize,
-    pageId,
-  } = {}) {
-    const { error } = CatalogValidator.getAppInventory().validate(
-      {
-        itemIds,
-        storeIds,
-        brandIds,
-        sellerIdentifiers,
-        timestamp,
-        pageSize,
-        pageId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["item_ids"] = itemIds;
-    query_params["store_ids"] = storeIds;
-    query_params["brand_ids"] = brandIds;
-    query_params["seller_identifiers"] = sellerIdentifiers;
-    query_params["timestamp"] = timestamp;
-    query_params["page_size"] = pageSize;
-    query_params["page_id"] = pageId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/inventory/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.storeType] - Helps to sort the location list on the
-   *   basis of location type.
-   * @param {number[]} [arg.uid] - Helps to sort the location list on the
-   *   basis of uid list.
-   * @param {string} [arg.q] - Query that is to be searched.
-   * @param {string} [arg.stage] - To filter companies on basis of verified or
-   *   unverified companies.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 20.
-   * @summary: Get list of locations
-   * @description: This API allows to view all the locations asscoiated to a application.
-   */
-  getAppLocations({ storeType, uid, q, stage, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getAppLocations().validate(
-      {
-        storeType,
-        uid,
-        q,
-        stage,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["store_type"] = storeType;
-    query_params["uid"] = uid;
-    query_params["q"] = q;
-    query_params["stage"] = stage;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/locations`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Id of the company whose locations are to fetched
-   * @param {string} arg.applicationId - Id of the application whose locations
-   *   are to fetched
-   * @param {string} [arg.storeType] - Helps to sort the location list on the
-   *   basis of location type.
-   * @param {number[]} [arg.uid] - Helps to sort the location list on the
-   *   basis of uid list.
-   * @param {string} [arg.q] - Query that is to be searched.
-   * @param {string} [arg.stage] - To filter companies on basis of verified or
-   *   unverified companies.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 20.
-   * @summary: Get list of locations
-   * @description: This API allows to view all the locations asscoiated to a application.
-   */
-  getAppLocationsPaginator({
-    companyId,
-    applicationId,
-    storeType,
-    uid,
-    q,
-    stage,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAppLocations({
-        companyId: companyId,
-        applicationId: applicationId,
-        storeType: storeType,
-        uid: uid,
-        q: q,
-        stage: stage,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-   */
-  getApplicationBrandListing({ pageNo, pageSize, q } = {}) {
-    const { error } = CatalogValidator.getApplicationBrandListing().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/brand`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-   */
-  getApplicationBrandListingPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getApplicationBrandListing({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.brandUid - Brand id for which the custom_json is associated.
-   * @param {ApplicationBrandJson} arg.body
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta.
-   */
-  updateAppBrand({ brandUid, body } = {}) {
-    const { error } = CatalogValidator.updateAppBrand().validate(
-      {
-        brandUid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/brand/${brandUid}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.departmentId] - A `department_id` is a unique
-   *   identifier for a particular department.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-   */
-  getApplicationCategoryListing({ departmentId, pageNo, pageSize, q } = {}) {
-    const { error } = CatalogValidator.getApplicationCategoryListing().validate(
-      {
-        departmentId,
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["department_id"] = departmentId;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/category`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
-   * @param {number} [arg.departmentId] - A `department_id` is a unique
-   *   identifier for a particular department.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search brands by brand name.
-   * @summary: List all the brands for the application
-   * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
-   */
-  getApplicationCategoryListingPaginator({
-    companyId,
-    applicationId,
-    departmentId,
-    pageSize,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getApplicationCategoryListing({
-        companyId: companyId,
-        applicationId: applicationId,
-        departmentId: departmentId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.categoryUid - Category id for which the custom_json
-   *   is associated.
-   * @param {ApplicationCategoryJson} arg.body
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta.
-   */
-  updateAppCategory({ categoryUid, body } = {}) {
-    const { error } = CatalogValidator.updateAppCategory().validate(
-      {
-        categoryUid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/category/${categoryUid}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search department by name.
-   * @summary: List all the departments for the application
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
-   */
-  getApplicationDepartmentListing({ pageNo, pageSize, q } = {}) {
-    const {
-      error,
-    } = CatalogValidator.getApplicationDepartmentListing().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/department`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - A `company_id` is a unique identifier for
-   *   a particular seller account.
-   * @param {string} arg.applicationId - A `application_id` is a unique
-   *   identifier for a particular sale channel.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search query with brand name.Use this parameter
-   *   to search department by name.
-   * @summary: List all the departments for the application
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
-   */
-  getApplicationDepartmentListingPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getApplicationDepartmentListing({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.departmentUid - Department id for which the
-   *   custom_json is associated.
-   * @param {ApplicationDepartmentJson} arg.body
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta.
-   */
-  updateAppDepartment({ departmentUid, body } = {}) {
-    const { error } = CatalogValidator.updateAppDepartment().validate(
-      {
-        departmentUid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/department/${departmentUid}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.storeUid - Store id for which the custom_json is associated.
-   * @param {ApplicationStoreJson} arg.body
-   * @summary: Update a single custom json.
-   * @description: This API helps to update data associated to a item custom meta.
-   */
-  updateAppLocation({ storeUid, body } = {}) {
-    const { error } = CatalogValidator.updateAppLocation().validate(
-      {
-        storeUid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/${storeUid}`,
-      query_params,
-      body
-    );
-  }
-}
-
-class FileStorage {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {StartRequest} arg.body
-   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-   * @description: Uploads an arbitrarily sized buffer or blob.
-   *
-   * It has three Major Steps:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `appStartUpload`.
-   * It returns the storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-   *
-   * ### Complete
-   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
-   * This operation will return the url for the uploaded file.
-   */
-  appStartUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.appStartUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {StartResponse} arg.body
-   * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
-   * @description: Uploads an arbitrarily sized buffer or blob.
-   *
-   * It has three Major Steps:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `appStartUpload`.
-   * It returns the storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-   *
-   * ### Complete
-   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
-   * This operation will return the url for the uploaded file.
-   */
-  appCompleteUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.appCompleteUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.sync] - Sync
-   * @param {BulkRequest} arg.body
-   * @summary: Copy Files
-   * @description: Copy Files
-   */
-  appCopyFiles({ body, sync } = {}) {
-    const { error } = FileStorageValidator.appCopyFiles().validate(
-      {
-        body,
-        sync,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["sync"] = sync;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} [arg.pageNo] - Page no
-   * @summary: Browse Files
-   * @description: Browse Files
-   */
-  browse({ namespace, pageNo } = {}) {
-    const { error } = FileStorageValidator.browse().validate(
-      {
-        namespace,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} arg.companyId - Company_id
-   * @param {number} arg.applicationId - Application_id
-   * @summary: Browse Files
-   * @description: Browse Files
-   */
-  browsePaginator({ namespace, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.browse({
-        namespace: namespace,
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-}
-
-/**
- * @param data
- * @param {string} file_name
- * @param {string} content_type
- * @param {string} namespace
- * @param {number} size
- * @param {number} tags
- */
-FileStorage.prototype.upload = function ({
-  data,
-  file_name,
-  content_type,
-  namespace,
-  size,
-  tags,
-} = {}) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const dataObj = await this.appStartUpload({
-        namespace,
-        body: {
-          file_name,
-          content_type,
-          size: size,
-          tags: tags,
-        },
-      });
-      if (dataObj.upload && dataObj.upload.url) {
-        await axios.put(dataObj.upload.url, data, {
-          withCredentials: false,
-          headers: { "Content-Type": content_type },
-        });
-      } else {
-        reject({ message: "Failed to upload file" });
-      }
-      delete dataObj.tags;
-
-      const completeRes = await this.appCompleteUpload({
-        namespace,
-        body: dataObj,
-      });
-
-      resolve(completeRes);
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
-
-class Share {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ShortLinkReq} arg.body
-   * @summary: Create short link
-   * @description: Create short link
-   */
-  createShortLink({ body } = {}) {
-    const { error } = ShareValidator.createShortLink().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page number
-   * @param {number} [arg.pageSize] - Current page size
-   * @param {string} [arg.createdBy] - Short link creator
-   * @param {string} [arg.active] - Short link active status
-   * @param {string} [arg.q] - Search text for original and short url
-   * @summary: Get short links
-   * @description: Get short links
-   */
-  getShortLinks({ pageNo, pageSize, createdBy, active, q } = {}) {
-    const { error } = ShareValidator.getShortLinks().validate(
-      {
-        pageNo,
-        pageSize,
-        createdBy,
-        active,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["created_by"] = createdBy;
-    query_params["active"] = active;
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company Id
-   * @param {string} arg.applicationId - Application Id
-   * @param {number} [arg.pageSize] - Current page size
-   * @param {string} [arg.createdBy] - Short link creator
-   * @param {string} [arg.active] - Short link active status
-   * @param {string} [arg.q] - Search text for original and short url
-   * @summary: Get short links
-   * @description: Get short links
-   */
-  getShortLinksPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    createdBy,
-    active,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getShortLinks({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        createdBy: createdBy,
-        active: active,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.hash - Hash of short url
-   * @summary: Get short link by hash
-   * @description: Get short link by hash
-   */
-  getShortLinkByHash({ hash } = {}) {
-    const { error } = ShareValidator.getShortLinkByHash().validate(
-      {
-        hash,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Short link document identifier
-   * @param {ShortLinkReq} arg.body
-   * @summary: Update short link by id
-   * @description: Update short link by id
-   */
-  updateShortLinkById({ id, body } = {}) {
-    const { error } = ShareValidator.updateShortLinkById().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}/`,
-      query_params,
-      body
-    );
-  }
-}
-
-class Configuration {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @summary: Get latest build config
-   * @description: Get latest build config
-   */
-  getBuildConfig({ platformType } = {}) {
-    const { error } = ConfigurationValidator.getBuildConfig().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @param {MobileAppConfigRequest} arg.body
-   * @summary: Update build config for next build
-   * @description: Update build config for next build
-   */
-  updateBuildConfig({ platformType, body } = {}) {
-    const { error } = ConfigurationValidator.updateBuildConfig().validate(
-      {
-        platformType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @summary: Get previous build versions
-   * @description: Get previous build versions
-   */
-  getPreviousVersions({ platformType } = {}) {
-    const { error } = ConfigurationValidator.getPreviousVersions().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get features of application
-   * @description: Get features of application
-   */
-  getAppFeatures({} = {}) {
-    const { error } = ConfigurationValidator.getAppFeatures().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppFeatureRequest} arg.body
-   * @summary: Update features of application
-   * @description: Update features of application
-   */
-  updateAppFeatures({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppFeatures().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get basic application details
-   * @description: Get basic application details like name
-   */
-  getAppBasicDetails({} = {}) {
-    const { error } = ConfigurationValidator.getAppBasicDetails().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationDetail} arg.body
-   * @summary: Add or update application's basic details
-   * @description: Add or update application's basic details
-   */
-  updateAppBasicDetails({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppBasicDetails().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get application information
-   * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-   */
-  getAppContactInfo({} = {}) {
-    const { error } = ConfigurationValidator.getAppContactInfo().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationInformation} arg.body
-   * @summary: Get application information
-   * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
-   */
-  updateAppContactInfo({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppContactInfo().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get social tokens
-   * @description: Get social tokens.
-   */
-  getAppApiTokens({} = {}) {
-    const { error } = ConfigurationValidator.getAppApiTokens().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {TokenResponse} arg.body
-   * @summary: Add social tokens
-   * @description: Add social tokens.
-   */
-  updateAppApiTokens({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppApiTokens().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.uid] - Uid of companies to be fetched
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @summary: Application inventory enabled companies
-   * @description: Application inventory enabled companies.
-   */
-  getAppCompanies({ uid, pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getAppCompanies().validate(
-      {
-        uid,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["uid"] = uid;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/companies`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current application id
-   * @param {number} [arg.uid] - Uid of companies to be fetched
-   * @param {number} [arg.pageSize] - Current request items count
-   * @summary: Application inventory enabled companies
-   * @description: Application inventory enabled companies.
-   */
-  getAppCompaniesPaginator({ companyId, applicationId, uid, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAppCompanies({
-        companyId: companyId,
-        applicationId: applicationId,
-        uid: uid,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @summary: Application inventory enabled stores
-   * @description: Application inventory enabled stores.
-   */
-  getAppStores({ pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getAppStores().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stores`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @summary: Application inventory enabled stores
-   * @description: Application inventory enabled stores.
-   */
-  getAppStoresPaginator({ companyId, applicationId, pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAppStores({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get application configuration
-   * @description: Get application configuration for various features and data
-   */
-  getInventoryConfig({} = {}) {
-    const { error } = ConfigurationValidator.getInventoryConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationInventory} arg.body
-   * @summary: Update application configuration
-   * @description: Update application configuration for various features and data
-   */
-  updateInventoryConfig({ body } = {}) {
-    const { error } = ConfigurationValidator.updateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppInventoryPartialUpdate} arg.body
-   * @summary: Partially update application configuration
-   * @description: Partially update application configuration for various features and data
-   */
-  partiallyUpdateInventoryConfig({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get application enabled currency list
-   * @description: Get application enabled currency list
-   */
-  getAppCurrencyConfig({} = {}) {
-    const { error } = ConfigurationValidator.getAppCurrencyConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppSupportedCurrency} arg.body
-   * @summary: Add initial application supported currency
-   * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
-   */
-  updateAppCurrencyConfig({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppCurrencyConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get currencies enabled in the application
-   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
-   */
-  getAppSupportedCurrency({} = {}) {
-    const { error } = ConfigurationValidator.getAppSupportedCurrency().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency/supported`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {FilterOrderingStoreRequest} arg.body
-   * @summary: Get ordering store by filter
-   * @description: Get ordering store by filter
-   */
-  getOrderingStoresByFilter({ body, pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.getOrderingStoresByFilter().validate(
-      {
-        body,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {FilterOrderingStoreRequest} arg.body
-   * @summary: Get ordering store by filter
-   * @description: Get ordering store by filter
-   */
-  getOrderingStoresByFilterPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    body,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getOrderingStoresByFilter({
-        companyId: companyId,
-        applicationId: applicationId,
-        body: body,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {OrderingStoreConfig} arg.body
-   * @summary: Add/Update ordering store config
-   * @description: Add/Update ordering store config.
-   */
-  updateOrderingStoreConfig({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {string} [arg.q] - Store code or name of the ordering store.
-   * @summary: Get deployment stores
-   * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
-   */
-  getStaffOrderingStores({ pageNo, pageSize, q } = {}) {
-    const { error } = ConfigurationValidator.getStaffOrderingStores().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/staff-stores`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current application id
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {string} [arg.q] - Store code or name of the ordering store.
-   * @summary: Get deployment stores
-   * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
-   */
-  getStaffOrderingStoresPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getStaffOrderingStores({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get attached domain list
-   * @description: Get attached domain list.
-   */
-  getDomains({} = {}) {
-    const { error } = ConfigurationValidator.getDomains().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DomainAddRequest} arg.body
-   * @summary: Add new domain to application
-   * @description: Add new domain to application.
-   */
-  addDomain({ body } = {}) {
-    const { error } = ConfigurationValidator.addDomain().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Domain _id
-   * @summary: Remove attached domain
-   * @description: Remove attached domain.
-   */
-  removeDomainById({ id } = {}) {
-    const { error } = ConfigurationValidator.removeDomainById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {UpdateDomainTypeRequest} arg.body
-   * @summary: Change domain type
-   * @description: Change a domain to Primary or Shortlink domain
-   */
-  changeDomainType({ body } = {}) {
-    const { error } = ConfigurationValidator.changeDomainType().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DomainStatusRequest} arg.body
-   * @summary: Get domain connected status.
-   * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
-   */
-  getDomainStatus({ body } = {}) {
-    const { error } = ConfigurationValidator.getDomainStatus().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get application data from id
-   * @description: Get application data from id
-   */
-  getApplicationById({} = {}) {
-    const { error } = ConfigurationValidator.getApplicationById().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Cart {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {boolean} [arg.isArchived] -
-   * @param {string} [arg.title] -
-   * @param {boolean} [arg.isPublic] -
-   * @param {boolean} [arg.isDisplay] -
-   * @param {string} [arg.typeSlug] -
-   * @param {string} [arg.code] -
-   * @summary: Get with single coupon details or coupon list
-   * @description: Get coupon list with pagination
-   */
-  getCoupons({
-    pageNo,
-    pageSize,
-    isArchived,
-    title,
-    isPublic,
-    isDisplay,
-    typeSlug,
-    code,
-  } = {}) {
-    const { error } = CartValidator.getCoupons().validate(
-      {
-        pageNo,
-        pageSize,
-        isArchived,
-        title,
-        isPublic,
-        isDisplay,
-        typeSlug,
-        code,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["is_archived"] = isArchived;
-    query_params["title"] = title;
-    query_params["is_public"] = isPublic;
-    query_params["is_display"] = isDisplay;
-    query_params["type_slug"] = typeSlug;
-    query_params["code"] = code;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current Application _id
-   * @param {number} [arg.pageSize] -
-   * @param {boolean} [arg.isArchived] -
-   * @param {string} [arg.title] -
-   * @param {boolean} [arg.isPublic] -
-   * @param {boolean} [arg.isDisplay] -
-   * @param {string} [arg.typeSlug] -
-   * @param {string} [arg.code] -
-   * @summary: Get with single coupon details or coupon list
-   * @description: Get coupon list with pagination
-   */
-  getCouponsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    isArchived,
-    title,
-    isPublic,
-    isDisplay,
-    typeSlug,
-    code,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCoupons({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        isArchived: isArchived,
-        title: title,
-        isPublic: isPublic,
-        isDisplay: isDisplay,
-        typeSlug: typeSlug,
-        code: code,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CouponAdd} arg.body
-   * @summary: Create new coupon
-   * @description: Create new coupon
-   */
-  createCoupon({ body } = {}) {
-    const { error } = CartValidator.createCoupon().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @summary: Get with single coupon details or coupon list
-   * @description: Get single coupon details with `id` in path param
-   */
-  getCouponById({ id } = {}) {
-    const { error } = CartValidator.getCouponById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @param {CouponUpdate} arg.body
-   * @summary: Update existing coupon configuration
-   * @description: Update coupon with id sent in `id`
-   */
-  updateCoupon({ id, body } = {}) {
-    const { error } = CartValidator.updateCoupon().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @param {CouponPartialUpdate} arg.body
-   * @summary: Update coupon archive state and schedule
-   * @description: Update archive/unarchive and change schedule for coupon
-   */
-  updateCouponPartially({ id, body } = {}) {
-    const { error } = CartValidator.updateCouponPartially().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.q] -
-   * @param {string} [arg.status] -
-   * @param {string} [arg.promoGroup] -
-   * @param {string} [arg.promotionType] -
-   * @param {string} [arg.fpPanel] -
-   * @param {string} [arg.promotionId] -
-   * @summary: Get promotion list
-   * @description: Get promotion list with pagination
-   */
-  getPromotions({
-    pageNo,
-    pageSize,
-    q,
-    status,
-    promoGroup,
-    promotionType,
-    fpPanel,
-    promotionId,
-  } = {}) {
-    const { error } = CartValidator.getPromotions().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-        status,
-        promoGroup,
-        promotionType,
-        fpPanel,
-        promotionId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-    query_params["status"] = status;
-    query_params["promo_group"] = promoGroup;
-    query_params["promotion_type"] = promotionType;
-    query_params["fp_panel"] = fpPanel;
-    query_params["promotion_id"] = promotionId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current Application _id
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.q] -
-   * @param {string} [arg.status] -
-   * @param {string} [arg.promoGroup] -
-   * @param {string} [arg.promotionType] -
-   * @param {string} [arg.fpPanel] -
-   * @param {string} [arg.promotionId] -
-   * @summary: Get promotion list
-   * @description: Get promotion list with pagination
-   */
-  getPromotionsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    q,
-    status,
-    promoGroup,
-    promotionType,
-    fpPanel,
-    promotionId,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getPromotions({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        q: q,
-        status: status,
-        promoGroup: promoGroup,
-        promotionType: promotionType,
-        fpPanel: fpPanel,
-        promotionId: promotionId,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PromotionAdd} arg.body
-   * @summary: Create new promotion
-   * @description: Create new promotion
-   */
-  createPromotion({ body } = {}) {
-    const { error } = CartValidator.createPromotion().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @summary: Get with single promotion details or promotion list
-   * @description: Get single promotion details with `id` in path param
-   */
-  getPromotionById({ id } = {}) {
-    const { error } = CartValidator.getPromotionById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @param {PromotionUpdate} arg.body
-   * @summary: Update existing promotion configuration
-   * @description: Update promotion with id sent in `id`
-   */
-  updatePromotion({ id, body } = {}) {
-    const { error } = CartValidator.updatePromotion().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @param {PromotionPartialUpdate} arg.body
-   * @summary: Update promotion publish state and schedule
-   * @description: Update publish/unpublish and change schedule for promotion
-   */
-  updatePromotionPartially({ id, body } = {}) {
-    const { error } = CartValidator.updatePromotionPartially().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Fetch all promos that are set as active
-   * @description: Use this API to get list of all the active promos/coupons.
-   */
-  getPromosCouponConfig({} = {}) {
-    const { error } = CartValidator.getPromosCouponConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-coupons`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {OpenapiCartDetailsRequest} arg.body
-   * @summary: Fetch Cart Details
-   * @description: Get all the details of cart for a list of provided `cart_items`
-   */
-  fetchAndvalidateCartItems({ body } = {}) {
-    const { error } = CartValidator.fetchAndvalidateCartItems().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/validate`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {OpenApiCartServiceabilityRequest} arg.body
-   * @summary: Check Pincode Serviceability
-   * @description: Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
-   */
-  checkCartServiceability({ body } = {}) {
-    const { error } = CartValidator.checkCartServiceability().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/serviceability`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {OpenApiPlatformCheckoutReq} arg.body
-   * @summary: Create Fynd order with cart details
-   * @description: Generate Fynd order for cart details send with provided `cart_items`
-   */
-  checkoutCart({ body } = {}) {
-    const { error } = CartValidator.checkoutCart().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/checkout`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {boolean} [arg.anonymousCart] -
-   * @param {string} [arg.lastId] -
-   * @param {string} [arg.sortOn] -
-   * @summary: Get with abandoned cart list
-   * @description: Get abandoned cart list with pagination
-   */
-  getAbandonedCart({
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    anonymousCart,
-    lastId,
-    sortOn,
-  } = {}) {
-    const { error } = CartValidator.getAbandonedCart().validate(
-      {
-        pageNo,
-        pageSize,
-        fromDate,
-        toDate,
-        anonymousCart,
-        lastId,
-        sortOn,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["anonymous_cart"] = anonymousCart;
-    query_params["last_id"] = lastId;
-    query_params["sort_on"] = sortOn;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Current company id
-   * @param {string} arg.applicationId - Current Application _id
-   * @param {number} [arg.pageSize] -
-   * @param {string} [arg.fromDate] -
-   * @param {string} [arg.toDate] -
-   * @param {boolean} [arg.anonymousCart] -
-   * @param {string} [arg.lastId] -
-   * @param {string} [arg.sortOn] -
-   * @summary: Get with abandoned cart list
-   * @description: Get abandoned cart list with pagination
-   */
-  getAbandonedCartPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    fromDate,
-    toDate,
-    anonymousCart,
-    lastId,
-    sortOn,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAbandonedCart({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        fromDate: fromDate,
-        toDate: toDate,
-        anonymousCart: anonymousCart,
-        lastId: lastId,
-        sortOn: sortOn,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @summary: Fetch all items added to the cart
-   * @description: Use this API to get details of all the items added to a cart.
-   */
-  getAbandonedCartDetails({ id, i, b } = {}) {
-    const { error } = CartValidator.getAbandonedCartDetails().validate(
-      {
-        id,
-        i,
-        b,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["i"] = i;
-    query_params["b"] = b;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/cart/detail`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.cartId - Current Cart _id
-   * @param {boolean} [arg.b] -
-   * @param {AddCartRequest} arg.body
-   * @summary: Add items to abandoned cart
-   * @description: Use this API to add items to the abandoned cart.
-   */
-  addItems({ cartId, body, b } = {}) {
-    const { error } = CartValidator.addItems().validate(
-      {
-        cartId,
-        body,
-        b,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["b"] = b;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts/${cartId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.cartId - Current Cart _id
-   * @param {boolean} [arg.b] -
-   * @param {UpdateCartRequest} arg.body
-   * @summary: Update items in the abandoned cart
-   * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-   */
-  updateCart({ cartId, body, b } = {}) {
-    const { error } = CartValidator.updateCart().validate(
-      {
-        cartId,
-        body,
-        b,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["b"] = b;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts/${cartId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {GetShareCartLinkRequest} arg.body
-   * @summary: Generate token for sharing the cart
-   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
-   */
-  getCartShareLink({ body } = {}) {
-    const { error } = CartValidator.getCartShareLink().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.token - Token of the shared short link
-   * @summary: Get details of a shared cart
-   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
-   */
-  getCartSharedItems({ token } = {}) {
-    const { error } = CartValidator.getCartSharedItems().validate(
-      {
-        token,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart/${token}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.token - Token of the shared short link
-   * @param {string} arg.action - Operation to perform on the existing cart
-   *   merge or replace.
-   * @param {string} [arg.cartId] -
-   * @summary: Merge or replace existing cart
-   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
-   */
-  updateCartWithSharedItems({ token, action, cartId } = {}) {
-    const { error } = CartValidator.updateCartWithSharedItems().validate(
-      {
-        token,
-        action,
-        cartId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["cart_id"] = cartId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart/${token}/${action}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get cart list for store os user
-   * @description: Get all carts for the store os user which is created for customer
-   */
-  getCartList({} = {}) {
-    const { error } = CartValidator.getCartList().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart-list`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {UpdateUserCartMapping} arg.body
-   * @summary: Update user id for store os customer
-   * @description: Update user id for store os customer after creating customer
-   */
-  updateCartUser({ body, id } = {}) {
-    const { error } = CartValidator.updateCartUser().validate(
-      {
-        body,
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/update-user`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {number} [arg.assignCardId] -
-   * @param {boolean} [arg.buyNow] -
-   * @summary: Fetch all items added to the customer cart using cart id
-   * @description: Use this API to get details of all the items added to a cart.
-   */
-  getCart({ id, i, b, assignCardId, buyNow } = {}) {
-    const { error } = CartValidator.getCart().validate(
-      {
-        id,
-        i,
-        b,
-        assignCardId,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["i"] = i;
-    query_params["b"] = b;
-    query_params["assign_card_id"] = assignCardId;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.id] -
-   * @param {AddCartRequest} arg.body
-   * @summary: Add items to cart
-   * @description: Use this API to add items to the cart.
-   */
-  addItems({ body, i, b, buyNow, id } = {}) {
-    const { error } = CartValidator.addItems().validate(
-      {
-        body,
-        i,
-        b,
-        buyNow,
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["i"] = i;
-    query_params["b"] = b;
-    query_params["buy_now"] = buyNow;
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {UpdateCartRequest} arg.body
-   * @summary: Update items in the customer 's cart using cart id
-   * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-   */
-  updateCart({ body, id, i, b, buyNow } = {}) {
-    const { error } = CartValidator.updateCart().validate(
-      {
-        body,
-        id,
-        i,
-        b,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["i"] = i;
-    query_params["b"] = b;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart.
-   * @summary: Delete cart once user made successful checkout
-   * @description: Use this API to delete the cart.
-   */
-  deleteCart({ id } = {}) {
-    const { error } = CartValidator.deleteCart().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_archive`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] - The unique identifier of the cart.
-   * @param {boolean} [arg.buyNow] -
-   * @summary: Count items in the customer's cart
-   * @description: Use this API to get the total number of items present in cart.
-   */
-  getItemCount({ id, buyNow } = {}) {
-    const { error } = CartValidator.getItemCount().validate(
-      {
-        id,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/basic`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @summary: Fetch Coupon
-   * @description: Use this API to get a list of available coupons along with their details.
-   */
-  getCoupons({ id, buyNow } = {}) {
-    const { error } = CartValidator.getCoupons().validate(
-      {
-        id,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {boolean} [arg.p] -
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {ApplyCouponRequest} arg.body
-   * @summary: Apply Coupon for platform pos user
-   * @description: Use this API to apply coupons on items in the cart.
-   */
-  applyCoupon({ body, i, b, p, id, buyNow } = {}) {
-    const { error } = CartValidator.applyCoupon().validate(
-      {
-        body,
-        i,
-        b,
-        p,
-        id,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["i"] = i;
-    query_params["b"] = b;
-    query_params["p"] = p;
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.uid] -
-   * @param {boolean} [arg.buyNow] -
-   * @summary: Remove Applied Coupon for platform pos user
-   * @description: Remove Coupon applied on the cart by passing uid in request body.
-   */
-  removeCoupon({ uid, buyNow } = {}) {
-    const { error } = CartValidator.removeCoupon().validate(
-      {
-        uid,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["uid"] = uid;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.mobileNo] -
-   * @param {string} [arg.checkoutMode] -
-   * @param {string} [arg.tags] -
-   * @param {boolean} [arg.isDefault] -
-   * @param {string} [arg.userId] -
-   * @summary: Fetch address
-   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-   */
-  getAddresses({
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-    userId,
-  } = {}) {
-    const { error } = CartValidator.getAddresses().validate(
-      {
-        cartId,
-        buyNow,
-        mobileNo,
-        checkoutMode,
-        tags,
-        isDefault,
-        userId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["cart_id"] = cartId;
-    query_params["buy_now"] = buyNow;
-    query_params["mobile_no"] = mobileNo;
-    query_params["checkout_mode"] = checkoutMode;
-    query_params["tags"] = tags;
-    query_params["is_default"] = isDefault;
-    query_params["user_id"] = userId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PlatformAddress} arg.body
-   * @summary: Add address to an account
-   * @description: Use this API to add an address to an account.
-   */
-  addAddress({ body } = {}) {
-    const { error } = CartValidator.addAddress().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id -
-   * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.mobileNo] -
-   * @param {string} [arg.checkoutMode] -
-   * @param {string} [arg.tags] -
-   * @param {boolean} [arg.isDefault] -
-   * @param {string} [arg.userId] -
-   * @summary: Fetch a single address by its ID
-   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
-   */
-  getAddressById({
-    id,
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-    userId,
-  } = {}) {
-    const { error } = CartValidator.getAddressById().validate(
-      {
-        id,
-        cartId,
-        buyNow,
-        mobileNo,
-        checkoutMode,
-        tags,
-        isDefault,
-        userId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["cart_id"] = cartId;
-    query_params["buy_now"] = buyNow;
-    query_params["mobile_no"] = mobileNo;
-    query_params["checkout_mode"] = checkoutMode;
-    query_params["tags"] = tags;
-    query_params["is_default"] = isDefault;
-    query_params["user_id"] = userId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the selected address
-   * @param {PlatformAddress} arg.body
-   * @summary: Update address added to an account
-   * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
-   */
-  updateAddress({ id, body } = {}) {
-    const { error } = CartValidator.updateAddress().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID allotted to the selected address
-   * @param {string} [arg.userId] - Option to delete address for the provided user_id.
-   * @summary: Remove address associated with an account
-   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
-   */
-  removeAddress({ id, userId } = {}) {
-    const { error } = CartValidator.removeAddress().validate(
-      {
-        id,
-        userId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["user_id"] = userId;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.cartId] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @param {PlatformSelectCartAddressRequest} arg.body
-   * @summary: Select an address from available addresses
-   * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
-   */
-  selectAddress({ body, cartId, buyNow, i, b } = {}) {
-    const { error } = CartValidator.selectAddress().validate(
-      {
-        body,
-        cartId,
-        buyNow,
-        i,
-        b,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["cart_id"] = cartId;
-    query_params["buy_now"] = buyNow;
-    query_params["i"] = i;
-    query_params["b"] = b;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/select-address`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pickAtStoreUid] -
-   * @param {number} [arg.orderingStoreId] -
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {string} [arg.addressId] - ID allotted to the selected address
-   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
-   *   e.g. 400059
-   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-   *   - If the customer wants the order home-delivered PickAtStore - If the
-   *   customer wants the handover of an order at the store itself.
-   * @summary: Get delivery date and options before checkout
-   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
-   */
-  getShipments({
-    pickAtStoreUid,
-    orderingStoreId,
-    p,
-    id,
-    addressId,
-    areaCode,
-    orderType,
-  } = {}) {
-    const { error } = CartValidator.getShipments().validate(
-      {
-        pickAtStoreUid,
-        orderingStoreId,
-        p,
-        id,
-        addressId,
-        areaCode,
-        orderType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["pick_at_store_uid"] = pickAtStoreUid;
-    query_params["ordering_store_id"] = orderingStoreId;
-    query_params["p"] = p;
-    query_params["id"] = id;
-    query_params["address_id"] = addressId;
-    query_params["area_code"] = areaCode;
-    query_params["order_type"] = orderType;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
-   *   retrieve all the items added in the cart.
-   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-   *   getting a payment option in response.
-   * @param {string} [arg.id] - The unique identifier of the cart
-   * @param {string} [arg.addressId] - ID allotted to an address
-   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-   *   - If the customer wants the order home-delivered PickAtStore - If the
-   *   customer wants the handover of an order at the store itself.
-   * @param {UpdateCartShipmentRequest} arg.body
-   * @summary: Update shipment delivery type and quantity before checkout
-   * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
-   */
-  updateShipments({ body, i, p, id, addressId, orderType } = {}) {
-    const { error } = CartValidator.updateShipments().validate(
-      {
-        body,
-        i,
-        p,
-        id,
-        addressId,
-        orderType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["i"] = i;
-    query_params["p"] = p;
-    query_params["id"] = id;
-    query_params["address_id"] = addressId;
-    query_params["order_type"] = orderType;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {PlatformCartMetaRequest} arg.body
-   * @summary: Update the cart meta for platform pos user
-   * @description: Use this API to update cart meta like checkout_mode and gstin.
-   */
-  updateCartMeta({ body, id, buyNow } = {}) {
-    const { error } = CartValidator.updateCartMeta().validate(
-      {
-        body,
-        id,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/meta`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {PlatformCartCheckoutDetailRequest} arg.body
-   * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
-   */
-  checkoutCart({ body, id } = {}) {
-    const { error } = CartValidator.checkoutCart().validate(
-      {
-        body,
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/checkout`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.areaCode -
-   * @param {string} [arg.id] -
-   * @summary: Get available delivery modes for cart
-   * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
-   */
-  getAvailableDeliveryModes({ areaCode, id } = {}) {
-    const { error } = CartValidator.getAvailableDeliveryModes().validate(
-      {
-        areaCode,
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["area_code"] = areaCode;
-    query_params["id"] = id;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/available-delivery-mode`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.storeUid -
-   * @summary: Get list of stores for give uids
-   * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
-   */
-  getStoreAddressByUid({ storeUid } = {}) {
-    const { error } = CartValidator.getStoreAddressByUid().validate(
-      {
-        storeUid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["store_uid"] = storeUid;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store-address`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {UpdateCartPaymentRequest} arg.body
-   * @summary: Update cart payment
-   * @description: Use this API to update cart payment.
-   */
-  selectPaymentMode({ body, id, buyNow } = {}) {
-    const { error } = CartValidator.selectPaymentMode().validate(
-      {
-        body,
-        id,
-        buyNow,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.buyNow] -
-   * @param {string} [arg.addressId] -
-   * @param {string} [arg.paymentMode] -
-   * @param {string} [arg.paymentIdentifier] -
-   * @param {string} [arg.aggregatorName] -
-   * @param {string} [arg.merchantCode] -
-   * @summary: Verify the coupon eligibility against the payment mode
-   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
-   */
-  validateCouponForPayment({
-    id,
-    buyNow,
-    addressId,
-    paymentMode,
-    paymentIdentifier,
-    aggregatorName,
-    merchantCode,
-  } = {}) {
-    const { error } = CartValidator.validateCouponForPayment().validate(
-      {
-        id,
-        buyNow,
-        addressId,
-        paymentMode,
-        paymentIdentifier,
-        aggregatorName,
-        merchantCode,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["buy_now"] = buyNow;
-    query_params["address_id"] = addressId;
-    query_params["payment_mode"] = paymentMode;
-    query_params["payment_identifier"] = paymentIdentifier;
-    query_params["aggregator_name"] = aggregatorName;
-    query_params["merchant_code"] = merchantCode;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/validate/`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Rewards {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.pageId - Pagination page id
-   * @param {number} arg.pageSize - Pagination page size
-   * @summary: List of giveaways of the current application.
-   * @description: List of giveaways of the current application.
-   */
-  showGiveaways({ pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.showGiveaways().validate(
-      {
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {Giveaway} arg.body
-   * @summary: List of giveaways of the current application.
-   * @description: Adds a new giveaway.
-   */
-  saveGiveAway({ body } = {}) {
-    const { error } = RewardsValidator.saveGiveAway().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Giveaway ID
-   * @summary: Get giveaway by ID.
-   * @description: Get giveaway by ID.
-   */
-  getGiveawayById({ id } = {}) {
-    const { error } = RewardsValidator.getGiveawayById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Giveaway ID
-   * @param {Giveaway} arg.body
-   * @summary: Updates the giveaway by it's ID.
-   * @description: Updates the giveaway by it's ID.
-   */
-  updateGiveAway({ id, body } = {}) {
-    const { error } = RewardsValidator.updateGiveAway().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.audienceId - Audience id
-   * @summary: Get the Giveaway audience status
-   * @description: Get giveaway audience status
-   */
-  getGiveawayAudienceStatus({ audienceId } = {}) {
-    const { error } = RewardsValidator.getGiveawayAudienceStatus().validate(
-      {
-        audienceId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/audience/${audienceId}/status`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: List of offers of the current application.
-   * @description: List of offers of the current application.
-   */
-  showOffers({} = {}) {
-    const { error } = RewardsValidator.showOffers().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.name - The name given to the offer.
-   * @param {string} arg.cookie - User's session cookie. This cookie is set in
-   *   browser cookie when logged-in to fynd's authentication system i.e.
-   *   `Grimlock` or by using grimlock-backend SDK for backend implementation.
-   * @summary: Get offer by name
-   * @description: Use this API to get the offer details and configuration by entering the name of the offer.
-   */
-  getOfferByName({ name, cookie } = {}) {
-    const { error } = RewardsValidator.getOfferByName().validate(
-      {
-        name,
-        cookie,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.name - The name given to the offer.
-   * @param {Offer} arg.body
-   * @summary: Update offer by name
-   * @description: Use this API to update the offer details
-   */
-  updateOfferByName({ name, body } = {}) {
-    const { error } = RewardsValidator.updateOfferByName().validate(
-      {
-        name,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @param {AppUser} arg.body
-   * @summary: Update user status
-   * @description: Use this API to update the user status active/archive
-   */
-  updateUserStatus({ userId, body } = {}) {
-    const { error } = RewardsValidator.updateUserStatus().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @summary: Get user reward details
-   * @description: Use this API to get the user reward details
-   */
-  user({ userId } = {}) {
-    const { error } = RewardsValidator.user().validate(
-      {
-        userId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @param {string} [arg.pageId] - PageID is the ID of the requested page.
-   *   For first request it should be kept empty.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions.
-   */
-  getUserPointsHistory({ userId, pageId, pageSize } = {}) {
-    const { error } = RewardsValidator.getUserPointsHistory().validate(
-      {
-        userId,
-        pageId,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_id"] = pageId;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/points/history/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions.
-   */
-  getUserPointsHistoryPaginator({
-    userId,
-    companyId,
-    applicationId,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getUserPointsHistory({
-        userId: userId,
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get all valid android paths
-   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
-   */
-  getRewardsConfiguration({} = {}) {
-    const { error } = RewardsValidator.getRewardsConfiguration().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ConfigurationRequest} arg.body
-   * @summary: Updates the collection with given android paths.
-   * @description: Updates the configuration or inserts new records.
-   */
-  setRewardsConfiguration({ body } = {}) {
-    const { error } = RewardsValidator.setRewardsConfiguration().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
-      query_params,
-      body
-    );
-  }
-}
-
-class Analytics {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get statistics groups
-   * @description: Get statistics groups
-   */
-  getStatiscticsGroups({} = {}) {
-    const { error } = AnalyticsValidator.getStatiscticsGroups().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.groupName - Group name
-   * @summary: Get statistics group components
-   * @description: Get statistics group components
-   */
-  getStatiscticsGroupComponents({ groupName } = {}) {
-    const {
-      error,
-    } = AnalyticsValidator.getStatiscticsGroupComponents().validate(
-      {
-        groupName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group/${groupName}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.componentName - Component name
-   * @summary: Get component statistics csv
-   * @description: Get component statistics csv
-   */
-  getComponentStatsCSV({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStatsCSV().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.csv`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.componentName - Component name
-   * @summary: Get component statistics pdf
-   * @description: Get component statistics pdf
-   */
-  getComponentStatsPDF({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStatsPDF().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.pdf`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.componentName - Component name
-   * @summary: Get component statistics
-   * @description: Get component statistics
-   */
-  getComponentStats({ componentName } = {}) {
-    const { error } = AnalyticsValidator.getComponentStats().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/${componentName}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.fromDate - From date
-   * @param {string} arg.toDate - To date
-   * @param {number} [arg.pageNo] - Current page number
-   * @param {number} [arg.pageSize] - Current page size
-   * @summary: Get abandon carts list
-   * @description: Get abandon carts list
-   */
-  getAbandonCartList({ fromDate, toDate, pageNo, pageSize } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartList().validate(
-      {
-        fromDate,
-        toDate,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/from/${fromDate}/to/${toDate}/abandon-cart/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company Id
-   * @param {string} arg.applicationId - Application Id
-   * @param {string} arg.fromDate - From date
-   * @param {string} arg.toDate - To date
-   * @param {number} [arg.pageSize] - Current page size
-   * @summary: Get abandon carts list
-   * @description: Get abandon carts list
-   */
-  getAbandonCartListPaginator({
-    companyId,
-    applicationId,
-    fromDate,
-    toDate,
-    pageSize,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAbandonCartList({
-        companyId: companyId,
-        applicationId: applicationId,
-        fromDate: fromDate,
-        toDate: toDate,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.fromDate - From date
-   * @param {string} arg.toDate - To date
-   * @summary: Get abandon carts csv
-   * @description: Get abandon carts csv
-   */
-  getAbandonCartsCSV({ fromDate, toDate } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartsCSV().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/${fromDate}/to/${toDate}/abandon-cart.csv`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.cartId - Cart Id
-   * @summary: Get abandon carts details
-   * @description: Get abandon cart details
-   */
-  getAbandonCartDetail({ cartId } = {}) {
-    const { error } = AnalyticsValidator.getAbandonCartDetail().validate(
-      {
-        cartId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/abandon-cart/${cartId}`,
-      query_params,
-      undefined
-    );
-  }
-}
-
-class Partner {
-  constructor(config, applicationId) {
-    this.config = config;
-    this.applicationId = applicationId;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id for which proxy URL will
-   *   be generated
-   * @param {AddProxyReq} arg.body
-   * @summary: Create proxy URL for the external URL
-   * @description: Use this API to generate proxy URL for the external URL
-   */
-  addProxyPath({ extensionId, body } = {}) {
-    const { error } = PartnerValidator.addProxyPath().validate(
-      {
-        extensionId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id for which proxy URL needs
-   *   to be removed
-   * @param {string} arg.attachedPath - Attachaed path slug
-   * @summary: Remove proxy URL for the external URL
-   * @description: Use this API to remove the proxy URL which is already generated for the external URL
-   */
-  removeProxyPath({ extensionId, attachedPath } = {}) {
-    const { error } = PartnerValidator.removeProxyPath().validate(
-      {
-        extensionId,
-        attachedPath,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
-      query_params,
-      undefined
-    );
-  }
-}
 
 module.exports = PlatformApplicationClient;
