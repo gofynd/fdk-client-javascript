@@ -28,28 +28,28 @@ declare class Configuration {
      * @summary: Get current application details
      * @description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
      */
-    getApplication({}?: any): Promise<Application>;
+    getApplication({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationAboutResponse>} - Success response
      * @summary: Get application, owner and seller information
      * @description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
      */
-    getOwnerInfo({}?: any): Promise<ApplicationAboutResponse>;
+    getOwnerInfo({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationDetail>} - Success response
      * @summary: Get basic application details
      * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
      */
-    getBasicDetails({}?: any): Promise<ApplicationDetail>;
+    getBasicDetails({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<AppTokenResponse>} - Success response
      * @summary: Get integration tokens
      * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
      */
-    getIntegrationTokens({}?: any): Promise<AppTokenResponse>;
+    getIntegrationTokens({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -65,7 +65,7 @@ declare class Configuration {
         pageNo?: number;
         pageSize?: number;
         q?: string;
-    }): Promise<OrderingStores>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
@@ -87,28 +87,28 @@ declare class Configuration {
      */
     getStoreDetailById({ storeId }?: {
         storeId: number;
-    }): Promise<OrderingStore>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<AppFeatureResponse>} - Success response
      * @summary: Get features of application
      * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
      */
-    getFeatures({}?: any): Promise<AppFeatureResponse>;
+    getFeatures({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationInformation>} - Success response
      * @summary: Get application information
      * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
      */
-    getContactInfo({}?: any): Promise<ApplicationInformation>;
+    getContactInfo({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<CurrenciesResponse>} - Success response
      * @summary: Get all currencies list
      * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
      */
-    getCurrencies({}?: any): Promise<CurrenciesResponse>;
+    getCurrencies({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Object ID assigned to the currency
@@ -118,21 +118,21 @@ declare class Configuration {
      */
     getCurrencyById({ id }?: {
         id: string;
-    }): Promise<Currency>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<AppCurrencyResponse>} - Success response
      * @summary: Get currencies enabled in the application
      * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
      */
-    getAppCurrencies({}?: any): Promise<AppCurrencyResponse>;
+    getAppCurrencies({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<LanguageResponse>} - Success response
      * @summary: Get list of languages
      * @description: Use this API to get a list of languages supported in the application.
      */
-    getLanguages({}?: any): Promise<LanguageResponse>;
+    getLanguages({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {OrderingStoreSelectRequest} arg.body
@@ -141,15 +141,15 @@ declare class Configuration {
      * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
      */
     getOrderingStoreCookie({ body }?: {
-        body: OrderingStoreSelectRequest;
-    }): Promise<SuccessMessageResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<SuccessMessageResponse>} - Success response
      * @summary: Unset the Ordering Store signed cookie.
      * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
      */
-    removeOrderingStoreCookie({}?: any): Promise<SuccessMessageResponse>;
+    removeOrderingStoreCookie({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -170,7 +170,7 @@ declare class Configuration {
         orderIncent?: boolean;
         orderingStore?: number;
         user?: string;
-    }): Promise<AppStaffListResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
@@ -205,6 +205,6 @@ declare class Configuration {
         orderIncent?: boolean;
         orderingStore?: number;
         user?: string;
-    }): Promise<AppStaffResponse>;
+    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

@@ -178,7 +178,7 @@ declare class Order {
      * @description:
      */
     upsertJioCode({ body }?: {
-        body: JioCodeUpsertPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -352,7 +352,7 @@ declare class Order {
      * @description: Use this API to start processing Xlsx file.
      */
     bulkActionProcessXlsxFile({ body }?: {
-        body: BulkActionPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -408,7 +408,7 @@ declare class Order {
      * @description: Invalidate shipment Cache
      */
     invalidateShipmentCache({ body }?: {
-        body: InvalidateShipmentCachePayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -417,7 +417,7 @@ declare class Order {
      * @description: Reassign Location
      */
     reassignLocation({ body }?: {
-        body: StoreReassign;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -426,7 +426,7 @@ declare class Order {
      * @description: update shipment lock
      */
     updateShipmentLock({ body }?: {
-        body: UpdateShipmentLockPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -492,7 +492,7 @@ declare class Order {
      * @description: Update shipment status
      */
     updateShipmentStatus({ body }?: {
-        body: UpdateShipmentStatusRequest;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -501,7 +501,7 @@ declare class Order {
      * @description:
      */
     processManifest({ body }?: {
-        body: CreateOrderPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -510,7 +510,7 @@ declare class Order {
      * @description:
      */
     dispatchManifest({ body }?: {
-        body: DispatchManifest;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -536,7 +536,7 @@ declare class Order {
      * @description:
      */
     sendSmsNinja({ body }?: {
-        body: SendSmsPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -545,7 +545,7 @@ declare class Order {
      * @description:
      */
     platformManualAssignDPToShipment({ body }?: {
-        body: ManualAssignDPToShipment;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -554,7 +554,7 @@ declare class Order {
      * @description:
      */
     updatePackagingDimensions({ body }?: {
-        body: CreateOrderPayload;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -563,7 +563,7 @@ declare class Order {
      * @description:
      */
     createOrder({ body }?: {
-        body: CreateOrderAPI;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -572,7 +572,7 @@ declare class Order {
      * @description: createChannelConfig
      */
     createChannelConfig({ body }?: {
-        body: CreateChannelConfigData;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -587,7 +587,7 @@ declare class Order {
      * @description:
      */
     uploadConsent({ body }?: {
-        body: UploadConsent;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -596,7 +596,7 @@ declare class Order {
      * @description:
      */
     orderUpdate({ body }?: {
-        body: PlatformOrderUpdate;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -605,12 +605,15 @@ declare class Order {
      * @description:
      */
     checkOrderStatus({ body }?: {
-        body: OrderStatus;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {SendSmsPayload} arg.body
      * @summary:
      * @description:
      */
-    sendSmsNinjaPlatform({}?: any): Promise<any>;
+    sendSmsNinjaPlatform({ body }?: {
+        body: any;
+    }): Promise<any>;
 }

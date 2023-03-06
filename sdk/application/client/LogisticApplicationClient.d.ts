@@ -19,7 +19,7 @@ declare class Logistic {
      */
     getPincodeCity({ pincode }?: {
         pincode: string;
-    }): Promise<PincodeApiResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {TATViewRequest} arg.body
@@ -28,8 +28,8 @@ declare class Logistic {
      * @description: Get TAT data
      */
     getTatProduct({ body }?: {
-        body: TATViewRequest;
-    }): Promise<TATViewResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body
@@ -38,6 +38,6 @@ declare class Logistic {
      * @description: This API returns zone from the Pincode View.
      */
     getPincodeZones({ body }?: {
-        body: GetZoneFromPincodeViewRequest;
-    }): Promise<GetZoneFromPincodeViewResponse>;
+        body: any;
+    }): Promise<any>;
 }

@@ -31,7 +31,7 @@ declare class Content {
      * @summary: Get live announcements
      * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
      */
-    getAnnouncements({}?: any): Promise<AnnouncementsResponseSchema>;
+    getAnnouncements({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -45,7 +45,7 @@ declare class Content {
     getBlog({ slug, rootId }?: {
         slug: string;
         rootId?: string;
-    }): Promise<BlogSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -58,7 +58,7 @@ declare class Content {
     getBlogs({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<BlogGetResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -74,21 +74,21 @@ declare class Content {
      * @summary: Get the data loaders associated with an application
      * @description: Use this API to get all selected data loaders of the application in the form of tags.
      */
-    getDataLoaders({}?: any): Promise<DataLoadersSchema>;
+    getDataLoaders({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<FaqResponseSchema>} - Success response
      * @summary: Get a list of FAQs
      * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
      */
-    getFaqs({}?: any): Promise<FaqResponseSchema>;
+    getFaqs({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<GetFaqCategoriesSchema>} - Success response
      * @summary: Get a list of FAQ categories
      * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
      */
-    getFaqCategories({}?: any): Promise<GetFaqCategoriesSchema>;
+    getFaqCategories({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -100,7 +100,7 @@ declare class Content {
      */
     getFaqBySlug({ slug }?: {
         slug: string;
-    }): Promise<FaqSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -112,7 +112,7 @@ declare class Content {
      */
     getFaqCategoryBySlug({ slug }?: {
         slug: string;
-    }): Promise<GetFaqCategoryBySlugSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -124,21 +124,21 @@ declare class Content {
      */
     getFaqsByCategorySlug({ slug }?: {
         slug: string;
-    }): Promise<GetFaqSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<LandingPageSchema>} - Success response
      * @summary: Get the landing page
      * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
      */
-    getLandingPage({}?: any): Promise<LandingPageSchema>;
+    getLandingPage({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<ApplicationLegal>} - Success response
      * @summary: Get legal information
      * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
      */
-    getLegalInformation({}?: any): Promise<ApplicationLegal>;
+    getLegalInformation({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -151,7 +151,7 @@ declare class Content {
     getNavigations({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<NavigationGetResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -167,7 +167,7 @@ declare class Content {
      * @summary: Get the SEO of an application
      * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
      */
-    getSEOConfiguration({}?: any): Promise<SeoComponent>;
+    getSEOConfiguration({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -180,7 +180,7 @@ declare class Content {
     getSlideshows({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<SlideshowGetResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -201,21 +201,21 @@ declare class Content {
      */
     getSlideshow({ slug }?: {
         slug: string;
-    }): Promise<SlideshowSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<Support>} - Success response
      * @summary: Get the support information
      * @description: Use this API to get contact details for customer support including emails and phone numbers.
      */
-    getSupportInformation({}?: any): Promise<Support>;
+    getSupportInformation({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<TagsSchema>} - Success response
      * @summary: Get the tags associated with an application
      * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
      */
-    getTags({}?: any): Promise<TagsSchema>;
+    getTags({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -229,7 +229,7 @@ declare class Content {
     getPage({ slug, rootId }?: {
         slug: string;
         rootId?: string;
-    }): Promise<PageSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -242,7 +242,7 @@ declare class Content {
     getPages({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<PageGetResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.

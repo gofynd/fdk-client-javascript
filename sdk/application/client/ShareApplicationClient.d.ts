@@ -19,7 +19,7 @@ declare class Share {
      * @summary: Create QR Code of an app
      * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
      */
-    getApplicationQRCode({}?: any): Promise<QRCodeResp>;
+    getApplicationQRCode({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -30,7 +30,7 @@ declare class Share {
      */
     getProductQRCodeBySlug({ slug }?: {
         slug: string;
-    }): Promise<QRCodeResp>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -41,7 +41,7 @@ declare class Share {
      */
     getCollectionQRCodeBySlug({ slug }?: {
         slug: string;
-    }): Promise<QRCodeResp>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.url - A link or a web address
@@ -51,7 +51,7 @@ declare class Share {
      */
     getUrlQRCode({ url }?: {
         url: string;
-    }): Promise<QRCodeResp>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ShortLinkReq} arg.body
@@ -60,8 +60,8 @@ declare class Share {
      * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
      */
     createShortLink({ body }?: {
-        body: ShortLinkReq;
-    }): Promise<ShortLinkRes>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.hash - A string value used for converting long URL to
@@ -72,7 +72,7 @@ declare class Share {
      */
     getShortLinkByHash({ hash }?: {
         hash: string;
-    }): Promise<ShortLinkRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.hash - A string value used for converting long URL to
@@ -83,5 +83,5 @@ declare class Share {
      */
     getOriginalShortLinkByHash({ hash }?: {
         hash: string;
-    }): Promise<ShortLinkRes>;
+    }): Promise<any>;
 }

@@ -51,8 +51,8 @@ declare class User {
      */
     loginWithFacebook({ body, platform }?: {
         platform?: string;
-        body: OAuthRequestSchema;
-    }): Promise<AuthSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -63,8 +63,8 @@ declare class User {
      */
     loginWithGoogle({ body, platform }?: {
         platform?: string;
-        body: OAuthRequestSchema;
-    }): Promise<AuthSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -75,8 +75,8 @@ declare class User {
      */
     loginWithGoogleAndroid({ body, platform }?: {
         platform?: string;
-        body: OAuthRequestSchema;
-    }): Promise<AuthSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -87,8 +87,8 @@ declare class User {
      */
     loginWithGoogleIOS({ body, platform }?: {
         platform?: string;
-        body: OAuthRequestSchema;
-    }): Promise<AuthSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -99,8 +99,8 @@ declare class User {
      */
     loginWithAppleIOS({ body, platform }?: {
         platform?: string;
-        body: OAuthRequestAppleSchema;
-    }): Promise<AuthSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -111,8 +111,8 @@ declare class User {
      */
     loginWithOTP({ body, platform }?: {
         platform?: string;
-        body: SendOtpRequestSchema;
-    }): Promise<SendOtpResponse>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PasswordLoginRequestSchema} arg.body
@@ -121,8 +121,8 @@ declare class User {
      * @description: Use this API to login or register using an email address and password.
      */
     loginWithEmailAndPassword({ body }?: {
-        body: PasswordLoginRequestSchema;
-    }): Promise<LoginSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -133,8 +133,8 @@ declare class User {
      */
     sendResetPasswordEmail({ body, platform }?: {
         platform?: string;
-        body: SendResetPasswordEmailRequestSchema;
-    }): Promise<ResetPasswordSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -145,8 +145,8 @@ declare class User {
      */
     sendResetPasswordMobile({ body, platform }?: {
         platform?: string;
-        body: SendResetPasswordMobileRequestSchema;
-    }): Promise<ResetPasswordSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ForgotPasswordRequestSchema} arg.body
@@ -155,8 +155,8 @@ declare class User {
      * @description: Use this API to reset a password using the code sent on email or SMS.
      */
     forgotPassword({ body }?: {
-        body: ForgotPasswordRequestSchema;
-    }): Promise<LoginSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CodeRequestBodySchema} arg.body
@@ -165,8 +165,8 @@ declare class User {
      * @description: Use this API to send code to reset password.
      */
     sendResetToken({ body }?: {
-        body: CodeRequestBodySchema;
-    }): Promise<ResetPasswordSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {TokenRequestBodySchema} arg.body
@@ -175,8 +175,8 @@ declare class User {
      * @description: Use this API to login or register using a token for authentication.
      */
     loginWithToken({ body }?: {
-        body: TokenRequestBodySchema;
-    }): Promise<LoginSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -187,8 +187,8 @@ declare class User {
      */
     registerWithForm({ body, platform }?: {
         platform?: string;
-        body: FormRegisterRequestSchema;
-    }): Promise<RegisterFormSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CodeRequestBodySchema} arg.body
@@ -197,8 +197,8 @@ declare class User {
      * @description: Use this API to send a verification code to verify an email.
      */
     verifyEmail({ body }?: {
-        body: CodeRequestBodySchema;
-    }): Promise<VerifyEmailSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CodeRequestBodySchema} arg.body
@@ -207,15 +207,15 @@ declare class User {
      * @description: Use this API to send a verification code to verify a mobile number.
      */
     verifyMobile({ body }?: {
-        body: CodeRequestBodySchema;
-    }): Promise<VerifyEmailSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<HasPasswordSuccess>} - Success response
      * @summary: Check password
      * @description: Use this API to check if user has created a password for login.
      */
-    hasPassword({}?: any): Promise<HasPasswordSuccess>;
+    hasPassword({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdatePasswordRequestSchema} arg.body
@@ -224,8 +224,8 @@ declare class User {
      * @description: Use this API to update the password.
      */
     updatePassword({ body }?: {
-        body: UpdatePasswordRequestSchema;
-    }): Promise<VerifyEmailSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {DeleteApplicationUserRequestSchema} arg.body
@@ -234,15 +234,15 @@ declare class User {
      * @description: verify otp and delete user
      */
     deleteUser({ body }?: {
-        body: DeleteApplicationUserRequestSchema;
-    }): Promise<DeleteUserSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<LogoutSuccess>} - Success response
      * @summary: Logs out currently logged in user
      * @description: Use this API to check to logout a user from the app.
      */
-    logout({}?: any): Promise<LogoutSuccess>;
+    logout({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -253,8 +253,8 @@ declare class User {
      */
     sendOTPOnMobile({ body, platform }?: {
         platform?: string;
-        body: SendMobileOtpRequestSchema;
-    }): Promise<OtpSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -265,8 +265,8 @@ declare class User {
      */
     verifyMobileOTP({ body, platform }?: {
         platform?: string;
-        body: VerifyOtpRequestSchema;
-    }): Promise<VerifyOtpSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -277,8 +277,8 @@ declare class User {
      */
     sendOTPOnEmail({ body, platform }?: {
         platform?: string;
-        body: SendEmailOtpRequestSchema;
-    }): Promise<EmailOtpSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -289,22 +289,22 @@ declare class User {
      */
     verifyEmailOTP({ body, platform }?: {
         platform?: string;
-        body: VerifyEmailOtpRequestSchema;
-    }): Promise<VerifyOtpSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<UserObjectSchema>} - Success response
      * @summary: Get logged in user
      * @description: Use this API  to get the details of a logged in user.
      */
-    getLoggedInUser({}?: any): Promise<UserObjectSchema>;
+    getLoggedInUser({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<SessionListSuccess>} - Success response
      * @summary: Get list of sessions
      * @description: Use this API to retrieve all active sessions of a user.
      */
-    getListOfActiveSessions({}?: any): Promise<SessionListSuccess>;
+    getListOfActiveSessions({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.name] - Name of the application, e.g. Fynd
@@ -314,7 +314,7 @@ declare class User {
      */
     getPlatformConfig({ name }?: {
         name?: string;
-    }): Promise<PlatformSchema>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -325,8 +325,8 @@ declare class User {
      */
     updateProfile({ body, platform }?: {
         platform?: string;
-        body: EditProfileRequestSchema;
-    }): Promise<ProfileEditSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -337,8 +337,8 @@ declare class User {
      */
     addMobileNumber({ body, platform }?: {
         platform?: string;
-        body: EditMobileRequestSchema;
-    }): Promise<VerifyMobileOTPSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -363,7 +363,7 @@ declare class User {
         verified: boolean;
         countryCode: string;
         phone: string;
-    }): Promise<LoginSuccess>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SendVerificationLinkMobileRequestSchema} arg.body
@@ -372,8 +372,8 @@ declare class User {
      * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
      */
     setMobileNumberAsPrimary({ body }?: {
-        body: SendVerificationLinkMobileRequestSchema;
-    }): Promise<LoginSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -384,8 +384,8 @@ declare class User {
      */
     sendVerificationLinkToMobile({ body, platform }?: {
         platform?: string;
-        body: SendVerificationLinkMobileRequestSchema;
-    }): Promise<SendMobileVerifyLinkSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -396,8 +396,8 @@ declare class User {
      */
     addEmail({ body, platform }?: {
         platform?: string;
-        body: EditEmailRequestSchema;
-    }): Promise<VerifyEmailOTPSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -420,7 +420,7 @@ declare class User {
         primary: boolean;
         verified: boolean;
         email: string;
-    }): Promise<LoginSuccess>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EditEmailRequestSchema} arg.body
@@ -429,8 +429,8 @@ declare class User {
      * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
      */
     setEmailAsPrimary({ body }?: {
-        body: EditEmailRequestSchema;
-    }): Promise<LoginSuccess>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.platform] - ID of the application
@@ -441,6 +441,6 @@ declare class User {
      */
     sendVerificationLinkToEmail({ body, platform }?: {
         platform?: string;
-        body: EditEmailRequestSchema;
-    }): Promise<SendEmailVerifyLinkSuccess>;
+        body: any;
+    }): Promise<any>;
 }

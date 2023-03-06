@@ -15,7 +15,7 @@ declare class Communication {
      * @summary: Get communication consent
      * @description: Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
      */
-    getCommunicationConsent({}?: any): Promise<CommunicationConsent>;
+    getCommunicationConsent({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CommunicationConsentReq} arg.body
@@ -24,8 +24,8 @@ declare class Communication {
      * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
      */
     upsertCommunicationConsent({ body }?: {
-        body: CommunicationConsentReq;
-    }): Promise<CommunicationConsentRes>;
+        body: any;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PushtokenReq} arg.body
@@ -34,6 +34,6 @@ declare class Communication {
      * @description: Use this API to update and insert the push token of the user.
      */
     upsertAppPushtoken({ body }?: {
-        body: PushtokenReq;
-    }): Promise<PushtokenRes>;
+        body: any;
+    }): Promise<any>;
 }

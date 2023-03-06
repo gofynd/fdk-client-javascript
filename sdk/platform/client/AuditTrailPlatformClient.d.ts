@@ -18,7 +18,7 @@ declare class AuditTrail {
      * @description: Create a log instance that stores all the relevant info to be logged
      */
     createAuditLog({ body }?: {
-        body: RequestBodyAuditLog;
+        body: any;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

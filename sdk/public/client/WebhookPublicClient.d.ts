@@ -14,7 +14,7 @@ declare class Webhook {
      * @summary: Get All Webhook Events
      * @description: Get All Webhook Events
      */
-    fetchAllWebhookEvents({}?: any): Promise<EventConfigResponse>;
+    fetchAllWebhookEvents({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {EventConfigBase[]} arg.body
@@ -23,6 +23,6 @@ declare class Webhook {
      * @description: Get Webhook Event Details for provided events
      */
     queryWebhookEventDetails({ body }?: {
-        body: EventConfigBase[];
-    }): Promise<EventConfigResponse>;
+        body: any[];
+    }): Promise<any>;
 }
