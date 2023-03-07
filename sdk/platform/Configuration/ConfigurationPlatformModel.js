@@ -160,6 +160,8 @@ class ConfigurationModel {
       revenue_engine_coupon: Joi.boolean(),
 
       empty_cart: Joi.boolean(),
+
+      pan_card: ConfigurationModel.PanCardConfig(),
     });
   }
 
@@ -384,6 +386,14 @@ class ConfigurationModel {
   static BrandsByCompanyResponse() {
     return Joi.object({
       brands: ConfigurationModel.CompanyBrandInfo(),
+    });
+  }
+
+  static PanCardConfig() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      threshold_amount: Joi.number(),
     });
   }
 

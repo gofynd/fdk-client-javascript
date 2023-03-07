@@ -32,6 +32,7 @@ declare class ConfigurationModel {
     static BrandStoreInfo(): any;
     static CompanyBrandInfo(): any;
     static BrandsByCompanyResponse(): any;
+    static PanCardConfig(): any;
     static CreateApplicationRequest(): any;
     static CreateAppResponse(): any;
     static ApplicationsResponse(): any;
