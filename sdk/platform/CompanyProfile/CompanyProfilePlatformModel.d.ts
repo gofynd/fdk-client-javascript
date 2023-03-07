@@ -1,14 +1,14 @@
 export = CompanyProfileModel;
 declare class CompanyProfileModel {
-    static UserSerializer(): any;
     static SellerPhoneNumber(): any;
     static ContactDetails(): any;
-    static CompanyTaxesSerializer(): any;
-    static BusinessCountryInfo(): any;
-    static Document(): any;
     static Website(): any;
     static BusinessDetails(): any;
+    static BusinessCountryInfo(): any;
     static GetAddressSerializer(): any;
+    static CompanyTaxesSerializer(): any;
+    static UserSerializer(): any;
+    static Document(): any;
     static GetCompanyProfileSerializerResponse(): any;
     static ErrorResponse(): any;
     static CompanyTaxesSerializer1(): any;
@@ -27,23 +27,18 @@ declare class CompanyProfileModel {
     static Page(): any;
     static CompanyBrandListSerializer(): any;
     static CompanyBrandPostRequestSerializer(): any;
+    static HolidayDateSerializer(): any;
+    static HolidaySchemaSerializer(): any;
     static LocationTimingSerializer(): any;
     static LocationDayWiseSerializer(): any;
     static ProductReturnConfigSerializer(): any;
-    static LocationManagerSerializer(): any;
-    static GetCompanySerializer(): any;
     static InvoiceCredSerializer(): any;
     static InvoiceDetailsSerializer(): any;
-    static HolidayDateSerializer(): any;
-    static HolidaySchemaSerializer(): any;
+    static LocationManagerSerializer(): any;
+    static GetCompanySerializer(): any;
     static GetLocationSerializer(): any;
     static LocationListSerializer(): any;
     static AddressSerializer(): any;
     static LocationSerializer(): any;
     static BulkLocationSerializer(): any;
-    static _ArticleAssignment(): any;
-    static _ArticleQuery(): any;
-    static _AssignStoreArticle(): any;
-    static AssignStoreRequestValidator(): any;
-    static AssignStoreResponseSerializer(): any;
 }

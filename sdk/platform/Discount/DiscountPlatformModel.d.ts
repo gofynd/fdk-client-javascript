@@ -4,8 +4,6 @@ declare class DiscountModel {
     static CreateUpdateDiscount(): any;
     static DiscountJob(): any;
     static ListOrCalender(): any;
-    static DiscountItems(): any;
-    static BulkDiscount(): any;
     static FileJobResponse(): any;
     static DownloadFileJob(): any;
     static CancelJobResponse(): any;
