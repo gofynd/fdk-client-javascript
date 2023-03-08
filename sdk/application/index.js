@@ -33,5 +33,7 @@ module.exports = {
     PosCartApplicationModel: require("./PosCart/PosCartApplicationModel"),
 
     LogisticApplicationModel: require("./Logistic/LogisticApplicationModel"),
+
+    DocumentEngineApplicationModel: require("./DocumentEngine/DocumentEngineApplicationModel"),
   },
 };

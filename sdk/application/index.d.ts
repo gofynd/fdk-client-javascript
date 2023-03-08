@@ -17,4 +17,5 @@ export namespace ApplicationModel {
     const RewardsApplicationModel: typeof import("./Rewards/RewardsApplicationModel");
     const PosCartApplicationModel: typeof import("./PosCart/PosCartApplicationModel");
     const LogisticApplicationModel: typeof import("./Logistic/LogisticApplicationModel");
+    const DocumentEngineApplicationModel: typeof import("./DocumentEngine/DocumentEngineApplicationModel");
 }

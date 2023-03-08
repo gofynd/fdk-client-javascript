@@ -18,6 +18,7 @@ declare class ApplicationClient {
     rewards: Rewards;
     posCart: PosCart;
     logistic: Logistic;
+    documentEngine: DocumentEngine;
     setCookie(cookie: any): void;
     setLocationDetails(locationDetails: any): void;
     setCurrencyCode(currencyCode: any): void;
@@ -39,3 +40,4 @@ import Order = require("./Order/OrderApplicationClient");
 import Rewards = require("./Rewards/RewardsApplicationClient");
 import PosCart = require("./PosCart/PosCartApplicationClient");
 import Logistic = require("./Logistic/LogisticApplicationClient");
+import DocumentEngine = require("./DocumentEngine/DocumentEngineApplicationClient");

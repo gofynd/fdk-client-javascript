@@ -3,39 +3,23 @@ const Joi = require("joi");
 class LogisticModel {
   static PincodeErrorSchemaResponse() {
     return Joi.object({
-      type: Joi.string().allow("").allow(null),
-
       value: Joi.string().allow("").allow(null),
+
+      type: Joi.string().allow("").allow(null),
 
       message: Joi.string().allow("").allow(null),
     });
   }
 
-  static PincodeLatLongData() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      coordinates: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  static PincodeMetaResponse() {
-    return Joi.object({
-      internal_zone_id: Joi.number(),
-
-      zone: Joi.string().allow(""),
-    });
-  }
-
   static PincodeParentsResponse() {
     return Joi.object({
-      uid: Joi.string().allow(""),
+      name: Joi.string().allow(""),
 
       display_name: Joi.string().allow(""),
 
       sub_type: Joi.string().allow(""),
 
-      name: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
     });
   }
 
@@ -47,51 +31,57 @@ class LogisticModel {
     });
   }
 
+  static PincodeMetaResponse() {
+    return Joi.object({
+      internal_zone_id: Joi.number(),
+
+      zone: Joi.string().allow(""),
+    });
+  }
+
   static PincodeDataResponse() {
     return Joi.object({
+      name: Joi.string().allow(""),
+
+      parents: Joi.array().items(LogisticModel.PincodeParentsResponse()),
+
       display_name: Joi.string().allow(""),
-
-      lat_long: LogisticModel.PincodeLatLongData(),
-
-      meta: LogisticModel.PincodeMetaResponse(),
 
       error: LogisticModel.PincodeErrorSchemaResponse().required(),
 
       sub_type: Joi.string().allow(""),
 
-      name: Joi.string().allow(""),
+      meta_code: LogisticModel.CountryMetaResponse(),
 
-      parents: Joi.array().items(LogisticModel.PincodeParentsResponse()),
+      meta: LogisticModel.PincodeMetaResponse(),
 
       uid: Joi.string().allow(""),
-
-      meta_code: LogisticModel.CountryMetaResponse(),
     });
   }
 
   static PincodeApiResponse() {
     return Joi.object({
+      success: Joi.boolean().required(),
+
       error: LogisticModel.PincodeErrorSchemaResponse().required(),
 
       data: Joi.array().items(LogisticModel.PincodeDataResponse()),
-
-      success: Joi.boolean().required(),
     });
   }
 
   static TATCategoryRequest() {
     return Joi.object({
-      level: Joi.string().allow(""),
-
       id: Joi.number(),
+
+      level: Joi.string().allow(""),
     });
   }
 
   static TATArticlesRequest() {
     return Joi.object({
-      manufacturing_time_unit: Joi.string().allow(""),
-
       category: LogisticModel.TATCategoryRequest(),
+
+      manufacturing_time_unit: Joi.string().allow(""),
 
       manufacturing_time: Joi.number(),
     });
@@ -99,39 +89,37 @@ class LogisticModel {
 
   static TATLocationDetailsRequest() {
     return Joi.object({
-      from_pincode: Joi.string().allow(""),
-
       fulfillment_id: Joi.number(),
 
       articles: Joi.array().items(LogisticModel.TATArticlesRequest()),
+
+      from_pincode: Joi.string().allow(""),
     });
   }
 
   static TATViewRequest() {
     return Joi.object({
-      action: Joi.string().allow(""),
+      to_pincode: Joi.string().allow(""),
+
+      journey: Joi.string().allow(""),
+
+      source: Joi.string().allow(""),
+
+      identifier: Joi.string().allow(""),
 
       location_details: Joi.array().items(
         LogisticModel.TATLocationDetailsRequest()
       ),
 
-      source: Joi.string().allow(""),
-
-      payment_mode: Joi.string().allow(""),
-
-      journey: Joi.string().allow(""),
-
-      to_pincode: Joi.string().allow(""),
-
-      identifier: Joi.string().allow(""),
+      action: Joi.string().allow(""),
     });
   }
 
   static TATErrorSchemaResponse() {
     return Joi.object({
-      type: Joi.string().allow("").allow(null),
-
       value: Joi.string().allow("").allow(null),
+
+      type: Joi.string().allow("").allow(null),
 
       message: Joi.string().allow("").allow(null),
     });
@@ -139,17 +127,17 @@ class LogisticModel {
 
   static TATFormattedResponse() {
     return Joi.object({
-      min: Joi.string().allow(""),
-
       max: Joi.string().allow(""),
+
+      min: Joi.string().allow(""),
     });
   }
 
   static TATTimestampResponse() {
     return Joi.object({
-      min: Joi.number(),
-
       max: Joi.number(),
+
+      min: Joi.number(),
     });
   }
 
@@ -163,61 +151,61 @@ class LogisticModel {
 
   static TATArticlesResponse() {
     return Joi.object({
+      promise: LogisticModel.TATPromiseResponse(),
+
       _manufacturing_time_seconds: Joi.number(),
 
-      is_cod_available: Joi.boolean(),
-
-      manufacturing_time_unit: Joi.string().allow(""),
+      manufacturing_time: Joi.number(),
 
       category: LogisticModel.TATCategoryRequest(),
 
       error: LogisticModel.TATErrorSchemaResponse(),
 
-      promise: LogisticModel.TATPromiseResponse(),
+      manufacturing_time_unit: Joi.string().allow(""),
 
-      manufacturing_time: Joi.number(),
+      is_cod_available: Joi.boolean(),
     });
   }
 
   static TATLocationDetailsResponse() {
     return Joi.object({
-      from_pincode: Joi.string().allow(""),
-
       fulfillment_id: Joi.number(),
 
       articles: Joi.array().items(LogisticModel.TATArticlesResponse()),
+
+      from_pincode: Joi.string().allow(""),
     });
   }
 
   static TATViewResponse() {
     return Joi.object({
-      action: Joi.string().allow(""),
-
       is_cod_available: Joi.boolean(),
 
-      location_details: Joi.array().items(
-        LogisticModel.TATLocationDetailsResponse()
-      ),
+      stormbreaker_uuid: Joi.string().allow(""),
 
-      success: Joi.boolean(),
+      to_pincode: Joi.string().allow(""),
+
+      request_uuid: Joi.string().allow(""),
+
+      journey: Joi.string().allow(""),
+
+      error: LogisticModel.TATErrorSchemaResponse(),
 
       source: Joi.string().allow(""),
 
       payment_mode: Joi.string().allow(""),
 
-      error: LogisticModel.TATErrorSchemaResponse(),
-
-      journey: Joi.string().allow(""),
-
-      to_pincode: Joi.string().allow(""),
+      success: Joi.boolean(),
 
       identifier: Joi.string().allow(""),
 
-      request_uuid: Joi.string().allow(""),
-
       to_city: Joi.string().allow(""),
 
-      stormbreaker_uuid: Joi.string().allow(""),
+      location_details: Joi.array().items(
+        LogisticModel.TATLocationDetailsResponse()
+      ),
+
+      action: Joi.string().allow(""),
     });
   }
 
@@ -253,23 +241,23 @@ class LogisticModel {
 
   static CountryEntityResponse() {
     return Joi.object({
-      display_name: Joi.string().allow(""),
-
-      is_active: Joi.boolean(),
-
-      meta: LogisticModel.CountryMetaResponse(),
-
-      logistics: LogisticModel.LogisticsResponse(),
-
-      type: Joi.string().allow(""),
-
-      sub_type: Joi.string().allow(""),
+      name: Joi.string().allow(""),
 
       parent_id: Joi.string().allow(""),
 
-      name: Joi.string().allow(""),
+      logistics: LogisticModel.LogisticsResponse(),
+
+      is_active: Joi.boolean(),
+
+      display_name: Joi.string().allow(""),
+
+      sub_type: Joi.string().allow(""),
+
+      meta: LogisticModel.CountryMetaResponse(),
 
       uid: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
     });
   }
 
