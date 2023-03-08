@@ -18,4 +18,4 @@
 * [Order](ORDER.md) - Handles Platform websites OMS 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [PosCart](POSCART.md) - Cart APIs 
-* [Logistic](LOGISTIC.md) - Handles Platform websites OMS 
+* [Logistic](LOGISTIC.md) - Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features.  
