@@ -210,6 +210,13 @@ class OrderValidator {
     }).required();
   }
 
+  static generatePOSReceiptByOrderId() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      documentType: Joi.string().allow(""),
+    }).required();
+  }
+
   static invalidateShipmentCache() {
     return Joi.object({
       body: OrderModel.InvalidateShipmentCachePayload().required(),
@@ -283,16 +290,16 @@ class OrderValidator {
     return Joi.object({}).required();
   }
 
+  static postShipmentHistory() {
+    return Joi.object({
+      body: OrderModel.PostShipmentHistory().required(),
+    }).required();
+  }
+
   static getShipmentHistory() {
     return Joi.object({
       shipmentId: Joi.number(),
       bagId: Joi.number(),
-    }).required();
-  }
-
-  static postShipmentHistory() {
-    return Joi.object({
-      body: OrderModel.PostShipmentHistory().required(),
     }).required();
   }
 
@@ -320,14 +327,14 @@ class OrderValidator {
     }).required();
   }
 
-  static getChannelConfig() {
-    return Joi.object({}).required();
-  }
-
   static createChannelConfig() {
     return Joi.object({
       body: OrderModel.CreateChannelConfigData().required(),
     }).required();
+  }
+
+  static getChannelConfig() {
+    return Joi.object({}).required();
   }
 
   static uploadConsent() {
