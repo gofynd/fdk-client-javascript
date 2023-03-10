@@ -331,7 +331,8 @@ export class PartnerValidator {
 }
 export class ServiceabilityValidator {
     static getApplicationServiceability(): any;
-    static upsertZoneControllerView(): any;
+    static getZonesFromApplicationIdView(): any;
+    static getZoneFromPincodeView(): any;
     static updatePincodeMopView(): any;
     static updatePincodeBulkView(): any;
     static updatePincodeCoDListing(): any;

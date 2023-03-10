@@ -21,12 +21,6 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
-  static getZoneDataView() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
@@ -34,7 +28,13 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static insertZoneControllerView() {
+  static getZoneDataView() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static createZone() {
     return Joi.object({
       body: Validator.ZoneRequest().required(),
     }).required();
