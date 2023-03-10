@@ -440,18 +440,6 @@ Response status_code
 
  
  
- #### [PincodeMetaResponse](#PincodeMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | internal_zone_id | number |  no  |  |
- | zone | string |  no  |  |
-
----
-
-
- 
- 
  #### [CountryMetaResponse](#CountryMetaResponse)
 
  | Properties | Type | Nullable | Description |
@@ -464,27 +452,39 @@ Response status_code
 
  
  
- #### [PincodeParentsResponse](#PincodeParentsResponse)
+ #### [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | string |  no  |  |
- | display_name | string |  no  |  |
- | sub_type | string |  no  |  |
+ | type | string |  no  |  |
+ | message | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
 
  
  
- #### [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse)
+ #### [PincodeParentsResponse](#PincodeParentsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
- | message | string |  no  |  |
+ | name | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | display_name | string |  no  |  |
+ | uid | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMetaResponse](#PincodeMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | zone | string |  no  |  |
+ | internal_zone_id | number |  no  |  |
 
 ---
 
@@ -495,14 +495,14 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  |
- | uid | string |  no  |  |
- | sub_type | string |  no  |  |
- | name | string |  no  |  |
  | meta_code | [CountryMetaResponse](#CountryMetaResponse) |  no  |  |
- | parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  |
  | display_name | string |  no  |  |
+ | uid | string |  no  |  |
  | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
+ | parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  |
+ | name | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  |
 
 ---
 
@@ -513,9 +513,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
  | data | [[PincodeDataResponse](#PincodeDataResponse)] |  no  |  |
  | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
- | success | boolean |  yes  |  |
 
 ---
 
@@ -538,8 +538,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturing_time_unit | string |  no  |  |
  | manufacturing_time | number |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
  | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
 
 ---
@@ -552,8 +552,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | articles | [[TATArticlesRequest](#TATArticlesRequest)] |  no  |  |
- | from_pincode | string |  no  |  |
  | fulfillment_id | number |  no  |  |
+ | from_pincode | string |  no  |  |
 
 ---
 
@@ -564,11 +564,11 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | source | string |  no  |  |
- | location_details | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)] |  no  |  |
  | action | string |  no  |  |
+ | source | string |  no  |  |
  | to_pincode | string |  no  |  |
+ | identifier | string |  no  |  |
+ | location_details | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)] |  no  |  |
  | journey | string |  no  |  |
 
 ---
@@ -576,12 +576,13 @@ Response status_code
 
  
  
- #### [TATTimestampResponse](#TATTimestampResponse)
+ #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | number |  no  |  |
- | max | number |  no  |  |
+ | type | string |  no  |  |
+ | message | string |  no  |  |
+ | value | string |  no  |  |
 
 ---
 
@@ -600,25 +601,24 @@ Response status_code
 
  
  
- #### [TATPromiseResponse](#TATPromiseResponse)
+ #### [TATTimestampResponse](#TATTimestampResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
- | formatted | [TATFormattedResponse](#TATFormattedResponse) |  no  |  |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
 
 ---
 
 
  
  
- #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
+ #### [TATPromiseResponse](#TATPromiseResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | value | string |  no  |  |
- | message | string |  no  |  |
+ | formatted | [TATFormattedResponse](#TATFormattedResponse) |  no  |  |
+ | timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
 
 ---
 
@@ -629,13 +629,13 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturing_time | number |  no  |  |
- | is_cod_available | boolean |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
  | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
- | promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
  | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
+ | is_cod_available | boolean |  no  |  |
  | _manufacturing_time_seconds | number |  no  |  |
+ | promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
+ | manufacturing_time | number |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
 
 ---
 
@@ -647,8 +647,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | articles | [[TATArticlesResponse](#TATArticlesResponse)] |  no  |  |
- | from_pincode | string |  no  |  |
  | fulfillment_id | number |  no  |  |
+ | from_pincode | string |  no  |  |
 
 ---
 
@@ -659,19 +659,19 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  |  |
- | payment_mode | string |  no  |  |
- | source | string |  no  |  |
  | success | boolean |  no  |  |
- | is_cod_available | boolean |  no  |  |
- | stormbreaker_uuid | string |  no  |  |
- | location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  |
  | action | string |  no  |  |
- | to_pincode | string |  no  |  |
- | to_city | string |  no  |  |
- | journey | string |  no  |  |
+ | source | string |  no  |  |
  | request_uuid | string |  no  |  |
+ | to_pincode | string |  no  |  |
+ | stormbreaker_uuid | string |  no  |  |
  | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
+ | is_cod_available | boolean |  no  |  |
+ | to_city | string |  no  |  |
+ | identifier | string |  no  |  |
+ | location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  |
+ | payment_mode | string |  no  |  |
+ | journey | string |  no  |  |
 
 ---
 
@@ -714,14 +714,14 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | string |  no  |  |
- | meta | [CountryMetaResponse](#CountryMetaResponse) |  no  |  |
- | uid | string |  no  |  |
- | is_active | boolean |  no  |  |
- | sub_type | string |  no  |  |
- | name | string |  no  |  |
  | parent_id | string |  no  |  |
  | logistics | [LogisticsResponse](#LogisticsResponse) |  no  |  |
  | display_name | string |  no  |  |
+ | uid | string |  no  |  |
+ | name | string |  no  |  |
+ | sub_type | string |  no  |  |
+ | meta | [CountryMetaResponse](#CountryMetaResponse) |  no  |  |
+ | is_active | boolean |  no  |  |
 
 ---
 
@@ -743,8 +743,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | string |  yes  |  |
  | country | string |  yes  |  |
+ | pincode | string |  yes  |  |
 
 ---
 
@@ -755,8 +755,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zones | [string] |  yes  |  |
  | serviceability_type | string |  yes  |  |
+ | zones | [string] |  yes  |  |
 
 ---
 
