@@ -10,7 +10,8 @@ class Logistic {
     this._relativeUrls = {
       getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
       getTatProduct: "/service/application/logistics/v1.0/",
-      getAllCountries: "/service/application/logistics/v1.0/country-list",
+      getAllCountries:
+        "/service/application/logistics/v1.0/country-list/company/{company_id}/application/{application_id}",
       getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -98,13 +99,16 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - A `company id` unique id for the company.
+   * @param {string} arg.applicationId - A `application id` is unique id for
+   *   the application.
    * @returns {Promise<CountryListResponse>} - Success response
    * @summary: Get Country List
    * @description: Get all countries
    */
-  getAllCountries({} = {}) {
+  getAllCountries({ companyId, applicationId } = {}) {
     const { error } = LogisticValidator.getAllCountries().validate(
-      {},
+      { companyId, applicationId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -119,7 +123,7 @@ class Logistic {
       "get",
       constructUrl({
         url: this._urls["getAllCountries"],
-        params: {},
+        params: { companyId, applicationId },
       }),
       query_params,
       undefined,

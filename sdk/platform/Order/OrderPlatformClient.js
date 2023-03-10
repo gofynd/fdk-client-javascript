@@ -1404,37 +1404,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {PostShipmentHistory} arg.body
-   * @summary:
-   * @description:
-   */
-  postShipmentHistory({ body } = {}) {
-    const { error } = OrderValidator.postShipmentHistory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} [arg.shipmentId] -
    * @param {number} [arg.bagId] -
    * @summary:
@@ -1464,6 +1433,37 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PostShipmentHistory} arg.body
+   * @summary:
+   * @description:
+   */
+  postShipmentHistory({ body } = {}) {
+    const { error } = OrderValidator.postShipmentHistory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1596,6 +1596,34 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {CreateChannelConfigData} arg.body
    * @summary:
    * @description: createChannelConfig
@@ -1621,34 +1649,6 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary:
-   * @description: getChannelConfig
-   */
-  getChannelConfig({} = {}) {
-    const { error } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      undefined,
       xHeaders
     );
   }
