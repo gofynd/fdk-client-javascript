@@ -16,7 +16,7 @@ class APIClient {
       return acc;
     }, {});
 
-    const rawRequest = {
+    let rawRequest = {
       baseURL: conf.domain,
       method: method,
       url: url,
@@ -28,6 +28,7 @@ class APIClient {
         ...xHeaders,
       },
     };
+    rawRequest = JSON.parse(JSON.stringify(rawRequest));
 
     return fdkAxios.request(rawRequest);
   }

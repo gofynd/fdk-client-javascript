@@ -2,16 +2,20 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Common Methods
 Application configuration apis
+
 * [searchApplication](#searchapplication)
 * [getLocations](#getlocations)
 
 
 
 ## Methods with example and description
+
+
 
 
 ### searchApplication

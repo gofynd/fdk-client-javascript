@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Lead Methods
 Handles communication between Administrator <-> Staff and Staff <-> Users
+
 * [getTickets](#gettickets)
 * [createTicket](#createticket)
 * [getTickets](#gettickets)
@@ -34,6 +36,8 @@ Handles communication between Administrator <-> Staff and Staff <-> Users
 
 
 ## Methods with example and description
+
+
 
 
 ### getTickets

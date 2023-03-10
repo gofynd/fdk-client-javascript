@@ -2,9 +2,11 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## CompanyProfile Methods
+
 
 * [cbsOnboardGet](#cbsonboardget)
 * [updateCompany](#updatecompany)
@@ -24,6 +26,8 @@
 
 
 ## Methods with example and description
+
+
 
 
 ### cbsOnboardGet

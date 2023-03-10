@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## AuditTrail Methods
 Audit Logging Service that logs the crucial updates on the Platform
+
 * [getAuditLogs](#getauditlogs)
 * [createAuditLog](#createauditlog)
 * [getAuditLog](#getauditlog)
@@ -14,6 +16,8 @@ Audit Logging Service that logs the crucial updates on the Platform
 
 
 ## Methods with example and description
+
+
 
 
 ### getAuditLogs

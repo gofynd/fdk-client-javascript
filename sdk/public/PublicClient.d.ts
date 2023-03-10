@@ -7,6 +7,6 @@ declare class PublicClient {
     inventory: Inventory;
     setExtraHeaders(header: any): void;
 }
-import Configuration = require("./client/ConfigurationPublicClient");
-import Webhook = require("./client/WebhookPublicClient");
-import Inventory = require("./client/InventoryPublicClient");
+import Configuration = require("./Configuration/ConfigurationPublicClient");
+import Webhook = require("./Webhook/WebhookPublicClient");
+import Inventory = require("./Inventory/InventoryPublicClient");
