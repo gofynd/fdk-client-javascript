@@ -3,20 +3,17 @@ const Validator = require("../PlatformModels");
 class ServiceabilityValidator {
   static getEntityRegionView() {
     return Joi.object({
-      body: Validator.EntityRegionViewRequest().required(),
+      body: Validator.EntityRegionView_Request().required(),
     }).required();
   }
 
   static getListView() {
     return Joi.object({
       pageNumber: Joi.number(),
-      pageNo: Joi.number(),
       pageSize: Joi.number(),
       name: Joi.string().allow(""),
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-      zoneId: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
@@ -37,23 +34,20 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static upsertZoneControllerView() {
+  static insertZoneControllerView() {
     return Joi.object({
       body: Validator.ZoneRequest().required(),
     }).required();
   }
 
-  static getZoneListView() {
+  static getStore() {
     return Joi.object({
-      pageNumber: Joi.number(),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      name: Joi.string().allow(""),
-      isActive: Joi.boolean(),
-      channelIds: Joi.string().allow(""),
-      q: Joi.string().allow(""),
-      zoneId: Joi.array().items(Joi.string().allow("")),
+      storeUid: Joi.number().required(),
     }).required();
+  }
+
+  static getAllStores() {
+    return Joi.object({}).required();
   }
 }
 module.exports = ServiceabilityValidator;
