@@ -35,17 +35,11 @@ declare class Logistic {
     }): Promise<TATViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - A `company id` unique id for the company.
-     * @param {string} arg.applicationId - A `application id` is unique id for
-     *   the application.
      * @returns {Promise<CountryListResponse>} - Success response
      * @summary: Get Country List
      * @description: Get all countries
      */
-    getAllCountries({ companyId, applicationId }?: {
-        companyId: string;
-        applicationId: string;
-    }): Promise<CountryListResponse>;
+    getAllCountries({}?: any): Promise<CountryListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {GetZoneFromPincodeViewRequest} arg.body

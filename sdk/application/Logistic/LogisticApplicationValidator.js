@@ -16,10 +16,7 @@ class LogisticValidator {
   }
 
   static getAllCountries() {
-    return Joi.object({
-      companyId: Joi.string().allow("").required(),
-      applicationId: Joi.string().allow("").required(),
-    }).required();
+    return Joi.object({});
   }
 
   static getPincodeZones() {
