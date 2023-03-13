@@ -316,7 +316,7 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.level] - Get category for multiple levels
-     * @param {string} [arg.departments] - Get category for multiple departments filtered
+     * @param {string} [arg.department] - Get category for multiple departments filtered
      * @param {string} [arg.q] - Get multiple categories filtered by search string
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
@@ -325,9 +325,9 @@ declare class Catalog {
      * @summary: Get product categories list
      * @description: This API gets meta associated to product categories.
      */
-    listCategories({ level, departments, q, pageNo, pageSize }?: {
+    listCategories({ level, department, q, pageNo, pageSize }?: {
         level?: string;
-        departments?: string;
+        department?: string;
         q?: string;
         pageNo?: number;
         pageSize?: number;
@@ -441,15 +441,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
-     */
-    deleteProduct({ itemId }?: {
-        itemId: number;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Item Id of the product.
      * @param {number} [arg.brandUid] - Brand Id of the product.
      * @param {string} [arg.itemCode] - Item code of the product.
@@ -460,6 +451,15 @@ declare class Catalog {
         itemId: number;
         brandUid?: number;
         itemCode?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
+     */
+    deleteProduct({ itemId }?: {
+        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

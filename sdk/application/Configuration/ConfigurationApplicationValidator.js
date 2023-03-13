@@ -75,6 +75,7 @@ class ConfigurationValidator {
       orderIncent: Joi.boolean(),
       orderingStore: Joi.number(),
       user: Joi.string().allow(""),
+      userName: Joi.string().allow(""),
     });
   }
 
