@@ -29,6 +29,14 @@ class PartnerModel {
     });
   }
 
+  static RemoveProxyResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+
+      data: Joi.any(),
+    });
+  }
+
   static APIError() {
     return Joi.object({
       code: Joi.string().allow(""),
@@ -40,14 +48,6 @@ class PartnerModel {
       request_id: Joi.string().allow(""),
 
       meta: Joi.any(),
-    });
-  }
-
-  static RemoveProxyResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-
-      data: Joi.any(),
     });
   }
 }
