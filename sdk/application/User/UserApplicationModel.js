@@ -930,6 +930,36 @@ class UserModel {
       external_id: Joi.string().allow(""),
 
       meta: Joi.any(),
+
+      phone_numbers: Joi.array().items(UserModel.UserPhoneNumbers()),
+
+      emails: Joi.array().items(UserModel.UserEmails()),
+    });
+  }
+
+  static UserEmails() {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      email: Joi.string().allow(""),
+    });
+  }
+
+  static UserPhoneNumbers() {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      phone: Joi.string().allow(""),
+
+      country_code: Joi.string().allow(""),
     });
   }
 

@@ -2256,6 +2256,37 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | gender | string |  no  |  |
  | external_id | string |  no  |  |
  | meta | string |  no  |  |
+ | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+ | emails | [[UserEmails](#UserEmails)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ | email | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ | phone | string |  no  |  |
+ | country_code | string |  no  |  |
 
 ---
 

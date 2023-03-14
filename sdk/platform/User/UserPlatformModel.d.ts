@@ -89,6 +89,8 @@ declare class UserModel {
     static Google(): any;
     static SessionExpiry(): any;
     static UpdateUserRequestSchema(): any;
+    static UserEmails(): any;
+    static UserPhoneNumbers(): any;
     static UserSchema(): any;
     static PhoneNumber(): any;
     static Email(): any;
