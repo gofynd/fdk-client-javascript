@@ -2,6 +2,7 @@ export = OAuthClient;
 declare class OAuthClient extends BaseOAuthClient {
     startAuthorization(options: any): string;
     verifyCallback(query: any): Promise<void>;
+    renewAccessToken(isOfflineToken?: boolean): Promise<any>;
     getAccesstokenObj({ grant_type, refresh_token, code }: {
         grant_type: any;
         refresh_token: any;

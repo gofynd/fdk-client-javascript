@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Content Methods
 Content System
+
 * [getAnnouncementsList](#getannouncementslist)
 * [createAnnouncement](#createannouncement)
 * [getAnnouncementById](#getannouncementbyid)
@@ -75,6 +77,8 @@ Content System
 
 
 ## Methods with example and description
+
+
 
 
 ### getAnnouncementsList
@@ -8719,7 +8723,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | collections | collections | Symbolic link for Collections: /collections/ |
  | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
  | external | external | Symbolic link for External Link: /external/ |
- | faq | faq | Symbolic link for FAQ: /faq/:category |
+ | faq | faq | Symbolic link for FAQ: /faq |
  | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
  | home | home | Symbolic link for Home: / |
  | notificationSettings | notification-settings | Symbolic link for Notification Settings: /notification-settings |
@@ -8732,6 +8736,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |
+ | profileOrderShipment | profile-order-shipment | Symbolic link for profile orders shipment: /profile/orders/shipment/:shipmentid |
  | profileBasic | profile-basic | Symbolic link for Basic Profile: /profile/details |
  | profileCompany | profile-company | Symbolic link for Profile Company: /profile/company |
  | profileEmails | profile-emails | Symbolic link for Profile Emails: /profile/email |

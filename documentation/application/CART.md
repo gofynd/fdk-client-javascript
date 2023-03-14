@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Cart Methods
 Cart APIs
+
 * [getCart](#getcart)
 * [getCartLastModified](#getcartlastmodified)
 * [addItems](#additems)
@@ -36,6 +38,8 @@ Cart APIs
 
 
 ## Methods with example and description
+
+
 
 
 ### getCart

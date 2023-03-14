@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Theme Methods
 Responsible for themes
+
 * [getAllPages](#getallpages)
 * [createPage](#createpage)
 * [updateMultiplePages](#updatemultiplepages)
@@ -34,6 +36,8 @@ Responsible for themes
 
 
 ## Methods with example and description
+
+
 
 
 ### getAllPages

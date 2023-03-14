@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Rewards Methods
 Rewards
+
 * [getGiveaways](#getgiveaways)
 * [createGiveaway](#creategiveaway)
 * [getGiveawayByID](#getgiveawaybyid)
@@ -20,6 +22,8 @@ Rewards
 
 
 ## Methods with example and description
+
+
 
 
 ### getGiveaways
