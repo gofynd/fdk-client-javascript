@@ -2,16 +2,20 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Partner Methods
 Partner configuration apis
+
 * [addProxyPath](#addproxypath)
 * [removeProxyPath](#removeproxypath)
 
 
 
 ## Methods with example and description
+
+
 
 
 ### addProxyPath
