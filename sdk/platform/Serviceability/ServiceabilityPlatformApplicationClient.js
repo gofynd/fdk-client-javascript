@@ -133,5 +133,121 @@ class Serviceability {
       undefined
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PincodeMopData} arg.body
+   * @summary: PincodeView update of MOP.
+   * @description: This API updates Pincode method of payment.
+   */
+  updatePincodeMopView({ body } = {}) {
+    const { error } = ServiceabilityValidator.updatePincodeMopView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pincode-mop-update`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PincodeMopBulkData} arg.body
+   * @summary: Bulk Update of pincode in the application.
+   * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+   */
+  updatePincodeBulkView({ body } = {}) {
+    const { error } = ServiceabilityValidator.updatePincodeBulkView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pincode-mop-bulk-update`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PincodeCodStatusListingRequest} arg.body
+   * @summary: Pincode count view of application.
+   * @description: This API returns count of active pincode.
+   */
+  updatePincodeCoDListing({ body } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.updatePincodeCoDListing().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pincode-mop-data`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PincodeMopUpdateAuditHistoryRequest} arg.body
+   * @summary: Auditlog configuration of application.
+   * @description: This API returns Audit logs of Pincode.
+   */
+  updatePincodeAuditHistory({ body } = {}) {
+    const {
+      error,
+    } = ServiceabilityValidator.updatePincodeAuditHistory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/application/${this.applicationId}/history`,
+      query_params,
+      body
+    );
+  }
 }
 module.exports = Serviceability;

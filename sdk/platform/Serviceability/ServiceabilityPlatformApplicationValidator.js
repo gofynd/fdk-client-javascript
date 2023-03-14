@@ -26,6 +26,30 @@ class ServiceabilityValidator {
       q: Joi.string().allow(""),
     }).required();
   }
+
+  static updatePincodeMopView() {
+    return Joi.object({
+      body: ServiceabilityModel.PincodeMopData().required(),
+    }).required();
+  }
+
+  static updatePincodeBulkView() {
+    return Joi.object({
+      body: ServiceabilityModel.PincodeMopBulkData().required(),
+    }).required();
+  }
+
+  static updatePincodeCoDListing() {
+    return Joi.object({
+      body: ServiceabilityModel.PincodeCodStatusListingRequest().required(),
+    }).required();
+  }
+
+  static updatePincodeAuditHistory() {
+    return Joi.object({
+      body: ServiceabilityModel.PincodeMopUpdateAuditHistoryRequest().required(),
+    }).required();
+  }
 }
 
 module.exports = ServiceabilityValidator;

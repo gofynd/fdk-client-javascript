@@ -42,4 +42,40 @@ declare class Serviceability {
         zoneId?: string[];
         q?: string;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PincodeMopData} arg.body
+     * @summary: PincodeView update of MOP.
+     * @description: This API updates Pincode method of payment.
+     */
+    updatePincodeMopView({ body }?: {
+        body: PincodeMopData;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PincodeMopBulkData} arg.body
+     * @summary: Bulk Update of pincode in the application.
+     * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+     */
+    updatePincodeBulkView({ body }?: {
+        body: PincodeMopBulkData;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PincodeCodStatusListingRequest} arg.body
+     * @summary: Pincode count view of application.
+     * @description: This API returns count of active pincode.
+     */
+    updatePincodeCoDListing({ body }?: {
+        body: PincodeCodStatusListingRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PincodeMopUpdateAuditHistoryRequest} arg.body
+     * @summary: Auditlog configuration of application.
+     * @description: This API returns Audit logs of Pincode.
+     */
+    updatePincodeAuditHistory({ body }?: {
+        body: PincodeMopUpdateAuditHistoryRequest;
+    }): Promise<any>;
 }

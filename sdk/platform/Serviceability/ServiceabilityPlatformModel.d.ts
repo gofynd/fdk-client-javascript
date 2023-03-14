@@ -1,19 +1,19 @@
 export = ServiceabilityModel;
 declare class ServiceabilityModel {
     static ApplicationServiceabilityConfig(): any;
-    static ApplicationServiceabilityResponse(): any;
     static ServiceabilityErrorResponse(): any;
+    static ApplicationServiceabilityResponse(): any;
     static ApplicationServiceabilityConfigResponse(): any;
     static EntityRegionViewRequest(): any;
-    static EntityRegionViewItems(): any;
-    static EntityRegionViewError(): any;
     static EntityRegionViewPage(): any;
+    static EntityRegionViewError(): any;
+    static EntityRegionViewItems(): any;
     static EntityRegionViewResponse(): any;
+    static ZoneDataItem(): any;
+    static ListViewSummary(): any;
     static ListViewChannels(): any;
     static ListViewProduct(): any;
     static ListViewItems(): any;
-    static ListViewSummary(): any;
-    static ZoneDataItem(): any;
     static ListViewResponse(): any;
     static CompanyStoreView_PageItems(): any;
     static CompanyStoreView_Response(): any;
@@ -31,4 +31,18 @@ declare class ServiceabilityModel {
     static GetZoneFromPincodeViewRequest(): any;
     static GetZoneFromPincodeViewResponse(): any;
     static GetZoneFromApplicationIdViewResponse(): any;
+    static PincodeMopData(): any;
+    static PincodeMopUpdateResponse(): any;
+    static PincodeMOPresponse(): any;
+    static PincodeMopBulkData(): any;
+    static PincodeBulkViewResponse(): any;
+    static PincodeCodStatusListingRequest(): any;
+    static PincodeCodStatusListingResponse(): any;
+    static Error(): any;
+    static PincodeCodStatusListingPage(): any;
+    static PincodeCodStatusListingSummary(): any;
+    static PincodeMopUpdateAuditHistoryRequest(): any;
+    static PincodeMopUpdateAuditHistoryPaging(): any;
+    static PincodeMopUpdateAuditHistoryResponse(): any;
+    static PincodeMopUpdateAuditHistoryResponseData(): any;
 }

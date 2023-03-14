@@ -19,6 +19,10 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [getZoneListView](#getzonelistview)
+* [updatePincodeMopView](#updatepincodemopview)
+* [updatePincodeBulkView](#updatepincodebulkview)
+* [updatePincodeCoDListing](#updatepincodecodlisting)
+* [updatePincodeAuditHistory](#updatepincodeaudithistory)
 
 
 
@@ -706,6 +710,229 @@ Zone List of application in descending order of their last modified date.
 ---
 
 
+### updatePincodeMopView
+PincodeView update of MOP.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").serviceability.updatePincodeMopView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopData](#PincodeMopData) | yes | Request body |
+
+
+This API updates Pincode method of payment.
+
+*Returned Response:*
+
+
+
+
+[PincodeMOPresponse](#PincodeMOPresponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeBulkView
+Bulk Update of pincode in the application.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").serviceability.updatePincodeBulkView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopBulkData](#PincodeMopBulkData) | yes | Request body |
+
+
+This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+
+*Returned Response:*
+
+
+
+
+[PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "batch_id": "string",
+  "s3_url": "string"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeCoDListing
+Pincode count view of application.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").serviceability.updatePincodeCoDListing({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest) | yes | Request body |
+
+
+This API returns count of active pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePincodeAuditHistory
+Auditlog configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").serviceability.updatePincodeAuditHistory({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest) | yes | Request body |
+
+
+This API returns Audit logs of Pincode.
+
+*Returned Response:*
+
+
+
+
+[PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -722,26 +949,26 @@ Zone List of application in descending order of their last modified date.
 
  
  
- #### [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)
+ #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_id | string |  yes  |  |
- | serviceability_type | string |  yes  |  |
- | channel_type | string |  yes  |  |
+ | type | string |  yes  |  |
+ | value | string |  yes  |  |
+ | message | string |  yes  |  |
 
 ---
 
 
  
  
- #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
+ #### [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
- | value | string |  yes  |  |
- | type | string |  yes  |  |
+ | channel_type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
+ | serviceability_type | string |  yes  |  |
 
 ---
 
@@ -752,9 +979,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse) |  no  |  |
  | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse) |  no  |  |
  | success | boolean |  yes  |  |
+ | data | [ApplicationServiceabilityResponse](#ApplicationServiceabilityResponse) |  no  |  |
 
 ---
 
@@ -765,34 +992,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | parent_id | [string] |  no  |  |
  | sub_type | [string] |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionViewItems](#EntityRegionViewItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | uid | string |  yes  |  |
- | sub_type | string |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionViewError](#EntityRegionViewError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | value | string |  no  |  |
- | type | string |  no  |  |
+ | parent_id | [string] |  no  |  |
 
 ---
 
@@ -803,11 +1004,37 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  yes  |  |
- | size | number |  yes  |  |
  | type | string |  yes  |  |
+ | size | number |  yes  |  |
+ | current | number |  yes  |  |
  | item_total | number |  yes  |  |
  | has_next | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionViewError](#EntityRegionViewError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionViewItems](#EntityRegionViewItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | string |  yes  |  |
+ | sub_type | string |  yes  |  |
+ | name | string |  yes  |  |
 
 ---
 
@@ -818,10 +1045,38 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  yes  |  |
- | error | [EntityRegionViewError](#EntityRegionViewError) |  yes  |  |
  | page | [EntityRegionViewPage](#EntityRegionViewPage) |  yes  |  |
+ | error | [EntityRegionViewError](#EntityRegionViewError) |  yes  |  |
  | success | boolean |  yes  |  |
+ | data | [[EntityRegionViewItems](#EntityRegionViewItems)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDataItem](#ZoneDataItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | number |  yes  |  |
+ | current | number |  yes  |  |
+ | item_total | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
+ | type | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_active_zones | number |  yes  |  |
+ | total_zones | number |  yes  |  |
+ | total_pincodes_served | number |  yes  |  |
 
 ---
 
@@ -832,8 +1087,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_id | string |  yes  |  |
  | channel_type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
 
 ---
 
@@ -856,43 +1111,15 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | stores_count | number |  yes  |  |
- | name | string |  yes  |  |
  | slug | string |  yes  |  |
- | is_active | boolean |  yes  |  |
  | channels | [ListViewChannels](#ListViewChannels) |  yes  |  |
- | zone_id | string |  yes  |  |
- | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
  | pincodes_count | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total_active_zones | number |  yes  |  |
- | total_zones | number |  yes  |  |
- | total_pincodes_served | number |  yes  |  |
-
----
-
-
- 
- 
- #### [ZoneDataItem](#ZoneDataItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | current | number |  yes  |  |
- | size | number |  yes  |  |
- | item_total | number |  yes  |  |
- | has_next | boolean |  yes  |  |
+ | product | [ListViewProduct](#ListViewProduct) |  yes  |  |
+ | name | string |  yes  |  |
+ | stores_count | number |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | zone_id | string |  yes  |  |
+ | company_id | number |  yes  |  |
 
 ---
 
@@ -903,9 +1130,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
- | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  yes  |  |
+ | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
 
 ---
 
@@ -916,9 +1143,9 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number |  yes  |  |
- | size | number |  yes  |  |
  | type | string |  yes  |  |
+ | size | number |  yes  |  |
+ | current | number |  yes  |  |
  | item_total | number |  yes  |  |
  | has_next | boolean |  yes  |  |
 
@@ -931,8 +1158,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
  | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  yes  |  |
+ | items | [string] |  no  |  |
 
 ---
 
@@ -943,8 +1170,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channel_id | string |  yes  |  |
  | channel_type | string |  yes  |  |
+ | channel_id | string |  yes  |  |
 
 ---
 
@@ -955,8 +1182,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [string] |  yes  |  |
  | type | string |  yes  |  |
+ | tags | [string] |  yes  |  |
 
 ---
 
@@ -967,8 +1194,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | [string] |  no  |  |
  | state | [string] |  no  |  |
+ | pincode | [string] |  no  |  |
  | country | string |  yes  |  |
 
 ---
@@ -1035,8 +1262,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
  | identifier | string |  yes  |  |
+ | data | [UpdateZoneData](#UpdateZoneData) |  yes  |  |
 
 ---
 
@@ -1079,8 +1306,8 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
  | identifier | string |  yes  |  |
+ | data | [CreateZoneData](#CreateZoneData) |  yes  |  |
 
 ---
 
@@ -1092,8 +1319,8 @@ Zone List of application in descending order of their last modified date.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status_code | number |  yes  |  |
- | zone_id | string |  yes  |  |
  | success | boolean |  yes  |  |
+ | zone_id | string |  yes  |  |
 
 ---
 
@@ -1128,8 +1355,205 @@ Zone List of application in descending order of their last modified date.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  yes  |  |
+ | items | [[ListViewItems](#ListViewItems)] |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopData](#PincodeMopData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincodes | [number] |  yes  |  |
+ | country | string |  yes  |  |
+ | action | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateResponse](#PincodeMopUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pincode | number |  yes  |  |
+ | channel_id | string |  yes  |  |
+ | country | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMOPresponse](#PincodeMOPresponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | status_code | number |  yes  |  |
+ | batch_id | string |  yes  |  |
+ | country | string |  yes  |  |
+ | action | string |  yes  |  |
+ | pincodes | [number] |  no  |  |
+ | updated_pincodes | [[PincodeMopUpdateResponse](#PincodeMopUpdateResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopBulkData](#PincodeMopBulkData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  yes  |  |
+ | s3_url | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeBulkViewResponse](#PincodeBulkViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  yes  |  |
+ | s3_url | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingRequest](#PincodeCodStatusListingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | pincode | number |  no  |  |
+ | current_page_number | number |  no  |  |
+ | page_size | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | string |  yes  |  |
+ | data | [[PincodeCodStatusListingResponse](#PincodeCodStatusListingResponse)] |  yes  |  |
+ | success | boolean |  yes  |  |
+ | errors | [[Error](#Error)] |  no  |  |
+ | page | [PincodeCodStatusListingPage](#PincodeCodStatusListingPage) |  yes  |  |
+ | summary | [PincodeCodStatusListingSummary](#PincodeCodStatusListingSummary) |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Error](#Error)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ | message | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingPage](#PincodeCodStatusListingPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | size | number |  yes  |  |
+ | current_page_number | number |  yes  |  |
+ | item_total | number |  yes  |  |
+ | has_next | boolean |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeCodStatusListingSummary](#PincodeCodStatusListingSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_active_pincodes | number |  yes  |  |
+ | total_inactive_pincodes | number |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryRequest](#PincodeMopUpdateAuditHistoryRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_type | string |  yes  |  |
+ | file_name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | size | number |  no  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | error_file_s3_url | string |  no  |  |
+ | s3_url | string |  no  |  |
+ | file_name | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | success | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeMopUpdateAuditHistoryResponseData](#PincodeMopUpdateAuditHistoryResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | entity_type | string |  no  |  |
+ | page | [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging) |  yes  |  |
+ | data | [[PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)] |  yes  |  |
 
 ---
 
