@@ -212,7 +212,7 @@ class CartValidator {
     }).required();
   }
 
-  static getCoupons() {
+  static getPlatformPOSCoupons() {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),

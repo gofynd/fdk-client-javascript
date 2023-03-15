@@ -1112,8 +1112,8 @@ class Cart {
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details.
    */
-  getCoupons({ id, buyNow } = {}) {
-    const { error } = CartValidator.getCoupons().validate(
+  getPlatformPOSCoupons({ id, buyNow } = {}) {
+    const { error } = CartValidator.getPlatformPOSCoupons().validate(
       {
         id,
         buyNow,

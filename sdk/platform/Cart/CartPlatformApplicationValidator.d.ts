@@ -1,7 +1,6 @@
 export = CartValidator;
 declare class CartValidator {
     static getCoupons(): any;
-    static getCoupons(): any;
     static createCoupon(): any;
     static getCouponById(): any;
     static updateCoupon(): any;
@@ -30,6 +29,7 @@ declare class CartValidator {
     static getCart(): any;
     static deleteCart(): any;
     static getItemCount(): any;
+    static getPlatformPOSCoupons(): any;
     static applyCoupon(): any;
     static removeCoupon(): any;
     static getAddresses(): any;

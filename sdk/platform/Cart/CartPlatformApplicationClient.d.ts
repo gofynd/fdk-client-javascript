@@ -28,17 +28,6 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
-     * @summary: Fetch Coupon
-     * @description: Use this API to get a list of available coupons along with their details.
-     */
-    getCoupons({ id, buyNow }?: {
-        id?: string;
-        buyNow?: boolean;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Current company id
      * @param {string} arg.applicationId - Current Application _id
      * @param {number} [arg.pageSize] -
@@ -434,6 +423,17 @@ declare class Cart {
      * @description: Use this API to get the total number of items present in cart.
      */
     getItemCount({ id, buyNow }?: {
+        id?: string;
+        buyNow?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] -
+     * @param {boolean} [arg.buyNow] -
+     * @summary: Fetch Coupon
+     * @description: Use this API to get a list of available coupons along with their details.
+     */
+    getPlatformPOSCoupons({ id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
     }): Promise<any>;

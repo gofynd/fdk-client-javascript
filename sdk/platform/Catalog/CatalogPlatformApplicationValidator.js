@@ -2,13 +2,6 @@ const Joi = require("joi");
 const CatalogModel = require("./CatalogPlatformModel");
 
 class CatalogValidator {
-  static updateSearchKeywords() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogModel.CreateSearchKeyword().required(),
-    }).required();
-  }
-
   static getSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -21,6 +14,13 @@ class CatalogValidator {
     }).required();
   }
 
+  static updateSearchKeywords() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CatalogModel.CreateSearchKeyword().required(),
+    }).required();
+  }
+
   static getAllSearchKeyword() {
     return Joi.object({}).required();
   }
@@ -28,13 +28,6 @@ class CatalogValidator {
   static createCustomKeyword() {
     return Joi.object({
       body: CatalogModel.CreateSearchKeyword().required(),
-    }).required();
-  }
-
-  static updateAutocompleteKeyword() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CatalogModel.CreateAutocompleteKeyword().required(),
     }).required();
   }
 
@@ -50,6 +43,13 @@ class CatalogValidator {
     }).required();
   }
 
+  static updateAutocompleteKeyword() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CatalogModel.CreateAutocompleteKeyword().required(),
+    }).required();
+  }
+
   static getAutocompleteConfig() {
     return Joi.object({}).required();
   }
@@ -60,16 +60,16 @@ class CatalogValidator {
     }).required();
   }
 
-  static getAppProduct() {
-    return Joi.object({
-      itemId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static updateAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
       body: CatalogModel.ApplicationItemMeta().required(),
+    }).required();
+  }
+
+  static getAppProduct() {
+    return Joi.object({
+      itemId: Joi.string().allow("").required(),
     }).required();
   }
 
