@@ -191,6 +191,18 @@ Success
 
  
  
+ #### [RemoveProxyResponse](#RemoveProxyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | data | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [APIError](#APIError)
 
  | Properties | Type | Nullable | Description |
@@ -200,18 +212,6 @@ Success
  | info | string |  no  | Error code description link |
  | request_id | string |  no  |  |
  | meta | string |  no  |  |
-
----
-
-
- 
- 
- #### [RemoveProxyResponse](#RemoveProxyResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | data | string |  no  |  |
 
 ---
 

@@ -3,7 +3,7 @@ const {
   FDKClientValidationError,
 } = require("../common/FDKError");
 const { Logger, setLoggerLevel } = require("../common/Logger");
-const { LocationValidator } = require("./ApplicationModels");
+const { LocationValidator } = require("../application/ApplicationModels");
 class ApplicationConfig {
   /**
    * @param {object} _conf
