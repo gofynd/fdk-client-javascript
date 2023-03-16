@@ -139,9 +139,29 @@ declare class Payment {
      * @summary: map new edc device to the terminal
      * @description: Use this API to map new edc device to the terminal
      */
-    edcDevice({ terminalUniqueIdentifier, body }?: {
+    updateEdcDevice({ terminalUniqueIdentifier, body }?: {
         terminalUniqueIdentifier: string;
         body: EdcAddRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
+     * @summary: get details of a single edc device
+     * @description: Use this API to get details of a single edc device
+     */
+    getEdcDevice({ terminalUniqueIdentifier }?: {
+        terminalUniqueIdentifier: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
+     * @param {EdcUpdateRequest} arg.body
+     * @summary: Update store id and device tag of edc device
+     * @description: Use this API to Update store id and device tag of edc device
+     */
+    addEdcDevice({ terminalUniqueIdentifier, body }?: {
+        terminalUniqueIdentifier: string;
+        body: EdcUpdateRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

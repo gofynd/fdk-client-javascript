@@ -440,8 +440,8 @@ class Payment {
    * @summary: map new edc device to the terminal
    * @description: Use this API to map new edc device to the terminal
    */
-  edcDevice({ terminalUniqueIdentifier, body } = {}) {
-    const { error } = PaymentValidator.edcDevice().validate(
+  updateEdcDevice({ terminalUniqueIdentifier, body } = {}) {
+    const { error } = PaymentValidator.updateEdcDevice().validate(
       {
         terminalUniqueIdentifier,
         body,
@@ -469,8 +469,8 @@ class Payment {
    * @summary: get details of a single edc device
    * @description: Use this API to get details of a single edc device
    */
-  edcDevice({ terminalUniqueIdentifier } = {}) {
-    const { error } = PaymentValidator.edcDevice().validate(
+  getEdcDevice({ terminalUniqueIdentifier } = {}) {
+    const { error } = PaymentValidator.getEdcDevice().validate(
       {
         terminalUniqueIdentifier,
       },
@@ -498,8 +498,8 @@ class Payment {
    * @summary: Update store id and device tag of edc device
    * @description: Use this API to Update store id and device tag of edc device
    */
-  edcDevice({ terminalUniqueIdentifier, body } = {}) {
-    const { error } = PaymentValidator.edcDevice().validate(
+  addEdcDevice({ terminalUniqueIdentifier, body } = {}) {
+    const { error } = PaymentValidator.addEdcDevice().validate(
       {
         terminalUniqueIdentifier,
         body,

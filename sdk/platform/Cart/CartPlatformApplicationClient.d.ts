@@ -214,17 +214,6 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {PlatformCartCheckoutDetailRequest} arg.body
-     * @summary: Checkout all items in the cart
-     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
-     */
-    checkoutCart({ body, id }?: {
-        id?: string;
-        body: PlatformCartCheckoutDetailRequest;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.fromDate] -
@@ -295,23 +284,6 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.id] -
-     * @param {AddCartRequest} arg.body
-     * @summary: Add items to cart
-     * @description: Use this API to add items to the cart.
-     */
-    addItems({ body, i, b, buyNow, id }?: {
-        i?: boolean;
-        b?: boolean;
-        buyNow?: boolean;
-        id?: string;
-        body: AddCartRequest;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Current Cart _id
      * @param {boolean} [arg.b] -
      * @param {UpdateCartRequest} arg.body
@@ -321,23 +293,6 @@ declare class Cart {
     updateCart({ cartId, body, b }?: {
         cartId: string;
         b?: boolean;
-        body: UpdateCartRequest;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {UpdateCartRequest} arg.body
-     * @summary: Update items in the customer 's cart using cart id
-     * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-     */
-    updateCart({ body, id, i, b, buyNow }?: {
-        id?: string;
-        i?: boolean;
-        b?: boolean;
-        buyNow?: boolean;
         body: UpdateCartRequest;
     }): Promise<any>;
     /**
@@ -408,6 +363,40 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] -
+     * @param {AddCartRequest} arg.body
+     * @summary: Add items to cart
+     * @description: Use this API to add items to the cart.
+     */
+    platformAddItems({ body, i, b, buyNow, id }?: {
+        i?: boolean;
+        b?: boolean;
+        buyNow?: boolean;
+        id?: string;
+        body: AddCartRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] -
+     * @param {boolean} [arg.i] -
+     * @param {boolean} [arg.b] -
+     * @param {boolean} [arg.buyNow] -
+     * @param {UpdateCartRequest} arg.body
+     * @summary: Update items in the customer 's cart using cart id
+     * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+     */
+    platformUpdateCart({ body, id, i, b, buyNow }?: {
+        id?: string;
+        i?: boolean;
+        b?: boolean;
+        buyNow?: boolean;
+        body: UpdateCartRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.id] - The unique identifier of the cart.
      * @summary: Delete cart once user made successful checkout
      * @description: Use this API to delete the cart.
@@ -433,7 +422,7 @@ declare class Cart {
      * @summary: Fetch Coupon
      * @description: Use this API to get a list of available coupons along with their details.
      */
-    getPlatformPOSCoupons({ id, buyNow }?: {
+    getAppCoupons({ id, buyNow }?: {
         id?: string;
         buyNow?: boolean;
     }): Promise<any>;
@@ -619,6 +608,17 @@ declare class Cart {
         id?: string;
         buyNow?: boolean;
         body: PlatformCartMetaRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] -
+     * @param {PlatformCartCheckoutDetailRequest} arg.body
+     * @summary: Checkout all items in the cart
+     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
+     */
+    platformCheckoutCart({ body, id }?: {
+        id?: string;
+        body: PlatformCartCheckoutDetailRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

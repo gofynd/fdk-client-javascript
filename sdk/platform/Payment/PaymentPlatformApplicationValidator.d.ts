@@ -15,7 +15,9 @@ declare class PaymentValidator {
     static setUserCODlimitRoutes(): any;
     static edcAggregatorsAndModelList(): any;
     static edcDeviceStats(): any;
-    static edcDevice(): any;
+    static updateEdcDevice(): any;
+    static getEdcDevice(): any;
+    static addEdcDevice(): any;
     static edcDeviceList(): any;
     static getPosPaymentModeRoutes(): any;
     static initialisePayment(): any;

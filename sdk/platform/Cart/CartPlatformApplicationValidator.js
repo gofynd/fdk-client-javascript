@@ -179,7 +179,7 @@ class CartValidator {
     }).required();
   }
 
-  static addItems() {
+  static platformAddItems() {
     return Joi.object({
       i: Joi.boolean(),
       b: Joi.boolean(),
@@ -189,7 +189,7 @@ class CartValidator {
     }).required();
   }
 
-  static updateCart() {
+  static platformUpdateCart() {
     return Joi.object({
       id: Joi.string().allow(""),
       i: Joi.boolean(),
@@ -212,7 +212,7 @@ class CartValidator {
     }).required();
   }
 
-  static getPlatformPOSCoupons() {
+  static getAppCoupons() {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
@@ -323,7 +323,7 @@ class CartValidator {
     }).required();
   }
 
-  static checkoutCart() {
+  static platformCheckoutCart() {
     return Joi.object({
       id: Joi.string().allow(""),
       body: CartModel.PlatformCartCheckoutDetailRequest().required(),

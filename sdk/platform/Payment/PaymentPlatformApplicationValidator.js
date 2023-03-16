@@ -87,20 +87,20 @@ class PaymentValidator {
     return Joi.object({}).required();
   }
 
-  static edcDevice() {
+  static updateEdcDevice() {
     return Joi.object({
       terminalUniqueIdentifier: Joi.string().allow("").required(),
       body: PaymentModel.EdcAddRequest().required(),
     }).required();
   }
 
-  static edcDevice() {
+  static getEdcDevice() {
     return Joi.object({
       terminalUniqueIdentifier: Joi.string().allow("").required(),
     }).required();
   }
 
-  static edcDevice() {
+  static addEdcDevice() {
     return Joi.object({
       terminalUniqueIdentifier: Joi.string().allow("").required(),
       body: PaymentModel.EdcUpdateRequest().required(),

@@ -85,11 +85,11 @@ declare class PaymentModel {
     static RedirectToAggregatorResponse(): any;
     static CreditDetail(): any;
     static CheckCreditResponse(): any;
+    static MarketplaceInfo(): any;
     static KYCAddress(): any;
     static BusinessDetails(): any;
-    static MarketplaceInfo(): any;
-    static DeviceDetails(): any;
     static UserPersonalInfoInDetails(): any;
+    static DeviceDetails(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;

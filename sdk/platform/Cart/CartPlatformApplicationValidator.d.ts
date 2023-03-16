@@ -14,12 +14,9 @@ declare class CartValidator {
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
-    static checkoutCart(): any;
     static getAbandonedCart(): any;
     static getAbandonedCartDetails(): any;
     static addItems(): any;
-    static addItems(): any;
-    static updateCart(): any;
     static updateCart(): any;
     static getCartShareLink(): any;
     static getCartSharedItems(): any;
@@ -27,9 +24,11 @@ declare class CartValidator {
     static getCartList(): any;
     static updateCartUser(): any;
     static getCart(): any;
+    static platformAddItems(): any;
+    static platformUpdateCart(): any;
     static deleteCart(): any;
     static getItemCount(): any;
-    static getPlatformPOSCoupons(): any;
+    static getAppCoupons(): any;
     static applyCoupon(): any;
     static removeCoupon(): any;
     static getAddresses(): any;
@@ -41,6 +40,7 @@ declare class CartValidator {
     static getShipments(): any;
     static updateShipments(): any;
     static updateCartMeta(): any;
+    static platformCheckoutCart(): any;
     static getAvailableDeliveryModes(): any;
     static getStoreAddressByUid(): any;
     static selectPaymentMode(): any;
