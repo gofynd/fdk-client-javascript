@@ -258,17 +258,17 @@ class CatalogValidator {
     }).required();
   }
 
-  static deleteProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-    }).required();
-  }
-
   static getProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
       brandUid: Joi.number(),
       itemCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  static deleteProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -507,15 +507,15 @@ class CatalogValidator {
     }).required();
   }
 
-  static getOptimalLocations() {
-    return Joi.object({
-      body: CatalogModel.AssignStore().required(),
-    }).required();
-  }
-
   static getSingleProductHSNCode() {
     return Joi.object({
       reportingHsn: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getOptimalLocations() {
+    return Joi.object({
+      body: CatalogModel.AssignStore().required(),
     }).required();
   }
 }

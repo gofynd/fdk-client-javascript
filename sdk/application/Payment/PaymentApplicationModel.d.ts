@@ -86,10 +86,10 @@ declare class PaymentModel {
     static CreditDetail(): any;
     static CheckCreditResponse(): any;
     static KYCAddress(): any;
-    static BusinessDetails(): any;
-    static MarketplaceInfo(): any;
     static UserPersonalInfoInDetails(): any;
     static DeviceDetails(): any;
+    static BusinessDetails(): any;
+    static MarketplaceInfo(): any;
     static CustomerOnboardingRequest(): any;
     static OnboardSummary(): any;
     static CustomerOnboardingResponse(): any;

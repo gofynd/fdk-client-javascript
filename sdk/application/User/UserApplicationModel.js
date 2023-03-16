@@ -961,10 +961,6 @@ class UserModel {
 
       account_type: Joi.string().allow(""),
 
-      debug: UserModel.Debug(),
-
-      has_old_password_hash: Joi.boolean(),
-
       _id: Joi.string().allow(""),
 
       created_at: Joi.string().allow(""),
@@ -996,14 +992,6 @@ class UserModel {
       email: Joi.string().allow(""),
 
       active: Joi.boolean(),
-    });
-  }
-
-  static Debug() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-
-      platform: Joi.string().allow(""),
     });
   }
 }
