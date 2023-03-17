@@ -3955,6 +3955,51 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [UserGroupResponseSchema](#UserGroupResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+ | _id | string |  no  |  |
+ | status | string |  no  |  |
+ | uid | number |  no  |  |
+ | application_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | __v | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateUserGroupSchema](#CreateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | description | string |  yes  |  |
+ | file_url | string |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -4257,6 +4302,19 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | duration | number |  no  |  |
  | type | string |  no  |  |
  | is_rolling | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
 
 ---
 

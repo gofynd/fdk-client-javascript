@@ -65,6 +65,9 @@ declare class UserModel {
     static AuthSuccessUser(): any;
     static AuthSuccessUserDebug(): any;
     static AuthSuccessUserEmails(): any;
+    static UserGroupResponseSchema(): any;
+    static UserGroupListResponseSchema(): any;
+    static CreateUserGroupSchema(): any;
     static CreateUserRequestSchema(): any;
     static CreateUserResponseSchema(): any;
     static CreateUserSessionRequestSchema(): any;
@@ -88,6 +91,7 @@ declare class UserModel {
     static Accountkit(): any;
     static Google(): any;
     static SessionExpiry(): any;
+    static UpdateUserGroupSchema(): any;
     static UpdateUserRequestSchema(): any;
     static UserSchema(): any;
     static PhoneNumber(): any;

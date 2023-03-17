@@ -357,5 +357,133 @@ class User {
       body
     );
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserGroupSchema} arg.body
+   * @summary: Create an User Group
+   * @description: Use this API to create new user Group
+   */
+  createUserGroup({ body } = {}) {
+    const { error } = UserValidator.createUserGroup().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.pageNo] - Page number for pagination result
+   * @param {string} [arg.pageSize] - Page size for pagination result
+   * @param {string} [arg.name] - To seartch for User Groups which contains
+   *   given string in their name
+   * @param {string} [arg.status] - To get User Groups with given status
+   * @param {number} [arg.groupUid] - To get User Groups with given uid
+   * @summary: Get User Groups mathcing criteria
+   * @description: Use this API to get User Groups mathing criteria passed in query
+   */
+  getUserGroups({ pageNo, pageSize, name, status, groupUid } = {}) {
+    const { error } = UserValidator.getUserGroups().validate(
+      {
+        pageNo,
+        pageSize,
+        name,
+        status,
+        groupUid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["name"] = name;
+    query_params["status"] = status;
+    query_params["group_uid"] = groupUid;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.groupId - Numeric ID allotted to a User Group
+   * @param {UpdateUserGroupSchema} arg.body
+   * @summary: Update an User Group
+   * @description: Use this API to update an existing user Group
+   */
+  updateUserGroup({ groupId, body } = {}) {
+    const { error } = UserValidator.updateUserGroup().validate(
+      {
+        groupId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.groupId - Numeric ID allotted to a User Group
+   * @summary: Get an User Group by Id
+   * @description: Use this API to get details of an existing user Group
+   */
+  getUserGroupById({ groupId } = {}) {
+    const { error } = UserValidator.getUserGroupById().validate(
+      {
+        groupId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
+      query_params,
+      undefined
+    );
+  }
 }
 module.exports = User;

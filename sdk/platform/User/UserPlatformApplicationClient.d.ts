@@ -118,4 +118,51 @@ declare class User {
     updatePlatformConfig({ body }?: {
         body: PlatformSchema;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateUserGroupSchema} arg.body
+     * @summary: Create an User Group
+     * @description: Use this API to create new user Group
+     */
+    createUserGroup({ body }?: {
+        body: CreateUserGroupSchema;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.pageNo] - Page number for pagination result
+     * @param {string} [arg.pageSize] - Page size for pagination result
+     * @param {string} [arg.name] - To seartch for User Groups which contains
+     *   given string in their name
+     * @param {string} [arg.status] - To get User Groups with given status
+     * @param {number} [arg.groupUid] - To get User Groups with given uid
+     * @summary: Get User Groups mathcing criteria
+     * @description: Use this API to get User Groups mathing criteria passed in query
+     */
+    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: {
+        pageNo?: string;
+        pageSize?: string;
+        name?: string;
+        status?: string;
+        groupUid?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.groupId - Numeric ID allotted to a User Group
+     * @param {UpdateUserGroupSchema} arg.body
+     * @summary: Update an User Group
+     * @description: Use this API to update an existing user Group
+     */
+    updateUserGroup({ groupId, body }?: {
+        groupId: string;
+        body: UpdateUserGroupSchema;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.groupId - Numeric ID allotted to a User Group
+     * @summary: Get an User Group by Id
+     * @description: Use this API to get details of an existing user Group
+     */
+    getUserGroupById({ groupId }?: {
+        groupId: string;
+    }): Promise<any>;
 }
