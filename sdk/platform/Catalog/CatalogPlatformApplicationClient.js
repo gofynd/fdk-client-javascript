@@ -13,13 +13,15 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
-   * @summary: Delete a Search Keywords
-   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+   * @param {CreateSearchKeyword} arg.body
+   * @summary: Update Search Keyword
+   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
    */
-  deleteSearchKeywords({ id } = {}) {
-    const { error } = CatalogValidator.deleteSearchKeywords().validate(
+  updateSearchKeywords({ id, body } = {}) {
+    const { error } = CatalogValidator.updateSearchKeywords().validate(
       {
         id,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -31,10 +33,10 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "delete",
+      "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
       query_params,
-      undefined
+      body
     );
   }
 
@@ -71,15 +73,13 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateSearchKeyword} arg.body
-   * @summary: Update Search Keyword
-   * @description: Update Search Keyword by its id. On successful request, returns the updated collection
+   * @summary: Delete a Search Keywords
+   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
    */
-  updateSearchKeywords({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSearchKeywords().validate(
+  deleteSearchKeywords({ id } = {}) {
+    const { error } = CatalogValidator.deleteSearchKeywords().validate(
       {
         id,
-        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -91,10 +91,10 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "put",
+      "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
       query_params,
-      body
+      undefined
     );
   }
 
@@ -155,13 +155,15 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
-   * @summary: Delete a Autocomplete Keywords
-   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+   * @param {CreateAutocompleteKeyword} arg.body
+   * @summary: Create & Update Autocomplete Keyword
+   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
    */
-  deleteAutocompleteKeyword({ id } = {}) {
-    const { error } = CatalogValidator.deleteAutocompleteKeyword().validate(
+  updateAutocompleteKeyword({ id, body } = {}) {
+    const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
       {
         id,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -173,10 +175,10 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "delete",
+      "put",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       query_params,
-      undefined
+      body
     );
   }
 
@@ -213,15 +215,13 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {CreateAutocompleteKeyword} arg.body
-   * @summary: Create & Update Autocomplete Keyword
-   * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+   * @summary: Delete a Autocomplete Keywords
+   * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
    */
-  updateAutocompleteKeyword({ id, body } = {}) {
-    const { error } = CatalogValidator.updateAutocompleteKeyword().validate(
+  deleteAutocompleteKeyword({ id } = {}) {
+    const { error } = CatalogValidator.deleteAutocompleteKeyword().validate(
       {
         id,
-        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -233,10 +233,10 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "put",
+      "delete",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
       query_params,
-      body
+      undefined
     );
   }
 
@@ -471,38 +471,6 @@ class Catalog {
    *   for a particular group configuration type.
    * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
    *   a particular configuration.
-   * @summary: Delete configuration of the product config type of the application.
-   * @description: Delete configuration of the product config type of the application.
-   */
-  deleteGroupConfiguration({ configType, groupSlug } = {}) {
-    const { error } = CatalogValidator.deleteGroupConfiguration().validate(
-      {
-        configType,
-        groupSlug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups/${groupSlug}`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular group configuration type.
-   * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
-   *   a particular configuration.
    * @param {AppConfigurationDetail} arg.body
    * @summary: Update the group configurations for the application.
    * @description: Update the group configurations for the application.
@@ -528,6 +496,38 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups/${groupSlug}`,
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.configType - A `config_type` is a unique identifier
+   *   for a particular group configuration type.
+   * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
+   *   a particular configuration.
+   * @summary: Delete configuration of the product config type of the application.
+   * @description: Delete configuration of the product config type of the application.
+   */
+  deleteGroupConfiguration({ configType, groupSlug } = {}) {
+    const { error } = CatalogValidator.deleteGroupConfiguration().validate(
+      {
+        configType,
+        groupSlug,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups/${groupSlug}`,
+      query_params,
+      undefined
     );
   }
 
@@ -608,38 +608,6 @@ class Catalog {
    *   for a particular listing configuration type.
    * @param {string} arg.configId - A `config_id` is a unique identifier of a
    *   particular configuration.
-   * @summary: Delete configuration for listings
-   * @description: Delete configuration for listing.
-   */
-  deleteListingConfiguration({ configType, configId } = {}) {
-    const { error } = CatalogValidator.deleteListingConfiguration().validate(
-      {
-        configType,
-        configId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular listing configuration type.
-   * @param {string} arg.configId - A `config_id` is a unique identifier of a
-   *   particular configuration.
    * @param {AppConfigurationsSort} arg.body
    * @summary: Update configuration for listings
    * @description: Update configuration for listing.
@@ -665,6 +633,38 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.configType - A `config_type` is a unique identifier
+   *   for a particular listing configuration type.
+   * @param {string} arg.configId - A `config_id` is a unique identifier of a
+   *   particular configuration.
+   * @summary: Delete configuration for listings
+   * @description: Delete configuration for listing.
+   */
+  deleteListingConfiguration({ configType, configId } = {}) {
+    const { error } = CatalogValidator.deleteListingConfiguration().validate(
+      {
+        configType,
+        configId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/item/${configId}/`,
+      query_params,
+      undefined
     );
   }
 
@@ -1007,34 +1007,6 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @summary: Delete a Collection
-   * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-   */
-  deleteCollection({ id } = {}) {
-    const { error } = CatalogValidator.deleteCollection().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
    * @param {UpdateCollection} arg.body
    * @summary: Update a collection
    * @description: Update a collection by it's id. On successful request, returns the updated collection
@@ -1059,6 +1031,34 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @summary: Delete a Collection
+   * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+   */
+  deleteCollection({ id } = {}) {
+    const { error } = CatalogValidator.deleteCollection().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/`,
+      query_params,
+      undefined
     );
   }
 

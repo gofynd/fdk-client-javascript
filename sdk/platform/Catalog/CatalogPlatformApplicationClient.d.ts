@@ -7,11 +7,13 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @summary: Delete a Search Keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+     * @param {CreateSearchKeyword} arg.body
+     * @summary: Update Search Keyword
+     * @description: Update Search Keyword by its id. On successful request, returns the updated collection
      */
-    deleteSearchKeywords({ id }?: {
+    updateSearchKeywords({ id, body }?: {
         id: string;
+        body: CreateSearchKeyword;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -27,13 +29,11 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @param {CreateSearchKeyword} arg.body
-     * @summary: Update Search Keyword
-     * @description: Update Search Keyword by its id. On successful request, returns the updated collection
+     * @summary: Delete a Search Keywords
+     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
-    updateSearchKeywords({ id, body }?: {
+    deleteSearchKeywords({ id }?: {
         id: string;
-        body: CreateSearchKeyword;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -54,11 +54,13 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @summary: Delete a Autocomplete Keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
+     * @param {CreateAutocompleteKeyword} arg.body
+     * @summary: Create & Update Autocomplete Keyword
+     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
      */
-    deleteAutocompleteKeyword({ id }?: {
+    updateAutocompleteKeyword({ id, body }?: {
         id: string;
+        body: CreateAutocompleteKeyword;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -74,13 +76,11 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
-     * @param {CreateAutocompleteKeyword} arg.body
-     * @summary: Create & Update Autocomplete Keyword
-     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+     * @summary: Delete a Autocomplete Keywords
+     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
-    updateAutocompleteKeyword({ id, body }?: {
+    deleteAutocompleteKeyword({ id }?: {
         id: string;
-        body: CreateAutocompleteKeyword;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -169,19 +169,6 @@ declare class Catalog {
      *   for a particular group configuration type.
      * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
      *   a particular configuration.
-     * @summary: Delete configuration of the product config type of the application.
-     * @description: Delete configuration of the product config type of the application.
-     */
-    deleteGroupConfiguration({ configType, groupSlug }?: {
-        configType: string;
-        groupSlug: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.configType - A `config_type` is a unique identifier
-     *   for a particular group configuration type.
-     * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
-     *   a particular configuration.
      * @param {AppConfigurationDetail} arg.body
      * @summary: Update the group configurations for the application.
      * @description: Update the group configurations for the application.
@@ -190,6 +177,19 @@ declare class Catalog {
         configType: string;
         groupSlug: string;
         body: AppConfigurationDetail;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular group configuration type.
+     * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
+     *   a particular configuration.
+     * @summary: Delete configuration of the product config type of the application.
+     * @description: Delete configuration of the product config type of the application.
+     */
+    deleteGroupConfiguration({ configType, groupSlug }?: {
+        configType: string;
+        groupSlug: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -227,19 +227,6 @@ declare class Catalog {
      *   for a particular listing configuration type.
      * @param {string} arg.configId - A `config_id` is a unique identifier of a
      *   particular configuration.
-     * @summary: Delete configuration for listings
-     * @description: Delete configuration for listing.
-     */
-    deleteListingConfiguration({ configType, configId }?: {
-        configType: string;
-        configId: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.configType - A `config_type` is a unique identifier
-     *   for a particular listing configuration type.
-     * @param {string} arg.configId - A `config_id` is a unique identifier of a
-     *   particular configuration.
      * @param {AppConfigurationsSort} arg.body
      * @summary: Update configuration for listings
      * @description: Update configuration for listing.
@@ -248,6 +235,19 @@ declare class Catalog {
         configType: string;
         configId: string;
         body: AppConfigurationsSort;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular listing configuration type.
+     * @param {string} arg.configId - A `config_id` is a unique identifier of a
+     *   particular configuration.
+     * @summary: Delete configuration for listings
+     * @description: Delete configuration for listing.
+     */
+    deleteListingConfiguration({ configType, configId }?: {
+        configType: string;
+        configId: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -362,15 +362,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
-     * @summary: Delete a Collection
-     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
-     */
-    deleteCollection({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier of a collection.
      * @param {UpdateCollection} arg.body
      * @summary: Update a collection
      * @description: Update a collection by it's id. On successful request, returns the updated collection
@@ -378,6 +369,15 @@ declare class Catalog {
     updateCollection({ id, body }?: {
         id: string;
         body: UpdateCollection;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @summary: Delete a Collection
+     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
+     */
+    deleteCollection({ id }?: {
+        id: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
