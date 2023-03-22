@@ -290,6 +290,12 @@ class OrderValidator {
     }).required();
   }
 
+  static postShipmentHistory() {
+    return Joi.object({
+      body: OrderModel.PostShipmentHistory().required(),
+    }).required();
+  }
+
   static sendSmsNinja() {
     return Joi.object({
       body: OrderModel.SendSmsPayload().required(),
@@ -314,14 +320,14 @@ class OrderValidator {
     }).required();
   }
 
+  static getChannelConfig() {
+    return Joi.object({}).required();
+  }
+
   static createChannelConfig() {
     return Joi.object({
       body: OrderModel.CreateChannelConfigData().required(),
     }).required();
-  }
-
-  static getChannelConfig() {
-    return Joi.object({}).required();
   }
 
   static uploadConsent() {
