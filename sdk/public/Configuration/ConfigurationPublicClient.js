@@ -1,6 +1,7 @@
 const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
+const Paginator = require("../../common/Paginator");
 const ConfigurationValidator = require("./ConfigurationPublicValidator");
 class Configuration {
   constructor(_conf) {
@@ -42,6 +43,19 @@ class Configuration {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.searchApplication().validate(
+      { authorization, query },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for searchApplication");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["query"] = query;
 
@@ -80,6 +94,17 @@ class Configuration {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ConfigurationValidator.getLocations().validate(
+      { locationType, id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getLocations");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["location_type"] = locationType;
     query_params["id"] = id;

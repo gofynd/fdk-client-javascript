@@ -104,4 +104,5 @@ class ContentValidator {
     });
   }
 }
+
 module.exports = ContentValidator;

@@ -41,4 +41,5 @@ class RewardsValidator {
     }).required();
   }
 }
+
 module.exports = RewardsValidator;

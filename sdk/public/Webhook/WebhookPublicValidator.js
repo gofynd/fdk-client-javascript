@@ -1,5 +1,6 @@
-const WebhookModel = require("./WebhookPublicModel");
 const Joi = require("joi");
+
+const WebhookModel = require("./WebhookPublicModel");
 class WebhookValidator {
   static fetchAllWebhookEvents() {
     return Joi.object({});
@@ -11,4 +12,5 @@ class WebhookValidator {
     }).required();
   }
 }
+
 module.exports = WebhookValidator;

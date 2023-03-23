@@ -18,4 +18,5 @@ class CommunicationValidator {
     }).required();
   }
 }
+
 module.exports = CommunicationValidator;

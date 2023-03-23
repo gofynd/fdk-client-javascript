@@ -26,6 +26,19 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.checkCouponValidity().validate(
+      {
+        plan,
+        couponCode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for checkCouponValidity");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["plan"] = plan;
     query_params["coupon_code"] = couponCode;
@@ -61,6 +74,23 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.createSubscriptionCharge().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for createSubscriptionCharge"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -92,6 +122,21 @@ class Billing {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.getSubscriptionCharge().validate(
+      {
+        extensionId,
+        subscriptionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSubscriptionCharge");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -127,6 +172,23 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.cancelSubscriptionCharge().validate(
+      {
+        extensionId,
+        subscriptionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for cancelSubscriptionCharge"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -158,6 +220,19 @@ class Billing {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.createOneTimeCharge().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createOneTimeCharge");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -193,6 +268,19 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.getChargeDetails().validate(
+      {
+        extensionId,
+        chargeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getChargeDetails");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -219,6 +307,16 @@ class Billing {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.getInvoices().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getInvoices");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -252,6 +350,18 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.getInvoiceById().validate(
+      {
+        invoiceId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getInvoiceById");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -278,6 +388,16 @@ class Billing {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.getCustomerDetail().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCustomerDetail");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -311,6 +431,20 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.upsertCustomerDetail().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for upsertCustomerDetail");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -339,6 +473,16 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.getSubscription().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSubscription");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -365,6 +509,18 @@ class Billing {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.getFeatureLimitConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFeatureLimitConfig");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -398,6 +554,22 @@ class Billing {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.activateSubscriptionPlan().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for activateSubscriptionPlan"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -427,6 +599,20 @@ class Billing {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingValidator.cancelSubscriptionPlan().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for cancelSubscriptionPlan");
+      console.log(warrning);
     }
 
     const query_params = {};

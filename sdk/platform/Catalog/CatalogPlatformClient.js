@@ -9,6 +9,49 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {ProductBundleRequest} arg.body
+   * @summary: Create Product Bundle
+   * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+   */
+  createProductBundle({ body } = {}) {
+    const { error } = CatalogValidator.createProductBundle().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createProductBundle().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createProductBundle");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
+      query_params,
+      body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.q] - A search string that is searched with product
    *   bundle name.
    * @param {string[]} [arg.slug] - Slugs of bundles to be retrieved.
@@ -27,6 +70,19 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getProductBundle().validate(
+      {
+        q,
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductBundle");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["q"] = q;
     query_params["slug"] = slug;
@@ -39,37 +95,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductBundleRequest} arg.body
-   * @summary: Create Product Bundle
-   * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-   */
-  createProductBundle({ body } = {}) {
-    const { error } = CatalogValidator.createProductBundle().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -92,6 +117,19 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.updateProductBundle().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateProductBundle");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -126,6 +164,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductBundleDetail().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductBundleDetail");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -136,6 +188,49 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ValidateSizeGuide} arg.body
+   * @summary: Create a size guide.
+   * @description: This API allows to create a size guide associated to a brand.
+   */
+  createSizeGuide({ body } = {}) {
+    const { error } = CatalogValidator.createSizeGuide().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createSizeGuide().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createSizeGuide");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -167,6 +262,22 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getSizeGuides().validate(
+      {
+        active,
+        q,
+        tag,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSizeGuides");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["active"] = active;
     query_params["q"] = q;
@@ -188,37 +299,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {ValidateSizeGuide} arg.body
-   * @summary: Create a size guide.
-   * @description: This API allows to create a size guide associated to a brand.
-   */
-  createSizeGuide({ body } = {}) {
-    const { error } = CatalogValidator.createSizeGuide().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Mongo id of the size guide to be edited
    * @param {ValidateSizeGuide} arg.body
    * @summary: Edit a size guide.
@@ -234,6 +314,19 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.updateSizeGuide().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateSizeGuide");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -267,6 +360,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getSizeGuide().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSizeGuide");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -297,6 +402,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getSellerInsights().validate(
+      {
+        sellerAppId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSellerInsights");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -333,6 +450,21 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createMarketplaceOptin().validate(
+      {
+        marketplace,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createMarketplaceOptin");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -361,6 +493,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getMarketplaceOptinDetail().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getMarketplaceOptinDetail"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -387,6 +533,16 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getCompanyDetail().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCompanyDetail");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -430,6 +586,24 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getCompanyBrandDetail().validate(
+      {
+        isActive,
+        q,
+        pageNo,
+        pageSize,
+        marketplace,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCompanyBrandDetail");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["is_active"] = isActive;
     query_params["q"] = q;
@@ -461,6 +635,16 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getCompanyMetrics().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCompanyMetrics");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -499,6 +683,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getStoreDetail().validate(
+      {
+        q,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getStoreDetail");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["q"] = q;
     query_params["page_no"] = pageNo;
@@ -532,6 +730,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getGenderAttribute().validate(
+      {
+        attributeSlug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getGenderAttribute");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -569,6 +779,23 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.listProductTemplateCategories().validate(
+      {
+        departments,
+        itemType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for listProductTemplateCategories"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["departments"] = departments;
     query_params["item_type"] = itemType;
@@ -581,6 +808,49 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/categories/`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {DepartmentCreateUpdate} arg.body
+   * @summary: Create the department.
+   * @description: Create departments using the API.
+   */
+  createDepartments({ body } = {}) {
+    const { error } = CatalogValidator.createDepartments().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createDepartments().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createDepartments");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -624,6 +894,23 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.listDepartmentsData().validate(
+      {
+        pageNo,
+        itemType,
+        pageSize,
+        name,
+        search,
+        isActive,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for listDepartmentsData");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["item_type"] = itemType;
@@ -646,37 +933,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {DepartmentCreateUpdate} arg.body
-   * @summary: Create the department.
-   * @description: Create departments using the API.
-   */
-  createDepartments({ body } = {}) {
-    const { error } = CatalogValidator.createDepartments().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.uid - A `uid` is a unique identifier of a department.
    * @param {DepartmentCreateUpdate} arg.body
    * @summary: Update the department by their uid.
@@ -692,6 +948,19 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.updateDepartment().validate(
+      {
+        uid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateDepartment");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -725,6 +994,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getDepartmentData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getDepartmentData");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -755,6 +1036,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.listProductTemplate().validate(
+      {
+        department,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for listProductTemplate");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -790,6 +1083,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.validateProductTemplate().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for validateProductTemplate");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -822,6 +1129,22 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.downloadProductTemplateViews().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for downloadProductTemplateViews"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -851,6 +1174,22 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.downloadInventoryTemplateView().validate(
+      {
+        itemType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for downloadInventoryTemplateView"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -886,6 +1225,22 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.validateProductTemplateSchema().validate(
+      {
+        itemType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for validateProductTemplateSchema"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["item_type"] = itemType;
 
@@ -913,6 +1268,16 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.listHSNCodes().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for listHSNCodes");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -945,6 +1310,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.listProductTemplateExportDetails().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for listProductTemplateExportDetails"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -961,176 +1340,40 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.status] - This is a parameter used to find all the
-   *   jobs with the specified status.
-   * @param {string} [arg.fromDate] - This is a parameter used to find the job
-   *   from the date specified to the current date.
-   * @param {string} [arg.toDate] - This is a parameter used to find the job
-   *   from the from_date specified to the to_date.
-   * @param {string} [arg.q] - It is a query parameter to search the export
-   *   job with the task ID.
-   * @summary: Allows you to list all product templates export list details
-   * @description: Can view details including trigger data, task id , etc.
-   */
-  listAllProductTemplateExportDetails({ status, fromDate, toDate, q } = {}) {
-    const {
-      error,
-    } = CatalogValidator.listAllProductTemplateExportDetails().validate(
-      {
-        status,
-        fromDate,
-        toDate,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["q"] = q;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductTemplateDownloadsExport} arg.body
-   * @summary: Create a product export job.
-   * @description: This API helps to create a Inventory export job.
-   */
-  createProductExportJob({ body } = {}) {
-    const { error } = CatalogValidator.createProductExportJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.jobId - A `job_id` is a unique identifier for a particular job.
-   * @param {ProductPartialExportRequest} arg.body
-   * @summary: Update Product export job.
-   * @description: This API helps to update a Product export job.
-   */
-  updateProductExportJob({ jobId, body } = {}) {
-    const { error } = CatalogValidator.updateProductExportJob().validate(
-      {
-        jobId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/${jobId}`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.jobId - A `job_id` is a unique identifier for a particular job.
-   * @summary: Allows you to get product templates export details for the job_id.
-   * @description: Can view details including export data, task id , etc for a job.
-   */
-  getProductTemplateExportDetail({ jobId } = {}) {
-    const {
-      error,
-    } = CatalogValidator.getProductTemplateExportDetail().validate(
-      {
-        jobId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/${jobId}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.filter - A `filter` is the unique identifier of the
    *   type of value required.
-   * @param {string} [arg.templateTag] - A `template_tag` is the identifier of
-   *   the type of template required.
-   * @param {string} [arg.itemType] - A `item_type` is the identifier of the
-   *   type of template required.
    * @summary: Allows you to list all values for Templates, Brands or Type
    * @description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
    */
-  listTemplateBrandTypeValues({ filter, templateTag, itemType } = {}) {
+  listTemplateBrandTypeValues({ filter } = {}) {
     const { error } = CatalogValidator.listTemplateBrandTypeValues().validate(
       {
         filter,
-        templateTag,
-        itemType,
       },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.listTemplateBrandTypeValues().validate(
+      {
+        filter,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for listTemplateBrandTypeValues"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
     query_params["filter"] = filter;
-    query_params["template_tag"] = templateTag;
-    query_params["item_type"] = itemType;
 
     const xHeaders = {};
 
@@ -1138,52 +1381,6 @@ class Catalog {
       this.config,
       "get",
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/downloads/configuration/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.level] - Get category for multiple levels
-   * @param {string} [arg.department] - Get category for multiple departments filtered
-   * @param {string} [arg.q] - Get multiple categories filtered by search string
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @summary: Get product categories list
-   * @description: This API gets meta associated to product categories.
-   */
-  listCategories({ level, department, q, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.listCategories().validate(
-      {
-        level,
-        department,
-        q,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["level"] = level;
-    query_params["department"] = department;
-    query_params["q"] = q;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
       query_params,
       undefined,
       xHeaders
@@ -1207,6 +1404,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createCategories().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createCategories");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1217,6 +1426,68 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.level] - Get category for multiple levels
+   * @param {string} [arg.departments] - Get category for multiple departments filtered
+   * @param {string} [arg.q] - Get multiple categories filtered by search string
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @summary: Get product categories list
+   * @description: This API gets meta associated to product categories.
+   */
+  listCategories({ level, departments, q, pageNo, pageSize } = {}) {
+    const { error } = CatalogValidator.listCategories().validate(
+      {
+        level,
+        departments,
+        q,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.listCategories().validate(
+      {
+        level,
+        departments,
+        q,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for listCategories");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+    query_params["level"] = level;
+    query_params["departments"] = departments;
+    query_params["q"] = q;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
+      query_params,
+      undefined,
       xHeaders
     );
   }
@@ -1238,6 +1509,19 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.updateCategory().validate(
+      {
+        uid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateCategory");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1271,6 +1555,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getCategoryData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCategoryData");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1281,6 +1577,49 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ProductCreateUpdateSchemaV2} arg.body
+   * @summary: Create a product.
+   * @description: This API allows to create product.
+   */
+  createProduct({ body } = {}) {
+    const { error } = CatalogValidator.createProduct().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createProduct().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createProduct");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1332,6 +1671,26 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getProducts().validate(
+      {
+        brandIds,
+        categoryIds,
+        itemIds,
+        departmentIds,
+        itemCode,
+        q,
+        tags,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProducts");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["brand_ids"] = brandIds;
     query_params["category_ids"] = categoryIds;
@@ -1351,37 +1710,6 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductCreateUpdateSchemaV2} arg.body
-   * @summary: Create a product.
-   * @description: This API allows to create product.
-   */
-  createProduct({ body } = {}) {
-    const { error } = CatalogValidator.createProduct().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -1409,6 +1737,23 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getVariantsOfProducts().validate(
+      {
+        itemId,
+        variantType,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getVariantsOfProducts");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1447,6 +1792,21 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductAttributes().validate(
+      {
+        category,
+        filter,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductAttributes");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["category"] = category;
     query_params["filter"] = filter;
@@ -1480,6 +1840,19 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.editProduct().validate(
+      {
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for editProduct");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1517,6 +1890,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getProduct().validate(
+      {
+        itemId,
+        brandUid,
+        itemCode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProduct");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["brand_uid"] = brandUid;
     query_params["item_code"] = itemCode;
@@ -1550,6 +1937,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.deleteProduct().validate(
+      {
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteProduct");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1581,6 +1980,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.allSizes().validate(
+      {
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for allSizes");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1607,6 +2018,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductValidation().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductValidation");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1646,6 +2069,21 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getProductSize().validate(
+      {
+        itemId,
+        itemCode,
+        brandUid,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductSize");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["item_code"] = itemCode;
     query_params["brand_uid"] = brandUid;
@@ -1659,6 +2097,53 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {BulkJob} arg.body
+   * @summary: Create a Bulk product to upload job.
+   * @description: This API helps to create a bulk products upload job.
+   */
+  createBulkProductUploadJob({ body } = {}) {
+    const { error } = CatalogValidator.createBulkProductUploadJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createBulkProductUploadJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for createBulkProductUploadJob"
+      );
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1686,6 +2171,24 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductBulkUploadHistory().validate(
+      {
+        search,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getProductBulkUploadHistory"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["search"] = search;
     query_params["page_no"] = pageNo;
@@ -1699,37 +2202,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {BulkJob} arg.body
-   * @summary: Create a Bulk product to upload job.
-   * @description: This API helps to create a bulk products upload job.
-   */
-  createBulkProductUploadJob({ body } = {}) {
-    const { error } = CatalogValidator.createBulkProductUploadJob().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -1756,6 +2228,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.uploadBulkProducts().validate(
+      {
+        department,
+        productType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for uploadBulkProducts");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["department"] = department;
     query_params["product_type"] = productType;
@@ -1766,39 +2252,6 @@ class Catalog {
       this.config,
       "post",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/bulk`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch Id in which assets to be uploaded.
-   * @param {BulkProductRequest} arg.body
-   * @summary: Create products in bulk associated with given batch Id.
-   * @description: This API helps to create products in bulk push to kafka for approval/creation.
-   */
-  createProductsInBulk({ batchId, body } = {}) {
-    const { error } = CatalogValidator.createProductsInBulk().validate(
-      {
-        batchId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
       query_params,
       body,
       xHeaders
@@ -1822,6 +2275,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.deleteProductBulkJob().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteProductBulkJob");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1832,6 +2299,54 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId - Batch Id in which assets to be uploaded.
+   * @param {BulkProductRequest} arg.body
+   * @summary: Create products in bulk associated with given batch Id.
+   * @description: This API helps to create products in bulk push to kafka for approval/creation.
+   */
+  createProductsInBulk({ batchId, body } = {}) {
+    const { error } = CatalogValidator.createProductsInBulk().validate(
+      {
+        batchId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createProductsInBulk().validate(
+      {
+        batchId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createProductsInBulk");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1850,6 +2365,16 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getProductTags().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductTags");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1860,6 +2385,53 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/tags`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ProductBulkAssets} arg.body
+   * @summary: Create a Bulk asset upload Job.
+   * @description: This API helps to create a bulk asset upload job.
+   */
+  createProductAssetsInBulk({ body } = {}) {
+    const { error } = CatalogValidator.createProductAssetsInBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createProductAssetsInBulk().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for createProductAssetsInBulk"
+      );
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1885,6 +2457,21 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductAssetsInBulk().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductAssetsInBulk");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -1897,37 +2484,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductBulkAssets} arg.body
-   * @summary: Create a Bulk asset upload Job.
-   * @description: This API helps to create a bulk asset upload job.
-   */
-  createProductAssetsInBulk({ body } = {}) {
-    const { error } = CatalogValidator.createProductAssetsInBulk().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -1952,6 +2508,19 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.deleteSize().validate(
+      {
+        itemId,
+        size,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteSize");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1962,6 +2531,55 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
+   * @param {string} arg.size - Size in which inventory is to be added.
+   * @param {InventoryRequest} arg.body
+   * @summary: Add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store.
+   */
+  addInventory({ itemId, size, body } = {}) {
+    const { error } = CatalogValidator.addInventory().validate(
+      {
+        itemId,
+        size,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.addInventory().validate(
+      {
+        itemId,
+        size,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for addInventory");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1995,6 +2613,23 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getInventoryBySize().validate(
+      {
+        itemId,
+        size,
+        pageNo,
+        pageSize,
+        q,
+        sellable,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getInventoryBySize");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2009,41 +2644,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.size - Size in which inventory is to be added.
-   * @param {InventoryRequest} arg.body
-   * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
-   */
-  addInventory({ itemId, size, body } = {}) {
-    const { error } = CatalogValidator.addInventory().validate(
-      {
-        itemId,
-        size,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -2083,6 +2683,27 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getInventoryBySizeIdentifier().validate(
+      {
+        itemId,
+        sizeIdentifier,
+        pageNo,
+        pageSize,
+        q,
+        locationIds,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getInventoryBySizeIdentifier"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2146,6 +2767,25 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getInventories().validate(
+      {
+        itemId,
+        size,
+        pageNo,
+        pageSize,
+        q,
+        sellable,
+        storeIds,
+        sizeIdentifier,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getInventories");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["item_id"] = itemId;
     query_params["size"] = size;
@@ -2191,6 +2831,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.deleteInventory().validate(
+      {
+        size,
+        itemId,
+        locationId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteInventory");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -2201,6 +2855,51 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}/location/${locationId}/`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {BulkJob} arg.body
+   * @summary: Create a Bulk Inventory upload Job.
+   * @description: This API helps to create a bulk Inventory upload job.
+   */
+  createBulkInventoryJob({ body } = {}) {
+    const { error } = CatalogValidator.createBulkInventoryJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createBulkInventoryJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createBulkInventoryJob");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -2226,6 +2925,23 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getInventoryBulkUploadHistory().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getInventoryBulkUploadHistory"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2244,19 +2960,33 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {BulkJob} arg.body
-   * @summary: Create a Bulk Inventory upload Job.
-   * @description: This API helps to create a bulk Inventory upload job.
+   * @param {string} arg.batchId - Batch Id of the bulk delete job.
+   * @summary: Delete Bulk Inventory job.
+   * @description: This API allows to delete bulk Inventory job associated with company.
    */
-  createBulkInventoryJob({ body } = {}) {
-    const { error } = CatalogValidator.createBulkInventoryJob().validate(
+  deleteBulkInventoryJob({ batchId } = {}) {
+    const { error } = CatalogValidator.deleteBulkInventoryJob().validate(
       {
-        body,
+        batchId,
       },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.deleteBulkInventoryJob().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteBulkInventoryJob");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2265,10 +2995,10 @@ class Catalog {
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
       query_params,
-      body,
+      undefined,
       xHeaders
     );
   }
@@ -2292,6 +3022,19 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createBulkInventory().validate(
+      {
+        batchId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createBulkInventory");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -2302,65 +3045,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch Id of the bulk delete job.
-   * @summary: Delete Bulk Inventory job.
-   * @description: This API allows to delete bulk Inventory job associated with company.
-   */
-  deleteBulkInventoryJob({ batchId } = {}) {
-    const { error } = CatalogValidator.deleteBulkInventoryJob().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: Get Inventory export history.
-   * @description: This API helps to get Inventory export history.
-   */
-  getInventoryExport({} = {}) {
-    const { error } = CatalogValidator.getInventoryExport().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
-      query_params,
-      undefined,
       xHeaders
     );
   }
@@ -2382,6 +3066,22 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createInventoryExportJob().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for createInventoryExportJob"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -2398,126 +3098,26 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.status] - Status of the export job.
-   * @param {string} [arg.fromDate] - Inventory export history filtered
-   *   according to from_date.
-   * @param {string} [arg.toDate] - Inventory export history filtered
-   *   according to from_date.
-   * @param {string} [arg.q] - Inventory export history filtered according to task ID.
-   * @summary: Get the history of the inventory export.
-   * @description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
+   * @summary: Get Inventory export history.
+   * @description: This API helps to get Inventory export history.
    */
-  listInventoryExport({ status, fromDate, toDate, q } = {}) {
-    const { error } = CatalogValidator.listInventoryExport().validate(
-      {
-        status,
-        fromDate,
-        toDate,
-        q,
-      },
+  getInventoryExport({} = {}) {
+    const { error } = CatalogValidator.getInventoryExport().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["from_date"] = fromDate;
-    query_params["to_date"] = toDate;
-    query_params["q"] = q;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/`,
-      query_params,
-      undefined,
-      xHeaders
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getInventoryExport().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
     );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {InventoryCreateRequest} arg.body
-   * @summary: Create an inventory export job.
-   * @description: This API helps to create a Inventory export job.
-   */
-  createInventoryExport({ body } = {}) {
-    const { error } = CatalogValidator.createInventoryExport().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.jobId - Job Id in which assets to be uploaded.
-   * @param {InventoryPartialExportRequest} arg.body
-   * @summary: Update the status and the notification email of the running export jobs.
-   * @description: This API helps to update the status and the notification email of the running export jobs.
-   */
-  updateInventoryExportJob({ jobId, body } = {}) {
-    const { error } = CatalogValidator.updateInventoryExportJob().validate(
-      {
-        jobId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/${jobId}`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.jobId - This is the id of the job.
-   * @summary: Get the job detail of an inventory export job by their Job ID.
-   * @description: This API gives you the details information of an invnetory export job by their job id.
-   */
-  getInventoryExportJobDetail({ jobId } = {}) {
-    const { error } = CatalogValidator.getInventoryExportJobDetail().validate(
-      {
-        jobId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getInventoryExport");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2527,7 +3127,7 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/${jobId}`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
       undefined,
       xHeaders
@@ -2550,6 +3150,20 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.exportInventoryConfig().validate(
+      {
+        filterType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for exportInventoryConfig");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2576,8 +3190,8 @@ class Catalog {
    * @summary: Add Inventory for particular size and store.
    * @description: This API allows add Inventory for particular size and store.
    */
-  updateRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
-    const { error } = CatalogValidator.updateRealtimeInventory().validate(
+  deleteRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
+    const { error } = CatalogValidator.deleteRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
@@ -2589,13 +3203,29 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.deleteRealtimeInventory().validate(
+      {
+        itemId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteRealtimeInventory");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
-      "post",
+      "delete",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
       query_params,
       body,
@@ -2612,8 +3242,8 @@ class Catalog {
    * @summary: Add Inventory for particular size and store.
    * @description: This API allows add Inventory for particular size and store.
    */
-  deleteRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
-    const { error } = CatalogValidator.deleteRealtimeInventory().validate(
+  updateRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
+    const { error } = CatalogValidator.updateRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
@@ -2625,13 +3255,29 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.updateRealtimeInventory().validate(
+      {
+        itemId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateRealtimeInventory");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
-      "delete",
+      "post",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
       query_params,
       body,
@@ -2654,6 +3300,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.updateInventories().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateInventories");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2689,6 +3347,19 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.updateHsnCode().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateHsnCode");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -2720,6 +3391,18 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getHsnCode().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getHsnCode");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -2749,6 +3432,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.bulkHsnCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for bulkHsnCode");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2788,6 +3483,23 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getAllProductHsnCodes().validate(
+      {
+        pageNo,
+        pageSize,
+        q,
+        type,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getAllProductHsnCodes");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2823,6 +3535,20 @@ class Catalog {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getSingleProductHSNCode().validate(
+      {
+        reportingHsn,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSingleProductHSNCode");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -2852,6 +3578,18 @@ class Catalog {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getOptimalLocations");
+      console.log(warrning);
     }
 
     const query_params = {};

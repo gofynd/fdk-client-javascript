@@ -60,6 +60,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getAnnouncements().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getAnnouncements");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -95,6 +106,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getBlog().validate(
+      { slug, rootId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBlog");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["root_id"] = rootId;
 
@@ -130,6 +152,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getBlogs().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBlogs");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -189,6 +222,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getDataLoaders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getDataLoaders");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -220,6 +264,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getFaqs().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFaqs");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -251,6 +306,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getFaqCategories().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFaqCategories");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -285,6 +351,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getFaqBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFaqBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -319,6 +396,19 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentValidator.getFaqCategoryBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFaqCategoryBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -353,6 +443,19 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentValidator.getFaqsByCategorySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFaqsByCategorySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -384,6 +487,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getLandingPage().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getLandingPage");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -415,6 +529,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getLegalInformation().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getLegalInformation");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -449,6 +574,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getNavigations().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getNavigations");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -508,6 +644,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getSEOConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSEOConfiguration");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -542,6 +689,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getSlideshows().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSlideshows");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -604,6 +762,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getSlideshow().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSlideshow");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -635,6 +804,19 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentValidator.getSupportInformation().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSupportInformation");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -666,6 +848,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getTags().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getTags");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -701,6 +894,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getPage().validate(
+      { slug, rootId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getPage");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["root_id"] = rootId;
 
@@ -736,6 +940,17 @@ class Content {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.getPages().validate(
+      { pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getPages");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;

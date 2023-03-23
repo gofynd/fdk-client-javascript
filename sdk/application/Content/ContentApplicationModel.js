@@ -45,7 +45,15 @@ class ContentModel {
 
       created_at: Joi.string().allow(""),
 
-      __source: ContentModel.TagSourceSchema(),
+      __source: ContentModel.PathSourceSchema(),
+    });
+  }
+
+  static PathSourceSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+
+      id: Joi.string().allow(""),
     });
   }
 

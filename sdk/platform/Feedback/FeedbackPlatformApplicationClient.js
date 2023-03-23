@@ -28,6 +28,19 @@ class Feedback {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.getAttributes().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getAttributes");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -132,6 +145,32 @@ class Feedback {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.getCustomerReviews().validate(
+      {
+        id,
+        entityId,
+        entityType,
+        userId,
+        media,
+        rating,
+        attributeRating,
+        facets,
+        sort,
+        next,
+        start,
+        limit,
+        count,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCustomerReviews");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -254,6 +293,19 @@ class Feedback {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.updateApprove().validate(
+      {
+        reviewId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateApprove");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -280,6 +332,18 @@ class Feedback {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.getHistory().validate(
+      {
+        reviewId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getHistory");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -310,6 +374,21 @@ class Feedback {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FeedbackValidator.getApplicationTemplates().validate(
+      {
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getApplicationTemplates");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -379,6 +458,18 @@ class Feedback {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.createTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createTemplate");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -405,6 +496,18 @@ class Feedback {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.getTemplateById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getTemplateById");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -437,6 +540,19 @@ class Feedback {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FeedbackValidator.updateTemplate().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateTemplate");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -465,6 +581,21 @@ class Feedback {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FeedbackValidator.updateTemplateStatus().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateTemplateStatus");
+      console.log(warrning);
     }
 
     const query_params = {};

@@ -28,6 +28,19 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.showGiveaways().validate(
+      {
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for showGiveaways");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -58,6 +71,18 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.saveGiveAway().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for saveGiveAway");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -84,6 +109,18 @@ class Rewards {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.getGiveawayById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getGiveawayById");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -116,6 +153,19 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.updateGiveAway().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateGiveAway");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -144,6 +194,22 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = RewardsValidator.getGiveawayAudienceStatus().validate(
+      {
+        audienceId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getGiveawayAudienceStatus"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -167,6 +233,16 @@ class Rewards {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.showOffers().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for showOffers");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -201,6 +277,19 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.getOfferByName().validate(
+      {
+        name,
+        cookie,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getOfferByName");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -229,6 +318,19 @@ class Rewards {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.updateOfferByName().validate(
+      {
+        name,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateOfferByName");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -261,6 +363,19 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.updateUserStatus().validate(
+      {
+        userId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateUserStatus");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -287,6 +402,18 @@ class Rewards {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.user().validate(
+      {
+        userId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for user");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -320,6 +447,22 @@ class Rewards {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = RewardsValidator.getUserPointsHistory().validate(
+      {
+        userId,
+        pageId,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getUserPointsHistory");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -386,6 +529,18 @@ class Rewards {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = RewardsValidator.getRewardsConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getRewardsConfiguration");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -412,6 +567,20 @@ class Rewards {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = RewardsValidator.setRewardsConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for setRewardsConfiguration");
+      console.log(warrning);
     }
 
     const query_params = {};

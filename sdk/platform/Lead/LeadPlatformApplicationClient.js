@@ -38,6 +38,23 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTickets().validate(
+      {
+        items,
+        filters,
+        q,
+        status,
+        priority,
+        category,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getTickets");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["items"] = items;
     query_params["filters"] = filters;
@@ -72,6 +89,18 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTicket().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getTicket");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -100,6 +129,19 @@ class Lead {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.editTicket().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for editTicket");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -132,6 +174,19 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.createHistory().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createHistory");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -160,6 +215,18 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTicketHistory().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getTicketHistory");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -186,6 +253,18 @@ class Lead {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getCustomForm().validate(
+      {
+        slug,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCustomForm");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -218,6 +297,19 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.editCustomForm().validate(
+      {
+        slug,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for editCustomForm");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -241,6 +333,16 @@ class Lead {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getCustomForms().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCustomForms");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -271,6 +373,18 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.createCustomForm().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createCustomForm");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -297,6 +411,18 @@ class Lead {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getTokenForVideoRoom().validate(
+      {
+        uniqueName,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getTokenForVideoRoom");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -327,6 +453,18 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.getVideoParticipants().validate(
+      {
+        uniqueName,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getVideoParticipants");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -355,6 +493,18 @@ class Lead {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.openVideoRoom().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for openVideoRoom");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -381,6 +531,18 @@ class Lead {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = LeadValidator.closeVideoRoom().validate(
+      {
+        uniqueName,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for closeVideoRoom");
+      console.log(warrning);
     }
 
     const query_params = {};

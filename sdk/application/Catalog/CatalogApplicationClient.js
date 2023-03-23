@@ -40,9 +40,9 @@ class Catalog {
         "/service/application/catalog/v1.0/collections/{slug}/",
       getFollowedListing:
         "/service/application/catalog/v1.0/follow/{collection_type}/",
-      followById:
-        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       unfollowById:
+        "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
+      followById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/",
       getFollowerCountById:
         "/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/",
@@ -92,6 +92,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductDetailBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductDetailBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -128,6 +141,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductSizesBySlug().validate(
+      { slug, storeId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductSizesBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["store_id"] = storeId;
 
@@ -163,6 +189,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductComparisonBySlugs().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getProductComparisonBySlugs"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["slug"] = slug;
 
@@ -200,6 +241,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getSimilarComparisonProductBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getSimilarComparisonProductBySlug"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -236,6 +292,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getComparedFrequentlyProductBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getComparedFrequentlyProductBySlug"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -270,6 +341,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductVariantsBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getProductVariantsBySlug"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -310,6 +396,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductStockByIds().validate(
+      { itemId, alu, skuCode, ean, upc },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductStockByIds");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["item_id"] = itemId;
     query_params["alu"] = alu;
@@ -349,6 +448,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductStockForTimeByIds().validate(
+      { timestamp, pageSize, pageId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getProductStockForTimeByIds"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["timestamp"] = timestamp;
     query_params["page_size"] = pageSize;
@@ -436,6 +550,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getProducts().validate(
+      { q, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProducts");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["q"] = q;
     query_params["f"] = f;
@@ -525,6 +650,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getBrands().validate(
+      { department, pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBrands");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["department"] = department;
     query_params["page_no"] = pageNo;
@@ -593,6 +729,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getBrandDetailBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBrandDetailBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -628,6 +777,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getCategories().validate(
+      { department },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCategories");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["department"] = department;
 
@@ -663,6 +823,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getCategoryDetailBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCategoryDetailBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -699,6 +872,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getHomeProducts().validate(
+      { sortOn, pageId, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getHomeProducts");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["sort_on"] = sortOn;
     query_params["page_id"] = pageId;
@@ -763,6 +947,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getDepartments().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getDepartments");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -798,6 +993,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getSearchResults().validate(
+      { q },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSearchResults");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["q"] = q;
 
@@ -834,6 +1040,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getCollections().validate(
+      { pageNo, pageSize, tag },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getCollections");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -917,6 +1134,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getCollectionItemsBySlug().validate(
+      { slug, f, filters, sortOn, pageId, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getCollectionItemsBySlug"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["f"] = f;
     query_params["filters"] = filters;
@@ -1004,6 +1236,21 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getCollectionDetailBySlug().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getCollectionDetailBySlug"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1039,6 +1286,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getFollowedListing().validate(
+      { collectionType, pageId, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFollowedListing");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_id"] = pageId;
     query_params["page_size"] = pageSize;
@@ -1093,26 +1351,37 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   * @summary: Unfollow an entity (product/brand/collection)
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
-  followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
+  unfollowById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.unfollowById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.unfollowById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for unfollowById");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
 
     return APIClient.execute(
       this._conf,
-      "post",
+      "delete",
       constructUrl({
-        url: this._urls["followById"],
+        url: this._urls["unfollowById"],
         params: { collectionType, collectionId },
       }),
       query_params,
@@ -1127,26 +1396,37 @@ class Catalog {
    *   products, brands, or collections.
    * @param {string} arg.collectionId - The ID of the collection type.
    * @returns {Promise<FollowPostResponse>} - Success response
-   * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   * @summary: Follow an entity (product/brand/collection)
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
-  unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
+  followById({ collectionType, collectionId } = {}) {
+    const { error } = CatalogValidator.followById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.followById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for followById");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
 
     return APIClient.execute(
       this._conf,
-      "delete",
+      "post",
       constructUrl({
-        url: this._urls["unfollowById"],
+        url: this._urls["followById"],
         params: { collectionType, collectionId },
       }),
       query_params,
@@ -1172,6 +1452,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getFollowerCountById().validate(
+      { collectionType, collectionId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFollowerCountById");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1205,6 +1498,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getFollowIds().validate(
+      { collectionType },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getFollowIds");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["collection_type"] = collectionType;
 
@@ -1248,6 +1552,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getStores().validate(
+      { pageNo, pageSize, q, city, range, latitude, longitude },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getStores");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -1344,6 +1659,17 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getInStockLocations().validate(
+      { pageNo, pageSize, q, city, range, latitude, longitude },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getInStockLocations");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -1429,6 +1755,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getLocationDetailsById().validate(
+      { locationId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getLocationDetailsById");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1462,6 +1801,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductBundlesBySlug().validate(
+      { slug, id },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductBundlesBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["slug"] = slug;
     query_params["id"] = id;
@@ -1507,6 +1859,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductPriceBySlug().validate(
+      { slug, size, storeId, pincode, moq },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductPriceBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["store_id"] = storeId;
     query_params["pincode"] = pincode;
@@ -1561,6 +1926,19 @@ class Catalog {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductSellersBySlug().validate(
+      { slug, size, pincode, strategy, pageNo, pageSize },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getProductSellersBySlug");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["pincode"] = pincode;
     query_params["strategy"] = strategy;

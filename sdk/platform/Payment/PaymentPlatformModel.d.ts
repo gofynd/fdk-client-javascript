@@ -7,16 +7,16 @@ declare class PaymentModel {
     static PaymentGatewayToBeReviewed(): any;
     static ErrorCodeAndDescription(): any;
     static HttpErrorCodeAndResponse(): any;
-    static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
     static IntentApp(): any;
+    static IntentAppErrorList(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptions(): any;
     static PaymentOptionsResponse(): any;
     static PayoutMoreAttributes(): any;
-    static PayoutCustomer(): any;
     static PayoutAggregator(): any;
+    static PayoutCustomer(): any;
     static Payout(): any;
     static PayoutsResponse(): any;
     static PayoutBankDetails(): any;

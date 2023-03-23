@@ -231,4 +231,5 @@ class UserValidator {
     }).required();
   }
 }
+
 module.exports = UserValidator;

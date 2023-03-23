@@ -51,6 +51,26 @@ class Discount {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.getDiscounts().validate(
+      {
+        view,
+        q,
+        pageNo,
+        pageSize,
+        archived,
+        month,
+        year,
+        type,
+        appIds,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getDiscounts");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["view"] = view;
     query_params["q"] = q;
@@ -91,6 +111,18 @@ class Discount {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.createDiscount().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createDiscount");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -120,6 +152,18 @@ class Discount {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.getDiscount().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getDiscount");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -155,6 +199,19 @@ class Discount {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.updateDiscount().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateDiscount");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -186,6 +243,21 @@ class Discount {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = DiscountValidator.validateDiscountFile().validate(
+      {
+        body,
+        discount,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for validateDiscountFile");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -222,6 +294,21 @@ class Discount {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = DiscountValidator.downloadDiscountFile().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for downloadDiscountFile");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -251,6 +338,18 @@ class Discount {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.getValidationJob().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getValidationJob");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -284,6 +383,20 @@ class Discount {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = DiscountValidator.cancelValidationJob().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for cancelValidationJob");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -315,6 +428,18 @@ class Discount {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.getDownloadJob().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getDownloadJob");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -344,6 +469,18 @@ class Discount {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = DiscountValidator.cancelDownloadJob().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for cancelDownloadJob");
+      console.log(warrning);
     }
 
     const query_params = {};

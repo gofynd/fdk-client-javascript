@@ -18,7 +18,7 @@ class Order {
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannels] -
+   * @param {string} [arg.salesChannel] -
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
@@ -41,7 +41,7 @@ class Order {
     dpIds,
     orderingCompanyId,
     stores,
-    salesChannels,
+    salesChannel,
     requestByExt,
     pageNo,
     pageSize,
@@ -63,7 +63,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannels,
+        salesChannel,
         requestByExt,
         pageNo,
         pageSize,
@@ -80,6 +80,36 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getShipments().validate(
+      {
+        lane,
+        searchType,
+        searchValue,
+        searchId,
+        fromDate,
+        toDate,
+        dpIds,
+        orderingCompanyId,
+        stores,
+        salesChannel,
+        requestByExt,
+        pageNo,
+        pageSize,
+        isPrioritySort,
+        excludeLockedShipments,
+        paymentMethods,
+        channelShipmentId,
+        channelOrderId,
+        customMeta,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getShipments");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["lane"] = lane;
     query_params["search_type"] = searchType;
@@ -90,7 +120,7 @@ class Order {
     query_params["dp_ids"] = dpIds;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
-    query_params["sales_channels"] = salesChannels;
+    query_params["sales_channel"] = salesChannel;
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -141,6 +171,21 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getShipmentById().validate(
+      {
+        channelShipmentId,
+        shipmentId,
+        orderingCompanyId,
+        requestByExt,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getShipmentById");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["channel_shipment_id"] = channelShipmentId;
     query_params["shipment_id"] = shipmentId;
@@ -174,6 +219,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getOrderById().validate(
+      {
+        orderId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getOrderById");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -234,6 +291,26 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getLaneConfig().validate(
+      {
+        superLane,
+        groupEntity,
+        fromDate,
+        toDate,
+        dpIds,
+        stores,
+        salesChannel,
+        paymentMode,
+        bagStatus,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getLaneConfig");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["super_lane"] = superLane;
     query_params["group_entity"] = groupEntity;
@@ -270,7 +347,7 @@ class Order {
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannels] -
+   * @param {string} [arg.salesChannel] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
@@ -290,7 +367,7 @@ class Order {
     toDate,
     dpIds,
     stores,
-    salesChannels,
+    salesChannel,
     pageNo,
     pageSize,
     isPrioritySort,
@@ -309,7 +386,7 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannels,
+        salesChannel,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -319,6 +396,33 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getOrders().validate(
+      {
+        lane,
+        searchType,
+        bagStatus,
+        timeToDispatch,
+        paymentMethods,
+        tags,
+        searchValue,
+        fromDate,
+        toDate,
+        dpIds,
+        stores,
+        salesChannel,
+        pageNo,
+        pageSize,
+        isPrioritySort,
+        customMeta,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getOrders");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -333,7 +437,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
-    query_params["sales_channels"] = salesChannels;
+    query_params["sales_channel"] = salesChannel;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
@@ -368,6 +472,19 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getMetricCount().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getMetricCount");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -405,6 +522,19 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getfilters().validate(
+      {
+        view,
+        groupEntity,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getfilters");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["view"] = view;
     query_params["group_entity"] = groupEntity;
@@ -438,6 +568,19 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.createShipmentReport().validate(
+      {
+        fromDate,
+        toDate,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createShipmentReport");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -475,6 +618,23 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.getReportsShipmentListing().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getReportsShipmentListing"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -506,6 +666,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.upsertJioCode().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for upsertJioCode");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -541,6 +713,19 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getBulkInvoice().validate(
+      {
+        batchId,
+        docType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBulkInvoice");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["batch_id"] = batchId;
     query_params["doc_type"] = docType;
@@ -572,6 +757,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getBulkInvoiceLabel().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBulkInvoiceLabel");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -645,6 +842,35 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.getBulkShipmentExcelFile().validate(
+      {
+        lane,
+        searchType,
+        searchId,
+        fromDate,
+        toDate,
+        dpIds,
+        orderingCompanyId,
+        stores,
+        salesChannel,
+        requestByExt,
+        pageNo,
+        pageSize,
+        customerId,
+        isPrioritySort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getBulkShipmentExcelFile"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -733,6 +959,31 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getBulkList().validate(
+      {
+        lane,
+        searchType,
+        searchId,
+        fromDate,
+        toDate,
+        dpIds,
+        orderingCompanyId,
+        stores,
+        salesChannel,
+        requestByExt,
+        pageNo,
+        pageSize,
+        customerId,
+        isPrioritySort,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBulkList");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["lane"] = lane;
     query_params["search_type"] = searchType;
@@ -780,6 +1031,23 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.getBulkActionFailedReport().validate(
+      {
+        batchId,
+        reportType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getBulkActionFailedReport"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["batch_id"] = batchId;
     query_params["report_type"] = reportType;
@@ -820,6 +1088,20 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getShipmentReasons().validate(
+      {
+        shipmentId,
+        bagId,
+        state,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getShipmentReasons");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -851,6 +1133,22 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.bulkActionProcessXlsxFile().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for bulkActionProcessXlsxFile"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -880,6 +1178,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.bulkActionDetails().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for bulkActionDetails");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -915,6 +1225,20 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getBagById().validate(
+      {
+        bagId,
+        channelBagId,
+        channelId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBagById");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -977,6 +1301,26 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getBags().validate(
+      {
+        bagIds,
+        shipmentIds,
+        orderIds,
+        channelBagIds,
+        channelShipmentIds,
+        channelOrderIds,
+        channelId,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getBags");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["bag_ids"] = bagIds;
     query_params["shipment_ids"] = shipmentIds;
@@ -1002,40 +1346,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @param {string} [arg.documentType] -
-   * @summary:
-   * @description:
-   */
-  generatePOSReceiptByOrderId({ orderId, documentType } = {}) {
-    const { error } = OrderValidator.generatePOSReceiptByOrderId().validate(
-      {
-        orderId,
-        documentType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-    query_params["document_type"] = documentType;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {InvalidateShipmentCachePayload} arg.body
    * @summary:
    * @description: Invalidate shipment Cache
@@ -1049,6 +1359,20 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.invalidateShipmentCache().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for invalidateShipmentCache");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1082,6 +1406,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.reassignLocation().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for reassignLocation");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1113,6 +1449,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.updateShipmentLock().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateShipmentLock");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1142,6 +1490,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getAnnouncements().validate(
+      {
+        date,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getAnnouncements");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1211,6 +1571,29 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.updateAddress().validate(
+      {
+        shipmentId,
+        addressCategory,
+        name,
+        address,
+        addressType,
+        pincode,
+        phone,
+        email,
+        landmark,
+        city,
+        state,
+        country,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateAddress");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["shipment_id"] = shipmentId;
     query_params["name"] = name;
@@ -1262,6 +1645,22 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.click2Call().validate(
+      {
+        caller,
+        receiver,
+        bagId,
+        callingTo,
+        callerId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for click2Call");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["caller"] = caller;
     query_params["receiver"] = receiver;
@@ -1298,6 +1697,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updateShipmentStatus");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1327,6 +1738,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.processManifest().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for processManifest");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1360,6 +1783,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.dispatchManifest().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for dispatchManifest");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1388,6 +1823,16 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getRoleBasedActions().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getRoleBasedActions");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1398,37 +1843,6 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/roles`,
       query_params,
       undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PostShipmentHistory} arg.body
-   * @summary:
-   * @description:
-   */
-  postShipmentHistory({ body } = {}) {
-    const { error } = OrderValidator.postShipmentHistory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
-      query_params,
-      body,
       xHeaders
     );
   }
@@ -1452,6 +1866,19 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getShipmentHistory().validate(
+      {
+        shipmentId,
+        bagId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getShipmentHistory");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["shipment_id"] = shipmentId;
     query_params["bag_id"] = bagId;
@@ -1464,6 +1891,49 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PostShipmentHistory} arg.body
+   * @summary:
+   * @description:
+   */
+  postShipmentHistory({ body } = {}) {
+    const { error } = OrderValidator.postShipmentHistory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.postShipmentHistory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for postShipmentHistory");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -1483,6 +1953,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.sendSmsNinja().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for sendSmsNinja");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1518,6 +2000,22 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.platformManualAssignDPToShipment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for platformManualAssignDPToShipment"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1547,6 +2045,22 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.updatePackagingDimensions().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for updatePackagingDimensions"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1580,6 +2094,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.createOrder().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createOrder");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1590,6 +2116,44 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getChannelConfig");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
+      query_params,
+      undefined,
       xHeaders
     );
   }
@@ -1611,6 +2175,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.createChannelConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createChannelConfig");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1621,34 +2197,6 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary:
-   * @description: getChannelConfig
-   */
-  getChannelConfig({} = {}) {
-    const { error } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      undefined,
       xHeaders
     );
   }
@@ -1668,6 +2216,18 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.uploadConsent().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for uploadConsent");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1701,6 +2261,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.orderUpdate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for orderUpdate");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1732,6 +2304,18 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.checkOrderStatus().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for checkOrderStatus");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -1758,6 +2342,16 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.sendSmsNinjaPlatform().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for sendSmsNinjaPlatform");
+      console.log(warrning);
     }
 
     const query_params = {};

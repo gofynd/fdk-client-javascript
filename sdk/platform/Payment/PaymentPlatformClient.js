@@ -24,6 +24,18 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.getAllPayouts().validate(
+      {
+        uniqueExternalId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getAllPayouts");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["unique_external_id"] = uniqueExternalId;
 
@@ -54,6 +66,18 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.savePayout().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for savePayout");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -89,6 +113,19 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.updatePayout().validate(
+      {
+        uniqueTransferNo,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for updatePayout");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -122,6 +159,23 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.activateAndDectivatePayout().validate(
+      {
+        uniqueTransferNo,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for activateAndDectivatePayout"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -153,6 +207,18 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.deletePayout().validate(
+      {
+        uniqueTransferNo,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deletePayout");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -182,6 +248,22 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getSubscriptionPaymentMethod().validate(
+      {
+        uniqueExternalId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getSubscriptionPaymentMethod"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -220,6 +302,23 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.deleteSubscriptionPaymentMethod().validate(
+      {
+        uniqueExternalId,
+        paymentMethodId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for deleteSubscriptionPaymentMethod"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["unique_external_id"] = uniqueExternalId;
     query_params["payment_method_id"] = paymentMethodId;
@@ -248,6 +347,18 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getSubscriptionConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSubscriptionConfig");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -281,6 +392,22 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.saveSubscriptionSetupIntent().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for saveSubscriptionSetupIntent"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -310,6 +437,18 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.verifyIfscCode().validate(
+      {
+        ifscCode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for verifyIfscCode");
+      console.log(warrning);
     }
 
     const query_params = {};
