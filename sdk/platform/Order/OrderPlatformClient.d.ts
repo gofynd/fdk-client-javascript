@@ -13,7 +13,7 @@ declare class Order {
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {string} [arg.requestByExt] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
@@ -26,7 +26,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
+    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannels, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
         lane?: string;
         searchType?: string;
         searchValue?: string;
@@ -36,7 +36,7 @@ declare class Order {
         dpIds?: string;
         orderingCompanyId?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         requestByExt?: string;
         pageNo?: number;
         pageSize?: number;
@@ -109,7 +109,7 @@ declare class Order {
      * @param {string} [arg.toDate] -
      * @param {string} [arg.dpIds] -
      * @param {string} [arg.stores] -
-     * @param {string} [arg.salesChannel] -
+     * @param {string} [arg.salesChannels] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
@@ -117,7 +117,7 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -129,7 +129,7 @@ declare class Order {
         toDate?: string;
         dpIds?: string;
         stores?: string;
-        salesChannel?: string;
+        salesChannels?: string;
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
@@ -360,6 +360,17 @@ declare class Order {
         channelId?: string;
         pageNo?: number;
         pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @param {string} [arg.documentType] -
+     * @summary:
+     * @description:
+     */
+    generatePOSReceiptByOrderId({ orderId, documentType }?: {
+        orderId: string;
+        documentType?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

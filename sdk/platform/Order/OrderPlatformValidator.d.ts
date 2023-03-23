@@ -20,6 +20,7 @@ declare class OrderValidator {
     static bulkActionDetails(): any;
     static getBagById(): any;
     static getBags(): any;
+    static generatePOSReceiptByOrderId(): any;
     static invalidateShipmentCache(): any;
     static reassignLocation(): any;
     static updateShipmentLock(): any;

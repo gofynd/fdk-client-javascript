@@ -242,13 +242,14 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.shipmentId - ID of the shipment.
+   * @param {string} [arg.documentType] -
    * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
    * @summary: Get Invoice of a shipment
    * @description: Use this API to retrieve shipment invoice.
    */
-  getInvoiceByShipmentId({ shipmentId } = {}) {
+  getInvoiceByShipmentId({ shipmentId, documentType } = {}) {
     const { error } = OrderValidator.getInvoiceByShipmentId().validate(
-      { shipmentId },
+      { shipmentId, documentType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -259,7 +260,7 @@ class Order {
     const {
       error: warrning,
     } = OrderValidator.getInvoiceByShipmentId().validate(
-      { shipmentId },
+      { shipmentId, documentType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -268,6 +269,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["document_type"] = documentType;
 
     const xHeaders = {};
 

@@ -18,7 +18,7 @@ class Order {
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {string} [arg.requestByExt] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
@@ -41,7 +41,7 @@ class Order {
     dpIds,
     orderingCompanyId,
     stores,
-    salesChannel,
+    salesChannels,
     requestByExt,
     pageNo,
     pageSize,
@@ -63,7 +63,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -92,7 +92,7 @@ class Order {
         dpIds,
         orderingCompanyId,
         stores,
-        salesChannel,
+        salesChannels,
         requestByExt,
         pageNo,
         pageSize,
@@ -120,7 +120,7 @@ class Order {
     query_params["dp_ids"] = dpIds;
     query_params["ordering_company_id"] = orderingCompanyId;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["request_by_ext"] = requestByExt;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -347,7 +347,7 @@ class Order {
    * @param {string} [arg.toDate] -
    * @param {string} [arg.dpIds] -
    * @param {string} [arg.stores] -
-   * @param {string} [arg.salesChannel] -
+   * @param {string} [arg.salesChannels] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
@@ -367,7 +367,7 @@ class Order {
     toDate,
     dpIds,
     stores,
-    salesChannel,
+    salesChannels,
     pageNo,
     pageSize,
     isPrioritySort,
@@ -386,7 +386,7 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -412,7 +412,7 @@ class Order {
         toDate,
         dpIds,
         stores,
-        salesChannel,
+        salesChannels,
         pageNo,
         pageSize,
         isPrioritySort,
@@ -437,7 +437,7 @@ class Order {
     query_params["to_date"] = toDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
-    query_params["sales_channel"] = salesChannel;
+    query_params["sales_channels"] = salesChannels;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
@@ -1338,6 +1338,57 @@ class Order {
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bags`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId -
+   * @param {string} [arg.documentType] -
+   * @summary:
+   * @description:
+   */
+  generatePOSReceiptByOrderId({ orderId, documentType } = {}) {
+    const { error } = OrderValidator.generatePOSReceiptByOrderId().validate(
+      {
+        orderId,
+        documentType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.generatePOSReceiptByOrderId().validate(
+      {
+        orderId,
+        documentType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for generatePOSReceiptByOrderId"
+      );
+      console.log(warrning);
+    }
+
+    const query_params = {};
+    query_params["document_type"] = documentType;
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/orders/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
       query_params,
       undefined,
       xHeaders
