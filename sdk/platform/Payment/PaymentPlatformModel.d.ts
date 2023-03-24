@@ -8,15 +8,15 @@ declare class PaymentModel {
     static ErrorCodeAndDescription(): any;
     static HttpErrorCodeAndResponse(): any;
     static PaymentModeLogo(): any;
-    static IntentApp(): any;
     static IntentAppErrorList(): any;
+    static IntentApp(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptions(): any;
     static PaymentOptionsResponse(): any;
     static PayoutMoreAttributes(): any;
-    static PayoutAggregator(): any;
     static PayoutCustomer(): any;
+    static PayoutAggregator(): any;
     static Payout(): any;
     static PayoutsResponse(): any;
     static PayoutBankDetails(): any;

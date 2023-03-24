@@ -33,14 +33,13 @@ class Logistic {
    * @param {Object} arg - Arg object.
    * @param {string} arg.pincode - A `pincode` contains a specific address of
    *   a location.
-   * @param {string} [arg.countryCode] - A 3 alphabetic country code
    * @returns {Promise<PincodeApiResponse>} - Success response
    * @summary: Get Pincode API
    * @description: Get pincode data
    */
-  getPincodeCity({ pincode, countryCode } = {}) {
+  getPincodeCity({ pincode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
-      { pincode, countryCode },
+      { pincode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -49,7 +48,7 @@ class Logistic {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = LogisticValidator.getPincodeCity().validate(
-      { pincode, countryCode },
+      { pincode },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -58,7 +57,6 @@ class Logistic {
     }
 
     const query_params = {};
-    query_params["country_code"] = countryCode;
 
     const xHeaders = {};
 
