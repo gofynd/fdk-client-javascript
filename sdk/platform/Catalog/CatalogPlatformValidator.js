@@ -116,6 +116,7 @@ class CatalogValidator {
   static listDepartmentsData() {
     return Joi.object({
       pageNo: Joi.number(),
+      itemType: Joi.string().allow(""),
       pageSize: Joi.number(),
       name: Joi.string().allow(""),
       search: Joi.string().allow(""),
@@ -259,16 +260,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static deleteProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
+    }).required();
+  }
+
   static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
       body: CatalogModel.ProductCreateUpdateSchemaV2().required(),
-    }).required();
-  }
-
-  static deleteProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
     }).required();
   }
 
@@ -462,20 +463,6 @@ class CatalogValidator {
   static updateInventories() {
     return Joi.object({
       body: CatalogModel.InventoryRequestSchemaV2().required(),
-    }).required();
-  }
-
-  static getAllHsnCodes() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static createHsnCode() {
-    return Joi.object({
-      body: CatalogModel.HsnUpsert().required(),
     }).required();
   }
 

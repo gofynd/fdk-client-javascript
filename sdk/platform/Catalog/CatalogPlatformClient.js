@@ -816,6 +816,8 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
+   * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
+   *   set, standard, digital
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {string} [arg.name] - Can search departments by passing name.
@@ -826,10 +828,18 @@ class Catalog {
    * @summary: List all Departments.
    * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
    */
-  listDepartmentsData({ pageNo, pageSize, name, search, isActive } = {}) {
+  listDepartmentsData({
+    pageNo,
+    itemType,
+    pageSize,
+    name,
+    search,
+    isActive,
+  } = {}) {
     const { error } = CatalogValidator.listDepartmentsData().validate(
       {
         pageNo,
+        itemType,
         pageSize,
         name,
         search,
@@ -845,6 +855,7 @@ class Catalog {
     const { error: warrning } = CatalogValidator.listDepartmentsData().validate(
       {
         pageNo,
+        itemType,
         pageSize,
         name,
         search,
@@ -859,6 +870,7 @@ class Catalog {
 
     const query_params = {};
     query_params["page_no"] = pageNo;
+    query_params["item_type"] = itemType;
     query_params["page_size"] = pageSize;
     query_params["name"] = name;
     query_params["search"] = search;
@@ -1865,6 +1877,49 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.itemId - Id of the product to be updated.
+   * @summary: Delete a product.
+   * @description: This API allows to delete product.
+   */
+  deleteProduct({ itemId } = {}) {
+    const { error } = CatalogValidator.deleteProduct().validate(
+      {
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.deleteProduct().validate(
+      {
+        itemId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteProduct");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.itemId - Id of the product to be updated.
    * @param {ProductCreateUpdateSchemaV2} arg.body
    * @summary: Edit a product.
    * @description: This API allows to edit product.
@@ -1904,49 +1959,6 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @summary: Delete a product.
-   * @description: This API allows to delete product.
-   */
-  deleteProduct({ itemId } = {}) {
-    const { error } = CatalogValidator.deleteProduct().validate(
-      {
-        itemId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.deleteProduct().validate(
-      {
-        itemId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteProduct");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
-      query_params,
-      undefined,
       xHeaders
     );
   }
@@ -3310,101 +3322,6 @@ class Catalog {
       this.config,
       "post",
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Page no
-   * @param {number} [arg.pageSize] - Page size
-   * @param {string} [arg.q] - Search using hsn code.
-   * @summary: Hsn Code List.
-   * @description: Hsn Code List.
-   */
-  getAllHsnCodes({ pageNo, pageSize, q } = {}) {
-    const { error } = CatalogValidator.getAllHsnCodes().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getAllHsnCodes().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAllHsnCodes");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {HsnUpsert} arg.body
-   * @summary: Create Hsn Code.
-   * @description: Create Hsn Code.
-   */
-  createHsnCode({ body } = {}) {
-    const { error } = CatalogValidator.createHsnCode().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createHsnCode().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createHsnCode");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/`,
       query_params,
       body,
       xHeaders

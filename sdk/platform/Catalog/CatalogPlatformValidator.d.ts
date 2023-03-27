@@ -38,8 +38,8 @@ declare class CatalogValidator {
     static getVariantsOfProducts(): any;
     static getProductAttributes(): any;
     static getProduct(): any;
-    static editProduct(): any;
     static deleteProduct(): any;
+    static editProduct(): any;
     static allSizes(): any;
     static getProductValidation(): any;
     static getProductSize(): any;
@@ -67,8 +67,6 @@ declare class CatalogValidator {
     static deleteRealtimeInventory(): any;
     static updateRealtimeInventory(): any;
     static updateInventories(): any;
-    static getAllHsnCodes(): any;
-    static createHsnCode(): any;
     static getHsnCode(): any;
     static updateHsnCode(): any;
     static bulkHsnCode(): any;

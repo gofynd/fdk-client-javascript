@@ -193,6 +193,8 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
+     * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
+     *   set, standard, digital
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {string} [arg.name] - Can search departments by passing name.
@@ -203,8 +205,9 @@ declare class Catalog {
      * @summary: List all Departments.
      * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
      */
-    listDepartmentsData({ pageNo, pageSize, name, search, isActive }?: {
+    listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, }?: {
         pageNo?: number;
+        itemType?: string;
         pageSize?: number;
         name?: string;
         search?: string;
@@ -441,6 +444,15 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: Delete a product.
+     * @description: This API allows to delete product.
+     */
+    deleteProduct({ itemId }?: {
+        itemId: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
      * @param {ProductCreateUpdateSchemaV2} arg.body
      * @summary: Edit a product.
      * @description: This API allows to edit product.
@@ -448,15 +460,6 @@ declare class Catalog {
     editProduct({ itemId, body }?: {
         itemId: number;
         body: ProductCreateUpdateSchemaV2;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @summary: Delete a product.
-     * @description: This API allows to delete product.
-     */
-    deleteProduct({ itemId }?: {
-        itemId: number;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -786,28 +789,6 @@ declare class Catalog {
      */
     updateInventories({ body }?: {
         body: InventoryRequestSchemaV2;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page no
-     * @param {number} [arg.pageSize] - Page size
-     * @param {string} [arg.q] - Search using hsn code.
-     * @summary: Hsn Code List.
-     * @description: Hsn Code List.
-     */
-    getAllHsnCodes({ pageNo, pageSize, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {HsnUpsert} arg.body
-     * @summary: Create Hsn Code.
-     * @description: Create Hsn Code.
-     */
-    createHsnCode({ body }?: {
-        body: HsnUpsert;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
