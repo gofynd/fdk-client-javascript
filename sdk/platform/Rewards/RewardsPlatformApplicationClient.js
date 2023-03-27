@@ -371,5 +371,58 @@ class Rewards {
     paginator.setCallback(callback.bind(this));
     return paginator;
   }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Get all valid android paths
+   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
+   */
+  getRewardsConfiguration({} = {}) {
+    const { error } = RewardsValidator.getRewardsConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ConfigurationRequest} arg.body
+   * @summary: Updates the collection with given android paths.
+   * @description: Updates the configuration or inserts new records.
+   */
+  setRewardsConfiguration({ body } = {}) {
+    const { error } = RewardsValidator.setRewardsConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
+      query_params,
+      body
+    );
+  }
 }
 module.exports = Rewards;

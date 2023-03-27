@@ -76,6 +76,16 @@ class RewardsValidator {
       pageSize: Joi.number(),
     }).required();
   }
+
+  static getRewardsConfiguration() {
+    return Joi.object({}).required();
+  }
+
+  static setRewardsConfiguration() {
+    return Joi.object({
+      body: RewardsModel.ConfigurationRequest().required(),
+    }).required();
+  }
 }
 
 module.exports = RewardsValidator;

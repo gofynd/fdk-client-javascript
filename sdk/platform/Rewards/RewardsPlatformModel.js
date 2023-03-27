@@ -264,5 +264,31 @@ class RewardsModel {
       user_id: Joi.string().allow(""),
     });
   }
+
+  static ConfigurationRes() {
+    return Joi.object({
+      valid_android_packages: Joi.array().items(Joi.string().allow("")),
+
+      terms_conditions_link: Joi.string().allow(""),
+
+      application_id: Joi.string().allow(""),
+
+      success: Joi.boolean(),
+    });
+  }
+
+  static SetConfigurationRes() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
+  static ConfigurationRequest() {
+    return Joi.object({
+      valid_android_packages: Joi.array().items(Joi.string().allow("")),
+
+      terms_conditions_link: Joi.string().allow(""),
+    });
+  }
 }
 module.exports = RewardsModel;

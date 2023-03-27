@@ -11,4 +11,6 @@ declare class RewardsValidator {
     static updateUserStatus(): any;
     static user(): any;
     static getUserPointsHistory(): any;
+    static getRewardsConfiguration(): any;
+    static setRewardsConfiguration(): any;
 }

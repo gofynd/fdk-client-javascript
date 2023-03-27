@@ -92,5 +92,4 @@ declare class UserModel {
     static UserSchema(): any;
     static PhoneNumber(): any;
     static Email(): any;
-    static Debug(): any;
 }

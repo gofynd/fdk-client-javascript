@@ -221,10 +221,6 @@ class LeadModel {
 
       account_type: Joi.string().allow(""),
 
-      debug: LeadModel.Debug(),
-
-      has_old_password_hash: Joi.boolean(),
-
       _id: Joi.string().allow(""),
 
       created_at: Joi.string().allow(""),

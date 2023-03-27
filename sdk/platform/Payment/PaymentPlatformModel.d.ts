@@ -40,5 +40,5 @@ declare class PaymentModel {
     static Code(): any;
     static PaymentCode(): any;
     static GetPaymentCode(): any;
-    static getPaymentCodeResponse(): any;
+    static GetPaymentCodeResponse(): any;
 }
