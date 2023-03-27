@@ -55,9 +55,9 @@ class Catalog {
       getProductBundlesBySlug:
         "/service/application/catalog/v1.0/product-grouping/",
       getProductPriceBySlug:
-        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/",
+        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/",
       getProductSellersBySlug:
-        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/",
+        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -1493,13 +1493,15 @@ class Catalog {
    *   product, e.g. 1,2,3.
    * @param {string} [arg.pincode] - The PIN Code of the area near which the
    *   selling locations should be searched, e.g. 400059.
-   * @returns {Promise<ProductSizePriceResponseV2>} - Success response
+   * @param {number} [arg.moq] - An Integer indication the Minimum Order
+   *   Quantity of a product, e.g. 100.
+   * @returns {Promise<ProductSizePriceResponseV3>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
-  getProductPriceBySlug({ slug, size, storeId, pincode } = {}) {
+  getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, pincode },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1508,6 +1510,7 @@ class Catalog {
     const query_params = {};
     query_params["store_id"] = storeId;
     query_params["pincode"] = pincode;
+    query_params["moq"] = moq;
 
     const xHeaders = {};
 
@@ -1539,7 +1542,7 @@ class Catalog {
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
+   * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
