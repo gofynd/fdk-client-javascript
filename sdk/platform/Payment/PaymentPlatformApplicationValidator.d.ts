@@ -9,6 +9,5 @@ declare class PaymentValidator {
     static getUserOrderBeneficiaries(): any;
     static getUserBeneficiaries(): any;
     static confirmPayment(): any;
-    static getUserCODlimitRoutes(): any;
-    static setUserCODlimitRoutes(): any;
+    static getPaymentCodeOption(): any;
 }

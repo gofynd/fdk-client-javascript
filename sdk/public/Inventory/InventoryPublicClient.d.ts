@@ -3,37 +3,15 @@ declare class Inventory {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getJobCodesMetrics: string;
-        saveJobCodesMetrics: string;
         getConfigByApiKey: string;
         getApiKey: string;
         getJobByCode: string;
         getJobConfigByIntegrationType: string;
+        getJobCodesMetrics: string;
+        saveJobCodesMetrics: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.dailyJob] - Daily Job Flag
-     * @param {string} [arg.jobCode] - Email Job Code
-     * @returns {Promise<ResponseEnvelopeObject>} - Success response
-     * @summary: Find all the JobCodes from Metrics Collection based on the field Values
-     * @description: Endpoint to return all JobCodes present in Metrics Collection
-     */
-    getJobCodesMetrics({ dailyJob, jobCode }?: {
-        dailyJob?: boolean;
-        jobCode?: string;
-    }): Promise<ResponseEnvelopeObject>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {EmailJobMetrics} arg.body
-     * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
-     * @summary: Save JobCode Metrics
-     * @description: Endpoint to save JobCode Metrics
-     */
-    saveJobCodesMetrics({ body }?: {
-        body: EmailJobMetrics;
-    }): Promise<ResponseEnvelopeEmailJobMetrics>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.apikey - Api key
@@ -78,4 +56,26 @@ declare class Inventory {
         integrationType: string;
         disable?: boolean;
     }): Promise<ResponseEnvelopeListJobConfigDTO>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.dailyJob] - Daily Job Flag
+     * @param {string} [arg.jobCode] - Email Job Code
+     * @returns {Promise<ResponseEnvelopeObject>} - Success response
+     * @summary: Find all the JobCodes from Metrics Collection based on the field Values
+     * @description: Endpoint to return all JobCodes present in Metrics Collection
+     */
+    getJobCodesMetrics({ dailyJob, jobCode }?: {
+        dailyJob?: boolean;
+        jobCode?: string;
+    }): Promise<ResponseEnvelopeObject>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {EmailJobMetrics} arg.body
+     * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
+     * @summary: Save JobCode Metrics
+     * @description: Endpoint to save JobCode Metrics
+     */
+    saveJobCodesMetrics({ body }?: {
+        body: EmailJobMetrics;
+    }): Promise<ResponseEnvelopeEmailJobMetrics>;
 }

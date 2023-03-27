@@ -11,11 +11,10 @@ class Partner {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id for which proxy URL will
-   *   be generated
+   * @param {string} arg.extensionId - Extension id
    * @param {AddProxyReq} arg.body
-   * @summary: Create proxy URL for the external URL
-   * @description: Use this API to generate proxy URL for the external URL
+   * @summary: Add proxy path for external url
+   * @description: Add proxy path for external url
    */
   addProxyPath({ extensionId, body } = {}) {
     const { error } = PartnerValidator.addProxyPath().validate(
@@ -27,19 +26,6 @@ class Partner {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.addProxyPath().validate(
-      {
-        extensionId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for addProxyPath");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -55,11 +41,10 @@ class Partner {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id for which proxy URL needs
-   *   to be removed
+   * @param {string} arg.extensionId - Extension id
    * @param {string} arg.attachedPath - Attachaed path slug
-   * @summary: Remove proxy URL for the external URL
-   * @description: Use this API to remove the proxy URL which is already generated for the external URL
+   * @summary: Remove proxy path for external url
+   * @description: Remove proxy path for external url
    */
   removeProxyPath({ extensionId, attachedPath } = {}) {
     const { error } = PartnerValidator.removeProxyPath().validate(
@@ -71,19 +56,6 @@ class Partner {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.removeProxyPath().validate(
-      {
-        extensionId,
-        attachedPath,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for removeProxyPath");
-      console.log(warrning);
     }
 
     const query_params = {};

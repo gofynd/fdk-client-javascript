@@ -19,8 +19,6 @@ Earn and redeem reward points
 * [updateUserStatus](#updateuserstatus)
 * [user](#user)
 * [getUserPointsHistory](#getuserpointshistory)
-* [getRewardsConfiguration](#getrewardsconfiguration)
-* [setRewardsConfiguration](#setrewardsconfiguration)
 
 
 
@@ -657,112 +655,6 @@ Success. Check example below or refer `HistoryRes` for more details.
 ---
 
 
-### getRewardsConfiguration
-Get all valid android paths
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration();
-```
-
-
-
-
-
-
-Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
-
-*Returned Response:*
-
-
-
-
-[ConfigurationRes](#ConfigurationRes)
-
-Success. Refer `ConfigurationRes` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### setRewardsConfiguration
-Updates the collection with given android paths.
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ConfigurationRequest](#ConfigurationRequest) | yes | Request body |
-
-
-Updates the configuration or inserts new records.
-
-*Returned Response:*
-
-
-
-
-[SetConfigurationRes](#SetConfigurationRes)
-
-ok
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
@@ -1038,43 +930,6 @@ ok
  | txn_name | string |  no  |  |
  | updated_at | string |  no  |  |
  | user_id | string |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationRes](#ConfigurationRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | valid_android_packages | [string] |  no  | Contains array of string items, Valid android package names. |
- | terms_conditions_link | string |  no  | A URL that redirects to the referral information suport page link |
- | application_id | string |  no  |  |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [SetConfigurationRes](#SetConfigurationRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ConfigurationRequest](#ConfigurationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | valid_android_packages | [string] |  no  |  |
- | terms_conditions_link | string |  no  |  |
 
 ---
 

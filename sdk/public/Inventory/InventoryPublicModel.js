@@ -1,64 +1,6 @@
 const Joi = require("joi");
 
 class InventoryModel {
-  static EmailJobMetrics() {
-    return Joi.object({
-      executed: Joi.boolean(),
-
-      id: Joi.string().allow(""),
-
-      job_code: Joi.string().allow(""),
-
-      daily_job: Joi.boolean(),
-
-      last_executed_on: Joi.string().allow(""),
-    });
-  }
-
-  static Page() {
-    return Joi.object({
-      type: Joi.string().allow("").required(),
-
-      size: Joi.number(),
-
-      current: Joi.number(),
-
-      has_next: Joi.boolean(),
-
-      item_total: Joi.number(),
-
-      next_id: Joi.string().allow(""),
-
-      has_previous: Joi.boolean(),
-    });
-  }
-
-  static ResponseEnvelopeEmailJobMetrics() {
-    return Joi.object({
-      timestamp: Joi.string().allow(""),
-
-      status: Joi.number(),
-
-      error: Joi.string().allow(""),
-
-      exception: Joi.string().allow(""),
-
-      message: Joi.string().allow(""),
-
-      total_time_taken_in_millis: Joi.number(),
-
-      http_status: Joi.string().allow(""),
-
-      items: InventoryModel.EmailJobMetrics(),
-
-      payload: InventoryModel.EmailJobMetrics(),
-
-      trace_id: Joi.string().allow(""),
-
-      page: InventoryModel.Page(),
-    });
-  }
-
   static GCompany() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -78,6 +20,8 @@ class InventoryModel {
       name: Joi.string().allow(""),
 
       stores: Joi.array().items(InventoryModel.GStore()),
+
+      gstores: Joi.array().items(InventoryModel.GStore()),
     });
   }
 
@@ -112,6 +56,24 @@ class InventoryModel {
       name: Joi.string().allow(""),
 
       value: Joi.string().allow(""),
+    });
+  }
+
+  static Page() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
+
+      current: Joi.number(),
+
+      has_next: Joi.boolean(),
+
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
     });
   }
 
@@ -227,11 +189,11 @@ class InventoryModel {
 
   static JobConfigDTO() {
     return Joi.object({
+      integration: Joi.string().allow("").required(),
+
       integration_data: Joi.object().pattern(/\S/, Joi.any()),
 
       company_name: Joi.string().allow(""),
-
-      integration: Joi.string().allow("").required(),
 
       company_id: Joi.number().required(),
 
@@ -298,6 +260,46 @@ class InventoryModel {
       items: Joi.array().items(InventoryModel.JobConfigDTO()),
 
       payload: Joi.array().items(InventoryModel.JobConfigDTO()),
+
+      trace_id: Joi.string().allow(""),
+
+      page: InventoryModel.Page(),
+    });
+  }
+
+  static EmailJobMetrics() {
+    return Joi.object({
+      executed: Joi.boolean(),
+
+      id: Joi.string().allow(""),
+
+      job_code: Joi.string().allow(""),
+
+      daily_job: Joi.boolean(),
+
+      last_executed_on: Joi.string().allow(""),
+    });
+  }
+
+  static ResponseEnvelopeEmailJobMetrics() {
+    return Joi.object({
+      timestamp: Joi.string().allow(""),
+
+      status: Joi.number(),
+
+      error: Joi.string().allow(""),
+
+      exception: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      total_time_taken_in_millis: Joi.number(),
+
+      http_status: Joi.string().allow(""),
+
+      items: InventoryModel.EmailJobMetrics(),
+
+      payload: InventoryModel.EmailJobMetrics(),
 
       trace_id: Joi.string().allow(""),
 

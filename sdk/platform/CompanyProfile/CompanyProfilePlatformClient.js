@@ -21,18 +21,6 @@ class CompanyProfile {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.cbsOnboardGet().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for cbsOnboardGet");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -64,20 +52,6 @@ class CompanyProfile {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.updateCompany().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateCompany");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -104,18 +78,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.getCompanyMetrics().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getCompanyMetrics");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -147,18 +109,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CompanyProfileValidator.getBrand().validate(
-      {
-        brandId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getBrand");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -194,19 +144,6 @@ class CompanyProfile {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CompanyProfileValidator.editBrand().validate(
-      {
-        brandId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for editBrand");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -236,18 +173,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CompanyProfileValidator.createBrand().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createBrand");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -285,20 +210,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CompanyProfileValidator.getBrands().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getBrands");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -366,22 +277,6 @@ class CompanyProfile {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.createCompanyBrandMapping().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for createCompanyBrandMapping"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -425,23 +320,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CompanyProfileValidator.getLocations().validate(
-      {
-        storeType,
-        q,
-        stage,
-        pageNo,
-        pageSize,
-        locationIds,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getLocations");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -518,20 +396,6 @@ class CompanyProfile {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.createLocation().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createLocation");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -561,20 +425,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.getLocationDetail().validate(
-      {
-        locationId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getLocationDetail");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -610,21 +460,6 @@ class CompanyProfile {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.updateLocation().validate(
-      {
-        locationId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateLocation");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -654,20 +489,6 @@ class CompanyProfile {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfileValidator.createLocationBulk().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createLocationBulk");
-      console.log(warrning);
     }
 
     const query_params = {};

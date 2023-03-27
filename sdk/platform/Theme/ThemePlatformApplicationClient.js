@@ -26,18 +26,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAllPages().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAllPages");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -66,19 +54,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.createPage().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createPage");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -111,19 +86,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updateMultiplePages().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateMultiplePages");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -152,19 +114,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getPage().validate(
-      {
-        themeId,
-        pageValue,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPage");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -199,20 +148,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updatePage().validate(
-      {
-        themeId,
-        pageValue,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updatePage");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -241,19 +176,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.deletePage().validate(
-      {
-        themeId,
-        pageValue,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deletePage");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -288,19 +210,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeLibrary().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getThemeLibrary");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
@@ -331,18 +240,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.addToThemeLibrary().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for addToThemeLibrary");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -369,18 +266,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.applyTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for applyTheme");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -411,18 +296,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.isUpgradable().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for isUpgradable");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -449,18 +322,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.upgradeTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for upgradeTheme");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -495,19 +356,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getPublicThemes().validate(
-      {
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPublicThemes");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
@@ -538,18 +386,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.createTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createTheme");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -575,16 +411,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAppliedTheme().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAppliedTheme");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -608,16 +434,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getFonts().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getFonts");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -646,18 +462,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeById().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getThemeById");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -690,19 +494,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.updateTheme().validate(
-      {
-        themeId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateTheme");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -729,18 +520,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.deleteTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteTheme");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -771,18 +550,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeForPreview().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getThemeForPreview");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -809,18 +576,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.publishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for publishTheme");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -851,18 +606,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.unpublishTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for unpublishTheme");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -889,18 +632,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.archiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for archiveTheme");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -931,18 +662,6 @@ class Theme {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.unarchiveTheme().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for unarchiveTheme");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -969,18 +688,6 @@ class Theme {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getThemeLastModified().validate(
-      {
-        themeId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getThemeLastModified");
-      console.log(warrning);
     }
 
     const query_params = {};

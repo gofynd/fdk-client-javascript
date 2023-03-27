@@ -254,19 +254,19 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@gofynd.com"
         },
         {
           "active": true,
           "primary": false,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@fynd.com"
         },
         {
           "active": true,
           "primary": false,
           "verified": true,
-          "email": "abc@test.com"
+          "email": "jalakvora@uniket.store"
         }
       ],
       "phone_numbers": [

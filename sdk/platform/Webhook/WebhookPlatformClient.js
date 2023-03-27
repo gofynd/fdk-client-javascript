@@ -28,22 +28,6 @@ class Webhook {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = WebhookValidator.getSubscribersByCompany().validate(
-      {
-        pageNo,
-        pageSize,
-        extensionId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getSubscribersByCompany");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -78,22 +62,6 @@ class Webhook {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = WebhookValidator.registerSubscriberToEvent().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for registerSubscriberToEvent"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -123,20 +91,6 @@ class Webhook {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = WebhookValidator.updateSubscriberConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateSubscriberConfig");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -174,24 +128,6 @@ class Webhook {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = WebhookValidator.getSubscribersByExtensionId().validate(
-      {
-        extensionId,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getSubscribersByExtensionId"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -225,18 +161,6 @@ class Webhook {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = WebhookValidator.getSubscriberById().validate(
-      {
-        subscriberId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getSubscriberById");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -263,20 +187,6 @@ class Webhook {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = WebhookValidator.fetchAllEventConfigurations().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for fetchAllEventConfigurations"
-      );
-      console.log(warrning);
     }
 
     const query_params = {};

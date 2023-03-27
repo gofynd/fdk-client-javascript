@@ -1,53 +1,61 @@
 const Joi = require("joi");
 
 class InventoryModel {
-  static DataTresholdDTO() {
+  static GCompany() {
     return Joi.object({
-      min_price: Joi.number(),
+      _id: Joi.string().allow(""),
 
-      safe_stock: Joi.number(),
+      integration: Joi.string().allow(""),
 
-      period_threshold: Joi.number(),
+      level: Joi.string().allow(""),
 
-      period_threshold_type: Joi.string().allow(""),
+      uid: Joi.number(),
 
-      period_type_list: Joi.array().items(InventoryModel.GenericDTO()),
+      opted: Joi.boolean(),
+
+      permissions: Joi.array().items(Joi.string().allow("")),
+
+      token: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      stores: Joi.array().items(InventoryModel.GStore()),
+
+      gstores: Joi.array().items(InventoryModel.GStore()),
     });
   }
 
-  static GenericDTO() {
+  static GStore() {
     return Joi.object({
-      text: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
 
-      value: Joi.any(),
+      integration: Joi.string().allow(""),
+
+      level: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      opted: Joi.boolean(),
+
+      permissions: Joi.array().items(Joi.string().allow("")),
+
+      token: Joi.string().allow(""),
+
+      code: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      data: InventoryModel.StoreData(),
     });
   }
 
-  static JobConfigDTO() {
+  static Metum() {
     return Joi.object({
-      integration_data: Joi.object().pattern(/\S/, Joi.any()),
+      _id: Joi.string().allow(""),
 
-      company_name: Joi.string().allow(""),
+      name: Joi.string().allow(""),
 
-      integration: Joi.string().allow("").required(),
-
-      company_id: Joi.number().required(),
-
-      task_details: InventoryModel.TaskDTO(),
-
-      threshold_details: InventoryModel.DataTresholdDTO(),
-
-      job_code: Joi.string().allow(""),
-
-      alias: Joi.string().allow(""),
-    });
-  }
-
-  static TaskDTO() {
-    return Joi.object({
-      type: Joi.number(),
-
-      group_list: Joi.array().items(InventoryModel.GenericDTO()),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -69,7 +77,7 @@ class InventoryModel {
     });
   }
 
-  static ResponseEnvelopeString() {
+  static ResponseEnvelopeListSlingshotConfigurationDetail() {
     return Joi.object({
       timestamp: Joi.string().allow(""),
 
@@ -85,13 +93,41 @@ class InventoryModel {
 
       http_status: Joi.string().allow(""),
 
-      items: Joi.string().allow(""),
+      items: Joi.array().items(InventoryModel.SlingshotConfigurationDetail()),
 
-      payload: Joi.string().allow(""),
+      payload: Joi.array().items(InventoryModel.SlingshotConfigurationDetail()),
 
       trace_id: Joi.string().allow(""),
 
       page: InventoryModel.Page(),
+    });
+  }
+
+  static SlingshotConfigurationDetail() {
+    return Joi.object({
+      integration: InventoryModel.SlingshotIntegration(),
+
+      companies: Joi.array().items(InventoryModel.GCompany()),
+    });
+  }
+
+  static SlingshotIntegration() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      slug: Joi.string().allow(""),
+
+      meta: Joi.array().items(InventoryModel.Metum()),
+    });
+  }
+
+  static StoreData() {
+    return Joi.object({
+      location_id: Joi.string().allow(""),
     });
   }
 
@@ -159,63 +195,57 @@ class InventoryModel {
     });
   }
 
-  static GCompany() {
+  static DataTresholdDTO() {
     return Joi.object({
-      _id: Joi.string().allow(""),
+      min_price: Joi.number(),
 
-      integration: Joi.string().allow(""),
+      safe_stock: Joi.number(),
 
-      level: Joi.string().allow(""),
+      period_threshold: Joi.number(),
 
-      uid: Joi.number(),
+      period_threshold_type: Joi.string().allow(""),
 
-      opted: Joi.boolean(),
-
-      permissions: Joi.array().items(Joi.string().allow("")),
-
-      token: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      stores: Joi.array().items(InventoryModel.GStore()),
+      period_type_list: Joi.array().items(InventoryModel.GenericDTO()),
     });
   }
 
-  static GStore() {
+  static GenericDTO() {
     return Joi.object({
-      _id: Joi.string().allow(""),
+      text: Joi.string().allow(""),
 
-      integration: Joi.string().allow(""),
-
-      level: Joi.string().allow(""),
-
-      uid: Joi.number(),
-
-      opted: Joi.boolean(),
-
-      permissions: Joi.array().items(Joi.string().allow("")),
-
-      token: Joi.string().allow(""),
-
-      code: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      data: InventoryModel.StoreData(),
+      value: Joi.any(),
     });
   }
 
-  static Metum() {
+  static JobConfigDTO() {
     return Joi.object({
-      _id: Joi.string().allow(""),
+      integration: Joi.string().allow("").required(),
 
-      name: Joi.string().allow(""),
+      integration_data: Joi.object().pattern(/\S/, Joi.any()),
 
-      value: Joi.string().allow(""),
+      company_name: Joi.string().allow(""),
+
+      company_id: Joi.number().required(),
+
+      task_details: InventoryModel.TaskDTO(),
+
+      threshold_details: InventoryModel.DataTresholdDTO(),
+
+      job_code: Joi.string().allow(""),
+
+      alias: Joi.string().allow(""),
     });
   }
 
-  static ResponseEnvelopeListSlingshotConfigurationDetail() {
+  static TaskDTO() {
+    return Joi.object({
+      type: Joi.number(),
+
+      group_list: Joi.array().items(InventoryModel.GenericDTO()),
+    });
+  }
+
+  static ResponseEnvelopeString() {
     return Joi.object({
       timestamp: Joi.string().allow(""),
 
@@ -231,41 +261,13 @@ class InventoryModel {
 
       http_status: Joi.string().allow(""),
 
-      items: Joi.array().items(InventoryModel.SlingshotConfigurationDetail()),
+      items: Joi.string().allow(""),
 
-      payload: Joi.array().items(InventoryModel.SlingshotConfigurationDetail()),
+      payload: Joi.string().allow(""),
 
       trace_id: Joi.string().allow(""),
 
       page: InventoryModel.Page(),
-    });
-  }
-
-  static SlingshotConfigurationDetail() {
-    return Joi.object({
-      integration: InventoryModel.SlingshotIntegration(),
-
-      companies: Joi.array().items(InventoryModel.GCompany()),
-    });
-  }
-
-  static SlingshotIntegration() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-
-      description: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      slug: Joi.string().allow(""),
-
-      meta: Joi.array().items(InventoryModel.Metum()),
-    });
-  }
-
-  static StoreData() {
-    return Joi.object({
-      location_id: Joi.string().allow(""),
     });
   }
 
@@ -625,9 +627,9 @@ class InventoryModel {
 
   static JobConfigRawDTO() {
     return Joi.object({
-      company_name: Joi.string().allow("").required(),
-
       integration: Joi.string().allow("").required(),
+
+      company_name: Joi.string().allow("").required(),
 
       company_id: Joi.number().required(),
 
@@ -744,6 +746,8 @@ class InventoryModel {
   static PropBeanConfig() {
     return Joi.object({
       required: Joi.boolean(),
+
+      mapping: Joi.object().pattern(/\S/, this.PropBeanConfig()),
 
       optional: Joi.boolean(),
 

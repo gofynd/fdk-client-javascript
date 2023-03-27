@@ -10,11 +10,11 @@ declare class CartValidator {
     static getPromotionById(): any;
     static updatePromotion(): any;
     static updatePromotionPartially(): any;
+    static getPromosCouponConfig(): any;
     static fetchAndvalidateCartItems(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
     static getAbandonedCart(): any;
-    static getAbandonedCartDetails(): any;
     static addItems(): any;
     static updateCart(): any;
 }

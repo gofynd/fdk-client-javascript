@@ -34,6 +34,7 @@ declare class ContentModel {
     static Action(): any;
     static ActionPage(): any;
     static NavigationReference(): any;
+    static SubNavigationReference(): any;
     static LandingPage(): any;
     static ConfigurationSchema(): any;
     static SlideshowMedia(): any;

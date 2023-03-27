@@ -23,20 +23,6 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getBrandPaymentGatewayConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getBrandPaymentGatewayConfig"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -63,22 +49,6 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.saveBrandPaymentGatewayConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for saveBrandPaymentGatewayConfig"
-      );
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -111,22 +81,6 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.updateBrandPaymentGatewayConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updateBrandPaymentGatewayConfig"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -155,21 +109,6 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getPaymentModeRoutes().validate(
-      {
-        refresh,
-        requestType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPaymentModeRoutes");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -204,23 +143,6 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getBankAccountDetailsOpenAPI().validate(
-      {
-        orderId,
-        requestHash,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getBankAccountDetailsOpenAPI"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["order_id"] = orderId;
     query_params["request_hash"] = requestHash;
@@ -251,22 +173,6 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for addRefundBankAccountUsingOTP"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -293,22 +199,6 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getUserOrderBeneficiaries().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getUserOrderBeneficiaries"
-      );
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -340,20 +230,6 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getUserBeneficiaries().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getUserBeneficiaries");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["order_id"] = orderId;
 
@@ -383,18 +259,6 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PaymentValidator.confirmPayment().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for confirmPayment");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -408,90 +272,26 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.merchantUserId -
-   * @param {string} arg.mobileNo -
-   * @summary: Get COD limit for user
-   * @description: Use this API to get user cod limit and reamining limit for the payment
+   * @summary: List Payment Options Method Codes
+   * @description: Get all active List Payment Options Method Codes
    */
-  getUserCODlimitRoutes({ merchantUserId, mobileNo } = {}) {
-    const { error } = PaymentValidator.getUserCODlimitRoutes().validate(
-      {
-        merchantUserId,
-        mobileNo,
-      },
+  getPaymentCodeOption({} = {}) {
+    const { error } = PaymentValidator.getPaymentCodeOption().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getUserCODlimitRoutes().validate(
-      {
-        merchantUserId,
-        mobileNo,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getUserCODlimitRoutes");
-      console.log(warrning);
-    }
-
     const query_params = {};
-    query_params["merchant_user_id"] = merchantUserId;
-    query_params["mobile_no"] = mobileNo;
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/codes`,
       query_params,
       undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SetCODForUserRequest} arg.body
-   * @summary: Set COD option for user for payment
-   * @description: Use this API to set cod option as true or false for the payment
-   */
-  setUserCODlimitRoutes({ body } = {}) {
-    const { error } = PaymentValidator.setUserCODlimitRoutes().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.setUserCODlimitRoutes().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for setUserCODlimitRoutes");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
-      query_params,
-      body
     );
   }
 }

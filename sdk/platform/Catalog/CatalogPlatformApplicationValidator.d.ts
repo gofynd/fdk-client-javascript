@@ -1,13 +1,13 @@
 export = CatalogValidator;
 declare class CatalogValidator {
+    static getSearchKeywords(): any;
     static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
-    static getSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static getAutocompleteKeywordDetail(): any;
     static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
-    static getAutocompleteKeywordDetail(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
@@ -50,7 +50,5 @@ declare class CatalogValidator {
     static updateAppBrand(): any;
     static getApplicationCategoryListing(): any;
     static updateAppCategory(): any;
-    static getApplicationDepartmentListing(): any;
-    static updateAppDepartment(): any;
     static updateAppLocation(): any;
 }

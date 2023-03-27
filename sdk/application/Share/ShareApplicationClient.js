@@ -50,17 +50,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ShareValidator.getApplicationQRCode().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getApplicationQRCode");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -94,19 +83,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareValidator.getProductQRCodeBySlug().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getProductQRCodeBySlug");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -140,21 +116,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareValidator.getCollectionQRCodeBySlug().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getCollectionQRCodeBySlug"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -187,17 +148,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ShareValidator.getUrlQRCode().validate(
-      { url },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getUrlQRCode");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["url"] = url;
 
@@ -231,17 +181,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ShareValidator.createShortLink().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createShortLink");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -275,17 +214,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ShareValidator.getShortLinkByHash().validate(
-      { hash },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getShortLinkByHash");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -319,21 +247,6 @@ class Share {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ShareValidator.getOriginalShortLinkByHash().validate(
-      { hash },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getOriginalShortLinkByHash"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};

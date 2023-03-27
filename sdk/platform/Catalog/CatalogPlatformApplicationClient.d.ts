@@ -6,6 +6,16 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @summary: Get a Search Keywords Details
+     * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+     */
+    getSearchKeywords({ id }?: {
+        id: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
      * @param {CreateSearchKeyword} arg.body
      * @summary: Update Search Keyword
@@ -27,16 +37,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier for a particular
-     *   detail. Pass the `id` of the keywords which you want to retrieve.
-     * @summary: Get a Search Keywords Details
-     * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-     */
-    getSearchKeywords({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CreateSearchKeyword} arg.body
      * @summary: Add a Custom Search Keywords
      * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
@@ -50,6 +50,16 @@ declare class Catalog {
      * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
      */
     getAllSearchKeyword({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @summary: Get a Autocomplete Keywords Details
+     * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+     */
+    getAutocompleteKeywordDetail({ id }?: {
+        id: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
@@ -70,16 +80,6 @@ declare class Catalog {
      * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
     deleteAutocompleteKeyword({ id }?: {
-        id: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier for a particular
-     *   detail. Pass the `id` of the keywords which you want to retrieve.
-     * @summary: Get a Autocomplete Keywords Details
-     * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
-     */
-    getAutocompleteKeywordDetail({ id }?: {
         id: string;
     }): Promise<any>;
     /**
@@ -111,11 +111,13 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.itemId - Product id for a particular product.
+     * @param {string} arg.sliceAttr - Get product's data sliced by attribute
      * @summary: Get company application product data.
      * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
      */
-    getAppProduct({ itemId }?: {
+    getAppProduct({ itemId, sliceAttr }?: {
         itemId: string;
+        sliceAttr: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -521,6 +523,8 @@ declare class Catalog {
      *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
      *   filter details. This flag is used to fetch all filters
+     * @param {boolean} [arg.isDependent] - This query parameter is used to get
+     *   the dependent products in the listing.
      * @param {string} [arg.sortOn] - The order to sort the list of products on.
      *   The supported sort parameters are popularity, price, redemption and
      *   discount in either ascending or descending order. See the supported
@@ -537,11 +541,12 @@ declare class Catalog {
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
-    getAppicationProducts({ q, f, c, filters, sortOn, pageId, pageSize, pageNo, pageType, itemIds, }?: {
+    getAppicationProducts({ q, f, c, filters, isDependent, sortOn, pageId, pageSize, pageNo, pageType, itemIds, }?: {
         q?: string;
         f?: string;
         c?: string;
         filters?: boolean;
+        isDependent?: boolean;
         sortOn?: string;
         pageId?: string;
         pageSize?: number;
@@ -566,6 +571,8 @@ declare class Catalog {
      *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
      * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
      *   filter details. This flag is used to fetch all filters
+     * @param {boolean} [arg.isDependent] - This query parameter is used to get
+     *   the dependent products in the listing.
      * @param {string} [arg.sortOn] - The order to sort the list of products on.
      *   The supported sort parameters are popularity, price, redemption and
      *   discount in either ascending or descending order. See the supported
@@ -576,13 +583,14 @@ declare class Catalog {
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
-    getAppicationProductsPaginator({ companyId, applicationId, q, f, c, filters, sortOn, pageSize, itemIds, }?: {
+    getAppicationProductsPaginator({ companyId, applicationId, q, f, c, filters, isDependent, sortOn, pageSize, itemIds, }?: {
         companyId: string;
         applicationId: string;
         q?: string;
         f?: string;
         c?: string;
         filters?: boolean;
+        isDependent?: boolean;
         sortOn?: string;
         pageSize?: number;
         itemIds?: number[];
@@ -743,8 +751,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.departmentId] - A `department_id` is a unique
-     *   identifier for a particular department.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -754,8 +760,7 @@ declare class Catalog {
      * @summary: List all the brands for the application
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
-    getApplicationCategoryListing({ departmentId, pageNo, pageSize, q }?: {
-        departmentId?: number;
+    getApplicationCategoryListing({ pageNo, pageSize, q }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;
@@ -766,8 +771,6 @@ declare class Catalog {
      *   a particular seller account.
      * @param {string} arg.applicationId - A `application_id` is a unique
      *   identifier for a particular sale channel.
-     * @param {number} [arg.departmentId] - A `department_id` is a unique
-     *   identifier for a particular department.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
@@ -775,10 +778,9 @@ declare class Catalog {
      * @summary: List all the brands for the application
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
-    getApplicationCategoryListingPaginator({ companyId, applicationId, departmentId, pageSize, q, }?: {
+    getApplicationCategoryListingPaginator({ companyId, applicationId, pageSize, q, }?: {
         companyId: string;
         applicationId: string;
-        departmentId?: number;
         pageSize?: number;
         q?: string;
     }): Paginator;
@@ -793,53 +795,6 @@ declare class Catalog {
     updateAppCategory({ categoryUid, body }?: {
         categoryUid: string;
         body: ApplicationCategoryJson;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results
-     * @param {number} [arg.pageSize] - Number of items to retrieve in each
-     *   page. Default is 12.
-     * @param {string} [arg.q] - Search query with brand name.Use this parameter
-     *   to search department by name.
-     * @summary: List all the departments for the application
-     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
-     */
-    getApplicationDepartmentListing({ pageNo, pageSize, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - A `company_id` is a unique identifier for
-     *   a particular seller account.
-     * @param {string} arg.applicationId - A `application_id` is a unique
-     *   identifier for a particular sale channel.
-     * @param {number} [arg.pageSize] - Number of items to retrieve in each
-     *   page. Default is 12.
-     * @param {string} [arg.q] - Search query with brand name.Use this parameter
-     *   to search department by name.
-     * @summary: List all the departments for the application
-     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
-     */
-    getApplicationDepartmentListingPaginator({ companyId, applicationId, pageSize, q, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        q?: string;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.departmentUid - Department id for which the
-     *   custom_json is associated.
-     * @param {ApplicationDepartmentJson} arg.body
-     * @summary: Update a single custom json.
-     * @description: This API helps to update data associated to a item custom meta.
-     */
-    updateAppDepartment({ departmentUid, body }?: {
-        departmentUid: string;
-        body: ApplicationDepartmentJson;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

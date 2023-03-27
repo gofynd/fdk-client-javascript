@@ -42,5 +42,4 @@ class ShareValidator {
     }).required();
   }
 }
-
 module.exports = ShareValidator;

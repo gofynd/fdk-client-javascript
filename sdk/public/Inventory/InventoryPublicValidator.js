@@ -1,20 +1,6 @@
-const Joi = require("joi");
-
 const InventoryModel = require("./InventoryPublicModel");
+const Joi = require("joi");
 class InventoryValidator {
-  static getJobCodesMetrics() {
-    return Joi.object({
-      dailyJob: Joi.boolean(),
-      jobCode: Joi.string().allow(""),
-    });
-  }
-
-  static saveJobCodesMetrics() {
-    return Joi.object({
-      body: InventoryModel.EmailJobMetrics().required(),
-    }).required();
-  }
-
   static getConfigByApiKey() {
     return Joi.object({
       apikey: Joi.string().allow("").required(),
@@ -40,6 +26,18 @@ class InventoryValidator {
       disable: Joi.boolean(),
     }).required();
   }
-}
 
+  static getJobCodesMetrics() {
+    return Joi.object({
+      dailyJob: Joi.boolean(),
+      jobCode: Joi.string().allow(""),
+    });
+  }
+
+  static saveJobCodesMetrics() {
+    return Joi.object({
+      body: InventoryModel.EmailJobMetrics().required(),
+    }).required();
+  }
+}
 module.exports = InventoryValidator;

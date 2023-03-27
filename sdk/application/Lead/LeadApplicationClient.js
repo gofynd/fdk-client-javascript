@@ -49,17 +49,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicket().validate(
-      { id },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getTicket");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -93,17 +82,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createHistory().validate(
-      { id, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createHistory");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -136,17 +114,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createTicket().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createTicket");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -179,17 +146,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getCustomForm().validate(
-      { slug },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getCustomForm");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -223,17 +179,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.submitCustomForm().validate(
-      { slug, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for submitCustomForm");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -266,21 +211,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadValidator.getParticipantsInsideVideoRoom().validate(
-      { uniqueName },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getParticipantsInsideVideoRoom"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -313,17 +243,6 @@ class Lead {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTokenForVideoRoom().validate(
-      { uniqueName },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getTokenForVideoRoom");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};

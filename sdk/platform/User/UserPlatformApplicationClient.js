@@ -33,20 +33,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getCustomers().validate(
-      {
-        q,
-        pageSize,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getCustomers");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["q"] = q;
     query_params["page_size"] = pageSize;
@@ -79,18 +65,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.searchUsers().validate(
-      {
-        q,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for searchUsers");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["q"] = q;
 
@@ -118,18 +92,6 @@ class User {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.createUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createUser");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -160,18 +122,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.blockOrUnblockUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for blockOrUnblockUsers");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -200,18 +150,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.archiveUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for archiveUser");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -238,18 +176,6 @@ class User {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.unDeleteUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for unDeleteUser");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -282,19 +208,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.updateUser().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateUser");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -323,18 +236,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.createUserSession().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createUserSession");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -361,18 +262,6 @@ class User {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getActiveSessions");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -404,18 +293,6 @@ class User {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.deleteActiveSessions().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteActiveSessions");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["id"] = id;
 
@@ -440,16 +317,6 @@ class User {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getPlatformConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPlatformConfig");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -478,18 +345,6 @@ class User {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.updatePlatformConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updatePlatformConfig");
-      console.log(warrning);
     }
 
     const query_params = {};

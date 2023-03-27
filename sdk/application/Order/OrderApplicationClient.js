@@ -8,28 +8,28 @@ class Order {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getOrders: "/service/application/order/v1.0/orders",
-      getOrderById: "/service/application/order/v1.0/orders/{order_id}",
+      getOrders: "/service/application/orders/v1.0/orders",
+      getOrderById: "/service/application/orders/v1.0/orders/{order_id}",
       getPosOrderById:
-        "/service/application/order/v1.0/orders/pos-order/{order_id}",
+        "/service/application/orders/v1.0/orders/pos-order/{order_id}",
       getShipmentById:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}",
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}",
       getInvoiceByShipmentId:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice",
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice",
       trackShipment:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/track",
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/track",
       getCustomerDetailsByShipmentId:
-        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
+        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details",
       sendOtpToShipmentCustomer:
-        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
+        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/",
       verifyOtpShipmentCustomer:
-        "/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
+        "/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/",
       getShipmentBagReasons:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons",
       getShipmentReasons:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons",
+        "/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons",
       updateShipmentStatus:
-        "/service/application/order/v1.0/orders/shipments/{shipment_id}/status",
+        "/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -72,17 +72,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate, customMeta },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getOrders");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["status"] = status;
     query_params["page_no"] = pageNo;
@@ -122,17 +111,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getOrderById().validate(
-      { orderId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getOrderById");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -166,17 +144,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getPosOrderById().validate(
-      { orderId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPosOrderById");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -211,17 +178,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentById().validate(
-      { shipmentId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentById");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -254,19 +210,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.getInvoiceByShipmentId().validate(
-      { shipmentId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getInvoiceByShipmentId");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -301,17 +244,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.trackShipment().validate(
-      { shipmentId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for trackShipment");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -348,21 +280,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.getCustomerDetailsByShipmentId().validate(
-      { orderId, shipmentId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getCustomerDetailsByShipmentId"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -399,21 +316,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.sendOtpToShipmentCustomer().validate(
-      { orderId, shipmentId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for sendOtpToShipmentCustomer"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -451,21 +353,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.verifyOtpShipmentCustomer().validate(
-      { orderId, shipmentId, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for verifyOtpShipmentCustomer"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -502,17 +389,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentBagReasons().validate(
-      { shipmentId, bagId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentBagReasons");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -547,17 +423,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentReasons().validate(
-      { shipmentId },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentReasons");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -577,13 +442,11 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
+   * @param {string} arg.shipmentId -
    * @param {UpdateShipmentStatusRequest} arg.body
    * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-   * @summary: Update the shipment status
-   * @description: Use this API to update the status of a shipment using its shipment ID.
+   * @summary:
+   * @description: updateShipmentStatus
    */
   updateShipmentStatus({ shipmentId, body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
@@ -593,17 +456,6 @@ class Order {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
-      { shipmentId, body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateShipmentStatus");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};

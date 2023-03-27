@@ -160,6 +160,10 @@ class CartValidator {
       paymentIdentifier: Joi.string().allow(""),
       aggregatorName: Joi.string().allow(""),
       merchantCode: Joi.string().allow(""),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      cardId: Joi.string().allow(""),
     });
   }
 
@@ -224,5 +228,4 @@ class CartValidator {
     }).required();
   }
 }
-
 module.exports = CartValidator;

@@ -43,19 +43,6 @@ class FileStorage {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.startUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for startUpload");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -106,19 +93,6 @@ class FileStorage {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.completeUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for completeUpload");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -148,18 +122,6 @@ class FileStorage {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.getSignUrls().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getSignUrls");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -195,19 +157,6 @@ class FileStorage {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.copyFiles().validate(
-      {
-        body,
-        sync,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for copyFiles");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["sync"] = sync;
 
@@ -240,19 +189,6 @@ class FileStorage {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.browse().validate(
-      {
-        namespace,
-        pageNo,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for browse");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -311,18 +247,6 @@ class FileStorage {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.proxy().validate(
-      {
-        url,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for proxy");
-      console.log(warrning);
     }
 
     const query_params = {};

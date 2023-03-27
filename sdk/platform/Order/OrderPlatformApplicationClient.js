@@ -67,33 +67,6 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.getApplicationShipments().validate(
-      {
-        lane,
-        searchType,
-        searchId,
-        fromDate,
-        toDate,
-        dpIds,
-        orderingCompanyId,
-        stores,
-        salesChannel,
-        requestByExt,
-        pageNo,
-        pageSize,
-        customerId,
-        isPrioritySort,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getApplicationShipments");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["lane"] = lane;
     query_params["search_type"] = searchType;
@@ -136,22 +109,6 @@ class Order {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.getAppOrderShipmentDetails().validate(
-      {
-        orderId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getAppOrderShipmentDetails"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["order_id"] = orderId;
 
@@ -179,18 +136,6 @@ class Order {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.trackPlatformShipment().validate(
-      {
-        shipmentId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for trackPlatformShipment");
-      console.log(warrning);
     }
 
     const query_params = {};

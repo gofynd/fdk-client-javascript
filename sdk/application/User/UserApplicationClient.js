@@ -97,17 +97,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithFacebook().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithFacebook");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -142,17 +131,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithGoogle().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithGoogle");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -187,17 +165,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithGoogleAndroid().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithGoogleAndroid");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -232,17 +199,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithGoogleIOS().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithGoogleIOS");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -277,17 +233,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithAppleIOS().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithAppleIOS");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -322,17 +267,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithOTP");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -366,21 +300,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserValidator.loginWithEmailAndPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for loginWithEmailAndPassword"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -414,17 +333,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.sendResetPasswordEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for sendResetPasswordEmail");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -459,19 +367,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserValidator.sendResetPasswordMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for sendResetPasswordMobile");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -505,17 +400,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.forgotPassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for forgotPassword");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -548,17 +432,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.sendResetToken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for sendResetToken");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -591,17 +464,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.loginWithToken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for loginWithToken");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -635,17 +497,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.registerWithForm().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for registerWithForm");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -679,17 +530,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.verifyEmail().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for verifyEmail");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -722,17 +562,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.verifyMobile().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for verifyMobile");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -764,17 +593,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.hasPassword().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for hasPassword");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -807,17 +625,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.updatePassword().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updatePassword");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -850,17 +657,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.deleteUser().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteUser");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -892,17 +688,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.logout().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for logout");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -936,17 +721,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.sendOTPOnMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for sendOTPOnMobile");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -981,17 +755,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.verifyMobileOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for verifyMobileOTP");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1026,17 +789,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.sendOTPOnEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for sendOTPOnEmail");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1071,17 +823,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.verifyEmailOTP().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for verifyEmailOTP");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1114,17 +855,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getLoggedInUser().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getLoggedInUser");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1156,19 +886,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserValidator.getListOfActiveSessions().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getListOfActiveSessions");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1201,17 +918,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getPlatformConfig().validate(
-      { name },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPlatformConfig");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["name"] = name;
 
@@ -1246,17 +952,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.updateProfile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateProfile");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1291,17 +986,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.addMobileNumber().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for addMobileNumber");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1352,17 +1036,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.deleteMobileNumber().validate(
-      { active, primary, verified, countryCode, phone, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteMobileNumber");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
     query_params["active"] = active;
@@ -1401,21 +1074,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserValidator.setMobileNumberAsPrimary().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for setMobileNumberAsPrimary"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1449,21 +1107,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserValidator.sendVerificationLinkToMobile().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for sendVerificationLinkToMobile"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1498,17 +1141,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.addEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for addEmail");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 
@@ -1551,17 +1183,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.deleteEmail().validate(
-      { active, primary, verified, email, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for deleteEmail");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
     query_params["active"] = active;
@@ -1599,17 +1220,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.setEmailAsPrimary().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for setEmailAsPrimary");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -1643,21 +1253,6 @@ class User {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserValidator.sendVerificationLinkToEmail().validate(
-      { body, platform },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for sendVerificationLinkToEmail"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["platform"] = platform;
 

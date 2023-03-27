@@ -26,19 +26,6 @@ class Common {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommonValidator.searchApplication().validate(
-      {
-        authorization,
-        query,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for searchApplication");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["query"] = query;
 
@@ -75,19 +62,6 @@ class Common {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CommonValidator.getLocations().validate(
-      {
-        locationType,
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getLocations");
-      console.log(warrning);
     }
 
     const query_params = {};

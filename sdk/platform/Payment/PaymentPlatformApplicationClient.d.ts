@@ -87,22 +87,8 @@ declare class Payment {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.merchantUserId -
-     * @param {string} arg.mobileNo -
-     * @summary: Get COD limit for user
-     * @description: Use this API to get user cod limit and reamining limit for the payment
+     * @summary: List Payment Options Method Codes
+     * @description: Get all active List Payment Options Method Codes
      */
-    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: {
-        merchantUserId: string;
-        mobileNo: string;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SetCODForUserRequest} arg.body
-     * @summary: Set COD option for user for payment
-     * @description: Use this API to set cod option as true or false for the payment
-     */
-    setUserCODlimitRoutes({ body }?: {
-        body: SetCODForUserRequest;
-    }): Promise<any>;
+    getPaymentCodeOption({}?: any): Promise<any>;
 }

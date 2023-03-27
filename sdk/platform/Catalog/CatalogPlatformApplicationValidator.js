@@ -2,6 +2,12 @@ const Joi = require("joi");
 const CatalogModel = require("./CatalogPlatformModel");
 
 class CatalogValidator {
+  static getSearchKeywords() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -10,12 +16,6 @@ class CatalogValidator {
   }
 
   static deleteSearchKeywords() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getSearchKeywords() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -31,6 +31,12 @@ class CatalogValidator {
     return Joi.object({}).required();
   }
 
+  static getAutocompleteKeywordDetail() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateAutocompleteKeyword() {
     return Joi.object({
       id: Joi.string().allow("").required(),
@@ -39,12 +45,6 @@ class CatalogValidator {
   }
 
   static deleteAutocompleteKeyword() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getAutocompleteKeywordDetail() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -70,6 +70,7 @@ class CatalogValidator {
   static getAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
+      sliceAttr: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -282,6 +283,7 @@ class CatalogValidator {
       f: Joi.string().allow(""),
       c: Joi.string().allow(""),
       filters: Joi.boolean(),
+      isDependent: Joi.boolean(),
       sortOn: Joi.string().allow(""),
       pageId: Joi.string().allow(""),
       pageSize: Joi.number(),
@@ -349,7 +351,6 @@ class CatalogValidator {
 
   static getApplicationCategoryListing() {
     return Joi.object({
-      departmentId: Joi.number(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
@@ -360,21 +361,6 @@ class CatalogValidator {
     return Joi.object({
       categoryUid: Joi.string().allow("").required(),
       body: CatalogModel.ApplicationCategoryJson().required(),
-    }).required();
-  }
-
-  static getApplicationDepartmentListing() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static updateAppDepartment() {
-    return Joi.object({
-      departmentUid: Joi.string().allow("").required(),
-      body: CatalogModel.ApplicationDepartmentJson().required(),
     }).required();
   }
 

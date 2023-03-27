@@ -8,8 +8,8 @@ declare class PaymentModel {
     static ErrorCodeAndDescription(): any;
     static HttpErrorCodeAndResponse(): any;
     static PaymentModeLogo(): any;
-    static IntentApp(): any;
     static IntentAppErrorList(): any;
+    static IntentApp(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptions(): any;
@@ -37,8 +37,8 @@ declare class PaymentModel {
     static MultiTenderPaymentMethod(): any;
     static PaymentConfirmationRequest(): any;
     static PaymentConfirmationResponse(): any;
-    static CODdata(): any;
-    static GetUserCODLimitResponse(): any;
-    static SetCODForUserRequest(): any;
-    static SetCODOptionResponse(): any;
+    static Code(): any;
+    static PaymentCode(): any;
+    static GetPaymentCode(): any;
+    static GetPaymentCodeResponse(): any;
 }

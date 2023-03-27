@@ -24,18 +24,6 @@ class AuditTrail {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = AuditTrailValidator.getAuditLogs().validate(
-      {
-        qs,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAuditLogs");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["qs"] = qs;
 
@@ -66,18 +54,6 @@ class AuditTrail {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = AuditTrailValidator.createAuditLog().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createAuditLog");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -111,18 +87,6 @@ class AuditTrail {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = AuditTrailValidator.getAuditLog().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAuditLog");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -149,16 +113,6 @@ class AuditTrail {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = AuditTrailValidator.getEntityTypes().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getEntityTypes");
-      console.log(warrning);
     }
 
     const query_params = {};

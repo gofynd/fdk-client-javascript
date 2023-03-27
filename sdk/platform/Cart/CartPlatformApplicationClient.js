@@ -49,25 +49,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.getCoupons().validate(
-      {
-        pageNo,
-        pageSize,
-        isArchived,
-        title,
-        isPublic,
-        isDisplay,
-        typeSlug,
-        code,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getCoupons");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -156,18 +137,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.createCoupon().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createCoupon");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -194,18 +163,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.getCouponById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getCouponById");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -238,19 +195,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.updateCoupon().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateCoupon");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -281,19 +225,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.updateCouponPartially().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateCouponPartially");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -310,7 +241,7 @@ class Cart {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] -
-   * @param {boolean} [arg.isActive] -
+   * @param {string} [arg.status] -
    * @param {string} [arg.promoGroup] -
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
@@ -322,7 +253,7 @@ class Cart {
     pageNo,
     pageSize,
     q,
-    isActive,
+    status,
     promoGroup,
     promotionType,
     fpPanel,
@@ -333,7 +264,7 @@ class Cart {
         pageNo,
         pageSize,
         q,
-        isActive,
+        status,
         promoGroup,
         promotionType,
         fpPanel,
@@ -345,30 +276,11 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.getPromotions().validate(
-      {
-        pageNo,
-        pageSize,
-        q,
-        isActive,
-        promoGroup,
-        promotionType,
-        fpPanel,
-        promotionId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPromotions");
-      console.log(warrning);
-    }
-
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
-    query_params["is_active"] = isActive;
+    query_params["status"] = status;
     query_params["promo_group"] = promoGroup;
     query_params["promotion_type"] = promotionType;
     query_params["fp_panel"] = fpPanel;
@@ -389,7 +301,7 @@ class Cart {
    * @param {string} arg.applicationId - Current Application _id
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] -
-   * @param {boolean} [arg.isActive] -
+   * @param {string} [arg.status] -
    * @param {string} [arg.promoGroup] -
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
@@ -402,7 +314,7 @@ class Cart {
     applicationId,
     pageSize,
     q,
-    isActive,
+    status,
     promoGroup,
     promotionType,
     fpPanel,
@@ -419,7 +331,7 @@ class Cart {
         pageNo: pageNo,
         pageSize: pageSize,
         q: q,
-        isActive: isActive,
+        status: status,
         promoGroup: promoGroup,
         promotionType: promotionType,
         fpPanel: fpPanel,
@@ -452,18 +364,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.createPromotion().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createPromotion");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -490,18 +390,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.getPromotionById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPromotionById");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -534,19 +422,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.updatePromotion().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updatePromotion");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -577,23 +452,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartValidator.updatePromotionPartially().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updatePromotionPartially"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -602,6 +460,31 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Fetch all promos that are set as active
+   * @description: Use this API to get list of all the active promos/coupons.
+   */
+  getPromosCouponConfig({} = {}) {
+    const { error } = CartValidator.getPromosCouponConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-coupons`,
+      query_params,
+      undefined
     );
   }
 
@@ -620,22 +503,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartValidator.fetchAndvalidateCartItems().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for fetchAndvalidateCartItems"
-      );
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -666,20 +533,6 @@ class Cart {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartValidator.checkCartServiceability().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for checkCartServiceability");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -706,18 +559,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.checkoutCart().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for checkoutCart");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -766,24 +607,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.getAbandonedCart().validate(
-      {
-        pageNo,
-        pageSize,
-        fromDate,
-        toDate,
-        anonymousCart,
-        lastId,
-        sortOn,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonedCart");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -855,57 +678,6 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.id] -
-   * @param {boolean} [arg.i] -
-   * @param {boolean} [arg.b] -
-   * @summary: Fetch all items added to the cart
-   * @description: Use this API to get details of all the items added to a cart.
-   */
-  getAbandonedCartDetails({ id, i, b } = {}) {
-    const { error } = CartValidator.getAbandonedCartDetails().validate(
-      {
-        id,
-        i,
-        b,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartValidator.getAbandonedCartDetails().validate(
-      {
-        id,
-        i,
-        b,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonedCartDetails");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["id"] = id;
-    query_params["i"] = i;
-    query_params["b"] = b;
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/cart/detail`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.cartId - Current Cart _id
    * @param {boolean} [arg.b] -
    * @param {AddCartRequest} arg.body
@@ -923,20 +695,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.addItems().validate(
-      {
-        cartId,
-        body,
-        b,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for addItems");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -970,20 +728,6 @@ class Cart {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartValidator.updateCart().validate(
-      {
-        cartId,
-        body,
-        b,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for updateCart");
-      console.log(warrning);
     }
 
     const query_params = {};

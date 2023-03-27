@@ -30,6 +30,8 @@ declare class LeadModel {
     static AddTicketPayload(): any;
     static Priority(): any;
     static Status(): any;
+    static TicketCategory(): any;
+    static TicketSubCategory(): any;
     static TicketFeedbackForm(): any;
     static TicketFeedbackList(): any;
     static TicketFeedbackPayload(): any;
@@ -38,11 +40,6 @@ declare class LeadModel {
     static CustomForm(): any;
     static CommunicationDetails(): any;
     static SupportGeneralConfig(): any;
-    static FeedbackForm(): any;
-    static TicketSubCategory(): any;
-    static TicketCategory(): any;
-    static CategoryData(): any;
-    static IntegrationConfig(): any;
     static FeedbackResponseItem(): any;
     static TicketFeedback(): any;
     static TicketHistory(): any;
@@ -51,5 +48,4 @@ declare class LeadModel {
     static HistoryTypeEnum(): any;
     static TicketAssetTypeEnum(): any;
     static TicketSourceEnum(): any;
-    static TicketIntegrationDetails(): any;
 }

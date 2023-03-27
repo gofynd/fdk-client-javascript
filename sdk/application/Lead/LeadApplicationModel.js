@@ -221,6 +221,10 @@ class LeadModel {
 
       account_type: Joi.string().allow(""),
 
+      debug: LeadModel.Debug(),
+
+      has_old_password_hash: Joi.boolean(),
+
       _id: Joi.string().allow(""),
 
       created_at: Joi.string().allow(""),
@@ -267,7 +271,7 @@ class LeadModel {
     return Joi.object({
       message: Joi.string().allow("").required(),
 
-      ticket: LeadModel.Ticket(),
+      ticket: LeadModel.Ticket().required(),
     });
   }
 
@@ -338,6 +342,28 @@ class LeadModel {
       display: Joi.string().allow("").required(),
 
       color: Joi.string().allow("").required(),
+    });
+  }
+
+  static TicketCategory() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+
+      display: Joi.string().allow("").required(),
+
+      form: LeadModel.CustomForm(),
+
+      sub_categories: Joi.array().items(LeadModel.TicketSubCategory()),
+
+      feedback_form: LeadModel.TicketFeedbackForm(),
+    });
+  }
+
+  static TicketSubCategory() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+
+      display: Joi.string().allow("").required(),
     });
   }
 
@@ -417,10 +443,6 @@ class LeadModel {
 
   static CommunicationDetails() {
     return Joi.object({
-      type: Joi.string().allow(""),
-
-      title: Joi.string().allow(""),
-
       value: Joi.string().allow(""),
 
       description: Joi.string().allow(""),
@@ -441,77 +463,9 @@ class LeadModel {
 
       show_communication_info: Joi.boolean(),
 
-      support_communication: LeadModel.CommunicationDetails(),
-
       show_support_dris: Joi.boolean(),
 
       integration: Joi.any(),
-    });
-  }
-
-  static FeedbackForm() {
-    return Joi.object({
-      inputs: Joi.any(),
-
-      title: Joi.string().allow(""),
-
-      timestamps: Joi.any(),
-    });
-  }
-
-  static TicketSubCategory() {
-    return Joi.object({
-      key: Joi.string().allow("").required(),
-
-      display: Joi.string().allow("").required(),
-
-      sub_categories: LeadModel.TicketSubCategory(),
-    });
-  }
-
-  static TicketCategory() {
-    return Joi.object({
-      display: Joi.string().allow("").required(),
-
-      key: Joi.string().allow("").required(),
-
-      sub_categories: LeadModel.TicketCategory(),
-
-      group_id: Joi.number(),
-
-      feedback_form: LeadModel.FeedbackForm(),
-    });
-  }
-
-  static CategoryData() {
-    return Joi.object({
-      list: LeadModel.TicketCategory(),
-    });
-  }
-
-  static IntegrationConfig() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-
-      integration_type: Joi.string().allow("").required(),
-
-      base_url: Joi.string().allow(""),
-
-      create_ticket_apikey: Joi.string().allow(""),
-
-      update_ticket_apikey: Joi.string().allow(""),
-
-      category_sync_apikey: Joi.string().allow(""),
-
-      category_data: LeadModel.CategoryData(),
-
-      webhook_apikey: Joi.string().allow(""),
-
-      config_completed: Joi.boolean(),
-
-      allow_ticket_creation: Joi.boolean().required(),
-
-      show_listing: Joi.boolean().required(),
     });
   }
 
@@ -575,9 +529,11 @@ class LeadModel {
 
       content: LeadModel.TicketContent(),
 
+      ticket_id: Joi.string().allow("").required(),
+
       category: LeadModel.TicketCategory().required(),
 
-      sub_category: Joi.string().allow(""),
+      sub_category: LeadModel.TicketSubCategory(),
 
       source: LeadModel.TicketSourceEnum().required(),
 
@@ -594,8 +550,6 @@ class LeadModel {
       _custom_json: Joi.any(),
 
       is_feedback_pending: Joi.boolean(),
-
-      integration: Joi.any(),
 
       _id: Joi.string().allow("").required(),
 
@@ -670,20 +624,6 @@ class LeadModel {
       "platform_panel",
 
       "sales_channel"
-    );
-  }
-
-  /*
-        Enum: TicketIntegrationDetails
-        Used By: Lead
-    */
-  static TicketIntegrationDetails() {
-    return Joi.string().valid(
-      "default",
-
-      "freshdesk",
-
-      "kapture"
     );
   }
 }

@@ -25,5 +25,4 @@ class ThemeValidator {
     }).required();
   }
 }
-
 module.exports = ThemeValidator;

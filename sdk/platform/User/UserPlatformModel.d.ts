@@ -87,9 +87,9 @@ declare class UserModel {
     static Facebook(): any;
     static Accountkit(): any;
     static Google(): any;
-    static SessionExpiry(): any;
     static UpdateUserRequestSchema(): any;
     static UserSchema(): any;
     static PhoneNumber(): any;
     static Email(): any;
+    static Debug(): any;
 }

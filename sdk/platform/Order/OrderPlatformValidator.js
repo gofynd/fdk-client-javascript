@@ -59,10 +59,6 @@ class OrderValidator {
     return Joi.object({
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
-      bagStatus: Joi.string().allow(""),
-      timeToDispatch: Joi.string().allow(""),
-      paymentMethods: Joi.string().allow(""),
-      tags: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
@@ -158,6 +154,33 @@ class OrderValidator {
       pageSize: Joi.number(),
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
+    }).required();
+  }
+
+  static getManifestList() {
+    return Joi.object({
+      status: Joi.string().allow(""),
+      storeId: Joi.number(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      searchValue: Joi.string().allow(""),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getManifestDetailsWithShipments() {
+    return Joi.object({
+      manifestId: Joi.string().allow("").required(),
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      storeId: Joi.number().required(),
+      page: Joi.number(),
+      pageSize: Joi.number(),
+      lane: Joi.string().allow(""),
+      dpIds: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
     }).required();
   }
 
@@ -290,12 +313,6 @@ class OrderValidator {
     }).required();
   }
 
-  static postShipmentHistory() {
-    return Joi.object({
-      body: OrderModel.PostShipmentHistory().required(),
-    }).required();
-  }
-
   static sendSmsNinja() {
     return Joi.object({
       body: OrderModel.SendSmsPayload().required(),
@@ -320,14 +337,14 @@ class OrderValidator {
     }).required();
   }
 
-  static getChannelConfig() {
-    return Joi.object({}).required();
-  }
-
   static createChannelConfig() {
     return Joi.object({
       body: OrderModel.CreateChannelConfigData().required(),
     }).required();
+  }
+
+  static getChannelConfig() {
+    return Joi.object({}).required();
   }
 
   static uploadConsent() {
@@ -349,7 +366,9 @@ class OrderValidator {
   }
 
   static sendSmsNinjaPlatform() {
-    return Joi.object({}).required();
+    return Joi.object({
+      body: OrderModel.SendSmsPayload().required(),
+    }).required();
   }
 }
 module.exports = OrderValidator;

@@ -18,7 +18,4 @@ declare class RewardsModel {
     static GiveawayAudience(): any;
     static HistoryRes(): any;
     static PointsHistory(): any;
-    static ConfigurationRes(): any;
-    static SetConfigurationRes(): any;
-    static ConfigurationRequest(): any;
 }

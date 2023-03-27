@@ -2090,11 +2090,6 @@ Success. Returns a JSON object containing the all the platform configurations. R
   "delete_account_consent": {
     "consent_text": ""
   },
-  "session_config": {
-    "duration": "30",
-    "type": "Days",
-    "is_rolling": false
-  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -4039,7 +4034,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | delete_account_day | number |  no  |  |
  | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
  | delete_account_consent | string |  no  |  |
- | session_config | string |  no  |  |
 
 ---
 
@@ -4250,19 +4244,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
- #### [SessionExpiry](#SessionExpiry)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | duration | number |  no  |  |
- | type | string |  no  |  |
- | is_rolling | boolean |  no  |  |
-
----
-
-
- 
- 
  #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -4295,6 +4276,8 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profile_pic_url | string |  no  |  |
  | username | string |  no  |  |
  | account_type | string |  no  |  |
+ | debug | [Debug](#Debug) |  no  |  |
+ | has_old_password_hash | boolean |  no  |  |
  | _id | string |  no  |  |
  | created_at | string |  no  |  |
  | updated_at | string |  no  |  |
@@ -4327,6 +4310,18 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | boolean |  no  |  |
  | email | string |  no  |  |
  | active | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Debug](#Debug)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | source | string |  no  |  |
+ | platform | string |  no  |  |
 
 ---
 

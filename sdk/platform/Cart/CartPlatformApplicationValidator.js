@@ -46,7 +46,7 @@ class CartValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
+      status: Joi.string().allow(""),
       promoGroup: Joi.string().allow(""),
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),
@@ -80,6 +80,10 @@ class CartValidator {
     }).required();
   }
 
+  static getPromosCouponConfig() {
+    return Joi.object({}).required();
+  }
+
   static fetchAndvalidateCartItems() {
     return Joi.object({
       body: CartModel.OpenapiCartDetailsRequest().required(),
@@ -107,14 +111,6 @@ class CartValidator {
       anonymousCart: Joi.boolean(),
       lastId: Joi.string().allow(""),
       sortOn: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getAbandonedCartDetails() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      i: Joi.boolean(),
-      b: Joi.boolean(),
     }).required();
   }
 

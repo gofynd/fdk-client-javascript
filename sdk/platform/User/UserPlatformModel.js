@@ -768,8 +768,6 @@ class UserModel {
       ),
 
       delete_account_consent: Joi.any(),
-
-      session_config: Joi.any(),
     });
   }
 
@@ -909,16 +907,6 @@ class UserModel {
     });
   }
 
-  static SessionExpiry() {
-    return Joi.object({
-      duration: Joi.number(),
-
-      type: Joi.string().allow(""),
-
-      is_rolling: Joi.boolean(),
-    });
-  }
-
   static UpdateUserRequestSchema() {
     return Joi.object({
       first_name: Joi.string().allow(""),
@@ -961,6 +949,10 @@ class UserModel {
 
       account_type: Joi.string().allow(""),
 
+      debug: UserModel.Debug(),
+
+      has_old_password_hash: Joi.boolean(),
+
       _id: Joi.string().allow(""),
 
       created_at: Joi.string().allow(""),
@@ -992,6 +984,14 @@ class UserModel {
       email: Joi.string().allow(""),
 
       active: Joi.boolean(),
+    });
+  }
+
+  static Debug() {
+    return Joi.object({
+      source: Joi.string().allow(""),
+
+      platform: Joi.string().allow(""),
     });
   }
 }

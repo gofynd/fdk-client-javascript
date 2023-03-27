@@ -23,18 +23,6 @@ class Analytics {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getStatiscticsGroups().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getStatiscticsGroups");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -65,22 +53,6 @@ class Analytics {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getStatiscticsGroupComponents().validate(
-      {
-        groupName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getStatiscticsGroupComponents"
-      );
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -107,20 +79,6 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getComponentStatsCSV().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getComponentStatsCSV");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -151,20 +109,6 @@ class Analytics {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getComponentStatsPDF().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getComponentStatsPDF");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -191,18 +135,6 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = AnalyticsValidator.getComponentStats().validate(
-      {
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getComponentStats");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -237,23 +169,6 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getAbandonCartList().validate(
-      {
-        fromDate,
-        toDate,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonCartList");
-      console.log(warrning);
     }
 
     const query_params = {};
@@ -328,21 +243,6 @@ class Analytics {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getAbandonCartsCSV().validate(
-      {
-        fromDate,
-        toDate,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonCartsCSV");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -369,20 +269,6 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = AnalyticsValidator.getAbandonCartDetail().validate(
-      {
-        cartId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonCartDetail");
-      console.log(warrning);
     }
 
     const query_params = {};

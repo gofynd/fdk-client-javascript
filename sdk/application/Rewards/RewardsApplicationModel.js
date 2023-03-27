@@ -138,8 +138,6 @@ class RewardsModel {
       user: RewardsModel.ReferralDetailsUser(),
 
       referrer_info: Joi.string().allow(""),
-
-      terms_conditions_link: Joi.string().allow(""),
     });
   }
 

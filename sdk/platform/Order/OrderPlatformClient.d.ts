@@ -100,10 +100,6 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
      * @param {string} [arg.searchType] -
-     * @param {string} [arg.bagStatus] -
-     * @param {string} [arg.timeToDispatch] -
-     * @param {string} [arg.paymentMethods] -
-     * @param {string} [arg.tags] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
@@ -117,13 +113,9 @@ declare class Order {
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannel, pageNo, pageSize, isPrioritySort, customMeta, }?: {
         lane?: string;
         searchType?: string;
-        bagStatus?: string;
-        timeToDispatch?: string;
-        paymentMethods?: string;
-        tags?: string;
         searchValue?: string;
         fromDate?: string;
         toDate?: string;
@@ -277,6 +269,54 @@ declare class Order {
         pageSize?: number;
         customerId?: string;
         isPrioritySort?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.status] -
+     * @param {number} [arg.storeId] -
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.searchValue] -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @summary:
+     * @description:
+     */
+    getManifestList({ status, storeId, pageNo, pageSize, searchValue, fromDate, toDate, }?: {
+        status?: string;
+        storeId?: number;
+        pageNo?: number;
+        pageSize?: number;
+        searchValue?: string;
+        fromDate?: string;
+        toDate?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.manifestId -
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {number} arg.storeId -
+     * @param {number} [arg.page] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.lane] -
+     * @param {number} [arg.dpIds] -
+     * @param {string} [arg.searchType] -
+     * @param {string} [arg.searchValue] -
+     * @summary:
+     * @description:
+     */
+    getManifestDetailsWithShipments({ manifestId, storeId, fromDate, toDate, page, pageSize, lane, dpIds, searchType, searchValue, }?: {
+        manifestId: string;
+        fromDate?: string;
+        toDate?: string;
+        storeId: number;
+        page?: number;
+        pageSize?: number;
+        lane?: string;
+        dpIds?: number;
+        searchType?: string;
+        searchValue?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -491,15 +531,6 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PostShipmentHistory} arg.body
-     * @summary:
-     * @description:
-     */
-    postShipmentHistory({ body }?: {
-        body: PostShipmentHistory;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {SendSmsPayload} arg.body
      * @summary:
      * @description:
@@ -536,12 +567,6 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CreateChannelConfigData} arg.body
      * @summary:
      * @description: createChannelConfig
@@ -549,6 +574,12 @@ declare class Order {
     createChannelConfig({ body }?: {
         body: CreateChannelConfigData;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UploadConsent} arg.body
@@ -578,8 +609,11 @@ declare class Order {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {SendSmsPayload} arg.body
      * @summary:
      * @description:
      */
-    sendSmsNinjaPlatform({}?: any): Promise<any>;
+    sendSmsNinjaPlatform({ body }?: {
+        body: SendSmsPayload;
+    }): Promise<any>;
 }

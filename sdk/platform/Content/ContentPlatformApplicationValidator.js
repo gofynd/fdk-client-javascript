@@ -247,7 +247,10 @@ class ContentValidator {
   }
 
   static getPageMeta() {
-    return Joi.object({}).required();
+    return Joi.object({
+      pageType: Joi.string().allow(""),
+      cartPages: Joi.boolean(),
+    }).required();
   }
 
   static getPageSpec() {

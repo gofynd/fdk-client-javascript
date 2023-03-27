@@ -8,10 +8,9 @@ class Logistic {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
-      getTatProduct: "/service/application/logistics/v1.0/",
-      getAllCountries: "/service/application/logistics/v1.0/country-list",
+      getTatProduct: "/service/application/logistics/v1.0",
       getPincodeZones: "/service/application/logistics/v1.0/pincode/zones",
+      getPincodeCity: "/service/application/logistics/v1.0/pincode/{pincode}",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -31,56 +30,10 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.pincode - A `pincode` contains a specific address of
-   *   a location.
-   * @param {string} [arg.countryCode] - A 3 alphabetic country code
-   * @returns {Promise<PincodeApiResponse>} - Success response
-   * @summary: Get Pincode API
-   * @description: Get pincode data
-   */
-  getPincodeCity({ pincode, countryCode } = {}) {
-    const { error } = LogisticValidator.getPincodeCity().validate(
-      { pincode, countryCode },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LogisticValidator.getPincodeCity().validate(
-      { pincode, countryCode },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPincodeCity");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-    query_params["country_code"] = countryCode;
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getPincodeCity"],
-        params: { pincode },
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {TATViewRequest} arg.body
-   * @returns {Promise<TATViewResponse>} - Success response
-   * @summary: Get TAT API
-   * @description: Get TAT data
+   * @param {GetTatProductReqBody} arg.body
+   * @returns {Promise<GetTatProductResponse>} - Success response
+   * @summary: Get TAT of a product
+   * @description: Use this API to know the delivery turnaround time (TAT) by entering the product details along with the PIN Code of the location.
    */
   getTatProduct({ body } = {}) {
     const { error } = LogisticValidator.getTatProduct().validate(
@@ -90,17 +43,6 @@ class Logistic {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LogisticValidator.getTatProduct().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getTatProduct");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -120,52 +62,10 @@ class Logistic {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<CountryListResponse>} - Success response
-   * @summary: Get Country List
-   * @description: Get all countries
-   */
-  getAllCountries({} = {}) {
-    const { error } = LogisticValidator.getAllCountries().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LogisticValidator.getAllCountries().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAllCountries");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getAllCountries"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {GetZoneFromPincodeViewRequest} arg.body
-   * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
-   * @summary: GET zone from the Pincode.
-   * @description: This API returns zone from the Pincode View.
+   * @param {GetPincodeZonesReqBody} arg.body
+   * @returns {Promise<GetPincodeZonesResponse>} - Success response
+   * @summary: Get Pincode Zones
+   * @description: Get to know the zones of a specefic pincode
    */
   getPincodeZones({ body } = {}) {
     const { error } = LogisticValidator.getPincodeZones().validate(
@@ -175,17 +75,6 @@ class Logistic {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LogisticValidator.getPincodeZones().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getPincodeZones");
-      console.log(warrning);
-    }
-
     const query_params = {};
 
     const xHeaders = {};
@@ -199,6 +88,38 @@ class Logistic {
       }),
       query_params,
       body,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pincode - The PIN Code of the area, e.g. 400059
+   * @returns {Promise<GetPincodeCityResponse>} - Success response
+   * @summary: Get city from PIN Code
+   * @description: Use this API to retrieve a city by its PIN Code.
+   */
+  getPincodeCity({ pincode } = {}) {
+    const { error } = LogisticValidator.getPincodeCity().validate(
+      { pincode },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getPincodeCity"],
+        params: { pincode },
+      }),
+      query_params,
+      undefined,
       xHeaders
     );
   }

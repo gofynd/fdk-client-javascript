@@ -175,13 +175,11 @@ declare class Order {
     }): Promise<ShipmentReasons>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
+     * @param {string} arg.shipmentId -
      * @param {UpdateShipmentStatusRequest} arg.body
      * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
-     * @summary: Update the shipment status
-     * @description: Use this API to update the status of a shipment using its shipment ID.
+     * @summary:
+     * @description: updateShipmentStatus
      */
     updateShipmentStatus({ shipmentId, body }?: {
         shipmentId: string;

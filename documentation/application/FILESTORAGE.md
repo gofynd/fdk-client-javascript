@@ -328,8 +328,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | string |  yes  |  |
- | absolute_url | string |  no  |  |
- | relative_url | string |  no  |  |
 
 ---
 

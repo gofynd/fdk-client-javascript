@@ -131,20 +131,5 @@ declare class Rewards {
         applicationId: string;
         pageSize?: number;
     }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @summary: Get all valid android paths
-     * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
-     */
-    getRewardsConfiguration({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ConfigurationRequest} arg.body
-     * @summary: Updates the collection with given android paths.
-     * @description: Updates the configuration or inserts new records.
-     */
-    setRewardsConfiguration({ body }?: {
-        body: ConfigurationRequest;
-    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

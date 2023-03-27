@@ -108,6 +108,13 @@ class PaymentValidator {
     }).required();
   }
 
+  static cardDetails() {
+    return Joi.object({
+      cardInfo: Joi.string().allow("").required(),
+      aggregator: Joi.string().allow(""),
+    }).required();
+  }
+
   static getActiveRefundTransferModes() {
     return Joi.object({});
   }
@@ -245,5 +252,4 @@ class PaymentValidator {
     }).required();
   }
 }
-
 module.exports = PaymentValidator;

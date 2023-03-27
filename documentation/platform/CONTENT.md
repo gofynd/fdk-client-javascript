@@ -1355,7 +1355,7 @@ Use this to get all data loaders of an application
 
 [DataLoadersSchema](#DataLoadersSchema)
 
-Success. Refer `DataLoadersSchema` for more details.
+Success. Refer `DataLoaderResponseSchema` for more details.
 
 
 
@@ -4823,14 +4823,22 @@ Get page meta
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").content.getPageMeta();
+const promise = client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
+ cartPages : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").content.getPageMeta();
+const data = await client.application("<APPLICATION_ID>").content.getPageMeta({  pageType : value,
+ cartPages : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageType | string | no | Fetch meta by page type. Acceptable values are: system, custom and all |    
+| cartPages | boolean | no | Pass this param value as `true` to fetch meta with cart pages |  
 
 
 
@@ -5414,7 +5422,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -5488,7 +5496,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -5559,7 +5567,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -5632,7 +5640,7 @@ Success. Refer `PathMappingSchema` for more details.
 
 ```json
 {
-  "value": {
+  "data": {
     "_id": "615188e9db1e444cb0f40837",
     "application": "000000000000000000000002",
     "redirect_from": "/from",
@@ -7955,6 +7963,26 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  
  
  #### [NavigationReference](#NavigationReference)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | acl | [string] |  no  |  |
+ | tags | [string] |  no  |  |
+ | _locale_language | [LocaleLanguage](#LocaleLanguage) |  no  |  |
+ | image | string |  no  |  |
+ | type | string |  no  |  |
+ | action | [Action](#Action) |  no  |  |
+ | active | boolean |  no  |  |
+ | display | string |  no  |  |
+ | sort_order | number |  no  |  |
+ | sub_navigation | [[SubNavigationReference](#SubNavigationReference)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SubNavigationReference](#SubNavigationReference)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

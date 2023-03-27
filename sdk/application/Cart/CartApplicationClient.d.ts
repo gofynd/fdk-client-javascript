@@ -307,11 +307,15 @@ declare class Cart {
      * @param {string} [arg.paymentIdentifier] -
      * @param {string} [arg.aggregatorName] -
      * @param {string} [arg.merchantCode] -
+     * @param {string} [arg.iin] -
+     * @param {string} [arg.network] -
+     * @param {string} [arg.type] -
+     * @param {string} [arg.cardId] -
      * @returns {Promise<PaymentCouponValidate>} - Success response
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, }?: {
         id?: string;
         buyNow?: boolean;
         addressId?: string;
@@ -319,6 +323,10 @@ declare class Cart {
         paymentIdentifier?: string;
         aggregatorName?: string;
         merchantCode?: string;
+        iin?: string;
+        network?: string;
+        type?: string;
+        cardId?: string;
     }): Promise<PaymentCouponValidate>;
     /**
      * @param {Object} arg - Arg object.
