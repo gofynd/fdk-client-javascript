@@ -26,6 +26,19 @@ class Analytics {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = AnalyticsValidator.createExportJob().validate(
+      {
+        exportType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createExportJob");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -57,6 +70,21 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = AnalyticsValidator.getExportJobStatus().validate(
+      {
+        exportType,
+        jobId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getExportJobStatus");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -94,6 +122,21 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = AnalyticsValidator.getLogsList().validate(
+      {
+        logType,
+        body,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getLogsList");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -163,6 +206,21 @@ class Analytics {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = AnalyticsValidator.searchLogs().validate(
+      {
+        logType,
+        body,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for searchLogs");
+      console.log(warrning);
     }
 
     const query_params = {};

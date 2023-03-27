@@ -45,6 +45,19 @@ class FileStorage {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.appStartUpload().validate(
+      {
+        namespace,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for appStartUpload");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -92,6 +105,21 @@ class FileStorage {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStorageValidator.appCompleteUpload().validate(
+      {
+        namespace,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for appCompleteUpload");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -120,6 +148,19 @@ class FileStorage {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.appCopyFiles().validate(
+      {
+        body,
+        sync,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for appCopyFiles");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -151,6 +192,19 @@ class FileStorage {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.browse().validate(
+      {
+        namespace,
+        pageNo,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for browse");
+      console.log(warrning);
     }
 
     const query_params = {};

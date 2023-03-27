@@ -1,5 +1,6 @@
-const ConfigurationModel = require("./ConfigurationPublicModel");
 const Joi = require("joi");
+
+const ConfigurationModel = require("./ConfigurationPublicModel");
 class ConfigurationValidator {
   static searchApplication() {
     return Joi.object({
@@ -15,4 +16,5 @@ class ConfigurationValidator {
     });
   }
 }
+
 module.exports = ConfigurationValidator;

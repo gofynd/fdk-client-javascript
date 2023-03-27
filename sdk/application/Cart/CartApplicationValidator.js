@@ -224,4 +224,5 @@ class CartValidator {
     }).required();
   }
 }
+
 module.exports = CartValidator;

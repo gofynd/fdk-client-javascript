@@ -86,4 +86,5 @@ class ConfigurationValidator {
     });
   }
 }
+
 module.exports = ConfigurationValidator;

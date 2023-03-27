@@ -1,5 +1,6 @@
-const InventoryModel = require("./InventoryPublicModel");
 const Joi = require("joi");
+
+const InventoryModel = require("./InventoryPublicModel");
 class InventoryValidator {
   static getJobCodesMetrics() {
     return Joi.object({
@@ -40,4 +41,5 @@ class InventoryValidator {
     }).required();
   }
 }
+
 module.exports = InventoryValidator;

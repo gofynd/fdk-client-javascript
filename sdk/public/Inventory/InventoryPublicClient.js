@@ -1,6 +1,7 @@
 const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
+const Paginator = require("../../common/Paginator");
 const InventoryValidator = require("./InventoryPublicValidator");
 class Inventory {
   constructor(_conf) {
@@ -48,6 +49,19 @@ class Inventory {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = InventoryValidator.getJobCodesMetrics().validate(
+      { dailyJob, jobCode },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getJobCodesMetrics");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["daily_job"] = dailyJob;
     query_params["job_code"] = jobCode;
@@ -82,6 +96,19 @@ class Inventory {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = InventoryValidator.saveJobCodesMetrics().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for saveJobCodesMetrics");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -114,6 +141,17 @@ class Inventory {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = InventoryValidator.getConfigByApiKey().validate(
+      { apikey },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getConfigByApiKey");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["apikey"] = apikey;
 
@@ -148,6 +186,17 @@ class Inventory {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = InventoryValidator.getApiKey().validate(
+      { userName, password },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getApiKey");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["user_name"] = userName;
     query_params["password"] = password;
@@ -182,6 +231,17 @@ class Inventory {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = InventoryValidator.getJobByCode().validate(
+      { code },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getJobByCode");
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     const xHeaders = {};
@@ -217,6 +277,21 @@ class Inventory {
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
     }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = InventoryValidator.getJobConfigByIntegrationType().validate(
+      { integrationType, disable },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getJobConfigByIntegrationType"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["integration_type"] = integrationType;
     query_params["disable"] = disable;

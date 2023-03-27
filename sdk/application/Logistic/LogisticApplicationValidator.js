@@ -25,4 +25,5 @@ class LogisticValidator {
     }).required();
   }
 }
+
 module.exports = LogisticValidator;

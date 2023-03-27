@@ -233,4 +233,5 @@ class PosCartValidator {
     }).required();
   }
 }
+
 module.exports = PosCartValidator;

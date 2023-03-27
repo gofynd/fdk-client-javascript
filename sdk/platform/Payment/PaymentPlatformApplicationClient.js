@@ -23,6 +23,20 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getBrandPaymentGatewayConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getBrandPaymentGatewayConfig"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -49,6 +63,22 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.saveBrandPaymentGatewayConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for saveBrandPaymentGatewayConfig"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -81,6 +111,22 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.updateBrandPaymentGatewayConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for updateBrandPaymentGatewayConfig"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -109,6 +155,21 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getPaymentModeRoutes().validate(
+      {
+        refresh,
+        requestType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getPaymentModeRoutes");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -143,6 +204,23 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getBankAccountDetailsOpenAPI().validate(
+      {
+        orderId,
+        requestHash,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getBankAccountDetailsOpenAPI"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["order_id"] = orderId;
     query_params["request_hash"] = requestHash;
@@ -173,6 +251,22 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for addRefundBankAccountUsingOTP"
+      );
+      console.log(warrning);
+    }
+
     const query_params = {};
 
     return PlatformAPIClient.execute(
@@ -199,6 +293,22 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getUserOrderBeneficiaries().validate(
+      {
+        orderId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getUserOrderBeneficiaries"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -230,6 +340,20 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getUserBeneficiaries().validate(
+      {
+        orderId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getUserBeneficiaries");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["order_id"] = orderId;
 
@@ -257,6 +381,18 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PaymentValidator.confirmPayment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for confirmPayment");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -289,6 +425,21 @@ class Payment {
       return Promise.reject(new FDKClientValidationError(error));
     }
 
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.getUserCODlimitRoutes().validate(
+      {
+        merchantUserId,
+        mobileNo,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getUserCODlimitRoutes");
+      console.log(warrning);
+    }
+
     const query_params = {};
     query_params["merchant_user_id"] = merchantUserId;
     query_params["mobile_no"] = mobileNo;
@@ -317,6 +468,20 @@ class Payment {
     );
     if (error) {
       return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentValidator.setUserCODlimitRoutes().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for setUserCODlimitRoutes");
+      console.log(warrning);
     }
 
     const query_params = {};
