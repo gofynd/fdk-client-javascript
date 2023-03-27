@@ -723,11 +723,11 @@ class OrderModel {
 
   static Products() {
     return Joi.object({
-      quantity: Joi.number(),
+      line_number: Joi.number(),
 
       identifier: Joi.string().allow(""),
 
-      line_number: Joi.number(),
+      quantity: Joi.number(),
     });
   }
 
@@ -741,11 +741,11 @@ class OrderModel {
 
   static ProductsReasonsFilters() {
     return Joi.object({
-      quantity: Joi.number(),
+      line_number: Joi.number(),
 
       identifier: Joi.string().allow(""),
 
-      line_number: Joi.number(),
+      quantity: Joi.number(),
     });
   }
 
@@ -783,9 +783,9 @@ class OrderModel {
 
   static ProductsDataUpdatesFilters() {
     return Joi.object({
-      identifier: Joi.string().allow(""),
-
       line_number: Joi.number(),
+
+      identifier: Joi.string().allow(""),
     });
   }
 
@@ -817,9 +817,9 @@ class OrderModel {
     return Joi.object({
       products: Joi.array().items(OrderModel.Products()),
 
-      reasons: OrderModel.ReasonsData(),
-
       identifier: Joi.string().allow("").required(),
+
+      reasons: OrderModel.ReasonsData(),
 
       data_updates: OrderModel.DataUpdates(),
     });
@@ -827,25 +827,25 @@ class OrderModel {
 
   static StatuesRequest() {
     return Joi.object({
+      status: Joi.string().allow(""),
+
       exclude_bags_next_state: Joi.string().allow(""),
 
       shipments: Joi.array().items(OrderModel.ShipmentsRequest()),
-
-      status: Joi.string().allow(""),
     });
   }
 
   static UpdateShipmentStatusRequest() {
     return Joi.object({
-      force_transition: Joi.boolean(),
-
-      lock_after_transition: Joi.boolean(),
-
       task: Joi.boolean(),
 
       statuses: Joi.array().items(OrderModel.StatuesRequest()),
 
+      force_transition: Joi.boolean(),
+
       unlock_before_transition: Joi.boolean(),
+
+      lock_after_transition: Joi.boolean(),
     });
   }
 
