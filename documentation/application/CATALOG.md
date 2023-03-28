@@ -7888,38 +7888,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [Meta](#Meta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
-
----
-
-
- 
- 
- #### [Media](#Media)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | meta | [Meta](#Meta) |  no  |  |
- | url | string |  no  |  |
- | alt | string |  no  |  |
-
----
-
-
- 
- 
  #### [ProductListingActionPage](#ProductListingActionPage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | string |  no  |  |
- | params | string |  no  |  |
  | query | string |  no  |  |
+ | params | string |  no  |  |
 
 ---
 
@@ -7938,27 +7913,40 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [ProductBrand](#ProductBrand)
+ #### [Meta](#Meta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | uid | number |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | source | string |  no  |  |
 
 ---
 
 
  
  
- #### [ApplicationItemSEO](#ApplicationItemSEO)
+ #### [Media](#Media)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ | alt | string |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductBrand](#ProductBrand)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | description | string |  no  |  |
- | title | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -7978,24 +7966,25 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [NetQuantity](#NetQuantity)
+ #### [ProductCategoryMap](#ProductCategoryMap)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | unit | string |  no  |  |
+ | l3 | [ProductBrand](#ProductBrand) |  no  |  |
+ | l1 | [ProductBrand](#ProductBrand) |  no  |  |
+ | l2 | [ProductBrand](#ProductBrand) |  no  |  |
 
 ---
 
 
  
  
- #### [CustomMetaFields](#CustomMetaFields)
+ #### [ApplicationItemSEO](#ApplicationItemSEO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | string |  yes  |  |
- | key | string |  yes  |  |
+ | title | string |  no  |  |
+ | description | string |  no  |  |
 
 ---
 
@@ -8019,8 +8008,20 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
  | title | string |  no  |  |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomMetaFields](#CustomMetaFields)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  yes  |  |
+ | key | string |  yes  |  |
 
 ---
 
@@ -8031,10 +8032,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
  | max | number |  no  |  |
- | min | number |  no  |  |
  | currency_symbol | string |  no  |  |
+ | min | number |  no  |  |
+ | currency_code | string |  no  |  |
 
 ---
 
@@ -8045,21 +8046,20 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | [Price](#Price) |  no  |  |
  | marked | [Price](#Price) |  no  |  |
+ | effective | [Price](#Price) |  no  |  |
 
 ---
 
 
  
  
- #### [ProductCategoryMap](#ProductCategoryMap)
+ #### [NetQuantity](#NetQuantity)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l1 | [ProductBrand](#ProductBrand) |  no  |  |
- | l2 | [ProductBrand](#ProductBrand) |  no  |  |
- | l3 | [ProductBrand](#ProductBrand) |  no  |  |
+ | value | number |  no  |  |
+ | unit | string |  no  |  |
 
 ---
 
@@ -8070,39 +8070,39 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | image_nature | string |  no  |  |
- | description | string |  no  |  |
- | rating_count | number |  no  |  |
+ | type | string |  no  |  |
+ | highlights | [string] |  no  |  |
  | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | tags | [string] |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
- | rating | number |  no  |  |
- | slug | string |  yes  |  |
+ | short_description | string |  no  |  |
+ | description | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
- | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
- | similars | [string] |  no  |  |
- | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | item_type | string |  no  |  |
  | attributes | string |  no  |  |
- | color | string |  no  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
+ | category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  |
+ | rating | number |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | _custom_json | string |  no  |  |
+ | item_code | string |  no  |  |
+ | tags | [string] |  no  |  |
  | teaser_tag | string |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | similars | [string] |  no  |  |
+ | color | string |  no  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
  | discount | string |  no  |  |
- | item_code | string |  no  |  |
- | highlights | [string] |  no  |  |
- | product_online_date | string |  no  |  |
+ | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
  | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | short_description | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | image_nature | string |  no  |  |
  | has_variant | boolean |  no  |  |
- | type | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  |
+ | product_online_date | string |  no  |  |
+ | slug | string |  yes  |  |
+ | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
+ | item_type | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | uid | number |  no  |  |
  | is_dependent | boolean |  no  |  |
 
 ---
@@ -8121,85 +8121,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [ProductSizeStores](#ProductSizeStores)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number |  no  |  |
-
----
-
-
- 
- 
- #### [ColumnHeader](#ColumnHeader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | convertable | boolean |  no  |  |
- | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [ColumnHeaders](#ColumnHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
- | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChartValues](#SizeChartValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col_1 | string |  no  |  |
- | col_4 | string |  no  |  |
- | col_3 | string |  no  |  |
- | col_2 | string |  no  |  |
- | col_5 | string |  no  |  |
- | col_6 | string |  no  |  |
-
----
-
-
- 
- 
- #### [SizeChart](#SizeChart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | size_tip | string |  no  |  |
- | title | string |  no  |  |
- | unit | string |  no  |  |
- | image | string |  no  |  |
- | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
- | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
-
----
-
-
- 
- 
  #### [Weight](#Weight)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_default | boolean |  yes  |  |
- | unit | string |  yes  |  |
  | shipping | number |  yes  |  |
+ | unit | string |  yes  |  |
 
 ---
 
@@ -8212,9 +8140,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | ---------- | ---- | -------- | ----------- |
  | height | number |  yes  |  |
  | length | number |  yes  |  |
+ | width | number |  yes  |  |
  | unit | string |  yes  |  |
  | is_default | boolean |  yes  |  |
- | width | number |  yes  |  |
 
 ---
 
@@ -8225,13 +8153,85 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seller_identifiers | [string] |  no  |  |
- | display | string |  no  |  |
  | value | string |  no  |  |
- | quantity | number |  no  |  |
- | weight | [Weight](#Weight) |  no  |  |
+ | display | string |  no  |  |
  | is_available | boolean |  no  |  |
+ | seller_identifiers | [string] |  no  |  |
+ | weight | [Weight](#Weight) |  no  |  |
+ | quantity | number |  no  |  |
  | dimension | [Dimension](#Dimension) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeader](#ColumnHeader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ | convertable | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeaders](#ColumnHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChartValues](#SizeChartValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col_4 | string |  no  |  |
+ | col_2 | string |  no  |  |
+ | col_1 | string |  no  |  |
+ | col_6 | string |  no  |  |
+ | col_5 | string |  no  |  |
+ | col_3 | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChart](#SizeChart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
+ | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
+ | title | string |  no  |  |
+ | size_tip | string |  no  |  |
+ | description | string |  no  |  |
+ | unit | string |  no  |  |
+ | image | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizeStores](#ProductSizeStores)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
 
 ---
 
@@ -8242,13 +8242,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
- | sellable | boolean |  no  |  |
- | size_chart | [SizeChart](#SizeChart) |  no  |  |
- | multi_size | boolean |  no  |  |
- | discount | string |  no  |  |
  | sizes | [[ProductSize](#ProductSize)] |  no  |  |
+ | size_chart | [SizeChart](#SizeChart) |  no  |  |
+ | discount | string |  no  |  |
  | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | sellable | boolean |  no  |  |
+ | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
+ | multi_size | boolean |  no  |  |
 
 ---
 
@@ -8259,10 +8259,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | display | string |  no  |  |
  | logo | string |  no  |  |
  | key | string |  no  |  |
+ | description | string |  no  |  |
+ | display | string |  no  |  |
 
 ---
 
@@ -8273,8 +8273,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[AttributeDetail](#AttributeDetail)] |  no  |  |
  | title | string |  no  |  |
+ | details | [[AttributeDetail](#AttributeDetail)] |  no  |  |
 
 ---
 
@@ -8285,8 +8285,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
  | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
 
 ---
 
@@ -8298,9 +8298,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
- | subtitle | string |  no  |  |
- | items | [[ProductDetail](#ProductDetail)] |  no  |  |
  | title | string |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | subtitle | string |  no  |  |
 
 ---
 
@@ -8322,16 +8322,16 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | value | string |  no  |  |
+ | color_name | string |  no  |  |
+ | color | string |  no  |  |
  | is_available | boolean |  no  |  |
- | name | string |  no  |  |
  | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | value | string |  no  |  |
- | color | string |  no  |  |
+ | name | string |  no  |  |
  | uid | number |  no  |  |
- | slug | string |  no  |  |
- | color_name | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
 
 ---
 
@@ -8342,10 +8342,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | header | string |  no  |  |
- | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
  | display_type | string |  no  |  |
+ | header | string |  no  |  |
  | key | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
 
 ---
 
@@ -8363,13 +8363,14 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [ProductStockPrice](#ProductStockPrice)
+ #### [StoreDetail](#StoreDetail)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
+ | id | number |  no  |  |
+ | city | string |  no  |  |
+ | code | string |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -8380,23 +8381,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | count | number |  no  |  |
  | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [StoreDetail](#StoreDetail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | number |  no  |  |
- | code | string |  no  |  |
+ | count | number |  no  |  |
  | name | string |  no  |  |
- | city | string |  no  |  |
 
 ---
 
@@ -8415,19 +8402,32 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
+ #### [ProductStockPrice](#ProductStockPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | number |  no  |  |
+ | currency | string |  no  |  |
+ | effective | number |  no  |  |
+
+---
+
+
+ 
+ 
  #### [ProductStockStatusItem](#ProductStockStatusItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
- | item_id | number |  no  |  |
- | seller | [Seller](#Seller) |  no  |  |
- | quantity | number |  no  |  |
  | store | [StoreDetail](#StoreDetail) |  no  |  |
- | uid | string |  no  |  |
- | size | string |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
  | identifier | string |  no  |  |
  | company | [CompanyDetail](#CompanyDetail) |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | uid | string |  no  |  |
+ | item_id | number |  no  |  |
+ | quantity | number |  no  |  |
+ | size | string |  no  |  |
 
 ---
 
@@ -8449,11 +8449,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | string |  yes  |  |
+ | has_previous | boolean |  no  |  |
  | item_total | number |  no  |  |
  | current | number |  no  |  |
  | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | type | string |  yes  |  |
  | next_id | string |  no  |  |
  | size | number |  no  |  |
 
@@ -8478,11 +8478,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
  | total | number |  no  |  |
  | display_type | string |  no  |  |
  | header | string |  no  |  |
- | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
- | key | string |  no  |  |
 
 ---
 
@@ -8493,44 +8493,92 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | image_nature | string |  no  |  |
- | description | string |  no  |  |
- | rating_count | number |  no  |  |
+ | type | string |  no  |  |
+ | highlights | [string] |  no  |  |
  | brand | [ProductBrand](#ProductBrand) |  no  |  |
- | tags | [string] |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
- | sizes | [string] |  no  |  |
- | rating | number |  no  |  |
- | slug | string |  yes  |  |
+ | short_description | string |  no  |  |
+ | description | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
- | tryouts | [string] |  no  |  |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
- | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
- | similars | [string] |  no  |  |
- | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
- | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
- | item_type | string |  no  |  |
  | attributes | string |  no  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
+ | category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  |
+ | rating | number |  no  |  |
  | variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)] |  no  |  |
- | color | string |  no  |  |
+ | sellable | boolean |  no  |  |
+ | identifiers | [string] |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | _custom_json | string |  no  |  |
+ | item_code | string |  no  |  |
+ | tags | [string] |  no  |  |
  | teaser_tag | string |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | similars | [string] |  no  |  |
+ | color | string |  no  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
  | discount | string |  no  |  |
- | item_code | string |  no  |  |
- | highlights | [string] |  no  |  |
- | product_online_date | string |  no  |  |
+ | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
  | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
- | short_description | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | image_nature | string |  no  |  |
  | has_variant | boolean |  no  |  |
- | identifiers | [string] |  no  |  |
- | type | string |  no  |  |
- | medias | [[Media](#Media)] |  no  |  |
- | sellable | boolean |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  |
+ | product_online_date | string |  no  |  |
+ | slug | string |  yes  |  |
+ | sizes | [string] |  no  |  |
+ | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
+ | item_type | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | uid | number |  no  |  |
  | is_dependent | boolean |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersKey](#ProductFiltersKey)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | kind | string |  no  |  |
+ | logo | string |  no  |  |
+ | name | string |  yes  |  |
+ | display | string |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersValue](#ProductFiltersValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ | count | number |  no  |  |
+ | display_format | string |  no  |  |
+ | selected_max | number |  no  |  |
+ | max | number |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | query_format | string |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | display | string |  yes  |  |
+ | selected_min | number |  no  |  |
+ | min | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFilters](#ProductFilters)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
 
 ---
 
@@ -8542,56 +8590,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | string |  no  |  |
- | name | string |  no  |  |
  | is_selected | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | selected_max | number |  no  |  |
- | display_format | string |  no  |  |
- | min | number |  no  |  |
- | selected_min | number |  no  |  |
- | max | number |  no  |  |
- | display | string |  yes  |  |
- | value | string |  no  |  |
- | count | number |  no  |  |
- | is_selected | boolean |  yes  |  |
- | query_format | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersKey](#ProductFiltersKey)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | string |  yes  |  |
- | logo | string |  no  |  |
- | name | string |  yes  |  |
- | kind | string |  no  |  |
-
----
-
-
- 
- 
- #### [ProductFilters](#ProductFilters)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
- | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -8604,8 +8604,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | ---------- | ---- | -------- | ----------- |
  | page | [Page](#Page) |  yes  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
- | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
  | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
 
 ---
 
@@ -8628,15 +8628,15 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | discount | string |  no  |  |
+ | departments | [string] |  no  |  |
  | description | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
  | name | string |  no  |  |
  | uid | number |  no  |  |
- | departments | [string] |  no  |  |
  | logo | [Media](#Media) |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | action | [ProductListingAction](#ProductListingAction) |  no  |  |
- | discount | string |  no  |  |
- | slug | string |  no  |  |
 
 ---
 
@@ -8661,10 +8661,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | ---------- | ---- | -------- | ----------- |
  | description | string |  no  |  |
  | name | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | _custom_json | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | uid | number |  no  |  |
+ | _custom_json | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -8675,13 +8675,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
  | childs | [string] |  no  |  |
+ | uid | number |  no  |  |
  | _custom_json | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | uid | number |  no  |  |
- | slug | string |  no  |  |
 
 ---
 
@@ -8692,13 +8692,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
  | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
+ | uid | number |  no  |  |
  | _custom_json | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | uid | number |  no  |  |
- | slug | string |  no  |  |
 
 ---
 
@@ -8709,13 +8709,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
+ | slug | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | name | string |  no  |  |
  | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
+ | uid | number |  no  |  |
  | _custom_json | string |  no  |  |
  | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | uid | number |  no  |  |
- | slug | string |  no  |  |
 
 ---
 
@@ -8738,12 +8738,12 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | uid | number |  yes  |  |
- | childs | [[Child](#Child)] |  no  |  |
- | banners | [CategoryBanner](#CategoryBanner) |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction) |  yes  |  |
  | slug | string |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  yes  |  |
+ | name | string |  yes  |  |
+ | childs | [[Child](#Child)] |  no  |  |
+ | uid | number |  yes  |  |
+ | banners | [CategoryBanner](#CategoryBanner) |  yes  |  |
 
 ---
 
@@ -8754,8 +8754,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CategoryItems](#CategoryItems)] |  no  |  |
  | department | string |  yes  |  |
+ | items | [[CategoryItems](#CategoryItems)] |  no  |  |
 
 ---
 
@@ -8791,10 +8791,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | _custom_json | string |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
  | uid | number |  no  |  |
+ | _custom_json | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
 
 ---
 
@@ -8806,8 +8806,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [Page](#Page) |  yes  |  |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
  | message | string |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
 ---
 
@@ -8818,11 +8818,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | priority_order | number |  no  |  |
- | uid | number |  no  |  |
  | slug | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -8844,11 +8844,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media) |  no  |  |
  | type | string |  no  |  |
  | display | string |  no  |  |
- | _custom_json | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | _custom_json | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
 
 ---
 
@@ -8883,28 +8883,28 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | tag | [string] |  no  |  |
- | name | string |  no  |  |
- | _schedule | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | allow_sort | boolean |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | meta | string |  no  |  |
- | priority | number |  no  |  |
- | app_id | string |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | cron | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | badge | string |  no  |  |
  | type | string |  no  |  |
- | sort_on | string |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | description | string |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | cron | string |  no  |  |
+ | name | string |  no  |  |
+ | app_id | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | _schedule | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | _custom_json | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | meta | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | sort_on | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | badge | string |  no  |  |
  | slug | string |  no  |  |
+ | priority | number |  no  |  |
+ | uid | string |  no  |  |
 
 ---
 
@@ -8915,8 +8915,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
  | is_selected | boolean |  no  |  |
+ | display | string |  no  |  |
  | name | string |  no  |  |
 
 ---
@@ -8928,8 +8928,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
  | is_selected | boolean |  no  |  |
+ | display | string |  no  |  |
  | name | string |  no  |  |
 
 ---
@@ -8966,26 +8966,26 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | is_active | boolean |  no  |  |
- | _custom_json | string |  no  |  |
- | allow_facets | boolean |  no  |  |
- | tag | [string] |  no  |  |
- | name | string |  no  |  |
- | _schedule | string |  no  |  |
- | visible_facets_keys | [string] |  no  |  |
- | allow_sort | boolean |  no  |  |
- | banners | [ImageUrls](#ImageUrls) |  no  |  |
- | meta | string |  no  |  |
- | priority | number |  no  |  |
- | app_id | string |  no  |  |
- | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
- | cron | string |  no  |  |
- | logo | [Media](#Media) |  no  |  |
- | badge | string |  no  |  |
  | type | string |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | description | string |  no  |  |
+ | cron | string |  no  |  |
+ | name | string |  no  |  |
+ | app_id | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | _schedule | string |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | _custom_json | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | meta | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | allow_facets | boolean |  no  |  |
  | sort_on | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ | badge | string |  no  |  |
  | slug | string |  no  |  |
+ | priority | number |  no  |  |
 
 ---
 
@@ -9008,8 +9008,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string |  yes  |  |
  | message | string |  yes  |  |
+ | id | string |  yes  |  |
 
 ---
 
@@ -9067,16 +9067,16 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
+ | store_code | string |  no  |  |
+ | lat_long | [LatLong](#LatLong) |  no  |  |
+ | country | string |  no  |  |
  | pincode | number |  no  |  |
  | name | string |  no  |  |
  | uid | number |  no  |  |
- | store_email | string |  no  |  |
  | city | string |  no  |  |
- | store_code | string |  no  |  |
- | country | string |  no  |  |
- | lat_long | [LatLong](#LatLong) |  no  |  |
  | state | string |  no  |  |
+ | address | string |  no  |  |
+ | store_email | string |  no  |  |
 
 ---
 
@@ -9095,34 +9095,29 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [StoreAddressSerializer](#StoreAddressSerializer)
+ #### [StoreDepartments](#StoreDepartments)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | number |  no  |  |
- | longitude | number |  no  |  |
- | city | string |  no  |  |
- | latitude | number |  no  |  |
- | address1 | string |  no  |  |
- | country | string |  no  |  |
- | landmark | string |  no  |  |
- | address2 | string |  no  |  |
- | state | string |  no  |  |
+ | slug | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ | logo | string |  no  |  |
 
 ---
 
 
  
  
- #### [StoreDepartments](#StoreDepartments)
+ #### [CompanyStore](#CompanyStore)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | logo | string |  no  |  |
- | priority_order | number |  no  |  |
  | uid | number |  no  |  |
- | slug | string |  no  |  |
+ | business_type | string |  no  |  |
+ | company_type | string |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -9133,8 +9128,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country_code | number |  yes  |  |
  | number | string |  yes  |  |
+ | country_code | number |  yes  |  |
 
 ---
 
@@ -9146,22 +9141,27 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
- | name | string |  no  |  |
  | email | string |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
 
  
  
- #### [CompanyStore](#CompanyStore)
+ #### [StoreAddressSerializer](#StoreAddressSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | business_type | string |  no  |  |
- | name | string |  no  |  |
- | company_type | string |  no  |  |
- | uid | number |  no  |  |
+ | longitude | number |  no  |  |
+ | landmark | string |  no  |  |
+ | address2 | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | number |  no  |  |
+ | address1 | string |  no  |  |
+ | latitude | number |  no  |  |
+ | city | string |  no  |  |
+ | state | string |  no  |  |
 
 ---
 
@@ -9172,13 +9172,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  |
- | name | string |  no  |  |
  | departments | [[StoreDepartments](#StoreDepartments)] |  no  |  |
- | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
- | uid | number |  no  |  |
- | manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  |
  | company | [CompanyStore](#CompanyStore) |  no  |  |
+ | name | string |  no  |  |
+ | manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  |
+ | uid | number |  no  |  |
+ | address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
 
 ---
 
@@ -9214,10 +9214,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | open | boolean |  no  |  |
- | closing | [Time](#Time) |  no  |  |
- | opening | [Time](#Time) |  no  |  |
  | weekday | string |  no  |  |
+ | open | boolean |  no  |  |
+ | opening | [Time](#Time) |  no  |  |
+ | closing | [Time](#Time) |  no  |  |
 
 ---
 
@@ -9228,15 +9228,15 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  |
- | name | string |  no  |  |
- | departments | [[StoreDepartments](#StoreDepartments)] |  no  |  |
- | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
  | timing | [[StoreTiming](#StoreTiming)] |  no  |  |
- | _custom_json | string |  no  |  |
- | uid | number |  no  |  |
- | manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  |
+ | departments | [[StoreDepartments](#StoreDepartments)] |  no  |  |
  | company | [CompanyStore](#CompanyStore) |  no  |  |
+ | name | string |  no  |  |
+ | manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  |
+ | uid | number |  no  |  |
+ | _custom_json | string |  no  |  |
+ | address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
 
 ---
 
@@ -9247,41 +9247,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contact | string |  no  |  |
- | user_id | string |  yes  |  |
  | super_user | boolean |  no  |  |
+ | contact | string |  no  |  |
  | username | string |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductDetails](#ProductDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | image_nature | string |  no  |  |
- | hsn_code | number |  no  |  |
- | rating_count | number |  no  |  |
- | rating | number |  no  |  |
- | is_set | boolean |  no  |  |
- | name | string |  no  |  |
- | brand_uid | number |  no  |  |
- | identifier | string |  no  |  |
- | out_of_stock | boolean |  no  |  |
- | images | [string] |  no  |  |
- | template_tag | string |  no  |  |
- | attributes | string |  no  |  |
- | grouped_attributes | string |  no  |  |
- | media | [string] |  no  |  |
- | item_code | string |  no  |  |
- | highlights | [string] |  no  |  |
- | short_description | string |  no  |  |
- | has_variant | boolean |  no  |  |
- | country_of_origin | string |  no  |  |
- | slug | string |  no  |  |
+ | user_id | string |  yes  |  |
 
 ---
 
@@ -9292,10 +9261,41 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | string |  no  |  |
  | value | string |  no  |  |
  | quantity | number |  no  |  |
  | is_available | boolean |  no  |  |
+ | display | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductDetails](#ProductDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | highlights | [string] |  no  |  |
+ | description | string |  no  |  |
+ | short_description | string |  no  |  |
+ | brand_uid | number |  no  |  |
+ | name | string |  no  |  |
+ | attributes | string |  no  |  |
+ | rating | number |  no  |  |
+ | item_code | string |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | country_of_origin | string |  no  |  |
+ | grouped_attributes | string |  no  |  |
+ | identifier | string |  no  |  |
+ | rating_count | number |  no  |  |
+ | image_nature | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | hsn_code | number |  no  |  |
+ | media | [string] |  no  |  |
+ | template_tag | string |  no  |  |
+ | slug | string |  no  |  |
+ | is_set | boolean |  no  |  |
+ | images | [string] |  no  |  |
 
 ---
 
@@ -9306,11 +9306,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max_effective | number |  no  |  |
  | min_marked | number |  no  |  |
- | min_effective | number |  no  |  |
- | max_marked | number |  no  |  |
+ | max_effective | number |  no  |  |
  | currency | string |  no  |  |
+ | max_marked | number |  no  |  |
+ | min_effective | number |  no  |  |
 
 ---
 
@@ -9321,15 +9321,15 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allow_remove | boolean |  no  |  |
- | max_quantity | number |  yes  |  |
- | auto_select | boolean |  no  |  |
  | product_uid | number |  yes  |  |
- | product_details | [ProductDetails](#ProductDetails) |  no  |  |
- | min_quantity | number |  no  |  |
- | auto_add_to_cart | boolean |  no  |  |
  | sizes | [[Size](#Size)] |  no  |  |
+ | auto_select | boolean |  no  |  |
+ | product_details | [ProductDetails](#ProductDetails) |  no  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+ | allow_remove | boolean |  no  |  |
  | price | [ProductGroupPrice](#ProductGroupPrice) |  no  |  |
+ | min_quantity | number |  no  |  |
+ | max_quantity | number |  yes  |  |
 
 ---
 
@@ -9340,23 +9340,23 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | created_by | [UserDetail](#UserDetail) |  no  |  |
- | name | string |  yes  |  |
+ | verified_on | string |  no  |  |
+ | slug | string |  no  |  |
  | modified_on | string |  yes  |  |
+ | created_on | string |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  yes  |  |
+ | _id | any |  no  |  |
  | same_store_assignment | boolean |  no  |  |
  | logo | string |  no  |  |
- | _id | any |  no  |  |
- | verified_on | string |  no  |  |
+ | company_id | number |  no  |  |
+ | page_visibility | [string] |  no  |  |
  | modified_by | [UserDetail](#UserDetail) |  no  |  |
  | meta | string |  no  |  |
  | products | [[ProductInGroup](#ProductInGroup)] |  yes  |  |
- | choice | string |  no  |  |
- | is_active | boolean |  no  |  |
- | created_on | string |  yes  |  |
- | page_visibility | [string] |  no  |  |
- | slug | string |  no  |  |
  | verified_by | [UserDetail](#UserDetail) |  no  |  |
+ | created_by | [UserDetail](#UserDetail) |  no  |  |
+ | choice | string |  no  |  |
 
 ---
 
@@ -9374,14 +9374,26 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
+ #### [StoreV3](#StoreV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
+ | uid | number |  no  |  |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean |  no  |  |
+ | time | number |  no  |  |
  | unit | string |  no  |  |
- | currency_symbol | string |  no  |  |
- | price | number |  no  |  |
 
 ---
 
@@ -9392,8 +9404,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pieces | number |  no  |  |
  | size | string |  no  |  |
+ | pieces | number |  no  |  |
 
 ---
 
@@ -9415,59 +9427,22 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | number |  no  |  |
  | size_distribution | [ProductSetDistributionV3](#ProductSetDistributionV3) |  no  |  |
+ | quantity | number |  no  |  |
 
 ---
 
 
  
  
- #### [ProductStockPriceV3](#ProductStockPriceV3)
+ #### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | string |  no  |  |
- | effective | number |  no  |  |
- | marked | number |  no  |  |
-
----
-
-
- 
- 
- #### [SellerV3](#SellerV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | count | number |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
- #### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | time | number |  no  |  |
- | returnable | boolean |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | price | number |  no  |  |
+ | currency_code | string |  no  |  |
  | unit | string |  no  |  |
-
----
-
-
- 
- 
- #### [ArticleAssignmentV3](#ArticleAssignmentV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | strategy | string |  no  |  |
- | level | string |  no  |  |
 
 ---
 
@@ -9491,8 +9466,21 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  |
  | title | string |  no  |  |
+ | details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SellerV3](#SellerV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  |  |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -9503,8 +9491,33 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  |
  | title | string |  no  |  |
+ | details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockPriceV3](#ProductStockPriceV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | number |  no  |  |
+ | currency | string |  no  |  |
+ | effective | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticleAssignmentV3](#ArticleAssignmentV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | strategy | string |  no  |  |
+ | level | string |  no  |  |
 
 ---
 
@@ -9515,10 +9528,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | tat | number |  no  |  |
+ | pincode | number |  no  |  |
  | distance | number |  no  |  |
  | quantity | number |  no  |  |
- | pincode | number |  no  |  |
- | tat | number |  no  |  |
 
 ---
 
@@ -9536,45 +9549,32 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [StoreV3](#StoreV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | count | number |  no  |  |
- | uid | number |  no  |  |
-
----
-
-
- 
- 
  #### [ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | special_badge | string |  no  |  |
- | price_per_unit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3) |  no  |  |
- | set | [ProductSetV3](#ProductSetV3) |  no  |  |
- | price_per_piece | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  |
- | seller | [SellerV3](#SellerV3) |  no  |  |
+ | store | [StoreV3](#StoreV3) |  no  |  |
  | return_config | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3) |  no  |  |
- | quantity | number |  no  |  |
- | article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3) |  no  |  |
- | is_cod | boolean |  no  |  |
- | item_type | string |  no  |  |
- | marketplace_attributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)] |  no  |  |
+ | set | [ProductSetV3](#ProductSetV3) |  no  |  |
+ | price_per_unit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3) |  no  |  |
  | is_gift | boolean |  no  |  |
+ | marketplace_attributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)] |  no  |  |
+ | seller | [SellerV3](#SellerV3) |  no  |  |
  | grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)] |  no  |  |
  | discount | string |  no  |  |
  | price | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  |
- | pincode | number |  no  |  |
+ | article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3) |  no  |  |
  | article_id | string |  no  |  |
  | seller_count | number |  no  |  |
+ | item_type | string |  no  |  |
+ | pincode | number |  no  |  |
  | strategy_wise_listing | [[StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)] |  no  |  |
  | long_lat | [number] |  no  |  |
+ | special_badge | string |  no  |  |
+ | quantity | number |  no  |  |
+ | is_cod | boolean |  no  |  |
+ | price_per_piece | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  |
  | buy_box | [BuyBox](#BuyBox) |  no  |  |
- | store | [StoreV3](#StoreV3) |  no  |  |
 
 ---
 

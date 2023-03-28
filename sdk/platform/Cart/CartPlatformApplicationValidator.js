@@ -162,7 +162,7 @@ class CartValidator {
     return Joi.object({
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      sortOn: Joi.string().allow(""),
+      filterOn: Joi.string().allow(""),
     }).required();
   }
 
@@ -206,6 +206,7 @@ class CartValidator {
   static deleteCart() {
     return Joi.object({
       id: Joi.string().allow(""),
+      body: CartModel.DeleteCartRequest().required(),
     }).required();
   }
 

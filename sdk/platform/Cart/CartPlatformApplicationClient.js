@@ -1169,16 +1169,16 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
-   * @param {string} [arg.sortOn] -
+   * @param {string} [arg.filterOn] -
    * @summary: Get cart list for store os user
    * @description: Get all carts for the store os user which is created for customer
    */
-  getCartList({ fromDate, toDate, sortOn } = {}) {
+  getCartList({ fromDate, toDate, filterOn } = {}) {
     const { error } = CartValidator.getCartList().validate(
       {
         fromDate,
         toDate,
-        sortOn,
+        filterOn,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1191,7 +1191,7 @@ class Cart {
       {
         fromDate,
         toDate,
-        sortOn,
+        filterOn,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1203,7 +1203,7 @@ class Cart {
     const query_params = {};
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["sort_on"] = sortOn;
+    query_params["filter_on"] = filterOn;
 
     return PlatformAPIClient.execute(
       this.config,
@@ -1430,12 +1430,14 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] - The unique identifier of the cart.
+   * @param {DeleteCartRequest} arg.body
    * @summary: Delete cart once user made successful checkout
    * @description: Use this API to delete the cart.
    */
-  deleteCart({ id } = {}) {
+  deleteCart({ body, id } = {}) {
     const { error } = CartValidator.deleteCart().validate(
       {
+        body,
         id,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1447,6 +1449,7 @@ class Cart {
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.deleteCart().validate(
       {
+        body,
         id,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1464,7 +1467,7 @@ class Cart {
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_archive`,
       query_params,
-      undefined
+      body
     );
   }
 
