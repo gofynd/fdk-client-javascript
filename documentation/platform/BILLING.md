@@ -1178,6 +1178,7 @@ Success
 {
   "value": {
     "is_enabled": true,
+    "mandate_amount": 150000,
     "subscription": {
       "current_period": {
         "start": "2020-12-17T13:45:36.722Z",
@@ -2426,6 +2427,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | mandate_amount | number |  no  |  |
  | is_enabled | boolean |  no  |  |
  | subscription | [Subscription](#Subscription) |  no  |  |
 

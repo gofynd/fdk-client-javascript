@@ -10,8 +10,6 @@ class Order {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.lane] -
-   * @param {string} [arg.bagStatus] -
-   * @param {boolean} [arg.statusOverrideLane] -
    * @param {string} [arg.searchType] -
    * @param {string} [arg.searchValue] -
    * @param {string} [arg.searchId] -
@@ -25,21 +23,16 @@ class Order {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
-   * @param {boolean} [arg.fetchActiveShipment] -
    * @param {boolean} [arg.excludeLockedShipments] -
    * @param {string} [arg.paymentMethods] -
    * @param {string} [arg.channelShipmentId] -
    * @param {string} [arg.channelOrderId] -
    * @param {string} [arg.customMeta] -
-   * @param {string} [arg.orderingChannel] -
-   * @param {string} [arg.companyAffiliateTag] -
    * @summary:
    * @description:
    */
   getShipments({
     lane,
-    bagStatus,
-    statusOverrideLane,
     searchType,
     searchValue,
     searchId,
@@ -53,20 +46,15 @@ class Order {
     pageNo,
     pageSize,
     isPrioritySort,
-    fetchActiveShipment,
     excludeLockedShipments,
     paymentMethods,
     channelShipmentId,
     channelOrderId,
     customMeta,
-    orderingChannel,
-    companyAffiliateTag,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
         lane,
-        bagStatus,
-        statusOverrideLane,
         searchType,
         searchValue,
         searchId,
@@ -80,14 +68,11 @@ class Order {
         pageNo,
         pageSize,
         isPrioritySort,
-        fetchActiveShipment,
         excludeLockedShipments,
         paymentMethods,
         channelShipmentId,
         channelOrderId,
         customMeta,
-        orderingChannel,
-        companyAffiliateTag,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -99,8 +84,6 @@ class Order {
     const { error: warrning } = OrderValidator.getShipments().validate(
       {
         lane,
-        bagStatus,
-        statusOverrideLane,
         searchType,
         searchValue,
         searchId,
@@ -114,14 +97,11 @@ class Order {
         pageNo,
         pageSize,
         isPrioritySort,
-        fetchActiveShipment,
         excludeLockedShipments,
         paymentMethods,
         channelShipmentId,
         channelOrderId,
         customMeta,
-        orderingChannel,
-        companyAffiliateTag,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -132,8 +112,6 @@ class Order {
 
     const query_params = {};
     query_params["lane"] = lane;
-    query_params["bag_status"] = bagStatus;
-    query_params["status_override_lane"] = statusOverrideLane;
     query_params["search_type"] = searchType;
     query_params["search_value"] = searchValue;
     query_params["search_id"] = searchId;
@@ -147,14 +125,11 @@ class Order {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["is_priority_sort"] = isPrioritySort;
-    query_params["fetch_active_shipment"] = fetchActiveShipment;
     query_params["exclude_locked_shipments"] = excludeLockedShipments;
     query_params["payment_methods"] = paymentMethods;
     query_params["channel_shipment_id"] = channelShipmentId;
     query_params["channel_order_id"] = channelOrderId;
     query_params["custom_meta"] = customMeta;
-    query_params["ordering_channel"] = orderingChannel;
-    query_params["company_affiliate_tag"] = companyAffiliateTag;
 
     const xHeaders = {};
 
@@ -1925,49 +1900,6 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {PostShipmentHistory} arg.body
-   * @summary:
-   * @description:
-   */
-  postShipmentHistory({ body } = {}) {
-    const { error } = OrderValidator.postShipmentHistory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.postShipmentHistory().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for postShipmentHistory");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
-      query_params,
-      body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} [arg.shipmentId] -
    * @param {number} [arg.bagId] -
    * @summary:
@@ -2010,6 +1942,49 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
       undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {PostShipmentHistory} arg.body
+   * @summary:
+   * @description:
+   */
+  postShipmentHistory({ body } = {}) {
+    const { error } = OrderValidator.postShipmentHistory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.postShipmentHistory().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for postShipmentHistory");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
+      query_params,
+      body,
       xHeaders
     );
   }
@@ -2198,6 +2173,44 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @summary:
+   * @description: getChannelConfig
+   */
+  getChannelConfig({} = {}) {
+    const { error } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.getChannelConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getChannelConfig");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {CreateChannelConfigData} arg.body
    * @summary:
    * @description: createChannelConfig
@@ -2235,44 +2248,6 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
       query_params,
       body,
-      xHeaders
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary:
-   * @description: getChannelConfig
-   */
-  getChannelConfig({} = {}) {
-    const { error } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getChannelConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getChannelConfig");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
-      query_params,
-      undefined,
       xHeaders
     );
   }

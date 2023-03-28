@@ -268,7 +268,7 @@ class User {
    * @param {string} arg.userId - User ID
    * @param {UpdateUserRequestSchema} arg.body
    * @summary: Update user
-   * @description: Update user
+   * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
    */
   updateUser({ userId, body } = {}) {
     const { error } = UserValidator.updateUser().validate(
@@ -349,8 +349,57 @@ class User {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID of a customer.
-   * @summary: Get a list of all session for a user
-   * @description: Use this API to retrieve a list of session of customers who have registered in the application.
+   * @param {string} arg.sessionId - Session ID of a customer.
+   * @param {string} arg.reason - Reason for deleting session.
+   * @summary: Delete a session for a user
+   * @description: Use this API to Delete a session of customers who have registered in the application.
+   */
+  deleteSession({ id, sessionId, reason } = {}) {
+    const { error } = UserValidator.deleteSession().validate(
+      {
+        id,
+        sessionId,
+        reason,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.deleteSession().validate(
+      {
+        id,
+        sessionId,
+        reason,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for deleteSession");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["session_id"] = sessionId;
+    query_params["reason"] = reason;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @summary: Get a list of all session with info for a user
+   * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
    */
   getActiveSessions({ id } = {}) {
     const { error } = UserValidator.getActiveSessions().validate(
@@ -381,7 +430,7 @@ class User {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
       undefined
     );
@@ -390,13 +439,15 @@ class User {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID of a customer.
+   * @param {string} arg.reason - Reason to delete sessions.
    * @summary: Delete a list of all session for a user
    * @description: Use this API to Delete a list of session of customers who have registered in the application.
    */
-  deleteActiveSessions({ id } = {}) {
+  deleteActiveSessions({ id, reason } = {}) {
     const { error } = UserValidator.deleteActiveSessions().validate(
       {
         id,
+        reason,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -408,6 +459,7 @@ class User {
     const { error: warrning } = UserValidator.deleteActiveSessions().validate(
       {
         id,
+        reason,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -418,11 +470,12 @@ class User {
 
     const query_params = {};
     query_params["id"] = id;
+    query_params["reason"] = reason;
 
     return PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
       undefined
     );

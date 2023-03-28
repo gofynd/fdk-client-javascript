@@ -70,7 +70,7 @@ declare class User {
      * @param {string} arg.userId - User ID
      * @param {UpdateUserRequestSchema} arg.body
      * @summary: Update user
-     * @description: Update user
+     * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
      */
     updateUser({ userId, body }?: {
         userId: string;
@@ -88,8 +88,21 @@ declare class User {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of a customer.
-     * @summary: Get a list of all session for a user
-     * @description: Use this API to retrieve a list of session of customers who have registered in the application.
+     * @param {string} arg.sessionId - Session ID of a customer.
+     * @param {string} arg.reason - Reason for deleting session.
+     * @summary: Delete a session for a user
+     * @description: Use this API to Delete a session of customers who have registered in the application.
+     */
+    deleteSession({ id, sessionId, reason }?: {
+        id: string;
+        sessionId: string;
+        reason: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID of a customer.
+     * @summary: Get a list of all session with info for a user
+     * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
      */
     getActiveSessions({ id }?: {
         id: string;
@@ -97,11 +110,13 @@ declare class User {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of a customer.
+     * @param {string} arg.reason - Reason to delete sessions.
      * @summary: Delete a list of all session for a user
      * @description: Use this API to Delete a list of session of customers who have registered in the application.
      */
-    deleteActiveSessions({ id }?: {
+    deleteActiveSessions({ id, reason }?: {
         id: string;
+        reason: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

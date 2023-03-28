@@ -329,10 +329,17 @@ declare class Cart {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.sortOn] -
      * @summary: Get cart list for store os user
      * @description: Get all carts for the store os user which is created for customer
      */
-    getCartList({}?: any): Promise<any>;
+    getCartList({ fromDate, toDate, sortOn }?: {
+        fromDate?: string;
+        toDate?: string;
+        sortOn?: string;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -

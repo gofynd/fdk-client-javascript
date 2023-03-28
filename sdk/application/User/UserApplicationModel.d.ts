@@ -63,6 +63,7 @@ declare class UserModel {
     static OAuthRequestAppleSchemaOauth(): any;
     static OAuthRequestAppleSchemaProfile(): any;
     static AuthSuccessUser(): any;
+    static SessionListResponseInfo(): any;
     static AuthSuccessUserDebug(): any;
     static AuthSuccessUserEmails(): any;
     static CreateUserRequestSchema(): any;

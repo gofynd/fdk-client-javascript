@@ -159,7 +159,11 @@ class CartValidator {
   }
 
   static getCartList() {
-    return Joi.object({}).required();
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      sortOn: Joi.string().allow(""),
+    }).required();
   }
 
   static updateCartUser() {

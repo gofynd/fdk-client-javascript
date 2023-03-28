@@ -529,7 +529,7 @@ class UserModel {
 
   static SessionListResponseSchema() {
     return Joi.object({
-      items: Joi.array().items(Joi.string().allow("")),
+      items: Joi.array().items(UserModel.SessionListResponseInfo()),
     });
   }
 
@@ -648,6 +648,20 @@ class UserModel {
       active: Joi.boolean(),
 
       emails: UserModel.AuthSuccessUserEmails(),
+    });
+  }
+
+  static SessionListResponseInfo() {
+    return Joi.object({
+      session_id: Joi.string().allow(""),
+
+      user_agent: Joi.string().allow(""),
+
+      ip: Joi.string().allow(""),
+
+      domain: Joi.string().allow(""),
+
+      expire_in: Joi.string().allow(""),
     });
   }
 

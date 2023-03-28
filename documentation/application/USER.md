@@ -3760,7 +3760,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
 
 ---
 
@@ -3924,6 +3924,21 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  |
  | active | boolean |  no  |  |
  | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListResponseInfo](#SessionListResponseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | session_id | string |  no  |  |
+ | user_agent | string |  no  |  |
+ | ip | string |  no  |  |
+ | domain | string |  no  |  |
+ | expire_in | string |  no  |  |
 
 ---
 

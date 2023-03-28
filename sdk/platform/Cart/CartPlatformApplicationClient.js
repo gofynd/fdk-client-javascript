@@ -1167,12 +1167,19 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.sortOn] -
    * @summary: Get cart list for store os user
    * @description: Get all carts for the store os user which is created for customer
    */
-  getCartList({} = {}) {
+  getCartList({ fromDate, toDate, sortOn } = {}) {
     const { error } = CartValidator.getCartList().validate(
-      {},
+      {
+        fromDate,
+        toDate,
+        sortOn,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1181,7 +1188,11 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getCartList().validate(
-      {},
+      {
+        fromDate,
+        toDate,
+        sortOn,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1190,6 +1201,9 @@ class Cart {
     }
 
     const query_params = {};
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
+    query_params["sort_on"] = sortOn;
 
     return PlatformAPIClient.execute(
       this.config,

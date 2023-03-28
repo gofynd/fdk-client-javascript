@@ -855,6 +855,8 @@ class BillingModel {
 
   static SubscriptionStatus() {
     return Joi.object({
+      mandate_amount: Joi.number(),
+
       is_enabled: Joi.boolean(),
 
       subscription: BillingModel.Subscription(),
