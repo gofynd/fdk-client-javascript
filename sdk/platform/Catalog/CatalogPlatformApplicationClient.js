@@ -58,6 +58,47 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to retrieve.
+   * @summary: Get a Search Keywords Details
+   * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+   */
+  getSearchKeywords({ id } = {}) {
+    const { error } = CatalogValidator.getSearchKeywords().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getSearchKeywords().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getSearchKeywords");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
    * @summary: Delete a Search Keywords
    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
@@ -100,16 +141,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @summary: Get a Search Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+   * @summary: List all Search Custom Keyword Listing
+   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
    */
-  getSearchKeywords({ id } = {}) {
-    const { error } = CatalogValidator.getSearchKeywords().validate(
-      {
-        id,
-      },
+  getAllSearchKeyword({} = {}) {
+    const { error } = CatalogValidator.getAllSearchKeyword().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -117,14 +154,12 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getSearchKeywords().validate(
-      {
-        id,
-      },
+    const { error: warrning } = CatalogValidator.getAllSearchKeyword().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSearchKeywords");
+      console.log("Parameter Validation warrnings for getAllSearchKeyword");
       console.log(warrning);
     }
 
@@ -133,7 +168,7 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/${id}/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
       query_params,
       undefined
     );
@@ -176,41 +211,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
       query_params,
       body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @summary: List all Search Custom Keyword Listing
-   * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
-   */
-  getAllSearchKeyword({} = {}) {
-    const { error } = CatalogValidator.getAllSearchKeyword().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getAllSearchKeyword().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAllSearchKeyword");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/keyword/`,
-      query_params,
-      undefined
     );
   }
 
@@ -265,6 +265,51 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to retrieve.
+   * @summary: Get a Autocomplete Keywords Details
+   * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+   */
+  getAutocompleteKeywordDetail({ id } = {}) {
+    const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getAutocompleteKeywordDetail().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for getAutocompleteKeywordDetail"
+      );
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
    * @summary: Delete a Autocomplete Keywords
    * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
@@ -309,16 +354,12 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @summary: Get a Autocomplete Keywords Details
-   * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+   * @summary: List all Autocomplete Keyword Listing
+   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
    */
-  getAutocompleteKeywordDetail({ id } = {}) {
-    const { error } = CatalogValidator.getAutocompleteKeywordDetail().validate(
-      {
-        id,
-      },
+  getAutocompleteConfig({} = {}) {
+    const { error } = CatalogValidator.getAutocompleteConfig().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -328,16 +369,12 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getAutocompleteKeywordDetail().validate(
-      {
-        id,
-      },
+    } = CatalogValidator.getAutocompleteConfig().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getAutocompleteKeywordDetail"
-      );
+      console.log("Parameter Validation warrnings for getAutocompleteConfig");
       console.log(warrning);
     }
 
@@ -346,7 +383,7 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/${id}/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
       query_params,
       undefined
     );
@@ -398,12 +435,15 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @summary: List all Autocomplete Keyword Listing
-   * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
+   * @param {string} arg.itemId - Product id for a particular product.
+   * @summary: Get company application product data.
+   * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
    */
-  getAutocompleteConfig({} = {}) {
-    const { error } = CatalogValidator.getAutocompleteConfig().validate(
-      {},
+  getAppProduct({ itemId } = {}) {
+    const { error } = CatalogValidator.getAppProduct().validate(
+      {
+        itemId,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -411,14 +451,14 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.getAutocompleteConfig().validate(
-      {},
+    const { error: warrning } = CatalogValidator.getAppProduct().validate(
+      {
+        itemId,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAutocompleteConfig");
+      console.log("Parameter Validation warrnings for getAppProduct");
       console.log(warrning);
     }
 
@@ -427,7 +467,7 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/autocomplete/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}/`,
       query_params,
       undefined
     );
@@ -478,46 +518,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Product id for a particular product.
-   * @summary: Get company application product data.
-   * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
-   */
-  getAppProduct({ itemId } = {}) {
-    const { error } = CatalogValidator.getAppProduct().validate(
-      {
-        itemId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getAppProduct().validate(
-      {
-        itemId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getAppProduct");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product/${itemId}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.configType - A `config_type` is an identifier that
    *   defines a specific type of configuration.
    * @param {string} [arg.templateSlug] - Get configuration list filtered by
@@ -563,54 +563,6 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/metadata/`,
       query_params,
       undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular group configuration type.
-   * @param {AppConfigurationDetail} arg.body
-   * @summary: Create configuration for Group config types.
-   * @description: Create configuration for Group config types.
-   */
-  createGroupConfiguration({ configType, body } = {}) {
-    const { error } = CatalogValidator.createGroupConfiguration().validate(
-      {
-        configType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.createGroupConfiguration().validate(
-      {
-        configType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for createGroupConfiguration"
-      );
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups`,
-      query_params,
-      body
     );
   }
 
@@ -679,6 +631,54 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups`,
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.configType - A `config_type` is a unique identifier
+   *   for a particular group configuration type.
+   * @param {AppConfigurationDetail} arg.body
+   * @summary: Create configuration for Group config types.
+   * @description: Create configuration for Group config types.
+   */
+  createGroupConfiguration({ configType, body } = {}) {
+    const { error } = CatalogValidator.createGroupConfiguration().validate(
+      {
+        configType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createGroupConfiguration().validate(
+      {
+        configType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for createGroupConfiguration"
+      );
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/groups`,
+      query_params,
+      body
     );
   }
 
@@ -785,54 +785,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.configType - A `config_type` is a unique identifier
-   *   for a particular listing configuration type.
-   * @param {AppConfigurationsSort} arg.body
-   * @summary: Add configuration for listings
-   * @description: Add configuration for listing.
-   */
-  createListingConfiguration({ configType, body } = {}) {
-    const { error } = CatalogValidator.createListingConfiguration().validate(
-      {
-        configType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.createListingConfiguration().validate(
-      {
-        configType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for createListingConfiguration"
-      );
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.configType - A `config_type` is an identifier that
    *   defines a specific type of configuration.
    * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -887,6 +839,54 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.configType - A `config_type` is a unique identifier
+   *   for a particular listing configuration type.
+   * @param {AppConfigurationsSort} arg.body
+   * @summary: Add configuration for listings
+   * @description: Add configuration for listing.
+   */
+  createListingConfiguration({ configType, body } = {}) {
+    const { error } = CatalogValidator.createListingConfiguration().validate(
+      {
+        configType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.createListingConfiguration().validate(
+      {
+        configType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log(
+        "Parameter Validation warrnings for createListingConfiguration"
+      );
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${configType}/`,
+      query_params,
+      body
     );
   }
 
@@ -1110,6 +1110,41 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @summary: Get configured details for catalog
+   * @description: configured details for catalog.
+   */
+  getConfigurations({} = {}) {
+    const { error } = CatalogValidator.getConfigurations().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getConfigurations().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for getConfigurations");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {AppConfiguration} arg.body
    * @summary: Add configuration for products & listings
    * @description: Add configuration for products & listing.
@@ -1156,12 +1191,15 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.type - Type can be brands, categories etc.
    * @summary: Get configured details for catalog
    * @description: configured details for catalog.
    */
-  getConfigurations({} = {}) {
-    const { error } = CatalogValidator.getConfigurations().validate(
-      {},
+  getConfigurationByType({ type } = {}) {
+    const { error } = CatalogValidator.getConfigurationByType().validate(
+      {
+        type,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1169,12 +1207,16 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getConfigurations().validate(
-      {},
+    const {
+      error: warrning,
+    } = CatalogValidator.getConfigurationByType().validate(
+      {
+        type,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getConfigurations");
+      console.log("Parameter Validation warrnings for getConfigurationByType");
       console.log(warrning);
     }
 
@@ -1183,7 +1225,7 @@ class Catalog {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/`,
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
       query_params,
       undefined
     );
@@ -1238,48 +1280,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.type - Type can be brands, categories etc.
-   * @summary: Get configured details for catalog
-   * @description: configured details for catalog.
-   */
-  getConfigurationByType({ type } = {}) {
-    const { error } = CatalogValidator.getConfigurationByType().validate(
-      {
-        type,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.getConfigurationByType().validate(
-      {
-        type,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for getConfigurationByType");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/product-configuration/${type}/`,
-      query_params,
-      undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @summary: Get query filters to configure a collection
    * @description: Get query filters to configure a collection
    */
@@ -1310,46 +1310,6 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/query-options/`,
       query_params,
       undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateCollection} arg.body
-   * @summary: Add a Collection
-   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
-   */
-  createCollection({ body } = {}) {
-    const { error } = CatalogValidator.createCollection().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createCollection().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for createCollection");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
-      query_params,
-      body
     );
   }
 
@@ -1427,6 +1387,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CreateCollection} arg.body
+   * @summary: Add a Collection
+   * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
+   */
+  createCollection({ body } = {}) {
+    const { error } = CatalogValidator.createCollection().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.createCollection().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for createCollection");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/`,
+      query_params,
+      body
     );
   }
 
@@ -1558,49 +1558,6 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier of a collection.
-   * @param {CollectionItemRequest} arg.body
-   * @summary: Add items to a collection
-   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
-   */
-  addCollectionItems({ id, body } = {}) {
-    const { error } = CatalogValidator.addCollectionItems().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.addCollectionItems().validate(
-      {
-        id,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      console.log("Parameter Validation warrnings for addCollectionItems");
-      console.log(warrning);
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
-      query_params,
-      body
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier of a collection.
    * @param {string} [arg.sortOn] - Each response will contain sort_on param,
    *   which should be sent back to make pagination work.
    * @param {string} [arg.pageId] - Each response will contain next_id param,
@@ -1650,6 +1607,49 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
       query_params,
       undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier of a collection.
+   * @param {CollectionItemRequest} arg.body
+   * @summary: Add items to a collection
+   * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
+   */
+  addCollectionItems({ id, body } = {}) {
+    const { error } = CatalogValidator.addCollectionItems().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.addCollectionItems().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for addCollectionItems");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/collections/${id}/items/`,
+      query_params,
+      body
     );
   }
 
