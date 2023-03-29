@@ -2901,12 +2901,12 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | display_fields | [string] |  yes  | List of all included  options with their Details. |
- | aggregators | [string] |  no  | List of all speceific Payment options with their Details. |
  | created | boolean |  yes  | Response is created or not |
- | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
+ | display_fields | [string] |  yes  | List of all included  options with their Details. |
  | app_id | string |  yes  | Application Id to which Payment config Mapped |
+ | aggregators | [string] |  no  | List of all speceific Payment options with their Details. |
+ | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -2917,9 +2917,9 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | description | string |  yes  | Error human understandable description. |
  | code | string |  yes  | Error descrption code. |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -2931,10 +2931,10 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | key | string |  yes  | Api key of the payment aggregator |
- | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
- | secret | string |  yes  | Secret Key of the payment aggregator |
  | config_type | string |  yes  | Config Type of the aggregator |
  | is_active | boolean |  no  | Enable/ Disable Flag |
+ | secret | string |  yes  | Secret Key of the payment aggregator |
+ | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
 
 ---
 
@@ -2958,8 +2958,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | aggregator | [string] |  yes  | List of added payment gateway |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -2982,20 +2982,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentModeLogo](#PaymentModeLogo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  | large |
- | small | string |  yes  | smalll |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3008,6 +2996,18 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
  | ---------- | ---- | -------- | ----------- |
  | package_name | string |  no  | package_name |
  | code | string |  no  | code |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeLogo](#PaymentModeLogo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | large | string |  yes  | large |
+ | small | string |  yes  | smalll |
 
 ---
 
@@ -3032,36 +3032,36 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | card_brand | string |  no  | card_brand |
- | card_name | string |  no  | card_name |
- | exp_month | number |  no  | exp_month |
- | exp_year | number |  no  | exp_year |
- | nickname | string |  no  | nickname |
- | fynd_vpa | string |  no  | fynd_vpa |
- | card_number | string |  no  | card_number |
- | card_isin | string |  no  | card_isin |
- | card_type | string |  no  | card_type |
- | aggregator_name | string |  yes  | aggregator_name |
- | display_priority | number |  no  | Dispaly Priority |
  | cod_limit | number |  no  | cod limit |
- | code | string |  no  | code |
- | card_id | string |  no  | card_id |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | display_name | string |  no  | display name |
- | retry_count | number |  no  | retry_count |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
- | card_reference | string |  no  | card_reference |
- | name | string |  no  | name |
- | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
  | intent_app_error_list | [string] |  no  | intent_app_error_list |
+ | card_type | string |  no  | card_type |
  | remaining_limit | number |  no  | Remaining limit |
- | intent_flow | boolean |  no  | intent_flow |
+ | exp_year | number |  no  | exp_year |
  | card_issuer | string |  no  | card_issuer |
- | card_brand_image | string |  no  | card_brand_image |
- | merchant_code | string |  no  | merchant code |
+ | card_number | string |  no  | card_number |
+ | retry_count | number |  no  | retry_count |
+ | exp_month | number |  no  | exp_month |
+ | intent_flow | boolean |  no  | intent_flow |
  | card_token | string |  no  | card_token |
- | timeout | number |  no  | timeout |
+ | name | string |  no  | name |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
+ | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
+ | nickname | string |  no  | nickname |
+ | display_priority | number |  no  | Dispaly Priority |
+ | card_id | string |  no  | card_id |
+ | code | string |  no  | code |
  | cod_limit_per_order | number |  no  | Cod limit per order |
+ | display_name | string |  no  | display name |
+ | fynd_vpa | string |  no  | fynd_vpa |
+ | card_brand | string |  no  | card_brand |
+ | aggregator_name | string |  yes  | aggregator_name |
+ | merchant_code | string |  no  | merchant code |
+ | card_reference | string |  no  | card_reference |
+ | timeout | number |  no  | timeout |
+ | card_brand_image | string |  no  | card_brand_image |
+ | card_isin | string |  no  | card_isin |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
+ | card_name | string |  no  | card_name |
  | card_fingerprint | string |  no  | card_fingerprint |
  | expired | boolean |  no  | expired |
 
@@ -3074,13 +3074,13 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display_name | string |  yes  | Payment mode display name |
- | anonymous_enable | boolean |  no  | Annonymous card flag |
- | aggregator_name | string |  no  | Dispaly Priority |
  | display_priority | number |  yes  | Dispaly Priority |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
+ | display_name | string |  yes  | Payment mode display name |
+ | aggregator_name | string |  no  | Dispaly Priority |
+ | anonymous_enable | boolean |  no  | Annonymous card flag |
  | name | string |  yes  | Payment mode name |
  | add_card_enabled | boolean |  no  | Annonymous card flag |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
 
 ---
 
@@ -3102,8 +3102,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | payment_options | [PaymentOptions](#PaymentOptions) |  yes  | Payment options |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3114,13 +3114,13 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_transfer_no | string |  yes  | display priority of the payment mode |
+ | payouts_aggregators | [string] |  yes  | payout aggregator object |
  | transfer_type | string |  yes  | transafer type |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | unique_transfer_no | string |  yes  | display priority of the payment mode |
  | is_default | boolean |  yes  | default or not  |
  | more_attributes | string |  yes  | bank details object |
  | customers | string |  yes  | customers details object |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
- | payouts_aggregators | [string] |  yes  | payout aggregator object |
 
 ---
 
@@ -3131,16 +3131,16 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  no  |  |
  | country | string |  no  |  |
- | account_no | string |  no  |  |
- | city | string |  no  |  |
- | branch_name | string |  no  |  |
- | account_type | string |  yes  |  |
- | state | string |  no  |  |
- | ifsc_code | string |  yes  |  |
- | bank_name | string |  no  |  |
  | pincode | number |  no  |  |
+ | branch_name | string |  no  |  |
+ | account_no | string |  no  |  |
+ | state | string |  no  |  |
+ | bank_name | string |  no  |  |
+ | account_holder | string |  no  |  |
+ | city | string |  no  |  |
+ | account_type | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
 
 ---
 
@@ -3151,12 +3151,12 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
  | transfer_type | string |  yes  | transafer type |
  | aggregator | string |  yes  | Aggregator Name |
- | unique_external_id | string |  yes  | Unique Id of Payout |
- | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
- | users | string |  yes  | payout users object |
  | is_active | boolean |  yes  | Enable/Disable Flag Payout |
+ | unique_external_id | string |  yes  | Unique Id of Payout |
+ | users | string |  yes  | payout users object |
 
 ---
 
@@ -3167,16 +3167,16 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unique_transfer_no | string |  yes  | unique transfer no |
- | transfer_type | string |  yes  | transfer type |
- | payouts | string |  yes  | payout  object |
- | aggregator | string |  yes  | Aggregator Name |
  | bank_details | string |  yes  | payout bank_details object |
- | payment_status | string |  yes  | status of payment |
- | users | string |  yes  | users details object |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
- | success | boolean |  yes  | Response is successful or not |
  | created | boolean |  yes  | created flag |
+ | payouts | string |  yes  | payout  object |
+ | transfer_type | string |  yes  | transfer type |
+ | aggregator | string |  yes  | Aggregator Name |
+ | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | payment_status | string |  yes  | status of payment |
+ | unique_transfer_no | string |  yes  | unique transfer no |
+ | users | string |  yes  | users details object |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3188,8 +3188,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
- | success | boolean |  yes  | Response is successful or not |
  | is_default | boolean |  yes  | Enable/Disable Default Payout |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3201,8 +3201,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | is_active | boolean |  yes  | Enable/Disable Flag Payout |
- | unique_external_id | string |  yes  | Unique Id of Payout |
  | is_default | boolean |  yes  | Enable/Disable Default Payout |
+ | unique_external_id | string |  yes  | Unique Id of Payout |
 
 ---
 
@@ -3224,8 +3224,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | data | [string] |  yes  | Subscription Payment Method Object |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3247,9 +3247,9 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | aggregator | string |  yes  | Aggregator Name |
  | config | string |  yes  | Aggregator Config |
+ | aggregator | string |  yes  | Aggregator Name |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3271,8 +3271,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | data | string |  yes  | Subscription Payment Method Object |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3283,17 +3283,17 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | wallet | string |  no  |  |
+ | vpa | string |  no  |  |
+ | branch_name | string |  yes  | Branch Name of the Account |
+ | account_no | string |  yes  | Account NUmber of the Account Holder |
+ | email | string |  yes  | Email of the Account Holder |
+ | ifsc_code | string |  yes  | Ifsc Code of the Account |
+ | bank_name | string |  yes  | Bank Name of the Account |
  | account_holder | string |  yes  | Name of the Account Holder |
  | comment | string |  no  | Remarks added by The user |
- | email | string |  yes  | Email of the Account Holder |
  | mobile | string |  yes  | Moblie Number of the User |
- | vpa | string |  no  |  |
- | bank_name | string |  yes  | Bank Name of the Account |
  | address | string |  no  | Address of the User |
- | wallet | string |  no  |  |
- | branch_name | string |  yes  | Branch Name of the Account |
- | ifsc_code | string |  yes  | Ifsc Code of the Account |
- | account_no | string |  yes  | Account NUmber of the Account Holder |
 
 ---
 
@@ -3304,13 +3304,13 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
- | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
- | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
- | otp | string |  no  |  |
- | request_id | string |  no  |  |
  | order_id | string |  yes  | Merchant Order Id |
+ | request_id | string |  no  |  |
+ | otp | string |  no  |  |
+ | delights | boolean |  yes  | True if  beneficiary to be added by delights or False if by User |
+ | shipment_id | string |  yes  | Shipment Id of the respective Merchant Order Id |
+ | transfer_mode | string |  yes  | Transfer Mode of the Beneficiary to be added |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  | Beneficiary bank details |
 
 ---
 
@@ -3321,10 +3321,10 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Response message |
- | success | boolean |  yes  | Success or failure flag. |
  | is_verified_flag | boolean |  no  |  |
+ | message | string |  yes  | Response message |
  | data | string |  no  | Refund account data. |
+ | success | boolean |  yes  | Success or failure flag. |
 
 ---
 
@@ -3335,9 +3335,9 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | description | string |  yes  | Not Found |
  | code | string |  yes  | Bad Request Data |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3348,8 +3348,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
  | bank_name | string |  yes  | Bank Name Of Account |
+ | success | boolean |  no  | Response is successful or not |
  | branch_name | string |  yes  | Branch Name Of Account |
 
 ---
@@ -3361,25 +3361,25 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_holder | string |  yes  | Account Holder Name |
- | email | string |  yes  | EMail of User |
- | created_on | string |  yes  | Creation Date of Beneficiary |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | transfer_mode | string |  yes  | Transfer Mode Of Account |
- | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | bank_name | string |  yes  | Bank Name Of Account |
- | display_name | string |  yes  | Display Name Of Account |
- | comment | string |  no  | Remarks |
- | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
- | id | number |  yes  |   |
- | branch_name | string |  no  | Branch Name Of Account |
+ | mobile | string |  no  | MObile no of User |
  | ifsc_code | string |  yes  | Ifsc Code Of Account |
  | subtitle | string |  yes  | SHort Title Of Account |
- | title | string |  yes  | Title Of Account |
- | mobile | string |  no  | MObile no of User |
- | address | string |  yes  | Address of User |
+ | beneficiary_id | string |  yes  | Benenficiary Id |
+ | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
  | account_no | string |  yes  | Account Number |
+ | email | string |  yes  | EMail of User |
+ | transfer_mode | string |  yes  | Transfer Mode Of Account |
+ | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
+ | comment | string |  no  | Remarks |
+ | address | string |  yes  | Address of User |
+ | created_on | string |  yes  | Creation Date of Beneficiary |
+ | id | number |  yes  |   |
+ | display_name | string |  yes  | Display Name Of Account |
+ | title | string |  yes  | Title Of Account |
+ | modified_on | string |  yes  | MOdification Date of Beneficiary |
+ | branch_name | string |  no  | Branch Name Of Account |
+ | bank_name | string |  yes  | Bank Name Of Account |
+ | account_holder | string |  yes  | Account Holder Name |
 
 ---
 
@@ -3402,10 +3402,10 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | meta | string |  no  | Payment meta i.e payment id, order id, gateway |
+ | name | string |  no  | Payment mode name |
  | amount | number |  yes  | Payment amount |
  | mode | string |  yes  | Payment mode |
- | name | string |  no  | Payment mode name |
- | meta | string |  no  | Payment meta i.e payment id, order id, gateway |
 
 ---
 
@@ -3416,8 +3416,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order_id | string |  yes  | Unique order id |
  | payment_methods | [[PaymentConfirmationMode](#PaymentConfirmationMode)] |  yes  |  |
+ | order_id | string |  yes  | Unique order id |
 
 ---
 
@@ -3428,9 +3428,9 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  yes  | Unique order id |
  | message | string |  yes  | Message |
  | success | boolean |  yes  | Payment confirmation updated or not. |
- | order_id | string |  yes  | Unique order id |
 
 ---
 
@@ -3441,11 +3441,11 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | usages | number |  yes  | Used COD limit from the user Limit |
+ | user_id | string |  yes  | Payment mode name |
  | limit | number |  yes  | Total Limit of user |
  | remaining_limit | number |  yes  | Remaining Limit for COD of User |
  | is_active | boolean |  yes  | COD option is active or not |
- | user_id | string |  yes  | Payment mode name |
+ | usages | number |  yes  | Used COD limit from the user Limit |
 
 ---
 
@@ -3456,8 +3456,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
  | user_cod_data | [CODdata](#CODdata) |  yes  | User COD Data |
+ | success | boolean |  yes  | Response is successful or not |
 
 ---
 
@@ -3468,9 +3468,9 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | mobileno | string |  yes  | Mobile No. of User |
  | is_active | boolean |  yes  | either true or false |
  | merchant_user_id | string |  yes  | Merchant User id |
+ | mobileno | string |  yes  | Mobile No. of User |
 
 ---
 
@@ -3493,16 +3493,16 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | outstanding_details_id | number |  yes  | Outstanding details ID |
  | payment_mode | string |  yes  | Payment Mode |
- | aggregator | string |  yes  | Name of Payment Gateway |
- | merchant_order_id | string |  yes  | Merchant's Order Id |
- | aggregator_transaction_id | string |  yes  | Unique Id for the transaction |
- | fwd_shipment_id | string |  yes  | Purchase Shipment Id |
+ | outstanding_details_id | number |  yes  | Outstanding details ID |
  | amount | number |  yes  | Amount to paid back |
- | current_status | string |  yes  | Status |
- | aggregator_order_id | string |  yes  | Id of payment gateway |
+ | aggregator_transaction_id | string |  yes  | Unique Id for the transaction |
  | payment_mode_identifier | string |  yes  | Payment Mode Id |
+ | aggregator_order_id | string |  yes  | Id of payment gateway |
+ | aggregator | string |  yes  | Name of Payment Gateway |
+ | current_status | string |  yes  | Status |
+ | fwd_shipment_id | string |  yes  | Purchase Shipment Id |
+ | merchant_order_id | string |  yes  | Merchant's Order Id |
 
 ---
 
@@ -3514,9 +3514,9 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | aggregator_order_id | string |  yes  | Id of payment gateway |
- | total_amount | number |  yes  | total amount |
  | shipment_details | [[RepaymentRequestDetails](#RepaymentRequestDetails)] |  no  |  |
  | aggregator_transaction_id | string |  yes  | Unique Id for the transaction |
+ | total_amount | number |  yes  | total amount |
  | extension_order_id | string |  yes  | Order id created in extension |
 
 ---
@@ -3528,8 +3528,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Success/Failure of the transaction |
  | data | string |  yes  |  |
+ | success | boolean |  yes  | Success/Failure of the transaction |
 
 ---
 
@@ -3540,10 +3540,10 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | string |  yes  | Status |
- | aggregator | string |  yes  | Payment aggregator name |
  | user_id | string |  yes  | Deadlock/Grimlock user id |
+ | aggregator | string |  yes  | Payment aggregator name |
  | app_id | string |  yes  | Application id |
+ | status | string |  yes  | Status |
  | credit_line_id | string |  yes  | Merchant ID at Ajiodhan's end |
 
 ---
@@ -3555,8 +3555,8 @@ Success. Returns the status of API. Check the example shown below or refer `Repa
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Success/Failure of the transaction |
  | data | string |  yes  |  |
+ | success | boolean |  yes  | Success/Failure of the transaction |
 
 ---
 

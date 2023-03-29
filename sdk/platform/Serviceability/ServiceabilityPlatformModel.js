@@ -1,23 +1,23 @@
 const Joi = require("joi");
 
 class ServiceabilityModel {
-  static ApplicationServiceabilityConfig() {
-    return Joi.object({
-      channel_type: Joi.string().allow("").required(),
-
-      channel_id: Joi.string().allow("").required(),
-
-      serviceability_type: Joi.string().allow("").required(),
-    });
-  }
-
   static ServiceabilityrErrorResponse() {
     return Joi.object({
       type: Joi.string().allow("").required(),
 
-      value: Joi.string().allow("").required(),
-
       message: Joi.string().allow("").required(),
+
+      value: Joi.string().allow("").required(),
+    });
+  }
+
+  static ApplicationServiceabilityConfig() {
+    return Joi.object({
+      serviceability_type: Joi.string().allow("").required(),
+
+      channel_id: Joi.string().allow("").required(),
+
+      channel_type: Joi.string().allow("").required(),
     });
   }
 
@@ -25,9 +25,9 @@ class ServiceabilityModel {
     return Joi.object({
       success: Joi.boolean().required(),
 
-      data: ServiceabilityModel.ApplicationServiceabilityConfig(),
-
       error: ServiceabilityModel.ServiceabilityrErrorResponse(),
+
+      data: ServiceabilityModel.ApplicationServiceabilityConfig(),
     });
   }
 
@@ -39,47 +39,47 @@ class ServiceabilityModel {
     });
   }
 
-  static EntityRegionView_Error() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      value: Joi.string().allow(""),
-
-      message: Joi.string().allow(""),
-    });
-  }
-
   static EntityRegionView_page() {
     return Joi.object({
-      item_total: Joi.number().required(),
-
-      size: Joi.number().required(),
-
       type: Joi.string().allow("").required(),
 
       current: Joi.number().required(),
+
+      size: Joi.number().required(),
+
+      item_total: Joi.number().required(),
 
       has_next: Joi.boolean().required(),
     });
   }
 
+  static EntityRegionView_Error() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+
+      message: Joi.string().allow(""),
+
+      value: Joi.string().allow(""),
+    });
+  }
+
   static EntityRegionView_Items() {
     return Joi.object({
-      name: Joi.string().allow("").required(),
-
       uid: Joi.string().allow("").required(),
 
       sub_type: Joi.string().allow("").required(),
+
+      name: Joi.string().allow("").required(),
     });
   }
 
   static EntityRegionView_Response() {
     return Joi.object({
-      error: ServiceabilityModel.EntityRegionView_Error().required(),
+      page: ServiceabilityModel.EntityRegionView_page().required(),
 
       success: Joi.boolean().required(),
 
-      page: ServiceabilityModel.EntityRegionView_page().required(),
+      error: ServiceabilityModel.EntityRegionView_Error().required(),
 
       data: Joi.array()
         .items(ServiceabilityModel.EntityRegionView_Items())
@@ -87,19 +87,33 @@ class ServiceabilityModel {
     });
   }
 
+  static ZoneDataItem() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+
+      current: Joi.number().required(),
+
+      size: Joi.number().required(),
+
+      item_total: Joi.number().required(),
+
+      has_next: Joi.boolean().required(),
+    });
+  }
+
   static ListViewChannels() {
     return Joi.object({
-      channel_type: Joi.string().allow("").required(),
-
       channel_id: Joi.string().allow("").required(),
+
+      channel_type: Joi.string().allow("").required(),
     });
   }
 
   static ListViewProduct() {
     return Joi.object({
-      count: Joi.number().required(),
-
       type: Joi.string().allow("").required(),
+
+      count: Joi.number().required(),
     });
   }
 
@@ -107,43 +121,29 @@ class ServiceabilityModel {
     return Joi.object({
       name: Joi.string().allow("").required(),
 
-      stores_count: Joi.number().required(),
-
-      is_active: Joi.boolean().required(),
-
-      company_id: Joi.number().required(),
-
-      zone_id: Joi.string().allow("").required(),
-
       channels: ServiceabilityModel.ListViewChannels().required(),
 
       pincodes_count: Joi.number().required(),
 
       slug: Joi.string().allow("").required(),
 
+      zone_id: Joi.string().allow("").required(),
+
+      stores_count: Joi.number().required(),
+
       product: ServiceabilityModel.ListViewProduct().required(),
-    });
-  }
 
-  static ZoneDataItem() {
-    return Joi.object({
-      item_total: Joi.number().required(),
+      company_id: Joi.number().required(),
 
-      type: Joi.string().allow("").required(),
-
-      size: Joi.number().required(),
-
-      current: Joi.number().required(),
-
-      has_next: Joi.boolean().required(),
+      is_active: Joi.boolean().required(),
     });
   }
 
   static ListViewSummary() {
     return Joi.object({
-      total_active_zones: Joi.number().required(),
-
       total_zones: Joi.number().required(),
+
+      total_active_zones: Joi.number().required(),
 
       total_pincodes_served: Joi.number().required(),
     });
@@ -151,9 +151,9 @@ class ServiceabilityModel {
 
   static ListViewResponse() {
     return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
-
       page: Joi.array().items(ServiceabilityModel.ZoneDataItem()).required(),
+
+      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
 
       summary: Joi.array()
         .items(ServiceabilityModel.ListViewSummary())
@@ -163,13 +163,13 @@ class ServiceabilityModel {
 
   static CompanyStoreView_PageItems() {
     return Joi.object({
-      item_total: Joi.number().required(),
-
-      size: Joi.number().required(),
-
       type: Joi.string().allow("").required(),
 
       current: Joi.number().required(),
+
+      size: Joi.number().required(),
+
+      item_total: Joi.number().required(),
 
       has_next: Joi.boolean().required(),
     });
@@ -177,27 +177,27 @@ class ServiceabilityModel {
 
   static CompanyStoreView_Response() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
-
       page: Joi.array()
         .items(ServiceabilityModel.CompanyStoreView_PageItems())
         .required(),
+
+      items: Joi.array().items(Joi.any()),
     });
   }
 
   static GetZoneDataViewChannels() {
     return Joi.object({
-      channel_type: Joi.string().allow("").required(),
-
       channel_id: Joi.string().allow("").required(),
+
+      channel_type: Joi.string().allow("").required(),
     });
   }
 
   static ZoneProductTypes() {
     return Joi.object({
-      tags: Joi.array().items(Joi.string().allow("")).required(),
-
       type: Joi.string().allow("").required(),
+
+      tags: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
@@ -205,9 +205,9 @@ class ServiceabilityModel {
     return Joi.object({
       state: Joi.array().items(Joi.string().allow("")),
 
-      country: Joi.string().allow("").required(),
-
       pincode: Joi.array().items(Joi.string().allow("")),
+
+      country: Joi.string().allow("").required(),
     });
   }
 
@@ -345,9 +345,9 @@ class ServiceabilityModel {
 
   static GetZoneFromApplicationIdViewResponse() {
     return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
-
       page: Joi.array().items(ServiceabilityModel.ZoneDataItem()).required(),
+
+      items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
     });
   }
 
@@ -355,9 +355,9 @@ class ServiceabilityModel {
     return Joi.object({
       type: Joi.string().allow("").required(),
 
-      value: Joi.string().allow("").required(),
-
       message: Joi.string().allow("").required(),
+
+      value: Joi.string().allow("").required(),
     });
   }
 
@@ -377,11 +377,131 @@ class ServiceabilityModel {
     });
   }
 
+  static PageResponse() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+
+      current: Joi.number(),
+
+      size: Joi.number(),
+
+      item_total: Joi.number(),
+
+      has_next: Joi.boolean(),
+    });
+  }
+
+  static ContactNumberResponse() {
+    return Joi.object({
+      country_code: Joi.number(),
+
+      number: Joi.string().allow(""),
+    });
+  }
+
+  static Dp() {
+    return Joi.object({
+      transport_mode: Joi.string().allow(""),
+
+      lm_priority: Joi.number(),
+
+      internal_account_id: Joi.string().allow(""),
+
+      rvp_priority: Joi.number(),
+
+      operations: Joi.array().items(Joi.string().allow("")),
+
+      fm_priority: Joi.number(),
+
+      area_code: Joi.number().allow(null),
+
+      external_account_id: Joi.string().allow("").allow(null),
+
+      assign_dp_from_sb: Joi.boolean(),
+
+      payment_mode: Joi.string().allow(""),
+    });
+  }
+
+  static LogisticsResponse() {
+    return Joi.object({
+      dp: ServiceabilityModel.Dp(),
+
+      override: Joi.boolean(),
+    });
+  }
+
+  static ModifiedByResponse() {
+    return Joi.object({
+      user_id: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
+    });
+  }
+
+  static AddressResponse() {
+    return Joi.object({
+      longitude: Joi.number(),
+
+      pincode: Joi.number(),
+
+      address2: Joi.string().allow(""),
+
+      landmark: Joi.string().allow(""),
+
+      city: Joi.string().allow(""),
+
+      address1: Joi.string().allow(""),
+
+      latitude: Joi.number(),
+
+      country: Joi.string().allow(""),
+
+      state: Joi.string().allow(""),
+    });
+  }
+
   static CreatedByResponse() {
     return Joi.object({
-      username: Joi.string().allow(""),
-
       user_id: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
+    });
+  }
+
+  static DocumentsResponse() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+
+      legal_name: Joi.string().allow(""),
+
+      verified: Joi.boolean(),
+
+      value: Joi.string().allow(""),
+    });
+  }
+
+  static MobileNo() {
+    return Joi.object({
+      country_code: Joi.number(),
+
+      number: Joi.string().allow(""),
+    });
+  }
+
+  static ManagerResponse() {
+    return Joi.object({
+      mobile_no: ServiceabilityModel.MobileNo(),
+
+      name: Joi.string().allow(""),
+
+      email: Joi.string().allow(""),
+    });
+  }
+
+  static ProductReturnConfigResponse() {
+    return Joi.object({
+      on_same_store: Joi.boolean(),
     });
   }
 
@@ -405,129 +525,9 @@ class ServiceabilityModel {
     });
   }
 
-  static OpeningClosing() {
+  static WarningsResponse() {
     return Joi.object({
-      hour: Joi.number(),
-
-      minute: Joi.number(),
-    });
-  }
-
-  static TimmingResponse() {
-    return Joi.object({
-      opening: ServiceabilityModel.OpeningClosing(),
-
-      weekday: Joi.string().allow(""),
-
-      open: Joi.boolean(),
-
-      closing: ServiceabilityModel.OpeningClosing(),
-    });
-  }
-
-  static Dp() {
-    return Joi.object({
-      external_account_id: Joi.string().allow("").allow(null),
-
-      fm_priority: Joi.number(),
-
-      internal_account_id: Joi.string().allow(""),
-
-      operations: Joi.array().items(Joi.string().allow("")),
-
-      area_code: Joi.number().allow(null),
-
-      transport_mode: Joi.string().allow(""),
-
-      payment_mode: Joi.string().allow(""),
-
-      assign_dp_from_sb: Joi.boolean(),
-
-      lm_priority: Joi.number(),
-
-      rvp_priority: Joi.number(),
-    });
-  }
-
-  static LogisticsResponse() {
-    return Joi.object({
-      override: Joi.boolean(),
-
-      dp: ServiceabilityModel.Dp(),
-    });
-  }
-
-  static ProductReturnConfigResponse() {
-    return Joi.object({
-      on_same_store: Joi.boolean(),
-    });
-  }
-
-  static DocumentsResponse() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-
-      value: Joi.string().allow(""),
-
-      verified: Joi.boolean(),
-
-      legal_name: Joi.string().allow(""),
-    });
-  }
-
-  static MobileNo() {
-    return Joi.object({
-      number: Joi.string().allow(""),
-
-      country_code: Joi.number(),
-    });
-  }
-
-  static ManagerResponse() {
-    return Joi.object({
-      name: Joi.string().allow(""),
-
-      email: Joi.string().allow(""),
-
-      mobile_no: ServiceabilityModel.MobileNo(),
-    });
-  }
-
-  static ContactNumberResponse() {
-    return Joi.object({
-      number: Joi.string().allow(""),
-
-      country_code: Joi.number(),
-    });
-  }
-
-  static AddressResponse() {
-    return Joi.object({
-      landmark: Joi.string().allow(""),
-
-      pincode: Joi.number(),
-
-      city: Joi.string().allow(""),
-
-      country: Joi.string().allow(""),
-
-      address2: Joi.string().allow(""),
-
-      latitude: Joi.number(),
-
-      state: Joi.string().allow(""),
-
-      longitude: Joi.number(),
-
-      address1: Joi.string().allow(""),
-    });
-  }
-
-  static ModifiedByResponse() {
-    return Joi.object({
-      username: Joi.string().allow(""),
-
-      user_id: Joi.string().allow(""),
+      store_address: Joi.string().allow(""),
     });
   }
 
@@ -539,93 +539,93 @@ class ServiceabilityModel {
     });
   }
 
-  static WarningsResponse() {
+  static OpeningClosing() {
     return Joi.object({
-      store_address: Joi.string().allow(""),
+      hour: Joi.number(),
+
+      minute: Joi.number(),
+    });
+  }
+
+  static TimmingResponse() {
+    return Joi.object({
+      open: Joi.boolean(),
+
+      closing: ServiceabilityModel.OpeningClosing(),
+
+      weekday: Joi.string().allow(""),
+
+      opening: ServiceabilityModel.OpeningClosing(),
     });
   }
 
   static ItemResponse() {
     return Joi.object({
-      created_by: ServiceabilityModel.CreatedByResponse(),
-
-      gst_credentials: ServiceabilityModel.GstCredentialsResponse(),
-
-      timing: Joi.array().items(ServiceabilityModel.TimmingResponse()),
-
-      logistics: ServiceabilityModel.LogisticsResponse(),
-
-      product_return_config: ServiceabilityModel.ProductReturnConfigResponse(),
-
-      documents: Joi.array().items(ServiceabilityModel.DocumentsResponse()),
-
-      manager: ServiceabilityModel.ManagerResponse(),
-
-      _cls: Joi.string().allow(""),
-
-      display_name: Joi.string().allow(""),
-
-      company: Joi.number(),
-
-      company_id: Joi.number(),
+      name: Joi.string().allow(""),
 
       contact_numbers: Joi.array().items(
         ServiceabilityModel.ContactNumberResponse()
       ),
 
-      address: ServiceabilityModel.AddressResponse(),
+      logistics: ServiceabilityModel.LogisticsResponse(),
 
-      modified_on: Joi.string().allow(""),
-
-      sub_type: Joi.string().allow(""),
-
-      store_type: Joi.string().allow(""),
-
-      created_on: Joi.string().allow(""),
-
-      verified_by: ServiceabilityModel.ModifiedByResponse(),
-
-      integration_type: ServiceabilityModel.IntegrationTypeResponse(),
-
-      warnings: ServiceabilityModel.WarningsResponse(),
-
-      code: Joi.string().allow(""),
-
-      name: Joi.string().allow(""),
-
-      verified_on: Joi.string().allow(""),
+      _cls: Joi.string().allow(""),
 
       uid: Joi.number(),
 
-      _custom_json: Joi.any(),
+      stage: Joi.string().allow(""),
+
+      company: Joi.number(),
+
+      modified_by: ServiceabilityModel.ModifiedByResponse(),
+
+      display_name: Joi.string().allow(""),
 
       notification_emails: Joi.array().items(Joi.string().allow("")),
 
-      stage: Joi.string().allow(""),
+      address: ServiceabilityModel.AddressResponse(),
 
-      modified_by: ServiceabilityModel.ModifiedByResponse(),
-    });
-  }
+      created_on: Joi.string().allow(""),
 
-  static PageResponse() {
-    return Joi.object({
-      item_total: Joi.number(),
+      store_type: Joi.string().allow(""),
 
-      size: Joi.number(),
+      created_by: ServiceabilityModel.CreatedByResponse(),
 
-      type: Joi.string().allow(""),
+      company_id: Joi.number(),
 
-      current: Joi.number(),
+      documents: Joi.array().items(ServiceabilityModel.DocumentsResponse()),
 
-      has_next: Joi.boolean(),
+      manager: ServiceabilityModel.ManagerResponse(),
+
+      product_return_config: ServiceabilityModel.ProductReturnConfigResponse(),
+
+      _custom_json: Joi.any(),
+
+      verified_by: ServiceabilityModel.ModifiedByResponse(),
+
+      gst_credentials: ServiceabilityModel.GstCredentialsResponse(),
+
+      sub_type: Joi.string().allow(""),
+
+      verified_on: Joi.string().allow(""),
+
+      warnings: ServiceabilityModel.WarningsResponse(),
+
+      integration_type: ServiceabilityModel.IntegrationTypeResponse(),
+
+      modified_on: Joi.string().allow(""),
+
+      timing: Joi.array().items(ServiceabilityModel.TimmingResponse()),
+
+      code: Joi.string().allow(""),
     });
   }
 
   static GetStoresViewResponse() {
     return Joi.object({
-      items: Joi.array().items(ServiceabilityModel.ItemResponse()),
-
       page: ServiceabilityModel.PageResponse().required(),
+
+      items: Joi.array().items(ServiceabilityModel.ItemResponse()),
     });
   }
 
@@ -731,15 +731,15 @@ class ServiceabilityModel {
 
   static PincodeCodStatusListingPage() {
     return Joi.object({
-      item_total: Joi.number().required(),
+      type: Joi.string().allow("").required(),
 
       size: Joi.number().required(),
 
-      type: Joi.string().allow("").required(),
+      current_page_number: Joi.number().required(),
+
+      item_total: Joi.number().required(),
 
       has_next: Joi.boolean().required(),
-
-      current_page_number: Joi.number().required(),
     });
   }
 
