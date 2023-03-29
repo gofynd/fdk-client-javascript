@@ -3,7 +3,7 @@ const {
   FDKClientValidationError,
 } = require("../common/FDKError");
 const { Logger, setLoggerLevel } = require("../common/Logger");
-const { LocationValidator } = require("./ApplicationModels");
+const { LocationValidator } = require("../application/ApplicationModels");
 class ApplicationConfig {
   /**
    * @param {object} _conf
@@ -18,13 +18,11 @@ class ApplicationConfig {
     this.setLogLevel(this.logLevel);
     this.extraHeaders = [];
     this.locationDetails = _conf.locationDetails;
-    this.currencyCode = _conf.currencyCode || "INR";
     this.validate();
   }
 
   setLogLevel(level) {
-    setLoggerLevel(level.toUpperCase());
-    this.logLevel = level.toUpperCase();
+    setLoggerLevel(level);
   }
 
   setCookie(cookie) {

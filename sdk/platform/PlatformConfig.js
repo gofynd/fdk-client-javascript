@@ -24,8 +24,7 @@ class PlatformConfig {
   }
 
   setLogLevel(level) {
-    setLoggerLevel(level.toUpperCase());
-    this.logLevel = level.toUpperCase();
+    setLoggerLevel(level);
   }
 
   async getAccessToken() {

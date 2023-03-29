@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Theme Methods
 Responsible for themes
-
 * [getAllPages](#getallpages)
 * [getPage](#getpage)
 * [getAppliedTheme](#getappliedtheme)
@@ -16,8 +14,6 @@ Responsible for themes
 
 
 ## Methods with example and description
-
-
 
 
 ### getAllPages

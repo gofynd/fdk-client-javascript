@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
-
 * [getCommunicationConsent](#getcommunicationconsent)
 * [upsertCommunicationConsent](#upsertcommunicationconsent)
 * [upsertAppPushtoken](#upsertapppushtoken)
@@ -15,8 +13,6 @@ Manages email, sms, push notifications sent to users
 
 
 ## Methods with example and description
-
-
 
 
 ### getCommunicationConsent
@@ -383,6 +379,29 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
  | app_id | string |  no  |  |
  | user_id | string |  no  |  |
  | channels | [CommunicationConsentChannels](#CommunicationConsentChannels) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BadRequestSchema](#BadRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  | Response status. |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
 
 ---
 

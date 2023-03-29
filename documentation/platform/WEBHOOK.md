@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Webhook Methods
 Webhook dispatcher with retry and one event to many subscriber vice versa
-
 * [getSubscribersByCompany](#getsubscribersbycompany)
 * [registerSubscriberToEvent](#registersubscribertoevent)
 * [updateSubscriberConfig](#updatesubscriberconfig)
@@ -18,8 +16,6 @@ Webhook dispatcher with retry and one event to many subscriber vice versa
 
 
 ## Methods with example and description
-
-
 
 
 ### getSubscribersByCompany

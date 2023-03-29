@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Platform docs](./README.md)
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
-
 * [getCampaigns](#getcampaigns)
 * [createCampaign](#createcampaign)
 * [getCampaignById](#getcampaignbyid)
@@ -53,8 +51,6 @@ Manages email, sms, push notifications sent to users
 
 
 ## Methods with example and description
-
-
 
 
 ### getCampaigns
@@ -4449,6 +4445,29 @@ Success
 
  
  
+ #### [BadRequestSchema](#BadRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  | Response status. |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  | Failure message. |
+
+---
+
+
+ 
+ 
  #### [BigqueryHeadersReq](#BigqueryHeadersReq)
 
  | Properties | Type | Nullable | Description |
@@ -5189,7 +5208,19 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | key | string |  no  |  |
- | value | string |  no  |  |
+ | value | any |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | _id | string |  no  |  |
 
 ---
 
@@ -5201,7 +5232,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | key | string |  no  |  |
- | value | string |  no  |  |
+ | value | any |  no  |  |
 
 ---
 
@@ -5229,6 +5260,7 @@ Success
  | otp_length | number |  no  |  |
  | expiry | number |  no  |  |
  | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate) |  no  |  |
+ | provider | [SendOtpSmsCommsProvider](#SendOtpSmsCommsProvider) |  no  |  |
 
 ---
 
@@ -5241,7 +5273,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | otp_length | number |  no  |  |
  | expiry | number |  no  |  |
- | template | [SendOtpSmsCommsTemplate](#SendOtpSmsCommsTemplate) |  no  |  |
+ | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
 
 ---
 

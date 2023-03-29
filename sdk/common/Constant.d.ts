@@ -25,7 +25,6 @@ export namespace AVAILABLE_PAGE_TYPE {
     const PRODUCT_REQUEST: string;
     const PRODUCTS: string;
     const PROFILE: string;
-    const PROFILE_ORDER_SHIPMENT: string;
     const PROFILE_BASIC: string;
     const PROFILE_COMPANY: string;
     const PROFILE_EMAILS: string;
@@ -131,6 +130,10 @@ export const NAVIGATORS: {
     faq: {
         name: string;
         link: string;
+        params: {
+            key: string;
+            required: boolean;
+        }[];
     };
     freshchat: {
         name: string;
@@ -195,14 +198,6 @@ export const NAVIGATORS: {
     profile: {
         name: string;
         link: string;
-    };
-    "profile-order-shipment": {
-        name: string;
-        link: string;
-        params: {
-            key: string;
-            required: boolean;
-        }[];
     };
     "profile-basic": {
         name: string;

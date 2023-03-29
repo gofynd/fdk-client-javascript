@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Logistic Methods
 Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
-
 * [getPincodeCity](#getpincodecity)
 * [getTatProduct](#gettatproduct)
 * [getPincodeZones](#getpincodezones)
@@ -15,8 +13,6 @@ Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logist
 
 
 ## Methods with example and description
-
-
 
 
 ### getPincodeCity
@@ -385,8 +381,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | type | string |  no  |  |
+ | message | string |  no  |  |
  | value | string |  no  |  |
 
 ---
@@ -398,8 +394,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | internal_zone_id | number |  no  |  |
  | zone | string |  no  |  |
+ | internal_zone_id | number |  no  |  |
 
 ---
 
@@ -410,10 +406,10 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | uid | string |  no  |  |
- | display_name | string |  no  |  |
  | sub_type | string |  no  |  |
+ | display_name | string |  no  |  |
+ | uid | string |  no  |  |
+ | name | string |  no  |  |
 
 ---
 
@@ -424,13 +420,13 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | display_name | string |  no  |  |
- | uid | string |  no  |  |
- | meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  |
  | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
- | parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  |
+ | meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  |
  | sub_type | string |  no  |  |
+ | display_name | string |  no  |  |
+ | parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  |
+ | name | string |  no  |  |
+ | uid | string |  no  |  |
 
 ---
 
@@ -441,9 +437,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
  | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  |
  | data | [[PincodeDataResponse](#PincodeDataResponse)] |  no  |  |
- | success | boolean |  yes  |  |
 
 ---
 
@@ -454,8 +450,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | level | string |  no  |  |
  | id | number |  no  |  |
+ | level | string |  no  |  |
 
 ---
 
@@ -466,10 +462,10 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
  | available_quantity | number |  no  |  |
- | manufacturing_time_unit | string |  no  |  |
+ | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
  | manufacturing_time | number |  no  |  |
+ | manufacturing_time_unit | string |  no  |  |
 
 ---
 
@@ -480,9 +476,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | from_pincode | string |  no  |  |
- | articles | [[TATArticlesRequest](#TATArticlesRequest)] |  no  |  |
  | fulfillment_id | number |  no  |  |
+ | articles | [[TATArticlesRequest](#TATArticlesRequest)] |  no  |  |
+ | from_pincode | string |  no  |  |
 
 ---
 
@@ -493,12 +489,12 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | to_pincode | string |  no  |  |
  | action | string |  no  |  |
+ | journey | string |  no  |  |
  | identifier | string |  no  |  |
  | source | string |  no  |  |
- | journey | string |  no  |  |
  | location_details | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)] |  no  |  |
+ | to_pincode | string |  no  |  |
 
 ---
 
@@ -509,21 +505,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
  | type | string |  no  |  |
+ | message | string |  no  |  |
  | value | string |  no  |  |
-
----
-
-
- 
- 
- #### [TATTimestampResponse](#TATTimestampResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | number |  no  |  |
- | max | number |  no  |  |
 
 ---
 
@@ -542,12 +526,24 @@ Response status_code
 
  
  
+ #### [TATTimestampResponse](#TATTimestampResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | number |  no  |  |
+ | max | number |  no  |  |
+
+---
+
+
+ 
+ 
  #### [TATPromiseResponse](#TATPromiseResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
  | formatted | [TATFormattedResponse](#TATFormattedResponse) |  no  |  |
+ | timestamp | [TATTimestampResponse](#TATTimestampResponse) |  no  |  |
 
 ---
 
@@ -558,13 +554,13 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | manufacturing_time | number |  no  |  |
- | is_cod_available | boolean |  no  |  |
  | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
- | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
- | promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
+ | manufacturing_time | number |  no  |  |
  | manufacturing_time_unit | string |  no  |  |
+ | category | [TATCategoryRequest](#TATCategoryRequest) |  no  |  |
+ | is_cod_available | boolean |  no  |  |
  | _manufacturing_time_seconds | number |  no  |  |
+ | promise | [TATPromiseResponse](#TATPromiseResponse) |  no  |  |
 
 ---
 
@@ -575,9 +571,9 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | from_pincode | string |  no  |  |
- | articles | [[TATArticlesResponse](#TATArticlesResponse)] |  no  |  |
  | fulfillment_id | number |  no  |  |
+ | articles | [[TATArticlesResponse](#TATArticlesResponse)] |  no  |  |
+ | from_pincode | string |  no  |  |
 
 ---
 
@@ -588,19 +584,19 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | to_pincode | string |  no  |  |
  | action | string |  no  |  |
- | is_cod_available | boolean |  no  |  |
- | identifier | string |  no  |  |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
- | source | string |  no  |  |
- | to_city | string |  no  |  |
  | journey | string |  no  |  |
- | request_uuid | string |  no  |  |
- | payment_mode | string |  no  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse) |  no  |  |
  | stormbreaker_uuid | string |  no  |  |
- | location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  |
  | success | boolean |  no  |  |
+ | to_city | string |  no  |  |
+ | identifier | string |  no  |  |
+ | request_uuid | string |  no  |  |
+ | is_cod_available | boolean |  no  |  |
+ | source | string |  no  |  |
+ | payment_mode | string |  no  |  |
+ | location_details | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)] |  no  |  |
+ | to_pincode | string |  no  |  |
 
 ---
 
@@ -611,8 +607,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  yes  |  |
  | pincode | string |  yes  |  |
+ | country | string |  yes  |  |
 
 ---
 

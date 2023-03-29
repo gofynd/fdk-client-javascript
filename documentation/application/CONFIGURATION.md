@@ -2,12 +2,10 @@
 
 
 
-
 ##### [Back to Application docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
-
 * [getApplication](#getapplication)
 * [getOwnerInfo](#getownerinfo)
 * [getBasicDetails](#getbasicdetails)
@@ -28,8 +26,6 @@ Application configuration apis
 
 
 ## Methods with example and description
-
-
 
 
 ### getApplication
