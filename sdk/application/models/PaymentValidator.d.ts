@@ -14,6 +14,8 @@ declare class PaymentValidator {
     static getRupifiBannerDetails(): any;
     static getEpaylaterBannerDetails(): any;
     static resendOrCancelPayment(): any;
+    static renderHTML(): any;
+    static validateVPA(): any;
     static getActiveRefundTransferModes(): any;
     static enableOrDisableRefundTransferMode(): any;
     static getUserBeneficiariesDetail(): any;
@@ -24,6 +26,15 @@ declare class PaymentValidator {
     static addRefundBankAccountUsingOTP(): any;
     static verifyOtpAndAddBeneficiaryForWallet(): any;
     static updateDefaultBeneficiary(): any;
+    static getPaymentLink(): any;
+    static createPaymentLink(): any;
+    static resendPaymentLink(): any;
+    static cancelPaymentLink(): any;
+    static getPaymentModeRoutesPaymentLink(): any;
+    static pollingPaymentLink(): any;
+    static createOrderHandlerPaymentLink(): any;
+    static initialisePaymentPaymentLink(): any;
+    static checkAndUpdatePaymentStatusPaymentLink(): any;
     static customerCreditSummary(): any;
     static redirectToAggregator(): any;
     static checkCredit(): any;

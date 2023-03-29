@@ -18,15 +18,17 @@ declare class Serviceability {
      * @param {string} [arg.name] - Name of particular zone in the seller account
      * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
      * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+     * @param {string} [arg.q] - Search with name as a free text
      * @summary: Zone List of application.
      * @description: This API returns Zone List View of the application.
      */
-    getListView({ pageNumber, pageSize, name, isActive, channelIds }?: {
+    getListView({ pageNumber, pageSize, name, isActive, channelIds, q }?: {
         pageNumber?: number;
         pageSize?: number;
         name?: string;
         isActive?: boolean;
         channelIds?: string;
+        q?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

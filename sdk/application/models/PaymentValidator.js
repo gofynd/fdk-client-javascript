@@ -95,6 +95,18 @@ class PaymentValidator {
     }).required();
   }
 
+  static renderHTML() {
+    return Joi.object({
+      body: Validator.renderHTMLRequest().required(),
+    }).required();
+  }
+
+  static validateVPA() {
+    return Joi.object({
+      body: Validator.ValidateVPARequest().required(),
+    }).required();
+  }
+
   static getActiveRefundTransferModes() {
     return Joi.object({});
   }
@@ -150,6 +162,60 @@ class PaymentValidator {
   static updateDefaultBeneficiary() {
     return Joi.object({
       body: Validator.SetDefaultBeneficiaryRequest().required(),
+    }).required();
+  }
+
+  static getPaymentLink() {
+    return Joi.object({
+      paymentLinkId: Joi.string().allow(""),
+    });
+  }
+
+  static createPaymentLink() {
+    return Joi.object({
+      body: Validator.CreatePaymentLinkRequest().required(),
+    }).required();
+  }
+
+  static resendPaymentLink() {
+    return Joi.object({
+      body: Validator.CancelOrResendPaymentLinkRequest().required(),
+    }).required();
+  }
+
+  static cancelPaymentLink() {
+    return Joi.object({
+      body: Validator.CancelOrResendPaymentLinkRequest().required(),
+    }).required();
+  }
+
+  static getPaymentModeRoutesPaymentLink() {
+    return Joi.object({
+      paymentLinkId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static pollingPaymentLink() {
+    return Joi.object({
+      paymentLinkId: Joi.string().allow(""),
+    });
+  }
+
+  static createOrderHandlerPaymentLink() {
+    return Joi.object({
+      body: Validator.CreateOrderUserRequest().required(),
+    }).required();
+  }
+
+  static initialisePaymentPaymentLink() {
+    return Joi.object({
+      body: Validator.PaymentInitializationRequest().required(),
+    }).required();
+  }
+
+  static checkAndUpdatePaymentStatusPaymentLink() {
+    return Joi.object({
+      body: Validator.PaymentStatusUpdateRequest().required(),
     }).required();
   }
 

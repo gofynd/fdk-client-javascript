@@ -8,6 +8,7 @@ class PosCartValidator {
       b: Joi.boolean(),
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
     });
   }
 
@@ -23,6 +24,7 @@ class PosCartValidator {
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       body: Validator.AddCartRequest().required(),
     }).required();
   }
@@ -33,6 +35,7 @@ class PosCartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       body: Validator.UpdateCartRequest().required(),
     }).required();
   }
@@ -40,12 +43,14 @@ class PosCartValidator {
   static getItemCount() {
     return Joi.object({
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
     });
   }
 
   static getCoupons() {
     return Joi.object({
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
     });
   }
 
@@ -55,6 +60,7 @@ class PosCartValidator {
       b: Joi.boolean(),
       p: Joi.boolean(),
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       body: Validator.ApplyCouponRequest().required(),
     }).required();
   }
@@ -62,6 +68,7 @@ class PosCartValidator {
   static removeCoupon() {
     return Joi.object({
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
     });
   }
 
@@ -79,6 +86,7 @@ class PosCartValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
+      buyNow: Joi.boolean(),
       body: Validator.RewardPointRequest().required(),
     }).required();
   }
@@ -86,6 +94,7 @@ class PosCartValidator {
   static getAddresses() {
     return Joi.object({
       cartId: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       mobileNo: Joi.string().allow(""),
       checkoutMode: Joi.string().allow(""),
       tags: Joi.string().allow(""),
@@ -103,6 +112,7 @@ class PosCartValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       cartId: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       mobileNo: Joi.string().allow(""),
       checkoutMode: Joi.string().allow(""),
       tags: Joi.string().allow(""),
@@ -126,6 +136,7 @@ class PosCartValidator {
   static selectAddress() {
     return Joi.object({
       cartId: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       i: Joi.boolean(),
       b: Joi.boolean(),
       body: Validator.SelectCartAddressRequest().required(),
@@ -135,6 +146,7 @@ class PosCartValidator {
   static selectPaymentMode() {
     return Joi.object({
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       body: Validator.UpdateCartPaymentRequest().required(),
     }).required();
   }
@@ -142,6 +154,7 @@ class PosCartValidator {
   static validateCouponForPayment() {
     return Joi.object({
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       addressId: Joi.string().allow(""),
       paymentMode: Joi.string().allow(""),
       paymentIdentifier: Joi.string().allow(""),
@@ -183,6 +196,7 @@ class PosCartValidator {
   static updateCartMeta() {
     return Joi.object({
       id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
       body: Validator.CartMetaRequest().required(),
     }).required();
   }
