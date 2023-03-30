@@ -5,6 +5,8 @@ declare class Order {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
+     * @param {string} [arg.bagStatus] -
+     * @param {boolean} [arg.statusOverrideLane] -
      * @param {string} [arg.searchType] -
      * @param {string} [arg.searchValue] -
      * @param {string} [arg.searchId] -
@@ -18,16 +20,21 @@ declare class Order {
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @param {boolean} [arg.fetchActiveShipment] -
      * @param {boolean} [arg.excludeLockedShipments] -
      * @param {string} [arg.paymentMethods] -
      * @param {string} [arg.channelShipmentId] -
      * @param {string} [arg.channelOrderId] -
      * @param {string} [arg.customMeta] -
+     * @param {string} [arg.orderingChannel] -
+     * @param {string} [arg.companyAffiliateTag] -
      * @summary:
      * @description:
      */
-    getShipments({ lane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, searchType, searchValue, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, isPrioritySort, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, }?: {
         lane?: string;
+        bagStatus?: string;
+        statusOverrideLane?: boolean;
         searchType?: string;
         searchValue?: string;
         searchId?: string;
@@ -41,11 +48,14 @@ declare class Order {
         pageNo?: number;
         pageSize?: number;
         isPrioritySort?: boolean;
+        fetchActiveShipment?: boolean;
         excludeLockedShipments?: boolean;
         paymentMethods?: string;
         channelShipmentId?: string;
         channelOrderId?: string;
         customMeta?: string;
+        orderingChannel?: string;
+        companyAffiliateTag?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
