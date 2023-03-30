@@ -3,7 +3,7 @@ declare class ContentModel {
     static ApplicationLegal(): any;
     static ApplicationLegalFAQ(): any;
     static PathMappingSchema(): any;
-    static RedirectionSchema(): any;
+    static PathSourceSchema(): any;
     static SeoComponent(): any;
     static SeoSchema(): any;
     static CustomMetaTag(): any;

@@ -1438,10 +1438,10 @@ class Content {
    * @param {Object} arg - Arg object.
    * @param {PathMappingSchema} arg.body
    * @summary: Save path based redirection rules
-   * @description: Use this API to add, update or delete path-based redirection rules
+   * @description: Use this API to add redirection rules
    */
-  updatePathRedirectionRules({ body } = {}) {
-    const { error } = ContentValidator.updatePathRedirectionRules().validate(
+  addPathRedirectionRules({ body } = {}) {
+    const { error } = ContentValidator.addPathRedirectionRules().validate(
       {
         body,
       },
@@ -1464,12 +1464,49 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 5.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
    * @summary: Get path based redirection rules
    * @description: Use this API to get path based redirection rules.
    */
-  getPathRedirectionRules({} = {}) {
+  getPathRedirectionRules({ pageSize, pageNo } = {}) {
     const { error } = ContentValidator.getPathRedirectionRules().validate(
-      {},
+      {
+        pageSize,
+        pageNo,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @summary: Get path based redirection rule
+   * @description: Use this API to get path based redirection rule.
+   */
+  getPathRedirectionRule({ pathId } = {}) {
+    const { error } = ContentValidator.getPathRedirectionRule().validate(
+      {
+        pathId,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1481,7 +1518,65 @@ class Content {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
+      query_params,
+      undefined
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @param {PathMappingSchema} arg.body
+   * @summary: Update path based redirection rules
+   * @description: Use this API to update redirection rules
+   */
+  updatePathRedirectionRules({ pathId, body } = {}) {
+    const { error } = ContentValidator.updatePathRedirectionRules().validate(
+      {
+        pathId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @summary: Delete path based redirection rules
+   * @description: Use this API to delete redirection rules
+   */
+  deletePathRedirectionRules({ pathId } = {}) {
+    const { error } = ContentValidator.deletePathRedirectionRules().validate(
+      {
+        pathId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       undefined
     );

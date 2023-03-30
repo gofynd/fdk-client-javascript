@@ -241,7 +241,7 @@ class Cart {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] -
-   * @param {boolean} [arg.isActive] -
+   * @param {string} [arg.status] -
    * @param {string} [arg.promoGroup] -
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
@@ -253,7 +253,7 @@ class Cart {
     pageNo,
     pageSize,
     q,
-    isActive,
+    status,
     promoGroup,
     promotionType,
     fpPanel,
@@ -264,7 +264,7 @@ class Cart {
         pageNo,
         pageSize,
         q,
-        isActive,
+        status,
         promoGroup,
         promotionType,
         fpPanel,
@@ -280,7 +280,7 @@ class Cart {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["q"] = q;
-    query_params["is_active"] = isActive;
+    query_params["status"] = status;
     query_params["promo_group"] = promoGroup;
     query_params["promotion_type"] = promotionType;
     query_params["fp_panel"] = fpPanel;
@@ -301,7 +301,7 @@ class Cart {
    * @param {string} arg.applicationId - Current Application _id
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] -
-   * @param {boolean} [arg.isActive] -
+   * @param {string} [arg.status] -
    * @param {string} [arg.promoGroup] -
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
@@ -314,7 +314,7 @@ class Cart {
     applicationId,
     pageSize,
     q,
-    isActive,
+    status,
     promoGroup,
     promotionType,
     fpPanel,
@@ -331,7 +331,7 @@ class Cart {
         pageNo: pageNo,
         pageSize: pageSize,
         q: q,
-        isActive: isActive,
+        status: status,
         promoGroup: promoGroup,
         promotionType: promotionType,
         fpPanel: fpPanel,
@@ -460,6 +460,31 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: Fetch all promos that are set as active
+   * @description: Use this API to get list of all the active promos/coupons.
+   */
+  getPromosCouponConfig({} = {}) {
+    const { error } = CartValidator.getPromosCouponConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-coupons`,
+      query_params,
+      undefined
     );
   }
 

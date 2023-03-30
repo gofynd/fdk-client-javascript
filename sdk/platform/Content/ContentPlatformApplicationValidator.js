@@ -273,14 +273,36 @@ class ContentValidator {
     }).required();
   }
 
-  static updatePathRedirectionRules() {
+  static addPathRedirectionRules() {
     return Joi.object({
       body: ContentModel.PathMappingSchema().required(),
     }).required();
   }
 
   static getPathRedirectionRules() {
-    return Joi.object({}).required();
+    return Joi.object({
+      pageSize: Joi.number(),
+      pageNo: Joi.number(),
+    }).required();
+  }
+
+  static getPathRedirectionRule() {
+    return Joi.object({
+      pathId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static updatePathRedirectionRules() {
+    return Joi.object({
+      pathId: Joi.string().allow("").required(),
+      body: ContentModel.PathMappingSchema().required(),
+    }).required();
+  }
+
+  static deletePathRedirectionRules() {
+    return Joi.object({
+      pathId: Joi.string().allow("").required(),
+    }).required();
   }
 
   static getSEOConfiguration() {

@@ -376,14 +376,16 @@ declare class Cart {
      *   /service/application/catalog/v1.0/products/
      * @param {number} [arg.pageSize] - Number of offers to be fetched to show
      * @param {string} [arg.promotionGroup] - Type of promotion groups
+     * @param {number} [arg.storeId] - Store id
      * @returns {Promise<PromotionOffersResponse>} - Success response
      * @summary: Fetch available promotions
      * @description: Use this API to get top 5 offers available for current product
      */
-    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
+    getPromotionOffers({ slug, pageSize, promotionGroup, storeId }?: {
         slug?: string;
         pageSize?: number;
         promotionGroup?: string;
+        storeId?: number;
     }): Promise<PromotionOffersResponse>;
     /**
      * @param {Object} arg - Arg object.

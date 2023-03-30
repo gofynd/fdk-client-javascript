@@ -197,6 +197,7 @@ class CartValidator {
       slug: Joi.string().allow(""),
       pageSize: Joi.number(),
       promotionGroup: Joi.string().allow(""),
+      storeId: Joi.number(),
     });
   }
 

@@ -1,10 +1,10 @@
 export = CompanyProfileModel;
 declare class CompanyProfileModel {
-    static BusinessCountryInfo(): any;
-    static CompanyTaxesSerializer(): any;
-    static ContactDetails(): any;
     static Website(): any;
     static BusinessDetails(): any;
+    static CompanyTaxesSerializer(): any;
+    static ContactDetails(): any;
+    static BusinessCountryInfo(): any;
     static GetCompanyProfileSerializerResponse(): any;
     static CompanyTaxesSerializer1(): any;
     static CreateUpdateAddressSerializer(): any;
@@ -26,8 +26,8 @@ declare class CompanyProfileModel {
     static AddressSerializer(): any;
     static LocationSerializer(): any;
     static BulkLocationSerializer(): any;
-    static _ArticleAssignment(): any;
     static _ArticleQuery(): any;
+    static _ArticleAssignment(): any;
     static _AssignStoreArticle(): any;
     static AssignStoreRequestValidator(): any;
     static AssignStoreResponseSerializer(): any;

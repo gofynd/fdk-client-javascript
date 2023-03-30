@@ -35,21 +35,25 @@ class ContentModel {
     return Joi.object({
       application: Joi.string().allow(""),
 
-      redirections: Joi.array().items(ContentModel.RedirectionSchema()),
-
       _id: Joi.string().allow(""),
+
+      redirect_from: Joi.string().allow(""),
+
+      redirect_to: Joi.string().allow(""),
 
       updated_at: Joi.string().allow(""),
 
       created_at: Joi.string().allow(""),
+
+      __source: ContentModel.PathSourceSchema(),
     });
   }
 
-  static RedirectionSchema() {
+  static PathSourceSchema() {
     return Joi.object({
-      redirect_from: Joi.string().allow(""),
+      type: Joi.string().allow(""),
 
-      redirect_to: Joi.string().allow(""),
+      id: Joi.string().allow(""),
     });
   }
 
@@ -445,7 +449,7 @@ class ContentModel {
 
       sort_order: Joi.number(),
 
-      sub_navigation: Joi.array().items(Joi.any()),
+      sub_navigation: Joi.array().items(ContentModel.NavigationReference()),
     });
   }
 
@@ -557,6 +561,8 @@ class ContentModel {
       position: Joi.string().allow(""),
 
       attributes: Joi.any(),
+
+      pages: Joi.array().items(Joi.any()),
 
       content: Joi.string().allow(""),
     });
@@ -1213,6 +1219,8 @@ class ContentModel {
       attributes: Joi.any(),
 
       content: Joi.string().allow(""),
+
+      pages: Joi.array().items(Joi.any()),
 
       __source: ContentModel.TagSourceSchema(),
     });

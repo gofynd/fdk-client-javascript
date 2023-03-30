@@ -31,7 +31,6 @@ declare class OrderModel {
     static Identifiers(): any;
     static ItemBrand(): any;
     static AppliedPromos(): any;
-    static AppliedFreeArticles(): any;
     static FreeGiftItemDetails(): any;
     static ItemPriceDetails(): any;
     static MarkedValues(): any;

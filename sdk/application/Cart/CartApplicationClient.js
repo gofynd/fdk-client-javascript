@@ -946,13 +946,14 @@ class Cart {
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
    * @param {string} [arg.promotionGroup] - Type of promotion groups
+   * @param {number} [arg.storeId] - Store id
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
+  getPromotionOffers({ slug, pageSize, promotionGroup, storeId } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -962,6 +963,7 @@ class Cart {
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
+    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 

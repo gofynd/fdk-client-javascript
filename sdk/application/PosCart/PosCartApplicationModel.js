@@ -5,9 +5,9 @@ class PosCartModel {
     return Joi.object({
       shipment_type: Joi.string().allow("").required(),
 
-      article_uid: Joi.string().allow("").required(),
-
       quantity: Joi.number(),
+
+      article_uid: Joi.string().allow("").required(),
     });
   }
 
@@ -21,99 +21,99 @@ class PosCartModel {
 
   static Files() {
     return Joi.object({
-      values: Joi.array().items(Joi.string().allow("")).required(),
-
       key: Joi.string().allow("").required(),
+
+      values: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
   static CartPosCheckoutDetailRequest() {
     return Joi.object({
+      ordering_store: Joi.number().allow(null),
+
+      merchant_code: Joi.string().allow(""),
+
       address_id: Joi.string().allow(""),
 
-      files: Joi.array().items(PosCartModel.Files()),
+      payment_identifier: Joi.string().allow("").allow(null),
 
       pos: Joi.boolean(),
 
-      payment_mode: Joi.string().allow("").required(),
+      custom_meta: Joi.array().items(PosCartModel.CartCheckoutCustomMeta()),
 
-      meta: Joi.any(),
+      id: Joi.string().allow("").allow(null),
 
-      extra_meta: Joi.any(),
+      billing_address: Joi.any(),
 
-      ordering_store: Joi.number().allow(null),
-
-      staff: PosCartModel.StaffCheckout(),
+      payment_auto_confirm: Joi.boolean(),
 
       aggregator: Joi.string().allow(""),
 
       payment_params: Joi.any().allow(null),
 
-      billing_address: Joi.any(),
-
       order_type: Joi.string().allow("").required(),
 
-      merchant_code: Joi.string().allow(""),
-
-      custom_meta: Joi.array().items(PosCartModel.CartCheckoutCustomMeta()),
+      files: Joi.array().items(PosCartModel.Files()),
 
       pick_at_store_uid: Joi.number().allow(null),
-
-      id: Joi.string().allow("").allow(null),
-
-      payment_auto_confirm: Joi.boolean(),
-
-      delivery_address: Joi.any(),
-
-      payment_identifier: Joi.string().allow("").allow(null),
 
       callback_url: Joi.string().allow("").allow(null),
 
       billing_address_id: Joi.string().allow(""),
+
+      extra_meta: Joi.any(),
+
+      meta: Joi.any(),
+
+      payment_mode: Joi.string().allow("").required(),
+
+      staff: PosCartModel.StaffCheckout(),
+
+      delivery_address: Joi.any(),
     });
   }
 
   static CartDeliveryModesResponse() {
     return Joi.object({
-      pickup_stores: Joi.array().items(Joi.number()),
-
       available_modes: Joi.array().items(Joi.string().allow("")),
+
+      pickup_stores: Joi.array().items(Joi.number()),
     });
   }
 
   static PickupStoreDetail() {
     return Joi.object({
-      name: Joi.string().allow(""),
-
-      area_code_slug: Joi.string().allow(""),
-
-      phone: Joi.string().allow(""),
-
-      state: Joi.string().allow(""),
-
-      landmark: Joi.string().allow(""),
-
-      store_code: Joi.string().allow(""),
-
-      pincode: Joi.number(),
-
-      area_code: Joi.string().allow(""),
-
-      id: Joi.number(),
-
-      area: Joi.string().allow(""),
-
-      country: Joi.string().allow(""),
-
       email: Joi.string().allow(""),
-
-      city: Joi.string().allow(""),
-
-      uid: Joi.number(),
 
       address_type: Joi.string().allow(""),
 
+      area_code_slug: Joi.string().allow(""),
+
+      landmark: Joi.string().allow(""),
+
+      city: Joi.string().allow(""),
+
+      state: Joi.string().allow(""),
+
+      phone: Joi.string().allow(""),
+
+      store_code: Joi.string().allow(""),
+
       address: Joi.string().allow(""),
+
+      country: Joi.string().allow(""),
+
+      area_code: Joi.string().allow(""),
+
+      pincode: Joi.number(),
+
+      area: Joi.string().allow(""),
+
+      id: Joi.number(),
+
+      uid: Joi.number(),
+
+      name: Joi.string().allow(""),
     });
   }
 

@@ -46,7 +46,7 @@ class CartValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
-      isActive: Joi.boolean(),
+      status: Joi.string().allow(""),
       promoGroup: Joi.string().allow(""),
       promotionType: Joi.string().allow(""),
       fpPanel: Joi.string().allow(""),
@@ -78,6 +78,10 @@ class CartValidator {
       id: Joi.string().allow("").required(),
       body: CartModel.PromotionPartialUpdate().required(),
     }).required();
+  }
+
+  static getPromosCouponConfig() {
+    return Joi.object({}).required();
   }
 
   static fetchAndvalidateCartItems() {
