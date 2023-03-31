@@ -20,13 +20,13 @@ declare class PaymentModel {
     static PaymentInitializationResponse(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
-    static IntentAppErrorList(): any;
-    static PaymentModeLogo(): any;
-    static IntentApp(): any;
-    static PaymentModeList(): any;
-    static RootPaymentMode(): any;
     static AggregatorRoute(): any;
     static PaymentFlow(): any;
+    static PaymentModeLogo(): any;
+    static IntentApp(): any;
+    static IntentAppErrorList(): any;
+    static PaymentModeList(): any;
+    static RootPaymentMode(): any;
     static PaymentOptionAndFlow(): any;
     static PaymentModeRouteResponse(): any;
     static RupifiBannerData(): any;
