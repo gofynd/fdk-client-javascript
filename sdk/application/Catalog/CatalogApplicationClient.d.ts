@@ -517,7 +517,7 @@ declare class Catalog {
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStores({ pageNo, pageSize, q, city, range, latitude, longitude }?: {
+    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, }?: {
         pageNo?: number;
         pageSize?: number;
         q?: string;

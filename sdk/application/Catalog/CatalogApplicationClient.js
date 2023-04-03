@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const CatalogValidator = require("./CatalogApplicationValidator");
+const CatalogModel = require("./CatalogApplicationModel");
+const { Logger } = require("./../../common/Logger");
 
 class Catalog {
   constructor(_conf) {
@@ -84,7 +86,7 @@ class Catalog {
    * @summary: Get a product
    * @description: Use this API to retrieve a product by its slug value.
    */
-  getProductDetailBySlug({ slug } = {}) {
+  async getProductDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getProductDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -101,15 +103,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductDetailBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductDetailBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -120,6 +125,21 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = CatalogModel.ProductDetail().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductDetailBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -133,7 +153,7 @@ class Catalog {
    * @summary: Get the sizes of a product
    * @description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
    */
-  getProductSizesBySlug({ slug, storeId } = {}) {
+  async getProductSizesBySlug({ slug, storeId } = {}) {
     const { error } = CatalogValidator.getProductSizesBySlug().validate(
       { slug, storeId },
       { abortEarly: false, allowUnknown: true }
@@ -150,8 +170,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductSizesBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductSizesBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -159,7 +182,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -170,6 +193,21 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = CatalogModel.ProductSizes().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductSizesBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -181,7 +219,7 @@ class Catalog {
    * @summary: Compare products
    * @description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
    */
-  getProductComparisonBySlugs({ slug } = {}) {
+  async getProductComparisonBySlugs({ slug } = {}) {
     const { error } = CatalogValidator.getProductComparisonBySlugs().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -198,10 +236,12 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getProductComparisonBySlugs"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getProductComparisonBySlugs",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -209,7 +249,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -220,6 +260,24 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductsComparisonResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getProductComparisonBySlugs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -231,7 +289,7 @@ class Catalog {
    * @summary: Get comparison between similar products
    * @description: Use this API to compare a given product automatically with similar products. Only one slug is needed.
    */
-  getSimilarComparisonProductBySlug({ slug } = {}) {
+  async getSimilarComparisonProductBySlug({ slug } = {}) {
     const {
       error,
     } = CatalogValidator.getSimilarComparisonProductBySlug().validate(
@@ -250,17 +308,19 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getSimilarComparisonProductBySlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getSimilarComparisonProductBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -271,6 +331,24 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductCompareResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getSimilarComparisonProductBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -282,7 +360,7 @@ class Catalog {
    * @summary: Get comparison between frequently compared products with the given product
    * @description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
    */
-  getComparedFrequentlyProductBySlug({ slug } = {}) {
+  async getComparedFrequentlyProductBySlug({ slug } = {}) {
     const {
       error,
     } = CatalogValidator.getComparedFrequentlyProductBySlug().validate(
@@ -301,17 +379,19 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getComparedFrequentlyProductBySlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getComparedFrequentlyProductBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -322,6 +402,24 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductFrequentlyComparedSimilarResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getComparedFrequentlyProductBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -333,7 +431,7 @@ class Catalog {
    * @summary: Get variant of a particular product
    * @description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
    */
-  getProductVariantsBySlug({ slug } = {}) {
+  async getProductVariantsBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getProductVariantsBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -350,17 +448,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getProductVariantsBySlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductVariantsBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -371,6 +470,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductVariantsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductVariantsBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -388,7 +504,7 @@ class Catalog {
    * @summary: Get the stock of a product
    * @description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
    */
-  getProductStockByIds({ itemId, alu, skuCode, ean, upc } = {}) {
+  async getProductStockByIds({ itemId, alu, skuCode, ean, upc } = {}) {
     const { error } = CatalogValidator.getProductStockByIds().validate(
       { itemId, alu, skuCode, ean, upc },
       { abortEarly: false, allowUnknown: true }
@@ -405,8 +521,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductStockByIds");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductStockByIds",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -418,7 +537,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -429,6 +548,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductStockStatusResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductStockByIds",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -440,7 +576,7 @@ class Catalog {
    * @summary: Get the stock of a product
    * @description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
    */
-  getProductStockForTimeByIds({ timestamp, pageSize, pageId } = {}) {
+  async getProductStockForTimeByIds({ timestamp, pageSize, pageId } = {}) {
     const { error } = CatalogValidator.getProductStockForTimeByIds().validate(
       { timestamp, pageSize, pageId },
       { abortEarly: false, allowUnknown: true }
@@ -457,10 +593,12 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getProductStockForTimeByIds"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getProductStockForTimeByIds",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -470,7 +608,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -481,6 +619,24 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductStockPolling().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getProductStockForTimeByIds",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -533,7 +689,7 @@ class Catalog {
    * @summary: Get all the products
    * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
    */
-  getProducts({
+  async getProducts({
     q,
     f,
     filters,
@@ -557,8 +713,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProducts");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProducts",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -573,7 +732,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -584,6 +743,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProducts",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -642,7 +818,7 @@ class Catalog {
    * @summary: Get all the brands
    * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
    */
-  getBrands({ department, pageNo, pageSize } = {}) {
+  async getBrands({ department, pageNo, pageSize } = {}) {
     const { error } = CatalogValidator.getBrands().validate(
       { department, pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -657,8 +833,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBrands");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBrands",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -668,7 +847,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -679,6 +858,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.BrandListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBrands",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -721,7 +917,7 @@ class Catalog {
    * @summary: Get metadata of a brand
    * @description: Fetch metadata of a brand such as name, information, logo, banner, etc.
    */
-  getBrandDetailBySlug({ slug } = {}) {
+  async getBrandDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getBrandDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -738,15 +934,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBrandDetailBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBrandDetailBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -757,6 +956,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.BrandDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBrandDetailBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -769,7 +985,7 @@ class Catalog {
    * @summary: List all the categories
    * @description: Use this API to list all the categories. You can also filter the categories by department.
    */
-  getCategories({ department } = {}) {
+  async getCategories({ department } = {}) {
     const { error } = CatalogValidator.getCategories().validate(
       { department },
       { abortEarly: false, allowUnknown: true }
@@ -784,8 +1000,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCategories");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCategories",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -793,7 +1012,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -804,6 +1023,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.CategoryListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCategories",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -815,7 +1051,7 @@ class Catalog {
    * @summary: Get metadata of a category
    * @description: Fetch metadata of a category such as name, information, logo, banner, etc.
    */
-  getCategoryDetailBySlug({ slug } = {}) {
+  async getCategoryDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getCategoryDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -832,15 +1068,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCategoryDetailBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCategoryDetailBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -851,6 +1090,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.CategoryMetaResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCategoryDetailBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -864,7 +1120,7 @@ class Catalog {
    * @summary: List the products
    * @description: List all the products associated with a brand, collection or category in a random order.
    */
-  getHomeProducts({ sortOn, pageId, pageSize } = {}) {
+  async getHomeProducts({ sortOn, pageId, pageSize } = {}) {
     const { error } = CatalogValidator.getHomeProducts().validate(
       { sortOn, pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -879,8 +1135,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getHomeProducts");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getHomeProducts",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -890,7 +1149,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -901,6 +1160,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.HomeListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getHomeProducts",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -939,7 +1215,7 @@ class Catalog {
    * @summary: List all the departments
    * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
    */
-  getDepartments({} = {}) {
+  async getDepartments({} = {}) {
     const { error } = CatalogValidator.getDepartments().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -954,15 +1230,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDepartments");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDepartments",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -973,6 +1252,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.DepartmentResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDepartments",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -985,7 +1281,7 @@ class Catalog {
    * @summary: Get relevant suggestions for a search query
    * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
    */
-  getSearchResults({ q } = {}) {
+  async getSearchResults({ q } = {}) {
     const { error } = CatalogValidator.getSearchResults().validate(
       { q },
       { abortEarly: false, allowUnknown: true }
@@ -1000,8 +1296,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSearchResults");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSearchResults",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1009,7 +1308,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1020,6 +1319,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.AutoCompleteResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSearchResults",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1032,7 +1348,7 @@ class Catalog {
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
-  getCollections({ pageNo, pageSize, tag } = {}) {
+  async getCollections({ pageNo, pageSize, tag } = {}) {
     const { error } = CatalogValidator.getCollections().validate(
       { pageNo, pageSize, tag },
       { abortEarly: false, allowUnknown: true }
@@ -1047,8 +1363,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCollections");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCollections",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1058,7 +1377,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1069,6 +1388,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.GetCollectionListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCollections",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1119,7 +1455,7 @@ class Catalog {
    * @summary: Get the items in a collection
    * @description: Get items in a collection specified by its `slug`.
    */
-  getCollectionItemsBySlug({
+  async getCollectionItemsBySlug({
     slug,
     f,
     filters,
@@ -1143,10 +1479,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getCollectionItemsBySlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCollectionItemsBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1158,7 +1495,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1169,6 +1506,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCollectionItemsBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1228,7 +1582,7 @@ class Catalog {
    * @summary: Get a particular collection
    * @description: Get the details of a collection by its `slug`.
    */
-  getCollectionDetailBySlug({ slug } = {}) {
+  async getCollectionDetailBySlug({ slug } = {}) {
     const { error } = CatalogValidator.getCollectionDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -1245,17 +1599,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getCollectionDetailBySlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCollectionDetailBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1266,6 +1621,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.CollectionDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCollectionDetailBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1278,7 +1650,7 @@ class Catalog {
    * @summary: Get a list of followed Products, Brands, Collections
    * @description: Users can follow a product they like. This API retrieves the products the user have followed.
    */
-  getFollowedListing({ collectionType, pageId, pageSize } = {}) {
+  async getFollowedListing({ collectionType, pageId, pageSize } = {}) {
     const { error } = CatalogValidator.getFollowedListing().validate(
       { collectionType, pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -1293,8 +1665,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFollowedListing");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFollowedListing",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1303,7 +1678,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1314,6 +1689,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.GetFollowListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFollowedListing",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1354,7 +1746,7 @@ class Catalog {
    * @summary: Follow an entity (product/brand/collection)
    * @description: Follow a particular entity such as product, brand, collection specified by its ID.
    */
-  followById({ collectionType, collectionId } = {}) {
+  async followById({ collectionType, collectionId } = {}) {
     const { error } = CatalogValidator.followById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
@@ -1369,15 +1761,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for followById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for followById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1388,6 +1783,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.FollowPostResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for followById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1399,7 +1811,7 @@ class Catalog {
    * @summary: Unfollow an entity (product/brand/collection)
    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
    */
-  unfollowById({ collectionType, collectionId } = {}) {
+  async unfollowById({ collectionType, collectionId } = {}) {
     const { error } = CatalogValidator.unfollowById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
@@ -1414,15 +1826,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for unfollowById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for unfollowById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1433,6 +1848,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.FollowPostResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for unfollowById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1444,7 +1876,7 @@ class Catalog {
    * @summary: Get Follow Count
    * @description: Get the total count of followers for a given collection type and collection ID.
    */
-  getFollowerCountById({ collectionType, collectionId } = {}) {
+  async getFollowerCountById({ collectionType, collectionId } = {}) {
     const { error } = CatalogValidator.getFollowerCountById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
@@ -1461,15 +1893,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFollowerCountById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFollowerCountById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1480,6 +1915,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.FollowerCountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFollowerCountById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1490,7 +1942,7 @@ class Catalog {
    * @summary: Get the IDs of followed products, brands and collections.
    * @description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
    */
-  getFollowIds({ collectionType } = {}) {
+  async getFollowIds({ collectionType } = {}) {
     const { error } = CatalogValidator.getFollowIds().validate(
       { collectionType },
       { abortEarly: false, allowUnknown: true }
@@ -1505,8 +1957,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFollowIds");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFollowIds",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1514,7 +1969,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1525,6 +1980,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.FollowIdsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFollowIds",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1544,7 +2016,15 @@ class Catalog {
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
-  getStores({ pageNo, pageSize, q, city, range, latitude, longitude } = {}) {
+  async getStores({
+    pageNo,
+    pageSize,
+    q,
+    city,
+    range,
+    latitude,
+    longitude,
+  } = {}) {
     const { error } = CatalogValidator.getStores().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: true }
@@ -1559,8 +2039,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getStores");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getStores",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1574,7 +2057,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1585,6 +2068,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.StoreListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getStores",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1643,7 +2143,7 @@ class Catalog {
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
-  getInStockLocations({
+  async getInStockLocations({
     pageNo,
     pageSize,
     q,
@@ -1666,8 +2166,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getInStockLocations");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getInStockLocations",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1681,7 +2184,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1692,6 +2195,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ApplicationStoreListing().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getInStockLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1747,7 +2267,7 @@ class Catalog {
    * @summary: Get store meta information.
    * @description: Use this API to get meta details for a store.
    */
-  getLocationDetailsById({ locationId } = {}) {
+  async getLocationDetailsById({ locationId } = {}) {
     const { error } = CatalogValidator.getLocationDetailsById().validate(
       { locationId },
       { abortEarly: false, allowUnknown: true }
@@ -1764,15 +2284,18 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLocationDetailsById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLocationDetailsById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1783,6 +2306,21 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = CatalogModel.StoreDetails().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLocationDetailsById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1793,7 +2331,7 @@ class Catalog {
    * @summary: Get product bundles
    * @description: Use this API to retrieve products bundles to the one specified by its slug.
    */
-  getProductBundlesBySlug({ slug, id } = {}) {
+  async getProductBundlesBySlug({ slug, id } = {}) {
     const { error } = CatalogValidator.getProductBundlesBySlug().validate(
       { slug, id },
       { abortEarly: false, allowUnknown: true }
@@ -1810,8 +2348,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductBundlesBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductBundlesBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1820,7 +2361,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1831,6 +2372,21 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = CatalogModel.ProductBundle().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductBundlesBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1851,7 +2407,7 @@ class Catalog {
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
-  getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
+  async getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
       { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
@@ -1868,8 +2424,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductPriceBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductPriceBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1879,7 +2438,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1890,6 +2449,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductSizePriceResponseV3().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductPriceBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1911,7 +2487,7 @@ class Catalog {
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
-  getProductSellersBySlug({
+  async getProductSellersBySlug({
     slug,
     size,
     pincode,
@@ -1935,8 +2511,11 @@ class Catalog {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductSellersBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductSellersBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1947,7 +2526,7 @@ class Catalog {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1958,6 +2537,23 @@ class Catalog {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CatalogModel.ProductSizeSellersResponseV3().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductSellersBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**

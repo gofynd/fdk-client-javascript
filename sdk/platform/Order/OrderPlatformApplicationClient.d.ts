@@ -19,6 +19,7 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -37,23 +38,25 @@ declare class Order {
         pageSize?: number;
         customerId?: string;
         isPrioritySort?: boolean;
-    }): Promise<any>;
+    }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
+     * @returns {Promise<ShipmentDetailsResponse>} - Success response
      * @summary:
      * @description:
      */
     getAppOrderShipmentDetails({ orderId }?: {
         orderId: string;
-    }): Promise<any>;
+    }): Promise<ShipmentDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
+     * @returns {Promise<PlatformShipmentTrack>} - Success response
      * @summary: Track shipment
      * @description: Track Shipment by shipment id, for application based on application Id
      */
     trackPlatformShipment({ shipmentId }?: {
         shipmentId: string;
-    }): Promise<any>;
+    }): Promise<PlatformShipmentTrack>;
 }

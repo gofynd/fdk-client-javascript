@@ -7,107 +7,118 @@ declare class Rewards {
      * @param {Object} arg - Arg object.
      * @param {string} arg.pageId - Pagination page id
      * @param {number} arg.pageSize - Pagination page size
+     * @returns {Promise<GiveawayResponse>} - Success response
      * @summary: List of giveaways of the current application.
      * @description: List of giveaways of the current application.
      */
     showGiveaways({ pageId, pageSize }?: {
         pageId: string;
         pageSize: number;
-    }): Promise<any>;
+    }): Promise<GiveawayResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {Giveaway} arg.body
+     * @returns {Promise<Giveaway>} - Success response
      * @summary: List of giveaways of the current application.
      * @description: Adds a new giveaway.
      */
     saveGiveAway({ body }?: {
         body: Giveaway;
-    }): Promise<any>;
+    }): Promise<Giveaway>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Giveaway ID
+     * @returns {Promise<Giveaway>} - Success response
      * @summary: Get giveaway by ID.
      * @description: Get giveaway by ID.
      */
     getGiveawayById({ id }?: {
         id: string;
-    }): Promise<any>;
+    }): Promise<Giveaway>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Giveaway ID
      * @param {Giveaway} arg.body
+     * @returns {Promise<Giveaway>} - Success response
      * @summary: Updates the giveaway by it's ID.
      * @description: Updates the giveaway by it's ID.
      */
     updateGiveAway({ id, body }?: {
         id: string;
         body: Giveaway;
-    }): Promise<any>;
+    }): Promise<Giveaway>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.audienceId - Audience id
+     * @returns {Promise<GiveawayAudience>} - Success response
      * @summary: Get the Giveaway audience status
      * @description: Get giveaway audience status
      */
     getGiveawayAudienceStatus({ audienceId }?: {
         audienceId: string;
-    }): Promise<any>;
+    }): Promise<GiveawayAudience>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<Offer[]>} - Success response
      * @summary: List of offers of the current application.
      * @description: List of offers of the current application.
      */
-    showOffers({}?: any): Promise<any>;
+    showOffers({}?: any): Promise<Offer[]>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
      * @param {string} arg.cookie - User's session cookie. This cookie is set in
      *   browser cookie when logged-in to fynd's authentication system i.e.
      *   `Grimlock` or by using grimlock-backend SDK for backend implementation.
+     * @returns {Promise<Offer>} - Success response
      * @summary: Get offer by name
      * @description: Use this API to get the offer details and configuration by entering the name of the offer.
      */
     getOfferByName({ name, cookie }?: {
         name: string;
         cookie: string;
-    }): Promise<any>;
+    }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.name - The name given to the offer.
      * @param {Offer} arg.body
+     * @returns {Promise<Offer>} - Success response
      * @summary: Update offer by name
      * @description: Use this API to update the offer details
      */
     updateOfferByName({ name, body }?: {
         name: string;
         body: Offer;
-    }): Promise<any>;
+    }): Promise<Offer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
      * @param {AppUser} arg.body
+     * @returns {Promise<AppUser>} - Success response
      * @summary: Update user status
      * @description: Use this API to update the user status active/archive
      */
     updateUserStatus({ userId, body }?: {
         userId: string;
         body: AppUser;
-    }): Promise<any>;
+    }): Promise<AppUser>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
+     * @returns {Promise<UserRes>} - Success response
      * @summary: Get user reward details
      * @description: Use this API to get the user reward details
      */
     user({ userId }?: {
         userId: string;
-    }): Promise<any>;
+    }): Promise<UserRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
      * @param {string} [arg.pageId] - PageID is the ID of the requested page.
      *   For first request it should be kept empty.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @returns {Promise<HistoryRes>} - Success response
      * @summary: Get all transactions of reward points
      * @description: Use this API to get a list of points transactions.
      */
@@ -115,7 +126,7 @@ declare class Rewards {
         userId: string;
         pageId?: string;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<HistoryRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
@@ -133,18 +144,20 @@ declare class Rewards {
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<ConfigurationRes>} - Success response
      * @summary: Get all valid android paths
      * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fradualent device.
      */
-    getRewardsConfiguration({}?: any): Promise<any>;
+    getRewardsConfiguration({}?: any): Promise<ConfigurationRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ConfigurationRequest} arg.body
+     * @returns {Promise<SetConfigurationRes>} - Success response
      * @summary: Updates the collection with given android paths.
      * @description: Updates the configuration or inserts new records.
      */
     setRewardsConfiguration({ body }?: {
         body: ConfigurationRequest;
-    }): Promise<any>;
+    }): Promise<SetConfigurationRes>;
 }
 import Paginator = require("../../common/Paginator");

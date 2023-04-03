@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PaymentValidator = require("./PaymentApplicationValidator");
+const PaymentModel = require("./PaymentApplicationModel");
+const { Logger } = require("./../../common/Logger");
 
 class Payment {
   constructor(_conf) {
@@ -100,7 +102,7 @@ class Payment {
    * @summary: Get payment gateway keys
    * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
    */
-  getAggregatorsConfig({ xApiToken, refresh } = {}) {
+  async getAggregatorsConfig({ xApiToken, refresh } = {}) {
     const { error } = PaymentValidator.getAggregatorsConfig().validate(
       { xApiToken, refresh },
       { abortEarly: false, allowUnknown: true }
@@ -117,8 +119,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAggregatorsConfig");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAggregatorsConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -127,7 +132,7 @@ class Payment {
     const xHeaders = {};
     xHeaders["x-api-token"] = xApiToken;
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -138,6 +143,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.AggregatorsConfigDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAggregatorsConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -147,7 +169,7 @@ class Payment {
    * @summary: Attach a saved card to customer.
    * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
    */
-  attachCardToCustomer({ body } = {}) {
+  async attachCardToCustomer({ body } = {}) {
     const { error } = PaymentValidator.attachCardToCustomer().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -164,15 +186,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for attachCardToCustomer");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for attachCardToCustomer",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -183,6 +208,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.AttachCardsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for attachCardToCustomer",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -192,7 +234,7 @@ class Payment {
    * @summary: Fetch active payment gateway for card payments
    * @description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
    */
-  getActiveCardAggregator({ refresh } = {}) {
+  async getActiveCardAggregator({ refresh } = {}) {
     const { error } = PaymentValidator.getActiveCardAggregator().validate(
       { refresh },
       { abortEarly: false, allowUnknown: true }
@@ -209,8 +251,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getActiveCardAggregator");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getActiveCardAggregator",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -218,7 +263,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -229,6 +274,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ActiveCardPaymentGatewayResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getActiveCardAggregator",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -238,7 +300,7 @@ class Payment {
    * @summary: Fetch the list of cards saved by the user
    * @description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
    */
-  getActiveUserCards({ forceRefresh } = {}) {
+  async getActiveUserCards({ forceRefresh } = {}) {
     const { error } = PaymentValidator.getActiveUserCards().validate(
       { forceRefresh },
       { abortEarly: false, allowUnknown: true }
@@ -253,8 +315,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getActiveUserCards");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getActiveUserCards",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -262,7 +327,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -273,6 +338,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ListCardsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getActiveUserCards",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -282,7 +364,7 @@ class Payment {
    * @summary: Delete a card
    * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
    */
-  deleteUserCard({ body } = {}) {
+  async deleteUserCard({ body } = {}) {
     const { error } = PaymentValidator.deleteUserCard().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -297,15 +379,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteUserCard");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteUserCard",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -316,6 +401,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.DeleteCardsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteUserCard",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -325,7 +427,7 @@ class Payment {
    * @summary: Validate customer for payment
    * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
    */
-  verifyCustomerForPayment({ body } = {}) {
+  async verifyCustomerForPayment({ body } = {}) {
     const { error } = PaymentValidator.verifyCustomerForPayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -342,17 +444,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for verifyCustomerForPayment"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verifyCustomerForPayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -363,6 +466,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ValidateCustomerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verifyCustomerForPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -372,7 +492,7 @@ class Payment {
    * @summary: Verify and charge payment
    * @description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
    */
-  verifyAndChargePayment({ body } = {}) {
+  async verifyAndChargePayment({ body } = {}) {
     const { error } = PaymentValidator.verifyAndChargePayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -389,15 +509,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for verifyAndChargePayment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verifyAndChargePayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -408,6 +531,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ChargeCustomerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verifyAndChargePayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -417,7 +557,7 @@ class Payment {
    * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
    * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
    */
-  initialisePayment({ body } = {}) {
+  async initialisePayment({ body } = {}) {
     const { error } = PaymentValidator.initialisePayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -432,15 +572,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for initialisePayment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for initialisePayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -451,6 +594,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentInitializationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for initialisePayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -460,7 +620,7 @@ class Payment {
    * @summary: Performs continuous polling to check status of payment on the server
    * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
    */
-  checkAndUpdatePaymentStatus({ body } = {}) {
+  async checkAndUpdatePaymentStatus({ body } = {}) {
     const { error } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -477,17 +637,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for checkAndUpdatePaymentStatus"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for checkAndUpdatePaymentStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -498,6 +660,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentStatusUpdateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for checkAndUpdatePaymentStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -517,7 +697,7 @@ class Payment {
    * @summary: Get applicable payment options
    * @description: Use this API to get all valid payment options for doing a payment.
    */
-  getPaymentModeRoutes({
+  async getPaymentModeRoutes({
     amount,
     cartId,
     pincode,
@@ -558,8 +738,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPaymentModeRoutes");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -573,7 +756,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -584,6 +767,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentModeRouteResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -606,7 +806,7 @@ class Payment {
    * @summary: Get applicable payment options for Point-of-Sale (POS)
    * @description: Use this API to get all valid payment options for doing a payment in POS.
    */
-  getPosPaymentModeRoutes({
+  async getPosPaymentModeRoutes({
     amount,
     cartId,
     pincode,
@@ -650,8 +850,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPosPaymentModeRoutes");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPosPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -666,7 +869,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -677,6 +880,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentModeRouteResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPosPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -685,7 +905,7 @@ class Payment {
    * @summary: Get CreditLine Offer
    * @description: Get CreditLine Offer if user is tentatively approved by rupifi
    */
-  getRupifiBannerDetails({} = {}) {
+  async getRupifiBannerDetails({} = {}) {
     const { error } = PaymentValidator.getRupifiBannerDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -702,15 +922,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getRupifiBannerDetails");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRupifiBannerDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -721,6 +944,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RupifiBannerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRupifiBannerDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -729,7 +969,7 @@ class Payment {
    * @summary: Get Epaylater Enabled
    * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
    */
-  getEpaylaterBannerDetails({} = {}) {
+  async getEpaylaterBannerDetails({} = {}) {
     const { error } = PaymentValidator.getEpaylaterBannerDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -746,17 +986,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getEpaylaterBannerDetails"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEpaylaterBannerDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -767,6 +1008,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EpaylaterBannerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEpaylaterBannerDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -776,7 +1034,7 @@ class Payment {
    * @summary: API to resend and cancel a payment link which was already generated.
    * @description: Use this API to perform resend or cancel a payment link based on request payload.
    */
-  resendOrCancelPayment({ body } = {}) {
+  async resendOrCancelPayment({ body } = {}) {
     const { error } = PaymentValidator.resendOrCancelPayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -793,15 +1051,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for resendOrCancelPayment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for resendOrCancelPayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -812,6 +1073,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ResendOrCancelPaymentResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for resendOrCancelPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -821,7 +1099,7 @@ class Payment {
    * @summary: Convert base64 string to HTML form
    * @description: Use this API to decode base64 html form to plain HTML string.
    */
-  renderHTML({ body } = {}) {
+  async renderHTML({ body } = {}) {
     const { error } = PaymentValidator.renderHTML().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -836,15 +1114,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for renderHTML");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for renderHTML",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -855,6 +1136,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.renderHTMLResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for renderHTML",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -864,7 +1162,7 @@ class Payment {
    * @summary: API to Validate UPI ID
    * @description: API to Validate UPI ID
    */
-  validateVPA({ body } = {}) {
+  async validateVPA({ body } = {}) {
     const { error } = PaymentValidator.validateVPA().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -879,15 +1177,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for validateVPA");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for validateVPA",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -898,6 +1199,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ValidateVPAResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for validateVPA",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -906,7 +1224,7 @@ class Payment {
    * @summary: Lists the mode of refund
    * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
    */
-  getActiveRefundTransferModes({} = {}) {
+  async getActiveRefundTransferModes({} = {}) {
     const { error } = PaymentValidator.getActiveRefundTransferModes().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -923,17 +1241,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getActiveRefundTransferModes"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getActiveRefundTransferModes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -944,6 +1264,24 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.TransferModeResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getActiveRefundTransferModes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -953,7 +1291,7 @@ class Payment {
    * @summary: Enable/Disable a mode for transferring a refund
    * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
    */
-  enableOrDisableRefundTransferMode({ body } = {}) {
+  async enableOrDisableRefundTransferMode({ body } = {}) {
     const {
       error,
     } = PaymentValidator.enableOrDisableRefundTransferMode().validate(
@@ -972,17 +1310,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for enableOrDisableRefundTransferMode"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for enableOrDisableRefundTransferMode",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -993,6 +1333,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.UpdateRefundTransferModeResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for enableOrDisableRefundTransferMode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1003,7 +1361,7 @@ class Payment {
    * @summary: Lists the beneficiary of a refund
    * @description: Use this API to get the details of all active beneficiary added by a user for refund.
    */
-  getUserBeneficiariesDetail({ orderId } = {}) {
+  async getUserBeneficiariesDetail({ orderId } = {}) {
     const { error } = PaymentValidator.getUserBeneficiariesDetail().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
@@ -1020,10 +1378,12 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getUserBeneficiariesDetail"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getUserBeneficiariesDetail",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1031,7 +1391,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1042,6 +1402,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.OrderBeneficiaryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUserBeneficiariesDetail",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1052,7 +1429,7 @@ class Payment {
    * @summary: Verify IFSC Code
    * @description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
    */
-  verifyIfscCode({ ifscCode } = {}) {
+  async verifyIfscCode({ ifscCode } = {}) {
     const { error } = PaymentValidator.verifyIfscCode().validate(
       { ifscCode },
       { abortEarly: false, allowUnknown: true }
@@ -1067,8 +1444,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for verifyIfscCode");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verifyIfscCode",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1076,7 +1456,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1087,6 +1467,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.IfscCodeResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verifyIfscCode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1097,7 +1494,7 @@ class Payment {
    * @summary: Lists the beneficiary of a refund
    * @description: Use this API to get the details of all active beneficiary added by a user for refund.
    */
-  getOrderBeneficiariesDetail({ orderId } = {}) {
+  async getOrderBeneficiariesDetail({ orderId } = {}) {
     const { error } = PaymentValidator.getOrderBeneficiariesDetail().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
@@ -1114,10 +1511,12 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getOrderBeneficiariesDetail"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getOrderBeneficiariesDetail",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1125,7 +1524,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1136,6 +1535,24 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.OrderBeneficiaryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getOrderBeneficiariesDetail",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1145,7 +1562,7 @@ class Payment {
    * @summary: Verify the beneficiary details using OTP
    * @description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
    */
-  verifyOtpAndAddBeneficiaryForBank({ body } = {}) {
+  async verifyOtpAndAddBeneficiaryForBank({ body } = {}) {
     const {
       error,
     } = PaymentValidator.verifyOtpAndAddBeneficiaryForBank().validate(
@@ -1164,17 +1581,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for verifyOtpAndAddBeneficiaryForBank"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for verifyOtpAndAddBeneficiaryForBank",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1185,6 +1604,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.AddBeneficiaryViaOtpVerificationResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for verifyOtpAndAddBeneficiaryForBank",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1194,7 +1631,7 @@ class Payment {
    * @summary: Save bank details for cancelled/returned order
    * @description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
    */
-  addBeneficiaryDetails({ body } = {}) {
+  async addBeneficiaryDetails({ body } = {}) {
     const { error } = PaymentValidator.addBeneficiaryDetails().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1211,15 +1648,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addBeneficiaryDetails");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addBeneficiaryDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1230,6 +1670,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RefundAccountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addBeneficiaryDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1239,7 +1696,7 @@ class Payment {
    * @summary: Save bank details for cancelled/returned order
    * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
    */
-  addRefundBankAccountUsingOTP({ body } = {}) {
+  async addRefundBankAccountUsingOTP({ body } = {}) {
     const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1256,17 +1713,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for addRefundBankAccountUsingOTP"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for addRefundBankAccountUsingOTP",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1277,6 +1736,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RefundAccountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for addRefundBankAccountUsingOTP",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1286,7 +1763,7 @@ class Payment {
    * @summary: Send OTP on adding a wallet beneficiary
    * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
    */
-  verifyOtpAndAddBeneficiaryForWallet({ body } = {}) {
+  async verifyOtpAndAddBeneficiaryForWallet({ body } = {}) {
     const {
       error,
     } = PaymentValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
@@ -1305,17 +1782,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for verifyOtpAndAddBeneficiaryForWallet"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for verifyOtpAndAddBeneficiaryForWallet",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1326,6 +1805,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.WalletOtpResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for verifyOtpAndAddBeneficiaryForWallet",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1335,7 +1832,7 @@ class Payment {
    * @summary: Set a default beneficiary for a refund
    * @description: Use this API to set a default beneficiary for getting a refund.
    */
-  updateDefaultBeneficiary({ body } = {}) {
+  async updateDefaultBeneficiary({ body } = {}) {
     const { error } = PaymentValidator.updateDefaultBeneficiary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1352,17 +1849,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updateDefaultBeneficiary"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateDefaultBeneficiary",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1373,6 +1871,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.SetDefaultBeneficiaryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateDefaultBeneficiary",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1382,7 +1897,7 @@ class Payment {
    * @summary: Get payment link
    * @description: Use this API to get a payment link
    */
-  getPaymentLink({ paymentLinkId } = {}) {
+  async getPaymentLink({ paymentLinkId } = {}) {
     const { error } = PaymentValidator.getPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: true }
@@ -1397,8 +1912,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPaymentLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1406,7 +1924,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1417,6 +1935,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.GetPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1426,7 +1961,7 @@ class Payment {
    * @summary: Create payment link
    * @description: Use this API to create a payment link for the customer
    */
-  createPaymentLink({ body } = {}) {
+  async createPaymentLink({ body } = {}) {
     const { error } = PaymentValidator.createPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1441,15 +1976,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createPaymentLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1460,6 +1998,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CreatePaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1469,7 +2024,7 @@ class Payment {
    * @summary: Resend payment link
    * @description: Use this API to resend a payment link for the customer
    */
-  resendPaymentLink({ body } = {}) {
+  async resendPaymentLink({ body } = {}) {
     const { error } = PaymentValidator.resendPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1484,15 +2039,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for resendPaymentLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for resendPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1503,6 +2061,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ResendPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for resendPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1512,7 +2087,7 @@ class Payment {
    * @summary: Cancel payment link
    * @description: Use this API to cancel a payment link for the customer
    */
-  cancelPaymentLink({ body } = {}) {
+  async cancelPaymentLink({ body } = {}) {
     const { error } = PaymentValidator.cancelPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1527,15 +2102,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for cancelPaymentLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cancelPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1546,6 +2124,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CancelPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cancelPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1555,7 +2150,7 @@ class Payment {
    * @summary: Get applicable payment options for payment link
    * @description: Use this API to get all valid payment options for doing a payment through payment link
    */
-  getPaymentModeRoutesPaymentLink({ paymentLinkId } = {}) {
+  async getPaymentModeRoutesPaymentLink({ paymentLinkId } = {}) {
     const {
       error,
     } = PaymentValidator.getPaymentModeRoutesPaymentLink().validate(
@@ -1574,10 +2169,12 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getPaymentModeRoutesPaymentLink"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getPaymentModeRoutesPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1585,7 +2182,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1596,6 +2193,24 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentModeRouteResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getPaymentModeRoutesPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1605,7 +2220,7 @@ class Payment {
    * @summary: Used for polling if payment successful or not
    * @description: Use this API to poll if payment through payment was successful or not
    */
-  pollingPaymentLink({ paymentLinkId } = {}) {
+  async pollingPaymentLink({ paymentLinkId } = {}) {
     const { error } = PaymentValidator.pollingPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: true }
@@ -1620,8 +2235,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for pollingPaymentLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for pollingPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1629,7 +2247,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1640,6 +2258,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PollingPaymentLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for pollingPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1649,7 +2284,7 @@ class Payment {
    * @summary: Create Order user
    * @description: Use this API to create a order and payment on aggregator side
    */
-  createOrderHandlerPaymentLink({ body } = {}) {
+  async createOrderHandlerPaymentLink({ body } = {}) {
     const { error } = PaymentValidator.createOrderHandlerPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1666,17 +2301,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for createOrderHandlerPaymentLink"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for createOrderHandlerPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1687,6 +2324,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CreateOrderUserResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for createOrderHandlerPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1696,7 +2351,7 @@ class Payment {
    * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
    * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
    */
-  initialisePaymentPaymentLink({ body } = {}) {
+  async initialisePaymentPaymentLink({ body } = {}) {
     const { error } = PaymentValidator.initialisePaymentPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1713,17 +2368,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for initialisePaymentPaymentLink"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for initialisePaymentPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1734,6 +2391,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentInitializationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for initialisePaymentPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1743,7 +2418,7 @@ class Payment {
    * @summary: Performs continuous polling to check status of payment on the server
    * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
    */
-  checkAndUpdatePaymentStatusPaymentLink({ body } = {}) {
+  async checkAndUpdatePaymentStatusPaymentLink({ body } = {}) {
     const {
       error,
     } = PaymentValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
@@ -1762,17 +2437,19 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for checkAndUpdatePaymentStatusPaymentLink"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for checkAndUpdatePaymentStatusPaymentLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1783,6 +2460,24 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentStatusUpdateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for checkAndUpdatePaymentStatusPaymentLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1792,7 +2487,7 @@ class Payment {
    * @summary: API to fetch the customer credit summary
    * @description: Use this API to fetch the customer credit summary.
    */
-  customerCreditSummary({ aggregator } = {}) {
+  async customerCreditSummary({ aggregator } = {}) {
     const { error } = PaymentValidator.customerCreditSummary().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: true }
@@ -1809,8 +2504,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for customerCreditSummary");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for customerCreditSummary",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1818,7 +2516,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1829,6 +2527,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CustomerCreditSummaryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for customerCreditSummary",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1841,7 +2556,7 @@ class Payment {
    * @summary: API to get the redirect url to redirect the user to aggregator's page
    * @description: Use this API to get the redirect url to redirect the user to aggregator's page
    */
-  redirectToAggregator({ source, aggregator } = {}) {
+  async redirectToAggregator({ source, aggregator } = {}) {
     const { error } = PaymentValidator.redirectToAggregator().validate(
       { source, aggregator },
       { abortEarly: false, allowUnknown: true }
@@ -1858,8 +2573,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for redirectToAggregator");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for redirectToAggregator",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1868,7 +2586,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1879,6 +2597,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RedirectToAggregatorResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for redirectToAggregator",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1888,7 +2623,7 @@ class Payment {
    * @summary: API to fetch the customer credit summary
    * @description: Use this API to fetch the customer credit summary.
    */
-  checkCredit({ aggregator } = {}) {
+  async checkCredit({ aggregator } = {}) {
     const { error } = PaymentValidator.checkCredit().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: true }
@@ -1903,8 +2638,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for checkCredit");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkCredit",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1912,7 +2650,7 @@ class Payment {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1923,6 +2661,23 @@ class Payment {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CheckCreditResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkCredit",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1932,7 +2687,7 @@ class Payment {
    * @summary: API to fetch the customer credit summary
    * @description: Use this API to fetch the customer credit summary.
    */
-  customerOnboard({ body } = {}) {
+  async customerOnboard({ body } = {}) {
     const { error } = PaymentValidator.customerOnboard().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1947,15 +2702,18 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for customerOnboard");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for customerOnboard",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1966,6 +2724,23 @@ class Payment {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.CustomerOnboardingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for customerOnboard",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

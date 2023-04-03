@@ -2,6 +2,9 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const AnalyticsValidator = require("./AnalyticsPlatformValidator");
+const AnalyticsModel = require("./AnalyticsPlatformModel");
+const { Logger } = require("./../../common/Logger");
+
 class Analytics {
   constructor(config) {
     this.config = config;
@@ -11,10 +14,11 @@ class Analytics {
    * @param {Object} arg - Arg object.
    * @param {string} arg.exportType - Export type / format
    * @param {ExportJobReq} arg.body
+   * @returns {Promise<ExportJobRes>} - Success response
    * @summary: Create data export job in required format
    * @description: Create data export job in required format
    */
-  createExportJob({ exportType, body } = {}) {
+  async createExportJob({ exportType, body } = {}) {
     const { error } = AnalyticsValidator.createExportJob().validate(
       {
         exportType,
@@ -35,15 +39,18 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createExportJob");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createExportJob",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/export/${exportType}`,
@@ -51,16 +58,34 @@ class Analytics {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = AnalyticsModel.ExportJobRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createExportJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.exportType - Export type / format
    * @param {string} arg.jobId - Export job id
+   * @returns {Promise<ExportJobStatusRes>} - Success response
    * @summary: Get data export job status
    * @description: Get data export job status
    */
-  getExportJobStatus({ exportType, jobId } = {}) {
+  async getExportJobStatus({ exportType, jobId } = {}) {
     const { error } = AnalyticsValidator.getExportJobStatus().validate(
       {
         exportType,
@@ -83,15 +108,18 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getExportJobStatus");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getExportJobStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/export/${exportType}/job/${jobId}`,
@@ -99,6 +127,23 @@ class Analytics {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = AnalyticsModel.ExportJobStatusRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getExportJobStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -107,10 +152,11 @@ class Analytics {
    * @param {number} [arg.pageNo] - Current page number
    * @param {number} [arg.pageSize] - Current page size
    * @param {GetLogsListReq} arg.body
+   * @returns {Promise<GetLogsListRes>} - Success response
    * @summary: Get logs list
    * @description: Get logs list
    */
-  getLogsList({ logType, body, pageNo, pageSize } = {}) {
+  async getLogsList({ logType, body, pageNo, pageSize } = {}) {
     const { error } = AnalyticsValidator.getLogsList().validate(
       {
         logType,
@@ -135,8 +181,11 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLogsList");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLogsList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -145,7 +194,7 @@ class Analytics {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/logs/${logType}`,
@@ -153,6 +202,23 @@ class Analytics {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = AnalyticsModel.GetLogsListRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLogsList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -191,10 +257,11 @@ class Analytics {
    * @param {number} [arg.pageSize] - Current page size
    * @param {string} arg.logType - Log type
    * @param {SearchLogReq} arg.body
+   * @returns {Promise<SearchLogRes>} - Success response
    * @summary: Search logs
    * @description: Search logs
    */
-  searchLogs({ logType, body, pageNo, pageSize } = {}) {
+  async searchLogs({ logType, body, pageNo, pageSize } = {}) {
     const { error } = AnalyticsValidator.searchLogs().validate(
       {
         logType,
@@ -219,8 +286,11 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for searchLogs");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for searchLogs",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -229,7 +299,7 @@ class Analytics {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/logs/${logType}/search`,
@@ -237,6 +307,23 @@ class Analytics {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = AnalyticsModel.SearchLogRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for searchLogs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**

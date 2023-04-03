@@ -2,6 +2,8 @@ const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const ContentValidator = require("./ContentPlatformApplicationValidator");
+const ContentModel = require("./ContentPlatformModel");
+const { Logger } = require("./../../common/Logger");
 
 class Content {
   constructor(config, applicationId) {
@@ -15,10 +17,11 @@ class Content {
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Promise<GetAnnouncementListSchema>} - Success response
    * @summary: Get a list of announcements
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.
    */
-  getAnnouncementsList({ pageNo, pageSize } = {}) {
+  async getAnnouncementsList({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getAnnouncementsList().validate(
       {
         pageNo,
@@ -41,21 +44,41 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAnnouncementsList");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAnnouncementsList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.GetAnnouncementListSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAnnouncementsList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -94,10 +117,11 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {AdminAnnouncementSchema} arg.body
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Create an announcement
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
    */
-  createAnnouncement({ body } = {}) {
+  async createAnnouncement({ body } = {}) {
     const { error } = ContentValidator.createAnnouncement().validate(
       {
         body,
@@ -116,28 +140,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createAnnouncement");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createAnnouncement",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateAnnouncementSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createAnnouncement",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.announcementId - ID allotted to the announcement.
+   * @returns {Promise<AdminAnnouncementSchema>} - Success response
    * @summary: Get announcement by ID
    * @description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
    */
-  getAnnouncementById({ announcementId } = {}) {
+  async getAnnouncementById({ announcementId } = {}) {
     const { error } = ContentValidator.getAnnouncementById().validate(
       {
         announcementId,
@@ -156,29 +201,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAnnouncementById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAnnouncementById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.AdminAnnouncementSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAnnouncementById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.announcementId - ID allotted to the announcement.
    * @param {AdminAnnouncementSchema} arg.body
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Update an announcement
    * @description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
    */
-  updateAnnouncement({ announcementId, body } = {}) {
+  async updateAnnouncement({ announcementId, body } = {}) {
     const { error } = ContentValidator.updateAnnouncement().validate(
       {
         announcementId,
@@ -199,29 +265,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateAnnouncement");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAnnouncement",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateAnnouncementSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAnnouncement",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.announcementId - ID allotted to the announcement.
    * @param {ScheduleSchema} arg.body
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Update the schedule and the publish status of an announcement
    * @description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
    */
-  updateAnnouncementSchedule({ announcementId, body } = {}) {
+  async updateAnnouncementSchedule({ announcementId, body } = {}) {
     const { error } = ContentValidator.updateAnnouncementSchedule().validate(
       {
         announcementId,
@@ -244,30 +331,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updateAnnouncementSchedule"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for updateAnnouncementSchedule",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateAnnouncementSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAnnouncementSchedule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.announcementId - ID allotted to the announcement.
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Delete announcement by id
    * @description: Use this API to delete an existing announcement.
    */
-  deleteAnnouncement({ announcementId } = {}) {
+  async deleteAnnouncement({ announcementId } = {}) {
     const { error } = ContentValidator.deleteAnnouncement().validate(
       {
         announcementId,
@@ -286,28 +393,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteAnnouncement");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteAnnouncement",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateAnnouncementSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteAnnouncement",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {BlogRequest} arg.body
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Create a blog
    * @description: Use this API to create a blog.
    */
-  createBlog({ body } = {}) {
+  async createBlog({ body } = {}) {
     const { error } = ContentValidator.createBlog().validate(
       {
         body,
@@ -326,19 +454,37 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createBlog");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createBlog",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createBlog",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -347,10 +493,11 @@ class Content {
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Promise<BlogGetResponse>} - Success response
    * @summary: Get blogs
    * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
    */
-  getBlogs({ pageNo, pageSize } = {}) {
+  async getBlogs({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getBlogs().validate(
       {
         pageNo,
@@ -371,21 +518,41 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBlogs");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBlogs",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.BlogGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBlogs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -425,10 +592,11 @@ class Content {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the blog.
    * @param {BlogRequest} arg.body
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Update a blog
    * @description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
    */
-  updateBlog({ id, body } = {}) {
+  async updateBlog({ id, body } = {}) {
     const { error } = ContentValidator.updateBlog().validate(
       {
         id,
@@ -449,28 +617,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateBlog");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateBlog",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateBlog",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the blog.
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Delete blogs
    * @description: Use this API to delete a blog.
    */
-  deleteBlog({ id } = {}) {
+  async deleteBlog({ id } = {}) {
     const { error } = ContentValidator.deleteBlog().validate(
       {
         id,
@@ -489,29 +676,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteBlog");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteBlog",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteBlog",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.slug - A short, human-readable, URL-friendly
    *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Get components of a blog
    * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
    */
-  getComponentById({ slug } = {}) {
+  async getComponentById({ slug } = {}) {
     const { error } = ContentValidator.getComponentById().validate(
       {
         slug,
@@ -530,28 +736,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getComponentById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getComponentById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getComponentById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {DataLoaderSchema} arg.body
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Adds a data loader
    * @description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
    */
-  addDataLoader({ body } = {}) {
+  async addDataLoader({ body } = {}) {
     const { error } = ContentValidator.addDataLoader().validate(
       {
         body,
@@ -570,27 +795,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addDataLoader");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addDataLoader",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DataLoaderResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addDataLoader",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<DataLoadersSchema>} - Success response
    * @summary: Get all the data loaders in an application
    * @description: Use this to get all data loaders of an application
    */
-  getDataLoaders({} = {}) {
+  async getDataLoaders({} = {}) {
     const { error } = ContentValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -605,28 +851,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDataLoaders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDataLoaders",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DataLoadersSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDataLoaders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.dataLoaderId - ID allotted to the data loader.
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Delete data loader in application
    * @description: Use this API to delete data loader.
    */
-  deleteDataLoader({ dataLoaderId } = {}) {
+  async deleteDataLoader({ dataLoaderId } = {}) {
     const { error } = ContentValidator.deleteDataLoader().validate(
       {
         dataLoaderId,
@@ -645,29 +912,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteDataLoader");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteDataLoader",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DataLoaderResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteDataLoader",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.dataLoaderId - ID allotted to the data loader.
    * @param {DataLoaderSchema} arg.body
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Edit a data loader by id
    * @description: Use this API to edit the details of an existing data loader by its ID.
    */
-  editDataLoader({ dataLoaderId, body } = {}) {
+  async editDataLoader({ dataLoaderId, body } = {}) {
     const { error } = ContentValidator.editDataLoader().validate(
       {
         dataLoaderId,
@@ -688,28 +976,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for editDataLoader");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for editDataLoader",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DataLoaderResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for editDataLoader",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.dataLoaderId - ID allotted to the data loader.
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Select a data loader by id
    * @description: Use this API to select a data loader to be used in applications.
    */
-  selectDataLoader({ dataLoaderId } = {}) {
+  async selectDataLoader({ dataLoaderId } = {}) {
     const { error } = ContentValidator.selectDataLoader().validate(
       {
         dataLoaderId,
@@ -728,29 +1037,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for selectDataLoader");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for selectDataLoader",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}/select`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DataLoaderResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for selectDataLoader",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.service - Name of service.
    * @param {string} arg.operationId - Name of operation id of the service.
+   * @returns {Promise<DataLoaderResetResponseSchema>} - Success response
    * @summary: Reset a data loader by serive name and operation Id
    * @description: Use this API to reselect a data loader.
    */
-  resetDataLoader({ service, operationId } = {}) {
+  async resetDataLoader({ service, operationId } = {}) {
     const { error } = ContentValidator.resetDataLoader().validate(
       {
         service,
@@ -771,27 +1101,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for resetDataLoader");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for resetDataLoader",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${service}/${operationId}/reset`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DataLoaderResetResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for resetDataLoader",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<GetFaqCategoriesSchema>} - Success response
    * @summary: Get a list of FAQ categories
    * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
    */
-  getFaqCategories({} = {}) {
+  async getFaqCategories({} = {}) {
     const { error } = ContentValidator.getFaqCategories().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -806,19 +1157,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqCategories");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqCategories",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.GetFaqCategoriesSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqCategories",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -827,10 +1198,11 @@ class Content {
    *   category. Slug is a short, human-readable, URL-friendly identifier of
    *   an object. You can get slug value of an FAQ category from
    *   `getFaqCategories` API.
+   * @returns {Promise<GetFaqCategoryBySlugSchema>} - Success response
    * @summary: Get an FAQ category by slug or id
    * @description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
    */
-  getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
+  async getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
     const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate(
       {
         idOrSlug,
@@ -851,30 +1223,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getFaqCategoryBySlugOrId"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqCategoryBySlugOrId",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.GetFaqCategoryBySlugSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqCategoryBySlugOrId",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateFaqCategoryRequestSchema} arg.body
+   * @returns {Promise<CreateFaqCategorySchema>} - Success response
    * @summary: Create an FAQ category
    * @description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
    */
-  createFaqCategory({ body } = {}) {
+  async createFaqCategory({ body } = {}) {
     const { error } = ContentValidator.createFaqCategory().validate(
       {
         body,
@@ -893,29 +1284,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createFaqCategory");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createFaqCategory",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateFaqCategorySchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createFaqCategory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to an FAQ category.
    * @param {UpdateFaqCategoryRequestSchema} arg.body
+   * @returns {Promise<CreateFaqCategorySchema>} - Success response
    * @summary: Update an FAQ category
    * @description: Use this API to edit an existing FAQ category.
    */
-  updateFaqCategory({ id, body } = {}) {
+  async updateFaqCategory({ id, body } = {}) {
     const { error } = ContentValidator.updateFaqCategory().validate(
       {
         id,
@@ -936,28 +1348,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateFaqCategory");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateFaqCategory",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateFaqCategorySchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateFaqCategory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to an FAQ category.
+   * @returns {Promise<FaqSchema>} - Success response
    * @summary: Delete an FAQ category
    * @description: Use this API to delete an FAQ category.
    */
-  deleteFaqCategory({ id } = {}) {
+  async deleteFaqCategory({ id } = {}) {
     const { error } = ContentValidator.deleteFaqCategory().validate(
       {
         id,
@@ -976,19 +1409,37 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteFaqCategory");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteFaqCategory",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.FaqSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteFaqCategory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -997,10 +1448,11 @@ class Content {
    *   category. Slug is a short, human-readable, URL-friendly identifier of
    *   an object. You can get slug value of an FAQ category from
    *   `getFaqCategories` API.
+   * @returns {Promise<GetFaqSchema>} - Success response
    * @summary: Get question and answers within an FAQ category
    * @description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
    */
-  getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
+  async getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
     const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
       {
         idOrSlug,
@@ -1021,31 +1473,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getFaqsByCategoryIdOrSlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqsByCategoryIdOrSlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.GetFaqSchema().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqsByCategoryIdOrSlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.categoryId - ID allotted to an FAQ category.
    * @param {CreateFaqSchema} arg.body
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Create an FAQ
    * @description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
    */
-  addFaq({ categoryId, body } = {}) {
+  async addFaq({ categoryId, body } = {}) {
     const { error } = ContentValidator.addFaq().validate(
       {
         categoryId,
@@ -1066,19 +1535,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addFaq");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addFaq",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faqs`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateFaqResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addFaq",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1086,10 +1575,11 @@ class Content {
    * @param {string} arg.categoryId - ID allotted to an FAQ category.
    * @param {string} arg.faqId - ID allotted to an FAQ.
    * @param {CreateFaqSchema} arg.body
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Update an FAQ
    * @description: Use this API to edit an existing FAQ.
    */
-  updateFaq({ categoryId, faqId, body } = {}) {
+  async updateFaq({ categoryId, faqId, body } = {}) {
     const { error } = ContentValidator.updateFaq().validate(
       {
         categoryId,
@@ -1112,29 +1602,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateFaq");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateFaq",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateFaqResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateFaq",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.categoryId - ID allotted to an FAQ category.
    * @param {string} arg.faqId - ID allotted to an FAQ.
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Delete an FAQ
    * @description: Use this API to delete an existing FAQ.
    */
-  deleteFaq({ categoryId, faqId } = {}) {
+  async deleteFaq({ categoryId, faqId } = {}) {
     const { error } = ContentValidator.deleteFaq().validate(
       {
         categoryId,
@@ -1155,19 +1666,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteFaq");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteFaq",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateFaqResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteFaq",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1176,10 +1707,11 @@ class Content {
    *   category. Slug is a short, human-readable, URL-friendly identifier of
    *   an object. You can get slug value of an FAQ category from
    *   `getFaqCategories` API.
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Get an FAQ
    * @description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
    */
-  getFaqByIdOrSlug({ idOrSlug } = {}) {
+  async getFaqByIdOrSlug({ idOrSlug } = {}) {
     const { error } = ContentValidator.getFaqByIdOrSlug().validate(
       {
         idOrSlug,
@@ -1198,19 +1730,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFaqByIdOrSlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFaqByIdOrSlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.CreateFaqResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFaqByIdOrSlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1219,10 +1771,11 @@ class Content {
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Promise<LandingPageGetResponse>} - Success response
    * @summary: Get landing pages
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
    */
-  getLandingPages({ pageNo, pageSize } = {}) {
+  async getLandingPages({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getLandingPages().validate(
       {
         pageNo,
@@ -1243,21 +1796,41 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLandingPages");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLandingPages",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.LandingPageGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLandingPages",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1296,10 +1869,11 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {LandingPageSchema} arg.body
+   * @returns {Promise<LandingPageSchema>} - Success response
    * @summary: Create a landing page
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
    */
-  createLandingPage({ body } = {}) {
+  async createLandingPage({ body } = {}) {
     const { error } = ContentValidator.createLandingPage().validate(
       {
         body,
@@ -1318,29 +1892,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createLandingPage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createLandingPage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.LandingPageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createLandingPage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to a landing page.
    * @param {LandingPageSchema} arg.body
+   * @returns {Promise<LandingPageSchema>} - Success response
    * @summary: Update a landing page
    * @description: Use this API to edit the details of an existing landing page.
    */
-  updateLandingPage({ id, body } = {}) {
+  async updateLandingPage({ id, body } = {}) {
     const { error } = ContentValidator.updateLandingPage().validate(
       {
         id,
@@ -1361,28 +1956,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateLandingPage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateLandingPage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.LandingPageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateLandingPage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to a landing page.
+   * @returns {Promise<LandingPageSchema>} - Success response
    * @summary: Delete a landing page
    * @description: Use this API to delete an existing landing page.
    */
-  deleteLandingPage({ id } = {}) {
+  async deleteLandingPage({ id } = {}) {
     const { error } = ContentValidator.deleteLandingPage().validate(
       {
         id,
@@ -1401,27 +2017,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteLandingPage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteLandingPage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.LandingPageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteLandingPage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ApplicationLegal>} - Success response
    * @summary: Get legal information
    * @description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
    */
-  getLegalInformation({} = {}) {
+  async getLegalInformation({} = {}) {
     const { error } = ContentValidator.getLegalInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1436,28 +2073,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLegalInformation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLegalInformation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.ApplicationLegal().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLegalInformation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {ApplicationLegal} arg.body
+   * @returns {Promise<ApplicationLegal>} - Success response
    * @summary: Save legal information
    * @description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
    */
-  updateLegalInformation({ body } = {}) {
+  async updateLegalInformation({ body } = {}) {
     const { error } = ContentValidator.updateLegalInformation().validate(
       {
         body,
@@ -1478,19 +2136,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateLegalInformation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateLegalInformation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.ApplicationLegal().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateLegalInformation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1501,10 +2179,11 @@ class Content {
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Promise<NavigationGetResponse>} - Success response
    * @summary: Get navigations
    * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
    */
-  getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
+  async getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getNavigations().validate(
       {
         devicePlatform,
@@ -1527,8 +2206,11 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getNavigations");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getNavigations",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1536,13 +2218,30 @@ class Content {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.NavigationGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getNavigations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1589,10 +2288,11 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {NavigationRequest} arg.body
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Create a navigation
    * @description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
    */
-  createNavigation({ body } = {}) {
+  async createNavigation({ body } = {}) {
     const { error } = ContentValidator.createNavigation().validate(
       {
         body,
@@ -1611,27 +2311,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createNavigation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createNavigation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.NavigationSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createNavigation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<DefaultNavigationResponse>} - Success response
    * @summary: Get default navigations
    * @description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
    */
-  getDefaultNavigations({} = {}) {
+  async getDefaultNavigations({} = {}) {
     const { error } = ContentValidator.getDefaultNavigations().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1648,19 +2369,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDefaultNavigations");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDefaultNavigations",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.DefaultNavigationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDefaultNavigations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1670,10 +2411,11 @@ class Content {
    *   `getNavigations` API.
    * @param {string} arg.devicePlatform - Filter navigations by platform.
    *   Acceptable values are: web, android, ios, all
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Get a navigation by slug
    * @description: Use this API to retrieve a navigation by its slug.
    */
-  getNavigationBySlug({ slug, devicePlatform } = {}) {
+  async getNavigationBySlug({ slug, devicePlatform } = {}) {
     const { error } = ContentValidator.getNavigationBySlug().validate(
       {
         slug,
@@ -1694,30 +2436,51 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getNavigationBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getNavigationBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["device_platform"] = devicePlatform;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.NavigationSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getNavigationBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the navigation.
    * @param {NavigationRequest} arg.body
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Update a navigation
    * @description: Use this API to edit the details of an existing navigation.
    */
-  updateNavigation({ id, body } = {}) {
+  async updateNavigation({ id, body } = {}) {
     const { error } = ContentValidator.updateNavigation().validate(
       {
         id,
@@ -1738,28 +2501,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateNavigation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateNavigation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.NavigationSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateNavigation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the navigation.
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Delete a navigation
    * @description: Use this API to delete an existing navigation.
    */
-  deleteNavigation({ id } = {}) {
+  async deleteNavigation({ id } = {}) {
     const { error } = ContentValidator.deleteNavigation().validate(
       {
         id,
@@ -1778,27 +2562,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteNavigation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteNavigation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.NavigationSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteNavigation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<PageMetaSchema>} - Success response
    * @summary: Get page meta
    * @description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
    */
-  getPageMeta({} = {}) {
+  async getPageMeta({} = {}) {
     const { error } = ContentValidator.getPageMeta().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1813,27 +2618,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPageMeta");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPageMeta",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.PageMetaSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPageMeta",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<PageSpec>} - Success response
    * @summary: Get page spec
    * @description: Use this API to get the specifications of a page, such as page type, display name, params and query.
    */
-  getPageSpec({} = {}) {
+  async getPageSpec({} = {}) {
     const { error } = ContentValidator.getPageSpec().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1848,28 +2674,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPageSpec");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPageSpec",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.PageSpec().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPageSpec",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PageRequest} arg.body
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Create a page preview
    * @description: Use this API to create a page preview to check the appearance of a custom page.
    */
-  createPagePreview({ body } = {}) {
+  async createPagePreview({ body } = {}) {
     const { error } = ContentValidator.createPagePreview().validate(
       {
         body,
@@ -1888,19 +2733,37 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createPagePreview");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createPagePreview",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createPagePreview",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1908,10 +2771,11 @@ class Content {
    * @param {string} arg.slug - A short, human-readable, URL-friendly
    *   identifier of a page. You can get slug value of a page from `getPages` API.
    * @param {PagePublishRequest} arg.body
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Change the publish status of a page
    * @description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
    */
-  updatePagePreview({ slug, body } = {}) {
+  async updatePagePreview({ slug, body } = {}) {
     const { error } = ContentValidator.updatePagePreview().validate(
       {
         slug,
@@ -1932,28 +2796,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updatePagePreview");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePagePreview",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePagePreview",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the page.
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Delete a page
    * @description: Use this API to delete an existing page.
    */
-  deletePage({ id } = {}) {
+  async deletePage({ id } = {}) {
     const { error } = ContentValidator.deletePage().validate(
       {
         id,
@@ -1972,28 +2855,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deletePage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deletePage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deletePage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PathMappingSchema} arg.body
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Save path based redirection rules
    * @description: Use this API to add redirection rules
    */
-  addPathRedirectionRules({ body } = {}) {
+  async addPathRedirectionRules({ body } = {}) {
     const { error } = ContentValidator.addPathRedirectionRules().validate(
       {
         body,
@@ -2014,19 +2916,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addPathRedirectionRules");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addPathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.PathMappingSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addPathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2035,10 +2957,11 @@ class Content {
    *   page. Default value is 5.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results. Default value is 1.
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Get path based redirection rules
    * @description: Use this API to get path based redirection rules.
    */
-  getPathRedirectionRules({ pageSize, pageNo } = {}) {
+  async getPathRedirectionRules({ pageSize, pageNo } = {}) {
     const { error } = ContentValidator.getPathRedirectionRules().validate(
       {
         pageSize,
@@ -2061,30 +2984,51 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPathRedirectionRules");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["page_size"] = pageSize;
     query_params["page_no"] = pageNo;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.PathMappingSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Get path based redirection rule
    * @description: Use this API to get path based redirection rule.
    */
-  getPathRedirectionRule({ pathId } = {}) {
+  async getPathRedirectionRule({ pathId } = {}) {
     const { error } = ContentValidator.getPathRedirectionRule().validate(
       {
         pathId,
@@ -2105,29 +3049,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPathRedirectionRule");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPathRedirectionRule",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.PathMappingSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPathRedirectionRule",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.pathId - ID allotted to the path redirection rule.
    * @param {PathMappingSchema} arg.body
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Update path based redirection rules
    * @description: Use this API to update redirection rules
    */
-  updatePathRedirectionRules({ pathId, body } = {}) {
+  async updatePathRedirectionRules({ pathId, body } = {}) {
     const { error } = ContentValidator.updatePathRedirectionRules().validate(
       {
         pathId,
@@ -2150,30 +3115,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updatePathRedirectionRules"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for updatePathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.PathMappingSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @returns {Promise<Object>} - Success response
    * @summary: Delete path based redirection rules
    * @description: Use this API to delete redirection rules
    */
-  deletePathRedirectionRules({ pathId } = {}) {
+  async deletePathRedirectionRules({ pathId } = {}) {
     const { error } = ContentValidator.deletePathRedirectionRules().validate(
       {
         pathId,
@@ -2194,29 +3179,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for deletePathRedirectionRules"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for deletePathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deletePathRedirectionRules",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<SeoComponent>} - Success response
    * @summary: Get SEO configuration of an application
    * @description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
    */
-  getSEOConfiguration({} = {}) {
+  async getSEOConfiguration({} = {}) {
     const { error } = ContentValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2231,28 +3234,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSEOConfiguration");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.SeoComponent().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {SeoComponent} arg.body
+   * @returns {Promise<SeoSchema>} - Success response
    * @summary: Update SEO of application
    * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
    */
-  updateSEOConfiguration({ body } = {}) {
+  async updateSEOConfiguration({ body } = {}) {
     const { error } = ContentValidator.updateSEOConfiguration().validate(
       {
         body,
@@ -2273,19 +3295,37 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateSEOConfiguration");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.SeoSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSEOConfiguration",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2296,10 +3336,11 @@ class Content {
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Promise<SlideshowGetResponse>} - Success response
    * @summary: Get slideshows
    * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
    */
-  getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
+  async getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getSlideshows().validate(
       {
         devicePlatform,
@@ -2322,8 +3363,11 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSlideshows");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSlideshows",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2331,13 +3375,30 @@ class Content {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSlideshows",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2384,10 +3445,11 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {SlideshowRequest} arg.body
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Create a slideshow
    * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
    */
-  createSlideshow({ body } = {}) {
+  async createSlideshow({ body } = {}) {
     const { error } = ContentValidator.createSlideshow().validate(
       {
         body,
@@ -2406,19 +3468,39 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createSlideshow");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createSlideshow",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createSlideshow",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2428,10 +3510,11 @@ class Content {
    *   `getSlideshows` API.
    * @param {string} arg.devicePlatform - Filter slideshows by platform.
    *   Acceptable values are: web, android, ios and all
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Get slideshow by slug
    * @description: Use this API to retrieve the details of a slideshow by its slug.
    */
-  getSlideshowBySlug({ slug, devicePlatform } = {}) {
+  async getSlideshowBySlug({ slug, devicePlatform } = {}) {
     const { error } = ContentValidator.getSlideshowBySlug().validate(
       {
         slug,
@@ -2452,30 +3535,51 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSlideshowBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSlideshowBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["device_platform"] = devicePlatform;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSlideshowBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the slideshow.
    * @param {SlideshowRequest} arg.body
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Update a slideshow
    * @description: Use this API to edit the details of an existing slideshow.
    */
-  updateSlideshow({ id, body } = {}) {
+  async updateSlideshow({ id, body } = {}) {
     const { error } = ContentValidator.updateSlideshow().validate(
       {
         id,
@@ -2496,28 +3600,49 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateSlideshow");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSlideshow",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSlideshow",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the slideshow.
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Delete a slideshow
    * @description: Use this API to delete an existing slideshow.
    */
-  deleteSlideshow({ id } = {}) {
+  async deleteSlideshow({ id } = {}) {
     const { error } = ContentValidator.deleteSlideshow().validate(
       {
         id,
@@ -2536,27 +3661,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteSlideshow");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteSlideshow",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.SlideshowSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteSlideshow",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<Support>} - Success response
    * @summary: Get support information
    * @description: Use this API to get the contact details for customer support, including emails and phone numbers.
    */
-  getSupportInformation({} = {}) {
+  async getSupportInformation({} = {}) {
     const { error } = ContentValidator.getSupportInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2573,28 +3719,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getSupportInformation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSupportInformation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.Support().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSupportInformation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {Support} arg.body
+   * @returns {Promise<Support>} - Success response
    * @summary: Update the support data of an application
    * @description: Use this API to edit the existing contact details for customer support, including emails and phone numbers.
    */
-  updateSupportInformation({ body } = {}) {
+  async updateSupportInformation({ body } = {}) {
     const { error } = ContentValidator.updateSupportInformation().validate(
       {
         body,
@@ -2615,30 +3780,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updateSupportInformation"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateSupportInformation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.Support().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateSupportInformation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateTagRequestSchema} arg.body
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Update a tag
    * @description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
    */
-  updateInjectableTag({ body } = {}) {
+  async updateInjectableTag({ body } = {}) {
     const { error } = ContentValidator.updateInjectableTag().validate(
       {
         body,
@@ -2657,27 +3839,46 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateInjectableTag");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateInjectableTag",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateInjectableTag",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Delete tags in application
    * @description: Use this API to delete all the existing tags at once.
    */
-  deleteAllInjectableTags({} = {}) {
+  async deleteAllInjectableTags({} = {}) {
     const { error } = ContentValidator.deleteAllInjectableTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2694,27 +3895,46 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteAllInjectableTags");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteAllInjectableTags",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteAllInjectableTags",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Get all the tags in an application
    * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
    */
-  getInjectableTags({} = {}) {
+  async getInjectableTags({} = {}) {
     const { error } = ContentValidator.getInjectableTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2729,28 +3949,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getInjectableTags");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getInjectableTags",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getInjectableTags",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateTagRequestSchema} arg.body
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Add a tag
    * @description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
    */
-  addInjectableTag({ body } = {}) {
+  async addInjectableTag({ body } = {}) {
     const { error } = ContentValidator.addInjectableTag().validate(
       {
         body,
@@ -2769,28 +4008,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addInjectableTag");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addInjectableTag",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addInjectableTag",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {RemoveHandpickedSchema} arg.body
+   * @returns {Promise<TagDeleteSuccessResponse>} - Success response
    * @summary: Remove a tag
    * @description: Use this API to delete an existing tag.
    */
-  removeInjectableTag({ body } = {}) {
+  async removeInjectableTag({ body } = {}) {
     const { error } = ContentValidator.removeInjectableTag().validate(
       {
         body,
@@ -2809,29 +4067,50 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for removeInjectableTag");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removeInjectableTag",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.TagDeleteSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removeInjectableTag",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.tagId - ID allotted to the tag.
    * @param {UpdateHandpickedSchema} arg.body
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Edit a tag by id
    * @description: Use this API to edit the details of an existing tag by its ID.
    */
-  editInjectableTag({ tagId, body } = {}) {
+  async editInjectableTag({ tagId, body } = {}) {
     const { error } = ContentValidator.editInjectableTag().validate(
       {
         tagId,
@@ -2852,28 +4131,47 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for editInjectableTag");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for editInjectableTag",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for editInjectableTag",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PageRequest} arg.body
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Create a page
    * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
    */
-  createPage({ body } = {}) {
+  async createPage({ body } = {}) {
     const { error } = ContentValidator.createPage().validate(
       {
         body,
@@ -2892,19 +4190,37 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createPage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createPage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createPage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2913,10 +4229,11 @@ class Content {
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Promise<PageGetResponse>} - Success response
    * @summary: Get a list of pages
    * @description: Use this API to retrieve a list of pages.
    */
-  getPages({ pageNo, pageSize } = {}) {
+  async getPages({ pageNo, pageSize } = {}) {
     const { error } = ContentValidator.getPages().validate(
       {
         pageNo,
@@ -2937,21 +4254,41 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPages");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPages",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = ContentModel.PageGetResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPages",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2991,10 +4328,11 @@ class Content {
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the page.
    * @param {PageSchema} arg.body
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Update a page
    * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
    */
-  updatePage({ id, body } = {}) {
+  async updatePage({ id, body } = {}) {
     const { error } = ContentValidator.updatePage().validate(
       {
         id,
@@ -3015,29 +4353,48 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updatePage");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePage",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
       query_params,
       body
     );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePage",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.slug - A short, human-readable, URL-friendly
    *   identifier of a page. You can get slug value of a page from `getPages` API.
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Get pages by component Id
    * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
    */
-  getPageBySlug({ slug } = {}) {
+  async getPageBySlug({ slug } = {}) {
     const { error } = ContentValidator.getPageBySlug().validate(
       {
         slug,
@@ -3056,19 +4413,37 @@ class Content {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPageBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPageBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPageBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 module.exports = Content;

@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const FileStorageValidator = require("./FileStorageApplicationValidator");
+const FileStorageModel = require("./FileStorageApplicationModel");
+const { Logger } = require("./../../common/Logger");
 const axios = require("axios");
 
 class FileStorage {
@@ -56,7 +58,7 @@ class FileStorage {
    * After successfully upload, call the `completeUpload` API to finish the upload process.
    * This operation will return the URL of the uploaded file.
    */
-  startUpload({ namespace, body } = {}) {
+  async startUpload({ namespace, body } = {}) {
     const { error } = FileStorageValidator.startUpload().validate(
       { namespace, body },
       { abortEarly: false, allowUnknown: true }
@@ -71,15 +73,18 @@ class FileStorage {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for startUpload");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for startUpload",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -90,6 +95,23 @@ class FileStorage {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = FileStorageModel.StartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for startUpload",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -117,7 +139,7 @@ class FileStorage {
    * After successfully upload, call the `completeUpload` API to finish the upload process.
    * This operation will return the URL of the uploaded file.
    */
-  completeUpload({ namespace, body } = {}) {
+  async completeUpload({ namespace, body } = {}) {
     const { error } = FileStorageValidator.completeUpload().validate(
       { namespace, body },
       { abortEarly: false, allowUnknown: true }
@@ -132,15 +154,18 @@ class FileStorage {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for completeUpload");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for completeUpload",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -151,6 +176,23 @@ class FileStorage {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = FileStorageModel.CompleteResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for completeUpload",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -160,7 +202,7 @@ class FileStorage {
    * @summary: Explain here
    * @description: Describe here
    */
-  signUrls({ body } = {}) {
+  async signUrls({ body } = {}) {
     const { error } = FileStorageValidator.signUrls().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -175,15 +217,18 @@ class FileStorage {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for signUrls");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for signUrls",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -194,6 +239,23 @@ class FileStorage {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = FileStorageModel.SignUrlResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for signUrls",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

@@ -2,6 +2,9 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const CompanyProfileValidator = require("./CompanyProfilePlatformValidator");
+const CompanyProfileModel = require("./CompanyProfilePlatformModel");
+const { Logger } = require("./../../common/Logger");
+
 class CompanyProfile {
   constructor(config) {
     this.config = config;
@@ -9,10 +12,11 @@ class CompanyProfile {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<GetCompanyProfileSerializerResponse>} - Success response
    * @summary: Get company profile
    * @description: This API allows to view the company profile of the seller account.
    */
-  cbsOnboardGet({} = {}) {
+  async cbsOnboardGet({} = {}) {
     const { error } = CompanyProfileValidator.cbsOnboardGet().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -29,15 +33,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for cbsOnboardGet");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cbsOnboardGet",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
@@ -45,15 +52,33 @@ class CompanyProfile {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.GetCompanyProfileSerializerResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cbsOnboardGet",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {UpdateCompany} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit company profile
    * @description: This API allows to edit the company profile of the seller account.
    */
-  updateCompany({ body } = {}) {
+  async updateCompany({ body } = {}) {
     const { error } = CompanyProfileValidator.updateCompany().validate(
       {
         body,
@@ -74,15 +99,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCompany");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCompany",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
@@ -90,14 +118,32 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCompany",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<MetricsSerializer>} - Success response
    * @summary: Get company metrics
    * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
    */
-  getCompanyMetrics({} = {}) {
+  async getCompanyMetrics({} = {}) {
     const { error } = CompanyProfileValidator.getCompanyMetrics().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -114,15 +160,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCompanyMetrics");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCompanyMetrics",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
@@ -130,15 +179,33 @@ class CompanyProfile {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.MetricsSerializer().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCompanyMetrics",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @returns {Promise<GetBrandResponseSerializer>} - Success response
    * @summary: Get a single brand.
    * @description: This API helps to get data associated to a particular brand.
    */
-  getBrand({ brandId } = {}) {
+  async getBrand({ brandId } = {}) {
     const { error } = CompanyProfileValidator.getBrand().validate(
       {
         brandId,
@@ -157,15 +224,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBrand");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBrand",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
@@ -173,16 +243,34 @@ class CompanyProfile {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.GetBrandResponseSerializer().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBrand",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.brandId - Id of the brand to be viewed.
    * @param {CreateUpdateBrandRequestSerializer} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit a brand.
    * @description: This API allows to edit meta of a brand.
    */
-  editBrand({ brandId, body } = {}) {
+  async editBrand({ brandId, body } = {}) {
     const { error } = CompanyProfileValidator.editBrand().validate(
       {
         brandId,
@@ -203,15 +291,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for editBrand");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for editBrand",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
@@ -219,15 +310,33 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for editBrand",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateUpdateBrandRequestSerializer} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a Brand.
    * @description: This API allows to create a brand associated to a company.
    */
-  createBrand({ body } = {}) {
+  async createBrand({ body } = {}) {
     const { error } = CompanyProfileValidator.createBrand().validate(
       {
         body,
@@ -246,15 +355,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createBrand");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createBrand",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/`,
@@ -262,6 +374,23 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createBrand",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -271,10 +400,11 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {string} [arg.q] - Search term for name.
+   * @returns {Promise<CompanyBrandListSerializer>} - Success response
    * @summary: Get brands associated to a company
    * @description: This API helps to get view brands associated to a particular company.
    */
-  getBrands({ pageNo, pageSize, q } = {}) {
+  async getBrands({ pageNo, pageSize, q } = {}) {
     const { error } = CompanyProfileValidator.getBrands().validate(
       {
         pageNo,
@@ -297,8 +427,11 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBrands");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBrands",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -308,7 +441,7 @@ class CompanyProfile {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
@@ -316,6 +449,23 @@ class CompanyProfile {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.CompanyBrandListSerializer().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBrands",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -350,10 +500,11 @@ class CompanyProfile {
   /**
    * @param {Object} arg - Arg object.
    * @param {CompanyBrandPostRequestSerializer} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a company brand mapping.
    * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
    */
-  createCompanyBrandMapping({ body } = {}) {
+  async createCompanyBrandMapping({ body } = {}) {
     const {
       error,
     } = CompanyProfileValidator.createCompanyBrandMapping().validate(
@@ -376,17 +527,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for createCompanyBrandMapping"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createCompanyBrandMapping",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
@@ -394,6 +546,23 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createCompanyBrandMapping",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -408,10 +577,18 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+   * @returns {Promise<LocationListSerializer>} - Success response
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
-  getLocations({ storeType, q, stage, pageNo, pageSize, locationIds } = {}) {
+  async getLocations({
+    storeType,
+    q,
+    stage,
+    pageNo,
+    pageSize,
+    locationIds,
+  } = {}) {
     const { error } = CompanyProfileValidator.getLocations().validate(
       {
         storeType,
@@ -440,8 +617,11 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLocations");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLocations",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -454,7 +634,7 @@ class CompanyProfile {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
@@ -462,6 +642,23 @@ class CompanyProfile {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.LocationListSerializer().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -504,10 +701,11 @@ class CompanyProfile {
   /**
    * @param {Object} arg - Arg object.
    * @param {LocationSerializer} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a location associated to a company.
    * @description: This API allows to edit a location associated to a company.
    */
-  createLocation({ body } = {}) {
+  async createLocation({ body } = {}) {
     const { error } = CompanyProfileValidator.createLocation().validate(
       {
         body,
@@ -528,15 +726,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createLocation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createLocation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
@@ -544,15 +745,33 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createLocation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.locationId - Id of the location which you want to view.
+   * @returns {Promise<GetLocationSerializer>} - Success response
    * @summary: Get details of a specific location.
    * @description: This API helps to get data associated to a specific location.
    */
-  getLocationDetail({ locationId } = {}) {
+  async getLocationDetail({ locationId } = {}) {
     const { error } = CompanyProfileValidator.getLocationDetail().validate(
       {
         locationId,
@@ -573,15 +792,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLocationDetail");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLocationDetail",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
@@ -589,16 +811,34 @@ class CompanyProfile {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.GetLocationSerializer().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLocationDetail",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.locationId - Id of the location which you want to edit.
    * @param {LocationSerializer} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit a location asscoiated to a company.
    * @description: This API allows to edit a location associated to a company.
    */
-  updateLocation({ locationId, body } = {}) {
+  async updateLocation({ locationId, body } = {}) {
     const { error } = CompanyProfileValidator.updateLocation().validate(
       {
         locationId,
@@ -621,15 +861,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateLocation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateLocation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
@@ -637,15 +880,33 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateLocation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {BulkLocationSerializer} arg.body
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a location asscoiated to a company in bulk.
    * @description: This API allows to create a location associated to a company.
    */
-  createLocationBulk({ body } = {}) {
+  async createLocationBulk({ body } = {}) {
     const { error } = CompanyProfileValidator.createLocationBulk().validate(
       {
         body,
@@ -666,15 +927,18 @@ class CompanyProfile {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createLocationBulk");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createLocationBulk",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/bulk`,
@@ -682,6 +946,23 @@ class CompanyProfile {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createLocationBulk",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

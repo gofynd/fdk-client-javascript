@@ -35,7 +35,7 @@ declare class Order {
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders.
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta }?: {
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta, }?: {
         status?: number;
         pageNo?: number;
         pageSize?: number;

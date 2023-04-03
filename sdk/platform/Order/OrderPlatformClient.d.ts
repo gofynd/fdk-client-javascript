@@ -28,6 +28,7 @@ declare class Order {
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
+     * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -56,13 +57,14 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
-    }): Promise<any>;
+    }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.channelShipmentId] -
      * @param {string} [arg.shipmentId] -
      * @param {string} [arg.orderingCompanyId] -
      * @param {string} [arg.requestByExt] -
+     * @returns {Promise<ShipmentInfoResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -71,16 +73,17 @@ declare class Order {
         shipmentId?: string;
         orderingCompanyId?: string;
         requestByExt?: string;
-    }): Promise<any>;
+    }): Promise<ShipmentInfoResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.orderId -
+     * @returns {Promise<ShipmentDetailsResponse>} - Success response
      * @summary:
      * @description:
      */
     getOrderById({ orderId }?: {
         orderId: string;
-    }): Promise<any>;
+    }): Promise<ShipmentDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.superLane] -
@@ -92,6 +95,7 @@ declare class Order {
      * @param {string} [arg.salesChannel] -
      * @param {string} [arg.paymentMode] -
      * @param {string} [arg.bagStatus] -
+     * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -105,7 +109,7 @@ declare class Order {
         salesChannel?: string;
         paymentMode?: string;
         bagStatus?: string;
-    }): Promise<any>;
+    }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
@@ -124,6 +128,7 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
+     * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -144,80 +149,87 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
-    }): Promise<any>;
+    }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
+     * @returns {Promise<MetricCountResponse>} - Success response
      * @summary:
      * @description:
      */
     getMetricCount({ fromDate, toDate }?: {
         fromDate?: string;
         toDate?: string;
-    }): Promise<any>;
+    }): Promise<MetricCountResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.view -
      * @param {string} [arg.groupEntity] -
+     * @returns {Promise<FiltersResponse>} - Success response
      * @summary:
      * @description:
      */
     getfilters({ view, groupEntity }?: {
         view: string;
         groupEntity?: string;
-    }): Promise<any>;
+    }): Promise<FiltersResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
+     * @returns {Promise<Success>} - Success response
      * @summary:
      * @description:
      */
     createShipmentReport({ fromDate, toDate }?: {
         fromDate?: string;
         toDate?: string;
-    }): Promise<any>;
+    }): Promise<Success>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
+     * @returns {Promise<OmsReports>} - Success response
      * @summary:
      * @description:
      */
     getReportsShipmentListing({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<OmsReports>;
     /**
      * @param {Object} arg - Arg object.
      * @param {JioCodeUpsertPayload} arg.body
+     * @returns {Promise<JioCodeUpsertResponse>} - Success response
      * @summary:
      * @description:
      */
     upsertJioCode({ body }?: {
         body: JioCodeUpsertPayload;
-    }): Promise<any>;
+    }): Promise<JioCodeUpsertResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
      * @param {string} arg.docType -
+     * @returns {Promise<BulkInvoicingResponse>} - Success response
      * @summary:
      * @description:
      */
     getBulkInvoice({ batchId, docType }?: {
         batchId: string;
         docType: string;
-    }): Promise<any>;
+    }): Promise<BulkInvoicingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
+     * @returns {Promise<BulkInvoiceLabelResponse>} - Success response
      * @summary:
      * @description:
      */
     getBulkInvoiceLabel({ batchId }?: {
         batchId: string;
-    }): Promise<any>;
+    }): Promise<BulkInvoiceLabelResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
@@ -234,6 +246,7 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @returns {Promise<FileResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -252,7 +265,7 @@ declare class Order {
         pageSize?: number;
         customerId?: string;
         isPrioritySort?: boolean;
-    }): Promise<any>;
+    }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] -
@@ -269,6 +282,7 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.customerId] -
      * @param {boolean} [arg.isPrioritySort] -
+     * @returns {Promise<BulkListingResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -287,18 +301,19 @@ declare class Order {
         pageSize?: number;
         customerId?: string;
         isPrioritySort?: boolean;
-    }): Promise<any>;
+    }): Promise<BulkListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
      * @param {string} [arg.reportType] -
+     * @returns {Promise<FileResponse>} - Success response
      * @summary:
      * @description:
      */
     getBulkActionFailedReport({ batchId, reportType }?: {
         batchId: string;
         reportType?: string;
-    }): Promise<any>;
+    }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId - ID of the shipment. An order may contain
@@ -307,6 +322,7 @@ declare class Order {
      * @param {string} arg.bagId - ID of the bag. An order may contain multiple
      *   items and may get divided into one or more shipment, each having its own ID.
      * @param {string} arg.state - State for which reasons are required.
+     * @returns {Promise<PlatformShipmentReasonsResponse>} - Success response
      * @summary: Get reasons behind full or partial cancellation of a shipment
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
      */
@@ -314,30 +330,33 @@ declare class Order {
         shipmentId: string;
         bagId: string;
         state: string;
-    }): Promise<any>;
+    }): Promise<PlatformShipmentReasonsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {BulkActionPayload} arg.body
+     * @returns {Promise<BulkActionResponse>} - Success response
      * @summary: emits uuid to kafka topic.
      * @description: Use this API to start processing Xlsx file.
      */
     bulkActionProcessXlsxFile({ body }?: {
         body: BulkActionPayload;
-    }): Promise<any>;
+    }): Promise<BulkActionResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId -
+     * @returns {Promise<BulkActionDetailsResponse>} - Success response
      * @summary: Returns failed, processing and successfully processed shipments.
      * @description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
      */
     bulkActionDetails({ batchId }?: {
         batchId: string;
-    }): Promise<any>;
+    }): Promise<BulkActionDetailsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.bagId] -
      * @param {string} [arg.channelBagId] -
      * @param {string} [arg.channelId] -
+     * @returns {Promise<BagDetailsPlatformResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -345,7 +364,7 @@ declare class Order {
         bagId?: string;
         channelBagId?: string;
         channelId?: string;
-    }): Promise<any>;
+    }): Promise<BagDetailsPlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.bagIds] -
@@ -357,6 +376,7 @@ declare class Order {
      * @param {string} [arg.channelId] -
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
+     * @returns {Promise<GetBagsPlatformResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -370,43 +390,47 @@ declare class Order {
         channelId?: string;
         pageNo?: number;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<GetBagsPlatformResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {InvalidateShipmentCachePayload} arg.body
+     * @returns {Promise<InvalidateShipmentCacheResponse>} - Success response
      * @summary:
      * @description: Invalidate shipment Cache
      */
     invalidateShipmentCache({ body }?: {
         body: InvalidateShipmentCachePayload;
-    }): Promise<any>;
+    }): Promise<InvalidateShipmentCacheResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {StoreReassign} arg.body
+     * @returns {Promise<StoreReassignResponse>} - Success response
      * @summary:
      * @description: Reassign Location
      */
     reassignLocation({ body }?: {
         body: StoreReassign;
-    }): Promise<any>;
+    }): Promise<StoreReassignResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentLockPayload} arg.body
+     * @returns {Promise<UpdateShipmentLockResponse>} - Success response
      * @summary:
      * @description: update shipment lock
      */
     updateShipmentLock({ body }?: {
         body: UpdateShipmentLockPayload;
-    }): Promise<any>;
+    }): Promise<UpdateShipmentLockResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.date] -
+     * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:
      * @description:
      */
     getAnnouncements({ date }?: {
         date?: string;
-    }): Promise<any>;
+    }): Promise<AnnouncementsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
@@ -421,6 +445,7 @@ declare class Order {
      * @param {string} [arg.city] -
      * @param {string} [arg.state] -
      * @param {string} [arg.country] -
+     * @returns {Promise<BaseResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -437,7 +462,7 @@ declare class Order {
         city?: string;
         state?: string;
         country?: string;
-    }): Promise<any>;
+    }): Promise<BaseResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.caller -
@@ -445,6 +470,7 @@ declare class Order {
      * @param {string} arg.bagId -
      * @param {string} [arg.callingTo] -
      * @param {string} [arg.callerId] -
+     * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
      * @description:
      */
@@ -454,142 +480,158 @@ declare class Order {
         bagId: string;
         callingTo?: string;
         callerId?: string;
-    }): Promise<any>;
+    }): Promise<Click2CallResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UpdateShipmentStatusRequest} arg.body
+     * @returns {Promise<UpdateShipmentStatusResponseBody>} - Success response
      * @summary:
      * @description: Update shipment status
      */
     updateShipmentStatus({ body }?: {
         body: UpdateShipmentStatusRequest;
-    }): Promise<any>;
+    }): Promise<UpdateShipmentStatusResponseBody>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateOrderPayload} arg.body
+     * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
      * @description:
      */
     processManifest({ body }?: {
         body: CreateOrderPayload;
-    }): Promise<any>;
+    }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {DispatchManifest} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
      * @description:
      */
     dispatchManifest({ body }?: {
         body: DispatchManifest;
-    }): Promise<any>;
+    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<GetActionsResponse>} - Success response
      * @summary:
      * @description:
      */
-    getRoleBasedActions({}?: any): Promise<any>;
+    getRoleBasedActions({}?: any): Promise<GetActionsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.shipmentId] -
      * @param {number} [arg.bagId] -
+     * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     getShipmentHistory({ shipmentId, bagId }?: {
         shipmentId?: number;
         bagId?: number;
-    }): Promise<any>;
+    }): Promise<ShipmentHistoryResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PostShipmentHistory} arg.body
+     * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
      * @description:
      */
     postShipmentHistory({ body }?: {
         body: PostShipmentHistory;
-    }): Promise<any>;
+    }): Promise<ShipmentHistoryResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SendSmsPayload} arg.body
+     * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
      * @description:
      */
     sendSmsNinja({ body }?: {
         body: SendSmsPayload;
-    }): Promise<any>;
+    }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ManualAssignDPToShipment} arg.body
+     * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
      * @summary:
      * @description:
      */
     platformManualAssignDPToShipment({ body }?: {
         body: ManualAssignDPToShipment;
-    }): Promise<any>;
+    }): Promise<ManualAssignDPToShipmentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateOrderPayload} arg.body
+     * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
      * @description:
      */
     updatePackagingDimensions({ body }?: {
         body: CreateOrderPayload;
-    }): Promise<any>;
+    }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateOrderAPI} arg.body
+     * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
      * @description:
      */
     createOrder({ body }?: {
         body: CreateOrderAPI;
-    }): Promise<any>;
+    }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<CreateChannelConfigData>} - Success response
      * @summary:
      * @description: getChannelConfig
      */
-    getChannelConfig({}?: any): Promise<any>;
+    getChannelConfig({}?: any): Promise<CreateChannelConfigData>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateChannelConfigData} arg.body
+     * @returns {Promise<CreateChannelConfigResponse>} - Success response
      * @summary:
      * @description: createChannelConfig
      */
     createChannelConfig({ body }?: {
         body: CreateChannelConfigData;
-    }): Promise<any>;
+    }): Promise<CreateChannelConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UploadConsent} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
      * @description:
      */
     uploadConsent({ body }?: {
         body: UploadConsent;
-    }): Promise<any>;
+    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PlatformOrderUpdate} arg.body
+     * @returns {Promise<ResponseDetail>} - Success response
      * @summary:
      * @description:
      */
     orderUpdate({ body }?: {
         body: PlatformOrderUpdate;
-    }): Promise<any>;
+    }): Promise<ResponseDetail>;
     /**
      * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
+     * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
      * @description:
      */
     checkOrderStatus({ body }?: {
         body: OrderStatus;
-    }): Promise<any>;
+    }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
      * @description:
      */
-    sendSmsNinjaPlatform({}?: any): Promise<any>;
+    sendSmsNinjaPlatform({}?: any): Promise<OrderStatusResult>;
 }

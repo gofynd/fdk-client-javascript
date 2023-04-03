@@ -2,6 +2,9 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const OrderValidator = require("./OrderPlatformValidator");
+const OrderModel = require("./OrderPlatformModel");
+const { Logger } = require("./../../common/Logger");
+
 class Order {
   constructor(config) {
     this.config = config;
@@ -33,10 +36,11 @@ class Order {
    * @param {string} [arg.customMeta] -
    * @param {string} [arg.orderingChannel] -
    * @param {string} [arg.companyAffiliateTag] -
+   * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
    */
-  getShipments({
+  async getShipments({
     lane,
     bagStatus,
     statusOverrideLane,
@@ -126,8 +130,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipments");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipments",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -158,7 +165,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments-listing`,
@@ -166,6 +173,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentInternalPlatformViewResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipments",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -174,10 +198,11 @@ class Order {
    * @param {string} [arg.shipmentId] -
    * @param {string} [arg.orderingCompanyId] -
    * @param {string} [arg.requestByExt] -
+   * @returns {Promise<ShipmentInfoResponse>} - Success response
    * @summary:
    * @description:
    */
-  getShipmentById({
+  async getShipmentById({
     channelShipmentId,
     shipmentId,
     orderingCompanyId,
@@ -207,8 +232,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipmentById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -219,7 +247,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment-details`,
@@ -227,15 +255,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentInfoResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipmentById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
+   * @returns {Promise<ShipmentDetailsResponse>} - Success response
    * @summary:
    * @description:
    */
-  getOrderById({ orderId } = {}) {
+  async getOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getOrderById().validate(
       {
         orderId,
@@ -254,8 +300,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOrderById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOrderById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -263,7 +312,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/order-details`,
@@ -271,6 +320,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOrderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -284,10 +350,11 @@ class Order {
    * @param {string} [arg.salesChannel] -
    * @param {string} [arg.paymentMode] -
    * @param {string} [arg.bagStatus] -
+   * @returns {Promise<LaneConfigResponse>} - Success response
    * @summary:
    * @description:
    */
-  getLaneConfig({
+  async getLaneConfig({
     superLane,
     groupEntity,
     fromDate,
@@ -332,8 +399,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLaneConfig");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLaneConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -349,7 +419,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/lane-config/`,
@@ -357,6 +427,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.LaneConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLaneConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -377,10 +464,11 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @param {boolean} [arg.isPrioritySort] -
    * @param {string} [arg.customMeta] -
+   * @returns {Promise<OrderListingResponse>} - Success response
    * @summary:
    * @description:
    */
-  getOrders({
+  async getOrders({
     lane,
     searchType,
     bagStatus,
@@ -446,8 +534,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOrders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOrders",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -470,7 +561,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/orders-listing`,
@@ -478,16 +569,34 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.OrderListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOrders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
+   * @returns {Promise<MetricCountResponse>} - Success response
    * @summary:
    * @description:
    */
-  getMetricCount({ fromDate, toDate } = {}) {
+  async getMetricCount({ fromDate, toDate } = {}) {
     const { error } = OrderValidator.getMetricCount().validate(
       {
         fromDate,
@@ -508,8 +617,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getMetricCount");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getMetricCount",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -518,7 +630,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipment/metrics-count/`,
@@ -526,16 +638,34 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.MetricCountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getMetricCount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.view -
    * @param {string} [arg.groupEntity] -
+   * @returns {Promise<FiltersResponse>} - Success response
    * @summary:
    * @description:
    */
-  getfilters({ view, groupEntity } = {}) {
+  async getfilters({ view, groupEntity } = {}) {
     const { error } = OrderValidator.getfilters().validate(
       {
         view,
@@ -556,8 +686,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getfilters");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getfilters",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -566,7 +699,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/filter-listing`,
@@ -574,16 +707,32 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.FiltersResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getfilters",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
+   * @returns {Promise<Success>} - Success response
    * @summary:
    * @description:
    */
-  createShipmentReport({ fromDate, toDate } = {}) {
+  async createShipmentReport({ fromDate, toDate } = {}) {
     const { error } = OrderValidator.createShipmentReport().validate(
       {
         fromDate,
@@ -604,8 +753,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createShipmentReport");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createShipmentReport",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -614,7 +766,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment`,
@@ -622,16 +774,32 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.Success().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createShipmentReport",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
+   * @returns {Promise<OmsReports>} - Success response
    * @summary:
    * @description:
    */
-  getReportsShipmentListing({ pageNo, pageSize } = {}) {
+  async getReportsShipmentListing({ pageNo, pageSize } = {}) {
     const { error } = OrderValidator.getReportsShipmentListing().validate(
       {
         pageNo,
@@ -654,10 +822,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getReportsShipmentListing"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getReportsShipmentListing",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -666,7 +835,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/reports/shipment-listing`,
@@ -674,15 +843,31 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.OmsReports().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getReportsShipmentListing",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {JioCodeUpsertPayload} arg.body
+   * @returns {Promise<JioCodeUpsertResponse>} - Success response
    * @summary:
    * @description:
    */
-  upsertJioCode({ body } = {}) {
+  async upsertJioCode({ body } = {}) {
     const { error } = OrderValidator.upsertJioCode().validate(
       {
         body,
@@ -701,15 +886,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for upsertJioCode");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for upsertJioCode",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/upsert/jiocode/article`,
@@ -717,16 +905,34 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.JioCodeUpsertResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for upsertJioCode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.batchId -
    * @param {string} arg.docType -
+   * @returns {Promise<BulkInvoicingResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBulkInvoice({ batchId, docType } = {}) {
+  async getBulkInvoice({ batchId, docType } = {}) {
     const { error } = OrderValidator.getBulkInvoice().validate(
       {
         batchId,
@@ -747,8 +953,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBulkInvoice");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBulkInvoice",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -757,7 +966,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/invoice`,
@@ -765,15 +974,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkInvoicingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBulkInvoice",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.batchId -
+   * @returns {Promise<BulkInvoiceLabelResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBulkInvoiceLabel({ batchId } = {}) {
+  async getBulkInvoiceLabel({ batchId } = {}) {
     const { error } = OrderValidator.getBulkInvoiceLabel().validate(
       {
         batchId,
@@ -792,8 +1019,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBulkInvoiceLabel");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBulkInvoiceLabel",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -801,7 +1031,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/invoice-label-external`,
@@ -809,6 +1039,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkInvoiceLabelResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBulkInvoiceLabel",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -827,10 +1074,11 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.customerId] -
    * @param {boolean} [arg.isPrioritySort] -
+   * @returns {Promise<FileResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBulkShipmentExcelFile({
+  async getBulkShipmentExcelFile({
     lane,
     searchType,
     searchId,
@@ -892,10 +1140,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getBulkShipmentExcelFile"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBulkShipmentExcelFile",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -916,7 +1165,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/generate/file`,
@@ -924,6 +1173,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.FileResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBulkShipmentExcelFile",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -942,10 +1206,11 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.customerId] -
    * @param {boolean} [arg.isPrioritySort] -
+   * @returns {Promise<BulkListingResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBulkList({
+  async getBulkList({
     lane,
     searchType,
     searchId,
@@ -1005,8 +1270,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBulkList");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBulkList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1027,7 +1295,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action/listing`,
@@ -1035,16 +1303,34 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkListingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBulkList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.batchId -
    * @param {string} [arg.reportType] -
+   * @returns {Promise<FileResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBulkActionFailedReport({ batchId, reportType } = {}) {
+  async getBulkActionFailedReport({ batchId, reportType } = {}) {
     const { error } = OrderValidator.getBulkActionFailedReport().validate(
       {
         batchId,
@@ -1067,10 +1353,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getBulkActionFailedReport"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBulkActionFailedReport",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1079,7 +1366,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bulk-action-failed-report/`,
@@ -1087,6 +1374,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.FileResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBulkActionFailedReport",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1097,10 +1399,11 @@ class Order {
    * @param {string} arg.bagId - ID of the bag. An order may contain multiple
    *   items and may get divided into one or more shipment, each having its own ID.
    * @param {string} arg.state - State for which reasons are required.
+   * @returns {Promise<PlatformShipmentReasonsResponse>} - Success response
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
-  getShipmentReasons({ shipmentId, bagId, state } = {}) {
+  async getShipmentReasons({ shipmentId, bagId, state } = {}) {
     const { error } = OrderValidator.getShipmentReasons().validate(
       {
         shipmentId,
@@ -1123,15 +1426,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentReasons");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipmentReasons",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/shipments/${shipmentId}/bags/${bagId}/state/${state}/reasons`,
@@ -1139,15 +1445,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.PlatformShipmentReasonsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipmentReasons",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {BulkActionPayload} arg.body
+   * @returns {Promise<BulkActionResponse>} - Success response
    * @summary: emits uuid to kafka topic.
    * @description: Use this API to start processing Xlsx file.
    */
-  bulkActionProcessXlsxFile({ body } = {}) {
+  async bulkActionProcessXlsxFile({ body } = {}) {
     const { error } = OrderValidator.bulkActionProcessXlsxFile().validate(
       {
         body,
@@ -1168,17 +1492,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for bulkActionProcessXlsxFile"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for bulkActionProcessXlsxFile",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/`,
@@ -1186,15 +1511,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkActionResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for bulkActionProcessXlsxFile",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.batchId -
+   * @returns {Promise<BulkActionDetailsResponse>} - Success response
    * @summary: Returns failed, processing and successfully processed shipments.
    * @description: Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
    */
-  bulkActionDetails({ batchId } = {}) {
+  async bulkActionDetails({ batchId } = {}) {
     const { error } = OrderValidator.bulkActionDetails().validate(
       {
         batchId,
@@ -1213,15 +1556,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for bulkActionDetails");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for bulkActionDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v2.0/company/${this.config.companyId}/bulk-action/${batchId}`,
@@ -1229,6 +1575,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkActionDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for bulkActionDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1236,10 +1599,11 @@ class Order {
    * @param {string} [arg.bagId] -
    * @param {string} [arg.channelBagId] -
    * @param {string} [arg.channelId] -
+   * @returns {Promise<BagDetailsPlatformResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBagById({ bagId, channelBagId, channelId } = {}) {
+  async getBagById({ bagId, channelBagId, channelId } = {}) {
     const { error } = OrderValidator.getBagById().validate(
       {
         bagId,
@@ -1262,8 +1626,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBagById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBagById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1273,7 +1640,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bag-details/`,
@@ -1281,6 +1648,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.BagDetailsPlatformResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBagById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1294,10 +1678,11 @@ class Order {
    * @param {string} [arg.channelId] -
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
+   * @returns {Promise<GetBagsPlatformResponse>} - Success response
    * @summary:
    * @description:
    */
-  getBags({
+  async getBags({
     bagIds,
     shipmentIds,
     orderIds,
@@ -1342,8 +1727,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBags");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBags",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1359,7 +1747,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/orders/v1.0/company/${this.config.companyId}/bags`,
@@ -1367,15 +1755,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.GetBagsPlatformResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBags",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {InvalidateShipmentCachePayload} arg.body
+   * @returns {Promise<InvalidateShipmentCacheResponse>} - Success response
    * @summary:
    * @description: Invalidate shipment Cache
    */
-  invalidateShipmentCache({ body } = {}) {
+  async invalidateShipmentCache({ body } = {}) {
     const { error } = OrderValidator.invalidateShipmentCache().validate(
       {
         body,
@@ -1396,15 +1802,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for invalidateShipmentCache");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for invalidateShipmentCache",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-cache`,
@@ -1412,15 +1821,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.InvalidateShipmentCacheResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for invalidateShipmentCache",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {StoreReassign} arg.body
+   * @returns {Promise<StoreReassignResponse>} - Success response
    * @summary:
    * @description: Reassign Location
    */
-  reassignLocation({ body } = {}) {
+  async reassignLocation({ body } = {}) {
     const { error } = OrderValidator.reassignLocation().validate(
       {
         body,
@@ -1439,15 +1866,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for reassignLocation");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for reassignLocation",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/store/reassign-internal`,
@@ -1455,15 +1885,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.StoreReassignResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for reassignLocation",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {UpdateShipmentLockPayload} arg.body
+   * @returns {Promise<UpdateShipmentLockResponse>} - Success response
    * @summary:
    * @description: update shipment lock
    */
-  updateShipmentLock({ body } = {}) {
+  async updateShipmentLock({ body } = {}) {
     const { error } = OrderValidator.updateShipmentLock().validate(
       {
         body,
@@ -1482,15 +1930,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateShipmentLock");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateShipmentLock",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/entity/lock-manager`,
@@ -1498,15 +1949,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.UpdateShipmentLockResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateShipmentLock",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.date] -
+   * @returns {Promise<AnnouncementsResponse>} - Success response
    * @summary:
    * @description:
    */
-  getAnnouncements({ date } = {}) {
+  async getAnnouncements({ date } = {}) {
     const { error } = OrderValidator.getAnnouncements().validate(
       {
         date,
@@ -1525,8 +1994,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAnnouncements");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAnnouncements",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1534,7 +2006,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/announcements`,
@@ -1542,6 +2014,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.AnnouncementsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAnnouncements",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1558,10 +2047,11 @@ class Order {
    * @param {string} [arg.city] -
    * @param {string} [arg.state] -
    * @param {string} [arg.country] -
+   * @returns {Promise<BaseResponse>} - Success response
    * @summary:
    * @description:
    */
-  updateAddress({
+  async updateAddress({
     shipmentId,
     addressCategory,
     name,
@@ -1615,8 +2105,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateAddress");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1635,7 +2128,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/delight/update-address`,
@@ -1643,6 +2136,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.BaseResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1652,10 +2160,11 @@ class Order {
    * @param {string} arg.bagId -
    * @param {string} [arg.callingTo] -
    * @param {string} [arg.callerId] -
+   * @returns {Promise<Click2CallResponse>} - Success response
    * @summary:
    * @description:
    */
-  click2Call({ caller, receiver, bagId, callingTo, callerId } = {}) {
+  async click2Call({ caller, receiver, bagId, callingTo, callerId } = {}) {
     const { error } = OrderValidator.click2Call().validate(
       {
         caller,
@@ -1682,8 +2191,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for click2Call");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for click2Call",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1695,7 +2207,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/click2call`,
@@ -1703,15 +2215,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.Click2CallResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for click2Call",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {UpdateShipmentStatusRequest} arg.body
+   * @returns {Promise<UpdateShipmentStatusResponseBody>} - Success response
    * @summary:
    * @description: Update shipment status
    */
-  updateShipmentStatus({ body } = {}) {
+  async updateShipmentStatus({ body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
       {
         body,
@@ -1730,15 +2260,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateShipmentStatus");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/status-internal`,
@@ -1746,15 +2279,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.UpdateShipmentStatusResponseBody().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateOrderPayload} arg.body
+   * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
    * @description:
    */
-  processManifest({ body } = {}) {
+  async processManifest({ body } = {}) {
     const { error } = OrderValidator.processManifest().validate(
       {
         body,
@@ -1773,15 +2324,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for processManifest");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for processManifest",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
@@ -1789,15 +2343,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.CreateOrderResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for processManifest",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {DispatchManifest} arg.body
+   * @returns {Promise<SuccessResponse>} - Success response
    * @summary:
    * @description:
    */
-  dispatchManifest({ body } = {}) {
+  async dispatchManifest({ body } = {}) {
     const { error } = OrderValidator.dispatchManifest().validate(
       {
         body,
@@ -1816,15 +2388,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for dispatchManifest");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for dispatchManifest",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/dispatch`,
@@ -1832,14 +2407,30 @@ class Order {
       body,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.SuccessResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for dispatchManifest",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<GetActionsResponse>} - Success response
    * @summary:
    * @description:
    */
-  getRoleBasedActions({} = {}) {
+  async getRoleBasedActions({} = {}) {
     const { error } = OrderValidator.getRoleBasedActions().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1854,15 +2445,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getRoleBasedActions");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getRoleBasedActions",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/roles`,
@@ -1870,16 +2464,34 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.GetActionsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRoleBasedActions",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.shipmentId] -
    * @param {number} [arg.bagId] -
+   * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:
    * @description:
    */
-  getShipmentHistory({ shipmentId, bagId } = {}) {
+  async getShipmentHistory({ shipmentId, bagId } = {}) {
     const { error } = OrderValidator.getShipmentHistory().validate(
       {
         shipmentId,
@@ -1900,8 +2512,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentHistory");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipmentHistory",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1910,7 +2525,7 @@ class Order {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
@@ -1918,15 +2533,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentHistoryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipmentHistory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PostShipmentHistory} arg.body
+   * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:
    * @description:
    */
-  postShipmentHistory({ body } = {}) {
+  async postShipmentHistory({ body } = {}) {
     const { error } = OrderValidator.postShipmentHistory().validate(
       {
         body,
@@ -1945,15 +2578,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for postShipmentHistory");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for postShipmentHistory",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
@@ -1961,15 +2597,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentHistoryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for postShipmentHistory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {SendSmsPayload} arg.body
+   * @returns {Promise<OrderStatusResult>} - Success response
    * @summary:
    * @description:
    */
-  sendSmsNinja({ body } = {}) {
+  async sendSmsNinja({ body } = {}) {
     const { error } = OrderValidator.sendSmsNinja().validate(
       {
         body,
@@ -1988,15 +2642,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for sendSmsNinja");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for sendSmsNinja",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
@@ -2004,15 +2661,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.OrderStatusResult().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for sendSmsNinja",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {ManualAssignDPToShipment} arg.body
+   * @returns {Promise<ManualAssignDPToShipmentResponse>} - Success response
    * @summary:
    * @description:
    */
-  platformManualAssignDPToShipment({ body } = {}) {
+  async platformManualAssignDPToShipment({ body } = {}) {
     const {
       error,
     } = OrderValidator.platformManualAssignDPToShipment().validate(
@@ -2035,17 +2710,19 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for platformManualAssignDPToShipment"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for platformManualAssignDPToShipment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/oms/manual-place-shipment`,
@@ -2053,15 +2730,34 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ManualAssignDPToShipmentResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for platformManualAssignDPToShipment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateOrderPayload} arg.body
+   * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
    * @description:
    */
-  updatePackagingDimensions({ body } = {}) {
+  async updatePackagingDimensions({ body } = {}) {
     const { error } = OrderValidator.updatePackagingDimensions().validate(
       {
         body,
@@ -2082,17 +2778,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updatePackagingDimensions"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePackagingDimensions",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-packaging-dimension`,
@@ -2100,15 +2797,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.CreateOrderResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePackagingDimensions",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateOrderAPI} arg.body
+   * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
    * @description:
    */
-  createOrder({ body } = {}) {
+  async createOrder({ body } = {}) {
     const { error } = OrderValidator.createOrder().validate(
       {
         body,
@@ -2127,15 +2842,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createOrder");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createOrder",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
@@ -2143,14 +2861,32 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.CreateOrderResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createOrder",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<CreateChannelConfigData>} - Success response
    * @summary:
    * @description: getChannelConfig
    */
-  getChannelConfig({} = {}) {
+  async getChannelConfig({} = {}) {
     const { error } = OrderValidator.getChannelConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2165,15 +2901,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getChannelConfig");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getChannelConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
@@ -2181,15 +2920,33 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.CreateChannelConfigData().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getChannelConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateChannelConfigData} arg.body
+   * @returns {Promise<CreateChannelConfigResponse>} - Success response
    * @summary:
    * @description: createChannelConfig
    */
-  createChannelConfig({ body } = {}) {
+  async createChannelConfig({ body } = {}) {
     const { error } = OrderValidator.createChannelConfig().validate(
       {
         body,
@@ -2208,15 +2965,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createChannelConfig");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createChannelConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
@@ -2224,15 +2984,33 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.CreateChannelConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createChannelConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {UploadConsent} arg.body
+   * @returns {Promise<SuccessResponse>} - Success response
    * @summary:
    * @description:
    */
-  uploadConsent({ body } = {}) {
+  async uploadConsent({ body } = {}) {
     const { error } = OrderValidator.uploadConsent().validate(
       {
         body,
@@ -2251,15 +3029,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for uploadConsent");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for uploadConsent",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/uploadConsent`,
@@ -2267,15 +3048,31 @@ class Order {
       body,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.SuccessResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for uploadConsent",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PlatformOrderUpdate} arg.body
+   * @returns {Promise<ResponseDetail>} - Success response
    * @summary:
    * @description:
    */
-  orderUpdate({ body } = {}) {
+  async orderUpdate({ body } = {}) {
     const { error } = OrderValidator.orderUpdate().validate(
       {
         body,
@@ -2294,15 +3091,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for orderUpdate");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for orderUpdate",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order/validation`,
@@ -2310,15 +3110,31 @@ class Order {
       body,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.ResponseDetail().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for orderUpdate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {OrderStatus} arg.body
+   * @returns {Promise<OrderStatusResult>} - Success response
    * @summary:
    * @description:
    */
-  checkOrderStatus({ body } = {}) {
+  async checkOrderStatus({ body } = {}) {
     const { error } = OrderValidator.checkOrderStatus().validate(
       {
         body,
@@ -2337,15 +3153,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for checkOrderStatus");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkOrderStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/debug/order_status`,
@@ -2353,14 +3172,32 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.OrderStatusResult().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkOrderStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<OrderStatusResult>} - Success response
    * @summary:
    * @description:
    */
-  sendSmsNinjaPlatform({} = {}) {
+  async sendSmsNinjaPlatform({} = {}) {
     const { error } = OrderValidator.sendSmsNinjaPlatform().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2375,15 +3212,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for sendSmsNinjaPlatform");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for sendSmsNinjaPlatform",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
@@ -2391,6 +3231,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.OrderStatusResult().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for sendSmsNinjaPlatform",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 
