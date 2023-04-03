@@ -1,6 +1,7 @@
 export = RewardsModel;
 declare class RewardsModel {
     static ActionPageParams(): any;
+    static Asset(): any;
     static CatalogueOrderRequest(): any;
     static CatalogueOrderResponse(): any;
     static DiscountProperties(): any;
@@ -9,6 +10,7 @@ declare class RewardsModel {
     static OrderDiscountRequest(): any;
     static OrderDiscountResponse(): any;
     static OrderDiscountRuleBucket(): any;
+    static Page(): any;
     static PointsHistory(): any;
     static PointsHistoryResponse(): any;
     static PointsResponse(): any;

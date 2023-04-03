@@ -193,6 +193,46 @@ class LeadModel {
     });
   }
 
+  static UserSchema() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+
+      user_id: Joi.string().allow(""),
+
+      first_name: Joi.string().allow(""),
+
+      meta: Joi.any(),
+
+      last_name: Joi.string().allow(""),
+
+      phone_numbers: Joi.array().items(LeadModel.PhoneNumber()),
+
+      emails: Joi.array().items(LeadModel.Email()),
+
+      gender: Joi.string().allow(""),
+
+      dob: Joi.string().allow(""),
+
+      active: Joi.boolean(),
+
+      profile_pic_url: Joi.string().allow(""),
+
+      username: Joi.string().allow(""),
+
+      account_type: Joi.string().allow(""),
+
+      debug: LeadModel.Debug(),
+
+      has_old_password_hash: Joi.boolean(),
+
+      _id: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      updated_at: Joi.string().allow(""),
+    });
+  }
+
   static PhoneNumber() {
     return Joi.object({
       active: Joi.boolean(),

@@ -151,6 +151,24 @@ class CommonModel {
     });
   }
 
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
+
+      has_next: Joi.boolean(),
+
+      current: Joi.number(),
+
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
+    });
+  }
+
   static LocationDefaultLanguage() {
     return Joi.object({
       name: Joi.string().allow(""),

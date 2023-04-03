@@ -3,6 +3,7 @@ declare class InventoryModel {
     static GCompany(): any;
     static GStore(): any;
     static Metum(): any;
+    static Page(): any;
     static ResponseEnvelopeSlingshotConfigurationDetail(): any;
     static SlingshotConfigurationDetail(): any;
     static SlingshotIntegration(): any;

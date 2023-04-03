@@ -134,6 +134,16 @@ declare class ConfigurationModel {
     static OrderFeature(): any;
     static AppFeatureRequest(): any;
     static AppFeatureResponse(): any;
+    static Currency(): any;
+    static Domain(): any;
+    static ApplicationWebsite(): any;
+    static ApplicationCors(): any;
+    static ApplicationAuth(): any;
+    static ApplicationRedirections(): any;
+    static ApplicationMeta(): any;
+    static SecureUrl(): any;
+    static Application(): any;
+    static NotFound(): any;
     static UnhandledError(): any;
     static InvalidPayloadRequest(): any;
     static SuccessMessageResponse(): any;
@@ -147,6 +157,7 @@ declare class ConfigurationModel {
     static CompanyAboutAddress(): any;
     static UserEmail(): any;
     static UserPhoneNumber(): any;
+    static Page(): any;
     static ApplicationInformation(): any;
     static InformationAddress(): any;
     static InformationPhone(): any;

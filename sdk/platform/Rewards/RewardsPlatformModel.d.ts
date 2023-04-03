@@ -1,12 +1,14 @@
 export = RewardsModel;
 declare class RewardsModel {
     static AppUser(): any;
+    static Asset(): any;
     static E(): any;
     static Giveaway(): any;
     static GiveawayResponse(): any;
     static HistoryPretty(): any;
     static HistoryRes(): any;
     static Offer(): any;
+    static Page(): any;
     static Points(): any;
     static Referral(): any;
     static RewardUser(): any;

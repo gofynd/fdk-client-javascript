@@ -18,6 +18,7 @@ declare class LeadModel {
     static GetTokenForVideoRoomResponse(): any;
     static GetParticipantsInsideVideoRoomResponse(): any;
     static Participant(): any;
+    static UserSchema(): any;
     static PhoneNumber(): any;
     static Email(): any;
     static Debug(): any;

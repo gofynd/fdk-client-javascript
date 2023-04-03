@@ -9,4 +9,5 @@ declare class CommunicationModel {
     static CommunicationConsent(): any;
     static PushtokenReq(): any;
     static PushtokenRes(): any;
+    static Page(): any;
 }

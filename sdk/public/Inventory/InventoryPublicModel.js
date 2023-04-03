@@ -59,6 +59,24 @@ class InventoryModel {
     });
   }
 
+  static Page() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
+
+      current: Joi.number(),
+
+      has_next: Joi.boolean(),
+
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
+    });
+  }
+
   static ResponseEnvelopeSlingshotConfigurationDetail() {
     return Joi.object({
       timestamp: Joi.string().allow(""),

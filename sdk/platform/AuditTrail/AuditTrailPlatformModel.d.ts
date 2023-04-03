@@ -10,6 +10,9 @@ declare class AuditTrailModel {
     static Modifier(): any;
     static DeviceInfo(): any;
     static Location(): any;
+    static BadRequest(): any;
+    static ResourceNotFound(): any;
+    static InternalServerError(): any;
     static EntityTypesResponse(): any;
     static EntityTypeObj(): any;
 }

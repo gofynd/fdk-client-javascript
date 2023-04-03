@@ -22,6 +22,7 @@ declare class CartModel {
     static CouponAuthor(): any;
     static State(): any;
     static CouponAdd(): any;
+    static Page(): any;
     static CouponsResponse(): any;
     static SuccessMessage(): any;
     static OperationErrorResponse(): any;

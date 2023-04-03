@@ -66,6 +66,7 @@ declare class ContentModel {
     static CreateFaqCategorySchema(): any;
     static GetFaqCategoriesSchema(): any;
     static GetFaqCategoryBySlugSchema(): any;
+    static Page(): any;
     static LandingPageGetResponse(): any;
     static LandingPageSchema(): any;
     static DefaultNavigationResponse(): any;
@@ -101,4 +102,5 @@ declare class ContentModel {
     static TagsSchema(): any;
     static TagSchema(): any;
     static TagSourceSchema(): any;
+    static PageType(): any;
 }

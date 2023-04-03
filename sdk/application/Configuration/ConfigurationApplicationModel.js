@@ -585,6 +585,146 @@ class ConfigurationModel {
     });
   }
 
+  static Currency() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+
+      is_active: Joi.boolean(),
+
+      name: Joi.string().allow(""),
+
+      code: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      updated_at: Joi.string().allow(""),
+
+      decimal_digits: Joi.number(),
+
+      symbol: Joi.string().allow(""),
+    });
+  }
+
+  static Domain() {
+    return Joi.object({
+      verified: Joi.boolean(),
+
+      is_primary: Joi.boolean(),
+
+      is_shortlink: Joi.boolean(),
+
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+    });
+  }
+
+  static ApplicationWebsite() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+
+      basepath: Joi.string().allow(""),
+    });
+  }
+
+  static ApplicationCors() {
+    return Joi.object({
+      domains: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  static ApplicationAuth() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  static ApplicationRedirections() {
+    return Joi.object({
+      redirect_from: Joi.string().allow(""),
+
+      redirect_to: Joi.string().allow(""),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static ApplicationMeta() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+
+      value: Joi.string().allow(""),
+    });
+  }
+
+  static SecureUrl() {
+    return Joi.object({
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
+  static Application() {
+    return Joi.object({
+      website: ConfigurationModel.ApplicationWebsite(),
+
+      cors: ConfigurationModel.ApplicationCors(),
+
+      auth: ConfigurationModel.ApplicationAuth(),
+
+      description: Joi.string().allow(""),
+
+      channel_type: Joi.string().allow(""),
+
+      cache_ttl: Joi.number(),
+
+      is_internal: Joi.boolean(),
+
+      is_active: Joi.boolean(),
+
+      _id: Joi.string().allow(""),
+
+      name: Joi.string().allow(""),
+
+      owner: Joi.string().allow(""),
+
+      company_id: Joi.number(),
+
+      token: Joi.string().allow(""),
+
+      redirections: Joi.array().items(
+        ConfigurationModel.ApplicationRedirections()
+      ),
+
+      meta: Joi.array().items(ConfigurationModel.ApplicationMeta()),
+
+      created_at: Joi.string().allow(""),
+
+      updated_at: Joi.string().allow(""),
+
+      __v: Joi.number(),
+
+      banner: ConfigurationModel.SecureUrl(),
+
+      logo: ConfigurationModel.SecureUrl(),
+
+      favicon: ConfigurationModel.SecureUrl(),
+
+      domains: Joi.array().items(ConfigurationModel.Domain()),
+
+      app_type: Joi.string().allow(""),
+
+      mobile_logo: ConfigurationModel.SecureUrl(),
+
+      domain: ConfigurationModel.Domain(),
+    });
+  }
+
+  static NotFound() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
   static UnhandledError() {
     return Joi.object({
       message: Joi.string().allow(""),
@@ -700,6 +840,24 @@ class ConfigurationModel {
       country_code: Joi.number(),
 
       phone: Joi.string().allow(""),
+    });
+  }
+
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
+
+      has_next: Joi.boolean(),
+
+      current: Joi.number(),
+
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
     });
   }
 

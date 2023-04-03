@@ -1,6 +1,24 @@
 const Joi = require("joi");
 
 class BillingModel {
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
+
+      has_next: Joi.boolean(),
+
+      current: Joi.number(),
+
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
+    });
+  }
+
   static UnauthenticatedUser() {
     return Joi.object({
       message: Joi.string().allow(""),
@@ -8,6 +26,12 @@ class BillingModel {
   }
 
   static UnauthenticatedApplication() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static BadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
     });

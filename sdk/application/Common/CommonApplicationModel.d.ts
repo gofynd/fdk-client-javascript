@@ -12,6 +12,7 @@ declare class CommonModel {
     static Application(): any;
     static NotFound(): any;
     static BadRequest(): any;
+    static Page(): any;
     static LocationDefaultLanguage(): any;
     static LocationDefaultCurrency(): any;
     static LocationCountry(): any;

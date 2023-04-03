@@ -96,4 +96,5 @@ declare class CommunicationModel {
     static SystemNotification(): any;
     static SystemNotificationsPage(): any;
     static SystemNotifications(): any;
+    static Page(): any;
 }

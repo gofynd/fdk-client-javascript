@@ -15,6 +15,7 @@ declare class FileStorageModel {
     static Urls(): any;
     static SignUrlResponse(): any;
     static SignUrlRequest(): any;
+    static Page(): any;
     static DbRecord(): any;
     static BrowseResponse(): any;
 }

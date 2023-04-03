@@ -4,6 +4,7 @@ declare class WebhookModel {
     static EventConfigList(): any;
     static EventConfigResponse(): any;
     static SubscriberConfigList(): any;
+    static Page(): any;
     static EventProcessedStatus(): any;
     static EventPayload(): any;
     static SubscriberConfig(): any;

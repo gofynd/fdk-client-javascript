@@ -107,6 +107,26 @@ class AuditTrailModel {
     });
   }
 
+  static BadRequest() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static ResourceNotFound() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+    });
+  }
+
+  static InternalServerError() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+
+      code: Joi.string().allow(""),
+    });
+  }
+
   static EntityTypesResponse() {
     return Joi.object({
       items: Joi.array().items(AuditTrailModel.EntityTypeObj()),

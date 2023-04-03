@@ -48,6 +48,7 @@ declare class UserModel {
     static SendEmailVerifyLinkSuccess(): any;
     static UserSearchResponseSchema(): any;
     static CustomerListResponseSchema(): any;
+    static PaginationSchema(): any;
     static SessionListResponseSchema(): any;
     static SessionDeleteResponseSchema(): any;
     static UnauthorizedSchema(): any;
@@ -88,4 +89,7 @@ declare class UserModel {
     static Google(): any;
     static UpdateUserRequestSchema(): any;
     static UserSchema(): any;
+    static PhoneNumber(): any;
+    static Email(): any;
+    static Debug(): any;
 }

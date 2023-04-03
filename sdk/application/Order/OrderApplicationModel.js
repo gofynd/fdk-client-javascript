@@ -409,6 +409,20 @@ class OrderModel {
     });
   }
 
+  static AppliedFreeArticles() {
+    return Joi.object({
+      quantity: Joi.number(),
+
+      article_id: Joi.string().allow(""),
+
+      parent_item_identifier: Joi.string().allow(""),
+
+      free_gift_item_details: Joi.array().items(
+        OrderModel.FreeGiftItemDetails()
+      ),
+    });
+  }
+
   static FreeGiftItemDetails() {
     return Joi.object({
       item_id: Joi.string().allow(""),

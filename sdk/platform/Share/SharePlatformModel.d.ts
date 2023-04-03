@@ -9,6 +9,7 @@ declare class ShareModel {
     static ShortLinkReq(): any;
     static UrlInfo(): any;
     static ShortLinkRes(): any;
+    static Page(): any;
     static ShortLinkList(): any;
     static ErrorRes(): any;
 }

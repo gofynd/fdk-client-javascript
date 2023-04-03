@@ -1,7 +1,9 @@
 export = BillingModel;
 declare class BillingModel {
+    static Page(): any;
     static UnauthenticatedUser(): any;
     static UnauthenticatedApplication(): any;
+    static BadRequest(): any;
     static ResourceNotFound(): any;
     static InternalServerError(): any;
     static CheckValidityResponse(): any;

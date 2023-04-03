@@ -511,6 +511,20 @@ class UserModel {
     });
   }
 
+  static PaginationSchema() {
+    return Joi.object({
+      size: Joi.number(),
+
+      item_total: Joi.number(),
+
+      has_next: Joi.boolean(),
+
+      type: Joi.string().allow(""),
+
+      current: Joi.number(),
+    });
+  }
+
   static SessionListResponseSchema() {
     return Joi.object({
       items: Joi.array().items(Joi.string().allow("")),
@@ -942,6 +956,40 @@ class UserModel {
       created_at: Joi.string().allow(""),
 
       updated_at: Joi.string().allow(""),
+    });
+  }
+
+  static PhoneNumber() {
+    return Joi.object({
+      active: Joi.boolean(),
+
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      phone: Joi.string().allow(""),
+
+      country_code: Joi.number(),
+    });
+  }
+
+  static Email() {
+    return Joi.object({
+      primary: Joi.boolean(),
+
+      verified: Joi.boolean(),
+
+      email: Joi.string().allow(""),
+
+      active: Joi.boolean(),
+    });
+  }
+
+  static Debug() {
+    return Joi.object({
+      source: Joi.string().allow(""),
+
+      platform: Joi.string().allow(""),
     });
   }
 }

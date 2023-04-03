@@ -19,6 +19,16 @@ class RewardsModel {
     });
   }
 
+  static Asset() {
+    return Joi.object({
+      aspect_ratio: Joi.string().allow(""),
+
+      id: Joi.string().allow(""),
+
+      secure_url: Joi.string().allow(""),
+    });
+  }
+
   static E() {
     return Joi.object({
       code: Joi.any(),
@@ -142,6 +152,24 @@ class RewardsModel {
       updated_by: Joi.string().allow(""),
 
       url: Joi.string().allow(""),
+    });
+  }
+
+  static Page() {
+    return Joi.object({
+      item_total: Joi.number(),
+
+      next_id: Joi.string().allow(""),
+
+      has_previous: Joi.boolean(),
+
+      has_next: Joi.boolean(),
+
+      current: Joi.number(),
+
+      type: Joi.string().allow("").required(),
+
+      size: Joi.number(),
     });
   }
 

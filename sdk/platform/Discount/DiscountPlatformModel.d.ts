@@ -9,6 +9,7 @@ declare class DiscountModel {
     static FileJobResponse(): any;
     static DownloadFileJob(): any;
     static CancelJobResponse(): any;
+    static Page(): any;
     static UserDetails(): any;
     static BadRequestObject(): any;
 }
