@@ -45,10 +45,11 @@ class Serviceability {
    * @param {string} [arg.name] - Name of particular zone in the seller account
    * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
    * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
+   * @param {string} [arg.q] - Search with name as a free text
    * @summary: Zone List of application.
    * @description: This API returns Zone List View of the application.
    */
-  getListView({ pageNumber, pageSize, name, isActive, channelIds } = {}) {
+  getListView({ pageNumber, pageSize, name, isActive, channelIds, q } = {}) {
     const { error } = ServiceabilityValidator.getListView().validate(
       {
         pageNumber,
@@ -56,6 +57,7 @@ class Serviceability {
         name,
         isActive,
         channelIds,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -69,6 +71,7 @@ class Serviceability {
     query_params["name"] = name;
     query_params["is_active"] = isActive;
     query_params["channel_ids"] = channelIds;
+    query_params["q"] = q;
 
     const xHeaders = {};
 

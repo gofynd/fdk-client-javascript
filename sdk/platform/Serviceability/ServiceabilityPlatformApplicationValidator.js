@@ -6,18 +6,18 @@ class ServiceabilityValidator {
     return Joi.object({}).required();
   }
 
+  static getZoneFromPincodeView() {
+    return Joi.object({
+      body: ServiceabilityModel.GetZoneFromPincodeViewRequest().required(),
+    }).required();
+  }
+
   static getZonesFromApplicationIdView() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       zoneId: Joi.array().items(Joi.string().allow("")),
       q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getZoneFromPincodeView() {
-    return Joi.object({
-      body: ServiceabilityModel.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 

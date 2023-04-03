@@ -38,6 +38,34 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {GetZoneFromPincodeViewRequest} arg.body
+   * @summary: GET zone from the Pincode.
+   * @description: This API returns zone from the Pincode View.
+   */
+  getZoneFromPincodeView({ body } = {}) {
+    const { error } = ServiceabilityValidator.getZoneFromPincodeView().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Index of the item to start returning with
    * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
    * @param {string[]} [arg.zoneId] - List of zones to query for
@@ -73,34 +101,6 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
       query_params,
       undefined
-    );
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {GetZoneFromPincodeViewRequest} arg.body
-   * @summary: GET zone from the Pincode.
-   * @description: This API returns zone from the Pincode View.
-   */
-  getZoneFromPincodeView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getZoneFromPincodeView().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    const query_params = {};
-
-    return PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
-      query_params,
-      body
     );
   }
 

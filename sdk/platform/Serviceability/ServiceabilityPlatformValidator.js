@@ -15,6 +15,7 @@ class ServiceabilityValidator {
       name: Joi.string().allow(""),
       isActive: Joi.boolean(),
       channelIds: Joi.string().allow(""),
+      q: Joi.string().allow(""),
     }).required();
   }
 
