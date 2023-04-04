@@ -252,12 +252,6 @@ class CatalogValidator {
     }).required();
   }
 
-  static deleteProduct() {
-    return Joi.object({
-      itemId: Joi.number().required(),
-    }).required();
-  }
-
   static editProduct() {
     return Joi.object({
       itemId: Joi.number().required(),
@@ -270,6 +264,12 @@ class CatalogValidator {
       itemId: Joi.number().required(),
       brandUid: Joi.number(),
       itemCode: Joi.string().allow(""),
+    }).required();
+  }
+
+  static deleteProduct() {
+    return Joi.object({
+      itemId: Joi.number().required(),
     }).required();
   }
 

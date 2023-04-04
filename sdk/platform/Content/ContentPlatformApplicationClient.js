@@ -1215,6 +1215,50 @@ class Content {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {GenerationEntityType} arg.type - String representing the type of
+   *   SEO content to be generated. Possible values are: title, description
+   * @param {GenerateSEOContent} arg.body
+   * @summary: Get SEO meta tag title for content
+   * @description: Use this API to get GPT3 generated SEO meta tag title for content
+   */
+  generateSEOTitle({ type, body } = {}) {
+    const { error } = ContentValidator.generateSEOTitle().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ContentValidator.generateSEOTitle().validate(
+      {
+        type,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      console.log("Parameter Validation warrnings for generateSEOTitle");
+      console.log(warrning);
+    }
+
+    const query_params = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/generate-seo/${type}`,
+      query_params,
+      body
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results. Default value is 1.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each

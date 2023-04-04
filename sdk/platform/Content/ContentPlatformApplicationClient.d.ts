@@ -312,6 +312,18 @@ declare class Content {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {GenerationEntityType} arg.type - String representing the type of
+     *   SEO content to be generated. Possible values are: title, description
+     * @param {GenerateSEOContent} arg.body
+     * @summary: Get SEO meta tag title for content
+     * @description: Use this API to get GPT3 generated SEO meta tag title for content
+     */
+    generateSEOTitle({ type, body }?: {
+        type: GenerationEntityType;
+        body: GenerateSEOContent;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results. Default value is 1.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
