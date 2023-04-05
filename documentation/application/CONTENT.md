@@ -1885,7 +1885,19 @@ Success. Returns a list of pages along with their details. Check the example sho
  | redirect_to | string |  no  |  |
  | updated_at | string |  no  |  |
  | created_at | string |  no  |  |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+ | __source | [PathSourceSchema](#PathSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 

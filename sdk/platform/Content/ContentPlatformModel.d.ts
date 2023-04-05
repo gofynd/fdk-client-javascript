@@ -1,8 +1,11 @@
 export = ContentModel;
 declare class ContentModel {
+    static GenerateSEOContent(): any;
+    static GeneratedSEOContent(): any;
     static ApplicationLegal(): any;
     static ApplicationLegalFAQ(): any;
     static PathMappingSchema(): any;
+    static PathSourceSchema(): any;
     static SeoComponent(): any;
     static SeoSchema(): any;
     static CustomMetaTag(): any;
@@ -101,5 +104,6 @@ declare class ContentModel {
     static TagsSchema(): any;
     static TagSchema(): any;
     static TagSourceSchema(): any;
+    static GenerationEntityType(): any;
     static PageType(): any;
 }

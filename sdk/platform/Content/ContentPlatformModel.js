@@ -1,6 +1,26 @@
 const Joi = require("joi");
 
 class ContentModel {
+  static GenerateSEOContent() {
+    return Joi.object({
+      text: Joi.string().allow(""),
+
+      existing_text: Joi.string().allow(""),
+
+      keywords: Joi.array().items(Joi.string().allow("")),
+
+      type: Joi.string().allow(""),
+    });
+  }
+
+  static GeneratedSEOContent() {
+    return Joi.object({
+      title: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+    });
+  }
+
   static ApplicationLegal() {
     return Joi.object({
       application: Joi.string().allow(""),
@@ -45,7 +65,15 @@ class ContentModel {
 
       created_at: Joi.string().allow(""),
 
-      __source: ContentModel.TagSourceSchema(),
+      __source: ContentModel.PathSourceSchema(),
+    });
+  }
+
+  static PathSourceSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+
+      id: Joi.string().allow(""),
     });
   }
 
@@ -1242,6 +1270,18 @@ class ContentModel {
 
       id: Joi.string().allow(""),
     });
+  }
+
+  /*
+        Enum: GenerationEntityType
+        Used By: Content
+    */
+  static GenerationEntityType() {
+    return Joi.string().valid(
+      "title",
+
+      "description"
+    );
   }
 
   /*
