@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const ConfigurationValidator = require("./ConfigurationApplicationValidator");
+const ConfigurationModel = require("./ConfigurationApplicationModel");
+const { Logger } = require("./../../common/Logger");
 
 class Configuration {
   constructor(_conf) {
@@ -51,7 +53,7 @@ class Configuration {
    * @summary: Get current application details
    * @description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
    */
-  getApplication({} = {}) {
+  async getApplication({} = {}) {
     const { error } = ConfigurationValidator.getApplication().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -68,15 +70,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getApplication");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getApplication",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -87,6 +92,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.Application().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getApplication",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -95,7 +117,7 @@ class Configuration {
    * @summary: Get application, owner and seller information
    * @description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
    */
-  getOwnerInfo({} = {}) {
+  async getOwnerInfo({} = {}) {
     const { error } = ConfigurationValidator.getOwnerInfo().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -110,15 +132,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOwnerInfo");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOwnerInfo",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -129,6 +154,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationAboutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOwnerInfo",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -137,7 +179,7 @@ class Configuration {
    * @summary: Get basic application details
    * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
    */
-  getBasicDetails({} = {}) {
+  async getBasicDetails({} = {}) {
     const { error } = ConfigurationValidator.getBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -154,15 +196,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getBasicDetails");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBasicDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -173,6 +218,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationDetail().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBasicDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -181,7 +243,7 @@ class Configuration {
    * @summary: Get integration tokens
    * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
    */
-  getIntegrationTokens({} = {}) {
+  async getIntegrationTokens({} = {}) {
     const { error } = ConfigurationValidator.getIntegrationTokens().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -198,15 +260,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getIntegrationTokens");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getIntegrationTokens",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -217,6 +282,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppTokenResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getIntegrationTokens",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -230,7 +312,7 @@ class Configuration {
    * @summary: Get deployment stores
    * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
-  getOrderingStores({ pageNo, pageSize, q } = {}) {
+  async getOrderingStores({ pageNo, pageSize, q } = {}) {
     const { error } = ConfigurationValidator.getOrderingStores().validate(
       { pageNo, pageSize, q },
       { abortEarly: false, allowUnknown: true }
@@ -247,8 +329,11 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOrderingStores");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOrderingStores",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -258,7 +343,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -269,6 +354,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.OrderingStores().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOrderingStores",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -307,7 +409,7 @@ class Configuration {
    * @summary: Get ordering store details
    * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
    */
-  getStoreDetailById({ storeId } = {}) {
+  async getStoreDetailById({ storeId } = {}) {
     const { error } = ConfigurationValidator.getStoreDetailById().validate(
       { storeId },
       { abortEarly: false, allowUnknown: true }
@@ -324,15 +426,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getStoreDetailById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getStoreDetailById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -343,6 +448,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.OrderingStore().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getStoreDetailById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -351,7 +473,7 @@ class Configuration {
    * @summary: Get features of application
    * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
    */
-  getFeatures({} = {}) {
+  async getFeatures({} = {}) {
     const { error } = ConfigurationValidator.getFeatures().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -366,15 +488,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getFeatures");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getFeatures",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -385,6 +510,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppFeatureResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getFeatures",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -393,7 +535,7 @@ class Configuration {
    * @summary: Get application information
    * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
    */
-  getContactInfo({} = {}) {
+  async getContactInfo({} = {}) {
     const { error } = ConfigurationValidator.getContactInfo().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -410,15 +552,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getContactInfo");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getContactInfo",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -429,6 +574,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationInformation().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getContactInfo",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -437,7 +599,7 @@ class Configuration {
    * @summary: Get all currencies list
    * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
-  getCurrencies({} = {}) {
+  async getCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -452,15 +614,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCurrencies");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCurrencies",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -471,6 +636,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.CurrenciesResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCurrencies",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -480,7 +662,7 @@ class Configuration {
    * @summary: Get currency by its ID
    * @description: Use this API to retrieve a currency using its ID.
    */
-  getCurrencyById({ id } = {}) {
+  async getCurrencyById({ id } = {}) {
     const { error } = ConfigurationValidator.getCurrencyById().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
@@ -497,15 +679,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCurrencyById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCurrencyById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -516,6 +701,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.Currency().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCurrencyById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -524,7 +726,7 @@ class Configuration {
    * @summary: Get currencies enabled in the application
    * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
-  getAppCurrencies({} = {}) {
+  async getAppCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getAppCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -541,15 +743,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAppCurrencies");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppCurrencies",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -560,6 +765,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppCurrencyResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppCurrencies",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -568,7 +790,7 @@ class Configuration {
    * @summary: Get list of languages
    * @description: Use this API to get a list of languages supported in the application.
    */
-  getLanguages({} = {}) {
+  async getLanguages({} = {}) {
     const { error } = ConfigurationValidator.getLanguages().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -583,15 +805,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getLanguages");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLanguages",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -602,6 +827,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.LanguageResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLanguages",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -611,7 +853,7 @@ class Configuration {
    * @summary: Get an Ordering Store signed cookie on selection of ordering store.
    * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
    */
-  getOrderingStoreCookie({ body } = {}) {
+  async getOrderingStoreCookie({ body } = {}) {
     const { error } = ConfigurationValidator.getOrderingStoreCookie().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -628,15 +870,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOrderingStoreCookie");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOrderingStoreCookie",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -647,6 +892,23 @@ class Configuration {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.SuccessMessageResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOrderingStoreCookie",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -655,7 +917,7 @@ class Configuration {
    * @summary: Unset the Ordering Store signed cookie.
    * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
    */
-  removeOrderingStoreCookie({} = {}) {
+  async removeOrderingStoreCookie({} = {}) {
     const {
       error,
     } = ConfigurationValidator.removeOrderingStoreCookie().validate(
@@ -674,17 +936,18 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for removeOrderingStoreCookie"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removeOrderingStoreCookie",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -695,6 +958,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.SuccessMessageResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removeOrderingStoreCookie",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -712,7 +992,7 @@ class Configuration {
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
-  getAppStaffList({
+  async getAppStaffList({
     pageNo,
     pageSize,
     orderIncent,
@@ -736,8 +1016,11 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAppStaffList");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppStaffList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -750,7 +1033,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -761,6 +1044,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppStaffListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppStaffList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -818,7 +1118,7 @@ class Configuration {
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
-  getAppStaffs({ orderIncent, orderingStore, user } = {}) {
+  async getAppStaffs({ orderIncent, orderingStore, user } = {}) {
     const { error } = ConfigurationValidator.getAppStaffs().validate(
       { orderIncent, orderingStore, user },
       { abortEarly: false, allowUnknown: true }
@@ -833,8 +1133,11 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAppStaffs");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppStaffs",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -844,7 +1147,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -855,6 +1158,23 @@ class Configuration {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppStaffResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppStaffs",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

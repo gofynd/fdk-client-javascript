@@ -2,6 +2,8 @@ const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const CartValidator = require("./CartPlatformApplicationValidator");
+const CartModel = require("./CartPlatformModel");
+const { Logger } = require("./../../common/Logger");
 
 class Cart {
   constructor(config, applicationId) {
@@ -19,10 +21,11 @@ class Cart {
    * @param {boolean} [arg.isDisplay] -
    * @param {string} [arg.typeSlug] -
    * @param {string} [arg.code] -
+   * @returns {Promise<CouponsResponse>} - Success response
    * @summary: Get with single coupon details or coupon list
    * @description: Get coupon list with pagination
    */
-  getCoupons({
+  async getCoupons({
     pageNo,
     pageSize,
     isArchived,
@@ -64,8 +67,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCoupons");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCoupons",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -78,13 +84,28 @@ class Cart {
     query_params["type_slug"] = typeSlug;
     query_params["code"] = code;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = CartModel.CouponsResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCoupons",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -142,10 +163,11 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {CouponAdd} arg.body
+   * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Create new coupon
    * @description: Create new coupon
    */
-  createCoupon({ body } = {}) {
+  async createCoupon({ body } = {}) {
     const { error } = CartValidator.createCoupon().validate(
       {
         body,
@@ -164,28 +186,47 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createCoupon");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createCoupon",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createCoupon",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
+   * @returns {Promise<CouponUpdate>} - Success response
    * @summary: Get with single coupon details or coupon list
    * @description: Get single coupon details with `id` in path param
    */
-  getCouponById({ id } = {}) {
+  async getCouponById({ id } = {}) {
     const { error } = CartValidator.getCouponById().validate(
       {
         id,
@@ -204,29 +245,48 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCouponById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCouponById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = CartModel.CouponUpdate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCouponById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @param {CouponUpdate} arg.body
+   * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Update existing coupon configuration
    * @description: Update coupon with id sent in `id`
    */
-  updateCoupon({ id, body } = {}) {
+  async updateCoupon({ id, body } = {}) {
     const { error } = CartValidator.updateCoupon().validate(
       {
         id,
@@ -247,29 +307,48 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCoupon");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCoupon",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCoupon",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @param {CouponPartialUpdate} arg.body
+   * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Update coupon archive state and schedule
    * @description: Update archive/unarchive and change schedule for coupon
    */
-  updateCouponPartially({ id, body } = {}) {
+  async updateCouponPartially({ id, body } = {}) {
     const { error } = CartValidator.updateCouponPartially().validate(
       {
         id,
@@ -290,19 +369,37 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCouponPartially");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCouponPartially",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCouponPartially",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -315,10 +412,11 @@ class Cart {
    * @param {string} [arg.promotionType] -
    * @param {string} [arg.fpPanel] -
    * @param {string} [arg.promotionId] -
+   * @returns {Promise<PromotionsResponse>} - Success response
    * @summary: Get promotion list
    * @description: Get promotion list with pagination
    */
-  getPromotions({
+  async getPromotions({
     pageNo,
     pageSize,
     q,
@@ -360,8 +458,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPromotions");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPromotions",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -374,13 +475,30 @@ class Cart {
     query_params["fp_panel"] = fpPanel;
     query_params["promotion_id"] = promotionId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.PromotionsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPromotions",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -438,10 +556,11 @@ class Cart {
   /**
    * @param {Object} arg - Arg object.
    * @param {PromotionAdd} arg.body
+   * @returns {Promise<PromotionAdd>} - Success response
    * @summary: Create new promotion
    * @description: Create new promotion
    */
-  createPromotion({ body } = {}) {
+  async createPromotion({ body } = {}) {
     const { error } = CartValidator.createPromotion().validate(
       {
         body,
@@ -460,28 +579,47 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createPromotion");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createPromotion",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.PromotionAdd().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createPromotion",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
+   * @returns {Promise<PromotionUpdate>} - Success response
    * @summary: Get with single promotion details or promotion list
    * @description: Get single promotion details with `id` in path param
    */
-  getPromotionById({ id } = {}) {
+  async getPromotionById({ id } = {}) {
     const { error } = CartValidator.getPromotionById().validate(
       {
         id,
@@ -500,29 +638,48 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPromotionById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPromotionById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = CartModel.PromotionUpdate().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPromotionById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @param {PromotionUpdate} arg.body
+   * @returns {Promise<PromotionUpdate>} - Success response
    * @summary: Update existing promotion configuration
    * @description: Update promotion with id sent in `id`
    */
-  updatePromotion({ id, body } = {}) {
+  async updatePromotion({ id, body } = {}) {
     const { error } = CartValidator.updatePromotion().validate(
       {
         id,
@@ -543,29 +700,48 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updatePromotion");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePromotion",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.PromotionUpdate().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePromotion",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id -
    * @param {PromotionPartialUpdate} arg.body
+   * @returns {Promise<SuccessMessage>} - Success response
    * @summary: Update promotion publish state and schedule
    * @description: Update publish/unpublish and change schedule for promotion
    */
-  updatePromotionPartially({ id, body } = {}) {
+  async updatePromotionPartially({ id, body } = {}) {
     const { error } = CartValidator.updatePromotionPartially().validate(
       {
         id,
@@ -588,29 +764,46 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updatePromotionPartially"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePromotionPartially",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePromotionPartially",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ActivePromosResponse>} - Success response
    * @summary: Fetch all promos that are set as active
    * @description: Use this API to get list of all the active promos/coupons.
    */
-  getPromosCouponConfig({} = {}) {
+  async getPromosCouponConfig({} = {}) {
     const { error } = CartValidator.getPromosCouponConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -625,28 +818,49 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPromosCouponConfig");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPromosCouponConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-coupons`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.ActivePromosResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPromosCouponConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {OpenapiCartDetailsRequest} arg.body
+   * @returns {Promise<OpenapiCartDetailsResponse>} - Success response
    * @summary: Fetch Cart Details
    * @description: Get all the details of cart for a list of provided `cart_items`
    */
-  fetchAndvalidateCartItems({ body } = {}) {
+  async fetchAndvalidateCartItems({ body } = {}) {
     const { error } = CartValidator.fetchAndvalidateCartItems().validate(
       {
         body,
@@ -667,30 +881,49 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for fetchAndvalidateCartItems"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for fetchAndvalidateCartItems",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/validate`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.OpenapiCartDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for fetchAndvalidateCartItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {OpenApiCartServiceabilityRequest} arg.body
+   * @returns {Promise<OpenApiCartServiceabilityResponse>} - Success response
    * @summary: Check Pincode Serviceability
    * @description: Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
    */
-  checkCartServiceability({ body } = {}) {
+  async checkCartServiceability({ body } = {}) {
     const { error } = CartValidator.checkCartServiceability().validate(
       {
         body,
@@ -711,28 +944,49 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for checkCartServiceability");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkCartServiceability",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/serviceability`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.OpenApiCartServiceabilityResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkCartServiceability",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {OpenApiPlatformCheckoutReq} arg.body
+   * @returns {Promise<OpenApiCheckoutResponse>} - Success response
    * @summary: Create Fynd order with cart details
    * @description: Generate Fynd order for cart details send with provided `cart_items`
    */
-  checkoutCart({ body } = {}) {
+  async checkoutCart({ body } = {}) {
     const { error } = CartValidator.checkoutCart().validate(
       {
         body,
@@ -751,19 +1005,39 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for checkoutCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkoutCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/checkout`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.OpenApiCheckoutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkoutCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -775,10 +1049,11 @@ class Cart {
    * @param {boolean} [arg.anonymousCart] -
    * @param {string} [arg.lastId] -
    * @param {string} [arg.sortOn] -
+   * @returns {Promise<AbandonedCartResponse>} - Success response
    * @summary: Get with abandoned cart list
    * @description: Get abandoned cart list with pagination
    */
-  getAbandonedCart({
+  async getAbandonedCart({
     pageNo,
     pageSize,
     fromDate,
@@ -817,8 +1092,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonedCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAbandonedCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -830,13 +1108,30 @@ class Cart {
     query_params["last_id"] = lastId;
     query_params["sort_on"] = sortOn;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.AbandonedCartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAbandonedCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -893,10 +1188,11 @@ class Cart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  getAbandonedCartDetails({ id, i, b } = {}) {
+  async getAbandonedCartDetails({ id, i, b } = {}) {
     const { error } = CartValidator.getAbandonedCartDetails().validate(
       {
         id,
@@ -921,8 +1217,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAbandonedCartDetails");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAbandonedCartDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -930,13 +1229,30 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/cart/detail`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAbandonedCartDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -944,10 +1260,11 @@ class Cart {
    * @param {string} arg.cartId - Current Cart _id
    * @param {boolean} [arg.b] -
    * @param {AddCartRequest} arg.body
+   * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to abandoned cart
    * @description: Use this API to add items to the abandoned cart.
    */
-  addItems({ cartId, body, b } = {}) {
+  async addItems({ cartId, body, b } = {}) {
     const { error } = CartValidator.addItems().validate(
       {
         cartId,
@@ -970,20 +1287,40 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addItems");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addItems",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["b"] = b;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts/${cartId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.AddCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -991,10 +1328,11 @@ class Cart {
    * @param {string} arg.cartId - Current Cart _id
    * @param {boolean} [arg.b] -
    * @param {UpdateCartRequest} arg.body
+   * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the abandoned cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  updateCart({ cartId, body, b } = {}) {
+  async updateCart({ cartId, body, b } = {}) {
     const { error } = CartValidator.updateCart().validate(
       {
         cartId,
@@ -1017,29 +1355,50 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["b"] = b;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts/${cartId}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.UpdateCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {GetShareCartLinkRequest} arg.body
+   * @returns {Promise<GetShareCartLinkResponse>} - Success response
    * @summary: Generate token for sharing the cart
    * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
    */
-  getCartShareLink({ body } = {}) {
+  async getCartShareLink({ body } = {}) {
     const { error } = CartValidator.getCartShareLink().validate(
       {
         body,
@@ -1058,28 +1417,49 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCartShareLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCartShareLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.GetShareCartLinkResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCartShareLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.token - Token of the shared short link
+   * @returns {Promise<SharedCartResponse>} - Success response
    * @summary: Get details of a shared cart
    * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
    */
-  getCartSharedItems({ token } = {}) {
+  async getCartSharedItems({ token } = {}) {
     const { error } = CartValidator.getCartSharedItems().validate(
       {
         token,
@@ -1098,19 +1478,39 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCartSharedItems");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCartSharedItems",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart/${token}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.SharedCartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCartSharedItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1119,10 +1519,11 @@ class Cart {
    * @param {string} arg.action - Operation to perform on the existing cart
    *   merge or replace.
    * @param {string} [arg.cartId] -
+   * @returns {Promise<SharedCartResponse>} - Success response
    * @summary: Merge or replace existing cart
    * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
    */
-  updateCartWithSharedItems({ token, action, cartId } = {}) {
+  async updateCartWithSharedItems({ token, action, cartId } = {}) {
     const { error } = CartValidator.updateCartWithSharedItems().validate(
       {
         token,
@@ -1147,22 +1548,40 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updateCartWithSharedItems"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCartWithSharedItems",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["cart_id"] = cartId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart/${token}/${action}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.SharedCartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCartWithSharedItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1170,10 +1589,11 @@ class Cart {
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
    * @param {string} [arg.filterOn] -
+   * @returns {Promise<MultiCartResponse>} - Success response
    * @summary: Get cart list for store os user
    * @description: Get all carts for the store os user which is created for customer
    */
-  getCartList({ fromDate, toDate, filterOn } = {}) {
+  async getCartList({ fromDate, toDate, filterOn } = {}) {
     const { error } = CartValidator.getCartList().validate(
       {
         fromDate,
@@ -1196,8 +1616,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCartList");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCartList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1205,23 +1628,41 @@ class Cart {
     query_params["to_date"] = toDate;
     query_params["filter_on"] = filterOn;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart-list`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.MultiCartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCartList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {UpdateUserCartMapping} arg.body
+   * @returns {Promise<UserCartMappingResponse>} - Success response
    * @summary: Update user id for store os customer
    * @description: Update user id for store os customer after creating customer
    */
-  updateCartUser({ body, id } = {}) {
+  async updateCartUser({ body, id } = {}) {
     const { error } = CartValidator.updateCartUser().validate(
       {
         body,
@@ -1242,20 +1683,40 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCartUser");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCartUser",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/update-user`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.UserCartMappingResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCartUser",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1265,10 +1726,11 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {number} [arg.assignCardId] -
    * @param {boolean} [arg.buyNow] -
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the customer cart using cart id
    * @description: Use this API to get details of all the items added to a cart.
    */
-  getCart({ id, i, b, assignCardId, buyNow } = {}) {
+  async getCart({ id, i, b, assignCardId, buyNow } = {}) {
     const { error } = CartValidator.getCart().validate(
       {
         id,
@@ -1295,8 +1757,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1306,13 +1771,30 @@ class Cart {
     query_params["assign_card_id"] = assignCardId;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1322,10 +1804,11 @@ class Cart {
    * @param {boolean} [arg.buyNow] -
    * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
+   * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  platformAddItems({ body, i, b, buyNow, id } = {}) {
+  async platformAddItems({ body, i, b, buyNow, id } = {}) {
     const { error } = CartValidator.platformAddItems().validate(
       {
         body,
@@ -1352,8 +1835,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for platformAddItems");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for platformAddItems",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1362,13 +1848,30 @@ class Cart {
     query_params["buy_now"] = buyNow;
     query_params["id"] = id;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.AddCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for platformAddItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1378,10 +1881,11 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {boolean} [arg.buyNow] -
    * @param {UpdateCartRequest} arg.body
+   * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the customer 's cart using cart id
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  platformUpdateCart({ body, id, i, b, buyNow } = {}) {
+  async platformUpdateCart({ body, id, i, b, buyNow } = {}) {
     const { error } = CartValidator.platformUpdateCart().validate(
       {
         body,
@@ -1408,8 +1912,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for platformUpdateCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for platformUpdateCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1418,23 +1925,41 @@ class Cart {
     query_params["b"] = b;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.UpdateCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for platformUpdateCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] - The unique identifier of the cart.
    * @param {DeleteCartRequest} arg.body
+   * @returns {Promise<DeleteCartDetailResponse>} - Success response
    * @summary: Delete cart once user made successful checkout
    * @description: Use this API to delete the cart.
    */
-  deleteCart({ body, id } = {}) {
+  async deleteCart({ body, id } = {}) {
     const { error } = CartValidator.deleteCart().validate(
       {
         body,
@@ -1455,30 +1980,51 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for deleteCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_archive`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.DeleteCartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] - The unique identifier of the cart.
    * @param {boolean} [arg.buyNow] -
+   * @returns {Promise<CartItemCountResponse>} - Success response
    * @summary: Count items in the customer's cart
    * @description: Use this API to get the total number of items present in cart.
    */
-  getItemCount({ id, buyNow } = {}) {
+  async getItemCount({ id, buyNow } = {}) {
     const { error } = CartValidator.getItemCount().validate(
       {
         id,
@@ -1499,31 +2045,52 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getItemCount");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getItemCount",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/basic`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartItemCountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getItemCount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {boolean} [arg.buyNow] -
+   * @returns {Promise<GetCouponResponse>} - Success response
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details.
    */
-  getAppCoupons({ id, buyNow } = {}) {
+  async getAppCoupons({ id, buyNow } = {}) {
     const { error } = CartValidator.getAppCoupons().validate(
       {
         id,
@@ -1544,21 +2111,41 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAppCoupons");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppCoupons",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.GetCouponResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppCoupons",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1569,10 +2156,11 @@ class Cart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.buyNow] -
    * @param {ApplyCouponRequest} arg.body
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply Coupon for platform pos user
    * @description: Use this API to apply coupons on items in the cart.
    */
-  applyCoupon({ body, i, b, p, id, buyNow } = {}) {
+  async applyCoupon({ body, i, b, p, id, buyNow } = {}) {
     const { error } = CartValidator.applyCoupon().validate(
       {
         body,
@@ -1601,8 +2189,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for applyCoupon");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for applyCoupon",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1612,23 +2203,41 @@ class Cart {
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for applyCoupon",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.uid] -
    * @param {boolean} [arg.buyNow] -
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Remove Applied Coupon for platform pos user
    * @description: Remove Coupon applied on the cart by passing uid in request body.
    */
-  removeCoupon({ uid, buyNow } = {}) {
+  async removeCoupon({ uid, buyNow } = {}) {
     const { error } = CartValidator.removeCoupon().validate(
       {
         uid,
@@ -1649,21 +2258,41 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for removeCoupon");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removeCoupon",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["uid"] = uid;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removeCoupon",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1675,10 +2304,11 @@ class Cart {
    * @param {string} [arg.tags] -
    * @param {boolean} [arg.isDefault] -
    * @param {string} [arg.userId] -
+   * @returns {Promise<PlatformGetAddressesResponse>} - Success response
    * @summary: Fetch address
    * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
-  getAddresses({
+  async getAddresses({
     cartId,
     buyNow,
     mobileNo,
@@ -1717,8 +2347,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAddresses");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAddresses",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1730,22 +2363,40 @@ class Cart {
     query_params["is_default"] = isDefault;
     query_params["user_id"] = userId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.PlatformGetAddressesResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAddresses",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PlatformAddress} arg.body
+   * @returns {Promise<SaveAddressResponse>} - Success response
    * @summary: Add address to an account
    * @description: Use this API to add an address to an account.
    */
-  addAddress({ body } = {}) {
+  async addAddress({ body } = {}) {
     const { error } = CartValidator.addAddress().validate(
       {
         body,
@@ -1764,19 +2415,39 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addAddress");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.SaveAddressResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1789,10 +2460,11 @@ class Cart {
    * @param {string} [arg.tags] -
    * @param {boolean} [arg.isDefault] -
    * @param {string} [arg.userId] -
+   * @returns {Promise<PlatformAddress>} - Success response
    * @summary: Fetch a single address by its ID
    * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
-  getAddressById({
+  async getAddressById({
     id,
     cartId,
     buyNow,
@@ -1834,8 +2506,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAddressById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAddressById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1847,23 +2522,39 @@ class Cart {
     query_params["is_default"] = isDefault;
     query_params["user_id"] = userId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
       query_params,
       undefined
     );
+
+    const { error: res_error } = CartModel.PlatformAddress().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAddressById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the selected address
    * @param {PlatformAddress} arg.body
+   * @returns {Promise<UpdateAddressResponse>} - Success response
    * @summary: Update address added to an account
    * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    */
-  updateAddress({ id, body } = {}) {
+  async updateAddress({ id, body } = {}) {
     const { error } = CartValidator.updateAddress().validate(
       {
         id,
@@ -1884,29 +2575,50 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateAddress");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.UpdateAddressResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID allotted to the selected address
    * @param {string} [arg.userId] - Option to delete address for the provided user_id.
+   * @returns {Promise<DeleteAddressResponse>} - Success response
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
-  removeAddress({ id, userId } = {}) {
+  async removeAddress({ id, userId } = {}) {
     const { error } = CartValidator.removeAddress().validate(
       {
         id,
@@ -1927,20 +2639,40 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for removeAddress");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removeAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["user_id"] = userId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.DeleteAddressResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removeAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -1950,10 +2682,11 @@ class Cart {
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {PlatformSelectCartAddressRequest} arg.body
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Select an address from available addresses
    * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
    */
-  selectAddress({ body, cartId, buyNow, i, b } = {}) {
+  async selectAddress({ body, cartId, buyNow, i, b } = {}) {
     const { error } = CartValidator.selectAddress().validate(
       {
         body,
@@ -1980,8 +2713,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for selectAddress");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for selectAddress",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1990,13 +2726,30 @@ class Cart {
     query_params["i"] = i;
     query_params["b"] = b;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/select-address`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for selectAddress",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2012,10 +2765,11 @@ class Cart {
    * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
    *   - If the customer wants the order home-delivered PickAtStore - If the
    *   customer wants the handover of an order at the store itself.
+   * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  getShipments({
+  async getShipments({
     pickAtStoreUid,
     orderingStoreId,
     p,
@@ -2054,8 +2808,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipments");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipments",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2067,13 +2824,30 @@ class Cart {
     query_params["area_code"] = areaCode;
     query_params["order_type"] = orderType;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartShipmentsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipments",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2088,10 +2862,11 @@ class Cart {
    *   - If the customer wants the order home-delivered PickAtStore - If the
    *   customer wants the handover of an order at the store itself.
    * @param {UpdateCartShipmentRequest} arg.body
+   * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Update shipment delivery type and quantity before checkout
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
    */
-  updateShipments({ body, i, p, id, addressId, orderType } = {}) {
+  async updateShipments({ body, i, p, id, addressId, orderType } = {}) {
     const { error } = CartValidator.updateShipments().validate(
       {
         body,
@@ -2120,8 +2895,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateShipments");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateShipments",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2131,13 +2909,30 @@ class Cart {
     query_params["address_id"] = addressId;
     query_params["order_type"] = orderType;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartShipmentsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateShipments",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2145,10 +2940,11 @@ class Cart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.buyNow] -
    * @param {PlatformCartMetaRequest} arg.body
+   * @returns {Promise<CartMetaResponse>} - Success response
    * @summary: Update the cart meta for platform pos user
    * @description: Use this API to update cart meta like checkout_mode and gstin.
    */
-  updateCartMeta({ body, id, buyNow } = {}) {
+  async updateCartMeta({ body, id, buyNow } = {}) {
     const { error } = CartValidator.updateCartMeta().validate(
       {
         body,
@@ -2171,31 +2967,50 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateCartMeta");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateCartMeta",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/meta`,
       query_params,
       body
     );
+
+    const { error: res_error } = CartModel.CartMetaResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateCartMeta",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.id] -
    * @param {PlatformCartCheckoutDetailRequest} arg.body
+   * @returns {Promise<CartCheckoutResponse>} - Success response
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
-  platformCheckoutCart({ body, id } = {}) {
+  async platformCheckoutCart({ body, id } = {}) {
     const { error } = CartValidator.platformCheckoutCart().validate(
       {
         body,
@@ -2216,30 +3031,51 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for platformCheckoutCart");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for platformCheckoutCart",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/checkout`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartCheckoutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for platformCheckoutCart",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.areaCode -
    * @param {string} [arg.id] -
+   * @returns {Promise<CartDeliveryModesResponse>} - Success response
    * @summary: Get available delivery modes for cart
    * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
    */
-  getAvailableDeliveryModes({ areaCode, id } = {}) {
+  async getAvailableDeliveryModes({ areaCode, id } = {}) {
     const { error } = CartValidator.getAvailableDeliveryModes().validate(
       {
         areaCode,
@@ -2262,32 +3098,51 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getAvailableDeliveryModes"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAvailableDeliveryModes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["area_code"] = areaCode;
     query_params["id"] = id;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/available-delivery-mode`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDeliveryModesResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAvailableDeliveryModes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.storeUid -
+   * @returns {Promise<StoreDetailsResponse>} - Success response
    * @summary: Get list of stores for give uids
    * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
    */
-  getStoreAddressByUid({ storeUid } = {}) {
+  async getStoreAddressByUid({ storeUid } = {}) {
     const { error } = CartValidator.getStoreAddressByUid().validate(
       {
         storeUid,
@@ -2306,20 +3161,40 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getStoreAddressByUid");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getStoreAddressByUid",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["store_uid"] = storeUid;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store-address`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.StoreDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getStoreAddressByUid",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2327,10 +3202,11 @@ class Cart {
    * @param {string} [arg.id] -
    * @param {boolean} [arg.buyNow] -
    * @param {UpdateCartPaymentRequest} arg.body
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  selectPaymentMode({ body, id, buyNow } = {}) {
+  async selectPaymentMode({ body, id, buyNow } = {}) {
     const { error } = CartValidator.selectPaymentMode().validate(
       {
         body,
@@ -2353,21 +3229,41 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for selectPaymentMode");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for selectPaymentMode",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = CartModel.CartDetailResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for selectPaymentMode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -2379,10 +3275,11 @@ class Cart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
+   * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
-  validateCouponForPayment({
+  async validateCouponForPayment({
     id,
     buyNow,
     addressId,
@@ -2423,10 +3320,11 @@ class Cart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for validateCouponForPayment"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for validateCouponForPayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2438,13 +3336,30 @@ class Cart {
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/validate/`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = CartModel.PaymentCouponValidate().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for validateCouponForPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 module.exports = Cart;

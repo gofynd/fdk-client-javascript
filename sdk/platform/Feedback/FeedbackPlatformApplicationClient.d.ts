@@ -7,13 +7,14 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Pagination page no
      * @param {number} [arg.pageSize] - Pagination page size
+     * @returns {Promise<FeedbackAttributes>} - Success response
      * @summary: Get list of attribute data
      * @description: Provides a list of all attribute data.
      */
     getAttributes({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<FeedbackAttributes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Company id
@@ -46,6 +47,7 @@ declare class Feedback {
      * @param {string} [arg.count] - Pagination count
      * @param {string} [arg.pageId] - Pagination page id
      * @param {number} [arg.pageSize] - Pagination page size
+     * @returns {Promise<GetReviewResponse>} - Success response
      * @summary: Get list of customer reviews [admin]
      * @description: The endpoint provides a list of customer reviews based on entity and provided filters
      */
@@ -65,7 +67,7 @@ declare class Feedback {
         count?: string;
         pageId?: string;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<GetReviewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Company id
@@ -111,33 +113,36 @@ declare class Feedback {
      * @param {Object} arg - Arg object.
      * @param {string} arg.reviewId - Review id
      * @param {ApproveRequest} arg.body
+     * @returns {Promise<UpdateResponse>} - Success response
      * @summary: update approve details
      * @description: The is used to update approve details like status and description text
      */
     updateApprove({ reviewId, body }?: {
         reviewId: string;
         body: ApproveRequest;
-    }): Promise<any>;
+    }): Promise<UpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.reviewId - Review id
+     * @returns {Promise<ActivityDump[]>} - Success response
      * @summary: get history details
      * @description: The is used to get the history details like status and description text
      */
     getHistory({ reviewId }?: {
         reviewId: string;
-    }): Promise<any>;
+    }): Promise<ActivityDump[]>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.pageId] - Pagination page id
      * @param {number} [arg.pageSize] - Pagination page size
+     * @returns {Promise<TemplateGetResponse>} - Success response
      * @summary: Get list of templates
      * @description: Get all templates of application
      */
     getApplicationTemplates({ pageId, pageSize }?: {
         pageId?: string;
         pageSize?: number;
-    }): Promise<any>;
+    }): Promise<TemplateGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Company id
@@ -154,6 +159,7 @@ declare class Feedback {
     /**
      * @param {Object} arg - Arg object.
      * @param {TemplateRequestList} arg.body
+     * @returns {Promise<InsertResponse>} - Success response
      * @summary: Create a new template
      * @description: Create a new template for review with following data:
      * - Enable media, rating and review
@@ -162,37 +168,40 @@ declare class Feedback {
      */
     createTemplate({ body }?: {
         body: TemplateRequestList;
-    }): Promise<any>;
+    }): Promise<InsertResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Template id
+     * @returns {Promise<Template>} - Success response
      * @summary: Get a template by ID
      * @description: Get the template for product or l3 type by ID
      */
     getTemplateById({ id }?: {
         id: string;
-    }): Promise<any>;
+    }): Promise<Template>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Template id
      * @param {UpdateTemplateRequest} arg.body
+     * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Update a template's status
      * @description: Update existing template status, active/archive
      */
     updateTemplate({ id, body }?: {
         id: string;
         body: UpdateTemplateRequest;
-    }): Promise<any>;
+    }): Promise<UpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Template id
      * @param {UpdateTemplateStatusRequest} arg.body
+     * @returns {Promise<UpdateResponse>} - Success response
      * @summary: Update a template's status
      * @description: Update existing template status, active/archive
      */
     updateTemplateStatus({ id, body }?: {
         id: string;
         body: UpdateTemplateStatusRequest;
-    }): Promise<any>;
+    }): Promise<UpdateResponse>;
 }
 import Paginator = require("../../common/Paginator");

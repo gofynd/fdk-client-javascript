@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const OrderValidator = require("./OrderApplicationValidator");
+const OrderModel = require("./OrderApplicationModel");
+const { Logger } = require("./../../common/Logger");
 
 class Order {
   constructor(_conf) {
@@ -64,7 +66,14 @@ class Order {
    * @summary: Get all orders
    * @description: Use this API to retrieve all the orders.
    */
-  getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta } = {}) {
+  async getOrders({
+    status,
+    pageNo,
+    pageSize,
+    fromDate,
+    toDate,
+    customMeta,
+  } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: true }
@@ -79,8 +88,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOrders");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOrders",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -93,7 +105,7 @@ class Order {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -104,6 +116,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.OrderList().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOrders",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -114,7 +141,7 @@ class Order {
    * @summary: Get details of an order
    * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
    */
-  getOrderById({ orderId } = {}) {
+  async getOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
@@ -129,15 +156,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getOrderById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOrderById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -148,6 +178,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.OrderById().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOrderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -158,7 +203,7 @@ class Order {
    * @summary: Get POS Order
    * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
    */
-  getPosOrderById({ orderId } = {}) {
+  async getPosOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getPosOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
@@ -173,15 +218,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPosOrderById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPosOrderById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -192,6 +240,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.OrderList().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPosOrderById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -203,7 +266,7 @@ class Order {
    * @summary: Get details of a shipment
    * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
    */
-  getShipmentById({ shipmentId } = {}) {
+  async getShipmentById({ shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -218,15 +281,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentById");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipmentById",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -237,6 +303,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.ShipmentById().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipmentById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -247,7 +328,7 @@ class Order {
    * @summary: Get Invoice of a shipment
    * @description: Use this API to retrieve shipment invoice.
    */
-  getInvoiceByShipmentId({ shipmentId, documentType } = {}) {
+  async getInvoiceByShipmentId({ shipmentId, documentType } = {}) {
     const { error } = OrderValidator.getInvoiceByShipmentId().validate(
       { shipmentId, documentType },
       { abortEarly: false, allowUnknown: true }
@@ -264,8 +345,11 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getInvoiceByShipmentId");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getInvoiceByShipmentId",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -273,7 +357,7 @@ class Order {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -284,6 +368,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ResponseGetInvoiceShipment().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getInvoiceByShipmentId",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -295,7 +396,7 @@ class Order {
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id
    */
-  trackShipment({ shipmentId } = {}) {
+  async trackShipment({ shipmentId } = {}) {
     const { error } = OrderValidator.trackShipment().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -310,15 +411,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for trackShipment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for trackShipment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -329,6 +433,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.ShipmentTrack().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for trackShipment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -342,7 +461,7 @@ class Order {
    * @summary: Get Customer Details by Shipment Id
    * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
    */
-  getCustomerDetailsByShipmentId({ orderId, shipmentId } = {}) {
+  async getCustomerDetailsByShipmentId({ orderId, shipmentId } = {}) {
     const { error } = OrderValidator.getCustomerDetailsByShipmentId().validate(
       { orderId, shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -359,17 +478,19 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getCustomerDetailsByShipmentId"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getCustomerDetailsByShipmentId",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -380,6 +501,24 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.CustomerDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getCustomerDetailsByShipmentId",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -393,7 +532,7 @@ class Order {
    * @summary: Send and Resend Otp code to Order-Shipment customer
    * @description: Use this API to send OTP to the customer of the mapped Shipment.
    */
-  sendOtpToShipmentCustomer({ orderId, shipmentId } = {}) {
+  async sendOtpToShipmentCustomer({ orderId, shipmentId } = {}) {
     const { error } = OrderValidator.sendOtpToShipmentCustomer().validate(
       { orderId, shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -410,17 +549,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for sendOtpToShipmentCustomer"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for sendOtpToShipmentCustomer",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -431,6 +571,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.SendOtpToCustomerResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for sendOtpToShipmentCustomer",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -445,7 +602,7 @@ class Order {
    * @summary: Verify Otp code
    * @description: Use this API to verify OTP and create a session token with custom payload.
    */
-  verifyOtpShipmentCustomer({ orderId, shipmentId, body } = {}) {
+  async verifyOtpShipmentCustomer({ orderId, shipmentId, body } = {}) {
     const { error } = OrderValidator.verifyOtpShipmentCustomer().validate(
       { orderId, shipmentId, body },
       { abortEarly: false, allowUnknown: true }
@@ -462,17 +619,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for verifyOtpShipmentCustomer"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for verifyOtpShipmentCustomer",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -483,6 +641,23 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.VerifyOtpResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for verifyOtpShipmentCustomer",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -496,7 +671,7 @@ class Order {
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
-  getShipmentBagReasons({ shipmentId, bagId } = {}) {
+  async getShipmentBagReasons({ shipmentId, bagId } = {}) {
     const { error } = OrderValidator.getShipmentBagReasons().validate(
       { shipmentId, bagId },
       { abortEarly: false, allowUnknown: true }
@@ -511,15 +686,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentBagReasons");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipmentBagReasons",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -530,6 +708,23 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentBagReasons().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipmentBagReasons",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -541,7 +736,7 @@ class Order {
    * @summary: Get reasons behind full or partial cancellation of a shipment
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
    */
-  getShipmentReasons({ shipmentId } = {}) {
+  async getShipmentReasons({ shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentReasons().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -556,15 +751,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShipmentReasons");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShipmentReasons",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -575,6 +773,21 @@ class Order {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = OrderModel.ShipmentReasons().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShipmentReasons",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -587,7 +800,7 @@ class Order {
    * @summary: Update the shipment status
    * @description: Use this API to update the status of a shipment using its shipment ID.
    */
-  updateShipmentStatus({ shipmentId, body } = {}) {
+  async updateShipmentStatus({ shipmentId, body } = {}) {
     const { error } = OrderValidator.updateShipmentStatus().validate(
       { shipmentId, body },
       { abortEarly: false, allowUnknown: true }
@@ -602,15 +815,18 @@ class Order {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateShipmentStatus");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -621,6 +837,23 @@ class Order {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = OrderModel.ShipmentApplicationStatusResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateShipmentStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

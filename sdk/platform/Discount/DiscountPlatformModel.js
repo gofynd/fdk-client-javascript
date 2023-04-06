@@ -87,6 +87,28 @@ class DiscountModel {
     });
   }
 
+  static DiscountItems() {
+    return Joi.object({
+      item_code: Joi.string().allow(""),
+
+      brand_uid: Joi.number(),
+
+      seller_identifier: Joi.string().allow(""),
+
+      discount_type: Joi.string().allow("").required(),
+
+      value: Joi.number().required(),
+    });
+  }
+
+  static BulkDiscount() {
+    return Joi.object({
+      company_id: Joi.number().required(),
+
+      items: Joi.array().items(DiscountModel.DiscountItems()).required(),
+    });
+  }
+
   static FileJobResponse() {
     return Joi.object({
       stage: Joi.string().allow("").required(),

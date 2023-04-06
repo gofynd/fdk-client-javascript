@@ -15,8 +15,8 @@ declare class PaymentModel {
     static PaymentOptions(): any;
     static PaymentOptionsResponse(): any;
     static PayoutMoreAttributes(): any;
-    static PayoutCustomer(): any;
     static PayoutAggregator(): any;
+    static PayoutCustomer(): any;
     static Payout(): any;
     static PayoutsResponse(): any;
     static PayoutBankDetails(): any;

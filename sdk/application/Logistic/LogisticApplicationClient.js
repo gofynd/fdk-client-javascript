@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const LogisticValidator = require("./LogisticApplicationValidator");
+const LogisticModel = require("./LogisticApplicationModel");
+const { Logger } = require("./../../common/Logger");
 
 class Logistic {
   constructor(_conf) {
@@ -37,7 +39,7 @@ class Logistic {
    * @summary: Get Pincode API
    * @description: Get pincode data
    */
-  getPincodeCity({ pincode } = {}) {
+  async getPincodeCity({ pincode } = {}) {
     const { error } = LogisticValidator.getPincodeCity().validate(
       { pincode },
       { abortEarly: false, allowUnknown: true }
@@ -52,15 +54,18 @@ class Logistic {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPincodeCity");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPincodeCity",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -71,6 +76,23 @@ class Logistic {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = LogisticModel.PincodeApiResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPincodeCity",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -80,7 +102,7 @@ class Logistic {
    * @summary: Get TAT API
    * @description: Get TAT data
    */
-  getTatProduct({ body } = {}) {
+  async getTatProduct({ body } = {}) {
     const { error } = LogisticValidator.getTatProduct().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -95,15 +117,18 @@ class Logistic {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getTatProduct");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getTatProduct",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -114,6 +139,23 @@ class Logistic {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = LogisticModel.TATViewResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getTatProduct",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -122,7 +164,7 @@ class Logistic {
    * @summary: Get Country List
    * @description: Get all countries
    */
-  getAllCountries({} = {}) {
+  async getAllCountries({} = {}) {
     const { error } = LogisticValidator.getAllCountries().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -137,15 +179,18 @@ class Logistic {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getAllCountries");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAllCountries",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -156,6 +201,23 @@ class Logistic {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = LogisticModel.CountryListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAllCountries",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -165,7 +227,7 @@ class Logistic {
    * @summary: GET zone from the Pincode.
    * @description: This API returns zone from the Pincode View.
    */
-  getPincodeZones({ body } = {}) {
+  async getPincodeZones({ body } = {}) {
     const { error } = LogisticValidator.getPincodeZones().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -180,15 +242,18 @@ class Logistic {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPincodeZones");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPincodeZones",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -199,6 +264,23 @@ class Logistic {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = LogisticModel.GetZoneFromPincodeViewResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPincodeZones",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

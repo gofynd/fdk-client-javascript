@@ -31,6 +31,12 @@ class ConfigurationValidator {
     }).required();
   }
 
+  static modifyAppFeatures() {
+    return Joi.object({
+      body: ConfigurationModel.AppFeatureRequest().required(),
+    }).required();
+  }
+
   static getAppBasicDetails() {
     return Joi.object({}).required();
   }

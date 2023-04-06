@@ -2,6 +2,9 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const DiscountValidator = require("./DiscountPlatformValidator");
+const DiscountModel = require("./DiscountPlatformModel");
+const { Logger } = require("./../../common/Logger");
+
 class Discount {
   constructor(config) {
     this.config = config;
@@ -19,10 +22,11 @@ class Discount {
    * @param {number} [arg.year] - Year. Default is current year.
    * @param {string} [arg.type] - Basic or custom.
    * @param {string[]} [arg.appIds] - Application ids.
+   * @returns {Promise<ListOrCalender>} - Success response
    * @summary: Fetch discount list.
    * @description: Fetch discount list.
    */
-  getDiscounts({
+  async getDiscounts({
     view,
     q,
     pageNo,
@@ -67,8 +71,11 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDiscounts");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDiscounts",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -84,7 +91,7 @@ class Discount {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
@@ -92,15 +99,33 @@ class Discount {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.ListOrCalender().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDiscounts",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateUpdateDiscount} arg.body
+   * @returns {Promise<DiscountJob>} - Success response
    * @summary: Create Discount.
    * @description: Create Discount.
    */
-  createDiscount({ body } = {}) {
+  async createDiscount({ body } = {}) {
     const { error } = DiscountValidator.createDiscount().validate(
       {
         body,
@@ -119,15 +144,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createDiscount");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createDiscount",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
@@ -135,15 +163,31 @@ class Discount {
       body,
       xHeaders
     );
+
+    const { error: res_error } = DiscountModel.DiscountJob().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createDiscount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Unique id.
+   * @returns {Promise<DiscountJob>} - Success response
    * @summary: Fetch discount.
    * @description: Fetch discount.
    */
-  getDiscount({ id } = {}) {
+  async getDiscount({ id } = {}) {
     const { error } = DiscountValidator.getDiscount().validate(
       {
         id,
@@ -162,15 +206,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDiscount");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDiscount",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
@@ -178,16 +225,32 @@ class Discount {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = DiscountModel.DiscountJob().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDiscount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Id
    * @param {CreateUpdateDiscount} arg.body
+   * @returns {Promise<DiscountJob>} - Success response
    * @summary: Create Discount.
    * @description: Create Discount.
    */
-  updateDiscount({ id, body } = {}) {
+  async updateDiscount({ id, body } = {}) {
     const { error } = DiscountValidator.updateDiscount().validate(
       {
         id,
@@ -208,15 +271,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateDiscount");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateDiscount",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
@@ -224,16 +290,99 @@ class Discount {
       body,
       xHeaders
     );
+
+    const { error: res_error } = DiscountModel.DiscountJob().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateDiscount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Job ID of the discount.
+   * @param {BulkDiscount} arg.body
+   * @returns {Promise<Object>} - Success response
+   * @summary: Create custom discount from bulk.
+   * @description: Create custom discounts through API.
+   */
+  async upsertDiscountItems({ id, body } = {}) {
+    const { error } = DiscountValidator.upsertDiscountItems().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = DiscountValidator.upsertDiscountItems().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for upsertDiscountItems",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/items/`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for upsertDiscountItems",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.discount] - Discount
    * @param {DiscountJob} arg.body
+   * @returns {Promise<FileJobResponse>} - Success response
    * @summary: Validate File.
    * @description: Validate File.
    */
-  validateDiscountFile({ body, discount } = {}) {
+  async validateDiscountFile({ body, discount } = {}) {
     const { error } = DiscountValidator.validateDiscountFile().validate(
       {
         body,
@@ -256,8 +405,11 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for validateDiscountFile");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for validateDiscountFile",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -265,7 +417,7 @@ class Discount {
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/`,
@@ -273,16 +425,34 @@ class Discount {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.FileJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for validateDiscountFile",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.type - Type
    * @param {DownloadFileJob} arg.body
+   * @returns {Promise<FileJobResponse>} - Success response
    * @summary: Validate File.
    * @description: Validate File.
    */
-  downloadDiscountFile({ type, body } = {}) {
+  async downloadDiscountFile({ type, body } = {}) {
     const { error } = DiscountValidator.downloadDiscountFile().validate(
       {
         type,
@@ -305,15 +475,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for downloadDiscountFile");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for downloadDiscountFile",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/${type}/download/`,
@@ -321,15 +494,33 @@ class Discount {
       body,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.FileJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for downloadDiscountFile",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Id
+   * @returns {Promise<FileJobResponse>} - Success response
    * @summary: Validate File Job.
    * @description: Validate File Job.
    */
-  getValidationJob({ id } = {}) {
+  async getValidationJob({ id } = {}) {
     const { error } = DiscountValidator.getValidationJob().validate(
       {
         id,
@@ -348,15 +539,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getValidationJob");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getValidationJob",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
@@ -364,15 +558,33 @@ class Discount {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.FileJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getValidationJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Id
+   * @returns {Promise<CancelJobResponse>} - Success response
    * @summary: Cancel Validation Job.
    * @description: Cancel Validation Job.
    */
-  cancelValidationJob({ id } = {}) {
+  async cancelValidationJob({ id } = {}) {
     const { error } = DiscountValidator.cancelValidationJob().validate(
       {
         id,
@@ -393,15 +605,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for cancelValidationJob");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cancelValidationJob",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
@@ -409,15 +624,33 @@ class Discount {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.CancelJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cancelValidationJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Id
+   * @returns {Promise<FileJobResponse>} - Success response
    * @summary: Download File Job.
    * @description: Download File Job.
    */
-  getDownloadJob({ id } = {}) {
+  async getDownloadJob({ id } = {}) {
     const { error } = DiscountValidator.getDownloadJob().validate(
       {
         id,
@@ -436,15 +669,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getDownloadJob");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDownloadJob",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
@@ -452,15 +688,33 @@ class Discount {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.FileJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDownloadJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Id
+   * @returns {Promise<CancelJobResponse>} - Success response
    * @summary: Cancel Download Job.
    * @description: Cancel Download Job.
    */
-  cancelDownloadJob({ id } = {}) {
+  async cancelDownloadJob({ id } = {}) {
     const { error } = DiscountValidator.cancelDownloadJob().validate(
       {
         id,
@@ -479,15 +733,18 @@ class Discount {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for cancelDownloadJob");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for cancelDownloadJob",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
@@ -495,6 +752,23 @@ class Discount {
       undefined,
       xHeaders
     );
+
+    const {
+      error: res_error,
+    } = DiscountModel.CancelJobResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for cancelDownloadJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

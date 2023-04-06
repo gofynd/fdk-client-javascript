@@ -2,6 +2,8 @@ const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PaymentValidator = require("./PaymentPlatformApplicationValidator");
+const PaymentModel = require("./PaymentPlatformModel");
+const { Logger } = require("./../../common/Logger");
 
 class Payment {
   constructor(config, applicationId) {
@@ -11,10 +13,11 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<PaymentGatewayConfigResponse>} - Success response
    * @summary: Get All Brand Payment Gateway Config Secret
    * @description: Get All Brand Payment Gateway Config Secret
    */
-  getBrandPaymentGatewayConfig({} = {}) {
+  async getBrandPaymentGatewayConfig({} = {}) {
     const { error } = PaymentValidator.getBrandPaymentGatewayConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -31,30 +34,51 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getBrandPaymentGatewayConfig"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getBrandPaymentGatewayConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentGatewayConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getBrandPaymentGatewayConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PaymentGatewayConfigRequest} arg.body
+   * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
    * @summary: Save Config Secret For Brand Payment Gateway
    * @description: Save Config Secret For Brand Payment Gateway
    */
-  saveBrandPaymentGatewayConfig({ body } = {}) {
+  async saveBrandPaymentGatewayConfig({ body } = {}) {
     const { error } = PaymentValidator.saveBrandPaymentGatewayConfig().validate(
       {
         body,
@@ -75,30 +99,51 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for saveBrandPaymentGatewayConfig"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for saveBrandPaymentGatewayConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentGatewayToBeReviewed().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for saveBrandPaymentGatewayConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PaymentGatewayConfigRequest} arg.body
+   * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
    * @summary: Save Config Secret For Brand Payment Gateway
    * @description: Save Config Secret For Brand Payment Gateway
    */
-  updateBrandPaymentGatewayConfig({ body } = {}) {
+  async updateBrandPaymentGatewayConfig({ body } = {}) {
     const {
       error,
     } = PaymentValidator.updateBrandPaymentGatewayConfig().validate(
@@ -121,31 +166,52 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updateBrandPaymentGatewayConfig"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for updateBrandPaymentGatewayConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentGatewayToBeReviewed().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for updateBrandPaymentGatewayConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {boolean} arg.refresh -
    * @param {string} arg.requestType -
+   * @returns {Promise<PaymentOptionsResponse>} - Success response
    * @summary: Get All Valid Payment Options
    * @description: Use this API to get Get All Valid Payment Options for making payment
    */
-  getPaymentModeRoutes({ refresh, requestType } = {}) {
+  async getPaymentModeRoutes({ refresh, requestType } = {}) {
     const { error } = PaymentValidator.getPaymentModeRoutes().validate(
       {
         refresh,
@@ -168,31 +234,52 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPaymentModeRoutes");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["refresh"] = refresh;
     query_params["request_type"] = requestType;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentOptionsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
    * @param {string} [arg.requestHash] -
+   * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Get bank details
    * @description: Use this API to get saved bank details for returned/cancelled order using order id.
    */
-  getBankAccountDetailsOpenAPI({ orderId, requestHash } = {}) {
+  async getBankAccountDetailsOpenAPI({ orderId, requestHash } = {}) {
     const { error } = PaymentValidator.getBankAccountDetailsOpenAPI().validate(
       {
         orderId,
@@ -215,32 +302,53 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getBankAccountDetailsOpenAPI"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getBankAccountDetailsOpenAPI",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["order_id"] = orderId;
     query_params["request_hash"] = requestHash;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RefundAccountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getBankAccountDetailsOpenAPI",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {AddBeneficiaryDetailsOTPRequest} arg.body
+   * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
    * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
    */
-  addRefundBankAccountUsingOTP({ body } = {}) {
+  async addRefundBankAccountUsingOTP({ body } = {}) {
     const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
       {
         body,
@@ -261,30 +369,51 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for addRefundBankAccountUsingOTP"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for addRefundBankAccountUsingOTP",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.RefundAccountResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for addRefundBankAccountUsingOTP",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
+   * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @summary: List Order Beneficiary
    * @description: Get all active  beneficiary details added by the user for refund
    */
-  getUserOrderBeneficiaries({ orderId } = {}) {
+  async getUserOrderBeneficiaries({ orderId } = {}) {
     const { error } = PaymentValidator.getUserOrderBeneficiaries().validate(
       {
         orderId,
@@ -305,31 +434,50 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getUserOrderBeneficiaries"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getUserOrderBeneficiaries",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["order_id"] = orderId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/accounts/order`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.OrderBeneficiaryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUserOrderBeneficiaries",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
+   * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @summary: List User Beneficiary
    * @description: Get all active  beneficiary details added by the user for refund
    */
-  getUserBeneficiaries({ orderId } = {}) {
+  async getUserBeneficiaries({ orderId } = {}) {
     const { error } = PaymentValidator.getUserBeneficiaries().validate(
       {
         orderId,
@@ -350,29 +498,50 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getUserBeneficiaries");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getUserBeneficiaries",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["order_id"] = orderId;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/accounts/user`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.OrderBeneficiaryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUserBeneficiaries",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PaymentConfirmationRequest} arg.body
+   * @returns {Promise<PaymentConfirmationResponse>} - Success response
    * @summary: Confirm payment after successful payment from payment gateway
    * @description: Use this API to confirm payment after payment gateway accepted payment.
    */
-  confirmPayment({ body } = {}) {
+  async confirmPayment({ body } = {}) {
     const { error } = PaymentValidator.confirmPayment().validate(
       {
         body,
@@ -391,27 +560,48 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for confirmPayment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for confirmPayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/confirm`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentConfirmationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for confirmPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<PlatfromPaymentConfig>} - Success response
    * @summary: API to fetch the payment options of the merchant for paltform
    * @description: Use this API to fetch the payment options.
    */
-  getPlatformPaymentConfig({} = {}) {
+  async getPlatformPaymentConfig({} = {}) {
     const { error } = PaymentValidator.getPlatformPaymentConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -428,30 +618,49 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getPlatformPaymentConfig"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPlatformPaymentConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PlatfromPaymentConfig().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPlatformPaymentConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {UpdatePlatformPaymentConfig} arg.body
+   * @returns {Promise<PlatfromPaymentConfig>} - Success response
    * @summary: API to update the payment options of the merchant for paltform
    * @description: Use this API to update the payment options.
    */
-  updatePlatformPaymentConfig({ body } = {}) {
+  async updatePlatformPaymentConfig({ body } = {}) {
     const { error } = PaymentValidator.updatePlatformPaymentConfig().validate(
       {
         body,
@@ -472,31 +681,52 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for updatePlatformPaymentConfig"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for updatePlatformPaymentConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "patch",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PlatfromPaymentConfig().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for updatePlatformPaymentConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.merchantUserId -
    * @param {string} arg.mobileNo -
+   * @returns {Promise<GetUserCODLimitResponse>} - Success response
    * @summary: Get COD limit for user
    * @description: Use this API to get user cod limit and reamining limit for the payment
    */
-  getUserCODlimitRoutes({ merchantUserId, mobileNo } = {}) {
+  async getUserCODlimitRoutes({ merchantUserId, mobileNo } = {}) {
     const { error } = PaymentValidator.getUserCODlimitRoutes().validate(
       {
         merchantUserId,
@@ -519,30 +749,51 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getUserCODlimitRoutes");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getUserCODlimitRoutes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
     query_params["merchant_user_id"] = merchantUserId;
     query_params["mobile_no"] = mobileNo;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.GetUserCODLimitResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUserCODlimitRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {SetCODForUserRequest} arg.body
+   * @returns {Promise<SetCODOptionResponse>} - Success response
    * @summary: Set COD option for user for payment
    * @description: Use this API to set cod option as true or false for the payment
    */
-  setUserCODlimitRoutes({ body } = {}) {
+  async setUserCODlimitRoutes({ body } = {}) {
     const { error } = PaymentValidator.setUserCODlimitRoutes().validate(
       {
         body,
@@ -563,27 +814,48 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for setUserCODlimitRoutes");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for setUserCODlimitRoutes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.SetCODOptionResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for setUserCODlimitRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<EdcAggregatorAndModelListResponse>} - Success response
    * @summary: get some information about the store and edc device
    * @description: Use this API to get info of devices linked to a particular app.
    */
-  edcAggregatorsAndModelList({} = {}) {
+  async edcAggregatorsAndModelList({} = {}) {
     const { error } = PaymentValidator.edcAggregatorsAndModelList().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -600,29 +872,49 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for edcAggregatorsAndModelList"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for edcAggregatorsAndModelList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-aggregator-list`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EdcAggregatorAndModelListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for edcAggregatorsAndModelList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<EdcDeviceStatsResponse>} - Success response
    * @summary: get some information about the store and edc device
    * @description: Use this API to get info of devices linked to a particular app.
    */
-  edcDeviceStats({} = {}) {
+  async edcDeviceStats({} = {}) {
     const { error } = PaymentValidator.edcDeviceStats().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -637,29 +929,50 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for edcDeviceStats");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for edcDeviceStats",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device-stats`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EdcDeviceStatsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for edcDeviceStats",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
    * @param {EdcAddRequest} arg.body
+   * @returns {Promise<EdcDeviceAddResponse>} - Success response
    * @summary: map new edc device to the terminal
    * @description: Use this API to map new edc device to the terminal
    */
-  updateEdcDevice({ terminalUniqueIdentifier, body } = {}) {
+  async updateEdcDevice({ terminalUniqueIdentifier, body } = {}) {
     const { error } = PaymentValidator.updateEdcDevice().validate(
       {
         terminalUniqueIdentifier,
@@ -680,28 +993,49 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for updateEdcDevice");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateEdcDevice",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EdcDeviceAddResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateEdcDevice",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
+   * @returns {Promise<EdcDeviceDetailsResponse>} - Success response
    * @summary: get details of a single edc device
    * @description: Use this API to get details of a single edc device
    */
-  getEdcDevice({ terminalUniqueIdentifier } = {}) {
+  async getEdcDevice({ terminalUniqueIdentifier } = {}) {
     const { error } = PaymentValidator.getEdcDevice().validate(
       {
         terminalUniqueIdentifier,
@@ -720,29 +1054,50 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getEdcDevice");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getEdcDevice",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device/${terminalUniqueIdentifier}`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EdcDeviceDetailsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getEdcDevice",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
    * @param {EdcUpdateRequest} arg.body
+   * @returns {Promise<EdcDeviceUpdateResponse>} - Success response
    * @summary: Update store id and device tag of edc device
    * @description: Use this API to Update store id and device tag of edc device
    */
-  addEdcDevice({ terminalUniqueIdentifier, body } = {}) {
+  async addEdcDevice({ terminalUniqueIdentifier, body } = {}) {
     const { error } = PaymentValidator.addEdcDevice().validate(
       {
         terminalUniqueIdentifier,
@@ -763,19 +1118,39 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for addEdcDevice");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addEdcDevice",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device/${terminalUniqueIdentifier}`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EdcDeviceUpdateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addEdcDevice",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -785,10 +1160,11 @@ class Payment {
    * @param {boolean} [arg.isActive] -
    * @param {number} [arg.storeId] -
    * @param {string} [arg.deviceTag] -
+   * @returns {Promise<EdcDeviceListResponse>} - Success response
    * @summary: get all the device list of an app
    * @description: Use this API to get all devices linked to a particular app.
    */
-  edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag } = {}) {
+  async edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag } = {}) {
     const { error } = PaymentValidator.edcDeviceList().validate(
       {
         pageNo,
@@ -815,8 +1191,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for edcDeviceList");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for edcDeviceList",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -826,13 +1205,30 @@ class Payment {
     query_params["store_id"] = storeId;
     query_params["device_tag"] = deviceTag;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device-list`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.EdcDeviceListResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for edcDeviceList",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -851,10 +1247,11 @@ class Payment {
    *   customer wants the handover of an order at the store itself.
    * @param {string} [arg.userDetails] - URIencoded JSON containing details of
    *   an anonymous user.
+   * @returns {Promise<PaymentOptionsResponse>} - Success response
    * @summary: Get All Valid Payment Options
    * @description: Use this API to get Get All Valid Payment Options for making payment
    */
-  getPosPaymentModeRoutes({
+  async getPosPaymentModeRoutes({
     amount,
     cartId,
     pincode,
@@ -898,8 +1295,11 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getPosPaymentModeRoutes");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPosPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -912,22 +1312,40 @@ class Payment {
     query_params["order_type"] = orderType;
     query_params["user_details"] = userDetails;
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/pos`,
       query_params,
       undefined
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentOptionsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPosPaymentModeRoutes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PaymentInitializationRequest} arg.body
+   * @returns {Promise<PaymentInitializationResponse>} - Success response
    * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
    * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
    */
-  initialisePayment({ body } = {}) {
+  async initialisePayment({ body } = {}) {
     const { error } = PaymentValidator.initialisePayment().validate(
       {
         body,
@@ -946,28 +1364,49 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for initialisePayment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for initialisePayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/request`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentInitializationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for initialisePayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {PaymentStatusUpdateRequest} arg.body
+   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
    * @summary: Performs continuous polling to check status of payment on the server
    * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
    */
-  checkAndUpdatePaymentStatus({ body } = {}) {
+  async checkAndUpdatePaymentStatus({ body } = {}) {
     const { error } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
       {
         body,
@@ -988,30 +1427,51 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for checkAndUpdatePaymentStatus"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for checkAndUpdatePaymentStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/confirm/polling`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.PaymentStatusUpdateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for checkAndUpdatePaymentStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {ResendOrCancelPaymentRequest} arg.body
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
    * @summary: API to resend and cancel a payment link which was already generated.
    * @description: Use this API to perform resend or cancel a payment link based on request payload.
    */
-  resendOrCancelPayment({ body } = {}) {
+  async resendOrCancelPayment({ body } = {}) {
     const { error } = PaymentValidator.resendOrCancelPayment().validate(
       {
         body,
@@ -1032,19 +1492,39 @@ class Payment {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for resendOrCancelPayment");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for resendOrCancelPayment",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
-    return PlatformAPIClient.execute(
+    const response = await PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/cancel`,
       query_params,
       body
     );
+
+    const {
+      error: res_error,
+    } = PaymentModel.ResendOrCancelPaymentResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for resendOrCancelPayment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 module.exports = Payment;

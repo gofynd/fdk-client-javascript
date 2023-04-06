@@ -3,6 +3,8 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const ShareValidator = require("./ShareApplicationValidator");
+const ShareModel = require("./ShareApplicationModel");
+const { Logger } = require("./../../common/Logger");
 
 class Share {
   constructor(_conf) {
@@ -42,7 +44,7 @@ class Share {
    * @summary: Create QR Code of an app
    * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
    */
-  getApplicationQRCode({} = {}) {
+  async getApplicationQRCode({} = {}) {
     const { error } = ShareValidator.getApplicationQRCode().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -57,15 +59,18 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getApplicationQRCode");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getApplicationQRCode",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -76,6 +81,21 @@ class Share {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.QRCodeResp().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getApplicationQRCode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -86,7 +106,7 @@ class Share {
    * @summary: Create QR Code of a product
    * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
    */
-  getProductQRCodeBySlug({ slug } = {}) {
+  async getProductQRCodeBySlug({ slug } = {}) {
     const { error } = ShareValidator.getProductQRCodeBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -103,15 +123,18 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getProductQRCodeBySlug");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductQRCodeBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -122,6 +145,21 @@ class Share {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.QRCodeResp().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductQRCodeBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -132,7 +170,7 @@ class Share {
    * @summary: Create QR Code of a collection
    * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
    */
-  getCollectionQRCodeBySlug({ slug } = {}) {
+  async getCollectionQRCodeBySlug({ slug } = {}) {
     const { error } = ShareValidator.getCollectionQRCodeBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -149,17 +187,18 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getCollectionQRCodeBySlug"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCollectionQRCodeBySlug",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -170,6 +209,21 @@ class Share {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.QRCodeResp().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCollectionQRCodeBySlug",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -179,7 +233,7 @@ class Share {
    * @summary: Create QR Code of a URL
    * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
    */
-  getUrlQRCode({ url } = {}) {
+  async getUrlQRCode({ url } = {}) {
     const { error } = ShareValidator.getUrlQRCode().validate(
       { url },
       { abortEarly: false, allowUnknown: true }
@@ -194,8 +248,11 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getUrlQRCode");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getUrlQRCode",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -203,7 +260,7 @@ class Share {
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -214,6 +271,21 @@ class Share {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.QRCodeResp().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUrlQRCode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -223,7 +295,7 @@ class Share {
    * @summary: Create a short link
    * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
    */
-  createShortLink({ body } = {}) {
+  async createShortLink({ body } = {}) {
     const { error } = ShareValidator.createShortLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -238,15 +310,18 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for createShortLink");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createShortLink",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -257,6 +332,21 @@ class Share {
       body,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.ShortLinkRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createShortLink",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -267,7 +357,7 @@ class Share {
    * @summary: Get short link by hash
    * @description: Use this API to get a short link by using a hash value.
    */
-  getShortLinkByHash({ hash } = {}) {
+  async getShortLinkByHash({ hash } = {}) {
     const { error } = ShareValidator.getShortLinkByHash().validate(
       { hash },
       { abortEarly: false, allowUnknown: true }
@@ -282,15 +372,18 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log("Parameter Validation warrnings for getShortLinkByHash");
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getShortLinkByHash",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -301,6 +394,21 @@ class Share {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.ShortLinkRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getShortLinkByHash",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -311,7 +419,7 @@ class Share {
    * @summary: Get original link by hash
    * @description: Use this API to retrieve the original link from a short-link by using a hash value.
    */
-  getOriginalShortLinkByHash({ hash } = {}) {
+  async getOriginalShortLinkByHash({ hash } = {}) {
     const { error } = ShareValidator.getOriginalShortLinkByHash().validate(
       { hash },
       { abortEarly: false, allowUnknown: true }
@@ -328,17 +436,19 @@ class Share {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      console.log(
-        "Parameter Validation warrnings for getOriginalShortLinkByHash"
-      );
-      console.log(warrning);
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getOriginalShortLinkByHash",
+      });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    return APIClient.execute(
+    const response = await APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -349,6 +459,21 @@ class Share {
       undefined,
       xHeaders
     );
+
+    const { error: res_error } = ShareModel.ShortLinkRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOriginalShortLinkByHash",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 
