@@ -12,4 +12,8 @@ declare class UserValidator {
     static deleteActiveSessions(): any;
     static getPlatformConfig(): any;
     static updatePlatformConfig(): any;
+    static createUserGroup(): any;
+    static getUserGroups(): any;
+    static updateUserGroup(): any;
+    static getUserGroupById(): any;
 }

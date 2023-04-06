@@ -74,6 +74,35 @@ class UserValidator {
       body: UserModel.PlatformSchema().required(),
     }).required();
   }
+
+  static createUserGroup() {
+    return Joi.object({
+      body: UserModel.CreateUserGroupSchema().required(),
+    }).required();
+  }
+
+  static getUserGroups() {
+    return Joi.object({
+      pageNo: Joi.string().allow(""),
+      pageSize: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      groupUid: Joi.number(),
+    }).required();
+  }
+
+  static updateUserGroup() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
+      body: UserModel.UpdateUserGroupSchema().required(),
+    }).required();
+  }
+
+  static getUserGroupById() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
+    }).required();
+  }
 }
 
 module.exports = UserValidator;

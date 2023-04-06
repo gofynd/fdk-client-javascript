@@ -236,6 +236,8 @@ class UserModel {
       captcha_code: Joi.string().allow(""),
 
       mobile: Joi.string().allow(""),
+
+      android_hash: Joi.string().allow(""),
     });
   }
 
@@ -667,6 +669,48 @@ class UserModel {
     });
   }
 
+  static UserGroupResponseSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      file_url: Joi.string().allow(""),
+
+      _id: Joi.string().allow(""),
+
+      status: Joi.string().allow(""),
+
+      uid: Joi.number(),
+
+      application_id: Joi.string().allow(""),
+
+      created_at: Joi.string().allow(""),
+
+      modified_at: Joi.string().allow(""),
+
+      __v: Joi.number(),
+    });
+  }
+
+  static UserGroupListResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(UserModel.UserGroupResponseSchema()),
+
+      page: UserModel.PaginationSchema(),
+    });
+  }
+
+  static CreateUserGroupSchema() {
+    return Joi.object({
+      name: Joi.string().allow("").required(),
+
+      description: Joi.string().allow("").required(),
+
+      file_url: Joi.string().allow("").required(),
+    });
+  }
+
   static CreateUserRequestSchema() {
     return Joi.object({
       phone_number: Joi.string().allow("").required(),
@@ -766,6 +810,8 @@ class UserModel {
       ),
 
       delete_account_consent: Joi.any(),
+
+      session_config: Joi.any(),
     });
   }
 
@@ -905,6 +951,26 @@ class UserModel {
     });
   }
 
+  static SessionExpiry() {
+    return Joi.object({
+      duration: Joi.number(),
+
+      type: Joi.string().allow(""),
+
+      is_rolling: Joi.boolean(),
+    });
+  }
+
+  static UpdateUserGroupSchema() {
+    return Joi.object({
+      name: Joi.string().allow(""),
+
+      description: Joi.string().allow(""),
+
+      file_url: Joi.string().allow(""),
+    });
+  }
+
   static UpdateUserRequestSchema() {
     return Joi.object({
       first_name: Joi.string().allow(""),
@@ -947,10 +1013,6 @@ class UserModel {
 
       account_type: Joi.string().allow(""),
 
-      debug: UserModel.Debug(),
-
-      has_old_password_hash: Joi.boolean(),
-
       _id: Joi.string().allow(""),
 
       created_at: Joi.string().allow(""),
@@ -982,14 +1044,6 @@ class UserModel {
       email: Joi.string().allow(""),
 
       active: Joi.boolean(),
-    });
-  }
-
-  static Debug() {
-    return Joi.object({
-      source: Joi.string().allow(""),
-
-      platform: Joi.string().allow(""),
     });
   }
 }
