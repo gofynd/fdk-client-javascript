@@ -24,16 +24,16 @@ class ServiceabilityValidator {
     }).required();
   }
 
-  static getZoneDataView() {
-    return Joi.object({
-      zoneId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static updateZoneControllerView() {
     return Joi.object({
       zoneId: Joi.string().allow("").required(),
       body: Validator.ZoneUpdateRequest().required(),
+    }).required();
+  }
+
+  static getZoneDataView() {
+    return Joi.object({
+      zoneId: Joi.string().allow("").required(),
     }).required();
   }
 

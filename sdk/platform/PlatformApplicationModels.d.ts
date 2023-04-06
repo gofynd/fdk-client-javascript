@@ -193,8 +193,8 @@ export class CatalogValidator {
     static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
-    static getAppProduct(): any;
     static updateAppProduct(): any;
+    static getAppProduct(): any;
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
@@ -297,6 +297,33 @@ export class CartValidator {
     static getAbandonedCart(): any;
     static addItems(): any;
     static updateCart(): any;
+    static getCartShareLink(): any;
+    static getCartSharedItems(): any;
+    static updateCartWithSharedItems(): any;
+    static getCartList(): any;
+    static updateCartUser(): any;
+    static getCart(): any;
+    static platformAddItems(): any;
+    static platformUpdateCart(): any;
+    static deleteCart(): any;
+    static getItemCount(): any;
+    static getAppCoupons(): any;
+    static applyCoupon(): any;
+    static removeCoupon(): any;
+    static getAddresses(): any;
+    static addAddress(): any;
+    static getAddressById(): any;
+    static updateAddress(): any;
+    static removeAddress(): any;
+    static selectAddress(): any;
+    static getShipments(): any;
+    static updateShipments(): any;
+    static updateCartMeta(): any;
+    static platformCheckoutCart(): any;
+    static getAvailableDeliveryModes(): any;
+    static getStoreAddressByUid(): any;
+    static selectPaymentMode(): any;
+    static validateCouponForPayment(): any;
 }
 export class RewardsValidator {
     static showGiveaways(): any;
