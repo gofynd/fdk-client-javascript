@@ -409,7 +409,7 @@ declare class Catalog {
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
-     * @returns {Promise<ProductListingResponse>} - Success response
+     * @returns {Promise<ProductListingResponseV2>} - Success response
      * @summary: Get product list
      * @description: This API gets meta associated to products.
      */
@@ -423,7 +423,7 @@ declare class Catalog {
         tags?: string[];
         pageNo?: number;
         pageSize?: number;
-    }): Promise<ProductListingResponse>;
+    }): Promise<ProductListingResponseV2>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ProductCreateUpdateSchemaV2} arg.body
@@ -643,7 +643,7 @@ declare class Catalog {
     }): Promise<ProductSizeDeleteResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Item code of the product of which size is to be get.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
      * @param {string} arg.size - Size of which inventory is to get.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
@@ -656,7 +656,7 @@ declare class Catalog {
      * @description: This API allows get Inventory data for particular company grouped by size and store.
      */
     getInventoryBySize({ itemId, size, pageNo, pageSize, q, sellable, }?: {
-        itemId: string;
+        itemId: number;
         size: string;
         pageNo?: number;
         pageSize?: number;
@@ -679,7 +679,7 @@ declare class Catalog {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Item code of the product of which size is to be get.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
      * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
      *   or Primary Identifier) of which inventory is to get.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -693,7 +693,7 @@ declare class Catalog {
      * @description: This API allows get Inventory data for particular company grouped by size and store.
      */
     getInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, }?: {
-        itemId: string;
+        itemId: number;
         sizeIdentifier: string;
         pageNo?: number;
         pageSize?: number;

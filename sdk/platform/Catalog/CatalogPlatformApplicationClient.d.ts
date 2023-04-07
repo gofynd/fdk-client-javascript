@@ -109,6 +109,16 @@ declare class Catalog {
     }): Promise<CreateAutocompleteWordsResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.itemId - Product id for a particular product.
+     * @returns {Promise<OwnerAppItemResponse>} - Success response
+     * @summary: Get company application product data.
+     * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
+     */
+    getAppProduct({ itemId }?: {
+        itemId: string;
+    }): Promise<OwnerAppItemResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.itemId - Product id for which the custom_meta is associated.
      * @param {ApplicationItemMeta} arg.body
      * @returns {Promise<SuccessResponse1>} - Success response
@@ -119,16 +129,6 @@ declare class Catalog {
         itemId: string;
         body: ApplicationItemMeta;
     }): Promise<SuccessResponse1>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Product id for a particular product.
-     * @returns {Promise<OwnerAppItemResponse>} - Success response
-     * @summary: Get company application product data.
-     * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
-     */
-    getAppProduct({ itemId }?: {
-        itemId: string;
-    }): Promise<OwnerAppItemResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.configType - A `config_type` is an identifier that

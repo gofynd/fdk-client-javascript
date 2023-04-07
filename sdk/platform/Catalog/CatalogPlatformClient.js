@@ -2286,7 +2286,7 @@ class Catalog {
    *   given set of results
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
-   * @returns {Promise<ProductListingResponse>} - Success response
+   * @returns {Promise<ProductListingResponseV2>} - Success response
    * @summary: Get product list
    * @description: This API gets meta associated to products.
    */
@@ -2366,7 +2366,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductListingResponse().validate(response, {
+    } = CatalogModel.ProductListingResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3617,7 +3617,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Item code of the product of which size is to be get.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
    * @param {string} arg.size - Size of which inventory is to get.
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results
@@ -3779,7 +3779,7 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.itemId - Item code of the product of which size is to be get.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
    * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
    *   or Primary Identifier) of which inventory is to get.
    * @param {number} [arg.pageNo] - The page number to navigate through the

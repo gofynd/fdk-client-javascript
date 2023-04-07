@@ -353,7 +353,7 @@ class CatalogValidator {
 
   static getInventoryBySize() {
     return Joi.object({
-      itemId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
       size: Joi.string().allow("").required(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -372,7 +372,7 @@ class CatalogValidator {
 
   static getInventoryBySizeIdentifier() {
     return Joi.object({
-      itemId: Joi.string().allow("").required(),
+      itemId: Joi.number().required(),
       sizeIdentifier: Joi.string().allow("").required(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),

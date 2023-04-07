@@ -60,16 +60,16 @@ class CatalogValidator {
     }).required();
   }
 
+  static getAppProduct() {
+    return Joi.object({
+      itemId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static updateAppProduct() {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
       body: CatalogModel.ApplicationItemMeta().required(),
-    }).required();
-  }
-
-  static getAppProduct() {
-    return Joi.object({
-      itemId: Joi.string().allow("").required(),
     }).required();
   }
 
