@@ -2,9 +2,6 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const LeadValidator = require("./LeadPlatformValidator");
-const LeadModel = require("./LeadPlatformModel");
-const { Logger } = require("./../../common/Logger");
-
 class Lead {
   constructor(config) {
     this.config = config;
@@ -24,11 +21,10 @@ class Lead {
    *   given set of results.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 12.
-   * @returns {Promise<TicketList>} - Success response
    * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
    * @description: Gets the list of company level tickets and/or ticket filters
    */
-  async getTickets({
+  getTickets({
     items,
     filters,
     q,
@@ -70,11 +66,8 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTickets",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getTickets");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -89,7 +82,7 @@ class Lead {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
@@ -97,21 +90,6 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = LeadModel.TicketList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTickets",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -166,11 +144,10 @@ class Lead {
   /**
    * @param {Object} arg - Arg object.
    * @param {AddTicketPayload} arg.body
-   * @returns {Promise<Ticket>} - Success response
    * @summary: Creates a company level ticket
    * @description: Creates a company level ticket
    */
-  async createTicket({ body } = {}) {
+  createTicket({ body } = {}) {
     const { error } = LeadValidator.createTicket().validate(
       {
         body,
@@ -189,18 +166,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for createTicket");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket`,
@@ -208,31 +182,15 @@ class Lead {
       body,
       xHeaders
     );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Tiket ID of the ticket to be fetched
-   * @returns {Promise<Ticket>} - Success response
    * @summary: Retreives ticket details of a company level ticket with ticket ID
    * @description: Retreives ticket details of a company level ticket
    */
-  async getTicket({ id } = {}) {
+  getTicket({ id } = {}) {
     const { error } = LeadValidator.getTicket().validate(
       {
         id,
@@ -251,18 +209,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getTicket");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
@@ -270,32 +225,16 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Ticket ID of ticket to be edited
    * @param {EditTicketPayload} arg.body
-   * @returns {Promise<Ticket>} - Success response
    * @summary: Edits ticket details of a company level ticket
    * @description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
    */
-  async editTicket({ id, body } = {}) {
+  editTicket({ id, body } = {}) {
     const { error } = LeadValidator.editTicket().validate(
       {
         id,
@@ -316,18 +255,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for editTicket",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for editTicket");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}`,
@@ -335,32 +271,16 @@ class Lead {
       body,
       xHeaders
     );
-
-    const { error: res_error } = LeadModel.Ticket().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for editTicket",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Ticket ID for which history is created
    * @param {TicketHistoryPayload} arg.body
-   * @returns {Promise<TicketHistory>} - Success response
    * @summary: Create history for specific company level ticket
    * @description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
-  async createHistory({ id, body } = {}) {
+  createHistory({ id, body } = {}) {
     const { error } = LeadValidator.createHistory().validate(
       {
         id,
@@ -381,18 +301,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createHistory",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for createHistory");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
@@ -400,31 +317,15 @@ class Lead {
       body,
       xHeaders
     );
-
-    const { error: res_error } = LeadModel.TicketHistory().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createHistory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Ticket ID for which history is to be fetched
-   * @returns {Promise<TicketHistoryList>} - Success response
    * @summary: Gets history list for specific company level ticket
    * @description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
-  async getTicketHistory({ id } = {}) {
+  getTicketHistory({ id } = {}) {
     const { error } = LeadValidator.getTicketHistory().validate(
       {
         id,
@@ -443,18 +344,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTicketHistory",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getTicketHistory");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/history`,
@@ -462,33 +360,15 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = LeadModel.TicketHistoryList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTicketHistory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Ticket ID for which feedbacks are to be fetched
-   * @returns {Promise<TicketFeedbackList>} - Success response
    * @summary: Gets a list of feedback submitted against that ticket
    * @description: Gets a list of feedback submitted against that ticket
    */
-  async getFeedbacks({ id } = {}) {
+  getFeedbacks({ id } = {}) {
     const { error } = LeadValidator.getFeedbacks().validate(
       {
         id,
@@ -507,18 +387,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getFeedbacks",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getFeedbacks");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
@@ -526,34 +403,16 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = LeadModel.TicketFeedbackList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getFeedbacks",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Ticket ID for which feedback is to be submitted
    * @param {TicketFeedbackPayload} arg.body
-   * @returns {Promise<TicketFeedback>} - Success response
    * @summary: Submit a response for feeback form against that ticket
    * @description: Submit a response for feeback form against that ticket
    */
-  async submitFeedback({ id, body } = {}) {
+  submitFeedback({ id, body } = {}) {
     const { error } = LeadValidator.submitFeedback().validate(
       {
         id,
@@ -574,18 +433,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for submitFeedback",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for submitFeedback");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/ticket/${id}/feedback`,
@@ -593,31 +449,15 @@ class Lead {
       body,
       xHeaders
     );
-
-    const { error: res_error } = LeadModel.TicketFeedback().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for submitFeedback",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.uniqueName - Unique name of video room
-   * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
    * @summary: Get Token to join a specific Video Room using it's unqiue name
    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
    */
-  async getTokenForVideoRoom({ uniqueName } = {}) {
+  getTokenForVideoRoom({ uniqueName } = {}) {
     const { error } = LeadValidator.getTokenForVideoRoom().validate(
       {
         uniqueName,
@@ -636,18 +476,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getTokenForVideoRoom",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getTokenForVideoRoom");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/token`,
@@ -655,33 +492,15 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = LeadModel.GetTokenForVideoRoomResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getTokenForVideoRoom",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.uniqueName - Unique name of Video Room
-   * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
    * @summary: Get participants of a specific Video Room using it's unique name
    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
    */
-  async getVideoParticipants({ uniqueName } = {}) {
+  getVideoParticipants({ uniqueName } = {}) {
     const { error } = LeadValidator.getVideoParticipants().validate(
       {
         uniqueName,
@@ -700,18 +519,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getVideoParticipants",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getVideoParticipants");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/video/room/${uniqueName}/participants`,
@@ -719,32 +535,14 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = LeadModel.GetParticipantsInsideVideoRoomResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getVideoParticipants",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<CloseVideoRoomResponse>} - Success response
    * @summary: Get general support configuration.
    * @description: Get general support configuration.
    */
-  async getGeneralConfig({} = {}) {
+  getGeneralConfig({} = {}) {
     const { error } = LeadValidator.getGeneralConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -759,18 +557,15 @@ class Lead {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getGeneralConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getGeneralConfig");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/lead/v1.0/company/${this.config.companyId}/general-config`,
@@ -778,23 +573,6 @@ class Lead {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = LeadModel.CloseVideoRoomResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getGeneralConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

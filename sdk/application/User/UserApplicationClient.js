@@ -3,8 +3,6 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const UserValidator = require("./UserApplicationValidator");
-const UserModel = require("./UserApplicationModel");
-const { Logger } = require("./../../common/Logger");
 
 class User {
   constructor(_conf) {
@@ -91,7 +89,7 @@ class User {
    * @summary: Login or Register using Facebook
    * @description: Use this API to login or register using Facebook credentials.
    */
-  async loginWithFacebook({ body, platform } = {}) {
+  loginWithFacebook({ body, platform } = {}) {
     const { error } = UserValidator.loginWithFacebook().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -106,11 +104,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithFacebook",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithFacebook");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -118,7 +113,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -129,21 +124,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithFacebook",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -154,7 +134,7 @@ class User {
    * @summary: Login or Register using Google
    * @description: Use this API to login or register using Google Account credentials.
    */
-  async loginWithGoogle({ body, platform } = {}) {
+  loginWithGoogle({ body, platform } = {}) {
     const { error } = UserValidator.loginWithGoogle().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -169,11 +149,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithGoogle",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithGoogle");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -181,7 +158,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -192,21 +169,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithGoogle",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -217,7 +179,7 @@ class User {
    * @summary: Login or Register using Google on Android
    * @description: Use this API to login or register in Android app using Google Account credentials.
    */
-  async loginWithGoogleAndroid({ body, platform } = {}) {
+  loginWithGoogleAndroid({ body, platform } = {}) {
     const { error } = UserValidator.loginWithGoogleAndroid().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -232,11 +194,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithGoogleAndroid",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithGoogleAndroid");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -244,7 +203,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -255,21 +214,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithGoogleAndroid",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -280,7 +224,7 @@ class User {
    * @summary: Login or Register using Google on iOS
    * @description: Use this API to login or register in iOS app using Google Account credentials.
    */
-  async loginWithGoogleIOS({ body, platform } = {}) {
+  loginWithGoogleIOS({ body, platform } = {}) {
     const { error } = UserValidator.loginWithGoogleIOS().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -295,11 +239,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithGoogleIOS",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithGoogleIOS");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -307,7 +248,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -318,21 +259,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithGoogleIOS",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -343,7 +269,7 @@ class User {
    * @summary: Login or Register using Apple on iOS
    * @description: Use this API to login or register in iOS app using Apple Account credentials.
    */
-  async loginWithAppleIOS({ body, platform } = {}) {
+  loginWithAppleIOS({ body, platform } = {}) {
     const { error } = UserValidator.loginWithAppleIOS().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -358,11 +284,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithAppleIOS",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithAppleIOS");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -370,7 +293,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -381,21 +304,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithAppleIOS",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -406,7 +314,7 @@ class User {
    * @summary: Login or Register with OTP
    * @description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
    */
-  async loginWithOTP({ body, platform } = {}) {
+  loginWithOTP({ body, platform } = {}) {
     const { error } = UserValidator.loginWithOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -421,11 +329,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithOTP",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithOTP");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -433,7 +338,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -444,21 +349,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.SendOtpResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithOTP",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -468,7 +358,7 @@ class User {
    * @summary: Login or Register with password
    * @description: Use this API to login or register using an email address and password.
    */
-  async loginWithEmailAndPassword({ body } = {}) {
+  loginWithEmailAndPassword({ body } = {}) {
     const { error } = UserValidator.loginWithEmailAndPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -485,18 +375,17 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithEmailAndPassword",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for loginWithEmailAndPassword"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -507,21 +396,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithEmailAndPassword",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -532,7 +406,7 @@ class User {
    * @summary: Reset Password
    * @description: Use this API to reset a password using the link sent on email.
    */
-  async sendResetPasswordEmail({ body, platform } = {}) {
+  sendResetPasswordEmail({ body, platform } = {}) {
     const { error } = UserValidator.sendResetPasswordEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -547,11 +421,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendResetPasswordEmail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for sendResetPasswordEmail");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -559,7 +430,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -570,23 +441,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.ResetPasswordSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendResetPasswordEmail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -597,7 +451,7 @@ class User {
    * @summary: Reset Password
    * @description: Use this API to reset a password using the link sent on mobile.
    */
-  async sendResetPasswordMobile({ body, platform } = {}) {
+  sendResetPasswordMobile({ body, platform } = {}) {
     const { error } = UserValidator.sendResetPasswordMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -614,11 +468,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendResetPasswordMobile",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for sendResetPasswordMobile");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -626,7 +477,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -637,23 +488,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.ResetPasswordSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendResetPasswordMobile",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -663,7 +497,7 @@ class User {
    * @summary: Forgot Password
    * @description: Use this API to reset a password using the code sent on email or SMS.
    */
-  async forgotPassword({ body } = {}) {
+  forgotPassword({ body } = {}) {
     const { error } = UserValidator.forgotPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -678,18 +512,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for forgotPassword",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for forgotPassword");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -700,21 +531,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for forgotPassword",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -724,7 +540,7 @@ class User {
    * @summary: Reset Password using token
    * @description: Use this API to send code to reset password.
    */
-  async sendResetToken({ body } = {}) {
+  sendResetToken({ body } = {}) {
     const { error } = UserValidator.sendResetToken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -739,18 +555,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendResetToken",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for sendResetToken");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -761,23 +574,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.ResetPasswordSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendResetToken",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -787,7 +583,7 @@ class User {
    * @summary: Login or Register with token
    * @description: Use this API to login or register using a token for authentication.
    */
-  async loginWithToken({ body } = {}) {
+  loginWithToken({ body } = {}) {
     const { error } = UserValidator.loginWithToken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -802,18 +598,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for loginWithToken",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for loginWithToken");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -824,21 +617,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for loginWithToken",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -849,7 +627,7 @@ class User {
    * @summary: Registration using a form
    * @description: Use this API to perform user registration by sending form data in the request body.
    */
-  async registerWithForm({ body, platform } = {}) {
+  registerWithForm({ body, platform } = {}) {
     const { error } = UserValidator.registerWithForm().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -864,11 +642,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for registerWithForm",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for registerWithForm");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -876,7 +651,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -887,23 +662,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.RegisterFormSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for registerWithForm",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -913,7 +671,7 @@ class User {
    * @summary: Verify email
    * @description: Use this API to send a verification code to verify an email.
    */
-  async verifyEmail({ body } = {}) {
+  verifyEmail({ body } = {}) {
     const { error } = UserValidator.verifyEmail().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -928,18 +686,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for verifyEmail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for verifyEmail");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -950,23 +705,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.VerifyEmailSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for verifyEmail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -976,7 +714,7 @@ class User {
    * @summary: Verify mobile
    * @description: Use this API to send a verification code to verify a mobile number.
    */
-  async verifyMobile({ body } = {}) {
+  verifyMobile({ body } = {}) {
     const { error } = UserValidator.verifyMobile().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -991,18 +729,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for verifyMobile",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for verifyMobile");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1013,23 +748,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.VerifyEmailSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for verifyMobile",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1038,7 +756,7 @@ class User {
    * @summary: Check password
    * @description: Use this API to check if user has created a password for login.
    */
-  async hasPassword({} = {}) {
+  hasPassword({} = {}) {
     const { error } = UserValidator.hasPassword().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1053,18 +771,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for hasPassword",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for hasPassword");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1075,23 +790,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.HasPasswordSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for hasPassword",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1101,7 +799,7 @@ class User {
    * @summary: Update user password
    * @description: Use this API to update the password.
    */
-  async updatePassword({ body } = {}) {
+  updatePassword({ body } = {}) {
     const { error } = UserValidator.updatePassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1116,18 +814,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updatePassword",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updatePassword");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1138,23 +833,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.VerifyEmailSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updatePassword",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1164,7 +842,7 @@ class User {
    * @summary: verify otp and delete user
    * @description: verify otp and delete user
    */
-  async deleteUser({ body } = {}) {
+  deleteUser({ body } = {}) {
     const { error } = UserValidator.deleteUser().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1179,18 +857,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteUser",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for deleteUser");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1201,23 +876,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.DeleteUserSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1226,7 +884,7 @@ class User {
    * @summary: Logs out currently logged in user
    * @description: Use this API to check to logout a user from the app.
    */
-  async logout({} = {}) {
+  logout({} = {}) {
     const { error } = UserValidator.logout().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1241,18 +899,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for logout",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for logout");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1263,21 +918,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LogoutSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for logout",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1288,7 +928,7 @@ class User {
    * @summary: Send OTP on mobile
    * @description: Use this API to send an OTP to a mobile number.
    */
-  async sendOTPOnMobile({ body, platform } = {}) {
+  sendOTPOnMobile({ body, platform } = {}) {
     const { error } = UserValidator.sendOTPOnMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -1303,11 +943,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendOTPOnMobile",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for sendOTPOnMobile");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1315,7 +952,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1326,21 +963,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.OtpSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendOTPOnMobile",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1351,7 +973,7 @@ class User {
    * @summary: Verify OTP on mobile
    * @description: Use this API to verify the OTP received on a mobile number.
    */
-  async verifyMobileOTP({ body, platform } = {}) {
+  verifyMobileOTP({ body, platform } = {}) {
     const { error } = UserValidator.verifyMobileOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -1366,11 +988,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for verifyMobileOTP",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for verifyMobileOTP");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1378,7 +997,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1389,21 +1008,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.VerifyOtpSuccess().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for verifyMobileOTP",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1414,7 +1018,7 @@ class User {
    * @summary: Send OTP on email
    * @description: Use this API to send an OTP to an email ID.
    */
-  async sendOTPOnEmail({ body, platform } = {}) {
+  sendOTPOnEmail({ body, platform } = {}) {
     const { error } = UserValidator.sendOTPOnEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -1429,11 +1033,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for sendOTPOnEmail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for sendOTPOnEmail");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1441,7 +1042,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1452,21 +1053,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.EmailOtpSuccess().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for sendOTPOnEmail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1477,7 +1063,7 @@ class User {
    * @summary: Verify OTP on email
    * @description: Use this API to verify the OTP received on an email ID.
    */
-  async verifyEmailOTP({ body, platform } = {}) {
+  verifyEmailOTP({ body, platform } = {}) {
     const { error } = UserValidator.verifyEmailOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -1492,11 +1078,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for verifyEmailOTP",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for verifyEmailOTP");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1504,7 +1087,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1515,21 +1098,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.VerifyOtpSuccess().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for verifyEmailOTP",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1538,7 +1106,7 @@ class User {
    * @summary: Get logged in user
    * @description: Use this API  to get the details of a logged in user.
    */
-  async getLoggedInUser({} = {}) {
+  getLoggedInUser({} = {}) {
     const { error } = UserValidator.getLoggedInUser().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1553,18 +1121,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getLoggedInUser",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getLoggedInUser");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1575,21 +1140,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.UserObjectSchema().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getLoggedInUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1598,7 +1148,7 @@ class User {
    * @summary: Get list of sessions
    * @description: Use this API to retrieve all active sessions of a user.
    */
-  async getListOfActiveSessions({} = {}) {
+  getListOfActiveSessions({} = {}) {
     const { error } = UserValidator.getListOfActiveSessions().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1615,18 +1165,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getListOfActiveSessions",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getListOfActiveSessions");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1637,23 +1184,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.SessionListSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getListOfActiveSessions",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1663,7 +1193,7 @@ class User {
    * @summary: Get platform configurations
    * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
    */
-  async getPlatformConfig({ name } = {}) {
+  getPlatformConfig({ name } = {}) {
     const { error } = UserValidator.getPlatformConfig().validate(
       { name },
       { abortEarly: false, allowUnknown: true }
@@ -1678,11 +1208,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getPlatformConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getPlatformConfig");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1690,7 +1217,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1701,21 +1228,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.PlatformSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getPlatformConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1726,7 +1238,7 @@ class User {
    * @summary: Edit Profile Details
    * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
    */
-  async updateProfile({ body, platform } = {}) {
+  updateProfile({ body, platform } = {}) {
     const { error } = UserValidator.updateProfile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -1741,11 +1253,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateProfile",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateProfile");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1753,7 +1262,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1764,23 +1273,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.ProfileEditSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateProfile",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1791,7 +1283,7 @@ class User {
    * @summary: Add mobile number to profile
    * @description: Use this API to add a new mobile number to a profile.
    */
-  async addMobileNumber({ body, platform } = {}) {
+  addMobileNumber({ body, platform } = {}) {
     const { error } = UserValidator.addMobileNumber().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -1806,11 +1298,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for addMobileNumber",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for addMobileNumber");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1818,7 +1307,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1829,23 +1318,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.VerifyMobileOTPSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for addMobileNumber",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1865,7 +1337,7 @@ class User {
    * @summary: Delete mobile number from profile
    * @description: Use this API to delete a mobile number from a profile.
    */
-  async deleteMobileNumber({
+  deleteMobileNumber({
     active,
     primary,
     verified,
@@ -1887,11 +1359,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteMobileNumber",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for deleteMobileNumber");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1904,7 +1373,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1915,21 +1384,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteMobileNumber",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1939,7 +1393,7 @@ class User {
    * @summary: Set mobile as primary
    * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
    */
-  async setMobileNumberAsPrimary({ body } = {}) {
+  setMobileNumberAsPrimary({ body } = {}) {
     const { error } = UserValidator.setMobileNumberAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1956,18 +1410,17 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for setMobileNumberAsPrimary",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for setMobileNumberAsPrimary"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1978,21 +1431,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for setMobileNumberAsPrimary",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -2003,7 +1441,7 @@ class User {
    * @summary: Send verification link to mobile
    * @description: Use this API to send a verification link to a mobile number
    */
-  async sendVerificationLinkToMobile({ body, platform } = {}) {
+  sendVerificationLinkToMobile({ body, platform } = {}) {
     const { error } = UserValidator.sendVerificationLinkToMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -2020,12 +1458,10 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for sendVerificationLinkToMobile",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for sendVerificationLinkToMobile"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2033,7 +1469,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -2044,24 +1480,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.SendMobileVerifyLinkSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for sendVerificationLinkToMobile",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -2072,7 +1490,7 @@ class User {
    * @summary: Add email to profile
    * @description: Use this API to add a new email address to a profile
    */
-  async addEmail({ body, platform } = {}) {
+  addEmail({ body, platform } = {}) {
     const { error } = UserValidator.addEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -2087,11 +1505,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for addEmail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for addEmail");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2099,7 +1514,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -2110,23 +1525,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.VerifyEmailOTPSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for addEmail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -2145,7 +1543,7 @@ class User {
    * @summary: Delete email from profile
    * @description: Use this API to delete an email address from a profile
    */
-  async deleteEmail({ active, primary, verified, email, platform } = {}) {
+  deleteEmail({ active, primary, verified, email, platform } = {}) {
     const { error } = UserValidator.deleteEmail().validate(
       { active, primary, verified, email, platform },
       { abortEarly: false, allowUnknown: true }
@@ -2160,11 +1558,8 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteEmail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for deleteEmail");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2176,7 +1571,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -2187,21 +1582,6 @@ class User {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteEmail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -2211,7 +1591,7 @@ class User {
    * @summary: Set email as primary
    * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
    */
-  async setEmailAsPrimary({ body } = {}) {
+  setEmailAsPrimary({ body } = {}) {
     const { error } = UserValidator.setEmailAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -2226,18 +1606,15 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for setEmailAsPrimary",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for setEmailAsPrimary");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -2248,21 +1625,6 @@ class User {
       body,
       xHeaders
     );
-
-    const { error: res_error } = UserModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for setEmailAsPrimary",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -2273,7 +1635,7 @@ class User {
    * @summary: Send verification link to email
    * @description: Use this API to send verification link to an email address.
    */
-  async sendVerificationLinkToEmail({ body, platform } = {}) {
+  sendVerificationLinkToEmail({ body, platform } = {}) {
     const { error } = UserValidator.sendVerificationLinkToEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -2290,12 +1652,10 @@ class User {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for sendVerificationLinkToEmail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for sendVerificationLinkToEmail"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -2303,7 +1663,7 @@ class User {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -2314,24 +1674,6 @@ class User {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = UserModel.SendEmailVerifyLinkSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for sendVerificationLinkToEmail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

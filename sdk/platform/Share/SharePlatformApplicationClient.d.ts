@@ -6,13 +6,12 @@ declare class Share {
     /**
      * @param {Object} arg - Arg object.
      * @param {ShortLinkReq} arg.body
-     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Create short link
      * @description: Create short link
      */
     createShortLink({ body }?: {
         body: ShortLinkReq;
-    }): Promise<ShortLinkRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page number
@@ -20,7 +19,6 @@ declare class Share {
      * @param {string} [arg.createdBy] - Short link creator
      * @param {string} [arg.active] - Short link active status
      * @param {string} [arg.q] - Search text for original and short url
-     * @returns {Promise<ShortLinkList>} - Success response
      * @summary: Get short links
      * @description: Get short links
      */
@@ -30,7 +28,7 @@ declare class Share {
         createdBy?: string;
         active?: string;
         q?: string;
-    }): Promise<ShortLinkList>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Company Id
@@ -53,24 +51,22 @@ declare class Share {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.hash - Hash of short url
-     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get short link by hash
      * @description: Get short link by hash
      */
     getShortLinkByHash({ hash }?: {
         hash: string;
-    }): Promise<ShortLinkRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Short link document identifier
      * @param {ShortLinkReq} arg.body
-     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Update short link by id
      * @description: Update short link by id
      */
     updateShortLinkById({ id, body }?: {
         id: string;
         body: ShortLinkReq;
-    }): Promise<ShortLinkRes>;
+    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

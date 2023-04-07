@@ -3,8 +3,6 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const CommonValidator = require("./CommonApplicationValidator");
-const CommonModel = require("./CommonApplicationModel");
-const { Logger } = require("./../../common/Logger");
 
 class Common {
   constructor(_conf) {
@@ -38,7 +36,7 @@ class Common {
    * @summary: Search Application
    * @description: Provide application name or domain url
    */
-  async searchApplication({ authorization, query } = {}) {
+  searchApplication({ authorization, query } = {}) {
     const { error } = CommonValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: true }
@@ -53,11 +51,8 @@ class Common {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for searchApplication",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for searchApplication");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -66,7 +61,7 @@ class Common {
     const xHeaders = {};
     xHeaders["authorization"] = authorization;
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -77,23 +72,6 @@ class Common {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = CommonModel.ApplicationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for searchApplication",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -107,7 +85,7 @@ class Common {
    * @summary: Get countries, states, cities
    * @description:
    */
-  async getLocations({ locationType, id } = {}) {
+  getLocations({ locationType, id } = {}) {
     const { error } = CommonValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: true }
@@ -122,11 +100,8 @@ class Common {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getLocations",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getLocations");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -135,7 +110,7 @@ class Common {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -146,21 +121,6 @@ class Common {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = CommonModel.Locations().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getLocations",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

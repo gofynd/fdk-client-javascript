@@ -27,7 +27,6 @@ declare class ContentValidator {
     static updateFaq(): any;
     static deleteFaq(): any;
     static getFaqByIdOrSlug(): any;
-    static generateSEOTitle(): any;
     static getLandingPages(): any;
     static createLandingPage(): any;
     static updateLandingPage(): any;

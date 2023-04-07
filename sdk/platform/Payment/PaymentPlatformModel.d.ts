@@ -7,9 +7,9 @@ declare class PaymentModel {
     static PaymentGatewayToBeReviewed(): any;
     static ErrorCodeAndDescription(): any;
     static HttpErrorCodeAndResponse(): any;
+    static IntentAppErrorList(): any;
     static PaymentModeLogo(): any;
     static IntentApp(): any;
-    static IntentAppErrorList(): any;
     static PaymentModeList(): any;
     static RootPaymentMode(): any;
     static PaymentOptions(): any;
@@ -37,8 +37,4 @@ declare class PaymentModel {
     static MultiTenderPaymentMethod(): any;
     static PaymentConfirmationRequest(): any;
     static PaymentConfirmationResponse(): any;
-    static CODdata(): any;
-    static GetUserCODLimitResponse(): any;
-    static SetCODForUserRequest(): any;
-    static SetCODOptionResponse(): any;
 }

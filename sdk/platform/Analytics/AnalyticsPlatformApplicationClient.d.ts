@@ -5,58 +5,52 @@ declare class Analytics {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<StatsGroups>} - Success response
      * @summary: Get statistics groups
      * @description: Get statistics groups
      */
-    getStatiscticsGroups({}?: any): Promise<StatsGroups>;
+    getStatiscticsGroups({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.groupName - Group name
-     * @returns {Promise<StatsGroupComponents>} - Success response
      * @summary: Get statistics group components
      * @description: Get statistics group components
      */
     getStatiscticsGroupComponents({ groupName }?: {
         groupName: string;
-    }): Promise<StatsGroupComponents>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.componentName - Component name
-     * @returns {Promise<string>} - Success response
      * @summary: Get component statistics csv
      * @description: Get component statistics csv
      */
     getComponentStatsCSV({ componentName }?: {
         componentName: string;
-    }): Promise<string>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.componentName - Component name
-     * @returns {Promise<string>} - Success response
      * @summary: Get component statistics pdf
      * @description: Get component statistics pdf
      */
     getComponentStatsPDF({ componentName }?: {
         componentName: string;
-    }): Promise<string>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.componentName - Component name
-     * @returns {Promise<StatsRes>} - Success response
      * @summary: Get component statistics
      * @description: Get component statistics
      */
     getComponentStats({ componentName }?: {
         componentName: string;
-    }): Promise<StatsRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.fromDate - From date
      * @param {string} arg.toDate - To date
      * @param {number} [arg.pageNo] - Current page number
      * @param {number} [arg.pageSize] - Current page size
-     * @returns {Promise<AbandonCartsList>} - Success response
      * @summary: Get abandon carts list
      * @description: Get abandon carts list
      */
@@ -65,7 +59,7 @@ declare class Analytics {
         toDate: string;
         pageNo?: number;
         pageSize?: number;
-    }): Promise<AbandonCartsList>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Company Id
@@ -87,23 +81,21 @@ declare class Analytics {
      * @param {Object} arg - Arg object.
      * @param {string} arg.fromDate - From date
      * @param {string} arg.toDate - To date
-     * @returns {Promise<string>} - Success response
      * @summary: Get abandon carts csv
      * @description: Get abandon carts csv
      */
     getAbandonCartsCSV({ fromDate, toDate }?: {
         fromDate: string;
         toDate: string;
-    }): Promise<string>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.cartId - Cart Id
-     * @returns {Promise<AbandonCartDetail>} - Success response
      * @summary: Get abandon carts details
      * @description: Get abandon cart details
      */
     getAbandonCartDetail({ cartId }?: {
         cartId: string;
-    }): Promise<AbandonCartDetail>;
+    }): Promise<any>;
 }
 import Paginator = require("../../common/Paginator");

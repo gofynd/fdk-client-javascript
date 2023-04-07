@@ -96,18 +96,6 @@ class PaymentValidator {
     }).required();
   }
 
-  static renderHTML() {
-    return Joi.object({
-      body: PaymentModel.renderHTMLRequest().required(),
-    }).required();
-  }
-
-  static validateVPA() {
-    return Joi.object({
-      body: PaymentModel.ValidateVPARequest().required(),
-    }).required();
-  }
-
   static getActiveRefundTransferModes() {
     return Joi.object({});
   }

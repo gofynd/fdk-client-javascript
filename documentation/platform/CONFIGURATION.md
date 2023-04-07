@@ -5026,6 +5026,7 @@ Success
  | min_cart_value | number |  no  |  |
  | bulk_coupons | boolean |  no  |  |
  | revenue_engine_coupon | boolean |  no  |  |
+ | empty_cart | boolean |  no  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
 
 ---
 

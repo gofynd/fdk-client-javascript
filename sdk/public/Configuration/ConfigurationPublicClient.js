@@ -3,9 +3,6 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const ConfigurationValidator = require("./ConfigurationPublicValidator");
-const ConfigurationModel = require("./ConfigurationPublicModel");
-const { Logger } = require("./../../common/Logger");
-
 class Configuration {
   constructor(_conf) {
     this._conf = _conf;
@@ -38,7 +35,7 @@ class Configuration {
    * @summary: Search Application
    * @description: Provide application name or domain url
    */
-  async searchApplication({ authorization, query } = {}) {
+  searchApplication({ authorization, query } = {}) {
     const { error } = ConfigurationValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: true }
@@ -55,11 +52,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for searchApplication",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for searchApplication");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -68,7 +62,7 @@ class Configuration {
     const xHeaders = {};
     xHeaders["authorization"] = authorization;
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -79,23 +73,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for searchApplication",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -109,7 +86,7 @@ class Configuration {
    * @summary: Get countries, states, cities
    * @description:
    */
-  async getLocations({ locationType, id } = {}) {
+  getLocations({ locationType, id } = {}) {
     const { error } = ConfigurationValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: true }
@@ -124,11 +101,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getLocations",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getLocations");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -137,7 +111,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -148,23 +122,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.Locations().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getLocations",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 module.exports = Configuration;

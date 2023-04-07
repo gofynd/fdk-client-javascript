@@ -2,8 +2,6 @@ const Paginator = require("../../common/Paginator");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const AnalyticsValidator = require("./AnalyticsPlatformApplicationValidator");
-const AnalyticsModel = require("./AnalyticsPlatformModel");
-const { Logger } = require("./../../common/Logger");
 
 class Analytics {
   constructor(config, applicationId) {
@@ -13,11 +11,10 @@ class Analytics {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<StatsGroups>} - Success response
    * @summary: Get statistics groups
    * @description: Get statistics groups
    */
-  async getStatiscticsGroups({} = {}) {
+  getStatiscticsGroups({} = {}) {
     const { error } = AnalyticsValidator.getStatiscticsGroups().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -34,47 +31,28 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getStatiscticsGroups",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getStatiscticsGroups");
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group`,
       query_params,
       undefined
     );
-
-    const { error: res_error } = AnalyticsModel.StatsGroups().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getStatiscticsGroups",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.groupName - Group name
-   * @returns {Promise<StatsGroupComponents>} - Success response
    * @summary: Get statistics group components
    * @description: Get statistics group components
    */
-  async getStatiscticsGroupComponents({ groupName } = {}) {
+  getStatiscticsGroupComponents({ groupName } = {}) {
     const {
       error,
     } = AnalyticsValidator.getStatiscticsGroupComponents().validate(
@@ -97,51 +75,30 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getStatiscticsGroupComponents",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getStatiscticsGroupComponents"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/group/${groupName}`,
       query_params,
       undefined
     );
-
-    const {
-      error: res_error,
-    } = AnalyticsModel.StatsGroupComponents().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getStatiscticsGroupComponents",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.componentName - Component name
-   * @returns {Promise<string>} - Success response
    * @summary: Get component statistics csv
    * @description: Get component statistics csv
    */
-  async getComponentStatsCSV({ componentName } = {}) {
+  getComponentStatsCSV({ componentName } = {}) {
     const { error } = AnalyticsValidator.getComponentStatsCSV().validate(
       {
         componentName,
@@ -162,46 +119,28 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getComponentStatsCSV",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getComponentStatsCSV");
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.csv`,
       query_params,
       undefined
     );
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getComponentStatsCSV",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.componentName - Component name
-   * @returns {Promise<string>} - Success response
    * @summary: Get component statistics pdf
    * @description: Get component statistics pdf
    */
-  async getComponentStatsPDF({ componentName } = {}) {
+  getComponentStatsPDF({ componentName } = {}) {
     const { error } = AnalyticsValidator.getComponentStatsPDF().validate(
       {
         componentName,
@@ -222,46 +161,28 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getComponentStatsPDF",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getComponentStatsPDF");
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/{component_name}.pdf`,
       query_params,
       undefined
     );
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getComponentStatsPDF",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.componentName - Component name
-   * @returns {Promise<StatsRes>} - Success response
    * @summary: Get component statistics
    * @description: Get component statistics
    */
-  async getComponentStats({ componentName } = {}) {
+  getComponentStats({ componentName } = {}) {
     const { error } = AnalyticsValidator.getComponentStats().validate(
       {
         componentName,
@@ -280,37 +201,19 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getComponentStats",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getComponentStats");
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stats/component/${componentName}`,
       query_params,
       undefined
     );
-
-    const { error: res_error } = AnalyticsModel.StatsRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getComponentStats",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -319,11 +222,10 @@ class Analytics {
    * @param {string} arg.toDate - To date
    * @param {number} [arg.pageNo] - Current page number
    * @param {number} [arg.pageSize] - Current page size
-   * @returns {Promise<AbandonCartsList>} - Success response
    * @summary: Get abandon carts list
    * @description: Get abandon carts list
    */
-  async getAbandonCartList({ fromDate, toDate, pageNo, pageSize } = {}) {
+  getAbandonCartList({ fromDate, toDate, pageNo, pageSize } = {}) {
     const { error } = AnalyticsValidator.getAbandonCartList().validate(
       {
         fromDate,
@@ -350,41 +252,21 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAbandonCartList",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAbandonCartList");
+      console.log(warrning);
     }
 
     const query_params = {};
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/from/${fromDate}/to/${toDate}/abandon-cart/`,
       query_params,
       undefined
     );
-
-    const {
-      error: res_error,
-    } = AnalyticsModel.AbandonCartsList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAbandonCartList",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -431,11 +313,10 @@ class Analytics {
    * @param {Object} arg - Arg object.
    * @param {string} arg.fromDate - From date
    * @param {string} arg.toDate - To date
-   * @returns {Promise<string>} - Success response
    * @summary: Get abandon carts csv
    * @description: Get abandon carts csv
    */
-  async getAbandonCartsCSV({ fromDate, toDate } = {}) {
+  getAbandonCartsCSV({ fromDate, toDate } = {}) {
     const { error } = AnalyticsValidator.getAbandonCartsCSV().validate(
       {
         fromDate,
@@ -458,46 +339,28 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAbandonCartsCSV",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAbandonCartsCSV");
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/${fromDate}/to/${toDate}/abandon-cart.csv`,
       query_params,
       undefined
     );
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAbandonCartsCSV",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.cartId - Cart Id
-   * @returns {Promise<AbandonCartDetail>} - Success response
    * @summary: Get abandon carts details
    * @description: Get abandon cart details
    */
-  async getAbandonCartDetail({ cartId } = {}) {
+  getAbandonCartDetail({ cartId } = {}) {
     const { error } = AnalyticsValidator.getAbandonCartDetail().validate(
       {
         cartId,
@@ -518,39 +381,19 @@ class Analytics {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAbandonCartDetail",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAbandonCartDetail");
+      console.log(warrning);
     }
 
     const query_params = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/analytics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/abandon-cart/${cartId}`,
       query_params,
       undefined
     );
-
-    const {
-      error: res_error,
-    } = AnalyticsModel.AbandonCartDetail().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAbandonCartDetail",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 module.exports = Analytics;

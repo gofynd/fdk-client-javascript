@@ -5,8 +5,6 @@ class OrderValidator {
   static getShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
-      bagStatus: Joi.string().allow(""),
-      statusOverrideLane: Joi.boolean(),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       searchId: Joi.string().allow(""),
@@ -20,14 +18,11 @@ class OrderValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
-      fetchActiveShipment: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
       paymentMethods: Joi.string().allow(""),
       channelShipmentId: Joi.string().allow(""),
       channelOrderId: Joi.string().allow(""),
       customMeta: Joi.string().allow(""),
-      orderingChannel: Joi.string().allow(""),
-      companyAffiliateTag: Joi.string().allow(""),
     }).required();
   }
 

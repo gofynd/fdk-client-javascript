@@ -164,7 +164,7 @@ declare class Configuration {
      * @summary: Get a list of staff.
      * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
      */
-    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, }?: {
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user }?: {
         pageNo?: number;
         pageSize?: number;
         orderIncent?: boolean;

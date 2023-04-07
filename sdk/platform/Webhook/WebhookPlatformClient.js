@@ -2,9 +2,6 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const WebhookValidator = require("./WebhookPlatformValidator");
-const WebhookModel = require("./WebhookPlatformModel");
-const { Logger } = require("./../../common/Logger");
-
 class Webhook {
   constructor(config) {
     this.config = config;
@@ -15,11 +12,10 @@ class Webhook {
    * @param {number} [arg.pageNo] - Page Number
    * @param {number} [arg.pageSize] - Page Size
    * @param {string} [arg.extensionId] - Extension ID
-   * @returns {Promise<SubscriberResponse>} - Success response
    * @summary: Get Subscribers By Company ID
    * @description: Get Subscribers By CompanyId
    */
-  async getSubscribersByCompany({ pageNo, pageSize, extensionId } = {}) {
+  getSubscribersByCompany({ pageNo, pageSize, extensionId } = {}) {
     const { error } = WebhookValidator.getSubscribersByCompany().validate(
       {
         pageNo,
@@ -44,11 +40,8 @@ class Webhook {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getSubscribersByCompany",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getSubscribersByCompany");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -58,7 +51,7 @@ class Webhook {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
@@ -66,33 +59,15 @@ class Webhook {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = WebhookModel.SubscriberResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getSubscribersByCompany",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {SubscriberConfig} arg.body
-   * @returns {Promise<SubscriberConfig>} - Success response
    * @summary: Register Subscriber
    * @description: Register Subscriber
    */
-  async registerSubscriberToEvent({ body } = {}) {
+  registerSubscriberToEvent({ body } = {}) {
     const { error } = WebhookValidator.registerSubscriberToEvent().validate(
       {
         body,
@@ -113,18 +88,17 @@ class Webhook {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for registerSubscriberToEvent",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for registerSubscriberToEvent"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
@@ -132,33 +106,15 @@ class Webhook {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = WebhookModel.SubscriberConfig().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for registerSubscriberToEvent",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {SubscriberConfig} arg.body
-   * @returns {Promise<SubscriberConfig>} - Success response
    * @summary: Update Subscriber
    * @description: Update Subscriber
    */
-  async updateSubscriberConfig({ body } = {}) {
+  updateSubscriberConfig({ body } = {}) {
     const { error } = WebhookValidator.updateSubscriberConfig().validate(
       {
         body,
@@ -179,18 +135,15 @@ class Webhook {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateSubscriberConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateSubscriberConfig");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
@@ -198,23 +151,6 @@ class Webhook {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = WebhookModel.SubscriberConfig().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateSubscriberConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -222,11 +158,10 @@ class Webhook {
    * @param {number} [arg.pageNo] - Page Number
    * @param {number} [arg.pageSize] - Page Size
    * @param {string} arg.extensionId - Extension ID
-   * @returns {Promise<SubscriberConfigList>} - Success response
    * @summary: Get Subscribers By Extension ID
    * @description: Get Subscribers By ExtensionID
    */
-  async getSubscribersByExtensionId({ extensionId, pageNo, pageSize } = {}) {
+  getSubscribersByExtensionId({ extensionId, pageNo, pageSize } = {}) {
     const { error } = WebhookValidator.getSubscribersByExtensionId().validate(
       {
         extensionId,
@@ -251,12 +186,10 @@ class Webhook {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getSubscribersByExtensionId",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getSubscribersByExtensionId"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -265,7 +198,7 @@ class Webhook {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscriber`,
@@ -273,34 +206,15 @@ class Webhook {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = WebhookModel.SubscriberConfigList().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getSubscribersByExtensionId",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.subscriberId - Subscriber ID
-   * @returns {Promise<SubscriberResponse>} - Success response
    * @summary: Get Subscriber By Subscriber ID
    * @description: Get Subscriber By Subscriber ID
    */
-  async getSubscriberById({ subscriberId } = {}) {
+  getSubscriberById({ subscriberId } = {}) {
     const { error } = WebhookValidator.getSubscriberById().validate(
       {
         subscriberId,
@@ -319,18 +233,15 @@ class Webhook {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getSubscriberById",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getSubscriberById");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber/${subscriberId}`,
@@ -338,32 +249,14 @@ class Webhook {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = WebhookModel.SubscriberResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getSubscriberById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<EventConfigResponse>} - Success response
    * @summary:
    * @description: Get All Webhook Events
    */
-  async fetchAllEventConfigurations({} = {}) {
+  fetchAllEventConfigurations({} = {}) {
     const { error } = WebhookValidator.fetchAllEventConfigurations().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -380,19 +273,17 @@ class Webhook {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for fetchAllEventConfigurations",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for fetchAllEventConfigurations"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/events`,
@@ -400,24 +291,6 @@ class Webhook {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = WebhookModel.EventConfigResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for fetchAllEventConfigurations",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

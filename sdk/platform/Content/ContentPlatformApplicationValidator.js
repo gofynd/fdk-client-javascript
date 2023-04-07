@@ -172,13 +172,6 @@ class ContentValidator {
     }).required();
   }
 
-  static generateSEOTitle() {
-    return Joi.object({
-      type: ContentModel.GenerationEntityType().required(),
-      body: ContentModel.GenerateSEOContent().required(),
-    }).required();
-  }
-
   static getLandingPages() {
     return Joi.object({
       pageNo: Joi.number(),

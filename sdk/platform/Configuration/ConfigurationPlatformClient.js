@@ -2,9 +2,6 @@ const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PlatformAPIClient = require("../PlatformAPIClient");
 const ConfigurationValidator = require("./ConfigurationPlatformValidator");
-const ConfigurationModel = require("./ConfigurationPlatformModel");
-const { Logger } = require("./../../common/Logger");
-
 class Configuration {
   constructor(config) {
     this.config = config;
@@ -13,11 +10,10 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @param {CreateApplicationRequest} arg.body
-   * @returns {Promise<CreateAppResponse>} - Success response
    * @summary: Create application
    * @description: Create new application
    */
-  async createApplication({ body } = {}) {
+  createApplication({ body } = {}) {
     const { error } = ConfigurationValidator.createApplication().validate(
       {
         body,
@@ -38,18 +34,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for createApplication",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for createApplication");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application`,
@@ -57,23 +50,6 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.CreateAppResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for createApplication",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -81,11 +57,10 @@ class Configuration {
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
    * @param {string} [arg.q] - Url encoded object used as mongodb query
-   * @returns {Promise<ApplicationsResponse>} - Success response
    * @summary: Get list of application under company
    * @description: Get list of application under company
    */
-  async getApplications({ pageNo, pageSize, q } = {}) {
+  getApplications({ pageNo, pageSize, q } = {}) {
     const { error } = ConfigurationValidator.getApplications().validate(
       {
         pageNo,
@@ -110,11 +85,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getApplications",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getApplications");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -124,7 +96,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application`,
@@ -132,23 +104,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getApplications",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -181,11 +136,10 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<CurrenciesResponse>} - Success response
    * @summary: Get all currencies
    * @description: Get all currencies
    */
-  async getCurrencies({} = {}) {
+  getCurrencies({} = {}) {
     const { error } = ConfigurationValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -200,18 +154,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCurrencies",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCurrencies");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/currencies`,
@@ -219,33 +170,15 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.CurrenciesResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCurrencies",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {DomainSuggestionsRequest} arg.body
-   * @returns {Promise<DomainSuggestionsResponse>} - Success response
    * @summary: Check domain availibility before linking to application
    * @description: Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
    */
-  async getDomainAvailibility({ body } = {}) {
+  getDomainAvailibility({ body } = {}) {
     const { error } = ConfigurationValidator.getDomainAvailibility().validate(
       {
         body,
@@ -266,18 +199,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getDomainAvailibility",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getDomainAvailibility");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/domain/suggestions`,
@@ -285,33 +215,15 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.DomainSuggestionsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getDomainAvailibility",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {number} arg.id - Integration id
-   * @returns {Promise<Integration>} - Success response
    * @summary: Get integration data
    * @description: Get integration data
    */
-  async getIntegrationById({ id } = {}) {
+  getIntegrationById({ id } = {}) {
     const { error } = ConfigurationValidator.getIntegrationById().validate(
       {
         id,
@@ -332,18 +244,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationById",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getIntegrationById");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration/${id}`,
@@ -351,34 +260,16 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.Integration().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
-   * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
    * @summary: Get all available integration opt-ins
    * @description: Get all available integration opt-ins
    */
-  async getAvailableOptIns({ pageNo, pageSize } = {}) {
+  getAvailableOptIns({ pageNo, pageSize } = {}) {
     const { error } = ConfigurationValidator.getAvailableOptIns().validate(
       {
         pageNo,
@@ -401,11 +292,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAvailableOptIns",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAvailableOptIns");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -414,7 +302,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/available`,
@@ -422,23 +310,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.GetIntegrationsOptInsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAvailableOptIns",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -473,11 +344,10 @@ class Configuration {
    * @param {number} arg.uid - Integration level uid
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
-   * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
    * @summary: Get company/store level integration opt-ins
    * @description: Get company/store level integration opt-ins
    */
-  async getSelectedOptIns({ level, uid, pageNo, pageSize } = {}) {
+  getSelectedOptIns({ level, uid, pageNo, pageSize } = {}) {
     const { error } = ConfigurationValidator.getSelectedOptIns().validate(
       {
         level,
@@ -504,11 +374,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getSelectedOptIns",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getSelectedOptIns");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -517,7 +384,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/selected/${level}/${uid}`,
@@ -525,23 +392,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.GetIntegrationsOptInsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getSelectedOptIns",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -580,11 +430,10 @@ class Configuration {
    * @param {string} arg.level - Integration level
    * @param {boolean} [arg.opted] - Filter on opted stores
    * @param {boolean} [arg.checkPermission] - Filter on if permissions are present
-   * @returns {Promise<IntegrationConfigResponse>} - Success response
    * @summary: Get integration level config
    * @description: Get integration/integration-opt-in level config
    */
-  async getIntegrationLevelConfig({ id, level, opted, checkPermission } = {}) {
+  getIntegrationLevelConfig({ id, level, opted, checkPermission } = {}) {
     const {
       error,
     } = ConfigurationValidator.getIntegrationLevelConfig().validate(
@@ -613,11 +462,10 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationLevelConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getIntegrationLevelConfig"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -626,7 +474,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
@@ -634,23 +482,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationConfigResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationLevelConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -658,11 +489,10 @@ class Configuration {
    * @param {string} arg.id - Integration id
    * @param {string} arg.level - Integration level
    * @param {UpdateIntegrationLevelRequest} arg.body
-   * @returns {Promise<IntegrationLevel>} - Success response
    * @summary: Update a store level opt-in for integration
    * @description: Update a store level opt-in for integration
    */
-  async updateLevelIntegration({ id, level, body } = {}) {
+  updateLevelIntegration({ id, level, body } = {}) {
     const { error } = ConfigurationValidator.updateLevelIntegration().validate(
       {
         id,
@@ -687,18 +517,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateLevelIntegration",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateLevelIntegration");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
@@ -706,23 +533,6 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateLevelIntegration",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -730,11 +540,10 @@ class Configuration {
    * @param {string} arg.id - Integration id
    * @param {string} arg.level - Integration level
    * @param {number} arg.uid - Integration level uid
-   * @returns {Promise<IntegrationLevel>} - Success response
    * @summary: Get level data for integration
    * @description: Get level data for integration
    */
-  async getIntegrationByLevelId({ id, level, uid } = {}) {
+  getIntegrationByLevelId({ id, level, uid } = {}) {
     const { error } = ConfigurationValidator.getIntegrationByLevelId().validate(
       {
         id,
@@ -759,18 +568,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationByLevelId",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getIntegrationByLevelId");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
@@ -778,23 +584,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationByLevelId",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -803,11 +592,10 @@ class Configuration {
    * @param {string} arg.level - Integration level
    * @param {number} arg.uid - Integration level uid
    * @param {IntegrationLevel} arg.body
-   * @returns {Promise<IntegrationLevel>} - Success response
    * @summary: Update a store level opt-in for integration
    * @description: Update a store level opt-in for integration
    */
-  async updateLevelUidIntegration({ id, level, uid, body } = {}) {
+  updateLevelUidIntegration({ id, level, uid, body } = {}) {
     const {
       error,
     } = ConfigurationValidator.updateLevelUidIntegration().validate(
@@ -836,18 +624,17 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateLevelUidIntegration",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for updateLevelUidIntegration"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
@@ -855,23 +642,6 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateLevelUidIntegration",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -879,11 +649,10 @@ class Configuration {
    * @param {string} arg.id - Integration id
    * @param {string} arg.level - Integration level
    * @param {number} arg.uid - Integration level uid
-   * @returns {Promise<OptedStoreIntegration>} - Success response
    * @summary: Check store has active integration
    * @description: API checks if a store is already opted in any other integrations
    */
-  async getLevelActiveIntegrations({ id, level, uid } = {}) {
+  getLevelActiveIntegrations({ id, level, uid } = {}) {
     const {
       error,
     } = ConfigurationValidator.getLevelActiveIntegrations().validate(
@@ -910,19 +679,17 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getLevelActiveIntegrations",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getLevelActiveIntegrations"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/check/configuration/${id}/${level}/${uid}`,
@@ -930,33 +697,15 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.OptedStoreIntegration().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getLevelActiveIntegrations",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} [arg.q] - Search text for brand name
-   * @returns {Promise<BrandsByCompanyResponse>} - Success response
    * @summary: Get brands by company
    * @description: Get brands by company
    */
-  async getBrandsByCompany({ q } = {}) {
+  getBrandsByCompany({ q } = {}) {
     const { error } = ConfigurationValidator.getBrandsByCompany().validate(
       {
         q,
@@ -977,11 +726,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getBrandsByCompany",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getBrandsByCompany");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -989,7 +735,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/brands-by-companies`,
@@ -997,23 +743,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.BrandsByCompanyResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getBrandsByCompany",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1021,11 +750,10 @@ class Configuration {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {CompanyByBrandsRequest} arg.body
-   * @returns {Promise<CompanyByBrandsResponse>} - Success response
    * @summary: Get company by brand uids
    * @description: Get company by brand uids
    */
-  async getCompanyByBrands({ body, pageNo, pageSize } = {}) {
+  getCompanyByBrands({ body, pageNo, pageSize } = {}) {
     const { error } = ConfigurationValidator.getCompanyByBrands().validate(
       {
         body,
@@ -1050,11 +778,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyByBrands",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCompanyByBrands");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1063,7 +788,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/companies-by-brands`,
@@ -1071,23 +796,6 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.CompanyByBrandsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCompanyByBrands",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1123,11 +831,10 @@ class Configuration {
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {StoreByBrandsRequest} arg.body
-   * @returns {Promise<StoreByBrandsResponse>} - Success response
    * @summary: Get stores by brand uids
    * @description: Get stores by brand uids
    */
-  async getStoreByBrands({ body, pageNo, pageSize } = {}) {
+  getStoreByBrands({ body, pageNo, pageSize } = {}) {
     const { error } = ConfigurationValidator.getStoreByBrands().validate(
       {
         body,
@@ -1152,11 +859,8 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getStoreByBrands",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getStoreByBrands");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1165,7 +869,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "post",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/stores-by-brands`,
@@ -1173,23 +877,6 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.StoreByBrandsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getStoreByBrands",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1224,11 +911,10 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
-   * @returns {Promise<OtherSellerApplications>} - Success response
    * @summary: Get other seller applications
    * @description: Get other seller applications who has opted current company as inventory
    */
-  async getOtherSellerApplications({ pageNo, pageSize } = {}) {
+  getOtherSellerApplications({ pageNo, pageSize } = {}) {
     const {
       error,
     } = ConfigurationValidator.getOtherSellerApplications().validate(
@@ -1253,12 +939,10 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getOtherSellerApplications",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getOtherSellerApplications"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1267,7 +951,7 @@ class Configuration {
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/`,
@@ -1275,23 +959,6 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.OtherSellerApplications().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getOtherSellerApplications",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1323,11 +990,10 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Application Id
-   * @returns {Promise<OptedApplicationResponse>} - Success response
    * @summary: Get other seller applications
    * @description: Get other seller application
    */
-  async getOtherSellerApplicationById({ id } = {}) {
+  getOtherSellerApplicationById({ id } = {}) {
     const {
       error,
     } = ConfigurationValidator.getOtherSellerApplicationById().validate(
@@ -1350,19 +1016,17 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getOtherSellerApplicationById",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getOtherSellerApplicationById"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "get",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}`,
@@ -1370,35 +1034,16 @@ class Configuration {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.OptedApplicationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getOtherSellerApplicationById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Application Id
    * @param {OptOutInventory} arg.body
-   * @returns {Promise<SuccessMessageResponse>} - Success response
    * @summary: Opt out company or store from other seller application
    * @description: Opt out company or store from other seller application
    */
-  async optOutFromApplication({ id, body } = {}) {
+  optOutFromApplication({ id, body } = {}) {
     const { error } = ConfigurationValidator.optOutFromApplication().validate(
       {
         id,
@@ -1421,18 +1066,15 @@ class Configuration {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for optOutFromApplication",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for optOutFromApplication");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PlatformAPIClient.execute(
+    return PlatformAPIClient.execute(
       this.config,
       "put",
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}/opt_out`,
@@ -1440,23 +1082,6 @@ class Configuration {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.SuccessMessageResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for optOutFromApplication",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

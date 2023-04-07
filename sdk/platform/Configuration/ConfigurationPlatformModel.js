@@ -158,6 +158,8 @@ class ConfigurationModel {
       bulk_coupons: Joi.boolean(),
 
       revenue_engine_coupon: Joi.boolean(),
+
+      empty_cart: Joi.boolean(),
     });
   }
 

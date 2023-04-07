@@ -3,9 +3,6 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const InventoryValidator = require("./InventoryPublicValidator");
-const InventoryModel = require("./InventoryPublicModel");
-const { Logger } = require("./../../common/Logger");
-
 class Inventory {
   constructor(_conf) {
     this._conf = _conf;
@@ -44,7 +41,7 @@ class Inventory {
    * @summary: Find all the JobCodes from Metrics Collection based on the field Values
    * @description: Endpoint to return all JobCodes present in Metrics Collection
    */
-  async getJobCodesMetrics({ dailyJob, jobCode } = {}) {
+  getJobCodesMetrics({ dailyJob, jobCode } = {}) {
     const { error } = InventoryValidator.getJobCodesMetrics().validate(
       { dailyJob, jobCode },
       { abortEarly: false, allowUnknown: true }
@@ -61,11 +58,8 @@ class Inventory {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getJobCodesMetrics",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getJobCodesMetrics");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -74,7 +68,7 @@ class Inventory {
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -85,23 +79,6 @@ class Inventory {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeObject().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getJobCodesMetrics",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -111,7 +88,7 @@ class Inventory {
    * @summary: Save JobCode Metrics
    * @description: Endpoint to save JobCode Metrics
    */
-  async saveJobCodesMetrics({ body } = {}) {
+  saveJobCodesMetrics({ body } = {}) {
     const { error } = InventoryValidator.saveJobCodesMetrics().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -128,18 +105,15 @@ class Inventory {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for saveJobCodesMetrics",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for saveJobCodesMetrics");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -150,23 +124,6 @@ class Inventory {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeEmailJobMetrics().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for saveJobCodesMetrics",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -176,7 +133,7 @@ class Inventory {
    * @summary: Get Slingshot Configuration Of  A Company using API key
    * @description: REST Endpoint that returns all configuration detail of a company
    */
-  async getConfigByApiKey({ apikey } = {}) {
+  getConfigByApiKey({ apikey } = {}) {
     const { error } = InventoryValidator.getConfigByApiKey().validate(
       { apikey },
       { abortEarly: false, allowUnknown: true }
@@ -191,11 +148,8 @@ class Inventory {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getConfigByApiKey",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getConfigByApiKey");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -203,7 +157,7 @@ class Inventory {
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -214,23 +168,6 @@ class Inventory {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeSlingshotConfigurationDetail().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getConfigByApiKey",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -241,7 +178,7 @@ class Inventory {
    * @summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
    * @description: REST Endpoint that returns apikey by username by password
    */
-  async getApiKey({ userName, password } = {}) {
+  getApiKey({ userName, password } = {}) {
     const { error } = InventoryValidator.getApiKey().validate(
       { userName, password },
       { abortEarly: false, allowUnknown: true }
@@ -256,11 +193,8 @@ class Inventory {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getApiKey",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getApiKey");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -269,7 +203,7 @@ class Inventory {
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -280,23 +214,6 @@ class Inventory {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeApikeyModel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getApiKey",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -306,7 +223,7 @@ class Inventory {
    * @summary: Get Job Config By Code
    * @description: REST Endpoint that returns job config by code
    */
-  async getJobByCode({ code } = {}) {
+  getJobByCode({ code } = {}) {
     const { error } = InventoryValidator.getJobByCode().validate(
       { code },
       { abortEarly: false, allowUnknown: true }
@@ -321,18 +238,15 @@ class Inventory {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getJobByCode",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getJobByCode");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -343,23 +257,6 @@ class Inventory {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeJobConfigDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getJobByCode",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -370,7 +267,7 @@ class Inventory {
    * @summary: Get Job Configs By Integration Type
    * @description: REST Endpoint that returns all job Configs by Integration Type
    */
-  async getJobConfigByIntegrationType({ integrationType, disable } = {}) {
+  getJobConfigByIntegrationType({ integrationType, disable } = {}) {
     const {
       error,
     } = InventoryValidator.getJobConfigByIntegrationType().validate(
@@ -389,12 +286,10 @@ class Inventory {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getJobConfigByIntegrationType",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getJobConfigByIntegrationType"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -403,7 +298,7 @@ class Inventory {
 
     const xHeaders = {};
 
-    const response = await PublicAPIClient.execute(
+    return PublicAPIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -414,24 +309,6 @@ class Inventory {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = InventoryModel.ResponseEnvelopeListJobConfigDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getJobConfigByIntegrationType",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 module.exports = Inventory;

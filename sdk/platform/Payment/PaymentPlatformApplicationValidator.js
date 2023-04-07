@@ -55,19 +55,6 @@ class PaymentValidator {
       body: PaymentModel.PaymentConfirmationRequest().required(),
     }).required();
   }
-
-  static getUserCODlimitRoutes() {
-    return Joi.object({
-      merchantUserId: Joi.string().allow("").required(),
-      mobileNo: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static setUserCODlimitRoutes() {
-    return Joi.object({
-      body: PaymentModel.SetCODForUserRequest().required(),
-    }).required();
-  }
 }
 
 module.exports = PaymentValidator;

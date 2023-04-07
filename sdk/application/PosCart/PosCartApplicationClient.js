@@ -3,8 +3,6 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const PosCartValidator = require("./PosCartApplicationValidator");
-const PosCartModel = require("./PosCartApplicationModel");
-const { Logger } = require("./../../common/Logger");
 
 class PosCart {
   constructor(_conf) {
@@ -70,7 +68,7 @@ class PosCart {
    * @summary: Fetch all items added to the cart
    * @description: Use this API to get details of all the items added to a cart.
    */
-  async getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
+  getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
     const { error } = PosCartValidator.getCart().validate(
       { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -85,11 +83,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCart",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCart");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -102,7 +97,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -113,23 +108,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCart",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -139,7 +117,7 @@ class PosCart {
    * @summary: Fetch last-modified timestamp
    * @description: Use this API to fetch Last-Modified timestamp in header metadata.
    */
-  async getCartLastModified({ id } = {}) {
+  getCartLastModified({ id } = {}) {
     const { error } = PosCartValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
@@ -154,11 +132,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCartLastModified",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCartLastModified");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -166,7 +141,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "head",
       constructUrl({
@@ -177,20 +152,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = Joi.string()
-      .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCartLastModified",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -204,7 +165,7 @@ class PosCart {
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow } = {}) {
+  addItems({ body, i, b, areaCode, buyNow } = {}) {
     const { error } = PosCartValidator.addItems().validate(
       { body, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -219,11 +180,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for addItems",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for addItems");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -234,7 +192,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -245,23 +203,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.AddCartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for addItems",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -276,7 +217,7 @@ class PosCart {
    * @summary: Update items in the cart
    * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
    */
-  async updateCart({ body, id, i, b, areaCode, buyNow } = {}) {
+  updateCart({ body, id, i, b, areaCode, buyNow } = {}) {
     const { error } = PosCartValidator.updateCart().validate(
       { body, id, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -291,11 +232,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateCart",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateCart");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -307,7 +245,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -318,23 +256,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.UpdateCartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateCart",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -345,7 +266,7 @@ class PosCart {
    * @summary: Count items in the cart
    * @description: Use this API to get the total number of items present in cart.
    */
-  async getItemCount({ id, buyNow } = {}) {
+  getItemCount({ id, buyNow } = {}) {
     const { error } = PosCartValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -360,11 +281,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getItemCount",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getItemCount");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -373,7 +291,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -384,23 +302,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartItemCountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getItemCount",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -411,7 +312,7 @@ class PosCart {
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details.
    */
-  async getCoupons({ id, buyNow } = {}) {
+  getCoupons({ id, buyNow } = {}) {
     const { error } = PosCartValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -426,11 +327,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCoupons",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCoupons");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -439,7 +337,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -450,23 +348,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.GetCouponResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCoupons",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -481,7 +362,7 @@ class PosCart {
    * @summary: Apply Coupon
    * @description: Use this API to apply coupons on items in the cart.
    */
-  async applyCoupon({ body, i, b, p, id, buyNow } = {}) {
+  applyCoupon({ body, i, b, p, id, buyNow } = {}) {
     const { error } = PosCartValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -496,11 +377,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for applyCoupon",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for applyCoupon");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -512,7 +390,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -523,23 +401,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for applyCoupon",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -550,7 +411,7 @@ class PosCart {
    * @summary: Remove Coupon Applied
    * @description: Remove Coupon applied on the cart by passing uid in request body.
    */
-  async removeCoupon({ id, buyNow } = {}) {
+  removeCoupon({ id, buyNow } = {}) {
     const { error } = PosCartValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -565,11 +426,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for removeCoupon",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for removeCoupon");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -578,7 +436,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -589,23 +447,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for removeCoupon",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -620,7 +461,7 @@ class PosCart {
    * @summary: Get discount offers based on quantity
    * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
    */
-  async getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
+  getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
     const { error } = PosCartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: true }
@@ -637,11 +478,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getBulkDiscountOffers",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getBulkDiscountOffers");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -652,7 +490,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -663,23 +501,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.BulkPriceResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getBulkDiscountOffers",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -693,7 +514,7 @@ class PosCart {
    * @summary: Apply reward points at cart
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
    */
-  async applyRewardPoints({ body, id, i, b, buyNow } = {}) {
+  applyRewardPoints({ body, id, i, b, buyNow } = {}) {
     const { error } = PosCartValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -708,11 +529,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for applyRewardPoints",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for applyRewardPoints");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -723,7 +541,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -734,23 +552,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for applyRewardPoints",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -765,7 +566,7 @@ class PosCart {
    * @summary: Fetch address
    * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
-  async getAddresses({
+  getAddresses({
     cartId,
     buyNow,
     mobileNo,
@@ -787,11 +588,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAddresses",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAddresses");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -804,7 +602,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -815,23 +613,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.GetAddressesResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAddresses",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -841,7 +622,7 @@ class PosCart {
    * @summary: Add address to an account
    * @description: Use this API to add an address to an account.
    */
-  async addAddress({ body } = {}) {
+  addAddress({ body } = {}) {
     const { error } = PosCartValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -856,18 +637,15 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for addAddress",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for addAddress");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -878,23 +656,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.SaveAddressResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for addAddress",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -910,7 +671,7 @@ class PosCart {
    * @summary: Fetch a single address by its ID
    * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
    */
-  async getAddressById({
+  getAddressById({
     id,
     cartId,
     buyNow,
@@ -933,11 +694,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAddressById",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAddressById");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -950,7 +708,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -961,21 +719,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = PosCartModel.Address().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAddressById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -986,7 +729,7 @@ class PosCart {
    * @summary: Update address added to an account
    * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
    */
-  async updateAddress({ id, body } = {}) {
+  updateAddress({ id, body } = {}) {
     const { error } = PosCartValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: true }
@@ -1001,18 +744,15 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateAddress",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateAddress");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1023,23 +763,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.UpdateAddressResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateAddress",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1049,7 +772,7 @@ class PosCart {
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
-  async removeAddress({ id } = {}) {
+  removeAddress({ id } = {}) {
     const { error } = PosCartValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
@@ -1064,18 +787,15 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for removeAddress",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for removeAddress");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "delete",
       constructUrl({
@@ -1086,23 +806,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.DeleteAddressResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for removeAddress",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1116,7 +819,7 @@ class PosCart {
    * @summary: Select an address from available addresses
    * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
    */
-  async selectAddress({ body, cartId, buyNow, i, b } = {}) {
+  selectAddress({ body, cartId, buyNow, i, b } = {}) {
     const { error } = PosCartValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: true }
@@ -1131,11 +834,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for selectAddress",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for selectAddress");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1146,7 +846,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1157,23 +857,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for selectAddress",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1185,7 +868,7 @@ class PosCart {
    * @summary: Update cart payment
    * @description: Use this API to update cart payment.
    */
-  async selectPaymentMode({ body, id, buyNow } = {}) {
+  selectPaymentMode({ body, id, buyNow } = {}) {
     const { error } = PosCartValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -1200,11 +883,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for selectPaymentMode",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for selectPaymentMode");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1213,7 +893,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1224,23 +904,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for selectPaymentMode",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1256,7 +919,7 @@ class PosCart {
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
-  async validateCouponForPayment({
+  validateCouponForPayment({
     id,
     buyNow,
     addressId,
@@ -1297,11 +960,10 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for validateCouponForPayment",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for validateCouponForPayment"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1315,7 +977,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1326,23 +988,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.PaymentCouponValidate().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for validateCouponForPayment",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1362,7 +1007,7 @@ class PosCart {
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  async getShipments({
+  getShipments({
     pickAtStoreUid,
     orderingStoreId,
     p,
@@ -1401,11 +1046,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getShipments",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getShipments");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1419,7 +1061,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1430,23 +1072,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartShipmentsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getShipments",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1465,7 +1090,7 @@ class PosCart {
    * @summary: Update shipment delivery type and quantity before checkout
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
    */
-  async updateShipments({ body, i, p, id, addressId, orderType } = {}) {
+  updateShipments({ body, i, p, id, addressId, orderType } = {}) {
     const { error } = PosCartValidator.updateShipments().validate(
       { body, i, p, id, addressId, orderType },
       { abortEarly: false, allowUnknown: true }
@@ -1480,11 +1105,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateShipments",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateShipments");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1496,7 +1118,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1507,23 +1129,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartShipmentsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateShipments",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1534,7 +1139,7 @@ class PosCart {
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
-  async checkoutCart({ body, id } = {}) {
+  checkoutCart({ body, id } = {}) {
     const { error } = PosCartValidator.checkoutCart().validate(
       { body, id },
       { abortEarly: false, allowUnknown: true }
@@ -1549,11 +1154,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for checkoutCart",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for checkoutCart");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1561,7 +1163,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1572,23 +1174,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartCheckoutResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for checkoutCart",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1600,7 +1185,7 @@ class PosCart {
    * @summary: Update the cart meta
    * @description: Use this API to update cart meta like checkout_mode and gstin.
    */
-  async updateCartMeta({ body, id, buyNow } = {}) {
+  updateCartMeta({ body, id, buyNow } = {}) {
     const { error } = PosCartValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -1615,11 +1200,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateCartMeta",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for updateCartMeta");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1628,7 +1210,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "put",
       constructUrl({
@@ -1639,23 +1221,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartMetaResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateCartMeta",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1666,7 +1231,7 @@ class PosCart {
    * @summary: Get available delivery modes for cart
    * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
    */
-  async getAvailableDeliveryModes({ areaCode, id } = {}) {
+  getAvailableDeliveryModes({ areaCode, id } = {}) {
     const { error } = PosCartValidator.getAvailableDeliveryModes().validate(
       { areaCode, id },
       { abortEarly: false, allowUnknown: true }
@@ -1683,11 +1248,10 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAvailableDeliveryModes",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for getAvailableDeliveryModes"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1696,7 +1260,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1707,23 +1271,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.CartDeliveryModesResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAvailableDeliveryModes",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1733,7 +1280,7 @@ class PosCart {
    * @summary: Get list of stores for give uids
    * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
    */
-  async getStoreAddressByUid({ storeUid } = {}) {
+  getStoreAddressByUid({ storeUid } = {}) {
     const { error } = PosCartValidator.getStoreAddressByUid().validate(
       { storeUid },
       { abortEarly: false, allowUnknown: true }
@@ -1750,11 +1297,8 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getStoreAddressByUid",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getStoreAddressByUid");
+      console.log(warrning);
     }
 
     const query_params = {};
@@ -1762,7 +1306,7 @@ class PosCart {
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1773,23 +1317,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.StoreDetailsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getStoreAddressByUid",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1799,7 +1326,7 @@ class PosCart {
    * @summary: Generate token for sharing the cart
    * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
    */
-  async getCartShareLink({ body } = {}) {
+  getCartShareLink({ body } = {}) {
     const { error } = PosCartValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1814,18 +1341,15 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCartShareLink",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCartShareLink");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1836,23 +1360,6 @@ class PosCart {
       body,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.GetShareCartLinkResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCartShareLink",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1862,7 +1369,7 @@ class PosCart {
    * @summary: Get details of a shared cart
    * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
    */
-  async getCartSharedItems({ token } = {}) {
+  getCartSharedItems({ token } = {}) {
     const { error } = PosCartValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: true }
@@ -1877,18 +1384,15 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCartSharedItems",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getCartSharedItems");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -1899,23 +1403,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.SharedCartResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCartSharedItems",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -1927,7 +1414,7 @@ class PosCart {
    * @summary: Merge or replace existing cart
    * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
    */
-  async updateCartWithSharedItems({ token, action } = {}) {
+  updateCartWithSharedItems({ token, action } = {}) {
     const { error } = PosCartValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: true }
@@ -1944,18 +1431,17 @@ class PosCart {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateCartWithSharedItems",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log(
+        "Parameter Validation warrnings for updateCartWithSharedItems"
+      );
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "post",
       constructUrl({
@@ -1966,23 +1452,6 @@ class PosCart {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = PosCartModel.SharedCartResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateCartWithSharedItems",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

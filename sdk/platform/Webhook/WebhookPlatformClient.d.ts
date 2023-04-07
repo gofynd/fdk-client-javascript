@@ -7,7 +7,6 @@ declare class Webhook {
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
      * @param {string} [arg.extensionId] - Extension ID
-     * @returns {Promise<SubscriberResponse>} - Success response
      * @summary: Get Subscribers By Company ID
      * @description: Get Subscribers By CompanyId
      */
@@ -15,33 +14,30 @@ declare class Webhook {
         pageNo?: number;
         pageSize?: number;
         extensionId?: string;
-    }): Promise<SubscriberResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SubscriberConfig} arg.body
-     * @returns {Promise<SubscriberConfig>} - Success response
      * @summary: Register Subscriber
      * @description: Register Subscriber
      */
     registerSubscriberToEvent({ body }?: {
         body: SubscriberConfig;
-    }): Promise<SubscriberConfig>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SubscriberConfig} arg.body
-     * @returns {Promise<SubscriberConfig>} - Success response
      * @summary: Update Subscriber
      * @description: Update Subscriber
      */
     updateSubscriberConfig({ body }?: {
         body: SubscriberConfig;
-    }): Promise<SubscriberConfig>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
      * @param {string} arg.extensionId - Extension ID
-     * @returns {Promise<SubscriberConfigList>} - Success response
      * @summary: Get Subscribers By Extension ID
      * @description: Get Subscribers By ExtensionID
      */
@@ -49,22 +45,20 @@ declare class Webhook {
         pageNo?: number;
         pageSize?: number;
         extensionId: string;
-    }): Promise<SubscriberConfigList>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.subscriberId - Subscriber ID
-     * @returns {Promise<SubscriberResponse>} - Success response
      * @summary: Get Subscriber By Subscriber ID
      * @description: Get Subscriber By Subscriber ID
      */
     getSubscriberById({ subscriberId }?: {
         subscriberId: number;
-    }): Promise<SubscriberResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<EventConfigResponse>} - Success response
      * @summary:
      * @description: Get All Webhook Events
      */
-    fetchAllEventConfigurations({}?: any): Promise<EventConfigResponse>;
+    fetchAllEventConfigurations({}?: any): Promise<any>;
 }

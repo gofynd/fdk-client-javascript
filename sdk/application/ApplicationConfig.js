@@ -40,7 +40,7 @@ class ApplicationConfig {
       throw new FDKClientValidationError(error);
     }
     if (!this.applicationID) {
-      Logger({ level: "ERROR", message: "No Application ID Present" });
+      Logger({ type: "ERROR", message: "No Application ID Present" });
       throw new FDKInvalidCredentialError("No Application ID Present");
     }
     if (!this.applicationToken) {

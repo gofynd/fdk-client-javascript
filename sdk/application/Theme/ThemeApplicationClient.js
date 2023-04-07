@@ -3,8 +3,6 @@ const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const ThemeValidator = require("./ThemeApplicationValidator");
-const ThemeModel = require("./ThemeApplicationModel");
-const { Logger } = require("./../../common/Logger");
 
 class Theme {
   constructor(_conf) {
@@ -38,7 +36,7 @@ class Theme {
    * @summary: Get all pages of a theme
    * @description: Use this API to retrieve all the available pages of a theme by its ID.
    */
-  async getAllPages({ themeId } = {}) {
+  getAllPages({ themeId } = {}) {
     const { error } = ThemeValidator.getAllPages().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
@@ -53,18 +51,15 @@ class Theme {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAllPages",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAllPages");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -75,23 +70,6 @@ class Theme {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ThemeModel.AllAvailablePageSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAllPages",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -102,7 +80,7 @@ class Theme {
    * @summary: Get page of a theme
    * @description: Use this API to retrieve a page of a theme.
    */
-  async getPage({ themeId, pageValue } = {}) {
+  getPage({ themeId, pageValue } = {}) {
     const { error } = ThemeValidator.getPage().validate(
       { themeId, pageValue },
       { abortEarly: false, allowUnknown: true }
@@ -117,18 +95,15 @@ class Theme {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getPage",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getPage");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -139,23 +114,6 @@ class Theme {
       undefined,
       xHeaders
     );
-
-    const {
-      error: res_error,
-    } = ThemeModel.AvailablePageSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getPage",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -164,7 +122,7 @@ class Theme {
    * @summary: Get the theme currently applied to an application
    * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
    */
-  async getAppliedTheme({} = {}) {
+  getAppliedTheme({} = {}) {
     const { error } = ThemeValidator.getAppliedTheme().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -179,18 +137,15 @@ class Theme {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAppliedTheme",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getAppliedTheme");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -201,21 +156,6 @@ class Theme {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAppliedTheme",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 
   /**
@@ -225,7 +165,7 @@ class Theme {
    * @summary: Get a theme for a preview
    * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
    */
-  async getThemeForPreview({ themeId } = {}) {
+  getThemeForPreview({ themeId } = {}) {
     const { error } = ThemeValidator.getThemeForPreview().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
@@ -240,18 +180,15 @@ class Theme {
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getThemeForPreview",
-      });
-      Logger({ level: "WARN", message: warrning });
+      console.log("Parameter Validation warrnings for getThemeForPreview");
+      console.log(warrning);
     }
 
     const query_params = {};
 
     const xHeaders = {};
 
-    const response = await APIClient.execute(
+    return APIClient.execute(
       this._conf,
       "get",
       constructUrl({
@@ -262,21 +199,6 @@ class Theme {
       undefined,
       xHeaders
     );
-
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getThemeForPreview",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
   }
 }
 

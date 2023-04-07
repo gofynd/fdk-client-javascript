@@ -6,33 +6,30 @@ declare class Analytics {
      * @param {Object} arg - Arg object.
      * @param {string} arg.exportType - Export type / format
      * @param {ExportJobReq} arg.body
-     * @returns {Promise<ExportJobRes>} - Success response
      * @summary: Create data export job in required format
      * @description: Create data export job in required format
      */
     createExportJob({ exportType, body }?: {
         exportType: string;
         body: ExportJobReq;
-    }): Promise<ExportJobRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.exportType - Export type / format
      * @param {string} arg.jobId - Export job id
-     * @returns {Promise<ExportJobStatusRes>} - Success response
      * @summary: Get data export job status
      * @description: Get data export job status
      */
     getExportJobStatus({ exportType, jobId }?: {
         exportType: string;
         jobId: string;
-    }): Promise<ExportJobStatusRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.logType - Log type
      * @param {number} [arg.pageNo] - Current page number
      * @param {number} [arg.pageSize] - Current page size
      * @param {GetLogsListReq} arg.body
-     * @returns {Promise<GetLogsListRes>} - Success response
      * @summary: Get logs list
      * @description: Get logs list
      */
@@ -41,7 +38,7 @@ declare class Analytics {
         pageNo?: number;
         pageSize?: number;
         body: GetLogsListReq;
-    }): Promise<GetLogsListRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.logType - Log type
@@ -61,7 +58,6 @@ declare class Analytics {
      * @param {number} [arg.pageSize] - Current page size
      * @param {string} arg.logType - Log type
      * @param {SearchLogReq} arg.body
-     * @returns {Promise<SearchLogRes>} - Success response
      * @summary: Search logs
      * @description: Search logs
      */
@@ -70,7 +66,7 @@ declare class Analytics {
         pageSize?: number;
         logType: string;
         body: SearchLogReq;
-    }): Promise<SearchLogRes>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Current page size

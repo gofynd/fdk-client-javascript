@@ -14,7 +14,6 @@ declare class Discount {
      * @param {number} [arg.year] - Year. Default is current year.
      * @param {string} [arg.type] - Basic or custom.
      * @param {string[]} [arg.appIds] - Application ids.
-     * @returns {Promise<ListOrCalender>} - Success response
      * @summary: Fetch discount list.
      * @description: Fetch discount list.
      */
@@ -28,44 +27,40 @@ declare class Discount {
         year?: number;
         type?: string;
         appIds?: string[];
-    }): Promise<ListOrCalender>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {CreateUpdateDiscount} arg.body
-     * @returns {Promise<DiscountJob>} - Success response
      * @summary: Create Discount.
      * @description: Create Discount.
      */
     createDiscount({ body }?: {
         body: CreateUpdateDiscount;
-    }): Promise<DiscountJob>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Unique id.
-     * @returns {Promise<DiscountJob>} - Success response
      * @summary: Fetch discount.
      * @description: Fetch discount.
      */
     getDiscount({ id }?: {
         id: string;
-    }): Promise<DiscountJob>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
      * @param {CreateUpdateDiscount} arg.body
-     * @returns {Promise<DiscountJob>} - Success response
      * @summary: Create Discount.
      * @description: Create Discount.
      */
     updateDiscount({ id, body }?: {
         id: string;
         body: CreateUpdateDiscount;
-    }): Promise<DiscountJob>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Job ID of the discount.
      * @param {BulkDiscount} arg.body
-     * @returns {Promise<Object>} - Success response
      * @summary: Create custom discount from bulk.
      * @description: Create custom discounts through API.
      */
@@ -77,64 +72,58 @@ declare class Discount {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.discount] - Discount
      * @param {DiscountJob} arg.body
-     * @returns {Promise<FileJobResponse>} - Success response
      * @summary: Validate File.
      * @description: Validate File.
      */
     validateDiscountFile({ body, discount }?: {
         discount?: string;
         body: DiscountJob;
-    }): Promise<FileJobResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.type - Type
      * @param {DownloadFileJob} arg.body
-     * @returns {Promise<FileJobResponse>} - Success response
      * @summary: Validate File.
      * @description: Validate File.
      */
     downloadDiscountFile({ type, body }?: {
         type: string;
         body: DownloadFileJob;
-    }): Promise<FileJobResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
-     * @returns {Promise<FileJobResponse>} - Success response
      * @summary: Validate File Job.
      * @description: Validate File Job.
      */
     getValidationJob({ id }?: {
         id: string;
-    }): Promise<FileJobResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
-     * @returns {Promise<CancelJobResponse>} - Success response
      * @summary: Cancel Validation Job.
      * @description: Cancel Validation Job.
      */
     cancelValidationJob({ id }?: {
         id: string;
-    }): Promise<CancelJobResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
-     * @returns {Promise<FileJobResponse>} - Success response
      * @summary: Download File Job.
      * @description: Download File Job.
      */
     getDownloadJob({ id }?: {
         id: string;
-    }): Promise<FileJobResponse>;
+    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
-     * @returns {Promise<CancelJobResponse>} - Success response
      * @summary: Cancel Download Job.
      * @description: Cancel Download Job.
      */
     cancelDownloadJob({ id }?: {
         id: string;
-    }): Promise<CancelJobResponse>;
+    }): Promise<any>;
 }
