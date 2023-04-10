@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Order Methods
 Handles all platform order and shipment api(s)
+
 * [getShipments](#getshipments)
 * [getShipmentById](#getshipmentbyid)
 * [getOrderById](#getorderbyid)
@@ -56,6 +58,8 @@ Handles all platform order and shipment api(s)
 
 
 ## Methods with example and description
+
+
 
 
 ### getShipments

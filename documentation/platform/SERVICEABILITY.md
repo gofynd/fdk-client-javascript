@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
+
 * [getApplicationServiceability](#getapplicationserviceability)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
@@ -20,6 +22,8 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 
 ## Methods with example and description
+
+
 
 
 ### getApplicationServiceability

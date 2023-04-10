@@ -2,10 +2,12 @@
 
 
 
+
 ##### [Back to Platform docs](./README.md)
 
 ## Billing Methods
 Handle platform subscription
+
 * [checkCouponValidity](#checkcouponvalidity)
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
@@ -22,6 +24,8 @@ Handle platform subscription
 
 
 ## Methods with example and description
+
+
 
 
 ### checkCouponValidity
