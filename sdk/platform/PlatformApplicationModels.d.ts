@@ -176,6 +176,16 @@ export class PaymentValidator {
     static confirmPayment(): any;
     static getUserCODlimitRoutes(): any;
     static setUserCODlimitRoutes(): any;
+    static edcAggregatorsAndModelList(): any;
+    static edcDeviceStats(): any;
+    static updateEdcDevice(): any;
+    static getEdcDevice(): any;
+    static addEdcDevice(): any;
+    static edcDeviceList(): any;
+    static getPosPaymentModeRoutes(): any;
+    static initialisePayment(): any;
+    static checkAndUpdatePaymentStatus(): any;
+    static resendOrCancelPayment(): any;
 }
 export class OrderValidator {
     static getApplicationShipments(): any;
@@ -183,14 +193,14 @@ export class OrderValidator {
     static trackPlatformShipment(): any;
 }
 export class CatalogValidator {
+    static updateSearchKeywords(): any;
     static deleteSearchKeywords(): any;
     static getSearchKeywords(): any;
-    static updateSearchKeywords(): any;
     static createCustomKeyword(): any;
     static getAllSearchKeyword(): any;
+    static updateAutocompleteKeyword(): any;
     static deleteAutocompleteKeyword(): any;
     static getAutocompleteKeywordDetail(): any;
-    static updateAutocompleteKeyword(): any;
     static createCustomAutocompleteRule(): any;
     static getAutocompleteConfig(): any;
     static updateAppProduct(): any;
@@ -198,12 +208,12 @@ export class CatalogValidator {
     static getConfigurationMetadata(): any;
     static createGroupConfiguration(): any;
     static getGroupConfigurations(): any;
-    static deleteGroupConfiguration(): any;
     static updateGroupConfiguration(): any;
+    static deleteGroupConfiguration(): any;
     static createListingConfiguration(): any;
     static getListingConfigurations(): any;
-    static deleteListingConfiguration(): any;
     static updateListingConfiguration(): any;
+    static deleteListingConfiguration(): any;
     static updateAllowSingle(): any;
     static updateDefaultSort(): any;
     static getCatalogConfiguration(): any;
@@ -215,8 +225,8 @@ export class CatalogValidator {
     static createCollection(): any;
     static getAllCollections(): any;
     static getCollectionDetail(): any;
-    static deleteCollection(): any;
     static updateCollection(): any;
+    static deleteCollection(): any;
     static addCollectionItems(): any;
     static getCollectionItems(): any;
     static getCatalogInsights(): any;
