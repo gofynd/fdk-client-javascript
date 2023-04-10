@@ -28,17 +28,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
-     *   detail. Pass the `id` of the keywords which you want to retrieve.
-     * @returns {Promise<GetProductBundleResponse>} - Success response
-     * @summary: Get a particular Product Bundle details
-     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-     */
-    getProductBundleDetail({ id }?: {
-        id: string;
-    }): Promise<GetProductBundleResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier for a particular
      *   detail. Pass the `id` of the keywords which you want to delete.
      * @param {ProductBundleUpdateRequest} arg.body
      * @returns {Promise<GetProductBundleCreateResponse>} - Success response
@@ -49,6 +38,17 @@ declare class Catalog {
         id: string;
         body: ProductBundleUpdateRequest;
     }): Promise<GetProductBundleCreateResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @returns {Promise<GetProductBundleResponse>} - Success response
+     * @summary: Get a particular Product Bundle details
+     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+     */
+    getProductBundleDetail({ id }?: {
+        id: string;
+    }): Promise<GetProductBundleResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.active] - Filter size guide on basis of active, in-active
@@ -81,16 +81,6 @@ declare class Catalog {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id of the size guide to be viewed.
-     * @returns {Promise<SizeGuideResponse>} - Success response
-     * @summary: Get a single size guide.
-     * @description: This API helps to get data associated to a size guide.
-     */
-    getSizeGuide({ id }?: {
-        id: string;
-    }): Promise<SizeGuideResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Mongo id of the size guide to be edited
      * @param {ValidateSizeGuide} arg.body
      * @returns {Promise<SuccessResponse>} - Success response
@@ -101,6 +91,16 @@ declare class Catalog {
         id: string;
         body: ValidateSizeGuide;
     }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Id of the size guide to be viewed.
+     * @returns {Promise<SizeGuideResponse>} - Success response
+     * @summary: Get a single size guide.
+     * @description: This API helps to get data associated to a size guide.
+     */
+    getSizeGuide({ id }?: {
+        id: string;
+    }): Promise<SizeGuideResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.sellerAppId - Id of the seller application which is
@@ -244,16 +244,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-     * @returns {Promise<DepartmentsResponse>} - Success response
-     * @summary: Get specific departments details by passing in unique id of the department.
-     * @description: Allows you to get department data, by uid.
-     */
-    getDepartmentData({ uid }?: {
-        uid: string;
-    }): Promise<DepartmentsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
      * @param {DepartmentCreateUpdate} arg.body
      * @returns {Promise<DepartmentModel>} - Success response
      * @summary: Update the department by their uid.
@@ -263,6 +253,16 @@ declare class Catalog {
         uid: string;
         body: DepartmentCreateUpdate;
     }): Promise<DepartmentModel>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
+     * @returns {Promise<DepartmentsResponse>} - Success response
+     * @summary: Get specific departments details by passing in unique id of the department.
+     * @description: Allows you to get department data, by uid.
+     */
+    getDepartmentData({ uid }?: {
+        uid: string;
+    }): Promise<DepartmentsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.department - A `department` is the name of a
@@ -411,16 +411,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - Category unique id
-     * @returns {Promise<SingleCategoryResponse>} - Success response
-     * @summary: Get product category by uid
-     * @description: This API gets meta associated to product categories.
-     */
-    getCategoryData({ uid }?: {
-        uid: string;
-    }): Promise<SingleCategoryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - Category unique id
      * @param {CategoryRequestBody} arg.body
      * @returns {Promise<CategoryUpdateResponse>} - Success response
      * @summary: Update product categories
@@ -430,6 +420,16 @@ declare class Catalog {
         uid: string;
         body: CategoryRequestBody;
     }): Promise<CategoryUpdateResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - Category unique id
+     * @returns {Promise<SingleCategoryResponse>} - Success response
+     * @summary: Get product category by uid
+     * @description: This API gets meta associated to product categories.
+     */
+    getCategoryData({ uid }?: {
+        uid: string;
+    }): Promise<SingleCategoryResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
@@ -503,18 +503,16 @@ declare class Catalog {
     }): Promise<ProductAttributesResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Item Id of the product.
-     * @param {number} [arg.brandUid] - Brand Id of the product.
-     * @param {string} [arg.itemCode] - Item code of the product.
-     * @returns {Promise<SingleProductResponse>} - Success response
-     * @summary: Get a single product.
-     * @description: This API helps to get data associated to a particular product.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @param {ProductCreateUpdateSchemaV2} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
+     * @summary: Edit a product.
+     * @description: This API allows to edit product.
      */
-    getProduct({ itemId, brandUid, itemCode }?: {
+    editProduct({ itemId, body }?: {
         itemId: number;
-        brandUid?: number;
-        itemCode?: string;
-    }): Promise<SingleProductResponse>;
+        body: ProductCreateUpdateSchemaV2;
+    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
@@ -527,16 +525,18 @@ declare class Catalog {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Id of the product to be updated.
-     * @param {ProductCreateUpdateSchemaV2} arg.body
-     * @returns {Promise<SuccessResponse>} - Success response
-     * @summary: Edit a product.
-     * @description: This API allows to edit product.
+     * @param {number} arg.itemId - Item Id of the product.
+     * @param {number} [arg.brandUid] - Brand Id of the product.
+     * @param {string} [arg.itemCode] - Item code of the product.
+     * @returns {Promise<SingleProductResponse>} - Success response
+     * @summary: Get a single product.
+     * @description: This API helps to get data associated to a particular product.
      */
-    editProduct({ itemId, body }?: {
+    getProduct({ itemId, brandUid, itemCode }?: {
         itemId: number;
-        body: ProductCreateUpdateSchemaV2;
-    }): Promise<SuccessResponse>;
+        brandUid?: number;
+        itemCode?: string;
+    }): Promise<SingleProductResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
@@ -924,16 +924,6 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Unique id
-     * @returns {Promise<HsnCode>} - Success response
-     * @summary: Fetch Hsn Code.
-     * @description: Fetch Hsn Code.
-     */
-    getHsnCode({ id }?: {
-        id: string;
-    }): Promise<HsnCode>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Unique id
      * @param {HsnUpsert} arg.body
      * @returns {Promise<HsnCode>} - Success response
      * @summary: Update Hsn Code.
@@ -942,6 +932,16 @@ declare class Catalog {
     updateHsnCode({ id, body }?: {
         id: string;
         body: HsnUpsert;
+    }): Promise<HsnCode>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Unique id
+     * @returns {Promise<HsnCode>} - Success response
+     * @summary: Fetch Hsn Code.
+     * @description: Fetch Hsn Code.
+     */
+    getHsnCode({ id }?: {
+        id: string;
     }): Promise<HsnCode>;
     /**
      * @param {Object} arg - Arg object.

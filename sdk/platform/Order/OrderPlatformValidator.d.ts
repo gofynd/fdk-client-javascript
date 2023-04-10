@@ -20,7 +20,6 @@ declare class OrderValidator {
     static bulkActionDetails(): any;
     static getBagById(): any;
     static getBags(): any;
-    static generatePOSReceiptByOrderId(): any;
     static invalidateShipmentCache(): any;
     static reassignLocation(): any;
     static updateShipmentLock(): any;
@@ -31,14 +30,14 @@ declare class OrderValidator {
     static processManifest(): any;
     static dispatchManifest(): any;
     static getRoleBasedActions(): any;
-    static postShipmentHistory(): any;
     static getShipmentHistory(): any;
+    static postShipmentHistory(): any;
     static sendSmsNinja(): any;
     static platformManualAssignDPToShipment(): any;
     static updatePackagingDimensions(): any;
     static createOrder(): any;
-    static createChannelConfig(): any;
     static getChannelConfig(): any;
+    static createChannelConfig(): any;
     static uploadConsent(): any;
     static orderUpdate(): any;
     static checkOrderStatus(): any;
