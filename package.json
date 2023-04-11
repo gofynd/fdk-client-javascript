@@ -52,7 +52,7 @@
     "report-dir": "./coverage"
   },
   "peerDependencies": {
-    "fdk-client-javascript": "git+ssh://git@github.com/gofynd/fdk-client-javascript.git#>=0.1.19"
+    "fdk-client-javascript": "fdk-client-javascript@>=0.1.19"
   },
   "name": "fdk-extension-javascript",
   "description": "FDK Extension Helper Library",
