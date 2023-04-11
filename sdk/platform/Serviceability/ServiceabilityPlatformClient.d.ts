@@ -4,35 +4,31 @@ declare class Serviceability {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {EntityRegionViewRequest} arg.body
+     * @param {EntityRegionView_Request} arg.body
      * @summary: Get country and state list
      * @description: This API returns response for Entity Region View.
      */
     getEntityRegionView({ body }?: {
-        body: EntityRegionViewRequest;
+        body: EntityRegionView_Request;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageNo] - Index of the item to start returning with
      * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
      * @param {string} [arg.name] - Name of particular zone in the seller account
      * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
      * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
      * @param {string} [arg.q] - Search with name as a free text
-     * @param {string[]} [arg.zoneId] - List of zones to query for
      * @summary: Zone List of application.
      * @description: This API returns Zone List View of the application.
      */
-    getListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: {
+    getListView({ pageNumber, pageSize, name, isActive, channelIds, q }?: {
         pageNumber?: number;
-        pageNo?: number;
         pageSize?: number;
         name?: string;
         isActive?: boolean;
         channelIds?: string;
         q?: string;
-        zoneId?: string[];
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -66,32 +62,24 @@ declare class Serviceability {
      * @param {Object} arg - Arg object.
      * @param {ZoneRequest} arg.body
      * @summary: Insertion of zone in database.
-     * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+     * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
      */
-    upsertZoneControllerView({ body }?: {
+    createZone({ body }?: {
         body: ZoneRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageNo] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.name] - Name of particular zone in the seller account
-     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-     * @param {string} [arg.q] - Search with name as a free text
-     * @param {string[]} [arg.zoneId] - List of zones to query for
-     * @summary: Zone List of application.
-     * @description: This API returns Zone List View of the application.
+     * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
+     * @summary: GET stores data
+     * @description: This API returns stores data.
      */
-    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: {
-        pageNumber?: number;
-        pageNo?: number;
-        pageSize?: number;
-        name?: string;
-        isActive?: boolean;
-        channelIds?: string;
-        q?: string;
-        zoneId?: string[];
+    getStore({ storeUid }?: {
+        storeUid: number;
     }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @summary: GET stores data
+     * @description: This API returns stores data.
+     */
+    getAllStores({}?: any): Promise<any>;
 }

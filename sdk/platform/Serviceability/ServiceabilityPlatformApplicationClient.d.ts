@@ -5,28 +5,10 @@ declare class Serviceability {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ApplicationServiceabilityConfig} arg.body
-     * @summary: Zone configuration of application.
-     * @description: This API returns serviceability config of the application.
-     */
-    postApplicationServiceability({ body }?: {
-        body: ApplicationServiceabilityConfig;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @summary: Zone configuration of application.
      * @description: This API returns serviceability config of the application.
      */
     getApplicationServiceability({}?: any): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {GetZoneFromPincodeViewRequest} arg.body
-     * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View.
-     */
-    getZoneFromPincodeView({ body }?: {
-        body: GetZoneFromPincodeViewRequest;
-    }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Index of the item to start returning with
@@ -41,6 +23,15 @@ declare class Serviceability {
         pageSize?: number;
         zoneId?: string[];
         q?: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {GetZoneFromPincodeViewRequest} arg.body
+     * @summary: GET zone from the Pincode.
+     * @description: This API returns zone from the Pincode View.
+     */
+    getZoneFromPincodeView({ body }?: {
+        body: GetZoneFromPincodeViewRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

@@ -9,7 +9,7 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {EntityRegionViewRequest} arg.body
+   * @param {EntityRegionView_Request} arg.body
    * @summary: Get country and state list
    * @description: This API returns response for Entity Region View.
    */
@@ -31,7 +31,7 @@ class Serviceability {
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/regions`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/regions`,
       query_params,
       body,
       xHeaders
@@ -41,36 +41,23 @@ class Serviceability {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageNo] - Index of the item to start returning with
    * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
    * @param {string} [arg.name] - Name of particular zone in the seller account
    * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
    * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
    * @param {string} [arg.q] - Search with name as a free text
-   * @param {string[]} [arg.zoneId] - List of zones to query for
    * @summary: Zone List of application.
    * @description: This API returns Zone List View of the application.
    */
-  getListView({
-    pageNumber,
-    pageNo,
-    pageSize,
-    name,
-    isActive,
-    channelIds,
-    q,
-    zoneId,
-  } = {}) {
+  getListView({ pageNumber, pageSize, name, isActive, channelIds, q } = {}) {
     const { error } = ServiceabilityValidator.getListView().validate(
       {
         pageNumber,
-        pageNo,
         pageSize,
         name,
         isActive,
         channelIds,
         q,
-        zoneId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -80,20 +67,18 @@ class Serviceability {
 
     const query_params = {};
     query_params["page_number"] = pageNumber;
-    query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["name"] = name;
     query_params["is_active"] = isActive;
     query_params["channel_ids"] = channelIds;
     query_params["q"] = q;
-    query_params["zone_id"] = zoneId;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zones`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zones`,
       query_params,
       undefined,
       xHeaders
@@ -121,7 +106,7 @@ class Serviceability {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/all-stores`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/all-stores`,
       query_params,
       undefined,
       xHeaders
@@ -153,7 +138,7 @@ class Serviceability {
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       undefined,
       xHeaders
@@ -189,7 +174,7 @@ class Serviceability {
     return PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       body,
       xHeaders
@@ -200,12 +185,10 @@ class Serviceability {
    * @param {Object} arg - Arg object.
    * @param {ZoneRequest} arg.body
    * @summary: Insertion of zone in database.
-   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{company_id}/zone/`
+   * @description: This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
    */
-  upsertZoneControllerView({ body } = {}) {
-    const {
-      error,
-    } = ServiceabilityValidator.upsertZoneControllerView().validate(
+  createZone({ body } = {}) {
+    const { error } = ServiceabilityValidator.createZone().validate(
       {
         body,
       },
@@ -222,7 +205,7 @@ class Serviceability {
     return PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zone`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone`,
       query_params,
       body,
       xHeaders
@@ -231,37 +214,14 @@ class Serviceability {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageNo] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.name] - Name of particular zone in the seller account
-   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-   * @param {string} [arg.q] - Search with name as a free text
-   * @param {string[]} [arg.zoneId] - List of zones to query for
-   * @summary: Zone List of application.
-   * @description: This API returns Zone List View of the application.
+   * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
+   * @summary: GET stores data
+   * @description: This API returns stores data.
    */
-  getZoneListView({
-    pageNumber,
-    pageNo,
-    pageSize,
-    name,
-    isActive,
-    channelIds,
-    q,
-    zoneId,
-  } = {}) {
-    const { error } = ServiceabilityValidator.getZoneListView().validate(
+  getStore({ storeUid } = {}) {
+    const { error } = ServiceabilityValidator.getStore().validate(
       {
-        pageNumber,
-        pageNo,
-        pageSize,
-        name,
-        isActive,
-        channelIds,
-        q,
-        zoneId,
+        storeUid,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -270,21 +230,41 @@ class Serviceability {
     }
 
     const query_params = {};
-    query_params["page_number"] = pageNumber;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["name"] = name;
-    query_params["is_active"] = isActive;
-    query_params["channel_ids"] = channelIds;
-    query_params["q"] = q;
-    query_params["zone_id"] = zoneId;
 
     const xHeaders = {};
 
     return PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics-internal/v1.0/company/${this.config.companyId}/zones-list`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/stores/${storeUid}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @summary: GET stores data
+   * @description: This API returns stores data.
+   */
+  getAllStores({} = {}) {
+    const { error } = ServiceabilityValidator.getAllStores().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    return PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics/stores`,
       query_params,
       undefined,
       xHeaders
