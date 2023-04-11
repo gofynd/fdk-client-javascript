@@ -2,27 +2,15 @@ const Joi = require("joi");
 const LeadModel = require("./LeadPlatformModel");
 
 class LeadValidator {
-  static getTickets() {
+  static closeVideoRoom() {
     return Joi.object({
-      items: Joi.boolean(),
-      filters: Joi.boolean(),
-      q: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      priority: LeadModel.PriorityEnum(),
-      category: Joi.string().allow(""),
+      uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getTicket() {
+  static createCustomForm() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static editTicket() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: LeadModel.EditTicketPayload().required(),
+      body: LeadModel.CreateCustomFormPayload().required(),
     }).required();
   }
 
@@ -33,9 +21,17 @@ class LeadValidator {
     }).required();
   }
 
-  static getTicketHistory() {
+  static editCustomForm() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
+      body: LeadModel.EditCustomFormPayload().required(),
+    }).required();
+  }
+
+  static editTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      body: LeadModel.EditTicketPayload().required(),
     }).required();
   }
 
@@ -45,20 +41,30 @@ class LeadValidator {
     }).required();
   }
 
-  static editCustomForm() {
-    return Joi.object({
-      slug: Joi.string().allow("").required(),
-      body: LeadModel.EditCustomFormPayload().required(),
-    }).required();
-  }
-
   static getCustomForms() {
     return Joi.object({}).required();
   }
 
-  static createCustomForm() {
+  static getTicket() {
     return Joi.object({
-      body: LeadModel.CreateCustomFormPayload().required(),
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getTicketHistory() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getTickets() {
+    return Joi.object({
+      items: Joi.boolean(),
+      filters: Joi.boolean(),
+      q: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      priority: LeadModel.PriorityEnum(),
+      category: Joi.string().allow(""),
     }).required();
   }
 
@@ -77,12 +83,6 @@ class LeadValidator {
   static openVideoRoom() {
     return Joi.object({
       body: LeadModel.CreateVideoRoomPayload().required(),
-    }).required();
-  }
-
-  static closeVideoRoom() {
-    return Joi.object({
-      uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 }

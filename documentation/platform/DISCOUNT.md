@@ -8,23 +8,304 @@
 ## Discount Methods
 Discount
 
-* [getDiscounts](#getdiscounts)
+* [cancelDownloadJob](#canceldownloadjob)
+* [cancelValidationJob](#cancelvalidationjob)
 * [createDiscount](#creatediscount)
+* [downloadDiscountFile](#downloaddiscountfile)
 * [getDiscount](#getdiscount)
+* [getDiscounts](#getdiscounts)
+* [getDownloadJob](#getdownloadjob)
+* [getValidationJob](#getvalidationjob)
 * [updateDiscount](#updatediscount)
 * [upsertDiscountItems](#upsertdiscountitems)
 * [validateDiscountFile](#validatediscountfile)
-* [downloadDiscountFile](#downloaddiscountfile)
-* [getValidationJob](#getvalidationjob)
-* [cancelValidationJob](#cancelvalidationjob)
-* [getDownloadJob](#getdownloadjob)
-* [cancelDownloadJob](#canceldownloadjob)
 
 
 
 ## Methods with example and description
 
 
+
+
+### cancelDownloadJob
+Cancel Download Job.
+
+
+
+```javascript
+// Promise
+const promise = client.discount.cancelDownloadJob({  id : value });
+
+// Async/Await
+const data = await client.discount.cancelDownloadJob({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | id |  
+
+
+
+Cancel Download Job.
+
+*Returned Response:*
+
+
+
+
+[CancelJobResponse](#CancelJobResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### cancelValidationJob
+Cancel Validation Job.
+
+
+
+```javascript
+// Promise
+const promise = client.discount.cancelValidationJob({  id : value });
+
+// Async/Await
+const data = await client.discount.cancelValidationJob({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | id |  
+
+
+
+Cancel Validation Job.
+
+*Returned Response:*
+
+
+
+
+[CancelJobResponse](#CancelJobResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createDiscount
+Create Discount.
+
+
+
+```javascript
+// Promise
+const promise = client.discount.createDiscount({  body : value });
+
+// Async/Await
+const data = await client.discount.createDiscount({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
+
+
+Create Discount.
+
+*Returned Response:*
+
+
+
+
+[DiscountJob](#DiscountJob)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### downloadDiscountFile
+Validate File.
+
+
+
+```javascript
+// Promise
+const promise = client.discount.downloadDiscountFile({  type : value,
+ body : value });
+
+// Async/Await
+const data = await client.discount.downloadDiscountFile({  type : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| type | string | yes | type |  
+| body | [DownloadFileJob](#DownloadFileJob) | yes | Request body |
+
+
+Validate File.
+
+*Returned Response:*
+
+
+
+
+[FileJobResponse](#FileJobResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDiscount
+Fetch discount.
+
+
+
+```javascript
+// Promise
+const promise = client.discount.getDiscount({  id : value });
+
+// Async/Await
+const data = await client.discount.getDiscount({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | unique id. |  
+
+
+
+Fetch discount.
+
+*Returned Response:*
+
+
+
+
+[DiscountJob](#DiscountJob)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getDiscounts
@@ -107,17 +388,17 @@ Success
 ---
 
 
-### createDiscount
-Create Discount.
+### getDownloadJob
+Download File Job.
 
 
 
 ```javascript
 // Promise
-const promise = client.discount.createDiscount({  body : value });
+const promise = client.discount.getDownloadJob({  id : value });
 
 // Async/Await
-const data = await client.discount.createDiscount({  body : value });
+const data = await client.discount.getDownloadJob({  id : value });
 ```
 
 
@@ -125,18 +406,19 @@ const data = await client.discount.createDiscount({  body : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUpdateDiscount](#CreateUpdateDiscount) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | id |  
 
 
-Create Discount.
+
+Download File Job.
 
 *Returned Response:*
 
 
 
 
-[DiscountJob](#DiscountJob)
+[FileJobResponse](#FileJobResponse)
 
 Success
 
@@ -162,17 +444,17 @@ Success
 ---
 
 
-### getDiscount
-Fetch discount.
+### getValidationJob
+Validate File Job.
 
 
 
 ```javascript
 // Promise
-const promise = client.discount.getDiscount({  id : value });
+const promise = client.discount.getValidationJob({  id : value });
 
 // Async/Await
-const data = await client.discount.getDiscount({  id : value });
+const data = await client.discount.getValidationJob({  id : value });
 ```
 
 
@@ -181,18 +463,18 @@ const data = await client.discount.getDiscount({  id : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | unique id. |  
+| id | string | yes | id |  
 
 
 
-Fetch discount.
+Validate File Job.
 
 *Returned Response:*
 
 
 
 
-[DiscountJob](#DiscountJob)
+[FileJobResponse](#FileJobResponse)
 
 Success
 
@@ -392,469 +674,91 @@ Success
 ---
 
 
-### downloadDiscountFile
-Validate File.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.downloadDiscountFile({  type : value,
- body : value });
-
-// Async/Await
-const data = await client.discount.downloadDiscountFile({  type : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| type | string | yes | type |  
-| body | [DownloadFileJob](#DownloadFileJob) | yes | Request body |
-
-
-Validate File.
-
-*Returned Response:*
-
-
-
-
-[FileJobResponse](#FileJobResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getValidationJob
-Validate File Job.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.getValidationJob({  id : value });
-
-// Async/Await
-const data = await client.discount.getValidationJob({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | id |  
-
-
-
-Validate File Job.
-
-*Returned Response:*
-
-
-
-
-[FileJobResponse](#FileJobResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### cancelValidationJob
-Cancel Validation Job.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.cancelValidationJob({  id : value });
-
-// Async/Await
-const data = await client.discount.cancelValidationJob({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | id |  
-
-
-
-Cancel Validation Job.
-
-*Returned Response:*
-
-
-
-
-[CancelJobResponse](#CancelJobResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getDownloadJob
-Download File Job.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.getDownloadJob({  id : value });
-
-// Async/Await
-const data = await client.discount.getDownloadJob({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | id |  
-
-
-
-Download File Job.
-
-*Returned Response:*
-
-
-
-
-[FileJobResponse](#FileJobResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### cancelDownloadJob
-Cancel Download Job.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.cancelDownloadJob({  id : value });
-
-// Async/Await
-const data = await client.discount.cancelDownloadJob({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | id |  
-
-
-
-Cancel Download Job.
-
-*Returned Response:*
-
-
-
-
-[CancelJobResponse](#CancelJobResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
- 
- 
- #### [ValidityObject](#ValidityObject)
+
+#### [BadRequestObject](#BadRequestObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | string |  yes  |  |
- | end | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  yes  |  |
 
 ---
 
-
- 
- 
- #### [CreateUpdateDiscount](#CreateUpdateDiscount)
+#### [BulkDiscount](#BulkDiscount)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | company_id | number |  yes  |  |
- | is_active | boolean |  yes  |  |
- | app_ids | [string] |  yes  |  |
- | extension_ids | [string] |  yes  |  |
- | job_type | string |  yes  |  |
- | discount_type | string |  yes  |  |
- | discount_level | string |  yes  |  |
- | value | number |  no  |  |
- | file_path | string |  no  |  |
- | brand_ids | [number] |  no  |  |
- | store_ids | [number] |  no  |  |
- | validity | [ValidityObject](#ValidityObject) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || company_id | number |  yes  |  || items | [[DiscountItems](#DiscountItems)] |  yes  |  |
 
 ---
 
-
- 
- 
- #### [DiscountJob](#DiscountJob)
+#### [CancelJobResponse](#CancelJobResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  yes  |  |
- | name | string |  yes  |  |
- | company_id | number |  yes  |  |
- | is_active | boolean |  yes  |  |
- | app_ids | [string] |  no  |  |
- | job_type | string |  no  |  |
- | discount_type | string |  no  |  |
- | discount_level | string |  no  |  |
- | value | number |  no  |  |
- | file_path | string |  no  |  |
- | brand_ids | [number] |  no  |  |
- | store_ids | [number] |  no  |  |
- | validity | [ValidityObject](#ValidityObject) |  yes  |  |
- | created_on | string |  yes  |  |
- | modified_on | string |  yes  |  |
- | created_by | [UserDetails](#UserDetails) |  yes  |  |
- | modified_by | [UserDetails](#UserDetails) |  yes  |  |
- | meta | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
 
 ---
 
-
- 
- 
- #### [ListOrCalender](#ListOrCalender)
+#### [CreateUpdateDiscount](#CreateUpdateDiscount)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[DiscountJob](#DiscountJob)] |  yes  |  |
- | page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || app_ids | [string] |  yes  |  || brand_ids | [number] |  no  |  || company_id | number |  yes  |  || discount_level | string |  yes  |  || discount_type | string |  yes  |  || extension_ids | [string] |  yes  |  || file_path | string |  no  |  || is_active | boolean |  yes  |  || job_type | string |  yes  |  || name | string |  yes  |  || store_ids | [number] |  no  |  || validity | [ValidityObject](#ValidityObject) |  yes  |  || value | number |  no  |  |
 
 ---
 
-
- 
- 
- #### [DiscountItems](#DiscountItems)
+#### [DiscountItems](#DiscountItems)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_code | string |  no  |  |
- | brand_uid | number |  no  |  |
- | seller_identifier | string |  no  |  |
- | discount_type | string |  yes  |  |
- | value | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || brand_uid | number |  no  |  || discount_type | string |  yes  |  || item_code | string |  no  |  || seller_identifier | string |  no  |  || value | number |  yes  |  |
 
 ---
 
-
- 
- 
- #### [BulkDiscount](#BulkDiscount)
+#### [DiscountJob](#DiscountJob)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_id | number |  yes  |  |
- | items | [[DiscountItems](#DiscountItems)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || app_ids | [string] |  no  |  || brand_ids | [number] |  no  |  || company_id | number |  yes  |  || created_by | [UserDetails](#UserDetails) |  yes  |  || created_on | string |  yes  |  || discount_level | string |  no  |  || discount_type | string |  no  |  || file_path | string |  no  |  || is_active | boolean |  yes  |  || job_type | string |  no  |  || meta | string |  no  |  || modified_by | [UserDetails](#UserDetails) |  yes  |  || modified_on | string |  yes  |  || name | string |  yes  |  || store_ids | [number] |  no  |  || validity | [ValidityObject](#ValidityObject) |  yes  |  || value | number |  no  |  |
 
 ---
 
-
- 
- 
- #### [FileJobResponse](#FileJobResponse)
+#### [DownloadFileJob](#DownloadFileJob)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | stage | string |  yes  |  |
- | total | number |  yes  |  |
- | failed | number |  yes  |  |
- | company_id | number |  yes  |  |
- | body | string |  no  |  |
- | type | string |  yes  |  |
- | file_type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || brand_ids | [number] |  no  |  || store_ids | [number] |  no  |  |
 
 ---
 
-
- 
- 
- #### [DownloadFileJob](#DownloadFileJob)
+#### [FileJobResponse](#FileJobResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_ids | [number] |  no  |  |
- | store_ids | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || body | string |  no  |  || company_id | number |  yes  |  || failed | number |  yes  |  || file_type | string |  yes  |  || stage | string |  yes  |  || total | number |  yes  |  || type | string |  yes  |  |
 
 ---
 
-
- 
- 
- #### [CancelJobResponse](#CancelJobResponse)
+#### [ListOrCalender](#ListOrCalender)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[DiscountJob](#DiscountJob)] |  yes  |  || page | [Page](#Page) |  yes  |  |
 
 ---
 
-
- 
- 
- #### [Page](#Page)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
- | has_next | boolean |  no  |  |
- | current | number |  no  |  |
- | type | number |  yes  |  |
- | size | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | number |  yes  |  |
 
 ---
 
-
- 
- 
- #### [UserDetails](#UserDetails)
+#### [UserDetails](#UserDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | username | string |  yes  |  |
- | user_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || user_id | string |  yes  |  || username | string |  yes  |  |
 
 ---
 
-
- 
- 
- #### [BadRequestObject](#BadRequestObject)
+#### [ValidityObject](#ValidityObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || end | string |  yes  |  || start | string |  yes  |  |
 
 ---
 

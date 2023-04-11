@@ -10,16 +10,16 @@ class Rewards {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
-      getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
       catalogueOrder:
         "/service/application/rewards/v1.0/catalogue/offer/order/",
-      getUserPointsHistory:
-        "/service/application/rewards/v1.0/user/points/history/",
-      getUserPoints: "/service/application/rewards/v1.0/user/points/",
-      getUserReferralDetails:
-        "/service/application/rewards/v1.0/user/referral/",
+      getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
       getOrderDiscount:
         "/service/application/rewards/v1.0/user/offer/order-discount/",
+      getUserPoints: "/service/application/rewards/v1.0/user/points/",
+      getUserPointsHistory:
+        "/service/application/rewards/v1.0/user/points/history/",
+      getUserReferralDetails:
+        "/service/application/rewards/v1.0/user/referral/",
       redeemReferralCode:
         "/service/application/rewards/v1.0/user/referral/redeem/",
     };
@@ -37,6 +37,69 @@ class Rewards {
       ...this._urls,
       ...urls,
     };
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {CatalogueOrderRequest} arg.body
+   * @returns {Promise<CatalogueOrderResponse>} - Success response
+   * @summary: Get all transactions of reward points
+   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+   */
+  async catalogueOrder({ body } = {}) {
+    const { error } = RewardsValidator.catalogueOrder().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.catalogueOrder().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for catalogueOrder",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["catalogueOrder"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = RewardsModel.CatalogueOrderResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for catalogueOrder",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 
   /**
@@ -102,13 +165,13 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CatalogueOrderRequest} arg.body
-   * @returns {Promise<CatalogueOrderResponse>} - Success response
-   * @summary: Get all transactions of reward points
-   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+   * @param {OrderDiscountRequest} arg.body
+   * @returns {Promise<OrderDiscountResponse>} - Success response
+   * @summary: Calculates the discount on order-amount
+   * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
    */
-  async catalogueOrder({ body } = {}) {
-    const { error } = RewardsValidator.catalogueOrder().validate(
+  async getOrderDiscount({ body } = {}) {
+    const { error } = RewardsValidator.getOrderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -117,14 +180,14 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.catalogueOrder().validate(
+    const { error: warrning } = RewardsValidator.getOrderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for catalogueOrder",
+        message: "Parameter Validation warrnings for getOrderDiscount",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -137,7 +200,7 @@ class Rewards {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["catalogueOrder"],
+        url: this._urls["getOrderDiscount"],
         params: {},
       }),
       query_params,
@@ -147,7 +210,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsModel.CatalogueOrderResponse().validate(response, {
+    } = RewardsModel.OrderDiscountResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -155,7 +218,69 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for catalogueOrder",
+        message: "Response Validation Warnnings for getOrderDiscount",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<PointsResponse>} - Success response
+   * @summary: Get referral details of a user
+   * @description: Use this API to retrieve total available points of a user for current application
+   */
+  async getUserPoints({} = {}) {
+    const { error } = RewardsValidator.getUserPoints().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.getUserPoints().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getUserPoints",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getUserPoints"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = RewardsModel.PointsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getUserPoints",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -260,68 +385,6 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<PointsResponse>} - Success response
-   * @summary: Get referral details of a user
-   * @description: Use this API to retrieve total available points of a user for current application
-   */
-  async getUserPoints({} = {}) {
-    const { error } = RewardsValidator.getUserPoints().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getUserPoints().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getUserPoints",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getUserPoints"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = RewardsModel.PointsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getUserPoints",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @returns {Promise<ReferralDetailsResponse>} - Success response
    * @summary: Get referral details of a user
    * @description: Use this API to retrieve the referral details a user has configured in the application.
@@ -377,69 +440,6 @@ class Rewards {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getUserReferralDetails",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {OrderDiscountRequest} arg.body
-   * @returns {Promise<OrderDiscountResponse>} - Success response
-   * @summary: Calculates the discount on order-amount
-   * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
-   */
-  async getOrderDiscount({ body } = {}) {
-    const { error } = RewardsValidator.getOrderDiscount().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getOrderDiscount().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getOrderDiscount",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getOrderDiscount"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = RewardsModel.OrderDiscountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getOrderDiscount",
       });
       Logger({ level: "WARN", message: res_error });
     }

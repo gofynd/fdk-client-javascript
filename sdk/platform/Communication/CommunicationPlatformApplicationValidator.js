@@ -2,11 +2,9 @@ const Joi = require("joi");
 const CommunicationModel = require("./CommunicationPlatformModel");
 
 class CommunicationValidator {
-  static getCampaigns() {
+  static createAudience() {
     return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      sort: Joi.any(),
+      body: CommunicationModel.AudienceReq().required(),
     }).required();
   }
 
@@ -16,20 +14,43 @@ class CommunicationValidator {
     }).required();
   }
 
-  static getCampaignById() {
+  static createEmailProvider() {
+    return Joi.object({
+      body: CommunicationModel.EmailProviderReq().required(),
+    }).required();
+  }
+
+  static createEmailTemplate() {
+    return Joi.object({
+      body: CommunicationModel.EmailTemplateReq().required(),
+    }).required();
+  }
+
+  static createSmsProvider() {
+    return Joi.object({
+      body: CommunicationModel.SmsProviderReq().required(),
+    }).required();
+  }
+
+  static createSmsTemplate() {
+    return Joi.object({
+      body: CommunicationModel.SmsTemplateReq().required(),
+    }).required();
+  }
+
+  static deleteEmailTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static updateCampaignById() {
+  static deleteSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CommunicationModel.CampaignReq().required(),
     }).required();
   }
 
-  static getStatsOfCampaignById() {
+  static getAudienceById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -43,140 +64,19 @@ class CommunicationValidator {
     }).required();
   }
 
-  static createAudience() {
-    return Joi.object({
-      body: CommunicationModel.AudienceReq().required(),
-    }).required();
-  }
-
   static getBigqueryHeaders() {
     return Joi.object({
       body: CommunicationModel.BigqueryHeadersReq().required(),
     }).required();
   }
 
-  static getAudienceById() {
+  static getCampaignById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static updateAudienceById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CommunicationModel.AudienceReq().required(),
-    }).required();
-  }
-
-  static getNSampleRecordsFromCsv() {
-    return Joi.object({
-      body: CommunicationModel.GetNRecordsCsvReq().required(),
-    }).required();
-  }
-
-  static getEmailProviders() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      sort: Joi.any(),
-    }).required();
-  }
-
-  static createEmailProvider() {
-    return Joi.object({
-      body: CommunicationModel.EmailProviderReq().required(),
-    }).required();
-  }
-
-  static getEmailProviderById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateEmailProviderById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CommunicationModel.EmailProviderReq().required(),
-    }).required();
-  }
-
-  static getEmailTemplates() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      sort: Joi.any(),
-    }).required();
-  }
-
-  static createEmailTemplate() {
-    return Joi.object({
-      body: CommunicationModel.EmailTemplateReq().required(),
-    }).required();
-  }
-
-  static getSystemEmailTemplates() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      sort: Joi.any(),
-    }).required();
-  }
-
-  static getEmailTemplateById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateEmailTemplateById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CommunicationModel.EmailTemplateReq().required(),
-    }).required();
-  }
-
-  static deleteEmailTemplateById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static sendCommunicationSynchronously() {
-    return Joi.object({
-      body: CommunicationModel.EngineRequest().required(),
-    }).required();
-  }
-
-  static sendCommunicationAsynchronously() {
-    return Joi.object({
-      body: CommunicationModel.EngineRequest().required(),
-    }).required();
-  }
-
-  static getEventSubscriptions() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      populate: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getJobs() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      sort: Joi.any(),
-    }).required();
-  }
-
-  static triggerCampaignJob() {
-    return Joi.object({
-      body: CommunicationModel.TriggerJobRequest().required(),
-    }).required();
-  }
-
-  static getJobLogs() {
+  static getCampaigns() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
@@ -193,15 +93,67 @@ class CommunicationValidator {
     }).required();
   }
 
-  static sendOtp() {
+  static getEmailProviderById() {
     return Joi.object({
-      body: CommunicationModel.SendOtpCommsReq().required(),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static verfiyOtp() {
+  static getEmailProviders() {
     return Joi.object({
-      body: CommunicationModel.VerifyOtpCommsReq().required(),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getEmailTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getEmailTemplates() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getEventSubscriptions() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      populate: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getJobLogs() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getJobs() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getNSampleRecordsFromCsv() {
+    return Joi.object({
+      body: CommunicationModel.GetNRecordsCsvReq().required(),
+    }).required();
+  }
+
+  static getSmsProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -213,22 +165,9 @@ class CommunicationValidator {
     }).required();
   }
 
-  static createSmsProvider() {
-    return Joi.object({
-      body: CommunicationModel.SmsProviderReq().required(),
-    }).required();
-  }
-
-  static getSmsProviderById() {
+  static getSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateSmsProviderById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CommunicationModel.SmsProviderReq().required(),
     }).required();
   }
 
@@ -240,15 +179,84 @@ class CommunicationValidator {
     }).required();
   }
 
-  static createSmsTemplate() {
+  static getStatsOfCampaignById() {
     return Joi.object({
-      body: CommunicationModel.SmsTemplateReq().required(),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getSmsTemplateById() {
+  static getSystemEmailTemplates() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static getSystemSystemTemplates() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      sort: Joi.any(),
+    }).required();
+  }
+
+  static sendCommunicationAsynchronously() {
+    return Joi.object({
+      body: CommunicationModel.EngineRequest().required(),
+    }).required();
+  }
+
+  static sendCommunicationSynchronously() {
+    return Joi.object({
+      body: CommunicationModel.EngineRequest().required(),
+    }).required();
+  }
+
+  static sendOtp() {
+    return Joi.object({
+      body: CommunicationModel.SendOtpCommsReq().required(),
+    }).required();
+  }
+
+  static triggerCampaignJob() {
+    return Joi.object({
+      body: CommunicationModel.TriggerJobRequest().required(),
+    }).required();
+  }
+
+  static updateAudienceById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      body: CommunicationModel.AudienceReq().required(),
+    }).required();
+  }
+
+  static updateCampaignById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationModel.CampaignReq().required(),
+    }).required();
+  }
+
+  static updateEmailProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationModel.EmailProviderReq().required(),
+    }).required();
+  }
+
+  static updateEmailTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationModel.EmailTemplateReq().required(),
+    }).required();
+  }
+
+  static updateSmsProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationModel.SmsProviderReq().required(),
     }).required();
   }
 
@@ -259,17 +267,9 @@ class CommunicationValidator {
     }).required();
   }
 
-  static deleteSmsTemplateById() {
+  static verfiyOtp() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getSystemSystemTemplates() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      sort: Joi.any(),
+      body: CommunicationModel.VerifyOtpCommsReq().required(),
     }).required();
   }
 }

@@ -2,6 +2,19 @@ const Joi = require("joi");
 const FeedbackModel = require("./FeedbackPlatformModel");
 
 class FeedbackValidator {
+  static createTemplate() {
+    return Joi.object({
+      body: FeedbackModel.TemplateRequestList().required(),
+    }).required();
+  }
+
+  static getApplicationTemplates() {
+    return Joi.object({
+      pageId: Joi.string().allow(""),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   static getAttributes() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -29,35 +42,22 @@ class FeedbackValidator {
     }).required();
   }
 
-  static updateApprove() {
-    return Joi.object({
-      reviewId: Joi.string().allow("").required(),
-      body: FeedbackModel.ApproveRequest().required(),
-    }).required();
-  }
-
   static getHistory() {
     return Joi.object({
       reviewId: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getApplicationTemplates() {
-    return Joi.object({
-      pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
-  static createTemplate() {
-    return Joi.object({
-      body: FeedbackModel.TemplateRequestList().required(),
-    }).required();
-  }
-
   static getTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static updateApprove() {
+    return Joi.object({
+      reviewId: Joi.string().allow("").required(),
+      body: FeedbackModel.ApproveRequest().required(),
     }).required();
   }
 

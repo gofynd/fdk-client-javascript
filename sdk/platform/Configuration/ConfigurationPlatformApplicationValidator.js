@@ -2,58 +2,15 @@ const Joi = require("joi");
 const ConfigurationModel = require("./ConfigurationPlatformModel");
 
 class ConfigurationValidator {
-  static getBuildConfig() {
+  static addDomain() {
     return Joi.object({
-      platformType: Joi.string().allow("").required(),
+      body: ConfigurationModel.DomainAddRequest().required(),
     }).required();
   }
 
-  static updateBuildConfig() {
+  static changeDomainType() {
     return Joi.object({
-      platformType: Joi.string().allow("").required(),
-      body: ConfigurationModel.MobileAppConfigRequest().required(),
-    }).required();
-  }
-
-  static getPreviousVersions() {
-    return Joi.object({
-      platformType: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getAppFeatures() {
-    return Joi.object({}).required();
-  }
-
-  static updateAppFeatures() {
-    return Joi.object({
-      body: ConfigurationModel.AppFeatureRequest().required(),
-    }).required();
-  }
-
-  static modifyAppFeatures() {
-    return Joi.object({
-      body: ConfigurationModel.AppFeatureRequest().required(),
-    }).required();
-  }
-
-  static getAppBasicDetails() {
-    return Joi.object({}).required();
-  }
-
-  static updateAppBasicDetails() {
-    return Joi.object({
-      body: ConfigurationModel.ApplicationDetail().required(),
-    }).required();
-  }
-
-  static getAppContactInfo() {
-    return Joi.object({}).required();
-  }
-
-  static updateAppContactInfo() {
-    return Joi.object({
-      body: ConfigurationModel.ApplicationInformation().required(),
+      body: ConfigurationModel.UpdateDomainTypeRequest().required(),
     }).required();
   }
 
@@ -61,10 +18,8 @@ class ConfigurationValidator {
     return Joi.object({}).required();
   }
 
-  static updateAppApiTokens() {
-    return Joi.object({
-      body: ConfigurationModel.TokenResponse().required(),
-    }).required();
+  static getAppBasicDetails() {
+    return Joi.object({}).required();
   }
 
   static getAppCompanies() {
@@ -75,6 +30,18 @@ class ConfigurationValidator {
     }).required();
   }
 
+  static getAppContactInfo() {
+    return Joi.object({}).required();
+  }
+
+  static getAppCurrencyConfig() {
+    return Joi.object({}).required();
+  }
+
+  static getAppFeatures() {
+    return Joi.object({}).required();
+  }
+
   static getAppStores() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -82,33 +49,31 @@ class ConfigurationValidator {
     }).required();
   }
 
-  static getInventoryConfig() {
-    return Joi.object({}).required();
-  }
-
-  static updateInventoryConfig() {
-    return Joi.object({
-      body: ConfigurationModel.ApplicationInventory().required(),
-    }).required();
-  }
-
-  static partiallyUpdateInventoryConfig() {
-    return Joi.object({
-      body: ConfigurationModel.AppInventoryPartialUpdate().required(),
-    }).required();
-  }
-
-  static getAppCurrencyConfig() {
-    return Joi.object({}).required();
-  }
-
-  static updateAppCurrencyConfig() {
-    return Joi.object({
-      body: ConfigurationModel.AppSupportedCurrency().required(),
-    }).required();
-  }
-
   static getAppSupportedCurrency() {
+    return Joi.object({}).required();
+  }
+
+  static getApplicationById() {
+    return Joi.object({}).required();
+  }
+
+  static getBuildConfig() {
+    return Joi.object({
+      platformType: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getDomainStatus() {
+    return Joi.object({
+      body: ConfigurationModel.DomainStatusRequest().required(),
+    }).required();
+  }
+
+  static getDomains() {
+    return Joi.object({}).required();
+  }
+
+  static getInventoryConfig() {
     return Joi.object({}).required();
   }
 
@@ -120,9 +85,9 @@ class ConfigurationValidator {
     }).required();
   }
 
-  static updateOrderingStoreConfig() {
+  static getPreviousVersions() {
     return Joi.object({
-      body: ConfigurationModel.OrderingStoreConfig().required(),
+      platformType: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -134,13 +99,15 @@ class ConfigurationValidator {
     }).required();
   }
 
-  static getDomains() {
-    return Joi.object({}).required();
+  static modifyAppFeatures() {
+    return Joi.object({
+      body: ConfigurationModel.AppFeatureRequest().required(),
+    }).required();
   }
 
-  static addDomain() {
+  static partiallyUpdateInventoryConfig() {
     return Joi.object({
-      body: ConfigurationModel.DomainAddRequest().required(),
+      body: ConfigurationModel.AppInventoryPartialUpdate().required(),
     }).required();
   }
 
@@ -150,20 +117,53 @@ class ConfigurationValidator {
     }).required();
   }
 
-  static changeDomainType() {
+  static updateAppApiTokens() {
     return Joi.object({
-      body: ConfigurationModel.UpdateDomainTypeRequest().required(),
+      body: ConfigurationModel.TokenResponse().required(),
     }).required();
   }
 
-  static getDomainStatus() {
+  static updateAppBasicDetails() {
     return Joi.object({
-      body: ConfigurationModel.DomainStatusRequest().required(),
+      body: ConfigurationModel.ApplicationDetail().required(),
     }).required();
   }
 
-  static getApplicationById() {
-    return Joi.object({}).required();
+  static updateAppContactInfo() {
+    return Joi.object({
+      body: ConfigurationModel.ApplicationInformation().required(),
+    }).required();
+  }
+
+  static updateAppCurrencyConfig() {
+    return Joi.object({
+      body: ConfigurationModel.AppSupportedCurrency().required(),
+    }).required();
+  }
+
+  static updateAppFeatures() {
+    return Joi.object({
+      body: ConfigurationModel.AppFeatureRequest().required(),
+    }).required();
+  }
+
+  static updateBuildConfig() {
+    return Joi.object({
+      platformType: Joi.string().allow("").required(),
+      body: ConfigurationModel.MobileAppConfigRequest().required(),
+    }).required();
+  }
+
+  static updateInventoryConfig() {
+    return Joi.object({
+      body: ConfigurationModel.ApplicationInventory().required(),
+    }).required();
+  }
+
+  static updateOrderingStoreConfig() {
+    return Joi.object({
+      body: ConfigurationModel.OrderingStoreConfig().required(),
+    }).required();
   }
 }
 

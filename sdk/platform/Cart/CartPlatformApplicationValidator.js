@@ -2,91 +2,28 @@ const Joi = require("joi");
 const CartModel = require("./CartPlatformModel");
 
 class CartValidator {
-  static getCoupons() {
+  static addAddress() {
     return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      isArchived: Joi.boolean(),
-      title: Joi.string().allow(""),
-      isPublic: Joi.boolean(),
-      isDisplay: Joi.boolean(),
-      typeSlug: Joi.string().allow(""),
-      code: Joi.string().allow(""),
+      body: CartModel.PlatformAddress().required(),
     }).required();
   }
 
-  static createCoupon() {
+  static addItems() {
     return Joi.object({
-      body: CartModel.CouponAdd().required(),
+      cartId: Joi.string().allow("").required(),
+      b: Joi.boolean(),
+      body: CartModel.AddCartRequest().required(),
     }).required();
   }
 
-  static getCouponById() {
+  static applyCoupon() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateCoupon() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.CouponUpdate().required(),
-    }).required();
-  }
-
-  static updateCouponPartially() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.CouponPartialUpdate().required(),
-    }).required();
-  }
-
-  static getPromotions() {
-    return Joi.object({
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      promoGroup: Joi.string().allow(""),
-      promotionType: Joi.string().allow(""),
-      fpPanel: Joi.string().allow(""),
-      promotionId: Joi.string().allow(""),
-    }).required();
-  }
-
-  static createPromotion() {
-    return Joi.object({
-      body: CartModel.PromotionAdd().required(),
-    }).required();
-  }
-
-  static getPromotionById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updatePromotion() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.PromotionUpdate().required(),
-    }).required();
-  }
-
-  static updatePromotionPartially() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.PromotionPartialUpdate().required(),
-    }).required();
-  }
-
-  static getPromosCouponConfig() {
-    return Joi.object({}).required();
-  }
-
-  static fetchAndvalidateCartItems() {
-    return Joi.object({
-      body: CartModel.OpenapiCartDetailsRequest().required(),
+      i: Joi.boolean(),
+      b: Joi.boolean(),
+      p: Joi.boolean(),
+      id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+      body: CartModel.ApplyCouponRequest().required(),
     }).required();
   }
 
@@ -99,6 +36,31 @@ class CartValidator {
   static checkoutCart() {
     return Joi.object({
       body: CartModel.OpenApiPlatformCheckoutReq().required(),
+    }).required();
+  }
+
+  static createCoupon() {
+    return Joi.object({
+      body: CartModel.CouponAdd().required(),
+    }).required();
+  }
+
+  static createPromotion() {
+    return Joi.object({
+      body: CartModel.PromotionAdd().required(),
+    }).required();
+  }
+
+  static deleteCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      body: CartModel.DeleteCartRequest().required(),
+    }).required();
+  }
+
+  static fetchAndvalidateCartItems() {
+    return Joi.object({
+      body: CartModel.OpenapiCartDetailsRequest().required(),
     }).required();
   }
 
@@ -122,123 +84,16 @@ class CartValidator {
     }).required();
   }
 
-  static addItems() {
+  static getAddressById() {
     return Joi.object({
-      cartId: Joi.string().allow("").required(),
-      b: Joi.boolean(),
-      body: CartModel.AddCartRequest().required(),
-    }).required();
-  }
-
-  static updateCart() {
-    return Joi.object({
-      cartId: Joi.string().allow("").required(),
-      b: Joi.boolean(),
-      body: CartModel.UpdateCartRequest().required(),
-    }).required();
-  }
-
-  static getCartShareLink() {
-    return Joi.object({
-      body: CartModel.GetShareCartLinkRequest().required(),
-    }).required();
-  }
-
-  static getCartSharedItems() {
-    return Joi.object({
-      token: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static updateCartWithSharedItems() {
-    return Joi.object({
-      token: Joi.string().allow("").required(),
-      action: Joi.string().allow("").required(),
+      id: Joi.string().allow("").required(),
       cartId: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getCartList() {
-    return Joi.object({
-      fromDate: Joi.string().allow(""),
-      toDate: Joi.string().allow(""),
-      filterOn: Joi.string().allow(""),
-    }).required();
-  }
-
-  static updateCartUser() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      body: CartModel.UpdateUserCartMapping().required(),
-    }).required();
-  }
-
-  static getCart() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      i: Joi.boolean(),
-      b: Joi.boolean(),
-      assignCardId: Joi.number(),
       buyNow: Joi.boolean(),
-    }).required();
-  }
-
-  static platformAddItems() {
-    return Joi.object({
-      i: Joi.boolean(),
-      b: Joi.boolean(),
-      buyNow: Joi.boolean(),
-      id: Joi.string().allow(""),
-      body: CartModel.AddCartRequest().required(),
-    }).required();
-  }
-
-  static platformUpdateCart() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      i: Joi.boolean(),
-      b: Joi.boolean(),
-      buyNow: Joi.boolean(),
-      body: CartModel.UpdateCartRequest().required(),
-    }).required();
-  }
-
-  static deleteCart() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      body: CartModel.DeleteCartRequest().required(),
-    }).required();
-  }
-
-  static getItemCount() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      buyNow: Joi.boolean(),
-    }).required();
-  }
-
-  static getAppCoupons() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      buyNow: Joi.boolean(),
-    }).required();
-  }
-
-  static applyCoupon() {
-    return Joi.object({
-      i: Joi.boolean(),
-      b: Joi.boolean(),
-      p: Joi.boolean(),
-      id: Joi.string().allow(""),
-      buyNow: Joi.boolean(),
-      body: CartModel.ApplyCouponRequest().required(),
-    }).required();
-  }
-
-  static removeCoupon() {
-    return Joi.object({
-      uid: Joi.string().allow(""),
-      buyNow: Joi.boolean(),
+      mobileNo: Joi.string().allow(""),
+      checkoutMode: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
+      isDefault: Joi.boolean(),
+      userId: Joi.string().allow(""),
     }).required();
   }
 
@@ -254,46 +109,96 @@ class CartValidator {
     }).required();
   }
 
-  static addAddress() {
+  static getAppCoupons() {
     return Joi.object({
-      body: CartModel.PlatformAddress().required(),
-    }).required();
-  }
-
-  static getAddressById() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      cartId: Joi.string().allow(""),
+      id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
-      mobileNo: Joi.string().allow(""),
-      checkoutMode: Joi.string().allow(""),
-      tags: Joi.string().allow(""),
-      isDefault: Joi.boolean(),
-      userId: Joi.string().allow(""),
     }).required();
   }
 
-  static updateAddress() {
+  static getAvailableDeliveryModes() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: CartModel.PlatformAddress().required(),
+      areaCode: Joi.string().allow("").required(),
+      id: Joi.string().allow(""),
     }).required();
   }
 
-  static removeAddress() {
+  static getCart() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      userId: Joi.string().allow(""),
-    }).required();
-  }
-
-  static selectAddress() {
-    return Joi.object({
-      cartId: Joi.string().allow(""),
-      buyNow: Joi.boolean(),
+      id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
-      body: CartModel.PlatformSelectCartAddressRequest().required(),
+      assignCardId: Joi.number(),
+      buyNow: Joi.boolean(),
+    }).required();
+  }
+
+  static getCartList() {
+    return Joi.object({
+      fromDate: Joi.string().allow(""),
+      toDate: Joi.string().allow(""),
+      filterOn: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getCartShareLink() {
+    return Joi.object({
+      body: CartModel.GetShareCartLinkRequest().required(),
+    }).required();
+  }
+
+  static getCartSharedItems() {
+    return Joi.object({
+      token: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getCouponById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getCoupons() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      isArchived: Joi.boolean(),
+      title: Joi.string().allow(""),
+      isPublic: Joi.boolean(),
+      isDisplay: Joi.boolean(),
+      typeSlug: Joi.string().allow(""),
+      code: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getItemCount() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+    }).required();
+  }
+
+  static getPromosCouponConfig() {
+    return Joi.object({}).required();
+  }
+
+  static getPromotionById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPromotions() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      q: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      promoGroup: Joi.string().allow(""),
+      promotionType: Joi.string().allow(""),
+      fpPanel: Joi.string().allow(""),
+      promotionId: Joi.string().allow(""),
     }).required();
   }
 
@@ -309,14 +214,83 @@ class CartValidator {
     }).required();
   }
 
-  static updateShipments() {
+  static getStoreAddressByUid() {
+    return Joi.object({
+      storeUid: Joi.number().required(),
+    }).required();
+  }
+
+  static platformAddItems() {
     return Joi.object({
       i: Joi.boolean(),
-      p: Joi.boolean(),
+      b: Joi.boolean(),
+      buyNow: Joi.boolean(),
       id: Joi.string().allow(""),
-      addressId: Joi.string().allow(""),
-      orderType: Joi.string().allow(""),
-      body: CartModel.UpdateCartShipmentRequest().required(),
+      body: CartModel.AddCartRequest().required(),
+    }).required();
+  }
+
+  static platformCheckoutCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      body: CartModel.PlatformCartCheckoutDetailRequest().required(),
+    }).required();
+  }
+
+  static platformUpdateCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      i: Joi.boolean(),
+      b: Joi.boolean(),
+      buyNow: Joi.boolean(),
+      body: CartModel.UpdateCartRequest().required(),
+    }).required();
+  }
+
+  static removeAddress() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      userId: Joi.string().allow(""),
+    }).required();
+  }
+
+  static removeCoupon() {
+    return Joi.object({
+      uid: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+    }).required();
+  }
+
+  static selectAddress() {
+    return Joi.object({
+      cartId: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+      i: Joi.boolean(),
+      b: Joi.boolean(),
+      body: CartModel.PlatformSelectCartAddressRequest().required(),
+    }).required();
+  }
+
+  static selectPaymentMode() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+      body: CartModel.UpdateCartPaymentRequest().required(),
+    }).required();
+  }
+
+  static updateAddress() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PlatformAddress().required(),
+    }).required();
+  }
+
+  static updateCart() {
+    return Joi.object({
+      cartId: Joi.string().allow("").required(),
+      b: Joi.boolean(),
+      body: CartModel.UpdateCartRequest().required(),
     }).required();
   }
 
@@ -328,31 +302,57 @@ class CartValidator {
     }).required();
   }
 
-  static platformCheckoutCart() {
+  static updateCartUser() {
     return Joi.object({
       id: Joi.string().allow(""),
-      body: CartModel.PlatformCartCheckoutDetailRequest().required(),
+      body: CartModel.UpdateUserCartMapping().required(),
     }).required();
   }
 
-  static getAvailableDeliveryModes() {
+  static updateCartWithSharedItems() {
     return Joi.object({
-      areaCode: Joi.string().allow("").required(),
-      id: Joi.string().allow(""),
+      token: Joi.string().allow("").required(),
+      action: Joi.string().allow("").required(),
+      cartId: Joi.string().allow(""),
     }).required();
   }
 
-  static getStoreAddressByUid() {
+  static updateCoupon() {
     return Joi.object({
-      storeUid: Joi.number().required(),
+      id: Joi.string().allow("").required(),
+      body: CartModel.CouponUpdate().required(),
     }).required();
   }
 
-  static selectPaymentMode() {
+  static updateCouponPartially() {
     return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.CouponPartialUpdate().required(),
+    }).required();
+  }
+
+  static updatePromotion() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PromotionUpdate().required(),
+    }).required();
+  }
+
+  static updatePromotionPartially() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PromotionPartialUpdate().required(),
+    }).required();
+  }
+
+  static updateShipments() {
+    return Joi.object({
+      i: Joi.boolean(),
+      p: Joi.boolean(),
       id: Joi.string().allow(""),
-      buyNow: Joi.boolean(),
-      body: CartModel.UpdateCartPaymentRequest().required(),
+      addressId: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
+      body: CartModel.UpdateCartShipmentRequest().required(),
     }).required();
   }
 

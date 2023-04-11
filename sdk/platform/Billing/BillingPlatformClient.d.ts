@@ -4,40 +4,14 @@ declare class Billing {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.plan - ID of the plan.
-     * @param {string} arg.couponCode - Coupon code.
-     * @returns {Promise<CheckValidityResponse>} - Success response
-     * @summary: Check coupon validity
-     * @description: Check coupon validity.
+     * @param {SubscriptionActivateReq} arg.body
+     * @returns {Promise<SubscriptionActivateRes>} - Success response
+     * @summary: Activate subscription
+     * @description: It will activate subscription plan for customer
      */
-    checkCouponValidity({ plan, couponCode }?: {
-        plan: string;
-        couponCode: string;
-    }): Promise<CheckValidityResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {CreateSubscriptionCharge} arg.body
-     * @returns {Promise<CreateSubscriptionResponse>} - Success response
-     * @summary: Create subscription charge
-     * @description: Register subscription charge for a seller of your extension.
-     */
-    createSubscriptionCharge({ extensionId, body }?: {
-        extensionId: string;
-        body: CreateSubscriptionCharge;
-    }): Promise<CreateSubscriptionResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {string} arg.subscriptionId - Subscription charge _id
-     * @returns {Promise<EntitySubscription>} - Success response
-     * @summary: Get subscription charge details
-     * @description: Get created subscription charge details
-     */
-    getSubscriptionCharge({ extensionId, subscriptionId }?: {
-        extensionId: string;
-        subscriptionId: string;
-    }): Promise<EntitySubscription>;
+    activateSubscriptionPlan({ body }?: {
+        body: SubscriptionActivateReq;
+    }): Promise<SubscriptionActivateRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.extensionId - Extension _id
@@ -50,6 +24,28 @@ declare class Billing {
         extensionId: string;
         subscriptionId: string;
     }): Promise<EntitySubscription>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CancelSubscriptionReq} arg.body
+     * @returns {Promise<CancelSubscriptionRes>} - Success response
+     * @summary: Cancel subscription
+     * @description: It will cancel current active subscription.
+     */
+    cancelSubscriptionPlan({ body }?: {
+        body: CancelSubscriptionReq;
+    }): Promise<CancelSubscriptionRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.plan - ID of the plan.
+     * @param {string} arg.couponCode - Coupon code.
+     * @returns {Promise<CheckValidityResponse>} - Success response
+     * @summary: Check coupon validity
+     * @description: Check coupon validity.
+     */
+    checkCouponValidity({ plan, couponCode }?: {
+        plan: string;
+        couponCode: string;
+    }): Promise<CheckValidityResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.extensionId - Extension _id
@@ -65,6 +61,18 @@ declare class Billing {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.extensionId - Extension _id
+     * @param {CreateSubscriptionCharge} arg.body
+     * @returns {Promise<CreateSubscriptionResponse>} - Success response
+     * @summary: Create subscription charge
+     * @description: Register subscription charge for a seller of your extension.
+     */
+    createSubscriptionCharge({ extensionId, body }?: {
+        extensionId: string;
+        body: CreateSubscriptionCharge;
+    }): Promise<CreateSubscriptionResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.extensionId - Extension _id
      * @param {string} arg.chargeId - Standalone charge _id
      * @returns {Promise<OneTimeChargeEntity>} - Success response
      * @summary: Get subscription charge details
@@ -76,11 +84,18 @@ declare class Billing {
     }): Promise<OneTimeChargeEntity>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<Invoices>} - Success response
-     * @summary: Get invoices
-     * @description: Get invoices.
+     * @returns {Promise<SubscriptionCustomer>} - Success response
+     * @summary: Get subscription customer detail
+     * @description: Get subscription customer detail.
      */
-    getInvoices({}?: any): Promise<Invoices>;
+    getCustomerDetail({}?: any): Promise<SubscriptionCustomer>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<SubscriptionLimit>} - Success response
+     * @summary: Get subscription subscription limits
+     * @description: Get subscription subscription limits.
+     */
+    getFeatureLimitConfig({}?: any): Promise<SubscriptionLimit>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.invoiceId - Invoice id
@@ -93,11 +108,30 @@ declare class Billing {
     }): Promise<Invoice>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<SubscriptionCustomer>} - Success response
-     * @summary: Get subscription customer detail
-     * @description: Get subscription customer detail.
+     * @returns {Promise<Invoices>} - Success response
+     * @summary: Get invoices
+     * @description: Get invoices.
      */
-    getCustomerDetail({}?: any): Promise<SubscriptionCustomer>;
+    getInvoices({}?: any): Promise<Invoices>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<SubscriptionStatus>} - Success response
+     * @summary: Get current subscription detail
+     * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+     */
+    getSubscription({}?: any): Promise<SubscriptionStatus>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.extensionId - Extension _id
+     * @param {string} arg.subscriptionId - Subscription charge _id
+     * @returns {Promise<EntitySubscription>} - Success response
+     * @summary: Get subscription charge details
+     * @description: Get created subscription charge details
+     */
+    getSubscriptionCharge({ extensionId, subscriptionId }?: {
+        extensionId: string;
+        subscriptionId: string;
+    }): Promise<EntitySubscription>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SubscriptionCustomerCreate} arg.body
@@ -108,38 +142,4 @@ declare class Billing {
     upsertCustomerDetail({ body }?: {
         body: SubscriptionCustomerCreate;
     }): Promise<SubscriptionCustomer>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<SubscriptionStatus>} - Success response
-     * @summary: Get current subscription detail
-     * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
-     */
-    getSubscription({}?: any): Promise<SubscriptionStatus>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<SubscriptionLimit>} - Success response
-     * @summary: Get subscription subscription limits
-     * @description: Get subscription subscription limits.
-     */
-    getFeatureLimitConfig({}?: any): Promise<SubscriptionLimit>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriptionActivateReq} arg.body
-     * @returns {Promise<SubscriptionActivateRes>} - Success response
-     * @summary: Activate subscription
-     * @description: It will activate subscription plan for customer
-     */
-    activateSubscriptionPlan({ body }?: {
-        body: SubscriptionActivateReq;
-    }): Promise<SubscriptionActivateRes>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelSubscriptionReq} arg.body
-     * @returns {Promise<CancelSubscriptionRes>} - Success response
-     * @summary: Cancel subscription
-     * @description: It will cancel current active subscription.
-     */
-    cancelSubscriptionPlan({ body }?: {
-        body: CancelSubscriptionReq;
-    }): Promise<CancelSubscriptionRes>;
 }

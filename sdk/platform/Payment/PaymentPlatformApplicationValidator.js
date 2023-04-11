@@ -2,33 +2,10 @@ const Joi = require("joi");
 const PaymentModel = require("./PaymentPlatformModel");
 
 class PaymentValidator {
-  static getBrandPaymentGatewayConfig() {
-    return Joi.object({}).required();
-  }
-
-  static saveBrandPaymentGatewayConfig() {
+  static addEdcDevice() {
     return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
-    }).required();
-  }
-
-  static updateBrandPaymentGatewayConfig() {
-    return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
-    }).required();
-  }
-
-  static getPaymentModeRoutes() {
-    return Joi.object({
-      refresh: Joi.boolean().required(),
-      requestType: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getBankAccountDetailsOpenAPI() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-      requestHash: Joi.string().allow(""),
+      terminalUniqueIdentifier: Joi.string().allow("").required(),
+      body: PaymentModel.EdcUpdateRequest().required(),
     }).required();
   }
 
@@ -38,15 +15,9 @@ class PaymentValidator {
     }).required();
   }
 
-  static getUserOrderBeneficiaries() {
+  static checkAndUpdatePaymentStatus() {
     return Joi.object({
-      orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getUserBeneficiaries() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
+      body: PaymentModel.PaymentStatusUpdateRequest().required(),
     }).required();
   }
 
@@ -56,55 +27,8 @@ class PaymentValidator {
     }).required();
   }
 
-  static getPlatformPaymentConfig() {
-    return Joi.object({}).required();
-  }
-
-  static updatePlatformPaymentConfig() {
-    return Joi.object({
-      body: PaymentModel.UpdatePlatformPaymentConfig().required(),
-    }).required();
-  }
-
-  static getUserCODlimitRoutes() {
-    return Joi.object({
-      merchantUserId: Joi.string().allow("").required(),
-      mobileNo: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static setUserCODlimitRoutes() {
-    return Joi.object({
-      body: PaymentModel.SetCODForUserRequest().required(),
-    }).required();
-  }
-
   static edcAggregatorsAndModelList() {
     return Joi.object({}).required();
-  }
-
-  static edcDeviceStats() {
-    return Joi.object({}).required();
-  }
-
-  static updateEdcDevice() {
-    return Joi.object({
-      terminalUniqueIdentifier: Joi.string().allow("").required(),
-      body: PaymentModel.EdcAddRequest().required(),
-    }).required();
-  }
-
-  static getEdcDevice() {
-    return Joi.object({
-      terminalUniqueIdentifier: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static addEdcDevice() {
-    return Joi.object({
-      terminalUniqueIdentifier: Joi.string().allow("").required(),
-      body: PaymentModel.EdcUpdateRequest().required(),
-    }).required();
   }
 
   static edcDeviceList() {
@@ -115,6 +39,38 @@ class PaymentValidator {
       storeId: Joi.number(),
       deviceTag: Joi.string().allow(""),
     }).required();
+  }
+
+  static edcDeviceStats() {
+    return Joi.object({}).required();
+  }
+
+  static getBankAccountDetailsOpenAPI() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+      requestHash: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getBrandPaymentGatewayConfig() {
+    return Joi.object({}).required();
+  }
+
+  static getEdcDevice() {
+    return Joi.object({
+      terminalUniqueIdentifier: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPaymentModeRoutes() {
+    return Joi.object({
+      refresh: Joi.boolean().required(),
+      requestType: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getPlatformPaymentConfig() {
+    return Joi.object({}).required();
   }
 
   static getPosPaymentModeRoutes() {
@@ -130,21 +86,65 @@ class PaymentValidator {
     }).required();
   }
 
+  static getUserBeneficiaries() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getUserCODlimitRoutes() {
+    return Joi.object({
+      merchantUserId: Joi.string().allow("").required(),
+      mobileNo: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getUserOrderBeneficiaries() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static initialisePayment() {
     return Joi.object({
       body: PaymentModel.PaymentInitializationRequest().required(),
     }).required();
   }
 
-  static checkAndUpdatePaymentStatus() {
-    return Joi.object({
-      body: PaymentModel.PaymentStatusUpdateRequest().required(),
-    }).required();
-  }
-
   static resendOrCancelPayment() {
     return Joi.object({
       body: PaymentModel.ResendOrCancelPaymentRequest().required(),
+    }).required();
+  }
+
+  static saveBrandPaymentGatewayConfig() {
+    return Joi.object({
+      body: PaymentModel.PaymentGatewayConfigRequest().required(),
+    }).required();
+  }
+
+  static setUserCODlimitRoutes() {
+    return Joi.object({
+      body: PaymentModel.SetCODForUserRequest().required(),
+    }).required();
+  }
+
+  static updateBrandPaymentGatewayConfig() {
+    return Joi.object({
+      body: PaymentModel.PaymentGatewayConfigRequest().required(),
+    }).required();
+  }
+
+  static updateEdcDevice() {
+    return Joi.object({
+      terminalUniqueIdentifier: Joi.string().allow("").required(),
+      body: PaymentModel.EdcAddRequest().required(),
+    }).required();
+  }
+
+  static updatePlatformPaymentConfig() {
+    return Joi.object({
+      body: PaymentModel.UpdatePlatformPaymentConfig().required(),
     }).required();
   }
 }

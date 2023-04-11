@@ -3,47 +3,15 @@ declare class Inventory {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getJobCodesMetrics: string;
-        saveJobCodesMetrics: string;
-        getConfigByApiKey: string;
         getApiKey: string;
+        getConfigByApiKey: string;
         getJobByCode: string;
+        getJobCodesMetrics: string;
         getJobConfigByIntegrationType: string;
+        saveJobCodesMetrics: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.dailyJob] - Daily Job Flag
-     * @param {string} [arg.jobCode] - Email Job Code
-     * @returns {Promise<ResponseEnvelopeObject>} - Success response
-     * @summary: Find all the JobCodes from Metrics Collection based on the field Values
-     * @description: Endpoint to return all JobCodes present in Metrics Collection
-     */
-    getJobCodesMetrics({ dailyJob, jobCode }?: {
-        dailyJob?: boolean;
-        jobCode?: string;
-    }): Promise<ResponseEnvelopeObject>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {EmailJobMetrics} arg.body
-     * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
-     * @summary: Save JobCode Metrics
-     * @description: Endpoint to save JobCode Metrics
-     */
-    saveJobCodesMetrics({ body }?: {
-        body: EmailJobMetrics;
-    }): Promise<ResponseEnvelopeEmailJobMetrics>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.apikey - Api key
-     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
-     * @summary: Get Slingshot Configuration Of  A Company using API key
-     * @description: REST Endpoint that returns all configuration detail of a company
-     */
-    getConfigByApiKey({ apikey }?: {
-        apikey: string;
-    }): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userName - Integration id
@@ -58,6 +26,16 @@ declare class Inventory {
     }): Promise<ResponseEnvelopeApikeyModel>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.apikey - Api key
+     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+     * @summary: Get Slingshot Configuration Of  A Company using API key
+     * @description: REST Endpoint that returns all configuration detail of a company
+     */
+    getConfigByApiKey({ apikey }?: {
+        apikey: string;
+    }): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.code - Job Code
      * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
      * @summary: Get Job Config By Code
@@ -66,6 +44,18 @@ declare class Inventory {
     getJobByCode({ code }?: {
         code: string;
     }): Promise<ResponseEnvelopeJobConfigDTO>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.dailyJob] - Daily Job Flag
+     * @param {string} [arg.jobCode] - Email Job Code
+     * @returns {Promise<ResponseEnvelopeObject>} - Success response
+     * @summary: Find all the JobCodes from Metrics Collection based on the field Values
+     * @description: Endpoint to return all JobCodes present in Metrics Collection
+     */
+    getJobCodesMetrics({ dailyJob, jobCode }?: {
+        dailyJob?: boolean;
+        jobCode?: string;
+    }): Promise<ResponseEnvelopeObject>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.integrationType - Integration Type
@@ -78,4 +68,14 @@ declare class Inventory {
         integrationType: string;
         disable?: boolean;
     }): Promise<ResponseEnvelopeListJobConfigDTO>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {EmailJobMetrics} arg.body
+     * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
+     * @summary: Save JobCode Metrics
+     * @description: Endpoint to save JobCode Metrics
+     */
+    saveJobCodesMetrics({ body }?: {
+        body: EmailJobMetrics;
+    }): Promise<ResponseEnvelopeEmailJobMetrics>;
 }

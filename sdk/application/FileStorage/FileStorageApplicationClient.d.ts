@@ -3,41 +3,12 @@ declare class FileStorage {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        startUpload: string;
         completeUpload: string;
         signUrls: string;
+        startUpload: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Name of the bucket created for storing objects.
-     * @param {StartRequest} arg.body
-     * @returns {Promise<StartResponse>} - Success response
-     * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
-     * @description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
-     *
-     * The three major steps are:
-     * Start
-     * Upload
-     * Complete
-     *
-     * ### Start
-     * Initiates the assets upload using `startUpload`.
-     * It returns a storage link in response.
-     *
-     * ### Upload
-     * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-     * Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
-     *
-     * ### Complete
-     * After successfully upload, call the `completeUpload` API to finish the upload process.
-     * This operation will return the URL of the uploaded file.
-     */
-    startUpload({ namespace, body }?: {
-        namespace: string;
-        body: StartRequest;
-    }): Promise<StartResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Name of the bucket created for storing objects.
@@ -77,6 +48,35 @@ declare class FileStorage {
     signUrls({ body }?: {
         body: SignUrlRequest;
     }): Promise<SignUrlResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.namespace - Name of the bucket created for storing objects.
+     * @param {StartRequest} arg.body
+     * @returns {Promise<StartResponse>} - Success response
+     * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
+     * @description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
+     *
+     * The three major steps are:
+     * Start
+     * Upload
+     * Complete
+     *
+     * ### Start
+     * Initiates the assets upload using `startUpload`.
+     * It returns a storage link in response.
+     *
+     * ### Upload
+     * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+     * Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
+     *
+     * ### Complete
+     * After successfully upload, call the `completeUpload` API to finish the upload process.
+     * This operation will return the URL of the uploaded file.
+     */
+    startUpload({ namespace, body }?: {
+        namespace: string;
+        body: StartRequest;
+    }): Promise<StartResponse>;
     /**
      * @param data
      * @param {string} file_name

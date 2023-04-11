@@ -5,55 +5,16 @@ declare class Payment {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<PaymentGatewayConfigResponse>} - Success response
-     * @summary: Get All Brand Payment Gateway Config Secret
-     * @description: Get All Brand Payment Gateway Config Secret
+     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
+     * @param {EdcUpdateRequest} arg.body
+     * @returns {Promise<EdcDeviceUpdateResponse>} - Success response
+     * @summary: Update store id and device tag of edc device
+     * @description: Use this API to Update store id and device tag of edc device
      */
-    getBrandPaymentGatewayConfig({}?: any): Promise<PaymentGatewayConfigResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentGatewayConfigRequest} arg.body
-     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
-     * @summary: Save Config Secret For Brand Payment Gateway
-     * @description: Save Config Secret For Brand Payment Gateway
-     */
-    saveBrandPaymentGatewayConfig({ body }?: {
-        body: PaymentGatewayConfigRequest;
-    }): Promise<PaymentGatewayToBeReviewed>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentGatewayConfigRequest} arg.body
-     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
-     * @summary: Save Config Secret For Brand Payment Gateway
-     * @description: Save Config Secret For Brand Payment Gateway
-     */
-    updateBrandPaymentGatewayConfig({ body }?: {
-        body: PaymentGatewayConfigRequest;
-    }): Promise<PaymentGatewayToBeReviewed>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} arg.refresh -
-     * @param {string} arg.requestType -
-     * @returns {Promise<PaymentOptionsResponse>} - Success response
-     * @summary: Get All Valid Payment Options
-     * @description: Use this API to get Get All Valid Payment Options for making payment
-     */
-    getPaymentModeRoutes({ refresh, requestType }?: {
-        refresh: boolean;
-        requestType: string;
-    }): Promise<PaymentOptionsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @param {string} [arg.requestHash] -
-     * @returns {Promise<RefundAccountResponse>} - Success response
-     * @summary: Get bank details
-     * @description: Use this API to get saved bank details for returned/cancelled order using order id.
-     */
-    getBankAccountDetailsOpenAPI({ orderId, requestHash }?: {
-        orderId: string;
-        requestHash?: string;
-    }): Promise<RefundAccountResponse>;
+    addEdcDevice({ terminalUniqueIdentifier, body }?: {
+        terminalUniqueIdentifier: string;
+        body: EdcUpdateRequest;
+    }): Promise<EdcDeviceUpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {AddBeneficiaryDetailsOTPRequest} arg.body
@@ -66,24 +27,14 @@ declare class Payment {
     }): Promise<RefundAccountResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<OrderBeneficiaryResponse>} - Success response
-     * @summary: List Order Beneficiary
-     * @description: Get all active  beneficiary details added by the user for refund
+     * @param {PaymentStatusUpdateRequest} arg.body
+     * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
+     * @summary: Performs continuous polling to check status of payment on the server
+     * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
      */
-    getUserOrderBeneficiaries({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderBeneficiaryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId -
-     * @returns {Promise<OrderBeneficiaryResponse>} - Success response
-     * @summary: List User Beneficiary
-     * @description: Get all active  beneficiary details added by the user for refund
-     */
-    getUserBeneficiaries({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderBeneficiaryResponse>;
+    checkAndUpdatePaymentStatus({ body }?: {
+        body: PaymentStatusUpdateRequest;
+    }): Promise<PaymentStatusUpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {PaymentConfirmationRequest} arg.body
@@ -96,91 +47,11 @@ declare class Payment {
     }): Promise<PaymentConfirmationResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @returns {Promise<PlatfromPaymentConfig>} - Success response
-     * @summary: API to fetch the payment options of the merchant for paltform
-     * @description: Use this API to fetch the payment options.
-     */
-    getPlatformPaymentConfig({}?: any): Promise<PlatfromPaymentConfig>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {UpdatePlatformPaymentConfig} arg.body
-     * @returns {Promise<PlatfromPaymentConfig>} - Success response
-     * @summary: API to update the payment options of the merchant for paltform
-     * @description: Use this API to update the payment options.
-     */
-    updatePlatformPaymentConfig({ body }?: {
-        body: UpdatePlatformPaymentConfig;
-    }): Promise<PlatfromPaymentConfig>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.merchantUserId -
-     * @param {string} arg.mobileNo -
-     * @returns {Promise<GetUserCODLimitResponse>} - Success response
-     * @summary: Get COD limit for user
-     * @description: Use this API to get user cod limit and reamining limit for the payment
-     */
-    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: {
-        merchantUserId: string;
-        mobileNo: string;
-    }): Promise<GetUserCODLimitResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {SetCODForUserRequest} arg.body
-     * @returns {Promise<SetCODOptionResponse>} - Success response
-     * @summary: Set COD option for user for payment
-     * @description: Use this API to set cod option as true or false for the payment
-     */
-    setUserCODlimitRoutes({ body }?: {
-        body: SetCODForUserRequest;
-    }): Promise<SetCODOptionResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @returns {Promise<EdcAggregatorAndModelListResponse>} - Success response
      * @summary: get some information about the store and edc device
      * @description: Use this API to get info of devices linked to a particular app.
      */
     edcAggregatorsAndModelList({}?: any): Promise<EdcAggregatorAndModelListResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<EdcDeviceStatsResponse>} - Success response
-     * @summary: get some information about the store and edc device
-     * @description: Use this API to get info of devices linked to a particular app.
-     */
-    edcDeviceStats({}?: any): Promise<EdcDeviceStatsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-     * @param {EdcAddRequest} arg.body
-     * @returns {Promise<EdcDeviceAddResponse>} - Success response
-     * @summary: map new edc device to the terminal
-     * @description: Use this API to map new edc device to the terminal
-     */
-    updateEdcDevice({ terminalUniqueIdentifier, body }?: {
-        terminalUniqueIdentifier: string;
-        body: EdcAddRequest;
-    }): Promise<EdcDeviceAddResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-     * @returns {Promise<EdcDeviceDetailsResponse>} - Success response
-     * @summary: get details of a single edc device
-     * @description: Use this API to get details of a single edc device
-     */
-    getEdcDevice({ terminalUniqueIdentifier }?: {
-        terminalUniqueIdentifier: string;
-    }): Promise<EdcDeviceDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
-     * @param {EdcUpdateRequest} arg.body
-     * @returns {Promise<EdcDeviceUpdateResponse>} - Success response
-     * @summary: Update store id and device tag of edc device
-     * @description: Use this API to Update store id and device tag of edc device
-     */
-    addEdcDevice({ terminalUniqueIdentifier, body }?: {
-        terminalUniqueIdentifier: string;
-        body: EdcUpdateRequest;
-    }): Promise<EdcDeviceUpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
@@ -199,6 +70,61 @@ declare class Payment {
         storeId?: number;
         deviceTag?: string;
     }): Promise<EdcDeviceListResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<EdcDeviceStatsResponse>} - Success response
+     * @summary: get some information about the store and edc device
+     * @description: Use this API to get info of devices linked to a particular app.
+     */
+    edcDeviceStats({}?: any): Promise<EdcDeviceStatsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @param {string} [arg.requestHash] -
+     * @returns {Promise<RefundAccountResponse>} - Success response
+     * @summary: Get bank details
+     * @description: Use this API to get saved bank details for returned/cancelled order using order id.
+     */
+    getBankAccountDetailsOpenAPI({ orderId, requestHash }?: {
+        orderId: string;
+        requestHash?: string;
+    }): Promise<RefundAccountResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<PaymentGatewayConfigResponse>} - Success response
+     * @summary: Get All Brand Payment Gateway Config Secret
+     * @description: Get All Brand Payment Gateway Config Secret
+     */
+    getBrandPaymentGatewayConfig({}?: any): Promise<PaymentGatewayConfigResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
+     * @returns {Promise<EdcDeviceDetailsResponse>} - Success response
+     * @summary: get details of a single edc device
+     * @description: Use this API to get details of a single edc device
+     */
+    getEdcDevice({ terminalUniqueIdentifier }?: {
+        terminalUniqueIdentifier: string;
+    }): Promise<EdcDeviceDetailsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} arg.refresh -
+     * @param {string} arg.requestType -
+     * @returns {Promise<PaymentOptionsResponse>} - Success response
+     * @summary: Get All Valid Payment Options
+     * @description: Use this API to get Get All Valid Payment Options for making payment
+     */
+    getPaymentModeRoutes({ refresh, requestType }?: {
+        refresh: boolean;
+        requestType: string;
+    }): Promise<PaymentOptionsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<PlatfromPaymentConfig>} - Success response
+     * @summary: API to fetch the payment options of the merchant for paltform
+     * @description: Use this API to fetch the payment options.
+     */
+    getPlatformPaymentConfig({}?: any): Promise<PlatfromPaymentConfig>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.amount - Payable amount.
@@ -231,6 +157,38 @@ declare class Payment {
     }): Promise<PaymentOptionsResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @returns {Promise<OrderBeneficiaryResponse>} - Success response
+     * @summary: List User Beneficiary
+     * @description: Get all active  beneficiary details added by the user for refund
+     */
+    getUserBeneficiaries({ orderId }?: {
+        orderId: string;
+    }): Promise<OrderBeneficiaryResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.merchantUserId -
+     * @param {string} arg.mobileNo -
+     * @returns {Promise<GetUserCODLimitResponse>} - Success response
+     * @summary: Get COD limit for user
+     * @description: Use this API to get user cod limit and reamining limit for the payment
+     */
+    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: {
+        merchantUserId: string;
+        mobileNo: string;
+    }): Promise<GetUserCODLimitResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @returns {Promise<OrderBeneficiaryResponse>} - Success response
+     * @summary: List Order Beneficiary
+     * @description: Get all active  beneficiary details added by the user for refund
+     */
+    getUserOrderBeneficiaries({ orderId }?: {
+        orderId: string;
+    }): Promise<OrderBeneficiaryResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {PaymentInitializationRequest} arg.body
      * @returns {Promise<PaymentInitializationResponse>} - Success response
      * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
@@ -241,16 +199,6 @@ declare class Payment {
     }): Promise<PaymentInitializationResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PaymentStatusUpdateRequest} arg.body
-     * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
-     * @summary: Performs continuous polling to check status of payment on the server
-     * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-     */
-    checkAndUpdatePaymentStatus({ body }?: {
-        body: PaymentStatusUpdateRequest;
-    }): Promise<PaymentStatusUpdateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {ResendOrCancelPaymentRequest} arg.body
      * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
      * @summary: API to resend and cancel a payment link which was already generated.
@@ -259,4 +207,56 @@ declare class Payment {
     resendOrCancelPayment({ body }?: {
         body: ResendOrCancelPaymentRequest;
     }): Promise<ResendOrCancelPaymentResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PaymentGatewayConfigRequest} arg.body
+     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
+     * @summary: Save Config Secret For Brand Payment Gateway
+     * @description: Save Config Secret For Brand Payment Gateway
+     */
+    saveBrandPaymentGatewayConfig({ body }?: {
+        body: PaymentGatewayConfigRequest;
+    }): Promise<PaymentGatewayToBeReviewed>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {SetCODForUserRequest} arg.body
+     * @returns {Promise<SetCODOptionResponse>} - Success response
+     * @summary: Set COD option for user for payment
+     * @description: Use this API to set cod option as true or false for the payment
+     */
+    setUserCODlimitRoutes({ body }?: {
+        body: SetCODForUserRequest;
+    }): Promise<SetCODOptionResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PaymentGatewayConfigRequest} arg.body
+     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
+     * @summary: Save Config Secret For Brand Payment Gateway
+     * @description: Save Config Secret For Brand Payment Gateway
+     */
+    updateBrandPaymentGatewayConfig({ body }?: {
+        body: PaymentGatewayConfigRequest;
+    }): Promise<PaymentGatewayToBeReviewed>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
+     * @param {EdcAddRequest} arg.body
+     * @returns {Promise<EdcDeviceAddResponse>} - Success response
+     * @summary: map new edc device to the terminal
+     * @description: Use this API to map new edc device to the terminal
+     */
+    updateEdcDevice({ terminalUniqueIdentifier, body }?: {
+        terminalUniqueIdentifier: string;
+        body: EdcAddRequest;
+    }): Promise<EdcDeviceAddResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {UpdatePlatformPaymentConfig} arg.body
+     * @returns {Promise<PlatfromPaymentConfig>} - Success response
+     * @summary: API to update the payment options of the merchant for paltform
+     * @description: Use this API to update the payment options.
+     */
+    updatePlatformPaymentConfig({ body }?: {
+        body: UpdatePlatformPaymentConfig;
+    }): Promise<PlatfromPaymentConfig>;
 }

@@ -1,13 +1,13 @@
 export = PaymentValidator;
 declare class PaymentValidator {
-    static getAllPayouts(): any;
-    static savePayout(): any;
-    static updatePayout(): any;
     static activateAndDectivatePayout(): any;
     static deletePayout(): any;
-    static getSubscriptionPaymentMethod(): any;
     static deleteSubscriptionPaymentMethod(): any;
+    static getAllPayouts(): any;
     static getSubscriptionConfig(): any;
+    static getSubscriptionPaymentMethod(): any;
+    static savePayout(): any;
     static saveSubscriptionSetupIntent(): any;
+    static updatePayout(): any;
     static verifyIfscCode(): any;
 }

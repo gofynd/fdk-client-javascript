@@ -12,9 +12,9 @@ class Communication {
     this._relativeUrls = {
       getCommunicationConsent:
         "/service/application/communication/v1.0/consent",
+      upsertAppPushtoken: "/service/application/communication/v1.0/pn-token",
       upsertCommunicationConsent:
         "/service/application/communication/v1.0/consent",
-      upsertAppPushtoken: "/service/application/communication/v1.0/pn-token",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -98,6 +98,71 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {PushtokenReq} arg.body
+   * @returns {Promise<PushtokenRes>} - Success response
+   * @summary: Upsert push token of a user
+   * @description: Use this API to update and insert the push token of the user.
+   */
+  async upsertAppPushtoken({ body } = {}) {
+    const { error } = CommunicationValidator.upsertAppPushtoken().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationValidator.upsertAppPushtoken().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for upsertAppPushtoken",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["upsertAppPushtoken"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationModel.PushtokenRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for upsertAppPushtoken",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {CommunicationConsentReq} arg.body
    * @returns {Promise<CommunicationConsentRes>} - Success response
    * @summary: Upsert communication consent
@@ -157,71 +222,6 @@ class Communication {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for upsertCommunicationConsent",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {PushtokenReq} arg.body
-   * @returns {Promise<PushtokenRes>} - Success response
-   * @summary: Upsert push token of a user
-   * @description: Use this API to update and insert the push token of the user.
-   */
-  async upsertAppPushtoken({ body } = {}) {
-    const { error } = CommunicationValidator.upsertAppPushtoken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationValidator.upsertAppPushtoken().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for upsertAppPushtoken",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["upsertAppPushtoken"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CommunicationModel.PushtokenRes().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for upsertAppPushtoken",
       });
       Logger({ level: "WARN", message: res_error });
     }

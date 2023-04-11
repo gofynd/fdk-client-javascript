@@ -13,22 +13,15 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {Object} [arg.q] - The search query. Mobile number or email ID of
-   *   a customer.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @returns {Promise<CustomerListResponseSchema>} - Success response
-   * @summary: Get a list of customers
-   * @description: Use this API to retrieve a list of customers who have registered in the application.
+   * @param {ArchiveUserRequestSchema} arg.body
+   * @returns {Promise<ArchiveUserSuccess>} - Success response
+   * @summary: archive user
+   * @description: archive user
    */
-  async getCustomers({ q, pageSize, pageNo } = {}) {
-    const { error } = UserValidator.getCustomers().validate(
+  async archiveUser({ body } = {}) {
+    const { error } = UserValidator.archiveUser().validate(
       {
-        q,
-        pageSize,
-        pageNo,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -37,38 +30,33 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.getCustomers().validate(
+    const { error: warrning } = UserValidator.archiveUser().validate(
       {
-        q,
-        pageSize,
-        pageNo,
+        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCustomers",
+        message: "Parameter Validation warrnings for archiveUser",
       });
       Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
-    query_params["q"] = q;
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
       query_params,
-      undefined
+      body
     );
 
     const {
       error: res_error,
-    } = UserModel.CustomerListResponseSchema().validate(response, {
+    } = UserModel.ArchiveUserSuccess().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -76,7 +64,7 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCustomers",
+        message: "Response Validation Warnnings for archiveUser",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -86,16 +74,15 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The search query. Mobile number or email ID of
-   *   a customer.
-   * @returns {Promise<UserSearchResponseSchema>} - Success response
-   * @summary: Search an existing user.
-   * @description: Use this API to retrieve an existing user from a list.
+   * @param {BlockUserRequestSchema} arg.body
+   * @returns {Promise<BlockUserSuccess>} - Success response
+   * @summary: Block/Unblock user
+   * @description: Block/Unblock user
    */
-  async searchUsers({ q } = {}) {
-    const { error } = UserValidator.searchUsers().validate(
+  async blockOrUnblockUsers({ body } = {}) {
+    const { error } = UserValidator.blockOrUnblockUsers().validate(
       {
-        q,
+        body,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -104,42 +91,39 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.searchUsers().validate(
+    const { error: warrning } = UserValidator.blockOrUnblockUsers().validate(
       {
-        q,
+        body,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for searchUsers",
+        message: "Parameter Validation warrnings for blockOrUnblockUsers",
       });
       Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
-    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
       query_params,
-      undefined
+      body
     );
 
-    const {
-      error: res_error,
-    } = UserModel.UserSearchResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    const { error: res_error } = UserModel.BlockUserSuccess().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for searchUsers",
+        message: "Response Validation Warnnings for blockOrUnblockUsers",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -210,251 +194,6 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {BlockUserRequestSchema} arg.body
-   * @returns {Promise<BlockUserSuccess>} - Success response
-   * @summary: Block/Unblock user
-   * @description: Block/Unblock user
-   */
-  async blockOrUnblockUsers({ body } = {}) {
-    const { error } = UserValidator.blockOrUnblockUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.blockOrUnblockUsers().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for blockOrUnblockUsers",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
-      query_params,
-      body
-    );
-
-    const { error: res_error } = UserModel.BlockUserSuccess().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for blockOrUnblockUsers",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ArchiveUserRequestSchema} arg.body
-   * @returns {Promise<ArchiveUserSuccess>} - Success response
-   * @summary: archive user
-   * @description: archive user
-   */
-  async archiveUser({ body } = {}) {
-    const { error } = UserValidator.archiveUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.archiveUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for archiveUser",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.ArchiveUserSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for archiveUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {UnDeleteUserRequestSchema} arg.body
-   * @returns {Promise<UnDeleteUserSuccess>} - Success response
-   * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
-   * @description: undelete user who deleted from application and have not elapsed the platform configured delete days
-   */
-  async unDeleteUser({ body } = {}) {
-    const { error } = UserValidator.unDeleteUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.unDeleteUser().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for unDeleteUser",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/undelete`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.UnDeleteUserSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for unDeleteUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User ID
-   * @param {UpdateUserRequestSchema} arg.body
-   * @returns {Promise<CreateUserResponseSchema>} - Success response
-   * @summary: Update user
-   * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
-   */
-  async updateUser({ userId, body } = {}) {
-    const { error } = UserValidator.updateUser().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.updateUser().validate(
-      {
-        userId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateUser",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = UserModel.CreateUserResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateUser",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {CreateUserSessionRequestSchema} arg.body
    * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
    * @summary: Create user session
@@ -507,6 +246,72 @@ class User {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for createUserSession",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @param {string} arg.reason - Reason to delete sessions.
+   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
+   * @summary: Delete a list of all session for a user
+   * @description: Use this API to Delete a list of session of customers who have registered in the application.
+   */
+  async deleteActiveSessions({ id, reason } = {}) {
+    const { error } = UserValidator.deleteActiveSessions().validate(
+      {
+        id,
+        reason,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.deleteActiveSessions().validate(
+      {
+        id,
+        reason,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteActiveSessions",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["reason"] = reason;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.SessionDeleteResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteActiveSessions",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -648,17 +453,22 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - ID of a customer.
-   * @param {string} arg.reason - Reason to delete sessions.
-   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
-   * @summary: Delete a list of all session for a user
-   * @description: Use this API to Delete a list of session of customers who have registered in the application.
+   * @param {Object} [arg.q] - The search query. Mobile number or email ID of
+   *   a customer.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @returns {Promise<CustomerListResponseSchema>} - Success response
+   * @summary: Get a list of customers
+   * @description: Use this API to retrieve a list of customers who have registered in the application.
    */
-  async deleteActiveSessions({ id, reason } = {}) {
-    const { error } = UserValidator.deleteActiveSessions().validate(
+  async getCustomers({ q, pageSize, pageNo } = {}) {
+    const { error } = UserValidator.getCustomers().validate(
       {
-        id,
-        reason,
+        q,
+        pageSize,
+        pageNo,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -667,36 +477,38 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserValidator.deleteActiveSessions().validate(
+    const { error: warrning } = UserValidator.getCustomers().validate(
       {
-        id,
-        reason,
+        q,
+        pageSize,
+        pageNo,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteActiveSessions",
+        message: "Parameter Validation warrnings for getCustomers",
       });
       Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
-    query_params["id"] = id;
-    query_params["reason"] = reason;
+    query_params["q"] = q;
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "delete",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
       query_params,
       undefined
     );
 
     const {
       error: res_error,
-    } = UserModel.SessionDeleteResponseSchema().validate(response, {
+    } = UserModel.CustomerListResponseSchema().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -704,7 +516,7 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteActiveSessions",
+        message: "Response Validation Warnnings for getCustomers",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -768,6 +580,130 @@ class User {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.q] - The search query. Mobile number or email ID of
+   *   a customer.
+   * @returns {Promise<UserSearchResponseSchema>} - Success response
+   * @summary: Search an existing user.
+   * @description: Use this API to retrieve an existing user from a list.
+   */
+  async searchUsers({ q } = {}) {
+    const { error } = UserValidator.searchUsers().validate(
+      {
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.searchUsers().validate(
+      {
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for searchUsers",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.UserSearchResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for searchUsers",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {UnDeleteUserRequestSchema} arg.body
+   * @returns {Promise<UnDeleteUserSuccess>} - Success response
+   * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
+   * @description: undelete user who deleted from application and have not elapsed the platform configured delete days
+   */
+  async unDeleteUser({ body } = {}) {
+    const { error } = UserValidator.unDeleteUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.unDeleteUser().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for unDeleteUser",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/undelete`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.UnDeleteUserSuccess().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for unDeleteUser",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {PlatformSchema} arg.body
    * @returns {Promise<PlatformSchema>} - Success response
    * @summary: Update platform configurations
@@ -818,6 +754,70 @@ class User {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updatePlatformConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.userId - User ID
+   * @param {UpdateUserRequestSchema} arg.body
+   * @returns {Promise<CreateUserResponseSchema>} - Success response
+   * @summary: Update user
+   * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
+   */
+  async updateUser({ userId, body } = {}) {
+    const { error } = UserValidator.updateUser().validate(
+      {
+        userId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.updateUser().validate(
+      {
+        userId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateUser",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.CreateUserResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateUser",
       });
       Logger({ level: "WARN", message: res_error });
     }

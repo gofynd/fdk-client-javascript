@@ -8,45 +8,870 @@
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
-* [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
-* [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
-* [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
-* [getPaymentModeRoutes](#getpaymentmoderoutes)
-* [getAllPayouts](#getallpayouts)
-* [savePayout](#savepayout)
-* [updatePayout](#updatepayout)
 * [activateAndDectivatePayout](#activateanddectivatepayout)
-* [deletePayout](#deletepayout)
-* [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
-* [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
-* [getSubscriptionConfig](#getsubscriptionconfig)
-* [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
-* [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
-* [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
-* [verifyIfscCode](#verifyifsccode)
-* [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
-* [getUserBeneficiaries](#getuserbeneficiaries)
-* [confirmPayment](#confirmpayment)
-* [getPlatformPaymentConfig](#getplatformpaymentconfig)
-* [updatePlatformPaymentConfig](#updateplatformpaymentconfig)
-* [getUserCODlimitRoutes](#getusercodlimitroutes)
-* [setUserCODlimitRoutes](#setusercodlimitroutes)
-* [edcAggregatorsAndModelList](#edcaggregatorsandmodellist)
-* [edcDeviceStats](#edcdevicestats)
-* [updateEdcDevice](#updateedcdevice)
-* [getEdcDevice](#getedcdevice)
 * [addEdcDevice](#addedcdevice)
-* [edcDeviceList](#edcdevicelist)
-* [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
-* [initialisePayment](#initialisepayment)
+* [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
+* [confirmPayment](#confirmpayment)
+* [deletePayout](#deletepayout)
+* [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
+* [edcAggregatorsAndModelList](#edcaggregatorsandmodellist)
+* [edcDeviceList](#edcdevicelist)
+* [edcDeviceStats](#edcdevicestats)
+* [getAllPayouts](#getallpayouts)
+* [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
+* [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
+* [getEdcDevice](#getedcdevice)
+* [getPaymentModeRoutes](#getpaymentmoderoutes)
+* [getPlatformPaymentConfig](#getplatformpaymentconfig)
+* [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+* [getSubscriptionConfig](#getsubscriptionconfig)
+* [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
+* [getUserBeneficiaries](#getuserbeneficiaries)
+* [getUserCODlimitRoutes](#getusercodlimitroutes)
+* [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
+* [initialisePayment](#initialisepayment)
 * [resendOrCancelPayment](#resendorcancelpayment)
+* [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
+* [savePayout](#savepayout)
+* [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
+* [setUserCODlimitRoutes](#setusercodlimitroutes)
+* [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
+* [updateEdcDevice](#updateedcdevice)
+* [updatePayout](#updatepayout)
+* [updatePlatformPaymentConfig](#updateplatformpaymentconfig)
+* [verifyIfscCode](#verifyifsccode)
 
 
 
 ## Methods with example and description
 
 
+
+
+### activateAndDectivatePayout
+Partial Update Payout
+
+
+
+```javascript
+// Promise
+const promise = client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
+ body : value });
+
+// Async/Await
+const data = await client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueTransferNo | string | yes | Unique transfer id |  
+| body | [UpdatePayoutRequest](#UpdatePayoutRequest) | yes | Request body |
+
+
+Partial Update Payout
+
+*Returned Response:*
+
+
+
+
+[UpdatePayoutResponse](#UpdatePayoutResponse)
+
+save payout response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_default": true,
+  "is_active": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### addEdcDevice
+Update store id and device tag of edc device
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
+| body | [EdcUpdateRequest](#EdcUpdateRequest) | yes | Request body |
+
+
+Use this API to Update store id and device tag of edc device
+
+*Returned Response:*
+
+
+
+
+[EdcDeviceUpdateResponse](#EdcDeviceUpdateResponse)
+
+Check the example shown below or refer `EdcDeviceUpdateResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### addRefundBankAccountUsingOTP
+Save bank details for cancelled/returned order
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
+
+
+Use this API to save bank details for returned/cancelled order to refund amount in his account.
+
+*Returned Response:*
+
+
+
+
+[RefundAccountResponse](#RefundAccountResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Account successfully created",
+  "data": {},
+  "is_verified_flag": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkAndUpdatePaymentStatus
+Performs continuous polling to check status of payment on the server
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest) | yes | Request body |
+
+
+Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+
+*Returned Response:*
+
+
+
+
+[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "UPI_Razorpay",
+  "status": "success",
+  "retry": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### confirmPayment
+Confirm payment after successful payment from payment gateway
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentConfirmationRequest](#PaymentConfirmationRequest) | yes | Request body |
+
+
+Use this API to confirm payment after payment gateway accepted payment.
+
+*Returned Response:*
+
+
+
+
+[PaymentConfirmationResponse](#PaymentConfirmationResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `PaymentConfirmationResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment Successful",
+  "order_id": "FY60F90AEF01FF43E878"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deletePayout
+Delete Payout
+
+
+
+```javascript
+// Promise
+const promise = client.payment.deletePayout({  uniqueTransferNo : value });
+
+// Async/Await
+const data = await client.payment.deletePayout({  uniqueTransferNo : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueTransferNo | string | yes | Unique transfer id |  
+
+
+
+Delete Payout
+
+*Returned Response:*
+
+
+
+
+[DeletePayoutResponse](#DeletePayoutResponse)
+
+delete payout response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSubscriptionPaymentMethod
+Delete Subscription Payment Method
+
+
+
+```javascript
+// Promise
+const promise = client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
+ paymentMethodId : value });
+
+// Async/Await
+const data = await client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
+ paymentMethodId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueExternalId | string | yes |  |   
+| paymentMethodId | string | yes |  |  
+
+
+
+Uses this api to Delete Subscription Payment Method
+
+*Returned Response:*
+
+
+
+
+[DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
+
+Delete Subscription Payment Method Response.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### edcAggregatorsAndModelList
+get some information about the store and edc device
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
+```
+
+
+
+
+
+
+Use this API to get info of devices linked to a particular app.
+
+*Returned Response:*
+
+
+
+
+[EdcAggregatorAndModelListResponse](#EdcAggregatorAndModelListResponse)
+
+Success. Returns the list of devices linked to the application Check the example shown below or refer `EdcAggregatorAndModelListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "aggregator": "Pinelabs",
+      "aggregator_id": 17,
+      "models": [
+        "A910",
+        "A920"
+      ]
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### edcDeviceList
+get all the device list of an app
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
+ pageSize : value,
+ isActive : value,
+ storeId : value,
+ deviceTag : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
+ pageSize : value,
+ isActive : value,
+ storeId : value,
+ deviceTag : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| isActive | boolean | no |  |    
+| storeId | number | no |  |    
+| deviceTag | string | no |  |  
+
+
+
+Use this API to get all devices linked to a particular app.
+
+*Returned Response:*
+
+
+
+
+[EdcDeviceListResponse](#EdcDeviceListResponse)
+
+Success. Returns the list of devices linked to the application Check the example shown below or refer `EdcDeviceListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "page": {
+    "type": "number",
+    "size": 1,
+    "current": 1,
+    "has_next": false,
+    "item_total": 2
+  },
+  "items": [
+    {
+      "application_id": "2",
+      "terminal_serial_no": "15c26ee7297e4331",
+      "edc_device_serial_no": "123456781",
+      "terminal_unique_identifier": "1231242081",
+      "merchant_store_pos_code": "122120009",
+      "store_id": 12312,
+      "aggregator_id": 17,
+      "aggregator_name": "Pinelabs",
+      "device_tag": "Counter 2",
+      "is_active": true,
+      "edc_model": "A910"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### edcDeviceStats
+get some information about the store and edc device
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.edcDeviceStats();
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.edcDeviceStats();
+```
+
+
+
+
+
+
+Use this API to get info of devices linked to a particular app.
+
+*Returned Response:*
+
+
+
+
+[EdcDeviceStatsResponse](#EdcDeviceStatsResponse)
+
+Success. Returns the list of devices linked to the application Check the example shown below or refer `EdcDeviceStatsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "statistics": {
+    "active_device_count": 2,
+    "inactive_device_count": 0
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAllPayouts
+Get All Payouts
+
+
+
+```javascript
+// Promise
+const promise = client.payment.getAllPayouts({  uniqueExternalId : value });
+
+// Async/Await
+const data = await client.payment.getAllPayouts({  uniqueExternalId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| uniqueExternalId | string | no | Fetch payouts using unique external id |  
+
+
+
+Get All Payouts
+
+*Returned Response:*
+
+
+
+
+[PayoutsResponse](#PayoutsResponse)
+
+payouts response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
+      "more_attributes": {
+        "city": "",
+        "state": "",
+        "country": "",
+        "bank_name": "YES",
+        "ifsc_code": "IFSCYES101",
+        "account_no": "9876541234",
+        "branch_name": "Mumbai",
+        "account_type": "current",
+        "account_holder": "Vikas Kumar"
+      },
+      "transfer_type": "bank",
+      "is_default": true,
+      "is_active": true,
+      "customers": {
+        "id": 2,
+        "name": "reliance retail",
+        "mobile": "1234567890",
+        "email": "reliance@gmail.com",
+        "unique_external_id": "company:1"
+      },
+      "payouts_aggregators": [
+        {
+          "payout_details_id": 888,
+          "aggregator_id": 3,
+          "aggregator_fund_id": null
+        }
+      ]
+    },
+    {
+      "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
+      "more_attributes": {
+        "city": "",
+        "state": "",
+        "country": "",
+        "bank_name": "SBI",
+        "ifsc_code": "SBIN0011513",
+        "account_no": "9876543210",
+        "branch_name": "Mumbai",
+        "account_type": "saving",
+        "account_holder": "Vikas Kumar"
+      },
+      "transfer_type": "bank",
+      "is_default": false,
+      "is_active": true,
+      "customers": {
+        "id": 2,
+        "name": "reliance retail",
+        "mobile": "1234567890",
+        "email": "reliance@gmail.com",
+        "unique_external_id": "company:1"
+      },
+      "payouts_aggregators": [
+        {
+          "payout_details_id": 891,
+          "aggregator_id": 3,
+          "aggregator_fund_id": null
+        }
+      ]
+    }
+  ],
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getBankAccountDetailsOpenAPI
+Get bank details
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
+ requestHash : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
+ requestHash : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |    
+| requestHash | string | no |  |  
+
+
+
+Use this API to get saved bank details for returned/cancelled order using order id.
+
+*Returned Response:*
+
+
+
+
+[RefundAccountResponse](#RefundAccountResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "account_no": "XXXX-XXXX-6682",
+    "ifsc_code": "SBIEXAMPLE001",
+    "email": "loremipsum@example.com",
+    "address": "1773  Monroe Street",
+    "bank_name": "SBI",
+    "branch_name": "HOUSTON",
+    "comment": "Lorem Ipsum",
+    "account_holder": "Leslie Rice",
+    "mobile": "0987654321"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getBrandPaymentGatewayConfig
@@ -222,17 +1047,17 @@ Refund Transfer Mode
 ---
 
 
-### saveBrandPaymentGatewayConfig
-Save Config Secret For Brand Payment Gateway
+### getEdcDevice
+get details of a single edc device
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
+const promise = client.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
+const data = await client.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
 ```
 
 
@@ -240,20 +1065,21 @@ const data = await client.application("<APPLICATION_ID>").payment.saveBrandPayme
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
+| --------- | -----  | -------- | ----------- | 
+| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
 
 
-Save Config Secret For Brand Payment Gateway
+
+Use this API to get details of a single edc device
 
 *Returned Response:*
 
 
 
 
-[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
+[EdcDeviceDetailsResponse](#EdcDeviceDetailsResponse)
 
-Save Config Secret For Brand Payment Gateway Success Response.
+Success. Returns the single edc device mapped to the terminal. Check the example shown below or refer `EdcDeviceDetailsResponseSchema` for more details.
 
 
 
@@ -264,69 +1090,19 @@ Save Config Secret For Brand Payment Gateway Success Response.
 ```json
 {
   "success": true,
-  "aggregators": [
-    "razorpay"
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateBrandPaymentGatewayConfig
-Save Config Secret For Brand Payment Gateway
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
-
-
-Save Config Secret For Brand Payment Gateway
-
-*Returned Response:*
-
-
-
-
-[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
-
-Save Config Secret For Brand Payment Gateway Success Response.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "aggregators": [
-    "razorpay"
-  ]
+  "data": {
+    "application_id": "2",
+    "terminal_serial_no": "15c26ee7297e4334",
+    "edc_device_serial_no": "123456784",
+    "terminal_unique_identifier": "1231208734",
+    "merchant_store_pos_code": "12345123",
+    "store_id": 12312,
+    "aggregator_id": 17,
+    "aggregator_name": "Pinelabs",
+    "device_tag": "Counter 2",
+    "is_active": true,
+    "edc_model": "A910"
+  }
 }
 ```
 </details>
@@ -1554,1187 +2330,6 @@ Success
 ---
 
 
-### getAllPayouts
-Get All Payouts
-
-
-
-```javascript
-// Promise
-const promise = client.payment.getAllPayouts({  uniqueExternalId : value });
-
-// Async/Await
-const data = await client.payment.getAllPayouts({  uniqueExternalId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| uniqueExternalId | string | no | Fetch payouts using unique external id |  
-
-
-
-Get All Payouts
-
-*Returned Response:*
-
-
-
-
-[PayoutsResponse](#PayoutsResponse)
-
-payouts response object
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
-      "more_attributes": {
-        "city": "",
-        "state": "",
-        "country": "",
-        "bank_name": "YES",
-        "ifsc_code": "IFSCYES101",
-        "account_no": "9876541234",
-        "branch_name": "Mumbai",
-        "account_type": "current",
-        "account_holder": "Vikas Kumar"
-      },
-      "transfer_type": "bank",
-      "is_default": true,
-      "is_active": true,
-      "customers": {
-        "id": 2,
-        "name": "reliance retail",
-        "mobile": "1234567890",
-        "email": "reliance@gmail.com",
-        "unique_external_id": "company:1"
-      },
-      "payouts_aggregators": [
-        {
-          "payout_details_id": 888,
-          "aggregator_id": 3,
-          "aggregator_fund_id": null
-        }
-      ]
-    },
-    {
-      "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
-      "more_attributes": {
-        "city": "",
-        "state": "",
-        "country": "",
-        "bank_name": "SBI",
-        "ifsc_code": "SBIN0011513",
-        "account_no": "9876543210",
-        "branch_name": "Mumbai",
-        "account_type": "saving",
-        "account_holder": "Vikas Kumar"
-      },
-      "transfer_type": "bank",
-      "is_default": false,
-      "is_active": true,
-      "customers": {
-        "id": 2,
-        "name": "reliance retail",
-        "mobile": "1234567890",
-        "email": "reliance@gmail.com",
-        "unique_external_id": "company:1"
-      },
-      "payouts_aggregators": [
-        {
-          "payout_details_id": 891,
-          "aggregator_id": 3,
-          "aggregator_fund_id": null
-        }
-      ]
-    }
-  ],
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### savePayout
-Save Payout
-
-
-
-```javascript
-// Promise
-const promise = client.payment.savePayout({  body : value });
-
-// Async/Await
-const data = await client.payment.savePayout({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PayoutRequest](#PayoutRequest) | yes | Request body |
-
-
-Save Payout
-
-*Returned Response:*
-
-
-
-
-[PayoutResponse](#PayoutResponse)
-
-save payout response object
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "is_active": true,
-  "bank_details": {
-    "account_type": "saving",
-    "account_holder": "Vikas Kumar",
-    "branch_name": "Mumbai",
-    "country": "",
-    "ifsc_code": "SBIN0011513",
-    "account_no": "9876543210",
-    "city": "",
-    "state": "",
-    "bank_name": "SBI"
-  },
-  "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
-  "users": {
-    "name": "reliance retail",
-    "unique_external_id": "company:1",
-    "mobile": "1234567890",
-    "email": "reliance@gmail.com"
-  },
-  "aggregator": "Razorpay",
-  "transfer_type": "bank",
-  "created": true,
-  "payouts": {
-    "aggregator_fund_id": null
-  },
-  "payment_status": "payout_initiated"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePayout
-Update Payout
-
-
-
-```javascript
-// Promise
-const promise = client.payment.updatePayout({  uniqueTransferNo : value,
- body : value });
-
-// Async/Await
-const data = await client.payment.updatePayout({  uniqueTransferNo : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueTransferNo | string | yes | Unique transfer id |  
-| body | [PayoutRequest](#PayoutRequest) | yes | Request body |
-
-
-Update Payout
-
-*Returned Response:*
-
-
-
-
-[UpdatePayoutResponse](#UpdatePayoutResponse)
-
-save payout response object
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "is_default": true,
-  "is_active": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### activateAndDectivatePayout
-Partial Update Payout
-
-
-
-```javascript
-// Promise
-const promise = client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
- body : value });
-
-// Async/Await
-const data = await client.payment.activateAndDectivatePayout({  uniqueTransferNo : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueTransferNo | string | yes | Unique transfer id |  
-| body | [UpdatePayoutRequest](#UpdatePayoutRequest) | yes | Request body |
-
-
-Partial Update Payout
-
-*Returned Response:*
-
-
-
-
-[UpdatePayoutResponse](#UpdatePayoutResponse)
-
-save payout response object
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "is_default": true,
-  "is_active": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deletePayout
-Delete Payout
-
-
-
-```javascript
-// Promise
-const promise = client.payment.deletePayout({  uniqueTransferNo : value });
-
-// Async/Await
-const data = await client.payment.deletePayout({  uniqueTransferNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueTransferNo | string | yes | Unique transfer id |  
-
-
-
-Delete Payout
-
-*Returned Response:*
-
-
-
-
-[DeletePayoutResponse](#DeletePayoutResponse)
-
-delete payout response object
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSubscriptionPaymentMethod
-List Subscription Payment Method
-
-
-
-```javascript
-// Promise
-const promise = client.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
-
-// Async/Await
-const data = await client.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| uniqueExternalId | string | no | Unique external id |  
-
-
-
-Get all  Subscription  Payment Method
-
-*Returned Response:*
-
-
-
-
-[SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
-
-List Subscription Payment Method Response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": 68,
-      "type": "card",
-      "pg_payment_method_id": "pm_1H8HyIJ1ZTFIN1aD5eDOL4nU",
-      "data": {
-        "brand": "visa",
-        "last4": "4242",
-        "checks": {
-          "cvc_check": "pass",
-          "address_line1_check": null,
-          "address_postal_code_check": null
-        },
-        "wallet": null,
-        "country": "US",
-        "funding": "credit",
-        "exp_year": 2044,
-        "networks": {
-          "available": [
-            "visa"
-          ],
-          "preferred": null
-        },
-        "exp_month": 12,
-        "fingerprint": "0aror24meTf8iYfw",
-        "generated_from": null,
-        "three_d_secure_usage": {
-          "supported": true
-        }
-      },
-      "is_default": false
-    },
-    {
-      "id": 81,
-      "type": "card",
-      "pg_payment_method_id": "pm_1Hc7tMJ1ZTFIN1aDCvMIIBeT",
-      "data": {
-        "brand": "visa",
-        "last4": "4242",
-        "checks": {
-          "cvc_check": "pass",
-          "address_line1_check": null,
-          "address_postal_code_check": null
-        },
-        "wallet": null,
-        "country": "US",
-        "funding": "credit",
-        "exp_year": 2020,
-        "networks": {
-          "available": [
-            "visa"
-          ],
-          "preferred": null
-        },
-        "exp_month": 11,
-        "fingerprint": "0aror24meTf8iYfw",
-        "generated_from": null,
-        "three_d_secure_usage": {
-          "supported": true
-        }
-      },
-      "is_default": true
-    },
-    {
-      "id": 93,
-      "type": "card",
-      "pg_payment_method_id": "pm_1HvddjJ1ZTFIN1aDgebQvuyi",
-      "data": {
-        "brand": "visa",
-        "last4": "4242",
-        "checks": {
-          "cvc_check": "pass",
-          "address_line1_check": "pass",
-          "address_postal_code_check": "pass"
-        },
-        "wallet": null,
-        "country": "US",
-        "funding": "credit",
-        "exp_year": 2022,
-        "networks": {
-          "available": [
-            "visa"
-          ],
-          "preferred": null
-        },
-        "exp_month": 11,
-        "fingerprint": "0aror24meTf8iYfw",
-        "generated_from": null,
-        "three_d_secure_usage": {
-          "supported": true
-        }
-      },
-      "is_default": false
-    },
-    {
-      "id": 98,
-      "type": "card",
-      "pg_payment_method_id": "pm_1IJDF0J1ZTFIN1aDnJFi4i2v",
-      "data": {
-        "brand": "visa",
-        "last4": "1111",
-        "checks": {
-          "cvc_check": "pass",
-          "address_line1_check": "pass",
-          "address_postal_code_check": "pass"
-        },
-        "wallet": null,
-        "country": "US",
-        "funding": "credit",
-        "exp_year": 2025,
-        "networks": {
-          "available": [
-            "visa"
-          ],
-          "preferred": null
-        },
-        "exp_month": 11,
-        "fingerprint": "ZtDTGycouUEup4Q4",
-        "generated_from": null,
-        "three_d_secure_usage": {
-          "supported": true
-        }
-      },
-      "is_default": false
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteSubscriptionPaymentMethod
-Delete Subscription Payment Method
-
-
-
-```javascript
-// Promise
-const promise = client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
- paymentMethodId : value });
-
-// Async/Await
-const data = await client.payment.deleteSubscriptionPaymentMethod({  uniqueExternalId : value,
- paymentMethodId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueExternalId | string | yes |  |   
-| paymentMethodId | string | yes |  |  
-
-
-
-Uses this api to Delete Subscription Payment Method
-
-*Returned Response:*
-
-
-
-
-[DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
-
-Delete Subscription Payment Method Response.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getSubscriptionConfig
-List Subscription Config
-
-
-
-```javascript
-// Promise
-const promise = client.payment.getSubscriptionConfig();
-
-// Async/Await
-const data = await client.payment.getSubscriptionConfig();
-```
-
-
-
-
-
-
-Get all  Subscription Config details
-
-*Returned Response:*
-
-
-
-
-[SubscriptionConfigResponse](#SubscriptionConfigResponse)
-
-List Subscription Config Response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "aggregator": "stripe",
-  "config": {
-    "public_key": "pk_test_lHBf12TZLa5"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### saveSubscriptionSetupIntent
-Save Subscription Setup Intent
-
-
-
-```javascript
-// Promise
-const promise = client.payment.saveSubscriptionSetupIntent({  body : value });
-
-// Async/Await
-const data = await client.payment.saveSubscriptionSetupIntent({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | yes | Request body |
-
-
-Uses this api to Save Subscription Setup Intent
-
-*Returned Response:*
-
-
-
-
-[SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
-
-Save Subscription Setup Intent Response.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "id": "test",
-    "object": "test",
-    "client_secret": "test",
-    "customer": "test",
-    "status": "requires_payment_method"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBankAccountDetailsOpenAPI
-Get bank details
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
- requestHash : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
- requestHash : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |    
-| requestHash | string | no |  |  
-
-
-
-Use this API to get saved bank details for returned/cancelled order using order id.
-
-*Returned Response:*
-
-
-
-
-[RefundAccountResponse](#RefundAccountResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "account_no": "XXXX-XXXX-6682",
-    "ifsc_code": "SBIEXAMPLE001",
-    "email": "loremipsum@example.com",
-    "address": "1773  Monroe Street",
-    "bank_name": "SBI",
-    "branch_name": "HOUSTON",
-    "comment": "Lorem Ipsum",
-    "account_holder": "Leslie Rice",
-    "mobile": "0987654321"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addRefundBankAccountUsingOTP
-Save bank details for cancelled/returned order
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
-
-
-Use this API to save bank details for returned/cancelled order to refund amount in his account.
-
-*Returned Response:*
-
-
-
-
-[RefundAccountResponse](#RefundAccountResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Account successfully created",
-  "data": {},
-  "is_verified_flag": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### verifyIfscCode
-Ifsc Code Verification
-
-
-
-```javascript
-// Promise
-const promise = client.payment.verifyIfscCode({  ifscCode : value });
-
-// Async/Await
-const data = await client.payment.verifyIfscCode({  ifscCode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| ifscCode | string | no |  |  
-
-
-
-Get True/False for correct IFSC Code for adding bank details for refund
-
-*Returned Response:*
-
-
-
-
-[IfscCodeResponse](#IfscCodeResponse)
-
-Bank details on correct Ifsc Code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "branch_name": "MANPUR",
-  "bank_name": "GAYA",
-  "BRANCH": "MANPUR",
-  "CENTRE": "GAYA",
-  "DISTRICT": "GAYA",
-  "STATE": "BIHAR",
-  "ADDRESS": "POBUNIYADGANJBIHAR",
-  "CONTACT": "00",
-  "MICR": "816002103",
-  "UPI": true,
-  "RTGS": true,
-  "CITY": "GAYA",
-  "NEFT": true,
-  "IMPS": true,
-  "SWIFT": "",
-  "BANK": "State Bank of India",
-  "BANKCODE": "SBIN",
-  "IFSC": "SBIN0005611",
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserOrderBeneficiaries
-List Order Beneficiary
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |  
-
-
-
-Get all active  beneficiary details added by the user for refund
-
-*Returned Response:*
-
-
-
-
-[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
-
-List Order Beneficiary
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "beneficiaries": [
-    {
-      "id": 3695,
-      "beneficiary_id": "4c86dd56e634a4c6a8fb51d195bc7b83",
-      "bank_name": "State Bank of India",
-      "branch_name": "BHOGAT",
-      "account_holder": "PRAKASH TEST",
-      "account_no": "3566342455454",
-      "ifsc_code": "SBIN0014982",
-      "mobile": "7819064010",
-      "email": "prakashtest@gmail.com",
-      "address": "49A, Dabhi seri, jodhpur, kalyanpur",
-      "comment": "COD Refund",
-      "is_active": null,
-      "created_on": "2021-01-22 11:31:02",
-      "modified_on": "2021-01-22 11:31:02",
-      "display_name": "BANK",
-      "transfer_mode": "bank",
-      "title": "Bank Account",
-      "subtitle": "35663423659",
-      "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserBeneficiaries
-List User Beneficiary
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |  
-
-
-
-Get all active  beneficiary details added by the user for refund
-
-*Returned Response:*
-
-
-
-
-[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
-
-List User Beneficiary
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "beneficiaries": [
-    {
-      "id": 221,
-      "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
-      "bank_name": "State Bank of India",
-      "branch_name": "State Bank of India",
-      "account_holder": "SHASHI TEST",
-      "account_no": "1234567891",
-      "ifsc_code": "SBIN0005611",
-      "mobile": "9112042174",
-      "email": "payment@gofynd.com",
-      "address": "204A",
-      "comment": "",
-      "is_active": null,
-      "created_on": "2020-06-29 12:38:39",
-      "modified_on": "2020-06-29 12:38:39",
-      "display_name": "BANK",
-      "transfer_mode": "bank",
-      "title": "Bank Account",
-      "subtitle": "1234567891",
-      "delights_user_name": null
-    }
-  ],
-  "show_beneficiary_details": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### confirmPayment
-Confirm payment after successful payment from payment gateway
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.confirmPayment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentConfirmationRequest](#PaymentConfirmationRequest) | yes | Request body |
-
-
-Use this API to confirm payment after payment gateway accepted payment.
-
-*Returned Response:*
-
-
-
-
-[PaymentConfirmationResponse](#PaymentConfirmationResponse)
-
-Success. Returns the status of payment. Check the example shown below or refer `PaymentConfirmationResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Payment Successful",
-  "order_id": "FY60F90AEF01FF43E878"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getPlatformPaymentConfig
 API to fetch the payment options of the merchant for paltform
 
@@ -2855,687 +2450,6 @@ Success. Returns the status of API. Check the example shown below or refer `Plat
     }
   },
   "message": "Platform merchant payment data fetched"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePlatformPaymentConfig
-API to update the payment options of the merchant for paltform
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [UpdatePlatformPaymentConfig](#UpdatePlatformPaymentConfig) | yes | Request body |
-
-
-Use this API to update the payment options.
-
-*Returned Response:*
-
-
-
-
-[PlatfromPaymentConfig](#PlatfromPaymentConfig)
-
-Success. Returns the status of API. Check the example shown below or refer `PlatfromPaymentConfigSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "payment": {
-      "source": "ECOMM",
-      "enabled": true,
-      "methods": {
-        "pl": {
-          "enabled": true
-        },
-        "card": {
-          "enabled": true
-        },
-        "nb": {
-          "enabled": true
-        },
-        "wl": {
-          "enabled": true
-        },
-        "ps": {
-          "enabled": true
-        },
-        "upi": {
-          "enabled": true
-        },
-        "qr": {
-          "enabled": true
-        },
-        "cod": {
-          "enabled": true
-        },
-        "pp": {
-          "enabled": false
-        },
-        "jp": {
-          "enabled": false
-        },
-        "pac": {
-          "enabled": false
-        },
-        "fc": {
-          "enabled": false
-        },
-        "jiopp": {
-          "enabled": false
-        },
-        "jiopplink": {
-          "enabled": false
-        },
-        "stripepg": {
-          "enabled": false
-        },
-        "juspaypg": {
-          "enabled": false
-        },
-        "payubizpg": {
-          "enabled": false
-        },
-        "payumoneypg": {
-          "enabled": false
-        },
-        "rupifipg": {
-          "enabled": false
-        },
-        "simpl": {
-          "enabled": true
-        }
-      },
-      "cod_charges": 0,
-      "callback_url": {
-        "app": "",
-        "web": ""
-      },
-      "anonymous_cod": false,
-      "mode_of_payment": "ECOMM",
-      "cod_amount_limit": 49000,
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "",
-        "payment_identifier": ""
-      }
-    }
-  },
-  "message": "Platform merchant payment data fetched"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserCODlimitRoutes
-Get COD limit for user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
- mobileNo : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
- mobileNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| merchantUserId | string | yes |  |   
-| mobileNo | string | yes |  |  
-
-
-
-Use this API to get user cod limit and reamining limit for the payment
-
-*Returned Response:*
-
-
-
-
-[GetUserCODLimitResponse](#GetUserCODLimitResponse)
-
-Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "user_cod_data": {
-    "is_active": true,
-    "user_id": 5,
-    "usages": 1000,
-    "limit": 10000,
-    "remaining_limit": 9000,
-    "merchant_user_id": "5e199e6998cfe1776f1385dc"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### setUserCODlimitRoutes
-Set COD option for user for payment
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SetCODForUserRequest](#SetCODForUserRequest) | yes | Request body |
-
-
-Use this API to set cod option as true or false for the payment
-
-*Returned Response:*
-
-
-
-
-[SetCODOptionResponse](#SetCODOptionResponse)
-
-Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "COD option for user {} is set to {}"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### edcAggregatorsAndModelList
-get some information about the store and edc device
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.edcAggregatorsAndModelList();
-```
-
-
-
-
-
-
-Use this API to get info of devices linked to a particular app.
-
-*Returned Response:*
-
-
-
-
-[EdcAggregatorAndModelListResponse](#EdcAggregatorAndModelListResponse)
-
-Success. Returns the list of devices linked to the application Check the example shown below or refer `EdcAggregatorAndModelListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "aggregator": "Pinelabs",
-      "aggregator_id": 17,
-      "models": [
-        "A910",
-        "A920"
-      ]
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### edcDeviceStats
-get some information about the store and edc device
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.edcDeviceStats();
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.edcDeviceStats();
-```
-
-
-
-
-
-
-Use this API to get info of devices linked to a particular app.
-
-*Returned Response:*
-
-
-
-
-[EdcDeviceStatsResponse](#EdcDeviceStatsResponse)
-
-Success. Returns the list of devices linked to the application Check the example shown below or refer `EdcDeviceStatsResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "statistics": {
-    "active_device_count": 2,
-    "inactive_device_count": 0
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateEdcDevice
-map new edc device to the terminal
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
-| body | [EdcAddRequest](#EdcAddRequest) | yes | Request body |
-
-
-Use this API to map new edc device to the terminal
-
-*Returned Response:*
-
-
-
-
-[EdcDeviceAddResponse](#EdcDeviceAddResponse)
-
-Success. Returns the single edc device mapped to the terminal. Check the example shown below or refer `EdcDeviceAddResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "application_id": "2",
-    "aggregator_id": 1,
-    "terminal_serial_no": "15c26ee7297e4334",
-    "edc_device_serial_no": "123456784",
-    "terminal_unique_identifier": "1231208734",
-    "merchant_store_pos_code": null,
-    "store_id": 12312,
-    "device_tag": "Counter 2",
-    "is_active": false,
-    "edc_model": "A910"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getEdcDevice
-get details of a single edc device
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getEdcDevice({  terminalUniqueIdentifier : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
-
-
-
-Use this API to get details of a single edc device
-
-*Returned Response:*
-
-
-
-
-[EdcDeviceDetailsResponse](#EdcDeviceDetailsResponse)
-
-Success. Returns the single edc device mapped to the terminal. Check the example shown below or refer `EdcDeviceDetailsResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "application_id": "2",
-    "terminal_serial_no": "15c26ee7297e4334",
-    "edc_device_serial_no": "123456784",
-    "terminal_unique_identifier": "1231208734",
-    "merchant_store_pos_code": "12345123",
-    "store_id": 12312,
-    "aggregator_id": 17,
-    "aggregator_name": "Pinelabs",
-    "device_tag": "Counter 2",
-    "is_active": true,
-    "edc_model": "A910"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### addEdcDevice
-Update store id and device tag of edc device
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.addEdcDevice({  terminalUniqueIdentifier : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
-| body | [EdcUpdateRequest](#EdcUpdateRequest) | yes | Request body |
-
-
-Use this API to Update store id and device tag of edc device
-
-*Returned Response:*
-
-
-
-
-[EdcDeviceUpdateResponse](#EdcDeviceUpdateResponse)
-
-Check the example shown below or refer `EdcDeviceUpdateResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### edcDeviceList
-get all the device list of an app
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
- pageSize : value,
- isActive : value,
- storeId : value,
- deviceTag : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.edcDeviceList({  pageNo : value,
- pageSize : value,
- isActive : value,
- storeId : value,
- deviceTag : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| isActive | boolean | no |  |    
-| storeId | number | no |  |    
-| deviceTag | string | no |  |  
-
-
-
-Use this API to get all devices linked to a particular app.
-
-*Returned Response:*
-
-
-
-
-[EdcDeviceListResponse](#EdcDeviceListResponse)
-
-Success. Returns the list of devices linked to the application Check the example shown below or refer `EdcDeviceListResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "page": {
-    "type": "number",
-    "size": 1,
-    "current": 1,
-    "has_next": false,
-    "item_total": 2
-  },
-  "items": [
-    {
-      "application_id": "2",
-      "terminal_serial_no": "15c26ee7297e4331",
-      "edc_device_serial_no": "123456781",
-      "terminal_unique_identifier": "1231242081",
-      "merchant_store_pos_code": "122120009",
-      "store_id": 12312,
-      "aggregator_id": 17,
-      "aggregator_name": "Pinelabs",
-      "device_tag": "Counter 2",
-      "is_active": true,
-      "edc_model": "A910"
-    }
-  ]
 }
 ```
 </details>
@@ -4781,6 +3695,477 @@ Success
 ---
 
 
+### getSubscriptionConfig
+List Subscription Config
+
+
+
+```javascript
+// Promise
+const promise = client.payment.getSubscriptionConfig();
+
+// Async/Await
+const data = await client.payment.getSubscriptionConfig();
+```
+
+
+
+
+
+
+Get all  Subscription Config details
+
+*Returned Response:*
+
+
+
+
+[SubscriptionConfigResponse](#SubscriptionConfigResponse)
+
+List Subscription Config Response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregator": "stripe",
+  "config": {
+    "public_key": "pk_test_lHBf12TZLa5"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSubscriptionPaymentMethod
+List Subscription Payment Method
+
+
+
+```javascript
+// Promise
+const promise = client.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
+
+// Async/Await
+const data = await client.payment.getSubscriptionPaymentMethod({  uniqueExternalId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| uniqueExternalId | string | no | Unique external id |  
+
+
+
+Get all  Subscription  Payment Method
+
+*Returned Response:*
+
+
+
+
+[SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
+
+List Subscription Payment Method Response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 68,
+      "type": "card",
+      "pg_payment_method_id": "pm_1H8HyIJ1ZTFIN1aD5eDOL4nU",
+      "data": {
+        "brand": "visa",
+        "last4": "4242",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": null,
+          "address_postal_code_check": null
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2044,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 12,
+        "fingerprint": "0aror24meTf8iYfw",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": false
+    },
+    {
+      "id": 81,
+      "type": "card",
+      "pg_payment_method_id": "pm_1Hc7tMJ1ZTFIN1aDCvMIIBeT",
+      "data": {
+        "brand": "visa",
+        "last4": "4242",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": null,
+          "address_postal_code_check": null
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2020,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 11,
+        "fingerprint": "0aror24meTf8iYfw",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": true
+    },
+    {
+      "id": 93,
+      "type": "card",
+      "pg_payment_method_id": "pm_1HvddjJ1ZTFIN1aDgebQvuyi",
+      "data": {
+        "brand": "visa",
+        "last4": "4242",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": "pass",
+          "address_postal_code_check": "pass"
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2022,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 11,
+        "fingerprint": "0aror24meTf8iYfw",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": false
+    },
+    {
+      "id": 98,
+      "type": "card",
+      "pg_payment_method_id": "pm_1IJDF0J1ZTFIN1aDnJFi4i2v",
+      "data": {
+        "brand": "visa",
+        "last4": "1111",
+        "checks": {
+          "cvc_check": "pass",
+          "address_line1_check": "pass",
+          "address_postal_code_check": "pass"
+        },
+        "wallet": null,
+        "country": "US",
+        "funding": "credit",
+        "exp_year": 2025,
+        "networks": {
+          "available": [
+            "visa"
+          ],
+          "preferred": null
+        },
+        "exp_month": 11,
+        "fingerprint": "ZtDTGycouUEup4Q4",
+        "generated_from": null,
+        "three_d_secure_usage": {
+          "supported": true
+        }
+      },
+      "is_default": false
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserBeneficiaries
+List User Beneficiary
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.getUserBeneficiaries({  orderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |  
+
+
+
+Get all active  beneficiary details added by the user for refund
+
+*Returned Response:*
+
+
+
+
+[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+List User Beneficiary
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 221,
+      "beneficiary_id": "0f7e44a922df352c05c5f73cb40ba115",
+      "bank_name": "State Bank of India",
+      "branch_name": "State Bank of India",
+      "account_holder": "SHASHI TEST",
+      "account_no": "1234567891",
+      "ifsc_code": "SBIN0005611",
+      "mobile": "9112042174",
+      "email": "payment@gofynd.com",
+      "address": "204A",
+      "comment": "",
+      "is_active": null,
+      "created_on": "2020-06-29 12:38:39",
+      "modified_on": "2020-06-29 12:38:39",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "1234567891",
+      "delights_user_name": null
+    }
+  ],
+  "show_beneficiary_details": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserCODlimitRoutes
+Get COD limit for user
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
+ mobileNo : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
+ mobileNo : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| merchantUserId | string | yes |  |   
+| mobileNo | string | yes |  |  
+
+
+
+Use this API to get user cod limit and reamining limit for the payment
+
+*Returned Response:*
+
+
+
+
+[GetUserCODLimitResponse](#GetUserCODLimitResponse)
+
+Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "user_cod_data": {
+    "is_active": true,
+    "user_id": 5,
+    "usages": 1000,
+    "limit": 10000,
+    "remaining_limit": 9000,
+    "merchant_user_id": "5e199e6998cfe1776f1385dc"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserOrderBeneficiaries
+List Order Beneficiary
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.getUserOrderBeneficiaries({  orderId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |  
+
+
+
+Get all active  beneficiary details added by the user for refund
+
+*Returned Response:*
+
+
+
+
+[OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+
+List Order Beneficiary
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "beneficiaries": [
+    {
+      "id": 3695,
+      "beneficiary_id": "4c86dd56e634a4c6a8fb51d195bc7b83",
+      "bank_name": "State Bank of India",
+      "branch_name": "BHOGAT",
+      "account_holder": "PRAKASH TEST",
+      "account_no": "3566342455454",
+      "ifsc_code": "SBIN0014982",
+      "mobile": "7819064010",
+      "email": "prakashtest@gmail.com",
+      "address": "49A, Dabhi seri, jodhpur, kalyanpur",
+      "comment": "COD Refund",
+      "is_active": null,
+      "created_on": "2021-01-22 11:31:02",
+      "modified_on": "2021-01-22 11:31:02",
+      "display_name": "BANK",
+      "transfer_mode": "bank",
+      "title": "Bank Account",
+      "subtitle": "35663423659",
+      "delights_user_name": "shreeniwas_24x7_gmail_com_45978_16624463"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### initialisePayment
 Initialize a payment (server-to-server) for UPI and BharatQR
 
@@ -4834,65 +4219,6 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "razorpay_payment_id": "pay_dummy_001",
   "customer_id": "cust_dummy_001",
   "device_id": "1234567890"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### checkAndUpdatePaymentStatus
-Performs continuous polling to check status of payment on the server
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.checkAndUpdatePaymentStatus({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest) | yes | Request body |
-
-
-Use this API to perform continuous polling at intervals to check the status of payment until timeout.
-
-*Returned Response:*
-
-
-
-
-[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
-
-Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "aggregator_name": "UPI_Razorpay",
-  "status": "success",
-  "retry": false
 }
 ```
 </details>
@@ -4993,999 +4319,1150 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
+### saveBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.saveBrandPaymentGatewayConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
+
+
+Save Config Secret For Brand Payment Gateway
+
+*Returned Response:*
+
+
+
+
+[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
+
+Save Config Secret For Brand Payment Gateway Success Response.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregators": [
+    "razorpay"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### savePayout
+Save Payout
+
+
+
+```javascript
+// Promise
+const promise = client.payment.savePayout({  body : value });
+
+// Async/Await
+const data = await client.payment.savePayout({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PayoutRequest](#PayoutRequest) | yes | Request body |
+
+
+Save Payout
+
+*Returned Response:*
+
+
+
+
+[PayoutResponse](#PayoutResponse)
+
+save payout response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_active": true,
+  "bank_details": {
+    "account_type": "saving",
+    "account_holder": "Vikas Kumar",
+    "branch_name": "Mumbai",
+    "country": "",
+    "ifsc_code": "SBIN0011513",
+    "account_no": "9876543210",
+    "city": "",
+    "state": "",
+    "bank_name": "SBI"
+  },
+  "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
+  "users": {
+    "name": "reliance retail",
+    "unique_external_id": "company:1",
+    "mobile": "1234567890",
+    "email": "reliance@gmail.com"
+  },
+  "aggregator": "Razorpay",
+  "transfer_type": "bank",
+  "created": true,
+  "payouts": {
+    "aggregator_fund_id": null
+  },
+  "payment_status": "payout_initiated"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### saveSubscriptionSetupIntent
+Save Subscription Setup Intent
+
+
+
+```javascript
+// Promise
+const promise = client.payment.saveSubscriptionSetupIntent({  body : value });
+
+// Async/Await
+const data = await client.payment.saveSubscriptionSetupIntent({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest) | yes | Request body |
+
+
+Uses this api to Save Subscription Setup Intent
+
+*Returned Response:*
+
+
+
+
+[SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
+
+Save Subscription Setup Intent Response.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "test",
+    "object": "test",
+    "client_secret": "test",
+    "customer": "test",
+    "status": "requires_payment_method"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### setUserCODlimitRoutes
+Set COD option for user for payment
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SetCODForUserRequest](#SetCODForUserRequest) | yes | Request body |
+
+
+Use this API to set cod option as true or false for the payment
+
+*Returned Response:*
+
+
+
+
+[SetCODOptionResponse](#SetCODOptionResponse)
+
+Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "COD option for user {} is set to {}"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateBrandPaymentGatewayConfig
+Save Config Secret For Brand Payment Gateway
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.updateBrandPaymentGatewayConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest) | yes | Request body |
+
+
+Save Config Secret For Brand Payment Gateway
+
+*Returned Response:*
+
+
+
+
+[PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
+
+Save Config Secret For Brand Payment Gateway Success Response.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregators": [
+    "razorpay"
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateEdcDevice
+map new edc device to the terminal
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.updateEdcDevice({  terminalUniqueIdentifier : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| terminalUniqueIdentifier | string | yes | Terminal unique identifier |  
+| body | [EdcAddRequest](#EdcAddRequest) | yes | Request body |
+
+
+Use this API to map new edc device to the terminal
+
+*Returned Response:*
+
+
+
+
+[EdcDeviceAddResponse](#EdcDeviceAddResponse)
+
+Success. Returns the single edc device mapped to the terminal. Check the example shown below or refer `EdcDeviceAddResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "application_id": "2",
+    "aggregator_id": 1,
+    "terminal_serial_no": "15c26ee7297e4334",
+    "edc_device_serial_no": "123456784",
+    "terminal_unique_identifier": "1231208734",
+    "merchant_store_pos_code": null,
+    "store_id": 12312,
+    "device_tag": "Counter 2",
+    "is_active": false,
+    "edc_model": "A910"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePayout
+Update Payout
+
+
+
+```javascript
+// Promise
+const promise = client.payment.updatePayout({  uniqueTransferNo : value,
+ body : value });
+
+// Async/Await
+const data = await client.payment.updatePayout({  uniqueTransferNo : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueTransferNo | string | yes | Unique transfer id |  
+| body | [PayoutRequest](#PayoutRequest) | yes | Request body |
+
+
+Update Payout
+
+*Returned Response:*
+
+
+
+
+[UpdatePayoutResponse](#UpdatePayoutResponse)
+
+save payout response object
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "is_default": true,
+  "is_active": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePlatformPaymentConfig
+API to update the payment options of the merchant for paltform
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").payment.updatePlatformPaymentConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdatePlatformPaymentConfig](#UpdatePlatformPaymentConfig) | yes | Request body |
+
+
+Use this API to update the payment options.
+
+*Returned Response:*
+
+
+
+
+[PlatfromPaymentConfig](#PlatfromPaymentConfig)
+
+Success. Returns the status of API. Check the example shown below or refer `PlatfromPaymentConfigSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "payment": {
+      "source": "ECOMM",
+      "enabled": true,
+      "methods": {
+        "pl": {
+          "enabled": true
+        },
+        "card": {
+          "enabled": true
+        },
+        "nb": {
+          "enabled": true
+        },
+        "wl": {
+          "enabled": true
+        },
+        "ps": {
+          "enabled": true
+        },
+        "upi": {
+          "enabled": true
+        },
+        "qr": {
+          "enabled": true
+        },
+        "cod": {
+          "enabled": true
+        },
+        "pp": {
+          "enabled": false
+        },
+        "jp": {
+          "enabled": false
+        },
+        "pac": {
+          "enabled": false
+        },
+        "fc": {
+          "enabled": false
+        },
+        "jiopp": {
+          "enabled": false
+        },
+        "jiopplink": {
+          "enabled": false
+        },
+        "stripepg": {
+          "enabled": false
+        },
+        "juspaypg": {
+          "enabled": false
+        },
+        "payubizpg": {
+          "enabled": false
+        },
+        "payumoneypg": {
+          "enabled": false
+        },
+        "rupifipg": {
+          "enabled": false
+        },
+        "simpl": {
+          "enabled": true
+        }
+      },
+      "cod_charges": 0,
+      "callback_url": {
+        "app": "",
+        "web": ""
+      },
+      "anonymous_cod": false,
+      "mode_of_payment": "ECOMM",
+      "cod_amount_limit": 49000,
+      "payment_selection_lock": {
+        "enabled": false,
+        "default_options": "",
+        "payment_identifier": ""
+      }
+    }
+  },
+  "message": "Platform merchant payment data fetched"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### verifyIfscCode
+Ifsc Code Verification
+
+
+
+```javascript
+// Promise
+const promise = client.payment.verifyIfscCode({  ifscCode : value });
+
+// Async/Await
+const data = await client.payment.verifyIfscCode({  ifscCode : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| ifscCode | string | no |  |  
+
+
+
+Get True/False for correct IFSC Code for adding bank details for refund
+
+*Returned Response:*
+
+
+
+
+[IfscCodeResponse](#IfscCodeResponse)
+
+Bank details on correct Ifsc Code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "branch_name": "MANPUR",
+  "bank_name": "GAYA",
+  "BRANCH": "MANPUR",
+  "CENTRE": "GAYA",
+  "DISTRICT": "GAYA",
+  "STATE": "BIHAR",
+  "ADDRESS": "POBUNIYADGANJBIHAR",
+  "CONTACT": "00",
+  "MICR": "816002103",
+  "UPI": true,
+  "RTGS": true,
+  "CITY": "GAYA",
+  "NEFT": true,
+  "IMPS": true,
+  "SWIFT": "",
+  "BANK": "State Bank of India",
+  "BANKCODE": "SBIN",
+  "IFSC": "SBIN0005611",
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [PaymentGatewayConfigResponse](#PaymentGatewayConfigResponse)
 
+#### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
+
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | app_id | string |  yes  | Application Id to which Payment config Mapped |
- | created | boolean |  yes  | Response is created or not |
- | excluded_fields | [string] |  yes  | List of all excluded  options with their Details. |
- | aggregators | [string] |  no  | List of all speceific Payment options with their Details. |
- | display_fields | [string] |  yes  | List of all included  options with their Details. |
+ | ---------- | ---- | -------- | ----------- || details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  || order_id | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [ErrorCodeDescription](#ErrorCodeDescription)
+#### [BankDetailsForOTP](#BankDetailsForOTP)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | code | string |  yes  | Error descrption code. |
- | description | string |  yes  | Error human understandable description. |
+ | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || bank_name | string |  yes  |  || branch_name | string |  yes  |  || ifsc_code | string |  yes  |  |
 
 ---
 
+#### [CODdata](#CODdata)
 
- 
- 
- #### [PaymentGatewayConfig](#PaymentGatewayConfig)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | config_type | string |  yes  | Config Type of the aggregator |
- | key | string |  yes  | Api key of the payment aggregator |
- | secret | string |  yes  | Secret Key of the payment aggregator |
- | merchant_salt | string |  yes  | Merchant key of the payment aggregator |
- | is_active | boolean |  no  | Enable/ Disable Flag |
+ | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || limit | number |  yes  |  || remaining_limit | number |  yes  |  || usages | number |  yes  |  || user_id | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest)
+#### [DeletePayoutResponse](#DeletePayoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_id | string |  yes  | Application Id to which Payment config Mapped |
- | aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig) |  no  |  |
- | is_active | boolean |  no  | Enable/ Disable Flag |
+ | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
 
 ---
 
+#### [DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
 
- 
- 
- #### [PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | aggregator | [string] |  yes  | List of added payment gateway |
+ | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
+#### [EdcAddRequest](#EdcAddRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  yes  | Error descrption code. |
- | description | string |  yes  | Error human understandable description. |
+ | ---------- | ---- | -------- | ----------- || aggregator_id | number |  yes  |  || device_tag | string |  no  |  || edc_device_serial_no | string |  yes  |  || edc_model | string |  yes  |  || store_id | number |  yes  |  || terminal_serial_no | string |  yes  |  |
 
 ---
 
+#### [EdcAggregatorAndModelListResponse](#EdcAggregatorAndModelListResponse)
 
- 
- 
- #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || data | [[EdcModelData](#EdcModelData)] |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PaymentModeLogo](#PaymentModeLogo)
+#### [EdcDevice](#EdcDevice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | large | string |  yes  | large |
- | small | string |  yes  | smalll |
+ | ---------- | ---- | -------- | ----------- || aggregator_id | number |  yes  |  || aggregator_name | string |  no  |  || application_id | string |  yes  |  || device_tag | string |  yes  |  || edc_device_serial_no | string |  yes  |  || edc_model | string |  no  |  || is_active | boolean |  yes  |  || merchant_store_pos_code | string |  no  |  || store_id | number |  yes  |  || terminal_serial_no | string |  yes  |  || terminal_unique_identifier | string |  yes  |  |
 
 ---
 
+#### [EdcDeviceAddResponse](#EdcDeviceAddResponse)
 
- 
- 
- #### [IntentApp](#IntentApp)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  no  | display_name |
- | code | string |  no  | code |
- | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  | logos |
- | package_name | string |  no  | package_name |
+ | ---------- | ---- | -------- | ----------- || data | [EdcDevice](#EdcDevice) |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [IntentAppErrorList](#IntentAppErrorList)
+#### [EdcDeviceDetailsResponse](#EdcDeviceDetailsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | code |
- | package_name | string |  no  | package_name |
+ | ---------- | ---- | -------- | ----------- || data | [EdcDevice](#EdcDevice) |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [EdcDeviceListResponse](#EdcDeviceListResponse)
 
- 
- 
- #### [PaymentModeList](#PaymentModeList)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | code |
- | compliant_with_tokenisation_guidelines | boolean |  no  | If card is tokenised or not |
- | card_issuer | string |  no  | card_issuer |
- | card_brand | string |  no  | card_brand |
- | cod_limit_per_order | number |  no  | Cod limit per order |
- | intent_app_error_list | [string] |  no  | intent_app_error_list |
- | name | string |  no  | name |
- | card_isin | string |  no  | card_isin |
- | cod_limit | number |  no  | cod limit |
- | card_reference | string |  no  | card_reference |
- | nickname | string |  no  | nickname |
- | exp_year | number |  no  | exp_year |
- | card_type | string |  no  | card_type |
- | display_priority | number |  no  | Dispaly Priority |
- | retry_count | number |  no  | retry_count |
- | fynd_vpa | string |  no  | fynd_vpa |
- | display_name | string |  no  | display name |
- | merchant_code | string |  no  | merchant code |
- | intent_flow | boolean |  no  | intent_flow |
- | card_id | string |  no  | card_id |
- | exp_month | number |  no  | exp_month |
- | card_brand_image | string |  no  | card_brand_image |
- | card_number | string |  no  | card_number |
- | remaining_limit | number |  no  | Remaining limit |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  | Logo |
- | card_name | string |  no  | card_name |
- | aggregator_name | string |  yes  | aggregator_name |
- | intent_app | [[IntentApp](#IntentApp)] |  no  | intent_app |
- | card_fingerprint | string |  no  | card_fingerprint |
- | expired | boolean |  no  | expired |
- | card_token | string |  no  | card_token |
- | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  | intent_app_error_dict_list |
- | timeout | number |  no  | timeout |
+ | ---------- | ---- | -------- | ----------- || items | [[EdcDevice](#EdcDevice)] |  yes  |  || page | [Page](#Page) |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [RootPaymentMode](#RootPaymentMode)
+#### [EdcDeviceStatsResponse](#EdcDeviceStatsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string |  yes  | Payment mode display name |
- | aggregator_name | string |  no  | Dispaly Priority |
- | name | string |  yes  | Payment mode name |
- | is_pay_by_card_pl | boolean |  no  | This flag will be true in case of Payment link payment through card |
- | anonymous_enable | boolean |  no  | Annonymous card flag |
- | save_card | boolean |  no  | Card save or not |
- | list | [[PaymentModeList](#PaymentModeList)] |  no  | Payment mode |
- | display_priority | number |  yes  | Dispaly Priority |
- | add_card_enabled | boolean |  no  | Annonymous card flag |
+ | ---------- | ---- | -------- | ----------- || statistics | [StatisticsData](#StatisticsData) |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [EdcDeviceUpdateResponse](#EdcDeviceUpdateResponse)
 
- 
- 
- #### [PaymentOptions](#PaymentOptions)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  | Payment options |
+ | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PaymentOptionsResponse](#PaymentOptionsResponse)
+#### [EdcModelData](#EdcModelData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | payment_options | [PaymentOptions](#PaymentOptions) |  yes  | Payment options |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || aggregator_id | number |  yes  |  || models | [string] |  yes  |  |
 
 ---
 
+#### [EdcUpdateRequest](#EdcUpdateRequest)
 
- 
- 
- #### [PayoutMoreAttributes](#PayoutMoreAttributes)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | state | string |  no  | State |
- | bank_name | string |  no  | Name of Bank |
- | ifsc_code | string |  no  | IFSC Code |
- | account_holder | string |  no  | Account Holder Name |
- | account_no | string |  no  | Account Number |
- | account_type | string |  no  | Account Type Saving/Current |
- | country | string |  no  | Country |
- | city | string |  no  | City |
- | branch_name | string |  no  | Branch Name |
+ | ---------- | ---- | -------- | ----------- || aggregator_id | number |  no  |  || device_tag | string |  no  |  || edc_device_serial_no | string |  no  |  || edc_model | string |  no  |  || is_active | boolean |  no  |  || merchant_store_pos_code | string |  no  |  || store_id | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [PayoutAggregator](#PayoutAggregator)
+#### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_id | number |  no  | aggregator_id |
- | aggregator_fund_id | number |  no  | aggregator_fund_id |
- | payout_details_id | number |  no  | payout_details_id |
+ | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  |
 
 ---
 
+#### [ErrorCodeDescription](#ErrorCodeDescription)
 
- 
- 
- #### [PayoutCustomer](#PayoutCustomer)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobile | string |  no  | Customer Mobile No |
- | id | number |  no  | Customer ID |
- | name | string |  no  | Customer Name |
- | unique_external_id | string |  no  | unique_external_id |
+ | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [Payout](#Payout)
+#### [GetUserCODLimitResponse](#GetUserCODLimitResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  yes  | bank details object |
- | unique_transfer_no | string |  yes  | display priority of the payment mode |
- | is_default | boolean |  yes  | default or not  |
- | payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)] |  no  |  |
- | transfer_type | string |  yes  | transafer type |
- | customers | [PayoutCustomer](#PayoutCustomer) |  yes  | customers details object |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  || user_cod_data | [CODdata](#CODdata) |  yes  |  |
 
 ---
 
+#### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
 
- 
- 
- #### [PayoutsResponse](#PayoutsResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | items | [[Payout](#Payout)] |  yes  | contains list of PayoutSchema |
+ | ---------- | ---- | -------- | ----------- || error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PayoutBankDetails](#PayoutBankDetails)
+#### [IfscCodeResponse](#IfscCodeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | state | string |  no  |  |
- | branch_name | string |  no  |  |
- | ifsc_code | string |  yes  |  |
- | bank_name | string |  no  |  |
- | account_no | string |  no  |  |
- | account_type | string |  yes  |  |
- | pincode | number |  no  |  |
- | country | string |  no  |  |
- | city | string |  no  |  |
- | account_holder | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || bank_name | string |  yes  |  || branch_name | string |  yes  |  || success | boolean |  no  |  |
 
 ---
 
+#### [IntentApp](#IntentApp)
 
- 
- 
- #### [PayoutRequest](#PayoutRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  | payout bank details object |
- | aggregator | string |  yes  | Aggregator Name |
- | users | string |  yes  | payout users object |
- | unique_external_id | string |  yes  | Unique Id of Payout |
- | transfer_type | string |  yes  | transafer type |
- | is_active | boolean |  yes  | Enable/Disable Flag Payout |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || display_name | string |  no  |  || logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || package_name | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [PayoutResponse](#PayoutResponse)
+#### [IntentAppErrorList](#IntentAppErrorList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bank_details | string |  yes  | payout bank_details object |
- | aggregator | string |  yes  | Aggregator Name |
- | success | boolean |  yes  | Response is successful or not |
- | unique_transfer_no | string |  yes  | unique transfer no |
- | users | string |  yes  | users details object |
- | created | boolean |  yes  | created flag |
- | transfer_type | string |  yes  | transfer type |
- | payouts | string |  yes  | payout  object |
- | payment_status | string |  yes  | status of payment |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || package_name | string |  no  |  |
 
 ---
 
+#### [LinkStatus](#LinkStatus)
 
- 
- 
- #### [UpdatePayoutResponse](#UpdatePayoutResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | is_default | boolean |  yes  | Enable/Disable Default Payout |
- | is_active | boolean |  yes  | Enable/DIsable Flag Payout |
+ | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || status | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [UpdatePayoutRequest](#UpdatePayoutRequest)
+#### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  yes  | Enable/Disable Flag Payout |
- | is_default | boolean |  yes  | Enable/Disable Default Payout |
- | unique_external_id | string |  yes  | Unique Id of Payout |
+ | ---------- | ---- | -------- | ----------- || current_status | string |  no  |  || extra_meta | string |  no  |  || order_id | string |  no  |  || payment_gateway | string |  no  |  || payment_id | string |  no  |  |
 
 ---
 
+#### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
 
- 
- 
- #### [DeletePayoutResponse](#DeletePayoutResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
+ | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  || mode | string |  yes  |  || name | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
+#### [NotFoundResourceError](#NotFoundResourceError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | data | [string] |  yes  | Subscription Payment Method Object |
+ | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
 
- 
- 
- #### [DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Success or failure. |
+ | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || address | string |  yes  |  || bank_name | string |  yes  |  || beneficiary_id | string |  yes  |  || branch_name | string |  no  |  || comment | string |  no  |  || created_on | string |  yes  |  || delights_user_name | string |  no  |  || display_name | string |  yes  |  || email | string |  yes  |  || id | number |  yes  |  || ifsc_code | string |  yes  |  || is_active | boolean |  yes  |  || mobile | string |  no  |  || modified_on | string |  yes  |  || subtitle | string |  yes  |  || title | string |  yes  |  || transfer_mode | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [SubscriptionConfigResponse](#SubscriptionConfigResponse)
+#### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | aggregator | string |  yes  | Aggregator Name |
- | config | string |  yes  | Aggregator Config |
+ | ---------- | ---- | -------- | ----------- || beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  || show_beneficiary_details | boolean |  no  |  |
 
 ---
 
+#### [Page](#Page)
 
- 
- 
- #### [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unique_external_id | string |  yes  | Unique id i.e company:id |
+ | ---------- | ---- | -------- | ----------- || current | number |  yes  |  || has_next | boolean |  yes  |  || item_total | number |  yes  |  || size | number |  yes  |  || type | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
+#### [PaymentConfirmationRequest](#PaymentConfirmationRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | data | string |  yes  | Subscription Payment Method Object |
+ | ---------- | ---- | -------- | ----------- || order_id | string |  yes  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
 
 ---
 
+#### [PaymentConfirmationResponse](#PaymentConfirmationResponse)
 
- 
- 
- #### [RefundAccountResponse](#RefundAccountResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Success or failure flag. |
- | is_verified_flag | boolean |  no  |  |
- | message | string |  yes  | Response message |
- | data | string |  no  | Refund account data. |
+ | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || order_id | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [PaymentGatewayConfig](#PaymentGatewayConfig)
 
- 
- 
- #### [NotFoundResourceError](#NotFoundResourceError)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | code | string |  yes  | Bad Request Data |
- | description | string |  yes  | Not Found |
+ | ---------- | ---- | -------- | ----------- || config_type | string |  yes  |  || is_active | boolean |  no  |  || key | string |  yes  |  || merchant_salt | string |  yes  |  || secret | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [BankDetailsForOTP](#BankDetailsForOTP)
+#### [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ifsc_code | string |  yes  |  |
- | bank_name | string |  yes  |  |
- | account_holder | string |  yes  |  |
- | account_no | string |  yes  |  |
- | branch_name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig) |  no  |  || app_id | string |  yes  |  || is_active | boolean |  no  |  |
 
 ---
 
+#### [PaymentGatewayConfigResponse](#PaymentGatewayConfigResponse)
 
- 
- 
- #### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
- | order_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || aggregators | [string] |  no  |  || app_id | string |  yes  |  || created | boolean |  yes  |  || display_fields | [string] |  yes  |  || excluded_fields | [string] |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [IfscCodeResponse](#IfscCodeResponse)
+#### [PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  no  | Response is successful or not |
- | bank_name | string |  yes  | Bank Name Of Account |
- | branch_name | string |  yes  | Branch Name Of Account |
+ | ---------- | ---- | -------- | ----------- || aggregator | [string] |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [PaymentInitializationRequest](#PaymentInitializationRequest)
 
- 
- 
- #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ifsc_code | string |  yes  | Ifsc Code Of Account |
- | account_holder | string |  yes  | Account Holder Name |
- | beneficiary_id | string |  yes  | Benenficiary Id |
- | created_on | string |  yes  | Creation Date of Beneficiary |
- | bank_name | string |  yes  | Bank Name Of Account |
- | id | number |  yes  |   |
- | transfer_mode | string |  yes  | Transfer Mode Of Account |
- | mobile | string |  no  | MObile no of User |
- | address | string |  yes  | Address of User |
- | is_active | boolean |  yes  | Boolean Flag whether Beneficiary set or not |
- | display_name | string |  yes  | Display Name Of Account |
- | email | string |  yes  | EMail of User |
- | comment | string |  no  | Remarks |
- | account_no | string |  yes  | Account Number |
- | subtitle | string |  yes  | SHort Title Of Account |
- | modified_on | string |  yes  | MOdification Date of Beneficiary |
- | title | string |  yes  | Title Of Account |
- | delights_user_name | string |  no  | User Id Who filled the Beneficiary  |
- | branch_name | string |  no  | Branch Name Of Account |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || amount | number |  yes  |  || contact | string |  yes  |  || currency | string |  yes  |  || customer_id | string |  yes  |  || device_id | string |  no  |  || email | string |  yes  |  || merchant_order_id | string |  yes  |  || method | string |  yes  |  || order_id | string |  yes  |  || razorpay_payment_id | string |  no  |  || timeout | number |  no  |  || vpa | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
+#### [PaymentInitializationResponse](#PaymentInitializationResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
- | show_beneficiary_details | boolean |  no  | Show beneficiary details or not. |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || aggregator_order_id | string |  no  |  || amount | number |  no  |  || bqr_image | string |  no  |  || currency | string |  no  |  || customer_id | string |  no  |  || device_id | string |  no  |  || merchant_order_id | string |  yes  |  || method | string |  yes  |  || polling_url | string |  yes  |  || razorpay_payment_id | string |  no  |  || status | string |  no  |  || success | boolean |  yes  |  || timeout | number |  no  |  || upi_poll_url | string |  no  |  || virtual_id | string |  no  |  || vpa | string |  no  |  |
 
 ---
 
+#### [PaymentModeList](#PaymentModeList)
 
- 
- 
- #### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | current_status | string |  no  |  |
- | payment_gateway | string |  no  |  |
- | payment_id | string |  no  |  |
- | extra_meta | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || card_brand | string |  no  |  || card_brand_image | string |  no  |  || card_fingerprint | string |  no  |  || card_id | string |  no  |  || card_isin | string |  no  |  || card_issuer | string |  no  |  || card_name | string |  no  |  || card_number | string |  no  |  || card_reference | string |  no  |  || card_token | string |  no  |  || card_type | string |  no  |  || cod_limit | number |  no  |  || cod_limit_per_order | number |  no  |  || code | string |  no  |  || compliant_with_tokenisation_guidelines | boolean |  no  |  || display_name | string |  no  |  || display_priority | number |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || expired | boolean |  no  |  || fynd_vpa | string |  no  |  || intent_app | [[IntentApp](#IntentApp)] |  no  |  || intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  || intent_app_error_list | [string] |  no  |  || intent_flow | boolean |  no  |  || logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || merchant_code | string |  no  |  || name | string |  no  |  || nickname | string |  no  |  || remaining_limit | number |  no  |  || retry_count | number |  no  |  || timeout | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
+#### [PaymentModeLogo](#PaymentModeLogo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  | Payment mode name |
- | mode | string |  yes  |  |
- | amount | number |  yes  | Payment amount |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || large | string |  yes  |  || small | string |  yes  |  |
 
 ---
 
+#### [PaymentOptions](#PaymentOptions)
 
- 
- 
- #### [PaymentConfirmationRequest](#PaymentConfirmationRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | order_id | string |  yes  | Unique order id |
+ | ---------- | ---- | -------- | ----------- || payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PaymentConfirmationResponse](#PaymentConfirmationResponse)
+#### [PaymentOptionsResponse](#PaymentOptionsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Payment confirmation updated or not. |
- | message | string |  yes  | Message |
- | order_id | string |  yes  | Unique order id |
+ | ---------- | ---- | -------- | ----------- || payment_options | [PaymentOptions](#PaymentOptions) |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
 
- 
- 
- #### [PlatformPaymentOptions](#PlatformPaymentOptions)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous_cod | boolean |  no  |  |
- | methods | string |  yes  |  |
- | source | string |  yes  |  |
- | mode_of_payment | string |  yes  |  |
- | callback_url | string |  no  |  |
- | cod_charges | number |  no  |  |
- | payment_selection_lock | string |  no  |  |
- | cod_amount_limit | number |  no  |  |
- | enabled | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || amount | number |  yes  |  || contact | string |  yes  |  || currency | string |  yes  |  || customer_id | string |  yes  |  || device_id | string |  no  |  || email | string |  yes  |  || merchant_order_id | string |  yes  |  || method | string |  yes  |  || order_id | string |  yes  |  || status | string |  yes  |  || vpa | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [PlatfromPaymentConfig](#PlatfromPaymentConfig)
+#### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  |  |
- | message | string |  yes  | Human readable message. |
- | data | [PlatformPaymentOptions](#PlatformPaymentOptions) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || redirect_url | string |  no  |  || retry | boolean |  yes  |  || status | string |  yes  |  || success | boolean |  no  |  |
 
 ---
 
+#### [Payout](#Payout)
 
- 
- 
- #### [UpdatePlatformPaymentConfig](#UpdatePlatformPaymentConfig)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | anonymous_cod | boolean |  no  |  |
- | methods | string |  yes  |  |
- | payment_selection_lock | string |  no  |  |
- | cod_charges | number |  no  |  |
- | cod_amount_limit | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || customers | [PayoutCustomer](#PayoutCustomer) |  yes  |  || is_active | boolean |  yes  |  || is_default | boolean |  yes  |  || more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  yes  |  || payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)] |  no  |  || transfer_type | string |  yes  |  || unique_transfer_no | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [CODdata](#CODdata)
+#### [PayoutAggregator](#PayoutAggregator)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | usages | number |  yes  | Used COD limit from the user Limit |
- | remaining_limit | number |  yes  | Remaining Limit for COD of User |
- | user_id | string |  yes  | Payment mode name |
- | limit | number |  yes  | Total Limit of user |
- | is_active | boolean |  yes  | COD option is active or not |
+ | ---------- | ---- | -------- | ----------- || aggregator_fund_id | number |  no  |  || aggregator_id | number |  no  |  || payout_details_id | number |  no  |  |
 
 ---
 
+#### [PayoutBankDetails](#PayoutBankDetails)
 
- 
- 
- #### [GetUserCODLimitResponse](#GetUserCODLimitResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | user_cod_data | [CODdata](#CODdata) |  yes  | User COD Data |
+ | ---------- | ---- | -------- | ----------- || account_holder | string |  no  |  || account_no | string |  no  |  || account_type | string |  yes  |  || bank_name | string |  no  |  || branch_name | string |  no  |  || city | string |  no  |  || country | string |  no  |  || ifsc_code | string |  yes  |  || pincode | number |  no  |  || state | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SetCODForUserRequest](#SetCODForUserRequest)
+#### [PayoutCustomer](#PayoutCustomer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobileno | string |  yes  | Mobile No. of User |
- | merchant_user_id | string |  yes  | Merchant User id |
- | is_active | boolean |  yes  | either true or false |
+ | ---------- | ---- | -------- | ----------- || id | number |  no  |  || mobile | string |  no  |  || name | string |  no  |  || unique_external_id | string |  no  |  |
 
 ---
 
+#### [PayoutMoreAttributes](#PayoutMoreAttributes)
 
- 
- 
- #### [SetCODOptionResponse](#SetCODOptionResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | message | string |  yes  | Message |
+ | ---------- | ---- | -------- | ----------- || account_holder | string |  no  |  || account_no | string |  no  |  || account_type | string |  no  |  || bank_name | string |  no  |  || branch_name | string |  no  |  || city | string |  no  |  || country | string |  no  |  || ifsc_code | string |  no  |  || state | string |  no  |  |
 
 ---
 
+#### [PayoutRequest](#PayoutRequest)
 
- 
- 
- #### [EdcModelData](#EdcModelData)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_id | number |  yes  | ID of aggregator |
- | aggregator | string |  yes  | Name of aggregator |
- | models | [string] |  yes  | List of string of edc models |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  |  || is_active | boolean |  yes  |  || transfer_type | string |  yes  |  || unique_external_id | string |  yes  |  || users | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [EdcAggregatorAndModelListResponse](#EdcAggregatorAndModelListResponse)
+#### [PayoutResponse](#PayoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | data | [[EdcModelData](#EdcModelData)] |  yes  | List of aggregators and their edc models |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || bank_details | string |  yes  |  || created | boolean |  yes  |  || is_active | boolean |  yes  |  || payment_status | string |  yes  |  || payouts | string |  yes  |  || success | boolean |  yes  |  || transfer_type | string |  yes  |  || unique_transfer_no | string |  yes  |  || users | string |  yes  |  |
 
 ---
 
+#### [PayoutsResponse](#PayoutsResponse)
 
- 
- 
- #### [StatisticsData](#StatisticsData)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active_device_count | number |  yes  | No of active devices |
- | inactive_device_count | number |  yes  | No of inactive devices |
+ | ---------- | ---- | -------- | ----------- || items | [[Payout](#Payout)] |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [EdcDeviceStatsResponse](#EdcDeviceStatsResponse)
+#### [PlatformPaymentOptions](#PlatformPaymentOptions)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | statistics | [StatisticsData](#StatisticsData) |  yes  | Message |
+ | ---------- | ---- | -------- | ----------- || anonymous_cod | boolean |  no  |  || callback_url | string |  no  |  || cod_amount_limit | number |  no  |  || cod_charges | number |  no  |  || enabled | boolean |  yes  |  || methods | string |  yes  |  || mode_of_payment | string |  yes  |  || payment_selection_lock | string |  no  |  || source | string |  yes  |  |
 
 ---
 
+#### [PlatfromPaymentConfig](#PlatfromPaymentConfig)
 
- 
- 
- #### [EdcAddRequest](#EdcAddRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | terminal_serial_no | string |  yes  | Device serial number of terminal(android tablet) |
- | device_tag | string |  no  | Device tag of edc device to identify it |
- | edc_model | string |  yes  | Model of the edc machine |
- | aggregator_id | number |  yes  | Aggregator which will accept payment |
- | edc_device_serial_no | string |  yes  | Serial number or imei of EDC device |
- | store_id | number |  yes  | Store at which devices is to used |
+ | ---------- | ---- | -------- | ----------- || data | [PlatformPaymentOptions](#PlatformPaymentOptions) |  yes  |  || message | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [EdcDevice](#EdcDevice)
+#### [RefundAccountResponse](#RefundAccountResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  no  | Name of the corresponding aggregator |
- | terminal_serial_no | string |  yes  | Device serial number of terminal(android tablet) |
- | merchant_store_pos_code | string |  no  | This is provided by pinelabs |
- | device_tag | string |  yes  | Device tag of edc device to identify it |
- | edc_model | string |  no  | Name of the model |
- | terminal_unique_identifier | string |  yes  | Genearated unique value for edc device |
- | aggregator_id | number |  yes  | Aggregator which will accept payment |
- | application_id | string |  yes  | Application ID |
- | edc_device_serial_no | string |  yes  | Serial number of EDC device |
- | store_id | number |  yes  | Store at which devices is to used |
- | is_active | boolean |  yes  | State whether device is active or inactive |
+ | ---------- | ---- | -------- | ----------- || data | string |  no  |  || is_verified_flag | boolean |  no  |  || message | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest)
 
- 
- 
- #### [EdcDeviceAddResponse](#EdcDeviceAddResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | data | [EdcDevice](#EdcDevice) |  yes  | Details of the EDC Device that is added |
+ | ---------- | ---- | -------- | ----------- || device_id | string |  no  |  || order_id | string |  yes  |  || request_type | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [EdcDeviceDetailsResponse](#EdcDeviceDetailsResponse)
+#### [ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | data | [EdcDevice](#EdcDevice) |  yes  | Details of one EDC Device |
+ | ---------- | ---- | -------- | ----------- || data | [LinkStatus](#LinkStatus) |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [RootPaymentMode](#RootPaymentMode)
 
- 
- 
- #### [EdcUpdateRequest](#EdcUpdateRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | edc_device_serial_no | string |  no  | Serial number or imei of EDC device |
- | device_tag | string |  no  | Device tag of edc device to identify it |
- | edc_model | string |  no  | Model of the edc machine |
- | aggregator_id | number |  no  | Aggregator which will accept payment |
- | merchant_store_pos_code | string |  no  | This is provided by pinelabs |
- | store_id | number |  no  | Store at which devices is to used |
- | is_active | boolean |  no  | State whether device is active or inactive |
+ | ---------- | ---- | -------- | ----------- || add_card_enabled | boolean |  no  |  || aggregator_name | string |  no  |  || anonymous_enable | boolean |  no  |  || display_name | string |  yes  |  || display_priority | number |  yes  |  || is_pay_by_card_pl | boolean |  no  |  || list | [[PaymentModeList](#PaymentModeList)] |  no  |  || name | string |  yes  |  || save_card | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [EdcDeviceUpdateResponse](#EdcDeviceUpdateResponse)
+#### [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
+ | ---------- | ---- | -------- | ----------- || unique_external_id | string |  yes  |  |
 
 ---
 
+#### [SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
 
- 
- 
- #### [Page](#Page)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | item_total | number |  yes  | Total number of items |
- | has_next | boolean |  yes  | Whether there exist next page or not |
- | current | number |  yes  | Current page number |
- | type | string |  yes  | Type of pagination used |
- | size | number |  yes  | Total number of pages |
+ | ---------- | ---- | -------- | ----------- || data | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [EdcDeviceListResponse](#EdcDeviceListResponse)
+#### [SetCODForUserRequest](#SetCODForUserRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not |
- | items | [[EdcDevice](#EdcDevice)] |  yes  | List of all edc mapped to the application options with their Details. |
- | page | [Page](#Page) |  yes  | Pagination Response |
+ | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || merchant_user_id | string |  yes  |  || mobileno | string |  yes  |  |
 
 ---
 
+#### [SetCODOptionResponse](#SetCODOptionResponse)
 
- 
- 
- #### [PaymentInitializationRequest](#PaymentInitializationRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name |
- | currency | string |  yes  | Currency code. |
- | email | string |  yes  | Customer valid email |
- | amount | number |  yes  | Payable amount. |
- | order_id | string |  yes  | Payment gateway order id |
- | method | string |  yes  | Payment method |
- | device_id | string |  no  | EDC machine Unique Identifier |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | contact | string |  yes  | Customer valid mobile number |
- | vpa | string |  no  | Customer vpa address |
- | razorpay_payment_id | string |  no  | Payment gateway payment id |
- | merchant_order_id | string |  yes  | Unique fynd order id |
- | timeout | number |  no  | Payment polling timeout if not recieved response |
+ | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PaymentInitializationResponse](#PaymentInitializationResponse)
+#### [StatisticsData](#StatisticsData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name |
- | amount | number |  no  | Payable amount. |
- | method | string |  yes  | Payment method |
- | upi_poll_url | string |  no  | UPI poll url. |
- | success | boolean |  yes  | Response is successful or not. |
- | razorpay_payment_id | string |  no  | Payment  id. |
- | device_id | string |  no  | EDC machine Unique Identifier |
- | status | string |  no  | Status of payment. |
- | customer_id | string |  no  | Payment gateway customer id. |
- | aggregator_order_id | string |  no  | Payment order id |
- | vpa | string |  no  | Customer vpa address |
- | polling_url | string |  yes  | Polling url. |
- | virtual_id | string |  no  | Payment virtual address. |
- | currency | string |  no  | Currency code. |
- | merchant_order_id | string |  yes  | order id |
- | bqr_image | string |  no  | Bharath qr image url. |
- | timeout | number |  no  | timeout. |
+ | ---------- | ---- | -------- | ----------- || active_device_count | number |  yes  |  || inactive_device_count | number |  yes  |  |
 
 ---
 
+#### [SubscriptionConfigResponse](#SubscriptionConfigResponse)
 
- 
- 
- #### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  yes  | Payment gateway name |
- | amount | number |  yes  | Payable amount. |
- | email | string |  yes  | Customer valid email |
- | order_id | string |  yes  | Payment gateway order id |
- | method | string |  yes  | Payment method |
- | device_id | string |  no  | EDC machine Unique Identifier |
- | status | string |  yes  | Status of payment. |
- | customer_id | string |  yes  | Payment gateway customer id. |
- | contact | string |  yes  | Customer valid mobile number |
- | vpa | string |  no  | Customer vpa address |
- | currency | string |  yes  | Currency code. |
- | merchant_order_id | string |  yes  | Unique fynd order id |
+ | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || config | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+#### [SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_name | string |  yes  | Payment gateway name |
- | success | boolean |  no  | Response is successful or not |
- | status | string |  yes  | Payment status |
- | redirect_url | string |  no  | Redirect url |
- | retry | boolean |  yes  | Response is successful or not. |
+ | ---------- | ---- | -------- | ----------- || data | [string] |  yes  |  || success | boolean |  yes  |  |
 
 ---
 
+#### [UpdatePayoutRequest](#UpdatePayoutRequest)
 
- 
- 
- #### [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  yes  | Unique order id |
- | request_type | string |  yes  | Either resend or cancel |
- | device_id | string |  no  | EDC machine Unique Identifier |
+ | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || is_default | boolean |  yes  |  || unique_external_id | string |  yes  |  |
 
 ---
 
+#### [UpdatePayoutResponse](#UpdatePayoutResponse)
 
- 
- 
- #### [LinkStatus](#LinkStatus)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  yes  | Message |
- | status | boolean |  yes  | Link action status |
+ | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || is_default | boolean |  yes  |  || success | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
+#### [UpdatePlatformPaymentConfig](#UpdatePlatformPaymentConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean |  yes  | Response is successful or not. |
- | data | [LinkStatus](#LinkStatus) |  yes  | Data about link action status. |
+ | ---------- | ---- | -------- | ----------- || anonymous_cod | boolean |  no  |  || cod_amount_limit | number |  no  |  || cod_charges | number |  no  |  || methods | string |  yes  |  || payment_selection_lock | string |  no  |  |
 
 ---
 

@@ -5,6 +5,44 @@ declare class Feedback {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {TemplateRequestList} arg.body
+     * @returns {Promise<InsertResponse>} - Success response
+     * @summary: Create a new template
+     * @description: Create a new template for review with following data:
+     * - Enable media, rating and review
+     * - Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
+     * - Review - header, title, description, image and video meta, enable votes
+     */
+    createTemplate({ body }?: {
+        body: TemplateRequestList;
+    }): Promise<InsertResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.pageId] - Pagination page id
+     * @param {number} [arg.pageSize] - Pagination page size
+     * @returns {Promise<TemplateGetResponse>} - Success response
+     * @summary: Get list of templates
+     * @description: Get all templates of application
+     */
+    getApplicationTemplates({ pageId, pageSize }?: {
+        pageId?: string;
+        pageSize?: number;
+    }): Promise<TemplateGetResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
+     * @param {number} [arg.pageSize] - Pagination page size
+     * @summary: Get list of templates
+     * @description: Get all templates of application
+     */
+    getApplicationTemplatesPaginator({ companyId, applicationId, pageSize, }?: {
+        companyId: string;
+        applicationId: string;
+        pageSize?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Pagination page no
      * @param {number} [arg.pageSize] - Pagination page size
      * @returns {Promise<FeedbackAttributes>} - Success response
@@ -112,18 +150,6 @@ declare class Feedback {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.reviewId - Review id
-     * @param {ApproveRequest} arg.body
-     * @returns {Promise<UpdateResponse>} - Success response
-     * @summary: update approve details
-     * @description: The is used to update approve details like status and description text
-     */
-    updateApprove({ reviewId, body }?: {
-        reviewId: string;
-        body: ApproveRequest;
-    }): Promise<UpdateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.reviewId - Review id
      * @returns {Promise<ActivityDump[]>} - Success response
      * @summary: get history details
      * @description: The is used to get the history details like status and description text
@@ -131,44 +157,6 @@ declare class Feedback {
     getHistory({ reviewId }?: {
         reviewId: string;
     }): Promise<ActivityDump[]>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.pageId] - Pagination page id
-     * @param {number} [arg.pageSize] - Pagination page size
-     * @returns {Promise<TemplateGetResponse>} - Success response
-     * @summary: Get list of templates
-     * @description: Get all templates of application
-     */
-    getApplicationTemplates({ pageId, pageSize }?: {
-        pageId?: string;
-        pageSize?: number;
-    }): Promise<TemplateGetResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company id
-     * @param {string} arg.applicationId - Application id
-     * @param {number} [arg.pageSize] - Pagination page size
-     * @summary: Get list of templates
-     * @description: Get all templates of application
-     */
-    getApplicationTemplatesPaginator({ companyId, applicationId, pageSize, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {TemplateRequestList} arg.body
-     * @returns {Promise<InsertResponse>} - Success response
-     * @summary: Create a new template
-     * @description: Create a new template for review with following data:
-     * - Enable media, rating and review
-     * - Rating - active/inactive/selected rate choices, attributes, text on rate, comment for each rate, type
-     * - Review - header, title, description, image and video meta, enable votes
-     */
-    createTemplate({ body }?: {
-        body: TemplateRequestList;
-    }): Promise<InsertResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Template id
@@ -179,6 +167,18 @@ declare class Feedback {
     getTemplateById({ id }?: {
         id: string;
     }): Promise<Template>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.reviewId - Review id
+     * @param {ApproveRequest} arg.body
+     * @returns {Promise<UpdateResponse>} - Success response
+     * @summary: update approve details
+     * @description: The is used to update approve details like status and description text
+     */
+    updateApprove({ reviewId, body }?: {
+        reviewId: string;
+        body: ApproveRequest;
+    }): Promise<UpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Template id

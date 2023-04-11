@@ -2,23 +2,9 @@ const Joi = require("joi");
 const UserModel = require("./UserPlatformModel");
 
 class UserValidator {
-  static getCustomers() {
+  static archiveUser() {
     return Joi.object({
-      q: Joi.any(),
-      pageSize: Joi.number(),
-      pageNo: Joi.number(),
-    }).required();
-  }
-
-  static searchUsers() {
-    return Joi.object({
-      q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static createUser() {
-    return Joi.object({
-      body: UserModel.CreateUserRequestSchema().required(),
+      body: UserModel.ArchiveUserRequestSchema().required(),
     }).required();
   }
 
@@ -28,28 +14,22 @@ class UserValidator {
     }).required();
   }
 
-  static archiveUser() {
+  static createUser() {
     return Joi.object({
-      body: UserModel.ArchiveUserRequestSchema().required(),
-    }).required();
-  }
-
-  static unDeleteUser() {
-    return Joi.object({
-      body: UserModel.UnDeleteUserRequestSchema().required(),
-    }).required();
-  }
-
-  static updateUser() {
-    return Joi.object({
-      userId: Joi.string().allow("").required(),
-      body: UserModel.UpdateUserRequestSchema().required(),
+      body: UserModel.CreateUserRequestSchema().required(),
     }).required();
   }
 
   static createUserSession() {
     return Joi.object({
       body: UserModel.CreateUserSessionRequestSchema().required(),
+    }).required();
+  }
+
+  static deleteActiveSessions() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      reason: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -67,10 +47,11 @@ class UserValidator {
     }).required();
   }
 
-  static deleteActiveSessions() {
+  static getCustomers() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-      reason: Joi.string().allow("").required(),
+      q: Joi.any(),
+      pageSize: Joi.number(),
+      pageNo: Joi.number(),
     }).required();
   }
 
@@ -78,9 +59,28 @@ class UserValidator {
     return Joi.object({}).required();
   }
 
+  static searchUsers() {
+    return Joi.object({
+      q: Joi.string().allow(""),
+    }).required();
+  }
+
+  static unDeleteUser() {
+    return Joi.object({
+      body: UserModel.UnDeleteUserRequestSchema().required(),
+    }).required();
+  }
+
   static updatePlatformConfig() {
     return Joi.object({
       body: UserModel.PlatformSchema().required(),
+    }).required();
+  }
+
+  static updateUser() {
+    return Joi.object({
+      userId: Joi.string().allow("").required(),
+      body: UserModel.UpdateUserRequestSchema().required(),
     }).required();
   }
 }

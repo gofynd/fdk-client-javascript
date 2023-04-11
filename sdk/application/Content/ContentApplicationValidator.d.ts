@@ -4,19 +4,19 @@ declare class ContentValidator {
     static getBlog(): any;
     static getBlogs(): any;
     static getDataLoaders(): any;
-    static getFaqs(): any;
-    static getFaqCategories(): any;
     static getFaqBySlug(): any;
+    static getFaqCategories(): any;
     static getFaqCategoryBySlug(): any;
+    static getFaqs(): any;
     static getFaqsByCategorySlug(): any;
     static getLandingPage(): any;
     static getLegalInformation(): any;
     static getNavigations(): any;
-    static getSEOConfiguration(): any;
-    static getSlideshows(): any;
-    static getSlideshow(): any;
-    static getSupportInformation(): any;
-    static getTags(): any;
     static getPage(): any;
     static getPages(): any;
+    static getSEOConfiguration(): any;
+    static getSlideshow(): any;
+    static getSlideshows(): any;
+    static getSupportInformation(): any;
+    static getTags(): any;
 }

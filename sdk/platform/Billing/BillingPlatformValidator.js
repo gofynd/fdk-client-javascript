@@ -2,24 +2,9 @@ const Joi = require("joi");
 
 const BillingModel = require("./BillingPlatformModel");
 class BillingValidator {
-  static checkCouponValidity() {
+  static activateSubscriptionPlan() {
     return Joi.object({
-      plan: Joi.string().allow("").required(),
-      couponCode: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static createSubscriptionCharge() {
-    return Joi.object({
-      extensionId: Joi.string().allow("").required(),
-      body: BillingModel.CreateSubscriptionCharge().required(),
-    }).required();
-  }
-
-  static getSubscriptionCharge() {
-    return Joi.object({
-      extensionId: Joi.string().allow("").required(),
-      subscriptionId: Joi.string().allow("").required(),
+      body: BillingModel.SubscriptionActivateReq().required(),
     }).required();
   }
 
@@ -30,10 +15,30 @@ class BillingValidator {
     }).required();
   }
 
+  static cancelSubscriptionPlan() {
+    return Joi.object({
+      body: BillingModel.CancelSubscriptionReq().required(),
+    }).required();
+  }
+
+  static checkCouponValidity() {
+    return Joi.object({
+      plan: Joi.string().allow("").required(),
+      couponCode: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static createOneTimeCharge() {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       body: BillingModel.CreateOneTimeCharge().required(),
+    }).required();
+  }
+
+  static createSubscriptionCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: BillingModel.CreateSubscriptionCharge().required(),
     }).required();
   }
 
@@ -44,7 +49,11 @@ class BillingValidator {
     }).required();
   }
 
-  static getInvoices() {
+  static getCustomerDetail() {
+    return Joi.object({}).required();
+  }
+
+  static getFeatureLimitConfig() {
     return Joi.object({}).required();
   }
 
@@ -54,33 +63,24 @@ class BillingValidator {
     }).required();
   }
 
-  static getCustomerDetail() {
+  static getInvoices() {
     return Joi.object({}).required();
-  }
-
-  static upsertCustomerDetail() {
-    return Joi.object({
-      body: BillingModel.SubscriptionCustomerCreate().required(),
-    }).required();
   }
 
   static getSubscription() {
     return Joi.object({}).required();
   }
 
-  static getFeatureLimitConfig() {
-    return Joi.object({}).required();
-  }
-
-  static activateSubscriptionPlan() {
+  static getSubscriptionCharge() {
     return Joi.object({
-      body: BillingModel.SubscriptionActivateReq().required(),
+      extensionId: Joi.string().allow("").required(),
+      subscriptionId: Joi.string().allow("").required(),
     }).required();
   }
 
-  static cancelSubscriptionPlan() {
+  static upsertCustomerDetail() {
     return Joi.object({
-      body: BillingModel.CancelSubscriptionReq().required(),
+      body: BillingModel.SubscriptionCustomerCreate().required(),
     }).required();
   }
 }

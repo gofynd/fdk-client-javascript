@@ -2,28 +2,16 @@ const Joi = require("joi");
 
 const LeadModel = require("./LeadPlatformModel");
 class LeadValidator {
-  static getTickets() {
+  static createHistory() {
     return Joi.object({
-      items: Joi.boolean(),
-      filters: Joi.boolean(),
-      q: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      priority: LeadModel.PriorityEnum(),
-      category: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
+      id: Joi.string().allow("").required(),
+      body: LeadModel.TicketHistoryPayload().required(),
     }).required();
   }
 
   static createTicket() {
     return Joi.object({
       body: LeadModel.AddTicketPayload().required(),
-    }).required();
-  }
-
-  static getTicket() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -34,10 +22,19 @@ class LeadValidator {
     }).required();
   }
 
-  static createHistory() {
+  static getFeedbacks() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: LeadModel.TicketHistoryPayload().required(),
+    }).required();
+  }
+
+  static getGeneralConfig() {
+    return Joi.object({}).required();
+  }
+
+  static getTicket() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -47,16 +44,16 @@ class LeadValidator {
     }).required();
   }
 
-  static getFeedbacks() {
+  static getTickets() {
     return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static submitFeedback() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-      body: LeadModel.TicketFeedbackPayload().required(),
+      items: Joi.boolean(),
+      filters: Joi.boolean(),
+      q: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      priority: LeadModel.PriorityEnum(),
+      category: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -72,8 +69,11 @@ class LeadValidator {
     }).required();
   }
 
-  static getGeneralConfig() {
-    return Joi.object({}).required();
+  static submitFeedback() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: LeadModel.TicketFeedbackPayload().required(),
+    }).required();
   }
 }
 module.exports = LeadValidator;

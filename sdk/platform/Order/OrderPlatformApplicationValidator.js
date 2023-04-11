@@ -2,6 +2,12 @@ const Joi = require("joi");
 const OrderModel = require("./OrderPlatformModel");
 
 class OrderValidator {
+  static getAppOrderShipmentDetails() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getApplicationShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -18,12 +24,6 @@ class OrderValidator {
       pageSize: Joi.number(),
       customerId: Joi.string().allow(""),
       isPrioritySort: Joi.boolean(),
-    }).required();
-  }
-
-  static getAppOrderShipmentDetails() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
     }).required();
   }
 

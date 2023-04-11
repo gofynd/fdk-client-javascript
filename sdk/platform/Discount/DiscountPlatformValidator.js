@@ -2,6 +2,37 @@ const Joi = require("joi");
 
 const DiscountModel = require("./DiscountPlatformModel");
 class DiscountValidator {
+  static cancelDownloadJob() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static cancelValidationJob() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static createDiscount() {
+    return Joi.object({
+      body: DiscountModel.CreateUpdateDiscount().required(),
+    }).required();
+  }
+
+  static downloadDiscountFile() {
+    return Joi.object({
+      type: Joi.string().allow("").required(),
+      body: DiscountModel.DownloadFileJob().required(),
+    }).required();
+  }
+
+  static getDiscount() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getDiscounts() {
     return Joi.object({
       view: Joi.string().allow(""),
@@ -16,13 +47,13 @@ class DiscountValidator {
     }).required();
   }
 
-  static createDiscount() {
+  static getDownloadJob() {
     return Joi.object({
-      body: DiscountModel.CreateUpdateDiscount().required(),
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getDiscount() {
+  static getValidationJob() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -46,37 +77,6 @@ class DiscountValidator {
     return Joi.object({
       discount: Joi.string().allow(""),
       body: DiscountModel.DiscountJob().required(),
-    }).required();
-  }
-
-  static downloadDiscountFile() {
-    return Joi.object({
-      type: Joi.string().allow("").required(),
-      body: DiscountModel.DownloadFileJob().required(),
-    }).required();
-  }
-
-  static getValidationJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static cancelValidationJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getDownloadJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static cancelDownloadJob() {
-    return Joi.object({
-      id: Joi.string().allow("").required(),
     }).required();
   }
 }
