@@ -57,9 +57,9 @@ class Catalog {
       getProductBundlesBySlug:
         "/service/application/catalog/v1.0/product-grouping/",
       getProductPriceBySlug:
-        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/",
+        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/",
       getProductSellersBySlug:
-        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/",
+        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -2403,7 +2403,7 @@ class Catalog {
    *   selling locations should be searched, e.g. 400059.
    * @param {number} [arg.moq] - An Integer indication the Minimum Order
    *   Quantity of a product, e.g. 100.
-   * @returns {Promise<ProductSizePriceResponseV2>} - Success response
+   * @returns {Promise<ProductSizePriceResponseV3>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
@@ -2452,7 +2452,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizePriceResponseV2().validate(response, {
+    } = CatalogModel.ProductSizePriceResponseV3().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2483,7 +2483,7 @@ class Catalog {
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
+   * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
@@ -2540,7 +2540,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizeSellersResponseV2().validate(response, {
+    } = CatalogModel.ProductSizeSellersResponseV3().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

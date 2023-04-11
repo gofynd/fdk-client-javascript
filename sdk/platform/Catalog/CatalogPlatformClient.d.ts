@@ -4,16 +4,6 @@ declare class Catalog {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ProductBundleRequest} arg.body
-     * @returns {Promise<GetProductBundleCreateResponse>} - Success response
-     * @summary: Create Product Bundle
-     * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-     */
-    createProductBundle({ body }?: {
-        body: ProductBundleRequest;
-    }): Promise<GetProductBundleCreateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - A search string that is searched with product
      *   bundle name.
      * @param {string[]} [arg.slug] - Slugs of bundles to be retrieved.
@@ -27,15 +17,14 @@ declare class Catalog {
     }): Promise<GetProductBundleListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - A `id` is a unique identifier for a particular
-     *   detail. Pass the `id` of the keywords which you want to retrieve.
-     * @returns {Promise<GetProductBundleResponse>} - Success response
-     * @summary: Get a particular Product Bundle details
-     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+     * @param {ProductBundleRequest} arg.body
+     * @returns {Promise<GetProductBundleCreateResponse>} - Success response
+     * @summary: Create Product Bundle
+     * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
      */
-    getProductBundleDetail({ id }?: {
-        id: string;
-    }): Promise<GetProductBundleResponse>;
+    createProductBundle({ body }?: {
+        body: ProductBundleRequest;
+    }): Promise<GetProductBundleCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier for a particular
@@ -51,14 +40,15 @@ declare class Catalog {
     }): Promise<GetProductBundleCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ValidateSizeGuide} arg.body
-     * @returns {Promise<SuccessResponse>} - Success response
-     * @summary: Create a size guide.
-     * @description: This API allows to create a size guide associated to a brand.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @returns {Promise<GetProductBundleResponse>} - Success response
+     * @summary: Get a particular Product Bundle details
+     * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
      */
-    createSizeGuide({ body }?: {
-        body: ValidateSizeGuide;
-    }): Promise<SuccessResponse>;
+    getProductBundleDetail({ id }?: {
+        id: string;
+    }): Promise<GetProductBundleResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.active] - Filter size guide on basis of active, in-active
@@ -81,14 +71,14 @@ declare class Catalog {
     }): Promise<ListSizeGuide>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id of the size guide to be viewed.
-     * @returns {Promise<SizeGuideResponse>} - Success response
-     * @summary: Get a single size guide.
-     * @description: This API helps to get data associated to a size guide.
+     * @param {ValidateSizeGuide} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
+     * @summary: Create a size guide.
+     * @description: This API allows to create a size guide associated to a brand.
      */
-    getSizeGuide({ id }?: {
-        id: string;
-    }): Promise<SizeGuideResponse>;
+    createSizeGuide({ body }?: {
+        body: ValidateSizeGuide;
+    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Mongo id of the size guide to be edited
@@ -101,6 +91,16 @@ declare class Catalog {
         id: string;
         body: ValidateSizeGuide;
     }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Id of the size guide to be viewed.
+     * @returns {Promise<SizeGuideResponse>} - Success response
+     * @summary: Get a single size guide.
+     * @description: This API helps to get data associated to a size guide.
+     */
+    getSizeGuide({ id }?: {
+        id: string;
+    }): Promise<SizeGuideResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.sellerAppId - Id of the seller application which is
@@ -208,16 +208,6 @@ declare class Catalog {
     }): Promise<ProdcutTemplateCategoriesResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {DepartmentCreateUpdate} arg.body
-     * @returns {Promise<DepartmentCreateResponse>} - Success response
-     * @summary: Create the department.
-     * @description: Create departments using the API.
-     */
-    createDepartments({ body }?: {
-        body: DepartmentCreateUpdate;
-    }): Promise<DepartmentCreateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -240,14 +230,14 @@ declare class Catalog {
     }): Promise<DepartmentsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-     * @returns {Promise<DepartmentsResponse>} - Success response
-     * @summary: Get specific departments details by passing in unique id of the department.
-     * @description: Allows you to get department data, by uid.
+     * @param {DepartmentCreateUpdate} arg.body
+     * @returns {Promise<DepartmentCreateResponse>} - Success response
+     * @summary: Create the department.
+     * @description: Create departments using the API.
      */
-    getDepartmentData({ uid }?: {
-        uid: string;
-    }): Promise<DepartmentsResponse>;
+    createDepartments({ body }?: {
+        body: DepartmentCreateUpdate;
+    }): Promise<DepartmentCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - A `uid` is a unique identifier of a department.
@@ -260,6 +250,16 @@ declare class Catalog {
         uid: string;
         body: DepartmentCreateUpdate;
     }): Promise<DepartmentModel>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uid - A `uid` is a unique identifier of a department.
+     * @returns {Promise<DepartmentsResponse>} - Success response
+     * @summary: Get specific departments details by passing in unique id of the department.
+     * @description: Allows you to get department data, by uid.
+     */
+    getDepartmentData({ uid }?: {
+        uid: string;
+    }): Promise<DepartmentsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.department - A `department` is the name of a
@@ -341,16 +341,6 @@ declare class Catalog {
     }): Promise<ProductConfigurationDownloads>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CategoryRequestBody} arg.body
-     * @returns {Promise<CategoryCreateResponse>} - Success response
-     * @summary: Create product categories
-     * @description: This API lets user create product categories
-     */
-    createCategories({ body }?: {
-        body: CategoryRequestBody;
-    }): Promise<CategoryCreateResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.level] - Get category for multiple levels
      * @param {string} [arg.departments] - Get category for multiple departments filtered
      * @param {string} [arg.q] - Get multiple categories filtered by search string
@@ -371,14 +361,14 @@ declare class Catalog {
     }): Promise<CategoryResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.uid - Category unique id
-     * @returns {Promise<SingleCategoryResponse>} - Success response
-     * @summary: Get product category by uid
-     * @description: This API gets meta associated to product categories.
+     * @param {CategoryRequestBody} arg.body
+     * @returns {Promise<CategoryCreateResponse>} - Success response
+     * @summary: Create product categories
+     * @description: This API lets user create product categories
      */
-    getCategoryData({ uid }?: {
-        uid: string;
-    }): Promise<SingleCategoryResponse>;
+    createCategories({ body }?: {
+        body: CategoryRequestBody;
+    }): Promise<CategoryCreateResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uid - Category unique id
@@ -393,14 +383,14 @@ declare class Catalog {
     }): Promise<CategoryUpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ProductCreateUpdateSchemaV2} arg.body
-     * @returns {Promise<SuccessResponse>} - Success response
-     * @summary: Create a product.
-     * @description: This API allows to create product.
+     * @param {string} arg.uid - Category unique id
+     * @returns {Promise<SingleCategoryResponse>} - Success response
+     * @summary: Get product category by uid
+     * @description: This API gets meta associated to product categories.
      */
-    createProduct({ body }?: {
-        body: ProductCreateUpdateSchemaV2;
-    }): Promise<SuccessResponse>;
+    getCategoryData({ uid }?: {
+        uid: string;
+    }): Promise<SingleCategoryResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
@@ -431,6 +421,16 @@ declare class Catalog {
         pageNo?: number;
         pageSize?: number;
     }): Promise<ProductListingResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ProductCreateUpdateSchemaV2} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
+     * @summary: Create a product.
+     * @description: This API allows to create product.
+     */
+    createProduct({ body }?: {
+        body: ProductCreateUpdateSchemaV2;
+    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Get list of variants of item Id
@@ -533,16 +533,6 @@ declare class Catalog {
     }): Promise<ProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {BulkJob} arg.body
-     * @returns {Promise<BulkResponse>} - Success response
-     * @summary: Create a Bulk product to upload job.
-     * @description: This API helps to create a bulk products upload job.
-     */
-    createBulkProductUploadJob({ body }?: {
-        body: BulkJob;
-    }): Promise<BulkResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.search] - Search string to filter the results by batch id
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
@@ -557,6 +547,16 @@ declare class Catalog {
         pageNo?: number;
         pageSize?: number;
     }): Promise<ProductBulkRequestList>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkJob} arg.body
+     * @returns {Promise<BulkResponse>} - Success response
+     * @summary: Create a Bulk product to upload job.
+     * @description: This API helps to create a bulk products upload job.
+     */
+    createBulkProductUploadJob({ body }?: {
+        body: BulkJob;
+    }): Promise<BulkResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.department - Department of the product to be uploaded.
@@ -603,16 +603,6 @@ declare class Catalog {
     getProductTags({}?: any): Promise<ProductTagsViewResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ProductBulkAssets} arg.body
-     * @returns {Promise<SuccessResponse>} - Success response
-     * @summary: Create a Bulk asset upload Job.
-     * @description: This API helps to create a bulk asset upload job.
-     */
-    createProductAssetsInBulk({ body }?: {
-        body: ProductBulkAssets;
-    }): Promise<SuccessResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -627,6 +617,16 @@ declare class Catalog {
     }): Promise<BulkAssetResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ProductBulkAssets} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
+     * @summary: Create a Bulk asset upload Job.
+     * @description: This API helps to create a bulk asset upload job.
+     */
+    createProductAssetsInBulk({ body }?: {
+        body: ProductBulkAssets;
+    }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Item Id of the product associated with size
      *   to be deleted.
      * @param {number} arg.size - Size to be deleted.
@@ -638,20 +638,6 @@ declare class Catalog {
         itemId: number;
         size: number;
     }): Promise<ProductSizeDeleteResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.itemId - Item code of the product of which size is to be get.
-     * @param {string} arg.size - Size in which inventory is to be added.
-     * @param {InventoryRequest} arg.body
-     * @returns {Promise<SuccessResponse>} - Success response
-     * @summary: Add Inventory for particular size and store.
-     * @description: This API allows add Inventory for particular size and store.
-     */
-    addInventory({ itemId, size, body }?: {
-        itemId: number;
-        size: string;
-        body: InventoryRequest;
-    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.itemId - Item code of the product of which size is to be get.
@@ -674,6 +660,20 @@ declare class Catalog {
         q?: string;
         sellable?: boolean;
     }): Promise<InventoryResponsePaginated>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
+     * @param {string} arg.size - Size in which inventory is to be added.
+     * @param {InventoryRequest} arg.body
+     * @returns {Promise<SuccessResponse>} - Success response
+     * @summary: Add Inventory for particular size and store.
+     * @description: This API allows add Inventory for particular size and store.
+     */
+    addInventory({ itemId, size, body }?: {
+        itemId: number;
+        size: string;
+        body: InventoryRequest;
+    }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.itemId - Item code of the product of which size is to be get.
@@ -742,16 +742,6 @@ declare class Catalog {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {BulkJob} arg.body
-     * @returns {Promise<BulkResponse>} - Success response
-     * @summary: Create a Bulk Inventory upload Job.
-     * @description: This API helps to create a bulk Inventory upload job.
-     */
-    createBulkInventoryJob({ body }?: {
-        body: BulkJob;
-    }): Promise<BulkResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -764,6 +754,16 @@ declare class Catalog {
         pageNo?: number;
         pageSize?: number;
     }): Promise<BulkInventoryGet>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkJob} arg.body
+     * @returns {Promise<BulkResponse>} - Success response
+     * @summary: Create a Bulk Inventory upload Job.
+     * @description: This API helps to create a bulk Inventory upload job.
+     */
+    createBulkInventoryJob({ body }?: {
+        body: BulkJob;
+    }): Promise<BulkResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.batchId - Batch Id of the bulk delete job.
@@ -788,6 +788,13 @@ declare class Catalog {
     }): Promise<SuccessResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<InventoryExportJob>} - Success response
+     * @summary: Get Inventory export history.
+     * @description: This API helps to get Inventory export history.
+     */
+    getInventoryExport({}?: any): Promise<InventoryExportJob>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {InventoryExportRequest} arg.body
      * @returns {Promise<InventoryExportResponse>} - Success response
      * @summary: Create a Inventory export Job.
@@ -796,13 +803,6 @@ declare class Catalog {
     createInventoryExportJob({ body }?: {
         body: InventoryExportRequest;
     }): Promise<InventoryExportResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<InventoryExportJob>} - Success response
-     * @summary: Get Inventory export history.
-     * @description: This API helps to get Inventory export history.
-     */
-    getInventoryExport({}?: any): Promise<InventoryExportJob>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.filterType] - Filter type from any one of ['brand',
@@ -856,16 +856,6 @@ declare class Catalog {
     }): Promise<InventoryUpdateResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {HsnUpsert} arg.body
-     * @returns {Promise<HsnCode>} - Success response
-     * @summary: Create Hsn Code.
-     * @description: Create Hsn Code.
-     */
-    createHsnCode({ body }?: {
-        body: HsnUpsert;
-    }): Promise<HsnCode>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page no
      * @param {number} [arg.pageSize] - Page size
      * @param {string} [arg.q] - Search using hsn code.
@@ -880,13 +870,13 @@ declare class Catalog {
     }): Promise<HsnCodesListingResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Unique id
+     * @param {HsnUpsert} arg.body
      * @returns {Promise<HsnCode>} - Success response
-     * @summary: Fetch Hsn Code.
-     * @description: Fetch Hsn Code.
+     * @summary: Create Hsn Code.
+     * @description: Create Hsn Code.
      */
-    getHsnCode({ id }?: {
-        id: string;
+    createHsnCode({ body }?: {
+        body: HsnUpsert;
     }): Promise<HsnCode>;
     /**
      * @param {Object} arg - Arg object.
@@ -899,6 +889,16 @@ declare class Catalog {
     updateHsnCode({ id, body }?: {
         id: string;
         body: HsnUpsert;
+    }): Promise<HsnCode>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Unique id
+     * @returns {Promise<HsnCode>} - Success response
+     * @summary: Fetch Hsn Code.
+     * @description: Fetch Hsn Code.
+     */
+    getHsnCode({ id }?: {
+        id: string;
     }): Promise<HsnCode>;
     /**
      * @param {Object} arg - Arg object.
