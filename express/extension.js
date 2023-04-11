@@ -7,6 +7,7 @@ const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
 const { version } = require('./../package.json');
+const { TIMEOUT_STATUS, SERVICE_UNAVAILABLE } = require('./constants');
 
 class Extension {
     constructor() {
@@ -139,7 +140,7 @@ class Extension {
         return platformClient;
     }
 
-    async getExtensionDetails() {
+    async getExtensionDetails(retryCount = 5) {
         try {
             let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
             const token = Buffer.from(
@@ -159,6 +160,15 @@ class Extension {
             logger.debug(`Extension details received: ${logger.safeStringify(extensionData)}`);
             return extensionData;
         } catch (err) {
+            if (retryCount > 0) {
+                // await for 5 second interval after every fail for 5 times
+                if (err.response && err.response.status in [TIMEOUT_STATUS, SERVICE_UNAVAILABLE]) {
+                    await (new Promise(function(resolve, reject){
+                        setTimeout(resolve, 5000);
+                    }))
+                    return this.getExtensionDetails(retryCount - 1);
+                }
+            }
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
         }
     }
