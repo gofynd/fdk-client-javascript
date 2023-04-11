@@ -73,6 +73,8 @@ class ContentModel {
 
       sitemap_enabled: Joi.boolean(),
 
+      cannonical_enabled: Joi.boolean(),
+
       custom_meta_tags: Joi.array().items(Joi.any()),
 
       details: ContentModel.Detail(),

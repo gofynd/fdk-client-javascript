@@ -5833,6 +5833,7 @@ Success. Refer `SeoComponent` for more details.
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
+      "cannonical_enabled": false,
       "_id": "6009819ee463ad40de397eb2",
       "app": "000000000000000000000001",
       "created_at": "2021-01-21T13:29:02.543Z",
@@ -7658,6 +7659,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | _id | string |  no  |  |
  | robots_txt | string |  no  |  |
  | sitemap_enabled | boolean |  no  |  |
+ | cannonical_enabled | boolean |  no  |  |
  | custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  |
  | details | [Detail](#Detail) |  no  |  |
  | created_at | string |  no  |  |
