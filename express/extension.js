@@ -7,7 +7,7 @@ const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
 const { version } = require('./../package.json');
-const { TIMEOUT_STATUS, SERVICE_UNAVAILABLE } = require('./constants');
+const { TIMEOUT_STATUS, SERVICE_UNAVAILABLE, BAD_GATEWAY } = require('./constants');
 
 class Extension {
     constructor() {
@@ -161,10 +161,13 @@ class Extension {
             return extensionData;
         } catch (err) {
             if (retryCount > 0) {
-                // await for 5 second interval after every fail for 5 times
-                if (err.response && err.response.status in [TIMEOUT_STATUS, SERVICE_UNAVAILABLE]) {
+                // await for 5 second interval after every fail, for 5 times
+                const statusCode = (err.response && err.response.status) || err.code;
+                const SECONDS_5_MILLISECONDS = 5000;
+                if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
+                    logger.debug(`Extension service not reachable. Retrying fetching extension details. Retry count: ${retryCount}`);
                     await (new Promise(function(resolve, reject){
-                        setTimeout(resolve, 5000);
+                        setTimeout(resolve, SECONDS_5_MILLISECONDS);
                     }))
                     return this.getExtensionDetails(retryCount - 1);
                 }
