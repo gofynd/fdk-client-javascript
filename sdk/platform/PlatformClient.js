@@ -4956,6 +4956,7 @@ class PlatformClient {
  * @typedef CreateOrderAPI
  * @property {BillingInfo} billing_info
  * @property {Charge[]} [charges]
+ * @property {Object} [config]
  * @property {Object} [currency_info]
  * @property {string} [external_creation_date]
  * @property {string} [external_order_id]

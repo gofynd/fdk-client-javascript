@@ -4154,6 +4154,7 @@ type CreateChannelPaymentInfo = {
 type CreateOrderAPI = {
     billing_info: BillingInfo;
     charges?: Charge[];
+    config?: any;
     currency_info?: any;
     external_creation_date?: string;
     external_order_id?: string;
