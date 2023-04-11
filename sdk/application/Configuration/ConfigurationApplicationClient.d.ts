@@ -160,16 +160,18 @@ declare class Configuration {
      *   retrieving staff members working at a particular ordering store.
      * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
      *   the details of a particular staff member.
+     * @param {string} [arg.userName] - User name of the member
      * @returns {Promise<AppStaffListResponse>} - Success response
      * @summary: Get a list of staff.
      * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
      */
-    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, }?: {
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, }?: {
         pageNo?: number;
         pageSize?: number;
         orderIncent?: boolean;
         orderingStore?: number;
         user?: string;
+        userName?: string;
     }): Promise<AppStaffListResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -180,14 +182,16 @@ declare class Configuration {
      *   retrieving staff members working at a particular ordering store.
      * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
      *   the details of a particular staff member.
+     * @param {string} [arg.userName] - User name of the member
      * @summary: Get a list of staff.
      * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
      */
-    getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, }?: {
+    getAppStaffListPaginator({ pageSize, orderIncent, orderingStore, user, userName, }?: {
         pageSize?: number;
         orderIncent?: boolean;
         orderingStore?: number;
         user?: string;
+        userName?: string;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.

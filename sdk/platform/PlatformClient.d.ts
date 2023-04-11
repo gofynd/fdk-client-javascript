@@ -2844,29 +2844,29 @@ type SystemNotifications = {
     page?: Page;
 };
 type PaymentGatewayConfigResponse = {
-    aggregators?: any[];
-    excluded_fields: string[];
-    success: boolean;
-    app_id: string;
     display_fields: string[];
+    app_id: string;
+    excluded_fields: string[];
     created: boolean;
+    aggregators?: any[];
+    success: boolean;
 };
 type ErrorCodeDescription = {
-    description: string;
     success: boolean;
     code: string;
+    description: string;
 };
 type PaymentGatewayConfig = {
-    secret: string;
-    key: string;
-    merchant_salt: string;
-    is_active?: boolean;
     config_type: string;
+    secret: string;
+    merchant_salt: string;
+    key: string;
+    is_active?: boolean;
 };
 type PaymentGatewayConfigRequest = {
     aggregator_name?: PaymentGatewayConfig;
-    is_active?: boolean;
     app_id: string;
+    is_active?: boolean;
 };
 type PaymentGatewayToBeReviewed = {
     aggregator: string[];
@@ -2889,114 +2889,114 @@ type IntentAppErrorList = {
     code?: string;
 };
 type IntentApp = {
-    package_name?: string;
     display_name?: string;
     logos?: PaymentModeLogo;
+    package_name?: string;
     code?: string;
 };
 type PaymentModeList = {
+    cod_limit?: number;
     expired?: boolean;
-    intent_flow?: boolean;
-    exp_year?: number;
-    merchant_code?: string;
     intent_app_error_list?: string[];
-    card_id?: string;
-    logo_url?: PaymentModeLogo;
-    card_name?: string;
-    nickname?: string;
-    card_reference?: string;
-    card_fingerprint?: string;
-    exp_month?: number;
-    card_brand?: string;
-    display_priority?: number;
-    card_issuer?: string;
-    aggregator_name: string;
-    remaining_limit?: number;
-    display_name?: string;
-    retry_count?: number;
-    card_number?: string;
-    card_type?: string;
     compliant_with_tokenisation_guidelines?: boolean;
+    code?: string;
     timeout?: number;
-    card_brand_image?: string;
-    card_token?: string;
+    display_name?: string;
+    display_priority?: number;
+    logo_url?: PaymentModeLogo;
     intent_app_error_dict_list?: IntentAppErrorList[];
+    merchant_code?: string;
     name?: string;
     fynd_vpa?: string;
+    card_id?: string;
+    card_brand_image?: string;
+    exp_month?: number;
+    card_brand?: string;
+    nickname?: string;
+    intent_flow?: boolean;
+    exp_year?: number;
     card_isin?: string;
-    cod_limit?: number;
-    intent_app?: IntentApp[];
-    code?: string;
+    remaining_limit?: number;
+    card_reference?: string;
+    card_issuer?: string;
     cod_limit_per_order?: number;
+    card_type?: string;
+    intent_app?: IntentApp[];
+    card_number?: string;
+    card_token?: string;
+    retry_count?: number;
+    card_fingerprint?: string;
+    aggregator_name: string;
+    card_name?: string;
 };
 type RootPaymentMode = {
-    anonymous_enable?: boolean;
-    name: string;
+    display_name: string;
     display_priority: number;
+    is_pay_by_card_pl?: boolean;
+    name: string;
+    save_card?: boolean;
+    add_card_enabled?: boolean;
+    anonymous_enable?: boolean;
     aggregator_name?: string;
     list?: PaymentModeList[];
-    display_name: string;
-    add_card_enabled?: boolean;
-    save_card?: boolean;
-    is_pay_by_card_pl?: boolean;
 };
 type PaymentOptions = {
     payment_option: RootPaymentMode[];
 };
 type PaymentOptionsResponse = {
-    success: boolean;
     payment_options: PaymentOptions;
+    success: boolean;
 };
 type PayoutsResponse = {
     unique_transfer_no: any;
-    payouts_aggregators: any[];
-    transfer_type: string;
     more_attributes: any;
     customers: any;
-    is_active: boolean;
     is_default: boolean;
+    transfer_type: string;
+    is_active: boolean;
+    payouts_aggregators: any[];
 };
 type PayoutBankDetails = {
-    branch_name?: string;
-    state?: string;
-    account_no?: string;
-    account_type: string;
-    ifsc_code: string;
     country?: string;
-    pincode?: number;
+    state?: string;
+    ifsc_code: string;
+    account_type: string;
+    account_no?: string;
+    account_holder?: string;
     bank_name?: string;
     city?: string;
-    account_holder?: string;
+    branch_name?: string;
+    pincode?: number;
 };
 type PayoutRequest = {
     unique_external_id: string;
+    aggregator: string;
     users: any;
     bank_details: PayoutBankDetails;
     transfer_type: string;
-    aggregator: string;
     is_active: boolean;
 };
 type PayoutResponse = {
     unique_transfer_no: string;
     created: boolean;
-    users: any;
-    bank_details: any;
-    payouts: any;
-    success: boolean;
-    transfer_type: string;
-    aggregator: string;
     payment_status: string;
+    payouts: any;
+    users: any;
+    transfer_type: string;
+    bank_details: any;
+    aggregator: string;
+    success: boolean;
     is_active: boolean;
 };
 type UpdatePayoutResponse = {
-    is_active: boolean;
-    success: boolean;
     is_default: boolean;
+    success: boolean;
+    is_active: boolean;
 };
 type UpdatePayoutRequest = {
+    is_default: boolean;
     unique_external_id: string;
     is_active: boolean;
-    is_default: boolean;
 };
 type DeletePayoutResponse = {
     success: boolean;
@@ -3010,8 +3010,8 @@ type DeleteSubscriptionPaymentMethodResponse = {
 };
 type SubscriptionConfigResponse = {
     aggregator: string;
-    success: boolean;
     config: any;
+    success: boolean;
 };
 type SaveSubscriptionSetupIntentRequest = {
     unique_external_id: string;
@@ -3021,69 +3021,69 @@ type SaveSubscriptionSetupIntentResponse = {
     success: boolean;
 };
 type RefundAccountResponse = {
-    is_verified_flag?: boolean;
     data?: any;
-    success: boolean;
     message: string;
+    success: boolean;
+    is_verified_flag?: boolean;
 };
 type NotFoundResourceError = {
-    description: string;
     success: boolean;
     code: string;
+    description: string;
 };
 type BankDetailsForOTP = {
-    branch_name: string;
-    account_no: string;
     ifsc_code: string;
-    bank_name: string;
     account_holder: string;
+    account_no: string;
+    bank_name: string;
+    branch_name: string;
 };
 type AddBeneficiaryDetailsOTPRequest = {
-    details: BankDetailsForOTP;
     order_id: string;
+    details: BankDetailsForOTP;
 };
 type IfscCodeResponse = {
     branch_name: string;
-    bank_name: string;
     success?: boolean;
+    bank_name: string;
 };
 type OrderBeneficiaryDetails = {
-    comment?: string;
-    account_holder: string;
-    branch_name?: string;
-    beneficiary_id: string;
-    account_no: string;
-    mobile?: string;
-    display_name: string;
-    email: string;
     created_on: string;
-    transfer_mode: string;
-    modified_on: string;
-    id: number;
-    subtitle: string;
-    ifsc_code: string;
-    bank_name: string;
-    address: string;
-    title: string;
+    comment?: string;
+    email: string;
+    account_no: string;
+    beneficiary_id: string;
+    display_name: string;
     delights_user_name?: string;
+    subtitle: string;
+    id: number;
     is_active: boolean;
+    account_holder: string;
+    address: string;
+    bank_name: string;
+    title: string;
+    branch_name?: string;
+    mobile?: string;
+    ifsc_code: string;
+    modified_on: string;
+    transfer_mode: string;
 };
 type OrderBeneficiaryResponse = {
-    show_beneficiary_details?: boolean;
     beneficiaries?: OrderBeneficiaryDetails[];
+    show_beneficiary_details?: boolean;
 };
 type MultiTenderPaymentMeta = {
-    order_id?: string;
-    current_status?: string;
-    payment_gateway?: string;
-    extra_meta?: any;
     payment_id?: string;
+    payment_gateway?: string;
+    order_id?: string;
+    extra_meta?: any;
+    current_status?: string;
 };
 type MultiTenderPaymentMethod = {
+    name?: string;
     mode: string;
     amount: number;
     meta?: MultiTenderPaymentMeta;
-    name?: string;
 };
 type PaymentConfirmationRequest = {
     payment_methods: MultiTenderPaymentMethod[];
@@ -3091,28 +3091,28 @@ type PaymentConfirmationRequest = {
 };
 type PaymentConfirmationResponse = {
     order_id: string;
-    success: boolean;
     message: string;
+    success: boolean;
 };
 type CODdata = {
-    usages: number;
+    limit: number;
     remaining_limit: number;
     user_id: string;
+    usages: number;
     is_active: boolean;
-    limit: number;
 };
 type GetUserCODLimitResponse = {
-    success: boolean;
     user_cod_data: CODdata;
+    success: boolean;
 };
 type SetCODForUserRequest = {
-    is_active: boolean;
     mobileno: string;
+    is_active: boolean;
     merchant_user_id: string;
 };
 type SetCODOptionResponse = {
-    success: boolean;
     message: string;
+    success: boolean;
 };
 type EdcModelData = {
     aggregator: string;
@@ -3132,25 +3132,25 @@ type EdcDeviceStatsResponse = {
     success: boolean;
 };
 type EdcAddRequest = {
-    aggregator_id: number;
-    edc_model: string;
-    device_tag?: string;
-    terminal_serial_no: string;
     store_id: number;
+    device_tag?: string;
     edc_device_serial_no: string;
+    aggregator_id: number;
+    terminal_serial_no: string;
+    edc_model: string;
 };
 type EdcDevice = {
-    aggregator_id: number;
-    edc_model?: string;
-    aggregator_name?: string;
-    terminal_unique_identifier: string;
-    device_tag: string;
-    terminal_serial_no: string;
-    store_id: number;
-    edc_device_serial_no: string;
-    application_id: string;
-    is_active: boolean;
     merchant_store_pos_code?: string;
+    terminal_unique_identifier: string;
+    application_id: string;
+    store_id: number;
+    device_tag: string;
+    edc_device_serial_no: string;
+    aggregator_id: number;
+    aggregator_name?: string;
+    terminal_serial_no: string;
+    edc_model?: string;
+    is_active: boolean;
 };
 type EdcDeviceAddResponse = {
     data: EdcDevice;
@@ -3161,13 +3161,13 @@ type EdcDeviceDetailsResponse = {
     success: boolean;
 };
 type EdcUpdateRequest = {
+    merchant_store_pos_code?: string;
+    store_id?: number;
+    device_tag?: string;
+    edc_device_serial_no?: string;
     aggregator_id?: number;
     edc_model?: string;
-    device_tag?: string;
-    store_id?: number;
-    edc_device_serial_no?: string;
-    is_active?: string;
-    merchant_store_pos_code?: string;
+    is_active?: boolean;
 };
 type EdcDeviceUpdateResponse = {
     success: boolean;
@@ -3178,68 +3178,68 @@ type EdcDeviceListResponse = {
     success: boolean;
 };
 type PaymentInitializationRequest = {
-    contact: string;
-    email: string;
-    order_id: string;
-    vpa?: string;
-    razorpay_payment_id?: string;
     merchant_order_id: string;
-    customer_id: string;
-    currency: string;
-    device_id?: string;
     method: string;
-    aggregator: string;
-    timeout?: number;
+    vpa?: string;
+    order_id: string;
+    razorpay_payment_id?: string;
+    currency: string;
+    customer_id: string;
+    device_id?: string;
+    email: string;
     amount: number;
+    timeout?: number;
+    aggregator: string;
+    contact: string;
 };
 type PaymentInitializationResponse = {
-    status?: string;
-    polling_url: string;
-    virtual_id?: string;
-    vpa?: string;
     bqr_image?: string;
+    virtual_id?: string;
     merchant_order_id: string;
-    razorpay_payment_id?: string;
-    success: boolean;
-    customer_id?: string;
     aggregator_order_id?: string;
-    currency?: string;
-    device_id?: string;
     method: string;
-    aggregator: string;
-    timeout?: number;
-    amount?: number;
+    vpa?: string;
+    polling_url: string;
     upi_poll_url?: string;
+    status?: string;
+    currency?: string;
+    customer_id?: string;
+    razorpay_payment_id?: string;
+    device_id?: string;
+    amount?: number;
+    timeout?: number;
+    aggregator: string;
+    success: boolean;
 };
 type PaymentStatusUpdateRequest = {
-    contact: string;
-    status: string;
-    order_id: string;
-    email: string;
-    vpa?: string;
     merchant_order_id: string;
-    customer_id: string;
-    currency: string;
-    device_id?: string;
     method: string;
-    aggregator: string;
+    vpa?: string;
+    order_id: string;
+    status: string;
+    currency: string;
+    customer_id: string;
+    device_id?: string;
+    email: string;
     amount: number;
+    aggregator: string;
+    contact: string;
 };
 type PaymentStatusUpdateResponse = {
     status: string;
-    aggregator_name: string;
-    success?: boolean;
     retry: boolean;
     redirect_url?: string;
+    aggregator_name: string;
+    success?: boolean;
 };
 type ResendOrCancelPaymentRequest = {
-    request_type: string;
     order_id: string;
+    request_type: string;
     device_id?: string;
 };
 type LinkStatus = {
-    status: boolean;
     message: string;
+    status: boolean;
 };
 type ResendOrCancelPaymentResponse = {
     data: LinkStatus;
