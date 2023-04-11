@@ -11,15 +11,19 @@ Authentication Service
 * [archiveUser](#archiveuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [createUser](#createuser)
+* [createUserGroup](#createusergroup)
 * [createUserSession](#createusersession)
 * [deleteActiveSessions](#deleteactivesessions)
 * [getActiveSessions](#getactivesessions)
 * [getCustomers](#getcustomers)
 * [getPlatformConfig](#getplatformconfig)
+* [getUserGroupById](#getusergroupbyid)
+* [getUserGroups](#getusergroups)
 * [searchUsers](#searchusers)
 * [unDeleteUser](#undeleteuser)
 * [updatePlatformConfig](#updateplatformconfig)
 * [updateUser](#updateuser)
+* [updateUserGroup](#updateusergroup)
 
 
 
@@ -224,6 +228,73 @@ User create
     "created_at": "2020-03-11T09:28:41.982Z",
     "updated_at": "2020-03-11T09:28:41.982Z"
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createUserGroup
+Create an User Group
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.createUserGroup({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUserGroupSchema](#CreateUserGroupSchema) | yes | Request body |
+
+
+Use this API to create new user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns created User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
+  "__v": 0
 }
 ```
 </details>
@@ -689,6 +760,178 @@ Success. Returns a JSON object containing the all the platform configurations. R
 ---
 
 
+### getUserGroupById
+Get an User Group by Id
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.getUserGroupById({  groupId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupId | string | yes | Numeric ID allotted to a User Group |  
+
+
+
+Use this API to get details of an existing user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. User Group details. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserGroups
+Get User Groups mathcing criteria
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
+ pageSize : value,
+ name : value,
+ status : value,
+ groupUid : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
+ pageSize : value,
+ name : value,
+ status : value,
+ groupUid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | string | no | page number for pagination result |    
+| pageSize | string | no | page size for pagination result |    
+| name | string | no | to seartch for User Groups which contains given string in their name |    
+| status | string | no | to get User Groups with given status |    
+| groupUid | number | no | to get User Groups with given uid |  
+
+
+
+Use this API to get User Groups mathing criteria passed in query
+
+*Returned Response:*
+
+
+
+
+[UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+Success. User Group details. `UserGroupListResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "is_active": true,
+      "_id": "6345677535474fbb6944b7ce",
+      "name": "Group 1",
+      "description": "description",
+      "file_url": "url",
+      "status": "pending",
+      "uid": 1,
+      "application_id": "000000000000000000000001",
+      "created_at": "2022-10-11T12:54:13.539Z",
+      "modified_at": "2022-10-11T12:54:13.539Z",
+      "__v": 0
+    },
+    {
+      "is_active": true,
+      "_id": "6345677535474fbb6944b7ced",
+      "name": "Group 2",
+      "description": "description",
+      "file_url": "url2",
+      "status": "pending",
+      "uid": 1,
+      "application_id": "000000000000000000000001",
+      "created_at": "2022-10-11T12:54:13.539Z",
+      "modified_at": "2022-10-11T12:54:13.539Z",
+      "__v": 0
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 10,
+    "item_total": 0,
+    "has_next": false
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### searchUsers
 Search an existing user.
 
@@ -1005,7 +1248,7 @@ const data = await client.application("<APPLICATION_ID>").user.updateUser({  use
 | body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
 
 
-Update user
+Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
 
 *Returned Response:*
 
@@ -1065,6 +1308,76 @@ User update
     "created_at": "2020-03-11T09:28:41.982Z",
     "updated_at": "2020-03-11T09:28:41.982Z"
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateUserGroup
+Update an User Group
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").user.updateUserGroup({  groupId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupId | string | yes | Numeric ID allotted to a User Group |  
+| body | [UpdateUserGroupSchema](#UpdateUserGroupSchema) | yes | Request body |
+
+
+Use this API to update an existing user Group
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns updated User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
+  "__v": 0
 }
 ```
 </details>
@@ -1165,6 +1478,13 @@ User update
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || code | string |  no  |  |
+
+---
+
+#### [CreateUserGroupSchema](#CreateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || description | string |  yes  |  || file_url | string |  yes  |  || name | string |  yes  |  |
 
 ---
 
@@ -1658,10 +1978,38 @@ User update
 
 ---
 
+#### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || description | string |  no  |  || file_url | string |  no  |  || name | string |  no  |  |
+
+---
+
 #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || emails | [[UserEmails](#UserEmails)] |  no  |  || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+
+---
+
+#### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+
+---
+
+#### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  || page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+#### [UserGroupResponseSchema](#UserGroupResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application_id | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || file_url | string |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || status | string |  no  |  || uid | number |  no  |  |
 
 ---
 
@@ -1669,6 +2017,13 @@ User update
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || user | [UserSchema](#UserSchema) |  no  |  |
+
+---
+
+#### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | string |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
 
 ---
 

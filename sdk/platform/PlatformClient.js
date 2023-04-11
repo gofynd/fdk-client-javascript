@@ -909,6 +909,12 @@ class PlatformClient {
  * @property {string} [code]
  */
 /**
+ * @typedef CreateUserGroupSchema
+ * @property {string} description
+ * @property {string} file_url
+ * @property {string} name
+ */
+/**
  * @typedef CreateUserRequestSchema
  * @property {string} [email]
  * @property {string} [first_name]
@@ -1370,16 +1376,57 @@ class PlatformClient {
  * @property {string} [old_password]
  */
 /**
+ * @typedef UpdateUserGroupSchema
+ * @property {string} [description]
+ * @property {string} [file_url]
+ * @property {string} [name]
+ */
+/**
  * @typedef UpdateUserRequestSchema
+ * @property {UserEmails[]} [emails]
  * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
  * @property {Object} [meta]
+ * @property {UserPhoneNumbers[]} [phone_numbers]
+ */
+/**
+ * @typedef UserEmails
+ * @property {boolean} [active]
+ * @property {string} [email]
+ * @property {boolean} [primary]
+ * @property {boolean} [verified]
+ */
+/**
+ * @typedef UserGroupListResponseSchema
+ * @property {UserGroupResponseSchema[]} [items]
+ * @property {PaginationSchema} [page]
+ */
+/**
+ * @typedef UserGroupResponseSchema
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application_id]
+ * @property {string} [created_at]
+ * @property {string} [description]
+ * @property {string} [file_url]
+ * @property {string} [modified_at]
+ * @property {string} [name]
+ * @property {string} [status]
+ * @property {number} [uid]
  */
 /**
  * @typedef UserObjectSchema
  * @property {UserSchema} [user]
+ */
+/**
+ * @typedef UserPhoneNumbers
+ * @property {boolean} [active]
+ * @property {string} [country_code]
+ * @property {string} [phone]
+ * @property {boolean} [primary]
+ * @property {boolean} [verified]
  */
 /**
  * @typedef UserSchema
@@ -7764,7 +7811,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -7960,7 +8007,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]

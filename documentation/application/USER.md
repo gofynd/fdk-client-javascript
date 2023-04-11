@@ -3184,6 +3184,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
+#### [CreateUserGroupSchema](#CreateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || description | string |  yes  |  || file_url | string |  yes  |  || name | string |  yes  |  |
+
+---
+
 #### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3674,10 +3681,38 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
+#### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || description | string |  no  |  || file_url | string |  no  |  || name | string |  no  |  |
+
+---
+
 #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || emails | [[UserEmails](#UserEmails)] |  no  |  || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+
+---
+
+#### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+
+---
+
+#### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  || page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+#### [UserGroupResponseSchema](#UserGroupResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application_id | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || file_url | string |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || status | string |  no  |  || uid | number |  no  |  |
 
 ---
 
@@ -3685,6 +3720,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || user | [UserSchema](#UserSchema) |  no  |  |
+
+---
+
+#### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | string |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
 
 ---
 
