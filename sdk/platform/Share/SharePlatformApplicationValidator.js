@@ -8,6 +8,12 @@ class ShareValidator {
     }).required();
   }
 
+  static getShortLinkByHash() {
+    return Joi.object({
+      hash: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getShortLinks() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -15,12 +21,6 @@ class ShareValidator {
       createdBy: Joi.string().allow(""),
       active: Joi.string().allow(""),
       q: Joi.string().allow(""),
-    }).required();
-  }
-
-  static getShortLinkByHash() {
-    return Joi.object({
-      hash: Joi.string().allow("").required(),
     }).required();
   }
 

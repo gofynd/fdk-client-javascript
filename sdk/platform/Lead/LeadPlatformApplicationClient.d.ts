@@ -5,6 +5,99 @@ declare class Lead {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueName - Unique name of Video Room
+     * @returns {Promise<CloseVideoRoomResponse>} - Success response
+     * @summary: Close the video room and force all participants to leave.
+     * @description: Close the video room and force all participants to leave.
+     */
+    closeVideoRoom({ uniqueName }?: {
+        uniqueName: string;
+    }): Promise<CloseVideoRoomResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateCustomFormPayload} arg.body
+     * @returns {Promise<CustomForm>} - Success response
+     * @summary: Creates a new custom form
+     * @description: Creates a new custom form for given application
+     */
+    createCustomForm({ body }?: {
+        body: CreateCustomFormPayload;
+    }): Promise<CustomForm>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID for which history is created
+     * @param {TicketHistoryPayload} arg.body
+     * @returns {Promise<TicketHistory>} - Success response
+     * @summary: Create history for specific application level ticket
+     * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     */
+    createHistory({ id, body }?: {
+        id: string;
+        body: TicketHistoryPayload;
+    }): Promise<TicketHistory>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - Slug of form whose response is getting submitted
+     * @param {EditCustomFormPayload} arg.body
+     * @returns {Promise<CustomForm>} - Success response
+     * @summary: Edit the given custom form
+     * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
+     */
+    editCustomForm({ slug, body }?: {
+        slug: string;
+        body: EditCustomFormPayload;
+    }): Promise<CustomForm>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID of ticket to be edited
+     * @param {EditTicketPayload} arg.body
+     * @returns {Promise<Ticket>} - Success response
+     * @summary: Edits ticket details of a application level ticket
+     * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+     */
+    editTicket({ id, body }?: {
+        id: string;
+        body: EditTicketPayload;
+    }): Promise<Ticket>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - Slug of form whose response is getting submitted
+     * @returns {Promise<CustomForm>} - Success response
+     * @summary: Get specific custom form using it's slug
+     * @description: Get specific custom form using it's slug, this is used to view the form.
+     */
+    getCustomForm({ slug }?: {
+        slug: string;
+    }): Promise<CustomForm>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<CustomFormList>} - Success response
+     * @summary: Get list of custom form
+     * @description: Get list of custom form for given application
+     */
+    getCustomForms({}?: any): Promise<CustomFormList>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Tiket ID of the ticket to be fetched
+     * @returns {Promise<Ticket>} - Success response
+     * @summary: Retreives ticket details of a application level ticket
+     * @description: Retreives ticket details of a application level ticket with ticket ID
+     */
+    getTicket({ id }?: {
+        id: string;
+    }): Promise<Ticket>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID for which history is to be fetched
+     * @returns {Promise<TicketHistoryList>} - Success response
+     * @summary: Gets history list for specific application level ticket
+     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     */
+    getTicketHistory({ id }?: {
+        id: string;
+    }): Promise<TicketHistoryList>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {boolean} [arg.items] - Decides that the reponse will contain the
      *   list of tickets
      * @param {boolean} [arg.filters] - Decides that the reponse will contain
@@ -25,89 +118,6 @@ declare class Lead {
         priority?: PriorityEnum;
         category?: string;
     }): Promise<TicketList>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Tiket ID of the ticket to be fetched
-     * @returns {Promise<Ticket>} - Success response
-     * @summary: Retreives ticket details of a application level ticket
-     * @description: Retreives ticket details of a application level ticket with ticket ID
-     */
-    getTicket({ id }?: {
-        id: string;
-    }): Promise<Ticket>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID of ticket to be edited
-     * @param {EditTicketPayload} arg.body
-     * @returns {Promise<Ticket>} - Success response
-     * @summary: Edits ticket details of a application level ticket
-     * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
-     */
-    editTicket({ id, body }?: {
-        id: string;
-        body: EditTicketPayload;
-    }): Promise<Ticket>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is created
-     * @param {TicketHistoryPayload} arg.body
-     * @returns {Promise<TicketHistory>} - Success response
-     * @summary: Create history for specific application level ticket
-     * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-     */
-    createHistory({ id, body }?: {
-        id: string;
-        body: TicketHistoryPayload;
-    }): Promise<TicketHistory>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is to be fetched
-     * @returns {Promise<TicketHistoryList>} - Success response
-     * @summary: Gets history list for specific application level ticket
-     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-     */
-    getTicketHistory({ id }?: {
-        id: string;
-    }): Promise<TicketHistoryList>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @returns {Promise<CustomForm>} - Success response
-     * @summary: Get specific custom form using it's slug
-     * @description: Get specific custom form using it's slug, this is used to view the form.
-     */
-    getCustomForm({ slug }?: {
-        slug: string;
-    }): Promise<CustomForm>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @param {EditCustomFormPayload} arg.body
-     * @returns {Promise<CustomForm>} - Success response
-     * @summary: Edit the given custom form
-     * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
-     */
-    editCustomForm({ slug, body }?: {
-        slug: string;
-        body: EditCustomFormPayload;
-    }): Promise<CustomForm>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CustomFormList>} - Success response
-     * @summary: Get list of custom form
-     * @description: Get list of custom form for given application
-     */
-    getCustomForms({}?: any): Promise<CustomFormList>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateCustomFormPayload} arg.body
-     * @returns {Promise<CustomForm>} - Success response
-     * @summary: Creates a new custom form
-     * @description: Creates a new custom form for given application
-     */
-    createCustomForm({ body }?: {
-        body: CreateCustomFormPayload;
-    }): Promise<CustomForm>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueName - Unique name of video room
@@ -138,14 +148,4 @@ declare class Lead {
     openVideoRoom({ body }?: {
         body: CreateVideoRoomPayload;
     }): Promise<CreateVideoRoomResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
-     * @returns {Promise<CloseVideoRoomResponse>} - Success response
-     * @summary: Close the video room and force all participants to leave.
-     * @description: Close the video room and force all participants to leave.
-     */
-    closeVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): Promise<CloseVideoRoomResponse>;
 }

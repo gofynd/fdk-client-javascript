@@ -13,263 +13,13 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @returns {Promise<MobileAppConfiguration>} - Success response
-   * @summary: Get latest build config
-   * @description: Get latest build config
+   * @param {DomainAddRequest} arg.body
+   * @returns {Promise<Domain>} - Success response
+   * @summary: Add new domain to application
+   * @description: Add new domain to application.
    */
-  async getBuildConfig({ platformType } = {}) {
-    const { error } = ConfigurationValidator.getBuildConfig().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getBuildConfig().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getBuildConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.MobileAppConfiguration().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getBuildConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @param {MobileAppConfigRequest} arg.body
-   * @returns {Promise<MobileAppConfiguration>} - Success response
-   * @summary: Update build config for next build
-   * @description: Update build config for next build
-   */
-  async updateBuildConfig({ platformType, body } = {}) {
-    const { error } = ConfigurationValidator.updateBuildConfig().validate(
-      {
-        platformType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateBuildConfig().validate(
-      {
-        platformType,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateBuildConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.MobileAppConfiguration().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateBuildConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - Current platform name
-   * @returns {Promise<BuildVersionHistory>} - Success response
-   * @summary: Get previous build versions
-   * @description: Get previous build versions
-   */
-  async getPreviousVersions({ platformType } = {}) {
-    const { error } = ConfigurationValidator.getPreviousVersions().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getPreviousVersions().validate(
-      {
-        platformType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getPreviousVersions",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.BuildVersionHistory().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getPreviousVersions",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<AppFeatureResponse>} - Success response
-   * @summary: Get features of application
-   * @description: Get features of application
-   */
-  async getAppFeatures({} = {}) {
-    const { error } = ConfigurationValidator.getAppFeatures().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getAppFeatures().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAppFeatures",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.AppFeatureResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAppFeatures",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppFeatureRequest} arg.body
-   * @returns {Promise<AppFeature>} - Success response
-   * @summary: Update features of application
-   * @description: Update features of application
-   */
-  async updateAppFeatures({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppFeatures().validate(
+  async addDomain({ body } = {}) {
+    const { error } = ConfigurationValidator.addDomain().validate(
       {
         body,
       },
@@ -280,9 +30,7 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateAppFeatures().validate(
+    const { error: warrning } = ConfigurationValidator.addDomain().validate(
       {
         body,
       },
@@ -291,7 +39,7 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppFeatures",
+        message: "Parameter Validation warrnings for addDomain",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -301,14 +49,75 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = ConfigurationModel.Domain().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addDomain",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {UpdateDomainTypeRequest} arg.body
+   * @returns {Promise<DomainsResponse>} - Success response
+   * @summary: Change domain type
+   * @description: Change a domain to Primary or Shortlink domain
+   */
+  async changeDomainType({ body } = {}) {
+    const { error } = ConfigurationValidator.changeDomainType().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.changeDomainType().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for changeDomainType",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
       query_params,
       body
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppFeature().validate(response, {
+    } = ConfigurationModel.DomainsResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -316,249 +125,7 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppFeatures",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationDetail>} - Success response
-   * @summary: Get basic application details
-   * @description: Get basic application details like name
-   */
-  async getAppBasicDetails({} = {}) {
-    const { error } = ConfigurationValidator.getAppBasicDetails().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getAppBasicDetails().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAppBasicDetails",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationDetail().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAppBasicDetails",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationDetail} arg.body
-   * @returns {Promise<ApplicationDetail>} - Success response
-   * @summary: Add or update application's basic details
-   * @description: Add or update application's basic details
-   */
-  async updateAppBasicDetails({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppBasicDetails().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateAppBasicDetails().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateAppBasicDetails",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationDetail().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateAppBasicDetails",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationInformation>} - Success response
-   * @summary: Get application information
-   * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
-   */
-  async getAppContactInfo({} = {}) {
-    const { error } = ConfigurationValidator.getAppContactInfo().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getAppContactInfo().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAppContactInfo",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationInformation().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAppContactInfo",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationInformation} arg.body
-   * @returns {Promise<ApplicationInformation>} - Success response
-   * @summary: Get application information
-   * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
-   */
-  async updateAppContactInfo({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppContactInfo().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateAppContactInfo().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateAppContactInfo",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationInformation().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateAppContactInfo",
+        message: "Response Validation Warnnings for changeDomainType",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -626,16 +193,13 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {TokenResponse} arg.body
-   * @returns {Promise<TokenResponse>} - Success response
-   * @summary: Add social tokens
-   * @description: Add social tokens.
+   * @returns {Promise<ApplicationDetail>} - Success response
+   * @summary: Get basic application details
+   * @description: Get basic application details like name
    */
-  async updateAppApiTokens({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppApiTokens().validate(
-      {
-        body,
-      },
+  async getAppBasicDetails({} = {}) {
+    const { error } = ConfigurationValidator.getAppBasicDetails().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -645,16 +209,14 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateAppApiTokens().validate(
-      {
-        body,
-      },
+    } = ConfigurationValidator.getAppBasicDetails().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppApiTokens",
+        message: "Parameter Validation warrnings for getAppBasicDetails",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -663,15 +225,15 @@ class Configuration {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
-      body
+      undefined
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.TokenResponse().validate(response, {
+    } = ConfigurationModel.ApplicationDetail().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -679,7 +241,7 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppApiTokens",
+        message: "Response Validation Warnnings for getAppBasicDetails",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -793,6 +355,180 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ApplicationInformation>} - Success response
+   * @summary: Get application information
+   * @description: Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+   */
+  async getAppContactInfo({} = {}) {
+    const { error } = ConfigurationValidator.getAppContactInfo().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getAppContactInfo().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppContactInfo",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationInformation().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppContactInfo",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<AppSupportedCurrency>} - Success response
+   * @summary: Get application enabled currency list
+   * @description: Get application enabled currency list
+   */
+  async getAppCurrencyConfig({} = {}) {
+    const { error } = ConfigurationValidator.getAppCurrencyConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getAppCurrencyConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppCurrencyConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppSupportedCurrency().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppCurrencyConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<AppFeatureResponse>} - Success response
+   * @summary: Get features of application
+   * @description: Get features of application
+   */
+  async getAppFeatures({} = {}) {
+    const { error } = ConfigurationValidator.getAppFeatures().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getAppFeatures().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppFeatures",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppFeatureResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppFeatures",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @returns {Promise<StoresResponse>} - Success response
@@ -889,315 +625,6 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationInventory>} - Success response
-   * @summary: Get application configuration
-   * @description: Get application configuration for various features and data
-   */
-  async getInventoryConfig({} = {}) {
-    const { error } = ConfigurationValidator.getInventoryConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getInventoryConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getInventoryConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationInventory().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getInventoryConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationInventory} arg.body
-   * @returns {Promise<ApplicationInventory>} - Success response
-   * @summary: Update application configuration
-   * @description: Update application configuration for various features and data
-   */
-  async updateInventoryConfig({ body } = {}) {
-    const { error } = ConfigurationValidator.updateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateInventoryConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationInventory().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateInventoryConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppInventoryPartialUpdate} arg.body
-   * @returns {Promise<ApplicationInventory>} - Success response
-   * @summary: Partially update application configuration
-   * @description: Partially update application configuration for various features and data
-   */
-  async partiallyUpdateInventoryConfig({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for partiallyUpdateInventoryConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "patch",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.ApplicationInventory().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for partiallyUpdateInventoryConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<AppSupportedCurrency>} - Success response
-   * @summary: Get application enabled currency list
-   * @description: Get application enabled currency list
-   */
-  async getAppCurrencyConfig({} = {}) {
-    const { error } = ConfigurationValidator.getAppCurrencyConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getAppCurrencyConfig().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAppCurrencyConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.AppSupportedCurrency().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAppCurrencyConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {AppSupportedCurrency} arg.body
-   * @returns {Promise<AppSupportedCurrency>} - Success response
-   * @summary: Add initial application supported currency
-   * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
-   */
-  async updateAppCurrencyConfig({ body } = {}) {
-    const { error } = ConfigurationValidator.updateAppCurrencyConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateAppCurrencyConfig().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateAppCurrencyConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.AppSupportedCurrency().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateAppCurrencyConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @returns {Promise<AppCurrencyResponse>} - Success response
    * @summary: Get currencies enabled in the application
    * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
@@ -1247,6 +674,304 @@ class Configuration {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getAppSupportedCurrency",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<Application>} - Success response
+   * @summary: Get application data from id
+   * @description: Get application data from id
+   */
+  async getApplicationById({} = {}) {
+    const { error } = ConfigurationValidator.getApplicationById().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getApplicationById().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getApplicationById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.Application().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getApplicationById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.platformType - Current platform name
+   * @returns {Promise<MobileAppConfiguration>} - Success response
+   * @summary: Get latest build config
+   * @description: Get latest build config
+   */
+  async getBuildConfig({ platformType } = {}) {
+    const { error } = ConfigurationValidator.getBuildConfig().validate(
+      {
+        platformType,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getBuildConfig().validate(
+      {
+        platformType,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBuildConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.MobileAppConfiguration().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBuildConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {DomainStatusRequest} arg.body
+   * @returns {Promise<DomainStatusResponse>} - Success response
+   * @summary: Get domain connected status.
+   * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+   */
+  async getDomainStatus({ body } = {}) {
+    const { error } = ConfigurationValidator.getDomainStatus().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getDomainStatus().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDomainStatus",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.DomainStatusResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDomainStatus",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<DomainsResponse>} - Success response
+   * @summary: Get attached domain list
+   * @description: Get attached domain list.
+   */
+  async getDomains({} = {}) {
+    const { error } = ConfigurationValidator.getDomains().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ConfigurationValidator.getDomains().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDomains",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.DomainsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDomains",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<ApplicationInventory>} - Success response
+   * @summary: Get application configuration
+   * @description: Get application configuration for various features and data
+   */
+  async getInventoryConfig({} = {}) {
+    const { error } = ConfigurationValidator.getInventoryConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getInventoryConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getInventoryConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationInventory().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getInventoryConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1366,17 +1091,15 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {OrderingStoreConfig} arg.body
-   * @returns {Promise<DeploymentMeta>} - Success response
-   * @summary: Add/Update ordering store config
-   * @description: Add/Update ordering store config.
+   * @param {string} arg.platformType - Current platform name
+   * @returns {Promise<BuildVersionHistory>} - Success response
+   * @summary: Get previous build versions
+   * @description: Get previous build versions
    */
-  async updateOrderingStoreConfig({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
+  async getPreviousVersions({ platformType } = {}) {
+    const { error } = ConfigurationValidator.getPreviousVersions().validate(
       {
-        body,
+        platformType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1387,16 +1110,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
+    } = ConfigurationValidator.getPreviousVersions().validate(
       {
-        body,
+        platformType,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateOrderingStoreConfig",
+        message: "Parameter Validation warrnings for getPreviousVersions",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1405,15 +1128,15 @@ class Configuration {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
       query_params,
-      body
+      undefined
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.DeploymentMeta().validate(response, {
+    } = ConfigurationModel.BuildVersionHistory().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1421,7 +1144,7 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateOrderingStoreConfig",
+        message: "Response Validation Warnnings for getPreviousVersions",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1543,13 +1266,18 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<DomainsResponse>} - Success response
-   * @summary: Get attached domain list
-   * @description: Get attached domain list.
+   * @param {AppInventoryPartialUpdate} arg.body
+   * @returns {Promise<ApplicationInventory>} - Success response
+   * @summary: Partially update application configuration
+   * @description: Partially update application configuration for various features and data
    */
-  async getDomains({} = {}) {
-    const { error } = ConfigurationValidator.getDomains().validate(
-      {},
+  async partiallyUpdateInventoryConfig({ body } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1557,14 +1285,19 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ConfigurationValidator.getDomains().validate(
-      {},
+    const {
+      error: warrning,
+    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDomains",
+        message:
+          "Parameter Validation warrnings for partiallyUpdateInventoryConfig",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1573,15 +1306,15 @@ class Configuration {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
+      "patch",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
       query_params,
-      undefined
+      body
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainsResponse().validate(response, {
+    } = ConfigurationModel.ApplicationInventory().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1589,66 +1322,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDomains",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {DomainAddRequest} arg.body
-   * @returns {Promise<Domain>} - Success response
-   * @summary: Add new domain to application
-   * @description: Add new domain to application.
-   */
-  async addDomain({ body } = {}) {
-    const { error } = ConfigurationValidator.addDomain().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ConfigurationValidator.addDomain().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for addDomain",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
-      query_params,
-      body
-    );
-
-    const { error: res_error } = ConfigurationModel.Domain().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for addDomain",
+        message:
+          "Response Validation Warnnings for partiallyUpdateInventoryConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1721,13 +1396,13 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {UpdateDomainTypeRequest} arg.body
-   * @returns {Promise<DomainsResponse>} - Success response
-   * @summary: Change domain type
-   * @description: Change a domain to Primary or Shortlink domain
+   * @param {TokenResponse} arg.body
+   * @returns {Promise<TokenResponse>} - Success response
+   * @summary: Add social tokens
+   * @description: Add social tokens.
    */
-  async changeDomainType({ body } = {}) {
-    const { error } = ConfigurationValidator.changeDomainType().validate(
+  async updateAppApiTokens({ body } = {}) {
+    const { error } = ConfigurationValidator.updateAppApiTokens().validate(
       {
         body,
       },
@@ -1740,7 +1415,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.changeDomainType().validate(
+    } = ConfigurationValidator.updateAppApiTokens().validate(
       {
         body,
       },
@@ -1749,7 +1424,7 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for changeDomainType",
+        message: "Parameter Validation warrnings for updateAppApiTokens",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1759,14 +1434,14 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
       query_params,
       body
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainsResponse().validate(response, {
+    } = ConfigurationModel.TokenResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1774,7 +1449,7 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for changeDomainType",
+        message: "Response Validation Warnnings for updateAppApiTokens",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1784,13 +1459,13 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {DomainStatusRequest} arg.body
-   * @returns {Promise<DomainStatusResponse>} - Success response
-   * @summary: Get domain connected status.
-   * @description: Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+   * @param {ApplicationDetail} arg.body
+   * @returns {Promise<ApplicationDetail>} - Success response
+   * @summary: Add or update application's basic details
+   * @description: Add or update application's basic details
    */
-  async getDomainStatus({ body } = {}) {
-    const { error } = ConfigurationValidator.getDomainStatus().validate(
+  async updateAppBasicDetails({ body } = {}) {
+    const { error } = ConfigurationValidator.updateAppBasicDetails().validate(
       {
         body,
       },
@@ -1803,7 +1478,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getDomainStatus().validate(
+    } = ConfigurationValidator.updateAppBasicDetails().validate(
       {
         body,
       },
@@ -1812,7 +1487,133 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDomainStatus",
+        message: "Parameter Validation warrnings for updateAppBasicDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationDetail().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAppBasicDetails",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ApplicationInformation} arg.body
+   * @returns {Promise<ApplicationInformation>} - Success response
+   * @summary: Get application information
+   * @description: Save Application Current Information. This includes information about social links, address and contact information of an application.
+   */
+  async updateAppContactInfo({ body } = {}) {
+    const { error } = ConfigurationValidator.updateAppContactInfo().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateAppContactInfo().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAppContactInfo",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationInformation().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateAppContactInfo",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {AppSupportedCurrency} arg.body
+   * @returns {Promise<AppSupportedCurrency>} - Success response
+   * @summary: Add initial application supported currency
+   * @description: Add initial application supported currency for various features and data. Default INR will be enabled.
+   */
+  async updateAppCurrencyConfig({ body } = {}) {
+    const { error } = ConfigurationValidator.updateAppCurrencyConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateAppCurrencyConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateAppCurrencyConfig",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1822,14 +1623,14 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
       query_params,
       body
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainStatusResponse().validate(response, {
+    } = ConfigurationModel.AppSupportedCurrency().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1837,7 +1638,7 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDomainStatus",
+        message: "Response Validation Warnnings for updateAppCurrencyConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1847,13 +1648,16 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @returns {Promise<Application>} - Success response
-   * @summary: Get application data from id
-   * @description: Get application data from id
+   * @param {AppFeatureRequest} arg.body
+   * @returns {Promise<AppFeature>} - Success response
+   * @summary: Update features of application
+   * @description: Update features of application
    */
-  async getApplicationById({} = {}) {
-    const { error } = ConfigurationValidator.getApplicationById().validate(
-      {},
+  async updateAppFeatures({ body } = {}) {
+    const { error } = ConfigurationValidator.updateAppFeatures().validate(
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1863,14 +1667,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getApplicationById().validate(
-      {},
+    } = ConfigurationValidator.updateAppFeatures().validate(
+      {
+        body,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApplicationById",
+        message: "Parameter Validation warrnings for updateAppFeatures",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -1879,15 +1685,15 @@ class Configuration {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
       query_params,
-      undefined
+      body
     );
 
     const {
       error: res_error,
-    } = ConfigurationModel.Application().validate(response, {
+    } = ConfigurationModel.AppFeature().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1895,7 +1701,201 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApplicationById",
+        message: "Response Validation Warnnings for updateAppFeatures",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.platformType - Current platform name
+   * @param {MobileAppConfigRequest} arg.body
+   * @returns {Promise<MobileAppConfiguration>} - Success response
+   * @summary: Update build config for next build
+   * @description: Update build config for next build
+   */
+  async updateBuildConfig({ platformType, body } = {}) {
+    const { error } = ConfigurationValidator.updateBuildConfig().validate(
+      {
+        platformType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateBuildConfig().validate(
+      {
+        platformType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateBuildConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.MobileAppConfiguration().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateBuildConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {ApplicationInventory} arg.body
+   * @returns {Promise<ApplicationInventory>} - Success response
+   * @summary: Update application configuration
+   * @description: Update application configuration for various features and data
+   */
+  async updateInventoryConfig({ body } = {}) {
+    const { error } = ConfigurationValidator.updateInventoryConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateInventoryConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateInventoryConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.ApplicationInventory().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateInventoryConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {OrderingStoreConfig} arg.body
+   * @returns {Promise<DeploymentMeta>} - Success response
+   * @summary: Add/Update ordering store config
+   * @description: Add/Update ordering store config.
+   */
+  async updateOrderingStoreConfig({ body } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateOrderingStoreConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.DeploymentMeta().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateOrderingStoreConfig",
       });
       Logger({ level: "WARN", message: res_error });
     }

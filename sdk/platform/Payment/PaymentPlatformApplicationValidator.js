@@ -2,26 +2,15 @@ const Joi = require("joi");
 const PaymentModel = require("./PaymentPlatformModel");
 
 class PaymentValidator {
-  static getBrandPaymentGatewayConfig() {
-    return Joi.object({}).required();
-  }
-
-  static saveBrandPaymentGatewayConfig() {
+  static addRefundBankAccountUsingOTP() {
     return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
+      body: PaymentModel.AddBeneficiaryDetailsOTPRequest().required(),
     }).required();
   }
 
-  static updateBrandPaymentGatewayConfig() {
+  static confirmPayment() {
     return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
-    }).required();
-  }
-
-  static getPaymentModeRoutes() {
-    return Joi.object({
-      refresh: Joi.boolean().required(),
-      requestType: Joi.string().allow("").required(),
+      body: PaymentModel.PaymentConfirmationRequest().required(),
     }).required();
   }
 
@@ -32,27 +21,20 @@ class PaymentValidator {
     }).required();
   }
 
-  static addRefundBankAccountUsingOTP() {
-    return Joi.object({
-      body: PaymentModel.AddBeneficiaryDetailsOTPRequest().required(),
-    }).required();
+  static getBrandPaymentGatewayConfig() {
+    return Joi.object({}).required();
   }
 
-  static getUserOrderBeneficiaries() {
+  static getPaymentModeRoutes() {
     return Joi.object({
-      orderId: Joi.string().allow("").required(),
+      refresh: Joi.boolean().required(),
+      requestType: Joi.string().allow("").required(),
     }).required();
   }
 
   static getUserBeneficiaries() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static confirmPayment() {
-    return Joi.object({
-      body: PaymentModel.PaymentConfirmationRequest().required(),
     }).required();
   }
 
@@ -63,9 +45,27 @@ class PaymentValidator {
     }).required();
   }
 
+  static getUserOrderBeneficiaries() {
+    return Joi.object({
+      orderId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static saveBrandPaymentGatewayConfig() {
+    return Joi.object({
+      body: PaymentModel.PaymentGatewayConfigRequest().required(),
+    }).required();
+  }
+
   static setUserCODlimitRoutes() {
     return Joi.object({
       body: PaymentModel.SetCODForUserRequest().required(),
+    }).required();
+  }
+
+  static updateBrandPaymentGatewayConfig() {
+    return Joi.object({
+      body: PaymentModel.PaymentGatewayConfigRequest().required(),
     }).required();
   }
 }

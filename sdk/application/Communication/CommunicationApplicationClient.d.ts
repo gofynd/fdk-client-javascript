@@ -4,8 +4,8 @@ declare class Communication {
     _conf: any;
     _relativeUrls: {
         getCommunicationConsent: string;
-        upsertCommunicationConsent: string;
         upsertAppPushtoken: string;
+        upsertCommunicationConsent: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -18,16 +18,6 @@ declare class Communication {
     getCommunicationConsent({}?: any): Promise<CommunicationConsent>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CommunicationConsentReq} arg.body
-     * @returns {Promise<CommunicationConsentRes>} - Success response
-     * @summary: Upsert communication consent
-     * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
-     */
-    upsertCommunicationConsent({ body }?: {
-        body: CommunicationConsentReq;
-    }): Promise<CommunicationConsentRes>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {PushtokenReq} arg.body
      * @returns {Promise<PushtokenRes>} - Success response
      * @summary: Upsert push token of a user
@@ -36,4 +26,14 @@ declare class Communication {
     upsertAppPushtoken({ body }?: {
         body: PushtokenReq;
     }): Promise<PushtokenRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CommunicationConsentReq} arg.body
+     * @returns {Promise<CommunicationConsentRes>} - Success response
+     * @summary: Upsert communication consent
+     * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp.
+     */
+    upsertCommunicationConsent({ body }?: {
+        body: CommunicationConsentReq;
+    }): Promise<CommunicationConsentRes>;
 }

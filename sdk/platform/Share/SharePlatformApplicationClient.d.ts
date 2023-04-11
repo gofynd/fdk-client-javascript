@@ -15,6 +15,16 @@ declare class Share {
     }): Promise<ShortLinkRes>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.hash - Hash of short url
+     * @returns {Promise<ShortLinkRes>} - Success response
+     * @summary: Get short link by hash
+     * @description: Get short link by hash
+     */
+    getShortLinkByHash({ hash }?: {
+        hash: string;
+    }): Promise<ShortLinkRes>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Current page number
      * @param {number} [arg.pageSize] - Current page size
      * @param {string} [arg.createdBy] - Short link creator
@@ -50,16 +60,6 @@ declare class Share {
         active?: string;
         q?: string;
     }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.hash - Hash of short url
-     * @returns {Promise<ShortLinkRes>} - Success response
-     * @summary: Get short link by hash
-     * @description: Get short link by hash
-     */
-    getShortLinkByHash({ hash }?: {
-        hash: string;
-    }): Promise<ShortLinkRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Short link document identifier

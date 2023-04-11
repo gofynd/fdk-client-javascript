@@ -2,6 +2,25 @@ const Joi = require("joi");
 
 const BillingModel = require("./BillingPlatformModel");
 class BillingValidator {
+  static activateSubscriptionPlan() {
+    return Joi.object({
+      body: BillingModel.SubscriptionActivateReq().required(),
+    }).required();
+  }
+
+  static cancelSubscriptionCharge() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      subscriptionId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static cancelSubscriptionPlan() {
+    return Joi.object({
+      body: BillingModel.CancelSubscriptionReq().required(),
+    }).required();
+  }
+
   static checkCouponValidity() {
     return Joi.object({
       plan: Joi.string().allow("").required(),
@@ -16,21 +35,11 @@ class BillingValidator {
     }).required();
   }
 
-  static getSubscriptionCharge() {
-    return Joi.object({
-      extensionId: Joi.string().allow("").required(),
-      subscriptionId: Joi.string().allow("").required(),
-    }).required();
+  static getCustomerDetail() {
+    return Joi.object({}).required();
   }
 
-  static cancelSubscriptionCharge() {
-    return Joi.object({
-      extensionId: Joi.string().allow("").required(),
-      subscriptionId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getInvoices() {
+  static getFeatureLimitConfig() {
     return Joi.object({}).required();
   }
 
@@ -40,33 +49,24 @@ class BillingValidator {
     }).required();
   }
 
-  static getCustomerDetail() {
+  static getInvoices() {
     return Joi.object({}).required();
-  }
-
-  static upsertCustomerDetail() {
-    return Joi.object({
-      body: BillingModel.SubscriptionCustomerCreate().required(),
-    }).required();
   }
 
   static getSubscription() {
     return Joi.object({}).required();
   }
 
-  static getFeatureLimitConfig() {
-    return Joi.object({}).required();
-  }
-
-  static activateSubscriptionPlan() {
+  static getSubscriptionCharge() {
     return Joi.object({
-      body: BillingModel.SubscriptionActivateReq().required(),
+      extensionId: Joi.string().allow("").required(),
+      subscriptionId: Joi.string().allow("").required(),
     }).required();
   }
 
-  static cancelSubscriptionPlan() {
+  static upsertCustomerDetail() {
     return Joi.object({
-      body: BillingModel.CancelSubscriptionReq().required(),
+      body: BillingModel.SubscriptionCustomerCreate().required(),
     }).required();
   }
 }

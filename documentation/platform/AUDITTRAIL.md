@@ -8,9 +8,9 @@
 ## AuditTrail Methods
 Audit Logging Service that logs the crucial updates on the Platform
 
-* [getAuditLogs](#getauditlogs)
 * [createAuditLog](#createauditlog)
 * [getAuditLog](#getauditlog)
+* [getAuditLogs](#getauditlogs)
 * [getEntityTypes](#getentitytypes)
 
 
@@ -18,95 +18,6 @@ Audit Logging Service that logs the crucial updates on the Platform
 ## Methods with example and description
 
 
-
-
-### getAuditLogs
-Get paginated audit logs
-
-
-
-```javascript
-// Promise
-const promise = client.auditTrail.getAuditLogs({  qs : value });
-
-// Async/Await
-const data = await client.auditTrail.getAuditLogs({  qs : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| qs | string | yes | Logs Query |  
-
-
-
-Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
-
-*Returned Response:*
-
-
-
-
-[LogSchemaResponse](#LogSchemaResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "docs": [
-      {
-        "entity": {
-          "type": "update-shipment-status",
-          "id": "16660872182851894278",
-          "action": "update"
-        },
-        "modifier": {
-          "user_id": "a8d7a69b4cd980acc5d2455c",
-          "as_administrator": true,
-          "user_details": {
-            "first_name": "Paul",
-            "last_name": "Lobo",
-            "full_name": "Paul Lobo",
-            "email": "paullobo@xyz.com"
-          }
-        },
-        "_id": "634eef735e84e7e1b09aa07c",
-        "application": null,
-        "date": "2022-10-18T18:24:51.329Z",
-        "created_at": "2022-10-18T18:24:51.400Z",
-        "modified_at": "2022-10-18T18:24:51.400Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### createAuditLog
@@ -309,6 +220,95 @@ Success
 ---
 
 
+### getAuditLogs
+Get paginated audit logs
+
+
+
+```javascript
+// Promise
+const promise = client.auditTrail.getAuditLogs({  qs : value });
+
+// Async/Await
+const data = await client.auditTrail.getAuditLogs({  qs : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| qs | string | yes | Logs Query |  
+
+
+
+Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
+
+*Returned Response:*
+
+
+
+
+[LogSchemaResponse](#LogSchemaResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "docs": [
+      {
+        "entity": {
+          "type": "update-shipment-status",
+          "id": "16660872182851894278",
+          "action": "update"
+        },
+        "modifier": {
+          "user_id": "a8d7a69b4cd980acc5d2455c",
+          "as_administrator": true,
+          "user_details": {
+            "first_name": "Paul",
+            "last_name": "Lobo",
+            "full_name": "Paul Lobo",
+            "email": "paullobo@xyz.com"
+          }
+        },
+        "_id": "634eef735e84e7e1b09aa07c",
+        "application": null,
+        "date": "2022-10-18T18:24:51.329Z",
+        "created_at": "2022-10-18T18:24:51.400Z",
+        "modified_at": "2022-10-18T18:24:51.400Z"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getEntityTypes
 Get entity types
 
@@ -382,192 +382,109 @@ Success
 
 ### Schemas
 
- 
- 
- #### [RequestBodyAuditLog](#RequestBodyAuditLog)
+
+#### [BadRequest](#BadRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | log_meta | [LogMetaObj](#LogMetaObj) |  yes  |  |
- | log_payload | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [CreateLogResponse](#CreateLogResponse)
+#### [CreateLogResponse](#CreateLogResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | internal_message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || internal_message | string |  no  |  || message | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [LogMetaObj](#LogMetaObj)
+#### [DeviceInfo](#DeviceInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modifier | string |  no  |  |
- | application | string |  no  |  |
- | entity | [EntityObject](#EntityObject) |  no  |  |
- | device_info | string |  no  |  |
- | location | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || extra_meta | string |  no  |  || user_agent | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [EntityObject](#EntityObject)
+#### [EntityObj](#EntityObj)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | type | string |  no  |  |
- | action | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || action | string |  no  |  || entity_details | string |  no  |  || id | string |  no  |  || type | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [LogSchemaResponse](#LogSchemaResponse)
+#### [EntityObject](#EntityObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | docs | [[LogDocs](#LogDocs)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || action | string |  no  |  || id | string |  no  |  || type | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [LogDocs](#LogDocs)
+#### [EntityTypeObj](#EntityTypeObj)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | entity | [EntityObj](#EntityObj) |  no  |  |
- | modifier | [Modifier](#Modifier) |  no  |  |
- | device_info | [DeviceInfo](#DeviceInfo) |  no  |  |
- | location | [Location](#Location) |  no  |  |
- | _id | string |  no  |  |
- | company | string |  no  |  |
- | application | string |  no  |  |
- | sessions | string |  no  |  |
- | date | string |  no  |  |
- | logs | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || entity_value | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [EntityObj](#EntityObj)
+#### [EntityTypesResponse](#EntityTypesResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | type | string |  no  |  |
- | action | string |  no  |  |
- | entity_details | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[EntityTypeObj](#EntityTypeObj)] |  no  |  |
 
 ---
 
-
- 
- 
- #### [Modifier](#Modifier)
+#### [InternalServerError](#InternalServerError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | string |  no  |  |
- | as_administrator | boolean |  no  |  |
- | user_details | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || message | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [DeviceInfo](#DeviceInfo)
+#### [Location](#Location)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_agent | string |  no  |  |
- | extra_meta | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || extra_meta | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [Location](#Location)
+#### [LogDocs](#LogDocs)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | extra_meta | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application | string |  no  |  || company | string |  no  |  || date | string |  no  |  || device_info | [DeviceInfo](#DeviceInfo) |  no  |  || entity | [EntityObj](#EntityObj) |  no  |  || location | [Location](#Location) |  no  |  || logs | string |  no  |  || modifier | [Modifier](#Modifier) |  no  |  || sessions | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [BadRequest](#BadRequest)
+#### [LogMetaObj](#LogMetaObj)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Failure message. |
+ | ---------- | ---- | -------- | ----------- || application | string |  no  |  || device_info | string |  no  |  || entity | [EntityObject](#EntityObject) |  no  |  || location | string |  no  |  || modifier | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [ResourceNotFound](#ResourceNotFound)
+#### [LogSchemaResponse](#LogSchemaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Resource not found with {id} |
+ | ---------- | ---- | -------- | ----------- || docs | [[LogDocs](#LogDocs)] |  no  |  |
 
 ---
 
-
- 
- 
- #### [InternalServerError](#InternalServerError)
+#### [Modifier](#Modifier)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Internal server Server error |
- | code | string |  no  | Error code |
+ | ---------- | ---- | -------- | ----------- || as_administrator | boolean |  no  |  || user_details | string |  no  |  || user_id | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [EntityTypesResponse](#EntityTypesResponse)
+#### [RequestBodyAuditLog](#RequestBodyAuditLog)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[EntityTypeObj](#EntityTypeObj)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || log_meta | [LogMetaObj](#LogMetaObj) |  yes  |  || log_payload | string |  yes  |  |
 
 ---
 
-
- 
- 
- #### [EntityTypeObj](#EntityTypeObj)
+#### [ResourceNotFound](#ResourceNotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | entity_value | string |  no  |  |
- | display_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 

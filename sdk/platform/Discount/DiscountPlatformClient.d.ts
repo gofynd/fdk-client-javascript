@@ -4,6 +4,58 @@ declare class Discount {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Id
+     * @returns {Promise<CancelJobResponse>} - Success response
+     * @summary: Cancel Download Job.
+     * @description: Cancel Download Job.
+     */
+    cancelDownloadJob({ id }?: {
+        id: string;
+    }): Promise<CancelJobResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Id
+     * @returns {Promise<CancelJobResponse>} - Success response
+     * @summary: Cancel Validation Job.
+     * @description: Cancel Validation Job.
+     */
+    cancelValidationJob({ id }?: {
+        id: string;
+    }): Promise<CancelJobResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CreateUpdateDiscount} arg.body
+     * @returns {Promise<DiscountJob>} - Success response
+     * @summary: Create Discount.
+     * @description: Create Discount.
+     */
+    createDiscount({ body }?: {
+        body: CreateUpdateDiscount;
+    }): Promise<DiscountJob>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.type - Type
+     * @param {DownloadFileJob} arg.body
+     * @returns {Promise<FileJobResponse>} - Success response
+     * @summary: Validate File.
+     * @description: Validate File.
+     */
+    downloadDiscountFile({ type, body }?: {
+        type: string;
+        body: DownloadFileJob;
+    }): Promise<FileJobResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Unique id.
+     * @returns {Promise<DiscountJob>} - Success response
+     * @summary: Fetch discount.
+     * @description: Fetch discount.
+     */
+    getDiscount({ id }?: {
+        id: string;
+    }): Promise<DiscountJob>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.view] - Listing or calender. Default is listing.
      * @param {string} [arg.q] - The search query. This can be a partial or
      *   complete name of a discount.
@@ -31,24 +83,24 @@ declare class Discount {
     }): Promise<ListOrCalender>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateUpdateDiscount} arg.body
-     * @returns {Promise<DiscountJob>} - Success response
-     * @summary: Create Discount.
-     * @description: Create Discount.
+     * @param {string} arg.id - Id
+     * @returns {Promise<FileJobResponse>} - Success response
+     * @summary: Download File Job.
+     * @description: Download File Job.
      */
-    createDiscount({ body }?: {
-        body: CreateUpdateDiscount;
-    }): Promise<DiscountJob>;
+    getDownloadJob({ id }?: {
+        id: string;
+    }): Promise<FileJobResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Unique id.
-     * @returns {Promise<DiscountJob>} - Success response
-     * @summary: Fetch discount.
-     * @description: Fetch discount.
+     * @param {string} arg.id - Id
+     * @returns {Promise<FileJobResponse>} - Success response
+     * @summary: Validate File Job.
+     * @description: Validate File Job.
      */
-    getDiscount({ id }?: {
+    getValidationJob({ id }?: {
         id: string;
-    }): Promise<DiscountJob>;
+    }): Promise<FileJobResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
@@ -85,56 +137,4 @@ declare class Discount {
         discount?: string;
         body: DiscountJob;
     }): Promise<FileJobResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.type - Type
-     * @param {DownloadFileJob} arg.body
-     * @returns {Promise<FileJobResponse>} - Success response
-     * @summary: Validate File.
-     * @description: Validate File.
-     */
-    downloadDiscountFile({ type, body }?: {
-        type: string;
-        body: DownloadFileJob;
-    }): Promise<FileJobResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<FileJobResponse>} - Success response
-     * @summary: Validate File Job.
-     * @description: Validate File Job.
-     */
-    getValidationJob({ id }?: {
-        id: string;
-    }): Promise<FileJobResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<CancelJobResponse>} - Success response
-     * @summary: Cancel Validation Job.
-     * @description: Cancel Validation Job.
-     */
-    cancelValidationJob({ id }?: {
-        id: string;
-    }): Promise<CancelJobResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<FileJobResponse>} - Success response
-     * @summary: Download File Job.
-     * @description: Download File Job.
-     */
-    getDownloadJob({ id }?: {
-        id: string;
-    }): Promise<FileJobResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Id
-     * @returns {Promise<CancelJobResponse>} - Success response
-     * @summary: Cancel Download Job.
-     * @description: Cancel Download Job.
-     */
-    cancelDownloadJob({ id }?: {
-        id: string;
-    }): Promise<CancelJobResponse>;
 }

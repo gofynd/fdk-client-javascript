@@ -11,8 +11,8 @@ class Theme {
     this._conf = _conf;
     this._relativeUrls = {
       getAllPages: "/service/application/theme/v1.0/{theme_id}/page",
-      getPage: "/service/application/theme/v1.0/{theme_id}/{page_value}",
       getAppliedTheme: "/service/application/theme/v1.0/applied-theme",
+      getPage: "/service/application/theme/v1.0/{theme_id}/{page_value}",
       getThemeForPreview: "/service/application/theme/v1.0/{theme_id}/preview",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -96,6 +96,66 @@ class Theme {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<ThemesSchema>} - Success response
+   * @summary: Get the theme currently applied to an application
+   * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+   */
+  async getAppliedTheme({} = {}) {
+    const { error } = ThemeValidator.getAppliedTheme().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemeValidator.getAppliedTheme().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAppliedTheme",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await APIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getAppliedTheme"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAppliedTheme",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.themeId - ID of the theme to be retrieved
    * @param {string} arg.pageValue - Value of the page to be retrieved
    * @returns {Promise<AvailablePageSchema>} - Success response
@@ -151,66 +211,6 @@ class Theme {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for getPage",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ThemesSchema>} - Success response
-   * @summary: Get the theme currently applied to an application
-   * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
-   */
-  async getAppliedTheme({} = {}) {
-    const { error } = ThemeValidator.getAppliedTheme().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ThemeValidator.getAppliedTheme().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getAppliedTheme",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await APIClient.execute(
-      this._conf,
-      "get",
-      constructUrl({
-        url: this._urls["getAppliedTheme"],
-        params: {},
-      }),
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = ThemeModel.ThemesSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getAppliedTheme",
       });
       Logger({ level: "WARN", message: res_error });
     }

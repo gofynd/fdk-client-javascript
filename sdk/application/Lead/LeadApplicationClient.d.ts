@@ -3,26 +3,16 @@ declare class Lead {
     constructor(_conf: any);
     _conf: any;
     _relativeUrls: {
-        getTicket: string;
         createHistory: string;
         createTicket: string;
         getCustomForm: string;
-        submitCustomForm: string;
         getParticipantsInsideVideoRoom: string;
+        getTicket: string;
         getTokenForVideoRoom: string;
+        submitCustomForm: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of ticket to be retrieved
-     * @returns {Promise<Ticket>} - Success response
-     * @summary: Get Ticket with the specific id
-     * @description: Get Ticket with the specific id, this is used to view the ticket details
-     */
-    getTicket({ id }?: {
-        id: string;
-    }): Promise<Ticket>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - Ticket ID for which history is created
@@ -57,18 +47,6 @@ declare class Lead {
     }): Promise<CustomForm>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @param {CustomFormSubmissionPayload} arg.body
-     * @returns {Promise<SubmitCustomFormResponse>} - Success response
-     * @summary: Submit Response for a specific Custom Form using it's slug
-     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
-     */
-    submitCustomForm({ slug, body }?: {
-        slug: string;
-        body: CustomFormSubmissionPayload;
-    }): Promise<SubmitCustomFormResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueName - Unique name of Video Room
      * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
      * @summary: Get participants of a specific Video Room using it's unique name
@@ -79,6 +57,16 @@ declare class Lead {
     }): Promise<GetParticipantsInsideVideoRoomResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID of ticket to be retrieved
+     * @returns {Promise<Ticket>} - Success response
+     * @summary: Get Ticket with the specific id
+     * @description: Get Ticket with the specific id, this is used to view the ticket details
+     */
+    getTicket({ id }?: {
+        id: string;
+    }): Promise<Ticket>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.uniqueName - Unique name of Video Room
      * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
      * @summary: Get Token to join a specific Video Room using it's unqiue name
@@ -87,4 +75,16 @@ declare class Lead {
     getTokenForVideoRoom({ uniqueName }?: {
         uniqueName: string;
     }): Promise<GetTokenForVideoRoomResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - Slug of form whose response is getting submitted
+     * @param {CustomFormSubmissionPayload} arg.body
+     * @returns {Promise<SubmitCustomFormResponse>} - Success response
+     * @summary: Submit Response for a specific Custom Form using it's slug
+     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+     */
+    submitCustomForm({ slug, body }?: {
+        slug: string;
+        body: CustomFormSubmissionPayload;
+    }): Promise<SubmitCustomFormResponse>;
 }

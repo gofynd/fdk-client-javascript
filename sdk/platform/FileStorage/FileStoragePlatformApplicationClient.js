@@ -14,87 +14,6 @@ class FileStorage {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.namespace - Bucket name
-   * @param {StartRequest} arg.body
-   * @returns {Promise<StartResponse>} - Success response
-   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
-   * @description: Uploads an arbitrarily sized buffer or blob.
-   *
-   * It has three Major Steps:
-   * Start
-   * Upload
-   * Complete
-   *
-   * ### Start
-   * Initiates the assets upload using `appStartUpload`.
-   * It returns the storage link in response.
-   *
-   * ### Upload
-   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
-   *
-   * ### Complete
-   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
-   * This operation will return the url for the uploaded file.
-   */
-  async appStartUpload({ namespace, body } = {}) {
-    const { error } = FileStorageValidator.appStartUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = FileStorageValidator.appStartUpload().validate(
-      {
-        namespace,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for appStartUpload",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = FileStorageModel.StartResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for appStartUpload",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
    * @param {StartResponse} arg.body
    * @returns {Promise<CompleteResponse>} - Success response
    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
@@ -233,6 +152,87 @@ class FileStorage {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for appCopyFiles",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.namespace - Bucket name
+   * @param {StartRequest} arg.body
+   * @returns {Promise<StartResponse>} - Success response
+   * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
+   * @description: Uploads an arbitrarily sized buffer or blob.
+   *
+   * It has three Major Steps:
+   * Start
+   * Upload
+   * Complete
+   *
+   * ### Start
+   * Initiates the assets upload using `appStartUpload`.
+   * It returns the storage link in response.
+   *
+   * ### Upload
+   * Use the storage link to upload a file (Buffer or Blob) to the File Storage.
+   * Make a `PUT` request on storage link received from `appStartUpload` api with file (Buffer or Blob) as a request body.
+   *
+   * ### Complete
+   * After successfully upload, call `appCompleteUpload` api to complete the upload process.
+   * This operation will return the url for the uploaded file.
+   */
+  async appStartUpload({ namespace, body } = {}) {
+    const { error } = FileStorageValidator.appStartUpload().validate(
+      {
+        namespace,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.appStartUpload().validate(
+      {
+        namespace,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for appStartUpload",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = FileStorageModel.StartResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for appStartUpload",
       });
       Logger({ level: "WARN", message: res_error });
     }

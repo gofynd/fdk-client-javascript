@@ -8,2708 +8,29 @@
 ## Cart Methods
 Cart APIs
 
-* [getCoupons](#getcoupons)
-* [createCoupon](#createcoupon)
-* [getCouponById](#getcouponbyid)
-* [updateCoupon](#updatecoupon)
-* [updateCouponPartially](#updatecouponpartially)
-* [getPromotions](#getpromotions)
-* [createPromotion](#createpromotion)
-* [getPromotionById](#getpromotionbyid)
-* [updatePromotion](#updatepromotion)
-* [updatePromotionPartially](#updatepromotionpartially)
-* [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
+* [addItems](#additems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
+* [createCoupon](#createcoupon)
+* [createPromotion](#createpromotion)
+* [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
 * [getAbandonedCart](#getabandonedcart)
 * [getAbandonedCartDetails](#getabandonedcartdetails)
-* [addItems](#additems)
+* [getCouponById](#getcouponbyid)
+* [getCoupons](#getcoupons)
+* [getPromotionById](#getpromotionbyid)
+* [getPromotions](#getpromotions)
 * [updateCart](#updatecart)
+* [updateCoupon](#updatecoupon)
+* [updateCouponPartially](#updatecouponpartially)
+* [updatePromotion](#updatepromotion)
+* [updatePromotionPartially](#updatepromotionpartially)
 
 
 
 ## Methods with example and description
 
 
-
-
-### getCoupons
-Get with single coupon details or coupon list
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.getCoupons({  pageNo : value,
- pageSize : value,
- isArchived : value,
- title : value,
- isPublic : value,
- isDisplay : value,
- typeSlug : value,
- code : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.getCoupons({  pageNo : value,
- pageSize : value,
- isArchived : value,
- title : value,
- isPublic : value,
- isDisplay : value,
- typeSlug : value,
- code : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| isArchived | boolean | no |  |    
-| title | string | no |  |    
-| isPublic | boolean | no |  |    
-| isDisplay | boolean | no |  |    
-| typeSlug | string | no |  |    
-| code | string | no |  |  
-
-
-
-Get coupon list with pagination
-
-*Returned Response:*
-
-
-
-
-[CouponsResponse](#CouponsResponse)
-
-Coupon List for sent page_size and page_no
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Coupon list for sent filter and page size</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "5e1d9bec6d6b7e000146c840",
-        "display_meta": {
-          "title": "percent50 title"
-        },
-        "_schedule": {
-          "next_schedule": [
-            {
-              "start": "2020-01-14T10:45:03.600000+00:00",
-              "end": "2020-01-16T10:45:03+00:00"
-            }
-          ],
-          "duration": null,
-          "start": "2020-01-14T10:45:03.600000+00:00",
-          "end": "2020-01-16T10:45:03+00:00",
-          "cron": ""
-        },
-        "state": {
-          "is_public": true,
-          "is_display": true,
-          "is_archived": false
-        },
-        "ownership": {
-          "payable_category": "seller",
-          "payable_by": ""
-        },
-        "code": "percent50",
-        "rule_definition": {
-          "type": "percentage",
-          "scope": [
-            "category_id"
-          ],
-          "applicable_on": "quantity"
-        }
-      }
-    ],
-    "page": {
-      "has_next": true,
-      "size": 10,
-      "current": 1,
-      "item_total": 30
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCoupon
-Create new coupon
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.createCoupon({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.createCoupon({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CouponAdd](#CouponAdd) | yes | Request body |
-
-
-Create new coupon
-
-*Returned Response:*
-
-
-
-
-[SuccessMessage](#SuccessMessage)
-
-Coupon Created successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Coupon Created"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCouponById
-Get with single coupon details or coupon list
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.getCouponById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.getCouponById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |  
-
-
-
-Get single coupon details with `id` in path param
-
-*Returned Response:*
-
-
-
-
-[CouponUpdate](#CouponUpdate)
-
-Coupon object for sent `id`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "5e1d9bec6d6b7e000146c840",
-  "validation": {
-    "anonymous": true,
-    "app_id": [
-      "5cd3db5e9d692cfe5302a7ba"
-    ],
-    "user_registered_after": null
-  },
-  "rule": [
-    {
-      "key": 1,
-      "max": 1500,
-      "min": 3000,
-      "value": 50
-    }
-  ],
-  "display_meta": {
-    "title": "percent50 title",
-    "description": "percent50 description",
-    "auto": {
-      "title": "",
-      "subtitle": ""
-    },
-    "subtitle": "percent50 subtitle",
-    "remove": {
-      "title": "",
-      "subtitle": ""
-    },
-    "apply": {
-      "title": "percen50 mt",
-      "subtitle": "percen50 ms"
-    }
-  },
-  "date_meta": {
-    "modified_on": "2020-02-04T14:27:00.577000+00:00",
-    "created_on": "2020-01-14T10:46:04.474000+00:00"
-  },
-  "action": {
-    "action_date": null,
-    "txn_mode": "coupon"
-  },
-  "identifiers": {
-    "category_id": [
-      465,
-      192,
-      133,
-      134,
-      150,
-      151,
-      155,
-      193,
-      157,
-      191,
-      154,
-      152,
-      417,
-      168,
-      416,
-      167,
-      166,
-      162,
-      161,
-      163,
-      165,
-      160
-    ],
-    "user_id": [],
-    "store_id": [],
-    "company_id": []
-  },
-  "author": {
-    "modified_by": "23109086",
-    "created_by": "23206328"
-  },
-  "_schedule": {
-    "next_schedule": [
-      {
-        "start": "2020-01-14T10:45:03.600000+00:00",
-        "end": "2020-01-16T10:45:03+00:00"
-      }
-    ],
-    "duration": null,
-    "start": "2020-01-14T10:45:03.600000+00:00",
-    "end": "2020-01-16T10:45:03+00:00",
-    "cron": ""
-  },
-  "state": {
-    "is_public": true,
-    "is_display": true,
-    "is_archived": false
-  },
-  "ownership": {
-    "payable_category": "seller",
-    "payable_by": ""
-  },
-  "validity": {
-    "priority": 0
-  },
-  "code": "percent50",
-  "rule_definition": {
-    "calculate_on": "esp",
-    "value_type": "percentage",
-    "is_exact": false,
-    "type": "percentage",
-    "scope": [
-      "category_id"
-    ],
-    "auto_apply": false,
-    "applicable_on": "quantity",
-    "currency_code": "INR"
-  },
-  "restrictions": {
-    "price_range": {
-      "max": -1,
-      "min": -1
-    },
-    "uses": {
-      "remaining": {
-        "app": -1,
-        "user": -1,
-        "total": -1
-      },
-      "maximum": {
-        "app": -1,
-        "user": -1,
-        "total": -1
-      }
-    },
-    "post_order": {
-      "cancellation_allowed": true,
-      "return_allowed": true
-    },
-    "platforms": [
-      "web",
-      "android",
-      "ios"
-    ]
-  },
-  "type_slug": "percentage_quantity_percentage"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCoupon
-Update existing coupon configuration
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.updateCoupon({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.updateCoupon({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |  
-| body | [CouponUpdate](#CouponUpdate) | yes | Request body |
-
-
-Update coupon with id sent in `id`
-
-*Returned Response:*
-
-
-
-
-[SuccessMessage](#SuccessMessage)
-
-Coupon updated successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "Coupon Updated"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCouponPartially
-Update coupon archive state and schedule
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.updateCouponPartially({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.updateCouponPartially({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |  
-| body | [CouponPartialUpdate](#CouponPartialUpdate) | yes | Request body |
-
-
-Update archive/unarchive and change schedule for coupon
-
-*Returned Response:*
-
-
-
-
-[SuccessMessage](#SuccessMessage)
-
-Coupon updated successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Archive or Unarchive coupon</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Coupon Updated"
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Coupon schedule updated successfully</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Coupon schedule updated"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPromotions
-Get promotion list
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
- pageSize : value,
- q : value,
- isActive : value,
- promoGroup : value,
- promotionType : value,
- fpPanel : value,
- promotionId : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
- pageSize : value,
- q : value,
- isActive : value,
- promoGroup : value,
- promotionType : value,
- fpPanel : value,
- promotionId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| q | string | no |  |    
-| isActive | boolean | no |  |    
-| promoGroup | string | no |  |    
-| promotionType | string | no |  |    
-| fpPanel | string | no |  |    
-| promotionId | string | no |  |  
-
-
-
-Get promotion list with pagination
-
-*Returned Response:*
-
-
-
-
-[PromotionsResponse](#PromotionsResponse)
-
-Promotion List for sent page_size and page_no
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Promotion list for sent filter and page size</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "61dc8dc9adf45b2273a70a6e",
-        "promo_group": "product",
-        "date_meta": {
-          "modified_on": "2022-01-11T05:47:11.503000+00:00",
-          "created_on": "2022-01-10T19:49:29.917000+00:00"
-        },
-        "display_meta": {
-          "name": "Test BOGO promo"
-        },
-        "author": {
-          "created_by": "5",
-          "modified_by": "5"
-        },
-        "_schedule": {
-          "start": "2022-01-10T18:45:36.311000+00:00",
-          "end": null,
-          "published": true,
-          "next_schedule": [
-            {
-              "start": "2022-01-10T18:45:36.311000+00:00",
-              "end": null
-            }
-          ],
-          "cron": "",
-          "duration": 0
-        }
-      }
-    ],
-    "page": {
-      "has_next": true,
-      "size": 10,
-      "current": 1,
-      "item_total": 30
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPromotion
-Create new promotion
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.createPromotion({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.createPromotion({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PromotionAdd](#PromotionAdd) | yes | Request body |
-
-
-Create new promotion
-
-*Returned Response:*
-
-
-
-
-[PromotionAdd](#PromotionAdd)
-
-Promotion Created successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "61dc8dc9adf45b2273a70a6e",
-  "application_id": "000000000000000000000001",
-  "promo_group": "product",
-  "promotion_type": "bogo",
-  "date_meta": {
-    "modified_on": "2022-01-11T05:47:11.503000+00:00",
-    "created_on": "2022-01-10T19:49:29.917000+00:00"
-  },
-  "discount_rules": [
-    {
-      "buy_condition": "( rule#1 )",
-      "offer": {
-        "max_offer_quantity": 2
-      },
-      "discount_type": "bogo",
-      "item_criteria": {
-        "item_brand": [
-          2,
-          14,
-          65
-        ]
-      }
-    }
-  ],
-  "buy_rules": {
-    "rule#1": {
-      "cart_quantity": {
-        "greater_than_equals": 5
-      },
-      "item_brand": [
-        1,
-        2,
-        14,
-        16,
-        29,
-        39,
-        43,
-        65,
-        73
-      ]
-    }
-  },
-  "display_meta": {
-    "offer_text": "Test",
-    "name": "Test BOGO promo",
-    "description": "<p>Test</p>"
-  },
-  "apply_all_discount": false,
-  "apply_exclusive": null,
-  "stackable": true,
-  "restrictions": {
-    "user_id": [],
-    "anonymous_users": true,
-    "platforms": [
-      "web",
-      "android",
-      "ios"
-    ],
-    "post_order": {
-      "cancellation_allowed": true,
-      "return_allowed": true
-    },
-    "uses": {
-      "remaining": {
-        "user": 0,
-        "total": 0
-      },
-      "maximum": {
-        "user": 0,
-        "total": 0
-      }
-    },
-    "payments": []
-  },
-  "_custom_json": {},
-  "author": {
-    "created_by": "5",
-    "modified_by": "5"
-  },
-  "_schedule": {
-    "start": "2022-01-10T18:45:36.311Z",
-    "end": null,
-    "published": true,
-    "next_schedule": [
-      {
-        "start": "2022-01-10T18:45:36.311Z",
-        "end": null
-      }
-    ],
-    "cron": "",
-    "duration": 0
-  },
-  "apply_priority": 1,
-  "visiblility": {
-    "pdp": true,
-    "coupon_list": false
-  },
-  "ownership": {
-    "payable_by": "",
-    "payable_category": "seller"
-  },
-  "currency": "INR",
-  "mode": "promotion",
-  "post_order_action": {
-    "action_date": null,
-    "action_type": ""
-  },
-  "indexed_criteria": {
-    "item_brand": [
-      1,
-      2
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPromotionById
-Get with single promotion details or promotion list
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.getPromotionById({  id : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.getPromotionById({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |  
-
-
-
-Get single promotion details with `id` in path param
-
-*Returned Response:*
-
-
-
-
-[PromotionUpdate](#PromotionUpdate)
-
-Promotion object for sent `id`
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "61dc8dc9adf45b2273a70a6e",
-  "application_id": "000000000000000000000001",
-  "promo_group": "product",
-  "promotion_type": "bogo",
-  "date_meta": {
-    "modified_on": "2022-01-11T05:47:11.503000+00:00",
-    "created_on": "2022-01-10T19:49:29.917000+00:00"
-  },
-  "discount_rules": [
-    {
-      "buy_condition": "( rule#1 )",
-      "offer": {
-        "max_offer_quantity": 2
-      },
-      "discount_type": "bogo",
-      "item_criteria": {
-        "item_brand": [
-          2,
-          14,
-          65
-        ]
-      }
-    }
-  ],
-  "buy_rules": {
-    "rule#1": {
-      "cart_quantity": {
-        "greater_than_equals": 5
-      },
-      "item_brand": [
-        1,
-        2,
-        14,
-        16,
-        29,
-        39,
-        43,
-        65,
-        73
-      ]
-    }
-  },
-  "display_meta": {
-    "offer_text": "Test",
-    "name": "Test BOGO promo",
-    "description": "<p>Test</p>"
-  },
-  "apply_all_discount": false,
-  "apply_exclusive": null,
-  "stackable": true,
-  "restrictions": {
-    "user_id": [],
-    "anonymous_users": true,
-    "platforms": [
-      "web",
-      "android",
-      "ios"
-    ],
-    "post_order": {
-      "cancellation_allowed": true,
-      "return_allowed": true
-    },
-    "uses": {
-      "remaining": {
-        "user": 0,
-        "total": 0
-      },
-      "maximum": {
-        "user": 0,
-        "total": 0
-      }
-    },
-    "payments": []
-  },
-  "_custom_json": {},
-  "author": {
-    "created_by": "5",
-    "modified_by": "5"
-  },
-  "_schedule": {
-    "start": "2022-01-10T18:45:36.311Z",
-    "end": null,
-    "published": true,
-    "next_schedule": [
-      {
-        "start": "2022-01-10T18:45:36.311Z",
-        "end": null
-      }
-    ],
-    "cron": "",
-    "duration": 0
-  },
-  "apply_priority": 1,
-  "visiblility": {
-    "pdp": true,
-    "coupon_list": false
-  },
-  "ownership": {
-    "payable_by": "",
-    "payable_category": "seller"
-  },
-  "currency": "INR",
-  "mode": "promotion",
-  "post_order_action": {
-    "action_date": null,
-    "action_type": ""
-  },
-  "indexed_criteria": {
-    "item_brand": [
-      1,
-      2
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePromotion
-Update existing promotion configuration
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.updatePromotion({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.updatePromotion({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |  
-| body | [PromotionUpdate](#PromotionUpdate) | yes | Request body |
-
-
-Update promotion with id sent in `id`
-
-*Returned Response:*
-
-
-
-
-[PromotionUpdate](#PromotionUpdate)
-
-Promotion updated successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "61dc8dc9adf45b2273a70a6e",
-  "application_id": "000000000000000000000001",
-  "promo_group": "product",
-  "promotion_type": "bogo",
-  "date_meta": {
-    "modified_on": "2022-01-11T05:47:11.503000+00:00",
-    "created_on": "2022-01-10T19:49:29.917000+00:00"
-  },
-  "discount_rules": [
-    {
-      "buy_condition": "( rule#1 )",
-      "offer": {
-        "max_offer_quantity": 2
-      },
-      "discount_type": "bogo",
-      "item_criteria": {
-        "item_brand": [
-          2,
-          14,
-          65
-        ]
-      }
-    }
-  ],
-  "buy_rules": {
-    "rule#1": {
-      "cart_quantity": {
-        "greater_than_equals": 5
-      },
-      "item_brand": [
-        1,
-        2,
-        14,
-        16,
-        29,
-        39,
-        43,
-        65,
-        73
-      ]
-    }
-  },
-  "display_meta": {
-    "offer_text": "Test",
-    "name": "Test BOGO promo",
-    "description": "<p>Test</p>"
-  },
-  "apply_all_discount": false,
-  "apply_exclusive": null,
-  "stackable": true,
-  "restrictions": {
-    "user_id": [],
-    "anonymous_users": true,
-    "platforms": [
-      "web",
-      "android",
-      "ios"
-    ],
-    "post_order": {
-      "cancellation_allowed": true,
-      "return_allowed": true
-    },
-    "uses": {
-      "remaining": {
-        "user": 0,
-        "total": 0
-      },
-      "maximum": {
-        "user": 0,
-        "total": 0
-      }
-    },
-    "payments": []
-  },
-  "_custom_json": {},
-  "author": {
-    "created_by": "5",
-    "modified_by": "5"
-  },
-  "_schedule": {
-    "start": "2022-01-10T18:45:36.311Z",
-    "end": null,
-    "published": true,
-    "next_schedule": [
-      {
-        "start": "2022-01-10T18:45:36.311Z",
-        "end": null
-      }
-    ],
-    "cron": "",
-    "duration": 0
-  },
-  "apply_priority": 1,
-  "visiblility": {
-    "pdp": true,
-    "coupon_list": false
-  },
-  "ownership": {
-    "payable_by": "",
-    "payable_category": "seller"
-  },
-  "currency": "INR",
-  "mode": "promotion",
-  "post_order_action": {
-    "action_date": null,
-    "action_type": ""
-  },
-  "indexed_criteria": {
-    "item_brand": [
-      1,
-      2
-    ]
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePromotionPartially
-Update promotion publish state and schedule
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.updatePromotionPartially({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.updatePromotionPartially({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes |  |  
-| body | [PromotionPartialUpdate](#PromotionPartialUpdate) | yes | Request body |
-
-
-Update publish/unpublish and change schedule for promotion
-
-*Returned Response:*
-
-
-
-
-[SuccessMessage](#SuccessMessage)
-
-Promotion updated successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Publish or Unpublish promotion</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Promotion Updated"
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Promotion schedule updated successfully</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "message": "Promotion schedule updated"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### fetchAndvalidateCartItems
-Fetch Cart Details
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest) | yes | Request body |
-
-
-Get all the details of cart for a list of provided `cart_items`
-
-*Returned Response:*
-
-
-
-
-[OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
-
-Cart details with breakup
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "quantity": 1,
-      "message": "",
-      "coupon_message": "",
-      "product": {
-        "type": "product",
-        "uid": 803140,
-        "name": "Green Solid T-Shirt",
-        "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-        "brand": {
-          "uid": 44,
-          "name": "celio"
-        },
-        "categories": [
-          {
-            "uid": 192,
-            "name": "T-Shirts"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-          "query": {
-            "product_slug": [
-              "celio-green-solid-t-shirt-803140-dd9e2c"
-            ]
-          }
-        }
-      },
-      "article": {
-        "type": "article",
-        "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
-        "size": "S",
-        "seller": {
-          "uid": 25,
-          "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
-        },
-        "store": {
-          "uid": 1486,
-          "name": "Forum Mall"
-        },
-        "quantity": 1,
-        "price": {
-          "base": {
-            "marked": 1299,
-            "effective": 649.5,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 1299,
-            "effective": 649.5,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "key": "803140_S",
-      "discount": "50% OFF",
-      "price": {
-        "base": {
-          "add_on": 0,
-          "marked": 1299,
-          "effective": 649.5,
-          "selling": 649.5,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 0,
-          "marked": 1299,
-          "effective": 649.5,
-          "selling": 649.5,
-          "currency_code": "INR"
-        }
-      },
-      "availability": {
-        "sizes": [
-          "L",
-          "XL",
-          "M",
-          "S"
-        ],
-        "other_store_quantity": 0,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true,
-        "available_sizes": [
-          {
-            "is_available": true,
-            "display": "L",
-            "value": "L"
-          },
-          {
-            "is_available": true,
-            "display": "XXL",
-            "value": "XXL"
-          },
-          {
-            "is_available": true,
-            "display": "XL",
-            "value": "XL"
-          },
-          {
-            "is_available": true,
-            "display": "M",
-            "value": "M"
-          },
-          {
-            "is_available": true,
-            "display": "S",
-            "value": "S"
-          },
-          {
-            "is_available": false,
-            "display": "30",
-            "value": "30"
-          }
-        ]
-      },
-      "bulk_offer": {}
-    },
-    {
-      "quantity": 1,
-      "message": "Out of stock. Please remove item",
-      "coupon_message": "",
-      "product": {
-        "type": "product",
-        "uid": 803140,
-        "name": "Green Solid T-Shirt",
-        "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-        "brand": {
-          "uid": 44,
-          "name": "celio"
-        },
-        "categories": [
-          {
-            "uid": 192,
-            "name": "T-Shirts"
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-          "query": {
-            "product_slug": [
-              "celio-green-solid-t-shirt-803140-dd9e2c"
-            ]
-          }
-        }
-      },
-      "article": {},
-      "key": "803140_S",
-      "discount": "",
-      "price": {
-        "base": {
-          "add_on": 0,
-          "marked": 1299,
-          "effective": 1299,
-          "selling": 1299,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 0,
-          "marked": 1299,
-          "effective": 1299,
-          "selling": 1299,
-          "currency_code": "INR"
-        }
-      },
-      "availability": {
-        "sizes": [
-          "L",
-          "XXL",
-          "XL",
-          "M",
-          "S"
-        ],
-        "other_store_quantity": 0,
-        "out_of_stock": true,
-        "deliverable": false,
-        "is_valid": false,
-        "available_sizes": [
-          {
-            "is_available": true,
-            "display": "L",
-            "value": "L"
-          },
-          {
-            "is_available": true,
-            "display": "XXL",
-            "value": "XXL"
-          },
-          {
-            "is_available": true,
-            "display": "XL",
-            "value": "XL"
-          },
-          {
-            "is_available": true,
-            "display": "M",
-            "value": "M"
-          },
-          {
-            "is_available": true,
-            "display": "S",
-            "value": "S"
-          },
-          {
-            "is_available": false,
-            "display": "30",
-            "value": "30"
-          }
-        ]
-      },
-      "bulk_offer": {}
-    }
-  ],
-  "is_valid": false,
-  "breakup_values": {
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "value": 2598,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Discount",
-        "key": "discount",
-        "value": -649,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "value": 1949,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "value": 1949,
-        "currency_code": "INR"
-      }
-    ],
-    "raw": {
-      "cod_charge": 0,
-      "convenience_fee": 0,
-      "coupon": 0,
-      "delivery_charge": 0,
-      "discount": -649.5,
-      "fynd_cash": 0,
-      "gst_charges": 170.11,
-      "mrp_total": 2598,
-      "subtotal": 1948.5,
-      "total": 1948.5,
-      "vog": 1778.39,
-      "you_saved": 0
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### checkCartServiceability
-Check Pincode Serviceability
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.checkCartServiceability({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.checkCartServiceability({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest) | yes | Request body |
-
-
-Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
-
-*Returned Response:*
-
-
-
-
-[OpenApiCartServiceabilityResponse](#OpenApiCartServiceabilityResponse)
-
-Cart details with pincode validity information at item level
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Valid pincode</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "quantity": 1,
-        "message": "",
-        "coupon_message": "",
-        "product": {
-          "type": "product",
-          "uid": 803140,
-          "name": "Green Solid T-Shirt",
-          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-          "brand": {
-            "uid": 44,
-            "name": "celio"
-          },
-          "categories": [
-            {
-              "uid": 192,
-              "name": "T-Shirts"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-            "query": {
-              "product_slug": [
-                "celio-green-solid-t-shirt-803140-dd9e2c"
-              ]
-            }
-          }
-        },
-        "article": {
-          "type": "article",
-          "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
-          "size": "S",
-          "seller": {
-            "uid": 25,
-            "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
-          },
-          "store": {
-            "uid": 1486,
-            "name": "Forum Mall"
-          },
-          "quantity": 1,
-          "price": {
-            "base": {
-              "marked": 1299,
-              "effective": 649.5,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 1299,
-              "effective": 649.5,
-              "currency_code": "INR"
-            }
-          }
-        },
-        "key": "803140_S",
-        "discount": "50% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 649.5,
-            "selling": 649.5,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 649.5,
-            "selling": 649.5,
-            "currency_code": "INR"
-          }
-        },
-        "availability": {
-          "sizes": [
-            "L",
-            "XL",
-            "M",
-            "S"
-          ],
-          "other_store_quantity": 0,
-          "out_of_stock": false,
-          "deliverable": true,
-          "is_valid": true,
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1605306343,
-              "max": 1605468343
-            },
-            "formatted": {
-              "min": "Sat, 14 Nov",
-              "max": "Mon, 16 Nov"
-            }
-          },
-          "available_sizes": [
-            {
-              "is_available": true,
-              "display": "L",
-              "value": "L"
-            },
-            {
-              "is_available": true,
-              "display": "XXL",
-              "value": "XXL"
-            },
-            {
-              "is_available": true,
-              "display": "XL",
-              "value": "XL"
-            },
-            {
-              "is_available": true,
-              "display": "M",
-              "value": "M"
-            },
-            {
-              "is_available": true,
-              "display": "S",
-              "value": "S"
-            },
-            {
-              "is_available": false,
-              "display": "30",
-              "value": "30"
-            }
-          ]
-        },
-        "bulk_offer": {}
-      },
-      {
-        "quantity": 1,
-        "message": "Out of stock. Please remove item",
-        "coupon_message": "",
-        "product": {
-          "type": "product",
-          "uid": 803140,
-          "name": "Green Solid T-Shirt",
-          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
-          "brand": {
-            "uid": 44,
-            "name": "celio"
-          },
-          "categories": [
-            {
-              "uid": 192,
-              "name": "T-Shirts"
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
-            "query": {
-              "product_slug": [
-                "celio-green-solid-t-shirt-803140-dd9e2c"
-              ]
-            }
-          }
-        },
-        "article": {},
-        "key": "803140_S",
-        "discount": "",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 1299,
-            "selling": 1299,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 1299,
-            "effective": 1299,
-            "selling": 1299,
-            "currency_code": "INR"
-          }
-        },
-        "availability": {
-          "sizes": [
-            "L",
-            "XXL",
-            "XL",
-            "M",
-            "S"
-          ],
-          "other_store_quantity": 0,
-          "out_of_stock": true,
-          "deliverable": false,
-          "is_valid": false,
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1605306343,
-              "max": 1605468343
-            },
-            "formatted": {
-              "min": "Sat, 14 Nov",
-              "max": "Mon, 16 Nov"
-            }
-          },
-          "available_sizes": [
-            {
-              "is_available": true,
-              "display": "L",
-              "value": "L"
-            },
-            {
-              "is_available": true,
-              "display": "XXL",
-              "value": "XXL"
-            },
-            {
-              "is_available": true,
-              "display": "XL",
-              "value": "XL"
-            },
-            {
-              "is_available": true,
-              "display": "M",
-              "value": "M"
-            },
-            {
-              "is_available": true,
-              "display": "S",
-              "value": "S"
-            },
-            {
-              "is_available": false,
-              "display": "30",
-              "value": "30"
-            }
-          ]
-        },
-        "bulk_offer": {}
-      }
-    ],
-    "delivery_promise": {
-      "timestamp": {
-        "min": 1605306343,
-        "max": 1605468343
-      },
-      "formatted": {
-        "min": "Sat, 14 Nov",
-        "max": "Mon, 16 Nov"
-      }
-    },
-    "is_valid": true
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; Invalid pincode</i></summary>
-
-```json
-{
-  "value": {
-    "message": "All of the items in your cart are not deliverable to 800108",
-    "is_valid": false,
-    "items": [
-      {
-        "discount": "15% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 876245,
-          "name": "Brown Sandals",
-          "slug": "red-chief-brown-sandals-876245-c92507",
-          "brand": {
-            "uid": 433,
-            "name": ""
-          },
-          "categories": [
-            {
-              "uid": 176,
-              "name": ""
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
-            "query": {
-              "product_slug": [
-                "red-chief-brown-sandals-876245-c92507"
-              ]
-            }
-          },
-          "item_code": "RC330004"
-        },
-        "bulk_offer": {},
-        "key": "876245_6",
-        "message": "We are not delivering to 800108",
-        "delivery_promise": null,
-        "coupon_message": "",
-        "availability": {
-          "sizes": [
-            "7",
-            "6",
-            "10",
-            "8"
-          ],
-          "other_store_quantity": 21,
-          "out_of_stock": false,
-          "deliverable": false,
-          "is_valid": true,
-          "available_sizes": [
-            {
-              "is_available": false,
-              "display": "9",
-              "value": "9"
-            },
-            {
-              "is_available": true,
-              "display": "10",
-              "value": "10"
-            },
-            {
-              "is_available": true,
-              "display": "6",
-              "value": "6"
-            },
-            {
-              "is_available": true,
-              "display": "7",
-              "value": "7"
-            },
-            {
-              "is_available": true,
-              "display": "8",
-              "value": "8"
-            }
-          ]
-        },
-        "quantity": 1,
-        "article": {
-          "type": "article",
-          "uid": "304_433_LGPL30402_RC330004_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 9767,
-            "name": "Udyog Kunj, Kanpur"
-          },
-          "quantity": 3,
-          "price": {
-            "base": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            }
-          }
-        }
-      },
-      {
-        "discount": "15% OFF",
-        "price": {
-          "base": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "add_on": 0,
-            "marked": 2195,
-            "effective": 1866,
-            "selling": 1866,
-            "currency_code": "INR"
-          }
-        },
-        "product": {
-          "type": "product",
-          "uid": 876245,
-          "name": "Brown Sandals",
-          "slug": "red-chief-brown-sandals-876245-c92507",
-          "brand": {
-            "uid": 433,
-            "name": ""
-          },
-          "categories": [
-            {
-              "uid": 176,
-              "name": ""
-            }
-          ],
-          "images": [
-            {
-              "aspect_ratio": "16:25",
-              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
-              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
-            }
-          ],
-          "action": {
-            "type": "product",
-            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
-            "query": {
-              "product_slug": [
-                "red-chief-brown-sandals-876245-c92507"
-              ]
-            }
-          },
-          "item_code": "RC330004"
-        },
-        "bulk_offer": {},
-        "key": "876245_6",
-        "message": "We are not delivering to 800108",
-        "coupon_message": "",
-        "availability": {
-          "sizes": [
-            "7",
-            "6",
-            "10",
-            "8"
-          ],
-          "other_store_quantity": 21,
-          "out_of_stock": false,
-          "deliverable": false,
-          "is_valid": true,
-          "available_sizes": [
-            {
-              "is_available": false,
-              "display": "9",
-              "value": "9"
-            },
-            {
-              "is_available": true,
-              "display": "10",
-              "value": "10"
-            },
-            {
-              "is_available": true,
-              "display": "6",
-              "value": "6"
-            },
-            {
-              "is_available": true,
-              "display": "7",
-              "value": "7"
-            },
-            {
-              "is_available": true,
-              "display": "8",
-              "value": "8"
-            }
-          ]
-        },
-        "quantity": 1,
-        "article": {
-          "type": "article",
-          "uid": "304_433_LGPL30402_RC330004_6",
-          "size": "6",
-          "seller": {
-            "uid": 304,
-            "name": "LEAYAN GLOBAL PVT. LTD."
-          },
-          "store": {
-            "uid": 9767,
-            "name": "Udyog Kunj, Kanpur"
-          },
-          "quantity": 3,
-          "price": {
-            "base": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            },
-            "converted": {
-              "marked": 2195,
-              "effective": 1866,
-              "currency_code": "INR"
-            }
-          }
-        }
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### checkoutCart
-Create Fynd order with cart details
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.checkoutCart({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.checkoutCart({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq) | yes | Request body |
-
-
-Generate Fynd order for cart details send with provided `cart_items`
-
-*Returned Response:*
-
-
-
-
-[OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
-
-Checkout cart and create Fynd order id
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "order_id": "FY5E182A9D0A5E405446",
-  "message": "Order initiation completed",
-  "order_ref_id": null
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAbandonedCart
-Get with abandoned cart list
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.getAbandonedCart({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- anonymousCart : value,
- lastId : value,
- sortOn : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.getAbandonedCart({  pageNo : value,
- pageSize : value,
- fromDate : value,
- toDate : value,
- anonymousCart : value,
- lastId : value,
- sortOn : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| anonymousCart | boolean | no |  |    
-| lastId | string | no |  |    
-| sortOn | string | no |  |  
-
-
-
-Get abandoned cart list with pagination
-
-*Returned Response:*
-
-
-
-
-[AbandonedCartResponse](#AbandonedCartResponse)
-
-Abandoned Cart List for sent page_size and page_no
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Abandoned Cart list for sent filter and page size</i></summary>
-
-```json
-{
-  "value": {
-    "message": "Cart fetched successfully !!",
-    "success": true,
-    "result": {},
-    "items": [
-      {
-        "_id": "62bbe2c4b79692d559ac1f16",
-        "uid": 19986,
-        "user_id": "600693a01faf8695d70a15df",
-        "is_default": true,
-        "app_id": "5d64e3500bcad8693a821c0d",
-        "articles": [
-          {
-            "service_item_meta": {
-              "product_group_tags": null,
-              "products": null
-            },
-            "parent_item_identifiers": {
-              "identifier": null,
-              "parent_item_size": null,
-              "parent_item_id": null
-            },
-            "item_id": 7500426,
-            "item_size": "SET1",
-            "article_id": "5f37d9b71cb7c10001b90ee2",
-            "quantity": 2,
-            "price_marked": 1000,
-            "price_effective": 1,
-            "currency_code": "INR",
-            "store_id": 10183,
-            "company_id": 61,
-            "article_assignment": {
-              "level": "multi-companies",
-              "strategy": "optimal"
-            },
-            "brand_uid": 85,
-            "l3_categories": [
-              466
-            ],
-            "discount": 99.9,
-            "coupon": {
-              "amount": 0,
-              "currency_code": "INR",
-              "article_count": 0
-            },
-            "referral_credits": {
-              "amount": 0,
-              "currency_code": "FC"
-            },
-            "cashback": {
-              "amount": 0,
-              "currency_code": "FC"
-            },
-            "bulk_coupon": {
-              "margin": 0,
-              "discount": 0,
-              "code": null
-            },
-            "promotion": [
-              {
-                "promo_id": "62bbf355beda57df173122fa",
-                "amount": 1,
-                "article_quantity": 2,
-                "mrp_promotion": false,
-                "promotion_type": "amount",
-                "discount_rules": [
-                  {
-                    "type": "amount",
-                    "value": 125
-                  }
-                ]
-              }
-            ],
-            "identifiers": {
-              "identifier": "pEF2t4GGTKaieox5rsRibw"
-            },
-            "meta": {},
-            "extra_meta": {},
-            "payment_methods": []
-          }
-        ],
-        "cart_value": 1,
-        "discount": 0,
-        "delivery_charges": {
-          "amount": 1,
-          "currency_code": "INR"
-        },
-        "coupon": {
-          "amount": 0,
-          "currency_code": "INR",
-          "code": null,
-          "type": "cart",
-          "uid": null,
-          "id": null
-        },
-        "promotion": {
-          "amount": 2,
-          "currency_code": "INR",
-          "mode": "promotion",
-          "promotions": [
-            {
-              "id": "62bbf355beda57df173122fa",
-              "mrp_promo": false,
-              "promo_group": "product"
-            }
-          ]
-        },
-        "fynd_credits": {
-          "amount": 0,
-          "currency_code": "FC",
-          "auto_applied": true
-        },
-        "cod_charges": {
-          "amount": 0,
-          "currency_code": "INR"
-        },
-        "cashback": {
-          "amount": 0,
-          "currency_code": "FC",
-          "uid": null
-        },
-        "payments": {},
-        "is_archive": false,
-        "created_on": "2022-06-28 14:25:15.578000",
-        "last_modified": "2022-06-29 13:52:03.313000",
-        "expire_at": "2023-06-24 13:52:03.313000",
-        "fc_index_map": [
-          0,
-          0
-        ],
-        "checkout_mode": "self",
-        "meta": {
-          "shipping_address_id": "62b161cb3ad0eed3e48ec6a9",
-          "billing_address_id": "62b161cb3ad0eed3e48ec6a9"
-        },
-        "comment": "",
-        "bulk_coupon_discount": 0,
-        "pick_up_customer_details": {},
-        "is_active": true,
-        "shipments": [],
-        "payment_methods": [],
-        "buy_now": false
-      }
-    ],
-    "page": {
-      "type": "number",
-      "has_next": false,
-      "item_total": 28,
-      "size": 20,
-      "page": 2,
-      "current": 2,
-      "last_id": "62d4ff76d6aec8db897de407"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAbandonedCartDetails
-Fetch all items added to the cart
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
- i : value,
- b : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
- i : value,
- b : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| id | string | no |  |    
-| i | boolean | no |  |    
-| b | boolean | no |  |  
-
-
-
-Use this API to get details of all the items added to a cart.
-
-*Returned Response:*
-
-
-
-
-[CartDetailResponse](#CartDetailResponse)
-
-Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "items": [
-    {
-      "bulk_offer": {},
-      "discount": "67% OFF",
-      "article": {
-        "type": "article",
-        "uid": "604_902_SSTC60401_636BLUE_1",
-        "size": "1",
-        "seller": {
-          "uid": 604,
-          "name": "SHRI SHANTINATH TRADING COMPANY"
-        },
-        "store": {
-          "uid": 4579,
-          "name": "Gandhi Nagar"
-        },
-        "quantity": 108,
-        "price": {
-          "base": {
-            "marked": 2999,
-            "effective": 999,
-            "currency_code": "INR"
-          },
-          "converted": {
-            "marked": 2999,
-            "effective": 999,
-            "currency_code": "INR"
-          }
-        }
-      },
-      "coupon_message": "",
-      "key": "707569_1",
-      "availability": {
-        "sizes": [
-          "1",
-          "8",
-          "7",
-          "2",
-          "9",
-          "5",
-          "3",
-          "6"
-        ],
-        "other_store_quantity": 107,
-        "out_of_stock": false,
-        "deliverable": true,
-        "is_valid": true
-      },
-      "product": {
-        "type": "product",
-        "uid": 707569,
-        "name": "Blue and Gold Printed Ethnic Set",
-        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
-        "brand": {
-          "uid": 902,
-          "name": ""
-        },
-        "categories": [
-          {
-            "uid": 525,
-            "name": ""
-          }
-        ],
-        "images": [
-          {
-            "aspect_ratio": "16:25",
-            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
-            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
-          }
-        ],
-        "action": {
-          "type": "product",
-          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
-          "query": {
-            "product_slug": [
-              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
-            ]
-          }
-        }
-      },
-      "price": {
-        "base": {
-          "add_on": 999,
-          "marked": 2999,
-          "effective": 999,
-          "selling": 999,
-          "currency_code": "INR"
-        },
-        "converted": {
-          "add_on": 999,
-          "marked": 2999,
-          "effective": 999,
-          "selling": 999,
-          "currency_code": "INR"
-        }
-      },
-      "message": "",
-      "quantity": 1
-    }
-  ],
-  "buy_now": false,
-  "cart_id": 54,
-  "uid": "54",
-  "breakup_values": {
-    "raw": {
-      "cod_charge": 0,
-      "convenience_fee": 0,
-      "coupon": 0,
-      "delivery_charge": 0,
-      "discount": -2000,
-      "fynd_cash": 0,
-      "gst_charges": 47.57,
-      "mrp_total": 2999,
-      "subtotal": 999,
-      "total": 999,
-      "vog": 951.43,
-      "you_saved": 0
-    },
-    "coupon": {
-      "type": "cash",
-      "code": "",
-      "uid": null,
-      "value": 0,
-      "is_applied": false,
-      "message": "Sorry! Invalid Coupon"
-    },
-    "display": [
-      {
-        "display": "MRP Total",
-        "key": "mrp_total",
-        "value": 2999,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Discount",
-        "key": "discount",
-        "value": -2000,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Subtotal",
-        "key": "subtotal",
-        "value": 999,
-        "currency_code": "INR"
-      },
-      {
-        "display": "Total",
-        "key": "total",
-        "value": 999,
-        "currency_code": "INR"
-      }
-    ],
-    "loyalty_points": {
-      "total": 0,
-      "applicable": 0,
-      "is_applied": false,
-      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
-    }
-  },
-  "delivery_charge_info": "",
-  "coupon_text": "View all offers",
-  "gstin": null,
-  "checkout_mode": "self",
-  "restrict_checkout": false,
-  "is_valid": true,
-  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
 
 
 ### addItems
@@ -3418,6 +739,2288 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
 ---
 
 
+### checkCartServiceability
+Check Pincode Serviceability
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.checkCartServiceability({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.checkCartServiceability({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest) | yes | Request body |
+
+
+Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address`
+
+*Returned Response:*
+
+
+
+
+[OpenApiCartServiceabilityResponse](#OpenApiCartServiceabilityResponse)
+
+Cart details with pincode validity information at item level
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Valid pincode</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "quantity": 1,
+        "message": "",
+        "coupon_message": "",
+        "product": {
+          "type": "product",
+          "uid": 803140,
+          "name": "Green Solid T-Shirt",
+          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
+          "brand": {
+            "uid": 44,
+            "name": "celio"
+          },
+          "categories": [
+            {
+              "uid": 192,
+              "name": "T-Shirts"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
+            "query": {
+              "product_slug": [
+                "celio-green-solid-t-shirt-803140-dd9e2c"
+              ]
+            }
+          }
+        },
+        "article": {
+          "type": "article",
+          "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
+          "size": "S",
+          "seller": {
+            "uid": 25,
+            "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
+          },
+          "store": {
+            "uid": 1486,
+            "name": "Forum Mall"
+          },
+          "quantity": 1,
+          "price": {
+            "base": {
+              "marked": 1299,
+              "effective": 649.5,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 1299,
+              "effective": 649.5,
+              "currency_code": "INR"
+            }
+          }
+        },
+        "key": "803140_S",
+        "discount": "50% OFF",
+        "price": {
+          "base": {
+            "add_on": 0,
+            "marked": 1299,
+            "effective": 649.5,
+            "selling": 649.5,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 0,
+            "marked": 1299,
+            "effective": 649.5,
+            "selling": 649.5,
+            "currency_code": "INR"
+          }
+        },
+        "availability": {
+          "sizes": [
+            "L",
+            "XL",
+            "M",
+            "S"
+          ],
+          "other_store_quantity": 0,
+          "out_of_stock": false,
+          "deliverable": true,
+          "is_valid": true,
+          "delivery_promise": {
+            "timestamp": {
+              "min": 1605306343,
+              "max": 1605468343
+            },
+            "formatted": {
+              "min": "Sat, 14 Nov",
+              "max": "Mon, 16 Nov"
+            }
+          },
+          "available_sizes": [
+            {
+              "is_available": true,
+              "display": "L",
+              "value": "L"
+            },
+            {
+              "is_available": true,
+              "display": "XXL",
+              "value": "XXL"
+            },
+            {
+              "is_available": true,
+              "display": "XL",
+              "value": "XL"
+            },
+            {
+              "is_available": true,
+              "display": "M",
+              "value": "M"
+            },
+            {
+              "is_available": true,
+              "display": "S",
+              "value": "S"
+            },
+            {
+              "is_available": false,
+              "display": "30",
+              "value": "30"
+            }
+          ]
+        },
+        "bulk_offer": {}
+      },
+      {
+        "quantity": 1,
+        "message": "Out of stock. Please remove item",
+        "coupon_message": "",
+        "product": {
+          "type": "product",
+          "uid": 803140,
+          "name": "Green Solid T-Shirt",
+          "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
+          "brand": {
+            "uid": 44,
+            "name": "celio"
+          },
+          "categories": [
+            {
+              "uid": 192,
+              "name": "T-Shirts"
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
+            "query": {
+              "product_slug": [
+                "celio-green-solid-t-shirt-803140-dd9e2c"
+              ]
+            }
+          }
+        },
+        "article": {},
+        "key": "803140_S",
+        "discount": "",
+        "price": {
+          "base": {
+            "add_on": 0,
+            "marked": 1299,
+            "effective": 1299,
+            "selling": 1299,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 0,
+            "marked": 1299,
+            "effective": 1299,
+            "selling": 1299,
+            "currency_code": "INR"
+          }
+        },
+        "availability": {
+          "sizes": [
+            "L",
+            "XXL",
+            "XL",
+            "M",
+            "S"
+          ],
+          "other_store_quantity": 0,
+          "out_of_stock": true,
+          "deliverable": false,
+          "is_valid": false,
+          "delivery_promise": {
+            "timestamp": {
+              "min": 1605306343,
+              "max": 1605468343
+            },
+            "formatted": {
+              "min": "Sat, 14 Nov",
+              "max": "Mon, 16 Nov"
+            }
+          },
+          "available_sizes": [
+            {
+              "is_available": true,
+              "display": "L",
+              "value": "L"
+            },
+            {
+              "is_available": true,
+              "display": "XXL",
+              "value": "XXL"
+            },
+            {
+              "is_available": true,
+              "display": "XL",
+              "value": "XL"
+            },
+            {
+              "is_available": true,
+              "display": "M",
+              "value": "M"
+            },
+            {
+              "is_available": true,
+              "display": "S",
+              "value": "S"
+            },
+            {
+              "is_available": false,
+              "display": "30",
+              "value": "30"
+            }
+          ]
+        },
+        "bulk_offer": {}
+      }
+    ],
+    "delivery_promise": {
+      "timestamp": {
+        "min": 1605306343,
+        "max": 1605468343
+      },
+      "formatted": {
+        "min": "Sat, 14 Nov",
+        "max": "Mon, 16 Nov"
+      }
+    },
+    "is_valid": true
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Invalid pincode</i></summary>
+
+```json
+{
+  "value": {
+    "message": "All of the items in your cart are not deliverable to 800108",
+    "is_valid": false,
+    "items": [
+      {
+        "discount": "15% OFF",
+        "price": {
+          "base": {
+            "add_on": 0,
+            "marked": 2195,
+            "effective": 1866,
+            "selling": 1866,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 0,
+            "marked": 2195,
+            "effective": 1866,
+            "selling": 1866,
+            "currency_code": "INR"
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 876245,
+          "name": "Brown Sandals",
+          "slug": "red-chief-brown-sandals-876245-c92507",
+          "brand": {
+            "uid": 433,
+            "name": ""
+          },
+          "categories": [
+            {
+              "uid": 176,
+              "name": ""
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
+            "query": {
+              "product_slug": [
+                "red-chief-brown-sandals-876245-c92507"
+              ]
+            }
+          },
+          "item_code": "RC330004"
+        },
+        "bulk_offer": {},
+        "key": "876245_6",
+        "message": "We are not delivering to 800108",
+        "delivery_promise": null,
+        "coupon_message": "",
+        "availability": {
+          "sizes": [
+            "7",
+            "6",
+            "10",
+            "8"
+          ],
+          "other_store_quantity": 21,
+          "out_of_stock": false,
+          "deliverable": false,
+          "is_valid": true,
+          "available_sizes": [
+            {
+              "is_available": false,
+              "display": "9",
+              "value": "9"
+            },
+            {
+              "is_available": true,
+              "display": "10",
+              "value": "10"
+            },
+            {
+              "is_available": true,
+              "display": "6",
+              "value": "6"
+            },
+            {
+              "is_available": true,
+              "display": "7",
+              "value": "7"
+            },
+            {
+              "is_available": true,
+              "display": "8",
+              "value": "8"
+            }
+          ]
+        },
+        "quantity": 1,
+        "article": {
+          "type": "article",
+          "uid": "304_433_LGPL30402_RC330004_6",
+          "size": "6",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 9767,
+            "name": "Udyog Kunj, Kanpur"
+          },
+          "quantity": 3,
+          "price": {
+            "base": {
+              "marked": 2195,
+              "effective": 1866,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2195,
+              "effective": 1866,
+              "currency_code": "INR"
+            }
+          }
+        }
+      },
+      {
+        "discount": "15% OFF",
+        "price": {
+          "base": {
+            "add_on": 0,
+            "marked": 2195,
+            "effective": 1866,
+            "selling": 1866,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "add_on": 0,
+            "marked": 2195,
+            "effective": 1866,
+            "selling": 1866,
+            "currency_code": "INR"
+          }
+        },
+        "product": {
+          "type": "product",
+          "uid": 876245,
+          "name": "Brown Sandals",
+          "slug": "red-chief-brown-sandals-876245-c92507",
+          "brand": {
+            "uid": 433,
+            "name": ""
+          },
+          "categories": [
+            {
+              "uid": 176,
+              "name": ""
+            }
+          ],
+          "images": [
+            {
+              "aspect_ratio": "16:25",
+              "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg",
+              "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/433_RC330004/1_1564147181287.jpg"
+            }
+          ],
+          "action": {
+            "type": "product",
+            "url": "https://api.addsale.com/platform/content/v1/products/red-chief-brown-sandals-876245-c92507/",
+            "query": {
+              "product_slug": [
+                "red-chief-brown-sandals-876245-c92507"
+              ]
+            }
+          },
+          "item_code": "RC330004"
+        },
+        "bulk_offer": {},
+        "key": "876245_6",
+        "message": "We are not delivering to 800108",
+        "coupon_message": "",
+        "availability": {
+          "sizes": [
+            "7",
+            "6",
+            "10",
+            "8"
+          ],
+          "other_store_quantity": 21,
+          "out_of_stock": false,
+          "deliverable": false,
+          "is_valid": true,
+          "available_sizes": [
+            {
+              "is_available": false,
+              "display": "9",
+              "value": "9"
+            },
+            {
+              "is_available": true,
+              "display": "10",
+              "value": "10"
+            },
+            {
+              "is_available": true,
+              "display": "6",
+              "value": "6"
+            },
+            {
+              "is_available": true,
+              "display": "7",
+              "value": "7"
+            },
+            {
+              "is_available": true,
+              "display": "8",
+              "value": "8"
+            }
+          ]
+        },
+        "quantity": 1,
+        "article": {
+          "type": "article",
+          "uid": "304_433_LGPL30402_RC330004_6",
+          "size": "6",
+          "seller": {
+            "uid": 304,
+            "name": "LEAYAN GLOBAL PVT. LTD."
+          },
+          "store": {
+            "uid": 9767,
+            "name": "Udyog Kunj, Kanpur"
+          },
+          "quantity": 3,
+          "price": {
+            "base": {
+              "marked": 2195,
+              "effective": 1866,
+              "currency_code": "INR"
+            },
+            "converted": {
+              "marked": 2195,
+              "effective": 1866,
+              "currency_code": "INR"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### checkoutCart
+Create Fynd order with cart details
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.checkoutCart({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.checkoutCart({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq) | yes | Request body |
+
+
+Generate Fynd order for cart details send with provided `cart_items`
+
+*Returned Response:*
+
+
+
+
+[OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
+
+Checkout cart and create Fynd order id
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "order_id": "FY5E182A9D0A5E405446",
+  "message": "Order initiation completed",
+  "order_ref_id": null
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCoupon
+Create new coupon
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.createCoupon({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.createCoupon({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CouponAdd](#CouponAdd) | yes | Request body |
+
+
+Create new coupon
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Coupon Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Coupon Created"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createPromotion
+Create new promotion
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.createPromotion({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.createPromotion({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PromotionAdd](#PromotionAdd) | yes | Request body |
+
+
+Create new promotion
+
+*Returned Response:*
+
+
+
+
+[PromotionAdd](#PromotionAdd)
+
+Promotion Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "61dc8dc9adf45b2273a70a6e",
+  "application_id": "000000000000000000000001",
+  "promo_group": "product",
+  "promotion_type": "bogo",
+  "date_meta": {
+    "modified_on": "2022-01-11T05:47:11.503000+00:00",
+    "created_on": "2022-01-10T19:49:29.917000+00:00"
+  },
+  "discount_rules": [
+    {
+      "buy_condition": "( rule#1 )",
+      "offer": {
+        "max_offer_quantity": 2
+      },
+      "discount_type": "bogo",
+      "item_criteria": {
+        "item_brand": [
+          2,
+          14,
+          65
+        ]
+      }
+    }
+  ],
+  "buy_rules": {
+    "rule#1": {
+      "cart_quantity": {
+        "greater_than_equals": 5
+      },
+      "item_brand": [
+        1,
+        2,
+        14,
+        16,
+        29,
+        39,
+        43,
+        65,
+        73
+      ]
+    }
+  },
+  "display_meta": {
+    "offer_text": "Test",
+    "name": "Test BOGO promo",
+    "description": "<p>Test</p>"
+  },
+  "apply_all_discount": false,
+  "apply_exclusive": null,
+  "stackable": true,
+  "restrictions": {
+    "user_id": [],
+    "anonymous_users": true,
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "post_order": {
+      "cancellation_allowed": true,
+      "return_allowed": true
+    },
+    "uses": {
+      "remaining": {
+        "user": 0,
+        "total": 0
+      },
+      "maximum": {
+        "user": 0,
+        "total": 0
+      }
+    },
+    "payments": []
+  },
+  "_custom_json": {},
+  "author": {
+    "created_by": "5",
+    "modified_by": "5"
+  },
+  "_schedule": {
+    "start": "2022-01-10T18:45:36.311Z",
+    "end": null,
+    "published": true,
+    "next_schedule": [
+      {
+        "start": "2022-01-10T18:45:36.311Z",
+        "end": null
+      }
+    ],
+    "cron": "",
+    "duration": 0
+  },
+  "apply_priority": 1,
+  "visiblility": {
+    "pdp": true,
+    "coupon_list": false
+  },
+  "ownership": {
+    "payable_by": "",
+    "payable_category": "seller"
+  },
+  "currency": "INR",
+  "mode": "promotion",
+  "post_order_action": {
+    "action_date": null,
+    "action_type": ""
+  },
+  "indexed_criteria": {
+    "item_brand": [
+      1,
+      2
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchAndvalidateCartItems
+Fetch Cart Details
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest) | yes | Request body |
+
+
+Get all the details of cart for a list of provided `cart_items`
+
+*Returned Response:*
+
+
+
+
+[OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
+
+Cart details with breakup
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "quantity": 1,
+      "message": "",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 803140,
+        "name": "Green Solid T-Shirt",
+        "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
+        "brand": {
+          "uid": 44,
+          "name": "celio"
+        },
+        "categories": [
+          {
+            "uid": 192,
+            "name": "T-Shirts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
+          "query": {
+            "product_slug": [
+              "celio-green-solid-t-shirt-803140-dd9e2c"
+            ]
+          }
+        }
+      },
+      "article": {
+        "type": "article",
+        "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
+        "size": "S",
+        "seller": {
+          "uid": 25,
+          "name": "CELIO FUTURE FASHION PRIVATE LIMITED"
+        },
+        "store": {
+          "uid": 1486,
+          "name": "Forum Mall"
+        },
+        "quantity": 1,
+        "price": {
+          "base": {
+            "marked": 1299,
+            "effective": 649.5,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 1299,
+            "effective": 649.5,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "key": "803140_S",
+      "discount": "50% OFF",
+      "price": {
+        "base": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 649.5,
+          "selling": 649.5,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 649.5,
+          "selling": 649.5,
+          "currency_code": "INR"
+        }
+      },
+      "availability": {
+        "sizes": [
+          "L",
+          "XL",
+          "M",
+          "S"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true,
+        "available_sizes": [
+          {
+            "is_available": true,
+            "display": "L",
+            "value": "L"
+          },
+          {
+            "is_available": true,
+            "display": "XXL",
+            "value": "XXL"
+          },
+          {
+            "is_available": true,
+            "display": "XL",
+            "value": "XL"
+          },
+          {
+            "is_available": true,
+            "display": "M",
+            "value": "M"
+          },
+          {
+            "is_available": true,
+            "display": "S",
+            "value": "S"
+          },
+          {
+            "is_available": false,
+            "display": "30",
+            "value": "30"
+          }
+        ]
+      },
+      "bulk_offer": {}
+    },
+    {
+      "quantity": 1,
+      "message": "Out of stock. Please remove item",
+      "coupon_message": "",
+      "product": {
+        "type": "product",
+        "uid": 803140,
+        "name": "Green Solid T-Shirt",
+        "slug": "celio-green-solid-t-shirt-803140-dd9e2c",
+        "brand": {
+          "uid": 44,
+          "name": "celio"
+        },
+        "categories": [
+          {
+            "uid": 192,
+            "name": "T-Shirts"
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/44_NEMIEL@GREENBRITISH/1_1548161273344.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/platform/content/v1/products/celio-green-solid-t-shirt-803140-dd9e2c/",
+          "query": {
+            "product_slug": [
+              "celio-green-solid-t-shirt-803140-dd9e2c"
+            ]
+          }
+        }
+      },
+      "article": {},
+      "key": "803140_S",
+      "discount": "",
+      "price": {
+        "base": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 1299,
+          "selling": 1299,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 0,
+          "marked": 1299,
+          "effective": 1299,
+          "selling": 1299,
+          "currency_code": "INR"
+        }
+      },
+      "availability": {
+        "sizes": [
+          "L",
+          "XXL",
+          "XL",
+          "M",
+          "S"
+        ],
+        "other_store_quantity": 0,
+        "out_of_stock": true,
+        "deliverable": false,
+        "is_valid": false,
+        "available_sizes": [
+          {
+            "is_available": true,
+            "display": "L",
+            "value": "L"
+          },
+          {
+            "is_available": true,
+            "display": "XXL",
+            "value": "XXL"
+          },
+          {
+            "is_available": true,
+            "display": "XL",
+            "value": "XL"
+          },
+          {
+            "is_available": true,
+            "display": "M",
+            "value": "M"
+          },
+          {
+            "is_available": true,
+            "display": "S",
+            "value": "S"
+          },
+          {
+            "is_available": false,
+            "display": "30",
+            "value": "30"
+          }
+        ]
+      },
+      "bulk_offer": {}
+    }
+  ],
+  "is_valid": false,
+  "breakup_values": {
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2598,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -649,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 1949,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 1949,
+        "currency_code": "INR"
+      }
+    ],
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -649.5,
+      "fynd_cash": 0,
+      "gst_charges": 170.11,
+      "mrp_total": 2598,
+      "subtotal": 1948.5,
+      "total": 1948.5,
+      "vog": 1778.39,
+      "you_saved": 0
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAbandonedCart
+Get with abandoned cart list
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.getAbandonedCart({  pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ anonymousCart : value,
+ lastId : value,
+ sortOn : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.getAbandonedCart({  pageNo : value,
+ pageSize : value,
+ fromDate : value,
+ toDate : value,
+ anonymousCart : value,
+ lastId : value,
+ sortOn : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| fromDate | string | no |  |    
+| toDate | string | no |  |    
+| anonymousCart | boolean | no |  |    
+| lastId | string | no |  |    
+| sortOn | string | no |  |  
+
+
+
+Get abandoned cart list with pagination
+
+*Returned Response:*
+
+
+
+
+[AbandonedCartResponse](#AbandonedCartResponse)
+
+Abandoned Cart List for sent page_size and page_no
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Abandoned Cart list for sent filter and page size</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Cart fetched successfully !!",
+    "success": true,
+    "result": {},
+    "items": [
+      {
+        "_id": "62bbe2c4b79692d559ac1f16",
+        "uid": 19986,
+        "user_id": "600693a01faf8695d70a15df",
+        "is_default": true,
+        "app_id": "5d64e3500bcad8693a821c0d",
+        "articles": [
+          {
+            "service_item_meta": {
+              "product_group_tags": null,
+              "products": null
+            },
+            "parent_item_identifiers": {
+              "identifier": null,
+              "parent_item_size": null,
+              "parent_item_id": null
+            },
+            "item_id": 7500426,
+            "item_size": "SET1",
+            "article_id": "5f37d9b71cb7c10001b90ee2",
+            "quantity": 2,
+            "price_marked": 1000,
+            "price_effective": 1,
+            "currency_code": "INR",
+            "store_id": 10183,
+            "company_id": 61,
+            "article_assignment": {
+              "level": "multi-companies",
+              "strategy": "optimal"
+            },
+            "brand_uid": 85,
+            "l3_categories": [
+              466
+            ],
+            "discount": 99.9,
+            "coupon": {
+              "amount": 0,
+              "currency_code": "INR",
+              "article_count": 0
+            },
+            "referral_credits": {
+              "amount": 0,
+              "currency_code": "FC"
+            },
+            "cashback": {
+              "amount": 0,
+              "currency_code": "FC"
+            },
+            "bulk_coupon": {
+              "margin": 0,
+              "discount": 0,
+              "code": null
+            },
+            "promotion": [
+              {
+                "promo_id": "62bbf355beda57df173122fa",
+                "amount": 1,
+                "article_quantity": 2,
+                "mrp_promotion": false,
+                "promotion_type": "amount",
+                "discount_rules": [
+                  {
+                    "type": "amount",
+                    "value": 125
+                  }
+                ]
+              }
+            ],
+            "identifiers": {
+              "identifier": "pEF2t4GGTKaieox5rsRibw"
+            },
+            "meta": {},
+            "extra_meta": {},
+            "payment_methods": []
+          }
+        ],
+        "cart_value": 1,
+        "discount": 0,
+        "delivery_charges": {
+          "amount": 1,
+          "currency_code": "INR"
+        },
+        "coupon": {
+          "amount": 0,
+          "currency_code": "INR",
+          "code": null,
+          "type": "cart",
+          "uid": null,
+          "id": null
+        },
+        "promotion": {
+          "amount": 2,
+          "currency_code": "INR",
+          "mode": "promotion",
+          "promotions": [
+            {
+              "id": "62bbf355beda57df173122fa",
+              "mrp_promo": false,
+              "promo_group": "product"
+            }
+          ]
+        },
+        "fynd_credits": {
+          "amount": 0,
+          "currency_code": "FC",
+          "auto_applied": true
+        },
+        "cod_charges": {
+          "amount": 0,
+          "currency_code": "INR"
+        },
+        "cashback": {
+          "amount": 0,
+          "currency_code": "FC",
+          "uid": null
+        },
+        "payments": {},
+        "is_archive": false,
+        "created_on": "2022-06-28 14:25:15.578000",
+        "last_modified": "2022-06-29 13:52:03.313000",
+        "expire_at": "2023-06-24 13:52:03.313000",
+        "fc_index_map": [
+          0,
+          0
+        ],
+        "checkout_mode": "self",
+        "meta": {
+          "shipping_address_id": "62b161cb3ad0eed3e48ec6a9",
+          "billing_address_id": "62b161cb3ad0eed3e48ec6a9"
+        },
+        "comment": "",
+        "bulk_coupon_discount": 0,
+        "pick_up_customer_details": {},
+        "is_active": true,
+        "shipments": [],
+        "payment_methods": [],
+        "buy_now": false
+      }
+    ],
+    "page": {
+      "type": "number",
+      "has_next": false,
+      "item_total": 28,
+      "size": 20,
+      "page": 2,
+      "current": 2,
+      "last_id": "62d4ff76d6aec8db897de407"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAbandonedCartDetails
+Fetch all items added to the cart
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
+ i : value,
+ b : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
+ i : value,
+ b : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| id | string | no |  |    
+| i | boolean | no |  |    
+| b | boolean | no |  |  
+
+
+
+Use this API to get details of all the items added to a cart.
+
+*Returned Response:*
+
+
+
+
+[CartDetailResponse](#CartDetailResponse)
+
+Success. Returns a Cart object. Check the example shown below or refer `CartDetailResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "bulk_offer": {},
+      "discount": "67% OFF",
+      "article": {
+        "type": "article",
+        "uid": "604_902_SSTC60401_636BLUE_1",
+        "size": "1",
+        "seller": {
+          "uid": 604,
+          "name": "SHRI SHANTINATH TRADING COMPANY"
+        },
+        "store": {
+          "uid": 4579,
+          "name": "Gandhi Nagar"
+        },
+        "quantity": 108,
+        "price": {
+          "base": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          },
+          "converted": {
+            "marked": 2999,
+            "effective": 999,
+            "currency_code": "INR"
+          }
+        }
+      },
+      "coupon_message": "",
+      "key": "707569_1",
+      "availability": {
+        "sizes": [
+          "1",
+          "8",
+          "7",
+          "2",
+          "9",
+          "5",
+          "3",
+          "6"
+        ],
+        "other_store_quantity": 107,
+        "out_of_stock": false,
+        "deliverable": true,
+        "is_valid": true
+      },
+      "product": {
+        "type": "product",
+        "uid": 707569,
+        "name": "Blue and Gold Printed Ethnic Set",
+        "slug": "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a",
+        "brand": {
+          "uid": 902,
+          "name": ""
+        },
+        "categories": [
+          {
+            "uid": 525,
+            "name": ""
+          }
+        ],
+        "images": [
+          {
+            "aspect_ratio": "16:25",
+            "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg",
+            "secure_url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/original/902_636BLUE/1_1540301094877.jpg"
+          }
+        ],
+        "action": {
+          "type": "product",
+          "url": "https://api.addsale.com/v1/products/aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a/",
+          "query": {
+            "product_slug": [
+              "aj-dezines-blue-and-gold-printed-ethnic-set-707569-bff01a"
+            ]
+          }
+        }
+      },
+      "price": {
+        "base": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        },
+        "converted": {
+          "add_on": 999,
+          "marked": 2999,
+          "effective": 999,
+          "selling": 999,
+          "currency_code": "INR"
+        }
+      },
+      "message": "",
+      "quantity": 1
+    }
+  ],
+  "buy_now": false,
+  "cart_id": 54,
+  "uid": "54",
+  "breakup_values": {
+    "raw": {
+      "cod_charge": 0,
+      "convenience_fee": 0,
+      "coupon": 0,
+      "delivery_charge": 0,
+      "discount": -2000,
+      "fynd_cash": 0,
+      "gst_charges": 47.57,
+      "mrp_total": 2999,
+      "subtotal": 999,
+      "total": 999,
+      "vog": 951.43,
+      "you_saved": 0
+    },
+    "coupon": {
+      "type": "cash",
+      "code": "",
+      "uid": null,
+      "value": 0,
+      "is_applied": false,
+      "message": "Sorry! Invalid Coupon"
+    },
+    "display": [
+      {
+        "display": "MRP Total",
+        "key": "mrp_total",
+        "value": 2999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Discount",
+        "key": "discount",
+        "value": -2000,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Subtotal",
+        "key": "subtotal",
+        "value": 999,
+        "currency_code": "INR"
+      },
+      {
+        "display": "Total",
+        "key": "total",
+        "value": 999,
+        "currency_code": "INR"
+      }
+    ],
+    "loyalty_points": {
+      "total": 0,
+      "applicable": 0,
+      "is_applied": false,
+      "description": "Your cashback, referrals, and refund amount get credited to Fynd Cash which can be redeemed while placing an order."
+    }
+  },
+  "delivery_charge_info": "",
+  "coupon_text": "View all offers",
+  "gstin": null,
+  "checkout_mode": "self",
+  "restrict_checkout": false,
+  "is_valid": true,
+  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCouponById
+Get with single coupon details or coupon list
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.getCouponById({  id : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.getCouponById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+
+
+
+Get single coupon details with `id` in path param
+
+*Returned Response:*
+
+
+
+
+[CouponUpdate](#CouponUpdate)
+
+Coupon object for sent `id`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "5e1d9bec6d6b7e000146c840",
+  "validation": {
+    "anonymous": true,
+    "app_id": [
+      "5cd3db5e9d692cfe5302a7ba"
+    ],
+    "user_registered_after": null
+  },
+  "rule": [
+    {
+      "key": 1,
+      "max": 1500,
+      "min": 3000,
+      "value": 50
+    }
+  ],
+  "display_meta": {
+    "title": "percent50 title",
+    "description": "percent50 description",
+    "auto": {
+      "title": "",
+      "subtitle": ""
+    },
+    "subtitle": "percent50 subtitle",
+    "remove": {
+      "title": "",
+      "subtitle": ""
+    },
+    "apply": {
+      "title": "percen50 mt",
+      "subtitle": "percen50 ms"
+    }
+  },
+  "date_meta": {
+    "modified_on": "2020-02-04T14:27:00.577000+00:00",
+    "created_on": "2020-01-14T10:46:04.474000+00:00"
+  },
+  "action": {
+    "action_date": null,
+    "txn_mode": "coupon"
+  },
+  "identifiers": {
+    "category_id": [
+      465,
+      192,
+      133,
+      134,
+      150,
+      151,
+      155,
+      193,
+      157,
+      191,
+      154,
+      152,
+      417,
+      168,
+      416,
+      167,
+      166,
+      162,
+      161,
+      163,
+      165,
+      160
+    ],
+    "user_id": [],
+    "store_id": [],
+    "company_id": []
+  },
+  "author": {
+    "modified_by": "23109086",
+    "created_by": "23206328"
+  },
+  "_schedule": {
+    "next_schedule": [
+      {
+        "start": "2020-01-14T10:45:03.600000+00:00",
+        "end": "2020-01-16T10:45:03+00:00"
+      }
+    ],
+    "duration": null,
+    "start": "2020-01-14T10:45:03.600000+00:00",
+    "end": "2020-01-16T10:45:03+00:00",
+    "cron": ""
+  },
+  "state": {
+    "is_public": true,
+    "is_display": true,
+    "is_archived": false
+  },
+  "ownership": {
+    "payable_category": "seller",
+    "payable_by": ""
+  },
+  "validity": {
+    "priority": 0
+  },
+  "code": "percent50",
+  "rule_definition": {
+    "calculate_on": "esp",
+    "value_type": "percentage",
+    "is_exact": false,
+    "type": "percentage",
+    "scope": [
+      "category_id"
+    ],
+    "auto_apply": false,
+    "applicable_on": "quantity",
+    "currency_code": "INR"
+  },
+  "restrictions": {
+    "price_range": {
+      "max": -1,
+      "min": -1
+    },
+    "uses": {
+      "remaining": {
+        "app": -1,
+        "user": -1,
+        "total": -1
+      },
+      "maximum": {
+        "app": -1,
+        "user": -1,
+        "total": -1
+      }
+    },
+    "post_order": {
+      "cancellation_allowed": true,
+      "return_allowed": true
+    },
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ]
+  },
+  "type_slug": "percentage_quantity_percentage"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCoupons
+Get with single coupon details or coupon list
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.getCoupons({  pageNo : value,
+ pageSize : value,
+ isArchived : value,
+ title : value,
+ isPublic : value,
+ isDisplay : value,
+ typeSlug : value,
+ code : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.getCoupons({  pageNo : value,
+ pageSize : value,
+ isArchived : value,
+ title : value,
+ isPublic : value,
+ isDisplay : value,
+ typeSlug : value,
+ code : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| isArchived | boolean | no |  |    
+| title | string | no |  |    
+| isPublic | boolean | no |  |    
+| isDisplay | boolean | no |  |    
+| typeSlug | string | no |  |    
+| code | string | no |  |  
+
+
+
+Get coupon list with pagination
+
+*Returned Response:*
+
+
+
+
+[CouponsResponse](#CouponsResponse)
+
+Coupon List for sent page_size and page_no
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Coupon list for sent filter and page size</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "5e1d9bec6d6b7e000146c840",
+        "display_meta": {
+          "title": "percent50 title"
+        },
+        "_schedule": {
+          "next_schedule": [
+            {
+              "start": "2020-01-14T10:45:03.600000+00:00",
+              "end": "2020-01-16T10:45:03+00:00"
+            }
+          ],
+          "duration": null,
+          "start": "2020-01-14T10:45:03.600000+00:00",
+          "end": "2020-01-16T10:45:03+00:00",
+          "cron": ""
+        },
+        "state": {
+          "is_public": true,
+          "is_display": true,
+          "is_archived": false
+        },
+        "ownership": {
+          "payable_category": "seller",
+          "payable_by": ""
+        },
+        "code": "percent50",
+        "rule_definition": {
+          "type": "percentage",
+          "scope": [
+            "category_id"
+          ],
+          "applicable_on": "quantity"
+        }
+      }
+    ],
+    "page": {
+      "has_next": true,
+      "size": 10,
+      "current": 1,
+      "item_total": 30
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPromotionById
+Get with single promotion details or promotion list
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.getPromotionById({  id : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.getPromotionById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+
+
+
+Get single promotion details with `id` in path param
+
+*Returned Response:*
+
+
+
+
+[PromotionUpdate](#PromotionUpdate)
+
+Promotion object for sent `id`
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "61dc8dc9adf45b2273a70a6e",
+  "application_id": "000000000000000000000001",
+  "promo_group": "product",
+  "promotion_type": "bogo",
+  "date_meta": {
+    "modified_on": "2022-01-11T05:47:11.503000+00:00",
+    "created_on": "2022-01-10T19:49:29.917000+00:00"
+  },
+  "discount_rules": [
+    {
+      "buy_condition": "( rule#1 )",
+      "offer": {
+        "max_offer_quantity": 2
+      },
+      "discount_type": "bogo",
+      "item_criteria": {
+        "item_brand": [
+          2,
+          14,
+          65
+        ]
+      }
+    }
+  ],
+  "buy_rules": {
+    "rule#1": {
+      "cart_quantity": {
+        "greater_than_equals": 5
+      },
+      "item_brand": [
+        1,
+        2,
+        14,
+        16,
+        29,
+        39,
+        43,
+        65,
+        73
+      ]
+    }
+  },
+  "display_meta": {
+    "offer_text": "Test",
+    "name": "Test BOGO promo",
+    "description": "<p>Test</p>"
+  },
+  "apply_all_discount": false,
+  "apply_exclusive": null,
+  "stackable": true,
+  "restrictions": {
+    "user_id": [],
+    "anonymous_users": true,
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "post_order": {
+      "cancellation_allowed": true,
+      "return_allowed": true
+    },
+    "uses": {
+      "remaining": {
+        "user": 0,
+        "total": 0
+      },
+      "maximum": {
+        "user": 0,
+        "total": 0
+      }
+    },
+    "payments": []
+  },
+  "_custom_json": {},
+  "author": {
+    "created_by": "5",
+    "modified_by": "5"
+  },
+  "_schedule": {
+    "start": "2022-01-10T18:45:36.311Z",
+    "end": null,
+    "published": true,
+    "next_schedule": [
+      {
+        "start": "2022-01-10T18:45:36.311Z",
+        "end": null
+      }
+    ],
+    "cron": "",
+    "duration": 0
+  },
+  "apply_priority": 1,
+  "visiblility": {
+    "pdp": true,
+    "coupon_list": false
+  },
+  "ownership": {
+    "payable_by": "",
+    "payable_category": "seller"
+  },
+  "currency": "INR",
+  "mode": "promotion",
+  "post_order_action": {
+    "action_date": null,
+    "action_type": ""
+  },
+  "indexed_criteria": {
+    "item_brand": [
+      1,
+      2
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPromotions
+Get promotion list
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
+ pageSize : value,
+ q : value,
+ isActive : value,
+ promoGroup : value,
+ promotionType : value,
+ fpPanel : value,
+ promotionId : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.getPromotions({  pageNo : value,
+ pageSize : value,
+ q : value,
+ isActive : value,
+ promoGroup : value,
+ promotionType : value,
+ fpPanel : value,
+ promotionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| q | string | no |  |    
+| isActive | boolean | no |  |    
+| promoGroup | string | no |  |    
+| promotionType | string | no |  |    
+| fpPanel | string | no |  |    
+| promotionId | string | no |  |  
+
+
+
+Get promotion list with pagination
+
+*Returned Response:*
+
+
+
+
+[PromotionsResponse](#PromotionsResponse)
+
+Promotion List for sent page_size and page_no
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Promotion list for sent filter and page size</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "61dc8dc9adf45b2273a70a6e",
+        "promo_group": "product",
+        "date_meta": {
+          "modified_on": "2022-01-11T05:47:11.503000+00:00",
+          "created_on": "2022-01-10T19:49:29.917000+00:00"
+        },
+        "display_meta": {
+          "name": "Test BOGO promo"
+        },
+        "author": {
+          "created_by": "5",
+          "modified_by": "5"
+        },
+        "_schedule": {
+          "start": "2022-01-10T18:45:36.311000+00:00",
+          "end": null,
+          "published": true,
+          "next_schedule": [
+            {
+              "start": "2022-01-10T18:45:36.311000+00:00",
+              "end": null
+            }
+          ],
+          "cron": "",
+          "duration": 0
+        }
+      }
+    ],
+    "page": {
+      "has_next": true,
+      "size": 10,
+      "current": 1,
+      "item_total": 30
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateCart
 Update items in the abandoned cart
 
@@ -3988,1569 +3591,1111 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 ---
 
 
+### updateCoupon
+Update existing coupon configuration
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.updateCoupon({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.updateCoupon({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+| body | [CouponUpdate](#CouponUpdate) | yes | Request body |
+
+
+Update coupon with id sent in `id`
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Coupon updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Coupon Updated"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCouponPartially
+Update coupon archive state and schedule
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.updateCouponPartially({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.updateCouponPartially({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+| body | [CouponPartialUpdate](#CouponPartialUpdate) | yes | Request body |
+
+
+Update archive/unarchive and change schedule for coupon
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Coupon updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Archive or Unarchive coupon</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Coupon Updated"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Coupon schedule updated successfully</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Coupon schedule updated"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePromotion
+Update existing promotion configuration
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.updatePromotion({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.updatePromotion({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+| body | [PromotionUpdate](#PromotionUpdate) | yes | Request body |
+
+
+Update promotion with id sent in `id`
+
+*Returned Response:*
+
+
+
+
+[PromotionUpdate](#PromotionUpdate)
+
+Promotion updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "_id": "61dc8dc9adf45b2273a70a6e",
+  "application_id": "000000000000000000000001",
+  "promo_group": "product",
+  "promotion_type": "bogo",
+  "date_meta": {
+    "modified_on": "2022-01-11T05:47:11.503000+00:00",
+    "created_on": "2022-01-10T19:49:29.917000+00:00"
+  },
+  "discount_rules": [
+    {
+      "buy_condition": "( rule#1 )",
+      "offer": {
+        "max_offer_quantity": 2
+      },
+      "discount_type": "bogo",
+      "item_criteria": {
+        "item_brand": [
+          2,
+          14,
+          65
+        ]
+      }
+    }
+  ],
+  "buy_rules": {
+    "rule#1": {
+      "cart_quantity": {
+        "greater_than_equals": 5
+      },
+      "item_brand": [
+        1,
+        2,
+        14,
+        16,
+        29,
+        39,
+        43,
+        65,
+        73
+      ]
+    }
+  },
+  "display_meta": {
+    "offer_text": "Test",
+    "name": "Test BOGO promo",
+    "description": "<p>Test</p>"
+  },
+  "apply_all_discount": false,
+  "apply_exclusive": null,
+  "stackable": true,
+  "restrictions": {
+    "user_id": [],
+    "anonymous_users": true,
+    "platforms": [
+      "web",
+      "android",
+      "ios"
+    ],
+    "post_order": {
+      "cancellation_allowed": true,
+      "return_allowed": true
+    },
+    "uses": {
+      "remaining": {
+        "user": 0,
+        "total": 0
+      },
+      "maximum": {
+        "user": 0,
+        "total": 0
+      }
+    },
+    "payments": []
+  },
+  "_custom_json": {},
+  "author": {
+    "created_by": "5",
+    "modified_by": "5"
+  },
+  "_schedule": {
+    "start": "2022-01-10T18:45:36.311Z",
+    "end": null,
+    "published": true,
+    "next_schedule": [
+      {
+        "start": "2022-01-10T18:45:36.311Z",
+        "end": null
+      }
+    ],
+    "cron": "",
+    "duration": 0
+  },
+  "apply_priority": 1,
+  "visiblility": {
+    "pdp": true,
+    "coupon_list": false
+  },
+  "ownership": {
+    "payable_by": "",
+    "payable_category": "seller"
+  },
+  "currency": "INR",
+  "mode": "promotion",
+  "post_order_action": {
+    "action_date": null,
+    "action_type": ""
+  },
+  "indexed_criteria": {
+    "item_brand": [
+      1,
+      2
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updatePromotionPartially
+Update promotion publish state and schedule
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").cart.updatePromotionPartially({  id : value,
+ body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").cart.updatePromotionPartially({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+| body | [PromotionPartialUpdate](#PromotionPartialUpdate) | yes | Request body |
+
+
+Update publish/unpublish and change schedule for promotion
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Promotion updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Publish or Unpublish promotion</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Promotion Updated"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Promotion schedule updated successfully</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Promotion schedule updated"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
- 
- 
- #### [Page](#Page)
 
+#### [AbandonedCart](#AbandonedCart)
+
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | number |  no  | Current request page size |
- | current | number |  no  | Current page no |
- | type | string |  yes  |  |
- | item_total | number |  no  | Total coupon count in system |
- | page | number |  no  | Page requested |
- | last_id | string |  no  | Last objects id |
- | has_previous | boolean |  no  | True if more records are present for previous pages. Sent for cursor pagination |
- | next_id | string |  no  | Cursor id for next set of records. |
- | has_next | boolean |  no  | True if more records are present for next pages |
+ | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || app_id | string |  no  |  || articles | [string] |  yes  |  || bulk_coupon_discount | number |  no  |  || buy_now | boolean |  no  |  || cart_value | number |  no  |  || cashback | string |  yes  |  || checkout_mode | string |  no  |  || cod_charges | string |  no  |  || comment | string |  no  |  || coupon | string |  no  |  || created_on | string |  yes  |  || delivery_charges | string |  no  |  || discount | number |  no  |  || expire_at | string |  yes  |  || fc_index_map | [number] |  no  |  || fynd_credits | string |  no  |  || gstin | string |  no  |  || is_active | boolean |  no  |  || is_archive | boolean |  no  |  || is_default | boolean |  yes  |  || last_modified | string |  yes  |  || merge_qty | boolean |  no  |  || meta | string |  no  |  || order_id | string |  no  |  || payment_methods | [string] |  no  |  || payment_mode | string |  no  |  || payments | string |  no  |  || pick_up_customer_details | string |  no  |  || promotion | string |  no  |  || shipments | [string] |  no  |  || uid | number |  yes  |  || user_id | string |  yes  |  |
 
 ---
 
+#### [AbandonedCartResponse](#AbandonedCartResponse)
 
- 
- 
- #### [Validation](#Validation)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_registered_after | string |  no  |  |
- | anonymous | boolean |  no  |  |
- | app_id | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[AbandonedCart](#AbandonedCart)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || result | string |  no  |  || success | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [RuleDefinition](#RuleDefinition)
+#### [ActionQuery](#ActionQuery)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | currency_code | string |  no  |  |
- | scope | [string] |  no  |  |
- | calculate_on | string |  yes  |  |
- | is_exact | boolean |  no  |  |
- | auto_apply | boolean |  no  |  |
- | value_type | string |  yes  |  |
- | applicable_on | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || product_slug | [string] |  no  |  |
 
 ---
 
+#### [AddCartDetailResponse](#AddCartDetailResponse)
 
- 
- 
- #### [State](#State)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_display | boolean |  no  |  |
- | is_public | boolean |  no  |  |
- | is_archived | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cart | [CartDetailResponse](#CartDetailResponse) |  no  |  || message | string |  no  |  || partial | boolean |  no  |  || success | boolean |  no  |  |
 
 ---
 
+#### [AddCartRequest](#AddCartRequest)
 
- 
- 
- #### [CouponAuthor](#CouponAuthor)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[AddProductCart](#AddProductCart)] |  no  |  |
 
 ---
-
 
- 
- 
- #### [Validity](#Validity)
+#### [AddProductCart](#AddProductCart)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || article_assignment | string |  no  |  || article_id | string |  no  |  || display | string |  no  |  || extra_meta | string |  no  |  || item_id | number |  no  |  || item_size | string |  no  |  || parent_item_identifiers | string |  no  |  || pos | boolean |  no  |  || product_group_tags | [string] |  no  |  || quantity | number |  no  |  || seller_id | number |  no  |  || store_id | number |  no  |  |
 
 ---
 
+#### [AppliedPromotion](#AppliedPromotion)
 
- 
- 
- #### [CouponDateMeta](#CouponDateMeta)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || amount | number |  no  |  || article_quantity | number |  no  |  || mrp_promotion | boolean |  no  |  || offer_text | string |  no  |  || ownership | [Ownership2](#Ownership2) |  no  |  || promo_id | string |  no  |  || promotion_type | string |  no  |  |
 
 ---
 
+#### [ArticlePriceInfo](#ArticlePriceInfo)
 
- 
- 
- #### [PaymentAllowValue](#PaymentAllowValue)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || base | [BasePrice](#BasePrice) |  no  |  || converted | [BasePrice](#BasePrice) |  no  |  |
 
 ---
-
 
- 
- 
- #### [PaymentModes](#PaymentModes)
+#### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
- | codes | [string] |  no  |  |
- | networks | [string] |  no  |  |
- | types | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || name | string |  no  |  || uid | number |  no  |  |
 
 ---
 
+#### [BasePrice](#BasePrice)
 
- 
- 
- #### [BulkBundleRestriction](#BulkBundleRestriction)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | multi_store_allowed | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  |
 
 ---
 
+#### [BulkBundleRestriction](#BulkBundleRestriction)
 
- 
- 
- #### [UsesRemaining](#UsesRemaining)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | user | number |  no  |  |
- | app | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || multi_store_allowed | boolean |  yes  |  |
 
 ---
-
 
- 
- 
- #### [UsesRestriction](#UsesRestriction)
+#### [CartBreakup](#CartBreakup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
- | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || coupon | [CouponBreakup](#CouponBreakup) |  no  |  || display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  || loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  || raw | [RawBreakup](#RawBreakup) |  no  |  |
 
 ---
 
+#### [CartCurrency](#CartCurrency)
 
- 
- 
- #### [PostOrder](#PostOrder)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | return_allowed | boolean |  no  |  |
- | cancellation_allowed | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || symbol | string |  no  |  |
 
 ---
 
+#### [CartDetailResponse](#CartDetailResponse)
 
- 
- 
- #### [PriceRange](#PriceRange)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | number |  no  |  |
- | max | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || buy_now | boolean |  no  |  || checkout_mode | string |  no  |  || comment | string |  no  |  || coupon_text | string |  no  |  || currency | [CartCurrency](#CartCurrency) |  no  |  || delivery_charge_info | string |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || gstin | string |  no  |  || id | string |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || last_modified | string |  no  |  || message | string |  no  |  || payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  || restrict_checkout | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [Restrictions](#Restrictions)
+#### [CartItem](#CartItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
- | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
- | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
- | platforms | [string] |  no  |  |
- | post_order | [PostOrder](#PostOrder) |  no  |  |
- | coupon_allowed | boolean |  no  |  |
- | ordering_stores | [number] |  no  |  |
- | user_groups | [number] |  no  |  |
- | price_range | [PriceRange](#PriceRange) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || product_id | string |  yes  |  || quantity | number |  no  |  || size | string |  yes  |  |
 
 ---
 
+#### [CartItemMeta](#CartItemMeta)
 
- 
- 
- #### [CouponAction](#CouponAction)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_date | string |  no  |  |
- | txn_mode | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || group_id | string |  no  |  || primary_item | boolean |  no  |  |
 
 ---
 
+#### [CartProduct](#CartProduct)
 
- 
- 
- #### [CouponSchedule](#CouponSchedule)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | start | string |  no  |  |
- | end | string |  no  |  |
- | duration | number |  no  |  |
- | next_schedule | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || action | [ProductAction](#ProductAction) |  no  |  || brand | [BaseInfo](#BaseInfo) |  no  |  || categories | [[CategoryInfo](#CategoryInfo)] |  no  |  || images | [[ProductImage](#ProductImage)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || type | string |  no  |  || uid | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [Rule](#Rule)
+#### [CartProductIdentifer](#CartProductIdentifer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | key | number |  no  |  |
- | max | number |  no  |  |
- | min | number |  no  |  |
- | discount_qty | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || identifier | string |  no  |  |
 
 ---
 
+#### [CartProductInfo](#CartProductInfo)
 
- 
- 
- #### [Ownership](#Ownership)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
- | payable_category | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || article | [ProductArticle](#ProductArticle) |  no  |  || availability | [ProductAvailability](#ProductAvailability) |  no  |  || bulk_offer | string |  no  |  || coupon_message | string |  no  |  || discount | string |  no  |  || identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  || is_set | boolean |  no  |  || key | string |  no  |  || message | string |  no  |  || parent_item_identifiers | string |  no  |  || price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || product | [CartProduct](#CartProduct) |  no  |  || promo_meta | [PromoMeta](#PromoMeta) |  no  |  || promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  || quantity | number |  no  |  |
 
 ---
 
+#### [CategoryInfo](#CategoryInfo)
 
- 
- 
- #### [DisplayMetaDict](#DisplayMetaDict)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subtitle | string |  no  |  |
- | title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || name | string |  no  |  || uid | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [DisplayMeta](#DisplayMeta)
+#### [CompareObject](#CompareObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
- | title | string |  no  |  |
- | description | string |  no  |  |
- | subtitle | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || equals | number |  no  |  || greater_than | number |  no  |  || greater_than_equals | number |  no  |  || less_than | number |  no  |  || less_than_equals | number |  no  |  |
 
 ---
 
+#### [CouponAction](#CouponAction)
 
- 
- 
- #### [Identifier](#Identifier)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | exclude_brand_id | [number] |  no  |  |
- | item_id | [number] |  no  |  |
- | brand_id | [number] |  no  |  |
- | user_id | [string] |  no  |  |
- | category_id | [number] |  no  |  |
- | company_id | [number] |  no  |  |
- | article_id | [string] |  no  |  |
- | store_id | [number] |  no  |  |
- | collection_id | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || action_date | string |  no  |  || txn_mode | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CouponAdd](#CouponAdd)
+#### [CouponAdd](#CouponAdd)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | validation | [Validation](#Validation) |  no  |  |
- | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | tags | [string] |  no  |  |
- | code | string |  yes  |  |
- | author | [CouponAuthor](#CouponAuthor) |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | action | [CouponAction](#CouponAction) |  no  |  |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
- | rule | [[Rule](#Rule)] |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
- | type_slug | string |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || _schedule | [CouponSchedule](#CouponSchedule) |  no  |  || action | [CouponAction](#CouponAction) |  no  |  || author | [CouponAuthor](#CouponAuthor) |  no  |  || code | string |  yes  |  || date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  || display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  || identifiers | [Identifier](#Identifier) |  yes  |  || ownership | [Ownership](#Ownership) |  yes  |  || restrictions | [Restrictions](#Restrictions) |  no  |  || rule | [[Rule](#Rule)] |  yes  |  || rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  || state | [State](#State) |  no  |  || tags | [string] |  no  |  || type_slug | string |  yes  |  || validation | [Validation](#Validation) |  no  |  || validity | [Validity](#Validity) |  yes  |  |
 
 ---
 
+#### [CouponAuthor](#CouponAuthor)
 
- 
- 
- #### [CouponsResponse](#CouponsResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [CouponAdd](#CouponAdd) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || created_by | string |  no  |  || modified_by | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SuccessMessage](#SuccessMessage)
+#### [CouponBreakup](#CouponBreakup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || is_applied | boolean |  no  |  || message | string |  no  |  || type | string |  no  |  || uid | string |  no  |  || value | number |  no  |  |
 
 ---
 
+#### [CouponDateMeta](#CouponDateMeta)
 
- 
- 
- #### [OperationErrorResponse](#OperationErrorResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || created_on | string |  no  |  || modified_on | string |  no  |  |
 
 ---
 
+#### [CouponPartialUpdate](#CouponPartialUpdate)
 
- 
- 
- #### [CouponUpdate](#CouponUpdate)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | validation | [Validation](#Validation) |  no  |  |
- | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
- | state | [State](#State) |  no  |  |
- | tags | [string] |  no  |  |
- | code | string |  yes  |  |
- | author | [CouponAuthor](#CouponAuthor) |  no  |  |
- | validity | [Validity](#Validity) |  yes  |  |
- | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
- | restrictions | [Restrictions](#Restrictions) |  no  |  |
- | action | [CouponAction](#CouponAction) |  no  |  |
- | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
- | rule | [[Rule](#Rule)] |  yes  |  |
- | ownership | [Ownership](#Ownership) |  yes  |  |
- | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
- | type_slug | string |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || archive | boolean |  no  |  || schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
 
 ---
-
 
- 
- 
- #### [CouponPartialUpdate](#CouponPartialUpdate)
+#### [CouponSchedule](#CouponSchedule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | archive | boolean |  no  | Send true to unpublish coupon |
- | schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || next_schedule | [string] |  no  |  || start | string |  no  |  |
 
 ---
 
+#### [CouponsResponse](#CouponsResponse)
 
- 
- 
- #### [CompareObject](#CompareObject)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | greater_than | number |  no  |  |
- | less_than_equals | number |  no  |  |
- | equals | number |  no  |  |
- | less_than | number |  no  |  |
- | greater_than_equals | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [CouponAdd](#CouponAdd) |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
+#### [CouponUpdate](#CouponUpdate)
 
- 
- 
- #### [ItemCriteria](#ItemCriteria)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_rules | [string] |  no  |  |
- | item_exclude_brand | [number] |  no  |  |
- | item_exclude_category | [number] |  no  |  |
- | item_category | [number] |  no  |  |
- | item_exclude_sku | [string] |  no  |  |
- | all_items | boolean |  no  |  |
- | item_id | [number] |  no  |  |
- | item_store | [number] |  no  |  |
- | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
- | cart_total | [CompareObject](#CompareObject) |  no  |  |
- | item_brand | [number] |  no  |  |
- | item_company | [number] |  no  |  |
- | item_sku | [string] |  no  |  |
- | item_exclude_store | [number] |  no  |  |
- | item_exclude_company | [number] |  no  |  |
- | item_size | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _schedule | [CouponSchedule](#CouponSchedule) |  no  |  || action | [CouponAction](#CouponAction) |  no  |  || author | [CouponAuthor](#CouponAuthor) |  no  |  || code | string |  yes  |  || date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  || display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  || identifiers | [Identifier](#Identifier) |  yes  |  || ownership | [Ownership](#Ownership) |  yes  |  || restrictions | [Restrictions](#Restrictions) |  no  |  || rule | [[Rule](#Rule)] |  yes  |  || rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  || state | [State](#State) |  no  |  || tags | [string] |  no  |  || type_slug | string |  yes  |  || validation | [Validation](#Validation) |  no  |  || validity | [Validity](#Validity) |  yes  |  |
 
 ---
-
 
- 
- 
- #### [Ownership1](#Ownership1)
+#### [DiscountOffer](#DiscountOffer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  yes  |  |
- | payable_category | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || discount_amount | number |  no  |  || discount_percentage | number |  no  |  || discount_price | number |  no  |  || max_discount_amount | number |  no  |  || max_offer_quantity | number |  no  |  || min_offer_quantity | number |  no  |  |
 
 ---
 
+#### [DiscountRule](#DiscountRule)
 
- 
- 
- #### [PromotionAction](#PromotionAction)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_type | string |  yes  |  |
- | action_date | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || buy_condition | string |  yes  |  || discount_type | string |  yes  |  || item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  || offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
 
 ---
 
+#### [DisplayBreakup](#DisplayBreakup)
 
- 
- 
- #### [PromotionAuthor](#PromotionAuthor)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string |  no  |  |
- | modified_by | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || display | string |  no  |  || key | string |  no  |  || message | [string] |  no  |  || value | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [PaymentAllowValue1](#PaymentAllowValue1)
+#### [DisplayMeta](#DisplayMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  || auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  || description | string |  no  |  || remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  || subtitle | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [DisplayMeta1](#DisplayMeta1)
 
- 
- 
- #### [PromotionPaymentModes](#PromotionPaymentModes)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
- | type | string |  yes  |  |
- | codes | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || description | string |  no  |  || name | string |  no  |  || offer_text | string |  no  |  |
 
 ---
 
+#### [DisplayMetaDict](#DisplayMetaDict)
 
- 
- 
- #### [UsesRemaining1](#UsesRemaining1)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | user | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || subtitle | string |  no  |  || title | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [UsesRestriction1](#UsesRestriction1)
+#### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
- | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || article_id | [string] |  no  |  || brand_id | [number] |  no  |  || category_id | [number] |  no  |  || collection_id | [string] |  no  |  || company_id | [number] |  no  |  || exclude_brand_id | [number] |  no  |  || item_id | [number] |  no  |  || store_id | [number] |  no  |  || user_id | [string] |  no  |  |
 
 ---
 
+#### [ItemCriteria](#ItemCriteria)
 
- 
- 
- #### [UserRegistered](#UserRegistered)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | string |  no  |  |
- | end | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || all_items | boolean |  no  |  || buy_rules | [string] |  no  |  || cart_quantity | [CompareObject](#CompareObject) |  no  |  || cart_total | [CompareObject](#CompareObject) |  no  |  || item_brand | [number] |  no  |  || item_category | [number] |  no  |  || item_company | [number] |  no  |  || item_exclude_brand | [number] |  no  |  || item_exclude_category | [number] |  no  |  || item_exclude_company | [number] |  no  |  || item_exclude_sku | [string] |  no  |  || item_exclude_store | [number] |  no  |  || item_id | [number] |  no  |  || item_size | [string] |  no  |  || item_sku | [string] |  no  |  || item_store | [number] |  no  |  |
 
 ---
 
+#### [LoyaltyPoints](#LoyaltyPoints)
 
- 
- 
- #### [PostOrder1](#PostOrder1)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | return_allowed | boolean |  no  |  |
- | cancellation_allowed | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || applicable | number |  no  |  || description | string |  no  |  || is_applied | boolean |  no  |  || total | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [Restrictions1](#Restrictions1)
+#### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
- | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
- | platforms | [string] |  no  |  |
- | user_id | [string] |  no  |  |
- | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
- | order_quantity | number |  no  |  |
- | post_order | [PostOrder1](#PostOrder1) |  no  |  |
- | user_groups | [number] |  no  |  |
- | anonymous_users | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || current_status | string |  no  |  || extra_meta | string |  no  |  || order_id | string |  no  |  || payment_gateway | string |  no  |  || payment_id | string |  no  |  |
 
 ---
 
+#### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
 
- 
- 
- #### [DiscountOffer](#DiscountOffer)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | discount_price | number |  no  |  |
- | min_offer_quantity | number |  no  |  |
- | discount_percentage | number |  no  |  |
- | code | string |  no  |  |
- | max_discount_amount | number |  no  |  |
- | max_offer_quantity | number |  no  |  |
- | discount_amount | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  || mode | string |  yes  |  || name | string |  no  |  |
 
 ---
 
+#### [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest)
 
- 
- 
- #### [DiscountRule](#DiscountRule)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_condition | string |  yes  |  |
- | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
- | discount_type | string |  yes  |  |
- | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || cart_items | [CartItem](#CartItem) |  no  |  |
 
 ---
-
 
- 
- 
- #### [PromotionDateMeta](#PromotionDateMeta)
+#### [OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | modified_on | string |  no  |  |
- | created_on | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || message | string |  no  |  |
 
 ---
 
+#### [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest)
 
- 
- 
- #### [Visibility](#Visibility)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_list | boolean |  yes  |  |
- | pdp | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || cart_items | [CartItem](#CartItem) |  no  |  || shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
 
 ---
 
+#### [OpenApiCartServiceabilityResponse](#OpenApiCartServiceabilityResponse)
 
- 
- 
- #### [PromotionSchedule](#PromotionSchedule)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cron | string |  no  |  |
- | start | string |  yes  |  |
- | end | string |  no  |  |
- | duration | number |  no  |  |
- | next_schedule | [string] |  no  |  |
- | published | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || message | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [DisplayMeta1](#DisplayMeta1)
+#### [OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | offer_text | string |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || order_id | string |  yes  |  || order_ref_id | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
+#### [OpenApiErrorResponse](#OpenApiErrorResponse)
 
- 
- 
- #### [PromotionListItem](#PromotionListItem)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _custom_json | string |  no  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_priority | number |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | promotion_type | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | application_id | string |  yes  |  |
- | currency | string |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | mode | string |  yes  |  |
- | apply_exclusive | string |  no  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | code | string |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || errors | string |  no  |  || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [PromotionsResponse](#PromotionsResponse)
+#### [OpenApiFiles](#OpenApiFiles)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [PromotionListItem](#PromotionListItem) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || key | string |  yes  |  || values | [string] |  yes  |  |
 
 ---
 
+#### [OpenApiOrderItem](#OpenApiOrderItem)
 
- 
- 
- #### [PromotionAdd](#PromotionAdd)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _custom_json | string |  no  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_priority | number |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | promotion_type | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | application_id | string |  yes  |  |
- | currency | string |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | mode | string |  yes  |  |
- | apply_exclusive | string |  no  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | code | string |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || amount_paid | number |  yes  |  || cashback_applied | number |  yes  |  || cod_charges | number |  yes  |  || coupon_effective_discount | number |  yes  |  || delivery_charges | number |  yes  |  || discount | number |  yes  |  || employee_discount | number |  no  |  || extra_meta | string |  no  |  || files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  || loyalty_discount | number |  no  |  || meta | [CartItemMeta](#CartItemMeta) |  no  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  || price_effective | number |  yes  |  || price_marked | number |  yes  |  || product_id | number |  yes  |  || quantity | number |  no  |  || size | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [PromotionUpdate](#PromotionUpdate)
+#### [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
- | _custom_json | string |  no  |  |
- | ownership | [Ownership1](#Ownership1) |  yes  |  |
- | apply_priority | number |  no  |  |
- | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
- | promotion_type | string |  yes  |  |
- | apply_all_discount | boolean |  no  |  |
- | application_id | string |  yes  |  |
- | currency | string |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
- | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
- | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
- | mode | string |  yes  |  |
- | apply_exclusive | string |  no  |  |
- | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
- | stackable | boolean |  no  |  |
- | promo_group | string |  yes  |  |
- | code | string |  no  |  |
- | visiblility | [Visibility](#Visibility) |  no  |  |
- | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
- | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || affiliate_order_id | string |  no  |  || billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  || cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  || cart_value | number |  yes  |  || cashback_applied | number |  yes  |  || cod_charges | number |  yes  |  || comment | string |  no  |  || coupon | string |  no  |  || coupon_code | string |  yes  |  || coupon_value | number |  yes  |  || currency_code | string |  no  |  || delivery_charges | number |  yes  |  || employee_discount | string |  no  |  || files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  || gstin | string |  no  |  || loyalty_discount | number |  no  |  || order_id | string |  no  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  || payment_mode | string |  no  |  || shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
 
 ---
 
+#### [OperationErrorResponse](#OperationErrorResponse)
 
- 
- 
- #### [PromotionPartialUpdate](#PromotionPartialUpdate)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | archive | boolean |  no  | Send true to unpublish promotion |
- | schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
+#### [Ownership](#Ownership)
 
- 
- 
- #### [CartItem](#CartItem)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | string |  yes  |  |
- | product_id | string |  yes  |  |
- | quantity | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || payable_by | string |  yes  |  || payable_category | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest)
+#### [Ownership1](#Ownership1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || payable_by | string |  yes  |  || payable_category | string |  yes  |  |
 
 ---
 
+#### [Ownership2](#Ownership2)
 
- 
- 
- #### [ProductImage](#ProductImage)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
- | aspect_ratio | string |  no  |  |
- | url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || payable_by | string |  no  |  || payable_category | string |  no  |  |
 
 ---
 
+#### [Page](#Page)
 
- 
- 
- #### [ActionQuery](#ActionQuery)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_slug | [string] |  no  | Contains list of product slug |
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || last_id | string |  no  |  || next_id | string |  no  |  || page | number |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [ProductAction](#ProductAction)
+#### [PaymentAllowValue](#PaymentAllowValue)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | query | [ActionQuery](#ActionQuery) |  no  |  |
- | type | string |  no  |  |
- | url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || max | number |  no  |  |
 
 ---
 
+#### [PaymentAllowValue1](#PaymentAllowValue1)
 
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  | Product Category Id |
- | name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || max | number |  no  |  |
 
 ---
 
+#### [PaymentModes](#PaymentModes)
 
- 
- 
- #### [BaseInfo](#BaseInfo)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  no  |  |
- | name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || codes | [string] |  no  |  || networks | [string] |  no  |  || types | [string] |  no  |  || uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
 
 ---
-
 
- 
- 
- #### [CartProduct](#CartProduct)
+#### [PaymentSelectionLock](#PaymentSelectionLock)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | images | [[ProductImage](#ProductImage)] |  no  |  |
- | name | string |  no  |  |
- | type | string |  no  |  |
- | uid | number |  no  |  |
- | action | [ProductAction](#ProductAction) |  no  |  |
- | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
- | brand | [BaseInfo](#BaseInfo) |  no  |  |
- | slug | string |  no  | Unique product url name generated via product name and other meta data |
+ | ---------- | ---- | -------- | ----------- || default_options | string |  no  |  || enabled | boolean |  no  |  || payment_identifier | string |  no  |  |
 
 ---
 
+#### [PostOrder](#PostOrder)
 
- 
- 
- #### [BasePrice](#BasePrice)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string |  no  |  |
- | marked | number |  no  |  |
- | effective | number |  no  |  |
- | currency_symbol | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cancellation_allowed | boolean |  no  |  || return_allowed | boolean |  no  |  |
 
 ---
 
+#### [PostOrder1](#PostOrder1)
 
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice) |  no  |  |
- | base | [BasePrice](#BasePrice) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cancellation_allowed | boolean |  no  |  || return_allowed | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [ProductArticle](#ProductArticle)
+#### [PriceRange](#PriceRange)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | string |  no  |  |
- | parent_item_identifiers | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | _custom_json | string |  no  |  |
- | type | string |  no  |  |
- | store | [BaseInfo](#BaseInfo) |  no  |  |
- | extra_meta | string |  no  |  |
- | uid | string |  no  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
- | seller | [BaseInfo](#BaseInfo) |  no  |  |
- | quantity | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || max | number |  no  |  || min | number |  no  |  |
 
 ---
 
+#### [ProductAction](#ProductAction)
 
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | deliverable | boolean |  no  |  |
- | other_store_quantity | number |  no  |  |
- | sizes | [string] |  no  |  |
- | is_valid | boolean |  no  |  |
- | out_of_stock | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || query | [ActionQuery](#ActionQuery) |  no  |  || type | string |  no  |  || url | string |  no  |  |
 
 ---
 
+#### [ProductArticle](#ProductArticle)
 
- 
- 
- #### [PromoMeta](#PromoMeta)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || extra_meta | string |  no  |  || parent_item_identifiers | string |  no  |  || price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  || product_group_tags | [string] |  no  |  || quantity | number |  no  |  || seller | [BaseInfo](#BaseInfo) |  no  |  || size | string |  no  |  || store | [BaseInfo](#BaseInfo) |  no  |  || type | string |  no  |  || uid | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [Ownership2](#Ownership2)
+#### [ProductAvailability](#ProductAvailability)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payable_by | string |  no  | promo amount bearable party |
- | payable_category | string |  no  | promo amount payable category |
+ | ---------- | ---- | -------- | ----------- || deliverable | boolean |  no  |  || is_valid | boolean |  no  |  || other_store_quantity | number |  no  |  || out_of_stock | boolean |  no  |  || sizes | [string] |  no  |  |
 
 ---
 
+#### [ProductImage](#ProductImage)
 
- 
- 
- #### [AppliedPromotion](#AppliedPromotion)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  | Per unit discount amount applied with current promotion |
- | offer_text | string |  no  | Offer text of current promotion |
- | promotion_type | string |  no  | Promotion type of current promotion |
- | ownership | [Ownership2](#Ownership2) |  no  | Ownership of promotion |
- | article_quantity | number |  no  | Quantity of article on which promotion is applicable |
- | mrp_promotion | boolean |  no  | If applied promotion is applied on product MRP or ESP |
- | promo_id | string |  no  | Promotion id |
+ | ---------- | ---- | -------- | ----------- || aspect_ratio | string |  no  |  || secure_url | string |  no  |  || url | string |  no  |  |
 
 ---
 
+#### [ProductPrice](#ProductPrice)
 
- 
- 
- #### [ProductPrice](#ProductPrice)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | selling | number |  no  |  |
- | currency_code | string |  no  |  |
- | add_on | number |  no  |  |
- | currency_symbol | string |  no  |  |
- | marked | number |  no  |  |
- | effective | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || add_on | number |  no  |  || currency_code | string |  no  |  || currency_symbol | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  || selling | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
+#### [ProductPriceInfo](#ProductPriceInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice) |  no  |  |
- | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || base | [ProductPrice](#ProductPrice) |  no  |  || converted | [ProductPrice](#ProductPrice) |  no  |  |
 
 ---
 
+#### [PromiseFormatted](#PromiseFormatted)
 
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | string |  no  | Article idenfier generated by cart |
+ | ---------- | ---- | -------- | ----------- || max | string |  no  |  || min | string |  no  |  |
 
 ---
 
+#### [PromiseTimestamp](#PromiseTimestamp)
 
- 
- 
- #### [CartProductInfo](#CartProductInfo)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_item_identifiers | string |  no  |  |
- | product | [CartProduct](#CartProduct) |  no  |  |
- | article | [ProductArticle](#ProductArticle) |  no  |  |
- | bulk_offer | string |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
- | coupon_message | string |  no  |  |
- | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
- | key | string |  no  |  |
- | is_set | boolean |  no  |  |
- | discount | string |  no  |  |
- | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | message | string |  no  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
- | quantity | number |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || max | number |  no  |  || min | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
+#### [PromoMeta](#PromoMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | number |  no  |  |
- | description | string |  no  |  |
- | applicable | number |  no  |  |
- | is_applied | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
+#### [PromotionAction](#PromotionAction)
 
- 
- 
- #### [RawBreakup](#RawBreakup)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon | number |  no  |  |
- | total | number |  no  |  |
- | delivery_charge | number |  no  |  |
- | mrp_total | number |  no  |  |
- | convenience_fee | number |  no  |  |
- | discount | number |  no  |  |
- | you_saved | number |  no  |  |
- | vog | number |  no  |  |
- | gst_charges | number |  no  |  |
- | cod_charge | number |  no  |  |
- | fynd_cash | number |  no  |  |
- | subtotal | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || action_date | string |  yes  |  || action_type | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
+#### [PromotionAdd](#PromotionAdd)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | display | string |  no  |  |
- | currency_code | string |  no  |  |
- | key | string |  no  |  |
- | message | [string] |  no  |  |
- | currency_symbol | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  || application_id | string |  yes  |  || apply_all_discount | boolean |  no  |  || apply_exclusive | string |  no  |  || apply_priority | number |  no  |  || author | [PromotionAuthor](#PromotionAuthor) |  no  |  || buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  || code | string |  no  |  || currency | string |  no  |  || date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  || discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  || display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  || mode | string |  yes  |  || ownership | [Ownership1](#Ownership1) |  yes  |  || post_order_action | [PromotionAction](#PromotionAction) |  no  |  || promo_group | string |  yes  |  || promotion_type | string |  yes  |  || restrictions | [Restrictions1](#Restrictions1) |  no  |  || stackable | boolean |  no  |  || visiblility | [Visibility](#Visibility) |  no  |  |
 
 ---
 
+#### [PromotionAuthor](#PromotionAuthor)
 
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | number |  no  |  |
- | type | string |  no  |  |
- | code | string |  no  |  |
- | uid | string |  no  |  |
- | message | string |  no  |  |
- | is_applied | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || created_by | string |  no  |  || modified_by | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CartBreakup](#CartBreakup)
+#### [PromotionDateMeta](#PromotionDateMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
- | raw | [RawBreakup](#RawBreakup) |  no  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
- | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || created_on | string |  no  |  || modified_on | string |  no  |  |
 
 ---
 
+#### [PromotionListItem](#PromotionListItem)
 
- 
- 
- #### [OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_valid | boolean |  no  |  |
- | message | string |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  || application_id | string |  yes  |  || apply_all_discount | boolean |  no  |  || apply_exclusive | string |  no  |  || apply_priority | number |  no  |  || author | [PromotionAuthor](#PromotionAuthor) |  no  |  || buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  || code | string |  no  |  || currency | string |  no  |  || date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  || discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  || display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  || mode | string |  yes  |  || ownership | [Ownership1](#Ownership1) |  yes  |  || post_order_action | [PromotionAction](#PromotionAction) |  no  |  || promo_group | string |  yes  |  || promotion_type | string |  yes  |  || restrictions | [Restrictions1](#Restrictions1) |  no  |  || stackable | boolean |  no  |  || visiblility | [Visibility](#Visibility) |  no  |  |
 
 ---
 
+#### [PromotionPartialUpdate](#PromotionPartialUpdate)
 
- 
- 
- #### [OpenApiErrorResponse](#OpenApiErrorResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
- | errors | string |  no  | Contains field name which has error as key and error message as value |
+ | ---------- | ---- | -------- | ----------- || archive | boolean |  no  |  || schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
 
 ---
-
 
- 
- 
- #### [ShippingAddress](#ShippingAddress)
+#### [PromotionPaymentModes](#PromotionPaymentModes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_type | string |  no  |  |
- | phone | number |  no  |  |
- | name | string |  no  |  |
- | address | string |  no  |  |
- | pincode | number |  no  |  |
- | landmark | string |  no  |  |
- | area_code | string |  yes  |  |
- | state | string |  no  |  |
- | country | string |  no  |  |
- | country_code | string |  no  |  |
- | area_code_slug | string |  no  |  |
- | meta | string |  no  |  |
- | area | string |  no  |  |
- | email | string |  no  |  |
- | city | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || codes | [string] |  no  |  || type | string |  yes  |  || uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
 
 ---
 
+#### [PromotionSchedule](#PromotionSchedule)
 
- 
- 
- #### [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_items | [CartItem](#CartItem) |  no  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || next_schedule | [string] |  no  |  || published | boolean |  yes  |  || start | string |  yes  |  |
 
 ---
 
+#### [PromotionsResponse](#PromotionsResponse)
 
- 
- 
- #### [PromiseFormatted](#PromiseFormatted)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | string |  no  |  |
- | max | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [PromotionListItem](#PromotionListItem) |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
-
 
- 
- 
- #### [PromiseTimestamp](#PromiseTimestamp)
+#### [PromotionUpdate](#PromotionUpdate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | min | number |  no  |  |
- | max | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  || application_id | string |  yes  |  || apply_all_discount | boolean |  no  |  || apply_exclusive | string |  no  |  || apply_priority | number |  no  |  || author | [PromotionAuthor](#PromotionAuthor) |  no  |  || buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  || code | string |  no  |  || currency | string |  no  |  || date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  || discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  || display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  || mode | string |  yes  |  || ownership | [Ownership1](#Ownership1) |  yes  |  || post_order_action | [PromotionAction](#PromotionAction) |  no  |  || promo_group | string |  yes  |  || promotion_type | string |  yes  |  || restrictions | [Restrictions1](#Restrictions1) |  no  |  || stackable | boolean |  no  |  || visiblility | [Visibility](#Visibility) |  no  |  |
 
 ---
 
+#### [RawBreakup](#RawBreakup)
 
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cod_charge | number |  no  |  || convenience_fee | number |  no  |  || coupon | number |  no  |  || delivery_charge | number |  no  |  || discount | number |  no  |  || fynd_cash | number |  no  |  || gst_charges | number |  no  |  || mrp_total | number |  no  |  || subtotal | number |  no  |  || total | number |  no  |  || vog | number |  no  |  || you_saved | number |  no  |  |
 
 ---
 
+#### [Restrictions](#Restrictions)
 
- 
- 
- #### [OpenApiCartServiceabilityResponse](#OpenApiCartServiceabilityResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | is_valid | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  || coupon_allowed | boolean |  no  |  || ordering_stores | [number] |  no  |  || payments | [String: [PaymentModes](#PaymentModes)] |  no  |  || platforms | [string] |  no  |  || post_order | [PostOrder](#PostOrder) |  no  |  || price_range | [PriceRange](#PriceRange) |  no  |  || user_groups | [number] |  no  |  || uses | [UsesRestriction](#UsesRestriction) |  no  |  |
 
 ---
-
 
- 
- 
- #### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
+#### [Restrictions1](#Restrictions1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | payment_id | string |  no  |  |
- | extra_meta | string |  no  |  |
- | payment_gateway | string |  no  |  |
- | current_status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || anonymous_users | boolean |  no  |  || order_quantity | number |  no  |  || payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  || platforms | [string] |  no  |  || post_order | [PostOrder1](#PostOrder1) |  no  |  || user_groups | [number] |  no  |  || user_id | [string] |  no  |  || user_registered | [UserRegistered](#UserRegistered) |  no  |  || uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
 
 ---
 
+#### [Rule](#Rule)
 
- 
- 
- #### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  yes  | Payment amount |
- | mode | string |  yes  |  |
- | name | string |  no  | Payment mode name |
- | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || discount_qty | number |  no  |  || key | number |  no  |  || max | number |  no  |  || min | number |  no  |  || value | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [OpenApiFiles](#OpenApiFiles)
+#### [RuleDefinition](#RuleDefinition)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  yes  |  |
- | values | [string] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || applicable_on | string |  yes  |  || auto_apply | boolean |  no  |  || calculate_on | string |  yes  |  || currency_code | string |  no  |  || is_exact | boolean |  no  |  || scope | [string] |  no  |  || type | string |  yes  |  || value_type | string |  yes  |  |
 
 ---
 
+#### [ShipmentPromise](#ShipmentPromise)
 
- 
- 
- #### [CartItemMeta](#CartItemMeta)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | primary_item | boolean |  no  |  |
- | group_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  || timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
 
 ---
-
 
- 
- 
- #### [OpenApiOrderItem](#OpenApiOrderItem)
+#### [ShippingAddress](#ShippingAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  yes  |  |
- | extra_meta | string |  no  |  |
- | loyalty_discount | number |  no  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | product_id | number |  yes  |  |
- | delivery_charges | number |  yes  |  |
- | discount | number |  yes  |  |
- | price_marked | number |  yes  |  |
- | employee_discount | number |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | cashback_applied | number |  yes  |  |
- | cod_charges | number |  yes  |  |
- | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
- | price_effective | number |  yes  |  |
- | coupon_effective_discount | number |  yes  |  |
- | quantity | number |  no  |  |
- | size | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || address | string |  no  |  || address_type | string |  no  |  || area | string |  no  |  || area_code | string |  yes  |  || area_code_slug | string |  no  |  || city | string |  no  |  || country | string |  no  |  || country_code | string |  no  |  || email | string |  no  |  || landmark | string |  no  |  || meta | string |  no  |  || name | string |  no  |  || phone | number |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
 
 ---
 
+#### [State](#State)
 
- 
- 
- #### [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  |  |
- | currency_code | string |  no  |  |
- | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
- | delivery_charges | number |  yes  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
- | comment | string |  no  |  |
- | coupon | string |  no  |  |
- | coupon_value | number |  yes  |  |
- | affiliate_order_id | string |  no  |  |
- | payment_mode | string |  no  |  |
- | cart_value | number |  yes  |  |
- | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
- | loyalty_discount | number |  no  |  |
- | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
- | employee_discount | string |  no  |  |
- | cashback_applied | number |  yes  |  |
- | cod_charges | number |  yes  |  |
- | coupon_code | string |  yes  |  |
- | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
- | gstin | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || is_archived | boolean |  no  |  || is_display | boolean |  no  |  || is_public | boolean |  no  |  |
 
 ---
 
+#### [SuccessMessage](#SuccessMessage)
 
- 
- 
- #### [OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_ref_id | string |  no  | Order id sent in request |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
- | order_id | string |  yes  | Fynd order id |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [AbandonedCart](#AbandonedCart)
+#### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_now | boolean |  no  |  |
- | uid | number |  yes  |  |
- | created_on | string |  yes  |  |
- | articles | [string] |  yes  |  |
- | coupon | string |  no  |  |
- | promotion | string |  no  |  |
- | payment_methods | [string] |  no  |  |
- | fynd_credits | string |  no  |  |
- | app_id | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | order_id | string |  no  |  |
- | payments | string |  no  |  |
- | merge_qty | boolean |  no  |  |
- | delivery_charges | string |  no  |  |
- | bulk_coupon_discount | number |  no  |  |
- | is_archive | boolean |  no  |  |
- | comment | string |  no  |  |
- | pick_up_customer_details | string |  no  |  |
- | _id | string |  yes  |  |
- | is_active | boolean |  no  |  |
- | payment_mode | string |  no  |  |
- | last_modified | string |  yes  |  |
- | cart_value | number |  no  |  |
- | is_default | boolean |  yes  |  |
- | discount | number |  no  |  |
- | user_id | string |  yes  |  |
- | cashback | string |  yes  |  |
- | fc_index_map | [number] |  no  |  |
- | shipments | [string] |  no  |  |
- | cod_charges | string |  no  |  |
- | expire_at | string |  yes  |  |
- | meta | string |  no  |  |
- | gstin | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cart | [CartDetailResponse](#CartDetailResponse) |  no  |  || message | string |  no  |  || success | boolean |  no  |  |
 
 ---
 
+#### [UpdateCartRequest](#UpdateCartRequest)
 
- 
- 
- #### [AbandonedCartResponse](#AbandonedCartResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [[AbandonedCart](#AbandonedCart)] |  no  |  |
- | message | string |  no  | message of the response |
- | success | boolean |  no  | the request success is defined |
- | result | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  || operation | string |  yes  |  |
 
 ---
 
+#### [UpdateProductCart](#UpdateProductCart)
 
- 
- 
- #### [CartCurrency](#CartCurrency)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  | Currency code defined by ISO 4217:2015 |
- | symbol | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || article_id | string |  no  |  || extra_meta | string |  no  |  || identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  || item_id | number |  no  |  || item_index | number |  no  |  || item_size | string |  no  |  || parent_item_identifiers | string |  no  |  || quantity | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [PaymentSelectionLock](#PaymentSelectionLock)
+#### [UserRegistered](#UserRegistered)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | default_options | string |  no  |  |
- | payment_identifier | string |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
 
 ---
 
+#### [UsesRemaining](#UsesRemaining)
 
- 
- 
- #### [CartDetailResponse](#CartDetailResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coupon_text | string |  no  |  |
- | checkout_mode | string |  no  |  |
- | last_modified | string |  no  |  |
- | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
- | buy_now | boolean |  no  |  |
- | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
- | message | string |  no  |  |
- | delivery_charge_info | string |  no  |  |
- | restrict_checkout | boolean |  no  |  |
- | comment | string |  no  |  |
- | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
- | currency | [CartCurrency](#CartCurrency) |  no  |  |
- | is_valid | boolean |  no  |  |
- | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
- | gstin | string |  no  |  |
- | id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || app | number |  no  |  || total | number |  no  |  || user | number |  no  |  |
 
 ---
 
+#### [UsesRemaining1](#UsesRemaining1)
 
- 
- 
- #### [AddProductCart](#AddProductCart)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_item_identifiers | string |  no  |  |
- | product_group_tags | [string] |  no  |  |
- | _custom_json | string |  no  |  |
- | display | string |  no  |  |
- | extra_meta | string |  no  |  |
- | item_id | number |  no  |  |
- | article_assignment | string |  no  |  |
- | store_id | number |  no  |  |
- | seller_id | number |  no  |  |
- | article_id | string |  no  |  |
- | pos | boolean |  no  |  |
- | quantity | number |  no  |  |
- | item_size | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || total | number |  no  |  || user | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [AddCartRequest](#AddCartRequest)
+#### [UsesRestriction](#UsesRestriction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AddProductCart](#AddProductCart)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || maximum | [UsesRemaining](#UsesRemaining) |  no  |  || remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
 
 ---
 
+#### [UsesRestriction1](#UsesRestriction1)
 
- 
- 
- #### [AddCartDetailResponse](#AddCartDetailResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
- | partial | boolean |  no  | When adding multiple items check if all added. True if only few are added. |
+ | ---------- | ---- | -------- | ----------- || maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  || remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
 
 ---
-
 
- 
- 
- #### [UpdateProductCart](#UpdateProductCart)
+#### [Validation](#Validation)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parent_item_identifiers | string |  no  |  |
- | _custom_json | string |  no  |  |
- | extra_meta | string |  no  |  |
- | item_id | number |  no  |  |
- | item_index | number |  no  |  |
- | article_id | string |  no  |  |
- | quantity | number |  no  |  |
- | item_size | string |  no  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || anonymous | boolean |  no  |  || app_id | [string] |  no  |  || user_registered_after | string |  no  |  |
 
 ---
 
+#### [Validity](#Validity)
 
- 
- 
- #### [UpdateCartRequest](#UpdateCartRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | operation | string |  yes  |  |
- | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || priority | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
+#### [Visibility](#Visibility)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
- | success | boolean |  no  | True if all items are added successfully. False if partially added or not added. |
+ | ---------- | ---- | -------- | ----------- || coupon_list | boolean |  yes  |  || pdp | boolean |  yes  |  |
 
 ---
 

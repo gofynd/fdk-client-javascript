@@ -8,14 +8,73 @@
 ## Common Methods
 Application configuration apis
 
-* [searchApplication](#searchapplication)
 * [getLocations](#getlocations)
+* [searchApplication](#searchapplication)
 
 
 
 ## Methods with example and description
 
 
+
+
+### getLocations
+Get countries, states, cities
+
+
+
+```javascript
+// Promise
+const promise = common.getLocations({  locationType : value,
+ id : value });
+
+// Async/Await
+const data = await common.getLocations({  locationType : value,
+ id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| locationType | string | no | Provide location type to query on. Possible values : country, state, city |    
+| id | string | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[Locations](#Locations)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### searchApplication
@@ -138,312 +197,126 @@ Success
 ---
 
 
-### getLocations
-Get countries, states, cities
-
-
-
-```javascript
-// Promise
-const promise = common.getLocations({  locationType : value,
- id : value });
-
-// Async/Await
-const data = await common.getLocations({  locationType : value,
- id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| locationType | string | no | Provide location type to query on. Possible values : country, state, city |    
-| id | string | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[Locations](#Locations)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
- 
- 
- #### [ApplicationResponse](#ApplicationResponse)
+
+#### [Application](#Application)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | [Application](#Application) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || app_type | string |  no  |  || auth | [ApplicationAuth](#ApplicationAuth) |  no  |  || banner | [SecureUrl](#SecureUrl) |  no  |  || cache_ttl | number |  no  |  || channel_type | string |  no  |  || company_id | number |  no  |  || cors | [ApplicationCors](#ApplicationCors) |  no  |  || created_at | string |  no  |  || description | string |  no  |  || domain | [Domain](#Domain) |  no  |  || domains | [[Domain](#Domain)] |  no  |  || favicon | [SecureUrl](#SecureUrl) |  no  |  || is_active | boolean |  no  |  || is_internal | boolean |  no  |  || logo | [SecureUrl](#SecureUrl) |  no  |  || meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  || mobile_logo | [SecureUrl](#SecureUrl) |  no  |  || name | string |  no  |  || owner | string |  no  |  || redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  || token | string |  no  |  || updated_at | string |  no  |  || website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
 
 ---
 
-
- 
- 
- #### [Currency](#Currency)
+#### [ApplicationAuth](#ApplicationAuth)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | code | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | decimal_digits | number |  no  |  |
- | symbol | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
 
-
- 
- 
- #### [Domain](#Domain)
+#### [ApplicationCors](#ApplicationCors)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | verified | boolean |  no  |  |
- | is_primary | boolean |  no  |  |
- | is_shortlink | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | is_predefined | boolean |  no  | Domain is hosting domain or not. |
+ | ---------- | ---- | -------- | ----------- || domains | [string] |  no  |  |
 
 ---
 
-
- 
- 
- #### [ApplicationWebsite](#ApplicationWebsite)
+#### [ApplicationMeta](#ApplicationMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | basepath | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || name | string |  no  |  || value | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [ApplicationCors](#ApplicationCors)
+#### [ApplicationRedirections](#ApplicationRedirections)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domains | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || redirect_from | string |  no  |  || redirect_to | string |  no  |  || type | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [ApplicationAuth](#ApplicationAuth)
+#### [ApplicationResponse](#ApplicationResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || application | [Application](#Application) |  no  |  |
 
 ---
 
-
- 
- 
- #### [ApplicationRedirections](#ApplicationRedirections)
+#### [ApplicationWebsite](#ApplicationWebsite)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
- | type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || basepath | string |  no  |  || enabled | boolean |  no  |  |
 
 ---
 
-
- 
- 
- #### [ApplicationMeta](#ApplicationMeta)
+#### [BadRequest](#BadRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [SecureUrl](#SecureUrl)
+#### [Currency](#Currency)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || code | string |  no  |  || created_at | string |  no  |  || decimal_digits | number |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || symbol | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [Application](#Application)
+#### [Domain](#Domain)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
- | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
- | description | string |  no  |  |
- | channel_type | string |  no  |  |
- | cache_ttl | number |  no  |  |
- | is_internal | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | company_id | number |  no  |  |
- | token | string |  no  |  |
- | redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  |
- | meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | app_type | string |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || is_predefined | boolean |  no  |  || is_primary | boolean |  no  |  || is_shortlink | boolean |  no  |  || name | string |  no  |  || verified | boolean |  no  |  |
 
 ---
 
-
- 
- 
- #### [NotFound](#NotFound)
+#### [LocationCountry](#LocationCountry)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || capital | string |  no  |  || currency | string |  no  |  || default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency) |  no  |  || default_language | [LocationDefaultLanguage](#LocationDefaultLanguage) |  no  |  || iso2 | string |  no  |  || iso3 | string |  no  |  || name | string |  no  |  || parent | string |  no  |  || phone_code | string |  no  |  || type | string |  no  |  || uid | number |  no  |  |
 
 ---
 
-
- 
- 
- #### [BadRequest](#BadRequest)
+#### [LocationDefaultCurrency](#LocationDefaultCurrency)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  | Failure message. |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || name | string |  no  |  || symbol | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [Page](#Page)
+#### [LocationDefaultLanguage](#LocationDefaultLanguage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || name | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [LocationDefaultLanguage](#LocationDefaultLanguage)
+#### [Locations](#Locations)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [string] |  no  |  |
 
 ---
 
-
- 
- 
- #### [LocationDefaultCurrency](#LocationDefaultCurrency)
+#### [NotFound](#NotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | symbol | string |  no  |  |
- | code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
-
- 
- 
- #### [LocationCountry](#LocationCountry)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | capital | string |  no  |  |
- | currency | string |  no  |  |
- | iso2 | string |  no  |  |
- | iso3 | string |  no  |  |
- | name | string |  no  |  |
- | parent | string |  no  |  |
- | phone_code | string |  no  |  |
- | type | string |  no  |  |
- | uid | number |  no  |  |
- | __v | number |  no  |  |
- | _id | string |  no  |  |
- | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency) |  no  |  |
- | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
-
- 
- 
- #### [Locations](#Locations)
+#### [SecureUrl](#SecureUrl)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || secure_url | string |  no  |  |
 
 ---
 

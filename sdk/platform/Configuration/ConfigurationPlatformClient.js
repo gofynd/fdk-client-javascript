@@ -181,6 +181,272 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
+   * @summary: Get all available integration opt-ins
+   * @description: Get all available integration opt-ins
+   */
+  async getAvailableOptIns({ pageNo, pageSize } = {}) {
+    const { error } = ConfigurationValidator.getAvailableOptIns().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getAvailableOptIns().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAvailableOptIns",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/available`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.GetIntegrationsOptInsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAvailableOptIns",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - Current request items count
+   * @summary: Get all available integration opt-ins
+   * @description: Get all available integration opt-ins
+   */
+  getAvailableOptInsPaginator({ pageSize } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getAvailableOptIns({
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.q] - Search text for brand name
+   * @returns {Promise<BrandsByCompanyResponse>} - Success response
+   * @summary: Get brands by company
+   * @description: Get brands by company
+   */
+  async getBrandsByCompany({ q } = {}) {
+    const { error } = ConfigurationValidator.getBrandsByCompany().validate(
+      {
+        q,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getBrandsByCompany().validate(
+      {
+        q,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getBrandsByCompany",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/brands-by-companies`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.BrandsByCompanyResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getBrandsByCompany",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {CompanyByBrandsRequest} arg.body
+   * @returns {Promise<CompanyByBrandsResponse>} - Success response
+   * @summary: Get company by brand uids
+   * @description: Get company by brand uids
+   */
+  async getCompanyByBrands({ body, pageNo, pageSize } = {}) {
+    const { error } = ConfigurationValidator.getCompanyByBrands().validate(
+      {
+        body,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getCompanyByBrands().validate(
+      {
+        body,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCompanyByBrands",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/companies-by-brands`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.CompanyByBrandsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCompanyByBrands",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {CompanyByBrandsRequest} arg.body
+   * @summary: Get company by brand uids
+   * @description: Get company by brand uids
+   */
+  getCompanyByBrandsPaginator({ pageSize, body } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getCompanyByBrands({
+        body: body,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback);
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<CurrenciesResponse>} - Success response
    * @summary: Get all currencies
    * @description: Get all currencies
@@ -372,14 +638,312 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Integration id
+   * @param {string} arg.level - Integration level
+   * @param {number} arg.uid - Integration level uid
+   * @returns {Promise<IntegrationLevel>} - Success response
+   * @summary: Get level data for integration
+   * @description: Get level data for integration
+   */
+  async getIntegrationByLevelId({ id, level, uid } = {}) {
+    const { error } = ConfigurationValidator.getIntegrationByLevelId().validate(
+      {
+        id,
+        level,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getIntegrationByLevelId().validate(
+      {
+        id,
+        level,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getIntegrationByLevelId",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.IntegrationLevel().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getIntegrationByLevelId",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Integration id
+   * @param {string} arg.level - Integration level
+   * @param {boolean} [arg.opted] - Filter on opted stores
+   * @param {boolean} [arg.checkPermission] - Filter on if permissions are present
+   * @returns {Promise<IntegrationConfigResponse>} - Success response
+   * @summary: Get integration level config
+   * @description: Get integration/integration-opt-in level config
+   */
+  async getIntegrationLevelConfig({ id, level, opted, checkPermission } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.getIntegrationLevelConfig().validate(
+      {
+        id,
+        level,
+        opted,
+        checkPermission,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getIntegrationLevelConfig().validate(
+      {
+        id,
+        level,
+        opted,
+        checkPermission,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getIntegrationLevelConfig",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["opted"] = opted;
+    query_params["check_permission"] = checkPermission;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.IntegrationConfigResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getIntegrationLevelConfig",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Integration id
+   * @param {string} arg.level - Integration level
+   * @param {number} arg.uid - Integration level uid
+   * @returns {Promise<OptedStoreIntegration>} - Success response
+   * @summary: Check store has active integration
+   * @description: API checks if a store is already opted in any other integrations
+   */
+  async getLevelActiveIntegrations({ id, level, uid } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.getLevelActiveIntegrations().validate(
+      {
+        id,
+        level,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getLevelActiveIntegrations().validate(
+      {
+        id,
+        level,
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getLevelActiveIntegrations",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/check/configuration/${id}/${level}/${uid}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.OptedStoreIntegration().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLevelActiveIntegrations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Application Id
+   * @returns {Promise<OptedApplicationResponse>} - Success response
+   * @summary: Get other seller applications
+   * @description: Get other seller application
+   */
+  async getOtherSellerApplicationById({ id } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.getOtherSellerApplicationById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.getOtherSellerApplicationById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getOtherSellerApplicationById",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.OptedApplicationResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message:
+          "Response Validation Warnnings for getOtherSellerApplicationById",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
-   * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
-   * @summary: Get all available integration opt-ins
-   * @description: Get all available integration opt-ins
+   * @returns {Promise<OtherSellerApplications>} - Success response
+   * @summary: Get other seller applications
+   * @description: Get other seller applications who has opted current company as inventory
    */
-  async getAvailableOptIns({ pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getAvailableOptIns().validate(
+  async getOtherSellerApplications({ pageNo, pageSize } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.getOtherSellerApplications().validate(
       {
         pageNo,
         pageSize,
@@ -393,7 +957,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAvailableOptIns().validate(
+    } = ConfigurationValidator.getOtherSellerApplications().validate(
       {
         pageNo,
         pageSize,
@@ -403,7 +967,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAvailableOptIns",
+        message:
+          "Parameter Validation warrnings for getOtherSellerApplications",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -417,7 +982,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/available`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/`,
       query_params,
       undefined,
       xHeaders
@@ -425,7 +990,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.GetIntegrationsOptInsResponse().validate(response, {
+    } = ConfigurationModel.OtherSellerApplications().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -433,7 +998,7 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAvailableOptIns",
+        message: "Response Validation Warnnings for getOtherSellerApplications",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -444,16 +1009,16 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - Current request items count
-   * @summary: Get all available integration opt-ins
-   * @description: Get all available integration opt-ins
+   * @summary: Get other seller applications
+   * @description: Get other seller applications who has opted current company as inventory
    */
-  getAvailableOptInsPaginator({ pageSize } = {}) {
+  getOtherSellerApplicationsPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
       const pageNo = paginator.pageNo;
       const pageType = "number";
-      const data = await this.getAvailableOptIns({
+      const data = await this.getOtherSellerApplications({
         pageNo: pageNo,
         pageSize: pageSize,
       });
@@ -576,550 +1141,6 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration id
-   * @param {string} arg.level - Integration level
-   * @param {boolean} [arg.opted] - Filter on opted stores
-   * @param {boolean} [arg.checkPermission] - Filter on if permissions are present
-   * @returns {Promise<IntegrationConfigResponse>} - Success response
-   * @summary: Get integration level config
-   * @description: Get integration/integration-opt-in level config
-   */
-  async getIntegrationLevelConfig({ id, level, opted, checkPermission } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.getIntegrationLevelConfig().validate(
-      {
-        id,
-        level,
-        opted,
-        checkPermission,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getIntegrationLevelConfig().validate(
-      {
-        id,
-        level,
-        opted,
-        checkPermission,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationLevelConfig",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["opted"] = opted;
-    query_params["check_permission"] = checkPermission;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationConfigResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationLevelConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration id
-   * @param {string} arg.level - Integration level
-   * @param {UpdateIntegrationLevelRequest} arg.body
-   * @returns {Promise<IntegrationLevel>} - Success response
-   * @summary: Update a store level opt-in for integration
-   * @description: Update a store level opt-in for integration
-   */
-  async updateLevelIntegration({ id, level, body } = {}) {
-    const { error } = ConfigurationValidator.updateLevelIntegration().validate(
-      {
-        id,
-        level,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateLevelIntegration().validate(
-      {
-        id,
-        level,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateLevelIntegration",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateLevelIntegration",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration id
-   * @param {string} arg.level - Integration level
-   * @param {number} arg.uid - Integration level uid
-   * @returns {Promise<IntegrationLevel>} - Success response
-   * @summary: Get level data for integration
-   * @description: Get level data for integration
-   */
-  async getIntegrationByLevelId({ id, level, uid } = {}) {
-    const { error } = ConfigurationValidator.getIntegrationByLevelId().validate(
-      {
-        id,
-        level,
-        uid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getIntegrationByLevelId().validate(
-      {
-        id,
-        level,
-        uid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getIntegrationByLevelId",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getIntegrationByLevelId",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration id
-   * @param {string} arg.level - Integration level
-   * @param {number} arg.uid - Integration level uid
-   * @param {IntegrationLevel} arg.body
-   * @returns {Promise<IntegrationLevel>} - Success response
-   * @summary: Update a store level opt-in for integration
-   * @description: Update a store level opt-in for integration
-   */
-  async updateLevelUidIntegration({ id, level, uid, body } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.updateLevelUidIntegration().validate(
-      {
-        id,
-        level,
-        uid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.updateLevelUidIntegration().validate(
-      {
-        id,
-        level,
-        uid,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateLevelUidIntegration",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.IntegrationLevel().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateLevelUidIntegration",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Integration id
-   * @param {string} arg.level - Integration level
-   * @param {number} arg.uid - Integration level uid
-   * @returns {Promise<OptedStoreIntegration>} - Success response
-   * @summary: Check store has active integration
-   * @description: API checks if a store is already opted in any other integrations
-   */
-  async getLevelActiveIntegrations({ id, level, uid } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.getLevelActiveIntegrations().validate(
-      {
-        id,
-        level,
-        uid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getLevelActiveIntegrations().validate(
-      {
-        id,
-        level,
-        uid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getLevelActiveIntegrations",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/check/configuration/${id}/${level}/${uid}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.OptedStoreIntegration().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getLevelActiveIntegrations",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - Search text for brand name
-   * @returns {Promise<BrandsByCompanyResponse>} - Success response
-   * @summary: Get brands by company
-   * @description: Get brands by company
-   */
-  async getBrandsByCompany({ q } = {}) {
-    const { error } = ConfigurationValidator.getBrandsByCompany().validate(
-      {
-        q,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getBrandsByCompany().validate(
-      {
-        q,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getBrandsByCompany",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["q"] = q;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/brands-by-companies`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.BrandsByCompanyResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getBrandsByCompany",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {CompanyByBrandsRequest} arg.body
-   * @returns {Promise<CompanyByBrandsResponse>} - Success response
-   * @summary: Get company by brand uids
-   * @description: Get company by brand uids
-   */
-  async getCompanyByBrands({ body, pageNo, pageSize } = {}) {
-    const { error } = ConfigurationValidator.getCompanyByBrands().validate(
-      {
-        body,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getCompanyByBrands().validate(
-      {
-        body,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyByBrands",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/companies-by-brands`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.CompanyByBrandsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCompanyByBrands",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {CompanyByBrandsRequest} arg.body
-   * @summary: Get company by brand uids
-   * @description: Get company by brand uids
-   */
-  getCompanyByBrandsPaginator({ pageSize, body } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCompanyByBrands({
-        body: body,
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback);
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
    * @param {StoreByBrandsRequest} arg.body
@@ -1222,176 +1243,6 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Current page no
-   * @param {number} [arg.pageSize] - Current request items count
-   * @returns {Promise<OtherSellerApplications>} - Success response
-   * @summary: Get other seller applications
-   * @description: Get other seller applications who has opted current company as inventory
-   */
-  async getOtherSellerApplications({ pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.getOtherSellerApplications().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getOtherSellerApplications().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getOtherSellerApplications",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.OtherSellerApplications().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getOtherSellerApplications",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Current request items count
-   * @summary: Get other seller applications
-   * @description: Get other seller applications who has opted current company as inventory
-   */
-  getOtherSellerApplicationsPaginator({ pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getOtherSellerApplications({
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback);
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Application Id
-   * @returns {Promise<OptedApplicationResponse>} - Success response
-   * @summary: Get other seller applications
-   * @description: Get other seller application
-   */
-  async getOtherSellerApplicationById({ id } = {}) {
-    const {
-      error,
-    } = ConfigurationValidator.getOtherSellerApplicationById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationValidator.getOtherSellerApplicationById().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getOtherSellerApplicationById",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = ConfigurationModel.OptedApplicationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getOtherSellerApplicationById",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Application Id
    * @param {OptOutInventory} arg.body
    * @returns {Promise<SuccessMessageResponse>} - Success response
@@ -1452,6 +1303,155 @@ class Configuration {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for optOutFromApplication",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Integration id
+   * @param {string} arg.level - Integration level
+   * @param {UpdateIntegrationLevelRequest} arg.body
+   * @returns {Promise<IntegrationLevel>} - Success response
+   * @summary: Update a store level opt-in for integration
+   * @description: Update a store level opt-in for integration
+   */
+  async updateLevelIntegration({ id, level, body } = {}) {
+    const { error } = ConfigurationValidator.updateLevelIntegration().validate(
+      {
+        id,
+        level,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateLevelIntegration().validate(
+      {
+        id,
+        level,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateLevelIntegration",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.IntegrationLevel().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateLevelIntegration",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Integration id
+   * @param {string} arg.level - Integration level
+   * @param {number} arg.uid - Integration level uid
+   * @param {IntegrationLevel} arg.body
+   * @returns {Promise<IntegrationLevel>} - Success response
+   * @summary: Update a store level opt-in for integration
+   * @description: Update a store level opt-in for integration
+   */
+  async updateLevelUidIntegration({ id, level, uid, body } = {}) {
+    const {
+      error,
+    } = ConfigurationValidator.updateLevelUidIntegration().validate(
+      {
+        id,
+        level,
+        uid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.updateLevelUidIntegration().validate(
+      {
+        id,
+        level,
+        uid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateLevelUidIntegration",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.IntegrationLevel().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateLevelUidIntegration",
       });
       Logger({ level: "WARN", message: res_error });
     }
