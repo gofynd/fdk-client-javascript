@@ -140,7 +140,7 @@ class Extension {
         return platformClient;
     }
 
-    async getExtensionDetails(retryCount = 5) {
+    async getExtensionDetails(retryCount = 6) {
         try {
             let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
             const token = Buffer.from(
