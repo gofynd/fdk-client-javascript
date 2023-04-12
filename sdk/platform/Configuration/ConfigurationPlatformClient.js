@@ -56,7 +56,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageNo] -
    * @param {number} [arg.pageSize] -
-   * @param {string} [arg.q] - Url encoded object used as mongodb query
+   * @param {string} [arg.q] - Search string to search saleschannel by name
    * @summary: Get list of application under company
    * @description: Get list of application under company
    */
@@ -109,7 +109,7 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] -
-   * @param {string} [arg.q] - Url encoded object used as mongodb query
+   * @param {string} [arg.q] - Search string to search saleschannel by name
    * @summary: Get list of application under company
    * @description: Get list of application under company
    */

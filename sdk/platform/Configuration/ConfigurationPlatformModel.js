@@ -23,6 +23,8 @@ class ConfigurationModel {
 
       comms_enabled: Joi.boolean(),
 
+      communication: ConfigurationModel.CommunicationConfig(),
+
       platforms: Joi.array().items(Joi.string().allow("")),
 
       _id: Joi.string().allow(""),
@@ -306,6 +308,8 @@ class ConfigurationModel {
       loyalty_points: ConfigurationModel.LoyaltyPointsConfig(),
 
       comms_enabled: Joi.boolean(),
+
+      communication: ConfigurationModel.CommunicationConfig(),
     });
   }
 
@@ -384,6 +388,22 @@ class ConfigurationModel {
   static BrandsByCompanyResponse() {
     return Joi.object({
       brands: ConfigurationModel.CompanyBrandInfo(),
+    });
+  }
+
+  static CommunicationConfig() {
+    return Joi.object({
+      email: ConfigurationModel.CommsConfig(),
+
+      sms: ConfigurationModel.CommsConfig(),
+
+      voice: ConfigurationModel.CommsConfig(),
+    });
+  }
+
+  static CommsConfig() {
+    return Joi.object({
+      enabled: Joi.boolean(),
     });
   }
 

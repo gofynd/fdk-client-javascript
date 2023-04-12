@@ -1736,6 +1736,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -1976,6 +1987,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -2216,6 +2238,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -3165,7 +3198,7 @@ const data = await client.configuration.getApplications({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
-| q | string | no | Url encoded object used as mongodb query |  
+| q | string | no | Search string to search saleschannel by name |  
 
 
 
@@ -4862,6 +4895,7 @@ Success
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig) |  no  |  |
  | business | string |  no  |  |
  | comms_enabled | boolean |  no  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig) |  no  |  |
  | platforms | [string] |  no  |  |
  | _id | string |  no  |  |
  | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
@@ -5188,6 +5222,7 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  |
  | loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  |
  | comms_enabled | boolean |  no  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig) |  no  |  |
 
 ---
 
@@ -5291,6 +5326,30 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brands | [CompanyBrandInfo](#CompanyBrandInfo) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConfig](#CommunicationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommsConfig](#CommsConfig) |  no  |  |
+ | sms | [CommsConfig](#CommsConfig) |  no  |  |
+ | voice | [CommsConfig](#CommsConfig) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CommsConfig](#CommsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  | Check current communication channel is enabled |
 
 ---
 

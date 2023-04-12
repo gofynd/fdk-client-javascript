@@ -707,13 +707,21 @@ class Configuration {
    *   retrieving staff members working at a particular ordering store.
    * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
    *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
    * @returns {Promise<AppStaffListResponse>} - Success response
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
-  getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user } = {}) {
+  getAppStaffList({
+    pageNo,
+    pageSize,
+    orderIncent,
+    orderingStore,
+    user,
+    userName,
+  } = {}) {
     const { error } = ConfigurationValidator.getAppStaffList().validate(
-      { pageNo, pageSize, orderIncent, orderingStore, user },
+      { pageNo, pageSize, orderIncent, orderingStore, user, userName },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -724,7 +732,7 @@ class Configuration {
     const {
       error: warrning,
     } = ConfigurationValidator.getAppStaffList().validate(
-      { pageNo, pageSize, orderIncent, orderingStore, user },
+      { pageNo, pageSize, orderIncent, orderingStore, user, userName },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -738,6 +746,7 @@ class Configuration {
     query_params["order_incent"] = orderIncent;
     query_params["ordering_store"] = orderingStore;
     query_params["user"] = user;
+    query_params["user_name"] = userName;
 
     const xHeaders = {};
 
@@ -763,6 +772,7 @@ class Configuration {
    *   retrieving staff members working at a particular ordering store.
    * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
    *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
@@ -771,6 +781,7 @@ class Configuration {
     orderIncent,
     orderingStore,
     user,
+    userName,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -783,6 +794,7 @@ class Configuration {
         orderIncent: orderIncent,
         orderingStore: orderingStore,
         user: user,
+        userName: userName,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
