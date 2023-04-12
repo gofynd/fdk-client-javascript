@@ -245,7 +245,7 @@ class LeadModel {
   static SubmitCustomFormResponse() {
     return Joi.object({
       message: Joi.string().allow("").required(),
-      ticket: LeadModel.Ticket(),
+      ticket: LeadModel.Ticket().required(),
     });
   }
   static SupportGeneralConfig() {
@@ -265,7 +265,7 @@ class LeadModel {
       _custom_json: Joi.any(),
       _id: Joi.string().allow("").required(),
       assigned_to: Joi.any(),
-      category: LeadModel.TicketCategory().required(),
+      category: Joi.string().allow("").required(),
       content: LeadModel.TicketContent(),
       context: LeadModel.TicketContext(),
       created_at: Joi.string().allow(""),
@@ -384,10 +384,12 @@ class LeadModel {
       active: Joi.boolean(),
       application_id: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+      debug: LeadModel.Debug(),
       dob: Joi.string().allow(""),
       emails: Joi.array().items(LeadModel.Email()),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
+      has_old_password_hash: Joi.boolean(),
       last_name: Joi.string().allow(""),
       meta: Joi.any(),
       phone_numbers: Joi.array().items(LeadModel.PhoneNumber()),

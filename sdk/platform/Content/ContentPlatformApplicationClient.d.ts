@@ -260,19 +260,6 @@ declare class Content {
     }): Promise<TagsSchema>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {GenerationEntityType} arg.type - String representing the type of
-     *   SEO content to be generated. Possible values are: title, description
-     * @param {GenerateSEOContent} arg.body
-     * @returns {Promise<GeneratedSEOContent>} - Success response
-     * @summary: Get SEO meta tag title for content
-     * @description: Use this API to get GPT3 generated SEO meta tag title for content
-     */
-    generateSEOTitle({ type, body }?: {
-        type: GenerationEntityType;
-        body: GenerateSEOContent;
-    }): Promise<GeneratedSEOContent>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.announcementId - ID allotted to the announcement.
      * @returns {Promise<AdminAnnouncementSchema>} - Success response
      * @summary: Get announcement by ID

@@ -1433,7 +1433,6 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
-      "cannonical_enabled": false,
       "_id": "6009819ee463ad40de397eb2",
       "app": "000000000000000000000001",
       "created_at": "2021-01-21T13:29:02.543Z",
@@ -2393,14 +2392,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 #### [PathMappingSchema](#PathMappingSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __source | [PathSourceSchema](#PathSourceSchema) |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || redirect_from | string |  no  |  || redirect_to | string |  no  |  || updated_at | string |  no  |  |
-
----
-
-#### [PathSourceSchema](#PathSourceSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __source | [TagSourceSchema](#TagSourceSchema) |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || redirect_from | string |  no  |  || redirect_to | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
@@ -2470,7 +2462,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 #### [SeoSchema](#SeoSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || app | string |  no  |  || cannonical_enabled | boolean |  no  |  || created_at | string |  no  |  || custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  || details | [Detail](#Detail) |  no  |  || robots_txt | string |  no  |  || sitemap_enabled | boolean |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || app | string |  no  |  || created_at | string |  no  |  || custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  || details | [Detail](#Detail) |  no  |  || robots_txt | string |  no  |  || sitemap_enabled | boolean |  no  |  || updated_at | string |  no  |  |
 
 ---
 

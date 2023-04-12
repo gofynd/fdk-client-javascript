@@ -142,7 +142,6 @@ class CatalogValidator {
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
       pincode: Joi.string().allow(""),
-      moq: Joi.number(),
     }).required();
   }
 

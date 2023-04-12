@@ -12,12 +12,12 @@ declare class UserModel {
     static BlockUserRequestSchema(): any;
     static BlockUserSuccess(): any;
     static CodeRequestBodySchema(): any;
-    static CreateUserGroupSchema(): any;
     static CreateUserRequestSchema(): any;
     static CreateUserResponseSchema(): any;
     static CreateUserSessionRequestSchema(): any;
     static CreateUserSessionResponseSchema(): any;
     static CustomerListResponseSchema(): any;
+    static Debug(): any;
     static DeleteAccountConsent(): any;
     static DeleteAccountReasons(): any;
     static DeleteApplicationUserRequestSchema(): any;
@@ -73,7 +73,6 @@ declare class UserModel {
     static SendVerificationLinkMobileRequestSchema(): any;
     static SessionDeleteResponseSchema(): any;
     static SessionExpiry(): any;
-    static SessionListResponseInfo(): any;
     static SessionListResponseSchema(): any;
     static SessionListSuccess(): any;
     static Social(): any;
@@ -84,13 +83,8 @@ declare class UserModel {
     static UnDeleteUserRequestSchema(): any;
     static UnDeleteUserSuccess(): any;
     static UpdatePasswordRequestSchema(): any;
-    static UpdateUserGroupSchema(): any;
     static UpdateUserRequestSchema(): any;
-    static UserEmails(): any;
-    static UserGroupListResponseSchema(): any;
-    static UserGroupResponseSchema(): any;
     static UserObjectSchema(): any;
-    static UserPhoneNumbers(): any;
     static UserSchema(): any;
     static UserSearchResponseSchema(): any;
     static VerifyEmailOtpRequestSchema(): any;

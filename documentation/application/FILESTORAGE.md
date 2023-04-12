@@ -335,7 +335,7 @@ Success. Next, call the `completeUpload` API and pass the response payload of th
 #### [CDN](#CDN)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || absolute_url | string |  no  |  || relative_url | string |  no  |  || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || url | string |  yes  |  |
 
 ---
 

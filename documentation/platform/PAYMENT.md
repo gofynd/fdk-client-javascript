@@ -9,23 +9,20 @@
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
 * [activateAndDectivatePayout](#activateanddectivatepayout)
-* [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
+* [addBeneficiaryDetails](#addbeneficiarydetails)
 * [confirmPayment](#confirmpayment)
 * [deletePayout](#deletepayout)
 * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
 * [getAllPayouts](#getallpayouts)
-* [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getSubscriptionConfig](#getsubscriptionconfig)
 * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
 * [getUserBeneficiaries](#getuserbeneficiaries)
-* [getUserCODlimitRoutes](#getusercodlimitroutes)
 * [getUserOrderBeneficiaries](#getuserorderbeneficiaries)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
-* [setUserCODlimitRoutes](#setusercodlimitroutes)
 * [updateBrandPaymentGatewayConfig](#updatebrandpaymentgatewayconfig)
 * [updatePayout](#updatepayout)
 * [verifyIfscCode](#verifyifsccode)
@@ -99,17 +96,17 @@ save payout response object
 ---
 
 
-### addRefundBankAccountUsingOTP
+### addBeneficiaryDetails
 Save bank details for cancelled/returned order
 
 
 
 ```javascript
 // Promise
-const promise = client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+const promise = client.application("<APPLICATION_ID>").payment.addBeneficiaryDetails({  body : value });
 
 // Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.addRefundBankAccountUsingOTP({  body : value });
+const data = await client.application("<APPLICATION_ID>").payment.addBeneficiaryDetails({  body : value });
 ```
 
 
@@ -118,7 +115,7 @@ const data = await client.application("<APPLICATION_ID>").payment.addRefundBankA
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest) | yes | Request body |
+| body | [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest) | yes | Request body |
 
 
 Use this API to save bank details for returned/cancelled order to refund amount in his account.
@@ -456,78 +453,6 @@ payouts response object
 ---
 
 
-### getBankAccountDetailsOpenAPI
-Get bank details
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
- requestHash : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getBankAccountDetailsOpenAPI({  orderId : value,
- requestHash : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |    
-| requestHash | string | no |  |  
-
-
-
-Use this API to get saved bank details for returned/cancelled order using order id.
-
-*Returned Response:*
-
-
-
-
-[RefundAccountResponse](#RefundAccountResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": {
-    "account_no": "XXXX-XXXX-6682",
-    "ifsc_code": "SBIEXAMPLE001",
-    "email": "loremipsum@example.com",
-    "address": "1773  Monroe Street",
-    "bank_name": "SBI",
-    "branch_name": "HOUSTON",
-    "comment": "Lorem Ipsum",
-    "account_holder": "Leslie Rice",
-    "mobile": "0987654321"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getBrandPaymentGatewayConfig
 Get All Brand Payment Gateway Config Secret
 
@@ -753,7 +678,6 @@ Success
         "anonymous_enable": true,
         "aggregator_name": "Razorpay",
         "add_card_enabled": false,
-        "save_card": true,
         "types": [],
         "networks": [],
         "banks": []
@@ -2230,75 +2154,6 @@ List User Beneficiary
 ---
 
 
-### getUserCODlimitRoutes
-Get COD limit for user
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
- mobileNo : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.getUserCODlimitRoutes({  merchantUserId : value,
- mobileNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| merchantUserId | string | yes |  |   
-| mobileNo | string | yes |  |  
-
-
-
-Use this API to get user cod limit and reamining limit for the payment
-
-*Returned Response:*
-
-
-
-
-[GetUserCODLimitResponse](#GetUserCODLimitResponse)
-
-Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "user_cod_data": {
-    "is_active": true,
-    "user_id": 5,
-    "usages": 1000,
-    "limit": 10000,
-    "remaining_limit": 9000,
-    "merchant_user_id": "5e199e6998cfe1776f1385dc"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getUserOrderBeneficiaries
 List Order Beneficiary
 
@@ -2586,64 +2441,6 @@ Save Subscription Setup Intent Response.
 ---
 
 
-### setUserCODlimitRoutes
-Set COD option for user for payment
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").payment.setUserCODlimitRoutes({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SetCODForUserRequest](#SetCODForUserRequest) | yes | Request body |
-
-
-Use this API to set cod option as true or false for the payment
-
-*Returned Response:*
-
-
-
-
-[SetCODOptionResponse](#SetCODOptionResponse)
-
-Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "COD option for user {} is set to {}"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateBrandPaymentGatewayConfig
 Save Config Secret For Brand Payment Gateway
 
@@ -2846,24 +2643,17 @@ Bank details on correct Ifsc Code
 ### Schemas
 
 
-#### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
+#### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  || order_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || delights | boolean |  yes  |  || details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  |  || order_id | string |  yes  |  || otp | string |  no  |  || request_id | string |  no  |  || shipment_id | string |  yes  |  || transfer_mode | string |  yes  |  |
 
 ---
 
-#### [BankDetailsForOTP](#BankDetailsForOTP)
+#### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || bank_name | string |  yes  |  || branch_name | string |  yes  |  || ifsc_code | string |  yes  |  |
-
----
-
-#### [CODdata](#CODdata)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || limit | number |  yes  |  || remaining_limit | number |  yes  |  || usages | number |  yes  |  || user_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || address | string |  no  |  || bank_name | string |  yes  |  || branch_name | string |  yes  |  || comment | string |  no  |  || email | string |  yes  |  || ifsc_code | string |  yes  |  || mobile | string |  yes  |  || vpa | string |  no  |  || wallet | string |  no  |  |
 
 ---
 
@@ -2895,13 +2685,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [GetUserCODLimitResponse](#GetUserCODLimitResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  || user_cod_data | [CODdata](#CODdata) |  yes  |  |
-
----
-
 #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
 
  | Properties | Type | Nullable | Description |
@@ -2930,20 +2713,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current_status | string |  no  |  || extra_meta | string |  no  |  || order_id | string |  no  |  || payment_gateway | string |  no  |  || payment_id | string |  no  |  |
-
----
-
-#### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  || mode | string |  yes  |  || name | string |  no  |  |
-
----
-
 #### [NotFoundResourceError](#NotFoundResourceError)
 
  | Properties | Type | Nullable | Description |
@@ -2965,10 +2734,17 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [PaymentConfirmationMode](#PaymentConfirmationMode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || meta | string |  no  |  || mode | string |  yes  |  || name | string |  no  |  |
+
+---
+
 #### [PaymentConfirmationRequest](#PaymentConfirmationRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || order_id | string |  yes  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || order_id | string |  yes  |  || payment_methods | [[PaymentConfirmationMode](#PaymentConfirmationMode)] |  yes  |  |
 
 ---
 
@@ -3010,7 +2786,7 @@ Bank details on correct Ifsc Code
 #### [PaymentModeList](#PaymentModeList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || card_brand | string |  no  |  || card_brand_image | string |  no  |  || card_fingerprint | string |  no  |  || card_id | string |  no  |  || card_isin | string |  no  |  || card_issuer | string |  no  |  || card_name | string |  no  |  || card_number | string |  no  |  || card_reference | string |  no  |  || card_token | string |  no  |  || card_type | string |  no  |  || cod_limit | number |  no  |  || cod_limit_per_order | number |  no  |  || code | string |  no  |  || compliant_with_tokenisation_guidelines | boolean |  no  |  || display_name | string |  no  |  || display_priority | number |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || expired | boolean |  no  |  || fynd_vpa | string |  no  |  || intent_app | [[IntentApp](#IntentApp)] |  no  |  || intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  || intent_app_error_list | [string] |  no  |  || intent_flow | boolean |  no  |  || logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || merchant_code | string |  no  |  || name | string |  no  |  || nickname | string |  no  |  || remaining_limit | number |  no  |  || retry_count | number |  no  |  || timeout | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || card_brand | string |  no  |  || card_brand_image | string |  no  |  || card_fingerprint | string |  no  |  || card_id | string |  no  |  || card_isin | string |  no  |  || card_issuer | string |  no  |  || card_name | string |  no  |  || card_number | string |  no  |  || card_reference | string |  no  |  || card_token | string |  no  |  || card_type | string |  no  |  || code | string |  no  |  || display_name | string |  no  |  || display_priority | number |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || expired | boolean |  no  |  || fynd_vpa | string |  no  |  || intent_app | [[IntentApp](#IntentApp)] |  no  |  || intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  || intent_app_error_list | [string] |  no  |  || intent_flow | boolean |  no  |  || logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || merchant_code | string |  no  |  || name | string |  no  |  || nickname | string |  no  |  || retry_count | number |  no  |  || timeout | number |  no  |  |
 
 ---
 
@@ -3073,7 +2849,7 @@ Bank details on correct Ifsc Code
 #### [RootPaymentMode](#RootPaymentMode)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || add_card_enabled | boolean |  no  |  || aggregator_name | string |  no  |  || anonymous_enable | boolean |  no  |  || display_name | string |  yes  |  || display_priority | number |  yes  |  || is_pay_by_card_pl | boolean |  no  |  || list | [[PaymentModeList](#PaymentModeList)] |  no  |  || name | string |  yes  |  || save_card | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || add_card_enabled | boolean |  no  |  || aggregator_name | string |  no  |  || anonymous_enable | boolean |  no  |  || display_name | string |  yes  |  || display_priority | number |  yes  |  || list | [[PaymentModeList](#PaymentModeList)] |  no  |  || name | string |  yes  |  |
 
 ---
 
@@ -3088,20 +2864,6 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || data | string |  yes  |  || success | boolean |  yes  |  |
-
----
-
-#### [SetCODForUserRequest](#SetCODForUserRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || merchant_user_id | string |  yes  |  || mobileno | string |  yes  |  |
-
----
-
-#### [SetCODOptionResponse](#SetCODOptionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || success | boolean |  yes  |  |
 
 ---
 

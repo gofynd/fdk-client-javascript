@@ -33,7 +33,6 @@ Content System
 * [deleteSlideshow](#deleteslideshow)
 * [editDataLoader](#editdataloader)
 * [editInjectableTag](#editinjectabletag)
-* [generateSEOTitle](#generateseotitle)
 * [getAnnouncementById](#getannouncementbyid)
 * [getAnnouncementsList](#getannouncementslist)
 * [getBlogs](#getblogs)
@@ -2510,75 +2509,6 @@ Success.
   "__v": 1
 }
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### generateSEOTitle
-Get SEO meta tag title for content
-
-
-
-```javascript
-// Promise
-const promise = client.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
- body : value });
-
-// Async/Await
-const data = await client.application("<APPLICATION_ID>").content.generateSEOTitle({  type : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| type | GenerationEntityType | yes | String representing the type of SEO content to be generated. Possible values are: title, description |  
-| body | [GenerateSEOContent](#GenerateSEOContent) | yes | Request body |
-
-
-Use this API to get GPT3 generated SEO meta tag title for content
-
-*Returned Response:*
-
-
-
-
-[GeneratedSEOContent](#GeneratedSEOContent)
-
-Returns the generated SEO title
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; default</i></summary>
-
-```json
-{
-  "value": {
-    "title": "SEO Title example",
-    "description": "SEO Description example"
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -5489,7 +5419,6 @@ Success. Refer `SeoComponent` for more details.
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
-      "cannonical_enabled": false,
       "_id": "6009819ee463ad40de397eb2",
       "app": "000000000000000000000001",
       "created_at": "2021-01-21T13:29:02.543Z",
@@ -7903,20 +7832,6 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [GeneratedSEOContent](#GeneratedSEOContent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || title | string |  no  |  |
-
----
-
-#### [GenerateSEOContent](#GenerateSEOContent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || existing_text | string |  no  |  || keywords | [string] |  no  |  || text | string |  no  |  || type | string |  no  |  |
-
----
-
 #### [GetAnnouncementListSchema](#GetAnnouncementListSchema)
 
  | Properties | Type | Nullable | Description |
@@ -8116,14 +8031,7 @@ Success. Refer `Support` for more details.
 #### [PathMappingSchema](#PathMappingSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __source | [PathSourceSchema](#PathSourceSchema) |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || redirect_from | string |  no  |  || redirect_to | string |  no  |  || updated_at | string |  no  |  |
-
----
-
-#### [PathSourceSchema](#PathSourceSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __source | [TagSourceSchema](#TagSourceSchema) |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || redirect_from | string |  no  |  || redirect_to | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
@@ -8193,7 +8101,7 @@ Success. Refer `Support` for more details.
 #### [SeoSchema](#SeoSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || app | string |  no  |  || cannonical_enabled | boolean |  no  |  || created_at | string |  no  |  || custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  || details | [Detail](#Detail) |  no  |  || robots_txt | string |  no  |  || sitemap_enabled | boolean |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || app | string |  no  |  || created_at | string |  no  |  || custom_meta_tags | [[CustomMetaTag](#CustomMetaTag)] |  no  |  || details | [Detail](#Detail) |  no  |  || robots_txt | string |  no  |  || sitemap_enabled | boolean |  no  |  || updated_at | string |  no  |  |
 
 ---
 
@@ -8287,18 +8195,6 @@ Success. Refer `Support` for more details.
 ### Enums
 
 
-
-
-
- #### [GenerationEntityType](#GenerationEntityType)
- Type : string
-
- | Name | Value | Description |
- | ---- | ----- | ----------- |
- | title | title | Denotes title will be generated |
- | description | description | Denotes description will be generated |
-
----
 
 
 

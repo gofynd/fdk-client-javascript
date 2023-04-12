@@ -42,9 +42,9 @@ class Catalog {
       getProductDetailBySlug:
         "/service/application/catalog/v1.0/products/{slug}/",
       getProductPriceBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/price/",
+        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/price/",
       getProductSellersBySlug:
-        "/service/application/catalog/v3.0/products/{slug}/sizes/{size}/sellers/",
+        "/service/application/catalog/v2.0/products/{slug}/sizes/{size}/sellers/",
       getProductSizesBySlug:
         "/service/application/catalog/v1.0/products/{slug}/sizes/",
       getProductStockByIds:
@@ -1620,15 +1620,13 @@ class Catalog {
    *   product, e.g. 1,2,3.
    * @param {string} [arg.pincode] - The PIN Code of the area near which the
    *   selling locations should be searched, e.g. 400059.
-   * @param {number} [arg.moq] - An Integer indication the Minimum Order
-   *   Quantity of a product, e.g. 100.
-   * @returns {Promise<ProductSizePriceResponseV3>} - Success response
+   * @returns {Promise<ProductSizePriceResponseV2>} - Success response
    * @summary: Get the price of a product size at a PIN Code
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
    */
-  async getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
+  async getProductPriceBySlug({ slug, size, storeId, pincode } = {}) {
     const { error } = CatalogValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, pincode, moq },
+      { slug, size, storeId, pincode },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1639,7 +1637,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, pincode, moq },
+      { slug, size, storeId, pincode },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1653,7 +1651,6 @@ class Catalog {
     const query_params = {};
     query_params["store_id"] = storeId;
     query_params["pincode"] = pincode;
-    query_params["moq"] = moq;
 
     const xHeaders = {};
 
@@ -1671,7 +1668,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizePriceResponseV3().validate(response, {
+    } = CatalogModel.ProductSizePriceResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1702,7 +1699,7 @@ class Catalog {
    * @param {number} [arg.pageNo] - The page number to navigate through the
    *   given set of results.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
+   * @returns {Promise<ProductSizeSellersResponseV2>} - Success response
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
@@ -1759,7 +1756,7 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizeSellersResponseV3().validate(response, {
+    } = CatalogModel.ProductSizeSellersResponseV2().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

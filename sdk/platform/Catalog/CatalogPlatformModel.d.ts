@@ -3,7 +3,6 @@ declare class CatalogModel {
     static Action(): any;
     static ActionPage(): any;
     static AllowSingleRequest(): any;
-    static AllSizes(): any;
     static AppCatalogConfiguration(): any;
     static AppConfiguration(): any;
     static AppConfigurationDetail(): any;
@@ -21,7 +20,6 @@ declare class CatalogModel {
     static ArticleAssignment(): any;
     static ArticleAssignment1(): any;
     static ArticleQuery(): any;
-    static ArticleStoreResponse(): any;
     static AssignStore(): any;
     static AssignStoreArticle(): any;
     static AttributeDetailsGroup(): any;
@@ -40,7 +38,6 @@ declare class CatalogModel {
     static BrandItem(): any;
     static BrandListingResponse(): any;
     static BrandMeta(): any;
-    static BrandMeta1(): any;
     static BulkAssetResponse(): any;
     static BulkHsnResponse(): any;
     static BulkHsnUpsert(): any;
@@ -52,7 +49,6 @@ declare class CatalogModel {
     static CatalogInsightBrand(): any;
     static CatalogInsightItem(): any;
     static CatalogInsightResponse(): any;
-    static CategoriesResponse(): any;
     static Category(): any;
     static CategoryCreateResponse(): any;
     static CategoryItems(): any;
@@ -68,8 +64,7 @@ declare class CatalogModel {
     static CollectionCreateResponse(): any;
     static CollectionDetailResponse(): any;
     static CollectionImage(): any;
-    static CollectionItem(): any;
-    static CollectionItemUpdate(): any;
+    static CollectionItemRequest(): any;
     static CollectionListingFilter(): any;
     static CollectionListingFilterTag(): any;
     static CollectionListingFilterType(): any;
@@ -77,7 +72,6 @@ declare class CatalogModel {
     static CollectionSchedule(): any;
     static CompanyBrandDetail(): any;
     static CompanyMeta(): any;
-    static CompanyMeta1(): any;
     static CompanyOptIn(): any;
     static ConfigErrorResponse(): any;
     static ConfigSuccessResponse(): any;
@@ -100,7 +94,6 @@ declare class CatalogModel {
     static CrossSellingData(): any;
     static CrossSellingResponse(): any;
     static CustomOrder(): any;
-    static DateMeta(): any;
     static DefaultKeyRequest(): any;
     static DeleteResponse(): any;
     static Department(): any;
@@ -114,14 +107,12 @@ declare class CatalogModel {
     static DepartmentResponse(): any;
     static DepartmentsResponse(): any;
     static DimensionResponse(): any;
-    static DimensionResponse1(): any;
     static Document(): any;
     static EntityConfiguration(): any;
     static ErrorResponse(): any;
     static FilerList(): any;
     static GenderDetail(): any;
     static GetAddressSerializer(): any;
-    static GetAllSizes(): any;
     static GetAppCatalogConfiguration(): any;
     static GetAppCatalogEntityConfiguration(): any;
     static GetAutocompleteWordsData(): any;
@@ -137,8 +128,6 @@ declare class CatalogModel {
     static GetConfigMetadataResponse(): any;
     static GetConfigResponse(): any;
     static GetDepartment(): any;
-    static GetInventories(): any;
-    static GetInventoriesResponse(): any;
     static GetLocationSerializer(): any;
     static GetOptInPlatform(): any;
     static GetProductBundleCreateResponse(): any;
@@ -153,6 +142,7 @@ declare class CatalogModel {
     static Guide(): any;
     static Hierarchy(): any;
     static HsnCode(): any;
+    static HsnCodesListingResponse(): any;
     static HsnCodesListingResponseSchemaV2(): any;
     static HsnCodesObject(): any;
     static HSNCodesResponse(): any;
@@ -163,17 +153,10 @@ declare class CatalogModel {
     static ImageUrls(): any;
     static InventoryBulkRequest(): any;
     static InventoryConfig(): any;
-    static InventoryCreateRequest(): any;
-    static InventoryExportAdvanceOption(): any;
-    static InventoryExportFilter(): any;
     static InventoryExportJob(): any;
-    static InventoryExportJobListResponse(): any;
-    static InventoryExportQuantityFilter(): any;
     static InventoryExportRequest(): any;
     static InventoryExportResponse(): any;
     static InventoryFailedReason(): any;
-    static InventoryJobDetailResponse(): any;
-    static InventoryJobFilters(): any;
     static InventoryJobPayload(): any;
     static InventoryPage(): any;
     static InventoryPayload(): any;
@@ -192,6 +175,7 @@ declare class CatalogModel {
     static InvoiceDetailsSerializer(): any;
     static InvSize(): any;
     static ItemQuery(): any;
+    static ItemQueryForUserCollection(): any;
     static Items(): any;
     static LimitedProductData(): any;
     static ListSizeGuide(): any;
@@ -202,7 +186,6 @@ declare class CatalogModel {
     static LocationTimingSerializer(): any;
     static Logo(): any;
     static ManufacturerResponse(): any;
-    static ManufacturerResponse1(): any;
     static Media(): any;
     static Media1(): any;
     static Media2(): any;
@@ -214,8 +197,8 @@ declare class CatalogModel {
     static MetaDataListingSortResponse(): any;
     static MetaFields(): any;
     static MOQData(): any;
+    static NestedTags(): any;
     static NetQuantity(): any;
-    static NetQuantityResponse(): any;
     static NextSchedule(): any;
     static OptinCompanyBrandDetailsView(): any;
     static OptinCompanyDetail(): any;
@@ -228,7 +211,6 @@ declare class CatalogModel {
     static PageResponseType(): any;
     static Price(): any;
     static Price1(): any;
-    static PriceArticle(): any;
     static PriceMeta(): any;
     static ProdcutTemplateCategoriesResponse(): any;
     static Product(): any;
@@ -241,10 +223,12 @@ declare class CatalogModel {
     static ProductBundleRequest(): any;
     static ProductBundleUpdateRequest(): any;
     static ProductConfigurationDownloads(): any;
-    static ProductCreateUpdateSchemaV2(): any;
+    static ProductCreateUpdate(): any;
     static ProductDetail(): any;
     static ProductDetailAttribute(): any;
     static ProductDetailGroupedAttribute(): any;
+    static ProductDownloadItemsData(): any;
+    static ProductDownloadsItems(): any;
     static ProductDownloadsResponse(): any;
     static ProductFilters(): any;
     static ProductFiltersKey(): any;
@@ -252,33 +236,23 @@ declare class CatalogModel {
     static ProductListingDetail(): any;
     static ProductListingPrice(): any;
     static ProductListingResponse(): any;
-    static ProductListingResponseV2(): any;
     static ProductPublish(): any;
-    static ProductPublish1(): any;
     static ProductPublished(): any;
     static ProductReturnConfigSerializer(): any;
-    static ProductSchemaV2(): any;
     static ProductSize(): any;
     static ProductSizeDeleteDataResponse(): any;
     static ProductSizeDeleteResponse(): any;
     static ProductSortOn(): any;
     static ProductTagsViewResponse(): any;
     static ProductTemplate(): any;
-    static ProductTemplateDownloadsExport(): any;
-    static ProductTemplateExportFilterRequest(): any;
-    static ProductTemplateExportResponse(): any;
     static ProductVariants(): any;
     static ProductVariantsResponse(): any;
     static Properties(): any;
     static PTErrorResponse(): any;
     static Quantities(): any;
-    static QuantitiesArticle(): any;
-    static Quantity(): any;
     static QuantityBase(): any;
     static ReturnConfig(): any;
     static ReturnConfig1(): any;
-    static ReturnConfig2(): any;
-    static ReturnConfigResponse(): any;
     static SearchKeywordResult(): any;
     static SecondLevelChild(): any;
     static SellerPhoneNumber(): any;
@@ -286,7 +260,6 @@ declare class CatalogModel {
     static SeoDetail(): any;
     static SetSize(): any;
     static SingleCategoryResponse(): any;
-    static SingleProductResponse(): any;
     static Size(): any;
     static SizeDistribution(): any;
     static SizeGuideResponse(): any;
@@ -305,7 +278,6 @@ declare class CatalogModel {
     static ThirdLevelChild(): any;
     static Trader(): any;
     static Trader1(): any;
-    static Trader2(): any;
     static UpdateCollection(): any;
     static UpdatedResponse(): any;
     static UserCommon(): any;
@@ -316,11 +288,9 @@ declare class CatalogModel {
     static UserSerializer(): any;
     static UserSerializer1(): any;
     static UserSerializer2(): any;
-    static ValidateIdentifier(): any;
     static ValidateProduct(): any;
     static ValidateSizeGuide(): any;
     static VerifiedBy(): any;
     static WeightResponse(): any;
-    static WeightResponse1(): any;
     static PageType(): any;
 }

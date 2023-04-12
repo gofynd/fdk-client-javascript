@@ -4702,7 +4702,7 @@ Success
 #### [SendOtpCommsReqEmail](#SendOtpCommsReqEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || expiry | number |  no  |  || otp_length | number |  no  |  || template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || expiry | number |  no  |  || otp_length | number |  no  |  || provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider) |  no  |  || template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
 
 ---
 
@@ -4731,6 +4731,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || request_id | string |  no  |  || resend_timer | number |  no  |  || success | boolean |  no  |  |
+
+---
+
+#### [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || slug | string |  no  |  |
 
 ---
 

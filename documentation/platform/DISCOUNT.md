@@ -17,7 +17,6 @@ Discount
 * [getDownloadJob](#getdownloadjob)
 * [getValidationJob](#getvalidationjob)
 * [updateDiscount](#updatediscount)
-* [upsertDiscountItems](#upsertdiscountitems)
 * [validateDiscountFile](#validatediscountfile)
 
 
@@ -558,64 +557,6 @@ Success
 ---
 
 
-### upsertDiscountItems
-Create custom discount from bulk.
-
-
-
-```javascript
-// Promise
-const promise = client.discount.upsertDiscountItems({  id : value,
- body : value });
-
-// Async/Await
-const data = await client.discount.upsertDiscountItems({  id : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Job ID of the discount. |  
-| body | [BulkDiscount](#BulkDiscount) | yes | Request body |
-
-
-Create custom discounts through API.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### validateDiscountFile
 Validate File.
 
@@ -685,13 +626,6 @@ Success
 
 ---
 
-#### [BulkDiscount](#BulkDiscount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | number |  yes  |  || items | [[DiscountItems](#DiscountItems)] |  yes  |  |
-
----
-
 #### [CancelJobResponse](#CancelJobResponse)
 
  | Properties | Type | Nullable | Description |
@@ -703,13 +637,6 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || app_ids | [string] |  yes  |  || brand_ids | [number] |  no  |  || company_id | number |  yes  |  || discount_level | string |  yes  |  || discount_type | string |  yes  |  || extension_ids | [string] |  yes  |  || file_path | string |  no  |  || is_active | boolean |  yes  |  || job_type | string |  yes  |  || name | string |  yes  |  || store_ids | [number] |  no  |  || validity | [ValidityObject](#ValidityObject) |  yes  |  || value | number |  no  |  |
-
----
-
-#### [DiscountItems](#DiscountItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || brand_uid | number |  no  |  || discount_type | string |  yes  |  || item_code | string |  no  |  || seller_identifier | string |  no  |  || value | number |  yes  |  |
 
 ---
 

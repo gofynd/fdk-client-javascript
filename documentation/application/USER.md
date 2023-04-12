@@ -3184,13 +3184,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [CreateUserGroupSchema](#CreateUserGroupSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  yes  |  || file_url | string |  yes  |  || name | string |  yes  |  |
-
----
-
 #### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3223,6 +3216,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || items | [[UserSchema](#UserSchema)] |  no  |  || page | [PaginationSchema](#PaginationSchema) |  no  |  |
+
+---
+
+#### [Debug](#Debug)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || platform | string |  no  |  || source | string |  no  |  |
 
 ---
 
@@ -3611,17 +3611,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [SessionListResponseInfo](#SessionListResponseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || domain | string |  no  |  || expire_in | string |  no  |  || ip | string |  no  |  || session_id | string |  no  |  || user_agent | string |  no  |  |
-
----
-
 #### [SessionListResponseSchema](#SessionListResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [string] |  no  |  |
 
 ---
 
@@ -3688,38 +3681,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || file_url | string |  no  |  || name | string |  no  |  |
-
----
-
 #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || emails | [[UserEmails](#UserEmails)] |  no  |  || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
-
----
-
-#### [UserEmails](#UserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
-
----
-
-#### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  || page | [PaginationSchema](#PaginationSchema) |  no  |  |
-
----
-
-#### [UserGroupResponseSchema](#UserGroupResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application_id | string |  no  |  || created_at | string |  no  |  || description | string |  no  |  || file_url | string |  no  |  || modified_at | string |  no  |  || name | string |  no  |  || status | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  |
 
 ---
 
@@ -3730,17 +3695,10 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [UserPhoneNumbers](#UserPhoneNumbers)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | string |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
-
----
-
 #### [UserSchema](#UserSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || account_type | string |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || created_at | string |  no  |  || dob | string |  no  |  || emails | [[Email](#Email)] |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  || profile_pic_url | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  || username | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || account_type | string |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || created_at | string |  no  |  || debug | [Debug](#Debug) |  no  |  || dob | string |  no  |  || emails | [[Email](#Email)] |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || has_old_password_hash | boolean |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  || profile_pic_url | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  || username | string |  no  |  |
 
 ---
 

@@ -654,19 +654,13 @@ class ContentModel {
   }
   static PathMappingSchema() {
     return Joi.object({
-      __source: ContentModel.PathSourceSchema(),
+      __source: ContentModel.TagSourceSchema(),
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       redirect_from: Joi.string().allow(""),
       redirect_to: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-    });
-  }
-  static PathSourceSchema() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
     });
   }
   static PhoneProperties() {
@@ -729,7 +723,6 @@ class ContentModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
-      cannonical_enabled: Joi.boolean(),
       created_at: Joi.string().allow(""),
       custom_meta_tags: Joi.array().items(Joi.any()),
       details: ContentModel.Detail(),

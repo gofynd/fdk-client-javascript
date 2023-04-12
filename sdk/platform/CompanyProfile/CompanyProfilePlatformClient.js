@@ -832,6 +832,72 @@ class CompanyProfile {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AssignStoreRequestValidator} arg.body
+   * @returns {Promise<AssignStoreResponseSerializer>} - Success response
+   * @summary: Location Reassignment
+   * @description:
+   */
+  async getOptimalLocations({ body } = {}) {
+    const { error } = CompanyProfileValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CompanyProfileValidator.getOptimalLocations().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/reassign`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.AssignStoreResponseSerializer().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getOptimalLocations",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {UpdateCompany} arg.body
    * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit company profile

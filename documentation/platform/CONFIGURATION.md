@@ -2486,12 +2486,14 @@ Check store has active integration
 // Promise
 const promise = client.configuration.getLevelActiveIntegrations({  id : value,
  level : value,
- uid : value });
+ uid : value,
+ permission : value });
 
 // Async/Await
 const data = await client.configuration.getLevelActiveIntegrations({  id : value,
  level : value,
- uid : value });
+ uid : value,
+ permission : value });
 ```
 
 
@@ -2502,7 +2504,8 @@ const data = await client.configuration.getLevelActiveIntegrations({  id : value
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Integration id |   
 | level | string | yes | Integration level |   
-| uid | number | yes | Integration level uid |  
+| uid | number | yes | Integration level uid |    
+| permission | string | no | Check opt-in for specific integration permissions |  
 
 
 

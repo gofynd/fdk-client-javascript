@@ -50,8 +50,6 @@ declare class ContentModel {
     static FaqResponseSchema(): any;
     static FaqSchema(): any;
     static FeatureImage(): any;
-    static GeneratedSEOContent(): any;
-    static GenerateSEOContent(): any;
     static GetAnnouncementListSchema(): any;
     static GetFaqCategoriesSchema(): any;
     static GetFaqCategoryBySlugSchema(): any;
@@ -81,7 +79,6 @@ declare class ContentModel {
     static PageSpecItem(): any;
     static PageSpecParam(): any;
     static PathMappingSchema(): any;
-    static PathSourceSchema(): any;
     static PhoneProperties(): any;
     static PhoneSchema(): any;
     static RemoveHandpickedSchema(): any;
@@ -104,6 +101,5 @@ declare class ContentModel {
     static TagsSchema(): any;
     static UpdateFaqCategoryRequestSchema(): any;
     static UpdateHandpickedSchema(): any;
-    static GenerationEntityType(): any;
     static PageType(): any;
 }

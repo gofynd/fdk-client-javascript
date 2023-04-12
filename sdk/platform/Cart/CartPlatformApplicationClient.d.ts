@@ -5,20 +5,6 @@ declare class Cart {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.cartId - Current Cart _id
-     * @param {boolean} [arg.b] -
-     * @param {AddCartRequest} arg.body
-     * @returns {Promise<AddCartDetailResponse>} - Success response
-     * @summary: Add items to abandoned cart
-     * @description: Use this API to add items to the abandoned cart.
-     */
-    addItems({ cartId, body, b }?: {
-        cartId: string;
-        b?: boolean;
-        body: AddCartRequest;
-    }): Promise<AddCartDetailResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {OpenApiCartServiceabilityRequest} arg.body
      * @returns {Promise<OpenApiCartServiceabilityResponse>} - Success response
      * @summary: Check Pincode Serviceability
@@ -67,65 +53,6 @@ declare class Cart {
     fetchAndvalidateCartItems({ body }?: {
         body: OpenapiCartDetailsRequest;
     }): Promise<OpenapiCartDetailsResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {boolean} [arg.anonymousCart] -
-     * @param {string} [arg.lastId] -
-     * @param {string} [arg.sortOn] -
-     * @returns {Promise<AbandonedCartResponse>} - Success response
-     * @summary: Get with abandoned cart list
-     * @description: Get abandoned cart list with pagination
-     */
-    getAbandonedCart({ pageNo, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, }?: {
-        pageNo?: number;
-        pageSize?: number;
-        fromDate?: string;
-        toDate?: string;
-        anonymousCart?: boolean;
-        lastId?: string;
-        sortOn?: string;
-    }): Promise<AbandonedCartResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Current company id
-     * @param {string} arg.applicationId - Current Application _id
-     * @param {number} [arg.pageSize] -
-     * @param {string} [arg.fromDate] -
-     * @param {string} [arg.toDate] -
-     * @param {boolean} [arg.anonymousCart] -
-     * @param {string} [arg.lastId] -
-     * @param {string} [arg.sortOn] -
-     * @summary: Get with abandoned cart list
-     * @description: Get abandoned cart list with pagination
-     */
-    getAbandonedCartPaginator({ companyId, applicationId, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        fromDate?: string;
-        toDate?: string;
-        anonymousCart?: boolean;
-        lastId?: string;
-        sortOn?: string;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @returns {Promise<CartDetailResponse>} - Success response
-     * @summary: Fetch all items added to the cart
-     * @description: Use this API to get details of all the items added to a cart.
-     */
-    getAbandonedCartDetails({ id, i, b }?: {
-        id?: string;
-        i?: boolean;
-        b?: boolean;
-    }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -244,20 +171,6 @@ declare class Cart {
         fpPanel?: string;
         promotionId?: string;
     }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.cartId - Current Cart _id
-     * @param {boolean} [arg.b] -
-     * @param {UpdateCartRequest} arg.body
-     * @returns {Promise<UpdateCartDetailResponse>} - Success response
-     * @summary: Update items in the abandoned cart
-     * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
-     */
-    updateCart({ cartId, body, b }?: {
-        cartId: string;
-        b?: boolean;
-        body: UpdateCartRequest;
-    }): Promise<UpdateCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

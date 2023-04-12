@@ -1,22 +1,19 @@
 export = PaymentModel;
 declare class PaymentModel {
-    static AddBeneficiaryDetailsOTPRequest(): any;
-    static BankDetailsForOTP(): any;
-    static CODdata(): any;
+    static AddBeneficiaryDetailsRequest(): any;
+    static BeneficiaryModeDetails(): any;
     static DeletePayoutResponse(): any;
     static DeleteSubscriptionPaymentMethodResponse(): any;
     static ErrorCodeAndDescription(): any;
     static ErrorCodeDescription(): any;
-    static GetUserCODLimitResponse(): any;
     static HttpErrorCodeAndResponse(): any;
     static IfscCodeResponse(): any;
     static IntentApp(): any;
     static IntentAppErrorList(): any;
-    static MultiTenderPaymentMeta(): any;
-    static MultiTenderPaymentMethod(): any;
     static NotFoundResourceError(): any;
     static OrderBeneficiaryDetails(): any;
     static OrderBeneficiaryResponse(): any;
+    static PaymentConfirmationMode(): any;
     static PaymentConfirmationRequest(): any;
     static PaymentConfirmationResponse(): any;
     static PaymentGatewayConfig(): any;
@@ -35,8 +32,6 @@ declare class PaymentModel {
     static RootPaymentMode(): any;
     static SaveSubscriptionSetupIntentRequest(): any;
     static SaveSubscriptionSetupIntentResponse(): any;
-    static SetCODForUserRequest(): any;
-    static SetCODOptionResponse(): any;
     static SubscriptionConfigResponse(): any;
     static SubscriptionPaymentMethodResponse(): any;
     static UpdatePayoutRequest(): any;

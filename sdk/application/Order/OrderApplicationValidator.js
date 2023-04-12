@@ -9,12 +9,6 @@ class OrderValidator {
     }).required();
   }
 
-  static getInvoiceByShipmentId() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -23,25 +17,17 @@ class OrderValidator {
 
   static getOrders() {
     return Joi.object({
-      status: Joi.number(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      customMeta: Joi.string().allow(""),
+      status: Joi.number(),
     });
   }
 
   static getPosOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  static getShipmentBagReasons() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      bagId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -73,7 +59,7 @@ class OrderValidator {
   static updateShipmentStatus() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      body: OrderModel.UpdateShipmentStatusRequest().required(),
+      body: OrderModel.ShipmentStatusUpdateBody().required(),
     }).required();
   }
 
@@ -81,7 +67,7 @@ class OrderValidator {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow("").required(),
-      body: OrderModel.VerifyOtp().required(),
+      body: OrderModel.ReqBodyVerifyOTPShipment().required(),
     }).required();
   }
 }

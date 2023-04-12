@@ -155,14 +155,17 @@ declare class Configuration {
      * @param {string} arg.id - Integration id
      * @param {string} arg.level - Integration level
      * @param {number} arg.uid - Integration level uid
+     * @param {string} [arg.permission] - Check opt-in for specific integration
+     *   permissions
      * @returns {Promise<OptedStoreIntegration>} - Success response
      * @summary: Check store has active integration
      * @description: API checks if a store is already opted in any other integrations
      */
-    getLevelActiveIntegrations({ id, level, uid }?: {
+    getLevelActiveIntegrations({ id, level, uid, permission }?: {
         id: string;
         level: string;
         uid: number;
+        permission?: string;
     }): Promise<OptedStoreIntegration>;
     /**
      * @param {Object} arg - Arg object.

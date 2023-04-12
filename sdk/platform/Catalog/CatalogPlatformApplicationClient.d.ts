@@ -6,14 +6,14 @@ declare class Catalog {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - A `id` is a unique identifier of a collection.
-     * @param {CollectionItemUpdate} arg.body
+     * @param {CollectionItemRequest} arg.body
      * @returns {Promise<UpdatedResponse>} - Success response
      * @summary: Add items to a collection
      * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
      */
     addCollectionItems({ id, body }?: {
         id: string;
-        body: CollectionItemUpdate;
+        body: CollectionItemRequest;
     }): Promise<UpdatedResponse>;
     /**
      * @param {Object} arg - Arg object.

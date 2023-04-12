@@ -8,6 +8,7 @@ declare class Cart {
         applyCoupon: string;
         applyRewardPoints: string;
         checkoutCart: string;
+        deleteCart: string;
         getAddressById: string;
         getAddresses: string;
         getBulkDiscountOffers: string;
@@ -46,17 +47,15 @@ declare class Cart {
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, buyNow }?: {
+    addItems({ body, i, b, buyNow }?: {
         i?: boolean;
         b?: boolean;
-        areaCode?: string;
         buyNow?: boolean;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
@@ -110,6 +109,16 @@ declare class Cart {
         buyNow?: boolean;
         body: CartCheckoutDetailRequest;
     }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.id] - The unique identifier of the cart.
+     * @returns {Promise<DeleteCartDetailResponse>} - Success response
+     * @summary: Delete cart once user made successful checkout
+     * @description: Use this API to delete the cart.
+     */
+    deleteCart({ id }?: {
+        id?: number;
+    }): Promise<DeleteCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -176,18 +185,16 @@ declare class Cart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {number} [arg.assignCardId] -
-     * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
      * @returns {Promise<CartDetailResponse>} - Success response
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart.
      */
-    getCart({ id, i, b, assignCardId, areaCode, buyNow }?: {
+    getCart({ id, i, b, assignCardId, buyNow }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
         assignCardId?: number;
-        areaCode?: string;
         buyNow?: boolean;
     }): Promise<CartDetailResponse>;
     /**
@@ -371,18 +378,16 @@ declare class Cart {
      * @param {string} [arg.id] -
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
-     * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
      * @param {UpdateCartRequest} arg.body
      * @returns {Promise<UpdateCartDetailResponse>} - Success response
      * @summary: Update items in the cart
      * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
      */
-    updateCart({ body, id, i, b, areaCode, buyNow }?: {
+    updateCart({ body, id, i, b, buyNow }?: {
         id?: string;
         i?: boolean;
         b?: boolean;
-        areaCode?: string;
         buyNow?: boolean;
         body: UpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;

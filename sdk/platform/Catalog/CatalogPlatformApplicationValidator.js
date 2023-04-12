@@ -5,7 +5,7 @@ class CatalogValidator {
   static addCollectionItems() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: CatalogModel.CollectionItemUpdate().required(),
+      body: CatalogModel.CollectionItemRequest().required(),
     }).required();
   }
 

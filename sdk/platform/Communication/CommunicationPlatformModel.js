@@ -535,6 +535,7 @@ class CommunicationModel {
     return Joi.object({
       expiry: Joi.number(),
       otp_length: Joi.number(),
+      provider: CommunicationModel.SendOtpEmailCommsProvider(),
       template: CommunicationModel.SendOtpEmailCommsTemplate(),
     });
   }
@@ -569,6 +570,12 @@ class CommunicationModel {
       request_id: Joi.string().allow(""),
       resend_timer: Joi.number(),
       success: Joi.boolean(),
+    });
+  }
+  static SendOtpEmailCommsProvider() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
     });
   }
   static SendOtpEmailCommsTemplate() {

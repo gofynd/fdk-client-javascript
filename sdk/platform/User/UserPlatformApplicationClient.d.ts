@@ -35,16 +35,6 @@ declare class User {
     }): Promise<CreateUserResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CreateUserGroupSchema} arg.body
-     * @returns {Promise<UserGroupResponseSchema>} - Success response
-     * @summary: Create an User Group
-     * @description: Use this API to create new user Group
-     */
-    createUserGroup({ body }?: {
-        body: CreateUserGroupSchema;
-    }): Promise<UserGroupResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {CreateUserSessionRequestSchema} arg.body
      * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
      * @summary: Create user session
@@ -56,35 +46,19 @@ declare class User {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of a customer.
-     * @param {string} arg.reason - Reason to delete sessions.
      * @returns {Promise<SessionDeleteResponseSchema>} - Success response
      * @summary: Delete a list of all session for a user
      * @description: Use this API to Delete a list of session of customers who have registered in the application.
      */
-    deleteActiveSessions({ id, reason }?: {
+    deleteActiveSessions({ id }?: {
         id: string;
-        reason: string;
-    }): Promise<SessionDeleteResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of a customer.
-     * @param {string} arg.sessionId - Session ID of a customer.
-     * @param {string} arg.reason - Reason for deleting session.
-     * @returns {Promise<SessionDeleteResponseSchema>} - Success response
-     * @summary: Delete a session for a user
-     * @description: Use this API to Delete a session of customers who have registered in the application.
-     */
-    deleteSession({ id, sessionId, reason }?: {
-        id: string;
-        sessionId: string;
-        reason: string;
     }): Promise<SessionDeleteResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id - ID of a customer.
      * @returns {Promise<SessionListResponseSchema>} - Success response
-     * @summary: Get a list of all session with info for a user
-     * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
+     * @summary: Get a list of all session for a user
+     * @description: Use this API to retrieve a list of session of customers who have registered in the application.
      */
     getActiveSessions({ id }?: {
         id: string;
@@ -113,35 +87,6 @@ declare class User {
      * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
      */
     getPlatformConfig({}?: any): Promise<PlatformSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.groupId - Numeric ID allotted to a User Group
-     * @returns {Promise<UserGroupResponseSchema>} - Success response
-     * @summary: Get an User Group by Id
-     * @description: Use this API to get details of an existing user Group
-     */
-    getUserGroupById({ groupId }?: {
-        groupId: string;
-    }): Promise<UserGroupResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.pageNo] - Page number for pagination result
-     * @param {string} [arg.pageSize] - Page size for pagination result
-     * @param {string} [arg.name] - To seartch for User Groups which contains
-     *   given string in their name
-     * @param {string} [arg.status] - To get User Groups with given status
-     * @param {number} [arg.groupUid] - To get User Groups with given uid
-     * @returns {Promise<UserGroupListResponseSchema>} - Success response
-     * @summary: Get User Groups mathcing criteria
-     * @description: Use this API to get User Groups mathing criteria passed in query
-     */
-    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: {
-        pageNo?: string;
-        pageSize?: string;
-        name?: string;
-        status?: string;
-        groupUid?: number;
-    }): Promise<UserGroupListResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - The search query. Mobile number or email ID of
@@ -179,22 +124,10 @@ declare class User {
      * @param {UpdateUserRequestSchema} arg.body
      * @returns {Promise<CreateUserResponseSchema>} - Success response
      * @summary: Update user
-     * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
+     * @description: Update user
      */
     updateUser({ userId, body }?: {
         userId: string;
         body: UpdateUserRequestSchema;
     }): Promise<CreateUserResponseSchema>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.groupId - Numeric ID allotted to a User Group
-     * @param {UpdateUserGroupSchema} arg.body
-     * @returns {Promise<UserGroupResponseSchema>} - Success response
-     * @summary: Update an User Group
-     * @description: Use this API to update an existing user Group
-     */
-    updateUserGroup({ groupId, body }?: {
-        groupId: string;
-        body: UpdateUserGroupSchema;
-    }): Promise<UserGroupResponseSchema>;
 }

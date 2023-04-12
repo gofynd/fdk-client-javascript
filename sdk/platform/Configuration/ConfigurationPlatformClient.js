@@ -792,11 +792,13 @@ class Configuration {
    * @param {string} arg.id - Integration id
    * @param {string} arg.level - Integration level
    * @param {number} arg.uid - Integration level uid
+   * @param {string} [arg.permission] - Check opt-in for specific integration
+   *   permissions
    * @returns {Promise<OptedStoreIntegration>} - Success response
    * @summary: Check store has active integration
    * @description: API checks if a store is already opted in any other integrations
    */
-  async getLevelActiveIntegrations({ id, level, uid } = {}) {
+  async getLevelActiveIntegrations({ id, level, uid, permission } = {}) {
     const {
       error,
     } = ConfigurationValidator.getLevelActiveIntegrations().validate(
@@ -804,6 +806,7 @@ class Configuration {
         id,
         level,
         uid,
+        permission,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -819,6 +822,7 @@ class Configuration {
         id,
         level,
         uid,
+        permission,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -832,6 +836,7 @@ class Configuration {
     }
 
     const query_params = {};
+    query_params["permission"] = permission;
 
     const xHeaders = {};
 

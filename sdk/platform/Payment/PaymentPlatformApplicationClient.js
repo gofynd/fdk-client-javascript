@@ -13,13 +13,13 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {AddBeneficiaryDetailsOTPRequest} arg.body
+   * @param {AddBeneficiaryDetailsRequest} arg.body
    * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
    * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
    */
-  async addRefundBankAccountUsingOTP({ body } = {}) {
-    const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
+  async addBeneficiaryDetails({ body } = {}) {
+    const { error } = PaymentValidator.addBeneficiaryDetails().validate(
       {
         body,
       },
@@ -32,7 +32,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
+    } = PaymentValidator.addBeneficiaryDetails().validate(
       {
         body,
       },
@@ -41,8 +41,7 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for addRefundBankAccountUsingOTP",
+        message: "Parameter Validation warrnings for addBeneficiaryDetails",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -67,8 +66,7 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for addRefundBankAccountUsingOTP",
+        message: "Response Validation Warnnings for addBeneficiaryDetails",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -130,76 +128,6 @@ class Payment {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for confirmPayment",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId -
-   * @param {string} [arg.requestHash] -
-   * @returns {Promise<RefundAccountResponse>} - Success response
-   * @summary: Get bank details
-   * @description: Use this API to get saved bank details for returned/cancelled order using order id.
-   */
-  async getBankAccountDetailsOpenAPI({ orderId, requestHash } = {}) {
-    const { error } = PaymentValidator.getBankAccountDetailsOpenAPI().validate(
-      {
-        orderId,
-        requestHash,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getBankAccountDetailsOpenAPI().validate(
-      {
-        orderId,
-        requestHash,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getBankAccountDetailsOpenAPI",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["order_id"] = orderId;
-    query_params["request_hash"] = requestHash;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = PaymentModel.RefundAccountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message:
-          "Response Validation Warnnings for getBankAccountDetailsOpenAPI",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -401,74 +329,6 @@ class Payment {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.merchantUserId -
-   * @param {string} arg.mobileNo -
-   * @returns {Promise<GetUserCODLimitResponse>} - Success response
-   * @summary: Get COD limit for user
-   * @description: Use this API to get user cod limit and reamining limit for the payment
-   */
-  async getUserCODlimitRoutes({ merchantUserId, mobileNo } = {}) {
-    const { error } = PaymentValidator.getUserCODlimitRoutes().validate(
-      {
-        merchantUserId,
-        mobileNo,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.getUserCODlimitRoutes().validate(
-      {
-        merchantUserId,
-        mobileNo,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getUserCODlimitRoutes",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["merchant_user_id"] = merchantUserId;
-    query_params["mobile_no"] = mobileNo;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = PaymentModel.GetUserCODLimitResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getUserCODlimitRoutes",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.orderId -
    * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @summary: List Order Beneficiary
@@ -589,69 +449,6 @@ class Payment {
         level: "WARN",
         message:
           "Response Validation Warnnings for saveBrandPaymentGatewayConfig",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {SetCODForUserRequest} arg.body
-   * @returns {Promise<SetCODOptionResponse>} - Success response
-   * @summary: Set COD option for user for payment
-   * @description: Use this API to set cod option as true or false for the payment
-   */
-  async setUserCODlimitRoutes({ body } = {}) {
-    const { error } = PaymentValidator.setUserCODlimitRoutes().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentValidator.setUserCODlimitRoutes().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for setUserCODlimitRoutes",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
-      query_params,
-      body
-    );
-
-    const {
-      error: res_error,
-    } = PaymentModel.SetCODOptionResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for setUserCODlimitRoutes",
       });
       Logger({ level: "WARN", message: res_error });
     }

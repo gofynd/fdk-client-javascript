@@ -4705,15 +4705,13 @@ Get the price of a product size at a PIN Code
 const promise = catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- pincode : value,
- moq : value });
+ pincode : value });
 
 // Async/Await
 const data = await catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- pincode : value,
- moq : value });
+ pincode : value });
 ```
 
 
@@ -4725,8 +4723,7 @@ const data = await catalog.getProductPriceBySlug({  slug : value,
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | string | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | storeId | number | no | The ID of the store that is selling the product, e.g. 1,2,3. |    
-| pincode | string | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059. |    
-| moq | number | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
+| pincode | string | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059. |  
 
 
 
@@ -4737,9 +4734,9 @@ Prices may vary for different sizes of a product. Use this API to retrieve the p
 
 
 
-[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
+[ProductSizePriceResponseV2](#ProductSizePriceResponseV2)
 
-Success. Returns a ProductSizePriceV3 object. Check the example shown below or refer `ProductSizePriceResponseV3` for more details.
+Success. Returns a ProductSizePriceV2 object. Check the example shown below or refer `ProductSizePriceResponseV2` for more details.
 
 
 
@@ -4823,9 +4820,7 @@ Success. Returns a ProductSizePriceV3 object. Check the example shown below or r
       ]
     },
     "quantity": 6
-  },
-  "is_gift": true,
-  "is_cod": false
+  }
 }
 ```
 </details>
@@ -4886,9 +4881,9 @@ A product of a particular size may be sold by multiple sellers. Use this API to 
 
 
 
-[ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
+[ProductSizeSellersResponseV2](#ProductSizeSellersResponseV2)
 
-Success. Returns a ProductSizeSellerV3 object. Check the example shown below or refer `ProductSizeSellersResponseV3` for more details.
+Success. Returns a ProductSizeSellerV2 object. Check the example shown below or refer `ProductSizeSellersResponseV2` for more details.
 
 
 
@@ -4927,9 +4922,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
       "store": {
         "uid": 1,
         "name": "Wayne Lamb"
-      },
-      "is_gift": true,
-      "is_cod": false
+      }
     },
     {
       "price_per_piece": {
@@ -4959,9 +4952,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
       "store": {
         "uid": 1,
         "name": "Wayne Lamb"
-      },
-      "is_gift": true,
-      "is_cod": false
+      }
     }
   ],
   "page": {
@@ -7915,7 +7906,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ArticleAssignmentV3](#ArticleAssignmentV3)
+#### [ArticleAssignmentV2](#ArticleAssignmentV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || level | string |  no  |  || strategy | string |  no  |  |
@@ -7953,7 +7944,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [BrandDetailResponse](#BrandDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || description | string |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || banners | [ImageUrls](#ImageUrls) |  no  |  || description | string |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
 
 ---
 
@@ -7971,17 +7962,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [CategoryBanner](#CategoryBanner)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || landscape | [Media](#Media) |  yes  |  || portrait | [Media](#Media) |  yes  |  |
-
----
-
 #### [CategoryItems](#CategoryItems)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | [ProductListingAction](#ProductListingAction) |  yes  |  || banners | [CategoryBanner](#CategoryBanner) |  yes  |  || childs | [[Child](#Child)] |  no  |  || name | string |  yes  |  || slug | string |  yes  |  || uid | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || action | [ProductListingAction](#ProductListingAction) |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || childs | [[Child](#Child)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
 
 ---
 
@@ -7995,7 +7979,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [CategoryMetaResponse](#CategoryMetaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || banners | [ImageUrls](#ImageUrls) |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
 
 ---
 
@@ -8009,7 +7993,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [CollectionDetailResponse](#CollectionDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | string |  no  |  || allow_facets | boolean |  no  |  || allow_sort | boolean |  no  |  || app_id | string |  no  |  || badge | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || cron | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || logo | [Media](#Media) |  no  |  || meta | string |  no  |  || name | string |  no  |  || priority | number |  no  |  || query | [[CollectionQuery](#CollectionQuery)] |  no  |  || slug | string |  no  |  || sort_on | string |  no  |  || tag | [string] |  no  |  || type | string |  no  |  || visible_facets_keys | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _schedule | string |  no  |  || allow_facets | boolean |  no  |  || allow_sort | boolean |  no  |  || app_id | string |  no  |  || badge | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || cron | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || logo | [Media](#Media) |  no  |  || meta | string |  no  |  || name | string |  no  |  || priority | number |  no  |  || query | [[CollectionQuery](#CollectionQuery)] |  no  |  || slug | string |  no  |  || sort_on | string |  no  |  || tag | [string] |  no  |  || type | string |  no  |  || visible_facets_keys | [string] |  no  |  |
 
 ---
 
@@ -8086,7 +8070,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [DepartmentCategoryTree](#DepartmentCategoryTree)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || department | string |  yes  |  || items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || department | string |  no  |  || items | [[CategoryItems](#CategoryItems)] |  no  |  |
 
 ---
 
@@ -8104,17 +8088,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [DetailsSchemaV3](#DetailsSchemaV3)
+#### [DetailsSchemaV2](#DetailsSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || key | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
-
----
-
-#### [Dimension](#Dimension)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || height | number |  yes  |  || is_default | boolean |  yes  |  || length | number |  yes  |  || unit | string |  yes  |  || width | number |  yes  |  |
 
 ---
 
@@ -8156,7 +8133,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [GetCollectionDetailNest](#GetCollectionDetailNest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || allow_facets | boolean |  no  |  || allow_sort | boolean |  no  |  || app_id | string |  no  |  || badge | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || cron | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || logo | [Media](#Media) |  no  |  || meta | string |  no  |  || name | string |  no  |  || priority | number |  no  |  || query | [[CollectionQuery](#CollectionQuery)] |  no  |  || slug | string |  no  |  || sort_on | string |  no  |  || tag | [string] |  no  |  || type | string |  no  |  || uid | string |  no  |  || visible_facets_keys | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _schedule | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || allow_facets | boolean |  no  |  || allow_sort | boolean |  no  |  || app_id | string |  no  |  || badge | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || cron | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || logo | [Media](#Media) |  no  |  || meta | string |  no  |  || name | string |  no  |  || priority | number |  no  |  || query | [[CollectionQuery](#CollectionQuery)] |  no  |  || slug | string |  no  |  || sort_on | string |  no  |  || tag | [string] |  no  |  || type | string |  no  |  || uid | string |  no  |  || visible_facets_keys | [string] |  no  |  |
 
 ---
 
@@ -8195,10 +8172,10 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)
+#### [MarketPlaceSttributesSchemaV2](#MarketPlaceSttributesSchemaV2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || details | [[DetailsSchemaV2](#DetailsSchemaV2)] |  no  |  || title | string |  no  |  |
 
 ---
 
@@ -8251,13 +8228,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductCategoryMap](#ProductCategoryMap)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || l1 | [ProductBrand](#ProductBrand) |  no  |  || l2 | [ProductBrand](#ProductBrand) |  no  |  || l3 | [ProductBrand](#ProductBrand) |  no  |  |
-
----
-
 #### [ProductCompareResponse](#ProductCompareResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8268,7 +8238,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || attributes | string |  no  |  || brand | [ProductBrand](#ProductBrand) |  no  |  || categories | [[ProductBrand](#ProductBrand)] |  no  |  || category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  || color | string |  no  |  || description | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  || has_variant | boolean |  no  |  || highlights | [string] |  no  |  || image_nature | string |  no  |  || is_dependent | boolean |  no  |  || item_code | string |  no  |  || item_type | string |  no  |  || medias | [[Media](#Media)] |  no  |  || moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  || name | string |  no  |  || net_quantity | [NetQuantity](#NetQuantity) |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || product_online_date | string |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  || short_description | string |  no  |  || similars | [string] |  no  |  || slug | string |  yes  |  || tags | [string] |  no  |  || teaser_tag | string |  no  |  || tryouts | [string] |  no  |  || type | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || attributes | string |  no  |  || brand | [ProductBrand](#ProductBrand) |  no  |  || categories | [[ProductBrand](#ProductBrand)] |  no  |  || color | string |  no  |  || description | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  || has_variant | boolean |  no  |  || highlights | [string] |  no  |  || image_nature | string |  no  |  || is_dependent | boolean |  no  |  || item_code | string |  no  |  || item_type | string |  no  |  || medias | [[Media](#Media)] |  no  |  || moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  || name | string |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || product_online_date | string |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  || short_description | string |  no  |  || similars | [string] |  no  |  || slug | string |  yes  |  || tags | [string] |  no  |  || teaser_tag | string |  no  |  || tryouts | [string] |  no  |  || type | string |  no  |  || uid | number |  no  |  |
 
 ---
 
@@ -8359,7 +8329,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [ProductListingDetail](#ProductListingDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || attributes | string |  no  |  || brand | [ProductBrand](#ProductBrand) |  no  |  || categories | [[ProductBrand](#ProductBrand)] |  no  |  || category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  || color | string |  no  |  || description | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  || has_variant | boolean |  no  |  || highlights | [string] |  no  |  || identifiers | [string] |  no  |  || image_nature | string |  no  |  || is_dependent | boolean |  no  |  || item_code | string |  no  |  || item_type | string |  no  |  || medias | [[Media](#Media)] |  no  |  || moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  || name | string |  no  |  || net_quantity | [NetQuantity](#NetQuantity) |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || product_online_date | string |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || sellable | boolean |  no  |  || seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  || short_description | string |  no  |  || similars | [string] |  no  |  || sizes | [string] |  no  |  || slug | string |  yes  |  || tags | [string] |  no  |  || teaser_tag | string |  no  |  || tryouts | [string] |  no  |  || type | string |  no  |  || uid | number |  no  |  || variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || attributes | string |  no  |  || brand | [ProductBrand](#ProductBrand) |  no  |  || categories | [[ProductBrand](#ProductBrand)] |  no  |  || color | string |  no  |  || description | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  || has_variant | boolean |  no  |  || highlights | [string] |  no  |  || identifiers | [string] |  no  |  || image_nature | string |  no  |  || is_dependent | boolean |  no  |  || item_code | string |  no  |  || item_type | string |  no  |  || medias | [[Media](#Media)] |  no  |  || moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  || name | string |  no  |  || net_quantity | [NetQuantity](#NetQuantity) |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || product_online_date | string |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || sellable | boolean |  no  |  || seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  || short_description | string |  no  |  || similars | [string] |  no  |  || sizes | [string] |  no  |  || slug | string |  yes  |  || tags | [string] |  no  |  || teaser_tag | string |  no  |  || tryouts | [string] |  no  |  || type | string |  no  |  || uid | number |  no  |  || variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)] |  no  |  |
 
 ---
 
@@ -8384,38 +8354,38 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)
+#### [ProductSetDistributionSizeV2](#ProductSetDistributionSizeV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || pieces | number |  no  |  || size | string |  no  |  |
 
 ---
 
-#### [ProductSetDistributionV3](#ProductSetDistributionV3)
+#### [ProductSetDistributionV2](#ProductSetDistributionV2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || sizes | [[ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || sizes | [[ProductSetDistributionSizeV2](#ProductSetDistributionSizeV2)] |  no  |  |
 
 ---
 
-#### [ProductSetV3](#ProductSetV3)
+#### [ProductSetV2](#ProductSetV2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || quantity | number |  no  |  || size_distribution | [ProductSetDistributionV3](#ProductSetDistributionV3) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || quantity | number |  no  |  || size_distribution | [ProductSetDistributionV2](#ProductSetDistributionV2) |  no  |  |
 
 ---
 
 #### [ProductSize](#ProductSize)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || dimension | [Dimension](#Dimension) |  no  |  || display | string |  no  |  || is_available | boolean |  no  |  || quantity | number |  no  |  || seller_identifiers | [string] |  no  |  || value | string |  no  |  || weight | [Weight](#Weight) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || display | string |  no  |  || is_available | boolean |  no  |  || quantity | number |  no  |  || seller_identifiers | [string] |  no  |  || value | string |  no  |  |
 
 ---
 
-#### [ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
+#### [ProductSizePriceResponseV2](#ProductSizePriceResponseV2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3) |  no  |  || article_id | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)] |  no  |  || is_cod | boolean |  no  |  || is_gift | boolean |  no  |  || item_type | string |  no  |  || long_lat | [number] |  no  |  || marketplace_attributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)] |  no  |  || pincode | number |  no  |  || price | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  || price_per_piece | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  || price_per_unit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3) |  no  |  || quantity | number |  no  |  || return_config | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3) |  no  |  || seller | [SellerV3](#SellerV3) |  no  |  || seller_count | number |  no  |  || set | [ProductSetV3](#ProductSetV3) |  no  |  || special_badge | string |  no  |  || store | [StoreV3](#StoreV3) |  no  |  || strategy_wise_listing | [[StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || article_assignment | [ArticleAssignmentV2](#ArticleAssignmentV2) |  no  |  || article_id | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)] |  no  |  || item_type | string |  no  |  || long_lat | [number] |  no  |  || marketplace_attributes | [[MarketPlaceSttributesSchemaV2](#MarketPlaceSttributesSchemaV2)] |  no  |  || pincode | number |  no  |  || price | [ProductStockPriceV2](#ProductStockPriceV2) |  no  |  || price_per_piece | [ProductStockPriceV2](#ProductStockPriceV2) |  no  |  || price_per_unit | [ProductStockUnitPriceV2](#ProductStockUnitPriceV2) |  no  |  || quantity | number |  no  |  || return_config | [ReturnConfigSchemaV2](#ReturnConfigSchemaV2) |  no  |  || seller | [SellerV2](#SellerV2) |  no  |  || seller_count | number |  no  |  || set | [ProductSetV2](#ProductSetV2) |  no  |  || special_badge | string |  no  |  || store | [StoreV2](#StoreV2) |  no  |  || strategy_wise_listing | [[StrategyWiseListingSchemaV2](#StrategyWiseListingSchemaV2)] |  no  |  |
 
 ---
 
@@ -8426,17 +8396,17 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)
+#### [ProductSizeSellerFilterSchemaV2](#ProductSizeSellerFilterSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || is_selected | boolean |  no  |  || name | string |  no  |  || value | string |  no  |  |
 
 ---
 
-#### [ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
+#### [ProductSizeSellersResponseV2](#ProductSizeSellersResponseV2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)] |  no  |  || page | [Page](#Page) |  yes  |  || sort_on | [[ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[ProductSizePriceResponseV2](#ProductSizePriceResponseV2)] |  no  |  || page | [Page](#Page) |  yes  |  || sort_on | [[ProductSizeSellerFilterSchemaV2](#ProductSizeSellerFilterSchemaV2)] |  no  |  |
 
 ---
 
@@ -8468,7 +8438,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductStockPriceV3](#ProductStockPriceV3)
+#### [ProductStockPriceV2](#ProductStockPriceV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || currency | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  |
@@ -8489,7 +8459,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
+#### [ProductStockUnitPriceV2](#ProductStockUnitPriceV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || price | number |  no  |  || unit | string |  no  |  |
@@ -8499,7 +8469,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [ProductVariantItemResponse](#ProductVariantItemResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || color | string |  no  |  || color_name | string |  no  |  || is_available | boolean |  no  |  || medias | [[Media](#Media)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || action | [ProductListingAction](#ProductListingAction) |  no  |  || color | string |  no  |  || color_name | string |  no  |  || is_available | boolean |  no  |  || medias | [[Media](#Media)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  || value | string |  no  |  |
 
 ---
 
@@ -8524,7 +8494,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
+#### [ReturnConfigSchemaV2](#ReturnConfigSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || returnable | boolean |  no  |  || time | number |  no  |  || unit | string |  no  |  |
@@ -8548,7 +8518,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [SellerGroupAttributes](#SellerGroupAttributes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || details | [[DetailsSchemaV2](#DetailsSchemaV2)] |  no  |  || title | string |  no  |  |
 
 ---
 
@@ -8559,7 +8529,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [SellerV3](#SellerV3)
+#### [SellerV2](#SellerV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || count | number |  no  |  || name | string |  no  |  || uid | number |  no  |  |
@@ -8643,14 +8613,14 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
-#### [StoreV3](#StoreV3)
+#### [StoreV2](#StoreV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || count | number |  no  |  || name | string |  no  |  || uid | number |  no  |  |
 
 ---
 
-#### [StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)
+#### [StrategyWiseListingSchemaV2](#StrategyWiseListingSchemaV2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || distance | number |  no  |  || pincode | number |  no  |  || quantity | number |  no  |  || tat | number |  no  |  |
@@ -8675,13 +8645,6 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || contact | string |  no  |  || super_user | boolean |  no  |  || user_id | string |  yes  |  || username | string |  yes  |  |
-
----
-
-#### [Weight](#Weight)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_default | boolean |  yes  |  || shipping | number |  yes  |  || unit | string |  yes  |  |
 
 ---
 

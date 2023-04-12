@@ -154,13 +154,6 @@ class ContentValidator {
     }).required();
   }
 
-  static generateSEOTitle() {
-    return Joi.object({
-      type: ContentModel.GenerationEntityType().required(),
-      body: ContentModel.GenerateSEOContent().required(),
-    }).required();
-  }
-
   static getAnnouncementById() {
     return Joi.object({
       announcementId: Joi.string().allow("").required(),

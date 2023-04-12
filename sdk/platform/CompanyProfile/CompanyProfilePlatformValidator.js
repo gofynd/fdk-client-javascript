@@ -72,6 +72,12 @@ class CompanyProfileValidator {
     }).required();
   }
 
+  static getOptimalLocations() {
+    return Joi.object({
+      body: CompanyProfileModel.AssignStoreRequestValidator().required(),
+    }).required();
+  }
+
   static updateCompany() {
     return Joi.object({
       body: CompanyProfileModel.UpdateCompany().required(),

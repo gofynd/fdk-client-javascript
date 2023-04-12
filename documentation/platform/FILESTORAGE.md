@@ -838,7 +838,7 @@ Success
 #### [CDN](#CDN)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || absolute_url | string |  no  |  || relative_url | string |  no  |  || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || url | string |  yes  |  |
 
 ---
 
