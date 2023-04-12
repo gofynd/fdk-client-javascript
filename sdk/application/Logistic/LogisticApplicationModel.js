@@ -67,6 +67,7 @@ class LogisticModel {
     return Joi.object({
       display_name: Joi.string().allow(""),
       error: LogisticModel.PincodeErrorSchemaResponse().required(),
+      lat_long: LogisticModel.PincodeLatLongData(),
       meta: LogisticModel.PincodeMetaResponse(),
       meta_code: LogisticModel.CountryMetaResponse(),
       name: Joi.string().allow(""),
@@ -80,6 +81,12 @@ class LogisticModel {
       message: Joi.string().allow("").allow(null),
       type: Joi.string().allow("").allow(null),
       value: Joi.string().allow("").allow(null),
+    });
+  }
+  static PincodeLatLongData() {
+    return Joi.object({
+      coordinates: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
     });
   }
   static PincodeMetaResponse() {

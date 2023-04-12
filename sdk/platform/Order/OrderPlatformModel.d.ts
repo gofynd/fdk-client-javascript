@@ -53,6 +53,7 @@ declare class OrderModel {
     static CheckResponse(): any;
     static Click2CallResponse(): any;
     static CompanyDetails(): any;
+    static ContactDetails(): any;
     static CreateChannelConfig(): any;
     static CreateChannelConfigData(): any;
     static CreateChannelConfigResponse(): any;
@@ -143,6 +144,7 @@ declare class OrderModel {
     static PaymentMethods(): any;
     static PaymentModeInfo(): any;
     static PDFLinks(): any;
+    static PhoneDetails(): any;
     static PlatformBreakupValues(): any;
     static PlatformChannel(): any;
     static PlatformDeliveryAddress(): any;

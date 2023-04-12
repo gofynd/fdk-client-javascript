@@ -5200,7 +5200,7 @@ We are processing the report!
 #### [BillingStaffDetails](#BillingStaffDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || first_name | string |  no  |  || last_name | string |  no  |  || staff_id | number |  no  |  || user | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || employee_code | string |  no  |  || first_name | string |  no  |  || last_name | string |  no  |  || staff_id | number |  no  |  || user | string |  no  |  |
 
 ---
 
@@ -5312,7 +5312,14 @@ We are processing the report!
 #### [CompanyDetails](#CompanyDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_cin | string |  no  |  || company_id | number |  no  |  || company_name | string |  no  |  || manufacturer_address | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || address | string |  no  |  || company_cin | string |  no  |  || company_contact | [ContactDetails](#ContactDetails) |  no  |  || company_gst | string |  no  |  || company_id | number |  no  |  || company_name | string |  no  |  |
+
+---
+
+#### [ContactDetails](#ContactDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || emails | [string] |  no  |  || phone | [[PhoneDetails](#PhoneDetails)] |  no  |  |
 
 ---
 
@@ -5946,6 +5953,13 @@ We are processing the report!
 
 ---
 
+#### [PhoneDetails](#PhoneDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || country_code | number |  no  |  || mobile_number | string |  no  |  |
+
+---
+
 #### [PlatformBreakupValues](#PlatformBreakupValues)
 
  | Properties | Type | Nullable | Description |
@@ -6019,7 +6033,7 @@ We are processing the report!
 #### [PlatformUserDetails](#PlatformUserDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || platform_user_first_name | string |  no  |  || platform_user_id | string |  no  |  || platform_user_last_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || platform_user_employee_code | string |  no  |  || platform_user_first_name | string |  no  |  || platform_user_id | string |  no  |  || platform_user_last_name | string |  no  |  |
 
 ---
 
@@ -6495,7 +6509,7 @@ We are processing the report!
 #### [UserDetailsData](#UserDetailsData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address | string |  yes  |  || city | string |  yes  |  || country | string |  yes  |  || email | string |  no  |  || name | string |  yes  |  || phone | string |  yes  |  || pincode | string |  yes  |  || state | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || address | string |  yes  |  || address1 | string |  no  |  || address_type | string |  no  |  || area | string |  no  |  || city | string |  yes  |  || country | string |  yes  |  || email | string |  no  |  || landmark | string |  no  |  || name | string |  yes  |  || phone | string |  yes  |  || pincode | string |  yes  |  || state | string |  yes  |  |
 
 ---
 

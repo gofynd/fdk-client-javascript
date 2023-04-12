@@ -652,6 +652,7 @@ class PlatformApplicationClient {
 /** @typedef CheckResponse */
 /** @typedef Click2CallResponse */
 /** @typedef CompanyDetails */
+/** @typedef ContactDetails */
 /** @typedef CreateChannelConfig */
 /** @typedef CreateChannelConfigData */
 /** @typedef CreateChannelConfigResponse */
@@ -742,6 +743,7 @@ class PlatformApplicationClient {
 /** @typedef PaymentMethods */
 /** @typedef PaymentModeInfo */
 /** @typedef PDFLinks */
+/** @typedef PhoneDetails */
 /** @typedef PlatformBreakupValues */
 /** @typedef PlatformChannel */
 /** @typedef PlatformDeliveryAddress */

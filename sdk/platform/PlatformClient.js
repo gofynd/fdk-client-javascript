@@ -4196,6 +4196,7 @@ class PlatformClient {
  */
 /**
  * @typedef BillingStaffDetails
+ * @property {string} [employee_code]
  * @property {string} [first_name]
  * @property {string} [last_name]
  * @property {number} [staff_id]
@@ -4346,10 +4347,17 @@ class PlatformClient {
  */
 /**
  * @typedef CompanyDetails
+ * @property {Object} [address]
  * @property {string} [company_cin]
+ * @property {ContactDetails} [company_contact]
+ * @property {string} [company_gst]
  * @property {number} [company_id]
  * @property {string} [company_name]
- * @property {Object} [manufacturer_address]
+ */
+/**
+ * @typedef ContactDetails
+ * @property {string[]} [emails]
+ * @property {PhoneDetails[]} [phone]
  */
 /**
  * @typedef CreateChannelConfig
@@ -5063,6 +5071,11 @@ class PlatformClient {
  * @property {string} [po_invoice]
  */
 /**
+ * @typedef PhoneDetails
+ * @property {number} [country_code]
+ * @property {string} [mobile_number]
+ */
+/**
  * @typedef PlatformBreakupValues
  * @property {string} [display]
  * @property {string} [name]
@@ -5197,6 +5210,7 @@ class PlatformClient {
  */
 /**
  * @typedef PlatformUserDetails
+ * @property {string} [platform_user_employee_code]
  * @property {string} [platform_user_first_name]
  * @property {string} [platform_user_id]
  * @property {string} [platform_user_last_name]
@@ -5773,9 +5787,13 @@ class PlatformClient {
 /**
  * @typedef UserDetailsData
  * @property {string} address
+ * @property {string} [address1]
+ * @property {string} [address_type]
+ * @property {string} [area]
  * @property {string} city
  * @property {string} country
  * @property {string} [email]
+ * @property {string} [landmark]
  * @property {string} name
  * @property {string} phone
  * @property {string} pincode
@@ -7820,7 +7838,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8016,7 +8034,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]

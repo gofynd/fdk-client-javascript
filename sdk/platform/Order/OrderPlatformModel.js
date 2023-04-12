@@ -427,6 +427,7 @@ class OrderModel {
   }
   static BillingStaffDetails() {
     return Joi.object({
+      employee_code: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       staff_id: Joi.number(),
@@ -593,10 +594,18 @@ class OrderModel {
   }
   static CompanyDetails() {
     return Joi.object({
+      address: Joi.any(),
       company_cin: Joi.string().allow(""),
+      company_contact: OrderModel.ContactDetails(),
+      company_gst: Joi.string().allow(""),
       company_id: Joi.number(),
       company_name: Joi.string().allow(""),
-      manufacturer_address: Joi.any(),
+    });
+  }
+  static ContactDetails() {
+    return Joi.object({
+      emails: Joi.array().items(Joi.string().allow("")),
+      phone: Joi.array().items(OrderModel.PhoneDetails()),
     });
   }
   static CreateChannelConfig() {
@@ -1406,6 +1415,12 @@ class OrderModel {
       po_invoice: Joi.string().allow(""),
     });
   }
+  static PhoneDetails() {
+    return Joi.object({
+      country_code: Joi.number(),
+      mobile_number: Joi.string().allow(""),
+    });
+  }
   static PlatformBreakupValues() {
     return Joi.object({
       display: Joi.string().allow(""),
@@ -1551,6 +1566,7 @@ class OrderModel {
   }
   static PlatformUserDetails() {
     return Joi.object({
+      platform_user_employee_code: Joi.string().allow(""),
       platform_user_first_name: Joi.string().allow(""),
       platform_user_id: Joi.string().allow(""),
       platform_user_last_name: Joi.string().allow(""),
@@ -2195,9 +2211,13 @@ class OrderModel {
   static UserDetailsData() {
     return Joi.object({
       address: Joi.string().allow("").required(),
+      address1: Joi.string().allow(""),
+      address_type: Joi.string().allow(""),
+      area: Joi.string().allow(""),
       city: Joi.string().allow("").required(),
       country: Joi.string().allow("").required(),
       email: Joi.string().allow(""),
+      landmark: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       phone: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),

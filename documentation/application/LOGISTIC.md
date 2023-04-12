@@ -159,7 +159,14 @@ Get pincode data
             "display_name": "Thane",
             "uid": "city:INDIA|MAHARASHTRA|MUMBAI"
           }
-        ]
+        ],
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            3.8858955,
+            7.2272335
+          ]
+        }
       }
     ],
     "request_uuid": "fce9f431215e71c9ee0e86e792ae1dce4",
@@ -498,7 +505,7 @@ Get TAT  data
 #### [PincodeDataResponse](#PincodeDataResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  || meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  || meta_code | [CountryMetaResponse](#CountryMetaResponse) |  no  |  || name | string |  no  |  || parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  || sub_type | string |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  yes  |  || lat_long | [PincodeLatLongData](#PincodeLatLongData) |  no  |  || meta | [PincodeMetaResponse](#PincodeMetaResponse) |  no  |  || meta_code | [CountryMetaResponse](#CountryMetaResponse) |  no  |  || name | string |  no  |  || parents | [[PincodeParentsResponse](#PincodeParentsResponse)] |  no  |  || sub_type | string |  no  |  || uid | string |  no  |  |
 
 ---
 
@@ -506,6 +513,13 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || message | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+
+---
+
+#### [PincodeLatLongData](#PincodeLatLongData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || coordinates | [string] |  no  |  || type | string |  no  |  |
 
 ---
 
