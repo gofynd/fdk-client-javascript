@@ -1328,8 +1328,16 @@ class PlatformClient {
  * @property {string} [type]
  */
 /**
+ * @typedef SessionListResponseInfo
+ * @property {string} [domain]
+ * @property {string} [expire_in]
+ * @property {string} [ip]
+ * @property {string} [session_id]
+ * @property {string} [user_agent]
+ */
+/**
  * @typedef SessionListResponseSchema
- * @property {string[]} [items]
+ * @property {SessionListResponseInfo[]} [items]
  */
 /**
  * @typedef SessionListSuccess
@@ -4376,6 +4384,7 @@ class PlatformClient {
  * @typedef CreateOrderAPI
  * @property {BillingInfo} billing_info
  * @property {Charge[]} [charges]
+ * @property {Object} [config]
  * @property {Object} [currency_info]
  * @property {string} [external_creation_date]
  * @property {string} [external_order_id]
@@ -6812,15 +6821,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -6897,14 +6906,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -6914,7 +6923,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -7811,7 +7820,7 @@ class PlatformClient {
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -8007,7 +8016,7 @@ class PlatformClient {
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -11129,6 +11138,7 @@ class PlatformClient {
  */
 /**
  * @typedef CartDetailResponse
+ * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
  * @property {string} [checkout_mode]
@@ -11178,11 +11188,13 @@ class PlatformClient {
  * @property {ProductAvailability} [availability]
  * @property {Object} [bulk_offer]
  * @property {string} [coupon_message]
+ * @property {ShipmentPromise} [delivery_promise]
  * @property {string} [discount]
  * @property {CartProductIdentifer} identifiers
  * @property {boolean} [is_set]
  * @property {string} [key]
  * @property {string} [message]
+ * @property {Object} [moq]
  * @property {Object} [parent_item_identifiers]
  * @property {ProductPriceInfo} [price]
  * @property {ProductPriceInfo} [price_per_unit]
@@ -11556,11 +11568,18 @@ class PlatformClient {
  */
 /**
  * @typedef ProductAvailability
+ * @property {ProductAvailabilitySize[]} [available_sizes]
  * @property {boolean} [deliverable]
  * @property {boolean} [is_valid]
  * @property {number} [other_store_quantity]
  * @property {boolean} [out_of_stock]
  * @property {string[]} [sizes]
+ */
+/**
+ * @typedef ProductAvailabilitySize
+ * @property {string} [display]
+ * @property {boolean} [is_available]
+ * @property {string} [value]
  */
 /**
  * @typedef ProductImage

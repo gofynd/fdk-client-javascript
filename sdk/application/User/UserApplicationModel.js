@@ -554,9 +554,18 @@ class UserModel {
       type: Joi.string().allow(""),
     });
   }
+  static SessionListResponseInfo() {
+    return Joi.object({
+      domain: Joi.string().allow(""),
+      expire_in: Joi.string().allow(""),
+      ip: Joi.string().allow(""),
+      session_id: Joi.string().allow(""),
+      user_agent: Joi.string().allow(""),
+    });
+  }
   static SessionListResponseSchema() {
     return Joi.object({
-      items: Joi.array().items(Joi.string().allow("")),
+      items: Joi.array().items(UserModel.SessionListResponseInfo()),
     });
   }
   static SessionListSuccess() {

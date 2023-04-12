@@ -65,6 +65,7 @@ declare class CartModel {
     static ProductAction(): any;
     static ProductArticle(): any;
     static ProductAvailability(): any;
+    static ProductAvailabilitySize(): any;
     static ProductImage(): any;
     static ProductPrice(): any;
     static ProductPriceInfo(): any;

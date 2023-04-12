@@ -262,6 +262,7 @@ class PlatformApplicationClient {
 /** @typedef SendVerificationLinkMobileRequestSchema */
 /** @typedef SessionDeleteResponseSchema */
 /** @typedef SessionExpiry */
+/** @typedef SessionListResponseInfo */
 /** @typedef SessionListResponseSchema */
 /** @typedef SessionListSuccess */
 /** @typedef Social */
@@ -1527,6 +1528,7 @@ class PlatformApplicationClient {
 /** @typedef ProductAction */
 /** @typedef ProductArticle */
 /** @typedef ProductAvailability */
+/** @typedef ProductAvailabilitySize */
 /** @typedef ProductImage */
 /** @typedef ProductPrice */
 /** @typedef ProductPriceInfo */

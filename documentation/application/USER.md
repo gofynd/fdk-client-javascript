@@ -3611,10 +3611,17 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
+#### [SessionListResponseInfo](#SessionListResponseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || domain | string |  no  |  || expire_in | string |  no  |  || ip | string |  no  |  || session_id | string |  no  |  || user_agent | string |  no  |  |
+
+---
+
 #### [SessionListResponseSchema](#SessionListResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
 
 ---
 

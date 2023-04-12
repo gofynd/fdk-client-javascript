@@ -5354,7 +5354,7 @@ We are processing the report!
 #### [CreateOrderAPI](#CreateOrderAPI)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || billing_info | [BillingInfo](#BillingInfo) |  yes  |  || charges | [[Charge](#Charge)] |  no  |  || currency_info | string |  no  |  || external_creation_date | string |  no  |  || external_order_id | string |  no  |  || meta | string |  no  |  || payment_info | [PaymentInfo](#PaymentInfo) |  yes  |  || shipments | [[Shipment](#Shipment)] |  yes  |  || shipping_info | [ShippingInfo](#ShippingInfo) |  yes  |  || tax_info | [TaxInfo](#TaxInfo) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || billing_info | [BillingInfo](#BillingInfo) |  yes  |  || charges | [[Charge](#Charge)] |  no  |  || config | string |  no  |  || currency_info | string |  no  |  || external_creation_date | string |  no  |  || external_order_id | string |  no  |  || meta | string |  no  |  || payment_info | [PaymentInfo](#PaymentInfo) |  yes  |  || shipments | [[Shipment](#Shipment)] |  yes  |  || shipping_info | [ShippingInfo](#ShippingInfo) |  yes  |  || tax_info | [TaxInfo](#TaxInfo) |  no  |  |
 
 ---
 

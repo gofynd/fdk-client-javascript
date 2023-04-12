@@ -165,6 +165,7 @@ class CartModel {
   }
   static CartDetailResponse() {
     return Joi.object({
+      applied_promo_details: Joi.array().items(CartModel.AppliedPromotion()),
       breakup_values: CartModel.CartBreakup(),
       buy_now: Joi.boolean(),
       checkout_mode: Joi.string().allow(""),
@@ -229,11 +230,13 @@ class CartModel {
       availability: CartModel.ProductAvailability(),
       bulk_offer: Joi.any(),
       coupon_message: Joi.string().allow(""),
+      delivery_promise: CartModel.ShipmentPromise(),
       discount: Joi.string().allow(""),
       identifiers: CartModel.CartProductIdentifer().required(),
       is_set: Joi.boolean(),
       key: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      moq: Joi.any(),
       parent_item_identifiers: Joi.any(),
       price: CartModel.ProductPriceInfo(),
       price_per_unit: CartModel.ProductPriceInfo(),
@@ -516,11 +519,19 @@ class CartModel {
   }
   static ProductAvailability() {
     return Joi.object({
+      available_sizes: Joi.array().items(CartModel.ProductAvailabilitySize()),
       deliverable: Joi.boolean(),
       is_valid: Joi.boolean(),
       other_store_quantity: Joi.number(),
       out_of_stock: Joi.boolean(),
       sizes: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+  static ProductAvailabilitySize() {
+    return Joi.object({
+      display: Joi.string().allow(""),
+      is_available: Joi.boolean(),
+      value: Joi.string().allow(""),
     });
   }
   static ProductImage() {

@@ -73,6 +73,7 @@ declare class UserModel {
     static SendVerificationLinkMobileRequestSchema(): any;
     static SessionDeleteResponseSchema(): any;
     static SessionExpiry(): any;
+    static SessionListResponseInfo(): any;
     static SessionListResponseSchema(): any;
     static SessionListSuccess(): any;
     static Social(): any;

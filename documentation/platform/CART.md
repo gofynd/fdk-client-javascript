@@ -4086,7 +4086,7 @@ Promotion updated successfully
 #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || buy_now | boolean |  no  |  || checkout_mode | string |  no  |  || comment | string |  no  |  || coupon_text | string |  no  |  || currency | [CartCurrency](#CartCurrency) |  no  |  || delivery_charge_info | string |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || gstin | string |  no  |  || id | string |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || last_modified | string |  no  |  || message | string |  no  |  || payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  || restrict_checkout | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || applied_promo_details | [[AppliedPromotion](#AppliedPromotion)] |  no  |  || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || buy_now | boolean |  no  |  || checkout_mode | string |  no  |  || comment | string |  no  |  || coupon_text | string |  no  |  || currency | [CartCurrency](#CartCurrency) |  no  |  || delivery_charge_info | string |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || gstin | string |  no  |  || id | string |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || last_modified | string |  no  |  || message | string |  no  |  || payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  || restrict_checkout | boolean |  no  |  |
 
 ---
 
@@ -4121,7 +4121,7 @@ Promotion updated successfully
 #### [CartProductInfo](#CartProductInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || article | [ProductArticle](#ProductArticle) |  no  |  || availability | [ProductAvailability](#ProductAvailability) |  no  |  || bulk_offer | string |  no  |  || coupon_message | string |  no  |  || discount | string |  no  |  || identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  || is_set | boolean |  no  |  || key | string |  no  |  || message | string |  no  |  || parent_item_identifiers | string |  no  |  || price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || product | [CartProduct](#CartProduct) |  no  |  || promo_meta | [PromoMeta](#PromoMeta) |  no  |  || promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  || quantity | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || article | [ProductArticle](#ProductArticle) |  no  |  || availability | [ProductAvailability](#ProductAvailability) |  no  |  || bulk_offer | string |  no  |  || coupon_message | string |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || discount | string |  no  |  || identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  || is_set | boolean |  no  |  || key | string |  no  |  || message | string |  no  |  || moq | string |  no  |  || parent_item_identifiers | string |  no  |  || price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || product | [CartProduct](#CartProduct) |  no  |  || promo_meta | [PromoMeta](#PromoMeta) |  no  |  || promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  || quantity | number |  no  |  |
 
 ---
 
@@ -4443,7 +4443,14 @@ Promotion updated successfully
 #### [ProductAvailability](#ProductAvailability)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || deliverable | boolean |  no  |  || is_valid | boolean |  no  |  || other_store_quantity | number |  no  |  || out_of_stock | boolean |  no  |  || sizes | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)] |  no  |  || deliverable | boolean |  no  |  || is_valid | boolean |  no  |  || other_store_quantity | number |  no  |  || out_of_stock | boolean |  no  |  || sizes | [string] |  no  |  |
+
+---
+
+#### [ProductAvailabilitySize](#ProductAvailabilitySize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || display | string |  no  |  || is_available | boolean |  no  |  || value | string |  no  |  |
 
 ---
 

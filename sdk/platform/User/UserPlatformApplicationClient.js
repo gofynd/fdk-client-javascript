@@ -317,14 +317,16 @@ class User {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID of a customer.
+   * @param {string} arg.reason - Reason to delete sessions.
    * @returns {Promise<SessionDeleteResponseSchema>} - Success response
    * @summary: Delete a list of all session for a user
    * @description: Use this API to Delete a list of session of customers who have registered in the application.
    */
-  async deleteActiveSessions({ id } = {}) {
+  async deleteActiveSessions({ id, reason } = {}) {
     const { error } = UserValidator.deleteActiveSessions().validate(
       {
         id,
+        reason,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -336,6 +338,7 @@ class User {
     const { error: warrning } = UserValidator.deleteActiveSessions().validate(
       {
         id,
+        reason,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -349,11 +352,12 @@ class User {
 
     const query_params = {};
     query_params["id"] = id;
+    query_params["reason"] = reason;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
       undefined
     );
@@ -379,9 +383,79 @@ class User {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - ID of a customer.
+   * @param {string} arg.sessionId - Session ID of a customer.
+   * @param {string} arg.reason - Reason for deleting session.
+   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
+   * @summary: Delete a session for a user
+   * @description: Use this API to Delete a session of customers who have registered in the application.
+   */
+  async deleteSession({ id, sessionId, reason } = {}) {
+    const { error } = UserValidator.deleteSession().validate(
+      {
+        id,
+        sessionId,
+        reason,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserValidator.deleteSession().validate(
+      {
+        id,
+        sessionId,
+        reason,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteSession",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["id"] = id;
+    query_params["session_id"] = sessionId;
+    query_params["reason"] = reason;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = UserModel.SessionDeleteResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteSession",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
    * @returns {Promise<SessionListResponseSchema>} - Success response
-   * @summary: Get a list of all session for a user
-   * @description: Use this API to retrieve a list of session of customers who have registered in the application.
+   * @summary: Get a list of all session with info for a user
+   * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
    */
   async getActiveSessions({ id } = {}) {
     const { error } = UserValidator.getActiveSessions().validate(
@@ -415,7 +489,7 @@ class User {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sesions`,
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
       undefined
     );
