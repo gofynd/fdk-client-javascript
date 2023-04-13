@@ -5050,28 +5050,6 @@ Success
 
  
  
- #### [TriggerJobResponse](#TriggerJobResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | number |  no  |  |
-
----
-
-
- 
- 
- #### [TriggerJobRequest](#TriggerJobRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | job_id | string |  no  |  |
-
----
-
-
- 
- 
  #### [Job](#Job)
 
  | Properties | Type | Nullable | Description |
@@ -5126,6 +5104,28 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[JobLog](#JobLog)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TriggerJobResponse](#TriggerJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | number |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [TriggerJobRequest](#TriggerJobRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | job_id | string |  no  |  |
 
 ---
 
@@ -5239,6 +5239,18 @@ Success
 
  
  
+ #### [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | _id | string |  no  |  |
+
+---
+
+
+ 
+ 
  #### [SendOtpCommsReqData](#SendOtpCommsReqData)
 
  | Properties | Type | Nullable | Description |
@@ -5274,6 +5286,7 @@ Success
  | otp_length | number |  no  |  |
  | expiry | number |  no  |  |
  | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate) |  no  |  |
+ | provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider) |  no  |  |
 
 ---
 
