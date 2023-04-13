@@ -4,15 +4,6 @@ declare class Catalog {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ProductBundleRequest} arg.body
-     * @summary: Create Product Bundle
-     * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-     */
-    createProductBundle({ body }?: {
-        body: ProductBundleRequest;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - A search string that is searched with product
      *   bundle name.
      * @param {string[]} [arg.slug] - Slugs of bundles to be retrieved.
@@ -22,6 +13,15 @@ declare class Catalog {
     getProductBundle({ q, slug }?: {
         q?: string;
         slug?: string[];
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ProductBundleRequest} arg.body
+     * @summary: Create Product Bundle
+     * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+     */
+    createProductBundle({ body }?: {
+        body: ProductBundleRequest;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -47,15 +47,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ValidateSizeGuide} arg.body
-     * @summary: Create a size guide.
-     * @description: This API allows to create a size guide associated to a brand.
-     */
-    createSizeGuide({ body }?: {
-        body: ValidateSizeGuide;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {boolean} [arg.active] - Filter size guide on basis of active, in-active
      * @param {string} [arg.q] - Query that is to be searched.
      * @param {string} [arg.tag] - To filter size guide on basis of tag.
@@ -72,6 +63,15 @@ declare class Catalog {
         tag?: string;
         pageNo?: number;
         pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ValidateSizeGuide} arg.body
+     * @summary: Create a size guide.
+     * @description: This API allows to create a size guide associated to a brand.
+     */
+    createSizeGuide({ body }?: {
+        body: ValidateSizeGuide;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -191,17 +191,10 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {DepartmentCreateUpdate} arg.body
-     * @summary: Create the department.
-     * @description: Create departments using the API.
-     */
-    createDepartments({ body }?: {
-        body: DepartmentCreateUpdate;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
+     * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
+     *   set, standard, digital
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {string} [arg.name] - Can search departments by passing name.
@@ -212,12 +205,22 @@ declare class Catalog {
      * @summary: List all Departments.
      * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
      */
-    listDepartmentsData({ pageNo, pageSize, name, search, isActive }?: {
+    listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, }?: {
         pageNo?: number;
+        itemType?: string;
         pageSize?: number;
         name?: string;
         search?: string;
         isActive?: boolean;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {DepartmentCreateUpdate} arg.body
+     * @summary: Create the department.
+     * @description: Create departments using the API.
+     */
+    createDepartments({ body }?: {
+        body: DepartmentCreateUpdate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -275,7 +278,7 @@ declare class Catalog {
      * @summary: Download Product Template View
      * @description: Allows you to download product template data
      */
-    downloadProductTemplateView({ itemType }?: {
+    downloadInventoryTemplateView({ itemType }?: {
         itemType: string;
     }): Promise<any>;
     /**
@@ -312,15 +315,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {CategoryRequestBody} arg.body
-     * @summary: Create product categories
-     * @description: This API lets user create product categories
-     */
-    createCategories({ body }?: {
-        body: CategoryRequestBody;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.level] - Get category for multiple levels
      * @param {string} [arg.departments] - Get category for multiple departments filtered
      * @param {string} [arg.q] - Get multiple categories filtered by search string
@@ -337,6 +331,15 @@ declare class Catalog {
         q?: string;
         pageNo?: number;
         pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {CategoryRequestBody} arg.body
+     * @summary: Create product categories
+     * @description: This API lets user create product categories
+     */
+    createCategories({ body }?: {
+        body: CategoryRequestBody;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -357,15 +360,6 @@ declare class Catalog {
     updateCategory({ uid, body }?: {
         uid: string;
         body: CategoryRequestBody;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {ProductCreateUpdate} arg.body
-     * @summary: Create a product.
-     * @description: This API allows to create product.
-     */
-    createProduct({ body }?: {
-        body: ProductCreateUpdate;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -398,6 +392,32 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ProductCreateUpdateSchemaV2} arg.body
+     * @summary: Create a product.
+     * @description: This API allows to create product.
+     */
+    createProduct({ body }?: {
+        body: ProductCreateUpdateSchemaV2;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Get list of variants of item Id
+     * @param {string} arg.variantType - Get multiple products filtered by variant type
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @summary: Get product list
+     * @description: This API gets meta associated to products.
+     */
+    getVariantsOfProducts({ itemId, variantType, pageNo, pageSize }?: {
+        itemId: number;
+        variantType: string;
+        pageNo?: number;
+        pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.category - It is the name of the l3 cateogry
      * @param {boolean} [arg.filter] - If true, returns filtered values, else
      *   returns all the attributes
@@ -410,27 +430,27 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.itemCode] - Item code of the product.
      * @param {number} arg.itemId - Item Id of the product.
      * @param {number} [arg.brandUid] - Brand Id of the product.
+     * @param {string} [arg.itemCode] - Item code of the product.
      * @summary: Get a single product.
      * @description: This API helps to get data associated to a particular product.
      */
-    getProduct({ itemId, itemCode, brandUid }?: {
-        itemCode?: string;
+    getProduct({ itemId, brandUid, itemCode }?: {
         itemId: number;
         brandUid?: number;
+        itemCode?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Id of the product to be updated.
-     * @param {ProductCreateUpdate} arg.body
+     * @param {ProductCreateUpdateSchemaV2} arg.body
      * @summary: Edit a product.
      * @description: This API allows to edit product.
      */
     editProduct({ itemId, body }?: {
         itemId: number;
-        body: ProductCreateUpdate;
+        body: ProductCreateUpdateSchemaV2;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -439,6 +459,15 @@ declare class Catalog {
      * @description: This API allows to delete product.
      */
     deleteProduct({ itemId }?: {
+        itemId: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Id of the product to be updated.
+     * @summary: All Sizes for a given Product
+     * @description: This API allows to get  All Sizes for a given Product.
+     */
+    allSizes({ itemId }?: {
         itemId: number;
     }): Promise<any>;
     /**
@@ -464,15 +493,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {BulkJob} arg.body
-     * @summary: Create a Bulk product to upload job.
-     * @description: This API helps to create a bulk products upload job.
-     */
-    createBulkProductUploadJob({ body }?: {
-        body: BulkJob;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} [arg.search] - Search string to filter the results by batch id
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
@@ -485,6 +505,29 @@ declare class Catalog {
         search?: string;
         pageNo?: number;
         pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkJob} arg.body
+     * @summary: Create a Bulk product to upload job.
+     * @description: This API helps to create a bulk products upload job.
+     */
+    createBulkProductUploadJob({ body }?: {
+        body: BulkJob;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.department - Department of the product to be uploaded.
+     * @param {string} arg.productType - Product type of the product to be
+     *   uploaded i.e. set, standard , digital.
+     * @param {BulkJob} arg.body
+     * @summary: Create a Bulk product to upload job.
+     * @description: This API helps to create a bulk products upload job.
+     */
+    uploadBulkProducts({ department, productType, body }?: {
+        department: string;
+        productType: string;
+        body: BulkJob;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -514,15 +557,6 @@ declare class Catalog {
     getProductTags({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {ProductBulkAssets} arg.body
-     * @summary: Create a Bulk asset upload Job.
-     * @description: This API helps to create a bulk asset upload job.
-     */
-    createProductAssetsInBulk({ body }?: {
-        body: ProductBulkAssets;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -536,15 +570,45 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {ProductBulkAssets} arg.body
+     * @summary: Create a Bulk asset upload Job.
+     * @description: This API helps to create a bulk asset upload job.
+     */
+    createProductAssetsInBulk({ body }?: {
+        body: ProductBulkAssets;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {number} arg.itemId - Item Id of the product associated with size
      *   to be deleted.
-     * @param {number} arg.size - Size to be deleted.
+     * @param {string} arg.size - Size to be deleted.
      * @summary: Delete a Size associated with product.
      * @description: This API allows to delete size associated with product.
      */
     deleteSize({ itemId, size }?: {
         itemId: number;
-        size: number;
+        size: string;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
+     * @param {string} arg.size - Size of which inventory is to get.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search with help of store code.
+     * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
+     * @summary: Get Inventory for company
+     * @description: This API allows get Inventory data for particular company grouped by size and store.
+     */
+    getInventoryBySize({ itemId, size, pageNo, pageSize, q, sellable }?: {
+        itemId: number;
+        size: string;
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        sellable?: boolean;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -561,28 +625,7 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Item code of the product of which size is to be get.
-     * @param {string} arg.size - Size of which inventory is to get.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results
-     * @param {number} [arg.pageSize] - Number of items to retrieve in each
-     *   page. Default is 12.
-     * @param {string} [arg.q] - Search with help of store code.
-     * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
-     * @summary: Get Inventory for company
-     * @description: This API allows get Inventory data for particular company grouped by size and store.
-     */
-    getInventoryBySize({ itemId, size, pageNo, pageSize, q, sellable }?: {
-        itemId: string;
-        size: string;
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
-        sellable?: boolean;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.itemId - Item code of the product of which size is to be get.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
      * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
      *   or Primary Identifier) of which inventory is to get.
      * @param {number} [arg.pageNo] - The page number to navigate through the
@@ -595,12 +638,38 @@ declare class Catalog {
      * @description: This API allows get Inventory data for particular company grouped by size and store.
      */
     getInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, }?: {
-        itemId: string;
+        itemId: number;
         sizeIdentifier: string;
         pageNo?: number;
         pageSize?: number;
         q?: string;
         locationIds?: number[];
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.itemId] - Item code of the product of which size is to be get.
+     * @param {string} [arg.size] - Size of which inventory is to get.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search with help of store code.
+     * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
+     * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
+     * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
+     *   or Primary Identifier) of which inventory is to get.
+     * @summary: Get Inventory for company
+     * @description: This API allows get Inventories data for particular company.
+     */
+    getInventories({ itemId, size, pageNo, pageSize, q, sellable, storeIds, sizeIdentifier, }?: {
+        itemId?: string;
+        size?: string;
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        sellable?: boolean;
+        storeIds?: number[];
+        sizeIdentifier?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -619,15 +688,6 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {BulkJob} arg.body
-     * @summary: Create a Bulk Inventory upload Job.
-     * @description: This API helps to create a bulk Inventory upload job.
-     */
-    createBulkInventoryJob({ body }?: {
-        body: BulkJob;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
      *   given set of results
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -638,6 +698,15 @@ declare class Catalog {
     getInventoryBulkUploadHistory({ pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {BulkJob} arg.body
+     * @summary: Create a Bulk Inventory upload Job.
+     * @description: This API helps to create a bulk Inventory upload job.
+     */
+    createBulkInventoryJob({ body }?: {
+        body: BulkJob;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
@@ -661,6 +730,12 @@ declare class Catalog {
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
+     * @summary: Get Inventory export history.
+     * @description: This API helps to get Inventory export history.
+     */
+    getInventoryExport({}?: any): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {InventoryExportRequest} arg.body
      * @summary: Create a Inventory export Job.
      * @description: This API helps to create a Inventory export job.
@@ -668,12 +743,6 @@ declare class Catalog {
     createInventoryExportJob({ body }?: {
         body: InventoryExportRequest;
     }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @summary: Get Inventory export history.
-     * @description: This API helps to get Inventory export history.
-     */
-    getInventoryExport({}?: any): Promise<any>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.filterType] - Filter type from any one of ['brand',
@@ -720,28 +789,6 @@ declare class Catalog {
      */
     updateInventories({ body }?: {
         body: InventoryRequestSchemaV2;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {HsnUpsert} arg.body
-     * @summary: Create Hsn Code.
-     * @description: Create Hsn Code.
-     */
-    createHsnCode({ body }?: {
-        body: HsnUpsert;
-    }): Promise<any>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page no
-     * @param {number} [arg.pageSize] - Page size
-     * @param {string} [arg.q] - Search using hsn code.
-     * @summary: Hsn Code List.
-     * @description: Hsn Code List.
-     */
-    getAllHsnCodes({ pageNo, pageSize, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
     }): Promise<any>;
     /**
      * @param {Object} arg - Arg object.

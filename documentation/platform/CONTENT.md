@@ -7524,7 +7524,19 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | redirect_to | string |  no  |  |
  | updated_at | string |  no  |  |
  | created_at | string |  no  |  |
- | __source | [TagSourceSchema](#TagSourceSchema) |  no  |  |
+ | __source | [PathSourceSchema](#PathSourceSchema) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | string |  no  |  |
+ | id | string |  no  |  |
 
 ---
 
