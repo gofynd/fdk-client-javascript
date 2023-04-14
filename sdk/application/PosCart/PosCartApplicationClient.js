@@ -1457,6 +1457,8 @@ class PosCart {
    *   getting a payment option in response.
    * @param {string} [arg.id] - The unique identifier of the cart
    * @param {string} [arg.addressId] - ID allotted to an address
+   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+   *   e.g. 400059
    * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
    *   - If the customer wants the order home-delivered PickAtStore - If the
    *   customer wants the handover of an order at the store itself.
@@ -1465,9 +1467,17 @@ class PosCart {
    * @summary: Update shipment delivery type and quantity before checkout
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
    */
-  async updateShipments({ body, i, p, id, addressId, orderType } = {}) {
+  async updateShipments({
+    body,
+    i,
+    p,
+    id,
+    addressId,
+    areaCode,
+    orderType,
+  } = {}) {
     const { error } = PosCartValidator.updateShipments().validate(
-      { body, i, p, id, addressId, orderType },
+      { body, i, p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1476,7 +1486,7 @@ class PosCart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = PosCartValidator.updateShipments().validate(
-      { body, i, p, id, addressId, orderType },
+      { body, i, p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1492,6 +1502,7 @@ class PosCart {
     query_params["p"] = p;
     query_params["id"] = id;
     query_params["address_id"] = addressId;
+    query_params["area_code"] = areaCode;
     query_params["order_type"] = orderType;
 
     const xHeaders = {};

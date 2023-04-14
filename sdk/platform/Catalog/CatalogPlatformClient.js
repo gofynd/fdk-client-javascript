@@ -147,6 +147,73 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - A `id` is a unique identifier for a particular
+   *   detail. Pass the `id` of the keywords which you want to retrieve.
+   * @returns {Promise<GetProductBundleResponse>} - Success response
+   * @summary: Get a particular Product Bundle details
+   * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+   */
+  async getProductBundleDetail({ id } = {}) {
+    const { error } = CatalogValidator.getProductBundleDetail().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.getProductBundleDetail().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProductBundleDetail",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.GetProductBundleResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProductBundleDetail",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - A `id` is a unique identifier for a particular
    *   detail. Pass the `id` of the keywords which you want to delete.
    * @param {ProductBundleUpdateRequest} arg.body
    * @returns {Promise<GetProductBundleCreateResponse>} - Success response
@@ -205,73 +272,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateProductBundle",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @returns {Promise<GetProductBundleResponse>} - Success response
-   * @summary: Get a particular Product Bundle details
-   * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-   */
-  async getProductBundleDetail({ id } = {}) {
-    const { error } = CatalogValidator.getProductBundleDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.getProductBundleDetail().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getProductBundleDetail",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.GetProductBundleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getProductBundleDetail",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -426,6 +426,70 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Id of the size guide to be viewed.
+   * @returns {Promise<SizeGuideResponse>} - Success response
+   * @summary: Get a single size guide.
+   * @description: This API helps to get data associated to a size guide.
+   */
+  async getSizeGuide({ id } = {}) {
+    const { error } = CatalogValidator.getSizeGuide().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getSizeGuide().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getSizeGuide",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SizeGuideResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getSizeGuide",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Mongo id of the size guide to be edited
    * @param {ValidateSizeGuide} arg.body
    * @returns {Promise<SuccessResponse>} - Success response
@@ -484,70 +548,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateSizeGuide",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id of the size guide to be viewed.
-   * @returns {Promise<SizeGuideResponse>} - Success response
-   * @summary: Get a single size guide.
-   * @description: This API helps to get data associated to a size guide.
-   */
-  async getSizeGuide({ id } = {}) {
-    const { error } = CatalogValidator.getSizeGuide().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getSizeGuide().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getSizeGuide",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SizeGuideResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getSizeGuide",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -1324,6 +1324,70 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.uid - A `uid` is a unique identifier of a department.
+   * @returns {Promise<DepartmentsResponse>} - Success response
+   * @summary: Get specific departments details by passing in unique id of the department.
+   * @description: Allows you to get department data, by uid.
+   */
+  async getDepartmentData({ uid } = {}) {
+    const { error } = CatalogValidator.getDepartmentData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getDepartmentData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDepartmentData",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.DepartmentsResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDepartmentData",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
    * @param {DepartmentCreateUpdate} arg.body
    * @returns {Promise<DepartmentModel>} - Success response
    * @summary: Update the department by their uid.
@@ -1381,70 +1445,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateDepartment",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-   * @returns {Promise<DepartmentsResponse>} - Success response
-   * @summary: Get specific departments details by passing in unique id of the department.
-   * @description: Allows you to get department data, by uid.
-   */
-  async getDepartmentData({ uid } = {}) {
-    const { error } = CatalogValidator.getDepartmentData().validate(
-      {
-        uid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getDepartmentData().validate(
-      {
-        uid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getDepartmentData",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.DepartmentsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getDepartmentData",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2131,6 +2131,70 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.uid - Category unique id
+   * @returns {Promise<SingleCategoryResponse>} - Success response
+   * @summary: Get product category by uid
+   * @description: This API gets meta associated to product categories.
+   */
+  async getCategoryData({ uid } = {}) {
+    const { error } = CatalogValidator.getCategoryData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getCategoryData().validate(
+      {
+        uid,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getCategoryData",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SingleCategoryResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getCategoryData",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uid - Category unique id
    * @param {CategoryRequestBody} arg.body
    * @returns {Promise<CategoryUpdateResponse>} - Success response
    * @summary: Update product categories
@@ -2188,70 +2252,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateCategory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - Category unique id
-   * @returns {Promise<SingleCategoryResponse>} - Success response
-   * @summary: Get product category by uid
-   * @description: This API gets meta associated to product categories.
-   */
-  async getCategoryData({ uid } = {}) {
-    const { error } = CatalogValidator.getCategoryData().validate(
-      {
-        uid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getCategoryData().validate(
-      {
-        uid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getCategoryData",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SingleCategoryResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getCategoryData",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -2587,73 +2587,6 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @param {ProductCreateUpdateSchemaV2} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
-   * @summary: Edit a product.
-   * @description: This API allows to edit product.
-   */
-  async editProduct({ itemId, body } = {}) {
-    const { error } = CatalogValidator.editProduct().validate(
-      {
-        itemId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.editProduct().validate(
-      {
-        itemId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for editProduct",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for editProduct",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {number} arg.itemId - Item Id of the product.
    * @param {number} [arg.brandUid] - Brand Id of the product.
    * @param {string} [arg.itemCode] - Item code of the product.
@@ -2781,6 +2714,73 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteProduct",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.itemId - Id of the product to be updated.
+   * @param {ProductCreateUpdateSchemaV2} arg.body
+   * @returns {Promise<SuccessResponse>} - Success response
+   * @summary: Edit a product.
+   * @description: This API allows to edit product.
+   */
+  async editProduct({ itemId, body } = {}) {
+    const { error } = CatalogValidator.editProduct().validate(
+      {
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.editProduct().validate(
+      {
+        itemId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for editProduct",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for editProduct",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -3204,6 +3204,72 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
+   * @returns {Promise<SuccessResponse>} - Success response
+   * @summary: Delete Bulk product job.
+   * @description: This API allows to delete bulk product job associated with company.
+   */
+  async deleteProductBulkJob({ batchId } = {}) {
+    const { error } = CatalogValidator.deleteProductBulkJob().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.deleteProductBulkJob().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteProductBulkJob",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteProductBulkJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.batchId - Batch Id in which assets to be uploaded.
    * @param {BulkProductRequest} arg.body
    * @returns {Promise<SuccessResponse>} - Success response
@@ -3264,72 +3330,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for createProductsInBulk",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
-   * @returns {Promise<SuccessResponse>} - Success response
-   * @summary: Delete Bulk product job.
-   * @description: This API allows to delete bulk product job associated with company.
-   */
-  async deleteProductBulkJob({ batchId } = {}) {
-    const { error } = CatalogValidator.deleteProductBulkJob().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.deleteProductBulkJob().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteProductBulkJob",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteProductBulkJob",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -4180,6 +4180,72 @@ class Catalog {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.batchId - Batch Id of the bulk delete job.
+   * @returns {Promise<SuccessResponse>} - Success response
+   * @summary: Delete Bulk Inventory job.
+   * @description: This API allows to delete bulk Inventory job associated with company.
+   */
+  async deleteBulkInventoryJob({ batchId } = {}) {
+    const { error } = CatalogValidator.deleteBulkInventoryJob().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.deleteBulkInventoryJob().validate(
+      {
+        batchId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for deleteBulkInventoryJob",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.SuccessResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for deleteBulkInventoryJob",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.batchId - Batch Id of the bulk create job.
    * @param {InventoryBulkRequest} arg.body
    * @returns {Promise<SuccessResponse>} - Success response
@@ -4238,72 +4304,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for createBulkInventory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch Id of the bulk delete job.
-   * @returns {Promise<SuccessResponse>} - Success response
-   * @summary: Delete Bulk Inventory job.
-   * @description: This API allows to delete bulk Inventory job associated with company.
-   */
-  async deleteBulkInventoryJob({ batchId } = {}) {
-    const { error } = CatalogValidator.deleteBulkInventoryJob().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.deleteBulkInventoryJob().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for deleteBulkInventoryJob",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for deleteBulkInventoryJob",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -4514,79 +4514,6 @@ class Catalog {
    * @summary: Add Inventory for particular size and store.
    * @description: This API allows add Inventory for particular size and store.
    */
-  async updateRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
-    const { error } = CatalogValidator.updateRealtimeInventory().validate(
-      {
-        itemId,
-        sellerIdentifier,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogValidator.updateRealtimeInventory().validate(
-      {
-        itemId,
-        sellerIdentifier,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for updateRealtimeInventory",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = CatalogModel.InventoryUpdateResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for updateRealtimeInventory",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.sellerIdentifier - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
-   * @param {InventoryRequestSchemaV2} arg.body
-   * @returns {Promise<InventoryUpdateResponse>} - Success response
-   * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
-   */
   async deleteRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
     const { error } = CatalogValidator.deleteRealtimeInventory().validate(
       {
@@ -4643,6 +4570,79 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for deleteRealtimeInventory",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.itemId - Item code of the product of which size is to be get.
+   * @param {string} arg.sellerIdentifier - Size Identifier (Seller Identifier
+   *   or Primary Identifier) of which inventory is to get.
+   * @param {InventoryRequestSchemaV2} arg.body
+   * @returns {Promise<InventoryUpdateResponse>} - Success response
+   * @summary: Add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store.
+   */
+  async updateRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
+    const { error } = CatalogValidator.updateRealtimeInventory().validate(
+      {
+        itemId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogValidator.updateRealtimeInventory().validate(
+      {
+        itemId,
+        sellerIdentifier,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updateRealtimeInventory",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}/`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CatalogModel.InventoryUpdateResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updateRealtimeInventory",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -4852,6 +4852,68 @@ class Catalog {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.id - Unique id
+   * @returns {Promise<HsnCode>} - Success response
+   * @summary: Fetch Hsn Code.
+   * @description: Fetch Hsn Code.
+   */
+  async getHsnCode({ id } = {}) {
+    const { error } = CatalogValidator.getHsnCode().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CatalogValidator.getHsnCode().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getHsnCode",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const { error: res_error } = CatalogModel.HsnCode().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getHsnCode",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Unique id
    * @param {HsnUpsert} arg.body
    * @returns {Promise<HsnCode>} - Success response
    * @summary: Update Hsn Code.
@@ -4907,68 +4969,6 @@ class Catalog {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateHsnCode",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Unique id
-   * @returns {Promise<HsnCode>} - Success response
-   * @summary: Fetch Hsn Code.
-   * @description: Fetch Hsn Code.
-   */
-  async getHsnCode({ id } = {}) {
-    const { error } = CatalogValidator.getHsnCode().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getHsnCode().validate(
-      {
-        id,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getHsnCode",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const { error: res_error } = CatalogModel.HsnCode().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getHsnCode",
       });
       Logger({ level: "WARN", message: res_error });
     }

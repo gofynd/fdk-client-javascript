@@ -2684,6 +2684,8 @@ class Cart {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pickAtStoreUid] -
    * @param {number} [arg.orderingStoreId] -
+   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
+   *   retrieve all the items added in the cart.
    * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
    *   getting a payment option in response.
    * @param {string} [arg.id] - The unique identifier of the cart
@@ -2700,6 +2702,7 @@ class Cart {
   async getShipments({
     pickAtStoreUid,
     orderingStoreId,
+    i,
     p,
     id,
     addressId,
@@ -2710,6 +2713,7 @@ class Cart {
       {
         pickAtStoreUid,
         orderingStoreId,
+        i,
         p,
         id,
         addressId,
@@ -2727,6 +2731,7 @@ class Cart {
       {
         pickAtStoreUid,
         orderingStoreId,
+        i,
         p,
         id,
         addressId,
@@ -2746,6 +2751,7 @@ class Cart {
     const query_params = {};
     query_params["pick_at_store_uid"] = pickAtStoreUid;
     query_params["ordering_store_id"] = orderingStoreId;
+    query_params["i"] = i;
     query_params["p"] = p;
     query_params["id"] = id;
     query_params["address_id"] = addressId;
@@ -2786,6 +2792,8 @@ class Cart {
    *   getting a payment option in response.
    * @param {string} [arg.id] - The unique identifier of the cart
    * @param {string} [arg.addressId] - ID allotted to an address
+   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+   *   e.g. 400059
    * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
    *   - If the customer wants the order home-delivered PickAtStore - If the
    *   customer wants the handover of an order at the store itself.
@@ -2794,7 +2802,15 @@ class Cart {
    * @summary: Update shipment delivery type and quantity before checkout
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
    */
-  async updateShipments({ body, i, p, id, addressId, orderType } = {}) {
+  async updateShipments({
+    body,
+    i,
+    p,
+    id,
+    addressId,
+    areaCode,
+    orderType,
+  } = {}) {
     const { error } = CartValidator.updateShipments().validate(
       {
         body,
@@ -2802,6 +2818,7 @@ class Cart {
         p,
         id,
         addressId,
+        areaCode,
         orderType,
       },
       { abortEarly: false, allowUnknown: true }
@@ -2818,6 +2835,7 @@ class Cart {
         p,
         id,
         addressId,
+        areaCode,
         orderType,
       },
       { abortEarly: false, allowUnknown: false }
@@ -2835,6 +2853,7 @@ class Cart {
     query_params["p"] = p;
     query_params["id"] = id;
     query_params["address_id"] = addressId;
+    query_params["area_code"] = areaCode;
     query_params["order_type"] = orderType;
 
     const response = await PlatformAPIClient.execute(

@@ -532,16 +532,6 @@ declare class Order {
     getRoleBasedActions({}?: any): Promise<GetActionsResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PostShipmentHistory} arg.body
-     * @returns {Promise<ShipmentHistoryResponse>} - Success response
-     * @summary:
-     * @description:
-     */
-    postShipmentHistory({ body }?: {
-        body: PostShipmentHistory;
-    }): Promise<ShipmentHistoryResponse>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {number} [arg.shipmentId] -
      * @param {number} [arg.bagId] -
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
@@ -551,6 +541,16 @@ declare class Order {
     getShipmentHistory({ shipmentId, bagId }?: {
         shipmentId?: number;
         bagId?: number;
+    }): Promise<ShipmentHistoryResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PostShipmentHistory} arg.body
+     * @returns {Promise<ShipmentHistoryResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    postShipmentHistory({ body }?: {
+        body: PostShipmentHistory;
     }): Promise<ShipmentHistoryResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -594,6 +594,13 @@ declare class Order {
     }): Promise<CreateOrderResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<CreateChannelConfigData>} - Success response
+     * @summary:
+     * @description: getChannelConfig
+     */
+    getChannelConfig({}?: any): Promise<CreateChannelConfigData>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CreateChannelConfigData} arg.body
      * @returns {Promise<CreateChannelConfigResponse>} - Success response
      * @summary:
@@ -602,13 +609,6 @@ declare class Order {
     createChannelConfig({ body }?: {
         body: CreateChannelConfigData;
     }): Promise<CreateChannelConfigResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CreateChannelConfigData>} - Success response
-     * @summary:
-     * @description: getChannelConfig
-     */
-    getChannelConfig({}?: any): Promise<CreateChannelConfigData>;
     /**
      * @param {Object} arg - Arg object.
      * @param {UploadConsent} arg.body
