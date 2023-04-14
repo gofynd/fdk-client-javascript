@@ -251,6 +251,7 @@ class PlatformApplicationClient {
 /** @typedef BlockUserRequestSchema */
 /** @typedef BlockUserSuccess */
 /** @typedef CodeRequestBodySchema */
+/** @typedef CreateUserGroupSchema */
 /** @typedef CreateUserRequestSchema */
 /** @typedef CreateUserResponseSchema */
 /** @typedef CreateUserSessionRequestSchema */
@@ -322,8 +323,11 @@ class PlatformApplicationClient {
 /** @typedef UnDeleteUserRequestSchema */
 /** @typedef UnDeleteUserSuccess */
 /** @typedef UpdatePasswordRequestSchema */
+/** @typedef UpdateUserGroupSchema */
 /** @typedef UpdateUserRequestSchema */
 /** @typedef UserEmails */
+/** @typedef UserGroupListResponseSchema */
+/** @typedef UserGroupResponseSchema */
 /** @typedef UserObjectSchema */
 /** @typedef UserPhoneNumbers */
 /** @typedef UserSchema */

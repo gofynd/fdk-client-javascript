@@ -1457,756 +1457,1238 @@ Success
 #### [Android](#Android)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  || application_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+ | application_id | string |  no  |  |
+ 
 
 ---
 
 #### [AppCurrencyResponse](#AppCurrencyResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || application | string |  no  |  || default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  || supported_currency | [[Currency](#Currency)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | application | string |  no  |  |
+ | default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  |
+ | supported_currency | [[Currency](#Currency)] |  no  |  |
+ 
 
 ---
 
 #### [AppFeature](#AppFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || app | string |  no  |  || cart | [CartFeature](#CartFeature) |  no  |  || common | [CommonFeature](#CommonFeature) |  no  |  || created_at | string |  no  |  || home_page | [HomePageFeature](#HomePageFeature) |  no  |  || landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  || order | [OrderFeature](#OrderFeature) |  no  |  || pcr | [PcrFeature](#PcrFeature) |  no  |  || product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  || qr | [QrFeature](#QrFeature) |  no  |  || registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | app | string |  no  |  |
+ | cart | [CartFeature](#CartFeature) |  no  |  |
+ | common | [CommonFeature](#CommonFeature) |  no  |  |
+ | created_at | string |  no  |  |
+ | home_page | [HomePageFeature](#HomePageFeature) |  no  |  |
+ | landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  |
+ | order | [OrderFeature](#OrderFeature) |  no  |  |
+ | pcr | [PcrFeature](#PcrFeature) |  no  |  |
+ | product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  |
+ | qr | [QrFeature](#QrFeature) |  no  |  |
+ | registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [AppFeatureRequest](#AppFeatureRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || feature | [AppFeature](#AppFeature) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | feature | [AppFeature](#AppFeature) |  no  |  |
+ 
 
 ---
 
 #### [AppFeatureResponse](#AppFeatureResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || feature | [AppFeature](#AppFeature) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | feature | [AppFeature](#AppFeature) |  no  |  |
+ 
 
 ---
 
 #### [Application](#Application)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || app_type | string |  no  |  || auth | [ApplicationAuth](#ApplicationAuth) |  no  |  || banner | [SecureUrl](#SecureUrl) |  no  |  || cache_ttl | number |  no  |  || channel_type | string |  no  |  || company_id | number |  no  |  || cors | [ApplicationCors](#ApplicationCors) |  no  |  || created_at | string |  no  |  || description | string |  no  |  || domain | [Domain](#Domain) |  no  |  || domains | [[Domain](#Domain)] |  no  |  || favicon | [SecureUrl](#SecureUrl) |  no  |  || is_active | boolean |  no  |  || is_internal | boolean |  no  |  || logo | [SecureUrl](#SecureUrl) |  no  |  || meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  || mobile_logo | [SecureUrl](#SecureUrl) |  no  |  || name | string |  no  |  || owner | string |  no  |  || redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  || slug | string |  no  |  || token | string |  no  |  || updated_at | string |  no  |  || website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | app_type | string |  no  |  |
+ | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | cache_ttl | number |  no  |  |
+ | channel_type | string |  no  |  |
+ | company_id | number |  no  |  |
+ | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
+ | created_at | string |  no  |  |
+ | description | string |  no  |  |
+ | domain | [Domain](#Domain) |  no  |  |
+ | domains | [[Domain](#Domain)] |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_internal | boolean |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | name | string |  no  |  |
+ | owner | string |  no  |  |
+ | redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  |
+ | slug | string |  no  |  |
+ | token | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ 
 
 ---
 
 #### [ApplicationAboutResponse](#ApplicationAboutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  || company_info | [CompanyInfo](#CompanyInfo) |  no  |  || owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  |
+ | company_info | [CompanyInfo](#CompanyInfo) |  no  |  |
+ | owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
+ 
 
 ---
 
 #### [ApplicationAuth](#ApplicationAuth)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [ApplicationCors](#ApplicationCors)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || domains | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | domains | [string] |  no  |  |
+ 
 
 ---
 
 #### [ApplicationDetail](#ApplicationDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || banner | [SecureUrl](#SecureUrl) |  no  |  || description | string |  no  |  || domain | [Domain](#Domain) |  no  |  || domains | [[Domain](#Domain)] |  no  |  || favicon | [SecureUrl](#SecureUrl) |  no  |  || logo | [SecureUrl](#SecureUrl) |  no  |  || mobile_logo | [SecureUrl](#SecureUrl) |  no  |  || name | string |  no  |  || slug | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | description | string |  no  |  |
+ | domain | [Domain](#Domain) |  no  |  |
+ | domains | [[Domain](#Domain)] |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ 
 
 ---
 
 #### [ApplicationInfo](#ApplicationInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || banner | [SecureUrl](#SecureUrl) |  no  |  || cors | [ApplicationCors](#ApplicationCors) |  no  |  || created_at | string |  no  |  || description | string |  no  |  || domain | [Domain](#Domain) |  no  |  || is_active | boolean |  no  |  || logo | [SecureUrl](#SecureUrl) |  no  |  || meta | [ApplicationMeta](#ApplicationMeta) |  no  |  || name | string |  no  |  || secret | string |  no  |  || token | string |  no  |  || website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
+ | created_at | string |  no  |  |
+ | description | string |  no  |  |
+ | domain | [Domain](#Domain) |  no  |  |
+ | is_active | boolean |  no  |  |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | meta | [ApplicationMeta](#ApplicationMeta) |  no  |  |
+ | name | string |  no  |  |
+ | secret | string |  no  |  |
+ | token | string |  no  |  |
+ | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
+ 
 
 ---
 
 #### [ApplicationInformation](#ApplicationInformation)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || address | [InformationAddress](#InformationAddress) |  no  |  || application | string |  no  |  || business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  || copyright_text | string |  no  |  || created_at | string |  no  |  || links | [Links](#Links) |  no  |  || social_links | [SocialLinks](#SocialLinks) |  no  |  || support | [InformationSupport](#InformationSupport) |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | address | [InformationAddress](#InformationAddress) |  no  |  |
+ | application | string |  no  |  |
+ | business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  |
+ | copyright_text | string |  no  |  |
+ | created_at | string |  no  |  |
+ | links | [Links](#Links) |  no  |  |
+ | social_links | [SocialLinks](#SocialLinks) |  no  |  |
+ | support | [InformationSupport](#InformationSupport) |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [ApplicationMeta](#ApplicationMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || name | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ApplicationRedirections](#ApplicationRedirections)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || redirect_from | string |  no  |  || redirect_to | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | redirect_from | string |  no  |  |
+ | redirect_to | string |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [ApplicationVersionRequest](#ApplicationVersionRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | string |  no  |  || name | string |  yes  |  || namespace | string |  no  |  || token | string |  no  |  || version | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | name | string |  yes  |  |
+ | namespace | string |  no  |  |
+ | token | string |  no  |  |
+ | version | string |  yes  |  |
+ 
 
 ---
 
 #### [ApplicationWebsite](#ApplicationWebsite)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || basepath | string |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | basepath | string |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [AppStaff](#AppStaff)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application | string |  no  |  || employee_code | string |  no  |  || first_name | string |  no  |  || last_name | string |  no  |  || order_incent | boolean |  no  |  || profile_pic_url | string |  no  |  || stores | [number] |  no  |  || title | string |  no  |  || user | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | employee_code | string |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | order_incent | boolean |  no  |  |
+ | profile_pic_url | string |  no  |  |
+ | stores | [number] |  no  |  |
+ | title | string |  no  |  |
+ | user | string |  no  |  |
+ 
 
 ---
 
 #### [AppStaffListResponse](#AppStaffListResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[AppStaff](#AppStaff)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AppStaff](#AppStaff)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [AppStaffResponse](#AppStaffResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || staff_users | [[AppStaff](#AppStaff)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | staff_users | [[AppStaff](#AppStaff)] |  no  |  |
+ 
 
 ---
 
 #### [AppTokenResponse](#AppTokenResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || tokens | [Tokens](#Tokens) |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | application | string |  no  |  |
+ | created_at | string |  no  |  |
+ | tokens | [Tokens](#Tokens) |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [AppVersionRequest](#AppVersionRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  || device | [Device](#Device) |  yes  |  || locale | string |  no  |  || timezone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  |
+ | device | [Device](#Device) |  yes  |  |
+ | locale | string |  no  |  |
+ | timezone | string |  no  |  |
+ 
 
 ---
 
 #### [ArticleAssignmentRule](#ArticleAssignmentRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
+ 
 
 ---
 
 #### [BlogLink](#BlogLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [BusinessHighlights](#BusinessHighlights)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || icon | string |  no  |  || sub_title | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | icon | string |  no  |  |
+ | sub_title | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [CartFeature](#CartFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || google_map | boolean |  no  |  || gst_input | boolean |  no  |  || placing_for_customer | boolean |  no  |  || revenue_engine_coupon | boolean |  no  |  || staff_selection | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | google_map | boolean |  no  |  |
+ | gst_input | boolean |  no  |  |
+ | placing_for_customer | boolean |  no  |  |
+ | revenue_engine_coupon | boolean |  no  |  |
+ | staff_selection | boolean |  no  |  |
+ 
 
 ---
 
 #### [CommonFeature](#CommonFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  || compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  || currency | [CurrencyFeature](#CurrencyFeature) |  no  |  || deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  || feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  || listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  || revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
+ | compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  |
+ | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
+ | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
+ | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
+ | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
+ | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
+ | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ 
 
 ---
 
 #### [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || visibility | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | visibility | boolean |  no  |  |
+ 
 
 ---
 
 #### [CompanyAboutAddress](#CompanyAboutAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address1 | string |  no  |  || address2 | string |  no  |  || address_type | string |  no  |  || city | string |  no  |  || country | string |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  no  |  |
+ | address2 | string |  no  |  |
+ | address_type | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | pincode | number |  no  |  |
+ | state | string |  no  |  |
+ 
 
 ---
 
 #### [CompanyInfo](#CompanyInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  || created_on | string |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || notification_emails | [string] |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  |
+ | created_on | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | notification_emails | [string] |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [CompareProductsFeature](#CompareProductsFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [Credentials](#Credentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || android | [Android](#Android) |  no  |  || api_key | string |  no  |  || application_id | string |  no  |  || gcm_sender_id | string |  no  |  || ios | [Ios](#Ios) |  no  |  || project_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | android | [Android](#Android) |  no  |  |
+ | api_key | string |  no  |  |
+ | application_id | string |  no  |  |
+ | gcm_sender_id | string |  no  |  |
+ | ios | [Ios](#Ios) |  no  |  |
+ | project_id | string |  no  |  |
+ 
 
 ---
 
 #### [Credit](#Credit)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [CurrenciesResponse](#CurrenciesResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[Currency](#Currency)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Currency](#Currency)] |  no  |  |
+ 
 
 ---
 
 #### [Currency](#Currency)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || code | string |  no  |  || created_at | string |  no  |  || decimal_digits | number |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || symbol | string |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | code | string |  no  |  |
+ | created_at | string |  no  |  |
+ | decimal_digits | number |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ | symbol | string |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [CurrencyFeature](#CurrencyFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || default_currency | string |  no  |  || type | string |  no  |  || value | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | default_currency | string |  no  |  |
+ | type | string |  no  |  |
+ | value | [string] |  no  |  |
+ 
 
 ---
 
 #### [Debit](#Debit)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || auto_apply | boolean |  no  |  || enabled | boolean |  no  |  || strategy_channel | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | auto_apply | boolean |  no  |  |
+ | enabled | boolean |  no  |  |
+ | strategy_channel | string |  no  |  |
+ 
 
 ---
 
 #### [DefaultCurrency](#DefaultCurrency)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || ref | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | ref | string |  no  |  |
+ 
 
 ---
 
 #### [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [Device](#Device)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || build | number |  no  |  || model | string |  no  |  || os | [OS](#OS) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | build | number |  no  |  |
+ | model | string |  no  |  |
+ | os | [OS](#OS) |  yes  |  |
+ 
 
 ---
 
 #### [Domain](#Domain)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || is_predefined | boolean |  no  |  || is_primary | boolean |  no  |  || is_shortlink | boolean |  no  |  || name | string |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | is_predefined | boolean |  no  |  |
+ | is_primary | boolean |  no  |  |
+ | is_shortlink | boolean |  no  |  |
+ | name | string |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [FacebookLink](#FacebookLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [FeedbackFeature](#FeedbackFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [Firebase](#Firebase)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [Credentials](#Credentials) |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [Credentials](#Credentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [Freshchat](#Freshchat)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [FreshchatCredentials](#FreshchatCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  || app_key | string |  no  |  || web_token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ | app_key | string |  no  |  |
+ | web_token | string |  no  |  |
+ 
 
 ---
 
 #### [FyndRewards](#FyndRewards)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
+ 
 
 ---
 
 #### [FyndRewardsCredentials](#FyndRewardsCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || public_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | public_key | string |  no  |  |
+ 
 
 ---
 
 #### [GoogleMap](#GoogleMap)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
+ 
 
 ---
 
 #### [GoogleMapCredentials](#GoogleMapCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+ 
 
 ---
 
 #### [GooglePlusLink](#GooglePlusLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [Gtm](#Gtm)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [GtmCredentials](#GtmCredentials) |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [GtmCredentials](#GtmCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [GtmCredentials](#GtmCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+ 
 
 ---
 
 #### [HomePageFeature](#HomePageFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || order_processing | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | order_processing | boolean |  no  |  |
+ 
 
 ---
 
 #### [InformationAddress](#InformationAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address_line | [string] |  no  |  || city | string |  no  |  || country | string |  no  |  || loc | string |  no  |  || phone | [[InformationPhone](#InformationPhone)] |  no  |  || pincode | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address_line | [string] |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | loc | string |  no  |  |
+ | phone | [[InformationPhone](#InformationPhone)] |  no  |  |
+ | pincode | number |  no  |  |
+ 
 
 ---
 
 #### [InformationPhone](#InformationPhone)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || number | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | number | string |  no  |  |
+ 
 
 ---
 
 #### [InformationSupport](#InformationSupport)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | [string] |  no  |  || phone | [string] |  no  |  || timing | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [string] |  no  |  |
+ | phone | [string] |  no  |  |
+ | timing | string |  no  |  |
+ 
 
 ---
 
 #### [InstagramLink](#InstagramLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [InvalidPayloadRequest](#InvalidPayloadRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [InventoryArticleAssignment](#InventoryArticleAssignment)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || post_order_reassignment | boolean |  no  |  || rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | post_order_reassignment | boolean |  no  |  |
+ | rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
+ 
 
 ---
 
 #### [InventoryBrandRule](#InventoryBrandRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || brands | [number] |  no  |  || criteria | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [number] |  no  |  |
+ | criteria | string |  no  |  |
+ 
 
 ---
 
 #### [InventoryPaymentConfig](#InventoryPaymentConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || mode_of_payment | string |  no  |  || source | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | mode_of_payment | string |  no  |  |
+ | source | string |  no  |  |
+ 
 
 ---
 
 #### [InventoryStoreRule](#InventoryStoreRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || criteria | string |  no  |  || rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  |  || stores | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | criteria | string |  no  |  |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  |  |
+ | stores | [number] |  no  |  |
+ 
 
 ---
 
 #### [Ios](#Ios)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  || application_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+ | application_id | string |  no  |  |
+ 
 
 ---
 
 #### [LandingPageFeature](#LandingPageFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || continue_as_guest | boolean |  no  |  || launch_page | [LaunchPage](#LaunchPage) |  no  |  || login_btn_text | string |  no  |  || show_domain_textbox | boolean |  no  |  || show_register_btn | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | continue_as_guest | boolean |  no  |  |
+ | launch_page | [LaunchPage](#LaunchPage) |  no  |  |
+ | login_btn_text | string |  no  |  |
+ | show_domain_textbox | boolean |  no  |  |
+ | show_register_btn | boolean |  no  |  |
+ 
 
 ---
 
 #### [LanguageResponse](#LanguageResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
+ 
 
 ---
 
 #### [LaunchPage](#LaunchPage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || page_type | string |  no  |  || params | string |  no  |  || query | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | page_type | string |  no  |  |
+ | params | string |  no  |  |
+ | query | string |  no  |  |
+ 
 
 ---
 
 #### [LinkedInLink](#LinkedInLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [Links](#Links)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [ListingPriceFeature](#ListingPriceFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [Moengage](#Moengage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [MoengageCredentials](#MoengageCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ 
 
 ---
 
 #### [NotFound](#NotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [OptedStoreAddress](#OptedStoreAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address1 | string |  no  |  || address2 | string |  no  |  || city | string |  no  |  || country | string |  no  |  || lat_long | [StoreLatLong](#StoreLatLong) |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  no  |  |
+ | address2 | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | lat_long | [StoreLatLong](#StoreLatLong) |  no  |  |
+ | pincode | number |  no  |  |
+ | state | string |  no  |  |
+ 
 
 ---
 
 #### [OrderFeature](#OrderFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || buy_again | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | buy_again | boolean |  no  |  |
+ 
 
 ---
 
 #### [OrderingStore](#OrderingStore)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  || code | string |  no  |  || display_name | string |  no  |  || name | string |  no  |  || pincode | number |  no  |  || store_code | string |  no  |  || store_type | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
+ | code | string |  no  |  |
+ | display_name | string |  no  |  |
+ | name | string |  no  |  |
+ | pincode | number |  no  |  |
+ | store_code | string |  no  |  |
+ | store_type | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [OrderingStores](#OrderingStores)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || all_stores | boolean |  no  |  || app | string |  no  |  || deployed_stores | [number] |  no  |  || enabled | boolean |  no  |  || items | [[OrderingStore](#OrderingStore)] |  no  |  || page | [Page](#Page) |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | all_stores | boolean |  no  |  |
+ | app | string |  no  |  |
+ | deployed_stores | [number] |  no  |  |
+ | enabled | boolean |  no  |  |
+ | items | [[OrderingStore](#OrderingStore)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [OrderingStoreSelect](#OrderingStoreSelect)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || uid | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  yes  |  |
+ 
 
 ---
 
 #### [OrderingStoreSelectRequest](#OrderingStoreSelectRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
+ 
 
 ---
 
 #### [OrderingStoresResponse](#OrderingStoresResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[OrderingStore](#OrderingStore)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[OrderingStore](#OrderingStore)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [OS](#OS)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || name | string |  yes  |  || version | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  yes  |  |
+ | version | string |  no  |  |
+ 
 
 ---
 
 #### [OwnerInfo](#OwnerInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || emails | [[UserEmail](#UserEmail)] |  no  |  || first_name | string |  no  |  || last_name | string |  no  |  || phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  || profile_pic | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | emails | [[UserEmail](#UserEmail)] |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
+ | profile_pic | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [PcrFeature](#PcrFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || staff_selection | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | staff_selection | boolean |  no  |  |
+ 
 
 ---
 
 #### [PinterestLink](#PinterestLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [ProductDetailFeature](#ProductDetailFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || request_product | boolean |  no  |  || seller_selection | boolean |  no  |  || similar | [string] |  no  |  || update_product_meta | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | request_product | boolean |  no  |  |
+ | seller_selection | boolean |  no  |  |
+ | similar | [string] |  no  |  |
+ | update_product_meta | boolean |  no  |  |
+ 
 
 ---
 
 #### [QrFeature](#QrFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || application | boolean |  no  |  || collections | boolean |  no  |  || products | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | application | boolean |  no  |  |
+ | collections | boolean |  no  |  |
+ | products | boolean |  no  |  |
+ 
 
 ---
 
 #### [RegistrationPageFeature](#RegistrationPageFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || ask_store_address | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | ask_store_address | boolean |  no  |  |
+ 
 
 ---
 
 #### [RevenueEngineFeature](#RevenueEngineFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [RewardPointsConfig](#RewardPointsConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credit | [Credit](#Credit) |  no  |  || debit | [Debit](#Debit) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credit | [Credit](#Credit) |  no  |  |
+ | debit | [Debit](#Debit) |  no  |  |
+ 
 
 ---
 
 #### [Safetynet](#Safetynet)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [SafetynetCredentials](#SafetynetCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api_key | string |  no  |  |
+ 
 
 ---
 
 #### [SecureUrl](#SecureUrl)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || secure_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | secure_url | string |  no  |  |
+ 
 
 ---
 
 #### [Segment](#Segment)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  || enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  |
+ | enabled | boolean |  no  |  |
+ 
 
 ---
 
 #### [SegmentCredentials](#SegmentCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || write_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | write_key | string |  no  |  |
+ 
 
 ---
 
 #### [SocialLinks](#SocialLinks)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || blog_link | [BlogLink](#BlogLink) |  no  |  || facebook | [FacebookLink](#FacebookLink) |  no  |  || google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  || instagram | [InstagramLink](#InstagramLink) |  no  |  || linked_in | [LinkedInLink](#LinkedInLink) |  no  |  || pinterest | [PinterestLink](#PinterestLink) |  no  |  || twitter | [TwitterLink](#TwitterLink) |  no  |  || vimeo | [VimeoLink](#VimeoLink) |  no  |  || youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | blog_link | [BlogLink](#BlogLink) |  no  |  |
+ | facebook | [FacebookLink](#FacebookLink) |  no  |  |
+ | google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  |
+ | instagram | [InstagramLink](#InstagramLink) |  no  |  |
+ | linked_in | [LinkedInLink](#LinkedInLink) |  no  |  |
+ | pinterest | [PinterestLink](#PinterestLink) |  no  |  |
+ | twitter | [TwitterLink](#TwitterLink) |  no  |  |
+ | vimeo | [VimeoLink](#VimeoLink) |  no  |  |
+ | youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
+ 
 
 ---
 
 #### [StoreCriteriaRule](#StoreCriteriaRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || brands | [number] |  no  |  || companies | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [number] |  no  |  |
+ | companies | [number] |  no  |  |
+ 
 
 ---
 
 #### [StoreLatLong](#StoreLatLong)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || coordinates | [number] |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | coordinates | [number] |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [StorePriorityRule](#StorePriorityRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || storetype_order | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | storetype_order | [string] |  no  |  |
+ 
 
 ---
 
 #### [SuccessMessageResponse](#SuccessMessageResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [SupportedLanguage](#SupportedLanguage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [Tokens](#Tokens)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || firebase | [Firebase](#Firebase) |  no  |  || freshchat | [Freshchat](#Freshchat) |  no  |  || fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  || google_map | [GoogleMap](#GoogleMap) |  no  |  || gtm | [Gtm](#Gtm) |  no  |  || moengage | [Moengage](#Moengage) |  no  |  || safetynet | [Safetynet](#Safetynet) |  no  |  || segment | [Segment](#Segment) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | firebase | [Firebase](#Firebase) |  no  |  |
+ | freshchat | [Freshchat](#Freshchat) |  no  |  |
+ | fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  |
+ | google_map | [GoogleMap](#GoogleMap) |  no  |  |
+ | gtm | [Gtm](#Gtm) |  no  |  |
+ | moengage | [Moengage](#Moengage) |  no  |  |
+ | safetynet | [Safetynet](#Safetynet) |  no  |  |
+ | segment | [Segment](#Segment) |  no  |  |
+ 
 
 ---
 
 #### [TwitterLink](#TwitterLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [UnhandledError](#UnhandledError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [UpdateDialog](#UpdateDialog)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || interval | number |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | interval | number |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [UserEmail](#UserEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | email | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [UserPhoneNumber](#UserPhoneNumber)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | number |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | country_code | number |  no  |  |
+ | phone | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [VimeoLink](#VimeoLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [YoutubeLink](#YoutubeLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | icon | string |  no  |  |
+ | link | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 

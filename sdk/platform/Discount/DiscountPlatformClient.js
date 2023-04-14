@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const DiscountValidator = require("./DiscountPlatformValidator");
 const DiscountModel = require("./DiscountPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Discount {
   constructor(config) {

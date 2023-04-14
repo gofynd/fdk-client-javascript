@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const CatalogValidator = require("./CatalogPlatformValidator");
 const CatalogModel = require("./CatalogPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Catalog {
   constructor(config) {

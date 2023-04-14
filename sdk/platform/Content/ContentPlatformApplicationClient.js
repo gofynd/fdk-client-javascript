@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const ContentValidator = require("./ContentPlatformApplicationValidator");
 const ContentModel = require("./ContentPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Content {
   constructor(config, applicationId) {

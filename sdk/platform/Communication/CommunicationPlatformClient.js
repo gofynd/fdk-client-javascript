@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const CommunicationValidator = require("./CommunicationPlatformValidator");
 const CommunicationModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Communication {
   constructor(config) {

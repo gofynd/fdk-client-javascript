@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const OrderValidator = require("./OrderPlatformValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Order {
   constructor(config) {

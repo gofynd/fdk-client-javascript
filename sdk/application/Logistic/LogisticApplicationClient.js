@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const LogisticValidator = require("./LogisticApplicationValidator");
 const LogisticModel = require("./LogisticApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Logistic {
   constructor(_conf) {

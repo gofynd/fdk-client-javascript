@@ -3823,651 +3823,1218 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 #### [ActiveCardPaymentGatewayResponse](#ActiveCardPaymentGatewayResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  |  || message | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  yes  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  || order_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
+ | order_id | string |  yes  |  |
+ 
 
 ---
 
 #### [AddBeneficiaryDetailsRequest](#AddBeneficiaryDetailsRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || delights | boolean |  yes  |  || details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  |  || order_id | string |  yes  |  || otp | string |  no  |  || request_id | string |  no  |  || shipment_id | string |  yes  |  || transfer_mode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | delights | boolean |  yes  |  |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  yes  |  |
+ | order_id | string |  yes  |  |
+ | otp | string |  no  |  |
+ | request_id | string |  no  |  |
+ | shipment_id | string |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
 
 ---
 
 #### [AddBeneficiaryViaOtpVerificationRequest](#AddBeneficiaryViaOtpVerificationRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || hash_key | string |  yes  |  || otp | string |  yes  |  || request_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | hash_key | string |  yes  |  |
+ | otp | string |  yes  |  |
+ | request_id | string |  yes  |  |
+ 
 
 ---
 
 #### [AddBeneficiaryViaOtpVerificationResponse](#AddBeneficiaryViaOtpVerificationResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [AggregatorConfigDetail](#AggregatorConfigDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api | string |  no  |  || config_type | string |  yes  |  || key | string |  yes  |  || merchant_id | string |  no  |  || merchant_key | string |  no  |  || pin | string |  no  |  || sdk | boolean |  no  |  || secret | string |  yes  |  || user_id | string |  no  |  || verify_api | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api | string |  no  |  |
+ | config_type | string |  yes  |  |
+ | key | string |  yes  |  |
+ | merchant_id | string |  no  |  |
+ | merchant_key | string |  no  |  |
+ | pin | string |  no  |  |
+ | sdk | boolean |  no  |  |
+ | secret | string |  yes  |  |
+ | user_id | string |  no  |  |
+ | verify_api | string |  no  |  |
+ 
 
 ---
 
 #### [AggregatorRoute](#AggregatorRoute)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || api_link | string |  no  |  || data | string |  no  |  || payment_flow | string |  no  |  || payment_flow_data | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | api_link | string |  no  |  |
+ | data | string |  no  |  |
+ | payment_flow | string |  no  |  |
+ | payment_flow_data | string |  no  |  |
+ 
 
 ---
 
 #### [AggregatorsConfigDetailResponse](#AggregatorsConfigDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || env | string |  yes  |  || juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | env | string |  yes  |  |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail) |  no  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [AttachCardRequest](#AttachCardRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || card_id | string |  yes  |  || name_on_card | string |  no  |  || nickname | string |  no  |  || refresh | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | card_id | string |  yes  |  |
+ | name_on_card | string |  no  |  |
+ | nickname | string |  no  |  |
+ | refresh | boolean |  no  |  |
+ 
 
 ---
 
 #### [AttachCardsResponse](#AttachCardsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  yes  |  || message | string |  no  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  yes  |  |
+ | message | string |  no  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [BalanceDetails](#BalanceDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency | string |  yes  |  || formatted_value | string |  yes  |  || value | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  yes  |  |
+ | formatted_value | string |  yes  |  |
+ | value | number |  yes  |  |
+ 
 
 ---
 
 #### [BankDetailsForOTP](#BankDetailsForOTP)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || bank_name | string |  yes  |  || branch_name | string |  yes  |  || ifsc_code | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ 
 
 ---
 
 #### [BeneficiaryModeDetails](#BeneficiaryModeDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || address | string |  no  |  || bank_name | string |  yes  |  || branch_name | string |  yes  |  || comment | string |  no  |  || email | string |  yes  |  || ifsc_code | string |  yes  |  || mobile | string |  yes  |  || vpa | string |  no  |  || wallet | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | address | string |  no  |  |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | comment | string |  no  |  |
+ | email | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | mobile | string |  yes  |  |
+ | vpa | string |  no  |  |
+ | wallet | string |  no  |  |
+ 
 
 ---
 
 #### [BusinessDetails](#BusinessDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address | [KYCAddress](#KYCAddress) |  no  |  || business_ownership_type | string |  no  |  || business_type | string |  no  |  || entity_type | string |  no  |  || fda | string |  no  |  || fssai | string |  no  |  || gstin | string |  no  |  || name | string |  no  |  || pan | string |  no  |  || shop_and_establishment | string |  no  |  || vintage | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [KYCAddress](#KYCAddress) |  no  |  |
+ | business_ownership_type | string |  no  |  |
+ | business_type | string |  no  |  |
+ | entity_type | string |  no  |  |
+ | fda | string |  no  |  |
+ | fssai | string |  no  |  |
+ | gstin | string |  no  |  |
+ | name | string |  no  |  |
+ | pan | string |  no  |  |
+ | shop_and_establishment | string |  no  |  |
+ | vintage | string |  no  |  |
+ 
 
 ---
 
 #### [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payment_link_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_link_id | string |  yes  |  |
+ 
 
 ---
 
 #### [CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || status_code | number |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [Card](#Card)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || card_brand | string |  no  |  || card_brand_image | string |  no  |  || card_fingerprint | string |  no  |  || card_id | string |  no  |  || card_isin | string |  no  |  || card_issuer | string |  no  |  || card_name | string |  no  |  || card_number | string |  no  |  || card_reference | string |  no  |  || card_token | string |  no  |  || card_type | string |  no  |  || compliant_with_tokenisation_guidelines | boolean |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || expired | boolean |  no  |  || nickname | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | card_brand | string |  no  |  |
+ | card_brand_image | string |  no  |  |
+ | card_fingerprint | string |  no  |  |
+ | card_id | string |  no  |  |
+ | card_isin | string |  no  |  |
+ | card_issuer | string |  no  |  |
+ | card_name | string |  no  |  |
+ | card_number | string |  no  |  |
+ | card_reference | string |  no  |  |
+ | card_token | string |  no  |  |
+ | card_type | string |  no  |  |
+ | compliant_with_tokenisation_guidelines | boolean |  no  |  |
+ | exp_month | number |  no  |  |
+ | exp_year | number |  no  |  |
+ | expired | boolean |  no  |  |
+ | nickname | string |  no  |  |
+ 
 
 ---
 
 #### [CardPaymentGateway](#CardPaymentGateway)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || api | string |  no  |  || customer_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | api | string |  no  |  |
+ | customer_id | string |  no  |  |
+ 
 
 ---
 
 #### [ChargeCustomerRequest](#ChargeCustomerRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || amount | number |  yes  |  || order_id | string |  yes  |  || transaction_token | string |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | amount | number |  yes  |  |
+ | order_id | string |  yes  |  |
+ | transaction_token | string |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [ChargeCustomerResponse](#ChargeCustomerResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || cart_id | string |  no  |  || delivery_address_id | string |  no  |  || message | string |  yes  |  || order_id | string |  yes  |  || status | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | cart_id | string |  no  |  |
+ | delivery_address_id | string |  no  |  |
+ | message | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | status | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CheckCreditResponse](#CheckCreditResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [CreditDetail](#CreditDetail) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditDetail](#CreditDetail) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CreateOrderUserData](#CreateOrderUserData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  no  |  || amount | number |  no  |  || callback_url | string |  no  |  || contact | string |  no  |  || currency | string |  no  |  || customer_id | string |  no  |  || email | string |  no  |  || merchant_order_id | string |  no  |  || method | string |  no  |  || order_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  |  |
+ | amount | number |  no  |  |
+ | callback_url | string |  no  |  |
+ | contact | string |  no  |  |
+ | currency | string |  no  |  |
+ | customer_id | string |  no  |  |
+ | email | string |  no  |  |
+ | merchant_order_id | string |  no  |  |
+ | method | string |  no  |  |
+ | order_id | string |  no  |  |
+ 
 
 ---
 
 #### [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  yes  |  || mode | string |  yes  |  || name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  yes  |  |
+ | mode | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
 
 ---
 
 #### [CreateOrderUserRequest](#CreateOrderUserRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency | string |  yes  |  || failure_callback_url | string |  yes  |  || meta | string |  no  |  || payment_link_id | string |  yes  |  || payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  yes  |  || success_callback_url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  yes  |  |
+ | failure_callback_url | string |  yes  |  |
+ | meta | string |  no  |  |
+ | payment_link_id | string |  yes  |  |
+ | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  yes  |  |
+ | success_callback_url | string |  yes  |  |
+ 
 
 ---
 
 #### [CreateOrderUserResponse](#CreateOrderUserResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || callback_url | string |  no  |  || data | [CreateOrderUserData](#CreateOrderUserData) |  no  |  || message | string |  yes  |  || order_id | string |  no  |  || payment_confirm_url | string |  no  |  || status_code | number |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | callback_url | string |  no  |  |
+ | data | [CreateOrderUserData](#CreateOrderUserData) |  no  |  |
+ | message | string |  yes  |  |
+ | order_id | string |  no  |  |
+ | payment_confirm_url | string |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CreatePaymentLinkMeta](#CreatePaymentLinkMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | string |  yes  |  || assign_card_id | string |  no  |  || cart_id | string |  yes  |  || checkout_mode | string |  yes  |  || pincode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | string |  yes  |  |
+ | assign_card_id | string |  no  |  |
+ | cart_id | string |  yes  |  |
+ | checkout_mode | string |  yes  |  |
+ | pincode | string |  yes  |  |
+ 
 
 ---
 
 #### [CreatePaymentLinkRequest](#CreatePaymentLinkRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || description | string |  no  |  || email | string |  yes  |  || external_order_id | string |  yes  |  || meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  yes  |  || mobile_number | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  yes  |  |
+ | description | string |  no  |  |
+ | email | string |  yes  |  |
+ | external_order_id | string |  yes  |  |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  yes  |  |
+ | mobile_number | string |  yes  |  |
+ 
 
 ---
 
 #### [CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || payment_link_id | string |  no  |  || payment_link_url | string |  no  |  || polling_timeout | number |  no  |  || status_code | number |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | payment_link_id | string |  no  |  |
+ | payment_link_url | string |  no  |  |
+ | polling_timeout | number |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CreditDetail](#CreditDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_registered | boolean |  yes  |  || signup_url | string |  yes  |  || status | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_registered | boolean |  yes  |  |
+ | signup_url | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CreditSummary](#CreditSummary)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || balance | [BalanceDetails](#BalanceDetails) |  no  |  || merchant_customer_ref_id | string |  yes  |  || status | string |  yes  |  || status_message | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | balance | [BalanceDetails](#BalanceDetails) |  no  |  |
+ | merchant_customer_ref_id | string |  yes  |  |
+ | status | string |  yes  |  |
+ | status_message | string |  yes  |  |
+ 
 
 ---
 
 #### [CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [CreditSummary](#CreditSummary) |  no  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditSummary](#CreditSummary) |  no  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CustomerOnboardingRequest](#CustomerOnboardingRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || business_info | [BusinessDetails](#BusinessDetails) |  no  |  || device | [DeviceDetails](#DeviceDetails) |  no  |  || marketplace_info | [MarketplaceInfo](#MarketplaceInfo) |  no  |  || mcc | string |  no  |  || personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  yes  |  || source | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | business_info | [BusinessDetails](#BusinessDetails) |  no  |  |
+ | device | [DeviceDetails](#DeviceDetails) |  no  |  |
+ | marketplace_info | [MarketplaceInfo](#MarketplaceInfo) |  no  |  |
+ | mcc | string |  no  |  |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  yes  |  |
+ | source | string |  yes  |  |
+ 
 
 ---
 
 #### [CustomerOnboardingResponse](#CustomerOnboardingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [OnboardSummary](#OnboardSummary) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [OnboardSummary](#OnboardSummary) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [DeleteCardsResponse](#DeleteCardsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [DeletehCardRequest](#DeletehCardRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || card_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | card_id | string |  yes  |  |
+ 
 
 ---
 
 #### [DeviceDetails](#DeviceDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || device_make | string |  no  |  || device_model | string |  no  |  || device_type | string |  no  |  || identification_number | string |  no  |  || identifier_type | string |  no  |  || os | string |  no  |  || os_version | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | device_make | string |  no  |  |
+ | device_model | string |  no  |  |
+ | device_type | string |  no  |  |
+ | identification_number | string |  no  |  |
+ | identifier_type | string |  no  |  |
+ | os | string |  no  |  |
+ | os_version | string |  no  |  |
+ 
 
 ---
 
 #### [EpaylaterBannerData](#EpaylaterBannerData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | boolean |  yes  |  || message | string |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | boolean |  yes  |  |
+ | message | string |  no  |  |
+ | status | string |  no  |  |
+ 
 
 ---
 
 #### [EpaylaterBannerResponse](#EpaylaterBannerResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [EpaylaterBannerData](#EpaylaterBannerData) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ 
 
 ---
 
 #### [ErrorCodeDescription](#ErrorCodeDescription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [ErrorDescription](#ErrorDescription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  no  |  || cancelled | boolean |  no  |  || expired | boolean |  no  |  || invalid_id | boolean |  no  |  || merchant_name | string |  no  |  || merchant_order_id | string |  no  |  || msg | string |  no  |  || payment_transaction_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | cancelled | boolean |  no  |  |
+ | expired | boolean |  no  |  |
+ | invalid_id | boolean |  no  |  |
+ | merchant_name | string |  no  |  |
+ | merchant_order_id | string |  no  |  |
+ | msg | string |  no  |  |
+ | payment_transaction_id | string |  no  |  |
+ 
 
 ---
 
 #### [ErrorResponse](#ErrorResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | [ErrorDescription](#ErrorDescription) |  no  |  || message | string |  yes  |  || status_code | number |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorDescription](#ErrorDescription) |  no  |  |
+ | message | string |  yes  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [GetPaymentLinkResponse](#GetPaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  no  |  || external_order_id | string |  no  |  || merchant_name | string |  no  |  || message | string |  yes  |  || payment_link_current_status | string |  no  |  || payment_link_url | string |  no  |  || polling_timeout | number |  no  |  || status_code | number |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | external_order_id | string |  no  |  |
+ | merchant_name | string |  no  |  |
+ | message | string |  yes  |  |
+ | payment_link_current_status | string |  no  |  |
+ | payment_link_url | string |  no  |  |
+ | polling_timeout | number |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [IfscCodeResponse](#IfscCodeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || bank_name | string |  yes  |  || branch_name | string |  yes  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [IntentApp](#IntentApp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || display_name | string |  no  |  || logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || package_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | display_name | string |  no  |  |
+ | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
+ | package_name | string |  no  |  |
+ 
 
 ---
 
 #### [IntentAppErrorList](#IntentAppErrorList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || package_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | package_name | string |  no  |  |
+ 
 
 ---
 
 #### [KYCAddress](#KYCAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || addressline1 | string |  yes  |  || addressline2 | string |  no  |  || city | string |  yes  |  || land_mark | string |  no  |  || ownership_type | string |  no  |  || pincode | string |  yes  |  || state | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | addressline1 | string |  yes  |  |
+ | addressline2 | string |  no  |  |
+ | city | string |  yes  |  |
+ | land_mark | string |  no  |  |
+ | ownership_type | string |  no  |  |
+ | pincode | string |  yes  |  |
+ | state | string |  yes  |  |
+ 
 
 ---
 
 #### [LinkStatus](#LinkStatus)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || status | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
 
 ---
 
 #### [ListCardsResponse](#ListCardsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [[Card](#Card)] |  no  |  || message | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[Card](#Card)] |  no  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [MarketplaceInfo](#MarketplaceInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || date_of_joining | string |  no  |  || membership_id | string |  yes  |  || name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | date_of_joining | string |  no  |  |
+ | membership_id | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
 
 ---
 
 #### [NotFoundResourceError](#NotFoundResourceError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [OnboardSummary](#OnboardSummary)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || redirect_url | string |  yes  |  || session | string |  yes  |  || status | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | redirect_url | string |  yes  |  |
+ | session | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
 
 ---
 
 #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || address | string |  yes  |  || bank_name | string |  yes  |  || beneficiary_id | string |  yes  |  || branch_name | string |  no  |  || comment | string |  no  |  || created_on | string |  yes  |  || delights_user_name | string |  no  |  || display_name | string |  yes  |  || email | string |  yes  |  || id | number |  yes  |  || ifsc_code | string |  yes  |  || is_active | boolean |  yes  |  || mobile | string |  no  |  || modified_on | string |  yes  |  || subtitle | string |  yes  |  || title | string |  yes  |  || transfer_mode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | address | string |  yes  |  |
+ | bank_name | string |  yes  |  |
+ | beneficiary_id | string |  yes  |  |
+ | branch_name | string |  no  |  |
+ | comment | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | delights_user_name | string |  no  |  |
+ | display_name | string |  yes  |  |
+ | email | string |  yes  |  |
+ | id | number |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | mobile | string |  no  |  |
+ | modified_on | string |  yes  |  |
+ | subtitle | string |  yes  |  |
+ | title | string |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
 
 ---
 
 #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  || show_beneficiary_details | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  |
+ | show_beneficiary_details | boolean |  no  |  |
+ 
 
 ---
 
 #### [PaymentFlow](#PaymentFlow)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  || ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  |  || epaylater | [AggregatorRoute](#AggregatorRoute) |  no  |  || fynd | [AggregatorRoute](#AggregatorRoute) |  no  |  || jiopay | [AggregatorRoute](#AggregatorRoute) |  no  |  || juspay | [AggregatorRoute](#AggregatorRoute) |  no  |  || mswipe | [AggregatorRoute](#AggregatorRoute) |  no  |  || payubiz | [AggregatorRoute](#AggregatorRoute) |  no  |  || razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  || rupifi | [AggregatorRoute](#AggregatorRoute) |  no  |  || simpl | [AggregatorRoute](#AggregatorRoute) |  no  |  || stripe | [AggregatorRoute](#AggregatorRoute) |  no  |  || upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | bqr_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | epaylater | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | fynd | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | jiopay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | juspay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | mswipe | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | payubiz | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | rupifi | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | simpl | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | stripe | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute) |  no  |  |
+ 
 
 ---
 
 #### [PaymentInitializationRequest](#PaymentInitializationRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || amount | number |  yes  |  || contact | string |  yes  |  || currency | string |  yes  |  || customer_id | string |  yes  |  || device_id | string |  no  |  || email | string |  yes  |  || merchant_order_id | string |  yes  |  || method | string |  yes  |  || order_id | string |  yes  |  || razorpay_payment_id | string |  no  |  || timeout | number |  no  |  || vpa | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | amount | number |  yes  |  |
+ | contact | string |  yes  |  |
+ | currency | string |  yes  |  |
+ | customer_id | string |  yes  |  |
+ | device_id | string |  no  |  |
+ | email | string |  yes  |  |
+ | merchant_order_id | string |  yes  |  |
+ | method | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | razorpay_payment_id | string |  no  |  |
+ | timeout | number |  no  |  |
+ | vpa | string |  no  |  |
+ 
 
 ---
 
 #### [PaymentInitializationResponse](#PaymentInitializationResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || aggregator_order_id | string |  no  |  || amount | number |  no  |  || bqr_image | string |  no  |  || currency | string |  no  |  || customer_id | string |  no  |  || device_id | string |  no  |  || merchant_order_id | string |  yes  |  || method | string |  yes  |  || polling_url | string |  yes  |  || razorpay_payment_id | string |  no  |  || status | string |  no  |  || success | boolean |  yes  |  || timeout | number |  no  |  || upi_poll_url | string |  no  |  || virtual_id | string |  no  |  || vpa | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | aggregator_order_id | string |  no  |  |
+ | amount | number |  no  |  |
+ | bqr_image | string |  no  |  |
+ | currency | string |  no  |  |
+ | customer_id | string |  no  |  |
+ | device_id | string |  no  |  |
+ | merchant_order_id | string |  yes  |  |
+ | method | string |  yes  |  |
+ | polling_url | string |  yes  |  |
+ | razorpay_payment_id | string |  no  |  |
+ | status | string |  no  |  |
+ | success | boolean |  yes  |  |
+ | timeout | number |  no  |  |
+ | upi_poll_url | string |  no  |  |
+ | virtual_id | string |  no  |  |
+ | vpa | string |  no  |  |
+ 
 
 ---
 
 #### [PaymentMethodsMeta](#PaymentMethodsMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || merchant_code | string |  yes  |  || payment_gateway | string |  yes  |  || payment_identifier | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | merchant_code | string |  yes  |  |
+ | payment_gateway | string |  yes  |  |
+ | payment_identifier | string |  yes  |  |
+ 
 
 ---
 
 #### [PaymentModeList](#PaymentModeList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || card_brand | string |  no  |  || card_brand_image | string |  no  |  || card_fingerprint | string |  no  |  || card_id | string |  no  |  || card_isin | string |  no  |  || card_issuer | string |  no  |  || card_name | string |  no  |  || card_number | string |  no  |  || card_reference | string |  no  |  || card_token | string |  no  |  || card_type | string |  no  |  || cod_limit | number |  no  |  || cod_limit_per_order | number |  no  |  || code | string |  no  |  || compliant_with_tokenisation_guidelines | boolean |  no  |  || display_name | string |  no  |  || display_priority | number |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || expired | boolean |  no  |  || fynd_vpa | string |  no  |  || intent_app | [[IntentApp](#IntentApp)] |  no  |  || intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  || intent_app_error_list | [string] |  no  |  || intent_flow | boolean |  no  |  || logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || merchant_code | string |  no  |  || name | string |  no  |  || nickname | string |  no  |  || remaining_limit | number |  no  |  || retry_count | number |  no  |  || timeout | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | card_brand | string |  no  |  |
+ | card_brand_image | string |  no  |  |
+ | card_fingerprint | string |  no  |  |
+ | card_id | string |  no  |  |
+ | card_isin | string |  no  |  |
+ | card_issuer | string |  no  |  |
+ | card_name | string |  no  |  |
+ | card_number | string |  no  |  |
+ | card_reference | string |  no  |  |
+ | card_token | string |  no  |  |
+ | card_type | string |  no  |  |
+ | cod_limit | number |  no  |  |
+ | cod_limit_per_order | number |  no  |  |
+ | code | string |  no  |  |
+ | compliant_with_tokenisation_guidelines | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | display_priority | number |  no  |  |
+ | exp_month | number |  no  |  |
+ | exp_year | number |  no  |  |
+ | expired | boolean |  no  |  |
+ | fynd_vpa | string |  no  |  |
+ | intent_app | [[IntentApp](#IntentApp)] |  no  |  |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  |
+ | intent_app_error_list | [string] |  no  |  |
+ | intent_flow | boolean |  no  |  |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
+ | merchant_code | string |  no  |  |
+ | name | string |  no  |  |
+ | nickname | string |  no  |  |
+ | remaining_limit | number |  no  |  |
+ | retry_count | number |  no  |  |
+ | timeout | number |  no  |  |
+ 
 
 ---
 
 #### [PaymentModeLogo](#PaymentModeLogo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || large | string |  yes  |  || small | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | large | string |  yes  |  |
+ | small | string |  yes  |  |
+ 
 
 ---
 
 #### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payment_flows | [PaymentFlow](#PaymentFlow) |  yes  |  || payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_flows | [PaymentFlow](#PaymentFlow) |  yes  |  |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ 
 
 ---
 
 #### [PaymentStatusUpdateRequest](#PaymentStatusUpdateRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || amount | number |  yes  |  || contact | string |  yes  |  || currency | string |  yes  |  || customer_id | string |  yes  |  || device_id | string |  no  |  || email | string |  yes  |  || merchant_order_id | string |  yes  |  || method | string |  yes  |  || order_id | string |  yes  |  || status | string |  yes  |  || vpa | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | amount | number |  yes  |  |
+ | contact | string |  yes  |  |
+ | currency | string |  yes  |  |
+ | customer_id | string |  yes  |  |
+ | device_id | string |  no  |  |
+ | email | string |  yes  |  |
+ | merchant_order_id | string |  yes  |  |
+ | method | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | status | string |  yes  |  |
+ | vpa | string |  no  |  |
+ 
 
 ---
 
 #### [PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || redirect_url | string |  no  |  || retry | boolean |  yes  |  || status | string |  yes  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | redirect_url | string |  no  |  |
+ | retry | boolean |  yes  |  |
+ | status | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | string |  no  |  || amount | number |  no  |  || http_status | number |  no  |  || message | string |  no  |  || order_id | string |  no  |  || payment_link_id | string |  no  |  || redirect_url | string |  no  |  || status | string |  no  |  || status_code | number |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  no  |  |
+ | amount | number |  no  |  |
+ | http_status | number |  no  |  |
+ | message | string |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_link_id | string |  no  |  |
+ | redirect_url | string |  no  |  |
+ | status | string |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [RedirectToAggregatorResponse](#RedirectToAggregatorResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [RedirectURL](#RedirectURL) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [RedirectURL](#RedirectURL) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [RedirectURL](#RedirectURL)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || signup_url | string |  yes  |  || status | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | signup_url | string |  yes  |  |
+ | status | boolean |  yes  |  |
+ 
 
 ---
 
 #### [RefundAccountResponse](#RefundAccountResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  no  |  || is_verified_flag | boolean |  no  |  || message | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | is_verified_flag | boolean |  no  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [renderHTMLRequest](#renderHTMLRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || base64_html | string |  yes  |  || returntype | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | base64_html | string |  yes  |  |
+ | returntype | string |  no  |  |
+ 
 
 ---
 
 #### [renderHTMLResponse](#renderHTMLResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || html | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | html | string |  yes  |  |
+ 
 
 ---
 
 #### [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || device_id | string |  no  |  || order_id | string |  yes  |  || request_type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | device_id | string |  no  |  |
+ | order_id | string |  yes  |  |
+ | request_type | string |  yes  |  |
+ 
 
 ---
 
 #### [ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [LinkStatus](#LinkStatus) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [LinkStatus](#LinkStatus) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || polling_timeout | number |  no  |  || status_code | number |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | polling_timeout | number |  no  |  |
+ | status_code | number |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [RootPaymentMode](#RootPaymentMode)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || add_card_enabled | boolean |  no  |  || aggregator_name | string |  no  |  || anonymous_enable | boolean |  no  |  || display_name | string |  yes  |  || display_priority | number |  yes  |  || is_pay_by_card_pl | boolean |  no  |  || list | [[PaymentModeList](#PaymentModeList)] |  no  |  || name | string |  yes  |  || save_card | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | add_card_enabled | boolean |  no  |  |
+ | aggregator_name | string |  no  |  |
+ | anonymous_enable | boolean |  no  |  |
+ | display_name | string |  yes  |  |
+ | display_priority | number |  yes  |  |
+ | is_pay_by_card_pl | boolean |  no  |  |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  |  |
+ | name | string |  yes  |  |
+ | save_card | boolean |  no  |  |
+ 
 
 ---
 
 #### [RupifiBannerData](#RupifiBannerData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || kyc_url | string |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | kyc_url | string |  no  |  |
+ | status | string |  no  |  |
+ 
 
 ---
 
 #### [RupifiBannerResponse](#RupifiBannerResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [RupifiBannerData](#RupifiBannerData) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [RupifiBannerData](#RupifiBannerData) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [SetDefaultBeneficiaryRequest](#SetDefaultBeneficiaryRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || beneficiary_id | string |  yes  |  || order_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiary_id | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ 
 
 ---
 
 #### [SetDefaultBeneficiaryResponse](#SetDefaultBeneficiaryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_beneficiary_set | boolean |  yes  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_beneficiary_set | boolean |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [TransferItemsDetails](#TransferItemsDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  no  |  || id | number |  yes  |  || logo_large | string |  yes  |  || logo_small | string |  yes  |  || name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  no  |  |
+ | id | number |  yes  |  |
+ | logo_large | string |  yes  |  |
+ | logo_small | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
 
 ---
 
 #### [TransferModeDetails](#TransferModeDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_name | string |  yes  |  || items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string |  yes  |  |
+ | items | [[TransferItemsDetails](#TransferItemsDetails)] |  no  |  |
+ 
 
 ---
 
 #### [TransferModeResponse](#TransferModeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [[TransferModeDetails](#TransferModeDetails)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[TransferModeDetails](#TransferModeDetails)] |  yes  |  |
+ 
 
 ---
 
 #### [UpdateRefundTransferModeRequest](#UpdateRefundTransferModeRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || enable | boolean |  yes  |  || transfer_mode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | enable | boolean |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
 
 ---
 
 #### [UpdateRefundTransferModeResponse](#UpdateRefundTransferModeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address_as_per_id | [KYCAddress](#KYCAddress) |  yes  |  || dob | string |  yes  |  || driving_license | string |  no  |  || email | string |  no  |  || email_verified | boolean |  yes  |  || fathers_name | string |  no  |  || first_name | string |  yes  |  || gender | string |  no  |  || last_name | string |  no  |  || middle_name | string |  no  |  || mobile_verified | boolean |  yes  |  || mothers_name | string |  no  |  || pan | string |  no  |  || passport | string |  no  |  || phone | string |  yes  |  || voter_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address_as_per_id | [KYCAddress](#KYCAddress) |  yes  |  |
+ | dob | string |  yes  |  |
+ | driving_license | string |  no  |  |
+ | email | string |  no  |  |
+ | email_verified | boolean |  yes  |  |
+ | fathers_name | string |  no  |  |
+ | first_name | string |  yes  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | middle_name | string |  no  |  |
+ | mobile_verified | boolean |  yes  |  |
+ | mothers_name | string |  no  |  |
+ | pan | string |  no  |  |
+ | passport | string |  no  |  |
+ | phone | string |  yes  |  |
+ | voter_id | string |  no  |  |
+ 
 
 ---
 
 #### [ValidateCustomerRequest](#ValidateCustomerRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || billing_address | string |  no  |  || delivery_address | string |  no  |  || merchant_params | string |  no  |  || order_items | [string] |  no  |  || payload | string |  no  |  || phone_number | string |  yes  |  || transaction_amount_in_paise | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | billing_address | string |  no  |  |
+ | delivery_address | string |  no  |  |
+ | merchant_params | string |  no  |  |
+ | order_items | [string] |  no  |  |
+ | payload | string |  no  |  |
+ | phone_number | string |  yes  |  |
+ | transaction_amount_in_paise | number |  yes  |  |
+ 
 
 ---
 
 #### [ValidateCustomerResponse](#ValidateCustomerResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  no  |  || error | string |  no  |  || message | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | error | string |  no  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [ValidateUPI](#ValidateUPI)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || customer_name | string |  yes  |  || is_valid | boolean |  yes  |  || status | string |  yes  |  || upi_vpa | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_name | string |  yes  |  |
+ | is_valid | boolean |  yes  |  |
+ | status | string |  yes  |  |
+ | upi_vpa | string |  yes  |  |
+ 
 
 ---
 
 #### [ValidateVPARequest](#ValidateVPARequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || upi_vpa | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | upi_vpa | string |  yes  |  |
+ 
 
 ---
 
 #### [ValidateVPAResponse](#ValidateVPAResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [ValidateUPI](#ValidateUPI) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ValidateUPI](#ValidateUPI) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [WalletOtpRequest](#WalletOtpRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  yes  |  || mobile | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  yes  |  |
+ | mobile | string |  yes  |  |
+ 
 
 ---
 
 #### [WalletOtpResponse](#WalletOtpResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_verified_flag | string |  yes  |  || request_id | string |  yes  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_verified_flag | string |  yes  |  |
+ | request_id | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [WrongOtpError](#WrongOtpError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  yes  |  || is_verified_flag | boolean |  yes  |  || success | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  yes  |  |
+ | is_verified_flag | boolean |  yes  |  |
+ | success | string |  yes  |  |
+ 
 
 ---
 

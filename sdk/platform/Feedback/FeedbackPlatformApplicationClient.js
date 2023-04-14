@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const FeedbackValidator = require("./FeedbackPlatformApplicationValidator");
 const FeedbackModel = require("./FeedbackPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Feedback {
   constructor(config, applicationId) {

@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const CommunicationValidator = require("./CommunicationPlatformApplicationValidator");
 const CommunicationModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Communication {
   constructor(config, applicationId) {

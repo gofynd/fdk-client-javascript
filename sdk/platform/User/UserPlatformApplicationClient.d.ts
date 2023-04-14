@@ -35,6 +35,16 @@ declare class User {
     }): Promise<CreateUserResponseSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CreateUserGroupSchema} arg.body
+     * @returns {Promise<UserGroupResponseSchema>} - Success response
+     * @summary: Create an User Group
+     * @description: Use this API to create new user Group
+     */
+    createUserGroup({ body }?: {
+        body: CreateUserGroupSchema;
+    }): Promise<UserGroupResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CreateUserSessionRequestSchema} arg.body
      * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
      * @summary: Create user session
@@ -105,6 +115,35 @@ declare class User {
     getPlatformConfig({}?: any): Promise<PlatformSchema>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.groupId - Numeric ID allotted to a User Group
+     * @returns {Promise<UserGroupResponseSchema>} - Success response
+     * @summary: Get an User Group by Id
+     * @description: Use this API to get details of an existing user Group
+     */
+    getUserGroupById({ groupId }?: {
+        groupId: string;
+    }): Promise<UserGroupResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.pageNo] - Page number for pagination result
+     * @param {string} [arg.pageSize] - Page size for pagination result
+     * @param {string} [arg.name] - To seartch for User Groups which contains
+     *   given string in their name
+     * @param {string} [arg.status] - To get User Groups with given status
+     * @param {number} [arg.groupUid] - To get User Groups with given uid
+     * @returns {Promise<UserGroupListResponseSchema>} - Success response
+     * @summary: Get User Groups mathcing criteria
+     * @description: Use this API to get User Groups mathing criteria passed in query
+     */
+    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: {
+        pageNo?: string;
+        pageSize?: string;
+        name?: string;
+        status?: string;
+        groupUid?: number;
+    }): Promise<UserGroupListResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - The search query. Mobile number or email ID of
      *   a customer.
      * @returns {Promise<UserSearchResponseSchema>} - Success response
@@ -146,4 +185,16 @@ declare class User {
         userId: string;
         body: UpdateUserRequestSchema;
     }): Promise<CreateUserResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.groupId - Numeric ID allotted to a User Group
+     * @param {UpdateUserGroupSchema} arg.body
+     * @returns {Promise<UserGroupResponseSchema>} - Success response
+     * @summary: Update an User Group
+     * @description: Use this API to update an existing user Group
+     */
+    updateUserGroup({ groupId, body }?: {
+        groupId: string;
+        body: UpdateUserGroupSchema;
+    }): Promise<UserGroupResponseSchema>;
 }

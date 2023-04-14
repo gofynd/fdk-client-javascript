@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const BillingValidator = require("./BillingPlatformValidator");
 const BillingModel = require("./BillingPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Billing {
   constructor(config) {

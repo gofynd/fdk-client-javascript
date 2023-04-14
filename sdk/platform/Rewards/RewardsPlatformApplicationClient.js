@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const RewardsValidator = require("./RewardsPlatformApplicationValidator");
 const RewardsModel = require("./RewardsPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Rewards {
   constructor(config, applicationId) {

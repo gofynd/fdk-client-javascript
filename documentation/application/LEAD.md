@@ -1138,329 +1138,583 @@ Success
 #### [AddTicketPayload](#AddTicketPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || category | string |  yes  |  || content | [TicketContent](#TicketContent) |  yes  |  || created_by | string |  no  |  || priority | [PriorityEnum](#PriorityEnum) |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | category | string |  yes  |  |
+ | content | [TicketContent](#TicketContent) |  yes  |  |
+ | created_by | string |  no  |  |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  |  |
+ | status | string |  no  |  |
+ 
 
 ---
 
 #### [AgentChangePayload](#AgentChangePayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || agent_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | agent_id | string |  yes  |  |
+ 
 
 ---
 
 #### [CategoryData](#CategoryData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || list | [TicketCategory](#TicketCategory) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | list | [TicketCategory](#TicketCategory) |  no  |  |
+ 
 
 ---
 
 #### [CloseVideoRoomResponse](#CloseVideoRoomResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CommunicationDetails](#CommunicationDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || enabled | boolean |  no  |  || title | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | enabled | boolean |  no  |  |
+ | title | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [CreateCustomFormPayload](#CreateCustomFormPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || header_image | string |  no  |  || inputs | [string] |  yes  |  || poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  || priority | [PriorityEnum](#PriorityEnum) |  yes  |  || should_notify | boolean |  no  |  || slug | string |  yes  |  || success_message | string |  no  |  || title | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | header_image | string |  no  |  |
+ | inputs | [string] |  yes  |  |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  |
+ | priority | [PriorityEnum](#PriorityEnum) |  yes  |  |
+ | should_notify | boolean |  no  |  |
+ | slug | string |  yes  |  |
+ | success_message | string |  no  |  |
+ | title | string |  yes  |  |
+ 
 
 ---
 
 #### [CreatedOn](#CreatedOn)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || user_agent | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | user_agent | string |  yes  |  |
+ 
 
 ---
 
 #### [CreateVideoRoomPayload](#CreateVideoRoomPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || notify | [[NotifyUser](#NotifyUser)] |  no  |  || unique_name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | notify | [[NotifyUser](#NotifyUser)] |  no  |  |
+ | unique_name | string |  yes  |  |
+ 
 
 ---
 
 #### [CreateVideoRoomResponse](#CreateVideoRoomResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || unique_name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_name | string |  yes  |  |
+ 
 
 ---
 
 #### [CustomForm](#CustomForm)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || application_id | string |  yes  |  || created_on | [CreatedOn](#CreatedOn) |  no  |  || description | string |  no  |  || header_image | string |  no  |  || inputs | [string] |  yes  |  || login_required | boolean |  yes  |  || poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  || priority | [Priority](#Priority) |  yes  |  || should_notify | boolean |  yes  |  || slug | string |  yes  |  || submit_button | [SubmitButton](#SubmitButton) |  no  |  || success_message | string |  no  |  || title | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | application_id | string |  yes  |  |
+ | created_on | [CreatedOn](#CreatedOn) |  no  |  |
+ | description | string |  no  |  |
+ | header_image | string |  no  |  |
+ | inputs | [string] |  yes  |  |
+ | login_required | boolean |  yes  |  |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  |
+ | priority | [Priority](#Priority) |  yes  |  |
+ | should_notify | boolean |  yes  |  |
+ | slug | string |  yes  |  |
+ | submit_button | [SubmitButton](#SubmitButton) |  no  |  |
+ | success_message | string |  no  |  |
+ | title | string |  yes  |  |
+ 
 
 ---
 
 #### [CustomFormList](#CustomFormList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[CustomForm](#CustomForm)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomForm](#CustomForm)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [CustomFormSubmissionPayload](#CustomFormSubmissionPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attachments | [[TicketAsset](#TicketAsset)] |  no  |  || response | [string] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attachments | [[TicketAsset](#TicketAsset)] |  no  |  |
+ | response | [string] |  yes  |  |
+ 
 
 ---
 
 #### [Debug](#Debug)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || platform | string |  no  |  || source | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | platform | string |  no  |  |
+ | source | string |  no  |  |
+ 
 
 ---
 
 #### [EditCustomFormPayload](#EditCustomFormPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || header_image | string |  no  |  || inputs | [string] |  yes  |  || login_required | boolean |  no  |  || poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  || priority | [PriorityEnum](#PriorityEnum) |  yes  |  || should_notify | boolean |  no  |  || success_message | string |  no  |  || title | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | header_image | string |  no  |  |
+ | inputs | [string] |  yes  |  |
+ | login_required | boolean |  no  |  |
+ | poll_for_assignment | [PollForAssignment](#PollForAssignment) |  no  |  |
+ | priority | [PriorityEnum](#PriorityEnum) |  yes  |  |
+ | should_notify | boolean |  no  |  |
+ | success_message | string |  no  |  |
+ | title | string |  yes  |  |
+ 
 
 ---
 
 #### [EditTicketPayload](#EditTicketPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || assigned_to | [AgentChangePayload](#AgentChangePayload) |  no  |  || category | string |  no  |  || content | [TicketContent](#TicketContent) |  no  |  || priority | [PriorityEnum](#PriorityEnum) |  no  |  || source | string |  no  |  || status | string |  no  |  || sub_category | string |  no  |  || tags | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | assigned_to | [AgentChangePayload](#AgentChangePayload) |  no  |  |
+ | category | string |  no  |  |
+ | content | [TicketContent](#TicketContent) |  no  |  |
+ | priority | [PriorityEnum](#PriorityEnum) |  no  |  |
+ | source | string |  no  |  |
+ | status | string |  no  |  |
+ | sub_category | string |  no  |  |
+ | tags | [string] |  no  |  |
+ 
 
 ---
 
 #### [Email](#Email)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | email | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [FeedbackForm](#FeedbackForm)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || inputs | string |  no  |  || timestamps | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | inputs | string |  no  |  |
+ | timestamps | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [FeedbackResponseItem](#FeedbackResponseItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  yes  |  || key | string |  yes  |  || value | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  |  |
+ | key | string |  yes  |  |
+ | value | string |  yes  |  |
+ 
 
 ---
 
 #### [Filter](#Filter)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || assignees | [string] |  yes  |  || categories | [[TicketCategory](#TicketCategory)] |  no  |  || priorities | [[Priority](#Priority)] |  yes  |  || statuses | [[Status](#Status)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | assignees | [string] |  yes  |  |
+ | categories | [[TicketCategory](#TicketCategory)] |  no  |  |
+ | priorities | [[Priority](#Priority)] |  yes  |  |
+ | statuses | [[Status](#Status)] |  yes  |  |
+ 
 
 ---
 
 #### [GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || participants | [[Participant](#Participant)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | participants | [[Participant](#Participant)] |  yes  |  |
+ 
 
 ---
 
 #### [GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || access_token | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | access_token | string |  yes  |  |
+ 
 
 ---
 
 #### [IntegrationConfig](#IntegrationConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || allow_ticket_creation | boolean |  yes  |  || base_url | string |  no  |  || category_data | [CategoryData](#CategoryData) |  no  |  || category_sync_apikey | string |  no  |  || config_completed | boolean |  no  |  || create_ticket_apikey | string |  no  |  || integration_type | string |  yes  |  || show_listing | boolean |  yes  |  || update_ticket_apikey | string |  no  |  || webhook_apikey | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | allow_ticket_creation | boolean |  yes  |  |
+ | base_url | string |  no  |  |
+ | category_data | [CategoryData](#CategoryData) |  no  |  |
+ | category_sync_apikey | string |  no  |  |
+ | config_completed | boolean |  no  |  |
+ | create_ticket_apikey | string |  no  |  |
+ | integration_type | string |  yes  |  |
+ | show_listing | boolean |  yes  |  |
+ | update_ticket_apikey | string |  no  |  |
+ | webhook_apikey | string |  no  |  |
+ 
 
 ---
 
 #### [NotifyUser](#NotifyUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  yes  |  || phone_number | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  yes  |  |
+ | phone_number | string |  yes  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [Participant](#Participant)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || identity | string |  no  |  || status | string |  no  |  || user | [UserSchema](#UserSchema) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | identity | string |  no  |  |
+ | status | string |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ 
 
 ---
 
 #### [PhoneNumber](#PhoneNumber)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | number |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | country_code | number |  no  |  |
+ | phone | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [PollForAssignment](#PollForAssignment)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || duration | number |  yes  |  || failure_message | string |  yes  |  || message | string |  yes  |  || success_message | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number |  yes  |  |
+ | failure_message | string |  yes  |  |
+ | message | string |  yes  |  |
+ | success_message | string |  yes  |  |
+ 
 
 ---
 
 #### [Priority](#Priority)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || color | string |  yes  |  || display | string |  yes  |  || key | [PriorityEnum](#PriorityEnum) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | color | string |  yes  |  |
+ | display | string |  yes  |  |
+ | key | [PriorityEnum](#PriorityEnum) |  yes  |  |
+ 
 
 ---
 
 #### [Status](#Status)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || color | string |  yes  |  || display | string |  yes  |  || key | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | color | string |  yes  |  |
+ | display | string |  yes  |  |
+ | key | string |  yes  |  |
+ 
 
 ---
 
 #### [SubmitButton](#SubmitButton)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || background_color | string |  yes  |  || title | string |  yes  |  || title_color | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | background_color | string |  yes  |  |
+ | title | string |  yes  |  |
+ | title_color | string |  yes  |  |
+ 
 
 ---
 
 #### [SubmitCustomFormResponse](#SubmitCustomFormResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || ticket | [Ticket](#Ticket) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | ticket | [Ticket](#Ticket) |  no  |  |
+ 
 
 ---
 
 #### [SupportGeneralConfig](#SupportGeneralConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || integration | string |  no  |  || show_communication_info | boolean |  no  |  || show_support_dris | boolean |  no  |  || support_communication | [CommunicationDetails](#CommunicationDetails) |  no  |  || support_email | [CommunicationDetails](#CommunicationDetails) |  no  |  || support_faq | [CommunicationDetails](#CommunicationDetails) |  no  |  || support_phone | [CommunicationDetails](#CommunicationDetails) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | integration | string |  no  |  |
+ | show_communication_info | boolean |  no  |  |
+ | show_support_dris | boolean |  no  |  |
+ | support_communication | [CommunicationDetails](#CommunicationDetails) |  no  |  |
+ | support_email | [CommunicationDetails](#CommunicationDetails) |  no  |  |
+ | support_faq | [CommunicationDetails](#CommunicationDetails) |  no  |  |
+ | support_phone | [CommunicationDetails](#CommunicationDetails) |  no  |  |
+ 
 
 ---
 
 #### [Ticket](#Ticket)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _id | string |  yes  |  || assigned_to | string |  no  |  || category | [TicketCategory](#TicketCategory) |  yes  |  || content | [TicketContent](#TicketContent) |  no  |  || context | [TicketContext](#TicketContext) |  no  |  || created_at | string |  no  |  || created_by | string |  no  |  || created_on | [CreatedOn](#CreatedOn) |  no  |  || integration | string |  no  |  || is_feedback_pending | boolean |  no  |  || priority | [Priority](#Priority) |  yes  |  || response_id | string |  no  |  || source | [TicketSourceEnum](#TicketSourceEnum) |  yes  |  || status | [Status](#Status) |  yes  |  || sub_category | string |  no  |  || tags | [string] |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _id | string |  yes  |  |
+ | assigned_to | string |  no  |  |
+ | category | [TicketCategory](#TicketCategory) |  yes  |  |
+ | content | [TicketContent](#TicketContent) |  no  |  |
+ | context | [TicketContext](#TicketContext) |  no  |  |
+ | created_at | string |  no  |  |
+ | created_by | string |  no  |  |
+ | created_on | [CreatedOn](#CreatedOn) |  no  |  |
+ | integration | string |  no  |  |
+ | is_feedback_pending | boolean |  no  |  |
+ | priority | [Priority](#Priority) |  yes  |  |
+ | response_id | string |  no  |  |
+ | source | [TicketSourceEnum](#TicketSourceEnum) |  yes  |  |
+ | status | [Status](#Status) |  yes  |  |
+ | sub_category | string |  no  |  |
+ | tags | [string] |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [TicketAsset](#TicketAsset)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  no  |  || type | [TicketAssetTypeEnum](#TicketAssetTypeEnum) |  yes  |  || value | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | type | [TicketAssetTypeEnum](#TicketAssetTypeEnum) |  yes  |  |
+ | value | string |  yes  |  |
+ 
 
 ---
 
 #### [TicketCategory](#TicketCategory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  yes  |  || feedback_form | [FeedbackForm](#FeedbackForm) |  no  |  || group_id | number |  no  |  || key | string |  yes  |  || sub_categories | [TicketCategory](#TicketCategory) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  |  |
+ | feedback_form | [FeedbackForm](#FeedbackForm) |  no  |  |
+ | group_id | number |  no  |  |
+ | key | string |  yes  |  |
+ | sub_categories | [TicketCategory](#TicketCategory) |  no  |  |
+ 
 
 ---
 
 #### [TicketContent](#TicketContent)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attachments | [[TicketAsset](#TicketAsset)] |  no  |  || description | string |  no  |  || title | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attachments | [[TicketAsset](#TicketAsset)] |  no  |  |
+ | description | string |  no  |  |
+ | title | string |  yes  |  |
+ 
 
 ---
 
 #### [TicketContext](#TicketContext)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || application_id | string |  no  |  || company_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | company_id | string |  yes  |  |
+ 
 
 ---
 
 #### [TicketFeedback](#TicketFeedback)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || category | string |  no  |  || company_id | string |  yes  |  || created_at | string |  no  |  || response | [[FeedbackResponseItem](#FeedbackResponseItem)] |  yes  |  || ticket_id | string |  yes  |  || updated_at | string |  no  |  || user | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | category | string |  no  |  |
+ | company_id | string |  yes  |  |
+ | created_at | string |  no  |  |
+ | response | [[FeedbackResponseItem](#FeedbackResponseItem)] |  yes  |  |
+ | ticket_id | string |  yes  |  |
+ | updated_at | string |  no  |  |
+ | user | string |  no  |  |
+ 
 
 ---
 
 #### [TicketFeedbackForm](#TicketFeedbackForm)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | [string] |  no  |  || title | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | [string] |  no  |  |
+ | title | string |  yes  |  |
+ 
 
 ---
 
 #### [TicketFeedbackList](#TicketFeedbackList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[TicketFeedback](#TicketFeedback)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[TicketFeedback](#TicketFeedback)] |  no  |  |
+ 
 
 ---
 
 #### [TicketFeedbackPayload](#TicketFeedbackPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || form_response | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | form_response | string |  no  |  |
+ 
 
 ---
 
 #### [TicketHistory](#TicketHistory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || created_at | string |  no  |  || created_by | string |  no  |  || created_on | [CreatedOn](#CreatedOn) |  no  |  || ticket_id | string |  yes  |  || type | string |  yes  |  || updated_at | string |  no  |  || value | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | created_at | string |  no  |  |
+ | created_by | string |  no  |  |
+ | created_on | [CreatedOn](#CreatedOn) |  no  |  |
+ | ticket_id | string |  yes  |  |
+ | type | string |  yes  |  |
+ | updated_at | string |  no  |  |
+ | value | string |  yes  |  |
+ 
 
 ---
 
 #### [TicketHistoryList](#TicketHistoryList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[TicketHistory](#TicketHistory)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[TicketHistory](#TicketHistory)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [TicketHistoryPayload](#TicketHistoryPayload)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || type | [HistoryTypeEnum](#HistoryTypeEnum) |  yes  |  || value | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | type | [HistoryTypeEnum](#HistoryTypeEnum) |  yes  |  |
+ | value | string |  yes  |  |
+ 
 
 ---
 
 #### [TicketList](#TicketList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || filters | [Filter](#Filter) |  no  |  || items | [[Ticket](#Ticket)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [Filter](#Filter) |  no  |  |
+ | items | [[Ticket](#Ticket)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [TicketSubCategory](#TicketSubCategory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  yes  |  || key | string |  yes  |  || sub_categories | [TicketSubCategory](#TicketSubCategory) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  |  |
+ | key | string |  yes  |  |
+ | sub_categories | [TicketSubCategory](#TicketSubCategory) |  no  |  |
+ 
 
 ---
 
 #### [UserSchema](#UserSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || account_type | string |  no  |  || active | boolean |  no  |  || created_at | string |  no  |  || debug | [Debug](#Debug) |  no  |  || emails | [[Email](#Email)] |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || has_old_password_hash | boolean |  no  |  || last_name | string |  no  |  || phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  || profile_pic_url | string |  no  |  || uid | string |  no  |  || updated_at | string |  no  |  || username | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | account_type | string |  no  |  |
+ | active | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | debug | [Debug](#Debug) |  no  |  |
+ | emails | [[Email](#Email)] |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | has_old_password_hash | boolean |  no  |  |
+ | last_name | string |  no  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
+ | profile_pic_url | string |  no  |  |
+ | uid | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | username | string |  no  |  |
+ 
 
 ---
 

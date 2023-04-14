@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const CommonValidator = require("./CommonApplicationValidator");
 const CommonModel = require("./CommonApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Common {
   constructor(_conf) {

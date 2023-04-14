@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const FileStorageValidator = require("./FileStoragePlatformValidator");
 const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class FileStorage {
   constructor(config) {

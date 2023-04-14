@@ -72,6 +72,13 @@ class UserModel {
       code: Joi.string().allow(""),
     });
   }
+  static CreateUserGroupSchema() {
+    return Joi.object({
+      description: Joi.string().allow("").required(),
+      file_url: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+    });
+  }
   static CreateUserRequestSchema() {
     return Joi.object({
       email: Joi.string().allow(""),
@@ -462,6 +469,7 @@ class UserModel {
   static SendEmailOtpRequestSchema() {
     return Joi.object({
       action: Joi.string().allow(""),
+      captcha_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
       register_token: Joi.string().allow(""),
       token: Joi.string().allow(""),
@@ -614,6 +622,13 @@ class UserModel {
       old_password: Joi.string().allow(""),
     });
   }
+  static UpdateUserGroupSchema() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      file_url: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+    });
+  }
   static UpdateUserRequestSchema() {
     return Joi.object({
       emails: Joi.array().items(UserModel.UserEmails()),
@@ -631,6 +646,26 @@ class UserModel {
       email: Joi.string().allow(""),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
+    });
+  }
+  static UserGroupListResponseSchema() {
+    return Joi.object({
+      items: Joi.array().items(UserModel.UserGroupResponseSchema()),
+      page: UserModel.PaginationSchema(),
+    });
+  }
+  static UserGroupResponseSchema() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      file_url: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      uid: Joi.number(),
     });
   }
   static UserObjectSchema() {

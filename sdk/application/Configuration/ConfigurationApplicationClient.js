@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const ConfigurationValidator = require("./ConfigurationApplicationValidator");
 const ConfigurationModel = require("./ConfigurationApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Configuration {
   constructor(_conf) {

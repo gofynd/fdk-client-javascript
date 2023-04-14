@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const PaymentValidator = require("./PaymentApplicationValidator");
 const PaymentModel = require("./PaymentApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Payment {
   constructor(_conf) {

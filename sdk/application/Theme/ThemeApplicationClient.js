@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const ThemeValidator = require("./ThemeApplicationValidator");
 const ThemeModel = require("./ThemeApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Theme {
   constructor(_conf) {

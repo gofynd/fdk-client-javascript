@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const PaymentValidator = require("./PaymentPlatformValidator");
 const PaymentModel = require("./PaymentPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Payment {
   constructor(config) {

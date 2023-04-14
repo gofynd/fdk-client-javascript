@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const LeadValidator = require("./LeadApplicationValidator");
 const LeadModel = require("./LeadApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Lead {
   constructor(_conf) {

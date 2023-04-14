@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const CartValidator = require("./CartPlatformApplicationValidator");
 const CartModel = require("./CartPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Cart {
   constructor(config, applicationId) {

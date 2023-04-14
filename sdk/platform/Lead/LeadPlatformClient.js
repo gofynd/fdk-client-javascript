@@ -4,6 +4,7 @@ const PlatformAPIClient = require("../PlatformAPIClient");
 const LeadValidator = require("./LeadPlatformValidator");
 const LeadModel = require("./LeadPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Lead {
   constructor(config) {

@@ -5,6 +5,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const ShareValidator = require("./ShareApplicationValidator");
 const ShareModel = require("./ShareApplicationModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Share {
   constructor(_conf) {

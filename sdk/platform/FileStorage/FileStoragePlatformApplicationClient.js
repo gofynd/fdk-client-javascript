@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const FileStorageValidator = require("./FileStoragePlatformApplicationValidator");
 const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class FileStorage {
   constructor(config, applicationId) {

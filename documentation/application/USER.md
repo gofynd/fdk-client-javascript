@@ -3103,665 +3103,1139 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 #### [Accountkit](#Accountkit)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ 
 
 ---
 
 #### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [ArchiveUserSuccess](#ArchiveUserSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [AuthSuccess](#AuthSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || register_token | string |  no  |  || user | [UserSchema](#UserSchema) |  no  |  || user_exists | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | register_token | string |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | user_exists | boolean |  no  |  |
+ 
 
 ---
 
 #### [AuthSuccessUser](#AuthSuccessUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  || emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  || first_name | string |  no  |  || last_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug) |  no  |  |
+ | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails) |  no  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ 
 
 ---
 
 #### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || platform | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | platform | string |  no  |  |
+ 
 
 ---
 
 #### [AuthSuccessUserEmails](#AuthSuccessUserEmails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | email | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [BlockUserRequestSchema](#BlockUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || reason | string |  no  |  || status | boolean |  no  |  || user_id | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | reason | string |  no  |  |
+ | status | boolean |  no  |  |
+ | user_id | [string] |  no  |  |
+ 
 
 ---
 
 #### [BlockUserSuccess](#BlockUserSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [CodeRequestBodySchema](#CodeRequestBodySchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ 
+
+---
+
+#### [CreateUserGroupSchema](#CreateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  yes  |  |
+ | file_url | string |  yes  |  |
+ | name | string |  yes  |  |
+ 
 
 ---
 
 #### [CreateUserRequestSchema](#CreateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_number | string |  yes  |  || username | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | meta | string |  no  |  |
+ | phone_number | string |  yes  |  |
+ | username | string |  yes  |  |
+ 
 
 ---
 
 #### [CreateUserResponseSchema](#CreateUserResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || user | [UserSchema](#UserSchema) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ 
 
 ---
 
 #### [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || domain | string |  no  |  || max_age | number |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | string |  no  |  |
+ | max_age | number |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cookie | string |  no  |  || domain | string |  no  |  || http_only | boolean |  no  |  || max_age | number |  no  |  || secure | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cookie | string |  no  |  |
+ | domain | string |  no  |  |
+ | http_only | boolean |  no  |  |
+ | max_age | number |  no  |  |
+ | secure | boolean |  no  |  |
+ 
 
 ---
 
 #### [CustomerListResponseSchema](#CustomerListResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[UserSchema](#UserSchema)] |  no  |  || page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UserSchema](#UserSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ 
 
 ---
 
 #### [DeleteAccountConsent](#DeleteAccountConsent)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || consent_text | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | consent_text | string |  no  |  |
+ 
 
 ---
 
 #### [DeleteAccountReasons](#DeleteAccountReasons)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || reason_id | string |  no  |  || reason_text | string |  no  |  || show_text_area | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | reason_id | string |  no  |  |
+ | reason_text | string |  no  |  |
+ | show_text_area | boolean |  no  |  |
+ 
 
 ---
 
 #### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || otp | string |  no  |  || reason | string |  no  |  || reason_id | string |  no  |  || request_id | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | otp | string |  no  |  |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | request_id | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [DeleteUserSuccess](#DeleteUserSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [EditEmailRequestSchema](#EditEmailRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ 
 
 ---
 
 #### [EditMobileRequestSchema](#EditMobileRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || phone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+ 
 
 ---
 
 #### [EditProfileMobileSchema](#EditProfileMobileSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || phone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+ 
 
 ---
 
 #### [EditProfileRequestSchema](#EditProfileRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || android_hash | string |  no  |  || country_code | string |  no  |  || dob | string |  no  |  || email | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || mobile | [EditProfileMobileSchema](#EditProfileMobileSchema) |  no  |  || profile_pic_url | string |  no  |  || register_token | string |  no  |  || sender | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | android_hash | string |  no  |  |
+ | country_code | string |  no  |  |
+ | dob | string |  no  |  |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema) |  no  |  |
+ | profile_pic_url | string |  no  |  |
+ | register_token | string |  no  |  |
+ | sender | string |  no  |  |
+ 
 
 ---
 
 #### [Email](#Email)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | email | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [EmailOtpSuccess](#EmailOtpSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [Facebook](#Facebook)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ 
 
 ---
 
 #### [FlashCard](#FlashCard)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || background_color | string |  no  |  || text | string |  no  |  || text_color | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | background_color | string |  no  |  |
+ | text | string |  no  |  |
+ | text_color | string |  no  |  |
+ 
 
 ---
 
 #### [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || password | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | password | string |  no  |  |
+ 
 
 ---
 
 #### [FormRegisterRequestSchema](#FormRegisterRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || password | string |  no  |  || phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone) |  no  |  || register_token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | password | string |  no  |  |
+ | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone) |  no  |  |
+ | register_token | string |  no  |  |
+ 
 
 ---
 
 #### [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || mobile | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ 
 
 ---
 
 #### [Google](#Google)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  |  |
+ 
 
 ---
 
 #### [HasPasswordSuccess](#HasPasswordSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || result | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | result | boolean |  no  |  |
+ 
 
 ---
 
 #### [Login](#Login)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || otp | boolean |  no  |  || password | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | otp | boolean |  no  |  |
+ | password | boolean |  no  |  |
+ 
 
 ---
 
 #### [LoginSuccess](#LoginSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || register_token | string |  no  |  || request_id | string |  no  |  || user | [UserSchema](#UserSchema) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | register_token | string |  no  |  |
+ | request_id | string |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ 
 
 ---
 
 #### [LogoutSuccess](#LogoutSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || logout | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | logout | boolean |  no  |  |
+ 
 
 ---
 
 #### [LookAndFeel](#LookAndFeel)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || background_color | string |  no  |  || card_position | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | background_color | string |  no  |  |
+ | card_position | string |  no  |  |
+ 
 
 ---
 
 #### [MetaSchema](#MetaSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || fynd_default | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_default | boolean |  no  |  |
+ 
 
 ---
 
 #### [NotFoundSchema](#NotFoundSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth) |  no  |  || profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile) |  no  |  || user_identifier | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth) |  no  |  |
+ | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile) |  no  |  |
+ | user_identifier | string |  no  |  |
+ 
 
 ---
 
 #### [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || identity_token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | identity_token | string |  no  |  |
+ 
 
 ---
 
 #### [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || first_name | string |  no  |  || full_name | string |  no  |  || last_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | first_name | string |  no  |  |
+ | full_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ 
 
 ---
 
 #### [OAuthRequestSchema](#OAuthRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_signed_in | boolean |  no  |  || oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2) |  no  |  || profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_signed_in | boolean |  no  |  |
+ | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2) |  no  |  |
+ | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile) |  no  |  |
+ 
 
 ---
 
 #### [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || access_token | string |  no  |  || expiry | number |  no  |  || refresh_token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | access_token | string |  no  |  |
+ | expiry | number |  no  |  |
+ | refresh_token | string |  no  |  |
+ 
 
 ---
 
 #### [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | string |  no  |  || first_name | string |  no  |  || full_name | string |  no  |  || id | string |  no  |  || image | string |  no  |  || last_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | full_name | string |  no  |  |
+ | id | string |  no  |  |
+ | image | string |  no  |  |
+ | last_name | string |  no  |  |
+ 
 
 ---
 
 #### [OtpSuccess](#OtpSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || register_token | string |  no  |  || request_id | string |  no  |  || resend_timer | number |  no  |  || resend_token | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | register_token | string |  no  |  |
+ | request_id | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [PaginationSchema](#PaginationSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || item_total | number |  no  |  || size | number |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || captcha_code | string |  no  |  || password | string |  no  |  || username | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | captcha_code | string |  no  |  |
+ | password | string |  no  |  |
+ | username | string |  no  |  |
+ 
 
 ---
 
 #### [PhoneNumber](#PhoneNumber)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | number |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | country_code | number |  no  |  |
+ | phone | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [PlatformEmail](#PlatformEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_required | boolean |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+ 
 
 ---
 
 #### [PlatformMobile](#PlatformMobile)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_required | boolean |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+ 
 
 ---
 
 #### [PlatformSchema](#PlatformSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || active | boolean |  no  |  || created_at | string |  no  |  || delete_account_consent | string |  no  |  || delete_account_day | number |  no  |  || delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  || desktop_image | string |  no  |  || display | string |  no  |  || flash_card | [FlashCard](#FlashCard) |  no  |  || forgot_password | boolean |  no  |  || login | [Login](#Login) |  no  |  || look_and_feel | [LookAndFeel](#LookAndFeel) |  no  |  || meta | [MetaSchema](#MetaSchema) |  no  |  || mobile_image | string |  no  |  || name | string |  no  |  || register | boolean |  no  |  || register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields) |  no  |  || required_fields | [RequiredFields](#RequiredFields) |  no  |  || session_config | string |  no  |  || skip_captcha | boolean |  no  |  || skip_login | boolean |  no  |  || social | [Social](#Social) |  no  |  || social_tokens | [SocialTokens](#SocialTokens) |  no  |  || subtext | string |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | delete_account_consent | string |  no  |  |
+ | delete_account_day | number |  no  |  |
+ | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)] |  no  |  |
+ | desktop_image | string |  no  |  |
+ | display | string |  no  |  |
+ | flash_card | [FlashCard](#FlashCard) |  no  |  |
+ | forgot_password | boolean |  no  |  |
+ | login | [Login](#Login) |  no  |  |
+ | look_and_feel | [LookAndFeel](#LookAndFeel) |  no  |  |
+ | meta | [MetaSchema](#MetaSchema) |  no  |  |
+ | mobile_image | string |  no  |  |
+ | name | string |  no  |  |
+ | register | boolean |  no  |  |
+ | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields) |  no  |  |
+ | required_fields | [RequiredFields](#RequiredFields) |  no  |  |
+ | session_config | string |  no  |  |
+ | skip_captcha | boolean |  no  |  |
+ | skip_login | boolean |  no  |  |
+ | social | [Social](#Social) |  no  |  |
+ | social_tokens | [SocialTokens](#SocialTokens) |  no  |  |
+ | subtext | string |  no  |  |
+ | updated_at | string |  no  |  |
+ 
 
 ---
 
 #### [ProfileEditSuccess](#ProfileEditSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || email | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || register_token | string |  no  |  || request_id | string |  no  |  || resend_email_token | string |  no  |  || resend_timer | number |  no  |  || resend_token | string |  no  |  || success | boolean |  no  |  || user | [UserSchema](#UserSchema) |  no  |  || user_exists | boolean |  no  |  || verify_email_link | boolean |  no  |  || verify_email_otp | boolean |  no  |  || verify_mobile_otp | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | email | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | register_token | string |  no  |  |
+ | request_id | string |  no  |  |
+ | resend_email_token | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | verify_email_link | boolean |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ 
 
 ---
 
 #### [ProfileEditSuccessSchema](#ProfileEditSuccessSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | string |  no  |  || register_token | string |  no  |  || user | string |  no  |  || user_exists | boolean |  no  |  || verify_email_link | boolean |  no  |  || verify_email_otp | boolean |  no  |  || verify_mobile_otp | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | register_token | string |  no  |  |
+ | user | string |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | verify_email_link | boolean |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ 
 
 ---
 
 #### [RegisterFormSuccess](#RegisterFormSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || email | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || register_token | string |  no  |  || request_id | string |  no  |  || resend_email_token | string |  no  |  || resend_timer | number |  no  |  || resend_token | string |  no  |  || success | boolean |  no  |  || user_exists | boolean |  no  |  || verify_email_otp | boolean |  no  |  || verify_mobile_otp | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | email | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | register_token | string |  no  |  |
+ | request_id | string |  no  |  |
+ | resend_email_token | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ 
 
 ---
 
 #### [RegisterRequiredFields](#RegisterRequiredFields)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail) |  no  |  || mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail) |  no  |  |
+ | mobile | [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile) |  no  |  |
+ 
 
 ---
 
 #### [RegisterRequiredFieldsEmail](#RegisterRequiredFieldsEmail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_required | boolean |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+ 
 
 ---
 
 #### [RegisterRequiredFieldsMobile](#RegisterRequiredFieldsMobile)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_required | boolean |  no  |  || level | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_required | boolean |  no  |  |
+ | level | string |  no  |  |
+ 
 
 ---
 
 #### [RequiredFields](#RequiredFields)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | [PlatformEmail](#PlatformEmail) |  no  |  || mobile | [PlatformMobile](#PlatformMobile) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [PlatformEmail](#PlatformEmail) |  no  |  |
+ | mobile | [PlatformMobile](#PlatformMobile) |  no  |  |
+ 
 
 ---
 
 #### [ResetPasswordSuccess](#ResetPasswordSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | status | string |  no  |  |
+ 
 
 ---
 
 #### [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || email | string |  no  |  || register_token | string |  no  |  || token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | captcha_code | string |  no  |  |
+ | email | string |  no  |  |
+ | register_token | string |  no  |  |
+ | token | string |  no  |  |
+ 
 
 ---
 
 #### [SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || verify_email_link | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | verify_email_link | boolean |  no  |  |
+ 
 
 ---
 
 #### [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || android_hash | string |  no  |  || captcha_code | string |  no  |  || country_code | string |  no  |  || force | string |  no  |  || mobile | string |  no  |  || token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | android_hash | string |  no  |  |
+ | captcha_code | string |  no  |  |
+ | country_code | string |  no  |  |
+ | force | string |  no  |  |
+ | mobile | string |  no  |  |
+ | token | string |  no  |  |
+ 
 
 ---
 
 #### [SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || verify_mobile_link | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | verify_mobile_link | boolean |  no  |  |
+ 
 
 ---
 
 #### [SendOtpRequestSchema](#SendOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || android_hash | string |  no  |  || captcha_code | string |  no  |  || country_code | string |  no  |  || mobile | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | android_hash | string |  no  |  |
+ | captcha_code | string |  no  |  |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ 
 
 ---
 
 #### [SendOtpResponse](#SendOtpResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | string |  no  |  || email | string |  no  |  || message | string |  no  |  || mobile | string |  no  |  || register_token | string |  no  |  || request_id | string |  no  |  || resend_email_token | string |  no  |  || resend_timer | number |  no  |  || resend_token | string |  no  |  || success | boolean |  no  |  || user_exists | boolean |  no  |  || verify_email_otp | boolean |  no  |  || verify_mobile_otp | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string |  no  |  |
+ | email | string |  no  |  |
+ | message | string |  no  |  |
+ | mobile | string |  no  |  |
+ | register_token | string |  no  |  |
+ | request_id | string |  no  |  |
+ | resend_email_token | string |  no  |  |
+ | resend_timer | number |  no  |  |
+ | resend_token | string |  no  |  |
+ | success | boolean |  no  |  |
+ | user_exists | boolean |  no  |  |
+ | verify_email_otp | boolean |  no  |  |
+ | verify_mobile_otp | boolean |  no  |  |
+ 
 
 ---
 
 #### [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || captcha_code | string |  no  |  || email | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | captcha_code | string |  no  |  |
+ | email | string |  no  |  |
+ 
 
 ---
 
 #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || captcha_code | string |  no  |  || country_code | string |  no  |  || mobile | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | captcha_code | string |  no  |  |
+ | country_code | string |  no  |  |
+ | mobile | string |  no  |  |
+ 
 
 ---
 
 #### [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | string |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string] |  no  |  |
+ 
 
 ---
 
 #### [SessionExpiry](#SessionExpiry)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || duration | number |  no  |  || is_rolling | boolean |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number |  no  |  |
+ | is_rolling | boolean |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [SessionListResponseInfo](#SessionListResponseInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || domain | string |  no  |  || expire_in | string |  no  |  || ip | string |  no  |  || session_id | string |  no  |  || user_agent | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | string |  no  |  |
+ | expire_in | string |  no  |  |
+ | ip | string |  no  |  |
+ | session_id | string |  no  |  |
+ | user_agent | string |  no  |  |
+ 
 
 ---
 
 #### [SessionListResponseSchema](#SessionListResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)] |  no  |  |
+ 
 
 ---
 
 #### [SessionListSuccess](#SessionListSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || sessions | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | sessions | [string] |  no  |  |
+ 
 
 ---
 
 #### [Social](#Social)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_kit | boolean |  no  |  || apple | boolean |  no  |  || facebook | boolean |  no  |  || google | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_kit | boolean |  no  |  |
+ | apple | boolean |  no  |  |
+ | facebook | boolean |  no  |  |
+ | google | boolean |  no  |  |
+ 
 
 ---
 
 #### [SocialTokens](#SocialTokens)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_kit | [Accountkit](#Accountkit) |  no  |  || facebook | [Facebook](#Facebook) |  no  |  || google | [Google](#Google) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_kit | [Accountkit](#Accountkit) |  no  |  |
+ | facebook | [Facebook](#Facebook) |  no  |  |
+ | google | [Google](#Google) |  no  |  |
+ 
 
 ---
 
 #### [TokenRequestBodySchema](#TokenRequestBodySchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | token | string |  no  |  |
+ 
 
 ---
 
 #### [UnauthenticatedSchema](#UnauthenticatedSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || authenticated | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | authenticated | boolean |  no  |  |
+ 
 
 ---
 
 #### [UnauthorizedSchema](#UnauthorizedSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || reason | string |  no  |  || reason_id | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | reason | string |  no  |  |
+ | reason_id | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || new_password | string |  no  |  || old_password | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | new_password | string |  no  |  |
+ | old_password | string |  no  |  |
+ 
+
+---
+
+#### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || emails | [[UserEmails](#UserEmails)] |  no  |  || external_id | string |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | emails | [[UserEmails](#UserEmails)] |  no  |  |
+ | external_id | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | meta | string |  no  |  |
+ | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)] |  no  |  |
+ 
 
 ---
 
 #### [UserEmails](#UserEmails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | email | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
+
+---
+
+#### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)] |  no  |  |
+ | page | [PaginationSchema](#PaginationSchema) |  no  |  |
+ 
+
+---
+
+#### [UserGroupResponseSchema](#UserGroupResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number |  no  |  |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | description | string |  no  |  |
+ | file_url | string |  no  |  |
+ | modified_at | string |  no  |  |
+ | name | string |  no  |  |
+ | status | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [UserObjectSchema](#UserObjectSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || user | [UserSchema](#UserSchema) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ 
 
 ---
 
 #### [UserPhoneNumbers](#UserPhoneNumbers)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | string |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | country_code | string |  no  |  |
+ | phone | string |  no  |  |
+ | primary | boolean |  no  |  |
+ | verified | boolean |  no  |  |
+ 
 
 ---
 
 #### [UserSchema](#UserSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || account_type | string |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || created_at | string |  no  |  || dob | string |  no  |  || emails | [[Email](#Email)] |  no  |  || first_name | string |  no  |  || gender | string |  no  |  || last_name | string |  no  |  || meta | string |  no  |  || phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  || profile_pic_url | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  || username | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | account_type | string |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | created_at | string |  no  |  |
+ | dob | string |  no  |  |
+ | emails | [[Email](#Email)] |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string |  no  |  |
+ | last_name | string |  no  |  |
+ | meta | string |  no  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)] |  no  |  |
+ | profile_pic_url | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
+ | username | string |  no  |  |
+ 
 
 ---
 
 #### [UserSearchResponseSchema](#UserSearchResponseSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || users | [[UserSchema](#UserSchema)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | users | [[UserSchema](#UserSchema)] |  no  |  |
+ 
 
 ---
 
 #### [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | string |  no  |  || email | string |  no  |  || otp | string |  no  |  || register_token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | email | string |  no  |  |
+ | otp | string |  no  |  |
+ | register_token | string |  no  |  |
+ 
 
 ---
 
 #### [VerifyEmailOTPSuccess](#VerifyEmailOTPSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || user | [UserSchema](#UserSchema) |  no  |  || verify_email_link | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | verify_email_link | boolean |  no  |  |
+ 
 
 ---
 
 #### [VerifyEmailSuccess](#VerifyEmailSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || user | [UserSchema](#UserSchema) |  no  |  || verify_mobile_link | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | verify_mobile_link | boolean |  no  |  |
+ 
 
 ---
 
 #### [VerifyOtpRequestSchema](#VerifyOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || otp | string |  no  |  || register_token | string |  no  |  || request_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | otp | string |  no  |  |
+ | register_token | string |  no  |  |
+ | request_id | string |  no  |  |
+ 
 
 ---
 
 #### [VerifyOtpSuccess](#VerifyOtpSuccess)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || register_token | string |  no  |  || user | [UserSchema](#UserSchema) |  no  |  || user_exists | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | register_token | string |  no  |  |
+ | user | [UserSchema](#UserSchema) |  no  |  |
+ | user_exists | boolean |  no  |  |
+ 
 
 ---
 

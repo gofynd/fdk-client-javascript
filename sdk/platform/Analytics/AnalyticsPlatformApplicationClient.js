@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const AnalyticsValidator = require("./AnalyticsPlatformApplicationValidator");
 const AnalyticsModel = require("./AnalyticsPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Analytics {
   constructor(config, applicationId) {

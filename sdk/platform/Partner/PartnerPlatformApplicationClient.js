@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const PartnerValidator = require("./PartnerPlatformApplicationValidator");
 const PartnerModel = require("./PartnerPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Partner {
   constructor(config, applicationId) {

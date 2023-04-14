@@ -4,6 +4,7 @@ const { FDKClientValidationError } = require("../../common/FDKError");
 const OrderValidator = require("./OrderPlatformApplicationValidator");
 const OrderModel = require("./OrderPlatformModel");
 const { Logger } = require("./../../common/Logger");
+const Joi = require("joi");
 
 class Order {
   constructor(config, applicationId) {

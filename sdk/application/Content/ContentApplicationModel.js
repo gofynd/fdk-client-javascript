@@ -729,6 +729,7 @@ class ContentModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
+      cannonical_enabled: Joi.boolean(),
       created_at: Joi.string().allow(""),
       custom_meta_tags: Joi.array().items(Joi.any()),
       details: ContentModel.Detail(),
