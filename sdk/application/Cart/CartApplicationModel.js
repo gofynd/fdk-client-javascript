@@ -372,6 +372,7 @@ class CartModel {
   static GetAddressesResponse() {
     return Joi.object({
       address: Joi.array().items(CartModel.Address()),
+      pii_masking: Joi.boolean(),
     });
   }
   static GetCouponResponse() {

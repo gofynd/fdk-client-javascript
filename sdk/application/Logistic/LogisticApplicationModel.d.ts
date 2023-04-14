@@ -13,6 +13,8 @@ declare class LogisticModel {
     static PincodeLatLongData(): any;
     static PincodeMetaResponse(): any;
     static PincodeParentsResponse(): any;
+    static ReAssignStoreRequest(): any;
+    static ReAssignStoreResponse(): any;
     static TATArticlesRequest(): any;
     static TATArticlesResponse(): any;
     static TATCategoryRequest(): any;

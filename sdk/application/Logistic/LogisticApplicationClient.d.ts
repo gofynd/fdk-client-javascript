@@ -4,6 +4,7 @@ declare class Logistic {
     _conf: any;
     _relativeUrls: {
         getAllCountries: string;
+        getOptimalLocations: string;
         getPincodeCity: string;
         getPincodeZones: string;
         getTatProduct: string;
@@ -17,6 +18,16 @@ declare class Logistic {
      * @description: Get all countries
      */
     getAllCountries({}?: any): Promise<CountryListResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ReAssignStoreRequest} arg.body
+     * @returns {Promise<ReAssignStoreResponse>} - Success response
+     * @summary: GET zone from the Pincode.
+     * @description: This API returns zone from the Pincode View.
+     */
+    getOptimalLocations({ body }?: {
+        body: ReAssignStoreRequest;
+    }): Promise<ReAssignStoreResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.pincode - A `pincode` contains a specific address of

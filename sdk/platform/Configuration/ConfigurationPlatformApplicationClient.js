@@ -1266,6 +1266,69 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {AppFeatureRequest} arg.body
+   * @returns {Promise<AppFeature>} - Success response
+   * @summary: Update features of application
+   * @description: Update features of application
+   */
+  async modifyAppFeatures({ body } = {}) {
+    const { error } = ConfigurationValidator.modifyAppFeatures().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationValidator.modifyAppFeatures().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for modifyAppFeatures",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = ConfigurationModel.AppFeature().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for modifyAppFeatures",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {AppInventoryPartialUpdate} arg.body
    * @returns {Promise<ApplicationInventory>} - Success response
    * @summary: Partially update application configuration

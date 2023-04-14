@@ -103,6 +103,23 @@ class LogisticModel {
       uid: Joi.string().allow(""),
     });
   }
+  static ReAssignStoreRequest() {
+    return Joi.object({
+      articles: Joi.array().items(Joi.any()).required(),
+      configuration: Joi.any().required(),
+      identifier: Joi.string().allow("").required(),
+      ignored_locations: Joi.array().items(Joi.string().allow("")).required(),
+      to_pincode: Joi.string().allow("").required(),
+    });
+  }
+  static ReAssignStoreResponse() {
+    return Joi.object({
+      articles: Joi.array().items(Joi.any()),
+      error: Joi.any().required(),
+      success: Joi.boolean().required(),
+      to_pincode: Joi.string().allow("").required(),
+    });
+  }
   static TATArticlesRequest() {
     return Joi.object({
       category: LogisticModel.TATCategoryRequest(),

@@ -1325,6 +1325,8 @@ class PlatformApplicationClient {
 /** @typedef CartFeature */
 /** @typedef Charges */
 /** @typedef CommonFeature */
+/** @typedef CommsConfig */
+/** @typedef CommunicationConfig */
 /** @typedef CommunicationOptinDialogFeature */
 /** @typedef CompaniesResponse */
 /** @typedef CompanyAboutAddress */

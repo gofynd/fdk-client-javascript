@@ -41,6 +41,7 @@ Application configuration apis
 * [getSelectedOptIns](#getselectedoptins)
 * [getStaffOrderingStores](#getstafforderingstores)
 * [getStoreByBrands](#getstorebybrands)
+* [modifyAppFeatures](#modifyappfeatures)
 * [optOutFromApplication](#optoutfromapplication)
 * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
 * [removeDomainById](#removedomainbyid)
@@ -2449,6 +2450,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -3333,6 +3345,148 @@ Success
 ---
 
 
+### modifyAppFeatures
+Update features of application
+
+
+
+```javascript
+// Promise
+const promise = client.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
+
+// Async/Await
+const data = await client.application("<APPLICATION_ID>").configuration.modifyAppFeatures({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [AppFeatureRequest](#AppFeatureRequest) | yes | Request body |
+
+
+Update features of application
+
+*Returned Response:*
+
+
+
+
+[AppFeature](#AppFeature)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": null,
+      "query": null
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "international_shipping": {
+      "enabled": true
+    },
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
+      ],
+      "type": "explicit",
+      "default_currency": "INR"
+    },
+    "revenue_engine": {
+      "enabled": false
+    },
+    "feedback": {
+      "enabled": true
+    },
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true,
+    "revenue_engine_coupon": false
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### optOutFromApplication
 Opt out company or store from other seller application
 
@@ -3605,6 +3759,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -4578,6 +4743,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -4927,7 +5103,7 @@ Success
 #### [AppInventoryPartialUpdate](#AppInventoryPartialUpdate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart | [AppCartConfig](#AppCartConfig) |  no  |  || comms_enabled | boolean |  no  |  || loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  || payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || cart | [AppCartConfig](#AppCartConfig) |  no  |  || comms_enabled | boolean |  no  |  || communication | [CommunicationConfig](#CommunicationConfig) |  no  |  || loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  || payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
 
 ---
 
@@ -4976,7 +5152,7 @@ Success
 #### [ApplicationInventory](#ApplicationInventory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || app | string |  no  |  || article_assignment | [ArticleAssignmentConfig](#ArticleAssignmentConfig) |  no  |  || authentication | [AuthenticationConfig](#AuthenticationConfig) |  no  |  || business | string |  no  |  || cart | [AppCartConfig](#AppCartConfig) |  no  |  || comms_enabled | boolean |  no  |  || created_at | string |  no  |  || inventory | [AppInventoryConfig](#AppInventoryConfig) |  no  |  || logistics | [AppLogisticsConfig](#AppLogisticsConfig) |  no  |  || loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  || modified_by | string |  no  |  || order | [AppOrderConfig](#AppOrderConfig) |  no  |  || payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  || platforms | [string] |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  || updated_at | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || app | string |  no  |  || article_assignment | [ArticleAssignmentConfig](#ArticleAssignmentConfig) |  no  |  || authentication | [AuthenticationConfig](#AuthenticationConfig) |  no  |  || business | string |  no  |  || cart | [AppCartConfig](#AppCartConfig) |  no  |  || comms_enabled | boolean |  no  |  || communication | [CommunicationConfig](#CommunicationConfig) |  no  |  || created_at | string |  no  |  || inventory | [AppInventoryConfig](#AppInventoryConfig) |  no  |  || logistics | [AppLogisticsConfig](#AppLogisticsConfig) |  no  |  || loyalty_points | [LoyaltyPointsConfig](#LoyaltyPointsConfig) |  no  |  || modified_by | string |  no  |  || order | [AppOrderConfig](#AppOrderConfig) |  no  |  || payment | [AppPaymentConfig](#AppPaymentConfig) |  no  |  || platforms | [string] |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
@@ -5145,6 +5321,20 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- || communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  || compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  || currency | [CurrencyFeature](#CurrencyFeature) |  no  |  || deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  || feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  || listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  || revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+
+---
+
+#### [CommsConfig](#CommsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
+
+---
+
+#### [CommunicationConfig](#CommunicationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- || email | [CommsConfig](#CommsConfig) |  no  |  || sms | [CommsConfig](#CommsConfig) |  no  |  || voice | [CommsConfig](#CommsConfig) |  no  |  |
 
 ---
 

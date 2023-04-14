@@ -382,6 +382,7 @@ class PosCartModel {
   static GetAddressesResponse() {
     return Joi.object({
       address: Joi.array().items(PosCartModel.Address()),
+      pii_masking: Joi.boolean(),
     });
   }
   static GetCouponResponse() {

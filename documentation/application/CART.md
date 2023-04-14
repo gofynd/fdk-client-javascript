@@ -8461,7 +8461,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 #### [GetAddressesResponse](#GetAddressesResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address | [[Address](#Address)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || address | [[Address](#Address)] |  no  |  || pii_masking | boolean |  no  |  |
 
 ---
 
