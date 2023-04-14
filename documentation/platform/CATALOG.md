@@ -19900,15 +19900,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)] |  no  |  |
  | business_type | string |  no  |  |
  | company_type | string |  no  |  |
- | created_by | [UserSerializer2](#UserSerializer2) |  no  |  |
+ | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
  | created_on | string |  no  |  |
- | modified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
  | modified_on | string |  no  |  |
  | name | string |  no  |  |
  | reject_reason | string |  no  |  |
  | stage | string |  no  |  |
  | uid | number |  no  |  |
- | verified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
+ | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
  | verified_on | string |  no  |  |
  
 
@@ -20015,14 +20015,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  yes  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer) |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
- | created_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | created_by | [UserSerializer2](#UserSerializer2) |  no  |  |
  | created_on | string |  no  |  |
  | display_name | string |  yes  |  |
  | documents | [[Document](#Document)] |  no  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer) |  no  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType) |  no  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer) |  no  |  |
- | modified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
  | modified_on | string |  no  |  |
  | name | string |  yes  |  |
  | notification_emails | [string] |  no  |  |
@@ -20032,7 +20032,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string |  no  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)] |  no  |  |
  | uid | number |  no  |  |
- | verified_by | [UserSerializer1](#UserSerializer1) |  no  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2) |  no  |  |
  | verified_on | string |  no  |  |
  | warnings | string |  no  |  |
  
@@ -21439,7 +21439,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
  | no_of_boxes | number |  no  |  |
  | product_group_tag | [string] |  no  |  |
- | product_publish | [ProductPublish1](#ProductPublish1) |  no  |  |
+ | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
  | requester | string |  no  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  yes  |  |
  | short_description | string |  no  |  |
@@ -21715,7 +21715,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string |  no  |  |
  | primary_color | string |  no  |  |
  | product_group_tag | [string] |  no  |  |
- | product_publish | [ProductPublish](#ProductPublish) |  no  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1) |  no  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse) |  no  |  |
  | short_description | string |  no  |  |
  | size_guide | string |  no  |  |

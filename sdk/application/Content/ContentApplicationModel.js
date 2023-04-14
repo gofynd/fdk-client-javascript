@@ -59,7 +59,7 @@ class ContentModel {
     return Joi.object({
       announcements: Joi.object().pattern(
         /\S/,
-        Joi.array().items(this.AnnouncementSchema())
+        Joi.array().items(ContentModel.AnnouncementSchema())
       ),
       refresh_pages: Joi.array().items(Joi.string().allow("")),
       refresh_rate: Joi.number(),
@@ -508,10 +508,10 @@ class ContentModel {
       display: Joi.string().allow(""),
       image: Joi.string().allow(""),
       sort_order: Joi.number(),
-      sub_navigation: Joi.array().items(ContentModel.NavigationReference()),
+      sub_navigation: Joi.array().items(Joi.link("#NavigationReference")),
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
-    });
+    }).id("NavigationReference");
   }
   static NavigationRequest() {
     return Joi.object({

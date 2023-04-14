@@ -53,7 +53,7 @@ class LogisticModel {
   }
   static LogisticsResponse() {
     return Joi.object({
-      dp: Joi.object().pattern(/\S/, this.DP()),
+      dp: Joi.object().pattern(/\S/, LogisticModel.DP()),
     });
   }
   static PincodeApiResponse() {

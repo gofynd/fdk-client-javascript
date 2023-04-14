@@ -45,3 +45,10 @@ describe("Application Common Test Cases ", () => {
     expect(locations && typeof locations === "object").toBe(true);
   });
 });
+
+describe("Application Content Test Cases ", () => {
+  it("getNavigations test", async () => {
+    let res = await applicationClient.content.getNavigations();
+    expect(res).not.toBeNull();
+  });
+});
