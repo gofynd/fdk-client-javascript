@@ -40,8 +40,8 @@ class OrderModel {
       meta: OrderModel.BagReasonMeta(),
       qc_type: Joi.array().items(Joi.string().allow("")),
       question_set: Joi.array().items(OrderModel.QuestionSet()),
-      reasons: Joi.array().items(OrderModel.BagReasons()),
-    });
+      reasons: Joi.array().items(Joi.link("#BagReasons")),
+    }).id("BagReasons");
   }
   static Bags() {
     return Joi.object({
