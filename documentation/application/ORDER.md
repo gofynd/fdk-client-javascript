@@ -2522,7 +2522,7 @@ Success, the code is valid and returns a session token
 #### [Bags](#Bags)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  || can_cancel | boolean |  no  |  || can_return | boolean |  no  |  || current_status | [CurrentStatus](#CurrentStatus) |  no  |  || delivery_date | string |  no  |  || financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  || id | number |  no  |  || item | [Item](#Item) |  no  |  || line_number | number |  no  |  || parent_promo_bags | string |  no  |  || prices | [Prices](#Prices) |  no  |  || quantity | number |  no  |  || returnable_date | string |  no  |  || seller_identifier | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || applied_promos | [[AppliedPromos](#AppliedPromos)] |  no  |  || can_cancel | boolean |  no  |  || can_return | boolean |  no  |  || current_status | [CurrentStatus](#CurrentStatus) |  no  |  || delivery_date | string |  no  |  || financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  || id | number |  no  |  || item | [Item](#Item) |  no  |  || line_number | number |  no  |  || meta | string |  no  |  || parent_promo_bags | string |  no  |  || prices | [Prices](#Prices) |  no  |  || quantity | number |  no  |  || returnable_date | string |  no  |  || seller_identifier | string |  no  |  |
 
 ---
 
