@@ -1,5 +1,6 @@
 const {ApplicationConfig, ApplicationClient, ApplicationModel } = require('./sdk/application');
 const {PlatformConfig, PlatformClient, PlatformModel } = require('./sdk/platform');
+const {PartnerConfig, PartnerClient, PartnerModel } = require('./sdk/partner');
 const {PublicConfig, PublicClient, PublicModel } = require('./sdk/public');
 
 
@@ -15,6 +16,9 @@ module.exports = {
     PlatformConfig,
     PlatformClient,
     PlatformModel,
+    PartnerConfig, 
+    PartnerClient,
+    PartnerModel,
     PublicConfig,
     PublicClient,
     PublicModel,
