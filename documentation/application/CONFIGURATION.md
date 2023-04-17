@@ -2,30 +2,233 @@
 
 
 
+
 ##### [Back to Application docs](./README.md)
 
 ## Configuration Methods
 Application configuration apis
+
+* [getAppCurrencies](#getappcurrencies)
+* [getAppStaffList](#getappstafflist)
+* [getAppStaffs](#getappstaffs)
 * [getApplication](#getapplication)
-* [getOwnerInfo](#getownerinfo)
 * [getBasicDetails](#getbasicdetails)
-* [getIntegrationTokens](#getintegrationtokens)
-* [getOrderingStores](#getorderingstores)
-* [getStoreDetailById](#getstoredetailbyid)
-* [getFeatures](#getfeatures)
 * [getContactInfo](#getcontactinfo)
 * [getCurrencies](#getcurrencies)
 * [getCurrencyById](#getcurrencybyid)
-* [getAppCurrencies](#getappcurrencies)
+* [getFeatures](#getfeatures)
+* [getIntegrationTokens](#getintegrationtokens)
 * [getLanguages](#getlanguages)
 * [getOrderingStoreCookie](#getorderingstorecookie)
+* [getOrderingStores](#getorderingstores)
+* [getOwnerInfo](#getownerinfo)
+* [getStoreDetailById](#getstoredetailbyid)
 * [removeOrderingStoreCookie](#removeorderingstorecookie)
-* [getAppStaffList](#getappstafflist)
-* [getAppStaffs](#getappstaffs)
 
 
 
 ## Methods with example and description
+
+
+
+
+### getAppCurrencies
+Get currencies enabled in the application
+
+
+
+```javascript
+// Promise
+const promise = configuration.getAppCurrencies();
+
+// Async/Await
+const data = await configuration.getAppCurrencies();
+```
+
+
+
+
+
+
+Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+
+*Returned Response:*
+
+
+
+
+[AppCurrencyResponse](#AppCurrencyResponse)
+
+Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application": "000000000000000000000001",
+  "default_currency": {
+    "ref": "5ecf6122d953d4242c044907",
+    "code": "INR"
+  },
+  "supported_currency": [
+    {
+      "_id": "5ecf6122d953d4242c044907",
+      "is_active": true,
+      "name": "Indian Rupee",
+      "code": "INR",
+      "decimal_digits": 2,
+      "symbol": "₹",
+      "created_at": "2020-05-28T06:58:42.532Z",
+      "modified_at": "2021-04-05T16:44:14.358Z"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppStaffList
+Get a list of staff.
+
+
+
+```javascript
+// Promise
+const promise = configuration.getAppStaffList({  pageNo : value,
+ pageSize : value,
+ orderIncent : value,
+ orderingStore : value,
+ user : value });
+
+// Async/Await
+const data = await configuration.getAppStaffList({  pageNo : value,
+ pageSize : value,
+ orderIncent : value,
+ orderingStore : value,
+ user : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
+| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+
+
+
+Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+
+*Returned Response:*
+
+
+
+
+[AppStaffListResponse](#AppStaffListResponse)
+
+Success. Check the example shown below or refer `AppStaffListResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppStaffs
+Get a list of staff.
+
+
+
+```javascript
+// Promise
+const promise = configuration.getAppStaffs({  orderIncent : value,
+ orderingStore : value,
+ user : value });
+
+// Async/Await
+const data = await configuration.getAppStaffs({  orderIncent : value,
+ orderingStore : value,
+ user : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
+| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+
+
+
+Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+
+*Returned Response:*
+
+
+
+
+[AppStaffResponse](#AppStaffResponse)
+
+Success. Check the example shown below or refer `AppStaffResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### getApplication
@@ -142,158 +345,6 @@ Success. Check the example shown below or refer `Application` for more details.
 ---
 
 
-### getOwnerInfo
-Get application, owner and seller information
-
-
-
-```javascript
-// Promise
-const promise = configuration.getOwnerInfo();
-
-// Async/Await
-const data = await configuration.getOwnerInfo();
-```
-
-
-
-
-
-
-Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
-
-*Returned Response:*
-
-
-
-
-[ApplicationAboutResponse](#ApplicationAboutResponse)
-
-Success. Check the example shown below or refer `ApplicationAboutResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "application_info": {
-    "domains": [
-      {
-        "verified": true,
-        "name": "uniket-testing.addsale.link",
-        "custom": false,
-        "is_primary": true
-      }
-    ],
-    "website": {
-      "enabled": true,
-      "basepath": "/"
-    },
-    "cors": {
-      "domains": []
-    },
-    "description": "R-City Mall,Ghatkoper East,Mumbai",
-    "is_active": true,
-    "_id": "5cd3db5e9d692cfe5302a7ba",
-    "name": "Shivam Clothing Store",
-    "meta": [
-      {
-        "name": "tes",
-        "value": "test"
-      }
-    ],
-    "token": "xOfcP-aYE",
-    "secret": "",
-    "created_at": "2019-05-09T07:48:46.218Z",
-    "banner": {
-      "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
-    },
-    "logo": {
-      "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
-    },
-    "id": "5cd3db5e9d692cfe5302a7ba",
-    "company_info": {
-      "_id": "5da4274a723af4000188a66c",
-      "uid": 873,
-      "created_on": "2019-10-14T07:44:10.391Z",
-      "is_active": true,
-      "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
-      "addresses": [
-        {
-          "pincode": 110042,
-          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
-          "city": "NEW DELHI",
-          "state": "DELHI",
-          "country": "INDIA",
-          "address_type": "registered"
-        },
-        {
-          "pincode": 110042,
-          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
-          "city": "NEW DELHI",
-          "state": "DELHI",
-          "country": "INDIA",
-          "address_type": "office"
-        }
-      ],
-      "notification_emails": [
-        "ecom.sapperlifestyle@f2fretail.com"
-      ]
-    },
-    "owner_info": {
-      "_id": "5c77921fa1bf7d8695ed57fd",
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "jalakvora@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "jalakvora@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "jalakvora@uniket.store"
-        }
-      ],
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "country_code": 91,
-          "phone": "9408282323"
-        }
-      ],
-      "first_name": "Jalak",
-      "last_name": "Vora",
-      "profile_pic": ""
-    }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getBasicDetails
 Get basic application details
 
@@ -370,398 +421,6 @@ Success. Check the example shown below or refer `ApplicationDetail` for more det
   ],
   "company_id": 1,
   "_id": "000000000000000000000004"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getIntegrationTokens
-Get integration tokens
-
-
-
-```javascript
-// Promise
-const promise = configuration.getIntegrationTokens();
-
-// Async/Await
-const data = await configuration.getIntegrationTokens();
-```
-
-
-
-
-
-
-Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
-
-*Returned Response:*
-
-
-
-
-[AppTokenResponse](#AppTokenResponse)
-
-Success. Check the example shown below or refer `AppTokenResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "tokens": {
-    "firebase": {
-      "credentials": {
-        "project_id": "",
-        "gcm_sender_id": "",
-        "application_id": "",
-        "api_key": ""
-      },
-      "enabled": false
-    },
-    "moengage": {
-      "credentials": {
-        "app_id": ""
-      },
-      "enabled": false
-    },
-    "segment": {
-      "credentials": {
-        "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
-      },
-      "enabled": false
-    },
-    "gtm": {
-      "credentials": {
-        "api_key": ""
-      },
-      "enabled": false
-    },
-    "freshchat": {
-      "credentials": {
-        "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
-        "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
-      },
-      "enabled": true
-    },
-    "safetynet": {
-      "credentials": {
-        "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
-      },
-      "enabled": true
-    },
-    "fynd_rewards": {
-      "credentials": {
-        "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
-      }
-    },
-    "auth": {
-      "google": {
-        "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
-      },
-      "facebook": {
-        "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
-      },
-      "accountkit": {
-        "app_id": ""
-      }
-    },
-    "google_map": {
-      "credentials": {
-        "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
-      }
-    }
-  },
-  "_id": "5e285cb1df7e5b1421d5f840",
-  "application": "000000000000000000000004",
-  "created_at": "2020-01-22T14:31:13.192Z",
-  "modified_at": "2020-05-01T04:14:42.117Z",
-  "__v": 0
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getOrderingStores
-Get deployment stores
-
-
-
-```javascript
-// Promise
-const promise = configuration.getOrderingStores({  pageNo : value,
- pageSize : value,
- q : value });
-
-// Async/Await
-const data = await configuration.getOrderingStores({  pageNo : value,
- pageSize : value,
- q : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| q | string | no | Store code or name of the ordering store. |  
-
-
-
-Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
-
-*Returned Response:*
-
-
-
-
-[OrderingStores](#OrderingStores)
-
-Success. Check the example shown below or refer `OrderingStores` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStoreDetailById
-Get ordering store details
-
-
-
-```javascript
-// Promise
-const promise = configuration.getStoreDetailById({  storeId : value });
-
-// Async/Await
-const data = await configuration.getStoreDetailById({  storeId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| storeId | number | yes | Store uid |  
-
-
-
-Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
-
-*Returned Response:*
-
-
-
-
-[OrderingStore](#OrderingStore)
-
-Success. Check the example shown below or refer `OrderingStore` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "uid": 1060,
-  "name": "THE MANDHANA PARK KAMLANAGAR DELHI",
-  "pincode": 110007,
-  "store_code": "MRVLB22",
-  "code": "MRVLB22",
-  "display_name": "Kamla Nagar",
-  "store_type": "mall"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getFeatures
-Get features of application
-
-
-
-```javascript
-// Promise
-const promise = configuration.getFeatures();
-
-// Async/Await
-const data = await configuration.getFeatures();
-```
-
-
-
-
-
-
-Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
-
-*Returned Response:*
-
-
-
-
-[AppFeatureResponse](#AppFeatureResponse)
-
-Success. Check the example shown below or refer `AppFeatureResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "feature": {
-    "product_detail": {
-      "similar": [
-        "basic",
-        "visual",
-        "brand",
-        "category",
-        "seller",
-        "price",
-        "specs"
-      ],
-      "seller_selection": true,
-      "update_product_meta": true,
-      "request_product": true
-    },
-    "landing_page": {
-      "launch_page": {
-        "page_type": "home",
-        "params": null,
-        "query": null
-      },
-      "continue_as_guest": true,
-      "login_btn_text": "Click here to sign-in",
-      "show_domain_textbox": true,
-      "show_register_btn": true
-    },
-    "registration_page": {
-      "ask_store_address": false
-    },
-    "home_page": {
-      "order_processing": true
-    },
-    "common": {
-      "communication_optin_dialog": {
-        "visibility": true
-      },
-      "deployment_store_selection": {
-        "enabled": true,
-        "type": "hard"
-      },
-      "listing_price": {
-        "value": "min",
-        "sort": "min"
-      },
-      "currency": {
-        "value": [
-          "INR"
-        ],
-        "type": "explicit",
-        "default_currency": "INR"
-      },
-      "revenue_engine": {
-        "enabled": false
-      },
-      "feedback": {
-        "enabled": true
-      },
-      "compare_products": {
-        "enabled": true
-      },
-      "reward_points": {
-        "credit": {
-          "enabled": true
-        },
-        "debit": {
-          "enabled": true,
-          "auto_apply": false,
-          "strategy_channel": "REWARDS"
-        }
-      }
-    },
-    "cart": {
-      "gst_input": true,
-      "staff_selection": true,
-      "placing_for_customer": true,
-      "google_map": true
-    },
-    "qr": {
-      "application": true,
-      "products": true,
-      "collections": true
-    },
-    "pcr": {
-      "staff_selection": true
-    },
-    "order": {
-      "buy_again": true
-    },
-    "_id": "5e57643c986e4119c973df7d",
-    "app": "000000000000000000000004",
-    "created_at": "2020-02-27T06:39:56.088Z",
-    "modified_at": "2021-02-02T11:04:14.289Z",
-    "__v": 1
-  }
 }
 ```
 </details>
@@ -1072,17 +731,17 @@ Success. Check the example shown below or refer `Currency` for more details.
 ---
 
 
-### getAppCurrencies
-Get currencies enabled in the application
+### getFeatures
+Get features of application
 
 
 
 ```javascript
 // Promise
-const promise = configuration.getAppCurrencies();
+const promise = configuration.getFeatures();
 
 // Async/Await
-const data = await configuration.getAppCurrencies();
+const data = await configuration.getFeatures();
 ```
 
 
@@ -1090,16 +749,16 @@ const data = await configuration.getAppCurrencies();
 
 
 
-Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
 
 *Returned Response:*
 
 
 
 
-[AppCurrencyResponse](#AppCurrencyResponse)
+[AppFeatureResponse](#AppFeatureResponse)
 
-Success. Check the example shown below or refer `AppCurrencyResponse` for more details.
+Success. Check the example shown below or refer `AppFeatureResponse` for more details.
 
 
 
@@ -1109,23 +768,220 @@ Success. Check the example shown below or refer `AppCurrencyResponse` for more d
 
 ```json
 {
-  "application": "000000000000000000000001",
-  "default_currency": {
-    "ref": "5ecf6122d953d4242c044907",
-    "code": "INR"
-  },
-  "supported_currency": [
-    {
-      "_id": "5ecf6122d953d4242c044907",
-      "is_active": true,
-      "name": "Indian Rupee",
-      "code": "INR",
-      "decimal_digits": 2,
-      "symbol": "₹",
-      "created_at": "2020-05-28T06:58:42.532Z",
-      "modified_at": "2021-04-05T16:44:14.358Z"
+  "feature": {
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": null,
+        "query": null
+      },
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
+      },
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
+      },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
+        ],
+        "type": "explicit",
+        "default_currency": "INR"
+      },
+      "revenue_engine": {
+        "enabled": false
+      },
+      "feedback": {
+        "enabled": true
+      },
+      "compare_products": {
+        "enabled": true
+      },
+      "reward_points": {
+        "credit": {
+          "enabled": true
+        },
+        "debit": {
+          "enabled": true,
+          "auto_apply": false,
+          "strategy_channel": "REWARDS"
+        }
+      }
+    },
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000004",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "modified_at": "2021-02-02T11:04:14.289Z",
+    "__v": 1
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getIntegrationTokens
+Get integration tokens
+
+
+
+```javascript
+// Promise
+const promise = configuration.getIntegrationTokens();
+
+// Async/Await
+const data = await configuration.getIntegrationTokens();
+```
+
+
+
+
+
+
+Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
+
+*Returned Response:*
+
+
+
+
+[AppTokenResponse](#AppTokenResponse)
+
+Success. Check the example shown below or refer `AppTokenResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "project_id": "",
+        "gcm_sender_id": "",
+        "application_id": "",
+        "api_key": ""
+      },
+      "enabled": false
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": ""
+      },
+      "enabled": false
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
+      },
+      "enabled": false
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": ""
+      },
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
+        "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
+      },
+      "enabled": true
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
+      },
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
+      }
+    },
+    "auth": {
+      "google": {
+        "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
+      },
+      "facebook": {
+        "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
+      },
+      "accountkit": {
+        "app_id": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
+      }
     }
-  ]
+  },
+  "_id": "5e285cb1df7e5b1421d5f840",
+  "application": "000000000000000000000004",
+  "created_at": "2020-01-22T14:31:13.192Z",
+  "modified_at": "2020-05-01T04:14:42.117Z",
+  "__v": 0
 }
 ```
 </details>
@@ -1262,6 +1118,284 @@ Success
 ---
 
 
+### getOrderingStores
+Get deployment stores
+
+
+
+```javascript
+// Promise
+const promise = configuration.getOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+
+// Async/Await
+const data = await configuration.getOrderingStores({  pageNo : value,
+ pageSize : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
+| q | string | no | Store code or name of the ordering store. |  
+
+
+
+Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStores](#OrderingStores)
+
+Success. Check the example shown below or refer `OrderingStores` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOwnerInfo
+Get application, owner and seller information
+
+
+
+```javascript
+// Promise
+const promise = configuration.getOwnerInfo();
+
+// Async/Await
+const data = await configuration.getOwnerInfo();
+```
+
+
+
+
+
+
+Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+
+*Returned Response:*
+
+
+
+
+[ApplicationAboutResponse](#ApplicationAboutResponse)
+
+Success. Check the example shown below or refer `ApplicationAboutResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application_info": {
+    "domains": [
+      {
+        "verified": true,
+        "name": "uniket-testing.addsale.link",
+        "custom": false,
+        "is_primary": true
+      }
+    ],
+    "website": {
+      "enabled": true,
+      "basepath": "/"
+    },
+    "cors": {
+      "domains": []
+    },
+    "description": "R-City Mall,Ghatkoper East,Mumbai",
+    "is_active": true,
+    "_id": "5cd3db5e9d692cfe5302a7ba",
+    "name": "Shivam Clothing Store",
+    "meta": [
+      {
+        "name": "tes",
+        "value": "test"
+      }
+    ],
+    "token": "xOfcP-aYE",
+    "secret": "",
+    "created_at": "2019-05-09T07:48:46.218Z",
+    "banner": {
+      "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
+    },
+    "logo": {
+      "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
+    },
+    "id": "5cd3db5e9d692cfe5302a7ba",
+    "company_info": {
+      "_id": "5da4274a723af4000188a66c",
+      "uid": 873,
+      "created_on": "2019-10-14T07:44:10.391Z",
+      "is_active": true,
+      "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
+      "addresses": [
+        {
+          "pincode": 110042,
+          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+          "city": "NEW DELHI",
+          "state": "DELHI",
+          "country": "INDIA",
+          "address_type": "registered"
+        },
+        {
+          "pincode": 110042,
+          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+          "city": "NEW DELHI",
+          "state": "DELHI",
+          "country": "INDIA",
+          "address_type": "office"
+        }
+      ],
+      "notification_emails": [
+        "ecom.sapperlifestyle@f2fretail.com"
+      ]
+    },
+    "owner_info": {
+      "_id": "5c77921fa1bf7d8695ed57fd",
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "abc@test.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "abc@test.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "abc@test.com"
+        }
+      ],
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "country_code": 91,
+          "phone": "9408282323"
+        }
+      ],
+      "first_name": "Jalak",
+      "last_name": "Vora",
+      "profile_pic": ""
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getStoreDetailById
+Get ordering store details
+
+
+
+```javascript
+// Promise
+const promise = configuration.getStoreDetailById({  storeId : value });
+
+// Async/Await
+const data = await configuration.getStoreDetailById({  storeId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| storeId | number | yes | Store uid |  
+
+
+
+Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+
+*Returned Response:*
+
+
+
+
+[OrderingStore](#OrderingStore)
+
+Success. Check the example shown below or refer `OrderingStore` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "uid": 1060,
+  "name": "THE MANDHANA PARK KAMLANAGAR DELHI",
+  "pincode": 110007,
+  "store_code": "MRVLB22",
+  "code": "MRVLB22",
+  "display_name": "Kamla Nagar",
+  "store_type": "mall"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### removeOrderingStoreCookie
 Unset the Ordering Store signed cookie.
 
@@ -1313,1587 +1447,763 @@ Success
 ---
 
 
-### getAppStaffList
-Get a list of staff.
-
-
-
-```javascript
-// Promise
-const promise = configuration.getAppStaffList({  pageNo : value,
- pageSize : value,
- orderIncent : value,
- orderingStore : value,
- user : value });
-
-// Async/Await
-const data = await configuration.getAppStaffList({  pageNo : value,
- pageSize : value,
- orderIncent : value,
- orderingStore : value,
- user : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
-| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
-| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
-
-
-
-Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
-
-*Returned Response:*
-
-
-
-
-[AppStaffListResponse](#AppStaffListResponse)
-
-Success. Check the example shown below or refer `AppStaffListResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAppStaffs
-Get a list of staff.
-
-
-
-```javascript
-// Promise
-const promise = configuration.getAppStaffs({  orderIncent : value,
- orderingStore : value,
- user : value });
-
-// Async/Await
-const data = await configuration.getAppStaffs({  orderIncent : value,
- orderingStore : value,
- user : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
-| orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
-| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
-
-
-
-Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
-
-*Returned Response:*
-
-
-
-
-[AppStaffResponse](#AppStaffResponse)
-
-Success. Check the example shown below or refer `AppStaffResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
- 
- 
- #### [ApplicationAboutResponse](#ApplicationAboutResponse)
 
+#### [Android](#Android)
+
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  |
- | company_info | [CompanyInfo](#CompanyInfo) |  no  |  |
- | owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  || application_id | string |  no  |  |
 
 ---
 
+#### [AppCurrencyResponse](#AppCurrencyResponse)
 
- 
- 
- #### [ApplicationInfo](#ApplicationInfo)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
- | description | string |  no  |  |
- | name | string |  no  |  |
- | meta | [ApplicationMeta](#ApplicationMeta) |  no  |  |
- | token | string |  no  |  |
- | secret | string |  no  |  |
- | created_at | string |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | is_active | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || application | string |  no  |  || default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  || supported_currency | [[Currency](#Currency)] |  no  |  |
 
 ---
-
 
- 
- 
- #### [CompanyInfo](#CompanyInfo)
+#### [AppFeature](#AppFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | uid | number |  no  |  |
- | created_on | string |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  |
- | notification_emails | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || app | string |  no  |  || cart | [CartFeature](#CartFeature) |  no  |  || common | [CommonFeature](#CommonFeature) |  no  |  || created_at | string |  no  |  || home_page | [HomePageFeature](#HomePageFeature) |  no  |  || landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  || order | [OrderFeature](#OrderFeature) |  no  |  || pcr | [PcrFeature](#PcrFeature) |  no  |  || product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  || qr | [QrFeature](#QrFeature) |  no  |  || registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
+#### [AppFeatureRequest](#AppFeatureRequest)
 
- 
- 
- #### [OwnerInfo](#OwnerInfo)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | emails | [[UserEmail](#UserEmail)] |  no  |  |
- | phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | profile_pic | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || feature | [AppFeature](#AppFeature) |  no  |  |
 
 ---
 
+#### [AppFeatureResponse](#AppFeatureResponse)
 
- 
- 
- #### [AppVersionRequest](#AppVersionRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  |
- | device | [Device](#Device) |  yes  |  |
- | locale | string |  no  |  |
- | timezone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || feature | [AppFeature](#AppFeature) |  no  |  |
 
 ---
-
 
- 
- 
- #### [ApplicationVersionRequest](#ApplicationVersionRequest)
+#### [Application](#Application)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string |  no  |  |
- | name | string |  yes  |  |
- | namespace | string |  no  |  |
- | token | string |  no  |  |
- | version | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || app_type | string |  no  |  || auth | [ApplicationAuth](#ApplicationAuth) |  no  |  || banner | [SecureUrl](#SecureUrl) |  no  |  || cache_ttl | number |  no  |  || channel_type | string |  no  |  || company_id | number |  no  |  || cors | [ApplicationCors](#ApplicationCors) |  no  |  || created_at | string |  no  |  || description | string |  no  |  || domain | [Domain](#Domain) |  no  |  || domains | [[Domain](#Domain)] |  no  |  || favicon | [SecureUrl](#SecureUrl) |  no  |  || is_active | boolean |  no  |  || is_internal | boolean |  no  |  || logo | [SecureUrl](#SecureUrl) |  no  |  || meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  || mobile_logo | [SecureUrl](#SecureUrl) |  no  |  || name | string |  no  |  || owner | string |  no  |  || redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  || token | string |  no  |  || updated_at | string |  no  |  || website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
 
 ---
 
+#### [ApplicationAboutResponse](#ApplicationAboutResponse)
 
- 
- 
- #### [Device](#Device)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | build | number |  no  |  |
- | model | string |  no  |  |
- | os | [OS](#OS) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || application_info | [ApplicationInfo](#ApplicationInfo) |  no  |  || company_info | [CompanyInfo](#CompanyInfo) |  no  |  || owner_info | [OwnerInfo](#OwnerInfo) |  no  |  |
 
 ---
 
+#### [ApplicationAuth](#ApplicationAuth)
 
- 
- 
- #### [OS](#OS)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | version | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [SupportedLanguage](#SupportedLanguage)
+#### [ApplicationCors](#ApplicationCors)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || domains | [string] |  no  |  |
 
 ---
 
+#### [ApplicationDetail](#ApplicationDetail)
 
- 
- 
- #### [LanguageResponse](#LanguageResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || banner | [SecureUrl](#SecureUrl) |  yes  |  || description | string |  yes  |  || domain | [Domain](#Domain) |  no  |  || domains | [[Domain](#Domain)] |  no  |  || favicon | [SecureUrl](#SecureUrl) |  yes  |  || logo | [SecureUrl](#SecureUrl) |  yes  |  || mobile_logo | [SecureUrl](#SecureUrl) |  yes  |  || name | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [AppStaffResponse](#AppStaffResponse)
+#### [ApplicationInfo](#ApplicationInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | staff_users | [[AppStaff](#AppStaff)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || banner | [SecureUrl](#SecureUrl) |  no  |  || cors | [ApplicationCors](#ApplicationCors) |  no  |  || created_at | string |  no  |  || description | string |  no  |  || domain | [Domain](#Domain) |  no  |  || is_active | boolean |  no  |  || logo | [SecureUrl](#SecureUrl) |  no  |  || meta | [ApplicationMeta](#ApplicationMeta) |  no  |  || name | string |  no  |  || secret | string |  no  |  || token | string |  no  |  || website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
 
 ---
 
+#### [ApplicationInformation](#ApplicationInformation)
 
- 
- 
- #### [AppStaffListResponse](#AppStaffListResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [[AppStaff](#AppStaff)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || address | [InformationAddress](#InformationAddress) |  no  |  || application | string |  no  |  || business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  || copyright_text | string |  no  |  || created_at | string |  no  |  || links | [Links](#Links) |  no  |  || social_links | [SocialLinks](#SocialLinks) |  no  |  || support | [InformationSupport](#InformationSupport) |  no  |  || updated_at | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [UpdateDialog](#UpdateDialog)
+#### [ApplicationMeta](#ApplicationMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | interval | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || name | string |  no  |  || value | string |  no  |  |
 
 ---
 
+#### [ApplicationRedirections](#ApplicationRedirections)
 
- 
- 
- #### [OrderingStoreSelectRequest](#OrderingStoreSelectRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- || redirect_from | string |  no  |  || redirect_to | string |  no  |  || type | string |  no  |  |
 
 ---
 
+#### [ApplicationVersionRequest](#ApplicationVersionRequest)
 
- 
- 
- #### [OrderingStoreSelect](#OrderingStoreSelect)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | number |  yes  | store uid |
+ | ---------- | ---- | -------- | ----------- || id | string |  no  |  || name | string |  yes  |  || namespace | string |  no  |  || token | string |  no  |  || version | string |  yes  |  |
 
 ---
-
 
- 
- 
- #### [AppStaff](#AppStaff)
+#### [ApplicationWebsite](#ApplicationWebsite)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | order_incent | boolean |  no  |  |
- | stores | [number] |  no  |  |
- | application | string |  no  |  |
- | title | string |  no  |  |
- | user | string |  no  |  |
- | employee_code | string |  no  |  |
- | first_name | string |  no  |  |
- | last_name | string |  no  |  |
- | profile_pic_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || basepath | string |  no  |  || enabled | boolean |  no  |  |
 
 ---
 
+#### [AppStaff](#AppStaff)
 
- 
- 
- #### [AppTokenResponse](#AppTokenResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tokens | [Tokens](#Tokens) |  no  |  |
- | _id | string |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application | string |  no  |  || employee_code | string |  no  |  || first_name | string |  no  |  || last_name | string |  no  |  || order_incent | boolean |  no  |  || profile_pic_url | string |  no  |  || stores | [number] |  no  |  || title | string |  no  |  || user | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [Tokens](#Tokens)
+#### [AppStaffListResponse](#AppStaffListResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | firebase | [Firebase](#Firebase) |  no  |  |
- | moengage | [Moengage](#Moengage) |  no  |  |
- | segment | [Segment](#Segment) |  no  |  |
- | gtm | [Gtm](#Gtm) |  no  |  |
- | freshchat | [Freshchat](#Freshchat) |  no  |  |
- | safetynet | [Safetynet](#Safetynet) |  no  |  |
- | fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  |
- | google_map | [GoogleMap](#GoogleMap) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[AppStaff](#AppStaff)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
+#### [AppStaffResponse](#AppStaffResponse)
 
- 
- 
- #### [Firebase](#Firebase)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [Credentials](#Credentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || staff_users | [[AppStaff](#AppStaff)] |  no  |  |
 
 ---
-
 
- 
- 
- #### [Credentials](#Credentials)
+#### [AppTokenResponse](#AppTokenResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ios | [Ios](#Ios) |  no  |  |
- | android | [Android](#Android) |  no  |  |
- | project_id | string |  no  |  |
- | gcm_sender_id | string |  no  |  |
- | application_id | string |  no  |  |
- | api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || application | string |  no  |  || created_at | string |  no  |  || tokens | [Tokens](#Tokens) |  no  |  || updated_at | string |  no  |  |
 
 ---
 
+#### [AppVersionRequest](#AppVersionRequest)
 
- 
- 
- #### [Ios](#Ios)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | string |  no  |  |
- | api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  yes  |  || device | [Device](#Device) |  yes  |  || locale | string |  no  |  || timezone | string |  no  |  |
 
 ---
 
+#### [ArticleAssignmentRule](#ArticleAssignmentRule)
 
- 
- 
- #### [Android](#Android)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | string |  no  |  |
- | api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
 
 ---
-
 
- 
- 
- #### [Moengage](#Moengage)
+#### [BlogLink](#BlogLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [BusinessHighlights](#BusinessHighlights)
 
- 
- 
- #### [MoengageCredentials](#MoengageCredentials)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || icon | string |  no  |  || sub_title | string |  no  |  || title | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [Segment](#Segment)
+#### [CartFeature](#CartFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || google_map | boolean |  no  |  || gst_input | boolean |  no  |  || placing_for_customer | boolean |  no  |  || revenue_engine_coupon | boolean |  no  |  || staff_selection | boolean |  no  |  |
 
 ---
 
+#### [CommonFeature](#CommonFeature)
 
- 
- 
- #### [SegmentCredentials](#SegmentCredentials)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | write_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  || compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  || currency | [CurrencyFeature](#CurrencyFeature) |  no  |  || deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  || feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  || listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  || revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  || reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
 
 ---
-
 
- 
- 
- #### [Gtm](#Gtm)
+#### [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [GtmCredentials](#GtmCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || visibility | boolean |  no  |  |
 
 ---
 
+#### [CompanyAboutAddress](#CompanyAboutAddress)
 
- 
- 
- #### [GtmCredentials](#GtmCredentials)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || address1 | string |  no  |  || address2 | string |  no  |  || address_type | string |  no  |  || city | string |  no  |  || country | string |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
 
 ---
 
+#### [CompanyInfo](#CompanyInfo)
 
- 
- 
- #### [Freshchat](#Freshchat)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || addresses | [[CompanyAboutAddress](#CompanyAboutAddress)] |  no  |  || created_on | string |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || notification_emails | [string] |  no  |  || uid | number |  no  |  |
 
 ---
-
 
- 
- 
- #### [FreshchatCredentials](#FreshchatCredentials)
+#### [CompareProductsFeature](#CompareProductsFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_id | string |  no  |  |
- | app_key | string |  no  |  |
- | web_token | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
 
+#### [Credentials](#Credentials)
 
- 
- 
- #### [Safetynet](#Safetynet)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || android | [Android](#Android) |  no  |  || api_key | string |  no  |  || application_id | string |  no  |  || gcm_sender_id | string |  no  |  || ios | [Ios](#Ios) |  no  |  || project_id | string |  no  |  |
 
 ---
 
+#### [Credit](#Credit)
 
- 
- 
- #### [SafetynetCredentials](#SafetynetCredentials)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [FyndRewards](#FyndRewards)
+#### [CurrenciesResponse](#CurrenciesResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[Currency](#Currency)] |  no  |  |
 
 ---
 
+#### [Currency](#Currency)
 
- 
- 
- #### [FyndRewardsCredentials](#FyndRewardsCredentials)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | public_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || code | string |  no  |  || created_at | string |  no  |  || decimal_digits | number |  no  |  || is_active | boolean |  no  |  || name | string |  no  |  || symbol | string |  no  |  || updated_at | string |  no  |  |
 
 ---
 
+#### [CurrencyFeature](#CurrencyFeature)
 
- 
- 
- #### [GoogleMap](#GoogleMap)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || default_currency | string |  no  |  || type | string |  no  |  || value | [string] |  no  |  |
 
 ---
-
 
- 
- 
- #### [GoogleMapCredentials](#GoogleMapCredentials)
+#### [Debit](#Debit)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | api_key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || auto_apply | boolean |  no  |  || enabled | boolean |  no  |  || strategy_channel | string |  no  |  |
 
 ---
 
+#### [DefaultCurrency](#DefaultCurrency)
 
- 
- 
- #### [RewardPointsConfig](#RewardPointsConfig)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | credit | [Credit](#Credit) |  no  |  |
- | debit | [Debit](#Debit) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || ref | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [Credit](#Credit)
+#### [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || type | string |  no  |  |
 
 ---
 
+#### [Device](#Device)
 
- 
- 
- #### [Debit](#Debit)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | auto_apply | boolean |  no  |  |
- | strategy_channel | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || build | number |  no  |  || model | string |  no  |  || os | [OS](#OS) |  yes  |  |
 
 ---
-
 
- 
- 
- #### [ProductDetailFeature](#ProductDetailFeature)
+#### [Domain](#Domain)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | similar | [string] |  no  |  |
- | seller_selection | boolean |  no  |  |
- | update_product_meta | boolean |  no  |  |
- | request_product | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || is_predefined | boolean |  no  |  || is_primary | boolean |  no  |  || is_shortlink | boolean |  no  |  || name | string |  no  |  || verified | boolean |  no  |  |
 
 ---
 
+#### [FacebookLink](#FacebookLink)
 
- 
- 
- #### [LaunchPage](#LaunchPage)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page_type | string |  no  |  |
- | params | string |  no  |  |
- | query | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [FeedbackFeature](#FeedbackFeature)
 
- 
- 
- #### [LandingPageFeature](#LandingPageFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | launch_page | [LaunchPage](#LaunchPage) |  no  |  |
- | continue_as_guest | boolean |  no  |  |
- | login_btn_text | string |  no  |  |
- | show_domain_textbox | boolean |  no  |  |
- | show_register_btn | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [RegistrationPageFeature](#RegistrationPageFeature)
+#### [Firebase](#Firebase)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ask_store_address | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [Credentials](#Credentials) |  no  |  || enabled | boolean |  no  |  |
 
 ---
 
+#### [Freshchat](#Freshchat)
 
- 
- 
- #### [AppFeature](#AppFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | product_detail | [ProductDetailFeature](#ProductDetailFeature) |  no  |  |
- | landing_page | [LandingPageFeature](#LandingPageFeature) |  no  |  |
- | registration_page | [RegistrationPageFeature](#RegistrationPageFeature) |  no  |  |
- | home_page | [HomePageFeature](#HomePageFeature) |  no  |  |
- | common | [CommonFeature](#CommonFeature) |  no  |  |
- | cart | [CartFeature](#CartFeature) |  no  |  |
- | qr | [QrFeature](#QrFeature) |  no  |  |
- | pcr | [PcrFeature](#PcrFeature) |  no  |  |
- | order | [OrderFeature](#OrderFeature) |  no  |  |
- | _id | string |  no  |  |
- | app | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [FreshchatCredentials](#FreshchatCredentials) |  no  |  || enabled | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [HomePageFeature](#HomePageFeature)
+#### [FreshchatCredentials](#FreshchatCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_processing | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  || app_key | string |  no  |  || web_token | string |  no  |  |
 
 ---
 
+#### [FyndRewards](#FyndRewards)
 
- 
- 
- #### [CommonFeature](#CommonFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | communication_optin_dialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature) |  no  |  |
- | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature) |  no  |  |
- | listing_price | [ListingPriceFeature](#ListingPriceFeature) |  no  |  |
- | currency | [CurrencyFeature](#CurrencyFeature) |  no  |  |
- | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature) |  no  |  |
- | feedback | [FeedbackFeature](#FeedbackFeature) |  no  |  |
- | compare_products | [CompareProductsFeature](#CompareProductsFeature) |  no  |  |
- | reward_points | [RewardPointsConfig](#RewardPointsConfig) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [FyndRewardsCredentials](#FyndRewardsCredentials) |  no  |  |
 
 ---
-
 
- 
- 
- #### [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)
+#### [FyndRewardsCredentials](#FyndRewardsCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | visibility | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || public_key | string |  no  |  |
 
 ---
 
+#### [GoogleMap](#GoogleMap)
 
- 
- 
- #### [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [GoogleMapCredentials](#GoogleMapCredentials) |  no  |  |
 
 ---
 
+#### [GoogleMapCredentials](#GoogleMapCredentials)
 
- 
- 
- #### [ListingPriceFeature](#ListingPriceFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CurrencyFeature](#CurrencyFeature)
+#### [GooglePlusLink](#GooglePlusLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | [string] |  no  |  |
- | type | string |  no  |  |
- | default_currency | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [Gtm](#Gtm)
 
- 
- 
- #### [RevenueEngineFeature](#RevenueEngineFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [GtmCredentials](#GtmCredentials) |  no  |  || enabled | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [FeedbackFeature](#FeedbackFeature)
+#### [GtmCredentials](#GtmCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  |
 
 ---
 
+#### [HomePageFeature](#HomePageFeature)
 
- 
- 
- #### [CompareProductsFeature](#CompareProductsFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || order_processing | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [CartFeature](#CartFeature)
+#### [InformationAddress](#InformationAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gst_input | boolean |  no  |  |
- | staff_selection | boolean |  no  |  |
- | placing_for_customer | boolean |  no  |  |
- | google_map | boolean |  no  |  |
- | revenue_engine_coupon | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || address_line | [string] |  no  |  || city | string |  no  |  || country | string |  no  |  || loc | string |  no  |  || phone | [InformationPhone](#InformationPhone) |  no  |  || pincode | number |  no  |  |
 
 ---
 
+#### [InformationPhone](#InformationPhone)
 
- 
- 
- #### [QrFeature](#QrFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | boolean |  no  |  |
- | products | boolean |  no  |  |
- | collections | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || number | string |  no  |  |
 
 ---
 
+#### [InformationSupport](#InformationSupport)
 
- 
- 
- #### [PcrFeature](#PcrFeature)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | staff_selection | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || email | [string] |  no  |  || phone | [string] |  no  |  || timing | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [OrderFeature](#OrderFeature)
+#### [InstagramLink](#InstagramLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | buy_again | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [InvalidPayloadRequest](#InvalidPayloadRequest)
 
- 
- 
- #### [AppFeatureRequest](#AppFeatureRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
+#### [InventoryArticleAssignment](#InventoryArticleAssignment)
 
- 
- 
- #### [AppFeatureResponse](#AppFeatureResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || post_order_reassignment | boolean |  no  |  || rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
 
 ---
-
 
- 
- 
- #### [Currency](#Currency)
+#### [InventoryBrandRule](#InventoryBrandRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | code | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | decimal_digits | number |  no  |  |
- | symbol | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || brands | [number] |  no  |  || criteria | string |  no  |  |
 
 ---
 
+#### [InventoryPaymentConfig](#InventoryPaymentConfig)
 
- 
- 
- #### [Domain](#Domain)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | verified | boolean |  no  |  |
- | is_primary | boolean |  no  |  |
- | is_shortlink | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | is_predefined | boolean |  no  | Domain is hosting domain or not. |
+ | ---------- | ---- | -------- | ----------- || mode_of_payment | string |  no  |  || source | string |  no  |  |
 
 ---
 
+#### [InventoryStoreRule](#InventoryStoreRule)
 
- 
- 
- #### [ApplicationWebsite](#ApplicationWebsite)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | basepath | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || criteria | string |  no  |  || rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  |  || stores | [number] |  no  |  |
 
 ---
-
 
- 
- 
- #### [ApplicationCors](#ApplicationCors)
+#### [Ios](#Ios)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domains | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  || application_id | string |  no  |  |
 
 ---
 
+#### [LandingPageFeature](#LandingPageFeature)
 
- 
- 
- #### [ApplicationAuth](#ApplicationAuth)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || continue_as_guest | boolean |  no  |  || launch_page | [LaunchPage](#LaunchPage) |  no  |  || login_btn_text | string |  no  |  || show_domain_textbox | boolean |  no  |  || show_register_btn | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [ApplicationRedirections](#ApplicationRedirections)
+#### [LanguageResponse](#LanguageResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | redirect_from | string |  no  |  |
- | redirect_to | string |  no  |  |
- | type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[SupportedLanguage](#SupportedLanguage)] |  no  |  |
 
 ---
 
+#### [LaunchPage](#LaunchPage)
 
- 
- 
- #### [ApplicationMeta](#ApplicationMeta)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || page_type | string |  no  |  || params | string |  no  |  || query | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SecureUrl](#SecureUrl)
+#### [LinkedInLink](#LinkedInLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [Links](#Links)
 
- 
- 
- #### [Application](#Application)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | website | [ApplicationWebsite](#ApplicationWebsite) |  no  |  |
- | cors | [ApplicationCors](#ApplicationCors) |  no  |  |
- | auth | [ApplicationAuth](#ApplicationAuth) |  no  |  |
- | description | string |  no  |  |
- | channel_type | string |  no  |  |
- | cache_ttl | number |  no  |  |
- | is_internal | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | _id | string |  no  |  |
- | name | string |  no  |  |
- | owner | string |  no  |  |
- | company_id | number |  no  |  |
- | token | string |  no  |  |
- | redirections | [[ApplicationRedirections](#ApplicationRedirections)] |  no  |  |
- | meta | [[ApplicationMeta](#ApplicationMeta)] |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | app_type | string |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
- | domain | [Domain](#Domain) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [ListingPriceFeature](#ListingPriceFeature)
 
- 
- 
- #### [NotFound](#NotFound)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || value | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [UnhandledError](#UnhandledError)
+#### [Moengage](#Moengage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [MoengageCredentials](#MoengageCredentials) |  no  |  || enabled | boolean |  no  |  |
 
 ---
 
+#### [MoengageCredentials](#MoengageCredentials)
 
- 
- 
- #### [InvalidPayloadRequest](#InvalidPayloadRequest)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || app_id | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [SuccessMessageResponse](#SuccessMessageResponse)
+#### [NotFound](#NotFound)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
+#### [OptedStoreAddress](#OptedStoreAddress)
 
- 
- 
- #### [InventoryBrandRule](#InventoryBrandRule)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | criteria | string |  no  | Whether enable all or explicitly few brands as inventory |
- | brands | [number] |  no  | Brand uids in case of explicit criteria |
+ | ---------- | ---- | -------- | ----------- || address1 | string |  no  |  || address2 | string |  no  |  || city | string |  no  |  || country | string |  no  |  || lat_long | [StoreLatLong](#StoreLatLong) |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [StoreCriteriaRule](#StoreCriteriaRule)
+#### [OrderFeature](#OrderFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | companies | [number] |  no  | list of company uids |
- | brands | [number] |  no  | list of brand uids |
+ | ---------- | ---- | -------- | ----------- || buy_again | boolean |  no  |  |
 
 ---
 
+#### [OrderingStore](#OrderingStore)
 
- 
- 
- #### [InventoryStoreRule](#InventoryStoreRule)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | criteria | string |  no  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)] |  no  | List of rules with company and brands uids. Used when critera is `filter` |
- | stores | [number] |  no  | List of store uids. Used when critera is `explicit` |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  || code | string |  no  |  || display_name | string |  no  |  || name | string |  no  |  || pincode | number |  no  |  || store_code | string |  no  |  || store_type | string |  no  |  || uid | number |  no  |  |
 
 ---
 
+#### [OrderingStores](#OrderingStores)
 
- 
- 
- #### [InventoryPaymentConfig](#InventoryPaymentConfig)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mode_of_payment | string |  no  |  |
- | source | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || __v | number |  no  |  || _id | string |  no  |  || all_stores | boolean |  no  |  || app | string |  no  |  || deployed_stores | [number] |  no  |  || enabled | boolean |  no  |  || items | [[OrderingStore](#OrderingStore)] |  no  |  || page | [Page](#Page) |  no  |  || type | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [StorePriorityRule](#StorePriorityRule)
+#### [OrderingStoreSelect](#OrderingStoreSelect)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean |  no  |  |
- | storetype_order | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || uid | number |  yes  |  |
 
 ---
 
+#### [OrderingStoreSelectRequest](#OrderingStoreSelectRequest)
 
- 
- 
- #### [ArticleAssignmentRule](#ArticleAssignmentRule)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store_priority | [StorePriorityRule](#StorePriorityRule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  yes  |  |
 
 ---
-
 
- 
- 
- #### [InventoryArticleAssignment](#InventoryArticleAssignment)
+#### [OrderingStoresResponse](#OrderingStoresResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | post_order_reassignment | boolean |  no  |  |
- | rules | [ArticleAssignmentRule](#ArticleAssignmentRule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || items | [[OrderingStore](#OrderingStore)] |  no  |  || page | [Page](#Page) |  no  |  |
 
 ---
 
+#### [OS](#OS)
 
- 
- 
- #### [CompanyAboutAddress](#CompanyAboutAddress)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pincode | number |  no  |  |
- | address1 | string |  no  |  |
- | address2 | string |  no  |  |
- | city | string |  no  |  |
- | state | string |  no  |  |
- | country | string |  no  |  |
- | address_type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || name | string |  yes  |  || version | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [UserEmail](#UserEmail)
+#### [OwnerInfo](#OwnerInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
- | email | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || emails | [[UserEmail](#UserEmail)] |  no  |  || first_name | string |  no  |  || last_name | string |  no  |  || phone_numbers | [[UserPhoneNumber](#UserPhoneNumber)] |  no  |  || profile_pic | string |  no  |  |
 
 ---
 
+#### [Page](#Page)
 
- 
- 
- #### [UserPhoneNumber](#UserPhoneNumber)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean |  no  |  |
- | primary | boolean |  no  |  |
- | verified | boolean |  no  |  |
- | country_code | number |  no  |  |
- | phone | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
 
 ---
 
+#### [PcrFeature](#PcrFeature)
 
- 
- 
- #### [Page](#Page)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  yes  |  |
- | size | number |  no  |  |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | next_id | string |  no  |  |
- | has_previous | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- || staff_selection | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [ApplicationInformation](#ApplicationInformation)
+#### [PinterestLink](#PinterestLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [InformationAddress](#InformationAddress) |  no  |  |
- | support | [InformationSupport](#InformationSupport) |  no  |  |
- | social_links | [SocialLinks](#SocialLinks) |  no  |  |
- | links | [Links](#Links) |  no  |  |
- | copyright_text | string |  no  |  |
- | _id | string |  no  |  |
- | business_highlights | [BusinessHighlights](#BusinessHighlights) |  no  |  |
- | application | string |  no  |  |
- | created_at | string |  no  |  |
- | updated_at | string |  no  |  |
- | __v | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [ProductDetailFeature](#ProductDetailFeature)
 
- 
- 
- #### [InformationAddress](#InformationAddress)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | loc | string |  no  |  |
- | address_line | [string] |  no  |  |
- | phone | [InformationPhone](#InformationPhone) |  no  |  |
- | city | string |  no  |  |
- | country | string |  no  |  |
- | pincode | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || request_product | boolean |  no  |  || seller_selection | boolean |  no  |  || similar | [string] |  no  |  || update_product_meta | boolean |  no  |  |
 
 ---
 
+#### [QrFeature](#QrFeature)
 
- 
- 
- #### [InformationPhone](#InformationPhone)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | number | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || application | boolean |  no  |  || collections | boolean |  no  |  || products | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [InformationSupport](#InformationSupport)
+#### [RegistrationPageFeature](#RegistrationPageFeature)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | phone | [string] |  no  |  |
- | email | [string] |  no  |  |
- | timing | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || ask_store_address | boolean |  no  |  |
 
 ---
 
+#### [RevenueEngineFeature](#RevenueEngineFeature)
 
- 
- 
- #### [SocialLinks](#SocialLinks)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | facebook | [FacebookLink](#FacebookLink) |  no  |  |
- | instagram | [InstagramLink](#InstagramLink) |  no  |  |
- | twitter | [TwitterLink](#TwitterLink) |  no  |  |
- | pinterest | [PinterestLink](#PinterestLink) |  no  |  |
- | google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  |
- | youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
- | linked_in | [LinkedInLink](#LinkedInLink) |  no  |  |
- | vimeo | [VimeoLink](#VimeoLink) |  no  |  |
- | blog_link | [BlogLink](#BlogLink) |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  |
 
 ---
 
+#### [RewardPointsConfig](#RewardPointsConfig)
 
- 
- 
- #### [FacebookLink](#FacebookLink)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credit | [Credit](#Credit) |  no  |  || debit | [Debit](#Debit) |  no  |  |
 
 ---
-
 
- 
- 
- #### [InstagramLink](#InstagramLink)
+#### [Safetynet](#Safetynet)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [SafetynetCredentials](#SafetynetCredentials) |  no  |  || enabled | boolean |  no  |  |
 
 ---
 
+#### [SafetynetCredentials](#SafetynetCredentials)
 
- 
- 
- #### [TwitterLink](#TwitterLink)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || api_key | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [PinterestLink](#PinterestLink)
+#### [SecureUrl](#SecureUrl)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || secure_url | string |  no  |  |
 
 ---
 
+#### [Segment](#Segment)
 
- 
- 
- #### [GooglePlusLink](#GooglePlusLink)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || credentials | [SegmentCredentials](#SegmentCredentials) |  no  |  || enabled | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [YoutubeLink](#YoutubeLink)
+#### [SegmentCredentials](#SegmentCredentials)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || write_key | string |  no  |  |
 
 ---
 
+#### [SocialLinks](#SocialLinks)
 
- 
- 
- #### [LinkedInLink](#LinkedInLink)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || blog_link | [BlogLink](#BlogLink) |  no  |  || facebook | [FacebookLink](#FacebookLink) |  no  |  || google_plus | [GooglePlusLink](#GooglePlusLink) |  no  |  || instagram | [InstagramLink](#InstagramLink) |  no  |  || linked_in | [LinkedInLink](#LinkedInLink) |  no  |  || pinterest | [PinterestLink](#PinterestLink) |  no  |  || twitter | [TwitterLink](#TwitterLink) |  no  |  || vimeo | [VimeoLink](#VimeoLink) |  no  |  || youtube | [YoutubeLink](#YoutubeLink) |  no  |  |
 
 ---
 
+#### [StoreCriteriaRule](#StoreCriteriaRule)
 
- 
- 
- #### [VimeoLink](#VimeoLink)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || brands | [number] |  no  |  || companies | [number] |  no  |  |
 
 ---
-
 
- 
- 
- #### [BlogLink](#BlogLink)
+#### [StoreLatLong](#StoreLatLong)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || coordinates | [number] |  no  |  || type | string |  no  |  |
 
 ---
 
+#### [StorePriorityRule](#StorePriorityRule)
 
- 
- 
- #### [Links](#Links)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | string |  no  |  |
- | link | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || enabled | boolean |  no  |  || storetype_order | [string] |  no  |  |
 
 ---
-
 
- 
- 
- #### [BusinessHighlights](#BusinessHighlights)
+#### [SuccessMessageResponse](#SuccessMessageResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | title | string |  no  |  |
- | icon | string |  no  |  |
- | sub_title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
 
+#### [SupportedLanguage](#SupportedLanguage)
 
- 
- 
- #### [ApplicationDetail](#ApplicationDetail)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  yes  |  |
- | description | string |  yes  |  |
- | logo | [SecureUrl](#SecureUrl) |  yes  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl) |  yes  |  |
- | banner | [SecureUrl](#SecureUrl) |  yes  |  |
- | domain | [Domain](#Domain) |  no  |  |
- | domains | [[Domain](#Domain)] |  no  |  |
- | _id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || code | string |  no  |  || name | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [CurrenciesResponse](#CurrenciesResponse)
+#### [Tokens](#Tokens)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Currency](#Currency)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || firebase | [Firebase](#Firebase) |  no  |  || freshchat | [Freshchat](#Freshchat) |  no  |  || fynd_rewards | [FyndRewards](#FyndRewards) |  no  |  || google_map | [GoogleMap](#GoogleMap) |  no  |  || gtm | [Gtm](#Gtm) |  no  |  || moengage | [Moengage](#Moengage) |  no  |  || safetynet | [Safetynet](#Safetynet) |  no  |  || segment | [Segment](#Segment) |  no  |  |
 
 ---
 
+#### [TwitterLink](#TwitterLink)
 
- 
- 
- #### [DefaultCurrency](#DefaultCurrency)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ref | string |  no  |  |
- | code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
+#### [UnhandledError](#UnhandledError)
 
- 
- 
- #### [AppCurrencyResponse](#AppCurrencyResponse)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | string |  no  |  |
- | default_currency | [DefaultCurrency](#DefaultCurrency) |  no  |  |
- | supported_currency | [[Currency](#Currency)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [StoreLatLong](#StoreLatLong)
+#### [UpdateDialog](#UpdateDialog)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string |  no  |  |
- | coordinates | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || interval | number |  no  |  || type | string |  no  |  |
 
 ---
 
+#### [UserEmail](#UserEmail)
 
- 
- 
- #### [OptedStoreAddress](#OptedStoreAddress)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | state | string |  no  |  |
- | address1 | string |  no  |  |
- | lat_long | [StoreLatLong](#StoreLatLong) |  no  |  |
- | address2 | string |  no  |  |
- | pincode | number |  no  |  |
- | country | string |  no  |  |
- | city | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || email | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
 
 ---
-
 
- 
- 
- #### [OrderingStore](#OrderingStore)
+#### [UserPhoneNumber](#UserPhoneNumber)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address | [OptedStoreAddress](#OptedStoreAddress) |  no  |  |
- | _id | string |  no  |  |
- | uid | number |  no  |  |
- | name | string |  no  |  |
- | display_name | string |  no  |  |
- | store_type | string |  no  |  |
- | store_code | string |  no  |  |
- | pincode | number |  no  |  |
- | code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || country_code | number |  no  |  || phone | string |  no  |  || primary | boolean |  no  |  || verified | boolean |  no  |  |
 
 ---
 
+#### [VimeoLink](#VimeoLink)
 
- 
- 
- #### [OrderingStores](#OrderingStores)
-
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [[OrderingStore](#OrderingStore)] |  no  |  |
- | deployed_stores | [number] |  no  |  |
- | all_stores | boolean |  no  |  |
- | enabled | boolean |  no  |  |
- | type | string |  no  |  |
- | _id | string |  no  |  |
- | app | string |  no  |  |
- | __v | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
-
 
- 
- 
- #### [OrderingStoresResponse](#OrderingStoresResponse)
+#### [YoutubeLink](#YoutubeLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page) |  no  |  |
- | items | [[OrderingStore](#OrderingStore)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- || icon | string |  no  |  || link | string |  no  |  || title | string |  no  |  |
 
 ---
 
