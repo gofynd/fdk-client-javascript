@@ -680,7 +680,6 @@ class PlatformApplicationClient {
 /** @typedef UpdatePlatformPaymentConfig */
 
 /** @typedef ActionInfo */
-/** @typedef AdvanceFilterInfo */
 /** @typedef Affiliate */
 /** @typedef AffiliateAppConfig */
 /** @typedef AffiliateAppConfigMeta */
@@ -772,7 +771,6 @@ class PlatformApplicationClient {
 /** @typedef Formatted */
 /** @typedef FulfillingStore */
 /** @typedef FyndOrderIdList */
-/** @typedef GeneratePosOrderReceiptResponse */
 /** @typedef GetActionsResponse */
 /** @typedef GetBagsPlatformResponse */
 /** @typedef GSTDetailsData */

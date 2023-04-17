@@ -20,7 +20,6 @@ declare class PaymentValidator {
     static resendOrCancelPayment(): any;
     static saveBrandPaymentGatewayConfig(): any;
     static setUserCODlimitRoutes(): any;
-    static updateBrandPaymentGatewayConfig(): any;
     static updateEdcDevice(): any;
     static updatePlatformPaymentConfig(): any;
 }

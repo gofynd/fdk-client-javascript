@@ -9,15 +9,6 @@ class OrderModel {
       slug: Joi.string().allow("").required(),
     });
   }
-  static AdvanceFilterInfo() {
-    return Joi.object({
-      action_centre: Joi.array().items(OrderModel.FiltersInfo()),
-      filters: Joi.array().items(OrderModel.FiltersInfo()),
-      processed: Joi.array().items(OrderModel.FiltersInfo()),
-      returned: Joi.array().items(OrderModel.FiltersInfo()),
-      unfulfilled: Joi.array().items(OrderModel.FiltersInfo()),
-    });
-  }
   static Affiliate() {
     return Joi.object({
       config: OrderModel.AffiliateConfig(),
@@ -873,8 +864,7 @@ class OrderModel {
   }
   static FiltersResponse() {
     return Joi.object({
-      advance_filter: OrderModel.AdvanceFilterInfo(),
-      global_filter: Joi.array().items(OrderModel.FiltersInfo()),
+      advance: Joi.array().items(Joi.any()),
     });
   }
   static FinancialBreakup() {
@@ -933,14 +923,6 @@ class OrderModel {
   static FyndOrderIdList() {
     return Joi.object({
       fynd_order_id: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static GeneratePosOrderReceiptResponse() {
-    return Joi.object({
-      invoice_receipt: Joi.string().allow(""),
-      order_id: Joi.string().allow(""),
-      payment_receipt: Joi.string().allow(""),
-      success: Joi.boolean(),
     });
   }
   static GetActionsResponse() {
@@ -1808,7 +1790,6 @@ class OrderModel {
       application: Joi.any(),
       bags: Joi.array().items(OrderModel.BagUnit()),
       channel: Joi.any(),
-      company: Joi.any(),
       created_at: Joi.string().allow("").required(),
       fulfilling_centre: Joi.string().allow("").required(),
       fulfilling_store: OrderModel.ShipmentItemFulFillingStore(),

@@ -100,12 +100,10 @@ Get Invoice of a shipment
 
 ```javascript
 // Promise
-const promise = order.getInvoiceByShipmentId({  shipmentId : value,
- documentType : value });
+const promise = order.getInvoiceByShipmentId({  shipmentId : value });
 
 // Async/Await
-const data = await order.getInvoiceByShipmentId({  shipmentId : value,
- documentType : value });
+const data = await order.getInvoiceByShipmentId({  shipmentId : value });
 ```
 
 
@@ -114,8 +112,7 @@ const data = await order.getInvoiceByShipmentId({  shipmentId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. |    
-| documentType | string | no |  |  
+| shipmentId | string | yes | ID of the shipment. |  
 
 
 
@@ -3130,7 +3127,6 @@ Success, the code is valid and returns a session token
  | prices | [Prices](#Prices) |  no  |  |
  | promise | [Promise](#Promise) |  no  |  |
  | refund_details | string |  no  |  |
- | return_meta | string |  no  |  |
  | returnable_date | string |  no  |  |
  | shipment_created_at | string |  no  |  |
  | shipment_id | string |  no  |  |

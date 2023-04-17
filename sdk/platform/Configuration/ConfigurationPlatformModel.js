@@ -1177,8 +1177,9 @@ class ConfigurationModel {
   }
   static PanCardConfig() {
     return Joi.object({
+      cod_threshold_amount: Joi.number(),
       enabled: Joi.boolean(),
-      threshold_amount: Joi.number(),
+      online_threshold_amount: Joi.number(),
     });
   }
   static PaymentModeConfig() {

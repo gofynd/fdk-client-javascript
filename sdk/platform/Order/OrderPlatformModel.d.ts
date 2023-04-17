@@ -1,7 +1,6 @@
 export = OrderModel;
 declare class OrderModel {
     static ActionInfo(): any;
-    static AdvanceFilterInfo(): any;
     static Affiliate(): any;
     static AffiliateAppConfig(): any;
     static AffiliateAppConfigMeta(): any;
@@ -93,7 +92,6 @@ declare class OrderModel {
     static Formatted(): any;
     static FulfillingStore(): any;
     static FyndOrderIdList(): any;
-    static GeneratePosOrderReceiptResponse(): any;
     static GetActionsResponse(): any;
     static GetBagsPlatformResponse(): any;
     static GSTDetailsData(): any;

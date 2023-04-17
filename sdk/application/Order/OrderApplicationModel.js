@@ -448,7 +448,6 @@ class OrderModel {
       prices: OrderModel.Prices(),
       promise: OrderModel.Promise(),
       refund_details: Joi.any(),
-      return_meta: Joi.any(),
       returnable_date: Joi.string().allow(""),
       shipment_created_at: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),

@@ -55,13 +55,6 @@ class OrderValidator {
     }).required();
   }
 
-  static generatePOSReceiptByOrderId() {
-    return Joi.object({
-      orderId: Joi.string().allow("").required(),
-      documentType: Joi.string().allow(""),
-    }).required();
-  }
-
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
@@ -192,7 +185,7 @@ class OrderValidator {
       toDate: Joi.string().allow(""),
       dpIds: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       isPrioritySort: Joi.boolean(),
@@ -248,7 +241,7 @@ class OrderValidator {
       dpIds: Joi.string().allow(""),
       orderingCompanyId: Joi.string().allow(""),
       stores: Joi.string().allow(""),
-      salesChannels: Joi.string().allow(""),
+      salesChannel: Joi.string().allow(""),
       requestByExt: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),

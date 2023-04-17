@@ -9,6 +9,7 @@
 Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
 
 * [getAllCountries](#getallcountries)
+* [getOptimalLocations](#getoptimallocations)
 * [getPincodeCity](#getpincodecity)
 * [getPincodeZones](#getpincodezones)
 * [getTatProduct](#gettatproduct)
@@ -48,6 +49,61 @@ Get all countries
 [CountryListResponse](#CountryListResponse)
 
 Get Country List
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOptimalLocations
+GET zone from the Pincode.
+
+
+
+```javascript
+// Promise
+const promise = logistic.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await logistic.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
+
+
+This API returns zone from the Pincode View.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
 
 
 
@@ -593,6 +649,31 @@ Get TAT  data
  | name | string |  no  |  |
  | sub_type | string |  no  |  |
  | uid | string |  no  |  |
+ 
+
+---
+
+#### [ReAssignStoreRequest](#ReAssignStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string] |  yes  |  |
+ | configuration | string |  yes  |  |
+ | identifier | string |  yes  |  |
+ | ignored_locations | [string] |  yes  |  |
+ | to_pincode | string |  yes  |  |
+ 
+
+---
+
+#### [ReAssignStoreResponse](#ReAssignStoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string] |  no  |  |
+ | error | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ | to_pincode | string |  yes  |  |
  
 
 ---

@@ -6,6 +6,12 @@ class LogisticValidator {
     return Joi.object({});
   }
 
+  static getOptimalLocations() {
+    return Joi.object({
+      body: LogisticModel.ReAssignStoreRequest().required(),
+    }).required();
+  }
+
   static getPincodeCity() {
     return Joi.object({
       pincode: Joi.string().allow("").required(),

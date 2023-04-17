@@ -6790,8 +6790,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cod_threshold_amount | number |  no  |  |
  | enabled | boolean |  no  |  |
- | threshold_amount | number |  no  |  |
+ | online_threshold_amount | number |  no  |  |
  
 
 ---

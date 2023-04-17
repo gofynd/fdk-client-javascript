@@ -229,16 +229,6 @@ declare class Payment {
     }): Promise<SetCODOptionResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {PaymentGatewayConfigRequest} arg.body
-     * @returns {Promise<PaymentGatewayToBeReviewed>} - Success response
-     * @summary: Save Config Secret For Brand Payment Gateway
-     * @description: Save Config Secret For Brand Payment Gateway
-     */
-    updateBrandPaymentGatewayConfig({ body }?: {
-        body: PaymentGatewayConfigRequest;
-    }): Promise<PaymentGatewayToBeReviewed>;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.terminalUniqueIdentifier - Terminal unique identifier
      * @param {EdcAddRequest} arg.body
      * @returns {Promise<EdcDeviceAddResponse>} - Success response

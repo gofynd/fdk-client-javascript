@@ -16,7 +16,6 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
-* [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
 * [getAppOrderShipmentDetails](#getappordershipmentdetails)
 * [getApplicationShipments](#getapplicationshipments)
@@ -526,65 +525,6 @@ const data = await client.order.dispatchManifest({  body : value });
 [SuccessResponse](#SuccessResponse)
 
 Shipment Dispatched mapped with manifest!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### generatePOSReceiptByOrderId
-
-
-
-
-```javascript
-// Promise
-const promise = client.order.generatePOSReceiptByOrderId({  orderId : value,
- documentType : value });
-
-// Async/Await
-const data = await client.order.generatePOSReceiptByOrderId({  orderId : value,
- documentType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |    
-| documentType | string | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
-
-We are processing the request!
 
 
 
@@ -2774,7 +2714,7 @@ const promise = client.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannels : value,
+ salesChannel : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2792,7 +2732,7 @@ const data = await client.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannels : value,
+ salesChannel : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
@@ -2816,7 +2756,7 @@ const data = await client.order.getOrders({  lane : value,
 | toDate | string | no |  |    
 | dpIds | string | no |  |    
 | stores | string | no |  |    
-| salesChannels | string | no |  |    
+| salesChannel | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
@@ -3576,7 +3516,7 @@ const promise = client.order.getShipments({  lane : value,
  dpIds : value,
  orderingCompanyId : value,
  stores : value,
- salesChannels : value,
+ salesChannel : value,
  requestByExt : value,
  pageNo : value,
  pageSize : value,
@@ -3602,7 +3542,7 @@ const data = await client.order.getShipments({  lane : value,
  dpIds : value,
  orderingCompanyId : value,
  stores : value,
- salesChannels : value,
+ salesChannel : value,
  requestByExt : value,
  pageNo : value,
  pageSize : value,
@@ -3634,7 +3574,7 @@ const data = await client.order.getShipments({  lane : value,
 | dpIds | string | no |  |    
 | orderingCompanyId | string | no |  |    
 | stores | string | no |  |    
-| salesChannels | string | no |  |    
+| salesChannel | string | no |  |    
 | requestByExt | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
@@ -3728,7 +3668,7 @@ List of filters
 
 ```json
 {
-  "global_filter": [
+  "global": [
     {
       "text": "Fulfilling Stores",
       "value": "stores",
@@ -3806,8 +3746,8 @@ List of filters
       ]
     }
   ],
-  "advance_filter": {
-    "unfulfilled": [
+  "advance": {
+    "Unfulfilled": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -3885,7 +3825,7 @@ List of filters
         ]
       }
     ],
-    "processed": [
+    "Processed": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -3948,7 +3888,7 @@ List of filters
         ]
       }
     ],
-    "returned": [
+    "Return": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -4011,7 +3951,7 @@ List of filters
         ]
       }
     ],
-    "action_centre": [
+    "ActionCentre": [
       {
         "text": "Store Type",
         "value": "store_type",
@@ -5013,19 +4953,6 @@ We are processing the report!
  | display_text | string |  yes  |  |
  | id | number |  yes  |  |
  | slug | string |  yes  |  |
- 
-
----
-
-#### [AdvanceFilterInfo](#AdvanceFilterInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_centre | [[FiltersInfo](#FiltersInfo)] |  no  |  |
- | filters | [[FiltersInfo](#FiltersInfo)] |  no  |  |
- | processed | [[FiltersInfo](#FiltersInfo)] |  no  |  |
- | returned | [[FiltersInfo](#FiltersInfo)] |  no  |  |
- | unfulfilled | [[FiltersInfo](#FiltersInfo)] |  no  |  |
  
 
 ---
@@ -6229,8 +6156,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | advance_filter | [AdvanceFilterInfo](#AdvanceFilterInfo) |  no  |  |
- | global_filter | [[FiltersInfo](#FiltersInfo)] |  no  |  |
+ | advance | [string] |  no  |  |
  
 
 ---
@@ -6305,18 +6231,6 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | fynd_order_id | [string] |  no  |  |
- 
-
----
-
-#### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | invoice_receipt | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_receipt | string |  no  |  |
- | success | boolean |  no  |  |
  
 
 ---
@@ -7549,7 +7463,6 @@ We are processing the report!
  | application | string |  no  |  |
  | bags | [[BagUnit](#BagUnit)] |  no  |  |
  | channel | string |  no  |  |
- | company | string |  no  |  |
  | created_at | string |  yes  |  |
  | fulfilling_centre | string |  yes  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore) |  no  |  |

@@ -12,7 +12,6 @@ class OrderValidator {
   static getInvoiceByShipmentId() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      documentType: Joi.string().allow(""),
     }).required();
   }
 

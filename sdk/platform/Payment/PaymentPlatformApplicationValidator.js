@@ -129,12 +129,6 @@ class PaymentValidator {
     }).required();
   }
 
-  static updateBrandPaymentGatewayConfig() {
-    return Joi.object({
-      body: PaymentModel.PaymentGatewayConfigRequest().required(),
-    }).required();
-  }
-
   static updateEdcDevice() {
     return Joi.object({
       terminalUniqueIdentifier: Joi.string().allow("").required(),
