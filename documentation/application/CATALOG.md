@@ -7890,798 +7890,1479 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 #### [ApplicationItemMOQ](#ApplicationItemMOQ)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || increment_unit | number |  no  |  || maximum | number |  no  |  || minimum | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | increment_unit | number |  no  |  |
+ | maximum | number |  no  |  |
+ | minimum | number |  no  |  |
+ 
 
 ---
 
 #### [ApplicationItemSEO](#ApplicationItemSEO)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | any |  no  |  || title | any |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | any |  no  |  |
+ | title | any |  no  |  |
+ 
 
 ---
 
 #### [ApplicationStoreListing](#ApplicationStoreListing)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || filters | [[StoreDepartments](#StoreDepartments)] |  no  |  || items | [[AppStore](#AppStore)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [[StoreDepartments](#StoreDepartments)] |  no  |  |
+ | items | [[AppStore](#AppStore)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [AppStore](#AppStore)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  || company | [CompanyStore](#CompanyStore) |  no  |  || contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  || departments | [[StoreDepartments](#StoreDepartments)] |  no  |  || manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  |
+ | company | [CompanyStore](#CompanyStore) |  no  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | departments | [[StoreDepartments](#StoreDepartments)] |  no  |  |
+ | manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [ArticleAssignmentV3](#ArticleAssignmentV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || level | string |  no  |  || strategy | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | level | string |  no  |  |
+ | strategy | string |  no  |  |
+ 
 
 ---
 
 #### [AttributeDetail](#AttributeDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || display | string |  no  |  || key | string |  no  |  || logo | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | display | string |  no  |  |
+ | key | string |  no  |  |
+ | logo | string |  no  |  |
+ 
 
 ---
 
 #### [AttributeMetadata](#AttributeMetadata)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [[AttributeDetail](#AttributeDetail)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[AttributeDetail](#AttributeDetail)] |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [AutocompleteItem](#AutocompleteItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || display | string |  no  |  || logo | [Media](#Media) |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | display | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [AutoCompleteResponse](#AutoCompleteResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[AutocompleteItem](#AutocompleteItem)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AutocompleteItem](#AutocompleteItem)] |  no  |  |
+ 
 
 ---
 
 #### [BrandDetailResponse](#BrandDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || description | string |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | description | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [BrandItem](#BrandItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | [ProductListingAction](#ProductListingAction) |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || departments | [string] |  no  |  || description | string |  no  |  || discount | string |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | departments | [string] |  no  |  |
+ | description | string |  no  |  |
+ | discount | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [BrandListingResponse](#BrandListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[BrandItem](#BrandItem)] |  no  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[BrandItem](#BrandItem)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ 
 
 ---
 
 #### [CategoryBanner](#CategoryBanner)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || landscape | [Media](#Media) |  yes  |  || portrait | [Media](#Media) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | [Media](#Media) |  yes  |  |
+ | portrait | [Media](#Media) |  yes  |  |
+ 
 
 ---
 
 #### [CategoryItems](#CategoryItems)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | [ProductListingAction](#ProductListingAction) |  yes  |  || banners | [CategoryBanner](#CategoryBanner) |  yes  |  || childs | [[Child](#Child)] |  no  |  || name | string |  yes  |  || slug | string |  yes  |  || uid | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductListingAction](#ProductListingAction) |  yes  |  |
+ | banners | [CategoryBanner](#CategoryBanner) |  yes  |  |
+ | childs | [[Child](#Child)] |  no  |  |
+ | name | string |  yes  |  |
+ | slug | string |  yes  |  |
+ | uid | number |  yes  |  |
+ 
 
 ---
 
 #### [CategoryListingResponse](#CategoryListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  || departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)] |  no  |  |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)] |  no  |  |
+ 
 
 ---
 
 #### [CategoryMetaResponse](#CategoryMetaResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [Child](#Child)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)] |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [CollectionDetailResponse](#CollectionDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | string |  no  |  || allow_facets | boolean |  no  |  || allow_sort | boolean |  no  |  || app_id | string |  no  |  || badge | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || cron | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || logo | [Media](#Media) |  no  |  || meta | string |  no  |  || name | string |  no  |  || priority | number |  no  |  || query | [[CollectionQuery](#CollectionQuery)] |  no  |  || slug | string |  no  |  || sort_on | string |  no  |  || tag | [string] |  no  |  || type | string |  no  |  || visible_facets_keys | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | app_id | string |  no  |  |
+ | badge | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | cron | string |  no  |  |
+ | description | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | meta | string |  no  |  |
+ | name | string |  no  |  |
+ | priority | number |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | slug | string |  no  |  |
+ | sort_on | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | type | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ 
 
 ---
 
 #### [CollectionListingFilter](#CollectionListingFilter)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  || type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [[CollectionListingFilterTag](#CollectionListingFilterTag)] |  no  |  |
+ | type | [[CollectionListingFilterType](#CollectionListingFilterType)] |  no  |  |
+ 
 
 ---
 
 #### [CollectionListingFilterTag](#CollectionListingFilterTag)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  no  |  || is_selected | boolean |  no  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [CollectionListingFilterType](#CollectionListingFilterType)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  no  |  || is_selected | boolean |  no  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [CollectionQuery](#CollectionQuery)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attribute | string |  yes  |  || op | string |  yes  |  || value | [any] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute | string |  yes  |  |
+ | op | string |  yes  |  |
+ | value | [any] |  yes  |  |
+ 
 
 ---
 
 #### [ColumnHeader](#ColumnHeader)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || convertable | boolean |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | convertable | boolean |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ColumnHeaders](#ColumnHeaders)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || col_1 | [ColumnHeader](#ColumnHeader) |  no  |  || col_2 | [ColumnHeader](#ColumnHeader) |  no  |  || col_3 | [ColumnHeader](#ColumnHeader) |  no  |  || col_4 | [ColumnHeader](#ColumnHeader) |  no  |  || col_5 | [ColumnHeader](#ColumnHeader) |  no  |  || col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | col_1 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_2 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_3 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_4 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_5 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ | col_6 | [ColumnHeader](#ColumnHeader) |  no  |  |
+ 
 
 ---
 
 #### [CompanyDetail](#CompanyDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | number |  no  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | number |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [CompanyStore](#CompanyStore)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || business_type | string |  no  |  || company_type | string |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | business_type | string |  no  |  |
+ | company_type | string |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [CustomMetaFields](#CustomMetaFields)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | string |  yes  |  || value | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  yes  |  |
+ | value | string |  yes  |  |
+ 
 
 ---
 
 #### [Department](#Department)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || logo | [Media](#Media) |  no  |  || name | string |  no  |  || priority_order | number |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [DepartmentCategoryTree](#DepartmentCategoryTree)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || department | string |  yes  |  || items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | department | string |  yes  |  |
+ | items | [[CategoryItems](#CategoryItems)] |  no  |  |
+ 
 
 ---
 
 #### [DepartmentIdentifier](#DepartmentIdentifier)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [DepartmentResponse](#DepartmentResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[Department](#Department)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Department](#Department)] |  no  |  |
+ 
 
 ---
 
 #### [DetailsSchemaV3](#DetailsSchemaV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [Dimension](#Dimension)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || height | number |  yes  |  || is_default | boolean |  yes  |  || length | number |  yes  |  || unit | string |  yes  |  || width | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | height | number |  yes  |  |
+ | is_default | boolean |  yes  |  |
+ | length | number |  yes  |  |
+ | unit | string |  yes  |  |
+ | width | number |  yes  |  |
+ 
 
 ---
 
 #### [ErrorResponse](#ErrorResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string |  no  |  |
+ 
 
 ---
 
 #### [FollowerCountResponse](#FollowerCountResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ 
 
 ---
 
 #### [FollowIdsData](#FollowIdsData)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || brands | [number] |  no  |  || collections | [number] |  no  |  || products | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | brands | [number] |  no  |  |
+ | collections | [number] |  no  |  |
+ | products | [number] |  no  |  |
+ 
 
 ---
 
 #### [FollowIdsResponse](#FollowIdsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [FollowIdsData](#FollowIdsData) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [FollowIdsData](#FollowIdsData) |  no  |  |
+ 
 
 ---
 
 #### [FollowPostResponse](#FollowPostResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | string |  yes  |  || message | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  yes  |  |
+ | message | string |  yes  |  |
+ 
 
 ---
 
 #### [GetCollectionDetailNest](#GetCollectionDetailNest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || allow_facets | boolean |  no  |  || allow_sort | boolean |  no  |  || app_id | string |  no  |  || badge | string |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || cron | string |  no  |  || description | string |  no  |  || is_active | boolean |  no  |  || logo | [Media](#Media) |  no  |  || meta | string |  no  |  || name | string |  no  |  || priority | number |  no  |  || query | [[CollectionQuery](#CollectionQuery)] |  no  |  || slug | string |  no  |  || sort_on | string |  no  |  || tag | [string] |  no  |  || type | string |  no  |  || uid | string |  no  |  || visible_facets_keys | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _schedule | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | allow_facets | boolean |  no  |  |
+ | allow_sort | boolean |  no  |  |
+ | app_id | string |  no  |  |
+ | badge | string |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | cron | string |  no  |  |
+ | description | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | meta | string |  no  |  |
+ | name | string |  no  |  |
+ | priority | number |  no  |  |
+ | query | [[CollectionQuery](#CollectionQuery)] |  no  |  |
+ | slug | string |  no  |  |
+ | sort_on | string |  no  |  |
+ | tag | [string] |  no  |  |
+ | type | string |  no  |  |
+ | uid | string |  no  |  |
+ | visible_facets_keys | [string] |  no  |  |
+ 
 
 ---
 
 #### [GetCollectionListingResponse](#GetCollectionListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  || items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [CollectionListingFilter](#CollectionListingFilter) |  no  |  |
+ | items | [[GetCollectionDetailNest](#GetCollectionDetailNest)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ 
 
 ---
 
 #### [GetFollowListingResponse](#GetFollowListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductListingDetail](#ProductListingDetail)] |  yes  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+ 
 
 ---
 
 #### [HomeListingResponse](#HomeListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | message | string |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ 
 
 ---
 
 #### [ImageUrls](#ImageUrls)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || landscape | [Media](#Media) |  no  |  || portrait | [Media](#Media) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | landscape | [Media](#Media) |  no  |  |
+ | portrait | [Media](#Media) |  no  |  |
+ 
 
 ---
 
 #### [LatLong](#LatLong)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || coordinates | [number] |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | coordinates | [number] |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [Media](#Media)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || alt | string |  no  |  || meta | [Meta](#Meta) |  no  |  || type | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | alt | string |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [Meta](#Meta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || source | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | source | string |  no  |  |
+ 
 
 ---
 
 #### [NetQuantity](#NetQuantity)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || unit | any |  no  |  || value | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | any |  no  |  |
+ | value | number |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [Price](#Price)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || max | number |  no  |  || min | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ 
 
 ---
 
 #### [ProductBrand](#ProductBrand)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | [ProductListingAction](#ProductListingAction) |  no  |  || description | string |  no  |  || logo | [Media](#Media) |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | description | string |  no  |  |
+ | logo | [Media](#Media) |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [ProductBundle](#ProductBundle)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductGroupingModel](#ProductGroupingModel)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductGroupingModel](#ProductGroupingModel)] |  no  |  |
+ 
 
 ---
 
 #### [ProductCategoryMap](#ProductCategoryMap)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || l1 | [ProductBrand](#ProductBrand) |  no  |  || l2 | [ProductBrand](#ProductBrand) |  no  |  || l3 | [ProductBrand](#ProductBrand) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | l1 | [ProductBrand](#ProductBrand) |  no  |  |
+ | l2 | [ProductBrand](#ProductBrand) |  no  |  |
+ | l3 | [ProductBrand](#ProductBrand) |  no  |  |
+ 
 
 ---
 
 #### [ProductCompareResponse](#ProductCompareResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  || items | [[ProductDetail](#ProductDetail)] |  no  |  || subtitle | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | subtitle | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || attributes | string |  no  |  || brand | [ProductBrand](#ProductBrand) |  no  |  || categories | [[ProductBrand](#ProductBrand)] |  no  |  || category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  || color | string |  no  |  || description | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  || has_variant | boolean |  no  |  || highlights | [string] |  no  |  || image_nature | string |  no  |  || is_dependent | boolean |  no  |  || item_code | string |  no  |  || item_type | string |  no  |  || medias | [[Media](#Media)] |  no  |  || moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  || name | string |  no  |  || net_quantity | [NetQuantity](#NetQuantity) |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || product_online_date | string |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  || short_description | string |  no  |  || similars | [string] |  no  |  || slug | string |  yes  |  || tags | [string] |  no  |  || teaser_tag | string |  no  |  || tryouts | [string] |  no  |  || type | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | attributes | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  |
+ | color | string |  no  |  |
+ | description | string |  no  |  |
+ | discount | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | highlights | [string] |  no  |  |
+ | image_nature | string |  no  |  |
+ | is_dependent | boolean |  no  |  |
+ | item_code | string |  no  |  |
+ | item_type | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
+ | name | string |  no  |  |
+ | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | product_online_date | string |  no  |  |
+ | rating | number |  no  |  |
+ | rating_count | number |  no  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
+ | short_description | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | slug | string |  yes  |  |
+ | tags | [string] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | type | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [ProductDetailAttribute](#ProductDetailAttribute)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | string |  no  |  || type | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[ProductDetailAttribute](#ProductDetailAttribute)] |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [ProductDetails](#ProductDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attributes | string |  no  |  || brand_uid | number |  no  |  || country_of_origin | any |  no  |  || description | any |  no  |  || grouped_attributes | string |  no  |  || has_variant | boolean |  no  |  || highlights | [any] |  no  |  || hsn_code | number |  no  |  || identifier | string |  no  |  || image_nature | any |  no  |  || images | [any] |  no  |  || is_set | boolean |  no  |  || item_code | any |  no  |  || media | [string] |  no  |  || name | any |  no  |  || out_of_stock | boolean |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || short_description | any |  no  |  || slug | any |  no  |  || template_tag | any |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string |  no  |  |
+ | brand_uid | number |  no  |  |
+ | country_of_origin | any |  no  |  |
+ | description | any |  no  |  |
+ | grouped_attributes | string |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | highlights | [any] |  no  |  |
+ | hsn_code | number |  no  |  |
+ | identifier | string |  no  |  |
+ | image_nature | any |  no  |  |
+ | images | [any] |  no  |  |
+ | is_set | boolean |  no  |  |
+ | item_code | any |  no  |  |
+ | media | [string] |  no  |  |
+ | name | any |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | rating | number |  no  |  |
+ | rating_count | number |  no  |  |
+ | short_description | any |  no  |  |
+ | slug | any |  no  |  |
+ | template_tag | any |  no  |  |
+ 
 
 ---
 
 #### [ProductFilters](#ProductFilters)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  || values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | [ProductFiltersKey](#ProductFiltersKey) |  yes  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  yes  |  |
+ 
 
 ---
 
 #### [ProductFiltersKey](#ProductFiltersKey)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  yes  |  || kind | string |  no  |  || logo | string |  no  |  || name | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  yes  |  |
+ | kind | string |  no  |  |
+ | logo | string |  no  |  |
+ | name | string |  yes  |  |
+ 
 
 ---
 
 #### [ProductFiltersValue](#ProductFiltersValue)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | number |  no  |  || currency_code | string |  no  |  || currency_symbol | string |  no  |  || display | string |  yes  |  || display_format | string |  no  |  || is_selected | boolean |  yes  |  || max | number |  no  |  || min | number |  no  |  || query_format | string |  no  |  || selected_max | number |  no  |  || selected_min | number |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | display | string |  yes  |  |
+ | display_format | string |  no  |  |
+ | is_selected | boolean |  yes  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ | query_format | string |  no  |  |
+ | selected_max | number |  no  |  |
+ | selected_min | number |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ProductFrequentlyComparedSimilarResponse](#ProductFrequentlyComparedSimilarResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || similars | [ProductCompareResponse](#ProductCompareResponse) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | similars | [ProductCompareResponse](#ProductCompareResponse) |  no  |  |
+ 
 
 ---
 
 #### [ProductGroupingModel](#ProductGroupingModel)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | any |  no  |  || choice | any |  no  |  || company_id | number |  no  |  || created_by | [UserDetail](#UserDetail) |  no  |  || created_on | string |  yes  |  || is_active | boolean |  no  |  || logo | string |  no  |  || meta | string |  no  |  || modified_by | [UserDetail](#UserDetail) |  no  |  || modified_on | string |  yes  |  || name | any |  yes  |  || page_visibility | [any] |  no  |  || products | [[ProductInGroup](#ProductInGroup)] |  yes  |  || same_store_assignment | boolean |  no  |  || slug | any |  no  |  || verified_by | [UserDetail](#UserDetail) |  no  |  || verified_on | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | any |  no  |  |
+ | choice | any |  no  |  |
+ | company_id | number |  no  |  |
+ | created_by | [UserDetail](#UserDetail) |  no  |  |
+ | created_on | string |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | logo | string |  no  |  |
+ | meta | string |  no  |  |
+ | modified_by | [UserDetail](#UserDetail) |  no  |  |
+ | modified_on | string |  yes  |  |
+ | name | any |  yes  |  |
+ | page_visibility | [any] |  no  |  |
+ | products | [[ProductInGroup](#ProductInGroup)] |  yes  |  |
+ | same_store_assignment | boolean |  no  |  |
+ | slug | any |  no  |  |
+ | verified_by | [UserDetail](#UserDetail) |  no  |  |
+ | verified_on | string |  no  |  |
+ 
 
 ---
 
 #### [ProductGroupPrice](#ProductGroupPrice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency | any |  no  |  || max_effective | number |  no  |  || max_marked | number |  no  |  || min_effective | number |  no  |  || min_marked | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | any |  no  |  |
+ | max_effective | number |  no  |  |
+ | max_marked | number |  no  |  |
+ | min_effective | number |  no  |  |
+ | min_marked | number |  no  |  |
+ 
 
 ---
 
 #### [ProductInGroup](#ProductInGroup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || allow_remove | boolean |  no  |  || auto_add_to_cart | boolean |  no  |  || auto_select | boolean |  no  |  || max_quantity | number |  yes  |  || min_quantity | number |  no  |  || price | [ProductGroupPrice](#ProductGroupPrice) |  no  |  || product_details | [ProductDetails](#ProductDetails) |  no  |  || product_uid | number |  yes  |  || sizes | [[Size](#Size)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_remove | boolean |  no  |  |
+ | auto_add_to_cart | boolean |  no  |  |
+ | auto_select | boolean |  no  |  |
+ | max_quantity | number |  yes  |  |
+ | min_quantity | number |  no  |  |
+ | price | [ProductGroupPrice](#ProductGroupPrice) |  no  |  |
+ | product_details | [ProductDetails](#ProductDetails) |  no  |  |
+ | product_uid | number |  yes  |  |
+ | sizes | [[Size](#Size)] |  no  |  |
+ 
 
 ---
 
 #### [ProductListingAction](#ProductListingAction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || page | [ProductListingActionPage](#ProductListingActionPage) |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [ProductListingActionPage](#ProductListingActionPage) |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [ProductListingActionPage](#ProductListingActionPage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || params | string |  no  |  || query | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | params | string |  no  |  |
+ | query | string |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [ProductListingDetail](#ProductListingDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || attributes | string |  no  |  || brand | [ProductBrand](#ProductBrand) |  no  |  || categories | [[ProductBrand](#ProductBrand)] |  no  |  || category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  || color | string |  no  |  || description | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  || has_variant | boolean |  no  |  || highlights | [string] |  no  |  || identifiers | [string] |  no  |  || image_nature | string |  no  |  || is_dependent | boolean |  no  |  || item_code | string |  no  |  || item_type | string |  no  |  || medias | [[Media](#Media)] |  no  |  || moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  || name | string |  no  |  || net_quantity | [NetQuantity](#NetQuantity) |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || product_online_date | string |  no  |  || rating | number |  no  |  || rating_count | number |  no  |  || sellable | boolean |  no  |  || seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  || short_description | string |  no  |  || similars | [string] |  no  |  || sizes | [string] |  no  |  || slug | string |  yes  |  || tags | [string] |  no  |  || teaser_tag | string |  no  |  || tryouts | [string] |  no  |  || type | string |  no  |  || uid | number |  no  |  || variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | attributes | string |  no  |  |
+ | brand | [ProductBrand](#ProductBrand) |  no  |  |
+ | categories | [[ProductBrand](#ProductBrand)] |  no  |  |
+ | category_map | [ProductCategoryMap](#ProductCategoryMap) |  no  |  |
+ | color | string |  no  |  |
+ | description | string |  no  |  |
+ | discount | string |  no  |  |
+ | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)] |  no  |  |
+ | has_variant | boolean |  no  |  |
+ | highlights | [string] |  no  |  |
+ | identifiers | [string] |  no  |  |
+ | image_nature | string |  no  |  |
+ | is_dependent | boolean |  no  |  |
+ | item_code | string |  no  |  |
+ | item_type | string |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ) |  no  |  |
+ | name | string |  no  |  |
+ | net_quantity | [NetQuantity](#NetQuantity) |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | product_online_date | string |  no  |  |
+ | rating | number |  no  |  |
+ | rating_count | number |  no  |  |
+ | sellable | boolean |  no  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO) |  no  |  |
+ | short_description | string |  no  |  |
+ | similars | [string] |  no  |  |
+ | sizes | [string] |  no  |  |
+ | slug | string |  yes  |  |
+ | tags | [string] |  no  |  |
+ | teaser_tag | string |  no  |  |
+ | tryouts | [string] |  no  |  |
+ | type | string |  no  |  |
+ | uid | number |  no  |  |
+ | variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)] |  no  |  |
+ 
 
 ---
 
 #### [ProductListingPrice](#ProductListingPrice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || effective | [Price](#Price) |  no  |  || marked | [Price](#Price) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | [Price](#Price) |  no  |  |
+ | marked | [Price](#Price) |  no  |  |
+ 
 
 ---
 
 #### [ProductListingResponse](#ProductListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || filters | [[ProductFilters](#ProductFilters)] |  no  |  || items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  || page | [Page](#Page) |  yes  |  || sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [[ProductFilters](#ProductFilters)] |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)] |  no  |  |
+ 
 
 ---
 
 #### [ProductsComparisonResponse](#ProductsComparisonResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  || items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes_metadata | [[AttributeMetadata](#AttributeMetadata)] |  no  |  |
+ | items | [[ProductDetail](#ProductDetail)] |  no  |  |
+ 
 
 ---
 
 #### [ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || pieces | number |  no  |  || size | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | pieces | number |  no  |  |
+ | size | string |  no  |  |
+ 
 
 ---
 
 #### [ProductSetDistributionV3](#ProductSetDistributionV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || sizes | [[ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [[ProductSetDistributionSizeV3](#ProductSetDistributionSizeV3)] |  no  |  |
+ 
 
 ---
 
 #### [ProductSetV3](#ProductSetV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || quantity | number |  no  |  || size_distribution | [ProductSetDistributionV3](#ProductSetDistributionV3) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | quantity | number |  no  |  |
+ | size_distribution | [ProductSetDistributionV3](#ProductSetDistributionV3) |  no  |  |
+ 
 
 ---
 
 #### [ProductSize](#ProductSize)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || dimension | [Dimension](#Dimension) |  no  |  || display | string |  no  |  || is_available | boolean |  no  |  || quantity | number |  no  |  || seller_identifiers | [string] |  no  |  || value | string |  no  |  || weight | [Weight](#Weight) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | dimension | [Dimension](#Dimension) |  no  |  |
+ | display | string |  no  |  |
+ | is_available | boolean |  no  |  |
+ | quantity | number |  no  |  |
+ | seller_identifiers | [string] |  no  |  |
+ | value | string |  no  |  |
+ | weight | [Weight](#Weight) |  no  |  |
+ 
 
 ---
 
 #### [ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3) |  no  |  || article_id | string |  no  |  || discount | string |  no  |  || grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)] |  no  |  || is_cod | boolean |  no  |  || is_gift | boolean |  no  |  || item_type | string |  no  |  || long_lat | [number] |  no  |  || marketplace_attributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)] |  no  |  || pincode | number |  no  |  || price | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  || price_per_piece | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  || price_per_unit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3) |  no  |  || quantity | number |  no  |  || return_config | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3) |  no  |  || seller | [SellerV3](#SellerV3) |  no  |  || seller_count | number |  no  |  || set | [ProductSetV3](#ProductSetV3) |  no  |  || special_badge | string |  no  |  || store | [StoreV3](#StoreV3) |  no  |  || strategy_wise_listing | [[StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | article_assignment | [ArticleAssignmentV3](#ArticleAssignmentV3) |  no  |  |
+ | article_id | string |  no  |  |
+ | discount | string |  no  |  |
+ | grouped_attributes | [[SellerGroupAttributes](#SellerGroupAttributes)] |  no  |  |
+ | is_cod | boolean |  no  |  |
+ | is_gift | boolean |  no  |  |
+ | item_type | string |  no  |  |
+ | long_lat | [number] |  no  |  |
+ | marketplace_attributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)] |  no  |  |
+ | pincode | number |  no  |  |
+ | price | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  |
+ | price_per_piece | [ProductStockPriceV3](#ProductStockPriceV3) |  no  |  |
+ | price_per_unit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3) |  no  |  |
+ | quantity | number |  no  |  |
+ | return_config | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3) |  no  |  |
+ | seller | [SellerV3](#SellerV3) |  no  |  |
+ | seller_count | number |  no  |  |
+ | set | [ProductSetV3](#ProductSetV3) |  no  |  |
+ | special_badge | string |  no  |  |
+ | store | [StoreV3](#StoreV3) |  no  |  |
+ | strategy_wise_listing | [[StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)] |  no  |  |
+ 
 
 ---
 
 #### [ProductSizes](#ProductSizes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || discount | string |  no  |  || multi_size | boolean |  no  |  || price | [ProductListingPrice](#ProductListingPrice) |  no  |  || sellable | boolean |  no  |  || size_chart | [SizeChart](#SizeChart) |  no  |  || sizes | [[ProductSize](#ProductSize)] |  no  |  || stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | discount | string |  no  |  |
+ | multi_size | boolean |  no  |  |
+ | price | [ProductListingPrice](#ProductListingPrice) |  no  |  |
+ | sellable | boolean |  no  |  |
+ | size_chart | [SizeChart](#SizeChart) |  no  |  |
+ | sizes | [[ProductSize](#ProductSize)] |  no  |  |
+ | stores | [ProductSizeStores](#ProductSizeStores) |  no  |  |
+ 
 
 ---
 
 #### [ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_selected | boolean |  no  |  || name | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ProductSizeSellersResponseV3](#ProductSizeSellersResponseV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)] |  no  |  || page | [Page](#Page) |  yes  |  || sort_on | [[ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ | sort_on | [[ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)] |  no  |  |
+ 
 
 ---
 
 #### [ProductSizeStores](#ProductSizeStores)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ 
 
 ---
 
 #### [ProductSortOn](#ProductSortOn)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_selected | boolean |  no  |  || name | string |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_selected | boolean |  no  |  |
+ | name | string |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ProductStockPolling](#ProductStockPolling)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
+ | page | [Page](#Page) |  yes  |  |
+ 
 
 ---
 
 #### [ProductStockPrice](#ProductStockPrice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ 
 
 ---
 
 #### [ProductStockPriceV3](#ProductStockPriceV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ 
 
 ---
 
 #### [ProductStockStatusItem](#ProductStockStatusItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company | [CompanyDetail](#CompanyDetail) |  no  |  || identifier | string |  no  |  || item_id | number |  no  |  || price | [ProductStockPrice](#ProductStockPrice) |  no  |  || quantity | number |  no  |  || seller | [Seller](#Seller) |  no  |  || size | string |  no  |  || store | [StoreDetail](#StoreDetail) |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company | [CompanyDetail](#CompanyDetail) |  no  |  |
+ | identifier | string |  no  |  |
+ | item_id | number |  no  |  |
+ | price | [ProductStockPrice](#ProductStockPrice) |  no  |  |
+ | quantity | number |  no  |  |
+ | seller | [Seller](#Seller) |  no  |  |
+ | size | string |  no  |  |
+ | store | [StoreDetail](#StoreDetail) |  no  |  |
+ | uid | string |  no  |  |
+ 
 
 ---
 
 #### [ProductStockStatusResponse](#ProductStockStatusResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductStockStatusItem](#ProductStockStatusItem)] |  no  |  |
+ 
 
 ---
 
 #### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || price | number |  no  |  || unit | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | price | number |  no  |  |
+ | unit | string |  no  |  |
+ 
 
 ---
 
 #### [ProductVariantItemResponse](#ProductVariantItemResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || color | string |  no  |  || color_name | string |  no  |  || is_available | boolean |  no  |  || medias | [[Media](#Media)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_meta | [[CustomMetaFields](#CustomMetaFields)] |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | color | string |  no  |  |
+ | color_name | string |  no  |  |
+ | is_available | boolean |  no  |  |
+ | medias | [[Media](#Media)] |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ProductVariantListingResponse](#ProductVariantListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_type | string |  no  |  || header | string |  no  |  || items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  || key | string |  no  |  || total | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_type | string |  no  |  |
+ | header | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
+ | key | string |  no  |  |
+ | total | number |  no  |  |
+ 
 
 ---
 
 #### [ProductVariantResponse](#ProductVariantResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display_type | string |  no  |  || header | string |  no  |  || items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  || key | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display_type | string |  no  |  |
+ | header | string |  no  |  |
+ | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)] |  no  |  |
+ | key | string |  no  |  |
+ 
 
 ---
 
 #### [ProductVariantsResponse](#ProductVariantsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || variants | [[ProductVariantResponse](#ProductVariantResponse)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | variants | [[ProductVariantResponse](#ProductVariantResponse)] |  no  |  |
+ 
 
 ---
 
 #### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || returnable | boolean |  no  |  || time | number |  no  |  || unit | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean |  no  |  |
+ | time | number |  no  |  |
+ | unit | string |  no  |  |
+ 
 
 ---
 
 #### [SecondLevelChild](#SecondLevelChild)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)] |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [Seller](#Seller)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | number |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [SellerGroupAttributes](#SellerGroupAttributes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[DetailsSchemaV3](#DetailsSchemaV3)] |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [SellerPhoneNumber](#SellerPhoneNumber)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || country_code | number |  yes  |  || number | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | number |  yes  |  |
+ | number | string |  yes  |  |
+ 
 
 ---
 
 #### [SellerV3](#SellerV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | number |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [Size](#Size)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | any |  no  |  || is_available | boolean |  no  |  || quantity | number |  no  |  || value | any |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | any |  no  |  |
+ | is_available | boolean |  no  |  |
+ | quantity | number |  no  |  |
+ | value | any |  no  |  |
+ 
 
 ---
 
 #### [SizeChart](#SizeChart)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || headers | [ColumnHeaders](#ColumnHeaders) |  no  |  || image | string |  no  |  || size_tip | string |  no  |  || sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  || title | string |  no  |  || unit | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | headers | [ColumnHeaders](#ColumnHeaders) |  no  |  |
+ | image | string |  no  |  |
+ | size_tip | string |  no  |  |
+ | sizes | [[SizeChartValues](#SizeChartValues)] |  no  |  |
+ | title | string |  no  |  |
+ | unit | string |  no  |  |
+ 
 
 ---
 
 #### [SizeChartValues](#SizeChartValues)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || col_1 | string |  no  |  || col_2 | string |  no  |  || col_3 | string |  no  |  || col_4 | string |  no  |  || col_5 | string |  no  |  || col_6 | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | col_1 | string |  no  |  |
+ | col_2 | string |  no  |  |
+ | col_3 | string |  no  |  |
+ | col_4 | string |  no  |  |
+ | col_5 | string |  no  |  |
+ | col_6 | string |  no  |  |
+ 
 
 ---
 
 #### [Store](#Store)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address | string |  no  |  || city | string |  no  |  || country | string |  no  |  || lat_long | [LatLong](#LatLong) |  no  |  || name | string |  no  |  || pincode | number |  no  |  || state | string |  no  |  || store_code | string |  no  |  || store_email | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | lat_long | [LatLong](#LatLong) |  no  |  |
+ | name | string |  no  |  |
+ | pincode | number |  no  |  |
+ | state | string |  no  |  |
+ | store_code | string |  no  |  |
+ | store_email | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [StoreAddressSerializer](#StoreAddressSerializer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address1 | string |  no  |  || address2 | string |  no  |  || city | string |  no  |  || country | string |  no  |  || landmark | string |  no  |  || latitude | number |  no  |  || longitude | number |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address1 | string |  no  |  |
+ | address2 | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | landmark | string |  no  |  |
+ | latitude | number |  no  |  |
+ | longitude | number |  no  |  |
+ | pincode | number |  no  |  |
+ | state | string |  no  |  |
+ 
 
 ---
 
 #### [StoreDepartments](#StoreDepartments)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || logo | string |  no  |  || name | string |  no  |  || priority_order | number |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | string |  no  |  |
+ | name | string |  no  |  |
+ | priority_order | number |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [StoreDetail](#StoreDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || city | string |  no  |  || code | string |  no  |  || id | number |  no  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | city | string |  no  |  |
+ | code | string |  no  |  |
+ | id | number |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [StoreDetails](#StoreDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  || company | [CompanyStore](#CompanyStore) |  no  |  || contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  || departments | [[StoreDepartments](#StoreDepartments)] |  no  |  || manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  || name | string |  no  |  || timing | [[StoreTiming](#StoreTiming)] |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | address | [StoreAddressSerializer](#StoreAddressSerializer) |  no  |  |
+ | company | [CompanyStore](#CompanyStore) |  no  |  |
+ | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)] |  no  |  |
+ | departments | [[StoreDepartments](#StoreDepartments)] |  no  |  |
+ | manager | [StoreManagerSerializer](#StoreManagerSerializer) |  no  |  |
+ | name | string |  no  |  |
+ | timing | [[StoreTiming](#StoreTiming)] |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [StoreListingResponse](#StoreListingResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[Store](#Store)] |  yes  |  || page | [Page](#Page) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Store](#Store)] |  yes  |  |
+ | page | [Page](#Page) |  yes  |  |
+ 
 
 ---
 
 #### [StoreManagerSerializer](#StoreManagerSerializer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | string |  no  |  || mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | mobile_no | [SellerPhoneNumber](#SellerPhoneNumber) |  no  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [StoreTiming](#StoreTiming)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || closing | [Time](#Time) |  no  |  || open | boolean |  no  |  || opening | [Time](#Time) |  no  |  || weekday | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | closing | [Time](#Time) |  no  |  |
+ | open | boolean |  no  |  |
+ | opening | [Time](#Time) |  no  |  |
+ | weekday | string |  no  |  |
+ 
 
 ---
 
 #### [StoreV3](#StoreV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | number |  no  |  || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | number |  no  |  |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || distance | number |  no  |  || pincode | number |  no  |  || quantity | number |  no  |  || tat | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | distance | number |  no  |  |
+ | pincode | number |  no  |  |
+ | quantity | number |  no  |  |
+ | tat | number |  no  |  |
+ 
 
 ---
 
 #### [ThirdLevelChild](#ThirdLevelChild)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || action | [ProductListingAction](#ProductListingAction) |  no  |  || banners | [ImageUrls](#ImageUrls) |  no  |  || childs | [string] |  no  |  || name | string |  no  |  || slug | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | banners | [ImageUrls](#ImageUrls) |  no  |  |
+ | childs | [string] |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [Time](#Time)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || hour | number |  no  |  || minute | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | hour | number |  no  |  |
+ | minute | number |  no  |  |
+ 
 
 ---
 
 #### [UserDetail](#UserDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || contact | string |  no  |  || super_user | boolean |  no  |  || user_id | string |  yes  |  || username | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | contact | string |  no  |  |
+ | super_user | boolean |  no  |  |
+ | user_id | string |  yes  |  |
+ | username | string |  yes  |  |
+ 
 
 ---
 
 #### [Weight](#Weight)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_default | boolean |  yes  |  || shipping | number |  yes  |  || unit | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_default | boolean |  yes  |  |
+ | shipping | number |  yes  |  |
+ | unit | string |  yes  |  |
+ 
 
 ---
 

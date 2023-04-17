@@ -3995,714 +3995,1377 @@ Promotion updated successfully
 #### [AbandonedCart](#AbandonedCart)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  yes  |  || app_id | string |  no  |  || articles | [string] |  yes  |  || bulk_coupon_discount | number |  no  |  || buy_now | boolean |  no  |  || cart_value | number |  no  |  || cashback | string |  yes  |  || checkout_mode | string |  no  |  || cod_charges | string |  no  |  || comment | string |  no  |  || coupon | string |  no  |  || created_on | string |  yes  |  || delivery_charges | string |  no  |  || discount | number |  no  |  || expire_at | string |  yes  |  || fc_index_map | [number] |  no  |  || fynd_credits | string |  no  |  || gstin | string |  no  |  || is_active | boolean |  no  |  || is_archive | boolean |  no  |  || is_default | boolean |  yes  |  || last_modified | string |  yes  |  || merge_qty | boolean |  no  |  || meta | string |  no  |  || order_id | string |  no  |  || payment_methods | [string] |  no  |  || payment_mode | string |  no  |  || payments | string |  no  |  || pick_up_customer_details | string |  no  |  || promotion | string |  no  |  || shipments | [string] |  no  |  || uid | number |  yes  |  || user_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  yes  |  |
+ | app_id | string |  no  |  |
+ | articles | [string] |  yes  |  |
+ | bulk_coupon_discount | number |  no  |  |
+ | buy_now | boolean |  no  |  |
+ | cart_value | number |  no  |  |
+ | cashback | string |  yes  |  |
+ | checkout_mode | string |  no  |  |
+ | cod_charges | string |  no  |  |
+ | comment | string |  no  |  |
+ | coupon | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | delivery_charges | string |  no  |  |
+ | discount | number |  no  |  |
+ | expire_at | string |  yes  |  |
+ | fc_index_map | [number] |  no  |  |
+ | fynd_credits | string |  no  |  |
+ | gstin | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_archive | boolean |  no  |  |
+ | is_default | boolean |  yes  |  |
+ | last_modified | string |  yes  |  |
+ | merge_qty | boolean |  no  |  |
+ | meta | string |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_methods | [string] |  no  |  |
+ | payment_mode | string |  no  |  |
+ | payments | string |  no  |  |
+ | pick_up_customer_details | string |  no  |  |
+ | promotion | string |  no  |  |
+ | shipments | [string] |  no  |  |
+ | uid | number |  yes  |  |
+ | user_id | string |  yes  |  |
+ 
 
 ---
 
 #### [AbandonedCartResponse](#AbandonedCartResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[AbandonedCart](#AbandonedCart)] |  no  |  || message | string |  no  |  || page | [Page](#Page) |  no  |  || result | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AbandonedCart](#AbandonedCart)] |  no  |  |
+ | message | string |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | result | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [ActionQuery](#ActionQuery)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || product_slug | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | product_slug | [string] |  no  |  |
+ 
 
 ---
 
 #### [AddCartDetailResponse](#AddCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart | [CartDetailResponse](#CartDetailResponse) |  no  |  || message | string |  no  |  || partial | boolean |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | message | string |  no  |  |
+ | partial | boolean |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [AddCartRequest](#AddCartRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[AddProductCart](#AddProductCart)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[AddProductCart](#AddProductCart)] |  no  |  |
+ 
 
 ---
 
 #### [AddProductCart](#AddProductCart)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || article_assignment | string |  no  |  || article_id | string |  no  |  || display | string |  no  |  || extra_meta | string |  no  |  || item_id | number |  no  |  || item_size | string |  no  |  || parent_item_identifiers | string |  no  |  || pos | boolean |  no  |  || product_group_tags | [string] |  no  |  || quantity | number |  no  |  || seller_id | number |  no  |  || store_id | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | article_assignment | string |  no  |  |
+ | article_id | string |  no  |  |
+ | display | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | item_id | number |  no  |  |
+ | item_size | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | pos | boolean |  no  |  |
+ | product_group_tags | [string] |  no  |  |
+ | quantity | number |  no  |  |
+ | seller_id | number |  no  |  |
+ | store_id | number |  no  |  |
+ 
 
 ---
 
 #### [AppliedPromotion](#AppliedPromotion)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  no  |  || article_quantity | number |  no  |  || mrp_promotion | boolean |  no  |  || offer_text | string |  no  |  || ownership | [Ownership2](#Ownership2) |  no  |  || promo_id | string |  no  |  || promotion_type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  |  |
+ | article_quantity | number |  no  |  |
+ | mrp_promotion | boolean |  no  |  |
+ | offer_text | string |  no  |  |
+ | ownership | [Ownership2](#Ownership2) |  no  |  |
+ | promo_id | string |  no  |  |
+ | promotion_type | string |  no  |  |
+ 
 
 ---
 
 #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || base | [BasePrice](#BasePrice) |  no  |  || converted | [BasePrice](#BasePrice) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [BasePrice](#BasePrice) |  no  |  |
+ | converted | [BasePrice](#BasePrice) |  no  |  |
+ 
 
 ---
 
 #### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ 
 
 ---
 
 #### [BulkBundleRestriction](#BulkBundleRestriction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || multi_store_allowed | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | multi_store_allowed | boolean |  yes  |  |
+ 
 
 ---
 
 #### [CartBreakup](#CartBreakup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || coupon | [CouponBreakup](#CouponBreakup) |  no  |  || display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  || loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  || raw | [RawBreakup](#RawBreakup) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon | [CouponBreakup](#CouponBreakup) |  no  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)] |  no  |  |
+ | loyalty_points | [LoyaltyPoints](#LoyaltyPoints) |  no  |  |
+ | raw | [RawBreakup](#RawBreakup) |  no  |  |
+ 
 
 ---
 
 #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || symbol | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | symbol | string |  no  |  |
+ 
 
 ---
 
 #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || applied_promo_details | [[AppliedPromotion](#AppliedPromotion)] |  no  |  || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || buy_now | boolean |  no  |  || checkout_mode | string |  no  |  || comment | string |  no  |  || coupon_text | string |  no  |  || currency | [CartCurrency](#CartCurrency) |  no  |  || delivery_charge_info | string |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || gstin | string |  no  |  || id | string |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || last_modified | string |  no  |  || message | string |  no  |  || payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  || restrict_checkout | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | buy_now | boolean |  no  |  |
+ | checkout_mode | string |  no  |  |
+ | comment | string |  no  |  |
+ | coupon_text | string |  no  |  |
+ | currency | [CartCurrency](#CartCurrency) |  no  |  |
+ | delivery_charge_info | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | gstin | string |  no  |  |
+ | id | string |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | last_modified | string |  no  |  |
+ | message | string |  no  |  |
+ | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock) |  no  |  |
+ | restrict_checkout | boolean |  no  |  |
+ 
 
 ---
 
 #### [CartItem](#CartItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || product_id | string |  yes  |  || quantity | number |  no  |  || size | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | product_id | string |  yes  |  |
+ | quantity | number |  no  |  |
+ | size | string |  yes  |  |
+ 
 
 ---
 
 #### [CartItemMeta](#CartItemMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || group_id | string |  no  |  || primary_item | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | group_id | string |  no  |  |
+ | primary_item | boolean |  no  |  |
+ 
 
 ---
 
 #### [CartProduct](#CartProduct)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action | [ProductAction](#ProductAction) |  no  |  || brand | [BaseInfo](#BaseInfo) |  no  |  || categories | [[CategoryInfo](#CategoryInfo)] |  no  |  || images | [[ProductImage](#ProductImage)] |  no  |  || name | string |  no  |  || slug | string |  no  |  || type | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [ProductAction](#ProductAction) |  no  |  |
+ | brand | [BaseInfo](#BaseInfo) |  no  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)] |  no  |  |
+ | images | [[ProductImage](#ProductImage)] |  no  |  |
+ | name | string |  no  |  |
+ | slug | string |  no  |  |
+ | type | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [CartProductIdentifer](#CartProductIdentifer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || identifier | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | string |  no  |  |
+ 
 
 ---
 
 #### [CartProductInfo](#CartProductInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || article | [ProductArticle](#ProductArticle) |  no  |  || availability | [ProductAvailability](#ProductAvailability) |  no  |  || bulk_offer | string |  no  |  || coupon_message | string |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || discount | string |  no  |  || identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  || is_set | boolean |  no  |  || key | string |  no  |  || message | string |  no  |  || moq | string |  no  |  || parent_item_identifiers | string |  no  |  || price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  || product | [CartProduct](#CartProduct) |  no  |  || promo_meta | [PromoMeta](#PromoMeta) |  no  |  || promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  || quantity | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | article | [ProductArticle](#ProductArticle) |  no  |  |
+ | availability | [ProductAvailability](#ProductAvailability) |  no  |  |
+ | bulk_offer | string |  no  |  |
+ | coupon_message | string |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | discount | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | is_set | boolean |  no  |  |
+ | key | string |  no  |  |
+ | message | string |  no  |  |
+ | moq | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | price_per_unit | [ProductPriceInfo](#ProductPriceInfo) |  no  |  |
+ | product | [CartProduct](#CartProduct) |  no  |  |
+ | promo_meta | [PromoMeta](#PromoMeta) |  no  |  |
+ | promotions_applied | [[AppliedPromotion](#AppliedPromotion)] |  no  |  |
+ | quantity | number |  no  |  |
+ 
 
 ---
 
 #### [CategoryInfo](#CategoryInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || name | string |  no  |  || uid | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string |  no  |  |
+ | uid | number |  no  |  |
+ 
 
 ---
 
 #### [CompareObject](#CompareObject)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || equals | number |  no  |  || greater_than | number |  no  |  || greater_than_equals | number |  no  |  || less_than | number |  no  |  || less_than_equals | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | equals | number |  no  |  |
+ | greater_than | number |  no  |  |
+ | greater_than_equals | number |  no  |  |
+ | less_than | number |  no  |  |
+ | less_than_equals | number |  no  |  |
+ 
 
 ---
 
 #### [CouponAction](#CouponAction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action_date | string |  no  |  || txn_mode | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action_date | string |  no  |  |
+ | txn_mode | string |  no  |  |
+ 
 
 ---
 
 #### [CouponAdd](#CouponAdd)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _schedule | [CouponSchedule](#CouponSchedule) |  no  |  || action | [CouponAction](#CouponAction) |  no  |  || author | [CouponAuthor](#CouponAuthor) |  no  |  || code | string |  yes  |  || date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  || display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  || identifiers | [Identifier](#Identifier) |  yes  |  || ownership | [Ownership](#Ownership) |  yes  |  || restrictions | [Restrictions](#Restrictions) |  no  |  || rule | [[Rule](#Rule)] |  yes  |  || rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  || state | [State](#State) |  no  |  || tags | [string] |  no  |  || type_slug | string |  yes  |  || validation | [Validation](#Validation) |  no  |  || validity | [Validity](#Validity) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | action | [CouponAction](#CouponAction) |  no  |  |
+ | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | code | string |  yes  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
+ | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | state | [State](#State) |  no  |  |
+ | tags | [string] |  no  |  |
+ | type_slug | string |  yes  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ 
 
 ---
 
 #### [CouponAuthor](#CouponAuthor)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || created_by | string |  no  |  || modified_by | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  |  |
+ | modified_by | string |  no  |  |
+ 
 
 ---
 
 #### [CouponBreakup](#CouponBreakup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || is_applied | boolean |  no  |  || message | string |  no  |  || type | string |  no  |  || uid | string |  no  |  || value | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | uid | string |  no  |  |
+ | value | number |  no  |  |
+ 
 
 ---
 
 #### [CouponDateMeta](#CouponDateMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || created_on | string |  no  |  || modified_on | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+ 
 
 ---
 
 #### [CouponPartialUpdate](#CouponPartialUpdate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive | boolean |  no  |  || schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive | boolean |  no  |  |
+ | schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ 
 
 ---
 
 #### [CouponSchedule](#CouponSchedule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || next_schedule | [string] |  no  |  || start | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | next_schedule | [string] |  no  |  |
+ | start | string |  no  |  |
+ 
 
 ---
 
 #### [CouponsResponse](#CouponsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [CouponAdd](#CouponAdd) |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [CouponAdd](#CouponAdd) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [CouponUpdate](#CouponUpdate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _schedule | [CouponSchedule](#CouponSchedule) |  no  |  || action | [CouponAction](#CouponAction) |  no  |  || author | [CouponAuthor](#CouponAuthor) |  no  |  || code | string |  yes  |  || date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  || display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  || identifiers | [Identifier](#Identifier) |  yes  |  || ownership | [Ownership](#Ownership) |  yes  |  || restrictions | [Restrictions](#Restrictions) |  no  |  || rule | [[Rule](#Rule)] |  yes  |  || rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  || state | [State](#State) |  no  |  || tags | [string] |  no  |  || type_slug | string |  yes  |  || validation | [Validation](#Validation) |  no  |  || validity | [Validity](#Validity) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | [CouponSchedule](#CouponSchedule) |  no  |  |
+ | action | [CouponAction](#CouponAction) |  no  |  |
+ | author | [CouponAuthor](#CouponAuthor) |  no  |  |
+ | code | string |  yes  |  |
+ | date_meta | [CouponDateMeta](#CouponDateMeta) |  no  |  |
+ | display_meta | [DisplayMeta](#DisplayMeta) |  yes  |  |
+ | identifiers | [Identifier](#Identifier) |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  yes  |  |
+ | restrictions | [Restrictions](#Restrictions) |  no  |  |
+ | rule | [[Rule](#Rule)] |  yes  |  |
+ | rule_definition | [RuleDefinition](#RuleDefinition) |  yes  |  |
+ | state | [State](#State) |  no  |  |
+ | tags | [string] |  no  |  |
+ | type_slug | string |  yes  |  |
+ | validation | [Validation](#Validation) |  no  |  |
+ | validity | [Validity](#Validity) |  yes  |  |
+ 
 
 ---
 
 #### [DiscountOffer](#DiscountOffer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || discount_amount | number |  no  |  || discount_percentage | number |  no  |  || discount_price | number |  no  |  || max_discount_amount | number |  no  |  || max_offer_quantity | number |  no  |  || min_offer_quantity | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | discount_amount | number |  no  |  |
+ | discount_percentage | number |  no  |  |
+ | discount_price | number |  no  |  |
+ | max_discount_amount | number |  no  |  |
+ | max_offer_quantity | number |  no  |  |
+ | min_offer_quantity | number |  no  |  |
+ 
 
 ---
 
 #### [DiscountRule](#DiscountRule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || buy_condition | string |  yes  |  || discount_type | string |  yes  |  || item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  || offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | buy_condition | string |  yes  |  |
+ | discount_type | string |  yes  |  |
+ | item_criteria | [ItemCriteria](#ItemCriteria) |  yes  |  |
+ | offer | [DiscountOffer](#DiscountOffer) |  yes  |  |
+ 
 
 ---
 
 #### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency_code | string |  no  |  || currency_symbol | string |  no  |  || display | string |  no  |  || key | string |  no  |  || message | [string] |  no  |  || value | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | display | string |  no  |  |
+ | key | string |  no  |  |
+ | message | [string] |  no  |  |
+ | value | number |  no  |  |
+ 
 
 ---
 
 #### [DisplayMeta](#DisplayMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  || auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  || description | string |  no  |  || remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  || subtitle | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | apply | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | auto | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | description | string |  no  |  |
+ | remove | [DisplayMetaDict](#DisplayMetaDict) |  no  |  |
+ | subtitle | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [DisplayMeta1](#DisplayMeta1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || name | string |  no  |  || offer_text | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | name | string |  no  |  |
+ | offer_text | string |  no  |  |
+ 
 
 ---
 
 #### [DisplayMetaDict](#DisplayMetaDict)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || subtitle | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | subtitle | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [Identifier](#Identifier)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || article_id | [string] |  no  |  || brand_id | [number] |  no  |  || category_id | [number] |  no  |  || collection_id | [string] |  no  |  || company_id | [number] |  no  |  || exclude_brand_id | [number] |  no  |  || item_id | [number] |  no  |  || store_id | [number] |  no  |  || user_id | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | article_id | [string] |  no  |  |
+ | brand_id | [number] |  no  |  |
+ | category_id | [number] |  no  |  |
+ | collection_id | [string] |  no  |  |
+ | company_id | [number] |  no  |  |
+ | exclude_brand_id | [number] |  no  |  |
+ | item_id | [number] |  no  |  |
+ | store_id | [number] |  no  |  |
+ | user_id | [string] |  no  |  |
+ 
 
 ---
 
 #### [ItemCriteria](#ItemCriteria)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || all_items | boolean |  no  |  || buy_rules | [string] |  no  |  || cart_quantity | [CompareObject](#CompareObject) |  no  |  || cart_total | [CompareObject](#CompareObject) |  no  |  || item_brand | [number] |  no  |  || item_category | [number] |  no  |  || item_company | [number] |  no  |  || item_exclude_brand | [number] |  no  |  || item_exclude_category | [number] |  no  |  || item_exclude_company | [number] |  no  |  || item_exclude_sku | [string] |  no  |  || item_exclude_store | [number] |  no  |  || item_id | [number] |  no  |  || item_size | [string] |  no  |  || item_sku | [string] |  no  |  || item_store | [number] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | all_items | boolean |  no  |  |
+ | buy_rules | [string] |  no  |  |
+ | cart_quantity | [CompareObject](#CompareObject) |  no  |  |
+ | cart_total | [CompareObject](#CompareObject) |  no  |  |
+ | item_brand | [number] |  no  |  |
+ | item_category | [number] |  no  |  |
+ | item_company | [number] |  no  |  |
+ | item_exclude_brand | [number] |  no  |  |
+ | item_exclude_category | [number] |  no  |  |
+ | item_exclude_company | [number] |  no  |  |
+ | item_exclude_sku | [string] |  no  |  |
+ | item_exclude_store | [number] |  no  |  |
+ | item_id | [number] |  no  |  |
+ | item_size | [string] |  no  |  |
+ | item_sku | [string] |  no  |  |
+ | item_store | [number] |  no  |  |
+ 
 
 ---
 
 #### [LoyaltyPoints](#LoyaltyPoints)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || applicable | number |  no  |  || description | string |  no  |  || is_applied | boolean |  no  |  || total | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable | number |  no  |  |
+ | description | string |  no  |  |
+ | is_applied | boolean |  no  |  |
+ | total | number |  no  |  |
+ 
 
 ---
 
 #### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current_status | string |  no  |  || extra_meta | string |  no  |  || order_id | string |  no  |  || payment_gateway | string |  no  |  || payment_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current_status | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_gateway | string |  no  |  |
+ | payment_id | string |  no  |  |
+ 
 
 ---
 
 #### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  || mode | string |  yes  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  yes  |  |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+ | mode | string |  yes  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [OpenapiCartDetailsRequest](#OpenapiCartDetailsRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart_items | [CartItem](#CartItem) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_items | [CartItem](#CartItem) |  no  |  |
+ 
 
 ---
 
 #### [OpenapiCartDetailsResponse](#OpenapiCartDetailsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [OpenApiCartServiceabilityRequest](#OpenApiCartServiceabilityRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart_items | [CartItem](#CartItem) |  no  |  || shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_items | [CartItem](#CartItem) |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ 
 
 ---
 
 #### [OpenApiCartServiceabilityResponse](#OpenApiCartServiceabilityResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || breakup_values | [CartBreakup](#CartBreakup) |  no  |  || delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  || is_valid | boolean |  no  |  || items | [[CartProductInfo](#CartProductInfo)] |  no  |  || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | breakup_values | [CartBreakup](#CartBreakup) |  no  |  |
+ | delivery_promise | [ShipmentPromise](#ShipmentPromise) |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | items | [[CartProductInfo](#CartProductInfo)] |  no  |  |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [OpenApiCheckoutResponse](#OpenApiCheckoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || order_id | string |  yes  |  || order_ref_id | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | order_id | string |  yes  |  |
+ | order_ref_id | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [OpenApiErrorResponse](#OpenApiErrorResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || errors | string |  no  |  || message | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | errors | string |  no  |  |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [OpenApiFiles](#OpenApiFiles)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | string |  yes  |  || values | [string] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  yes  |  |
+ | values | [string] |  yes  |  |
+ 
 
 ---
 
 #### [OpenApiOrderItem](#OpenApiOrderItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount_paid | number |  yes  |  || cashback_applied | number |  yes  |  || cod_charges | number |  yes  |  || coupon_effective_discount | number |  yes  |  || delivery_charges | number |  yes  |  || discount | number |  yes  |  || employee_discount | number |  no  |  || extra_meta | string |  no  |  || files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  || loyalty_discount | number |  no  |  || meta | [CartItemMeta](#CartItemMeta) |  no  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  || price_effective | number |  yes  |  || price_marked | number |  yes  |  || product_id | number |  yes  |  || quantity | number |  no  |  || size | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount_paid | number |  yes  |  |
+ | cashback_applied | number |  yes  |  |
+ | cod_charges | number |  yes  |  |
+ | coupon_effective_discount | number |  yes  |  |
+ | delivery_charges | number |  yes  |  |
+ | discount | number |  yes  |  |
+ | employee_discount | number |  no  |  |
+ | extra_meta | string |  no  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | loyalty_discount | number |  no  |  |
+ | meta | [CartItemMeta](#CartItemMeta) |  no  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | price_effective | number |  yes  |  |
+ | price_marked | number |  yes  |  |
+ | product_id | number |  yes  |  |
+ | quantity | number |  no  |  |
+ | size | string |  yes  |  |
+ 
 
 ---
 
 #### [OpenApiPlatformCheckoutReq](#OpenApiPlatformCheckoutReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || affiliate_order_id | string |  no  |  || billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  || cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  || cart_value | number |  yes  |  || cashback_applied | number |  yes  |  || cod_charges | number |  yes  |  || comment | string |  no  |  || coupon | string |  no  |  || coupon_code | string |  yes  |  || coupon_value | number |  yes  |  || currency_code | string |  no  |  || delivery_charges | number |  yes  |  || employee_discount | string |  no  |  || files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  || gstin | string |  no  |  || loyalty_discount | number |  no  |  || order_id | string |  no  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  || payment_mode | string |  no  |  || shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_order_id | string |  no  |  |
+ | billing_address | [ShippingAddress](#ShippingAddress) |  yes  |  |
+ | cart_items | [[OpenApiOrderItem](#OpenApiOrderItem)] |  yes  |  |
+ | cart_value | number |  yes  |  |
+ | cashback_applied | number |  yes  |  |
+ | cod_charges | number |  yes  |  |
+ | comment | string |  no  |  |
+ | coupon | string |  no  |  |
+ | coupon_code | string |  yes  |  |
+ | coupon_value | number |  yes  |  |
+ | currency_code | string |  no  |  |
+ | delivery_charges | number |  yes  |  |
+ | employee_discount | string |  no  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)] |  no  |  |
+ | gstin | string |  no  |  |
+ | loyalty_discount | number |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | payment_mode | string |  no  |  |
+ | shipping_address | [ShippingAddress](#ShippingAddress) |  no  |  |
+ 
 
 ---
 
 #### [OperationErrorResponse](#OperationErrorResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [Ownership](#Ownership)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payable_by | string |  yes  |  || payable_category | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_by | string |  yes  |  |
+ | payable_category | string |  yes  |  |
+ 
 
 ---
 
 #### [Ownership1](#Ownership1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payable_by | string |  yes  |  || payable_category | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_by | string |  yes  |  |
+ | payable_category | string |  yes  |  |
+ 
 
 ---
 
 #### [Ownership2](#Ownership2)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payable_by | string |  no  |  || payable_category | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payable_by | string |  no  |  |
+ | payable_category | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || last_id | string |  no  |  || next_id | string |  no  |  || page | number |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | last_id | string |  no  |  |
+ | next_id | string |  no  |  |
+ | page | number |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [PaymentAllowValue](#PaymentAllowValue)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ 
 
 ---
 
 #### [PaymentAllowValue1](#PaymentAllowValue1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ 
 
 ---
 
 #### [PaymentModes](#PaymentModes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || codes | [string] |  no  |  || networks | [string] |  no  |  || types | [string] |  no  |  || uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | codes | [string] |  no  |  |
+ | networks | [string] |  no  |  |
+ | types | [string] |  no  |  |
+ | uses | [PaymentAllowValue](#PaymentAllowValue) |  no  |  |
+ 
 
 ---
 
 #### [PaymentSelectionLock](#PaymentSelectionLock)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || default_options | string |  no  |  || enabled | boolean |  no  |  || payment_identifier | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | default_options | string |  no  |  |
+ | enabled | boolean |  no  |  |
+ | payment_identifier | string |  no  |  |
+ 
 
 ---
 
 #### [PostOrder](#PostOrder)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cancellation_allowed | boolean |  no  |  || return_allowed | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cancellation_allowed | boolean |  no  |  |
+ | return_allowed | boolean |  no  |  |
+ 
 
 ---
 
 #### [PostOrder1](#PostOrder1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cancellation_allowed | boolean |  no  |  || return_allowed | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cancellation_allowed | boolean |  no  |  |
+ | return_allowed | boolean |  no  |  |
+ 
 
 ---
 
 #### [PriceRange](#PriceRange)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | number |  no  |  || min | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ 
 
 ---
 
 #### [ProductAction](#ProductAction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || query | [ActionQuery](#ActionQuery) |  no  |  || type | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | query | [ActionQuery](#ActionQuery) |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [ProductArticle](#ProductArticle)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || extra_meta | string |  no  |  || parent_item_identifiers | string |  no  |  || price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  || product_group_tags | [string] |  no  |  || quantity | number |  no  |  || seller | [BaseInfo](#BaseInfo) |  no  |  || size | string |  no  |  || store | [BaseInfo](#BaseInfo) |  no  |  || type | string |  no  |  || uid | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo) |  no  |  |
+ | product_group_tags | [string] |  no  |  |
+ | quantity | number |  no  |  |
+ | seller | [BaseInfo](#BaseInfo) |  no  |  |
+ | size | string |  no  |  |
+ | store | [BaseInfo](#BaseInfo) |  no  |  |
+ | type | string |  no  |  |
+ | uid | string |  no  |  |
+ 
 
 ---
 
 #### [ProductAvailability](#ProductAvailability)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)] |  no  |  || deliverable | boolean |  no  |  || is_valid | boolean |  no  |  || other_store_quantity | number |  no  |  || out_of_stock | boolean |  no  |  || sizes | [string] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | available_sizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)] |  no  |  |
+ | deliverable | boolean |  no  |  |
+ | is_valid | boolean |  no  |  |
+ | other_store_quantity | number |  no  |  |
+ | out_of_stock | boolean |  no  |  |
+ | sizes | [string] |  no  |  |
+ 
 
 ---
 
 #### [ProductAvailabilitySize](#ProductAvailabilitySize)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || display | string |  no  |  || is_available | boolean |  no  |  || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string |  no  |  |
+ | is_available | boolean |  no  |  |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [ProductImage](#ProductImage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aspect_ratio | string |  no  |  || secure_url | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | secure_url | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [ProductPrice](#ProductPrice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || add_on | number |  no  |  || currency_code | string |  no  |  || currency_symbol | string |  no  |  || effective | number |  no  |  || marked | number |  no  |  || selling | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | add_on | number |  no  |  |
+ | currency_code | string |  no  |  |
+ | currency_symbol | string |  no  |  |
+ | effective | number |  no  |  |
+ | marked | number |  no  |  |
+ | selling | number |  no  |  |
+ 
 
 ---
 
 #### [ProductPriceInfo](#ProductPriceInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || base | [ProductPrice](#ProductPrice) |  no  |  || converted | [ProductPrice](#ProductPrice) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPrice](#ProductPrice) |  no  |  |
+ | converted | [ProductPrice](#ProductPrice) |  no  |  |
+ 
 
 ---
 
 #### [PromiseFormatted](#PromiseFormatted)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | string |  no  |  || min | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string |  no  |  |
+ | min | string |  no  |  |
+ 
 
 ---
 
 #### [PromiseTimestamp](#PromiseTimestamp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || max | number |  no  |  || min | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ 
 
 ---
 
 #### [PromoMeta](#PromoMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [PromotionAction](#PromotionAction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || action_date | string |  yes  |  || action_type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | action_date | string |  yes  |  |
+ | action_type | string |  yes  |  |
+ 
 
 ---
 
 #### [PromotionAdd](#PromotionAdd)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  || application_id | string |  yes  |  || apply_all_discount | boolean |  no  |  || apply_exclusive | string |  no  |  || apply_priority | number |  no  |  || author | [PromotionAuthor](#PromotionAuthor) |  no  |  || buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  || code | string |  no  |  || currency | string |  no  |  || date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  || discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  || display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  || mode | string |  yes  |  || ownership | [Ownership1](#Ownership1) |  yes  |  || post_order_action | [PromotionAction](#PromotionAction) |  no  |  || promo_group | string |  yes  |  || promotion_type | string |  yes  |  || restrictions | [Restrictions1](#Restrictions1) |  no  |  || stackable | boolean |  no  |  || visiblility | [Visibility](#Visibility) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | application_id | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
+ | apply_exclusive | string |  no  |  |
+ | apply_priority | number |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | code | string |  no  |  |
+ | currency | string |  no  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | mode | string |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
+ | promo_group | string |  yes  |  |
+ | promotion_type | string |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | stackable | boolean |  no  |  |
+ | visiblility | [Visibility](#Visibility) |  no  |  |
+ 
 
 ---
 
 #### [PromotionAuthor](#PromotionAuthor)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || created_by | string |  no  |  || modified_by | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | created_by | string |  no  |  |
+ | modified_by | string |  no  |  |
+ 
 
 ---
 
 #### [PromotionDateMeta](#PromotionDateMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || created_on | string |  no  |  || modified_on | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string |  no  |  |
+ | modified_on | string |  no  |  |
+ 
 
 ---
 
 #### [PromotionListItem](#PromotionListItem)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  || application_id | string |  yes  |  || apply_all_discount | boolean |  no  |  || apply_exclusive | string |  no  |  || apply_priority | number |  no  |  || author | [PromotionAuthor](#PromotionAuthor) |  no  |  || buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  || code | string |  no  |  || currency | string |  no  |  || date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  || discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  || display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  || mode | string |  yes  |  || ownership | [Ownership1](#Ownership1) |  yes  |  || post_order_action | [PromotionAction](#PromotionAction) |  no  |  || promo_group | string |  yes  |  || promotion_type | string |  yes  |  || restrictions | [Restrictions1](#Restrictions1) |  no  |  || stackable | boolean |  no  |  || visiblility | [Visibility](#Visibility) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | application_id | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
+ | apply_exclusive | string |  no  |  |
+ | apply_priority | number |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | code | string |  no  |  |
+ | currency | string |  no  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | mode | string |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
+ | promo_group | string |  yes  |  |
+ | promotion_type | string |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | stackable | boolean |  no  |  |
+ | visiblility | [Visibility](#Visibility) |  no  |  |
+ 
 
 ---
 
 #### [PromotionPartialUpdate](#PromotionPartialUpdate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || archive | boolean |  no  |  || schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | archive | boolean |  no  |  |
+ | schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ 
 
 ---
 
 #### [PromotionPaymentModes](#PromotionPaymentModes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || codes | [string] |  no  |  || type | string |  yes  |  || uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | codes | [string] |  no  |  |
+ | type | string |  yes  |  |
+ | uses | [PaymentAllowValue1](#PaymentAllowValue1) |  no  |  |
+ 
 
 ---
 
 #### [PromotionSchedule](#PromotionSchedule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || next_schedule | [string] |  no  |  || published | boolean |  yes  |  || start | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | next_schedule | [string] |  no  |  |
+ | published | boolean |  yes  |  |
+ | start | string |  yes  |  |
+ 
 
 ---
 
 #### [PromotionsResponse](#PromotionsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [PromotionListItem](#PromotionListItem) |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [PromotionListItem](#PromotionListItem) |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [PromotionUpdate](#PromotionUpdate)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  || application_id | string |  yes  |  || apply_all_discount | boolean |  no  |  || apply_exclusive | string |  no  |  || apply_priority | number |  no  |  || author | [PromotionAuthor](#PromotionAuthor) |  no  |  || buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  || code | string |  no  |  || currency | string |  no  |  || date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  || discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  || display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  || mode | string |  yes  |  || ownership | [Ownership1](#Ownership1) |  yes  |  || post_order_action | [PromotionAction](#PromotionAction) |  no  |  || promo_group | string |  yes  |  || promotion_type | string |  yes  |  || restrictions | [Restrictions1](#Restrictions1) |  no  |  || stackable | boolean |  no  |  || visiblility | [Visibility](#Visibility) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | _schedule | [PromotionSchedule](#PromotionSchedule) |  no  |  |
+ | application_id | string |  yes  |  |
+ | apply_all_discount | boolean |  no  |  |
+ | apply_exclusive | string |  no  |  |
+ | apply_priority | number |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor) |  no  |  |
+ | buy_rules | [String: [ItemCriteria](#ItemCriteria)] |  yes  |  |
+ | code | string |  no  |  |
+ | currency | string |  no  |  |
+ | date_meta | [PromotionDateMeta](#PromotionDateMeta) |  no  |  |
+ | discount_rules | [[DiscountRule](#DiscountRule)] |  yes  |  |
+ | display_meta | [DisplayMeta1](#DisplayMeta1) |  yes  |  |
+ | mode | string |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  yes  |  |
+ | post_order_action | [PromotionAction](#PromotionAction) |  no  |  |
+ | promo_group | string |  yes  |  |
+ | promotion_type | string |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1) |  no  |  |
+ | stackable | boolean |  no  |  |
+ | visiblility | [Visibility](#Visibility) |  no  |  |
+ 
 
 ---
 
 #### [RawBreakup](#RawBreakup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cod_charge | number |  no  |  || convenience_fee | number |  no  |  || coupon | number |  no  |  || delivery_charge | number |  no  |  || discount | number |  no  |  || fynd_cash | number |  no  |  || gst_charges | number |  no  |  || mrp_total | number |  no  |  || subtotal | number |  no  |  || total | number |  no  |  || vog | number |  no  |  || you_saved | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cod_charge | number |  no  |  |
+ | convenience_fee | number |  no  |  |
+ | coupon | number |  no  |  |
+ | delivery_charge | number |  no  |  |
+ | discount | number |  no  |  |
+ | fynd_cash | number |  no  |  |
+ | gst_charges | number |  no  |  |
+ | mrp_total | number |  no  |  |
+ | subtotal | number |  no  |  |
+ | total | number |  no  |  |
+ | vog | number |  no  |  |
+ | you_saved | number |  no  |  |
+ 
 
 ---
 
 #### [Restrictions](#Restrictions)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  || coupon_allowed | boolean |  no  |  || ordering_stores | [number] |  no  |  || payments | [String: [PaymentModes](#PaymentModes)] |  no  |  || platforms | [string] |  no  |  || post_order | [PostOrder](#PostOrder) |  no  |  || price_range | [PriceRange](#PriceRange) |  no  |  || user_groups | [number] |  no  |  || uses | [UsesRestriction](#UsesRestriction) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | bulk_bundle | [BulkBundleRestriction](#BulkBundleRestriction) |  no  |  |
+ | coupon_allowed | boolean |  no  |  |
+ | ordering_stores | [number] |  no  |  |
+ | payments | [String: [PaymentModes](#PaymentModes)] |  no  |  |
+ | platforms | [string] |  no  |  |
+ | post_order | [PostOrder](#PostOrder) |  no  |  |
+ | price_range | [PriceRange](#PriceRange) |  no  |  |
+ | user_groups | [number] |  no  |  |
+ | uses | [UsesRestriction](#UsesRestriction) |  no  |  |
+ 
 
 ---
 
 #### [Restrictions1](#Restrictions1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || anonymous_users | boolean |  no  |  || order_quantity | number |  no  |  || payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  || platforms | [string] |  no  |  || post_order | [PostOrder1](#PostOrder1) |  no  |  || user_groups | [number] |  no  |  || user_id | [string] |  no  |  || user_registered | [UserRegistered](#UserRegistered) |  no  |  || uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | anonymous_users | boolean |  no  |  |
+ | order_quantity | number |  no  |  |
+ | payments | [[PromotionPaymentModes](#PromotionPaymentModes)] |  no  |  |
+ | platforms | [string] |  no  |  |
+ | post_order | [PostOrder1](#PostOrder1) |  no  |  |
+ | user_groups | [number] |  no  |  |
+ | user_id | [string] |  no  |  |
+ | user_registered | [UserRegistered](#UserRegistered) |  no  |  |
+ | uses | [UsesRestriction1](#UsesRestriction1) |  yes  |  |
+ 
 
 ---
 
 #### [Rule](#Rule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || discount_qty | number |  no  |  || key | number |  no  |  || max | number |  no  |  || min | number |  no  |  || value | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | discount_qty | number |  no  |  |
+ | key | number |  no  |  |
+ | max | number |  no  |  |
+ | min | number |  no  |  |
+ | value | number |  no  |  |
+ 
 
 ---
 
 #### [RuleDefinition](#RuleDefinition)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || applicable_on | string |  yes  |  || auto_apply | boolean |  no  |  || calculate_on | string |  yes  |  || currency_code | string |  no  |  || is_exact | boolean |  no  |  || scope | [string] |  no  |  || type | string |  yes  |  || value_type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | applicable_on | string |  yes  |  |
+ | auto_apply | boolean |  no  |  |
+ | calculate_on | string |  yes  |  |
+ | currency_code | string |  no  |  |
+ | is_exact | boolean |  no  |  |
+ | scope | [string] |  no  |  |
+ | type | string |  yes  |  |
+ | value_type | string |  yes  |  |
+ 
 
 ---
 
 #### [ShipmentPromise](#ShipmentPromise)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  || timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [PromiseFormatted](#PromiseFormatted) |  no  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp) |  no  |  |
+ 
 
 ---
 
 #### [ShippingAddress](#ShippingAddress)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || address | string |  no  |  || address_type | string |  no  |  || area | string |  no  |  || area_code | string |  yes  |  || area_code_slug | string |  no  |  || city | string |  no  |  || country | string |  no  |  || country_code | string |  no  |  || email | string |  no  |  || landmark | string |  no  |  || meta | string |  no  |  || name | string |  no  |  || phone | number |  no  |  || pincode | number |  no  |  || state | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string |  no  |  |
+ | address_type | string |  no  |  |
+ | area | string |  no  |  |
+ | area_code | string |  yes  |  |
+ | area_code_slug | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | country_code | string |  no  |  |
+ | email | string |  no  |  |
+ | landmark | string |  no  |  |
+ | meta | string |  no  |  |
+ | name | string |  no  |  |
+ | phone | number |  no  |  |
+ | pincode | number |  no  |  |
+ | state | string |  no  |  |
+ 
 
 ---
 
 #### [State](#State)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_archived | boolean |  no  |  || is_display | boolean |  no  |  || is_public | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_archived | boolean |  no  |  |
+ | is_display | boolean |  no  |  |
+ | is_public | boolean |  no  |  |
+ 
 
 ---
 
 #### [SuccessMessage](#SuccessMessage)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [UpdateCartDetailResponse](#UpdateCartDetailResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart | [CartDetailResponse](#CartDetailResponse) |  no  |  || message | string |  no  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cart | [CartDetailResponse](#CartDetailResponse) |  no  |  |
+ | message | string |  no  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [UpdateCartRequest](#UpdateCartRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  || operation | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[UpdateProductCart](#UpdateProductCart)] |  no  |  |
+ | operation | string |  yes  |  |
+ 
 
 ---
 
 #### [UpdateProductCart](#UpdateProductCart)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _custom_json | string |  no  |  || article_id | string |  no  |  || extra_meta | string |  no  |  || identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  || item_id | number |  no  |  || item_index | number |  no  |  || item_size | string |  no  |  || parent_item_identifiers | string |  no  |  || quantity | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string |  no  |  |
+ | article_id | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  yes  |  |
+ | item_id | number |  no  |  |
+ | item_index | number |  no  |  |
+ | item_size | string |  no  |  |
+ | parent_item_identifiers | string |  no  |  |
+ | quantity | number |  no  |  |
+ 
 
 ---
 
 #### [UserRegistered](#UserRegistered)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || end | string |  no  |  || start | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
+ 
 
 ---
 
 #### [UsesRemaining](#UsesRemaining)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || app | number |  no  |  || total | number |  no  |  || user | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | app | number |  no  |  |
+ | total | number |  no  |  |
+ | user | number |  no  |  |
+ 
 
 ---
 
 #### [UsesRemaining1](#UsesRemaining1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || total | number |  no  |  || user | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | total | number |  no  |  |
+ | user | number |  no  |  |
+ 
 
 ---
 
 #### [UsesRestriction](#UsesRestriction)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || maximum | [UsesRemaining](#UsesRemaining) |  no  |  || remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | maximum | [UsesRemaining](#UsesRemaining) |  no  |  |
+ | remaining | [UsesRemaining](#UsesRemaining) |  no  |  |
+ 
 
 ---
 
 #### [UsesRestriction1](#UsesRestriction1)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  || remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | maximum | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ | remaining | [UsesRemaining1](#UsesRemaining1) |  no  |  |
+ 
 
 ---
 
 #### [Validation](#Validation)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || anonymous | boolean |  no  |  || app_id | [string] |  no  |  || user_registered_after | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | anonymous | boolean |  no  |  |
+ | app_id | [string] |  no  |  |
+ | user_registered_after | string |  no  |  |
+ 
 
 ---
 
 #### [Validity](#Validity)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || priority | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | number |  no  |  |
+ 
 
 ---
 
 #### [Visibility](#Visibility)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || coupon_list | boolean |  yes  |  || pdp | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | coupon_list | boolean |  yes  |  |
+ | pdp | boolean |  yes  |  |
+ 
 
 ---
 

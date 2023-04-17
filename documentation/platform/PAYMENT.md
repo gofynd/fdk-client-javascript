@@ -2849,287 +2849,517 @@ Bank details on correct Ifsc Code
 #### [AddBeneficiaryDetailsOTPRequest](#AddBeneficiaryDetailsOTPRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  || order_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [BankDetailsForOTP](#BankDetailsForOTP) |  yes  |  |
+ | order_id | string |  yes  |  |
+ 
 
 ---
 
 #### [BankDetailsForOTP](#BankDetailsForOTP)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || bank_name | string |  yes  |  || branch_name | string |  yes  |  || ifsc_code | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ 
 
 ---
 
 #### [CODdata](#CODdata)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || limit | number |  yes  |  || remaining_limit | number |  yes  |  || usages | number |  yes  |  || user_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  yes  |  |
+ | limit | number |  yes  |  |
+ | remaining_limit | number |  yes  |  |
+ | usages | number |  yes  |  |
+ | user_id | string |  yes  |  |
+ 
 
 ---
 
 #### [DeletePayoutResponse](#DeletePayoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [DeleteSubscriptionPaymentMethodResponse](#DeleteSubscriptionPaymentMethodResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [ErrorCodeAndDescription](#ErrorCodeAndDescription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ 
 
 ---
 
 #### [ErrorCodeDescription](#ErrorCodeDescription)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [GetUserCODLimitResponse](#GetUserCODLimitResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || success | boolean |  yes  |  || user_cod_data | [CODdata](#CODdata) |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  yes  |  |
+ | user_cod_data | [CODdata](#CODdata) |  yes  |  |
+ 
 
 ---
 
 #### [HttpErrorCodeAndResponse](#HttpErrorCodeAndResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [IfscCodeResponse](#IfscCodeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || bank_name | string |  yes  |  || branch_name | string |  yes  |  || success | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | bank_name | string |  yes  |  |
+ | branch_name | string |  yes  |  |
+ | success | boolean |  no  |  |
+ 
 
 ---
 
 #### [IntentApp](#IntentApp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || display_name | string |  no  |  || logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || package_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | display_name | string |  no  |  |
+ | logos | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
+ | package_name | string |  no  |  |
+ 
 
 ---
 
 #### [IntentAppErrorList](#IntentAppErrorList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  no  |  || package_name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  no  |  |
+ | package_name | string |  no  |  |
+ 
 
 ---
 
 #### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current_status | string |  no  |  || extra_meta | string |  no  |  || order_id | string |  no  |  || payment_gateway | string |  no  |  || payment_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current_status | string |  no  |  |
+ | extra_meta | string |  no  |  |
+ | order_id | string |  no  |  |
+ | payment_gateway | string |  no  |  |
+ | payment_id | string |  no  |  |
+ 
 
 ---
 
 #### [MultiTenderPaymentMethod](#MultiTenderPaymentMethod)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || amount | number |  yes  |  || meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  || mode | string |  yes  |  || name | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  yes  |  |
+ | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta) |  no  |  |
+ | mode | string |  yes  |  |
+ | name | string |  no  |  |
+ 
 
 ---
 
 #### [NotFoundResourceError](#NotFoundResourceError)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | string |  yes  |  || description | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string |  yes  |  |
+ | description | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [OrderBeneficiaryDetails](#OrderBeneficiaryDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  yes  |  || account_no | string |  yes  |  || address | string |  yes  |  || bank_name | string |  yes  |  || beneficiary_id | string |  yes  |  || branch_name | string |  no  |  || comment | string |  no  |  || created_on | string |  yes  |  || delights_user_name | string |  no  |  || display_name | string |  yes  |  || email | string |  yes  |  || id | number |  yes  |  || ifsc_code | string |  yes  |  || is_active | boolean |  yes  |  || mobile | string |  no  |  || modified_on | string |  yes  |  || subtitle | string |  yes  |  || title | string |  yes  |  || transfer_mode | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  yes  |  |
+ | account_no | string |  yes  |  |
+ | address | string |  yes  |  |
+ | bank_name | string |  yes  |  |
+ | beneficiary_id | string |  yes  |  |
+ | branch_name | string |  no  |  |
+ | comment | string |  no  |  |
+ | created_on | string |  yes  |  |
+ | delights_user_name | string |  no  |  |
+ | display_name | string |  yes  |  |
+ | email | string |  yes  |  |
+ | id | number |  yes  |  |
+ | ifsc_code | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | mobile | string |  no  |  |
+ | modified_on | string |  yes  |  |
+ | subtitle | string |  yes  |  |
+ | title | string |  yes  |  |
+ | transfer_mode | string |  yes  |  |
+ 
 
 ---
 
 #### [OrderBeneficiaryResponse](#OrderBeneficiaryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  || show_beneficiary_details | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  |  |
+ | show_beneficiary_details | boolean |  no  |  |
+ 
 
 ---
 
 #### [PaymentConfirmationRequest](#PaymentConfirmationRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || order_id | string |  yes  |  || payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | order_id | string |  yes  |  |
+ | payment_methods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  yes  |  |
+ 
 
 ---
 
 #### [PaymentConfirmationResponse](#PaymentConfirmationResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || order_id | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | order_id | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [PaymentGatewayConfig](#PaymentGatewayConfig)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || config_type | string |  yes  |  || is_active | boolean |  no  |  || key | string |  yes  |  || merchant_salt | string |  yes  |  || secret | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | config_type | string |  yes  |  |
+ | is_active | boolean |  no  |  |
+ | key | string |  yes  |  |
+ | merchant_salt | string |  yes  |  |
+ | secret | string |  yes  |  |
+ 
 
 ---
 
 #### [PaymentGatewayConfigRequest](#PaymentGatewayConfigRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig) |  no  |  || app_id | string |  yes  |  || is_active | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig) |  no  |  |
+ | app_id | string |  yes  |  |
+ | is_active | boolean |  no  |  |
+ 
 
 ---
 
 #### [PaymentGatewayConfigResponse](#PaymentGatewayConfigResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregators | [string] |  no  |  || app_id | string |  yes  |  || created | boolean |  yes  |  || display_fields | [string] |  yes  |  || excluded_fields | [string] |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregators | [string] |  no  |  |
+ | app_id | string |  yes  |  |
+ | created | boolean |  yes  |  |
+ | display_fields | [string] |  yes  |  |
+ | excluded_fields | [string] |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [PaymentGatewayToBeReviewed](#PaymentGatewayToBeReviewed)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | [string] |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | [string] |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [PaymentModeList](#PaymentModeList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator_name | string |  yes  |  || card_brand | string |  no  |  || card_brand_image | string |  no  |  || card_fingerprint | string |  no  |  || card_id | string |  no  |  || card_isin | string |  no  |  || card_issuer | string |  no  |  || card_name | string |  no  |  || card_number | string |  no  |  || card_reference | string |  no  |  || card_token | string |  no  |  || card_type | string |  no  |  || cod_limit | number |  no  |  || cod_limit_per_order | number |  no  |  || code | string |  no  |  || compliant_with_tokenisation_guidelines | boolean |  no  |  || display_name | string |  no  |  || display_priority | number |  no  |  || exp_month | number |  no  |  || exp_year | number |  no  |  || expired | boolean |  no  |  || fynd_vpa | string |  no  |  || intent_app | [[IntentApp](#IntentApp)] |  no  |  || intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  || intent_app_error_list | [string] |  no  |  || intent_flow | boolean |  no  |  || logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  || merchant_code | string |  no  |  || name | string |  no  |  || nickname | string |  no  |  || remaining_limit | number |  no  |  || retry_count | number |  no  |  || timeout | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_name | string |  yes  |  |
+ | card_brand | string |  no  |  |
+ | card_brand_image | string |  no  |  |
+ | card_fingerprint | string |  no  |  |
+ | card_id | string |  no  |  |
+ | card_isin | string |  no  |  |
+ | card_issuer | string |  no  |  |
+ | card_name | string |  no  |  |
+ | card_number | string |  no  |  |
+ | card_reference | string |  no  |  |
+ | card_token | string |  no  |  |
+ | card_type | string |  no  |  |
+ | cod_limit | number |  no  |  |
+ | cod_limit_per_order | number |  no  |  |
+ | code | string |  no  |  |
+ | compliant_with_tokenisation_guidelines | boolean |  no  |  |
+ | display_name | string |  no  |  |
+ | display_priority | number |  no  |  |
+ | exp_month | number |  no  |  |
+ | exp_year | number |  no  |  |
+ | expired | boolean |  no  |  |
+ | fynd_vpa | string |  no  |  |
+ | intent_app | [[IntentApp](#IntentApp)] |  no  |  |
+ | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)] |  no  |  |
+ | intent_app_error_list | [string] |  no  |  |
+ | intent_flow | boolean |  no  |  |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo) |  no  |  |
+ | merchant_code | string |  no  |  |
+ | name | string |  no  |  |
+ | nickname | string |  no  |  |
+ | remaining_limit | number |  no  |  |
+ | retry_count | number |  no  |  |
+ | timeout | number |  no  |  |
+ 
 
 ---
 
 #### [PaymentModeLogo](#PaymentModeLogo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || large | string |  yes  |  || small | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | large | string |  yes  |  |
+ | small | string |  yes  |  |
+ 
 
 ---
 
 #### [PaymentOptions](#PaymentOptions)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  yes  |  |
+ 
 
 ---
 
 #### [PaymentOptionsResponse](#PaymentOptionsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || payment_options | [PaymentOptions](#PaymentOptions) |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | payment_options | [PaymentOptions](#PaymentOptions) |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [PayoutBankDetails](#PayoutBankDetails)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || account_holder | string |  no  |  || account_no | string |  no  |  || account_type | string |  yes  |  || bank_name | string |  no  |  || branch_name | string |  no  |  || city | string |  no  |  || country | string |  no  |  || ifsc_code | string |  yes  |  || pincode | number |  no  |  || state | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string |  no  |  |
+ | account_no | string |  no  |  |
+ | account_type | string |  yes  |  |
+ | bank_name | string |  no  |  |
+ | branch_name | string |  no  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
+ | ifsc_code | string |  yes  |  |
+ | pincode | number |  no  |  |
+ | state | string |  no  |  |
+ 
 
 ---
 
 #### [PayoutRequest](#PayoutRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  |  || is_active | boolean |  yes  |  || transfer_type | string |  yes  |  || unique_external_id | string |  yes  |  || users | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | transfer_type | string |  yes  |  |
+ | unique_external_id | string |  yes  |  |
+ | users | string |  yes  |  |
+ 
 
 ---
 
 #### [PayoutResponse](#PayoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || bank_details | string |  yes  |  || created | boolean |  yes  |  || is_active | boolean |  yes  |  || payment_status | string |  yes  |  || payouts | string |  yes  |  || success | boolean |  yes  |  || transfer_type | string |  yes  |  || unique_transfer_no | string |  yes  |  || users | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | bank_details | string |  yes  |  |
+ | created | boolean |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | payment_status | string |  yes  |  |
+ | payouts | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ | transfer_type | string |  yes  |  |
+ | unique_transfer_no | string |  yes  |  |
+ | users | string |  yes  |  |
+ 
 
 ---
 
 #### [PayoutsResponse](#PayoutsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || customers | string |  yes  |  || is_active | boolean |  yes  |  || is_default | boolean |  yes  |  || more_attributes | string |  yes  |  || payouts_aggregators | [string] |  yes  |  || transfer_type | string |  yes  |  || unique_transfer_no | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | customers | string |  yes  |  |
+ | is_active | boolean |  yes  |  |
+ | is_default | boolean |  yes  |  |
+ | more_attributes | string |  yes  |  |
+ | payouts_aggregators | [string] |  yes  |  |
+ | transfer_type | string |  yes  |  |
+ | unique_transfer_no | string |  yes  |  |
+ 
 
 ---
 
 #### [RefundAccountResponse](#RefundAccountResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  no  |  || is_verified_flag | boolean |  no  |  || message | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | is_verified_flag | boolean |  no  |  |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [RootPaymentMode](#RootPaymentMode)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || add_card_enabled | boolean |  no  |  || aggregator_name | string |  no  |  || anonymous_enable | boolean |  no  |  || display_name | string |  yes  |  || display_priority | number |  yes  |  || is_pay_by_card_pl | boolean |  no  |  || list | [[PaymentModeList](#PaymentModeList)] |  no  |  || name | string |  yes  |  || save_card | boolean |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | add_card_enabled | boolean |  no  |  |
+ | aggregator_name | string |  no  |  |
+ | anonymous_enable | boolean |  no  |  |
+ | display_name | string |  yes  |  |
+ | display_priority | number |  yes  |  |
+ | is_pay_by_card_pl | boolean |  no  |  |
+ | list | [[PaymentModeList](#PaymentModeList)] |  no  |  |
+ | name | string |  yes  |  |
+ | save_card | boolean |  no  |  |
+ 
 
 ---
 
 #### [SaveSubscriptionSetupIntentRequest](#SaveSubscriptionSetupIntentRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || unique_external_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | unique_external_id | string |  yes  |  |
+ 
 
 ---
 
 #### [SaveSubscriptionSetupIntentResponse](#SaveSubscriptionSetupIntentResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [SetCODForUserRequest](#SetCODForUserRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || merchant_user_id | string |  yes  |  || mobileno | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  yes  |  |
+ | merchant_user_id | string |  yes  |  |
+ | mobileno | string |  yes  |  |
+ 
 
 ---
 
 #### [SetCODOptionResponse](#SetCODOptionResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [SubscriptionConfigResponse](#SubscriptionConfigResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aggregator | string |  yes  |  || config | string |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  yes  |  |
+ | config | string |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [SubscriptionPaymentMethodResponse](#SubscriptionPaymentMethodResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | [string] |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [string] |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 
 #### [UpdatePayoutRequest](#UpdatePayoutRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || is_default | boolean |  yes  |  || unique_external_id | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  yes  |  |
+ | is_default | boolean |  yes  |  |
+ | unique_external_id | string |  yes  |  |
+ 
 
 ---
 
 #### [UpdatePayoutResponse](#UpdatePayoutResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || is_active | boolean |  yes  |  || is_default | boolean |  yes  |  || success | boolean |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  yes  |  |
+ | is_default | boolean |  yes  |  |
+ | success | boolean |  yes  |  |
+ 
 
 ---
 

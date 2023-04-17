@@ -870,140 +870,244 @@ Success
 #### [AbandonCartDetail](#AbandonCartDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || address | string |  no  |  || articles | [string] |  no  |  || breakup | string |  no  |  || cart_value | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | address | string |  no  |  |
+ | articles | [string] |  no  |  |
+ | breakup | string |  no  |  |
+ | cart_value | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [AbandonCartsDetail](#AbandonCartsDetail)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || context_app_application_id | string |  no  |  || context_traits_email | string |  no  |  || context_traits_first_name | string |  no  |  || context_traits_last_name | string |  no  |  || context_traits_phone_number | string |  no  |  || properties_breakup_values_raw_total | string |  no  |  || properties_cart_id | string |  no  |  || received_at | [ReceivedAt](#ReceivedAt) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | context_app_application_id | string |  no  |  |
+ | context_traits_email | string |  no  |  |
+ | context_traits_first_name | string |  no  |  |
+ | context_traits_last_name | string |  no  |  |
+ | context_traits_phone_number | string |  no  |  |
+ | properties_breakup_values_raw_total | string |  no  |  |
+ | properties_cart_id | string |  no  |  |
+ | received_at | [ReceivedAt](#ReceivedAt) |  no  |  |
+ 
 
 ---
 
 #### [AbandonCartsList](#AbandonCartsList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cart_total | string |  no  |  || items | [[AbandonCartsDetail](#AbandonCartsDetail)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cart_total | string |  no  |  |
+ | items | [[AbandonCartsDetail](#AbandonCartsDetail)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [ErrorRes](#ErrorRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [ExportJobReq](#ExportJobReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || end_time | string |  no  |  || event_type | string |  no  |  || marketplace_name | string |  no  |  || start_time | string |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | end_time | string |  no  |  |
+ | event_type | string |  no  |  |
+ | marketplace_name | string |  no  |  |
+ | start_time | string |  no  |  |
+ | trace_id | string |  no  |  |
+ 
 
 ---
 
 #### [ExportJobRes](#ExportJobRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || job_id | string |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | job_id | string |  no  |  |
+ | status | string |  no  |  |
+ 
 
 ---
 
 #### [ExportJobStatusRes](#ExportJobStatusRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || download_url | string |  no  |  || job_id | string |  no  |  || status | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | download_url | string |  no  |  |
+ | job_id | string |  no  |  |
+ | status | string |  no  |  |
+ 
 
 ---
 
 #### [GetLogsListReq](#GetLogsListReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | string |  no  |  || end_date | string |  no  |  || marketplace_name | string |  no  |  || start_date | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | string |  no  |  |
+ | end_date | string |  no  |  |
+ | marketplace_name | string |  no  |  |
+ | start_date | string |  no  |  |
+ 
 
 ---
 
 #### [GetLogsListRes](#GetLogsListRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[MkpLogsResp](#MkpLogsResp)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[MkpLogsResp](#MkpLogsResp)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [LogInfo](#LogInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || article_id | string |  no  |  || brand_id | number |  no  |  || company_id | number |  no  |  || event | string |  no  |  || event_type | string |  no  |  || item_id | number |  no  |  || marketplace_name | string |  no  |  || seller_identifier | string |  no  |  || status | string |  no  |  || store_code | string |  no  |  || store_id | number |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | article_id | string |  no  |  |
+ | brand_id | number |  no  |  |
+ | company_id | number |  no  |  |
+ | event | string |  no  |  |
+ | event_type | string |  no  |  |
+ | item_id | number |  no  |  |
+ | marketplace_name | string |  no  |  |
+ | seller_identifier | string |  no  |  |
+ | status | string |  no  |  |
+ | store_code | string |  no  |  |
+ | store_id | number |  no  |  |
+ | trace_id | string |  no  |  |
+ 
 
 ---
 
 #### [MkpLogsResp](#MkpLogsResp)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || count | string |  no  |  || end_time_iso | string |  no  |  || event_type | string |  no  |  || start_time_iso | string |  no  |  || status | string |  no  |  || trace_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | count | string |  no  |  |
+ | end_time_iso | string |  no  |  |
+ | event_type | string |  no  |  |
+ | start_time_iso | string |  no  |  |
+ | status | string |  no  |  |
+ | trace_id | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [ReceivedAt](#ReceivedAt)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || value | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | value | string |  no  |  |
+ 
 
 ---
 
 #### [SearchLogReq](#SearchLogReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || company_id | string |  no  |  || end_date | string |  no  |  || identifier | string |  no  |  || identifier_value | string |  no  |  || marketplace_name | string |  no  |  || start_date | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | string |  no  |  |
+ | end_date | string |  no  |  |
+ | identifier | string |  no  |  |
+ | identifier_value | string |  no  |  |
+ | marketplace_name | string |  no  |  |
+ | start_date | string |  no  |  |
+ 
 
 ---
 
 #### [SearchLogRes](#SearchLogRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[LogInfo](#LogInfo)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[LogInfo](#LogInfo)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [StatGroup](#StatGroup)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || key | string |  no  |  || title | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | title | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [StatsGroupComponent](#StatsGroupComponent)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || filters | string |  no  |  || key | string |  no  |  || title | string |  no  |  || type | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | string |  no  |  |
+ | key | string |  no  |  |
+ | title | string |  no  |  |
+ | type | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [StatsGroupComponents](#StatsGroupComponents)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || components | [[StatsGroupComponent](#StatsGroupComponent)] |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | components | [[StatsGroupComponent](#StatsGroupComponent)] |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [StatsGroups](#StatsGroups)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || groups | [[StatGroup](#StatGroup)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | groups | [[StatGroup](#StatGroup)] |  no  |  |
+ 
 
 ---
 
 #### [StatsRes](#StatsRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || data | string |  no  |  || key | string |  no  |  || title | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string |  no  |  |
+ | key | string |  no  |  |
+ | title | string |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 

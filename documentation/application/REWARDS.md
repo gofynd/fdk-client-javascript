@@ -412,140 +412,256 @@ Success. Check example below or refer `RedeemReferralCodeResponse` for more deta
 #### [Asset](#Asset)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || aspect_ratio | string |  no  |  || id | string |  no  |  || secure_url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | aspect_ratio | string |  no  |  |
+ | id | string |  no  |  |
+ | secure_url | string |  no  |  |
+ 
 
 ---
 
 #### [CatalogueOrderRequest](#CatalogueOrderRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ 
 
 ---
 
 #### [CatalogueOrderResponse](#CatalogueOrderResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [[RewardsArticle](#RewardsArticle)] |  no  |  |
+ 
 
 ---
 
 #### [DiscountProperties](#DiscountProperties)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || absolute | number |  no  |  || currency | string |  no  |  || display_absolute | string |  no  |  || display_percent | string |  no  |  || percent | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | absolute | number |  no  |  |
+ | currency | string |  no  |  |
+ | display_absolute | string |  no  |  |
+ | display_percent | string |  no  |  |
+ | percent | number |  no  |  |
+ 
 
 ---
 
 #### [Error](#Error)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || code | number |  no  |  || exception | string |  no  |  || info | string |  no  |  || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | code | number |  no  |  |
+ | exception | string |  no  |  |
+ | info | string |  no  |  |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [Offer](#Offer)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _schedule | [Schedule](#Schedule) |  no  |  || active | boolean |  no  |  || application_id | string |  no  |  || banner_image | [Asset](#Asset) |  no  |  || created_at | string |  no  |  || name | string |  no  |  || rule | string |  no  |  || share | [ShareMessages](#ShareMessages) |  no  |  || sub_text | string |  no  |  || text | string |  no  |  || type | string |  no  |  || updated_at | string |  no  |  || updated_by | string |  no  |  || url | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _schedule | [Schedule](#Schedule) |  no  |  |
+ | active | boolean |  no  |  |
+ | application_id | string |  no  |  |
+ | banner_image | [Asset](#Asset) |  no  |  |
+ | created_at | string |  no  |  |
+ | name | string |  no  |  |
+ | rule | string |  no  |  |
+ | share | [ShareMessages](#ShareMessages) |  no  |  |
+ | sub_text | string |  no  |  |
+ | text | string |  no  |  |
+ | type | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | updated_by | string |  no  |  |
+ | url | string |  no  |  |
+ 
 
 ---
 
 #### [OrderDiscountRequest](#OrderDiscountRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || currency | string |  no  |  || order_amount | number |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  |  |
+ | order_amount | number |  yes  |  |
+ 
 
 ---
 
 #### [OrderDiscountResponse](#OrderDiscountResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket) |  no  |  || base_discount | [DiscountProperties](#DiscountProperties) |  no  |  || discount | [DiscountProperties](#DiscountProperties) |  no  |  || order_amount | number |  no  |  || points | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | applied_rule_bucket | [OrderDiscountRuleBucket](#OrderDiscountRuleBucket) |  no  |  |
+ | base_discount | [DiscountProperties](#DiscountProperties) |  no  |  |
+ | discount | [DiscountProperties](#DiscountProperties) |  no  |  |
+ | order_amount | number |  no  |  |
+ | points | number |  no  |  |
+ 
 
 ---
 
 #### [OrderDiscountRuleBucket](#OrderDiscountRuleBucket)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || high | number |  no  |  || low | number |  no  |  || max | number |  no  |  || value | number |  no  |  || value_type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | high | number |  no  |  |
+ | low | number |  no  |  |
+ | max | number |  no  |  |
+ | value | number |  no  |  |
+ | value_type | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [PointsHistory](#PointsHistory)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || application_id | string |  no  |  || claimed | boolean |  no  |  || created_at | string |  no  |  || expires_on | string |  no  |  || meta | string |  no  |  || points | number |  no  |  || remaining_points | number |  no  |  || text_1 | string |  no  |  || text_2 | string |  no  |  || text_3 | string |  no  |  || txn_name | string |  no  |  || updated_at | string |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | application_id | string |  no  |  |
+ | claimed | boolean |  no  |  |
+ | created_at | string |  no  |  |
+ | expires_on | string |  no  |  |
+ | meta | string |  no  |  |
+ | points | number |  no  |  |
+ | remaining_points | number |  no  |  |
+ | text_1 | string |  no  |  |
+ | text_2 | string |  no  |  |
+ | text_3 | string |  no  |  |
+ | txn_name | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [PointsHistoryResponse](#PointsHistoryResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[PointsHistory](#PointsHistory)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[PointsHistory](#PointsHistory)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [PointsResponse](#PointsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || points | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | points | number |  no  |  |
+ 
 
 ---
 
 #### [RedeemReferralCodeRequest](#RedeemReferralCodeRequest)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || device_id | string |  no  |  || referral_code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | device_id | string |  no  |  |
+ | referral_code | string |  no  |  |
+ 
 
 ---
 
 #### [RedeemReferralCodeResponse](#RedeemReferralCodeResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  || points | number |  no  |  || redeemed | boolean |  no  |  || referrer_id | string |  no  |  || referrer_info | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | points | number |  no  |  |
+ | redeemed | boolean |  no  |  |
+ | referrer_id | string |  no  |  |
+ | referrer_info | string |  no  |  |
+ 
 
 ---
 
 #### [ReferralDetailsResponse](#ReferralDetailsResponse)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || referral | [Offer](#Offer) |  no  |  || referrer_info | string |  no  |  || share | [ShareMessages](#ShareMessages) |  no  |  || terms_conditions_link | string |  no  |  || user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | referral | [Offer](#Offer) |  no  |  |
+ | referrer_info | string |  no  |  |
+ | share | [ShareMessages](#ShareMessages) |  no  |  |
+ | terms_conditions_link | string |  no  |  |
+ | user | [ReferralDetailsUser](#ReferralDetailsUser) |  no  |  |
+ 
 
 ---
 
 #### [ReferralDetailsUser](#ReferralDetailsUser)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || blocked | boolean |  no  |  || points | number |  no  |  || redeemed | boolean |  no  |  || referral_code | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | blocked | boolean |  no  |  |
+ | points | number |  no  |  |
+ | redeemed | boolean |  no  |  |
+ | referral_code | string |  no  |  |
+ 
 
 ---
 
 #### [RewardsArticle](#RewardsArticle)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || id | string |  no  |  || points | number |  no  |  || price | number |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | id | string |  no  |  |
+ | points | number |  no  |  |
+ | price | number |  no  |  |
+ 
 
 ---
 
 #### [Schedule](#Schedule)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || cron | string |  no  |  || duration | number |  no  |  || end | string |  no  |  || start | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string |  no  |  |
+ | duration | number |  no  |  |
+ | end | string |  no  |  |
+ | start | string |  no  |  |
+ 
 
 ---
 
 #### [ShareMessages](#ShareMessages)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || email | number |  no  |  || facebook | string |  no  |  || fallback | string |  no  |  || message | string |  no  |  || messenger | string |  no  |  || sms | string |  no  |  || text | string |  no  |  || twitter | string |  no  |  || whatsapp | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | email | number |  no  |  |
+ | facebook | string |  no  |  |
+ | fallback | string |  no  |  |
+ | message | string |  no  |  |
+ | messenger | string |  no  |  |
+ | sms | string |  no  |  |
+ | text | string |  no  |  |
+ | twitter | string |  no  |  |
+ | whatsapp | string |  no  |  |
+ 
 
 ---
 

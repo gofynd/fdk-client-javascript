@@ -427,84 +427,155 @@ Success
 #### [Attribution](#Attribution)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || campaign_cookie_expiry | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | campaign_cookie_expiry | string |  no  |  |
+ 
 
 ---
 
 #### [CampaignShortLink](#CampaignShortLink)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || medium | string |  no  |  || source | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | medium | string |  no  |  |
+ | source | string |  no  |  |
+ 
 
 ---
 
 #### [ErrorRes](#ErrorRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || message | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
 
 ---
 
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || current | number |  no  |  || has_next | boolean |  no  |  || has_previous | boolean |  no  |  || item_total | number |  no  |  || next_id | string |  no  |  || size | number |  no  |  || type | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | next_id | string |  no  |  |
+ | size | number |  no  |  |
+ | type | string |  yes  |  |
+ 
 
 ---
 
 #### [RedirectDevice](#RedirectDevice)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || link | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
 #### [Redirects](#Redirects)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || android | [RedirectDevice](#RedirectDevice) |  no  |  || force_web | boolean |  no  |  || ios | [RedirectDevice](#RedirectDevice) |  no  |  || web | [WebRedirect](#WebRedirect) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | android | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | force_web | boolean |  no  |  |
+ | ios | [RedirectDevice](#RedirectDevice) |  no  |  |
+ | web | [WebRedirect](#WebRedirect) |  no  |  |
+ 
 
 ---
 
 #### [ShortLinkList](#ShortLinkList)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  || page | [Page](#Page) |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ShortLinkRes](#ShortLinkRes)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ 
 
 ---
 
 #### [ShortLinkReq](#ShortLinkReq)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || active | boolean |  no  |  || attribution | [Attribution](#Attribution) |  no  |  || campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  || count | number |  no  |  || enable_tracking | boolean |  no  |  || expire_at | string |  no  |  || hash | string |  no  |  || personalized | boolean |  no  |  || redirects | [Redirects](#Redirects) |  no  |  || social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  || title | string |  yes  |  || url | string |  yes  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | count | number |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | hash | string |  no  |  |
+ | personalized | boolean |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | title | string |  yes  |  |
+ | url | string |  yes  |  |
+ 
 
 ---
 
 #### [ShortLinkRes](#ShortLinkRes)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || _id | string |  no  |  || active | boolean |  no  |  || app_redirect | boolean |  no  |  || application | string |  no  |  || attribution | [Attribution](#Attribution) |  no  |  || campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  || count | number |  no  |  || created_at | string |  no  |  || created_by | string |  no  |  || enable_tracking | boolean |  no  |  || expire_at | string |  no  |  || fallback | string |  no  |  || meta | string |  no  |  || personalized | boolean |  no  |  || redirects | [Redirects](#Redirects) |  no  |  || social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  || title | string |  no  |  || updated_at | string |  no  |  || url | [UrlInfo](#UrlInfo) |  no  |  || user_id | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  |  |
+ | active | boolean |  no  |  |
+ | app_redirect | boolean |  no  |  |
+ | application | string |  no  |  |
+ | attribution | [Attribution](#Attribution) |  no  |  |
+ | campaign | [CampaignShortLink](#CampaignShortLink) |  no  |  |
+ | count | number |  no  |  |
+ | created_at | string |  no  |  |
+ | created_by | string |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | expire_at | string |  no  |  |
+ | fallback | string |  no  |  |
+ | meta | string |  no  |  |
+ | personalized | boolean |  no  |  |
+ | redirects | [Redirects](#Redirects) |  no  |  |
+ | social_media_tags | [SocialMediaTags](#SocialMediaTags) |  no  |  |
+ | title | string |  no  |  |
+ | updated_at | string |  no  |  |
+ | url | [UrlInfo](#UrlInfo) |  no  |  |
+ | user_id | string |  no  |  |
+ 
 
 ---
 
 #### [SocialMediaTags](#SocialMediaTags)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || description | string |  no  |  || image | string |  no  |  || title | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | image | string |  no  |  |
+ | title | string |  no  |  |
+ 
 
 ---
 
 #### [UrlInfo](#UrlInfo)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || hash | string |  no  |  || original | string |  no  |  || short | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | hash | string |  no  |  |
+ | original | string |  no  |  |
+ | short | string |  no  |  |
+ 
 
 ---
 
 #### [WebRedirect](#WebRedirect)
 
  | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- || link | string |  no  |  || type | string |  no  |  |
+ | ---------- | ---- | -------- | ----------- |
+ | link | string |  no  |  |
+ | type | string |  no  |  |
+ 
 
 ---
 
