@@ -2275,8 +2275,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | profile_pic_url | string |  no  |  |
  | username | string |  no  |  |
  | account_type | string |  no  |  |
- | debug | [Debug](#Debug) |  no  |  |
- | has_old_password_hash | boolean |  no  |  |
  | _id | string |  no  |  |
  | created_at | string |  no  |  |
  | updated_at | string |  no  |  |
@@ -2309,18 +2307,6 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
  | verified | boolean |  no  |  |
  | email | string |  no  |  |
  | active | boolean |  no  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | string |  no  |  |
- | platform | string |  no  |  |
 
 ---
 
